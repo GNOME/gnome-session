@@ -1,15 +1,15 @@
 # gnome-session's Portuguese translation
-# Copyright (C) 2001, 2004 gnome-session
+# Copyright © 1999, 2001, 2002, 2003, 2004, 2005 gnome-session
 # Distributed under the same licence as the gnome-session package
 # Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2004
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.6\n"
+"Project-Id-Version: 2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-01-04 16:55+0000\n"
+"POT-Creation-Date: 2005-01-27 01:55+0000\n"
+"PO-Revision-Date: 2005-01-27 01:59+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Português <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -51,12 +51,8 @@ msgid "Logout prompt"
 msgstr "Perguntar ao terminar sessão"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Imagem Preferida a utilizar para o ecrã de logotipo ao iniciar sessão no "
-"Ambiente de Trabalho GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Imagem Preferida a utilizar para o ecrã de logotipo ao iniciar sessão"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -71,8 +67,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Apresentar ecrã de logotipo ao iniciar sessão"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Imagem de Ecrã de Logotipo"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Este é um caminho relativo baseado no directório $datadir/pixmaps/. "
+"Subdirectórios e nomes de imagens são valores válidos. Alterar este valor "
+"irá ter efeito na próxima vez que iniciar uma sessão."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -378,9 +380,8 @@ msgid "Show splash screen on _login"
 msgstr "Apresentar ecrã de _logotipo ao iniciar sessão"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "_Perguntar ao terminar sessão"
+msgstr "Perguntar ao _terminar sessão"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -485,6 +486,9 @@ msgstr "Adicionar Aplicação de Arranque"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Editar Aplicação de Arranque"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Imagem de Ecrã de Logotipo"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Gravar Sessão Actual"
