@@ -234,9 +234,9 @@ run_commands (const char *name, int number, const char *command,
 		  if (find_vector_property (client, command, 
 					    &curargc, &curargv))
 		    {
-		      gboolean ignore = (argc != curargc);
+		      gboolean ignore = (argc == curargc);
 		      
-		      if (!ignore)
+		      if (ignore)
 			for (j = 0; j < argc; j++)
 			  if (strcmp (argv[j], curargv[j]))
 			    { 
