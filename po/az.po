@@ -1,18 +1,19 @@
-# gnome-session faylının Azərbaycan dilinə tərcüməsi.
+# Translation of gnome-session.HEAD.az.po file to Azerbaijani Turkish
 # Copyright (C) 200 Free Software Foundation, Inc.
-# Vasif Ismailoglu MD <azerb_linux@hotmail.com>, 2000.
+# Vasif Ismailoglu MD <azerb_linux@hotmail.com>, 2000, 2001, 2002.
+# Mətin Əmirov <metin@karegen.com>, 2002, 2003, 2004
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.99\n"
-"POT-Creation-Date: 2004-02-16 10:51+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-05 14:56+0100\n"
 "PO-Revision-Date: 2003-07-10 20:39+0200\n"
 "Last-Translator: Mətin Əmirov <metin@karegen.com>\n"
-"Language-Team: Azerbaijani <gnome@azitt.com>\n"
+"Language-Team: Azerbaijani <translation-team-az@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -27,7 +28,7 @@ msgid ""
 msgstr ""
 "Təhlükəsizlik səbəbiylə _IceTcpTransNoListen() (XFree86 sistemləri)-ə malik "
 "olan platformlarda, gnome-iclası TCP qapısına gələn bağlantıları dinləmir. "
-"Bu seçənək uzaq (icazəli) qovşaqdan bağlantılara icazə verəcəkdir. Bunun "
+"Bu seçim uzaq (icazəli) qovşaqdan bağlantılara icazə verəcəkdir. Bunun "
 "fəallaşması üçün gnome-iclası yenidən başladılmalıdır."
 
 #: gnome-session/gnome-session.schemas.in.h:3
@@ -41,11 +42,11 @@ msgid ""
 "the logout dialog will have an option to save the session."
 msgstr ""
 "Bu fəallaşdırılıbsa, GNOME iclası avtomatik olaraq qeyd edəcək. Əks halda "
-"çıxış təsdiqi dialoqunda iclası qeyd etmə seçənəyi olacaq."
+"çıxış təsdiqi dialoqunda iclası qeyd etmə seçimi olacaq."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Çıxış təsdiqi"
+msgstr "Çıxış təstiqi"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
@@ -69,7 +70,7 @@ msgstr "İclas başlarkən sıçrayan ekranı göstər"
 msgid "Splash Screen Image"
 msgstr "Sıçrayan Ekran Rəsmi"
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
 msgid "_Order:"
 msgstr "_Ardıcıllıq:"
 
@@ -230,7 +231,7 @@ msgstr "Həqiqətən çıxmaq istəyirsiniz?"
 
 #: gnome-session/logout.c:391
 msgid "_Save current setup"
-msgstr "Hazırkı qurğunu _qeyd et"
+msgstr "Hazırkı qurğuları _qeyd et"
 
 #: gnome-session/logout.c:416
 msgid "Action"
@@ -238,7 +239,7 @@ msgstr "Gedişat"
 
 #: gnome-session/logout.c:433
 msgid "_Log out"
-msgstr "_Çıx"
+msgstr "İclası _Sonlandır"
 
 #: gnome-session/logout.c:437
 msgid "Sh_ut down"
@@ -277,7 +278,7 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "%s üçün internet ünvanı tapıla bilmir.\n"
-"Bu GNOMEun düzgün işləməməsinə səbəb olacaq.\n"
+"Bu GNOME-un düzgün işləməməsinə səbəb olacaq.\n"
 "Problemi bəlkə /etc/hosts faylına %s alavə\n"
 "edərək həll edə bilərsiniz."
 
@@ -287,7 +288,7 @@ msgstr "Hər Cürdə Gir"
 
 #: gnome-session/main.c:272
 msgid "Try Again"
-msgstr "Yenidən sınayın"
+msgstr "Yenidən Sınayın"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
@@ -317,11 +318,11 @@ msgstr "Yenidən başlama iflaslara görə imtina oldu."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
-msgstr "İclas bitirilməsi başladı."
+msgstr "İclas bitirilməsi fəaliyyətdədir."
 
 #: gnome-session/save-session.c:46
 msgid "Set the current session"
-msgstr "Hazırkı iclası tə'yin et"
+msgstr "Hazırkı iclası seç"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -329,11 +330,11 @@ msgstr "İclası öldür"
 
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
-msgstr "Dialog qutularını istifadə et"
+msgstr "Dialog qutularını işlət"
 
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
-msgstr "İclas idarəçisinə bağlanıla bilmədi"
+msgstr "İclas idarəçisinə bağlana bilmədi"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -349,7 +350,7 @@ msgstr "Yeni iclas əlavə et"
 
 #: gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "İclas adını düzəlt"
+msgstr "İclas adını təkmilləşdir"
 
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
@@ -360,8 +361,8 @@ msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"Bəzi dəyişikliklər qeyd edilməyib.\n"
-"Həqiqətən çıxmaq istəyirsiniz?"
+"Bə'zi dəyişikliklər qeyd edilməyib.\n"
+"Həqiqətən də çıxmaq istəyirsiniz?"
 
 #: gnome-session/session-properties-capplet.c:240
 #: gnome-session/session-properties.desktop.in.h:2
@@ -374,7 +375,7 @@ msgstr "Girişdə sıçrayan _ekran göstər"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "Çıxışda _təsdiqlə"
+msgstr "Çıxışda _təstiq istə"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -390,7 +391,7 @@ msgstr "İclas Adı"
 
 #: gnome-session/session-properties-capplet.c:375
 msgid "Session Options"
-msgstr "İclas Seçənəkləri"
+msgstr "İclas Seçimləri"
 
 #: gnome-session/session-properties-capplet.c:384
 msgid "Current Session"
@@ -422,7 +423,7 @@ msgstr "İclasdakı proqramların siyahısı."
 
 #: gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "Hazırda işləyən _proqramlar:"
+msgstr "Hazırda fəal olan _proqramlar:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -468,20 +469,14 @@ msgstr "_Başlanğıc Əmri:"
 msgid "Startup Command"
 msgstr "Başlanğıc Əmri"
 
-#: gnome-session/startup-programs.c:342
+#: gnome-session/startup-programs.c:343
 msgid "The startup command cannot be empty"
 msgstr "Başlanğıc əmri boş ola bilməz"
 
-#: gnome-session/startup-programs.c:379
+#: gnome-session/startup-programs.c:380
 msgid "Add Startup Program"
 msgstr "Başlanğıc Proqramı Əlavə Et"
 
-#: gnome-session/startup-programs.c:400
+#: gnome-session/startup-programs.c:401
 msgid "Edit Startup Program"
-msgstr "Başlanğıc Proqramını Düzəlt"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Hazırkı İclası Qeyd Et"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Masa üstünün hazırkı vəziyyətini qeyd et"
+msgstr "Başlanğıc Proqramını Təkmilləşdir"
