@@ -123,9 +123,6 @@ void free_vector (int argc, char **argv);
  * exec.c
  */
 
-/* A function that can execute some command.  */
-typedef void execute_func (int argc, char *argv[]);
-
 /* Execute some command in the background and immediately return.  */
 void execute_async (int argc, char *argv[]);
 

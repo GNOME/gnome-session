@@ -169,8 +169,7 @@ set_session_name (const char *name)
 
 /* Run a set of commands from a session.  Return 1 if any were run.  */
 static int
-run_commands (const char *name, int number, const char *command,
-	      execute_func *executor)
+run_commands (const char *name, int number, const char *command)
 {
   int i, result = 0;
 
@@ -185,7 +184,7 @@ run_commands (const char *name, int number, const char *command,
 
       if (! def)
 	{
-	  (*executor) (argc, argv);
+	  execute_async (argc, argv);
 	  result = 1;
 	}
 
@@ -196,6 +195,22 @@ run_commands (const char *name, int number, const char *command,
 }
 
 
+
+/* Run the default session.  The default should probably be in a
+   config file somewhere, instead of hard-coded here.  */
+static int
+run_default_session (void)
+{
+  char *argv[5];
+
+  argv[0] = "panel";
+  execute_async (1, argv);
+
+  /* Add more here.  We can't really do it until other pieces are
+     written.  */
+
+  return 1;
+}
 
 /* Load a new session.  This does not shut down the current session.
    Returns 1 if anything happened, 0 otherwise.  */
@@ -215,7 +230,11 @@ read_session (const char *name)
 
   /* If default, then no client info exists.  */
   if (def)
-    return 0;
+    {
+      if (! strcmp (name, DEFAULT_SESSION))
+	return run_default_session ();
+      return 0;
+    }
 
   /* We must register each saved client as a `zombie' client.  Then
      when the client restarts it will get its new client id
@@ -231,7 +250,7 @@ read_session (const char *name)
     }
 
   /* Run each restart command.  */
-  return run_commands (name, num_clients, SmRestartCommand, execute_async);
+  return run_commands (name, num_clients, SmRestartCommand);
 }
 
 /* Delete a session.  */
@@ -252,7 +271,7 @@ delete_session (const char *name)
       return;
     }
 
-  run_commands (name, number, SmDiscardCommand, execute_async);
+  run_commands (name, number, SmDiscardCommand);
 
   sprintf (prefix, "session/%s", name);
   gnome_config_clean_section (prefix);

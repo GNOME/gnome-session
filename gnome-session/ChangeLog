@@ -1,5 +1,17 @@
 Mon Feb 16 00:04:09 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* exec.c (execute_async): Wait for child process.
+
+	* save.c (run_default_session): New function.
+	(read_session): If no saved session, and trying to load the
+	default, then call run_default_session.
+
+	* manager.c (check_session_end): Call gtk_main_quit if shutting
+	down.
+
+	* manager.h (execute_func): Removed.
+	* save.c (run_commands): Removed executor argument.
+
 	* manager.c (check_session_end): Save anyway_list first.
 
 	* save.c (write_one_client): If restart style is RestartNever,

@@ -251,6 +251,8 @@ check_session_end (int found)
 			shutting_down ? SmsDie : SmsSaveComplete);
 	  live_list = save_finished_list;
 	  save_finished_list = NULL;
+	  if (shutting_down)
+	    gtk_main_quit ();
 	}
       else if (! found)
 	{

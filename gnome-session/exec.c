@@ -2,11 +2,13 @@
    Written by Tom Tromey <tromey@cygnus.com>.  */
 
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 void
 execute_async (int argc, char *argv[])
 {
-  int i, pid;
+  int i, pid, status;
 
   pid = fork ();
 
@@ -26,4 +28,8 @@ execute_async (int argc, char *argv[])
       execvp (argv[0], argv);
       _exit (1);
     }
+
+  /* Parent.  Wait for the child, since we know it will exit shortly.
+     FIXME: check return value of waitpid and report an error.  */
+  waitpid (pid, &status, 0);
 }
