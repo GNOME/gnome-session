@@ -76,6 +76,10 @@ if [ ! -z "$SMID" ] ; then
       OPT1=-clientId
       OPT2=$SMID
       ;;
+    lwm)
+      OPT1=-s
+      OPT2=$SMID
+      ;;
     #FIXME: add all other windowmanagers here with their proper options
   esac
 fi
