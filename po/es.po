@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-08-27 15:01-0400\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-07-24 16:22+0200\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Orden:"
 
@@ -36,6 +36,7 @@ msgid "_Style:"
 msgstr "E_stilo:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Orden"
 
@@ -174,27 +175,27 @@ msgstr "Hubo un error de activación desconocido."
 msgid "The Settings Daemon restarted too many times."
 msgstr "El demonio de preferencias se reinició demasiadas veces."
 
-#: gnome-session/logout.c:287
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "¿Está seguro de que desea terminar la sesión?"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "_Guardar la configuración actual"
 
-#: gnome-session/logout.c:326
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Acción"
 
-#: gnome-session/logout.c:334
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "_Terminar sesión"
 
-#: gnome-session/logout.c:337
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "A_pagar"
 
-#: gnome-session/logout.c:340
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "_Reiniciar el computador"
 
@@ -287,19 +288,19 @@ msgstr "Guardar sesión actual"
 msgid "Save current state of desktop"
 msgstr "Guardar estado actual del escritorio"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "El nombre de la sesión no puede estar vacío"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "Ya existe el nombre de la sesión"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Añadir una sesión nueva"
 
-#: gnome-session/session-names.c:200
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Editar nombre de sesión"
 
@@ -343,10 +344,6 @@ msgstr "Opciones de sesión"
 #: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Guardar sesión actual"
-
-#: gnome-session/session-properties-capplet.c:362
-msgid "Priority"
-msgstr "Prioridad"
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
@@ -424,26 +421,28 @@ msgstr "Proxy de Gestor de Sesión"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "Comando de _inicio:"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Comando de inicio"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "_Prioridad:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "El comando de inicio no puede ser vacío"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Añadir programa de inicio"
 
-#: gnome-session/startup-programs.c:396
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
+
+#~ msgid "Priority"
+#~ msgstr "Prioridad"
+
+#~ msgid "_Priority:"
+#~ msgstr "_Prioridad:"

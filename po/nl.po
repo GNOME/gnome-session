@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-05-31 02:33+02:00\n"
 "Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Volgorde: "
 
@@ -36,6 +36,7 @@ msgid "_Style:"
 msgstr "_Stijl: "
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Volgorde"
 
@@ -174,30 +175,30 @@ msgstr "Er is een onbekende activerings-fout opgetreden."
 msgid "The Settings Daemon restarted too many times."
 msgstr "De Instellingen Daemon is te vaak herstart."
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 #, fuzzy
 msgid "_Save current setup"
 msgstr "Huidige instellingen opslaan"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Actie"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 #, fuzzy
 msgid "_Log Out"
 msgstr "Afmelden"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 #, fuzzy
 msgid "Sh_ut Down"
 msgstr "Uitschakelen"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr ""
 
@@ -263,24 +264,24 @@ msgstr "Het programma is traag, gestopt of functioneert niet meer"
 msgid "You may wait for it to respond or remove it."
 msgstr "U kunt wachten of afbreken"
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 #, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "'Herstarten' afgebroken wegens fouten"
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "Een sessie is bezig met afsluiten"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Sessie beëindigen"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Gebruik dialoogvensters"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Kan geen verbinding maken met het sessiebeheer"
 
@@ -292,28 +293,28 @@ msgstr "Huidige sessie opslaan"
 msgid "Save current state of desktop"
 msgstr "Huidige staat van bureaublad opslaan"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "De naam van de sessie mag niet leeg zijn"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "Deze naam bestaat al"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Nieuwe sessie toevoegen"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Sessienaam bewerken"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "Bewerken..."
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -321,48 +322,44 @@ msgstr ""
 "Sommige wijzigingen zijn niet opgeslagen. \n"
 "Wilt nu toch afsluiten?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
 msgid "Sessions"
 msgstr "Sessie"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 #, fuzzy
 msgid "Show splash screen on _login"
 msgstr "Introvenster tonen bij aanmelden"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 #, fuzzy
 msgid "_Prompt on logout"
 msgstr "Bevestigen bij afmelden"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 #, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "Veranderingen aan sessie automatisch opslaan"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Sessienaam"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Sessie-eigenschappen"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Huidige Sessie"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Prioriteit"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Opdracht"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Programma's starten"
 
@@ -435,31 +432,33 @@ msgstr "Sessiebeheer Proxy"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 #, fuzzy
 msgid "_Startup Command:"
 msgstr "Te Starten Programma"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Te Starten Programma"
 
-#: gnome-session/startup-programs.c:307
-#, fuzzy
-msgid "_Priority:"
-msgstr "Prioriteit"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "De opstartopdracht mag niet leeg zijn"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Te starten programma toevoegen"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
+
+#~ msgid "Priority"
+#~ msgstr "Prioriteit"
+
+#, fuzzy
+#~ msgid "_Priority:"
+#~ msgstr "Prioriteit"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "GNOME wordt gestart: %s"

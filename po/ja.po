@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.2\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-07-20 02:21+0900\n"
 "Last-Translator: Ryoichi INAGAKI <ryo1@bc.wakwak.com>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "順番(_O):"
 
@@ -37,6 +37,7 @@ msgid "_Style:"
 msgstr "スタイル(_S):"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "順番"
 
@@ -173,27 +174,27 @@ msgstr "アクティベーション時に不明なエラーが発生しました
 msgid "The Settings Daemon restarted too many times."
 msgstr "設定デーモンは何度も再起動しました。"
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "本当にログアウトしますか?"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "現在の設定を保存(_S)"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "アクション"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "シャットダウン(_U)"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "コンピュータを再起動(_R)"
 
@@ -259,23 +260,23 @@ msgstr "プログラムが遅いか、止まったか壊れたようです。"
 msgid "You may wait for it to respond or remove it."
 msgstr "待つことも出来ますが、取り除くことも出来ます。"
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
 msgstr "失敗したものを再実行します。"
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "セッションのシャットダウンを実行中です。"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "セッションを強制終了"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "ダイアログボックスを使う"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "save-ssession: セッションマネージャに接続できませんでした。"
 
@@ -287,27 +288,27 @@ msgstr "現在のセッションを保存"
 msgid "Save current state of desktop"
 msgstr "現在のデスクトップの状態を保存"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "セッション名は空にできません"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "そのセッション名は既に存在します"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "新規セッションの追加"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "セッション名の編集"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -315,44 +316,40 @@ msgstr ""
 "保存されていない変更があります。\n"
 "終了しますか?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "セッション"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
 msgstr "ログイン時にスプラッシュスクリーンを表示(_L)"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
 msgstr "ログアウト時に確認(_P)"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
 msgstr "自動的にセッションの変更点を保存(_G)"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "セッション名"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "セッションのオプション"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "現在のセッション"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "優先順位"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "コマンド"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "自動起動プログラム"
 
@@ -424,29 +421,31 @@ msgstr "セッションマネージャ・プロキシ"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "自動起動コマンド(_S):"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "自動起動コマンド"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "優先順位(_P):"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "起動時のコマンドは空にできません"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "自動起動プログラムの追加"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "自動起動プログラムの編集"
+
+#~ msgid "Priority"
+#~ msgstr "優先順位"
+
+#~ msgid "_Priority:"
+#~ msgstr "優先順位(_P):"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "GNOME 起動中: %s"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 #, fuzzy
 msgid "_Order:"
 msgstr "顺序："
@@ -34,6 +34,7 @@ msgstr "风格："
 
 # applets/multiload/main.c:31
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "顺序"
 
@@ -170,33 +171,33 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr ""
 
 # gsm/logout.c:221
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 #, fuzzy
 msgid "_Save current setup"
 msgstr "保存当前设置"
 
 # gsm/logout.c:240
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "动作"
 
 # gsm/logout.c:248
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 #, fuzzy
 msgid "_Log Out"
 msgstr "注销"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 #, fuzzy
 msgid "Sh_ut Down"
 msgstr "关机"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr ""
 
@@ -270,27 +271,27 @@ msgid "You may wait for it to respond or remove it."
 msgstr "你可以等待它响应或者删除它。"
 
 # gsm/manager.c:1359
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 #, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "由于失败导致放弃重新运行。"
 
 # gsm/manager.c:1527
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "会话正在关闭。"
 
 # gsm/save-session.c:41
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "杀死这个会话"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "使用对话框"
 
 # gsm/save-session.c:86
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
 
@@ -303,83 +304,79 @@ msgstr "保存当前会话"
 msgid "Save current state of desktop"
 msgstr "保存桌面的当前状态"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "会话名字不能为空"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "会话名字已经存在"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "添加一个新的会话"
 
 # gsm/save-session.c:41
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "编辑会话名称"
 
 # gnome-terminal/gnome-terminal.c:1585
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "编辑..."
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
 # gsm/session-properties.c:264
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
 msgid "Sessions"
 msgstr "会话"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 #, fuzzy
 msgid "Show splash screen on _login"
 msgstr "登录时显示图片展示"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 #, fuzzy
 msgid "_Prompt on logout"
 msgstr "注销时提示"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 #, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "自动保存变动到会话中"
 
 # gsm/session-properties.c:264
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "会话名称"
 
 # panel/menu.c:3509
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "会话选项"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 #, fuzzy
 msgid "Current Session"
 msgstr "保存当前会话"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "优先级"
-
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "命令"
 
 # applets/gkb/gkb.c:262
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "启动程序"
 
@@ -463,33 +460,35 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 #, fuzzy
 msgid "_Startup Command:"
 msgstr "启动命令"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "启动命令"
 
-#: gnome-session/startup-programs.c:307
-#, fuzzy
-msgid "_Priority:"
-msgstr "优先级"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
 # applets/gkb/gkb.c:262
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
+
+#~ msgid "Priority"
+#~ msgstr "优先级"
+
+#, fuzzy
+#~ msgid "_Priority:"
+#~ msgstr "优先级"
 
 # applets/mini-commander/src/command_line.c:116
 # applets/mini-commander/src/exec.c:63

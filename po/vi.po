@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-07-26 12:47+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Thứ tự:"
 
@@ -30,6 +30,7 @@ msgid "_Style:"
 msgstr "_Kiểu:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Thứ tự"
 
@@ -167,27 +168,27 @@ msgstr "Lỗi kích hoạt lạ."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Daemon Thiết lập được khởi động lại quá nhiều lần."
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "Bạn có chắc muốn đăng xuất không?"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "_Lưu thiết lập hiện thời"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Hành động"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "Đăng _xuất"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "_Tắt máy"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "_Khởi động lại máy tính"
 
@@ -253,23 +254,23 @@ msgstr "Chương trình có thể sẽ chạy chậm, bị dừng hoặc đổ v
 msgid "You may wait for it to respond or remove it."
 msgstr "Bạn có thể chờ trả lời hoặc loại bỏ nó."
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
 msgstr "Quá trình tái khởi động bị ngắt vì lỗi."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "Một session kết thúc khi đang chạy."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Kết thúc session"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Dùng hộp thoại"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với bộ quản lý session"
 
@@ -281,27 +282,27 @@ msgstr "Lưu session hiện thời"
 msgid "Save current state of desktop"
 msgstr "Lưu tình trạng desktop hiện thời"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "Session phải có tên"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "Tên session đã tồn tại"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Thêm một session mới"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Sửa tên session"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
 msgstr "_Sửa"
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -309,44 +310,40 @@ msgstr ""
 "Vài thay đổi vẫn chưa được lưu.\n"
 "Bạn vẫn đồng ý muốn thoát chứ?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Session"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
 msgstr "Hiện Splash Screen khi đăng _nhập"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
 msgstr "_Hỏi trước khi đăng xuất"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
 msgstr "Tự động _lưu các thay đổi của session"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Tên session"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Tùy chọn session"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Session hiện thời"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Độ ưu tiên"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Lệnh"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Chương trình khởi động"
 
@@ -418,29 +415,31 @@ msgstr "Proxy của bộ quản lý session"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "_Lệnh khởi động:"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Lệnh khởi động"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "Ư_u tiên:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Phải có lệnh khởi động"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Thêm chương trình khởi động"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình khởi động"
+
+#~ msgid "Priority"
+#~ msgstr "Độ ưu tiên"
+
+#~ msgid "_Priority:"
+#~ msgstr "Ư_u tiên:"
 
 #~ msgid "GNOME Login"
 #~ msgstr "Đăng nhập GNOME"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core HEAD\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2001-05-04 11:14+0200\n"
 "Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Rendezés:"
 
@@ -32,6 +32,7 @@ msgid "_Style:"
 msgstr "_Stílus:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Sorrend"
 
@@ -159,30 +160,30 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 #, fuzzy
 msgid "Are you sure you want to log out?"
 msgstr "Tényleg törölni akarod az almenüt minden tartalmával?"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 #, fuzzy
 msgid "_Save current setup"
 msgstr "Beállítások mentése"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Akció"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "_Kilépés"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 #, fuzzy
 msgid "Sh_ut Down"
 msgstr "Leállítás"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr ""
 
@@ -250,24 +251,24 @@ msgstr "A program lassú lehet, megállt, vagy összeomlott."
 msgid "You may wait for it to respond or remove it."
 msgstr "Várhatsz a válaszra vagy törölheted."
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 #, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "Az újrapróbálkozás megszüntetve a hibák miatt."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "A munkafolyamat lelövése folyamatban."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Munkafolyamat kilövése"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Dialógusok használata"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Nem tudok a munkafolyamat-kezelőhöz kapcsolódni"
 
@@ -279,28 +280,28 @@ msgstr "Szezon (session) elmentése"
 msgid "Save current state of desktop"
 msgstr "A munkaterület állapotának mentése"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "A munkafolyamat neve nem lehet üres"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "Már létezik ilyen nevű munkafolyamat"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Új munkafolyamat hozzáadása"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Munkafolyamat nevének szerkesztése"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "Szerkesztés"
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -308,48 +309,44 @@ msgstr ""
 "Egyes változtatások nem lettek elmentve.\n"
 "Még mindig szeretnél kilépni?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
 msgid "Sessions"
 msgstr "Munkafolyamat"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 #, fuzzy
 msgid "Show splash screen on _login"
 msgstr "Indítási üzenet megjelenítése belépéskor"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 #, fuzzy
 msgid "_Prompt on logout"
 msgstr "Megerősítés kérése kilépés előtt"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 #, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "Munkafolyamat változásainak automatikus mentése"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Munkafolyamat neve"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Munkafolyamat beállításai"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Aktuális munkafolyamat"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Prioritás"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Parancs"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Automatikusan elinduló programok"
 
@@ -423,31 +420,33 @@ msgstr "Session Manager Proxy"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 #, fuzzy
 msgid "_Startup Command:"
 msgstr "Elindítandó parancs"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Elindítandó parancs"
 
-#: gnome-session/startup-programs.c:307
-#, fuzzy
-msgid "_Priority:"
-msgstr "Prioritás"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Az elindítandó parancs nem lehet üres"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Elindítandó program hozzáadása"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Elindítandó program szerkesztése"
+
+#~ msgid "Priority"
+#~ msgstr "Prioritás"
+
+#, fuzzy
+#~ msgid "_Priority:"
+#~ msgstr "Prioritás"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "A GNOME indítása: %s"

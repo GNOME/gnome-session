@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-05-27 19:12GMT+1\n"
 "Last-Translator: Samir Marić <samir@lugbih.org>\n"
 "Language-Team: Bosnian <prijevodi@linux.org.ba>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 #, fuzzy
 msgid "_Order:"
 msgstr "Poredak: "
@@ -34,6 +34,7 @@ msgid "_Style:"
 msgstr "Stil: "
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Poredak"
 
@@ -160,30 +161,30 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 #, fuzzy
 msgid "_Save current setup"
 msgstr "Snimi trenutne postavke"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Akcija"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 #, fuzzy
 msgid "_Log Out"
 msgstr "Odjava"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 #, fuzzy
 msgid "Sh_ut Down"
 msgstr "Ugasi"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr ""
 
@@ -250,24 +251,24 @@ msgstr "Program je možda spor, zaustavljen ili polomljen."
 msgid "You may wait for it to respond or remove it."
 msgstr "Možete čekati na odgovor ili ga ukloniti."
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 #, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "Ponovo pokreni napuštene zbog grešaka."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "Zatvaranje sesije je u toku."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Ubij sesiju"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Koristi dijalog boksove"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Ne mogu se priključiti na menadžera sesije"
 
@@ -279,28 +280,28 @@ msgstr "Snimi trenutnu sesiju"
 msgid "Save current state of desktop"
 msgstr "Snimi trenutno stanje radne površine"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "Ime sesije ne može biti prazno"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "Ime sesije već postoji"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Dodaj novu sesiju"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Promijeni ime sesije"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "Promijeni..."
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -308,49 +309,45 @@ msgstr ""
 "Neke promjene nisu snimljene.\n"
 "Je li još uvijek u redu da zatvorim?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
 msgid "Sessions"
 msgstr "Sesija"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 #, fuzzy
 msgid "Show splash screen on _login"
 msgstr "Pokaži pozdravnu scenu pri prijavi"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 #, fuzzy
 msgid "_Prompt on logout"
 msgstr "Upitaj pri odjavi"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 #, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "Automatski snimi promjene u sesiji"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Ime sesije"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Opcije za sesiju"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 #, fuzzy
 msgid "Current Session"
 msgstr "Snimi trenutnu sesiju"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Prioritet"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Komanda"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Startup programi"
 
@@ -425,31 +422,33 @@ msgstr "Proxy menadžera sesije"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 #, fuzzy
 msgid "_Startup Command:"
 msgstr "Startup komanda"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Startup komanda"
 
-#: gnome-session/startup-programs.c:307
-#, fuzzy
-msgid "_Priority:"
-msgstr "Prioritet"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Startup komanda ne može biti prazna"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Dodaj startup program"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Izmjeni startup program"
+
+#~ msgid "Priority"
+#~ msgstr "Prioritet"
+
+#, fuzzy
+#~ msgid "_Priority:"
+#~ msgstr "Prioritet"
 
 #~ msgid "GNOME Login"
 #~ msgstr "GNOME prijava"

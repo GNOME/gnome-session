@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.99\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2001-12-19 19:30GMT+0200\n"
 "Last-Translator: Vasif İsmayıloğlu MD <azerb_linux@hotmail.com>\n"
 "Language-Team: Azerbaijani Turkic <linuxaz@azerimail.net>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 #, fuzzy
 msgid "_Order:"
 msgstr "Sifariş ver:"
@@ -33,6 +33,7 @@ msgid "_Style:"
 msgstr "Tərz:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Sifariş ver"
 
@@ -160,30 +161,30 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 #, fuzzy
 msgid "_Save current setup"
 msgstr "Hazırkı oturumu qeyd et"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Gediş"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 #, fuzzy
 msgid "_Log Out"
 msgstr "Çıx"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 #, fuzzy
 msgid "Sh_ut Down"
 msgstr "Söndür"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr ""
 
@@ -250,24 +251,24 @@ msgstr "Proqram ya yavaşdır, ya dayandırılıb ya da xəsərlidir."
 msgid "You may wait for it to respond or remove it."
 msgstr "Siz bitişini gözləyə bilərsiniz ya da sadəcə olaraq silə bilərsiniz."
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 #, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "Dirçəliş iflas etdi."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "İclas bitirilməsi başladı."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "İclası bağla."
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Dialog qutuları istifadə et."
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "İclas idarəcisinə bağlana bilmirəm"
 
@@ -281,76 +282,72 @@ msgstr "Hazırkı İclası Seç"
 msgid "Save current state of desktop"
 msgstr "Hazırkı oturumu qeyd et"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "İclas adı boş ola bilməz"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "İclas adı onsuz da vardır"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Yeni iclas adı girin"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "İclas adınu düzəlt"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 #, fuzzy
 msgid "_Edit"
 msgstr "Düzəlt..."
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
 msgid "Sessions"
 msgstr "İclas"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 #, fuzzy
 msgid "Show splash screen on _login"
 msgstr "Girişdə sıçrayan ekran göstər"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 #, fuzzy
 msgid "_Prompt on logout"
 msgstr "Çıxışda Düşür"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 #, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "İclasa edilən dəyişiklikləri avtomatik qeyd et"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "İclas Adı"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "İclas Seçənəkləri"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 #, fuzzy
 msgid "Current Session"
 msgstr "Hazırkı İclası Seç"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Üstünlük"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Əmr"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Başlanğıc Proqramları"
 
@@ -425,31 +422,33 @@ msgstr "İclas İdarəçisi Vəkili"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 #, fuzzy
 msgid "_Startup Command:"
 msgstr "Başlanğıc Əmri"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Başlanğıc Əmri"
 
-#: gnome-session/startup-programs.c:307
-#, fuzzy
-msgid "_Priority:"
-msgstr "Üstünlük"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Başlanğıc əmri boş ola bilməz"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Başlanğıc Proqram"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Başlanğıc Proqramnı Düzəlt"
+
+#~ msgid "Priority"
+#~ msgstr "Üstünlük"
+
+#, fuzzy
+#~ msgid "_Priority:"
+#~ msgstr "Üstünlük"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "GNOME başladılır: %s"

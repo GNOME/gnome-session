@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.3.2\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
+"POT-Creation-Date: 2002-09-28 11:02+1200\n"
 "PO-Revision-Date: 2002-07-13 17:43+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Rekkefølge: "
 
@@ -30,6 +30,7 @@ msgid "_Style:"
 msgstr "_Stil:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Rekkefølge"
 
@@ -169,27 +170,27 @@ msgstr "Det oppsto en ukjent aktiveringsfeil."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Innstillingsdaemonen startet på nytt for mange ganger."
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "Er du sikker på at du vil logge ut?"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "L_agre nåværende oppsett"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Handling"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: gnome-session/logout.c:282
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "S_lå av"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "Sta_rt datamaskinen på nytt"
 
@@ -256,23 +257,23 @@ msgstr "Programmet kan være tregt, stopped eller ødelagt."
 msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vente på svar eller fjerne det."
 
-#: gnome-session/manager.c:1507
+#: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
 msgstr "Omstart avbrutt pga feil."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "Nedstenging av sesjonen er igang."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Drep sesjonen"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Bruk dialogbokser"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonsbehandler"
 
@@ -284,27 +285,27 @@ msgstr "Lagre aktiv sesjon"
 msgid "Save current state of desktop"
 msgstr "Lagre aktiv tilstand for skrivebordet"
 
-#: gnome-session/session-names.c:127
+#: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
 msgstr "Navnet på sesjonen kan ikke være tomt"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:147
 msgid "The session name already exists"
 msgstr "En sesjon med dette navnet eksisterer allerede"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:183
 msgid "Add a new session"
 msgstr "Legg til en ny sesjon"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:213
 msgid "Edit session name"
 msgstr "Rediger sesjonens navn"
 
-#: gnome-session/session-properties-capplet.c:105
+#: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -312,44 +313,40 @@ msgstr ""
 "Noen endringer er ikke lagret.\n"
 "Er det likevel OK å avslutte?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Sesjoner"
 
-#: gnome-session/session-properties-capplet.c:230
+#: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
 msgstr "Vis oppstartskjerm ved inn_logging"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
 msgstr "S_pør før du logger ut"
 
-#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
 msgstr "Lagre endrin_ger i sesjonen automatisk"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Navn på sesjon"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Alternativer for sesjon"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Aktiv sesjon"
 
-#: gnome-session/session-properties-capplet.c:363
-msgid "Priority"
-msgstr "Prioritet"
-
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Kommando"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Oppstartsprogrammer"
 
@@ -421,29 +418,31 @@ msgstr "Proxy for sesjonshåndterer"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "Opp_startskommando:"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Oppstartskommando"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "_Prioritet:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommandoen kan ikke være tom"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
+
+#~ msgid "Priority"
+#~ msgstr "Prioritet"
+
+#~ msgid "_Priority:"
+#~ msgstr "_Prioritet:"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "Starter GNOME: %s"
