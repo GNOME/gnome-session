@@ -1,23 +1,26 @@
+# translation of gnome-session.po to
 # translation of gnome-session.po to Arabic
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002
+# Isam Bayazidi <bayazidi@arabeyes.org>, 2002
+# Arafat Medini <lumina@silverpen.de>, 2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-05-15 11:28+0100\n"
-"PO-Revision-Date: 2002-05-31 18:15-0300\n"
-"Last-Translator: Isam Bayazidi <bayazidi@arabeyes.org>\n"
-"Language-Team: Arabic <support@arabeyes.org>\n"
+"POT-Creation-Date: 2003-02-25 16:18-0500\n"
+"PO-Revision-Date: 2003-03-30 14:56+0200\n"
+"Last-Translator: Arafat Medini <lumina@silverpen.de>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "مكن روابط TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -26,51 +29,52 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"لاسباب أمنية  لا يستمع برنامج gnome-session لروابط TCP "
+"على "
+"ها الخيار يمكن من مضيفي "
+"يجب إعادة تشغيل gnome-session لالتفعيل."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "اذا فعل فسينبه gnome-session المستعمل قبل انهاء الجلسة."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"اذا فعل، فسيحفظ gnome-session الجلسة آليا. فسيكون لحوار الخروج "
+"خيار حفظ الجلسة."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "خروج"
+msgstr "حوار الخروج"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "صورة الإستقبال المحبة عند دخول جلسة جنوم"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "الجلسة"
+msgstr "حفظ الجلسات"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "أظهر شاشة البدء أثناء الدخول"
+msgstr "أظهار صورة البدء"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
-#, fuzzy
 msgid "Show the splash screen when the session starts up"
-msgstr "أظهر شاشة البدء أثناء الدخول"
+msgstr "اظهر صورة الإستقبال عند ابتداء الجلسة"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
-#, fuzzy
 msgid "Splash Screen Image"
-msgstr "أظهر شاشة البدء أثناء الدخول"
+msgstr "صورة الإستقبال"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
-msgstr "الترتيب:"
+msgstr "ال_ترتيب:"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
@@ -82,7 +86,7 @@ msgstr "ما يحدث للتطبيق حين خروجه."
 
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
-msgstr "نمط:"
+msgstr "_نمط:"
 
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:362
@@ -107,7 +111,7 @@ msgstr "غير نشط"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "يتم الانتظار ليبدأ أو أنه انتهى مسبقا."
+msgstr "يتم الانتظار ليبدأ أو أنه انتهى مسبقّا."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -115,7 +119,7 @@ msgstr "بدء"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "بدأ ولكن لم يتم تقرير الحالة لحد اﻵن."
+msgstr "بدأ ولكن لم يتم تقرير الحالة لحد الآن."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
@@ -147,11 +151,11 @@ msgstr "عادي"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "غير متأثر بالخروج ولكن لا يموت."
+msgstr "غير متأثّر بالخروج ولكن يمكن ان يموت."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr ""
+msgstr "اعادة تشغيل"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -162,9 +166,8 @@ msgid "Trash"
 msgstr "المهملات"
 
 #: gnome-session/gsm-client-row.c:57
-#, fuzzy
 msgid "Discarded on logout and can die."
-msgstr "تعمل و."
+msgstr "اهملت عند الخروج و موتها ممكن."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -172,7 +175,7 @@ msgstr "إعدادات"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "يعمل دائما في كل دخول."
+msgstr "يبدا دائما في كل دخول."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -189,6 +192,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"حدث خطأ أثناء عمليّة بدء مسؤول الإعدادات الخاص بجنوم. \n"
+"\n"
+"ربما لا تعمل بعض الأشياء مثل التيمات ، الأصوات أو إعدادات الخلفية بشكل صحيح."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -197,6 +203,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"آخر رسالة خطأ كانت:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -204,21 +214,24 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"سيحاول جنوم إعادة تشغيل مسؤول الإعدادات مرة أخرى عندما تقوم "
+"بالدخول المرة القادمة."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "كان هناك خطأ تنشيط غير معروف."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "تمت إعادة تشغيل مسؤول الإعدادات مرّات كثيرة جداً."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "هل تريد حقّا تسجيل الخروج؟"
 
 #: gnome-session/logout.c:298
-#, fuzzy
 msgid "_Save current setup"
 msgstr "احفظ التعيين الحالي"
 
@@ -231,13 +244,12 @@ msgid "_Log Out"
 msgstr "_خروج"
 
 #: gnome-session/logout.c:329
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "خرج"
+msgstr "اغلاق الجهاز"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr ""
+msgstr "اعادة تشغيل الحاسوب"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -249,8 +261,7 @@ msgstr "اقرأ الجلسات المحفوظة في ملف default.session ف�
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"الفترة بالميللي ثانية التي يتم قضاؤها في انتظار تسجيل العملاء (0=للأبد)"
+msgstr "الفترة بالميللي ثانية التي يتم قضاؤها في انتظار تسجيل العملاء (0=للأبد)"
 
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -258,55 +269,55 @@ msgstr "الفترة بالميللي ثانية التي يتم قضاؤها ف
 
 #: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"الفترة بالميللي ثانية التي يتم قضاؤها في انتظار انتهاء العملاء (0=للأبد)"
+msgstr "الفترة بالميللي ثانية التي يتم قضاؤها في انتظار انتهاء العملاء (0=للأبد)"
 
 #: gnome-session/main.c:212
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
-msgstr "ث جينوم الى ال ل ث الى ال ملف."
+msgstr ""
+"لم أتمكن من ايجاد عنوان الإنترنت لـ %s.\n"
+"هذا سيمنع جنوم من العمل بشكل صحيح.\n"
+"من الممكن تصحيح هذه المشكلة عن طريق اضافة\n"
+"%s الى الملف /etc/hosts."
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "تسجيل الدخول على أية حال"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "حاول مرة أخرى"
 
-#: gnome-session/manager.c:174
+#: gnome-session/manager.c:176
 msgid "Your session has been saved"
 msgstr "لقد تم حفظ جلستك"
 
-#: gnome-session/manager.c:455
-#, fuzzy
+#: gnome-session/manager.c:457
 msgid "Wait abandoned due to conflict."
-msgstr "انتظار الى."
+msgstr "تم التخلي عن الإنتظار نظرا لتعارض."
 
-#: gnome-session/manager.c:894
+#: gnome-session/manager.c:904
 #, c-format
 msgid "No response to the %s command."
-msgstr "لا يوجد رد على اﻷمر %s."
+msgstr "لا يوجد رد على اﻻمر %s."
 
-#: gnome-session/manager.c:895
+#: gnome-session/manager.c:905
 msgid "The program may be slow, stopped or broken."
-msgstr "قد يكون البرنامج بطيئا أو متوقفا أو معطوبا."
+msgstr "قد يكون البرنامج بطيئا أو متوقّفا أو معطوبا."
 
-#: gnome-session/manager.c:896
+#: gnome-session/manager.c:906
 msgid "You may wait for it to respond or remove it."
 msgstr "بإمكانك انتظار الرد منه أو حذفه."
 
-#: gnome-session/manager.c:1506
-#, fuzzy
+#: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
-msgstr "الى."
+msgstr "تم ترك اعادة الإنتاج نظراً لفشل."
 
-#: gnome-session/manager.c:1682
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "نهاية العملية في الطريق."
 
@@ -347,7 +358,6 @@ msgid "Edit session name"
 msgstr "حرّر اسم الجلسة"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
 msgstr "حرّر..."
 
@@ -361,29 +371,24 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "الجلسة"
+msgstr "الجلسات"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
 msgstr "أظهر شاشة البدء أثناء الدخول"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
 msgstr "اسأل حين المحاولة في الخروج"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
 msgstr "احفظ تغييرات الجلسة آليا"
 
 #: gnome-session/session-properties-capplet.c:262
-#, fuzzy
 msgid "_Sessions:"
-msgstr "الجلسة"
+msgstr "_الجلسات:"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -398,9 +403,8 @@ msgid "Current Session"
 msgstr "الجلسة الحالية"
 
 #: gnome-session/session-properties-capplet.c:344
-#, fuzzy
 msgid "Additional startup _programs:"
-msgstr "أضف برنامج في بدء التشغيل"
+msgstr "البرامج الإضافية عند بدء التشغيل"
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
@@ -415,18 +419,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "احذف العميل المنتقى حاليا من الجلسة."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "احفظ تغييرات الجلسة آليا"
+msgstr "طبّق التغييرات الى الجلسة الحالية"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "قائمة البرامج في الجلسة."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "استعرض برامج البرامج التي تعمل حاليا..."
+msgstr "البرامج الجارية حالياً:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -434,15 +436,15 @@ msgstr "تهيئة تعيينات الجلسة"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "عرّف جلستك"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
-msgstr "مدير النوافذ سوفيش"
+msgstr "مدير النوافذ Sawfish"
 
 #: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
-msgstr "مدير النوافذ ميتاسيتي"
+msgstr "مدير النوافذ مِيتاسِتي"
 
 #: gnome-session/splash-widget.c:44
 msgid "Window Manager"
@@ -458,17 +460,15 @@ msgstr "بروكسي مدير الجلسة"
 
 #: gnome-session/splash-widget.c:47
 msgid "Nautilus"
-msgstr "ناوتيلاس"
+msgstr "نوتيلوس"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "تعيينات لوحة المفاتيح"
+msgstr "إعدادات سطح المكتب"
 
 #: gnome-session/startup-programs.c:289
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "أمر بدء التشغيل"
+msgstr "أمر بدء التشغيل:"
 
 #: gnome-session/startup-programs.c:295
 msgid "Startup Command"
@@ -486,8 +486,29 @@ msgstr "أضف برنامج في بدء التشغيل"
 msgid "Edit Startup Program"
 msgstr "حرّر برنامج لبدء التشغيل"
 
+#~ msgid "Priority"
+#~ msgstr "الأولوية"
+
+#~ msgid "Audio Settings"
+#~ msgstr "تعيينات الصوت"
+
+#~ msgid "Screensaver"
+#~ msgstr "حافظ الشاشة"
+
+#~ msgid "Background Settings"
+#~ msgstr "تعيينات الخلفية"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "تعيينات الفأرة"
+
+#~ msgid "Keyboard Settings"
+#~ msgstr "تعيينات لوحة المفاتيح"
+
+#~ msgid "_Priority:"
+#~ msgstr "الأولوية:"
+
 #~ msgid "GNOME Login"
-#~ msgstr "الدخول لجينوم"
+#~ msgstr "الدخول لجنوم"
 
 #~ msgid "Login"
 #~ msgstr "دخول"
@@ -499,7 +520,7 @@ msgstr "حرّر برنامج لبدء التشغيل"
 #~ msgstr "أعد تعيين كل إعدادات المستخدم"
 
 #~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "هل أعيد فعلا تعيين كل إعدادات مستخدم جينوم لـ %s؟"
+#~ msgstr "هل أعيد فعلا تعيين كل إعدادات مستخدم جنوم لـ %s؟"
 
 #~ msgid ""
 #~ "The directory /tmp/orbit-%s is not owned\n"
@@ -513,7 +534,6 @@ msgstr "حرّر برنامج لبدء التشغيل"
 #~ msgid "Continue"
 #~ msgstr "تابع"
 
-#, fuzzy
 #~ msgid ""
 #~ "Your version of libICE has a bug which causes gnome-session\n"
 #~ "to not function correctly.\n"
@@ -525,8 +545,15 @@ msgstr "حرّر برنامج لبدء التشغيل"
 #~ "\n"
 #~ "Your GNOME session will terminate after closing this dialog."
 #~ msgstr ""
-#~ "إصدارة من خلل جينوم ل تعمل سولاريس الى سولاريس ل أو ال ال سولاريس ال ملف "
-#~ "الى تعمل خلل ل جينوم."
+#~ "الإصدار الخاص بك من libICE به خلل يؤدي الى عدم عمل\n"
+#~ "جلسة جينوم بالشكل الصحيح.\n"
+#~ "\n"
+#~ "اذا كنت تعمل على سولاريس, يجب عليك اما الترقية الى رقعة سولاريس\n"
+#~ "#108376-16 أو استخدم ملف libICE.so.6 من سولاريس 7 الأصلي.\n"
+#~ "انسخ الملف في الدليل /usr/openwin/lib.  (شكرا لآندي رايتز\n"
+#~ "لإعطاءنا المعلومات حول هذا الخلل).\n"
+#~ "\n"
+#~ "جلسة جينوم الخاصة بك سوف تنتهي بعد اغلاق مربع الحوار هذا."
 
 #~ msgid "Respawn"
 #~ msgstr "معاد تكوينه"
@@ -558,9 +585,6 @@ msgstr "حرّر برنامج لبدء التشغيل"
 #~ msgid "Non-session-managed Startup Programs"
 #~ msgstr "برامج بدء تشغيل غير المنظمة على أساس الجلسة"
 
-#~ msgid "Priority"
-#~ msgstr "الأولوية"
-
 #~ msgid "Session Chooser"
 #~ msgstr "منتقي الجلسات"
 
@@ -573,35 +597,24 @@ msgstr "حرّر برنامج لبدء التشغيل"
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "خصائص الجلسة و برامج بدء التشغيل"
 
-#~ msgid "Audio Settings"
-#~ msgstr "تعيينات الصوت"
-
-#~ msgid "Screensaver"
-#~ msgstr "حافظ الشاشة"
-
-#~ msgid "Background Settings"
-#~ msgstr "تعيينات الخلفية"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "تعيينات الفأرة"
-
 #~ msgid "Starting GNOME: %s"
-#~ msgstr "بدء جينوم: %s"
+#~ msgstr "بدء جنوم: %s"
 
 #~ msgid "Starting GNOME: done"
-#~ msgstr "بدء جينوم: تم"
+#~ msgstr "بدء جنوم: تم"
 
 #~ msgid "GNOME"
-#~ msgstr "جينوم"
+#~ msgstr "جنوم"
 
 #~ msgid "Starting GNOME"
-#~ msgstr "بدء جينوم"
+#~ msgstr "بدء جنوم"
 
-#, fuzzy
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
 #~ "values. The default value should be OK"
-#~ msgstr "برامج ب ب افتراضي"
+#~ msgstr ""
+#~ "البرامج مع القيم الأصغر تبدأ قبل البرامج مع القيم الأعلى. القيمة "
+#~ "الإفتراضية يجب أن تكون موافق"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "تعذر الاتصال بـ gnome-session"
@@ -611,3 +624,4 @@ msgstr "حرّر برنامج لبدء التشغيل"
 
 #~ msgid "Current session managed programs"
 #~ msgstr "البرامج المنظمة للجلسة الحالية"
+
