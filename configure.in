@@ -198,6 +198,27 @@ if test "x$enable_rebuilds" = "xyes" && \
 fi
 AC_SUBST(REBUILD)
 
+dnl find the commands to use for rebooting/halting the system
+AC_ARG_WITH(reboot-command,
+[  --with-reboot-command=COMMAND
+			  Specify the command for rebooting the system],[
+    REBOOT_COMMAND="$with_reboot_command"], [
+    AC_PATH_PROGS(REBOOT_COMMAND, reboot, [
+	AC_MSG_ERROR([The reboot command was not found. Please use the --with-reboot-command option.])
+    ])
+])
+AC_SUBST(REBOOT_COMMAND)
+
+AC_ARG_WITH(halt-command,
+[  --with-halt-command=COMMAND
+			  Specify the command for halting the system],[
+    HALT_COMMAND="$with_halt_command"], [
+    AC_PATH_PROGS(HALT_COMMAND, poweroff halt, [
+	AC_MSG_ERROR([The halt command was not found. Please use the --with-halt-command option.])
+    ])
+])
+AC_SUBST(HALT_COMMAND)
+
 AC_OUTPUT([
 Makefile
 gnome-session.spec

@@ -8,6 +8,8 @@ INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""	\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
+	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
+	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
 LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)

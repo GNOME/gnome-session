@@ -1,3 +1,16 @@
+2002-02-21  Laszlo Peter  <laca@ireland.sun.com>
+
+	* configure.in: find the correct path to the reboot/halt
+	commands or let the user specify with --with-reboot-command
+	and --with-halt-command.
+
+	* gnome-session/Makefile.am: define HALT_COMMAND and REBOOT_COMMAND
+
+	* gnome-session/logout.c: use the HALT_COMMAND and REBOOT_COMMAND
+	macros instead of the hard coded paths.
+
+	(reviewed by Mark McLoughlin <mark@skynet.ie>)
+
 2002-02-19  Mark McLoughlin  <mark@skynet.ie>
 
 	* man/Makefile.am: remove man pages for apps
