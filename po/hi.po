@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2003-03-11 11:03+1300\n"
-"PO-Revision-Date: 2002-09-04 17:55+0530\n"
+"POT-Creation-Date: 2003-03-21 18:43+0530\n"
+"PO-Revision-Date: 2003-02-21 12:55+0530\n"
 "Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "टीसीपी जोड लागू करे"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -26,51 +26,54 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"सुरक्षा कारणवश जिन प्लैटफॉर्म पर _IceTcpTransNoListed() (XFree86 सिस्टम) है, वहां "
+"जीनोम सत्र टीसीपी जोड के लिए नही सुनेगा स्वदूर होस्ट (मर्यादित) से जोड बनाने के लिए यह "
+"विकल्प है. इसे लागू करने के लिए जीनोम सत्र पुनः प्रारंभ करें"
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "अगर सक्षम हे तो जीनोम सत्र वंद होने से पहले उपयोगकर्ता को टोकेगा"
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"अगर सक्षम हे तो जीनोम सत्र स्वतः सेग्रहित होगा, नहीं तोलॉगउट डॉयलॉग में सत्र संग्रहित "
+"करने का विकल्प होगा"
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr ""
+msgstr "लॉगाउट संदेश"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "वह चित्र जिसे जीनोम डेस्कटॉप में लॉगिन करते समय स्पलेश सक्रीन में दिखाना हे"
 
 # gnome-session/session-properties.c:272
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "सत्रें"
+msgstr "सत्रें संग्रहित करें"
 
 # gnome-session/session-properties-capplet.c:227
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "लाॅग-इन पर स्प्लेश स्क्रीन प्रदर्शित करें"
+msgstr "स्प्लेश स्क्रीन प्रदर्शित करें"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "सत्र शुरु होने पर स्प्लेश स्क्रीन प्रदर्शित करें"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "स्पलेश सक्रीन चित्र"
 
 # gnome-session/gsm-client-editor.c:94
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
-msgstr "क्रम:"
+msgstr "क्रम: (_O)"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
@@ -83,7 +86,7 @@ msgstr "अनुप्रयोग बंद होने पर कया ह�
 # gnome-session/gsm-client-editor.c:104
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
-msgstr "स्टाइल:"
+msgstr "स्टाइल: (_S)"
 
 # gnome-session/gsm-client-list.c:111
 #: gnome-session/gsm-client-list.c:150
@@ -252,7 +255,7 @@ msgstr "कया आप सचमुच लागाउट करना चा�
 # gnome-session/logout.c:246
 #: gnome-session/logout.c:298
 msgid "_Save current setup"
-msgstr "वर्तमान सैटअप संग्रहित करें"
+msgstr "वर्तमान सैटअप संग्रहित करें (_S)"
 
 # gnome-session/logout.c:266
 #: gnome-session/logout.c:318
@@ -262,7 +265,7 @@ msgstr "कार्य"
 # gnome-session/logout.c:274
 #: gnome-session/logout.c:326
 msgid "_Log Out"
-msgstr "लाॅग-आउट"
+msgstr "लाॅग-आउट (_L)"
 
 # gnome-session/logout.c:277
 #: gnome-session/logout.c:329
@@ -271,7 +274,7 @@ msgstr "शट-डाउन (बंद करें)"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr "कम्प्यूटर को पुनः चालू करें"
+msgstr "कम्प्यूटर को पुनः चालू करें (_R)"
 
 # gnome-session/main.c:66
 #: gnome-session/main.c:76
@@ -321,38 +324,38 @@ msgid "Try Again"
 msgstr "पुन: कोशिश करें"
 
 # gnome-session/save-session.c:160
-#: gnome-session/manager.c:176
+#: gnome-session/manager.c:174
 msgid "Your session has been saved"
 msgstr "आपका सत्र संग्रहित कर लिया गया है"
 
 # gnome-session/manager.c:400
-#: gnome-session/manager.c:457
+#: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
 msgstr "प्रतीक्षा करें, मतभेद के कारण प्रक्रिया समाप्त हो रही है"
 
 # gnome-session/manager.c:834
-#: gnome-session/manager.c:904
+#: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s निर्देश का कोई उत्तर प्राप्त नहीं"
 
 # gnome-session/manager.c:835
-#: gnome-session/manager.c:905
+#: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
 msgstr "प्रोग्राम अत्यंत धीमा है रूक गया है या लिंक टूट गया है"
 
 # gnome-session/manager.c:836
-#: gnome-session/manager.c:906
+#: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
 msgstr "इसका उत्तर देने के लिए या इसे हटाने के लिए आपको प्रतीछा करनी होगी"
 
 # gnome-session/manager.c:1375
-#: gnome-session/manager.c:1516
+#: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
 msgstr "असफलताओं के कारण पुन उत्पन्न नहीं हो सका"
 
 # gnome-session/manager.c:1541
-#: gnome-session/manager.c:1692
+#: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
 msgstr "सत्र को बन्द करने की प्रक्रिया जारी है"
 
@@ -405,7 +408,7 @@ msgstr "सत्र नाम में संशोधन करें"
 # gnome-session/session-properties-capplet.c:376
 #: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
-msgstr "जोड़ें"
+msgstr "जोड़ें (_E)"
 
 # gnome-session/session-properties-capplet.c:166
 #: gnome-session/session-properties-capplet.c:172
@@ -425,23 +428,22 @@ msgstr "सत्रें"
 # gnome-session/session-properties-capplet.c:227
 #: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
-msgstr "लाॅग-इन पर स्प्लेश स्क्रीन प्रदर्शित करें"
+msgstr "लाॅग-इन पर स्प्लेश स्क्रीन प्रदर्शित करें (_l)"
 
 # gnome-session/session-properties-capplet.c:243
 #: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
-msgstr "लाॅग आउट पर संकेत दें"
+msgstr "लाॅग आउट पर संकेत दें (_P)"
 
 # gnome-session/session-properties-capplet.c:259
 #: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
-msgstr "सत्र के परिवर्तन स्वयं में संग्रहित करें"
+msgstr "सत्र के परिवर्तन स्वयं में संग्रहित करें (_g)"
 
 # gnome-session/session-properties.c:272
 #: gnome-session/session-properties-capplet.c:262
-#, fuzzy
 msgid "_Sessions:"
-msgstr "सत्रें"
+msgstr "सत्रें (_S)"
 
 # gnome-session/session-properties-capplet.c:290
 #: gnome-session/session-properties-capplet.c:279
@@ -460,9 +462,8 @@ msgstr "वर्तमान सत्र संग्रहित करें
 
 # gnome-session/startup-programs.c:372
 #: gnome-session/session-properties-capplet.c:344
-#, fuzzy
 msgid "Additional startup _programs:"
-msgstr "प्रारंभिक प्रोग्राम में जोड़ें"
+msgstr "प्रारंभिक प्रोग्राम में जोड़ें (_p)"
 
 # gnome-session/session-properties-capplet.c:362
 #: gnome-session/session-properties-capplet.c:364
@@ -533,14 +534,13 @@ msgstr "नाटिलस"
 
 # gnome-session/splash.c:68
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "की-बोर्ड समायोजन"
+msgstr "डेस्कटॉप समायोजन"
 
 # gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #: gnome-session/startup-programs.c:289
 msgid "_Startup Command:"
-msgstr "प्रारंभिक निर्देश"
+msgstr "प्रारंभिक निर्देश (_S):"
 
 # gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #: gnome-session/startup-programs.c:295
