@@ -1,11 +1,12 @@
 /* save.c - Code to save session.
    Written by Tom Tromey <tromey@cygnus.com>.  */
 
+#include <config.h>
 #include <glib.h>
 #include <string.h>
 
 #include "libgnome/libgnome.h"
-#include "libgnomeui/gnome-session.h"
+#include "libgnomeui/gnome-client.h"
 #include "manager.h"
 
 
