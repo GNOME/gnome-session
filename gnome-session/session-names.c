@@ -318,7 +318,6 @@ delete_sessions (GSList *sess_list)
     }
     if(!section_found) {
       SessionObject *session_object;
-      gchar *path = NULL;
       session_object = g_new0 (SessionObject, 1);
       session_object->name = g_strdup(name);
       /* We need to copy the session first */
@@ -327,7 +326,6 @@ delete_sessions (GSList *sess_list)
       gnome_config_push_prefix(CONFIG_PREFIX);
       gnome_config_clean_section(g_strdup(name));
       gnome_config_pop_prefix ();
-      g_free(path);
     }
   }
   gnome_config_sync ();
