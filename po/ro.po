@@ -1,13 +1,13 @@
-# gnome-core.
+# gnome-session
 # Copyright (C) 2000, 2001 Free Software Foundation, Inc.
-# Marius Andreiana <mandreiana@yahoo.com>, 2000.
+# Marius Andreiana <mandreiana@yahoo.com>, 2000, 2002.
 # Dan Damian <dand@dnttm.ro>, 2000, 2001.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.2.99\n"
-"POT-Creation-Date: 2002-07-30 12:55+1200\n"
-"PO-Revision-Date: 2002-01-23 17:16+0200\n"
+"Project-Id-Version: gnome-session 2.0\n"
+"POT-Creation-Date: 2002-08-05 20:07+1200\n"
+"PO-Revision-Date: 2002-08-18 17:16+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,22 +15,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gnome-session/gsm-client-editor.c:96
-#, fuzzy
 msgid "_Order:"
-msgstr "Ordine:"
+msgstr "_Ordine:"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "Ordinea în care aplicaţiile sunt pornite în sesiune."
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "Ce se întâmplă când aplicaţia se termină."
 
 #: gnome-session/gsm-client-editor.c:108
-#, fuzzy
 msgid "_Style:"
-msgstr "Stil:"
+msgstr "_Stil:"
 
 #: gnome-session/gsm-client-list.c:150
 msgid "Order"
@@ -74,7 +72,7 @@ msgstr "Un membru normal al sesiunii."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "Salvează"
+msgstr "Salvare"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
@@ -97,9 +95,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Neafectate de logout-uri dar pot muri."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Activează"
+msgstr "Reporneşte"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -161,33 +158,28 @@ msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
 #: gnome-session/logout.c:234
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr ""
-"Sunteţi sigur(ă) ca doriţi să stergeţi aceast submeniu şi tot conţinutul său?"
+msgstr "Sunteţi sigur(ă) că doriţi să ieşiţi?"
 
 #: gnome-session/logout.c:251
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Salvează setările curente"
+msgstr "_Salvează setările curente"
 
 #: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Acţiune"
 
 #: gnome-session/logout.c:279
-#, fuzzy
 msgid "_Log Out"
-msgstr "Ieşire"
+msgstr "_Ieşi"
 
 #: gnome-session/logout.c:282
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Oprire"
+msgstr "_Opreşte"
 
 #: gnome-session/logout.c:285
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Reporneşte calculatorul"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -228,10 +220,9 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Login oricum"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "Încearcă din nou"
 
@@ -256,24 +247,23 @@ msgstr "Programul ar putea fi încet, oprit sau stricat."
 msgid "You may wait for it to respond or remove it."
 msgstr "Puteţi aştepta să raspundă sau să-l eliminaţi."
 
-#: gnome-session/manager.c:1507
-#, fuzzy
+#: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
 msgstr "Repornire abandonată datorită unor eşecuri."
 
-#: gnome-session/manager.c:1683
+#: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
 msgstr "O oprire a sesiunii este în progres."
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:42
 msgid "Kill session"
 msgstr "Omoară sesiunea"
 
-#: gnome-session/save-session.c:45
+#: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
 msgstr "Foloseşte cutii dialog"
 
-#: gnome-session/save-session.c:164
+#: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
 msgstr "Nu s-a putut conecta la managerul de sesiuni"
 
@@ -282,9 +272,8 @@ msgid "Save Current Session"
 msgstr "Salvează sesiunea curentă"
 
 #: gnome-session/save-session.desktop.in.h:2
-#, fuzzy
 msgid "Save current state of desktop"
-msgstr "Salvează captura ecran pe _desktop"
+msgstr "Salvează starea curentă a desktop-ului"
 
 #: gnome-session/session-names.c:127
 msgid "The session name cannot be empty"
@@ -298,84 +287,78 @@ msgstr "Numele sesiunii există deja"
 msgid "Add a new session"
 msgstr "Adaugă o nouă sesiune"
 
-#: gnome-session/session-names.c:198
+#: gnome-session/session-names.c:200
 msgid "Edit session name"
 msgstr "Editează numele sesiunii"
 
-#: gnome-session/session-properties-capplet.c:105
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
-msgstr "Editare"
+msgstr "_Editare"
 
-#: gnome-session/session-properties-capplet.c:173
+#: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"Unele schimbări nu sunt salvate.\n"
+"Doriţi să ieşiti?"
 
-#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
 msgstr "Sesiune"
 
-#: gnome-session/session-properties-capplet.c:230
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
-msgstr "Arată ecranul de splash la pornire"
+msgstr "Arată ecranul de splash la _pornire"
 
-#: gnome-session/session-properties-capplet.c:241
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
-msgstr "Promptează la ieşire"
+msgstr "_Întreabă la ieşire"
 
-#: gnome-session/session-properties-capplet.c:252
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
 msgstr "Salvează schimbările la sesiune automat"
 
-#: gnome-session/session-properties-capplet.c:280
+#: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Numele sesiunii"
 
-#: gnome-session/session-properties-capplet.c:327
+#: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Opţiuni sesiune"
 
-#: gnome-session/session-properties-capplet.c:336
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
-msgstr "Salvează sesiunea curentă"
+msgstr "Sesiunea curentă"
 
-#: gnome-session/session-properties-capplet.c:363
+#: gnome-session/session-properties-capplet.c:362
 msgid "Priority"
 msgstr "Prioritate"
 
-#: gnome-session/session-properties-capplet.c:365
+#: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Comandă"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Programe de la pornire"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "Elimină clientul selectat din sesiune."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Salvează schimbările la sesiune automat"
+msgstr "Aplică schimbările la sesiunea curentă"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "Lista programelor din sesiune."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Răsfoieşte programele care rulează acum..."
+msgstr "Programele care rulează acum:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -383,7 +366,7 @@ msgstr "Iniţializează setările sesiunii"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Configuraţi sesiunile dvs"
 
 #: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
@@ -398,9 +381,8 @@ msgid "Sawfish Window Manager"
 msgstr "Managerul de ferestre Sawfish"
 
 #: gnome-session/splash-widget.c:44
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "Manager de ferestre"
+msgstr "Managerul de ferestre Metacity"
 
 #: gnome-session/splash-widget.c:45
 msgid "Window Manager"
@@ -431,18 +413,16 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Comenzi de la pornire"
+msgstr "_Comanda de la pornire:"
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
-msgstr "Comenzi de la pornire"
+msgstr "Comanda de la pornire"
 
 #: gnome-session/startup-programs.c:307
-#, fuzzy
 msgid "_Priority:"
-msgstr "Prioritate"
+msgstr "_Prioritate:"
 
 #: gnome-session/startup-programs.c:335
 msgid "The startup command cannot be empty"
@@ -450,9 +430,9 @@ msgstr "Comanda de pornire nu poate fi goală"
 
 #: gnome-session/startup-programs.c:375
 msgid "Add Startup Program"
-msgstr "Adaugă programe de la pornire"
+msgstr "Adaugă program de la pornire"
 
-#: gnome-session/startup-programs.c:395
+#: gnome-session/startup-programs.c:396
 msgid "Edit Startup Program"
 msgstr "Editează programe de la pornire"
 
