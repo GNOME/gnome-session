@@ -1101,7 +1101,7 @@ update_save_state ()
 	gtk_timeout_remove (warn_timeout_id);
       warn_timeout_id = -1;
 
-      CONCAT (live_list, save_finished_list);
+      CONCAT (live_list, g_slist_copy (save_finished_list));
 	  
       if (shutting_down)
 	{
@@ -1125,6 +1125,7 @@ update_save_state ()
 	      if (client != warner)
 		SmsDie (client->connection);
 	    }
+	  g_slist_free (save_finished_list);
 	  save_finished_list = NULL;
 	  save_state  = SHUTDOWN;
 	  /* Run each shutdown command. These commands are only strictly
@@ -1142,6 +1143,7 @@ update_save_state ()
 
 	  save_state = SENDING_MESSAGES;
 	  send_message (&save_finished_list, SmsSaveComplete);
+	  g_slist_free (save_finished_list);
 	  save_finished_list = NULL;
 	  save_state  = MANAGER_IDLE;
 	}
@@ -1169,10 +1171,10 @@ update_save_state ()
       warn_timeout_id = -1;
 
       CONCAT (live_list, save_finished_list);
+      save_finished_list = NULL;
 
       write_session ();
 
-      save_finished_list = NULL;
       save_state = MANAGER_IDLE;
     }
 
