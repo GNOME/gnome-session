@@ -227,7 +227,7 @@ check_for_dns (void)
       if (getaddrinfo (hostname, NULL, &hints, &result) != 0)
 	return FALSE;
 
-      if (g_strncasecmp (result->ai_canonname, hostname, 0) != 0)
+      if (g_ascii_strncasecmp (result->ai_canonname, hostname, 0) != 0)
 	return FALSE;
     } 
   else
