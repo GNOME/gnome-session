@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-12-17 09:29+1300\n"
+"POT-Creation-Date: 2002-11-27 01:56+0100\n"
 "PO-Revision-Date: 2001-02-28 18:36+0200\n"
 "Last-Translator: Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -24,22 +24,19 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Zaradi varnostnih razlogov na platformah, ki imajo _IceTcpTransNoListen() "
-"(sistemi XFree86), gnome-session ne posluša na vratih TCP. Ta možnost bo "
-"omogočila povezave z (avtoriziranih) oddaljenih računalnikov. Da se možnost "
-"uveljavi je potrebno program gnome-session vnovič pognati."
+"(sistemi XFree86), gnome-session ne posluša na vratih TCP. Ta možnost bo omogočila povezave z (avtoriziranih) oddaljenih računalnikov. "
+"Da se možnost uveljavi je potrebno program gnome-session znova pognati."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Če je vključeno, bo gnome-session pred zaključkom seje vprašal uporabnika."
+msgstr "Če je vključeno, bo gnome-session pred zaključkom seje vprašal uporabnika."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Če je vključeno, bo gnome-session samodejno shranil sejo. Sicer bo imel "
-"odjavni dialog možnost za shranitev seje."
+"Če je vključeno, bo gnome-session samodejno shranil sejo. Sicer bo imel odjavni dialog možnost za shranitev seje."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -49,7 +46,8 @@ msgstr "Odjavni zaslon"
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr "Slika, ki naj se uporabi kot špica za prijavo v Namizje GNOME"
+msgstr ""
+"Slika, ki naj se uporabi kot špica za prijavo v Namizje GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
@@ -150,7 +148,7 @@ msgstr "Neodvisen od odjave, a lahko umre."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr "Vnovič poženi"
+msgstr "Znova zaženi"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -245,7 +243,7 @@ msgstr "_Zaustavitev sistema"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr "_Vnovič zaženi računalnik"
+msgstr "_Znova zaženi računalnik"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -404,7 +402,7 @@ msgstr "Programi ob začetku"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "S seje odstrani trenutno izbranega odjemalca"
+msgstr "S seje odstrani trenutno izbranega odjemalca."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
@@ -427,33 +425,48 @@ msgid "Configure your sessions"
 msgstr "Nastavi vašo sejo"
 
 #: gnome-session/splash-widget.c:42
+msgid "Audio Settings"
+msgstr "Nastavitve zvoka"
+
+#: gnome-session/splash-widget.c:43
+msgid "Screensaver"
+msgstr "Ohranjevalnik zaslona"
+
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish upravljalnik oken"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Upravljalnik oken Metacity"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Upravljalnik oken"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:47
+msgid "Background Settings"
+msgstr "Nastavitve ozadja"
+
+#: gnome-session/splash-widget.c:48
+msgid "Mouse Settings"
+msgstr "Nastavitve miši"
+
+#: gnome-session/splash-widget.c:49
+msgid "Keyboard Settings"
+msgstr "Nastavitve tipkovnice"
+
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "Pult"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "Posrednik upravljalnika sej"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "Nautilus"
-
-#: gnome-session/splash-widget.c:48
-#, fuzzy
-msgid "Desktop Settings"
-msgstr "Ponastavi vse nastavitve"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
@@ -475,21 +488,6 @@ msgstr "Dodaj začetni program"
 msgid "Edit Startup Program"
 msgstr "Uredi začetni program"
 
-#~ msgid "Audio Settings"
-#~ msgstr "Nastavitve zvoka"
-
-#~ msgid "Screensaver"
-#~ msgstr "Ohranjevalnik zaslona"
-
-#~ msgid "Background Settings"
-#~ msgstr "Nastavitve ozadja"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Nastavitve miši"
-
-#~ msgid "Keyboard Settings"
-#~ msgstr "Nastavitve tipkovnice"
-
 #~ msgid "GNOME Login"
 #~ msgstr "GNOME prijava"
 
@@ -507,6 +505,9 @@ msgstr "Uredi začetni program"
 
 #~ msgid "No"
 #~ msgstr "Ne"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Ponastavi vse nastavitve"
 
 #~ msgid ""
 #~ "The directory /tmp/orbit-%s is not owned\n"
