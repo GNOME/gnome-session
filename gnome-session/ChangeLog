@@ -1,3 +1,12 @@
+2002-07-25  Federico Mena Quintero  <federico@ximian.com>
+
+	* startup-programs.c (edit_client): Do not show the dialog, as
+	gnome_dialog_run() takes care of that for us.  Also, showing the
+	dialog beforehand means that GTK+ must install a grab and we don't
+	want that.  Instead, just show_all() the vbox.  Also, set the file
+	entry to be modal.  Fixes the gnome-session-properties part of
+	#88849.
+
 2002-07-25  Michael Meeks  <michael@ximian.com>
 
 	* splash-widget.c (splash_widget_expose_event),

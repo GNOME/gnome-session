@@ -290,6 +290,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
 
   gnome_entry = gnome_file_entry_new ("startup-commands", _("Startup Command"));
+  gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
   entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
   gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
 
@@ -319,7 +320,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (spinbutton));
   
-  gtk_widget_show_all (*dialog);
+  gtk_widget_show_all (vbox);
 
   while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1)
     {
