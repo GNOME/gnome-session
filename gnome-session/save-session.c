@@ -25,7 +25,8 @@
 
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
-#include <libgnomeui/gnome-window-icon.h>
+
+/* #include <libgnomeui/gnome-window-icon.h> */
 
 #include "headers.h"
 #include "gsm-protocol.h"
@@ -84,7 +85,7 @@ main (int argc, char *argv[])
   textdomain (PACKAGE);
 
   gnome_init_with_popt_table("save-session", VERSION, argc, argv, options, 0, NULL);
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/mc/i-floppy.png");
+  /* gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/mc/i-floppy.png"); */
 
   client = gnome_master_client ();
   if (! GNOME_CLIENT_CONNECTED (client))

@@ -1,3 +1,30 @@
+2001-09-12  jacob berkman  <jacob@ximian.com>
+
+	* Makefile.am: cleanup a bit
+
+	* splash.c: pass an extra NULL to gdk_pixbuf_new_from_file()
+
+	* session-properties-capplet.c (main):
+	* main.c (main):
+	* save-session.c (main): comment out window icon code until it
+	gets back in
+
+	* main.c (main): remove gnomelib_init() call; it was just a
+	workaround for a bug in gnome-libs 1.x
+
+	* logout.c (display_gui): temporarily comment out help code
+
+	* ice.c (accept_connection): wrap the gtk_main_iteration() call
+	with gdk_threads_enter()/_leave() so we don't lock up
+
+	* gsm-client-row.c (create_stock_menu_pixmaps): this is broken,
+	but it compiles now
+
+	* gsm-client-list.c (gsm_client_list_new):
+	(gsm_client_list_class_init): 
+	* gsm-client-editor.c (gsm_client_editor_class_init): fixup for
+	gtk 2
+
 2001-08-28  Glynn Foster <glynn.foster@sun.com>
 	* headers.h, session-properties-capplet.h: Added patch from 
 	Havoc Pennington <hp@redhat.com> to turn off session autosaving

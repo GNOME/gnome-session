@@ -54,27 +54,24 @@ gsm_client_list_class_init (GsmClientListClass *klass)
   gsm_client_list_signals[DIRTY] =
     gtk_signal_new ("dirty",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientListClass, dirty),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
   gsm_client_list_signals[STARTED] =
     gtk_signal_new ("started",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientListClass, started),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
   gsm_client_list_signals[INITIALIZED] =
     gtk_signal_new ("initialized",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientListClass, initialized),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
-
-  gtk_object_class_add_signals (object_class, gsm_client_list_signals, 
-				NSIGNALS);
 
   klass->dirty       = dirty;
   klass->started     = NULL;
@@ -108,21 +105,22 @@ gsm_client_list_get_type (void)
 GtkWidget* 
 gsm_client_list_new (void)
 {
-  GsmClientList* client_list = gtk_type_new(gsm_client_list_get_type());
-  GtkCList* clist = (GtkCList*) client_list;
+  GsmClientList* client_list;
+  GtkCList* clist;
   GdkFont*  font;
-  gchar*    titles[4];  
-  int i;
+  int i, n_titles;
+  gchar*    titles[4] = { N_("Order"), N_("Style"), N_("State"), N_("Program") };
 
-/* Changes to build on IRIX */
-  
-  titles[0] = N_("Order"); 
-  titles[1] = N_("Style"); 
-  titles[2] = N_("State");
-  titles[3] = N_("Program");
+  n_titles = sizeof (titles) / sizeof (titles[0]);
 
-  for(i = 0; i < sizeof(titles)/sizeof(titles[0]); i++)
-    titles[i] = gettext(titles[i]);
+  client_list = g_object_new (gsm_client_list_get_type(),
+			      "n_columns", n_titles,
+			      NULL);
+  clist = GTK_CLIST (client_list);
+
+  for (i = 0; i < n_titles; i++)
+	  gtk_clist_set_column_title (clist, i, _(titles[i]));
+  gtk_clist_column_titles_show (clist);
 
   client_list->client_editor = gsm_client_editor_new ();
   client_list->session   = NULL;
@@ -130,7 +128,6 @@ gsm_client_list_new (void)
   client_list->dirty     = FALSE;
   client_list->changes   = NULL;
 
-  gtk_clist_construct (clist, 4, titles);
   gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
 		     GTK_SIGNAL_FUNC (select_cb), NULL);
   gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",

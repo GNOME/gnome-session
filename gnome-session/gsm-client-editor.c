@@ -44,13 +44,10 @@ gsm_client_editor_class_init (GsmClientEditorClass *klass)
   gsm_client_editor_signals[CHANGED] =
     gtk_signal_new ("changed",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientEditorClass, changed),
 		    gtk_marshal_NONE__INT_INT,
 		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_INT); 
-
-  gtk_object_class_add_signals (object_class, gsm_client_editor_signals, 
-				NSIGNALS);
 
   parent_class = gtk_type_class (gtk_hbox_get_type ());
 

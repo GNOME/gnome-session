@@ -22,7 +22,7 @@
 #include <config.h>
 #include <string.h>
 #include <gnome.h>
-#include <libgnomeui/gnome-window-icon.h>
+/* #include <libgnomeui/gnome-window-icon.h> */
 
 #include "gsm-client-list.h"
 #include "gsm-client-row.h"
@@ -94,11 +94,11 @@ create_table (void)
   gtk_signal_connect (GTK_OBJECT (entry), "changed", 
 		      GTK_SIGNAL_FUNC (entry_changed_cb), NULL);
   /* add/remove buttons */
-  add_button = gnome_stock_button (GNOME_STOCK_PIXMAP_ADD);
+  add_button = gtk_button_new_from_stock (GTK_STOCK_ADD);
   gtk_widget_set_sensitive (GTK_WIDGET (add_button), FALSE);
   gtk_signal_connect (GTK_OBJECT (add_button), "clicked",
 		      GTK_SIGNAL_FUNC (add_cb), NULL);
-  remove_button = gnome_stock_button (GNOME_STOCK_PIXMAP_REMOVE);
+  remove_button = gtk_button_new_with_label (_("Remove"));
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
   gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
 		     GTK_SIGNAL_FUNC (remove_cb), NULL);
@@ -278,7 +278,8 @@ create_left (void)
   session_list = gtk_clist_new_with_titles(1, &title);
   gtk_widget_set_usize (session_list, req.width, req.height);
   gtk_signal_connect (GTK_OBJECT (session_list), "select_row",
-		      sess_select_row, NULL);
+		      GTK_SIGNAL_FUNC (sess_select_row), 
+		      NULL);
 
   /* scrolled window */
   left = gtk_scrolled_window_new (NULL, NULL);
@@ -317,7 +318,9 @@ create_dialog (void)
 {
   /* paned window */
   paned = gtk_hpaned_new();
+#if 0
   gtk_paned_handle_size (GTK_PANED (paned), 10);
+#endif
   gtk_paned_gutter_size (GTK_PANED (paned), 10);
   gtk_paned_add1 (GTK_PANED (paned), create_left ());
   gtk_paned_add2 (GTK_PANED (paned), create_right ());
@@ -366,10 +369,12 @@ main (int argc, char *argv[])
 
   gnome_init_with_popt_table ("session-properties", VERSION, argc, argv, 
 			      options, 0, NULL);
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
+  /* gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png"); */
+
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
+#if 0
   /*
    * The following 2 lines represent an ugly hack for multivisual
    * machines.  Imlib has changed slightly to use the best visual
@@ -384,7 +389,7 @@ main (int argc, char *argv[])
 
   gtk_widget_set_default_colormap (gdk_rgb_get_cmap ());
   gtk_widget_set_default_visual (gdk_rgb_get_visual ());
-
+#endif
   protocol = gsm_protocol_new (gnome_master_client());
   if (!protocol)
     {
@@ -439,26 +444,28 @@ cancel (void)
 static void
 help (void)
 {
+#if 0
 	GnomeHelpMenuEntry help_entry = {
 		"session",
 		"index.html"
 	};
 	gnome_help_display(NULL, &help_entry);
+#endif
 }
 
 /* This is called when user has changed the entry  */
 static void
 entry_changed_cb (GtkWidget *widget)
 {
-  gchar *value = gtk_entry_get_text (GTK_ENTRY (entry));
-  gtk_widget_set_sensitive (GTK_WIDGET (add_button), (value && *value));
+	const gchar *value = gtk_entry_get_text (GTK_ENTRY (entry));
+	gtk_widget_set_sensitive (GTK_WIDGET (add_button), (value && *value));
 }
 
 /* Add a new client. */
 static void
 add_cb (GtkWidget *widget)
 {
-  gchar *command = gtk_entry_get_text (GTK_ENTRY (entry));
+  const gchar *command = gtk_entry_get_text (GTK_ENTRY (entry));
 
   if (gsm_client_list_add_program (GSM_CLIENT_LIST (client_list), command))
     {

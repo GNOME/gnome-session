@@ -302,12 +302,15 @@ display_gui (void)
     case 1:
       return FALSE;
     case 2:
+/* FIXME: port to gnome 2 help stuff */
+#if 0
       {
 	GnomeHelpMenuEntry help_entry = {
 	  "panel", "panelbasics.html#LOGGINGOUT"
 	};
 	gnome_help_display (NULL, &help_entry);
       }
+#endif
       return FALSE;
     }
 }

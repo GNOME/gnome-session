@@ -23,7 +23,7 @@
 #include "splash.h"
 #include "manager.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gdk-pixbuf/gnome-canvas-pixbuf.h>
+#include <libgnomecanvas/gnome-canvas-pixbuf.h>
 
 typedef struct {
   GtkWidget *dialog;
@@ -269,7 +269,7 @@ icon_cb (gpointer data)
       GdkPixbuf *pb;
       GnomeCanvasItem *item;
 
-      pb = gdk_pixbuf_new_from_file (pix);
+      pb = gdk_pixbuf_new_from_file (pix, NULL);
       if (pb != NULL) {
         GdkPixbuf *pb2;
 
@@ -403,17 +403,17 @@ start_splash (gfloat max)
 
     filename = g_strdup_printf ("%s/splash/gnome-splash-%d.%d.%d.png",
 				GNOME_ICONDIR, maj, minor, pl);
-    pb = gdk_pixbuf_new_from_file (filename);
+    pb = gdk_pixbuf_new_from_file (filename, NULL);
     g_free (filename);
     if (pb == NULL) {
 	    filename = g_strdup_printf ("%s/splash/gnome-splash-%d.%d.png",
 					GNOME_ICONDIR, maj, minor);
-	    pb = gdk_pixbuf_new_from_file (filename);
+	    pb = gdk_pixbuf_new_from_file (filename, NULL);
 	    g_free (filename);
     }
 
     if (pb == NULL)
-	    pb = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/splash/gnome-splash.png");
+	    pb = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/splash/gnome-splash.png", NULL);
 
     if (pb == NULL) {
 	    height = 220;

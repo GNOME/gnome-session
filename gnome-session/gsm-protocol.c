@@ -28,6 +28,9 @@
 #include "session.h"
 #include "gsm-protocol.h"
 
+#include "gsm-marshal.h"
+#include "gsm-marshal.c"
+
 #define GSM_IS_CLIENT_EVENT(event) (!strncmp (((SmProp*)(event))->name, GsmClientEvent, strlen (GsmClientEvent))) 
 #define GSM_CLIENT_TYPE(event) ((gchar*)((SmProp*)event)->vals[0].value)
 #define GSM_CLIENT_HANDLE(event) ((gchar*)((SmProp*)event)->vals[1].value)
@@ -139,20 +142,18 @@ gsm_session_class_init (GsmSessionClass *klass)
   gsm_session_signals[INITIALIZED] =
     gtk_signal_new ("initialized",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmSessionClass, initialized),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
   gsm_session_signals[SESSION_NAME] =
     gtk_signal_new ("session_name",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmSessionClass, session_name),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
 
-  gtk_object_class_add_signals (object_class, gsm_session_signals, NSIGNALS2);
-  
   object_class->destroy = gsm_session_destroy;
   
   klass->initialized = NULL;
@@ -325,48 +326,46 @@ gsm_client_class_init (GsmClientClass *klass)
   gsm_client_signals[REMOVE] =
     gtk_signal_new ("remove",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, remove),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
   gsm_client_signals[REASONS] =
     gtk_signal_new ("reasons",
 		    GTK_RUN_FIRST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, reasons),
-		    gtk_marshal_NONE__INT_POINTER,
+		    gsm_marshal_NONE__INT_POINTER,
 		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_POINTER);
   gsm_client_signals[COMMAND] =
     gtk_signal_new ("command",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, command),
 		    gtk_marshal_NONE__POINTER,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
   gsm_client_signals[STATE] =
     gtk_signal_new ("state",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, state),
 		    gtk_marshal_NONE__INT,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
   gsm_client_signals[STYLE] =
     gtk_signal_new ("style",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, style),
 		    gtk_marshal_NONE__INT,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
   gsm_client_signals[ORDER] =
     gtk_signal_new ("order",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmClientClass, order),
 		    gtk_marshal_NONE__INT,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
  
-  gtk_object_class_add_signals (object_class, gsm_client_signals, NSIGNALS);
-  
   object_class->destroy = gsm_client_destroy;
   
   klass->remove   = NULL;
@@ -522,8 +521,10 @@ client_reasons (GsmClient* client, gboolean confirm, GSList* reasons)
   gtk_window_set_position ((GtkWindow *) dialog, GTK_WIN_POS_CENTER);
   gtk_window_set_modal ((GtkWindow *) (dialog), TRUE);
   gtk_widget_show_all (dialog);
+#if 0
   gnome_win_hints_set_state((GtkWidget *) dialog, WIN_STATE_FIXED_POSITION);
   gnome_win_hints_set_layer((GtkWidget *) dialog, WIN_LAYER_ABOVE_DOCK);
+#endif
   gnome_dialog_run ((GnomeDialog *) (dialog));
   g_free (message);
 }
@@ -539,19 +540,18 @@ gsm_protocol_class_init (GsmProtocolClass *klass)
   gsm_protocol_signals[SAVED_SESSIONS] =
     gtk_signal_new ("saved_sessions",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmProtocolClass, saved_sessions),
 		    gtk_marshal_NONE__POINTER,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER); 
   gsm_protocol_signals[CURRENT_SESSION] =
     gtk_signal_new ("current_session",
 		    GTK_RUN_LAST,
-		    object_class->type,
+		    GTK_CLASS_TYPE (object_class),
 		    GTK_SIGNAL_OFFSET (GsmProtocolClass, current_session),
 		    gtk_marshal_NONE__POINTER,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
 
-  gtk_object_class_add_signals (object_class, gsm_protocol_signals, NSIGNALS3);
   object_class->destroy = gsm_protocol_destroy;
   
   klass->saved_sessions = NULL;

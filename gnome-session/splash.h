@@ -22,12 +22,8 @@
 
 #include "headers.h"
 
-BEGIN_GNOME_DECLS
-
 void start_splash (gfloat max);
 void update_splash (const gchar *text, gfloat priority);
 void stop_splash (void);
-
-END_GNOME_DECLS
 
 #endif /* SPLASH_H */

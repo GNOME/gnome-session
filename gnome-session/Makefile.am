@@ -1,44 +1,85 @@
 ## Process this file with automake to produce Makefile.in.
 
-SUBDIRS = help
+SUBDIRS = # help
 
 defaultdir = $(datadir)/gnome
 
-INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
+INCLUDES = \
+	$(GNOME_SESSION_CFLAGS)				\
 	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
-	-DDEFAULTDIR="\"$(defaultdir)\"" @CANVAS_PIXBUF_CFLAGS@ 
+	-DDEFAULTDIR="\"$(defaultdir)\""
 
-LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
+LDADD = $(GNOME_SESSION_LIBS) $(INTLLIBS)
 
 sysdir = $(datadir)/apps/Settings
 
 if SESSION
 noinst_DATA = session.desktop
-bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties gnome-libice-check session-properties-capplet
+bin_PROGRAMS = \
+	gnome-session		\
+	save-session		\
+	gnome-login-check	\
+	session-properties	\
+	gnome-libice-check
+
+#	session-properties-capplet
 endif
 
-gnome_session_SOURCES = manager.c manager.h ice.c ice.h main.c prop.c prop.h \
-	save.c save.h command.c command.h session.h remote.c remote.h \
-	logout.c logout.h splash.c splash.h gsm-protocol.c gsm-protocol.h \
+gnome_session_SOURCES = \
+	manager.c	\
+	manager.h	\
+	ice.c		\
+	ice.h		\
+	main.c		\
+	prop.c		\
+	prop.h		\
+	save.c		\
+	save.h		\
+	command.c	\
+	command.h	\
+	session.h	\
+	remote.c	\
+	remote.h	\
+	logout.c	\
+	logout.h	\
+	splash.c	\
+	splash.h	\
+	gsm-protocol.c	\
+	gsm-protocol.h	\
 	headers.h
 
-gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@ @CANVAS_PIXBUF_LIBS@
+save_session_SOURCES = \
+	save-session.c	\
+	gsm-protocol.c	\
+	gsm-protocol.h
 
-save_session_SOURCES = save-session.c gsm-protocol.c gsm-protocol.h
+session_properties_SOURCES = \
+	session-properties.c	\
+	gsm-client-list.c	\
+	gsm-client-list.h	\
+	gsm-client-editor.c	\
+	gsm-client-editor.h	\
+	gsm-client-row.c	\
+	gsm-client-row.h	\
+	gsm-protocol.c		\
+	gsm-protocol.h		\
+	session.h
 
-session_properties_SOURCES = session-properties.c \
-gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
-gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
-session.h
-
-session_properties_capplet_SOURCES = session-properties-capplet.c \
-session-properties-capplet.h session.h startup-programs.c session-names.c \
-gsm-protocol.c gsm-protocol.h gsm-client-list.c gsm-client-list.h \
-gsm-client-row.c gsm-client-row.h gsm-client-editor.c gsm-client-editor.h 
-
-session_properties_capplet_LDADD = $(GNOME_LIBDIR) $(ORB_LIBS) \
-$(GNOMEUI_LIBS) $(INTLLIBS) -lgnorba -lcapplet
+session_properties_capplet_SOURCES_ = \
+	session-properties-capplet.c	\
+	session-properties-capplet.h	\
+	session.h			\
+	startup-programs.c		\
+	session-names.c			\
+	gsm-protocol.c			\
+	gsm-protocol.h			\
+	gsm-client-list.c		\
+	gsm-client-list.h		\
+	gsm-client-row.c		\
+	gsm-client-row.h		\
+	gsm-client-editor.c		\
+	gsm-client-editor.h 
 
 gnome_login_check_SOURCES = gnome-login-check.c
 
@@ -90,4 +131,20 @@ EXTRA_DIST =			\
 	$(pixmap_DATA)		\
 	session-properties.desktop
 
+marshal_sources = gsm-marshal.c gsm-marshal.h
 
+gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --header --prefix=gsm_marshal > $@
+gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $< --body --prefix=gsm_marshal > $@
+
+gsm-protocol.c: $(marshal_sources)
+
+CLEANFILES = $(marshal_sources)
+
+DONT_DIST_SOURCE = $(marshal_sources)
+
+dist-hook:
+	for file in $(DONT_DIST_SOURCE) ; do \
+		rm -f $(distdir)/$$file ; \
+	done

@@ -128,7 +128,11 @@ accept_connection (gpointer client_data, gint source,
       /* Freeze ice while doing the gtk iteration. We don't want to recurse
          here */
       ice_frozen();
+
+      gdk_threads_enter ();
       gtk_main_iteration ();
+      gdk_threads_leave ();
+
       ice_thawed();
       status2 = IceConnectionStatus (connection);
     }

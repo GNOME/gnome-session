@@ -21,7 +21,8 @@
 #include <X11/SM/SMlib.h>
 #include <time.h>
 
-#include "glib.h"
+#include <glib.h>
+
 
 /* Config prefix used to store the sysadmin's default sessions. */
 #define DEFAULT_CONFIG_PREFIX "=" DEFAULTDIR "/default.session=/"

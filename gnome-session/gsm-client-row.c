@@ -22,6 +22,8 @@
 #include <config.h>
 #include <gnome.h>
 
+#include <gtk/gtkimage.h>
+
 #include "gsm-client-row.h"
 #include "gsm-client-editor.h"
 
@@ -62,8 +64,13 @@ GnomeUIInfo style_data[] = {
   GNOMEUIINFO_END
 };
 
-static GnomePixmap *state_pixmap[GSM_NSTATES];
-static GnomePixmap *style_pixmap[GSM_NSTYLES];
+typedef struct {
+	GdkPixmap *pixmap;
+	GdkBitmap *mask;
+} PixmapAndMask;
+
+static PixmapAndMask state_pixmap[GSM_NSTATES];
+static PixmapAndMask style_pixmap[GSM_NSTYLES];
 
 static void create_stock_menu_pixmaps (void);
 
@@ -169,11 +176,11 @@ gsm_client_row_add (GsmClientRow* client_row)
 	  GSM_CLIENT_ROW (data)->row = row;
 	}
       gtk_clist_set_pixmap (clist, client_row->row, 1, 
-			    style_pixmap[client->style]->pixmap, 
-			    style_pixmap[client->style]->mask);
+			    style_pixmap[client->style].pixmap, 
+			    style_pixmap[client->style].mask);
       gtk_clist_set_pixmap (clist, client_row->row, 2, 
-			    state_pixmap[client->state]->pixmap, 
-			    state_pixmap[client->state]->mask);
+			    state_pixmap[client->state].pixmap, 
+			    state_pixmap[client->state].mask);
     }
 }
 
@@ -248,8 +255,8 @@ client_state (GsmClient* client, GsmState state)
       GtkCList* clist = (GtkCList*)client_row->client_list;
 
       gtk_clist_set_pixmap (clist, client_row->row, 2, 
-			    state_pixmap[state]->pixmap, 
-			    state_pixmap[state]->mask);
+			    state_pixmap[state].pixmap, 
+			    state_pixmap[state].mask);
       if (client->state < GSM_CONNECTED && state >= GSM_CONNECTED)
 	{
 	  if (client_row->client_list->pending > 0 && 
@@ -315,8 +322,8 @@ gsm_client_row_set_style (GsmClientRow* client_row, GsmStyle style)
 	  GtkCList* clist = (GtkCList*)client_row->client_list;
 
 	  gtk_clist_set_pixmap (clist, client_row->row, 1, 
-				style_pixmap[style]->pixmap, 
-				style_pixmap[style]->mask);
+				style_pixmap[style].pixmap, 
+				style_pixmap[style].mask);
 	}
     }
 }
@@ -330,26 +337,21 @@ client_style (GsmClient* client, GsmStyle style)
 static void
 create_stock_menu_pixmaps (void)
 {
-  GnomeStockPixmapEntry *pixmap_help; 
-  GnomeStockPixmapEntry *menu_blank; 
-  GnomeStockPixmapEntry *menu_help;
-  gint i;
+	GtkWidget *image;
+	gint i;
+	
+	for (i = 0; i < GSM_NSTATES; i++) {
+		/* Owen will probably yell at me for this */
+		image = gtk_image_new_from_stock (state_data[i].pixmap_info, 20);
+		gtk_image_get_pixmap (GTK_IMAGE (image), 
+				      &state_pixmap[i].pixmap,
+				      &state_pixmap[i].mask);
+		gtk_widget_unref (image);
 
-  menu_blank = gnome_stock_pixmap_checkfor (GNOME_STOCK_MENU_BLANK,
-					    GNOME_STOCK_PIXMAP_REGULAR);
-  pixmap_help = gnome_stock_pixmap_checkfor (GNOME_STOCK_PIXMAP_HELP,
-					     GNOME_STOCK_PIXMAP_REGULAR);
-  menu_help = g_malloc(sizeof(GnomeStockPixmapEntry));
-  memcpy (menu_help, pixmap_help, sizeof (GnomeStockPixmapEntry));
-  menu_help->imlib_s.scaled_width = menu_blank->imlib_s.scaled_width;
-  menu_help->imlib_s.scaled_height = menu_blank->imlib_s.scaled_height;
-  gnome_stock_pixmap_register (GNOME_STOCK_MENU_HELP,
-			       GNOME_STOCK_PIXMAP_REGULAR, menu_help);
-
-  for (i = 0; i < GSM_NSTATES; i++)
-    state_pixmap [i] = 
-      (GnomePixmap*)gnome_stock_new_with_icon (state_data[i].pixmap_info);
-  for (i = 0; i < GSM_NSTYLES; i++)
-    style_pixmap [i] = 
-      (GnomePixmap*)gnome_stock_new_with_icon (style_data[i].pixmap_info);
+		image = gtk_image_new_from_stock (style_data[i].pixmap_info, 20);
+		gtk_image_get_pixmap (GTK_IMAGE (image),
+				      &style_pixmap[i].pixmap,
+				      &style_pixmap[i].mask);
+		gtk_widget_unref (image);
+	}
 }
