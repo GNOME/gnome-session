@@ -198,16 +198,16 @@ display_gui (void)
 
   box = gnome_message_box_new (_("Really log out?"),
 			       GNOME_MESSAGE_BOX_QUESTION,
-			       GNOME_STOCK_BUTTON_YES,
-			       GNOME_STOCK_BUTTON_NO,
 			       GNOME_STOCK_BUTTON_HELP,
+			       GNOME_STOCK_BUTTON_NO,
+			       GNOME_STOCK_BUTTON_YES,
 			       NULL);
 
   gtk_object_set (GTK_OBJECT (box),
 		  "type", GTK_WINDOW_POPUP,
 		  NULL);
 
-  gnome_dialog_set_default (GNOME_DIALOG (box), 0);
+  gnome_dialog_set_default (GNOME_DIALOG (box), 2);
   gtk_window_set_position (GTK_WINDOW (box), GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
@@ -285,7 +285,7 @@ display_gui (void)
 
   switch (result)
     {
-    case 0:
+    case 2:
 	/* We want to know if we should trash changes (and lose forever)
 	 * or save them */
 	if(!autosave)
@@ -301,16 +301,8 @@ display_gui (void)
     default:
     case 1:
       return FALSE;
-    case 2:
-/* FIXME: port to gnome 2 help stuff */
-#if 0
-      {
-	GnomeHelpMenuEntry help_entry = {
-	  "panel", "panelbasics.html#LOGGINGOUT"
-	};
-	gnome_help_display (NULL, &help_entry);
-      }
-#endif
+    case 0:
+      gnome_help_display("panelbasics.html#LOGGINGOUT", NULL, NULL);
       return FALSE;
     }
 }
