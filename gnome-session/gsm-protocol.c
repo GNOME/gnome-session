@@ -642,7 +642,7 @@ gsm_protocol_new (GnomeClient *gnome_client)
 	protocol->smc_conn = gnome_client->smc_conn;
 	the_protocol = protocol;
 
-	g_idle_add (request_event, protocol);
+	request_event (protocol);
 
 	return protocol;
 }
@@ -718,7 +718,8 @@ gsm_protocol_set_sessionsave_mode (GsmProtocol *protocol,
 }
 
 void
-gsm_protocol_set_session_name (GsmProtocol *protocol, gchar *name)
+gsm_protocol_set_session_name (GsmProtocol *protocol,
+			       const char  *name)
 {
   if(name) {
     SmProp prop;

@@ -1,3 +1,13 @@
+2003-01-03  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-protocol.[ch]:
+	(gsm_protocol_new): don't request the properties in
+	idle here. We only need to do that when we're in a SMlib
+	callback. Fixes crash if the GsmProtocol is unreffed before
+	we ever hit the mainloop.
+	(gsm_protocol_set_session_name): make the "name" arg a
+	const.
+
 2002-12-17  Satyajit kanungo  <satyajit.kanungo@wipro.com>
 
 	* session-properties-capplet.h Changed the startup_list_add_dialog()

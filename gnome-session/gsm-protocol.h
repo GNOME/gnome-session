@@ -94,7 +94,7 @@ void gsm_protocol_set_sessionsave_mode (GsmProtocol *protocol,
 
 /* Sets the current session for the session manager */
 void gsm_protocol_set_session_name (GsmProtocol *protocol,
-				  gchar *session_name);
+				    const char  *session_name);
 
 /* GSM_SESSION object */
 
