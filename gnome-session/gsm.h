@@ -10,5 +10,5 @@ extern gchar *smsavedir;
 /* Back-end session stuff */
 void gsm_session_init(void);
 void gsm_session_run(gchar *session_name);
-void gsm_session_end_current(void);
+void gsm_session_save_current(void);
 #endif
