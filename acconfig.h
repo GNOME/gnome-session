@@ -60,3 +60,5 @@
 #undef HAVE_GNOME_PRINT
 
 #undef GETTEXT_PACKAGE
+
+#undef ENABLE_IPV6

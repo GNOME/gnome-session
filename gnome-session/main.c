@@ -26,6 +26,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/socket.h>  /* For have_ipv6() */
 #include <netdb.h>
 
 #include <gconf/gconf-client.h>
@@ -171,6 +172,22 @@ get_hostname (gboolean readable)
     return readable ? "(Unknown)" : NULL;
 }
 
+#ifdef ENABLE_IPV6
+/*Check whether the node is IPv6 enabled.*/
+static gboolean
+have_ipv6 (void)
+{
+  int s;
+
+  s = socket (AF_INET6, SOCK_STREAM, 0);
+  if (s != -1) {
+    close (s);
+    return TRUE;
+  }
+  return FALSE;
+}
+#endif
+
 /* Check if a DNS lookup on `hostname` can be done */
 static gboolean
 check_for_dns (void)
@@ -182,13 +199,32 @@ check_for_dns (void)
   if (!hostname)
     return FALSE;
 
-  /*
-   * FIXME:
-   *  we should probably be a lot more robust here
-   */
-  if (!gethostbyname (hostname))
-    return FALSE;
-  
+#ifdef ENABLE_IPV6
+  if (have_ipv6 ())
+    {
+      struct addrinfo hints, *result = NULL;
+
+      memset (&hints, 0, sizeof(hints));
+      hints.ai_socktype = SOCK_STREAM;
+      hints.ai_flags = AI_CANONNAME;
+
+      if (getaddrinfo (hostname, NULL, &hints, &result) != 0)
+	return FALSE;
+
+      if (g_strncasecmp (result->ai_canonname, hostname, 0) != 0)
+	return FALSE;
+    } 
+  else
+#endif
+    {
+      /*
+       * FIXME:
+       *  we should probably be a lot more robust here
+       */
+      if (!gethostbyname (hostname))
+	return FALSE;
+    }
+
   return TRUE;
 }
 
