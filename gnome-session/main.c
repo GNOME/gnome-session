@@ -138,6 +138,19 @@ set_lang (void)
     }
 }
 
+/* Point GTK_RC_FILES at a separate file that we change in
+ * in gnome-settings-daemon.
+ */
+static void
+set_gtk1_theme_rcfile (void)
+{
+  char *env_string;
+
+  env_string = g_strdup_printf ("GTK_RC_FILES=" SYSCONFDIR "/gtk/gtkrc:%s/.gtkrc-1.2-gnome2", g_get_home_dir ());
+
+  putenv (env_string);
+}
+
 static void
 update_boolean (GConfClient *client,
 		guint cnxn_id,
@@ -484,6 +497,7 @@ main (int argc, char *argv[])
     gsm_set_verbose (TRUE);
   
   set_lang();
+  set_gtk1_theme_rcfile ();
 
   /* Initialize the i18n stuff */
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
