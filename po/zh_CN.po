@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-08-06 00:14+0800\n"
+"POT-Creation-Date: 2005-01-23 12:27+0100\n"
+"PO-Revision-Date: 2005-01-23 23:59+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -122,7 +122,7 @@ msgstr "在等待启动或者已经结束。"
 # gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "正在启动"
+msgstr "启动中"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
@@ -130,7 +130,7 @@ msgstr "已经启动，但还没有报告其状态。"
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "正在运行"
+msgstr "运行中"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
@@ -139,7 +139,7 @@ msgstr "会话的一个普通成员。"
 # applets/desk-guide/deskguide_applet.c:131
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "正在保存"
+msgstr "保存中"
 
 # gsm/session-properties.c:350
 #: gnome-session/gsm-client-row.c:41
@@ -179,7 +179,7 @@ msgstr "垃圾"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "退出时抛弃，并且能死掉。"
+msgstr "退出时丢弃，并且能死掉。"
 
 # gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/gsm-client-row.c:59
@@ -382,7 +382,7 @@ msgstr "编辑会话名称"
 # gnome-terminal/gnome-terminal.c:1585
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "编辑(_E)..."
+msgstr "编辑(_E)"
 
 # SUN NEW TRANSLATION
 #: gnome-session/session-properties-capplet.c:190
@@ -404,13 +404,12 @@ msgid "Show splash screen on _login"
 msgstr "登录时显示启动画面(_L)"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "注销时提示(_P)"
+msgstr "注销时询问(_K)"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
-msgstr "自动保存变动到会话中(_G)"
+msgstr "自动将更改保存到会话(_G)"
 
 # gsm/session-properties.c:264
 #: gnome-session/session-properties-capplet.c:306
@@ -529,9 +528,3 @@ msgstr "添加启动程序"
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
 
-#~ msgid "Save Current Session"
-#~ msgstr "保存当前会话"
-
-# gsm/logout.c:221
-#~ msgid "Save current state of desktop"
-#~ msgstr "保存桌面的当前状态"
