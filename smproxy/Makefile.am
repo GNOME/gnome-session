@@ -1,6 +1,3 @@
-## Process this file with auotmake to create Makefile.in.
-
-## Gnome programs can assume the existence of mkstemp.
 INCLUDES = \
 	$(GNOME_SESSION_CFLAGS) \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""

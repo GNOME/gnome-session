@@ -149,11 +149,8 @@ gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
 
 gsm-protocol.c: $(marshal_sources)
 
-CLEANFILES = $(marshal_sources)
-
-DONT_DIST_SOURCE = $(marshal_sources)
+BUILT_SOURCES = $(marshal_sources)
+CLEANFILES    = $(BUILT_SOURCES)
 
 dist-hook:
-	for file in $(DONT_DIST_SOURCE) ; do \
-		rm -f $(distdir)/$$file ; \
-	done
+	cd $(distdir) ; rm -f $(CLEANFILES)
