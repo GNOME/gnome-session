@@ -42,7 +42,7 @@ extern int errno;
 #include "util.h"
 
 /* The save_state gives a description of what we are doing */
-static enum {
+typedef enum {
   MANAGER_IDLE,
   SENDING_MESSAGES,
   SENDING_INTERACT,
@@ -51,7 +51,9 @@ static enum {
   SAVE_CANCELLED,
   STARTING_SESSION,
   SHUTDOWN
-} save_state;
+} SaveState;
+
+SaveState save_state;
 
 /* List of clients which have been started but have yet to register */
 GSList *pending_list = NULL;
@@ -832,7 +834,8 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
   /* These seem to be the only circumstances in which interactions
      can be allowed without breaking the protocol.
      FIXME: Should we inform the user of bogus requests ? */
-  if (save_state == SAVE_PHASE_1 &&
+  if ((save_state == SAVE_PHASE_1 ||
+       save_state == SAVE_PHASE_2) &&
       (g_slist_find (save_yourself_list, client) ||
        g_slist_find (save_yourself_p2_list, client)))
     {
@@ -843,10 +846,12 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
 					     compare_interact_request);
       if (send) 
 	{
+	  SaveState old_state;
+	  old_state = save_state;
 	  save_state = SENDING_INTERACT;
 	  interact_ping_replied = TRUE;
 	  SmsInteract (connection);
-	  save_state = SAVE_PHASE_1;
+	  save_state = old_state;
 	}
     }
 }
