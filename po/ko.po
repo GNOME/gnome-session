@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
-"PO-Revision-Date: 2002-04-21 19:26+0900\n"
+"POT-Creation-Date: 2002-05-06 23:21+0900\n"
+"PO-Revision-Date: 2002-05-06 23:21+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -195,98 +195,94 @@ msgstr "설정"
 msgid "Always started on every login."
 msgstr "매 로그인할 때마다 시작됨."
 
-#: gnome-session/logout.c:200
+#: gnome-session/logout.c:188
 msgid "_Log Out"
 msgstr "로그아웃(_L)"
 
-#: gnome-session/logout.c:258
+#: gnome-session/logout.c:248
 msgid "Really log out?"
 msgstr "정말로 로그아웃할까요?"
 
-#: gnome-session/logout.c:275
+#: gnome-session/logout.c:265
 msgid "Save current setup"
 msgstr "현재 설정 저장"
 
-#: gnome-session/logout.c:295
+#: gnome-session/logout.c:285
 msgid "Action"
 msgstr "동작"
 
-#: gnome-session/logout.c:303
+#: gnome-session/logout.c:293
 msgid "Logout"
 msgstr "로그아웃"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:296
 msgid "Shut Down"
 msgstr "컴퓨터 끄기"
 
-#: gnome-session/logout.c:309
+#: gnome-session/logout.c:299
 msgid "Reboot"
 msgstr "재시동"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Specify a session name to load"
 msgstr "읽을 세션이름 지정"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Only read saved sessions from the default.session file"
 msgstr "기본세션(default) 파일에서만 저장된 세션을 읽어오기"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "클라이언트가 등록하기까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "클라이언트가 대답할 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:70
+#: gnome-session/main.c:71
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "클라이언트가 끝날 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/manager.c:400
+#: gnome-session/manager.c:173
+msgid "Your session has been saved"
+msgstr "세션이 저장되었습니다"
+
+#: gnome-session/manager.c:436
 msgid "Wait abandoned due to conflict."
 msgstr "충돌로 인해 기다리지 않습니다."
 
-#: gnome-session/manager.c:834
+#: gnome-session/manager.c:874
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s 명령에 반응이 없습니다"
 
-#: gnome-session/manager.c:835
+#: gnome-session/manager.c:875
 msgid "The program may be slow, stopped or broken."
 msgstr "프로그램이 느리거나, 멈췄거나 문제가 있습니다."
 
-#: gnome-session/manager.c:836
+#: gnome-session/manager.c:876
 msgid "You may wait for it to respond or remove it."
 msgstr "계속 응답을 기다리거나 강제종료할 수 있습니다."
 
-#: gnome-session/manager.c:1375
+#: gnome-session/manager.c:1433
 msgid "Respawn abandoned due to failures."
 msgstr "실패로 인해 재시작하지 않습니다"
 
-#: gnome-session/manager.c:1541
+#: gnome-session/manager.c:1607
 msgid "A session shutdown is in progress."
 msgstr "세션 닫기가 진행 중입니다."
 
-#: gnome-session/save-session.c:43
+#: gnome-session/save-session.c:44
 msgid "Kill session"
 msgstr "세션 없애기"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:45
 msgid "Use dialog boxes"
 msgstr "대화 상자 사용"
 
-#: gnome-session/save-session.c:112
+#: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
 msgstr "세션 관리자에 연결할수 없습니다"
-
-#: gnome-session/save-session.c:120
-msgid "Could not connect to gnome-session"
-msgstr "그놈 세션에 연결할수 없습니다"
-
-#: gnome-session/save-session.c:160
-msgid "Your session has been saved"
-msgstr "세션이 저장되었습니다"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -312,7 +308,7 @@ msgstr "새 세션 추가"
 msgid "Edit session name"
 msgstr "세션 이름 편집"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:165
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -320,119 +316,114 @@ msgstr ""
 "변경 사항이 저장되지 않았습니다.\n"
 "끝내도 상관 없습니까?"
 
-#: gnome-session/session-properties-capplet.c:189
+#: gnome-session/session-properties-capplet.c:190
 msgid "Session properties"
 msgstr "세션 등록 정보"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:216
 msgid "Options"
 msgstr "옵션"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:226
 msgid "Show splash screen on login"
 msgstr "로그인 시에 시작 화면 보이기"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:242
 msgid "Prompt on logout"
 msgstr "로그아웃 시에 물어보기"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:258
 msgid "Automatically save changes to session"
 msgstr "자동으로 변경된 사항을 세션에 저장"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:272
 msgid "Choose Current Session"
 msgstr "현재 세션 선택"
 
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:289
 msgid "Session Name"
 msgstr "세션 이름"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:298
+#: gnome-session/session-properties-capplet.c:370
 msgid "Add..."
 msgstr "추가..."
 
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:302
+#: gnome-session/session-properties-capplet.c:375
 msgid "Edit..."
 msgstr "편집..."
 
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:380
 msgid "Delete"
 msgstr "삭제"
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:331
 msgid "Session Options"
 msgstr "세션 옵션"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
+#: gnome-session/session-properties-capplet.c:342
 msgid "Non-session-managed Startup Programs"
 msgstr "세션 관리되지 않는 시작 프로그램"
 
-#: gnome-session/session-properties-capplet.c:358
+#: gnome-session/session-properties-capplet.c:359
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "우선 순위"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:361
 msgid "Command"
 msgstr "명령"
 
-#: gnome-session/session-properties-capplet.c:388
+#: gnome-session/session-properties-capplet.c:389
 msgid "Browse Currently Running Programs..."
 msgstr "현재 실행 중인 프로그램 보기..."
 
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:398
 msgid "Startup Programs"
 msgstr "시작 프로그램"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:403
+msgid "Current Session"
+msgstr "현재 세션"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
 msgstr "세션에서 현재 선택한 클라이언트를 지웁니다."
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
 msgstr "세션에 들어 있는 프로그램 목록."
 
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "세션 등록 정보"
-
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
 msgstr "세션"
 
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
 msgstr "세션 선택기"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
 msgstr "세션 시작"
 
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "로그인 취소"
 
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
 msgstr "세션 설정 초기화"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "세션 등록정보 & 시작 프로그램"
-
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "현재 세션 관리중인 프로그램"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -518,3 +509,12 @@ msgstr "시작 프로그램 추가"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "시작 프로그램 편집"
+
+#~ msgid "Could not connect to gnome-session"
+#~ msgstr "그놈 세션에 연결할수 없습니다"
+
+#~ msgid "Session Properties"
+#~ msgstr "세션 등록 정보"
+
+#~ msgid "Current session managed programs"
+#~ msgstr "현재 세션 관리중인 프로그램"
