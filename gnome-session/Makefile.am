@@ -7,7 +7,7 @@ INCLUDES =						\
 	$(DISABLE_DEPRECATED_CFLAGS)			\
 	$(STANDARD_PROPERTIES_CFLAGS)			\
 	$(WARN_CFLAGS)					\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale\""	\
+	-DGNOMELOCALEDIR=\""$(prefix)/${DATADIRNAME}/locale\""	\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\

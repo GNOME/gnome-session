@@ -1,5 +1,9 @@
 2002-06-06  jacob berkman  <jacob@ximian.com>
 
+	* Makefile.am (INCLUDES): set localedir to
+	$prefix/$DATADIRNAME/locale and not $datadir (fixes #83626,
+	HideToshi Tajima <hidetoshi.tajima@sun.com>)
+
 	* manager.c (SaveState): add SENDING_INTERACT_2 when we are
 	interacting in a phase 2
 	(interact_request):
