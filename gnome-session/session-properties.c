@@ -1,6 +1,6 @@
-/* session-properties.c - Edit session properties.
+/* session-properties.c - a non-CORBA version of the session-properties-capplet
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright 1999 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,438 +15,294 @@
    You should have received a copy of the GNU General Public License
    along with this program; if not, write to the Free Software
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
-   02111-1307, USA.  */
+   02111-1307, USA. 
+
+   Authors: Felix Bellaby */
 
 #include <config.h>
-
-#include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
+#include <gnome.h>
 
-#include <libgnome/libgnome.h>
-#include <libgnomeui/libgnomeui.h>
+#include "gsm-client-list.h"
 
-#include "session.h"
+GtkWidget *entry;
+GtkWidget *add_button;
+GtkWidget *remove_button;
+GtkWidget *scrolled_window;
+GtkWidget *client_list;
 
+GtkWidget *app;
 
-/* Geometry of main window */
-static char *geometry;
+GtkWidget* try_button;
+GtkWidget* revert_button;
+GtkWidget* ok_button;
+GtkWidget* cancel_button;
+GtkWidget* help_button;
 
+/* capplet callback prototypes */
+static void try (void);
+static void revert (void);
+static void ok (void);
+static void cancel (void);
+static void help (void);
 
-/* This is used as the client data for some callbacks.  It just holds
- * pointers to whatever we might need.
- */
-struct _startup_info
-{
-  GnomePropertyBox *propertybox;
+/* table widget callback prototypes */
+static void entry_changed_cb (GtkWidget *widget);
+static void add_cb (GtkWidget *widget);
+static void remove_cb (GtkWidget *widget);
+static void select_cb (GtkCList *clist);
+static void unselect_cb (GtkCList *clist);
+static void dirty_cb (GtkWidget *widget);
+static void initialized_cb (GtkWidget *widget);
 
-  GtkWidget *clist;
-  GtkWidget *entry;
-  GtkWidget *add_button;
-  GtkWidget *remove_button;
-  GdkFont   *font;
-  gint       width;
-
-  /* Name of this program.  */
-  char *argv0;
-
-  /* Config prefix holding the current session details */
-  char *prefix; 
-
-} startup_info;
-
-
-/* prototypes */
-static void create_gui ();
-static void refresh_gui_data ();
-static int session_save (GnomeClient *client,
-			 int phase, 
-			 GnomeSaveStyle save_style,
-			 int is_shutdown, 
-			 GnomeInteractStyle interact_style,
-			 int is_fast);
-static void session_die (GnomeClient *client);
-
-
-/* callback prototypes */
-static void box_closed (GnomeDialog *dialog);
-static void apply_properties (GnomePropertyBox *box);
-
-static void program_row_selected_cb (GtkWidget *widget, gint row);
-static void program_row_unselected_cb (GtkWidget *widget, gint row);
-static void program_entry_changed_cb (GtkWidget *widget);
-static void program_add_cb (GtkWidget *widget);
-static void program_remove_cb (GtkWidget *widget);
-
-
-static void
-create_gui ()
+static GtkWidget*
+create_table (void)
 {
   GtkWidget *table;
-  GtkWidget *scrolled_window;
 
-  /* create the GNOME property box */
-  startup_info.propertybox = GNOME_PROPERTY_BOX (gnome_property_box_new ());
-  gtk_signal_connect (GTK_OBJECT (startup_info.propertybox), "close",
-		      GTK_SIGNAL_FUNC (box_closed), NULL);
-  gtk_signal_connect (GTK_OBJECT (startup_info.propertybox), "apply",
-		      GTK_SIGNAL_FUNC (apply_properties), NULL);
-  gtk_window_set_title (GTK_WINDOW (startup_info.propertybox), 
-			_("Gnome Session Properties"));
-
-  /* table */
-  table = gtk_table_new (4, 2, FALSE);
-  gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD);
-  gtk_table_set_row_spacings (GTK_TABLE (table), GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (table), GNOME_PAD);
-  gnome_property_box_append_page (startup_info.propertybox,
-				  GTK_WIDGET (table),
-				  gtk_label_new (_("Startup Programs")));
-
-  /* label for the exec entry */
-  gtk_table_attach (GTK_TABLE (table), gtk_label_new (_("Program:")),
-		    0, 1, 0, 1, 
-		    GTK_FILL, GTK_FILL, 0, 0);
-
-  /* exec string entry box */
-  startup_info.entry = gtk_entry_new ();
-  gtk_table_attach (GTK_TABLE (table), startup_info.entry, 1, 2, 0, 1, 
-		    GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
-  gtk_signal_connect (GTK_OBJECT (startup_info.entry), "activate", 
-		      GTK_SIGNAL_FUNC (program_add_cb), NULL);
-  gtk_signal_connect (GTK_OBJECT (startup_info.entry), "changed", 
-		      GTK_SIGNAL_FUNC (program_entry_changed_cb), NULL);
-
+  /* program entry box */
+  entry = gtk_entry_new ();
+  gtk_signal_connect (GTK_OBJECT (entry), "activate", 
+		      GTK_SIGNAL_FUNC (add_cb), NULL);
+  gtk_signal_connect (GTK_OBJECT (entry), "changed", 
+		      GTK_SIGNAL_FUNC (entry_changed_cb), NULL);
   /* add/remove buttons */
-  startup_info.add_button = gnome_stock_button (GNOME_STOCK_PIXMAP_ADD);
-  gtk_table_attach (GTK_TABLE (table), startup_info.add_button, 0, 1, 1, 2, 
-  		    GTK_FILL, 0, 0, 0); 
-  gtk_widget_set_sensitive (GTK_WIDGET (startup_info.add_button), FALSE);
-  gtk_signal_connect (GTK_OBJECT (startup_info.add_button), "clicked",
-		      GTK_SIGNAL_FUNC (program_add_cb), NULL);
+  add_button = gnome_stock_button (GNOME_STOCK_PIXMAP_ADD);
+  gtk_widget_set_sensitive (GTK_WIDGET (add_button), FALSE);
+  gtk_signal_connect (GTK_OBJECT (add_button), "clicked",
+		      GTK_SIGNAL_FUNC (add_cb), NULL);
+  remove_button = gnome_stock_button (GNOME_STOCK_PIXMAP_REMOVE);
+  gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
+  gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
+		     GTK_SIGNAL_FUNC (remove_cb), NULL);
+  /* client list */
+  client_list = gsm_client_list_new ();
+  if (!client_list)
+    {
+      g_warning ("Could not connect to gnome-session.");
+      exit (1);
+    }
+  gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
+		     GTK_SIGNAL_FUNC (select_cb), NULL);
+  gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",
+		     GTK_SIGNAL_FUNC (unselect_cb), NULL);
+  gtk_signal_connect(GTK_OBJECT(client_list), "dirty",
+		     GTK_SIGNAL_FUNC (dirty_cb), NULL);
+  gtk_signal_connect(GTK_OBJECT(client_list), "initialized",
+		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
 
-  startup_info.remove_button = gnome_stock_button (GNOME_STOCK_PIXMAP_REMOVE);
-  gtk_table_attach (GTK_TABLE (table), startup_info.remove_button, 0, 1, 2, 3, 
-  		    GTK_FILL, 0, 0, 0);
-  gtk_widget_set_sensitive (GTK_WIDGET (startup_info.remove_button), FALSE);
-  gtk_signal_connect(GTK_OBJECT (startup_info.remove_button), "clicked",
-		     GTK_SIGNAL_FUNC (program_remove_cb), NULL);
-  gtk_table_attach (GTK_TABLE (table), gtk_vbox_new (FALSE, 0), 0, 1, 3, 4,
-  		    GTK_FILL, GTK_FILL|GTK_EXPAND, 0, 0);
-
-  /* startup program list */
+  /* scrolled window - disabled until the client_list "initialized" signal */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
-				  GTK_POLICY_AUTOMATIC,
-				  GTK_POLICY_AUTOMATIC);
-  gtk_table_attach (GTK_TABLE (table), scrolled_window, 1, 2, 1, 4, 
-		    GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND, 0, 0);
+				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
-  startup_info.clist = gtk_clist_new (1);
-  gtk_container_add (GTK_CONTAINER (scrolled_window), startup_info.clist);
-  gtk_clist_set_selection_mode (GTK_CLIST (startup_info.clist), 
-				GTK_SELECTION_MULTIPLE);
-  gtk_signal_connect(GTK_OBJECT(startup_info.clist), "select_row",
-		     GTK_SIGNAL_FUNC (program_row_selected_cb), NULL);
-  gtk_signal_connect(GTK_OBJECT(startup_info.clist), "unselect_row",
-		     GTK_SIGNAL_FUNC (program_row_unselected_cb), NULL);
+  /* table */
+  table = gtk_table_new (3, 4, FALSE);
+  gtk_table_attach (GTK_TABLE (table), gtk_label_new (_("Program:")),
+		    0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), gtk_hbox_new (FALSE, 0), 
+		    1, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), add_button, 
+		    2, 3, 0, 1, GTK_FILL, GTK_FILL, 0, 0); 
+  gtk_table_attach (GTK_TABLE (table), remove_button, 
+		    3, 4, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), entry, 
+		    0, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), scrolled_window, 
+		    0, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND,0, 0);
+  gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD);
+  gtk_table_set_row_spacings (GTK_TABLE (table), GNOME_PAD);
 
+  return table;
 }
 
-
-static void
-refresh_gui_data ()
+static GtkWidget*
+create_buttons (GtkWidget * table)
 {
-  int i, count;
-  gboolean unaware, corrupt;
+  GtkWidget* frame;
+  GtkWidget* bbox, *vbox;
 
-  startup_info.font = gtk_widget_get_style (GTK_WIDGET (startup_info.clist))->font;
-  startup_info.width = 40 * gdk_string_width (startup_info.font, "n");
+  /* frame */
+  frame = gtk_frame_new (NULL);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
+  gtk_container_set_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
+  gtk_container_add (GTK_CONTAINER (frame), table);
+  
+  /* buttons */
+  try_button = gtk_button_new_with_label (_("Try"));
+  gtk_signal_connect (GTK_OBJECT (try_button), "clicked", 
+		      GTK_SIGNAL_FUNC (try), NULL);
+  revert_button = gtk_button_new_with_label (_("Revert"));
+  gtk_signal_connect (GTK_OBJECT (revert_button), "clicked", 
+		      GTK_SIGNAL_FUNC (revert), NULL);
+  ok_button = gtk_button_new_with_label (_("OK"));
+  gtk_signal_connect (GTK_OBJECT (ok_button), "clicked", 
+		      GTK_SIGNAL_FUNC (ok), NULL);
+  cancel_button = gtk_button_new_with_label (_("Cancel"));
+  gtk_signal_connect (GTK_OBJECT (cancel_button), "clicked", 
+		      GTK_SIGNAL_FUNC (cancel), NULL);
+  help_button = gtk_button_new_with_label (_("Help"));
+  gtk_signal_connect (GTK_OBJECT (help_button), "clicked", 
+		      GTK_SIGNAL_FUNC (help), NULL);
+  gtk_widget_set_sensitive (try_button, FALSE);
+  gtk_widget_set_sensitive (revert_button, FALSE);
+  gtk_widget_set_sensitive (ok_button, FALSE);
 
-  gnome_config_push_prefix (startup_info.prefix);
-  count = gnome_config_get_int (CLIENT_COUNT_KEY "=0");
-  gnome_config_pop_prefix ();
+  /* button box */
+  bbox = gtk_hbutton_box_new ();
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_SPREAD);
+  gtk_button_box_set_spacing (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL);
+  gtk_button_box_set_child_size (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL, -1);
+  gtk_container_set_border_width (GTK_CONTAINER (bbox), GNOME_PAD_SMALL);
 
-  gtk_clist_freeze (GTK_CLIST (startup_info.clist));
-  gtk_clist_clear (GTK_CLIST (startup_info.clist));
+  gtk_container_add (GTK_CONTAINER (bbox), try_button);
+  gtk_container_add (GTK_CONTAINER (bbox), revert_button);
+  gtk_container_add (GTK_CONTAINER (bbox), ok_button);
+  gtk_container_add (GTK_CONTAINER (bbox), cancel_button);
+  gtk_container_add (GTK_CONTAINER (bbox), help_button);
 
-  /* scan the session for session unaware clients.
-   * These are with RestartCommands but no client ids. */
-  for (i = 0; i < count; ++i)
-    {
-      gchar *value, buf[128];
+  /* table */
+  table = gtk_table_new (3, 1, FALSE);
+  gtk_table_attach (GTK_TABLE (table), frame,
+		    0, 1, 0, 1, GTK_FILL|GTK_EXPAND,GTK_FILL|GTK_EXPAND, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), gtk_hseparator_new (),
+		    0, 1, 1, 2, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), bbox,
+		    0, 1, 2, 3, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
+  return table;
+}  
 
-      g_snprintf (buf, sizeof(buf), "%s%d,", startup_info.prefix, i);
-      gnome_config_push_prefix (buf);
-
-      g_free (gnome_config_get_string_with_default ("id", &unaware));
-
-      if (unaware)
-	{
-	  value = gnome_config_get_string_with_default ("RestartCommand", 
-							&corrupt);
-	  /* let gnome-session deal with the nasty cases */
-	  if (corrupt)
-	      exit (0);
-
-	  gtk_clist_append (GTK_CLIST (startup_info.clist), (gchar **) &value);
-	  startup_info.width = MAX(gdk_string_width(startup_info.font, value), 
-				   startup_info.width);
-	  g_free (value);
-	}
-      gnome_config_pop_prefix ();
-    }
-  gtk_clist_set_column_width (GTK_CLIST (startup_info.clist), 
-			      0, startup_info.width);
-  gtk_clist_thaw (GTK_CLIST (startup_info.clist));
-}
-
-
-/* session management */
-static int
-session_save (GnomeClient *client, 
-	      int phase, 
-	      GnomeSaveStyle save_style,
-	      int is_shutdown, 
-	      GnomeInteractStyle interact_style,
-	      int is_fast)
+static GtkWidget*
+create_app (GtkWidget *table)
 {
-  char *args[3], *geom;
-  int argc;
+  /* app*/
+  app = gnome_app_new ("Session", "Session Properties");
+  gnome_app_set_contents (GNOME_APP (app), table);
 
-  argc = 0;
-
-  args[argc++] = startup_info.argv0;
-
-  geom = gnome_geometry_string (GTK_WIDGET (startup_info.propertybox)->window);
-  args[argc++] = "--geometry";
-  args[argc++] = geom;
-
-  gnome_client_set_restart_command (client, argc, args);
-  g_free (geom);
-
-  return TRUE;
+  gtk_signal_connect (GTK_OBJECT (app), "delete_event",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+  return app;
 }
-
-
-static void
-session_die (GnomeClient *client)
-{
-  gtk_main_quit ();
-}
-
-
-static const struct poptOption options[] = {
-  {"geometry", '\0', POPT_ARG_STRING, &geometry, 0, N_("Geometry of window"), N_("GEOMETRY")},
-  {NULL, '\0', 0, NULL, 0}
-};
-
 
 int
 main (int argc, char *argv[])
 {
-  GnomeClient *client;
-  gchar* name;
-
-  /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init_with_popt_table (
-      "session-properties",
-      VERSION, 
-      argc,
-      argv, 
-      options, 
-      0, 
-      NULL);
+  gnome_init ("session-properties", VERSION, argc, argv);
 
-  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-  name = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
-  gnome_config_pop_prefix ();
+  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
-  startup_info.argv0 = argv[0];
-  startup_info.prefix = g_strconcat (CONFIG_PREFIX, name, "/", NULL);
-  g_free (name);
-
-  create_gui ();
-  refresh_gui_data ();
-
-  client = gnome_master_client ();
-  if (client)
-    {
-      gtk_signal_connect (
-          GTK_OBJECT (client),
-	  "save_yourself",
-	  GTK_SIGNAL_FUNC (session_save),
-	  NULL);
-      gtk_signal_connect (
-          GTK_OBJECT (client),
-	  "die",
-	  GTK_SIGNAL_FUNC (session_die),
-	  NULL);
-    }
-  gtk_widget_show_all (GTK_WIDGET (startup_info.propertybox));
+  create_app (create_buttons (create_table()));
 
   gtk_main ();
+
   return 0;
 }
 
-
-
-/* CALLBACKS */
-/* This is called when the dialog is dismissed.  */
+/* CAPPLET CALLBACKS */
 static void
-box_closed (GnomeDialog *dialog)
+try (void)
 {
-  gtk_main_quit ();
+  gsm_client_list_commit_changes (GSM_CLIENT_LIST (client_list));
+  gtk_widget_set_sensitive (try_button, FALSE);
+  gtk_widget_set_sensitive (revert_button, TRUE);
 }
 
-
-/* This is called when the Apply button is pressed.  */
 static void
-apply_properties (GnomePropertyBox *box)
+revert (void)
 {
-  int old_i, new_i, last_i, i;
-  void * iter;
-  gchar *key, *value, name[1024];
-  gboolean aware = FALSE;
-  
-  /* Only write to the session file when gnome-session is idle.
-   * This is a fail safe against an unlikely but dangerous race.
-   * gnome-session will wait for us to finish before starting a save. */
-  if (gnome_master_client()->state != GNOME_CLIENT_DISCONNECTED &&
-      gnome_master_client()->state != GNOME_CLIENT_IDLE)
-    return;
-
-  /* The algorithm to write this file is an awful lot easier when
-   * we can iterate through its contents from start to finish.
-   * Therefore, we copy the session over into another section in
-   * reverse order before doing the real work */
-  iter = gnome_config_init_iterator (startup_info.prefix);
-  gnome_config_push_prefix (RESERVED_SECTION);
-  
-  /* Step over CLIENT_COUNT_KEY */
-  iter = gnome_config_iterator_next (iter, &key, &value);
-
-  while ((iter = gnome_config_iterator_next (iter, &key, &value)))
-      gnome_config_set_string (key, value);
-
-  gnome_config_pop_prefix ();
-  gnome_config_clean_section (startup_info.prefix);
-
-  new_i = last_i = -1;
-
-  iter = gnome_config_init_iterator (RESERVED_SECTION);
-  gnome_config_push_prefix (startup_info.prefix);
-
-  /* Remove all non-aware clients from the saved default session */
-  while ((iter = gnome_config_iterator_next (iter, &key, &value)))
-    {
-      sscanf (key, "%d,%1023s", &old_i, name);
-      
-      if (old_i != last_i)
-	{
-	  last_i = old_i;
-	  
-	  if ((aware = !strcmp (name, "id")))
-	    ++new_i;
-	}
-      
-      if (aware)
-	{
-	  if (old_i != new_i)
-	    {
-	      g_free (key);
-	      key = g_strdup_printf ("%d,%s", new_i, name);
-	    }
-	  gnome_config_set_string (key, value);
-	}
-      g_free (key);
-      g_free (value);
-    }
-
-  /* Replace them with the ones in our list. */
-  for (i = 0; i < GTK_CLIST(startup_info.clist)->rows; i++)
-    {
-      char buf[40];
-
-      gtk_clist_get_text (GTK_CLIST(startup_info.clist), i, 0, &value);
-      g_snprintf (buf, sizeof(buf), "%d,RestartCommand", ++new_i);
-      gnome_config_set_string (buf, value);
-    }
-
-  gnome_config_set_int (CLIENT_COUNT_KEY, ++new_i);
-  gnome_config_pop_prefix ();
-  gnome_config_clean_section (RESERVED_SECTION);
-  gnome_config_sync ();
-
+  gsm_client_list_revert_changes (GSM_CLIENT_LIST (client_list));
+  gtk_widget_set_sensitive (try_button, FALSE);
+  gtk_widget_set_sensitive (revert_button, FALSE);
 }
 
-
-/* STARTUP PAGE CALLBACKS */
-/* This is called when a row is selected.  */
 static void
-program_row_selected_cb (GtkWidget *widget, gint row)
+ok (void)
 {
-  gtk_widget_set_sensitive (GTK_WIDGET (startup_info.remove_button), TRUE);
+  try();
+  gtk_main_quit();
 }
 
-
-/* This is called when a row is unselected.  */
 static void
-program_row_unselected_cb (GtkWidget *widget, gint row)
+cancel (void)
 {
-  if (GTK_CLIST (startup_info.clist)->selection == NULL)
-    {
-      gtk_widget_set_sensitive (GTK_WIDGET (startup_info.remove_button), FALSE);
-    }
+  revert();
+  gtk_main_quit();  
 }
 
-/* This is called when user pressed Return in the entry.  */
 static void
-program_add_cb (GtkWidget *widget)
+help (void)
 {
-  gchar *value;
-
-  value = gtk_entry_get_text (GTK_ENTRY (startup_info.entry));
-  if (strcmp (value, ""))
-    {
-      gtk_clist_freeze (GTK_CLIST (startup_info.clist));
-      gtk_clist_append (GTK_CLIST (startup_info.clist), (gchar **) &value);
-      startup_info.width = MAX(gdk_string_width(startup_info.font, value), 
-			       startup_info.width);
-      gtk_clist_set_column_width (GTK_CLIST (startup_info.clist), 
-				  0, startup_info.width);
-      gtk_clist_thaw (GTK_CLIST (startup_info.clist));
-      gtk_entry_set_text (GTK_ENTRY (startup_info.entry), "");
-      gnome_property_box_changed (startup_info.propertybox);
-      gtk_widget_set_sensitive (GTK_WIDGET (startup_info.add_button), FALSE);
-    }
+  gchar* file = gnome_help_file_find_file(program_invocation_short_name, 
+					  "index.html");
+  if (file)
+    gnome_help_goto (NULL, file);
 }
 
 /* This is called when user has changed the entry  */
 static void
-program_entry_changed_cb (GtkWidget *widget)
+entry_changed_cb (GtkWidget *widget)
 {
-  gtk_widget_set_sensitive (GTK_WIDGET (startup_info.add_button), TRUE);
+  gchar *value = gtk_entry_get_text (GTK_ENTRY (entry));
+  gtk_widget_set_sensitive (GTK_WIDGET (add_button), (value && *value));
 }
 
-/* Remove selected items from clist.  */
+/* Add a new client. */
 static void
-program_remove_cb (GtkWidget *widget)
+add_cb (GtkWidget *widget)
 {
-  gtk_clist_freeze (GTK_CLIST (startup_info.clist));
+  gchar *command = gtk_entry_get_text (GTK_ENTRY (entry));
 
-  while (GTK_CLIST (startup_info.clist)->selection != NULL)
+  if (gsm_client_list_add_program (GSM_CLIENT_LIST (client_list), command))
     {
-      gint row = GPOINTER_TO_INT (GTK_CLIST (startup_info.clist)->selection->data);
-      /* This modifies clist->selection, so eventually the loop will
-       * terminate.
-       */
-      gtk_clist_remove (GTK_CLIST (startup_info.clist), row);
+      gtk_entry_set_text (GTK_ENTRY (entry), "");
+      gtk_widget_set_sensitive (GTK_WIDGET (add_button), FALSE);
     }
+}
 
-  gtk_clist_thaw (GTK_CLIST (startup_info.clist));
-  gnome_property_box_changed (startup_info.propertybox);
+/* Remove the selected clients. */
+static void
+remove_cb (GtkWidget *widget)
+{
+  gsm_client_list_remove_selection (GSM_CLIENT_LIST (client_list));
+}
+
+/* This is called when a client is selected.  */
+static void
+select_cb (GtkCList *clist)
+{
+  gtk_widget_set_sensitive (GTK_WIDGET (remove_button), TRUE);
+}
+
+/* This is called when no clients are selected.  */
+static void
+unselect_cb (GtkCList *clist)
+{
+  if (! clist->selection)
+    {
+      gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
+      gtk_widget_grab_focus (GTK_WIDGET (entry));
+    }
+}
+
+/* This is called when an change is made in the client list.  */
+static void
+dirty_cb (GtkWidget *widget)
+{
+  gtk_widget_set_sensitive (try_button, TRUE);
+  gtk_widget_set_sensitive (revert_button, TRUE);
+  gtk_widget_set_sensitive (ok_button, TRUE);
+}
+
+/* This is called when the client_list has been filled by gnome-session */
+static void
+initialized_cb (GtkWidget *widget)
+{
+  gtk_widget_show_all (app);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 }
