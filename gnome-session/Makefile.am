@@ -7,8 +7,19 @@ INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 
 LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
+sysdir = $(datadir)/apps/System
+
+#if HAVE_CONTROL_CENTER
+NONCC =
+noinst_DATA = session.desktop
+noinst_PROGRAMS = session-properties
+#else
+#NONCC = session-properties
+#sys_DATA = session.desktop
+#endif
+
 if SESSION
-bin_PROGRAMS = gnome-session save-session session-properties
+bin_PROGRAMS = gnome-session save-session $(NONCC)
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c auth.c auth.h	\
@@ -18,9 +29,6 @@ save_session_SOURCES = save-session.c
 
 session_properties_SOURCES = session-properties.c session.h
 
-sysdir = $(datadir)/apps/System
-sys_DATA = session.desktop
-
 data_DATA = default.session
 
 default.session: default.in
@@ -28,4 +36,4 @@ default.session: default.in
 		< $(srcdir)/default.in > default.tmp \
 	  && mv default.tmp default.session
 
-EXTRA_DIST = $(sys_DATA) default.in
+EXTRA_DIST = session.desktop default.in

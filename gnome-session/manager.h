@@ -25,9 +25,6 @@
 
 #include "glib.h"
 
-/* Default session name.  */
-#define DEFAULT_SESSION "Default"
-
 /* Each client is represented by one of these.  Note that the client's
    state is not kept explicitly.  A client is on only one of several
    linked lists at a given time; the state is implicit in the list.  */

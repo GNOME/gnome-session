@@ -317,15 +317,17 @@ start_client (Client* client)
   fprintf (stderr, "Priority %02d : Starting    Id = %s\n", 
 	   client->priority, client->id);
 
-  /* ghost clients are not session aware and must become zombies */
-  if (! client->id)
-    APPEND (zombie_list, client);
-  else
+  if (client->id)
     {
       APPEND (pending_list, client);
       if (purge_delay)
 	gtk_timeout_add (purge_delay, purge, (gpointer)client); 
     }
+#if 0
+  /* Disabled until gnome-session gui is completed */
+  else
+    APPEND (zombie_list, client);
+#endif
 }
 
 

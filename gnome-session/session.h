@@ -20,13 +20,25 @@
 #ifndef SESSION_H
 #define SESSION_H
 
-/* Name of config prefix used to store `preload' information.  A
-   preload is a program that is (typically) not session-aware, and
-   which is started when the session is started.  FIXME: really we
-   should store preloads on a per-session basis.  */
-#define PRELOAD_PREFIX "/session/preload/"
+/* Default session name. */
+#define DEFAULT_SESSION "Default"
 
-/* Name of key used to store number of preloads.  */
-#define PRELOAD_COUNT_KEY "num_preloads"
+/* Config prefix used to store the sysadmin's default sessions. */
+#define DEFAULT_CONFIG_PREFIX "=" DEFAULTDIR "/default.session=/"
+
+/* Config prefix used to store the users' sessions. */
+#define CONFIG_PREFIX "session/"
+
+/* Config prefix used for gnome-session's own config details. */
+#define GSM_CONFIG_PREFIX CONFIG_PREFIX "__GSM__/"
+
+/* Name of key used to store the current session name. */
+#define CURRENT_SESSION_KEY "Current Session"
+
+/* Name of key used to store number of clients in a session. */
+#define CLIENT_COUNT_KEY "num_clients"
+
+/* A config section reserved for internal usage */
+#define RESERVED_SECTION CONFIG_PREFIX "__GSM_RESERVED__/"
 
 #endif /* SESSION_H */

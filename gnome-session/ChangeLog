@@ -1,3 +1,16 @@
+1999-02-16 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.c (start_client): drop non-session aware clients from memory.
+	* save.c (delete_session): read non-session aware clients from config. 
+	(write_session): write non-session aware clients back into config.
+	(set_session_name): record name of current session in config.
+	(read_session): use name of last session run as first fallback.
+	* manager.h: move DEFAULT_SESSION to session.h
+	* session.h: add the additional info needed by session-properties.
+	These changes allow the session-properties capplet to control which
+	non-session aware clients are in the session by editing the config.
+	* session-properties.c: fixed but rendered obsolete by capplet.
+	
 1999-02-14  Owen Taylor  <otaylor@redhat.com>
 
 	* manager.c (close_connection): Removed C++ comment.
