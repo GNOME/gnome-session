@@ -7,88 +7,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-06-01 17:31+0300\n"
+"POT-Creation-Date: 2002-07-02 11:57+0300\n"
+"PO-Revision-Date: 2002-07-02 12:03+0300\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "GNOME Login"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Sisselogimine"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Käivita ainult süsteemis vaikimisi määratud programmid"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Algväärtusta kõik kasutaja määrangud"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Soovite Te tõesti algväärtustada kõik kasutaja %s määrangud?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Kataloog /tmp/orbit-%s ei kuulu\n"
-"aktiivsele kasutajale %s.\n"
-"Palune korrigeerige kataloogi omandisuhted."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Proovi uuesti"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Jätka"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Ei leia internetiaadressi %s jaoks.\n"
-"GNOME ei saa selleta normaalselt töötada.\n"
-"Võimalik, et saate selest veast üle, lisades\n"
-"%s faili /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Sinu libICE versioonil on viga, mille tõttu gnome-session\n"
-"ei saa korralikult töötada.\n"
-"\n"
-"Kui sa kasutad Solarist, peaksid uuendama Solarise paigaga\n"
-"#108376-16 või kasutama originaalse Solaris 7 libICE.so.6.\n"
-"Kopeeri fail /usr/openwin/lib. (Tänusõnad selle vea info kohta lähevad\n"
-"Andy Reitzile).\n"
-"\n"
-"GNOME session katkestab töö pärast selle dialoogi sulgemist."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -194,50 +119,114 @@ msgstr "Häälestus"
 msgid "Always started on every login."
 msgstr "Käivitatakse alati igal sisselogimisel."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Viimane veateade oli:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Tekkis tundmatu aktiveerimise viga."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Kas tõesti välja logida?"
+msgid "Are you sure you want to log out?"
+msgstr "Kas tahad kindlasti välja logida?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Salvesta praegune seisund"
+msgid "_Save current setup"
+msgstr "_Salvesta praegune seisund"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "Tegevus"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Logi välja"
+msgid "_Log Out"
+msgstr "_Logi välja"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Seiska"
+msgid "Sh_ut Down"
+msgstr "_Seiska arvuti"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Tee alglaadimine"
+msgid "_Restart the computer"
+msgstr "_Tee arvutile alglaadimine"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
 msgstr "Määra laetava sessiooni nimi"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud sessioone ainult default.session failist"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
+
+#: gnome-session/main.c:211
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Ei leia internetiaadressi %s jaoks.\n"
+"GNOME ei saa selleta normaalselt töötada.\n"
+"Võimalik, et saate selest veast üle, lisades\n"
+"%s faili /etc/hosts."
+
+#: gnome-session/main.c:218
+msgid "Log in Anyway"
+msgstr "Logi sellest hoolimata sisse"
+
+#: gnome-session/main.c:219
+msgid "Try Again"
+msgstr "Proovi uuesti"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -388,32 +377,15 @@ msgstr "Käivitusprogrammid"
 msgid "Current Session"
 msgstr "Aktiivne sessioon"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Eemalda valitud klient sessioonist."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Sessioonis olevate programmide nimekiri."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Sessioon"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sessioonivalija"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Käivita sessioon"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Katkesta sisselogimine"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Algväärtusta sessioon"
 
@@ -506,8 +478,74 @@ msgstr "Lisa käivitusprogramm"
 msgid "Edit Startup Program"
 msgstr "Muuda käivitusprogrammi"
 
-#~ msgid "_Log Out"
-#~ msgstr "_Logi välja"
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Login"
+
+#~ msgid "Login"
+#~ msgstr "Sisselogimine"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Käivita ainult süsteemis vaikimisi määratud programmid"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Algväärtusta kõik kasutaja määrangud"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Soovite Te tõesti algväärtustada kõik kasutaja %s määrangud?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Kataloog /tmp/orbit-%s ei kuulu\n"
+#~ "aktiivsele kasutajale %s.\n"
+#~ "Palune korrigeerige kataloogi omandisuhted."
+
+#~ msgid "Continue"
+#~ msgstr "Jätka"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Sinu libICE versioonil on viga, mille tõttu gnome-session\n"
+#~ "ei saa korralikult töötada.\n"
+#~ "\n"
+#~ "Kui sa kasutad Solarist, peaksid uuendama Solarise paigaga\n"
+#~ "#108376-16 või kasutama originaalse Solaris 7 libICE.so.6.\n"
+#~ "Kopeeri fail /usr/openwin/lib. (Tänusõnad selle vea info kohta lähevad\n"
+#~ "Andy Reitzile).\n"
+#~ "\n"
+#~ "GNOME session katkestab töö pärast selle dialoogi sulgemist."
+
+#~ msgid "Really log out?"
+#~ msgstr "Kas tõesti välja logida?"
+
+#~ msgid "Logout"
+#~ msgstr "Logi välja"
+
+#~ msgid "Reboot"
+#~ msgstr "Tee alglaadimine"
+
+#~ msgid "Session"
+#~ msgstr "Sessioon"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Sessioonivalija"
+
+#~ msgid "Start Session"
+#~ msgstr "Käivita sessioon"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Katkesta sisselogimine"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Ei suuda saada ühendust gnome-sessioniga"
