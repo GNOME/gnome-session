@@ -27,6 +27,7 @@
 #include "gsm-client-list.h"
 #include "gsm-client-row.h"
 #include "gsm-protocol.h"
+#include "gsm-atk.h"
 
 GsmProtocol *protocol;
 
@@ -93,12 +94,14 @@ create_table (void)
   gtk_signal_connect (GTK_OBJECT (add_button), "clicked",
 		      GTK_SIGNAL_FUNC (add_cb), NULL);
   remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
+  gsm_atk_set_description (remove_button, _("Remove the currently selected client from the session."));
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
   gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
 		     GTK_SIGNAL_FUNC (remove_cb), NULL);
 
   /* client list */
   client_list = gsm_client_list_new ();
+  gsm_atk_set_description (client_list, _("The list of programs in the session."));
   gsm_client_list_live_session (GSM_CLIENT_LIST (client_list));
 #if 0 /* this is currently broken */
   gtk_signal_connect(GTK_OBJECT (client_list), "initialized",

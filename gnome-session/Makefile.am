@@ -88,6 +88,8 @@ save_session_SOURCES =		\
 
 session_properties_SOURCES = \
 	session-properties.c	\
+	gsm-atk.c		\
+	gsm-atk.h		\
 	gsm-client-list.c	\
 	gsm-client-list.h	\
 	gsm-client-editor.c	\
@@ -103,17 +105,11 @@ session_properties_SOURCES = \
 session_properties_capplet_SOURCES = \
 	session-properties-capplet.c	\
 	session-properties-capplet.h	\
-	gsm-client-list.c		\
-	gsm-client-list.h		\
-	gsm-client-row.c		\
-	gsm-client-row.h		\
 	gsm-protocol.c			\
 	gsm-protocol.h			\
 	gsm-typebuiltins.c		\
 	gsm-typebuiltins.h		\
 	startup-programs.c		\
-	gsm-client-editor.c		\
-	gsm-client-editor.h		\
 	session-names.c
 
 

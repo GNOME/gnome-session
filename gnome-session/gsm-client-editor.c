@@ -24,6 +24,7 @@
 
 #include "gsm-client-editor.h"
 #include "gsm-client-row.h"
+#include "gsm-atk.h"
 
 enum {
   CHANGED,
@@ -83,6 +84,7 @@ gsm_client_editor_new (void)
   GsmClientEditor* client_editor = gtk_type_new (gsm_client_editor_get_type());
   GtkHBox* hbox = (GtkHBox*) client_editor;
   GtkAdjustment *adjustment;
+  GtkWidget *label;
   GnomeUIInfo* data = (GnomeUIInfo*)g_memdup (style_data, 
 					      (guint)sizeof (style_data));
   GtkWidget *menu = gnome_popup_menu_new (data);
@@ -91,17 +93,23 @@ gsm_client_editor_new (void)
   adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (50.0, 0.0, 99.0, 
 						   1.0, 10.0, 0.0));
   client_editor->spin_button = gtk_spin_button_new (adjustment, 1.0, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), gtk_label_new (_("Order: ")), 
+  label = gtk_label_new_with_mnemonic (_("_Order:"));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_editor->spin_button);
+  gsm_atk_set_description (client_editor->spin_button, _("The order in which applications are started in the session."));
+  gtk_box_pack_start (GTK_BOX (hbox), label,
 		      FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_box_pack_start (GTK_BOX (hbox), client_editor->spin_button, 
 		      FALSE, FALSE, GNOME_PAD_SMALL);
 
   client_editor->style_menu = gtk_option_menu_new ();
+  gsm_atk_set_description (client_editor->style_menu, _("What happens to the application when it exits."));
   gtk_option_menu_set_menu (GTK_OPTION_MENU(client_editor->style_menu), menu);
 
+  label = gtk_label_new_with_mnemonic (_("_Style:"));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_editor->style_menu);
   gtk_box_pack_end (GTK_BOX (hbox), client_editor->style_menu, 
 		    FALSE, FALSE, GNOME_PAD_SMALL);
-  gtk_box_pack_end (GTK_BOX (hbox), gtk_label_new (_("Style: ")), 
+  gtk_box_pack_end (GTK_BOX (hbox), label,
 		      FALSE, FALSE, GNOME_PAD_SMALL);
 
   gtk_signal_connect_object (GTK_OBJECT (client_editor->spin_button), 

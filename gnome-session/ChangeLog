@@ -1,3 +1,20 @@
+2002-04-18  jacob berkman  <jacob@ximian.com>
+
+	* session-properties.c (create_table): add atk descriptions
+
+	* gsm-client-editor.c (gsm_client_editor_new): add atk
+	descriptions and fix mnemonic labels
+
+	fixes #79051
+
+	* Makefile.am (session_properties_capplet_SOURCES): remove session
+	list stuff as it's not used
+
+	* session-properties-capplet.c: remove unused headers
+
+	* gsm-atk.[ch] (gsm_atk_set_name): 
+	(gsm_atk_set_description): atk sugar
+
 2002-04-18  Mark McLoughlin  <mark@skynet.ie>
 
 	* splash.c: updated the icon table to be a little less crufty.

@@ -46,8 +46,6 @@
 #include "headers.h"
 #endif
 
-#include "gsm-client-list.h"
-#include "gsm-client-row.h"
 #include "gsm-protocol.h"
 #include "session-properties-capplet.h"
 
