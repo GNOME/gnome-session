@@ -42,11 +42,11 @@ destroy_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
 }
 
 static void
-hint ()
+hint (void)
 {
-  char *cmd[] = { "gnome-hint", NULL };
+  char *cmd[] = { "gnome-hint", "--session-login", NULL };
   if (HINTING)
-    gnome_execute_async (NULL, 1, cmd);
+    gnome_execute_async (NULL, 2, cmd);
 }
 
 static gboolean
