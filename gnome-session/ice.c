@@ -56,7 +56,7 @@ GSList *auth_entries;
 /* The "sockets" which we listen on */
 IceListenObj *sockets;
 static gint *input_id;
-gint num_sockets;
+static gint num_sockets;
 
 /* File containing the ICE authorization data (usually ~/.ICEauthority) */
 static gchar* authfile;
