@@ -20,14 +20,19 @@
 #include <config.h>
 #include <gnome.h>
 #include "splash.h"
+#include "manager.h"
 
 typedef struct {
   GtkWidget *dialog;
   GtkWidget *progressbar;
   GtkWidget *label;
   gfloat max;
+  gint timeout;
 } SplashData;
 static SplashData *sd = NULL;
+
+#define SPLASHING (gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX SPLASH_SCREEN_KEY"="SPLASH_SCREEN_DEFAULT))
+#define HINTING (gnome_config_get_bool ("Gnome/Login/RunHints=true"))
 
 static gboolean
 destroy_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
@@ -36,20 +41,45 @@ destroy_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
   return TRUE;
 }
 
+static void
+hint ()
+{
+  char *cmd[] = { "gnome-hint", NULL };
+  g_message ("about to hint: %d", HINTING);
+  if (HINTING)
+    gnome_execute_async (NULL, 1, cmd);
+}
+
 static gboolean
 splash_cleanup (GtkObject *o, gpointer data)
 {
   g_free (sd);
   sd = NULL;
+  hint ();
+  return FALSE;
+}
+
+static gint
+timeout_cb (gpointer data)
+{
+  if (sd && sd->dialog)
+    gtk_widget_destroy (sd->dialog);
+
   return FALSE;
 }
 
 void
 stop_splash ()
 {
-  if (!sd)
+  if (!SPLASHING) {
+    hint ();
     return;
-  gtk_widget_destroy (sd->dialog);
+  }
+
+  if (!sd || sd->timeout)
+    return;
+
+  sd->timeout = gtk_timeout_add (2000, timeout_cb, NULL);
 }
 
 static void
@@ -75,7 +105,8 @@ start_splash (gfloat max)
   sd = g_malloc (sizeof (SplashData));
 
   sd->max = max;
-  
+  sd->timeout=0;
+
   sd->dialog = gtk_window_new (GTK_WINDOW_POPUP);
   gtk_window_set_position (GTK_WINDOW (sd->dialog),
 			   GTK_WIN_POS_CENTER);
