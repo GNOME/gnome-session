@@ -1,18 +1,38 @@
 2002-05-28  Mark McLoughlin  <mark@skynet.ie>
 
-	reviewed by: <delete if not using a buddy>
+	Fix #82959 by invoking DiscardCommand every time we
+	forget a RestartCommand. This assumes every client
+	knows to re-save its session data every SaveYourself,
+	so we also check that a client is doing this.
 
-	* command.c: (client_reasons), (client_property), (command):
-	* headers.h:
-	* manager.c: (free_client), (run_command_prop), (run_command),
-	(reincarnate_client), (process_save_request), (update_save_state),
-	(maybe_run_discard_commands), (save_yourself_done):
-	* prop.c: (gsm_parse_vector_prop), (gsm_prop_copy),
-	(gsm_array8_compare), (gsm_prop_compare), (find_vector_property):
-	* prop.h:
-	* save.c: (write_one_client), (read_clients), (delete_session):
-	* util.c: (gsm_verbose), (gsm_compare_commands):
-	* util.h:
+	* manager.c: (free_client): free last_discard.
+	(run_command_prop), (run_command): split run_command into
+	two methods. run_command_prop invokes a command directly
+	from and SmProp.
+	(reincarnate_client): also copy session_saved.
+	(process_save_request): save the DiscardCommand in last_discard
+	before sending a SaveYourself.
+	(maybe_run_discard_commands): impl method to run DiscardCommand
+	every time we 'forget' a RestartCommand.
+	(save_yourself_done): use it here.
+
+	* command.c:
+	(prop_dup): move and rename to gsm_prop_copy in prop.c
+	(client_reasons), (client_property), (command): upd.
+
+	* headers.h: add last_discard and session_saved members to
+	Client structure.
+
+	* prop.[ch]: (gsm_parse_vector_prop), (gsm_prop_copy),
+	(gsm_array8_compare), (gsm_prop_compare): implement these
+	methods.
+	(find_vector_property): use gsm_parse_vector_prop.
+
+	* util.[ch]: (gsm_compare_commands): implement this.
+
+	* save.c:
+	(write_one_client), (read_clients): set session_saved here.
+	(delete_session): use gsm_compare_commands.
 
 2002-05-25  Mark McLoughlin  <mark@skynet.ie>
 
