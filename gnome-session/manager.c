@@ -19,12 +19,18 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <gtk/gtk.h>
+#include <libgnome/libgnome.h>
+#include <unistd.h>
+#include <errno.h>
+#ifndef errno
+extern int errno;
+#endif
 
-#include <gnome.h>
 
 #include "manager.h"
+#include "session.h"
 
-
 /* The save_state gives a description of what we are doing */
 static enum {
   MANAGER_IDLE,
@@ -33,7 +39,8 @@ static enum {
   SAVE_PHASE_1,
   SAVE_PHASE_2,
   SAVE_CANCELLED,
-  STARTING_SESSION
+  STARTING_SESSION,
+  SHUTDOWN
 } save_state;
 
 /* List of sessions which have yet to be loaded. */
@@ -45,9 +52,11 @@ static GSList *start_list = NULL;
 /* List of clients which have been started but have yet to register */
 GSList *pending_list = NULL;
 
-/* List of clients which have been purged from the pending list 
-   since they have failed to register within our timeout. */
-GSList *purged_list = NULL;
+/* Lists of clients which have been purged from the pending list: 
+   The first list contains clients we throw away at the session end,
+   the second contains clients the user wants us to keep. */
+GSList *purge_drop_list = NULL;
+GSList *purge_retain_list = NULL;
 
 /* List of all live clients in the default state.  */
 GSList *live_list = NULL;
@@ -90,13 +99,20 @@ GSList *zombie_list = NULL;
    needed to cope with io errors. */ 
 static GSList *message_sent_list = NULL;
 
-
+/* A cheap hack to enable us to iterate through the clients */
+GSList **client_lists[] = { &zombie_list, &start_list, 
+			    &pending_list, &live_list,
+			    &purge_drop_list, &purge_retain_list,
+			    &save_yourself_list, &save_yourself_p2_list, 
+			    &save_finished_list, NULL };
+gchar   *events[]       = { GsmInactive, GsmInactive, 
+			    GsmStart, GsmConnected,
+			    GsmUnknown, GsmUnknown, 
+			    GsmSave, GsmSave, 
+			    GsmConnected, NULL };
 
-#define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
-#define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
-#define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))
-
-
+/* Index used to identify clients uniquely over the gsm protocol extensions. */
+guint handle = 0;
 
 static gint compare_interact_request (gconstpointer a, gconstpointer b);
 typedef void message_func (SmsConn connection);
@@ -105,6 +121,8 @@ static void
 save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 		       Bool shutdown, int interact_style, Bool fast,
 		       Bool global);
+static void set_properties (SmsConn connection, SmPointer data, 
+			    int nprops, SmProp **props);
 
 static void update_save_state (void);
 
@@ -116,8 +134,12 @@ find_client_by_id (const GSList *list, const char *id)
   for (; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      if (! strcmp (client->id, id))
-	return client;
+
+      if (client->match_rule != MATCH_PROP)
+	{
+	  if (client->id && ! strcmp (client->id, id))
+	    return client;
+	}
     }
   return NULL;
 }
@@ -134,6 +156,66 @@ find_client_by_connection (GSList *list, IceConn ice_conn)
   return NULL;
 }
 
+static Client *
+find_client_by_argv0 (const GSList *list, const char *argv0)
+{
+  for (; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      if (client->match_rule == MATCH_PROP)
+	{
+	  SmProp *prop = find_property_by_name (client, SmRestartCommand);
+	  if (!strcmp ((prop->vals[0].value), argv0))
+	    return client;
+	}
+    }
+  return NULL;
+}
+
+static void
+set_client_restart_style (Client *client, char style)
+{
+  guint nprops = 1;
+  SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
+  SmProp **props = (SmProp**) malloc (sizeof (SmProp*) * nprops);
+  
+  prop->name = strdup (SmRestartStyleHint);
+  prop->type = strdup (SmCARD8);
+  prop->num_vals = 1;
+  prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue));
+  prop->vals[0].value = (SmPointer) calloc (sizeof(char), 2);
+  ((gchar*)prop->vals[0].value)[0] = style;
+  prop->vals[0].length = 1;
+  props[0] = prop;
+  set_properties(client->connection, (SmPointer)client, nprops, props);
+}
+
+/* Entry and exit onto the purge lists is signaled by broadasting changes
+ * to the restart style as this reflects the substance of the change. 
+ * However, any SmRestartStyleHint in the client->properties is left
+ * unchanged since the client will need it if and when it connects. */ 
+static void
+broadcast_restart_style (Client *client, char style)
+{
+  char value[2] = { style, '\0' };
+  SmPropValue val = { 1, &value };
+  SmProp hint = { SmRestartStyleHint, SmCARD8, 1, &val };
+  SmProp *prop = &hint;
+  
+  client_property (client->handle, 1, &prop);    
+}
+
+static char
+get_restart_style (Client *client)
+{
+  int style;
+
+  if (!find_card8_property (client, SmRestartStyleHint, &style))
+    style = SmRestartIfRunning;
+
+  return (char)style;
+}
+
 void
 free_client (Client *client)
 {
@@ -144,12 +226,28 @@ free_client (Client *client)
   if (client->id)
     free (client->id);
 
+  if (client->handle)
+    command_handle_free (client->handle);
+
   for (list = client->properties; list; list = list->next)
     {
       SmProp *sp = (SmProp *) list->data;
       SmFreeProperty (sp);
     }
   g_slist_free (client->properties);
+
+  for (list = client->get_prop_replies; list; list = list->next)
+    {
+      GSList *prop_list = (GSList *) list->data, *list1;
+	
+      for (list1 = prop_list; list1; list1 = list1->next)
+	{
+	  SmProp *prop = (SmProp *) list1->data;
+	  SmFreeProperty (prop);
+	}
+      g_slist_free (prop_list);
+    }
+  g_slist_free (client->get_prop_replies);
 
   free (client);
 }
@@ -189,6 +287,16 @@ run_command (const Client* client, const gchar* command)
       
       pid = gnome_execute_async_with_env (dir, argc, argv, envpc, envp);
 
+      if (errno)
+	{
+	  gchar *message;
+	  message = g_strconcat (argv[0], " : ", g_strerror(errno), NULL);
+	  client_reasons (client->handle, 1, &message); 
+	  g_free (message);
+	  pid = -1;
+	  errno = 0;
+	}
+
       if (envp)
 	free_vector (envpc, envp);
       if (dir)
@@ -223,27 +331,41 @@ process_load_request (GSList *client_list)
 {
   GSList* list;
      
-  /* Strip out any purged clients that might be confused with clients 
-   * in this session. We can only assume that they died before registering, 
-   * are badly broken or had corrupt config entries. 
-   * We could strip them from the client_list instead but this seems
-   * more useful (in theory). */
+  /* Eliminate any chance of confusing clients in this client_list with 
+   * members of the purge_drop_list by trimming back the purge_drop_list.
+   * Bad matches in the purge_retain_list are extremely unlikely as 
+   * session aware clients can only get into this list following a user
+   * command and always move out of it again as soon as they register. */
 
-  for (list = purged_list; list;)
+  for (list = purge_drop_list; list;)
     {
       Client *client = (Client*)list->data;
-      
+      gboolean bad_match = FALSE;
+	
       list = list->next;
-      if (find_client_by_id (client_list, client->id))
+
+      if (client->match_rule == MATCH_PROP)
 	{
-	  /* FIXME: warn user. */
-	  REMOVE (purged_list, client);
+	  SmProp *prop = find_property_by_name (client, SmRestartCommand);
+	  char* argv0 = (char*)(prop->vals[0].value);
+	  bad_match = (find_client_by_argv0 (client_list, argv0) != NULL);
+	}
+      else
+	bad_match = (find_client_by_id (client_list, client->id) != NULL);
+
+      if (bad_match)
+	{
+	  gchar *message = _("Wait abandoned due to conflict."); 
+	  client_reasons (client->handle, 1, &message); 
+	  client_event (client->handle, GsmRemove);
+	  REMOVE (purge_drop_list, client);
+	  free_client (client);
 	}
     }
 
   start_list = client_list;
   save_state = STARTING_SESSION;
-  
+
   update_save_state();
 }
 
@@ -256,13 +378,13 @@ compare_priority (gconstpointer a, gconstpointer b)
 
 /* Prepare to start clients in order of priority */
 void
-load_session (GSList* client_list)
+start_clients (GSList* client_list)
 {
   if (client_list)
     {
       client_list = g_slist_sort (client_list, compare_priority);
 
-      if (save_state == STARTING_SESSION)
+      if (save_state != MANAGER_IDLE)
 	{
 	  APPEND (load_request_list, client_list);
 	  return;
@@ -285,11 +407,10 @@ purge (gpointer data)
 
   if (g_slist_find (pending_list, client))
     {
-      fprintf (stderr, "Priority %02d : Purging     Id = %s\n", 
-	       client->priority, client->id);
-
       REMOVE (pending_list, client);
-      APPEND (purged_list, client);
+      APPEND (purge_drop_list, client);
+      broadcast_restart_style (client, SmRestartNever);
+      client_event (client->handle, GsmUnknown);
 
       update_save_state();
     }
@@ -307,28 +428,90 @@ purge (gpointer data)
 void
 start_client (Client* client)
 {
-  if (run_command (client, SmRestartCommand) == -1)
+  int pid;
+
+  client_event (client->handle, GsmStart);
+
+  pid = run_command (client, SmRestartCommand);
+
+  if (pid == -1)
     {
-      /* FIXME: Inform the user. */
+      client_event (client->handle, GsmRemove);
       free_client(client);
       return;
     }
 
-  fprintf (stderr, "Priority %02d : Starting    Id = %s\n", 
-	   client->priority, client->id);
-
-  if (client->id)
+  if (client->id || client->match_rule == MATCH_PROP)
     {
       APPEND (pending_list, client);
       if (purge_delay)
 	gtk_timeout_add (purge_delay, purge, (gpointer)client); 
     }
-#if 0
-  /* Disabled until gnome-session gui is completed */
   else
-    APPEND (zombie_list, client);
-#endif
+    {
+      client_event (client->handle, GsmUnknown);
+      broadcast_restart_style (client, SmRestartAnyway);
+      APPEND (purge_retain_list, client);
+    }
 }
+
+gint 
+remove_client (Client* client)
+{
+  /* This only uses the ammunition provided by the protocol to kill clients.
+   * The user must resort to kill or xkill to destroy badly broken clients 
+   * and can place these in the SmShutdownCommand to facilitate logouts. */
+
+  if (save_state != MANAGER_IDLE && save_state != STARTING_SESSION)
+    return -1;
+
+  if (g_slist_find (live_list, client))
+    {
+      set_client_restart_style (client, SmRestartNever);
+      SmsDie (client->connection);
+      return 1;
+    }
+
+  if (g_slist_find (zombie_list, client))
+    {
+      REMOVE (zombie_list, client);
+      run_command (client, SmResignCommand);
+      client_event (client->handle, GsmRemove);
+      free_client (client);
+      update_save_state ();
+      return 1;
+    }
+
+  if (g_slist_find (purge_drop_list, client))
+    {
+      REMOVE (purge_drop_list, client);
+      client_event (client->handle, GsmRemove);
+      free_client (client);
+      update_save_state ();
+      return 1;
+    }
+  
+  if (g_slist_find (purge_retain_list, client))
+    {
+      REMOVE (purge_retain_list, client);
+      client_event (client->handle, GsmRemove);
+      free_client (client);
+      update_save_state ();
+      return 1;
+    }
+  
+  if (g_slist_find (pending_list, client))
+    {
+      REMOVE (pending_list, client);
+      client_event (client->handle, GsmRemove);
+      free_client (client);
+      update_save_state ();
+      return 1;
+    }
+
+  return 0;
+}
+
 
 
 
@@ -339,67 +522,94 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 
   if (previous_id)
     {
-      /* This claims to be a client that we have restarted ... */
       Client *offspring = find_client_by_id (pending_list, previous_id);
       if (! offspring)
 	{
-	  /* Perhaps it was a slow one ... */
-	  offspring = find_client_by_id (purged_list, previous_id);
-	  if (! offspring) 
+	  offspring = find_client_by_id (purge_drop_list, previous_id);
+	  if (!offspring) 
 	    {
-	      /* Hmm ... not a legitimate child. 
-		 FIXME: Inform user. */
-	      free (previous_id);
-	      return 0;
+	      offspring = find_client_by_id (purge_retain_list, previous_id);
+
+	      if (!offspring) 
+		{
+		  /* FIXME: Inform user. */
+		  free (previous_id);
+		  return 0;
+		}
+	      else
+		REMOVE (purge_retain_list, offspring);
 	    }
-	  REMOVE (purged_list, offspring);
+	  else
+	    REMOVE (purge_drop_list, offspring);
+
+	  if (offspring)
+	    broadcast_restart_style (offspring, 
+				     get_restart_style (offspring));
 	}
       else
 	REMOVE (pending_list, offspring);
 
-      client->properties = offspring->properties;
-      client->priority = offspring->priority;
-      client->faked_id = offspring->faked_id;
-      client->attempts = offspring->attempts;
-      client->connect_time = offspring->connect_time;
+      client->properties        = offspring->properties;
+      client->priority          = offspring->priority;
+      client->match_rule        = offspring->match_rule;
+      client->attempts          = offspring->attempts;
+      client->connect_time      = offspring->connect_time;
+      client->command_data      = offspring->command_data;
 
       offspring->properties = NULL;
-
+      client->handle = command_handle_reassign (offspring->handle, client);
+      offspring->handle = NULL;
       free_client (offspring);
 
-      if (client->faked_id ||
+      if (client->match_rule == MATCH_FAKE_ID ||
 	  find_client_by_id (live_list, previous_id) ||
 	  find_client_by_id (zombie_list, previous_id))
 	{
-	  fprintf (stderr, "Priority %02d : Cloning     Id = %s\n", 
-		   client->priority, previous_id);
-	  client->faked_id = TRUE;
+	  client->match_rule = MATCH_DONE;
 	  free (previous_id);
 	  return 0;
 	}
-
+      client->match_rule = MATCH_DONE;
       client->id = previous_id;
     }
   else
-    client->id = SmsGenerateClientID (connection);
+    {
+      client->id = SmsGenerateClientID (connection);
+      if (!client->id)
+	{
+	  static int sequence = 0;
+	  static char* address = NULL;
 
-  fprintf (stderr, "Priority %02d : Registering Id = %s\n", 
-	   client->priority, client->id);
+	  if (! address)
+	    {
+	      g_warning ("Host name lookup failure on localhost.");
+	      
+	      address = malloc (10);
+	      srand (time (NULL) + (getpid () <<16));
+	      sprintf (address, "0%.8x", rand());
+	    };
+
+	  client->id = malloc (43);
+	  sprintf (client->id, "1%s%.13ld%.10d%.4d", address,
+		   time(NULL), getpid (), sequence++);
+	  
+	  sequence %= 10000;
+	}
+    }
+
+  if (client->handle)
+    client_event (client->handle, GsmConnected);
 
   if (! SmsRegisterClientReply (connection, client->id))
-    {
-      /* Lost out : SMlib could not assign memory. Very Nasty! */
-      free_client (client);
-      return 0;
-    }
+    g_error ("Could not register new client: %s\n", g_strerror(ENOMEM));
 
   APPEND (live_list, client);      
 
   /* SM specs 7.2: */
   if (!previous_id)
-      save_yourself_request (connection, (SmPointer) client, 
-			     SmSaveLocal, False,
-			     SmInteractStyleNone, False, False);
+    save_yourself_request (connection, (SmPointer) client, 
+			   SmSaveLocal, False,
+			   SmInteractStyleNone, False, False);
   update_save_state ();
   return 1; 
 }
@@ -489,6 +699,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       while (live_list) 
 	{
 	  Client *client = (Client *) live_list->data;
+	  client_event (client->handle, GsmSave);
 	  REMOVE (live_list, client);
 	  APPEND (save_yourself_list, client);
 	  SmsSaveYourself (client->connection, save_type, shutting_down,
@@ -497,6 +708,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
     }
   else
     {
+      client_event (client->handle, GsmSave);
       REMOVE (live_list, client);
       APPEND (save_yourself_list, client);
       SmsSaveYourself (client->connection, 
@@ -559,6 +771,23 @@ run_shutdown_commands (const GSList *list)
     }
 }
 
+/* Used to exit */
+static gint
+suicide (gpointer data)
+{
+  while (live_list)
+    {
+      Client *client = (Client*)live_list->data;
+      
+      client_event (client->handle, GsmRemove);
+      REMOVE (live_list, client);
+      g_warning ("Client %s failed to respond to the Die command", client->id);
+      free_client (client);
+    }
+  gtk_main_quit ();
+  return 0;
+}
+
 /* This is a helper function which makes sure that the save_state
    variable is correctly set after a change to the save_yourself lists. */
 static void
@@ -569,7 +798,11 @@ update_save_state ()
       int runlevel = 1000;
       
       if (pending_list)
-	return;
+	{
+	  Client* client = (Client*)pending_list->data;
+	  if (client->match_rule != MATCH_PROP)
+	    return;
+	}
 
       if (start_list)
 	{
@@ -580,11 +813,13 @@ update_save_state ()
 	      if (client->priority > runlevel) 
 		return;
 	      
-	      runlevel = client->priority;
 	      REMOVE (start_list, client);
 	      start_client (client);
+	      if (pending_list)
+		runlevel = client->priority;
 	    }
-	  return;
+	  if (pending_list)
+	    return;
 	}
       save_state = MANAGER_IDLE;
      }    
@@ -610,7 +845,16 @@ update_save_state ()
       CONCAT (live_list, save_finished_list);
 	  
       if (shutting_down)
-	purged_list = NULL;
+	{
+	  while (purge_drop_list)
+	    {
+	      Client *client = (Client*)purge_drop_list->data;
+
+	      client_event (client->handle, GsmRemove);
+	      REMOVE (purge_drop_list, client);
+	      free_client (client);
+	    }
+	}
 
       write_session ();
 
@@ -618,19 +862,28 @@ update_save_state ()
 
       send_message (&save_finished_list,
 		    shutting_down ? SmsDie : SmsSaveComplete);
+      save_finished_list = NULL;
+      save_state = MANAGER_IDLE;
       
       if (shutting_down)
 	{
+	  save_state  = SHUTDOWN;
 	  /* Run each shutdown command. These commands are only strictly
 	   * needed by zombie clients. */
 	  run_shutdown_commands (zombie_list);
 	  run_shutdown_commands (live_list);
 
-	  unlock_session ();
-	  gtk_main_quit ();
+	  if (suicide_delay)
+	    gtk_timeout_add (suicide_delay, suicide, NULL); 
 	}
-      save_finished_list = NULL;
-      save_state = MANAGER_IDLE;
+    }
+
+  if (save_state == SHUTDOWN)
+    {
+      if (live_list)
+	return;
+
+      suicide (NULL);
     }
 
   if (save_state == SAVE_CANCELLED)
@@ -646,23 +899,29 @@ update_save_state ()
       save_state = MANAGER_IDLE;
     }
 
-  if (save_state == MANAGER_IDLE && save_request_list)
+  if (save_state == MANAGER_IDLE)
     {
-      SaveRequest *request = save_request_list->data;
-      
-      REMOVE (save_request_list, request);
-      process_save_request (request->client, request->save_type, 
-			    request->shutdown, request->interact_style, 
-			    request->fast, request->global);
-      g_free (request);
+      if (save_request_list)
+	{
+	  SaveRequest *request = save_request_list->data;
+	  
+	  REMOVE (save_request_list, request);
+	  process_save_request (request->client, request->save_type, 
+				request->shutdown, request->interact_style, 
+				request->fast, request->global);
+	  g_free (request);
+	}
     }
-      
-  if (save_state == MANAGER_IDLE && load_request_list)
-    {
-      GSList* client_list = (GSList*)load_request_list->data;
 
-      REMOVE (load_request_list, client_list);
-      process_load_request (client_list);
+  if (save_state == MANAGER_IDLE)
+    {
+      if (load_request_list)
+	{
+	  GSList* client_list = (GSList*)load_request_list->data;
+	  
+	  REMOVE (load_request_list, client_list);
+	  process_load_request (client_list);
+	}
     }
 }
 
@@ -670,6 +929,7 @@ static void
 save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 {
   Client *client = (Client *) data;
+  GSList *prop_list = NULL;
 
   if (save_state == MANAGER_IDLE || save_state == STARTING_SESSION ||
       (g_slist_find (save_yourself_list, client) == NULL &&
@@ -680,6 +940,80 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
       return;
     }
 
+  /* Must delay assignment of handle for gsm protocol extensions until
+   * the initial save is complete on external clients so that we can
+   * match them against MATCH_PROP clients using properties. */
+  if (!client->handle)
+    {
+      Client *offspring = NULL;
+      SmProp *prop = find_property_by_name (client, SmRestartCommand);
+
+      if (prop)
+	{
+	  gchar* argv0 = (gchar*)prop->vals[0].value;
+	  offspring = find_client_by_argv0 (pending_list, argv0);
+	  if (! offspring)
+	    {
+	      offspring = find_client_by_argv0 (purge_drop_list, argv0);
+	      if (!offspring) 
+		{
+		  offspring = find_client_by_argv0 (purge_retain_list, argv0);
+		  
+		  if (offspring) 
+		    REMOVE (purge_retain_list, offspring);		    
+		}
+	      else
+		REMOVE (purge_drop_list, offspring);
+
+	      if (offspring)
+		broadcast_restart_style (offspring, 
+					 get_restart_style (offspring));
+	    }
+	  else
+	    REMOVE (pending_list, offspring);
+	}
+
+      /* Save properties that have NOT been reported under the gsm client
+       * event protocol because the client has had no handle. */
+      prop_list = client->properties;
+      client->properties = NULL;
+
+      if (offspring)
+	{
+	  client->properties        = offspring->properties;
+	  client->priority          = offspring->priority;
+	  client->match_rule        = offspring->match_rule;
+	  client->attempts          = offspring->attempts;
+	  client->connect_time      = offspring->connect_time;
+	  client->command_data      = offspring->command_data;
+	  
+	  offspring->properties = NULL;
+	  client->handle = command_handle_reassign (offspring->handle, client);
+	  client->match_rule = MATCH_DONE;
+	  offspring->handle = NULL;
+	  free_client (offspring);	  
+	}
+      else
+	client->handle = command_handle_new (client);
+    }
+
+  client_event (client->handle, GsmConnected);
+
+  if (prop_list)
+    {
+      GSList *list;
+      SmProp **props;
+      guint i, nprops = g_slist_length (prop_list);
+      
+      /* Set any properties missed by the client event protocol (overriding
+       * the properties set in the GsmAddClient command as appropriate). */
+      props = (SmProp**) malloc (sizeof (SmProp*)*nprops);
+      for (list = prop_list, i = 0; list; list=list->next, i++)
+	props[i] = (SmProp*)list->data;
+      g_slist_free (prop_list);
+      set_properties(client->connection, (SmPointer)client, nprops, props);
+    }
+
   REMOVE (save_yourself_list, client);
   REMOVE (save_yourself_p2_list, client);
   APPEND (save_finished_list, client);      
@@ -687,107 +1021,97 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
   update_save_state ();
 }
 
-static void
-display_reasons (gint count, gchar** reasons)
-{
-  if (count > 0)
-    {
-      GtkWidget* dialog;
-      gchar* message = reasons [0];
-      int i;
-
-      for (i = 1; i < count; i++)
-	{
-	  message = g_strjoin ("\n", message, reasons[i], NULL);
-	}
-
-      /* This is warning about a fatality rather than a fatal error. */
-      dialog = gnome_warning_dialog (message);
-
-      if (count > 1)
-	g_free (message);
-    }
-}
-
+/* We call IceCloseConnection in response to SmcCloseConnection to prevent
+ * any use of the connection until we exit IceProcessMessages.
+ * The actual clean up occurs in client_clean_up when the IceConn closes. */
 static void
 close_connection (SmsConn connection, SmPointer data, int count,
 		  char **reasons)
 {
   Client *client = (Client *) data;
+  IceConn ice_conn = SmsGetIceConnection (connection);
+
+  client_reasons (client->handle, count, reasons);
+  SmFreeReasons (count, reasons);
+
+  IceSetShutdownNegotiation (ice_conn, False);
+  IceCloseConnection (ice_conn);
+}
+
+/* This clean up handler is called when the IceConn for the client is closed
+ * for some reason. This seems to be the only way to avoid memory leaks 
+ * without the risk of segmentation faults. */
+static void
+client_clean_up (Client* client)
+{
   int style;
   GSList *list;
+  
+  command_clean_up (client);
+  
+  SmsCleanUp (client->connection);
+  
+  client->connection = NULL;
 
-  /* The client appear be one of several live lists: */
   REMOVE (live_list, client);
   REMOVE (save_yourself_list, client);
   REMOVE (save_yourself_p2_list, client);
   REMOVE (save_finished_list, client);
   REMOVE (message_sent_list, client);
   
-  /* It also may have queued interact requests ... */
   while (g_slist_find (interact_list, client))
     REMOVE (interact_list, client);
-
-  /* ... or save requests */
+  
   for (list = save_request_list; list;)
     {
       SaveRequest *request = (SaveRequest*)list->data;
-
+      
       list = list->next;
       if (request->client == client) {
 	g_free(request);
 	REMOVE (save_request_list, request);
       }
     }
-
-  if (!find_card8_property (client, SmRestartStyleHint, &style))
-    style = SmRestartIfRunning;
-
-  /* FIXME: The display reasons dialog should reflect
-   * the restart style hint and whether we are actually restarting
-   * the restart immediately clients */
-
-  display_reasons (count, reasons);
-
+  
+  style = shutting_down ? SmRestartNever : get_restart_style (client);
+  
   switch (style)
     {
     case SmRestartImmediately:
       {
 	time_t now = time (NULL);
-
+	
 	if (now > client->connect_time + 120)
 	  {
 	    client->attempts = 0;
 	    client->connect_time = now;
 	  }
-
-	if (! shutting_down && client->attempts++ < 10)
-	  {
-	    start_client (client);
-#if 0
-	    run_command (client, SmRestartCommand);
-	    APPEND (pending_list, client);
-#endif
-	  }
+	
+	if (client->attempts++ < 10)
+	  start_client (client);
 	else
 	  {
+	    gchar *message = _("Respawn abandoned due to failures.");
+	    client_reasons (client->handle, 1, &message); 
+	    client_event (client->handle, GsmRemove);
 	    free_client (client);
 	  }
       }
       break;
-
+      
     case SmRestartAnyway:
       
-      client->connection = NULL;
+      client_event (client->handle, GsmInactive);
       APPEND (zombie_list, client);
       break;
-
+      
     default:
-
+      
+      client_event (client->handle, GsmRemove);
       free_client (client);
       break;
     }
-
+  
   if (save_state == SENDING_INTERACT)
     {
       if (interact_list)
@@ -797,38 +1121,47 @@ close_connection (SmsConn connection, SmPointer data, int count,
 	}
       save_state = SAVE_PHASE_1;
     }
-
-  SmFreeReasons (count, reasons);
-
-  /* Even doing this results in segfaults under some cicumstances ! */
-  /* SmsCleanUp(connection); */
-
+  
   update_save_state ();
 }
-
 
-/* It doesn't matter that this is inefficient.  */
+/* This extends the standard SmsSetPropertiesProc by interpreting attempts
+ * to set properties with the name GsmCommand as commands. These
+ * properties are not added to the clients property list and using them
+ * results in a change to the semantics of the SmsGetPropertiesProc
+ * (until a GsmSuspend command is received). */
 static void
 set_properties (SmsConn connection, SmPointer data, int nprops, SmProp **props)
 {
   Client *client = (Client *) data;
   int i;
 
-  for (i = 0; i < nprops; ++i)
+  if (!nprops)
+    return;
+
+  if (!strcmp (props[0]->name, GsmCommand))
     {
-      SmProp *prop;
-
-      prop = find_property_by_name (client, props[i]->name);
-      if (prop)
-	{
-	  REMOVE (client->properties, prop);
-	  SmFreeProperty (prop);
-	}
-
-      APPEND (client->properties, props[i]);
+      command (client, nprops, props);
     }
+  else
+    {
+      client_property (client->handle, nprops,  props);
 
-  free (props);
+      for (i = 0; i < nprops; ++i)
+	{
+	  SmProp *prop;
+
+	  prop = find_property_by_name (client, props[i]->name);
+	  if (prop)
+	    {
+	      REMOVE (client->properties, prop);
+	      SmFreeProperty (prop);
+	    }
+	  
+	  APPEND (client->properties, props[i]);
+	}
+      free (props);
+    }
 }
 
 static void
@@ -854,24 +1187,63 @@ delete_properties (SmsConn connection, SmPointer data, int nprops,
   SmFreeReasons (nprops, prop_names);
 }
 
+/* While the GsmCommand protocol is active the properties that are
+ * returned represent the return values from the commands. All commands
+ * return themselves as the first property returned. Commands need not
+ * return values in the order in which they were invoked. The standard 
+ * SmsGetPropertiesProc behavior may be restored at any time by suspending
+ * the protocol using a GsmSuspend command. The next GsmCommand will 
+ * then resume the protocol as if nothing had happened. */
 static void
 get_properties (SmsConn connection, SmPointer data)
 {
   Client *client = (Client *) data;
-  SmProp **props;
-  GSList *list;
-  int i, len;
+  GSList *prop_list, *list;
 
-  len = g_slist_length (client->properties);
-  props = (SmProp**)calloc (sizeof(SmProp *), len);
+  client->get_prop_requests++;
 
-  i = 0;
-  for (list = client->properties; list; list = list->next)
-    props[i] = list->data;
+  if (! command_active (client))
+    send_properties (client, client->properties);
+  else if (client->get_prop_replies)
+    {
+      prop_list = (GSList*) client->get_prop_replies->data;
 
-  SmsReturnProperties (connection, len, props);
-  free (props);
+      send_properties (client, prop_list);
+      REMOVE (client->get_prop_replies, prop_list);
+
+      for (list = prop_list; list; list = list->next)
+	{
+	  SmProp *prop = (SmProp *) list->data;
+	  SmFreeProperty (prop);
+	}
+      g_slist_free (prop_list);
+    }
 }
+
+void
+send_properties (Client* client, GSList *prop_list)
+{
+  if (! client->get_prop_requests)
+    APPEND (client->get_prop_replies, prop_list);
+  else
+    {
+      GSList *list;
+      SmProp **props;
+      int i, len;
+      
+      len = g_slist_length (prop_list);
+      props = (SmProp**)calloc (sizeof(SmProp *), len);
+      
+      for (i = 0, list = prop_list; list; i++, list = list->next)
+	props[i] = list->data;
+      
+      SmsReturnProperties (client->connection, len, props);
+      free (props);      
+      
+      client->get_prop_requests--;
+    }
+}
+
 
 
 
@@ -885,18 +1257,18 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 
   if (shutting_down)
     {
-      *reasons  = g_strdup (_("A session shutdown is in progress."));
+      *reasons  = strdup (_("A session shutdown is in progress."));
       return 0;
     }
 
-  client = (Client*)malloc (sizeof(Client));
-  client->id = NULL;
-  client->connection = connection;
-  client->properties = NULL;
+  client = (Client*)calloc (1, sizeof(Client));
   client->priority = 50;
-  client->faked_id = FALSE;
+  client->connection = connection;
   client->attempts = 1;
   client->connect_time = time (NULL);
+
+  ice_set_clean_up_handler (SmsGetIceConnection (connection),
+			    (GDestroyNotify)client_clean_up, (gpointer)client);
 
   *maskp = 0;
 
@@ -968,73 +1340,9 @@ save_session (int save_type, gboolean shutdown, int interact_style,
 			  interact_style, fast, TRUE);
 }
 
-
-
 int
 shutdown_in_progress_p (void)
 {
   return save_state != MANAGER_IDLE && shutting_down;
 }
 
-
-
-/* This is called when an IO error occurs on some client connection.
-   This means the client has shut down in a losing way.  */
-void
-io_error_handler (IceConn ice_conn)
-{
-  Client *client;
-  gchar* program = NULL;
-  gchar* reason;
-
-  /* Find the client on any list.  */
-  client = find_client_by_connection (live_list, ice_conn);
-  if (! client)
-    client = find_client_by_connection (save_yourself_list, ice_conn);
-  if (! client)
-    client = find_client_by_connection (save_yourself_p2_list, ice_conn);
-  if (! client)
-    client = find_client_by_connection (save_finished_list, ice_conn);
-  if (! client)
-    client = find_client_by_connection (message_sent_list, ice_conn);
-
-  /* Try to work out who just departed this world ... */
-  if (client)
-    { 
-      if (! find_string_property (client, SmProgram, &program))
-	{
-	  int argc;
-	  char **argv;
-
-	  if (find_vector_property (client, SmRestartCommand, &argc, &argv))
-	    {
-	      program = strdup (argv[0]);
-	      free_vector (argc,argv);
-	    }
-	}
-    }
-  
-  if (program)
-    {
-      reason = 
-	g_strdup_printf (_("The Gnome Session Manager unexpectedly\n"
-			   "lost contact with program \"%s\"."), program);
-      free(program);
-    }
-  else
-    reason = g_strdup(_("The Gnome Session Manager unexpectedly\n"
-	       "lost contact with an unnamed program."));
-
-#if 0
-  /* stupid annoying useless message */	  
-  display_reasons (1, &reason);
-#endif
-
-  free (reason);
-  
-  /* if client were a gtk object... */
-  if (client)
-    {
-      close_connection (client->connection, (SmPointer)client, 0, NULL);
-    }
-}
