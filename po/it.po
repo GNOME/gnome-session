@@ -4,13 +4,70 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.11\n"
-"POT-Creation-Date: 2003-01-23 14:48+0100\n"
+"POT-Creation-Date: 2003-02-04 11:59+1300\n"
 "PO-Revision-Date: 2003-01-23 14:49+0100\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr "Permetti connessioni TCP"
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Per motivi di sicurezza, su piattaforma che utilizzano _IceTcpTransNoListen"
+"() (sistemi XFree96), gnome-session non ascolta per connessioni su porte "
+"TCP. Questa opzione permette connessioni da macchine remote (autorizzate. "
+"gnome-session dovrà essere riavviato per attivare questa caratteristica."
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Se abilitato, gnome-session chiederà conferma prima di terminare la sessione."
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Se abilitato, gnome-session salverà la sessione automaticamente. Altrimenti, "
+"la finestra di dialogo di uscita mostrerà una opzione per salvarla."
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr "Conferma uscita"
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+"Image preferita da utilizzare come schermata di avvio al momento di ingresso "
+"in GNOME"
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "Salva sessioni"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr "Mostra schermata di avvio"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "Mostra la schermata di avvio quando viene avviata la sessione"
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr "Immagine schermata di avvio"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
@@ -427,57 +484,6 @@ msgstr "Aggiungi Programma all'avvio"
 #: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Modifica programmi di avvio"
-
-#~ msgid "Allow TCP connections"
-#~ msgstr "Permetti connessioni TCP"
-
-#~ msgid ""
-#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
-#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
-#~ "ports. This option will allow connections from (authorized) remote hosts. "
-#~ "gnome-session must be restarted for this to take effect."
-#~ msgstr ""
-#~ "Per motivi di sicurezza, su piattaforma che utilizzano "
-#~ "_IceTcpTransNoListen() (sistemi XFree96), gnome-session non ascolta per "
-#~ "connessioni su porte TCP. Questa opzione permette connessioni da macchine "
-#~ "remote (autorizzate. gnome-session dovrà essere riavviato per attivare "
-#~ "questa caratteristica."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Se abilitato, gnome-session chiederà conferma prima di terminare la "
-#~ "sessione."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
-#~ "the logout dialog will have an option to save the session."
-#~ msgstr ""
-#~ "Se abilitato, gnome-session salverà la sessione automaticamente. "
-#~ "Altrimenti, la finestra di dialogo di uscita mostrerà una opzione per "
-#~ "salvarla."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Conferma uscita"
-
-#~ msgid ""
-#~ "Preferred Image to use for the splash screen when logging in to the GNOME "
-#~ "Desktop"
-#~ msgstr ""
-#~ "Image preferita da utilizzare come schermata di avvio al momento di "
-#~ "ingresso in GNOME"
-
-#~ msgid "Save sessions"
-#~ msgstr "Salva sessioni"
-
-#~ msgid "Show the splash screen"
-#~ msgstr "Mostra schermata di avvio"
-
-#~ msgid "Show the splash screen when the session starts up"
-#~ msgstr "Mostra la schermata di avvio quando viene avviata la sessione"
-
-#~ msgid "Splash Screen Image"
-#~ msgstr "Immagine schermata di avvio"
 
 #~ msgid "Audio Settings"
 #~ msgstr "Impostazioni audio"
