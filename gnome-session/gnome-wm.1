@@ -31,14 +31,10 @@ The \fIgnome-wm\fP program uses the value of the
 .B WINDOW_MANAGER 
 environment variable to let the user override the configured window
 manager. 
-.SH FILES
+.SH PERSISTENT SETTINGS 
 The program stores the current selection of a window manager in the
-~/.gnome/default.wm file, this file has the following format:
-.PP
-.nf
-[Default]
-WM=path-to-wm
-.fi
+gconf key
+.B /desktop/gnome/applications/window_manager/default
 .SH SEE ALSO
 .BR gnome-session(1), default.session(5)
 .SH BUGS

@@ -7,9 +7,6 @@
 # the first one that is found in the users's PATH
 #
 
-# Directory for storing user-specific gnome data
-DOT_GNOME=.gnome2
-
 # sm-client-id value
 SMID=
 # default-wm value
@@ -84,17 +81,7 @@ if [ ! -z "$SMID" ] ; then
 fi
 
 # Store the selected WM so the wm-properties-capplet can find it
-
-if [ ! -d $HOME/$DOT_GNOME ] ; then
-  mkdir $HOME/$DOT_GNOME
-  chmod 700 $HOME/$DOT_GNOME
-fi
-
-rm -f $HOME/$DOT_GNOME/default.wm
-cat > $HOME/$DOT_GNOME/default.wm <<EOF
-[Default]
-WM=$WINDOW_MANAGER
-EOF
+gconftool-2 -t string -s "/desktop/gnome/applications/window_manager/default" $WINDOW_MANAGER
 
 exec $WINDOW_MANAGER $OPT1 $OPT2
 
