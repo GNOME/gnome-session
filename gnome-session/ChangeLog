@@ -1,3 +1,8 @@
+1999-03-17  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
+
+	* manager.c (free_client): use g_free() to free client->id instead
+	of free(). It is a value returned by gnome_config_get_string().
+
 Wed Mar 17 11:48:11 1999  Owen Taylor  <otaylor@redhat.com>
 
 	* Makefile.am (default_DATA): Install default.session

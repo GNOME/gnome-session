@@ -224,7 +224,7 @@ free_client (Client *client)
     return;
 
   if (client->id)
-    free (client->id);
+    g_free (client->id);
 
   if (client->handle)
     command_handle_free (client->handle);
