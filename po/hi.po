@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2003-03-21 18:43+0530\n"
-"PO-Revision-Date: 2003-02-21 12:55+0530\n"
-"Last-Translator: Anurag Seetha <anuragseetha@yahoo.com>\n"
+"POT-Creation-Date: 2003-04-22 03:56+0200\n"
+"PO-Revision-Date: 2003-04-23 13:27+0530\n"
+"Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-hindi-gnome@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,36 +20,23 @@ msgid "Allow TCP connections"
 msgstr "टीसीपी जोड लागू करे"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"सुरक्षा कारणवश जिन प्लैटफॉर्म पर _IceTcpTransNoListed() (XFree86 सिस्टम) है, वहां "
-"जीनोम सत्र टीसीपी जोड के लिए नही सुनेगा स्वदूर होस्ट (मर्यादित) से जोड बनाने के लिए यह "
-"विकल्प है. इसे लागू करने के लिए जीनोम सत्र पुनः प्रारंभ करें"
+msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
+msgstr "सुरक्षा कारणवश जिन प्लैटफॉर्म पर _IceTcpTransNoListed() (XFree86 सिस्टम) है, वहां जीनोम सत्र टीसीपी जोड के लिए नही सुनेगा स्वदूर होस्ट (मर्यादित) से जोड बनाने के लिए यह विकल्प है. इसे लागू करने के लिए जीनोम सत्र पुनः प्रारंभ करें"
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "अगर सक्षम हे तो जीनोम सत्र वंद होने से पहले उपयोगकर्ता को टोकेगा"
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"अगर सक्षम हे तो जीनोम सत्र स्वतः सेग्रहित होगा, नहीं तोलॉगउट डॉयलॉग में सत्र संग्रहित "
-"करने का विकल्प होगा"
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "अगर सक्षम हे तो जीनोम सत्र स्वतः सेग्रहित होगा, नहीं तोलॉगउट डॉयलॉग में सत्र संग्रहित करने का विकल्प होगा"
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
 msgstr "लॉगाउट संदेश"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+msgid "Preferred Image to use for the splash screen when logging in to the GNOME Desktop"
 msgstr "वह चित्र जिसे जीनोम डेस्कटॉप में लॉगिन करते समय स्पलेश सक्रीन में दिखाना हे"
 
 # gnome-session/session-properties.c:272
@@ -71,7 +58,8 @@ msgid "Splash Screen Image"
 msgstr "स्पलेश सक्रीन चित्र"
 
 # gnome-session/gsm-client-editor.c:94
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
+#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/startup-programs.c:310
 msgid "_Order:"
 msgstr "क्रम: (_O)"
 
@@ -211,8 +199,7 @@ msgstr "प्रत्येक लाॅिगन पर हमेशा प�
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
 "गनोम समायोजन डीमोन चालू करने मे त्रुटि थी।\n"
 "\n"
@@ -265,12 +252,12 @@ msgstr "कार्य"
 # gnome-session/logout.c:274
 #: gnome-session/logout.c:326
 msgid "_Log Out"
-msgstr "लाॅग-आउट (_L)"
+msgstr "लाग-आउट (_L)"
 
 # gnome-session/logout.c:277
 #: gnome-session/logout.c:329
 msgid "Sh_ut Down"
-msgstr "शट-डाउन (बंद करें)"
+msgstr "शट-डाउन (बंद करें)(_u)"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
@@ -309,9 +296,7 @@ msgid ""
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
-msgstr ""
-"%s के लिए इन्टरनेट पते को सही खोजा जा सका /nइससे जीनोम के सही प्रकार कार्य करने में "
-"बाधा उत्पन्न हुई है \n"
+msgstr "%s के लिए इन्टरनेट पते को नही खोजा जा सका /nइससे जीनोम के सही प्रकार कार्य करने में बाधा उत्पन्न हुई है \n"
 "यह संभव है कि फाइल /ect/hosts में %s जोड़ने पर इस समस्या को ठीक किया जा सके"
 
 #: gnome-session/main.c:219
@@ -367,7 +352,7 @@ msgstr "सत्र को समाप्त करें"
 # gnome-session/save-session.c:44
 #: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
-msgstr "डाॅयलाग बाक्स का प्रयोग करें"
+msgstr "डायलाग बाक्स का प्रयोग करें"
 
 # gnome-session/save-session.c:112
 #: gnome-session/save-session.c:156
@@ -382,7 +367,7 @@ msgstr "वर्तमान सत्र संग्रहित करें
 # gnome-session/save-session.desktop.in.h:2
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
-msgstr "डेस्कटाॅप की वर्तमान अवस्था को संग्रहित करें"
+msgstr "डेस्कटाप की वर्तमान अवस्था को संग्रहित करें"
 
 # gnome-session/session-names.c:127
 #: gnome-session/session-names.c:139
@@ -412,11 +397,9 @@ msgstr "जोड़ें (_E)"
 
 # gnome-session/session-properties-capplet.c:166
 #: gnome-session/session-properties-capplet.c:172
-msgid ""
-"Some changes are not saved.\n"
+msgid "Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr ""
-"कुछ परिवर्तन संग्रहित नहीं किए गए हैं \n"
+msgstr "कुछ परिवर्तन संग्रहित नहीं किए गए हैं \n"
 " क्या आप इसी अवस्था में बाहर निकलना चाहते हैं ?"
 
 # gnome-session/session-properties.c:272
@@ -562,203 +545,3 @@ msgstr "प्रारंभिक प्रोग्राम में जो
 msgid "Edit Startup Program"
 msgstr "प्रारंभिक प्रोग्राम में संशोधन करें"
 
-# gnome-session/splash.c:59
-#~ msgid "Audio Settings"
-#~ msgstr "आॅडियो समायोजन"
-
-# gnome-session/splash.c:60 gnome-session/splash.c:61
-#~ msgid "Screensaver"
-#~ msgstr "स्क्रीन सेवर"
-
-# gnome-session/splash.c:65
-#~ msgid "Background Settings"
-#~ msgstr "पार्श्व समायोजन"
-
-# gnome-session/splash.c:67
-#~ msgid "Mouse Settings"
-#~ msgstr "माउस समायोजन"
-
-# gnome-session/session-properties-capplet.c:360
-# gnome-session/startup-programs.c:298
-#~ msgid "Priority"
-#~ msgstr "प्राथमिकताएं"
-
-# gnome-session/session-properties-capplet.c:360
-# gnome-session/startup-programs.c:298
-#~ msgid "_Priority:"
-#~ msgstr "प्राथमिकताएं:"
-
-# gnome-session/splash.c:293
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "जीनोम प्रारंभ हो रहा है: %s"
-
-# gnome-session/splash.c:295
-#~ msgid "Starting GNOME: done"
-#~ msgstr "जीनोम प्रारंभ हो चुका है"
-
-# gnome-session/splash.c:439
-#~ msgid "GNOME"
-#~ msgstr "जीनोम"
-
-# gnome-session/splash.c:461
-#~ msgid "Starting GNOME"
-#~ msgstr "जीनोम प्रारंभ हो रहा है"
-
-# gnome-session/gnome-login-check.c:130
-#~ msgid "GNOME Login"
-#~ msgstr "जीनोम लाॅगिन"
-
-# gnome-session/gnome-login-check.c:130
-#~ msgid "Login"
-#~ msgstr "लाॅगिन"
-
-# gnome-session/gnome-login-check.c:157
-#~ msgid "Start with default programs"
-#~ msgstr "डीफाल्ट प्रोग्राम से प्रारंभ करें"
-
-# gnome-session/gnome-login-check.c:161
-#~ msgid "Reset all user settings"
-#~ msgstr "उपयोगकर्ता के समस्त समायोजन को बदलें"
-
-# gnome-session/gnome-login-check.c:172
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "%s के लिए उपयोगकर्ता द्वारा समायोजित जीनोम समायोजन को वास्तब में बदलें ?"
-
-# gnome-session/gnome-login-check.c:204
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "डायरेक्टरी /tmp/orbit-%s वर्तमान उपयोगकर्ता, %s द्वारा उपयोग नहीं की जा सकती इस "
-#~ "डायरेक्टरी के मालिकाना हक को सही करें"
-
-# gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
-#~ msgid "Continue"
-#~ msgstr "आगे करें"
-
-# gnome-session/gnome-login-check.c:254
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "आपकी libICE के संस्करण में त्रुटि है जिसके कारण gnome-session\n"
-#~ "सही प्रकार से कार्य नहीं कर रहा है यदि आप सोलोरिस प्रयोग कर रहे हैं \n"
-#~ "तब या तो आप सोलोरिस पैच #108376-16 को अपडेट करें या आप मूल सोलोरिस 7 की libICE."
-#~ "so.6 फाईल का प्रयोग करें \n"
-#~ "आप इस फाइल को /usr/openwin/lib में काॅपी करें\n"
-#~ "(इसके लिए एन्डी रिट्ज को इस त्रुटि की सूचना देने के लिए धन्यवाद)\n"
-#~ "आपका जीनोम सत्र इस डाॅयलाग बाक्स को बन्द करने पर समाप्त हो जाएगा"
-
-# gnome-session/gsm-client-row.c:53
-#~ msgid "Respawn"
-#~ msgstr "पुन:जनित"
-
-# gnome-session/logout.c:231
-#~ msgid "Really log out?"
-#~ msgstr "क्या वास्तव में लाॅगआउट होना है?"
-
-# gnome-session/logout.c:280
-#~ msgid "Reboot"
-#~ msgstr "पुन: बूट करें"
-
-# gnome-session/session-properties-capplet.c:191
-#~ msgid "Session properties"
-#~ msgstr "सत्र के गुणधर्म"
-
-# gnome-session/session-properties-capplet.c:217
-#~ msgid "Options"
-#~ msgstr "विकल्प"
-
-# gnome-session/session-properties-capplet.c:273
-#~ msgid "Choose Current Session"
-#~ msgstr "वर्तमान सत्र का चयन करें"
-
-# gnome-session/session-properties-capplet.c:299
-# gnome-session/session-properties-capplet.c:371
-#~ msgid "Add..."
-#~ msgstr "सत्र का नाम...."
-
-# gnome-session/session-properties-capplet.c:307
-# gnome-session/session-properties-capplet.c:381
-#~ msgid "Delete"
-#~ msgstr "नष्ट करें"
-
-# gnome-session/session-properties-capplet.c:343
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "प्रारंभिक प्रोग्राम सत्र द्वारा प्रबंधित नहीं है"
-
-# gnome-session/session-properties.c:331
-#~ msgid "Session Chooser"
-#~ msgstr "सत्र चुनने वाला"
-
-# gnome-session/session-properties.c:334
-#~ msgid "Start Session"
-#~ msgstr "सत्र प्रारंभ"
-
-# gnome-session/session-properties.c:337
-#~ msgid "Cancel Login"
-#~ msgstr "लाॅगइन निरस्त"
-
-# gnome-session/session-properties.desktop.in.h:1
-#~ msgid "Session Properties & Startup Programs"
-#~ msgstr "सत्र की विशेषताएं एवं प्रारंभिक प्रोग्राम"
-
-# gnome-session/startup-programs.c:313
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ " छोटे मानों के प्रोग्राम बड़े मानों के प्रोग्रामों से पहले प्रारंभ होंगे डिफाल्ट मान OK होना "
-#~ "चाहिए"
-
-# gnome-session/save-session.c:120
-#~ msgid "Could not connect to gnome-session"
-#~ msgstr "जीनोम-सत्र से संपर्क स्थापित नहीं हो पा रहा है"
-
-# gnome-session/session-properties.c:101
-#~ msgid "Remove"
-#~ msgstr "हटाएं"
-
-# gnome-session/session-properties.c:170
-#~ msgid "Try"
-#~ msgstr "प्रयत्न करें"
-
-# gnome-session/session-properties.c:176
-#~ msgid "OK"
-#~ msgstr "ओ.के."
-
-# gnome-session/session-properties.c:179
-#~ msgid "Cancel"
-#~ msgstr "निरस्त"
-
-# gnome-session/session-properties.c:182
-#~ msgid "Help"
-#~ msgstr "सहायता"
-
-# gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-#~ msgid "Session Properties"
-#~ msgstr "सत्र के गुणधर्म (विशेषताएं)"
-
-# gnome-session/session.desktop.in.h:1
-#~ msgid "Current session managed programs"
-#~ msgstr "वर्तमान सत्र द्वारा प्रबंधित प्रोग्राम"
-
-# gnome-session/splash.c:64
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Enlightenment विन्डो मैनेजर"
-
-# gnome-session/splash.c:66
-#~ msgid "Keyboard Bell"
-#~ msgstr "की-बोर्ड घंटी"
-
-# gnome-session/splash.c:72
-#~ msgid "Desktop"
-#~ msgstr "डेस्कटाॅप"
