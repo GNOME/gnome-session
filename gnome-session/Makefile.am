@@ -15,3 +15,7 @@ main.c prop.c save.c
 save_session_SOURCES = save-session.c
 
 session_properties_SOURCES = session-properties.c
+
+sysdir = $(datadir)/apps/System
+sys_DATA = session.desktop
+EXTRA_DIST = $(sys_DATA)
