@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.21\n"
-"POT-Creation-Date: 2002-07-04 17:42+0200\n"
-"PO-Revision-Date: 2002-07-04 17:45+0200\n"
-"Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
+"POT-Creation-Date: 2002-07-13 01:06+0200\n"
+"PO-Revision-Date: 2002-07-13 01:07+0200\n"
+"Last-Translator: Christophe Fergeau <teuf@users.sourceforge.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,8 +97,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Non affecté par les déconnexions mais peut mourir."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Re-créer"
+msgid "Restart"
+msgstr "Redémarrer"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -170,27 +170,27 @@ msgstr "Il y a eu une erreur d'activation inconnue."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Le démon des préférences a redémarré trop de fois."
 
-#: gnome-session/logout.c:225
+#: gnome-session/logout.c:234
 msgid "Are you sure you want to log out?"
 msgstr "Voulez-vous vraiment fermer cette session ?"
 
-#: gnome-session/logout.c:242
+#: gnome-session/logout.c:251
 msgid "_Save current setup"
 msgstr "_Enregistrer la configuration actuelle"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Action"
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:279
 msgid "_Log Out"
 msgstr "_Clore la session"
 
-#: gnome-session/logout.c:273
+#: gnome-session/logout.c:282
 msgid "Sh_ut Down"
 msgstr "É_teindre"
 
-#: gnome-session/logout.c:276
+#: gnome-session/logout.c:285
 msgid "_Restart the computer"
 msgstr "_Redémarrer l'ordinateur"
 
@@ -262,8 +262,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Vous pouvez attendre sa réponse ou l'enlever."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
-msgstr "Réinitialisation abandonnée à la suite d'échecs."
+msgid "Restart abandoned due to failures."
+msgstr "Redémarrage abandonné à la suite d'échecs."
 
 #: gnome-session/manager.c:1683
 msgid "A session shutdown is in progress."
@@ -305,7 +305,11 @@ msgstr "Ajouter une nouvelle session"
 msgid "Edit session name"
 msgstr "Éditer le nom de session"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+msgid "_Edit"
+msgstr "_Éditer"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -313,97 +317,70 @@ msgstr ""
 "Certaines modifications ne sont pas enregistrés.\n"
 "Voulez-vous vraiment quitter ?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Propriétés de la session"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "Sessions"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Options"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
-msgstr "Afficher l'écran d'accueil à la connexion"
-
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
-msgstr "Demande à la déconnexion"
-
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
-msgstr "Sauvegarder automatiquement les changements à la session"
+#: gnome-session/session-properties-capplet.c:230
+msgid "Show splash screen on _login"
+msgstr "Afficher l'écran d'accueil à la _connexion"
 
 #: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Ces changements prennent effet immédiatement</i>"
+msgid "_Prompt on logout"
+msgstr "_Demander à la déconnexion"
 
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Choisissez la session courante"
+#: gnome-session/session-properties-capplet.c:252
+msgid "Automatically save chan_ges to session"
+msgstr "_Enregistrer automatiquement les changements de la session"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Nom de session"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Ajouter..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Éditer..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Supprimer"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Options de session"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Démarrage des programmes non gérés par la session"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Priorité"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Commande"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Programmes au démarrage"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Session en cours"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Priorité"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Commande"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Programmes au démarrage"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Supprimer le client sélectionné de la session."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "Appliquer les changements à la session courante"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "La liste des programmes de la session."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "_Programmes en cours de fonctionnement :"
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Initialiser les paramètres de session"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Propriétés de la session & Programme au démarrage"
+msgid "Configure your sessions"
+msgstr "Paramètre vos sessions"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -466,30 +443,64 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Démarrage de GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+msgid "_Startup Command:"
+msgstr "Commande de _démarrage"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Commande de démarrage"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Les programmes avec les valeurs les plus petites sont démarrés avant ceux "
-"avec les valeurs les plus élévées.  Les valeurs par défaut devraient "
-"être correctes."
+#: gnome-session/startup-programs.c:306
+msgid "_Priority:"
+msgstr "_Priorité :"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "La commande de démarrage ne peut être vide"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Ajouter un programme de démarrage"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Éditer le programme de démarrage"
+
+#~ msgid "Respawn"
+#~ msgstr "Re-créer"
+
+#~ msgid "Session properties"
+#~ msgstr "Propriétés de la session"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Ces changements prennent effet immédiatement</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Choisissez la session courante"
+
+#~ msgid "Add..."
+#~ msgstr "Ajouter..."
+
+#~ msgid "Delete"
+#~ msgstr "Supprimer"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Démarrage des programmes non gérés par la session"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Propriétés de la session & Programme au démarrage"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Les programmes avec les valeurs les plus petites sont démarrés avant ceux "
+#~ "avec les valeurs les plus élévées.  Les valeurs par défaut devraient être "
+#~ "correctes."
 
 #~ msgid "GNOME Login"
 #~ msgstr "Connexion GNOME"
@@ -551,9 +562,6 @@ msgstr "Éditer le programme de démarrage"
 #~ msgid "Reboot"
 #~ msgstr "Redémarrer"
 
-#~ msgid "Session"
-#~ msgstr "Session"
-
 #~ msgid "Session Chooser"
 #~ msgstr "Sélecteur de session"
 
@@ -562,9 +570,6 @@ msgstr "Éditer le programme de démarrage"
 
 #~ msgid "Cancel Login"
 #~ msgstr "Annuler la connexion"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Parcourir les programmes en cours de fonctionnement..."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Ne peut se connecter à gnome-session"
@@ -589,9 +594,6 @@ msgstr "Éditer le programme de démarrage"
 
 #~ msgid "Try"
 #~ msgstr "Essai"
-
-#~ msgid "Revert"
-#~ msgstr "Enlever"
 
 #~ msgid "OK"
 #~ msgstr "Valider"
