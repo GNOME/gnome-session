@@ -35,7 +35,6 @@ static GSList* selector_list = NULL;
 
 /* If set, exec() this command on shutdown instead of exiting
  */
-static gint logout_command_argc = 0;
 static gchar **logout_command_argv = NULL;
 
 /* Counter for generating unique handles: */
@@ -279,18 +278,8 @@ cmp_args (gconstpointer a, gconstpointer b)
 void
 set_logout_command (char **command)
 {
-  int j;
-  if (logout_command_argv)
-    {
-      for (j = 0; j < logout_command_argc; j++)
-	g_free (logout_command_argv[j]);
-      g_free (logout_command_argv);
-    }
-  for (j = 0; command[j]; ++j) /**/;
-  logout_command_argv = g_new (gchar *, j + 1);
-  for (j = 0; command[j]; ++j)
-    logout_command_argv[j] = g_strdup (command[j]);
-  logout_command_argv[j] = NULL;
+  g_strfreev (logout_command_argv);
+  logout_command_argv = g_strdupv (command);
 }
 
 void
