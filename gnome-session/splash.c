@@ -216,6 +216,25 @@ check_icon_fit (void)
 	}
 }
 
+static void
+redo_shadow (SplashData *sd)
+{
+	double x, y, width, height;
+	gtk_object_get (GTK_OBJECT (sd->label),
+			"x", &x,
+			"y", &y,
+			"text_width", &width,
+			"text_height", &height,
+			NULL);
+	gnome_canvas_item_set (sd->label_shadow,
+			       "x1", x - (width/2.0) - 3.0,
+			       "y1", y - (height/2.0) - 1.0,
+			       "x2", x + (width/2.0) + 3.0,
+			       "y2", y + (height/2.0) + 1.0,
+			       NULL);
+}
+
+
 static gboolean
 icon_cb (gpointer data)
 {
@@ -281,7 +300,7 @@ icon_cb (gpointer data)
   }
 
   gnome_canvas_item_set (sd->label, "text", msg, NULL);
-  gnome_canvas_item_set (sd->label_shadow, "text", msg, NULL);
+  redo_shadow (sd);
 
   g_free (msg);
   g_free (text);
@@ -438,13 +457,13 @@ start_splash (gfloat max)
     }
 
     sd->label_shadow = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
-					      GNOME_TYPE_CANVAS_TEXT,
-					      "text", _("Starting GNOME"),
-					      "x", (gdouble)(width / 2 + 1.0),
-					      "y", (gdouble)(height - 7.5 + 1.0),
-					      "fontset", _("-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"),
-					      "anchor", GTK_ANCHOR_CENTER,
-					      "fill_color", "black",
+					      GNOME_TYPE_CANVAS_RECT,
+					      /* fake */
+					      "x1", (gdouble)0.0,
+					      "y1", (gdouble)0.0,
+					      "x2", (gdouble)1.0,
+					      "y2", (gdouble)1.0,
+					      "fill_color_rgba", 0x00000080,
 					      NULL);
     sd->label = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				       GNOME_TYPE_CANVAS_TEXT,
@@ -455,6 +474,7 @@ start_splash (gfloat max)
 				       "anchor", GTK_ANCHOR_CENTER,
 				       "fill_color", "white",
 				       NULL);
+    redo_shadow (sd);
   }
 
   gtk_widget_show_all (sd->dialog);
