@@ -441,6 +441,23 @@ purge (gpointer data)
   return 0;
 }
 
+static void
+reincarnate_client (Client *old_client, Client *new_client)
+{
+  new_client->properties        = old_client->properties;
+  new_client->priority          = old_client->priority;
+  new_client->match_rule        = old_client->match_rule;
+  new_client->attempts          = old_client->attempts;
+  new_client->connect_time      = old_client->connect_time;
+  new_client->command_data      = old_client->command_data;
+  
+  old_client->properties = NULL;
+  if (old_client->handle)
+    new_client->handle = command_handle_reassign (old_client->handle, new_client);
+  old_client->handle = NULL;
+  free_client (old_client);	  
+}
+
 /* We use the SmRestartCommand to start up clients read from session
  * files even when sessions are being merged so that we can match
  * the saved SmProperties against the registering clients.
@@ -650,17 +667,7 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
       else
 	REMOVE (pending_list, offspring);
 
-      client->properties        = offspring->properties;
-      client->priority          = offspring->priority;
-      client->match_rule        = offspring->match_rule;
-      client->attempts          = offspring->attempts;
-      client->connect_time      = offspring->connect_time;
-      client->command_data      = offspring->command_data;
-
-      offspring->properties = NULL;
-      client->handle = command_handle_reassign (offspring->handle, client);
-      offspring->handle = NULL;
-      free_client (offspring);
+      reincarnate_client (offspring, client);
 
       if (client->match_rule == MATCH_FAKE_ID ||
 	  find_client_by_id (live_list, previous_id) ||
@@ -1231,18 +1238,8 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 
       if (offspring)
 	{
-	  client->properties        = offspring->properties;
-	  client->priority          = offspring->priority;
-	  client->match_rule        = offspring->match_rule;
-	  client->attempts          = offspring->attempts;
-	  client->connect_time      = offspring->connect_time;
-	  client->command_data      = offspring->command_data;
-	  
-	  offspring->properties = NULL;
-	  client->handle = command_handle_reassign (offspring->handle, client);
+	  reincarnate_client (offspring, client);
 	  client->match_rule = MATCH_DONE;
-	  offspring->handle = NULL;
-	  free_client (offspring);	  
 	}
       else
 	client->handle = command_handle_new (client);

@@ -1,3 +1,14 @@
+Wed Jun 16 09:28:48 1999  Owen Taylor  <otaylor@redhat.com>
+
+	* manager.c (reincarnate_client): Account for the
+	fact that a client that has not yet had a handle
+	assigned to it may be restarted if it dies during
+	initialization. (Fixes problem where control-C'ing
+	gmc while it was waiting for the metadata lock
+	would kill gnome-session)
+
+	Split some common code off into a separate function. 
+
 1999-05-20  Martin Baulig  <martin@home-of-linux.org>
 
 	* ice.c (startup_clean_ice): New static function. After an unclean
