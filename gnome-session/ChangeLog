@@ -1,4 +1,21 @@
+2002-07-30  jacob berkman  <jacob@ximian.com>
+
+	* session-properties-capplet.c (apply): don't write the "state"
+	anymore - this is just for the list of apps
+	(spc_write_state): make non-static for session-names.c to use
+
+	* startup-programs.c (startup_list_add_dialog): 
+	(startup_list_edit_dialog): 
+	(startup_list_delete): 
+
+	* session-names.c (session_list_add_dialog): 
+	(session_list_delete): 
+	(session_list_edit_dialog): write the state
+
+	patch from stephen browne for bug #88419
+
 2002-07-26  Arvind Samptur <arvind.samptur@wipro.com>
+
 	* main.c Increased the wait period for clients to save
 	from 10 to 30 seconds. Solves the problem of panel
 	not coming up the first time for new users.
