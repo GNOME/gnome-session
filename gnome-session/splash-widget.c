@@ -187,11 +187,7 @@ static void
 splash_widget_size_allocate (GtkWidget     *widget,
 			     GtkAllocation *allocation)
 {
-	gint xfpad, yfpad;
 	SplashWidget *sw = SPLASH_WIDGET (widget);
-
-	xfpad = widget->style->xthickness;
-	yfpad = widget->style->ythickness;
 
 	sw->image_bounds = *allocation;
 
@@ -214,12 +210,8 @@ splash_widget_size_request (GtkWidget      *widget,
 		requisition->width = SPLASH_BASE_WIDTH;
 		requisition->height = SPLASH_BASE_HEIGHT;
 	} else {
-		/* FIXME: need more padding */
 		requisition->width  = gdk_pixbuf_get_width  (sw->background);
 		requisition->height = gdk_pixbuf_get_height (sw->background);
-
-		requisition->width  += widget->style->xthickness * 2;
-		requisition->height += widget->style->ythickness * 2;
 	}
 }
 
