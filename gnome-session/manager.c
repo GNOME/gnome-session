@@ -130,8 +130,6 @@ gchar   *events[]       = { GsmInactive, GsmInactive,
 			    GsmSave, GsmSave, 
 			    GsmConnected, NULL };
 
-static gint compare_interact_request (gconstpointer a, gconstpointer b);
-
 /* whether our current save is global */
 static gboolean global_save;
 
@@ -818,13 +816,6 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
   return 1; 
 }
 
-
-static gint		
-compare_interact_request (gconstpointer a, gconstpointer b)
-{
-  return a > b;
-}
-
 static void
 interact_request (SmsConn connection, SmPointer data, int dialog_type)
 {
@@ -842,9 +833,8 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
     {
       gboolean send = !interact_list;
 
-      /* Try to bunch up the interactions for each client */
-      interact_list = g_slist_insert_sorted (interact_list, client, 
-					     compare_interact_request);
+      interact_list = g_slist_append (interact_list, client);
+
       if (send) 
 	{
 	  save_state = (save_state == SAVE_PHASE_1) 
