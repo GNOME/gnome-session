@@ -22,8 +22,9 @@ You can optionally specify a specific session name to restore.
 applications as well as any X11R6 SM compliant.
 .PP
 \fIgnome-session\fP uses the contents of the  ~/.gnome/session file
-for starting up.  Various default values are provided in case the file
-does not exist.
+for starting up as specified by the "Current Sesssion" key in the
+~/.gnome/session-options file.  Various default values are 
+provided in case the file entry does not exist.
 .PP
 If the session file does not exist, \fIgnome-session\fP will use the
 contents of the 
@@ -32,21 +33,28 @@ file.
 .SH OPTIONS
 The following options are supported:
 .TP
+.I "--choose-session=ARG"
+User can specify a session to load, as opposed to the session 
+specified in the ~/.gnome/session-options file. If that entry
+does not exist in the ~/.gnome/session file (or if that file
+doesn't exist), it will use the default session and all saves
+to that session will be to the new session name.
+.TP
 .I "--failsafe"
 Fail safe operations mode: only reads saved sessions from the
 default.session file.
 .TP
-.I "--purge-delay"
+.I "--purge-delay=ARG"
 The number of millisecond that \fIgnome-session\fP will wait for
 clients to register, if you use 0 it will wait forever (default value:
 30,000 milliseconds).
 .TP
-.I "--warn-delay"
+.I "--warn-delay=ARG"
 The number of millisecond that \fIgnome-session\fP will wait for
 clients to respond, if you use 0 it will wait forever (default value:
 10,000 milliseconds).
 .TP
-.I "--suicide-delay"
+.I "--suicide-delay=ARG"
 The number of millisecond that \fIgnome-session\fP will wait for
 clients to die, if you use 0 it will wait forever (default value:
 10,000 milliseconds).
@@ -69,7 +77,7 @@ This variable is set to the X display being used by
 this might be different from the setting of the environment variable
 when gnome-session is invoked.
 .SH SEE ALSO
-.BR default.session (5), gnome-login-check(1), save-session(1)
+.BR default.session (5), save-session(1)
 .SH BUGS
 If you find bugs in the \fIgnome-session\fP program, please report
 these using \fIbug-buddy\fP or the \fIgnome-bug\fP script included

@@ -1,3 +1,36 @@
+Mon Feb 5 2001 Glynn Foster <glynn.foster@sun.com>
+	
+	* Some gsm loving - just a quick cleanup, added headers 
+		* headers.h, logout.h, save.h, ice.h, prop.h
+ 		  remote.h, command.h	
+          Created single global variable gchar *session_name to 
+          point to the current session, which can be changed by
+          using gsm-protocol.
+
+	* Implemented basic multi-session support. gnome-session
+	  now supports --choose-session=ARG commandline option which
+          will override any value for the CurrentSession key. If ARG
+          doesn't exist in the session file, or if the value of the 
+          CurrentSession doesn't exist in the session file, then 
+          gnome-session will use the default but save to the given 
+          session name.
+
+	* Moved Current Session indicator to ~/.gnome/session-options
+          file, along with new key/value pair AutoSave [which was more
+	  intuitive that TrashMode
+
+	* Incoporated capplet code into gnome-core/gsm and implemented
+	  multi-session chooser [still buggy - doesn't do the try and
+	  revert buttons properly, doesn't change the global session 
+          pointer using the gsm_protocol]
+		* session-properties-capplet.c, session-properties-capplet.h,
+		  session-properties.desktop, startup-programs.c,
+		  session-names.c
+
+	* Updated the man page, changed session-properties.desktop file
+           
+
+
 Wed Jan 10 11:08:06 2001  George Lebl <jirka@5z.com>
 
 	Applying the patches from helix rpms, redhat stuff and other

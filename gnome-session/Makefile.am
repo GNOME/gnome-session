@@ -7,7 +7,7 @@ defaultdir = $(datadir)/gnome
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
-	-DDEFAULTDIR="\"$(defaultdir)\"" @CANVAS_PIXBUF_CFLAGS@
+	-DDEFAULTDIR="\"$(defaultdir)\"" @CANVAS_PIXBUF_CFLAGS@ 
 
 LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
@@ -15,20 +15,30 @@ sysdir = $(datadir)/apps/Settings
 
 if SESSION
 noinst_DATA = session.desktop
-bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties gnome-libice-check
+bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties gnome-libice-check session-properties-capplet
 endif
 
-gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
-	command.c session.h remote.c logout.c splash.h splash.c
+gnome_session_SOURCES = manager.c manager.h ice.c ice.h main.c prop.c prop.h \
+	save.c save.h command.c command.h session.h remote.c remote.h \
+	logout.c logout.h splash.c splash.h gsm-protocol.c gsm-protocol.h \
+	headers.h
 
 gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@ @CANVAS_PIXBUF_LIBS@
 
-save_session_SOURCES = save-session.c gsm-protocol.c
+save_session_SOURCES = save-session.c gsm-protocol.c gsm-protocol.h
 
 session_properties_SOURCES = session-properties.c \
 gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
 gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
 session.h
+
+session_properties_capplet_SOURCES = session-properties-capplet.c \
+session-properties-capplet.h session.h startup-programs.c session-names.c \
+gsm-protocol.c gsm-protocol.h gsm-client-list.c gsm-client-list.h \
+gsm-client-row.c gsm-client-row.h gsm-client-editor.c gsm-client-editor.h 
+
+session_properties_capplet_LDADD = $(GNOME_LIBDIR) $(ORB_LIBS) \
+$(GNOMEUI_LIBS) $(INTLLIBS) -lgnorba -lcapplet
 
 gnome_login_check_SOURCES = gnome-login-check.c
 
@@ -40,6 +50,18 @@ default_DATA = default.session default.wm
 
 desktopdir = $(datadir)/gnome/apps/Settings/Session/
 desktop_DATA = save-session.desktop session.desktop
+
+sysdir = $(datadir)/control-center/Session
+
+if SESSION
+sys_DATA = session-properties.desktop
+endif
+
+settingsdir = $(datadir)/gnome/apps/Settings/Session
+
+if SESSION
+settings_DATA = session-properties.desktop
+endif
 
 default.session: default.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
@@ -65,6 +87,7 @@ EXTRA_DIST =			\
 	save-session.desktop 	\
 	session.desktop		\
 	$(manuals)		\
-	gnome-splash.png
+	gnome-splash.png	\
+	session-properties.desktop
 
 

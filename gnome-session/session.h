@@ -150,9 +150,9 @@
 /* Returns an array of GsmReadSession commands to read the clients in each
  * of the sessions that gnome-session has saved in the past. */ 
 
-#define GsmGetLastSession        "GetLastSession"
-/* Returns a (bogus) GsmGetLastSession command which has the name of the 
- * session which gnome-session would load with no command line arguments and 
+#define GsmGetCurrentSession	 "GetCurrentSession"
+/* Returns a GsmCurrentSession command which has the name of the 
+ * session which gnome-session would load with no command line arguments and
  * no chooser as its only argument. */
 
 #define GsmSetSessionName        "SetSessionName"
@@ -181,9 +181,7 @@
  * Sessions are also freed when GsmStartSession is called or when the client
  * which read the session disconnects or dies. */
 
-#define GsmTrashMode             "TrashMode"
-/* Set the trash mode of the session manager. Can be one of the
- * following:
- */
-   
+#define GsmAutoSaveMode		"AutoSaveMode"
+/* Set the autosave mode of the session manager. */
+
 #endif /* SESSION_H */

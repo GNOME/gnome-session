@@ -27,19 +27,16 @@
 #include <libgnomeui/libgnomeui.h>
 #include <libgnomeui/gnome-window-icon.h>
 
-#include "manager.h"
+#include "headers.h"
 #include "gsm-protocol.h"
 
 #include <X11/SM/SMlib.h>
 
 /* True if killing.  */
-static int zap = 0;
+static gboolean zap = FALSE;
 
 /* True if we should use dialog boxes */
-static int gui = 0; 
-
-/* True if the session manager is currently in trash mode */
-static int save_trashing = FALSE;
+static gboolean gui = FALSE; 
 
 static const struct poptOption options[] = {
   {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"),     NULL},
@@ -47,7 +44,7 @@ static const struct poptOption options[] = {
   {NULL,   '\0', 0, NULL, 0}
 };
 
-static int exit_status = 0;
+static gboolean exit_status = FALSE;
 
 /* The protocol object for communicating with the session */
 static GsmProtocol *protocol;
@@ -66,9 +63,6 @@ save_complete (GnomeClient* client, gpointer data)
   if (been_here) return;
     been_here = TRUE;
     
-  /* Set this back if we aren't shutting down */
-  if (save_trashing && !zap)
-    gsm_protocol_set_trash_mode (protocol, TRUE);
 
   exit_status = (data != NULL);
 
@@ -130,16 +124,9 @@ main (int argc, char *argv[])
    *
    * We ignore the resulting "last_session" signal.
    */
-  gsm_protocol_get_last_session (GSM_PROTOCOL (protocol));
+  gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
 	
-  gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  save_trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
-  gnome_config_pop_prefix ();
-
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
-
-  if (save_trashing)
-    gsm_protocol_set_trash_mode (protocol, FALSE);
 
   /* We could expose more of the arguments to the user if we wanted
      to.  Some of them aren't particularly useful.  Interestingly,

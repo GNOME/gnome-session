@@ -20,36 +20,25 @@
    Authors: Felix Bellaby */
 
 #include <gnome.h>
-#include "manager.h"
+
+#include "command.h"
 #include "session.h"
+#include "save.h"
+#include "prop.h"
 
 /* List of clients that are selecting events on our clients */
-GSList* selector_list = NULL;
+static GSList* selector_list = NULL;
+
+/* If set, exec() this command on shutdown instead of exiting
+ */
+static gint logout_command_argc = 0;
+static gchar **logout_command_argv = NULL;
 
 /* Counter for generating unique handles: */
 static guint handle;
 
 /* Hash table for handle lookups: */
 static GHashTable* handle_table = NULL;
-
-/* If set, exec() this command on shutdown instead of exiting
- */
-gint logout_command_argc = 0;
-gchar **logout_command_argv = NULL;
-
-typedef enum
-{
-  COMMAND_ACTIVE = 0,
-  COMMAND_HANDLE_WARNINGS,
-  COMMAND_INACTIVE
-} CommandState;
-
-/* Data maintained for clients that speak the _GSM_Command protocol: */
-struct _CommandData
-{
-  CommandState state;
-  GSList *sessions;
-};
 
 /* helper functions */
 static SmProp*
@@ -292,12 +281,6 @@ execute_logout (void)
     execvp (logout_command_argv[0], logout_command_argv);
 }
 
-extern GSList **client_lists[];
-extern gchar  *events[];
-extern GSList *zombie_list;
-extern GSList *purge_drop_list;
-extern GSList *purge_retain_list;
-
 static gint		
 cmp_args (gconstpointer a, gconstpointer b)
 {
@@ -323,7 +306,6 @@ set_logout_command (char **command)
     logout_command_argv[j] = g_strdup (command[j]);
   logout_command_argv[j] = NULL;
 }
-
 
 void
 command (Client* client, int nprops, SmProp** props)
@@ -353,13 +335,12 @@ command (Client* client, int nprops, SmProp** props)
       if (g_slist_find (selector_list, client))
 	client->command_data->state = COMMAND_HANDLE_WARNINGS;
     }
-  else if (!strcmp (prop->vals[0].value, GsmGetLastSession))
+   else if (!strcmp (prop->vals[0].value, GsmGetCurrentSession))
     {
-      GSList* prop_list = NULL;
-
-      APPEND (prop_list, make_command (GsmGetLastSession, 
-				       get_last_session ()));
-      send_properties (client, prop_list);      
+      GSList *prop_list = NULL;
+      APPEND (prop_list, make_command (GsmGetCurrentSession,
+					get_current_session()));
+      send_properties (client,prop_list);
     }
   else if (!strcmp (prop->vals[0].value, GsmListSessions))
     {
@@ -381,12 +362,12 @@ command (Client* client, int nprops, SmProp** props)
 		}
 	    }
 	}
+      else {
       iter = gnome_config_init_iterator_sections (DEFAULT_CONFIG_PREFIX);
 
       while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
-	{
-	  if (g_strcasecmp (section, CHOOSER_SESSION) &&
-	      g_strcasecmp (section, WARNER_SESSION))
+	{ 
+	  if (g_strcasecmp (section, WARNER_SESSION))
 	    {
 	      SmProp* tmp_prop = make_command (GsmReadSession, section);
 	      
@@ -396,6 +377,7 @@ command (Client* client, int nprops, SmProp** props)
 		SmFreeProperty (tmp_prop);
 	    }
 	}
+      }
       send_properties (client, prop_list);      
     }
   else if (!strcmp (prop->vals[0].value, GsmListClients))
@@ -451,10 +433,11 @@ command (Client* client, int nprops, SmProp** props)
       gchar* name;
       GSList* prop_list = NULL;
       
-      choosing = FALSE;
-      name = set_session_name (arg);
+      set_session_name (arg);
+      name = g_strdup(arg);
       
       APPEND (prop_list, make_command (GsmSetSessionName, name));
+      g_free(name);
       send_properties (client, prop_list);      
     }
   else if (arg && !strcmp (prop->vals[0].value, GsmReadSession))
@@ -615,17 +598,8 @@ command (Client* client, int nprops, SmProp** props)
 	  client_property (client1->handle, nprops - 1, &props[1]);
 	}
     }
-  else if (arg && !strcmp (prop->vals[0].value, GsmTrashMode))
-    {
-      if (prop->num_vals != 2)
- 	g_warning ("%s command needs exactly one argument",
- 		   GsmTrashMode);
-      else
- 	set_trash_mode (atoi(prop->vals[1].value) != 0);
-    }
- 
+  
   SmFreeProperty (prop);
   free (props);
   return;
 }
-

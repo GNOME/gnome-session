@@ -27,23 +27,24 @@
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 #include <libgnomeui/gnome-window-icon.h>
+
 #include "manager.h"
-#include "session.h"
+#include "ice.h"
+#include "save.h"
+#include "command.h"
 #include "splash.h"
 
-/* Parsing function.  */
+/* Flag indicating autosave - user won't be prompted on logout to 
+ * save the session */
+gboolean autosave = FALSE;
 
-/* The name of the session to load.  */
-static const char *session = NULL;
+/* Flag indicating the save tick box on logout - user when prompted at 
+ * log out as to  whether to save session or not - only applicable if
+ * autosave is FALSE */
+gboolean save_selected = FALSE;
 
-/* Flag indicating chooser should be used. */
-gboolean choosing = FALSE;
-
-/* Flag indicating that the normal CONFIG_PREFIX should not be used. */
+/* Flag indicating that the normal CONFIG_PREFIX should not be used */
 gboolean failsafe = FALSE;
-
-/* Flag indicating Trash session should be used for saves. */
-gboolean trashing = FALSE;
 
 /* Wait period for clients to register. */
 guint purge_delay = 30000;
@@ -54,8 +55,10 @@ guint warn_delay = 10000;
 /* Wait period for clients to die during shutdown. */
 guint suicide_delay = 10000;
 
+gchar *session_name = NULL;
+
 static const struct poptOption options[] = {
-  {"choose-session", '\0', POPT_ARG_NONE, &choosing, 0, N_("Start chooser and pick the session"), NULL},
+  {"choose-session", '\0', POPT_ARG_STRING, &session_name, 0, N_("Specify a session name to load"), NULL},
   {"failsafe", '\0', POPT_ARG_NONE, &failsafe, 0, N_("Only read saved sessions from the default.session file"), NULL},
   {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
   {"warn-delay", '\0', POPT_ARG_INT, &warn_delay, 0, N_("Millisecond period spent waiting for clients to respond (0=forever)"), NULL},
@@ -120,7 +123,6 @@ main (int argc, char *argv[])
   gboolean splashing;
   char *ep;
   poptContext ctx;
-  const char **leftovers;
   Session *the_session;
   
   set_lang();
@@ -142,9 +144,6 @@ main (int argc, char *argv[])
   gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
 			     &ctx);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
-  leftovers = poptGetArgs(ctx);
-  if(leftovers && leftovers[0]) 
-    session = leftovers[0];
   poptFreeContext(ctx);
 
   /* Make sure children see the right value for DISPLAY.  This is
@@ -156,30 +155,21 @@ main (int argc, char *argv[])
 
   /* Read in config options */
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  splashing = gnome_config_get_bool
-    (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
-  trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
+  splashing = gnome_config_get_bool (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
+  autosave = gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT);
+  
+  /* If the session name hasn't been specified from the command line */ 
+  if(session_name == NULL) {
+	/* If there is no key specified, fall back to the default session */	
+	session_name = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
+  }
+   
   gnome_config_pop_prefix ();
-
-  if (choosing || (session && !strcmp(session, CHOOSER_SESSION)))
-    {
-      session = CHOOSER_SESSION;
-      choosing = TRUE;
-    }
-
-  if (!session)
-    session = get_last_session ();
-
-  set_session_name (session);
-  the_session = read_session (session);
-
-  /* fall back to the default session if the session is empty */
-  if (!the_session->client_list)
-    {
-      free_session (the_session);
-      failsafe = TRUE;
-      the_session = read_session (session);
-    }
+   
+  if(failsafe)
+	session_name = DEFAULT_SESSION;
+  
+  the_session = read_session (session_name);
 
   if (splashing)
     start_splash (49.0);

@@ -342,7 +342,7 @@ create_dialog (void)
 
   gtk_signal_connect (GTK_OBJECT (protocol), "last_session", 
 		      GTK_SIGNAL_FUNC (last_session), NULL);
-  gsm_protocol_get_last_session (GSM_PROTOCOL (protocol));
+  gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
 
   gtk_signal_connect (GTK_OBJECT (protocol), "saved_sessions", 
 		      GTK_SIGNAL_FUNC (saved_sessions), NULL);

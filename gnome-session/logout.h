@@ -1,6 +1,7 @@
-/* splash.h - functions for splash screen
+/* logout.h - Ask user useful logout questions.
 
-   Copyright (C) 1999 Jacob Berkman
+   Written by Owen Taylor <otaylor@redhat.com>
+   Copyright (C) Red Hat
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -9,7 +10,7 @@
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
@@ -17,17 +18,11 @@
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
    02111-1307, USA.  */
 
-#ifndef SPLASH_H
-#define SPLASH_H
+#ifndef LOGOUT_H
+#define LOGOUT_H
 
-#include "headers.h"
+#include "headers.h" 
 
-BEGIN_GNOME_DECLS
+gboolean maybe_display_gui (void);
 
-void start_splash (gfloat max);
-void update_splash (const gchar *text, gfloat priority);
-void stop_splash (void);
-
-END_GNOME_DECLS
-
-#endif /* SPLASH_H */
+#endif /* LOGOUT_H */

@@ -24,45 +24,11 @@
 
 #include "libgnome/libgnome.h"
 #include "libgnomeui/gnome-client.h"
-#include "manager.h"
+
+#include "save.h"
 #include "session.h"
-
-
-
-/* Used to save xsm style string valued SmDiscardCommand properties. */
-#define XsmDiscardCommand SmDiscardCommand "[string]"
-
-/* Name of the base session. This must be set before we load any
-   clients (so that we can save them) and it must not be in use by
-   any other gnome-session process when we set it */
-static char *session_name = NULL;
-
-/* Real name of the current session if we are in trash mode 
- * (session name will be "Trash") */
-static char *saved_session_name = NULL;
-
-/* See manager.c */
-extern GSList* live_list;
-extern GSList* zombie_list;
-extern GSList* pending_list;
-extern GSList* purge_drop_list;
-extern GSList* purge_retain_list;
-
-typedef enum
-{
-  VECTOR,
-  STRING,
-  NUMBER
-} prop_type;
-
-/* This is used to hold a table of all properties we care to save.  */
-typedef struct
-{
-  const char *name;	      /* Name of property per protocol  */
-  prop_type type;	      
-  gboolean required;	      /* TRUE if required (by us, not by the spec). */
-  const char *save_name;      /* Name of property in config file */
-} propsave;
+#include "prop.h"
+#include "command.h"
 
 /* These are the only ones which we use at present but eventually we
  * will need to save all the properties (when they have been set)
@@ -84,14 +50,15 @@ static propsave properties[] =
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
 
-
 
-/* Write a single client to the current session.  Return 1 on success,
-   0 on failure.  */
-static int
+/* Write a single client to the current session.  Return TRUE on success,
+   FALSE on failure.  */
+
+static gint
 write_one_client (const Client *client)
 {
-  gint  i, vector_count, string_count, number_count, saved;
+  gint  i, vector_count, string_count, number_count;
+  gboolean saved;
   gint  argcs[NUM_PROPERTIES];
   gchar **vectors[NUM_PROPERTIES];
   gchar *strings[NUM_PROPERTIES];
@@ -101,11 +68,11 @@ write_one_client (const Client *client)
   gchar *number_names[NUM_PROPERTIES];
 
   /* Retrieve each property we care to save.  */
-  saved = 1;
+  saved = TRUE;
   vector_count = string_count = number_count = 0;
   for (i = 0; (i < NUM_PROPERTIES) && saved; ++i)
     {
-      gboolean found = 0;
+      gboolean found = FALSE;
 
       switch (properties[i].type)
 	{
@@ -141,7 +108,7 @@ write_one_client (const Client *client)
 	  break;
 	}
       if (properties[i].required && !found)
-	saved = 0;
+	saved = FALSE;
     }
 
   /* Write each property we found.  */
@@ -176,10 +143,7 @@ write_session (void)
 {
   char prefix[1024];
   int i = 0;
-  GSList *list;
-
-  if (choosing)
-    return;
+  GSList *list = NULL;
 
   delete_session (session_name);
 
@@ -250,7 +214,7 @@ write_session (void)
 }
 
 /* We need to read clients as well as writing them because the
- * protocol does not oblige clients to specify thier properties
+ * protocol does not oblige clients to specify their properties
  * every time that they run. */
 static void
 read_one_client (Client *client)
@@ -358,7 +322,7 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
 {
   int i, num_clients;
   char prefix[1024];
-  GSList* list = 0;
+  GSList* list = NULL;
 
   g_snprintf (prefix, sizeof(prefix), "%s%s/", file, session);
 
@@ -381,118 +345,69 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
   return list;
 }
 
-
 
 /* frees lock on session at shutdown */
 void 
 unlock_session (void)
 {
-  /* FIXME: release lock on the name */
-
-  g_free (session_name);
+  g_free(session_name);
   session_name = NULL;
 }
 
-/* Attempts to set the session name (the requested name may be locked).
- * Returns the name that has been assigned to the session. */
-gchar*
+/* Attempts to set the session name in options file (the requested 
+   name may be locked).  
+   Returns the name that has been assigned to the session. */
+
+void
 set_session_name (const char *name)
 {
   if (name)
     {
-      /* FIXME: generate a new unique name when the requested one is locked */
-      /* FIXME: establish lock on the name */
-
-      if (trashing)
-	{
-	  if (saved_session_name)
-	    g_free (saved_session_name);
-	  
-	  if (name)
-	    saved_session_name = g_strdup (name);
-	  
-	  name = TRASH_SESSION;
-	}
-
-      if (!choosing && !trashing)
-	{
-	  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-	  gnome_config_set_string (CURRENT_SESSION_KEY, name);
-	  gnome_config_pop_prefix ();
-	  gnome_config_sync ();
-	}
-      if (session_name)
-	unlock_session ();
-      session_name = g_strdup (name);
-    }
-  return session_name;
-}
-
-/* Set the trashing state */
-void
-set_trash_mode (gboolean new_mode)
-{
-  if (trashing != new_mode)
-    {
-      trashing = new_mode;
-
-      if (trashing)
-	set_session_name (session_name);
-      else if (saved_session_name)
-	set_session_name (saved_session_name);
+      gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+      gnome_config_set_string (CURRENT_SESSION_KEY, name);
+      gnome_config_pop_prefix ();
+      gnome_config_sync ();
     }
 }
-
-
 
 gchar*
-get_last_session (void)
+get_current_session(void) 
 {
-  gchar* last;
-
-  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-  last = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
-  gnome_config_pop_prefix ();
-  
-  return last;
+  if(session_name) {
+      g_warning("SAVE[%s]\n",session_name);
+      return session_name;
+  }
+  else {
+    gchar *current;
+    gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+    current = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
+    gnome_config_pop_prefix();
+    return current;
+  } 
 }
+
 
 /* Load a session from the config file by name. */
 Session*
 read_session (const char *name)
 {
   GSList *list = NULL;
-  gboolean try_last, try_def;
-  gchar* last = NULL;
   Session *session = g_new0 (Session, 1);
 
   session->name   = g_strdup (name);
   session->handle = command_handle_new ((gpointer)session);
  
-  try_last = try_def = (failsafe || session_name == NULL);
-
-  if (try_last)
-    {
-      last = get_last_session ();
-
-      if (! name)
-	name = last;
-    }
-
-  while (name)
-    {
-      if (!failsafe && (list = read_clients (CONFIG_PREFIX, name, MATCH_ID)))
-	break;
-	  
-      if ((list = read_clients (DEFAULT_CONFIG_PREFIX, name, MATCH_FAKE_ID)))
-	break;
-
-      try_last = try_last && (strcmp (name, last) != 0);
-      try_def  = try_def  && (strcmp (name, DEFAULT_SESSION) != 0);
-
-      name = try_last ? last : (try_def ? DEFAULT_SESSION : NULL);
-    }
-  g_free (last);
+  if(name) {
+    if(!g_strcasecmp(name,DEFAULT_SESSION))
+      list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
+    else     
+      list = read_clients (CONFIG_PREFIX,name,MATCH_ID);
+  } 
+  
+  /* If the the specified session from the command line doesn't
+   * exist, load the clients off the default session */
+  if(!list) 
+      list = read_clients (DEFAULT_CONFIG_PREFIX,DEFAULT_SESSION,MATCH_FAKE_ID);  
 
   session->client_list = list;
 
@@ -552,7 +467,6 @@ free_session (Session* session)
   session->name = NULL; /* sanity */
   g_free (session);
 }
-
 
 /* Delete a session. 
  * This needs to be done carefully because we have to discard stale

@@ -41,20 +41,18 @@
 #include <libgnomeui/gnome-ice.h>
 #include <libgnome/libgnome.h>
 
-#include "manager.h"
+#include "ice.h"
 #include "session.h"
-
-#define MAGIC_COOKIE_LEN 16
-#define ENVNAME "SESSION_MANAGER"
+#include "manager.h"
 
 /* Network ids.  */
 static char* ids;
 
-/* List of all auth entries.  */
+/* List of all the auth entries. */
 GSList *auth_entries;
 
 /* The "sockets" which we listen on */
-IceListenObj *sockets;
+static IceListenObj *sockets; 
 static gint *input_id;
 static gint num_sockets;
 
@@ -65,6 +63,10 @@ static IceAuthFileEntry* file_entry_new (const gchar* protocol,
 					 const IceListenObj socket);
 static GSList* read_authfile(gchar* filename);
 static void write_authfile(gchar* filename, GSList* entries);
+
+static GSList* watch_list = NULL;
+
+static gint original_umask;
 
 /* This is called when a client tries to connect. 
  * We still accept connections during a shutdown so we can handle warnings. */
@@ -127,14 +129,6 @@ accept_connection (gpointer client_data, gint source,
       status2 = IceConnectionStatus (connection);
     }
 }
-
-typedef struct {
-  IceConn        connection;
-  GDestroyNotify clean_up;
-  gpointer       data;
-} Watch;
-
-static GSList* watch_list = NULL;
 
 static void
 ice_watch (IceConn connection, IcePointer client_data, Bool opening,
@@ -410,7 +404,6 @@ file_entry_new (const gchar* protocol, const IceListenObj socket)
   return file_entry;
 }
 
-static gint original_umask;
 
 /* Reads a file containing ICE authority data */
 static GSList* 

@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "manager.h"
+#include "prop.h"
 
 /* Find a property given the client and the property name.  Returns
    NULL if not found.  */

@@ -65,7 +65,7 @@ struct _GsmProtocolClass {
 
   /* signals emitted when gnome-session returns a value. */
   void (* saved_sessions) (GsmProtocol *protocol, GSList* saved_sessions); 
-  void (* last_session) (GsmProtocol *protocol, gchar* last_session);
+  void (* current_session) (GsmProtocol *protocol, gchar* current_session);
 };
 
 guint gsm_protocol_get_type  (void);
@@ -79,14 +79,17 @@ GtkObject* gsm_protocol_new (GnomeClient *gnome_client);
 /* Requests gnome-session to list its saved sessions. Emits "saved_sessions" */
 void gsm_protocol_get_saved_sessions (GsmProtocol* protocol);
 
-/* Requests gnome-session for the name of the last session loaded (the one
- * which it would load by default). Emits "last_session" */
-void gsm_protocol_get_last_session (GsmProtocol* protocol);
+/* Requests gnome-session for the name of the current session loaded (the one
+ * which it would load by default). Emits "current_session" */
+void gsm_protocol_get_current_session (GsmProtocol* protocol);
 
-/* Sets the trash mode for the session manager
- */
-void gsm_protocol_set_trash_mode (GsmProtocol *protocol,
-				  gboolean     trash);
+/* Sets the autosave mode for the session manager */
+void gsm_protocol_set_autosave_mode (GsmProtocol *protocol,
+				  gboolean     auto_save);
+
+/* Sets the current session for the session manager */
+void gsm_protocol_set_session_name (GsmProtocol *protocol,
+				  gchar *session_name);
 
 /* GSM_SESSION object */
 

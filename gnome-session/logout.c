@@ -28,8 +28,8 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
 
-#include "manager.h"
-#include "session.h"
+#include "logout.h"
+#include "command.h"
 #include "gsm-protocol.h"
 
 static gchar *halt_command[] =
@@ -215,8 +215,7 @@ display_gui (void)
 
   gtk_container_set_border_width (GTK_CONTAINER (GNOME_DIALOG (box)->vbox),
 				  GNOME_PAD);
-
-  if (trashing)
+  if (!autosave)
     {
       toggle_button = gtk_check_button_new_with_label (_("Save current setup"));
       gtk_widget_show (toggle_button);
@@ -285,12 +284,11 @@ display_gui (void)
   switch (result)
     {
     case 0:
-      /* This is only called when we are going to exit, so it is ok to
-	 change `trashing'.  */
-      if (trashing)
-	set_trash_mode (! GTK_TOGGLE_BUTTON (toggle_button)->active);
-      
-      if (halt)
+	/* We want to know if we should trash changes (and lose forever)
+	 * or save them */
+	if(!autosave)
+		save_selected = !GTK_TOGGLE_BUTTON (toggle_button)->active;
+     if (halt)
 	{
 	  if (GTK_TOGGLE_BUTTON (halt)->active)
 	    action = HALT;
@@ -315,7 +313,7 @@ display_gui (void)
 /* Display GUI if user wants it.  Returns TRUE if save should
    continue, FALSE otherwise.  */
 gboolean
-maybe_display_gui ()
+maybe_display_gui (void)
 {
   gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX "LogoutPrompt=true");
   if (! prompt)

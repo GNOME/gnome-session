@@ -40,17 +40,9 @@ in this Software without prior written authorization from the X Consortium.
 
 #include <libgnome/libgnome.h>
 
-#include "manager.h"
+#include "remote.h"
 
 static char *format_rstart_env (char *);
-
-/* Name of protocol we understand.  */
-#define RSTART_RSH "rstart-rsh"
-
-/* For now, we only support rsh.  FIXME.  */
-#define RSHCMD "rsh"
-
-
 
 gint
 remote_start (char *restart_info, int argc, char **argv,
@@ -210,7 +202,6 @@ remote_start (char *restart_info, int argc, char **argv,
 }
 
 
-
 /*
  * rstart requires that any spaces/backslashes/non-printable characters
  * inside of a string be represented by octal escape sequences.
@@ -220,7 +211,7 @@ static char *
 format_rstart_env (char *str)
 {
     int escape_count = 0, i;
-    char *temp = str;
+    unsigned char *temp = str;
 
     while (*temp != '\0')
     {
