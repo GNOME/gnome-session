@@ -21,6 +21,7 @@
 #define MANAGER_H
 
 #include <X11/SM/SMlib.h>
+#include <time.h>
 
 #include "glib.h"
 
@@ -38,6 +39,9 @@ typedef struct
   /* List of all properties for this client.  Each element of the list
      is an `SmProp *'.  */
   GSList *properties;
+
+  /* Used to detect clients which are thrashing */
+  time_t connect_time;
 } Client;
 
 
@@ -45,8 +49,8 @@ typedef struct
  * manager.c
  */
 
-/* Call this to initiate a session save, and perhaps a shutdown.  This
-   will do nothing if a save is already in progress.  */
+/* Call this to initiate a session save, and perhaps a shutdown.
+   Save requests are queued internally. */
 void save_session (int save_type, gboolean shutdown, int interact_style,
 		   gboolean fast);
 
@@ -63,33 +67,32 @@ Status new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
    after the client.  */
 void io_error_handler (IceConn connection);
 
-/* Declare a new zombie that was read from an init file.  */
-void add_zombie (const char *id);
+/* Restart or clone an individual client. */
+void start_client (const Client* client, gboolean clone);
 
 /*
  * save.c
  */
 
-/* Write session contents to a file.  LIST1 and LIST2 are lists of
-   `Client*'s.  Either can be NULL.  SHUTDOWN is true if shutting
-   down.  */
-void write_session (const GSList *list1, const GSList *list2, int shutdown);
+/* Write session clients in list1 and list2 to the config file. */
+void write_session (const GSList *list1, const GSList *list2);
 
-/* Set name of the current session.  This is used to determine which
-   file to save to.  */
+/* Set name of the current session. 
+ * This determines the config section into which our session data is saved. */
 void set_session_name (const char *name);
 
-/* Start a session.  This does *not* shut down the current session; it
-   simply adds the new one.  As a side effect it will set the current
-   session name if it has not already been set.  If NAME is NULL then
-   the `default' session is tried; if that session does not exist,
-   then it is created using some internal defaults.  Returns 1 if
-   any client was started, 0 otherwise.  */
+/* Start a session. 
+ * If there is no session started yet then this sets the session name 
+ * and calls the restart commands on for all the session clients.
+ * If there is a session running then this calls the clone commands
+ * on the session clients - merging the session into the current one.
+ * (Note that clone commands must be used to avoid  */
 int read_session (const char *name);
 
-/* Delete a session as saved on disk.  This has no effect on the
-   currently running applications.  */
-/* Does not discard info for clients in list1 or list2 */
+/* Delete a session from the config file and discard any stale
+ * session info saved by clients that were in the session.
+ * list1 and list2 can be used to specify clients that are still
+ * in this session to protect against discarding info is NOT stale. */
 void delete_session (const char *name, 
 		     const GSList* list1, const GSList* list2);
 

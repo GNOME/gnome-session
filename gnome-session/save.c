@@ -32,6 +32,9 @@
 /* Default session name.  */
 #define DEFAULT_SESSION "Default"
 
+/* "Client id" for children which are not session aware */
+#define NULL_ID "<none>"
+
 /* Used to save xsm style string valued SmDiscardCommand properties. */
 #define XsmDiscardCommand SmDiscardCommand "[string]"
 
@@ -42,115 +45,130 @@ static char *session_name = NULL;
    if we need to run the preloads again.  */
 static int session_loaded = 0;
 
+typedef enum
+{
+  VECTOR,
+  STRING,
+  NUMBER
+} prop_type;
+
 /* This is used to hold a table of all properties we care to save.  */
 typedef struct
 {
-  const char *name;	      /* Name of property.  */
-  gboolean is_vector;	      /* TRUE if vector.  */
+  const char *name;	      /* Name of property per protocol  */
+  prop_type type;	      
   gboolean required;	      /* TRUE if required (by us, not by the spec). */
-  const char *save_name;      /* Name in save file. */
+  const char *save_name;      /* Name of property in config file */
 } propsave;
 
+/* These are the only ones which we use at present but eventually we
+ * will need to save all the properties (when they have been set)
+ * because clients are not obliged to set their properties every time
+ * that they run. */
 static propsave properties[] =
 {
-  { SmCurrentDirectory, 0, 0, SmCurrentDirectory },
-  { SmDiscardCommand,   1, 0, SmDiscardCommand },
-  { SmDiscardCommand,   0, 0, XsmDiscardCommand }, /* for legacy apps */
-  { SmRestartCommand,   1, 1, SmRestartCommand },
-  { SmEnvironment,      1, 0, SmEnvironment }
+  { SmRestartStyleHint, NUMBER, 0, SmRestartStyleHint },
+  { SmProgram,          STRING, 0, SmProgram },
+  { SmCurrentDirectory, STRING, 0, SmCurrentDirectory },
+  { SmDiscardCommand,   STRING, 0, XsmDiscardCommand }, /* for legacy apps */
+  { SmDiscardCommand,   VECTOR, 0, SmDiscardCommand },
+  { SmRestartCommand,   VECTOR, 1, SmRestartCommand },
+  { SmEnvironment,      VECTOR, 0, SmEnvironment }
 };
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
+#define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
 
 
 
 /* Write a single client to the current session.  Return 1 on success,
    0 on failure.  */
 static int
-write_one_client (int number, const Client *client)
+write_one_client (const Client *client)
 {
-  /* We over-allocate; it doesn't matter.  */
-  int i, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
-  char **argvs[NUM_PROPERTIES];
-  char *strings[NUM_PROPERTIES];
-  char *argv_names[NUM_PROPERTIES];
-  char *string_names[NUM_PROPERTIES];
-  int style;
-
-  /* Do nothing with RestartNever clients.  */
-  if (find_card8_property (client, SmRestartStyleHint, &style)
-      && style == SmRestartNever)
-    return 0;
+  gint  i, vector_count, string_count, number_count, saved;
+  gint  argcs[NUM_PROPERTIES];
+  gchar **vectors[NUM_PROPERTIES];
+  gchar *strings[NUM_PROPERTIES];
+  gint  numbers[NUM_PROPERTIES];
+  gchar *vector_names[NUM_PROPERTIES];
+  gchar *string_names[NUM_PROPERTIES];
+  gchar *number_names[NUM_PROPERTIES];
 
   /* Read each property we care to save.  */
-  failure = 0;
-  vec_count = string_count = 0;
-  for (i = 0; i < NUM_PROPERTIES; ++i)
+  saved = 1;
+  vector_count = string_count = number_count = 0;
+  for (i = 0; (i < NUM_PROPERTIES) && saved; ++i)
     {
-      if (properties[i].is_vector)
+      gboolean found = 0;
+
+      switch (properties[i].type)
 	{
-	  if (! find_vector_property (client, properties[i].name,
-				      &argcs[vec_count], &argvs[vec_count]))
-	    {
-	      if (properties[i].required)
-		{
-		  failure = 1;
-		  break;
-		}
-	    }
-	  else
-	    argv_names[vec_count++] = (char*) properties[i].save_name;
-	}
-      else
-	{
-	  if (! find_string_property (client, properties[i].name,
-				      &strings[string_count]))
-	    {
-	      if (properties[i].required)
-		{
-		  failure = 1;
-		  break;
-		}
-	    }
-	  else
+	case VECTOR:
+	  found = find_vector_property (client, properties[i].name,
+					&argcs[vector_count], 
+					&vectors[vector_count]);
+	  if (found)
+	    vector_names[vector_count++] = (char*) properties[i].save_name;
+	  break;
+	  
+	case STRING:
+	  found = find_string_property (client, properties[i].name,
+					&strings[string_count]);
+      
+	  if (found)
 	    string_names[string_count++] = (char*)properties[i].save_name;
+	  break;
+
+	case NUMBER:
+	  found = find_card8_property (client, properties[i].name,
+				       &numbers[number_count]);
+	  if (found)
+	    {
+	      saved = !(properties[i].name == SmRestartStyleHint &&
+			numbers[number_count] == SmRestartNever);
+	      
+	      number_names[number_count++] = (char*)properties[i].save_name;
+	    }
+	  break;
 	}
+      if (properties[i].required && !found)
+	saved = 0;
     }
 
   /* Write each property we found.  */
-  if (! failure)
+  if (saved)
     {
       gnome_config_set_string ("id", client->id);
 
-      for (i = 0; i < vec_count; ++i) 
-	gnome_config_set_vector (argv_names[i], argcs[i], 
-      				 (const char * const *) argvs[i]);
+      for (i = 0; i < number_count; ++i) 
+	gnome_config_set_int (number_names[i], numbers[i]);
 
       for (i = 0; i < string_count; ++i) 
 	gnome_config_set_string (string_names[i], strings[i]);
+
+      for (i = 0; i < vector_count; ++i) 
+	gnome_config_set_vector (vector_names[i], argcs[i], 
+      				 (const char * const *) vectors[i]);
     }
 
   /* Clean up.  */
-  for (i = 0; i < vec_count; ++i)
-    free_vector (argcs[i], argvs[i]);
+  for (i = 0; i < vector_count; ++i)
+    free_vector (argcs[i], vectors[i]);
   for (i = 0; i < string_count; ++i)
     free (strings[i]);
 
-  return ! failure;
+  return saved;
 }
 
-/* Actually write the session data.  */
+/* Write our session data.  */
 void
-write_session (const GSList *list1, const GSList *list2, int shutdown)
+write_session (const GSList *list1, const GSList *list2)
 {
   char prefix[1024];
   int i, step;
   GSList *list;
 
-  /* This is somewhat losing.  But we really do want to make sure any
-     existing session with this same name has been cleaned up before
-     we write the new info.  */
-  /* Do not discard info for clients still in list1 or list2 */
   delete_session (session_name, list1, list2);
 
   i = 0;
@@ -162,11 +180,10 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
 	{
 	  Client *client = (Client *) list->data;
 
-	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,",
-		      session_name ? session_name : DEFAULT_SESSION,
-		      i);
+	  g_snprintf (prefix, sizeof(prefix), 
+		      "session/%s/%d,", session_name, i);
 	  gnome_config_push_prefix (prefix);
-	  if (write_one_client (i, client))
+	  if (write_one_client (client))
 	    ++i;
 	  gnome_config_pop_prefix ();
 	}
@@ -174,8 +191,8 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
       ++step;
     }
   
-  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients",
-	      session_name ? session_name : DEFAULT_SESSION);
+  g_snprintf (prefix, sizeof(prefix), 
+	      "session/%s/num_clients", session_name);
   gnome_config_set_int (prefix, i);
 
   gnome_config_sync ();
@@ -195,159 +212,115 @@ set_session_name (const char *name)
 
 
 
-/* Run a set of commands from a session.  Return 1 if any were run.  */
-static int
-run_commands (const char *name, int number, const char *command, 
-	      const GSList* list1, const GSList* list2)
+/* We need to read clients as well as writing them because the
+ * protocol does not oblige clients to specify thier properties
+ * every time that they run. */
+static void
+read_one_client (Client *client)
 {
-  int i, result = 0;
+  int i, j;
+  gboolean def;
 
-  /* Run each command.  */
-  for (i = 0; i < number; ++i)
+  client->id = gnome_config_get_string ("id=" NULL_ID); 
+  client->properties = NULL;
+
+  /* Read each property that we save.  */
+  for (i = 0; i < NUM_PROPERTIES; ++i)
     {
-      int argc, envc;
-      gboolean def, envd;
-      char **argv, *dir, prefix[1024], **envv, **envp;
+      gint  argc;
+      gchar **vector;
+      gchar *string;
+      gint  number;
 
-      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, command);
-      gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
-
-      if (! def)
+      switch (properties[i].type)
 	{
-	  /* Do not call discard commands on clients which have just
-	   * completed a save but have NOT changed their discard commands. 
-	   * These clients are broken but, unfortunately, the gnome-libs 
-	   * encourage the writing of broken clients. */
-	  if (!strcmp (command, SmDiscardCommand))
+	case VECTOR:
+	  gnome_config_get_vector_with_default (properties[i].save_name, 
+						&argc, &vector, &def);
+	  if (!def)
 	    {
-	      int curargc, j;
-	      char **curargv;
-	      char *id;
-	      Client *client;
-	      
-	      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id=", name, i);
-	      id = gnome_config_get_string (prefix);
-	      
-	      if ((client = find_client_by_id (list1, id)) || 
-		  (client = find_client_by_id (list2, id))) 
+	      SmProp *prop = g_new (SmProp, 1);
+	      prop->name = strdup (properties[i].name);
+	      prop->type = strdup (SmLISTofARRAY8);
+	      prop->num_vals = argc;
+	      prop->vals = g_new (SmPropValue, argc);
+	      for (j = 0; j < argc; j++)
 		{
-		  if (find_vector_property (client, command, 
-					    &curargc, &curargv))
-		    {
-		      gboolean ignore = (argc == curargc);
-		      
-		      if (ignore)
-			for (j = 0; j < argc; j++)
-			  if (strcmp (argv[j], curargv[j]))
-			    { 
-			      ignore = FALSE;
-			      break;
-			    }
-		      
-		      free_vector (curargc, curargv);
-		      
-		      if (ignore) 
-			{
-			  free_vector (argc, argv);
-			  continue;
-			}
-		    }
+		  prop->vals[j].length = strlen (vector[j]);
+		  prop->vals[j].value = vector[j];
 		}
-	      g_free(id);
+	      APPEND (client->properties, prop);      
+	      free (vector);
 	    }
+	  break;
 
-	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, SmCurrentDirectory);
-	  dir = gnome_config_get_string (prefix);
-	  
-	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, SmEnvironment);
-	  gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
-	  if (envd)
-	    envp = NULL;
-	  else
+	case STRING:
+	  string =
+	    gnome_config_get_string_with_default (properties[i].save_name, 
+						  &def);
+	  if (!def)
 	    {
-	      char **newenv = (char **) malloc ((envc/2+2) * sizeof (char *));
-	      int i;
-	      
-	      for (i = 0; i < envc / 2; ++i)
-		newenv[i] = g_strconcat (envv[2 * i], "=", envv[2 * i + 1],
-					    NULL);
-	      newenv[i] = NULL;
-	      free_vector (envc, envv);
-	      envc = i;
-	      envv = newenv;
-	      envp = newenv;
+	      SmProp *prop = g_new (SmProp, 1);
+	      prop->name = strdup (properties[i].name);
+	      prop->type = strdup (SmARRAY8);
+	      prop->num_vals = 1;
+	      prop->vals = g_new (SmPropValue, 1);
+	      prop->vals[0].length = strlen (string);
+	      prop->vals[0].value = string;
+	      APPEND (client->properties, prop);      
 	    }
+	  break;
 
-	  gnome_execute_async_with_env (dir, argc, argv, envc, envp);
-	  result = 1;
-
-	  free_vector (envc, envv);
-	  if (dir)
-	    free (dir);
-	  
+	case NUMBER:
+	  number =
+	    gnome_config_get_int_with_default (properties[i].save_name, 
+					       &def);
+	  if (!def)
+	    {
+	      SmProp *prop = g_new (SmProp, 1);
+	      gchar* value = g_new0 (gchar, 2);
+	      value[0] = (gchar) number;
+	      prop->name = strdup (properties[i].name);
+	      prop->type = strdup (SmCARD8);
+	      prop->num_vals = 1;
+	      prop->vals = g_new (SmPropValue, 1);
+	      prop->vals[0].length = 1;
+	      prop->vals[0].value = (SmPointer) value;
+	      APPEND (client->properties, prop);      
+	    }
+	  break;
 	}
-      free_vector (argc, argv);
     }
-
-  return result;
 }
 
-/* This for backwards compatibility with clients that set string
- * discard commands for xsm and closely reproduces the xsm behavior */
-static int
-run_string_commands (const char *name, int number, const char *command, 
-		     const GSList* list1, const GSList* list2)
+
+
+/* Read the session clients recorded in a config file section */
+static GSList *
+read_clients (const char *name)
 {
-  int i, result = 0;
+  int i, num_clients;
+  char prefix[1024];
+  GSList* list = 0;
 
-  /* Run each command.  */
-  for (i = 0; i < number; ++i)
+  g_snprintf (prefix, sizeof(prefix), "session/%s/", name);
+
+  gnome_config_push_prefix (prefix);
+  num_clients = gnome_config_get_int ("num_clients=0");
+  gnome_config_pop_prefix ();
+
+  for (i = 0; i < num_clients; ++i)
     {
-      gboolean def;
-      char *old_command, prefix[1024];
+      Client *client = g_new0 (Client, 1);
 
-      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, command);
-      old_command = gnome_config_get_string_with_default (prefix, &def);
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", name, i);
 
-      if (! def)
-	{
-	  /* Do not call discard commands on clients which have just
-	   * completed a save but have NOT changed their discard commands. */
-	  if (!strcmp (command, XsmDiscardCommand))
-	    {
-	      char *cur_command;
-	      char *id;
-	      Client *client;
-	      
-	      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id=", name, i);
-	      id = gnome_config_get_string (prefix);
-	      
-	      if ((client = find_client_by_id (list1, id)) || 
-		  (client = find_client_by_id (list2, id))) 
-		{
-		  if (find_string_property (client, command, &cur_command))
-		    {
-		      gboolean ignore = !strcmp (cur_command, old_command);
-		      
-		      free (cur_command);
-		      
-		      if (ignore)
-			{
-			  free (old_command);
-			  continue;
-			}
-		    }
-		}
-	    }
-	  
-	  system (old_command);
-	  result = 1;
-	}
-
-      free (old_command);
+      gnome_config_push_prefix (prefix);
+      read_one_client (client);
+      gnome_config_pop_prefix ();
+      APPEND (list, client);
     }
-
-  return result;
+  return list;
 }
 
 
@@ -400,80 +373,183 @@ run_default_session (void)
   return 1;
 }
 
-/* Load a new session.  This does not shut down the current session.
-   Returns 1 if anything happened, 0 otherwise.  */
+
+
+/* Load a session from the config file by name.
+ * This never closes any existing clients.
+ * The first time that it is called it establishes the name for the
+ * current session and sets this to a default value when a NULL name is 
+ * passed. 
+ * In order to avoid client id conflicts the loaded session is cloned
+ * rather than restarted when there is already a session running. */
 int
 read_session (const char *name)
 {
-  int i, num_clients, preloads;
+  int preloads;
   char prefix[1024];
+  GSList *list;
 
-  if (! session_name)
-    set_session_name (name);
+  gboolean clone = (session_name != NULL);
+
   if (! name)
     name = DEFAULT_SESSION;
 
-  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=0", name);
-  num_clients = gnome_config_get_int (prefix);
+  if (! clone)
+    set_session_name (name);
+
+  list = read_clients (name);
 
   preloads = num_preloads ();
 
-  /* No clients means either this is the first time gnome-session has
-     been run, or the user exited everything the last time.  Either
-     way, we start the default session to make sure something happens.
-     We treat preloads as clients -- the user might legitimately exit
-     all the session-aware clients, but still have stuff start in his
-     session.  */
-  if (! num_clients && ! preloads)
+  if (! list && ! preloads)
     {
+      /* Nothing to run - use the fallback */
       if (! strcmp (name, DEFAULT_SESSION))
 	return run_default_session ();
       return 0;
     }
 
-  /* Start all the preloads.  */
   gnome_config_push_prefix (PRELOAD_PREFIX);
   run_preloads (preloads);
   gnome_config_pop_prefix ();
 
-  /* We must register each saved client as a `zombie' client.  Then
-     when the client restarts it will get its new client id
-     correctly.  */
-  for (i = 0; i < num_clients; ++i)
+  for (; list; list = list->next)
     {
-      char *id;
+      Client *client = (Client*)list->data;
 
-      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id", name, i);
-      id = gnome_config_get_string (prefix);
-      if (id)
-	add_zombie (id);
+      start_client (client, clone);
     }
-
-  /* Run each restart command.  */
-  return run_commands (name, num_clients, SmRestartCommand, NULL, NULL);
+  return 1;
 }
 
-/* Delete a session.  */
+
+
+/* Delete a session. 
+ * This needs to be done carefully because we have to discard stale
+ * session data and only a few of the clients may have conducted
+ * a save since the session was last written */
 void
 delete_session (const char *name, const GSList* list1, const GSList* list2)
 {
   int number;
-  gboolean def;
+  gboolean ignore;
   char prefix[1024];
+  int i;
 
   if (! name)
     name = DEFAULT_SESSION;
 
   g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=-1", name);
-  number = gnome_config_get_int_with_default (prefix, &def);
-  if (def)
-    {
-      /* No client info to get, so just bail.  */
-      return;
-    }
+  number = gnome_config_get_int_with_default (prefix, &ignore);
 
-  run_commands (name, number, SmDiscardCommand, list1, list2);
-  run_string_commands (name, number, XsmDiscardCommand, list1, list2);
+  if (ignore)
+    return;
+
+  /* For each client in the deleted session */
+  for (i = 0; i < number; ++i)
+    {
+      char *id;
+      Client *client;
+      int old_argc, old_envc, old_envpc;
+      char **old_argv, *old_dir, **old_envv, **old_envp, *old_system;
+
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", name, i);
+      gnome_config_push_prefix (prefix);
+
+      /* Is it a client in the current session ? */
+      id = gnome_config_get_string ("id");
+      if (!(client = find_client_by_id (list1, id))) 
+	client = find_client_by_id (list2, id);
+      g_free(id);
+
+      gnome_config_get_vector_with_default (SmDiscardCommand, 
+					    &old_argc, &old_argv,
+					    &ignore);
+      if (! ignore)
+	{
+	  /* Do not call discard commands on running clients which 
+	   * have not changed their discard commands. */
+	  int cur_argc;
+	  char **cur_argv;
+	      
+	  if (client && find_vector_property (client, SmDiscardCommand, 
+					      &cur_argc, &cur_argv))
+	    {
+	      int j;
+	      ignore = (old_argc == cur_argc);
+	      
+	      if (ignore)
+		for (j = 0; j < old_argc; j++)
+		  if (strcmp (old_argv[j], cur_argv[j]))
+		    { 
+		      ignore = FALSE;
+		      break;
+		    }
+	      
+	      free_vector (cur_argc, cur_argv);
+	    }
+		      
+	  if (! ignore) 
+	    {
+	      old_dir = gnome_config_get_string (SmCurrentDirectory);
+	      
+	      gnome_config_get_vector_with_default (SmEnvironment, 
+						    &old_envc, &old_envv, 
+						    &ignore);
+	      if (! ignore && old_envc > 0 && !(old_envc | 1))
+		{
+		  int i;
+
+		  old_envpc = old_envc / 2;
+		  old_envp = g_new0 (gchar*, old_envpc + 1);
+		  
+		  for (i = 0; i < old_envpc; i++)
+		    old_envp[i] = g_strconcat (old_envv[2*i], "=", 
+					       old_envv[2*i+1], NULL);
+
+		  free_vector (old_envc, old_envv);
+		}
+	      else
+		{
+		  old_envpc = 0;
+		  old_envp = NULL;
+		}
+
+	      gnome_execute_async_with_env (old_dir, old_argc, old_argv, 
+					    old_envc, old_envp);
+
+	      if (old_envp)
+		free_vector (old_envpc, old_envp);
+	      if (old_dir)
+		free (old_dir);	  
+	    }
+	}
+      free_vector (old_argc, old_argv);
+
+      /* Now, repeat the whole process for apps with SmARRAY8 commands:
+       * This code is a direct crib from xsm because we are only doing
+       * this for compatibility purposes. */
+      old_system = gnome_config_get_string_with_default (XsmDiscardCommand, 
+							 &ignore);
+      if (! ignore)
+	{
+	  char *cur_system;
+	  
+	  if (client && find_string_property (client, XsmDiscardCommand, 
+					      &cur_system))
+	    {
+	      ignore = !strcmp (cur_system, old_system);
+	      
+	      free (cur_system);
+	    }	      
+
+	  if (! ignore)
+	    system (old_system);
+	}
+      free (old_system);
+
+      gnome_config_pop_prefix ();
+    }
 
   g_snprintf (prefix, sizeof(prefix), "session/%s", name);
   gnome_config_clean_section (prefix);

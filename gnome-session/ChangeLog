@@ -1,3 +1,28 @@
+Tue Jan 19 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.c (kill_client_connection): close protocol cleanly.
+	(run_command): run a command for a live client.
+	(start_client): convenience function.
+	(register_client): carry forward properties on restarted clients
+	and send SaveYourselfs to new ones to get their properties.
+	(interact_request): allow multiple requests per client and dispatch
+	them in order, separating requests for each client.
+	(interact_done): wait for SaveDones following a ShutdownCancel to
+	avoid confusing one session save with another.
+	(process_save_request): process a queued save request.
+	(update_save_state): less cryptic replacement for check_session_end
+	which does not close connections (as this often kills clients).
+	(display_reasons): warning dialog.
+	(close_connection): handle RestartImmediately & close cleanly.
+	(new_client): refuse connections during shutdown with reason.
+	(io_error_handler): display warning.
+
+	* save.c (properties): save SmRestartStyleHint and SmProgram.
+	(read_client): translates config file to SmProperties.
+	(read_clients): recover full client details from config section.
+	(read_session): clone merged session if one is already running
+	(delete_session): pulled all the discard code together.
+
 Tue Jan 12 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* manager.c (send_message): Fixed bug patched over by Jay.
