@@ -175,7 +175,8 @@ display_gui (void)
    * to an offscreen window, and then once we have the
    * server grabbed, move that to our dialog.
    */
-
+  gtk_rc_reparse_all ();
+  
   invisible = gtk_invisible_new ();
   gtk_widget_show (invisible);
 
