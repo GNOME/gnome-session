@@ -1429,7 +1429,6 @@ char **argv;
     wmStateAtom = XInternAtom (disp, "WM_STATE", False);
     smClientIdAtom = XInternAtom (disp, "SM_CLIENT_ID", False);
     wmClientLeaderAtom = XInternAtom (disp, "WM_CLIENT_LEADER", False);
-    wmClientLeaderAtom = XInternAtom (disp, "WM_CLIENT_LEADER", False);
     dtSaveModeAtom = XInternAtom (disp, "_DT_SAVE_MODE", False);
 
     /* Workaround for utterly broken CDE applications.
