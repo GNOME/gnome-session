@@ -947,8 +947,8 @@ SmPointer clientData;
     char *filename;
     char *prefix, *ps;
     Bool success = True;
-    SmProp prop1, prop2, prop3, *props[3];
-    SmPropValue prop1val, prop2val, prop3val;
+    SmProp prop1, prop2, prop3, prop4, *props[4];
+    SmPropValue prop1val, prop2val, prop3val, prop4val;
     char discardCommand[80];
     int numVals, i;
     static int first_time = 1;
@@ -957,6 +957,7 @@ SmPointer clientData;
     {
 	char userId[20];
 	char hint = SmRestartIfRunning;
+	char priority = (char)0;
 
 	prop1.name = SmProgram;
 	prop1.type = SmARRAY8;
@@ -980,11 +981,19 @@ SmPointer clientData;
 	prop3val.value = (SmPointer) &hint;
 	prop3val.length = 1;
 	
+	prop4.name = "Priority";
+	prop4.type = SmCARD8;
+	prop4.num_vals = 1;
+	prop4.vals = &prop3val;
+	prop4val.value = (SmPointer) &priority;
+	prop4val.length = 1;
+
 	props[0] = &prop1;
 	props[1] = &prop2;
 	props[2] = &prop3;
+	props[3] = &prop4;
 
-	SmcSetProperties (smcConn, 3, props);
+	SmcSetProperties (smcConn, 4, props);
 
 	first_time = 0;
     }
@@ -1287,10 +1296,9 @@ char **argv;
 	  if (!path)
 	    path = ".";
 	  
-	  restore_filename = malloc (strlen(path)+strlen(argv[i])+2);
-	  restore_filename = 
-	    strcat (strcat (strcpy (restore_filename, path), "/"), argv[i]); 
-	  restore_filename[strlen (restore_filename)] ='\0';
+	  restore_filename = malloc (strlen(path)+strlen(argv[i])+1);
+	  restore_filename = strcat (strcpy (restore_filename, path),argv[i]); 
+	  restore_filename[strlen (restore_filename) - 1] ='\0';
 	  free (path);
 	  continue;
 	}
