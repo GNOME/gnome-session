@@ -662,7 +662,7 @@ update_save_state ()
       process_save_request (request->client, request->save_type, 
 			    request->shutdown, request->interact_style, 
 			    request->fast, request->global);
-      free (request);
+      g_free (request);
     }
       
   if (save_state == MANAGER_IDLE && load_request_list)
@@ -771,8 +771,11 @@ close_connection (SmsConn connection, SmPointer data, int count,
 
 	if (! shutting_down && client->attempts++ < 10)
 	  {
+	    start_client (client);
+#if 0
 	    run_command (client, SmRestartCommand);
 	    APPEND (pending_list, client);
+#endif
 	  }
 	else
 	  {
