@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-12-29 20:31+0100\n"
+"POT-Creation-Date: 2005-01-26 15:18+0100\n"
+"PO-Revision-Date: 2005-01-26 15:20+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@arrakis.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -59,12 +59,8 @@ msgid "Logout prompt"
 msgstr "Diálogo de salida"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"La imagen preferida para mostrar como pantalla de bienvenida al iniciar una "
-"sesión en el escritorio GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "La imagen preferida para mostrar como pantalla de bienvenida"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -79,8 +75,11 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Muestra la pantalla de bienvenida cuando se inicie la sesión"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Imagen de la pantalla de bienvenida"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Esta es una ruta relativa basade en el directorio $datadir/pixmaps/. Los subdirectorios y los nombres de imágenes son valores válidos. Los cambios de este valor surtirán efecto a partir del siguiente inicio de sesión."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -498,6 +497,9 @@ msgstr "Añadir programa de inicio"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Imagen de la pantalla de bienvenida"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Guardar sesión actual"
