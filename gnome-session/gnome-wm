@@ -39,19 +39,23 @@ done
 
 # WINDOW_MANAGER overrides all
 
+OLDIFS=$IFS
+IFS=":"
 if [ -z "$WINDOW_MANAGER" ] ; then
   if [ -z "$DEFWM" -o "x$DEFWM" = "xgnome-wm" ]; then
-    for wm in sawmill enlightenment icewm wmaker fvwm2 fvwm twm kwm ; do
-      check=`which $wm`
-      if [ $? -eq 0 ] ; then
-        WINDOW_MANAGER=$check
-        break
-      fi
+    for wm in sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm ; do
+      for dir in $PATH ; do
+	if [ -x "$dir/$wm" ] ; then
+	  WINDOW_MANAGER="$dir/$wm"
+    	  break 2
+	fi
+      done
     done
   else
     WINDOW_MANAGER=$DEFWM
   fi
 fi
+IFS=$OLDIFS
 
 # If no window manager can be found, we default to xterm
 

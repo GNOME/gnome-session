@@ -1,3 +1,11 @@
+2000-02-18  Timur Bakeyev  <timur@gnu.org>
+
+	* gnome-wm: Replace call to 'which' with simple, home-made script.
+	Unfortunately, some vendors are broken-mind, and which returns 0 and
+	error string on stdout instead of just indication of an error...
+	
+	* Add qvwm as a bit better WM that fvwm:.
+
 2000-02-13  Jacob Berkman  <jacob@helixcode.com>
 
 	* gsm-protocol.c (dispatch_event): remove some debugging stuff
