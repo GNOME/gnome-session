@@ -1,3 +1,10 @@
+2003-02-25  Arvind Samptur <arvind.samptur@wipro.com>
+
+	* manager.c: (interact_request) : Removed the bogus 
+	sorting of the interact list. Fixes the problem of
+	desktop hang when multiple apps request interaction
+	Fixes #105338
+
 2003-02-17  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: honour the GCONF_SCHEMAS_INSTALL
