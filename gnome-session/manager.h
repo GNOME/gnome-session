@@ -54,9 +54,10 @@ void add_zombie (const char *id);
  * save.c
  */
 
-/* Write session contents to a file.  LIST is a list of `Client*'s.
-   SHUTDOWN is true if shutting down.  */
-void write_session (const GSList *list, int shutdown);
+/* Write session contents to a file.  LIST1 and LIST2 are lists of
+   `Client*'s.  Either can be NULL.  SHUTDOWN is true if shutting
+   down.  */
+void write_session (const GSList *list1, const GSList *list2, int shutdown);
 
 /* Set name of the current session.  This is used to determine which
    file to save to.  */

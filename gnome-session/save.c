@@ -49,6 +49,12 @@ write_one_client (int number, const Client *client)
   char *strings[NUM_PROPERTIES];
   const char *argv_names[NUM_PROPERTIES];
   const char *string_names[NUM_PROPERTIES];
+  int style;
+
+  /* Do nothing with RestartNever clients.  */
+  if (find_card8_property (client, SmRestartStyleHint, &style)
+      && style == SmRestartNever)
+    return 0;
 
   /* Read each property we care to save.  */
   failure = 0;
@@ -109,10 +115,11 @@ write_one_client (int number, const Client *client)
 
 /* Actually write the session data.  */
 void
-write_session (const GSList *list, int shutdown)
+write_session (const GSList *list1, const GSList *list2, int shutdown)
 {
   char prefix[1024];
-  int i;
+  int i, step;
+  const GSList *list;
 
   /* This is somewhat losing.  But we really do want to make sure any
      existing session with this same name has been cleaned up before
@@ -120,16 +127,23 @@ write_session (const GSList *list, int shutdown)
   delete_session (session_name);
 
   i = 0;
-  for (; list; list = list->next)
+  step = 0;
+  list = list1;
+  while (step < 2)
     {
-      Client *client = (Client *) list->data;
-      sprintf (prefix, "session/%s/%d,",
-	       session_name ? session_name : DEFAULT_SESSION,
-	       i);
-      gnome_config_push_prefix (prefix);
-      if (write_one_client (i, client))
-	++i;
-      gnome_config_pop_prefix ();
+      for (; list; list = list->next)
+	{
+	  Client *client = (Client *) list->data;
+	  sprintf (prefix, "session/%s/%d,",
+		   session_name ? session_name : DEFAULT_SESSION,
+		   i);
+	  gnome_config_push_prefix (prefix);
+	  if (write_one_client (i, client))
+	    ++i;
+	  gnome_config_pop_prefix ();
+	}
+      list = list2;
+      ++step;
     }
 
   sprintf (prefix, "session/%s/num_clients",

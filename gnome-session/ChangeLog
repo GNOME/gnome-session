@@ -1,5 +1,14 @@
 Mon Feb 16 00:04:09 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* save.c (write_one_client): If restart style is RestartNever,
+	don't bother saving client.
+	(write_session): Added list2 argument.
+
+	* manager.c (anyway_list): New global.
+	(free_client): Do nothing if client is NULL.
+	(close_connection): Take restart hints into account.
+	(check_session_end): Pass anyway_list to write_session.
+
 	* save.c: Include <gtk/gtk.h>.
 
 Mon Feb 16 11:15:43 KST 1998  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>

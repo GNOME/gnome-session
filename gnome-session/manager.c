@@ -36,6 +36,11 @@ static GSList *save_yourself_p2_list = NULL;
 /* List of all clients which have been saved.  */
 static GSList *save_finished_list = NULL;
 
+/* List of all clients that have exited, but also set their style hint
+   to RestartAnyway.  FIXME: should merge this with the zombie list,
+   in case one of these clients starts up again.  */
+static GSList *anyway_list = NULL;
+
 
 
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
@@ -100,6 +105,9 @@ free_a_prop (gpointer data, gpointer user_data)
 static void
 free_client (Client *client)
 {
+  if (! client)
+    return;
+
   if (client->id)
     free (client->id);
 
@@ -235,7 +243,7 @@ check_session_end (int found)
 	{
 	  /* All clients have responded to the save.  Now shut down or
 	     continue as appropriate.  */
-	  write_session (save_finished_list, shutting_down);
+	  write_session (save_finished_list, anyway_list, shutting_down);
 	  saving = 0;
 	  send_message (save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
@@ -267,9 +275,6 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 }
 
 /* FIXME: Display REASONS to user, per spec.  */
-/* FIXME: must deal with restart styles: restart anyways means put
-   this on a list of things to be saved; restart always means restart
-   right away (unless exiting right now).  */
 static void
 close_connection (SmsConn connection, SmPointer data, int count,
 		  char **reasons)
@@ -277,6 +282,7 @@ close_connection (SmsConn connection, SmPointer data, int count,
   Client *client = (Client *) data;
   int interact_next = 0;
   GSList *found;
+  int style;
 
   found = g_slist_find (save_yourself_list, client);
 
@@ -291,6 +297,24 @@ close_connection (SmsConn connection, SmPointer data, int count,
   REMOVE (save_yourself_list, client);
   REMOVE (save_yourself_p2_list, client);
   REMOVE (save_finished_list, client);
+
+  /* Take appropriate action based on the restart style.  The default
+     is RestartIfRunning, so if the value isn't found, we just do
+     nothing.  */
+  if (find_card8_property (client, SmRestartStyleHint, &style))
+    {
+      if (style == SmRestartImmediately)
+	{
+	  /* FIXME: re-run the client.  Probably should think of some
+	     clever way to avoid thrashing by a losing client.  Don't
+	     restart if we are shutting down.  */
+	}
+      else if (style == SmRestartAnyway)
+	{
+	  APPEND (anyway_list, client);
+	  client = NULL;
+	}
+    }
 
   free_client (client);
 
