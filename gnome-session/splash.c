@@ -56,20 +56,16 @@ typedef struct {
 } SplashApp;
 
 static const SplashApp splash_map_table[] = {
-	{ N_("Audio Settings"),               "sound-properties",               "gnome-mixer.png" },
-	{ N_("Screensaver"),                  "screensaver-properties-capplet", "gnome-ccscreensaver.png" },
+	{ N_("Audio Settings"),               "gnome-sound-properties",         "gnome-audio2.png" },
 	{ N_("Screensaver"),                  "xscreensaver-demo",              "gnome-ccscreensaver.png" },
-	{ N_("Sawfish Window Manager"),       "sawmill",                        "gnome-ccwindowmanager.png" },
 	{ N_("Sawfish Window Manager"),       "sawfish",                        "gnome-ccwindowmanager.png" },
-	{ N_("Enlightenment Window Manager"), "enlightenment",                  "gnome-ccwindowmanager.png" },
-	{ N_("Background Settings"),          "background-properties-capplet",  "gnome-ccbackground.png" },
-	{ N_("Keyboard Bell"),                "bell-properties-capplet",        "gnome-cckeyboard-bell.png" },
-	{ N_("Mouse Settings"),               "mouse-properties-capplet",       "gnome-mouse.png" },
-	{ N_("Keyboard Settings"),            "keyboard-properties",            "gnome-cckeyboard.png" },
-	{ N_("The Panel"),                    "panel",                          "gnome-panel.png" },
-	{ N_("Session Manager Proxy"),        "gnome-smproxy",                  "gnome-session.png" },
+	{ N_("Metacity Window Manager"),      "metacity",                       "gnome-ccwindowmanager.png" },
 	{ N_("Window Manager"),               "gnome-wm",                       "gnome-ccwindowmanager.png" },
-	{ N_("Desktop"),                      "gmc",                            "gnome-ccdesktop.png" },
+	{ N_("Background Settings"),          "gnome-background-properties",    "gnome-ccbackground.png" },
+	{ N_("Mouse Settings"),               "gnome-mouse-properties",         "gnome-mouse.png" },
+	{ N_("Keyboard Settings"),            "gnome-keyboard-properties",      "gnome-cckeyboard.png" },
+	{ N_("The Panel"),                    "gnome-panel",                    "gnome-panel.png" },
+	{ N_("Session Manager Proxy"),        "gnome-smproxy",                  "gnome-session.png" },
 	{ N_("Nautilus"),                     "nautilus",                       "gnome-ccdesktop.png" },
 	{ NULL }
 };
