@@ -14,7 +14,7 @@ LDADD = \
         $(X_LIBS) $(x_libs)				\
         @XF86MISC_LIBS@					\
 	@LEXLIB@					\
-	$(INTLLIBS)
+	$(INTLLIBS) $(DL_LIB)
 
 bin_PROGRAMS = gsm
 
