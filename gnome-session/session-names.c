@@ -96,6 +96,11 @@ edit_session_name (gchar *title, gchar **editsession,
   GtkWidget *vbox;
   GtkWidget *entry;
   GtkWidget *frame;
+  char      *old_session_name = NULL;
+
+  if (*editsession)
+    old_session_name = g_strdup (*editsession);
+
   *dialog = gnome_dialog_new (title, GNOME_STOCK_BUTTON_CANCEL,
 				GNOME_STOCK_BUTTON_OK,
 				NULL);
@@ -120,7 +125,12 @@ edit_session_name (gchar *title, gchar **editsession,
   gtk_widget_show_all (*dialog); 
 
   while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1) {  
+    gboolean name_changed = TRUE;
+
     *editsession = gtk_editable_get_chars (GTK_EDITABLE (entry),0,-1);
+    if (old_session_name && !strcmp (old_session_name, *editsession))
+      name_changed = FALSE;
+
     if (is_blank (*editsession)) {
       GtkWidget *msgbox;
       gtk_widget_show (*dialog);
@@ -131,7 +141,7 @@ edit_session_name (gchar *title, gchar **editsession,
       gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (*dialog));
       gnome_dialog_run (GNOME_DIALOG (msgbox));
     } 
-    else if(checkduplication(*editsession, sess_list)) {
+    else if (name_changed && checkduplication (*editsession, sess_list)) {
       GtkWidget *msgbox;
       gtk_widget_show (*dialog);
       msgbox = gnome_message_box_new (_("The session name already exists"),
@@ -144,12 +154,15 @@ edit_session_name (gchar *title, gchar **editsession,
     else {
       gtk_widget_destroy (*dialog);
       *dialog = NULL;
+      g_free (old_session_name);
       return TRUE;
     }
   }
   
   gtk_widget_destroy (*dialog);
   *dialog = NULL;
+  g_free (old_session_name);
+
   return FALSE;
 }
 
