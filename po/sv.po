@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-20 10:47+0200\n"
-"PO-Revision-Date: 2002-06-20 10:47+0200\n"
+"POT-Creation-Date: 2002-06-23 11:50+0200\n"
+"PO-Revision-Date: 2002-06-23 11:51+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -195,6 +195,57 @@ msgstr "Inställningar"
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Startas alltid vid varje inloggning."
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Ett fel inträffade vid start av GNOME-inställningsdemonen.\n"
+"\n"
+"En del saker såsom teman, ljud eller bakgrundsinställningar kanske inte "
+"kommer att fungera korrekt."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Det senaste felmeddelandet var:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME kommer fortfarande att försöka starta om inställningsdemonen nästa "
+"gång du loggar in."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Ett okänt aktiveringsfel inträffade."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Inställningsdemonen startade om för många gånger."
 
 #: gnome-session/logout.c:225
 msgid "Really log out?"
@@ -391,33 +442,16 @@ msgid "Current Session"
 msgstr "Nuvarande session"
 
 # SUN NEW TRANSLATION
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Ta bort den nu markerade klienten från sessionen."
 
 # SUN NEW TRANSLATION
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Listan över program i sessionen."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Session"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sessionsväljare"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Starta session"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Avbryt inloggning"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Initiera sessionsinställningar"
 
@@ -514,6 +548,18 @@ msgstr "Lägg till startprogram"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
+
+#~ msgid "Session"
+#~ msgstr "Session"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Sessionsväljare"
+
+#~ msgid "Start Session"
+#~ msgstr "Starta session"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Avbryt inloggning"
 
 #~ msgid "Continue"
 #~ msgstr "Fortsätt"
