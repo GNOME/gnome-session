@@ -1037,6 +1037,18 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	}
       else
 	{ 
+	  if (!shutdown)
+	    save_selected = TRUE;
+
+	  /* If the client only requested a Global save (i.e.
+	   * only save things like open documents and not
+	   * session state), but our user requested that the
+	   * session state be saved, we ammend the save type
+	   * to a Global save.
+	   */
+	  if (save_type == SmSaveGlobal && (save_selected || autosave))
+	    save_type = SmSaveBoth;
+
 	  while (live_list) 
 	    {
 	      Client *tmp_client = (Client *) live_list->data;
@@ -1051,9 +1063,6 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	      SmsSaveYourself (tmp_client->connection, save_type, shutting_down,
 			       interact_style, fast);
 	    }
-
-	  if (!shutdown)
-	    save_selected = TRUE;
 	}
     }
   else

@@ -1,3 +1,11 @@
+2002-08-01  Mark McLoughlin  <mark@skynet.ie>
+
+	* manager.c: (process_save_request): if a global only
+	session save was requested, but the user selects
+	'Save current setup', ammend save style to Both.
+
+	* save-session.c: kill debug.
+
 2002-07-30  jacob berkman  <jacob@ximian.com>
 
 	* session-properties-capplet.c (apply): don't write the "state"
