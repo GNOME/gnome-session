@@ -22,14 +22,28 @@ static void
 accept_connection (gpointer client_data, gint source,
 		   GdkInputCondition conditon)
 {
+  IceConn connection;
   IceAcceptStatus status;
+  IceConnectStatus status2 = IceConnectPending;
 
   if (shutdown_in_progress_p ())
     return;
 
-  /* Ignore results for now.  There's nothing we can really do with
-     them.  */
-  IceAcceptConnection ((IceListenObj) client_data, &status);
+  connection = IceAcceptConnection ((IceListenObj) client_data, &status);
+  if (status != IceAcceptSuccess)
+    return;
+
+  /* Must wait until connection leaves pending state.  */
+  /* FIXME: after a certain amount of time, just reject the
+     connection.  */
+  while (status2 == IceConnectPending)
+    {
+      gtk_main_iteration ();
+      status2 = IceConnectionStatus (connection);
+    }
+
+  if (status2 != IceConnectAccepted)
+    IceCloseConnection (connection);
 }
 
 /* FIXME: error message text could be returned somehow.  Or at least
@@ -43,6 +57,9 @@ initialize_ice (void)
   char *ids, *p;
 
   gnome_ice_init ();
+
+  /* We don't care about the previous IO error handler.  */
+  IceSetIOErrorHandler (io_error_handler);
 
   /* FIXME: Version number.  */
   if (! SmsInitialize ("GnomeSM", "0.1", new_client, NULL,

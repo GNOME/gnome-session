@@ -74,6 +74,18 @@ find_client_by_id (GSList *list, char *id)
   return NULL;
 }
 
+static Client *
+find_client_by_connection (GSList *list, IceConn connection)
+{
+  for (; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      if (SmsGetIceConnection (client->connection) == connection)
+	return client;
+    }
+  return NULL;
+}
+
 
 
 static void
@@ -241,6 +253,9 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 }
 
 /* FIXME: Display REASONS to user, per spec.  */
+/* FIXME: must deal with restart styles: restart anyways means put
+   this on a list of things to be saved; restart always means restart
+   right away (unless exiting right now).  */
 static void
 close_connection (SmsConn connection, SmPointer data, int count,
 		  char **reasons)
@@ -255,6 +270,12 @@ close_connection (SmsConn connection, SmPointer data, int count,
   if (interact_list && interact_list->data == client)
     interact_next = 1;
   REMOVE (interact_list, client);
+
+  REMOVE (save_yourself_list, client);
+  REMOVE (save_yourself_p2_list, client);
+  REMOVE (save_finished_list, client);
+
+  free_client (client);
 
   if (interact_list && interact_next)
     {
@@ -453,4 +474,35 @@ int
 shutdown_in_progress_p (void)
 {
   return saving && shutting_down;
+}
+
+
+
+/* This is called when an IO error occurs on some client connection.
+   This means the client has shut down in a losing way.  */
+void
+io_error_handler (IceConn connection)
+{
+  Client *client;
+
+  /* Find the client on any list.  */
+  client = find_client_by_connection (live_list, connection);
+  if (! client)
+    client = find_client_by_connection (interact_list, connection);
+  if (! client)
+    client = find_client_by_connection (save_yourself_list, connection);
+  if (! client)
+    client = find_client_by_connection (save_yourself_p2_list, connection);
+  if (! client)
+    client = find_client_by_connection (save_finished_list, connection);
+
+  /* The client might not be found.  For instance this could happen if
+     the client exited before registering.  */
+  if (client)
+    {
+      /* FIXME: error message.  The problem is, how to free it?
+	 close_connection can't do it, since SmFreeReasons is opaque.
+	 */
+      close_connection (client->connection, (SmPointer) client, 0, NULL);
+    }
 }

@@ -63,12 +63,15 @@ FILE 		 *removefp;
 IceAuthDataEntry *entry;
 
 {
+    int i;
+
     fprintf (addfp,
 	"add %s \"\" %s %s ",
 	entry->protocol_name,
         entry->network_id,
         entry->auth_name);
-    fprintfhex (addfp, entry->auth_data_length, entry->auth_data);
+    for (i = 0; i < entry->auth_data_length; ++i)
+      fprintf (addfp, "%02x", (entry->auth_data[i] & 0xff));
     fprintf (addfp, "\n");
 
     fprintf (removefp,
@@ -190,7 +193,7 @@ IceAuthDataEntry	**authDataEntries;
     umask (original_umask);
 
     sprintf (command, "iceauth source %s", addAuthFile);
-    execute_system_command (command);
+    system (command);
 
     unlink (addAuthFile);
 

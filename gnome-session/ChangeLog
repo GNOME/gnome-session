@@ -1,3 +1,24 @@
+Fri Dec 26 00:00:42 1997  Tom Tromey  <tromey@cygnus.com>
+
+	* manager.c (find_client_by_connection): New function.
+	(io_error_handler): New function.
+	* manager.h: Declare io_error_handler.
+	* ice.c (initialize_ice): Install IO error handler.
+
+	* manager.c (close_connection): Remove client from all lists.
+	Free client structure.
+
+	* auth.c (write_iceauth): Make sure data is in range for fprintf.
+
+	* Makefile: Removed.
+	* Makefile.am: New file.
+	* testbed.c: New file.
+
+Thu Dec 25 00:12:44 1997  Tom Tromey  <tromey@cygnus.com>
+
+	* ice.c (accept_connection): Must wait for ICE connection to leave
+	pending state.
+
 Wed Dec 24 23:33:09 1997  Tom Tromey  <tromey@cygnus.com>
 
 	* auth.c, auth.h: Modified files from X11R6.3 `xsm' program.

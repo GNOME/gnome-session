@@ -2,8 +2,12 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Write stub main() that can be used to debug communications code
-  in manager.c
+* Debug communications code using testbed.c.
+  Right now the code work enough to let a simple client connect.
+  The plan of attack is to put breakpoints everywhere and make
+  sure various client requests do the right thing.
+  Probably should write some guile scripts to do the testing; then
+  automation might be possible.
 
 * Write code that saves, restores, and removes sessions
   I plan to do this by first writing some code that understands how to
