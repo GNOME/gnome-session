@@ -131,7 +131,7 @@ write_one_client (const Client *client)
 				       &numbers[number_count]);
 	  if (found)
 	    {
-	      saved = !(properties[i].name == SmRestartStyleHint &&
+	      saved = !(!strcmp(properties[i].name, SmRestartStyleHint) &&
 			numbers[number_count] == SmRestartNever);
 	      
 	      number_names[number_count++] = (char*)properties[i].save_name;
@@ -338,7 +338,7 @@ read_one_client (Client *client)
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
 
-	      if (properties[i].name == GsmPriority)
+	      if (!strcmp(properties[i].name, GsmPriority))
 		client->priority = number;
 	    }
 	  break;
