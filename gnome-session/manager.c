@@ -487,6 +487,7 @@ save_session (int save_type, gboolean shutdown, int interact_style,
 {
   GSList *list;
 
+  printf ("save_session\n");
   if (saving)
     return;
 
