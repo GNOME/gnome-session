@@ -1,6 +1,6 @@
 /* manager.h - Definitions for session manager.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -141,6 +141,13 @@ extern gboolean trashing;
 
 /* Ignoring ~/.gnome/session as it is deemed to be unreliable. */
 extern gboolean failsafe;
+
+/* Vector of sockets we are listening on, and size of vector.  */
+extern guint num_sockets;
+extern IceListenObj *sockets;
+
+/* List of auth entries.  */
+GSList *auth_entries;
 
 /*
  * manager.c
@@ -295,5 +302,13 @@ void command_handle_free (gchar* handle);
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
 #define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
 #define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))
+
+/*
+ * remote.c
+ */
+
+/* Try to start a program remotely, if appropriate, else locally.  */
+gint remote_start (char *restart_info, int argc, char **argv,
+		   char *cwd, int envpc, char **envp);
 
 #endif /* MANAGER_H */

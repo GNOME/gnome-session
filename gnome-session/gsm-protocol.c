@@ -362,7 +362,7 @@ gsm_client_object_init (GsmClient* client)
 {
   client->handle = NULL;
   client->session = (GsmSession*)live_session;
-  client->order = 50;
+  client->order = DEFAULT_PRIORITY;
   client->style = GSM_NORMAL;
   client->state = GSM_INACTIVE;
   client->command = NULL;

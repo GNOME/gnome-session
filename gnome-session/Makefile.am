@@ -18,7 +18,7 @@ bin_PROGRAMS = gnome-session save-session
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
-command.c session.h
+command.c session.h remote.c
 
 save_session_SOURCES = save-session.c
 

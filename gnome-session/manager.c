@@ -1,6 +1,6 @@
 /* manager.c - Session manager back end.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -273,15 +273,16 @@ run_command (Client* client, const gchar* command)
 {
   int argc, envc, envpc, pid = -1;
   gboolean def, envd;
-  char **argv, *dir, prefix[1024], **envv, **envp;
-  
+  char **argv, *dir, prefix[1024], **envv, **envp, *restart_info;
+
   if (find_vector_property (client, command, &argc, &argv))
     {
       if (!find_string_property (client, SmCurrentDirectory, &dir))
 	dir = NULL;
       
-      if (find_vector_property (client, SmEnvironment, &envc, &envv) &&
-	  envc > 0 && !(envc | 1))
+      if (find_vector_property (client, SmEnvironment, &envc, &envv)
+	  && envc > 0
+	  && envc % 2 == 0)
 	{
 	  int i;
 
@@ -290,15 +291,25 @@ run_command (Client* client, const gchar* command)
 	  
 	  for (i = 0; i < envpc; i++)
 	    envp[i] = g_strconcat (envv[2*i], "=", envv[2*i + 1], NULL);
-	  free_vector (envc, envv);
 	}
       else
 	{
 	  envpc = 0;
 	  envp = NULL;
+	  envc = 0;
+	  envv = NULL;
 	}
-      
-      pid = gnome_execute_async_with_env (dir, argc, argv, envpc, envp);
+
+      /* We can't run this in the `if' because we might have allocated
+	 ENVV in find_vector_property but rejected it for other
+	 reasons.  */
+      free_vector (envc, envv);
+
+      restart_info = NULL;
+      find_string_property (client, GsmRestartService, &restart_info);
+      pid = remote_start (restart_info, argc, argv, dir, envpc, envp);
+      if (restart_info)
+	free (restart_info);
 
       if (errno)
 	{
@@ -697,9 +708,10 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	      sprintf (address, "0%.8x", rand());
 	    };
 
+	  /* The typecast there is for 64-bit machines */
 	  client->id = malloc (43);
 	  sprintf (client->id, "1%s%.13ld%.10d%.4d", address,
-		   time(NULL), getpid (), sequence++);
+		   (long) time(NULL), getpid (), sequence++);
 	  
 	  sequence %= 10000;
 	}
@@ -1512,7 +1524,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
     }
 
   client = (Client*)calloc (1, sizeof(Client));
-  client->priority = 50;
+  client->priority = DEFAULT_PRIORITY;
   client->connection = connection;
   client->attempts = 1;
   client->connect_time = time (NULL);
