@@ -1,3 +1,11 @@
+Tue Nov 27 17:21:46 2001  Owen Taylor  <otaylor@redhat.com>
+
+	* gsm-client-editor.c (change): Fix error in retrieving
+	activate child by using gtk_option_menu_get_history().
+
+	* gsm-client-row.c (create_stock_menu_pixmaps): Do this
+	in a _bit_ more sane way that actually warks.
+
 2001-11-26  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: remove gsm-protocol.c rule.

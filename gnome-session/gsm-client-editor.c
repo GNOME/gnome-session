@@ -157,10 +157,8 @@ change (GsmClientEditor* client_editor)
       GtkOptionMenu *omenu = GTK_OPTION_MENU (client_editor->style_menu);
       GList *list;
       gint style;
-      
-      for (list = GTK_MENU_SHELL (omenu->menu)->children, style = 0; list; list = list->next, style++)
-	if (omenu->menu_item == list->data) 
-	  break;
+
+      style = gtk_option_menu_get_history (GTK_OPTION_MENU (omenu));
 
       gtk_signal_emit ((GtkObject*)client_editor, 
 		       gsm_client_editor_signals[CHANGED], order, style); 

@@ -27,8 +27,6 @@
 #include "gsm-client-row.h"
 #include "gsm-client-editor.h"
 
-#define GNOME_STOCK_MENU_HELP "Menu_Help"
-
 GnomeUIInfo state_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Inactive"), 
 			 N_("Waiting to start or already finished."), 
@@ -44,7 +42,7 @@ GnomeUIInfo state_data[] = {
 			 NULL, GNOME_STOCK_MENU_SAVE),
   GNOMEUIINFO_ITEM_STOCK(N_("Unknown"), 
 			 N_("State not reported within timeout."), 
-			 NULL, GNOME_STOCK_MENU_HELP),
+			 NULL, GNOME_STOCK_PIXMAP_HELP),
   GNOMEUIINFO_END
 };
 
@@ -72,7 +70,7 @@ typedef struct {
 static PixmapAndMask state_pixmap[GSM_NSTATES];
 static PixmapAndMask style_pixmap[GSM_NSTYLES];
 
-static void create_stock_menu_pixmaps (void);
+static void create_stock_menu_pixmaps (GsmClientList *client_list);
 
 static GsmClientClass *parent_class = NULL;
 
@@ -96,8 +94,6 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   client_class->command  = client_command;
   client_class->style    = client_style;
   client_class->order    = client_order;
-
-  create_stock_menu_pixmaps ();
 
   object_class->destroy = gsm_client_row_destroy;
 }
@@ -133,6 +129,9 @@ gsm_client_row_new (GsmClientList* client_list)
   client_row->client_list = client_list;
   client_row->row = -1;
   client_row->change = GSM_CLIENT_ROW_NONE;
+
+  if (!state_pixmap[0].pixmap)
+	  create_stock_menu_pixmaps (client_list);
 
   return GTK_OBJECT (client_row);
 }
@@ -335,23 +334,31 @@ client_style (GsmClient* client, GsmStyle style)
 }
 
 static void
-create_stock_menu_pixmaps (void)
+create_stock_menu_pixmaps (GsmClientList *client_list)
 {
-	GtkWidget *image;
 	gint i;
 	
 	for (i = 0; i < GSM_NSTATES; i++) {
-		/* Owen will probably yell at me for this */
-		image = gtk_image_new_from_stock (state_data[i].pixmap_info, 20);
-		gtk_image_get_pixmap (GTK_IMAGE (image), 
-				      &state_pixmap[i].pixmap,
-				      &state_pixmap[i].mask);
-		gtk_widget_unref (image);
-
-		image = gtk_image_new_from_stock (style_data[i].pixmap_info, 20);
-		gtk_image_get_pixmap (GTK_IMAGE (image),
-				      &style_pixmap[i].pixmap,
-				      &style_pixmap[i].mask);
-		gtk_widget_unref (image);
+		GdkPixbuf *pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
+							    state_data[i].pixmap_info,
+							    GTK_ICON_SIZE_MENU,
+							    NULL);
+		gdk_pixbuf_render_pixmap_and_mask (pixbuf, 
+						   &state_pixmap[i].pixmap,
+						   &state_pixmap[i].mask,
+						   0x80);
+		g_object_unref (pixbuf);
+	}
+		
+	for (i = 0; i < GSM_NSTYLES; i++) {
+		GdkPixbuf *pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
+						 style_data[i].pixmap_info,
+						 GTK_ICON_SIZE_MENU,
+						 NULL);
+		gdk_pixbuf_render_pixmap_and_mask (pixbuf, 
+						   &style_pixmap[i].pixmap,
+						   &style_pixmap[i].mask,
+						   0x80);
+		g_object_unref (pixbuf);
 	}
 }
