@@ -83,12 +83,11 @@ send_message (GSList *list, message_func *message)
   while (list)
     {
       Client *client = list->data;
-      REMOVE (list, client);
-      APPEND (message_sent_list, client);
+      list = list->next;
+
       (*message) (client->connection);
+      APPEND (message_sent_list, client);
     }
-  list = message_sent_list;
-  message_sent_list = NULL;
 }
 
 
