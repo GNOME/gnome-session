@@ -68,7 +68,8 @@
 /* Allow TCP connections to the session manager. */
 #define ALLOW_TCP_KEY              GSM_GCONF_CONFIG_PREFIX "/allow_tcp_connections"
 
-
+/* Assistive Technology support is turned on */
+#define ACCESSIBILITY_KEY         "/desktop/gnome/interface/accessibility"
 
 /* Convenience macros: */
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))

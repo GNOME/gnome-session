@@ -48,6 +48,7 @@
 #include "util.h"
 #include "gsm-sound.h"
 #include "gsm-gsd.h"
+#include "gsm-at-startup.h"
 
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
@@ -439,6 +440,7 @@ main (int argc, char *argv[])
   Session *the_session;
   GConfClient *gconf_client;
   gboolean splashing;
+  gboolean a_t_support;
   GError *err;
   int status;
   
@@ -513,6 +515,7 @@ main (int argc, char *argv[])
   splashing      = gconf_client_get_bool (gconf_client, SPLASH_SCREEN_KEY, NULL);
   autosave       = gconf_client_get_bool (gconf_client, AUTOSAVE_MODE_KEY, NULL);
   logout_prompt  = gconf_client_get_bool (gconf_client, LOGOUT_PROMPT_KEY, NULL);
+  a_t_support    = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
 
   gconf_client_notify_add (gconf_client,
 			   AUTOSAVE_MODE_KEY,
@@ -564,6 +567,9 @@ main (int argc, char *argv[])
     splash_start ();
 
   start_session (the_session);
+
+  if (a_t_support) /* the ATs are happier if the session has started */
+    gsm_assistive_technologies_start ();
 
   gtk_main ();
 

@@ -1,3 +1,16 @@
+2003-06-09  Bill Haneman  <bill.haneman@sun.com
+
+	* main.c:
+	Check "accessibility" gconf key and call
+	gsm_assistive_technologies_start if enabled.
+	Implementation for #113307.
+
+	* gnome-session/gsm-at-startup.h: New file.
+
+	* gnome-session/gsm-at-startup.c: New file.
+	Execute all of the assistive technologies in the
+	/desktop/gnome/accessibility/startup/exec_ats gconf list.
+
 ==================== 2.3.3 ====================
 
 2003-06-06  Mark McLoughlin  <mark@skynet.ie>

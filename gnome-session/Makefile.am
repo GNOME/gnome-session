@@ -100,6 +100,8 @@ gnome_session_SOURCES =		\
 	gsm-protocol.h		\
 	gsm-sound.c		\
 	gsm-sound.h		\
+	gsm-at-startup.c	\
+	gsm-at-startup.h	\
 	gsm-multiscreen.c	\
 	gsm-multiscreen.h	\
 	gsm-typebuiltins.c	\
