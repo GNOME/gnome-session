@@ -1,3 +1,16 @@
+1999-03-12 Felix Bellaby  <felix@pooh.u-net.com> 
+
+	* session.h: protocol extension specs.
+	* command.c: contains the code implementing the server side of
+	the gnome-session protocol extensions.
+	* manager.*, save.c.: accomodate protocol extensions.
+	* ice.c: remove dependency on iceauth binary.
+	* main.c: fix SIGPIPE handling.
+	* gsm-client-*, gsm-column.*: the client list widget code.
+	* gsm-protocol.*: gtk interface to protocol extensions.
+	* session-properties.c: use client list widget.
+	* Makefile.am: build the new code.
+
 1999-03-02  Martin Baulig  <martin@home-of-linux.org>
 
 	* default.wm.in: New file. We install this in $(datadir) and
