@@ -40,13 +40,13 @@ typedef struct {
 } SplashApp;
 
 static const SplashApp splash_map_table[] = {
-	{ N_("Sawfish Window Manager"),  "sawfish",               "gnome-ccwindowmanager.png" },
-	{ N_("Metacity Window Manager"), "metacity",              "gnome-ccwindowmanager.png" },
-	{ N_("Window Manager"),          "gnome-wm",              "gnome-ccwindowmanager.png" },
-	{ N_("The Panel"),               "gnome-panel",           "gnome-panel.png" },
-	{ N_("Session Manager Proxy"),   "gnome-smproxy",         "gnome-session.png" },
-	{ N_("Nautilus"),                "nautilus",              "gnome-ccdesktop.png" },
-	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings.png" }
+	{ N_("Sawfish Window Manager"),  "sawfish",               "gnome-window-manager" },
+	{ N_("Metacity Window Manager"), "metacity",              "gnome-window-manager" },
+	{ N_("Window Manager"),          "gnome-wm",              "gnome-window-manager" },
+	{ N_("The Panel"),               "gnome-panel",           "gnome-panel" },
+	{ N_("Session Manager Proxy"),   "gnome-smproxy",         "gnome-session" },
+	{ N_("Nautilus"),                "nautilus",              "gnome-fs-desktop" },
+	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings" }
 };
 
 static const SplashApp *
