@@ -174,9 +174,8 @@ display_gui (void)
 
   protocol = (GsmProtocol *)gsm_protocol_new (gnome_master_client());
   if( !protocol) {
-    gchar *string = _("Could not connect to the session manager");
+    const gchar *string = _("Could not connect to the session manager");
     g_printerr("%s\n", string);
-    g_free(string);
   }
   
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
