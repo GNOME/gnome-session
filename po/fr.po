@@ -1,16 +1,16 @@
-# gnome-session fr.po
+# French translation of gnome-session.
 # Copyright (C) 1998-2002 Free Software Foundation, Inc.
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
-# maintainer: Christophe Merlet (RedFox) <christophe@merlet.net>, 2000-2002.
+# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2002.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.5.21\n"
-"POT-Creation-Date: 2002-12-10 12:17+1300\n"
-"PO-Revision-Date: 2002-07-13 01:07+0200\n"
-"Last-Translator: Christophe Fergeau <teuf@users.sourceforge.net>\n"
+"Project-Id-Version: gnome-session 2.1.4\n"
+"POT-Creation-Date: 2002-12-15 18:15+0100\n"
+"PO-Revision-Date: 2002-12-15 18:06+0100\n"
+"Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Autoriser les connexions TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -27,45 +27,54 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Pour des raisons de sécurité, sur les plate-formes qui ont "
+"_IceTcpTransNoListen() (systèmes XFree86), gnome-session n'est pas à "
+"l'écoute de connexions sur les ports TCP. Cette option autorise les "
+"connexions depuis les hôtes distants (autorisés). gnome-session doit être "
+"redémarré afin que cela prenne effet."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Si activé, gnome-session interrogera l'utilisateur avant de terminer une "
+"session."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Si activé, gnome-session enregistrera la session automatiquement. Autrement, "
+"la boîte de dialogue de déconnexion aura une option pour enregistrer la "
+"session."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Clore la session"
+msgstr "Invite de déconnexion"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Image préférée à utiliser pour l'écran d'acceuil lors de la connexion au "
+"bureau GNOME."
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sessions"
+msgstr "Enregistrer les sessions"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Afficher l'écran d'accueil à la _connexion"
+msgstr "Afficher l'écran d'accueil"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Affiche l'écran d'acceuil au démarrage de la session"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Image de l'écran d'acceuil"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -454,13 +463,12 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "Paramètres du clavier"
+msgstr "Paramètres du bureau"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
-msgstr "Commande de _démarrage"
+msgstr "Commande de _démarrage :"
 
 #: gnome-session/startup-programs.c:293
 msgid "Startup Command"
