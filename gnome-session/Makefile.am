@@ -77,11 +77,10 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
-man_MANS = gnome-wm.1 save-session.1 default.session.5 gnome-session.1
-
-manuals = gnome-wm.1	\
-	default.session.5.in	\
-	gnome-session.1.in	\
+man_MANS = \
+	default.session.5	\
+	gnome-session.1		\
+	gnome-wm.1		\
 	save-session.1		\
 	gnome-libice-check.1	\
 	gnome-login-check.1	\
@@ -96,9 +95,11 @@ EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
-	save-session.desktop.in 	\
-	session.desktop.in		\
-	$(manuals)		\
+	default.session.5.in	\
+	gnome-session.1.in	\
+	save-session.desktop.in \
+	session.desktop.in	\
+	$(man_MANS)		\
 	$(pixmap_DATA)		\
 	session-properties.desktop.in
 
