@@ -29,9 +29,6 @@
 #include "manager.h"
 
 /* Parsing function.  */
-static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
-
-
 
 /* The name of the session to load.  */
 static char *session = NULL;
@@ -40,43 +37,10 @@ static char *session = NULL;
    session.  */
 static int debugging = 0;
 
-/* Arguments we understand.  */
-static struct argp_option options[] =
-{
-  { "debug", -1, NULL, OPTION_HIDDEN, NULL, 1 },
-  { NULL, 0, NULL, 0, NULL, 0 }
+static const struct poptOption options[] = {
+  {"debug", '\0', POPT_ARG_NONE, &debugging, 0, N_("Enable gsm debugging"), NULL},
+  {NULL, '\0', 0, NULL, 0}
 };
-
-/* Our argument parser.  */
-static struct argp parser =
-{
-  options,
-  parse_an_arg,
-  N_("[SESSION]"),
-  NULL,
-  NULL,
-  NULL,
-  PACKAGE
-};
-
-static error_t
-parse_an_arg (int key, char *arg, struct argp_state *state)
-{
-  if (key == -1)
-    {
-      debugging = 1;
-      return 0;
-    }
-
-  if (key != ARGP_KEY_ARG)
-    return ARGP_ERR_UNKNOWN;
-
-  if (session)
-    argp_usage (state);
-
-  session = arg;
-  return 0;
-}
 
 /* A separate function to ease the impending #if hell.  */
 static void
@@ -95,8 +59,8 @@ int
 main (int argc, char *argv[])
 {
   char *ep;
-
-  argp_program_version = VERSION;
+  poptContext ctx;
+  char **leftovers;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
@@ -106,7 +70,20 @@ main (int argc, char *argv[])
   /* FIXME: this is debugging that can eventually be removed.  */
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
   gnome_client_disable_master_connection ();
-  gnome_init ("gnome-session", &parser, argc, argv, 0, NULL);
+  gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
+			     &ctx);
+  leftovers = poptGetArgs(ctx);
+  if(leftovers) {
+    if(leftovers[0] && leftovers[1]) {
+      /* too many args */
+      perror("Too many arguments.");
+      poptPrintHelp(ctx, stderr, 0);
+    } /* else if(!leftovers[0]) */ /* XXX do we need to require a
+	                              session name on the cmdline here? */
+
+    session = leftovers[0];
+  }
+  poptFreeContext(ctx);
 
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */

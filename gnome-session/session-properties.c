@@ -282,34 +282,11 @@ session_die (GnomeClient *client, gpointer client_data)
   gtk_main_quit ();
 }
 
-
-
-static struct argp_option options[] =
-{
-  { "geometry", -1, "GEOMETRY", 0, N_("Geometry of window"), 0 },
-  { NULL, 0, NULL, 0, NULL, 0 }
+static const struct poptOption options[] = {
+  {"geometry", '\0', POPT_ARG_STRING, &geometry, 0, N_("Geometry of window"),
+   N_("GEOMETRY")},
+  {NULL, '\0', 0, NULL, 0}
 };
-
-static error_t
-parse_an_arg (int key, char *arg, struct argp_state *state)
-{
-  if (key != -1)
-    return ARGP_ERR_UNKNOWN;
-  geometry = arg;
-  return 0;
-}
-
-static struct argp parser =
-{
-  options,
-  parse_an_arg,
-  NULL,
-  NULL,
-  NULL,
-  NULL,
-  PACKAGE
-};
-
 
 int
 main (int argc, char *argv[])
@@ -317,13 +294,12 @@ main (int argc, char *argv[])
   struct info *info;
   GnomeClient *client;
 
-  argp_program_version = VERSION;
-
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init ("session-properties", &parser, argc, argv, 0, NULL);
+  gnome_init_with_popt_table ("session-properties", VERSION, argc,
+			      argv, options, 0, NULL);
 
   info = setup ();
   info->argv0 = argv[0];

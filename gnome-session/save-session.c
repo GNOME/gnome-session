@@ -26,52 +26,24 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
 
-/* Parsing function.  */
-static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
-
-/* Arguments we understand.  */
-static struct argp_option options[] =
-{
-  { "kill", -1, NULL, 0, N_("Kill session"), 1 },
-  { NULL, 0, NULL, 0, NULL, 0 }
-};
-
-/* Our argument parser.  */
-static struct argp parser =
-{
-  options,
-  parse_an_arg,
-  NULL,
-  NULL,
-  NULL,
-  NULL,
-  PACKAGE
-};
-
 /* True if killing.  */
 static int zap = 0;
 
-static error_t
-parse_an_arg (int key, char *arg, struct argp_state *state)
-{
-  if (key != -1)
-    return ARGP_ERR_UNKNOWN;
-  zap = 1;
-  return 0;
-}
+static const struct poptOption options[] = {
+  {"kill", '\0', POPT_ARG_NONE, &zap, N_("Kill session"), NULL},
+  {NULL, '\0', 0, NULL, 0}
+};
 
 int
 main (int argc, char *argv[])
 {
   GnomeClient *client;
 
-  argp_program_version = VERSION;
-
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init ("session", &parser, argc, argv, 0, NULL);
+  gnome_init_with_popt_table("save-session", VERSION, argc, argv, options, 0, NULL);
 
   client = gnome_master_client ();
 
