@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-07-13 22:38+0200\n"
+"POT-Creation-Date: 2002-11-29 23:37+0100\n"
+"PO-Revision-Date: 2002-11-29 23:39+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Tillåt TCP-anslutningar"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -30,45 +30,52 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Av säkerhetsskäl lyssnar inte gnome-session på anslutningar på TCP-portar på "
+"plattformar som har _IceTcpTransNoListen() (XFree86-system). Detta "
+"alternativ tillåter anslutningar från auktoriserade fjärrvärdar. gnome-"
+"session måste startas om för att detta ska börja gälla."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Om detta är aktiverat kommer gnome-session att fråga användaren innan en "
+"session avslutas."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Om detta är aktiverat kommer gnome-session att spara sessionen automatiskt. "
+"Annars kommer utloggningsdialogen att ha ett alternativ för att spara "
+"sessionen."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Logga ut"
+msgstr "Utloggningsfråga"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Föredragen bild att använda som startbild vid inloggning i GNOME-skrivbordet"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sessioner"
+msgstr "Spara sessioner"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Visa startbild vid _inloggning"
+msgstr "Visa startbilden"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Visa startbilden då sessionen startar"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Startbild"
 
 # SUN CHANGED MESSAGE
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
@@ -512,9 +519,8 @@ msgstr "Redigera startprogram"
 #~ msgid "Keyboard Settings"
 #~ msgstr "Tangentbordsinställningar"
 
-#, fuzzy
 #~ msgid "false"
-#~ msgstr "Stäng"
+#~ msgstr "falskt"
 
 #~ msgid "Priority"
 #~ msgstr "Prioritet"
