@@ -79,6 +79,7 @@ stop_splash ()
   if (!sd || sd->timeout)
     return;
 
+  update_splash (_("done"), sd->max);
   sd->timeout = gtk_timeout_add (2000, timeout_cb, NULL);
 }
 
@@ -89,7 +90,16 @@ window_realize (GtkWidget *win)
      be on top of the hints which are at WIN_LAYER_ONTOP,
      in fact, the splash screen is only temporary and should
      be above everything */
-  gnome_win_hints_set_layer(win,WIN_LAYER_ABOVE_DOCK);
+  gnome_win_hints_set_layer (win, WIN_LAYER_ABOVE_DOCK);
+  gdk_window_set_decorations (win->window, 0);
+  gnome_win_hints_set_state (win, 
+			     WIN_STATE_STICKY |
+			     WIN_STATE_FIXED_POSITION);
+  gnome_win_hints_set_hints (win, 
+			     WIN_HINTS_SKIP_FOCUS |
+			     WIN_HINTS_SKIP_WINLIST |
+			     WIN_HINTS_SKIP_TASKBAR);
+			     
 }
 
 void
@@ -107,7 +117,7 @@ start_splash (gfloat max)
   sd->max = max;
   sd->timeout=0;
 
-  sd->dialog = gtk_window_new (GTK_WINDOW_POPUP);
+  sd->dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_position (GTK_WINDOW (sd->dialog),
 			   GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (sd->dialog),
@@ -165,7 +175,7 @@ update_splash (const gchar *text, gfloat priority)
     return;
   }
 
-  msg = g_strdup_printf (_("Starting GNOME: %s"), text);
+  msg = g_strdup_printf (_("Starting GNOME... %s"), text);
   
   gtk_label_set_text (GTK_LABEL (sd->label), msg);
   g_free (msg);
