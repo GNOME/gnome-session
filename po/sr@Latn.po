@@ -1,18 +1,18 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://www.prevod.org/) -- 2003.
-# 
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003, 2004, 2005.
+#
 # This file is distributed under the same license as the gnome-session package.
-# 
+#
 # Maintainer: Danilo Šegan <dsegan@gmx.net>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.2.0\n"
+"Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-08-23 18:12+0200\n"
+"POT-Creation-Date: 2005-03-06 10:38+0100\n"
+"PO-Revision-Date: 2005-03-06 10:40+0100\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
-"Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
+"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,10 +52,8 @@ msgid "Logout prompt"
 msgstr "Pitanje pred odjavu"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "Slika koja će se prikazivati pri prijavi na Gnomovu radnu površinu"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Slika koja će se prikazivati pri prijavi"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -70,12 +68,15 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Prikaži pozdravni ekran po pokretanju sesije"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Slika za pozdravni ekran"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Ovo je relativna putanja u odnosu na direktorijum $datadir/pixmaps/. Poddirektorijumi i imena slika su dozvoljene vrednosti. Izmena ove vrednosti će uticati na narednu prijavu u sesiju."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
-msgstr "Redosled:"
+msgstr "_Redosled:"
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
@@ -87,7 +88,7 @@ msgstr "Šta se dešava sa programom kada se okonča."
 
 #: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "Stil:"
+msgstr "_Stil:"
 
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:412
@@ -195,8 +196,8 @@ msgid ""
 msgstr ""
 "Došlo je do greške pri pokretanju uslužnog programa za podešavanja Gnoma.\n"
 "\n"
-"Neke stvari, kao što su teme, zvuci, ili podešenja pozadine možda neće "
-"raditi ispravno."
+"Neke stvari, kao što su teme, zvuci, ili podešenja pozadine možda neće raditi "
+"ispravno."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -380,9 +381,8 @@ msgid "Show splash screen on _login"
 msgstr "Prikaži pozdravni ekran pri prijavi"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "Potvrda pred prijavu"
+msgstr "Po_tvrda pred prijavu"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -487,6 +487,9 @@ msgstr "Dodaj program pri učitavanju"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Uredi program pri učitavanju"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Slika za pozdravni ekran"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Snimi tekuću sesiju"
