@@ -380,6 +380,7 @@ start_splash (gfloat max)
     int height, width;
     char *filename;
     int maj, minor, pl;
+    PangoFontDescription *font_desc;
 	    
     /* Find a splahsscreen by looking at "gnome-splash-major.minor.pl.png",
        "gnome-splash-major.minor.png" and "gnome-splash.png" */
@@ -434,15 +435,17 @@ start_splash (gfloat max)
 
 	    g_object_unref (pb);
     } else {
+	    font_desc = pango_font_description_from_string ("Sans bold 24");
 	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				   GNOME_TYPE_CANVAS_TEXT,
 				   "text", _("GNOME"),
-				   "font_desc", pango_font_description_from_string ("[helvetica] [normal bold] [24]"),
+				   "font_desc", font_desc,
 				   "x", (gdouble)(width / 2),
 				   "y", (gdouble)(height / 2),
 				   "anchor", GTK_ANCHOR_CENTER,
 				   "fill_color", "black",
 				   NULL);
+	    pango_font_description_free (font_desc);
     }
 
     sd->label_shadow = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
@@ -456,15 +459,17 @@ start_splash (gfloat max)
 					      NULL);
     
 
+    font_desc = pango_font_description_from_string ("Sans 8");
     sd->label = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				       GNOME_TYPE_CANVAS_TEXT,
 				       "text", _("Starting GNOME"),
 				       "x", (gdouble)(width / 2),
 				       "y", (gdouble)(height - 7.5),
-				       "font_desc", pango_font_description_from_string ("[helvetica] [medium normal] [8]"),
+				       "font_desc", font_desc,
 				       "anchor", GTK_ANCHOR_CENTER,
 				       "fill_color", "white",
 				       NULL);
+    pango_font_description_free (font_desc);
     redo_shadow (sd);
   }
 
