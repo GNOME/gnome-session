@@ -380,7 +380,7 @@ start_splash (gfloat max)
     int height, width;
     char *filename;
     int maj, minor, pl;
-
+	    
     /* Find a splahsscreen by looking at "gnome-splash-major.minor.pl.png",
        "gnome-splash-major.minor.png" and "gnome-splash.png" */
     if (sscanf (VERSION, "%d.%d.%d", &maj, &minor, &pl) != 3) {
@@ -427,7 +427,7 @@ start_splash (gfloat max)
     gtk_widget_set_usize (sd->hbox, width, height);
     gnome_canvas_set_scroll_region (GNOME_CANVAS (sd->hbox), 0, 0, width, height);
     gtk_window_set_default_size (GTK_WINDOW (sd->dialog), width, height);
-				 
+    
     if (pb != NULL) {
 	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				   GNOME_TYPE_CANVAS_PIXBUF, "pixbuf", pb, NULL);
@@ -437,7 +437,7 @@ start_splash (gfloat max)
 	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				   GNOME_TYPE_CANVAS_TEXT,
 				   "text", _("GNOME"),
-				   "fontset", _("-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"),
+				   "font_desc", pango_font_description_from_string ("[helvetica] [normal bold] [24]"),
 				   "x", (gdouble)(width / 2),
 				   "y", (gdouble)(height / 2),
 				   "anchor", GTK_ANCHOR_CENTER,
@@ -454,12 +454,14 @@ start_splash (gfloat max)
 					      "y2", (gdouble)1.0,
 					      "fill_color_rgba", 0x00000080,
 					      NULL);
+    
+
     sd->label = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				       GNOME_TYPE_CANVAS_TEXT,
 				       "text", _("Starting GNOME"),
 				       "x", (gdouble)(width / 2),
 				       "y", (gdouble)(height - 7.5),
-				       "fontset", _("-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"),
+				       "font_desc", pango_font_description_from_string ("[helvetica] [medium normal] [8]"),
 				       "anchor", GTK_ANCHOR_CENTER,
 				       "fill_color", "white",
 				       NULL);

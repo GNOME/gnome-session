@@ -1,3 +1,10 @@
+2001-12-06  Glynn Foster  <glynn.foster@sun.com>
+
+	* splash.c: Fix up the arguments to the canvas-text-item to use
+	a PangoFontDesc instead. Dunno if this actually works, I'm too
+	afraid to run gnome-session-2 on my machine. Thanks to Miles for
+	spotting this out.
+
 2001-12-06  Malcolm Tredinnick <malcolm@commsecure.com.au>
 	* main.c: call gnome_program_init() before the ICE stuff so that
 	  things get initialized in the right order. This kills a few
