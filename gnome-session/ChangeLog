@@ -1,3 +1,10 @@
+Thu May 14 09:49:08 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* manager.c (kill_client_connection): New function.
+	(check_session_end): Correctly determine when last ordinary client
+	finishes.  Send kill_client_connection message to each client,
+	just to make sure.
+
 Sun May  3 10:53:01 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* manager.c (io_error_handler): Call IceCloseConnection.

@@ -135,6 +135,17 @@ free_client (Client *client)
 
 
 
+/* At shutdown time, we forcibly close each client connection.  This
+   makes it so we don't fall into an endless loop waiting for losing
+   clients which don't exit.  */
+static void
+kill_client_connection (SmsConn connection)
+{
+  IceCloseConnection (SmsGetIceConnection (connection));
+}
+
+
+
 static Status
 register_client (SmsConn connection, SmPointer data, char *previous_id)
 {
@@ -268,9 +279,13 @@ check_session_end (int found)
 	  live_list = save_finished_list;
 	  save_finished_list = NULL;
 	  if (shutting_down)
-	    gtk_main_quit ();
+	    {
+	      /* Make sure that all client connections are closed.  */
+	      send_message (live_list, kill_client_connection);
+	      gtk_main_quit ();
+	    }
 	}
-      else if (! found)
+      else if (found)
 	{
 	  /* Just saw the last ordinary client finish saving.  So tell
 	     the Phase 2 clients that they're ok to go.  */
