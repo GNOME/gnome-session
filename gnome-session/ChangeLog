@@ -1,5 +1,8 @@
 2002-07-08  jacob berkman  <jacob@ximian.com>
 
+	* session-properties-capplet.c (main): quit on the SM die signal
+	(fixes bug #82166)
+
 	* logout.c (display_gui): call XSetInputFocus() on our window to
 	fix #77517 again (thanks, owen)
 

@@ -600,6 +600,8 @@ main (int argc, char *argv[])
 	  exit (1);
   }
 
+  g_signal_connect (gnome_master_client (), "die", G_CALLBACK (gtk_main_quit), NULL);
+
   /* We make this call immediately, as a convenient way
    * of putting ourselves into command mode; if we
    * don't do this, then the "event loop" that
