@@ -220,6 +220,7 @@ capplet_build (void)
   gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions"));
   gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dlg)->vbox), 2);
   help_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
