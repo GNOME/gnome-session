@@ -7,19 +7,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-11-04 10:10+1300\n"
-"PO-Revision-Date: 2002-07-02 12:03+0300\n"
+"POT-Creation-Date: 2002-11-26 22:23+0200\n"
+"PO-Revision-Date: 2002-11-26 23:57+0200\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Luba TCP ühendused"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -27,48 +27,45 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:5
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr "Logi välja"
+msgstr "Väljalogimisviip"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:7
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
-msgstr "Sessioon"
+msgstr "Salvesta sessioonid"
 
-#: gnome-session/gnome-session.schemas.in.h:8
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:8
 msgid "Show the splash screen"
+msgstr "Näita tiitelkuva"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
 msgstr "Näita sisselogimisel tiitelkuva"
 
-#: gnome-session/gnome-session.schemas.in.h:9
-msgid "Show the splash screen when the session starts up"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Tiitelkuva pilt"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
-msgstr "_Järjekord: "
+msgstr "_Järjekord:"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
@@ -149,7 +146,7 @@ msgstr "Säilib väljalogimisel kuid võib surra."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr ""
+msgstr "Taaskäivita"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -186,6 +183,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
+"\n"
+"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult "
+"töötada."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -205,6 +206,10 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, "
+"sätetedeemonit taaskäivitada."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -212,7 +217,7 @@ msgstr "Tekkis tundmatu aktiveerimise viga."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Sätetedeemon taaskäivitus liiga palju kordi."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
@@ -302,9 +307,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Te võite oodata, et ta vastaks, või kustutada ta."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Taaskäivitamine peatati ebaõnnestumiste tõttu."
+msgstr "Taaskäivitamisest loobuti ebaõnnestumiste tõttu."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -320,7 +324,7 @@ msgstr "Kasuta dialoogiaknaid"
 
 #: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
-msgstr "Ei suuda saada ühendust sessioonihalduriga"
+msgstr "Ei saa ühendust sessioonihalduriga"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -347,9 +351,8 @@ msgid "Edit session name"
 msgstr "Muuda sessiooni nime"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Muuda..."
+msgstr "_Muuda"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -361,24 +364,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Sessioon"
+msgstr "Sessioonid"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Näita sisselogimisel tiitelkuva"
+msgstr "Näita _sisselogimisel tiitelkuva"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Küsi väljalogimisel kinnitust"
+msgstr "_Küsi väljalogimisel kinnitust"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Salvesta sessiooni muutused automaatselt"
+msgstr "_Salvesta sessiooni muutused automaatselt"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -405,18 +404,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "Eemalda valitud klient sessioonist."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Salvesta sessiooni muutused automaatselt"
+msgstr "Rakenda aktiivse sessiooni muudatused"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Sessioonis olevate programmide nimekiri."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Sirvi hetkel töötavaid programme..."
+msgstr "Hetkel töötavad _programmid:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -424,7 +421,7 @@ msgstr "Algväärtusta sessioon"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Häälesta oma sessioonid"
 
 #: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
@@ -471,9 +468,8 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/startup-programs.c:287
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Käivituskäsk"
+msgstr "_Käivituskäsk:"
 
 #: gnome-session/startup-programs.c:293
 msgid "Startup Command"
@@ -494,9 +490,8 @@ msgstr "Muuda käivitusprogrammi"
 #~ msgid "Priority"
 #~ msgstr "Prioriteet"
 
-#, fuzzy
 #~ msgid "_Priority:"
-#~ msgstr "Prioriteet"
+#~ msgstr "_Prioriteet:"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "GNOME käivitamine: %s"
