@@ -22,6 +22,7 @@
 #include <string.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-macros.h>
+#include <libgnome/gnome-program.h>
 #include <gconf/gconf-client.h>
 
 #include "headers.h"
@@ -303,26 +304,57 @@ splash_widget_class_init (SplashWidgetClass *klass)
 	widget_class->button_release_event = splash_widget_button_release_event;
 }
 
-static void
-read_background (SplashWidget *sw)
+static GdkPixbuf *
+load_background_pixbuf (const char *filename)
 {
-	char *filename;
-	GdkPixbuf *pb;
-	GConfClient * client;
+	GdkPixbuf *retval;
+	GError    *error = NULL;
+	char      *path;
+
+	if (!filename)
+		return NULL;
+
+	path = gnome_program_locate_file (NULL,
+					  GNOME_FILE_DOMAIN_PIXMAP,
+					  filename,
+					  TRUE,
+					  NULL);
+	if (!path)
+		return NULL;
+
+	retval = gdk_pixbuf_new_from_file (path, &error);
+	if (!retval) {
+		g_warning ("Failed to load image from '%s': %s\n",
+			   path, error->message);
+		g_free (path);
+		g_error_free (error);
+		return NULL;
+	}
+
+	g_free (path);
+
+	return retval;
+}
+
+static void
+load_background (SplashWidget *sw)
+{
+	GConfClient *client;
+	char        *filename;
 
 	client = gconf_client_get_default ();
 
 	filename = gconf_client_get_string (client,
 					    "/apps/gnome-session/options/splash_image",
 					    NULL);
-	if (!filename)
-		filename = g_strdup (GNOME_ICONDIR "/splash/gnome-splash.png");
 
-	pb = gdk_pixbuf_new_from_file (filename, NULL);
+	g_object_unref (client);
+
+	sw->background = load_background_pixbuf (filename);
 	g_free (filename);
 
-	sw->background = pb;
-	g_object_unref (G_OBJECT (client));
+	if (!sw->background)
+		sw->background = load_background_pixbuf ("splash/gnome-splash.png");
 }
 
 static void
@@ -356,7 +388,7 @@ splash_widget_instance_init (SplashWidget *sw)
 
 	sw->icon_theme = gnome_icon_theme_new ();
         
-	read_background (sw);
+	load_background (sw);
 }
 
 static GdkPixbuf *

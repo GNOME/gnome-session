@@ -1,3 +1,23 @@
+2003-11-13  Mark McLoughlin  <mark@skynet.ie>
+
+	Fixes a weird problem I was seeing that after
+	doing a distcheck the splash screen no longer
+	worked. Turns out that during the distcheck
+	the default splash screen location was being
+	set to the location within the distcheck
+	install.
+
+	* gnome-session.schemas.in: don't generate from
+	.schemas.in.in and make the default splash screen
+	a relative path rather than an absolute path.
+	
+	* gnome-session.schemas.in.in: remove.
+	
+	* splash-widget.c:
+	(load_background_pixbuf), (load_background): be a lot
+	more robust loading the image and allow relative
+	paths.
+
 ==================== 2.5.1 ====================
 
 2003-11-11  Mark McLoughlin  <mark@skynet.ie>
