@@ -65,7 +65,7 @@ gboolean failsafe = FALSE;
 guint purge_delay = 30000;
 
 /* Wait period for clients to save. */
-guint warn_delay = 10000;
+guint warn_delay = 30000;
 
 /* Wait period for clients to die during shutdown. */
 guint suicide_delay = 10000;
