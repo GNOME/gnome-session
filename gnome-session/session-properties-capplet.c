@@ -76,6 +76,7 @@ static GtkWidget *session_command_dialog;
 /* Other callbacks */
 static void spc_write_state (void);
 static void apply (void);
+static void help_cb (void);
 static void update_gui (void);
 static void dirty_cb (void);
 static void add_startup_cb (void);
@@ -157,7 +158,7 @@ capplet_build (void)
   GtkWidget *notebook;
   GtkWidget *label;
 
-  GtkWidget *dlg, *b, *a, *hb, *sw;
+  GtkWidget *dlg, *b, *a, *hb, *sw, *help_button;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
 
@@ -169,6 +170,8 @@ capplet_build (void)
   dlg = gtk_dialog_new ();
   gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
   gtk_window_set_title (GTK_WINDOW (dlg), _("Session properties"));
+  help_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
+  g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
   apply_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_APPLY, GTK_RESPONSE_APPLY);
   gtk_widget_set_sensitive (GTK_WIDGET (apply_button), FALSE);
   g_signal_connect (G_OBJECT (apply_button), "clicked", apply, NULL);
@@ -385,6 +388,33 @@ apply (void)
   gtk_widget_set_sensitive (apply_button, FALSE);
 }
 
+
+static void
+help_cb (void)
+{
+  GError *error = NULL;
+  gnome_help_display_desktop (NULL, "user-guide", "wgoscustlookandfeel.xml",
+                              "goscustsession-5", &error);
+  if (error) {
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new (NULL,
+                                     GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     ("There was an error displaying help: \n%s"),
+                                     error->message);
+
+    g_signal_connect (G_OBJECT (dialog), "response",
+                      G_CALLBACK (gtk_widget_destroy),
+                      NULL);
+
+    gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+    gtk_widget_show (dialog);
+    g_error_free (error);
+
+  }
+}
 static void
 spc_write_state (void)
 {
