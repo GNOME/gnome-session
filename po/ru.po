@@ -4,9 +4,9 @@
 # Valek Filippov <frob@df.ru>, 2000-2002
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-06-20 08:50+0400\n"
-"PO-Revision-Date: 2002-06-20 08:54+0400\n"
+"Project-Id-Version: gnome-session\n"
+"POT-Creation-Date: 2002-06-27 08:54+0400\n"
+"PO-Revision-Date: 2002-06-27 08:54+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -210,6 +210,57 @@ msgstr "Установки"
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Всегда запускается при каждой регистрации."
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Возникла ошибка при запуске демона установок среды GNOME.\n"
+"\n"
+"Некоторые вещи, такие как установки темы, звуков, фона, могут не работать "
+"корректно."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Последнее сообщение об ошибке было:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"Среда GNOME попробует перезапустить демон установок в следующий раз при "
+"регистрации."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Возникла неизвестная ошибка активации."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Демон установок перезапускался слишком много раз."
 
 # gnome-session/logout.c:231
 #: gnome-session/logout.c:225
@@ -452,37 +503,16 @@ msgstr "Запускаемые при старте программы"
 msgid "Current Session"
 msgstr "Текущий сеанс"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Убрать выделенного клиента из сессии"
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Список программ в сессии"
 
-# gnome-session/session-properties.c:272
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Сеанс"
-
-# gnome-session/session-properties.c:331
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Выбор сеанса"
-
-# gnome-session/session-properties.c:334
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Начать сеанс"
-
-# gnome-session/session-properties.c:337
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Отменить регистрацию"
-
 # gnome-session/session-properties.c:362
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Инициализировать установки сеанса"
 
@@ -595,6 +625,22 @@ msgstr "Добавить программу, запускаемую при ст�
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Изменить программу, запускаемую при старте"
+
+# gnome-session/session-properties.c:272
+#~ msgid "Session"
+#~ msgstr "Сеанс"
+
+# gnome-session/session-properties.c:331
+#~ msgid "Session Chooser"
+#~ msgstr "Выбор сеанса"
+
+# gnome-session/session-properties.c:334
+#~ msgid "Start Session"
+#~ msgstr "Начать сеанс"
+
+# gnome-session/session-properties.c:337
+#~ msgid "Cancel Login"
+#~ msgstr "Отменить регистрацию"
 
 # gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
 #~ msgid "Continue"
