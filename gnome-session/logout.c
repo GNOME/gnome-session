@@ -238,6 +238,7 @@ fadeout_screen (GdkScreen *screen,
 
   fadeout->gc = gdk_gc_new_with_values (fadeout->root_window, &values, GDK_GC_SUBWINDOW);
 
+  gdk_window_set_back_pixmap (fadeout->draw_window, NULL, FALSE);
   gdk_window_show (fadeout->draw_window);
   gdk_draw_pixbuf (fadeout->draw_window,
 		   fadeout->gc,
