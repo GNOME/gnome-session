@@ -302,8 +302,14 @@ static void
 save_yourself_p2_request (SmsConn connection, SmPointer data)
 {
   Client *client = (Client *) data;
-  REMOVE (save_yourself_list, client);
-  APPEND (save_yourself_p2_list, client);
+  gboolean found = (g_slist_find (save_yourself_list, client) != NULL);
+
+  if (found) 
+    {
+      REMOVE (save_yourself_list, client);
+      APPEND (save_yourself_p2_list, client);
+      check_session_end (TRUE);
+    }
 }
 
 /* A helper function.  Finds and executes each shutdown command.  */

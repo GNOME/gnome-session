@@ -1,3 +1,8 @@
+Mon Dec 14 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.c (save_yourself_p2_request): only accept one such request
+	per client and check if ready to send the Save Yourself P2 messages.
+	
 Fri Dec 11 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* manager.c (send_message): protect against io errors.
