@@ -62,10 +62,10 @@ gboolean save_selected = FALSE;
 gboolean failsafe = FALSE;
 
 /* Wait period for clients to register. */
-guint purge_delay = 30000;
+guint purge_delay = 120000;
 
 /* Wait period for clients to save. */
-guint warn_delay = 30000;
+guint warn_delay = 120000;
 
 /* Wait period for clients to die during shutdown. */
 guint suicide_delay = 10000;

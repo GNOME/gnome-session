@@ -1,3 +1,11 @@
+2003-01-06  Mark McLoughlin  <mark@skynet.ie>
+
+	* main.c: make purge_delay and warn_delay 2 minutes
+	by default. A proper strategy for this is being
+	worked out in #94754 and will hopefully be done in
+	2.4. Should fixes the problem of slow starting up
+	apps being killed off - e.g. OpenOffice.
+
 2003-01-03  Mark McLoughlin  <mark@skynet.ie>
 
 	* gsm-protocol.[ch]:
