@@ -2,11 +2,13 @@
 # Max Valianskiy <maxcom@vinchi.ru>, 1998-1999
 # Sergey Panov <sipan@mit.edu>, 1999
 # Valek Filippov <frob@df.ru>, 2000-2002
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
-"PO-Revision-Date: 2003-01-23 17:21+0300\n"
+"POT-Creation-Date: 2003-06-19 13:07+0400\n"
+"PO-Revision-Date: 2003-06-19 13:07+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +26,7 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"По соображениям безопасности на пдатформах, которые имеют функцию "
+"По соображениям безопасности на платформах, которые имеют функцию "
 "_IceTcpTransNoListen() (системы с XFree86), демон \"gnome-session\" не "
 "слушает  соединения на портах протокола TCP. Этот параметр позволяет "
 "разрешить соединения с (авторизованных) удалённых узлов. Демон \"gnome-"
@@ -44,7 +46,6 @@ msgstr ""
 "Если включено, демон \"gnome-session\" бкдет сохранять сеанс автоматически. "
 "Иначе диалог завершения сеанса будет иметь опцию сохранения сеанса."
 
-# gnome-session/logout.c:274
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
 msgstr "Предупреждение о выходе из сеанса"
@@ -56,12 +57,10 @@ msgid ""
 msgstr ""
 "Изображение, которое будет использовано как заставка при запуске среды Гном"
 
-# gnome-session/session-properties.c:272
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
 msgstr "Сохранять сеансы"
 
-# gnome-session/session-properties-capplet.c:227
 #: gnome-session/gnome-session.schemas.in.in.h:8
 msgid "Show the splash screen"
 msgstr "Показывать заставку при запуске"
@@ -74,7 +73,6 @@ msgstr "Показывать заставку при запуске среды �
 msgid "Splash Screen Image"
 msgstr "Изображение заставки"
 
-# gnome-session/gsm-client-editor.c:94
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "_Ранг: "
@@ -87,118 +85,95 @@ msgstr "Порядок, в котором приложения запускаю�
 msgid "What happens to the application when it exits."
 msgstr "Что случится с приложением по завершении"
 
-# gnome-session/gsm-client-editor.c:104
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
 msgstr "С_тиль: "
 
-# gnome-session/gsm-client-list.c:111
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Ранг"
 
-# gnome-session/gsm-client-list.c:111
 #: gnome-session/gsm-client-list.c:155
 msgid "Style"
 msgstr "Стиль"
 
-# gnome-session/gsm-client-list.c:111
 #: gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "Состояние"
 
-# gnome-session/gsm-client-list.c:111
 #: gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "Программа"
 
-# gnome-session/gsm-client-row.c:31
 #: gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "Неактивное"
 
-# gnome-session/gsm-client-row.c:32
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
 msgstr "Ожидает старта или уже завершено."
 
-# gnome-session/gsm-client-row.c:34
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "Запускается"
 
-# gnome-session/gsm-client-row.c:35
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
 msgstr "Запущено, но еще не сообщило состояние."
 
-# gnome-session/gsm-client-row.c:37
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "Запущена"
 
-# gnome-session/gsm-client-row.c:38
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
 msgstr "Обычный участник сеанса."
 
-# gnome-session/gsm-client-row.c:40
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "Сохраняется"
 
-# gnome-session/gsm-client-row.c:41
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "Сохранение деталей сеанса."
 
-# gnome-session/gsm-client-row.c:43
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
 msgstr "Неизвестно"
 
-# gnome-session/gsm-client-row.c:44
 #: gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "Состояние не установлено в течении таймаута."
 
-# gnome-session/gsm-client-row.c:50
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "обычная"
 
-# gnome-session/gsm-client-row.c:51
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
 msgstr "Не зависят от выхода из сеанса, но могут умереть."
 
-# gnome-session/session-properties.c:173
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "перезапускаемая"
 
-# gnome-session/gsm-client-row.c:54
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
 msgstr "Никогда не позволять умирать."
 
-# gnome-session/gsm-client-row.c:56
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "удалённая"
 
-# gnome-session/gsm-client-row.c:57
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
 msgstr "Закрываются при выходе из сеанса и могут умереть."
 
-# gnome-session/gsm-client-row.c:59
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "настроечная"
 
-# gnome-session/gsm-client-row.c:60
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Всегда запускается при начале сеанса."
@@ -254,61 +229,51 @@ msgstr "Произошла неизвестная ошибка активаци�
 msgid "The Settings Daemon restarted too many times."
 msgstr "Демон установок перезапускался слишком много раз."
 
-#: gnome-session/logout.c:368
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "Вы уверены, что хотите завершить сеанс"
 
-# gnome-session/logout.c:246
-#: gnome-session/logout.c:397
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "Со_хранять текущие установки"
 
-# gnome-session/logout.c:266
-#: gnome-session/logout.c:417
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "Команда"
 
-# gnome-session/logout.c:274
-#: gnome-session/logout.c:430
-msgid "_Log Out"
+#: gnome-session/logout.c:458
+msgid "_Log out"
 msgstr "_Завершить сеанс"
 
-# gnome-session/logout.c:277
-#: gnome-session/logout.c:433
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+msgid "Sh_ut down"
 msgstr "В_ыключить"
 
-#: gnome-session/logout.c:436
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "_Перезапустить компьютер"
 
-# gnome-session/main.c:66
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Укажите название сеанса для загрузки"
 
-# gnome-session/main.c:67
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Считывать сохраненные сеансы только из файла default.session"
 
-# gnome-session/main.c:68
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Период ожидания регистрации клиентов, в миллисекундах (0=вечность)"
 
-# gnome-session/main.c:69
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Период ожидания отклика клиентов, в миллисекундах (0=вечность)"
 
-# gnome-session/main.c:70
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Период ожидания смерти клиентов, в миллисекундах (0=вечность)"
 
-# gnome-session/gnome-login-check.c:228
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -321,109 +286,87 @@ msgstr ""
 "Вы можете ликвидировать проблему, добавив\n"
 "\"%s\" в файл /etc/hosts."
 
-#: gnome-session/main.c:224
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "Начать сеанс любым путём"
 
-# gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
-#: gnome-session/main.c:225
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "Попробовать снова"
 
-# gnome-session/save-session.c:160
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
 msgstr "Ваш сеанс сохранен"
 
-# gnome-session/manager.c:400
 #: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
 msgstr "Ожидание прекращено в связи с конфликтом."
 
-# gnome-session/manager.c:834
 #: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
 msgstr "Нет отклика на команду %s."
 
-# gnome-session/manager.c:835
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
 msgstr "Возможно, что программа остановлена, сломана или просто медленная"
 
-# gnome-session/manager.c:836
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
 msgstr "Можно продолжить ожидание отклика или удалить."
 
-# gnome-session/manager.c:1375
 #: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
 msgstr "Перезапуск отменён из-за ошибок."
 
-# gnome-session/manager.c:1541
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
 msgstr "Происходит завершение сеанса работы."
 
-# gnome-session/session-properties-capplet.c:259
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Применить изменения к текущему сеансу"
+msgstr "Установить текущий сеанс"
 
-# gnome-session/save-session.c:43
 #: gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "Убить сеанс"
 
-# gnome-session/save-session.c:44
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Использовать окна диалога"
 
-# gnome-session/save-session.c:112
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Не удалось подсоединиться к диспетчеру сеанса"
 
-# gnome-session/save-session.desktop.in.h:1
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
 msgstr "Сохранить текущий сеанс"
 
-# gnome-session/save-session.desktop.in.h:2
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
 msgstr "Сохранить текущее состояние рабочего стола"
 
-# gnome-session/session-names.c:127
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "Наименование сеанса не может быть пустым"
 
-# gnome-session/session-names.c:137
 #: gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "Уже есть сеанс с таким наименованием"
 
-# gnome-session/session-names.c:170
 #: gnome-session/session-names.c:187
 msgid "Add a new session"
 msgstr "Добавить новый сеанс"
 
-# gnome-session/session-names.c:198
 #: gnome-session/session-names.c:217
 msgid "Edit session name"
 msgstr "Изменить наименование сеанса"
 
-# gnome-session/session-properties-capplet.c:303
-# gnome-session/session-properties-capplet.c:376
 #: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
 msgstr "_Изменить"
 
-# gnome-session/session-properties-capplet.c:166
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
@@ -432,58 +375,47 @@ msgstr ""
 "Некоторые изменения не сохранены.\n"
 "Всё равно выйти?"
 
-# gnome-session/session-properties.c:272
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Сеансы"
 
-# gnome-session/session-properties-capplet.c:227
 #: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
 msgstr "Показывать заставку при на_чале сеанса"
 
-# gnome-session/session-properties-capplet.c:243
 #: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
 msgstr "Показывать пред_упреждение при завершении сеанса"
 
-# gnome-session/session-properties-capplet.c:259
 #: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
 msgstr "Автоматически сохранять из_менения в сеансе"
 
-# gnome-session/session-properties.c:272
 #: gnome-session/session-properties-capplet.c:262
 msgid "_Sessions:"
 msgstr "С_еансы:"
 
-# gnome-session/session-properties-capplet.c:290
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Наименование сеанса"
 
-# gnome-session/session-properties-capplet.c:332
 #: gnome-session/session-properties-capplet.c:326
 msgid "Session Options"
 msgstr "Параметры сеанса"
 
-# gnome-session/save-session.desktop.in.h:1
 #: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Текущий сеанс"
 
-# gnome-session/startup-programs.c:372
 #: gnome-session/session-properties-capplet.c:344
 msgid "Additional startup _programs:"
 msgstr "Дополнительные _программы, запускаемые при старте:"
 
-# gnome-session/session-properties-capplet.c:362
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Команда"
 
-# gnome-session/session-properties-capplet.c:399
 #: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
 msgstr "Запускаемые при старте программы"
@@ -492,7 +424,6 @@ msgstr "Запускаемые при старте программы"
 msgid "Remove the currently selected client from the session."
 msgstr "Убрать выделенного клиента из сессии"
 
-# gnome-session/session-properties-capplet.c:259
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "Применить изменения к текущему сеансу"
@@ -501,12 +432,10 @@ msgstr "Применить изменения к текущему сеансу"
 msgid "The list of programs in the session."
 msgstr "Список программ в сессии"
 
-# gnome-session/session-properties-capplet.c:390
 #: gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
 msgstr "_Программы, запущенные к настоящему моменту:"
 
-# gnome-session/session-properties.c:362
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Инициализировать установки сеанса"
@@ -515,62 +444,50 @@ msgstr "Инициализировать установки сеанса"
 msgid "Configure your sessions"
 msgstr "Диалог настроек сеанса"
 
-# gnome-session/splash.c:62 gnome-session/splash.c:63
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
 msgstr "Менеджер окон \"Sawfish\""
 
-# gnome-session/splash.c:71
 #: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Менеджер окон \"Метасити\""
 
-# gnome-session/splash.c:71
 #: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Менеджер окон"
 
-# gnome-session/splash.c:69
 #: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Панель"
 
-# gnome-session/splash.c:70
 #: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Прокси менеджера сеансов"
 
-# gnome-session/splash.c:73
 #: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "\"Наутилус\""
 
-# gnome-session/gnome-login-check.c:161
 #: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Настройки Рабочего стола"
 
-# gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #: gnome-session/startup-programs.c:288
 msgid "_Startup Command:"
 msgstr "Команда за_пуска:"
 
-# gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #: gnome-session/startup-programs.c:294
 msgid "Startup Command"
 msgstr "Команда запуска"
 
-# gnome-session/startup-programs.c:332
 #: gnome-session/startup-programs.c:341
 msgid "The startup command cannot be empty"
 msgstr "Команда запуска не может быть пустой"
 
-# gnome-session/startup-programs.c:372
 #: gnome-session/startup-programs.c:377
 msgid "Add Startup Program"
 msgstr "Добавить программу, запускаемую при старте"
 
-# gnome-session/startup-programs.c:392
 #: gnome-session/startup-programs.c:398
 msgid "Edit Startup Program"
 msgstr "Изменить программу, запускаемую при старте"
