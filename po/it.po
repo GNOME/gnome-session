@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.2\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-07-02 03:21+02:00\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -287,14 +287,88 @@ msgstr "Salva la sessione corrente"
 msgid "Save current state of desktop"
 msgstr "Salva schermata sul _desktop"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Il nome della sessione non può essere vuoto"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Il nome della sessione è già presente"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Aggiungi nuova session"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Modifica nome sessione"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Opzioni"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Mostra schermata di avvio al login"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Chiedi conferma all'uscita"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Salva automaticamente le modifiche alla sessione"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Scegli sessione corrente"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Nome Sessione"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Aggiungi..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Modifica..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Elimina"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Opzioni sessione"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Permette di configurare il funzionamento delle sessioni GNOME"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Proprietà sessione"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Priorità"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Comando"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Elenca i programmi attualmente in esecuzione..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Programmi all'avvio"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -321,6 +395,11 @@ msgstr "Annulla"
 msgid "Help"
 msgstr "Aiuto"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Proprietà sessione"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sessione"
@@ -346,6 +425,10 @@ msgstr "Inizializza impostazioni di sessione"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Programmi di avvio non gestiti dalla sessione"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Permette di configurare il funzionamento delle sessioni GNOME"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -408,13 +491,37 @@ msgstr "Avvio di GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Avvio di GNOME: completato"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Avvio di GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Comando di avvio"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"I programmi con valore minore saranno eseguiti prima dei programmi con "
+"valore maggiore. Il valore predefinito è considerato accettabile"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Il comando di avvio non può essere vuoto"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Aggiungi Programma all'avvio"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Modifica programmi di avvio"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1626,9 +1733,6 @@ msgstr "Avvio di GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Impossibile catturare schermata del desktop corrente."
 
-#~ msgid "Options"
-#~ msgstr "Opzioni"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Anteprima"
@@ -2317,81 +2421,11 @@ msgstr "Avvio di GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "Esegui una linea di comando"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Il nome della sessione non può essere vuoto"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Il nome della sessione è già presente"
-
-#~ msgid "Add a new session"
-#~ msgstr "Aggiungi nuova session"
-
-#~ msgid "Edit session name"
-#~ msgstr "Modifica nome sessione"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Mostra schermata di avvio al login"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Chiedi conferma all'uscita"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Salva automaticamente le modifiche alla sessione"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Scegli sessione corrente"
-
-#~ msgid "Session Name"
-#~ msgstr "Nome Sessione"
-
-#~ msgid "Add..."
-#~ msgstr "Aggiungi..."
-
-#~ msgid "Edit..."
-#~ msgstr "Modifica..."
-
-#~ msgid "Delete"
-#~ msgstr "Elimina"
-
-#~ msgid "Session Options"
-#~ msgstr "Opzioni sessione"
-
-#~ msgid "Priority"
-#~ msgstr "Priorità"
-
-#~ msgid "Command"
-#~ msgstr "Comando"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Elenca i programmi attualmente in esecuzione..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programmi all'avvio"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Comando di avvio"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "I programmi con valore minore saranno eseguiti prima dei programmi con "
-#~ "valore maggiore. Il valore predefinito è considerato accettabile"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Il comando di avvio non può essere vuoto"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Aggiungi Programma all'avvio"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Modifica programmi di avvio"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

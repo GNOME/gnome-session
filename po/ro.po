@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.99\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-01-23 17:16+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -290,14 +290,88 @@ msgstr "Salvează sesiunea curentă"
 msgid "Save current state of desktop"
 msgstr "Salvează captura ecran pe _desktop"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Numele sesiunii nu poate fi gol"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Numele sesiunii există deja"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Adaugă o nouă sesiune"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Editează numele sesiunii"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Opţiuni"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Arată ecranul de splash la pornire"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Promptează la ieşire"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Salvează schimbările la sesiune automat"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Alegeţi sesiunea curentă"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Numele sesiunii"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Adaugă..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Editează..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Şterge"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Opţiuni sesiune"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Programele curente setate prin sesiune"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Proprietăţi sesiune"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritate"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Comandă"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Răsfoieşte programele care rulează acum..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Programe de la pornire"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -324,6 +398,11 @@ msgstr "Renunţă"
 msgid "Help"
 msgstr "Ajutor"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Proprietăţi sesiune"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesiune"
@@ -349,6 +428,10 @@ msgstr "Iniţializează setările sesiunii"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Programe de la pornire care nu sunt stăpânite de sesiune"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Programele curente setate prin sesiune"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -411,13 +494,37 @@ msgstr "Pornesc GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Pornesc GNOME: gata"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Pornesc GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Comenzi de la pornire"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programele cu o valoare mai mică sunt pornite înaintea celor cu valori mai "
+"mari.  Valoarea implicită ar trebui să fie OK"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Comanda de pornire nu poate fi goală"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Adaugă programe de la pornire"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Editează programe de la pornire"
 
 #~ msgid "No name"
 #~ msgstr "Fără nume"
@@ -1777,9 +1884,6 @@ msgstr "Pornesc GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Nu pot să capturez ecranul desktop-ului curent."
 
-#~ msgid "Options"
-#~ msgstr "Opţiuni"
-
 #~ msgid "Preview"
 #~ msgstr "Previzualizare"
 
@@ -2511,81 +2615,11 @@ msgstr "Pornesc GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "Execută o linie de comandă"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Numele sesiunii nu poate fi gol"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Numele sesiunii există deja"
-
-#~ msgid "Add a new session"
-#~ msgstr "Adaugă o nouă sesiune"
-
-#~ msgid "Edit session name"
-#~ msgstr "Editează numele sesiunii"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Arată ecranul de splash la pornire"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Promptează la ieşire"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Salvează schimbările la sesiune automat"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Alegeţi sesiunea curentă"
-
-#~ msgid "Session Name"
-#~ msgstr "Numele sesiunii"
-
-#~ msgid "Add..."
-#~ msgstr "Adaugă..."
-
-#~ msgid "Edit..."
-#~ msgstr "Editează..."
-
-#~ msgid "Delete"
-#~ msgstr "Şterge"
-
-#~ msgid "Session Options"
-#~ msgstr "Opţiuni sesiune"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritate"
-
-#~ msgid "Command"
-#~ msgstr "Comandă"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Răsfoieşte programele care rulează acum..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programe de la pornire"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Comenzi de la pornire"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programele cu o valoare mai mică sunt pornite înaintea celor cu valori "
-#~ "mai mari.  Valoarea implicită ar trebui să fie OK"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Comanda de pornire nu poate fi goală"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Adaugă programe de la pornire"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Editează programe de la pornire"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

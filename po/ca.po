@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2000-08-17 17:25+0200\n"
 "Last-Translator: Quico Llach <quico@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -284,15 +284,98 @@ msgstr "Inicia la sessió"
 msgid "Save current state of desktop"
 msgstr "Desa la configuració actual"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr ""
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Mata la sessió"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+#, fuzzy
+msgid "Options"
+msgstr "Acció"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+#, fuzzy
+msgid "Prompt on logout"
+msgstr "Preguntar abans de sortir"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Inicia la sessió"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Sessió"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Edició"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Suprimeix"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
+msgstr "Propietats del menú"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Permet configurar les propietats del Gestor de Sessions de GNOME"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
 #, fuzzy
-msgid "Session Properties"
-msgstr "Propietats del menú"
+msgid "Command"
+msgstr "Comandes d'usuari"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Programes"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -319,6 +402,12 @@ msgstr "Cancel·la"
 msgid "Help"
 msgstr "Ajuda"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+#, fuzzy
+msgid "Session Properties"
+msgstr "Propietats del menú"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sessió"
@@ -344,6 +433,10 @@ msgstr "Inicialitza els paràmetres de la sessió."
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Propietats del menú"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Permet configurar les propietats del Gestor de Sessions de GNOME"
 
 #: gnome-session/splash.c:55
 #, fuzzy
@@ -414,14 +507,39 @@ msgstr "S'està iniciant GNOME... %s"
 msgid "Starting GNOME: done"
 msgstr "S'està iniciant GNOME... %s"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 #, fuzzy
 msgid "GNOME"
 msgstr "Ajuda de GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "S'està iniciant GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Comandes d'usuari"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Executa el programa"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Executa el programa"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1470,10 +1588,6 @@ msgstr "S'està iniciant GNOME"
 #~ msgstr "Aixeca els quadres si ha el ratolí al damunt"
 
 #, fuzzy
-#~ msgid "Options"
-#~ msgstr "Acció"
-
-#, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Dispositiu"
 
@@ -2085,55 +2199,12 @@ msgstr "S'està iniciant GNOME"
 #~ msgstr "Applet"
 
 #, fuzzy
-#~ msgid "Edit session name"
-#~ msgstr "Mata la sessió"
-
-#, fuzzy
-#~ msgid "Prompt on logout"
-#~ msgstr "Preguntar abans de sortir"
-
-#, fuzzy
-#~ msgid "Session Name"
-#~ msgstr "Sessió"
-
-#, fuzzy
-#~ msgid "Add..."
-#~ msgstr "..."
-
-#, fuzzy
-#~ msgid "Edit..."
-#~ msgstr "Edició"
-
-#~ msgid "Delete"
-#~ msgstr "Suprimeix"
-
-#, fuzzy
-#~ msgid "Session Options"
-#~ msgstr "Propietats del menú"
-
-#, fuzzy
-#~ msgid "Command"
-#~ msgstr "Comandes d'usuari"
-
-#, fuzzy
-#~ msgid "Startup Programs"
-#~ msgstr "Programes"
-
-#, fuzzy
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-*-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*"
 
 #, fuzzy
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-*-helvetica-medium-r-normal-*-8-*-*-*-*-*-*-*"
-
-#, fuzzy
-#~ msgid "Startup Command"
-#~ msgstr "Comandes d'usuari"
-
-#, fuzzy
-#~ msgid "Add Startup Program"
-#~ msgstr "Executa el programa"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

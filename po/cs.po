@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.4.0.4\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-06-22 21:21+02:00\n"
 "Last-Translator: George Lebl <jirka@5z.com>\n"
 "Language-Team: czech <cs@li.org>\n"
@@ -287,14 +287,87 @@ msgstr "Zapsat aktuální sezení"
 msgid "Save current state of desktop"
 msgstr "Zapsat aktuální stav pracovi¹tì"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "Programy spravované v aktuálním sezení"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Jméno sezení nemù¾e být prázdné"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Jméno sezení ji¾ existuje"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Pøidat nové sezení"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Upravit jméno sezení"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Nastavení"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Povolit úvodní obrazovku pøi pøihlá¹ení"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Výzva pøi odhlá¹ení"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Automaticky ukládat zmìny sezení"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Vyberte aktuální sezení"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Jméno sezení"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Pøidat..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Úpravy..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Smazat"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
 msgstr "Vlastnosti sezení"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+msgid "Non-session-managed Startup Programs"
+msgstr "Programy nespravované sezením pøi pøihlá¹ení"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Priorita"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Pøíkaz"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Probírat aktuálnì bì¾ící programy..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Programy pøi pøihlá¹ení"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -321,6 +394,11 @@ msgstr "Zru¹it"
 msgid "Help"
 msgstr "Nápovìda"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Vlastnosti sezení"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sezení"
@@ -345,6 +423,10 @@ msgstr "Inicializace vlastností sezení"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Správa sezení a programy pøi startu"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Programy spravované v aktuálním sezení"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -407,13 +489,37 @@ msgstr "Spou¹tí se GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Spou¹tí se GNOME: hotovo"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Spou¹tí se GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Pøíkaz pøi pøihlá¹ení"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programy s ni¾¹ími hodnotami jsou spou¹tìny pøed programy vy¹¹ími hodnotami. "
+"Implicitní hodnota by mìla být vyhovující"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Pøíkaz pøi pøihlá¹ení nesmí být prázdný"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Pøidat program pøi pøihlá¹ení"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Editovat program pøi pøihlá¹ení"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1628,9 +1734,6 @@ msgstr "Spou¹tí se GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Nelze zachytit aktuální plochu."
 
-#~ msgid "Options"
-#~ msgstr "Nastavení"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Náhled"
@@ -2311,84 +2414,11 @@ msgstr "Spou¹tí se GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "Spustit pøikazovou linku"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Jméno sezení nemù¾e být prázdné"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Jméno sezení ji¾ existuje"
-
-#~ msgid "Add a new session"
-#~ msgstr "Pøidat nové sezení"
-
-#~ msgid "Edit session name"
-#~ msgstr "Upravit jméno sezení"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Povolit úvodní obrazovku pøi pøihlá¹ení"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Výzva pøi odhlá¹ení"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Automaticky ukládat zmìny sezení"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Vyberte aktuální sezení"
-
-#~ msgid "Session Name"
-#~ msgstr "Jméno sezení"
-
-#~ msgid "Add..."
-#~ msgstr "Pøidat..."
-
-#~ msgid "Edit..."
-#~ msgstr "Úpravy..."
-
-#~ msgid "Delete"
-#~ msgstr "Smazat"
-
-#~ msgid "Session Options"
-#~ msgstr "Vlastnosti sezení"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Programy nespravované sezením pøi pøihlá¹ení"
-
-#~ msgid "Priority"
-#~ msgstr "Priorita"
-
-#~ msgid "Command"
-#~ msgstr "Pøíkaz"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Probírat aktuálnì bì¾ící programy..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programy pøi pøihlá¹ení"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Pøíkaz pøi pøihlá¹ení"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programy s ni¾¹ími hodnotami jsou spou¹tìny pøed programy vy¹¹ími "
-#~ "hodnotami. Implicitní hodnota by mìla být vyhovující"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Pøíkaz pøi pøihlá¹ení nesmí být prázdný"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Pøidat program pøi pøihlá¹ení"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Editovat program pøi pøihlá¹ení"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

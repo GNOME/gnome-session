@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-01-27 02:54+0100\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: nynorsk <nn@li.org>\n"
@@ -345,17 +345,109 @@ msgstr "Lagra aktiv økt"
 msgid "Save current state of desktop"
 msgstr "Lagra noverande tilstand for skrivebordet"
 
+# gsm/session-names.c:126
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Øktnamnet kan ikkje vere tomt"
+
+# gsm/session-names.c:136
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Øktnamnet eksisterer allereie"
+
+# gsm/session-names.c:170
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Legg til ny økt"
+
+# gsm/session-names.c:202
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Rediger namnet på økta"
+
+# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Val"
+
+# gsm/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Vis «splash»-skjerm ved pålogging"
+
+# gsm/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Spør ved utlogging"
+
+# gsm/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Lagre endringar i økta automatisk"
+
+# gsm/session-properties-capplet.c:209
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Vel aktiv økt"
+
+# gsm/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Øktnamn"
+
+# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Legg til ..."
+
+# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Rediger ..."
+
+# gmenu/main.c:106 gsm/session-properties-capplet.c:257
+# gsm/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Slett"
+
+# gsm/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Øktval"
+
 # gsm/session-properties-capplet.c:274
-#: gnome-session/session.desktop.in.h:1
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
 #, fuzzy
-msgid "Current session managed programs"
+msgid "Non-session-managed Startup Programs"
 msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
 
-# gsm/session-properties.c:217
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Eigenskapar for økt"
+# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritet"
+
+# gsm/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Kommando:"
+
+# gsm/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Sjå gjennom køyrande program ..."
+
+# gsm/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Oppstartsprogram"
 
 # help-browser/bookmarks.c:242
 #: gnome-session/session-properties.c:101
@@ -395,6 +487,12 @@ msgstr "Avbryt"
 msgid "Help"
 msgstr "Hjelp"
 
+# gsm/session-properties.c:217
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Eigenskapar for økt"
+
 # gsm/session-properties.c:272
 #: gnome-session/session-properties.c:272
 msgid "Session"
@@ -425,6 +523,12 @@ msgstr "Initialiser innstillingar for økt"
 #: gnome-session/session-properties.desktop.in.h:1
 #, fuzzy
 msgid "Session Properties & Startup Programs"
+msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
+
+# gsm/session-properties-capplet.c:274
+#: gnome-session/session.desktop.in.h:1
+#, fuzzy
+msgid "Current session managed programs"
 msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
 
 # gsm/splash.c:55
@@ -504,14 +608,43 @@ msgid "Starting GNOME: done"
 msgstr "Startar GNOME: ferdig"
 
 # gsm/splash.c:450
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
 # gsm/splash.c:470
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Startar GNOME"
+
+# gsm/startup-programs.c:283 gsm/startup-programs.c:290
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Oppstartskommando"
+
+# gsm/startup-programs.c:314
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Program med lågare verdiar startast før program med høgare verdiar. "
+"Standardverdiane bør vera ok"
+
+# gsm/startup-programs.c:333
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Oppstartskommandoen kan ikkje vera tom"
+
+# gsm/startup-programs.c:373
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Legg til oppstartsprogram"
+
+# gsm/startup-programs.c:391
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Rediger oppstartsprogram"
 
 # gnome-terminal/gnome-terminal.glade.h:23 panel/menu.c:4729
 #~ msgid "No name"
@@ -553,10 +686,6 @@ msgstr "Startar GNOME"
 # help-browser/history.c:260
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-# gsm/session-properties-capplet.c:292
-#~ msgid "Command:"
-#~ msgstr "Kommando:"
 
 # panel/foobar-widget.c:322
 #~ msgid "Name:"
@@ -2265,10 +2394,6 @@ msgstr "Startar GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Ikkje i stand til å ta skjermdump av det gjeldande skrivebordet"
 
-# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
-#~ msgid "Options"
-#~ msgstr "Val"
-
 # panel/gnome-panel-screenshot.glade.h:8
 #~ msgid "Preview"
 #~ msgstr "Førehandsvisning"
@@ -3706,11 +3831,6 @@ msgstr "Startar GNOME"
 #~ msgid "Create a new item"
 #~ msgstr "Opprett ei ny oppføring"
 
-# gmenu/main.c:106 gsm/session-properties-capplet.c:257
-# gsm/session-properties-capplet.c:311
-#~ msgid "Delete"
-#~ msgstr "Slett"
-
 # gmenu/main.c:106
 #~ msgid "Delete selected menu item"
 #~ msgstr "Slett vald menyoppføring"
@@ -4028,66 +4148,6 @@ msgstr "Startar GNOME"
 #~ "Vennligst les linux/Documentation/Changes for informasjon\n"
 #~ "om korleis desse skal konfigurerast."
 
-# gsm/session-names.c:126
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Øktnamnet kan ikkje vere tomt"
-
-# gsm/session-names.c:136
-#~ msgid "The session name already exists"
-#~ msgstr "Øktnamnet eksisterer allereie"
-
-# gsm/session-names.c:170
-#~ msgid "Add a new session"
-#~ msgstr "Legg til ny økt"
-
-# gsm/session-names.c:202
-#~ msgid "Edit session name"
-#~ msgstr "Rediger namnet på økta"
-
-# gsm/session-properties-capplet.c:192
-#~ msgid "Show splash screen on login"
-#~ msgstr "Vis «splash»-skjerm ved pålogging"
-
-# gsm/session-properties-capplet.c:199
-#~ msgid "Prompt on logout"
-#~ msgstr "Spør ved utlogging"
-
-# gsm/session-properties-capplet.c:206
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Lagre endringar i økta automatisk"
-
-# gsm/session-properties-capplet.c:209
-#~ msgid "Choose Current Session"
-#~ msgstr "Vel aktiv økt"
-
-# gsm/session-properties-capplet.c:226
-#~ msgid "Session Name"
-#~ msgstr "Øktnamn"
-
-# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
-#~ msgid "Add..."
-#~ msgstr "Legg til ..."
-
-# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
-#~ msgid "Edit..."
-#~ msgstr "Rediger ..."
-
-# gsm/session-properties-capplet.c:262
-#~ msgid "Session Options"
-#~ msgstr "Øktval"
-
-# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
-#~ msgid "Priority"
-#~ msgstr "Prioritet"
-
-# gsm/session-properties-capplet.c:321
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Sjå gjennom køyrande program ..."
-
-# gsm/session-properties-capplet.c:330
-#~ msgid "Startup Programs"
-#~ msgstr "Oppstartsprogram"
-
 # gsm/splash.c:451
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
@@ -4095,30 +4155,6 @@ msgstr "Startar GNOME"
 # gsm/splash.c:473
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-# gsm/startup-programs.c:283 gsm/startup-programs.c:290
-#~ msgid "Startup Command"
-#~ msgstr "Oppstartskommando"
-
-# gsm/startup-programs.c:314
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Program med lågare verdiar startast før program med høgare verdiar. "
-#~ "Standardverdiane bør vera ok"
-
-# gsm/startup-programs.c:333
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Oppstartskommandoen kan ikkje vera tom"
-
-# gsm/startup-programs.c:373
-#~ msgid "Add Startup Program"
-#~ msgstr "Legg til oppstartsprogram"
-
-# gsm/startup-programs.c:391
-#~ msgid "Edit Startup Program"
-#~ msgstr "Rediger oppstartsprogram"
 
 # help-browser/bookmarks.c:221
 #~ msgid "Bookmark"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome Translation v. 1.7\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-10-10 00:04-0500\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinux@yahoogroups.com>\n"
@@ -344,17 +344,109 @@ msgstr "¾ü§À¡¨¾Â «Á÷¨Åò §¾÷¾ø ¦ºö"
 msgid "Save current state of desktop"
 msgstr "¾¢¨ÃÂ¢ı-À¼ò¨¾ ¸½¢§Á¨ºÂ¢ø §ºÁ¢"
 
-# gsm/session-properties-capplet.c:274
-#: gnome-session/session.desktop.in.h:1
+# gsm/session-names.c:126
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "«Á÷Å¢ı ¦ÀÂ÷ ¸¡Ä¢Â¡¸ ­Õì¸ ÓÊÂ¡Ğ"
+
+# gsm/session-names.c:136
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "­ó¾ «Á÷×ìÌ ²ü¸É§Å ¦ÀÂ÷ ¯ñÎ"
+
+# gsm/session-names.c:170
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Ò¾¢Â «Á÷× ´ı¨Èî §º÷"
+
+# gsm/session-names.c:202
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "«Á÷Å¢ı ¦ÀÂ¨Ã ¦¾¡Ì"
+
+# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Å¢¨Æ×¸û"
+
+# gsm/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "¦¾¡¼íÌõ §À¡Ğ 'splash' ¸¡ğº¢¨Âì ¸¡ñÀ¢ì¸×õ"
+
+# gsm/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "¦ÅÇ¢§ÂÕÅ¾ğÌ Óı àñ¼×õ"
+
+# gsm/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "¾ıÉ¢Âì¸¾¡¸ Á¡üÈí¸¨Ç «Á÷×ìÌî §ºÁ¢"
+
+# gsm/session-properties-capplet.c:209
+#: gnome-session/session-properties-capplet.c:209
 #, fuzzy
-msgid "Current session managed programs"
+msgid "Choose Current Session"
+msgstr "¾ü§À¡¨¾Â «Á÷¨Åò §¾÷¾ø ¦ºö"
+
+# gsm/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "«Á÷Å¢ı ¦ÀÂ÷"
+
+# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "§º÷¸×õ..."
+
+# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "À¾¢ôÀ¢..."
+
+# gmenu/main.c:106 gsm/session-properties-capplet.c:257
+# gsm/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "¿£ìÌ"
+
+# gsm/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "«Á÷Å¢ı ÀñÒ¸û"
+
+# gsm/session-properties-capplet.c:274
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Non-session-managed Startup Programs"
 
-# gsm/session-properties.c:217
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "«Á÷Å¢ı ÀñÒ¸û"
+# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "ÓıÛÃ¢¨Á"
+
+# gsm/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "¸ğ¼¨Ç"
+
+# gsm/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "¾ü§À¡Ğ ­íÌõ ¿¢Ãø¸¨Ç §Á§Ä¡Î..."
+
+# gsm/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "¦¾¡¼íÌõ §À¡Ğ ­ÂìÌõ ¿¢Ãø¸û"
 
 # gsm/session-properties.c:101 help-browser/bookmarks.c:242
 #: gnome-session/session-properties.c:101
@@ -393,6 +485,12 @@ msgstr "¿£ìÌ"
 msgid "Help"
 msgstr "¯¾Å¢"
 
+# gsm/session-properties.c:217
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "«Á÷Å¢ı ÀñÒ¸û"
+
 # gsm/session-properties.c:272
 #: gnome-session/session-properties.c:272
 msgid "Session"
@@ -423,6 +521,12 @@ msgstr "«Á÷× «¨Á×¸¨Ç ¦¾¡¼ì¸ Á¾¢ôÀÇ¢"
 #: gnome-session/session-properties.desktop.in.h:1
 #, fuzzy
 msgid "Session Properties & Startup Programs"
+msgstr "Non-session-managed Startup Programs"
+
+# gsm/session-properties-capplet.c:274
+#: gnome-session/session.desktop.in.h:1
+#, fuzzy
+msgid "Current session managed programs"
 msgstr "Non-session-managed Startup Programs"
 
 # gsm/splash.c:55
@@ -502,14 +606,43 @@ msgid "Starting GNOME: done"
 msgstr "¸§É¡õ ¦¾¡¼í¸ôÀÎ¸¢ÈĞ: ÓÊó¾Ğ"
 
 # gsm/splash.c:450
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "¸§É¡õ"
 
 # gsm/splash.c:470
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "¸§É¡õ ¦¾¡¼íÌ¸¢ÈĞ"
+
+# gsm/startup-programs.c:283 gsm/startup-programs.c:290
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "¦¾¡¼í¸ø ¸ğ¼¨Ç"
+
+# gsm/startup-programs.c:314
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"º¢Ú Á¾¢ôÒ ¦¸¡ñ¼ ¿¢Ãø¸û, ¦ÀÚ Á¾¢ôÒ ¦¸¡ñ¼ ¿¢Ãø¸ÙìÌ Óı ¦ºÂøÀÎò¾ôÀÎõ. ¦¸¡¼¡¿¢¨Ä "
+"Á¾¢ôÒ ²ü¸ò¾ì¸Ğ"
+
+# gsm/startup-programs.c:333
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "¦¾¡¼í¸û ¸ğ¼¨Ç ¦ÅüÈ¡¸ ­Õì¸ ÓÊÂ¡Ğ"
+
+# gsm/startup-programs.c:373
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "¦¾¡¼í¸ø ¿¢Ã¨Äî §º÷"
+
+# gsm/startup-programs.c:391
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
 
 # gnome-terminal/gnome-terminal.glade.h:23 panel/menu.c:4724
 #, fuzzy
@@ -2085,10 +2218,6 @@ msgstr "¸§É¡õ ¦¾¡¼íÌ¸¢ÈĞ"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "¾ü§À¡¨¾Â ¸½¢§Á¨ºÂ¢ ¾¢¨Ã-À¼ò¨¾ ±Îì¸ ÓÊÂÅ¢ø¨Ä."
 
-# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
-#~ msgid "Options"
-#~ msgstr "Å¢¨Æ×¸û"
-
 # panel/gnome-panel-screenshot.glade.h:8
 #, fuzzy
 #~ msgid "Preview"
@@ -2972,71 +3101,6 @@ msgstr "¸§É¡õ ¦¾¡¼íÌ¸¢ÈĞ"
 #~ msgid "Execute a command line"
 #~ msgstr "Ó¨ÉÂì ¸ğ¼¨Ç¨Âî ¦ºÂøÀÎòĞ"
 
-# gsm/session-names.c:126
-#~ msgid "The session name cannot be empty"
-#~ msgstr "«Á÷Å¢ı ¦ÀÂ÷ ¸¡Ä¢Â¡¸ ­Õì¸ ÓÊÂ¡Ğ"
-
-# gsm/session-names.c:136
-#~ msgid "The session name already exists"
-#~ msgstr "­ó¾ «Á÷×ìÌ ²ü¸É§Å ¦ÀÂ÷ ¯ñÎ"
-
-# gsm/session-names.c:170
-#~ msgid "Add a new session"
-#~ msgstr "Ò¾¢Â «Á÷× ´ı¨Èî §º÷"
-
-# gsm/session-names.c:202
-#~ msgid "Edit session name"
-#~ msgstr "«Á÷Å¢ı ¦ÀÂ¨Ã ¦¾¡Ì"
-
-# gsm/session-properties-capplet.c:192
-#~ msgid "Show splash screen on login"
-#~ msgstr "¦¾¡¼íÌõ §À¡Ğ 'splash' ¸¡ğº¢¨Âì ¸¡ñÀ¢ì¸×õ"
-
-# gsm/session-properties-capplet.c:199
-#~ msgid "Prompt on logout"
-#~ msgstr "¦ÅÇ¢§ÂÕÅ¾ğÌ Óı àñ¼×õ"
-
-# gsm/session-properties-capplet.c:206
-#~ msgid "Automatically save changes to session"
-#~ msgstr "¾ıÉ¢Âì¸¾¡¸ Á¡üÈí¸¨Ç «Á÷×ìÌî §ºÁ¢"
-
-# gsm/session-properties-capplet.c:226
-#~ msgid "Session Name"
-#~ msgstr "«Á÷Å¢ı ¦ÀÂ÷"
-
-# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
-#~ msgid "Add..."
-#~ msgstr "§º÷¸×õ..."
-
-# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
-#~ msgid "Edit..."
-#~ msgstr "À¾¢ôÀ¢..."
-
-# gmenu/main.c:106 gsm/session-properties-capplet.c:257
-# gsm/session-properties-capplet.c:311
-#~ msgid "Delete"
-#~ msgstr "¿£ìÌ"
-
-# gsm/session-properties-capplet.c:262
-#~ msgid "Session Options"
-#~ msgstr "«Á÷Å¢ı ÀñÒ¸û"
-
-# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
-#~ msgid "Priority"
-#~ msgstr "ÓıÛÃ¢¨Á"
-
-# gsm/session-properties-capplet.c:292
-#~ msgid "Command"
-#~ msgstr "¸ğ¼¨Ç"
-
-# gsm/session-properties-capplet.c:321
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "¾ü§À¡Ğ ­íÌõ ¿¢Ãø¸¨Ç §Á§Ä¡Î..."
-
-# gsm/session-properties-capplet.c:330
-#~ msgid "Startup Programs"
-#~ msgstr "¦¾¡¼íÌõ §À¡Ğ ­ÂìÌõ ¿¢Ãø¸û"
-
 # gsm/splash.c:451
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-«§¼¡À¢-¦†ø¦ÅÊ¸¡-bold-r-normal-*-*-240-*-*-p-*-*-*"
@@ -3044,30 +3108,6 @@ msgstr "¸§É¡õ ¦¾¡¼íÌ¸¢ÈĞ"
 # gsm/splash.c:473
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-«§¼¡À¢-¦ø¦ÅÊ¸¡-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-# gsm/startup-programs.c:283 gsm/startup-programs.c:290
-#~ msgid "Startup Command"
-#~ msgstr "¦¾¡¼í¸ø ¸ğ¼¨Ç"
-
-# gsm/startup-programs.c:314
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "º¢Ú Á¾¢ôÒ ¦¸¡ñ¼ ¿¢Ãø¸û, ¦ÀÚ Á¾¢ôÒ ¦¸¡ñ¼ ¿¢Ãø¸ÙìÌ Óı ¦ºÂøÀÎò¾ôÀÎõ. ¦¸¡¼¡¿¢"
-#~ "¨Ä Á¾¢ôÒ ²ü¸ò¾ì¸Ğ"
-
-# gsm/startup-programs.c:333
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "¦¾¡¼í¸û ¸ğ¼¨Ç ¦ÅüÈ¡¸ ­Õì¸ ÓÊÂ¡Ğ"
-
-# gsm/startup-programs.c:373
-#~ msgid "Add Startup Program"
-#~ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Äî §º÷"
-
-# gsm/startup-programs.c:391
-#~ msgid "Edit Startup Program"
-#~ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
 
 # applets/gen_util/clock.c:975
 #, fuzzy

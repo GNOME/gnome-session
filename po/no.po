@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.3.2\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-02-12 00:33+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -286,14 +286,87 @@ msgstr "Lagre aktiv sesjon"
 msgid "Save current state of desktop"
 msgstr "Lagre aktiv tilstand for skrivebordet"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "Noverande program som styras av økthandteraren"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Navnet på sesjonen kan ikke være tomt"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Egenskaper for sesjon"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "En sesjon med dette navnet eksisterer allerede"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Legg til en ny sesjon"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Rediger sesjonens navn"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Alternativer"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Vis \"splash\"-skjerm ved pålogging"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Spør ved avlogging"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Lagre endringer i sesjonen automatisk"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Velg aktiv sesjon"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Navn på sesjon"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Legg til..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Rediger..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Slett"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Alternativer for sesjon"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+msgid "Non-session-managed Startup Programs"
+msgstr "Oppstartsprogrammer som ikke håndteres av sesjonen"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Bla gjennom kjørende programmer..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Oppstartsprogrammer"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -320,6 +393,11 @@ msgstr "Avbryt"
 msgid "Help"
 msgstr "Hjelp"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Egenskaper for sesjon"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesjon"
@@ -344,6 +422,10 @@ msgstr "Initialiser innstillinger for sesjon"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Egenskaper for sesjon og oppstartsprogrammer"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Noverande program som styras av økthandteraren"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -406,13 +488,37 @@ msgstr "Starter GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Starter GNOME: ferdig"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Starter GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Oppstartskommando"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programmer med små verdier startes før programmer med høyere verdier. "
+"Standardverdiene bør være OK"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Oppstartskommandoen kan ikke være tom"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Legg til oppstartsprogram"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Rediger oppstartsprogram"
 
 #~ msgid "%s the Fish"
 #~ msgstr "Fisken %s"
@@ -1443,9 +1549,6 @@ msgstr "Starter GNOME"
 
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Kan ikke ta skjermdump av skrivebordet nå."
-
-#~ msgid "Options"
-#~ msgstr "Alternativer"
 
 #~ msgid "Preview"
 #~ msgstr "Forhåndsvis"
@@ -2825,79 +2928,6 @@ msgstr "Starter GNOME"
 
 #~ msgid "Avoid this panel when maximizing windows"
 #~ msgstr "Unngå dette panelet ved maksimering av vinduer"
-
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Navnet på sesjonen kan ikke være tomt"
-
-#~ msgid "The session name already exists"
-#~ msgstr "En sesjon med dette navnet eksisterer allerede"
-
-#~ msgid "Add a new session"
-#~ msgstr "Legg til en ny sesjon"
-
-#~ msgid "Edit session name"
-#~ msgstr "Rediger sesjonens navn"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Vis \"splash\"-skjerm ved pålogging"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Spør ved avlogging"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Lagre endringer i sesjonen automatisk"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Velg aktiv sesjon"
-
-#~ msgid "Session Name"
-#~ msgstr "Navn på sesjon"
-
-#~ msgid "Add..."
-#~ msgstr "Legg til..."
-
-#~ msgid "Edit..."
-#~ msgstr "Rediger..."
-
-#~ msgid "Delete"
-#~ msgstr "Slett"
-
-#~ msgid "Session Options"
-#~ msgstr "Alternativer for sesjon"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Oppstartsprogrammer som ikke håndteres av sesjonen"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritet"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Bla gjennom kjørende programmer..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Oppstartsprogrammer"
-
-#~ msgid "Startup Command"
-#~ msgstr "Oppstartskommando"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programmer med små verdier startes før programmer med høyere verdier. "
-#~ "Standardverdiene bør være OK"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Oppstartskommandoen kan ikke være tom"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Legg til oppstartsprogram"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Rediger oppstartsprogram"
 
 #~ msgid "level"
 #~ msgstr "nivå"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 1999-04-01 17:11+0200\n"
 "Last-Translator: Joseba Bidaurrazaga van Dierdonck <jbv@euskalnet.net>\n"
 "Language-Team: euskara <linux-eu@chanae.alphanet.ch>\n"
@@ -288,14 +288,89 @@ msgstr "Hauta oraingo sesioa"
 msgid "Save current state of desktop"
 msgstr "Gorde pantailakada _idazmahian"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Sesioaren izena ezin hutsik egon"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Sesio izena dagoeneko erabilia"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Gehitu sesio berria"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Sesio izena editatu"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Aukerak"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Erakuts splash pantaila log egiterakoan"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Promt logoutean"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Automatikoki gorde aldaketak sesioari"
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Hauta oraingo sesioa"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Sesio izena"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Gehi..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Editatu..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Sesioaren aukerak"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Gnomeren ekitaldi kudeatzailearen ezaugarriak ezartzeko"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Sesioaren propietateak"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Lehentasuna"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Komandoa"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Zerrendatu abioan dauden programak..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Abiaratzeko Programak"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -322,6 +397,11 @@ msgstr "Ezeztatu"
 msgid "Help"
 msgstr "Laguntza"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Sesioaren propietateak"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesio"
@@ -347,6 +427,10 @@ msgstr "Berhasi sesioaren ezarpenak"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Sesioz ez dabiltzaten abiatzerako programak"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Gnomeren ekitaldi kudeatzailearen ezaugarriak ezartzeko"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -409,13 +493,37 @@ msgstr "GNOME abiarazten: %s"
 msgid "Starting GNOME: done"
 msgstr "GNOME abiarazten: eginda"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "GNOME abiarazten"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Abiatze komandoa"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Balio gutxiagozko programak, balio handiagokoen aurretik abiarazten dira. "
+"Jatorrizko balioa: OK"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Abiatze komandoa ezin hutsik egon"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Gehitu programa abiarazlea"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Editatu programa abiarazlea"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1638,9 +1746,6 @@ msgstr "GNOME abiarazten"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Ezin hartu pantaila irudirik oraingo idazmahaian."
 
-#~ msgid "Options"
-#~ msgstr "Aukerak"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Aurrikusi"
@@ -2321,78 +2426,11 @@ msgstr "GNOME abiarazten"
 #~ msgid "Execute a command line"
 #~ msgstr "Abiarazi komando lerroa"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Sesioaren izena ezin hutsik egon"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Sesio izena dagoeneko erabilia"
-
-#~ msgid "Add a new session"
-#~ msgstr "Gehitu sesio berria"
-
-#~ msgid "Edit session name"
-#~ msgstr "Sesio izena editatu"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Erakuts splash pantaila log egiterakoan"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Promt logoutean"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Automatikoki gorde aldaketak sesioari"
-
-#~ msgid "Session Name"
-#~ msgstr "Sesio izena"
-
-#~ msgid "Add..."
-#~ msgstr "Gehi..."
-
-#~ msgid "Edit..."
-#~ msgstr "Editatu..."
-
-#~ msgid "Delete"
-#~ msgstr "Ezabatu"
-
-#~ msgid "Session Options"
-#~ msgstr "Sesioaren aukerak"
-
-#~ msgid "Priority"
-#~ msgstr "Lehentasuna"
-
-#~ msgid "Command"
-#~ msgstr "Komandoa"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Zerrendatu abioan dauden programak..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Abiaratzeko Programak"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Abiatze komandoa"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Balio gutxiagozko programak, balio handiagokoen aurretik abiarazten dira. "
-#~ "Jatorrizko balioa: OK"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Abiatze komandoa ezin hutsik egon"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Gehitu programa abiarazlea"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Editatu programa abiarazlea"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-11-23 19:27+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional chinese <zh-l10n@linux.org.tw>\n"
@@ -286,14 +286,87 @@ msgstr "儲存現時的作業階段"
 msgid "Save current state of desktop"
 msgstr "儲存現時的桌面狀態"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "現時接受作業階段管理的程式"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "工作階段名稱不能留空"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "工作階段屬性"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "此工作階段名稱已經存在"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "增加新的工作階段"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "編輯工作階段名稱"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "選項"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "登入時顯示啟動畫面"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "登出前先提示"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "自動儲存工作階段"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "選擇現時的工作階段"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "工作階段名稱"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "增加..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "編輯..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "刪除"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "工作階段選項"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+msgid "Non-session-managed Startup Programs"
+msgstr "並非由工作階段管理的啟動程式"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "優先值"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "指令"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "瀏覽執行中的程式..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "啟動程式"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -320,6 +393,11 @@ msgstr "取消"
 msgid "Help"
 msgstr "說明"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "工作階段屬性"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "工作階段"
@@ -344,6 +422,10 @@ msgstr "初始化工作階段設定"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "作業階段內容及啟動程式"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "現時接受作業階段管理的程式"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -406,13 +488,38 @@ msgstr "啟動 GNOME：%s"
 msgid "Starting GNOME: done"
 msgstr "啟動 GNOME：完成"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "正在啟動 GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "啟動指令"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"優先值較小的程式會比\n"
+"優先值較大的程式較先\n"
+"啟動。使用預設值即可。"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "啟動指令不可以留空"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "增加啟動程式"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "編輯啟動程式"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1624,9 +1731,6 @@ msgstr "正在啟動 GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "無法抓取現時桌面的畫面。"
 
-#~ msgid "Options"
-#~ msgstr "選項"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "預覽"
@@ -2322,60 +2426,6 @@ msgstr "正在啟動 GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "執行指令列"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "工作階段名稱不能留空"
-
-#~ msgid "The session name already exists"
-#~ msgstr "此工作階段名稱已經存在"
-
-#~ msgid "Add a new session"
-#~ msgstr "增加新的工作階段"
-
-#~ msgid "Edit session name"
-#~ msgstr "編輯工作階段名稱"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "登入時顯示啟動畫面"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "登出前先提示"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "自動儲存工作階段"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "選擇現時的工作階段"
-
-#~ msgid "Session Name"
-#~ msgstr "工作階段名稱"
-
-#~ msgid "Add..."
-#~ msgstr "增加..."
-
-#~ msgid "Edit..."
-#~ msgstr "編輯..."
-
-#~ msgid "Delete"
-#~ msgstr "刪除"
-
-#~ msgid "Session Options"
-#~ msgstr "工作階段選項"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "並非由工作階段管理的啟動程式"
-
-#~ msgid "Priority"
-#~ msgstr "優先值"
-
-#~ msgid "Command"
-#~ msgstr "指令"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "瀏覽執行中的程式..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "啟動程式"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr ""
 #~ "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*,-*-*-bold-r-normal-*-*-"
@@ -2385,26 +2435,6 @@ msgstr "正在啟動 GNOME"
 #~ msgstr ""
 #~ "-adobe-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,-*-*-medium-r-normal-"
 #~ "*-12-*-*-*-*-*-big5-0,*-r-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "啟動指令"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "優先值較小的程式會比\n"
-#~ "優先值較大的程式較先\n"
-#~ "啟動。使用預設值即可。"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "啟動指令不可以留空"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "增加啟動程式"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "編輯啟動程式"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

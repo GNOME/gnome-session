@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-02-06 08:15+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -288,14 +288,97 @@ msgstr "현재 세션 저장하기"
 msgid "Save current state of desktop"
 msgstr "바탕화면에 스크린샷 저장(_d)"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr ""
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "세션 없애기"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "옵션"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "현재 세션 저장하기"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "세션"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "고급..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "편집"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "기본사항"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
+msgstr "세션 속성"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "세션 관리자 속성"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "세션 속성"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "명령:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "프로그램"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -322,6 +405,11 @@ msgstr "취소"
 msgid "Help"
 msgstr "도움말"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "세션 속성"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "세션"
@@ -347,6 +435,10 @@ msgstr "세션 설정 초기화"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "세션 속성"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "세션 관리자 속성"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -409,13 +501,38 @@ msgstr "그놈 시작중: %s"
 msgid "Starting GNOME: done"
 msgstr "그놈 시작중: 완료"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "그놈"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "그놈 시작중"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "명령:"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "프로그램 실행"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "세션 속성"
 
 #~ msgid "No name"
 #~ msgstr "이름 없음"
@@ -452,9 +569,6 @@ msgstr "그놈 시작중"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "명령:"
 
 #~ msgid "Name:"
 #~ msgstr "이름:"
@@ -509,9 +623,6 @@ msgstr "그놈 시작중"
 
 #~ msgid "The GNOME terminal emulation program."
 #~ msgstr "그놈 터미널 프로그램"
-
-#~ msgid "Default"
-#~ msgstr "기본사항"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -821,9 +932,6 @@ msgstr "그놈 시작중"
 
 #~ msgid "Copy _link location"
 #~ msgstr "링크 위치 복사(_l)"
-
-#~ msgid "Edit"
-#~ msgstr "편집"
 
 #~ msgid "File"
 #~ msgstr "파일"
@@ -1689,9 +1797,6 @@ msgstr "그놈 시작중"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "현재 바탕화면의 스크린샷을 찍을 수 없습니다."
 
-#~ msgid "Options"
-#~ msgstr "옵션"
-
 #~ msgid "Preview"
 #~ msgstr "미리보기"
 
@@ -1751,9 +1856,6 @@ msgstr "그놈 시작중"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "이 버튼 아래에 고급 조정옵션을 숨깁니다"
 
-#~ msgid "Advanced..."
-#~ msgstr "고급..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1762,9 +1864,6 @@ msgstr "그놈 시작중"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "실행..."
-
-#~ msgid "Run Program"
-#~ msgstr "프로그램 실행"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "이 실행 아이콘은 보여줄 url이 지정되어 있지 않습니다"
@@ -2085,9 +2184,6 @@ msgstr "그놈 시작중"
 #~ msgstr ""
 #~ "이 컴퓨터에 다른 사용자가 로그인 하거나 끄기 위해 이 세션을 로그아웃합니"
 #~ "다."
-
-#~ msgid "Programs"
-#~ msgstr "프로그램"
 
 #~ msgid "Applets"
 #~ msgstr "애플릿"

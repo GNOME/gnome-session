@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.4\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-06-06 20:52:20+0900\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -301,14 +301,88 @@ msgstr "Αποθήκευση Τρεχούσης Συνεδρίας"
 msgid "Save current state of desktop"
 msgstr "Αποθήκευση αρπαγής οθόνης στην _επιφάνεια εργασίας"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Το όνομα συνεδρίας δε μπορεί να είναι κενό"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Το όνομα συνεδρίας υπάρχει ήδη"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Προσθήκη νέας συνεδρίας"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Αλλαγή ονόματος συνεδρίας"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Επιλογές"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Εμφάνιση στατικής εικόνας κατά τη διάρκεια της σύνδεσης"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Επιβεβαίωση αποσύνδεσης"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Αυτόματη αποθήκευση αλλαγών της συνεδρίας"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Επιλογή Τρέχουσας Συνεδρίας"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Όνομα Συνεδρίας"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Προσθήκη..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Επεξεργασία..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Επιλογές Συνεδρίας"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Επιτρέπει τη ρύθμιση των ιδιοτήτων του Διαχειριστή Συνεδρίας"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Ιδιότητες Συνεδρίας"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Προτεραιότητα"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Εντολή"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Περιήγηση στα Τρέχοντα Εκτελούμενα Προγράμματα..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Εκκίνηση Προγραμμάτων"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -335,6 +409,11 @@ msgstr "Άκυρο"
 msgid "Help"
 msgstr "Βοήθεια"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Ιδιότητες Συνεδρίας"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Συνεδρία"
@@ -360,6 +439,10 @@ msgstr "Αρχικοποίηση ρυθμίσεων συνεδρίας"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Εκκίνηση Μη-διαλογικών Προγραμμάτων"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Επιτρέπει τη ρύθμιση των ιδιοτήτων του Διαχειριστή Συνεδρίας"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -422,13 +505,37 @@ msgstr "Εκκίνηση του GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Εκκίνηση του GNOME: έγινε"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Εκκίνηση GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Εντολή Εκκίνησης"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Προγράμματα με μικρότερες τιμές εκκινούνται πριν από αυτά με μεγαλύτερες. Η "
+"εξ' ορισμού τιμή θα πρέπει να είναι Εντάξει"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Η εντολή εκκίνησης δε μπορεί να είναι κενή"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Προσθήκη Προγραμμάτων Εκκίνησης"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1647,9 +1754,6 @@ msgstr "Εκκίνηση GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Αδύνατη η αρπαγή οθόνης της τρέχουσας επιφάνειας γραφείου."
 
-#~ msgid "Options"
-#~ msgstr "Επιλογές"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Προεπισκόπηση"
@@ -2347,81 +2451,11 @@ msgstr "Εκκίνηση GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "Εκτέλεση μιας γραμμής εντολών"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Το όνομα συνεδρίας δε μπορεί να είναι κενό"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Το όνομα συνεδρίας υπάρχει ήδη"
-
-#~ msgid "Add a new session"
-#~ msgstr "Προσθήκη νέας συνεδρίας"
-
-#~ msgid "Edit session name"
-#~ msgstr "Αλλαγή ονόματος συνεδρίας"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Εμφάνιση στατικής εικόνας κατά τη διάρκεια της σύνδεσης"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Επιβεβαίωση αποσύνδεσης"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Αυτόματη αποθήκευση αλλαγών της συνεδρίας"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Επιλογή Τρέχουσας Συνεδρίας"
-
-#~ msgid "Session Name"
-#~ msgstr "Όνομα Συνεδρίας"
-
-#~ msgid "Add..."
-#~ msgstr "Προσθήκη..."
-
-#~ msgid "Edit..."
-#~ msgstr "Επεξεργασία..."
-
-#~ msgid "Delete"
-#~ msgstr "Διαγραφή"
-
-#~ msgid "Session Options"
-#~ msgstr "Επιλογές Συνεδρίας"
-
-#~ msgid "Priority"
-#~ msgstr "Προτεραιότητα"
-
-#~ msgid "Command"
-#~ msgstr "Εντολή"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Περιήγηση στα Τρέχοντα Εκτελούμενα Προγράμματα..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Εκκίνηση Προγραμμάτων"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-greek-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-greek-helvetica-medium-r-normal-*-10-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Εντολή Εκκίνησης"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Προγράμματα με μικρότερες τιμές εκκινούνται πριν από αυτά με μεγαλύτερες. "
-#~ "Η εξ' ορισμού τιμή θα πρέπει να είναι Εντάξει"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Η εντολή εκκίνησης δε μπορεί να είναι κενή"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Προσθήκη Προγραμμάτων Εκκίνησης"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

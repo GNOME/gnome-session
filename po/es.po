@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-01-30 21:36+0100\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
@@ -294,14 +294,97 @@ msgstr "Guardar sesión actual"
 msgid "Save current state of desktop"
 msgstr "Guardar captura de pantalla en _escritorio"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr ""
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Matar sesión"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Opciones"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Guardar sesión actual"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Sesión"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "Avanzado..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Editar"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "Por omisión"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
+msgstr "Propiedades de Sesión"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Permite configurar las propiedades del gestor de sesiones de Gnome"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Propiedades de Sesión"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Comando:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Programas"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -328,6 +411,11 @@ msgstr "Cancelar"
 msgid "Help"
 msgstr "Ayuda"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Propiedades de Sesión"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesión"
@@ -353,6 +441,10 @@ msgstr "Inicializar las propiedades de la sesión"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Propiedades de Sesión"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Permite configurar las propiedades del gestor de sesiones de Gnome"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -416,13 +508,38 @@ msgid "Starting GNOME: done"
 msgstr "Iniciando GNOME: hecho"
 
 #
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Iniciado GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Comando:"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Lanzar Programa"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Propiedades de Sesión"
 
 #~ msgid "No name"
 #~ msgstr "Sin nombre"
@@ -462,9 +579,6 @@ msgstr "Iniciado GNOME"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "Comando:"
 
 #~ msgid "Name:"
 #~ msgstr "Nombre:"
@@ -519,9 +633,6 @@ msgstr "Iniciado GNOME"
 
 #~ msgid "The GNOME terminal emulation program."
 #~ msgstr "El programa de emulación de terminal de GNOME"
-
-#~ msgid "Default"
-#~ msgstr "Por omisión"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -826,9 +937,6 @@ msgstr "Iniciado GNOME"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Copiar la dirección del en_lace"
-
-#~ msgid "Edit"
-#~ msgstr "Editar"
 
 #~ msgid "File"
 #~ msgstr "Archivo"
@@ -1790,9 +1898,6 @@ msgstr "Iniciado GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "No se puede tomar una captura de pantalla del escritorio actual."
 
-#~ msgid "Options"
-#~ msgstr "Opciones"
-
 #~ msgid "Preview"
 #~ msgstr "Vista preliminar"
 
@@ -1853,9 +1958,6 @@ msgstr "Iniciado GNOME"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "Ocultar los controles avanzados bajo este botón."
 
-#~ msgid "Advanced..."
-#~ msgstr "Avanzado..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1866,9 +1968,6 @@ msgstr "Iniciado GNOME"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "Lanzar..."
-
-#~ msgid "Run Program"
-#~ msgstr "Lanzar Programa"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "Este icono de lanzamiento no especifica qué url mostrar"
@@ -2179,9 +2278,6 @@ msgstr "Iniciado GNOME"
 #~ msgstr ""
 #~ "Salir de esta sesión para entrar como un usuario diferente o apagar su "
 #~ "ordenador"
-
-#~ msgid "Programs"
-#~ msgstr "Programas"
 
 #~ msgid "Applets"
 #~ msgstr "Apliques"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-09-13 13:18+0200\n"
 "Last-Translator: Pavel Cholakov <pavel@linux.zonebg.com>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -288,15 +288,90 @@ msgstr "Избор на текуща сесия"
 msgid "Save current state of desktop"
 msgstr "Запиши снетия екран в работното пространство"
 
-#: gnome-session/session.desktop.in.h:1
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Името на сесията не може да е празно"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Името на сесията вече съществува"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Добавя нова сесия"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Редактирай име на сесия"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Опции"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Покажи прозореца със зареждането на сесията"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Пита при излизане от сесия"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Автоматично запазва промените в сесията"
+
+#: gnome-session/session-properties-capplet.c:209
 #, fuzzy
-msgid "Current session managed programs"
+msgid "Choose Current Session"
+msgstr "Избор на текуща сесия"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Име на сесия"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Добавя..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Редактиране..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Изтрий"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Опции за сесия"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Програми без контрол на сесията"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Настройки на сесията"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Приоритет"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Команда"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Преглед на програмите в изпълнение..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Стартирани програми"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -323,6 +398,11 @@ msgstr "Откажи"
 msgid "Help"
 msgstr "Помощ"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Настройки на сесията"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Сесия"
@@ -348,6 +428,11 @@ msgstr "Инициализирай настройките на сесията"
 #: gnome-session/session-properties.desktop.in.h:1
 #, fuzzy
 msgid "Session Properties & Startup Programs"
+msgstr "Програми без контрол на сесията"
+
+#: gnome-session/session.desktop.in.h:1
+#, fuzzy
+msgid "Current session managed programs"
 msgstr "Програми без контрол на сесията"
 
 #: gnome-session/splash.c:55
@@ -411,13 +496,37 @@ msgstr "Стартиране на GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Стартиране на GNOME: готово"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "ГНОМ"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Стартиране на GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Начална команда"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Програмите с малка стойност се изпълняват преди тези с голяма. "
+"Подразбиращата се стойност е добра."
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Името на командата за стартиране не може да бъде празно"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Добави програма"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Редактиране на програма за стартиране"
 
 #, fuzzy
 #~ msgid "No name"
@@ -790,10 +899,6 @@ msgstr "Стартиране на GNOME"
 #, fuzzy
 #~ msgid "Copy _link location"
 #~ msgstr "Приложение"
-
-#, fuzzy
-#~ msgid "Edit"
-#~ msgstr "Редактиране..."
 
 #, fuzzy
 #~ msgid "File"
@@ -1629,9 +1734,6 @@ msgstr "Стартиране на GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Не мога да взема снимка на текущото раб. място"
 
-#~ msgid "Options"
-#~ msgstr "Опции"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Предварителен преглед"
@@ -2321,75 +2423,11 @@ msgstr "Стартиране на GNOME"
 #~ msgid "Execute a command line"
 #~ msgstr "Изпълнение в команден ред"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Името на сесията не може да е празно"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Името на сесията вече съществува"
-
-#~ msgid "Add a new session"
-#~ msgstr "Добавя нова сесия"
-
-#~ msgid "Edit session name"
-#~ msgstr "Редактирай име на сесия"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Покажи прозореца със зареждането на сесията"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Пита при излизане от сесия"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Автоматично запазва промените в сесията"
-
-#~ msgid "Session Name"
-#~ msgstr "Име на сесия"
-
-#~ msgid "Add..."
-#~ msgstr "Добавя..."
-
-#~ msgid "Delete"
-#~ msgstr "Изтрий"
-
-#~ msgid "Session Options"
-#~ msgstr "Опции за сесия"
-
-#~ msgid "Priority"
-#~ msgstr "Приоритет"
-
-#~ msgid "Command"
-#~ msgstr "Команда"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Преглед на програмите в изпълнение..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Стартирани програми"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-cp1251"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-cp1251"
-
-#~ msgid "Startup Command"
-#~ msgstr "Начална команда"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Програмите с малка стойност се изпълняват преди тези с голяма. "
-#~ "Подразбиращата се стойност е добра."
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Името на командата за стартиране не може да бъде празно"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Добави програма"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Редактиране на програма за стартиране"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

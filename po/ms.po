@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core HEAD\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-02-10 02:44+0800\n"
 "Last-Translator: Hasbullah Bin Pit <sebol@ikhlas.com>\n"
 "Language-Team: ms <sebol@ikhlas.com>\n"
@@ -293,14 +293,99 @@ msgstr "Mulakan Sessi"
 msgid "Save current state of desktop"
 msgstr "Simpan cekupanlayar ke _desktop"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
 msgstr ""
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Bunuh sessi"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Opsyen"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Mulakan Sessi"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Sessi"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "Lanjutan..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Edit"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "Default"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
 msgstr "Ciri-ciri Sessi"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
+msgstr "Ciri-ciri Sessi"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+# help-browser/toc-man.c:19
+# help-browser/toc2-man.c:21
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Arahan:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Program"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -327,6 +412,11 @@ msgstr "Batal"
 msgid "Help"
 msgstr "Bantuan"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Ciri-ciri Sessi"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sessi"
@@ -352,6 +442,10 @@ msgstr "Penetapan Permulaan Sessi"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Ciri-ciri Sessi"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr ""
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -414,13 +508,40 @@ msgstr "Memulakan GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Memulakan GNOME: selesai"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Memulakan GNOME"
+
+# help-browser/toc-man.c:19
+# help-browser/toc2-man.c:21
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Arahan:"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Melaksanakan Program"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Ciri-ciri Sessi"
 
 #~ msgid "No name"
 #~ msgstr "Tiada Nama"
@@ -460,11 +581,6 @@ msgstr "Memulakan GNOME"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-# help-browser/toc-man.c:19
-# help-browser/toc2-man.c:21
-#~ msgid "Command:"
-#~ msgstr "Arahan:"
 
 #~ msgid "Name:"
 #~ msgstr "Nama:"
@@ -523,9 +639,6 @@ msgstr "Memulakan GNOME"
 
 #~ msgid "The GNOME terminal emulation program."
 #~ msgstr "Perisian emulasi terminal GNOME."
-
-#~ msgid "Default"
-#~ msgstr "Default"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -830,9 +943,6 @@ msgstr "Memulakan GNOME"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Salin _Lokasi Pautan"
-
-#~ msgid "Edit"
-#~ msgstr "Edit"
 
 #~ msgid "File"
 #~ msgstr "Fail"
@@ -1800,9 +1910,6 @@ msgstr "Memulakan GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Tak dapat mencekup layar desktop semasa. :("
 
-#~ msgid "Options"
-#~ msgstr "Opsyen"
-
 #~ msgid "Preview"
 #~ msgstr "Pralihat"
 
@@ -1862,9 +1969,6 @@ msgstr "Memulakan GNOME"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "Sembunyi kawalan lanjutan di bawah butang ini"
 
-#~ msgid "Advanced..."
-#~ msgstr "Lanjutan..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1874,9 +1978,6 @@ msgstr "Memulakan GNOME"
 
 #~ msgid "_Run ..."
 #~ msgstr "_Laksanakan..."
-
-#~ msgid "Run Program"
-#~ msgstr "Melaksanakan Program"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "Ikon pelancar ini tidak menyatakan url untuk dipapar"
@@ -2201,9 +2302,6 @@ msgstr "Memulakan GNOME"
 #~ msgstr ""
 #~ "Logkeluar sessi ini untuk logmasuk sebagai pengguna lain atau untuk tutup "
 #~ "komputer"
-
-#~ msgid "Programs"
-#~ msgstr "Program"
 
 #~ msgid "Applets"
 #~ msgstr "Aplet"

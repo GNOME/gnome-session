@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-02-10 00:52+0100\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -296,14 +296,88 @@ msgstr "Gem session"
 msgid "Save current state of desktop"
 msgstr "Gem den nuværende session"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "Nuværende sessionshåndterede programmer"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Sessionsnavnet kan ikke være tomt"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Sessionsnavnet eksisterer allerede"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Tilføj en ny session"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Ændr sessions navn"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Indstillinger"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Vis opstartsskærm ved log-ind"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Spørg ved log-ud"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Gem automatisk ændringer i sessionen"
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Gem session"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Sessionsnavn"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Tilføj..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Redigér..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Slet"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
 msgstr "Sessionsegenskaber"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+msgid "Non-session-managed Startup Programs"
+msgstr "Ikke-sessionshåndterede opstartsprogrammer"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Opstartsprogrammer"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -330,6 +404,11 @@ msgstr "Annullér"
 msgid "Help"
 msgstr "Hjælp"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Sessionsegenskaber"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Session"
@@ -354,6 +433,10 @@ msgstr "Klargør sessionsopsætning"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Sessionsegenskaber og opstartsprogrammer"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Nuværende sessionshåndterede programmer"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -416,13 +499,37 @@ msgstr "Starter Gnome: %s"
 msgid "Starting GNOME: done"
 msgstr "Starter Gnome: færdig"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "Gnome"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Starter Gnome"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Opstartskommandoer"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programmer med mindre værdier startes først. Standardværdien burde være i "
+"orden."
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Opstartskommandoen kan ikke være tom"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Tilføj opstartsprogram"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Redigér opstartsprogram"
 
 #~ msgid "No name"
 #~ msgstr "Intet navn"
@@ -1808,9 +1915,6 @@ msgstr "Starter Gnome"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Kunne ikke tage et billede af det aktuelle skrivebord."
 
-#~ msgid "Options"
-#~ msgstr "Indstillinger"
-
 #~ msgid "Preview"
 #~ msgstr "Smugkig"
 
@@ -2549,73 +2653,6 @@ msgstr "Starter Gnome"
 
 #~ msgid "Execute a command line"
 #~ msgstr "Udfør en kommandolinje"
-
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Sessionsnavnet kan ikke være tomt"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Sessionsnavnet eksisterer allerede"
-
-#~ msgid "Add a new session"
-#~ msgstr "Tilføj en ny session"
-
-#~ msgid "Edit session name"
-#~ msgstr "Ændr sessions navn"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Vis opstartsskærm ved log-ind"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Spørg ved log-ud"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Gem automatisk ændringer i sessionen"
-
-#~ msgid "Session Name"
-#~ msgstr "Sessionsnavn"
-
-#~ msgid "Add..."
-#~ msgstr "Tilføj..."
-
-#~ msgid "Edit..."
-#~ msgstr "Redigér..."
-
-#~ msgid "Delete"
-#~ msgstr "Slet"
-
-#~ msgid "Session Options"
-#~ msgstr "Sessionsegenskaber"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Ikke-sessionshåndterede opstartsprogrammer"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritet"
-
-#~ msgid "Command"
-#~ msgstr "Kommando"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Opstartsprogrammer"
-
-#~ msgid "Startup Command"
-#~ msgstr "Opstartskommandoer"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programmer med mindre værdier startes først. Standardværdien burde være i "
-#~ "orden."
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Opstartskommandoen kan ikke være tom"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Tilføj opstartsprogram"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Redigér opstartsprogram"
 
 #~ msgid "By Name"
 #~ msgstr "Efter navn"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-01-18 05:47+0200\n"
 "Last-Translator: Artis Trops <hornet@navigators.lv>\n"
 "Language-Team: Latvian <hornet@navigators.lv>\n"
@@ -288,14 +288,97 @@ msgstr "Sākt Sesiju"
 msgid "Save current state of desktop"
 msgstr "Saglabāt ekrāna attēlu uz _darbvirsmas"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
 msgstr ""
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Iznīcināt sesiju"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Opcijas"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Sākt Sesiju"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Sesija"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "Paplašināts..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Rediģēt"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "Noklusētais"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
 msgstr "Sesijas Rekvizīti"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
+msgstr "Sesijas Rekvizīti"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Komanda:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Programmas"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -322,6 +405,11 @@ msgstr "Atcelt"
 msgid "Help"
 msgstr "Palīdzība"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Sesijas Rekvizīti"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesija"
@@ -347,6 +435,10 @@ msgstr "Uzstādīt sesijas uzstādījumus"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Sesijas Rekvizīti"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr ""
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -409,13 +501,38 @@ msgstr "Startējam GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Startējam GNOME: darīts"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Startējam GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Komanda:"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Palaist Programmu"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Sesijas Rekvizīti"
 
 #~ msgid "No name"
 #~ msgstr "Bez nosaukuma"
@@ -455,9 +572,6 @@ msgstr "Startējam GNOME"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "Komanda:"
 
 #~ msgid "Name:"
 #~ msgstr "Nosaukums:"
@@ -512,9 +626,6 @@ msgstr "Startējam GNOME"
 
 #~ msgid "The GNOME terminal emulation program."
 #~ msgstr "GNOME termināļa emulācijas programma."
-
-#~ msgid "Default"
-#~ msgstr "Noklusētais"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -819,9 +930,6 @@ msgstr "Startējam GNOME"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Kopēt _saites atrašanās vietu"
-
-#~ msgid "Edit"
-#~ msgstr "Rediģēt"
 
 #~ msgid "File"
 #~ msgstr "Fails"
@@ -1782,9 +1890,6 @@ msgstr "Startējam GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Nevarēja uzņemt pašreizējās darbvirsmas ekrānattēlu."
 
-#~ msgid "Options"
-#~ msgstr "Opcijas"
-
 #~ msgid "Preview"
 #~ msgstr "Priekšapskate"
 
@@ -1844,9 +1949,6 @@ msgstr "Startējam GNOME"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "Paslēpt paplašinātās kontroles zem šīs pogas"
 
-#~ msgid "Advanced..."
-#~ msgstr "Paplašināts..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1857,9 +1959,6 @@ msgstr "Startējam GNOME"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "Palaist..."
-
-#~ msgid "Run Program"
-#~ msgstr "Palaist Programmu"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "Šī palaidēja ikona nenorāda parādāmo url"
@@ -2169,9 +2268,6 @@ msgstr "Startējam GNOME"
 #~ msgstr ""
 #~ "Izejiet no šīs sesijas lai ieietu atkal iekšā kā cits lietotājs vai arī "
 #~ "izslēdziet savu datoru"
-
-#~ msgid "Programs"
-#~ msgstr "Programmas"
 
 #~ msgid "Applets"
 #~ msgstr "Sīkprogrammas"

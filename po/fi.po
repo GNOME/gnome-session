@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.4\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2002-02-09 22:12+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@saunalahti.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -290,14 +290,97 @@ msgstr "Tallenna nykyinen istunto"
 msgid "Save current state of desktop"
 msgstr "Tallenna työpöydän nykyinen tila"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr ""
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Sulje istunto väkisin"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Valinnat"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Tallenna nykyinen istunto"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Istunto"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "Lisäasetukset..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Muokkaa"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "Oletus"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
+msgstr "Istunnon ominaisuudet"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Nykyisen istunnon ohjelmat"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Istunnon ominaisuudet"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Komento:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Ohjelmat"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -324,6 +407,11 @@ msgstr "Peruuta"
 msgid "Help"
 msgstr "Ohje"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Istunnon ominaisuudet"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Istunto"
@@ -348,6 +436,10 @@ msgstr "Alusta istuntoasetukset"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Istunnon ominaisuudet ja käynnistyvät ohjelmat"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Nykyisen istunnon ohjelmat"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -410,13 +502,38 @@ msgstr "GNOME käynnistyy: %s"
 msgid "Starting GNOME: done"
 msgstr "GNOME käynnistyy: valmis"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "GNOME käynnistyy"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Aloitusvihjeet"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Suorita komento"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Istunnon ominaisuudet ja käynnistyvät ohjelmat"
 
 #~ msgid "No name"
 #~ msgstr "Ei nimeä"
@@ -456,9 +573,6 @@ msgstr "GNOME käynnistyy"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "Komento:"
 
 #~ msgid "Name:"
 #~ msgstr "Nimi:"
@@ -516,9 +630,6 @@ msgstr "GNOME käynnistyy"
 #~ "Gnomen pääte-emulaattoriohjelma.\n"
 #~ "\n"
 #~ "Suomennos: http://gnome-fi.sourceforge.net/"
-
-#~ msgid "Default"
-#~ msgstr "Oletus"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -821,9 +932,6 @@ msgstr "GNOME käynnistyy"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Kopioi _linkin kohde"
-
-#~ msgid "Edit"
-#~ msgstr "Muokkaa"
 
 #~ msgid "File"
 #~ msgstr "Tiedosto"
@@ -1774,9 +1882,6 @@ msgstr "GNOME käynnistyy"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Ei voi ottaa kuvakaappausta koko työpöydästä."
 
-#~ msgid "Options"
-#~ msgstr "Valinnat"
-
 #~ msgid "Preview"
 #~ msgstr "Esikatselu"
 
@@ -1836,9 +1941,6 @@ msgstr "GNOME käynnistyy"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "Piilota tämän painikkeen alla olevat lisäasetukset."
 
-#~ msgid "Advanced..."
-#~ msgstr "Lisäasetukset..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1848,9 +1950,6 @@ msgstr "GNOME käynnistyy"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "Suorita..."
-
-#~ msgid "Run Program"
-#~ msgstr "Suorita komento"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "Tälle käynnistinkuvakkeelle ei ole määritelty näytettävää URL:ia"
@@ -2177,9 +2276,6 @@ msgstr "GNOME käynnistyy"
 #~ msgstr ""
 #~ "Kirjaudu ulos tästä istunnosta kirjautuaksesi uudestaan toisena "
 #~ "käyttäjänä tai sammuttaaksesi tietokoneen"
-
-#~ msgid "Programs"
-#~ msgstr "Ohjelmat"
 
 #~ msgid "Applets"
 #~ msgstr "Sovelmat"
@@ -2628,9 +2724,6 @@ msgstr "GNOME käynnistyy"
 
 #~ msgid "GNOME Desktop Guide (Pager)"
 #~ msgstr "Gnomen työpöydänvaihtaja"
-
-#~ msgid "Startup Hint"
-#~ msgstr "Aloitusvihjeet"
 
 #~ msgid "Browse the startup hints"
 #~ msgstr "Selaa aloitusvihjeitä"

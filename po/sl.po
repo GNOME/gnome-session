@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-02-28 18:36+0200\n"
 "Last-Translator: Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -285,14 +285,89 @@ msgstr "Shrani trenutno sejo"
 msgid "Save current state of desktop"
 msgstr "Shrani zajem zaslona na _namizje"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Ime seje ne sme biti prazno"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Ime seje ¾e obstaja"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Dodaj novo sejo"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Uredi ime seje"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Mo¾nosti"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Ka¾i zaèetni zaslon ob prijavi"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Vpra¹aj ob odjavi"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Samodejno shrani spremembe seje"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Izberi trenutno sejo"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Ime seje"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Dodaj..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Uredi..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Zbri¹i"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Mo¾nosti seje"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Trenutni programi, ki so upravljani s sejo"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Lastnosti seje"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioriteta"
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Ukaz"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Brskaj po trenutno pognanih programih..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Programi ob zaèetku"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -319,6 +394,11 @@ msgstr "Preklièi"
 msgid "Help"
 msgstr "Pomoè"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Lastnosti seje"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Seja"
@@ -344,6 +424,10 @@ msgstr "Inicializiraj nastavitve seje"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Zaèetni programi, ki niso del seje"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Trenutni programi, ki so upravljani s sejo"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -406,13 +490,37 @@ msgstr "GNOME se zaganja: %s"
 msgid "Starting GNOME: done"
 msgstr "GNOME se zaganja: opravljeno"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "GNOME se zaganja"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Zaèetni ukaz"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programi z manj¹imi vrednostmi so pognani pred programi z veèjimi. Privzeta "
+"vrednost bi morala ustrezati"
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Zagonski ukaz ne more biti prazen"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Dodaj zaèetni program"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Uredi zaèetni program"
 
 #, fuzzy
 #~ msgid "No name"
@@ -421,10 +529,6 @@ msgstr "GNOME se zaganja"
 #, fuzzy
 #~ msgid "URL:"
 #~ msgstr "URL"
-
-#, fuzzy
-#~ msgid "Command:"
-#~ msgstr "Ukaz"
 
 #, fuzzy
 #~ msgid "Name:"
@@ -1610,9 +1714,6 @@ msgstr "GNOME se zaganja"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Nisem mogel zajeti slike zaslona trenutnega namizja."
 
-#~ msgid "Options"
-#~ msgstr "Mo¾nosti"
-
 #~ msgid "Preview"
 #~ msgstr "Predogled"
 
@@ -2686,9 +2787,6 @@ msgstr "GNOME se zaganja"
 #~ msgid "Create a new item"
 #~ msgstr "Ustvari nov predmet"
 
-#~ msgid "Delete"
-#~ msgstr "Zbri¹i"
-
 #~ msgid "Delete selected menu item"
 #~ msgstr "Zbri¹i izbran predmet"
 
@@ -2898,75 +2996,11 @@ msgstr "GNOME se zaganja"
 #~ msgid "Message of the day file to use: "
 #~ msgstr "Datoteka s sporoèilom dneva: "
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Ime seje ne sme biti prazno"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Ime seje ¾e obstaja"
-
-#~ msgid "Add a new session"
-#~ msgstr "Dodaj novo sejo"
-
-#~ msgid "Edit session name"
-#~ msgstr "Uredi ime seje"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Ka¾i zaèetni zaslon ob prijavi"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Vpra¹aj ob odjavi"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Samodejno shrani spremembe seje"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Izberi trenutno sejo"
-
-#~ msgid "Session Name"
-#~ msgstr "Ime seje"
-
-#~ msgid "Add..."
-#~ msgstr "Dodaj..."
-
-#~ msgid "Edit..."
-#~ msgstr "Uredi..."
-
-#~ msgid "Session Options"
-#~ msgstr "Mo¾nosti seje"
-
-#~ msgid "Priority"
-#~ msgstr "Prioriteta"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Brskaj po trenutno pognanih programih..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programi ob zaèetku"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-iso8859-2"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-iso8859-2"
-
-#~ msgid "Startup Command"
-#~ msgstr "Zaèetni ukaz"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programi z manj¹imi vrednostmi so pognani pred programi z veèjimi. "
-#~ "Privzeta vrednost bi morala ustrezati"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Zagonski ukaz ne more biti prazen"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Dodaj zaèetni program"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Uredi zaèetni program"
 
 #~ msgid "Bookmark"
 #~ msgstr "Zaznamek"

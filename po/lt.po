@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.3\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-12-16 16:25+0200\n"
 "Last-Translator: Gediminas Paulauskas <menesis@delfi.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -277,14 +277,90 @@ msgstr "Iðsaugoti esamà sesijà"
 msgid "Save current state of desktop"
 msgstr "Iðsaugoti esamà bûsenà"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Sesijos pavadinimas negali bûti tuðèias"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Jau yra sesija tokiu pavadinimu"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Pridëti naujà sesijà"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Pervadinti sesijà"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+#, fuzzy
+msgid "Options"
+msgstr "Veiksmai"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Paklausti atsisveikinant"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Automatiðkai iðsaugoti sesijos pakeitimus"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Pasirinkt esamà sesijà"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Sesijos pavadinimas"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Pridëti..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Keisti..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Iðtrinti"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Sesijos parinktys"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Esamos sesijos valdomos programos"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Sesijos savybës"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Svarbumas"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Komanda"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Perþiûrëti dabar bëganèias programas..."
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Programos"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -311,6 +387,11 @@ msgstr "Atðaukti"
 msgid "Help"
 msgstr "Pagalba"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Sesijos savybës"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Sesija"
@@ -336,6 +417,10 @@ msgstr "Inicializuoti sesijos nuostatas"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Sesijos netvarkomos pradþioje paleidþiamos programos"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Esamos sesijos valdomos programos"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -399,13 +484,41 @@ msgstr "Paleidþiam GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Paleidþiam GNOME: atlikta"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Paleidþiam GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Pradþios patarimai"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programos su maþesnëmis reikðmëmis yra paleidþiamos prieð tas su didesnëmis "
+"reikðmëmis. Áprastinë reikðmë turëtø bûti gera."
+
+#: gnome-session/startup-programs.c:333
+#, fuzzy
+msgid "The startup command cannot be empty"
+msgstr "Sesijos pavadinimas negali bûti tuðèias"
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Paleisti programà"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Sesijos netvarkomos pradþioje paleidþiamos programos"
 
 #~ msgid "No name"
 #~ msgstr "Be pavadinimo"
@@ -1583,10 +1696,6 @@ msgstr "Paleidþiam GNOME"
 #~ msgstr "_Iðkelti skydelius, kai pelë yra virð jø"
 
 #, fuzzy
-#~ msgid "Options"
-#~ msgstr "Veiksmai"
-
-#, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Perþiûra:"
 
@@ -1651,9 +1760,6 @@ msgstr "Paleidþiam GNOME"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "Paleisti..."
-
-#~ msgid "Run Program"
-#~ msgstr "Paleisti programà"
 
 #, fuzzy
 #~ msgid "This launch icon does not specify a url to show"
@@ -1914,9 +2020,6 @@ msgstr "Paleidþiam GNOME"
 
 #~ msgid "About GNOME..."
 #~ msgstr "Apie GNOME..."
-
-#~ msgid "Programs"
-#~ msgstr "Programos"
 
 #~ msgid "Applets"
 #~ msgstr "Átaisai"
@@ -2298,58 +2401,6 @@ msgstr "Paleidþiam GNOME"
 
 #~ msgid "Timed out on sending session save to an applet"
 #~ msgstr "Baigësi laiko riba, besiunèiant átaisui sesijos iðsaugojimà"
-
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Sesijos pavadinimas negali bûti tuðèias"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Jau yra sesija tokiu pavadinimu"
-
-#~ msgid "Add a new session"
-#~ msgstr "Pridëti naujà sesijà"
-
-#~ msgid "Edit session name"
-#~ msgstr "Pervadinti sesijà"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Paklausti atsisveikinant"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Automatiðkai iðsaugoti sesijos pakeitimus"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Pasirinkt esamà sesijà"
-
-#~ msgid "Session Name"
-#~ msgstr "Sesijos pavadinimas"
-
-#~ msgid "Add..."
-#~ msgstr "Pridëti..."
-
-#~ msgid "Edit..."
-#~ msgstr "Keisti..."
-
-#~ msgid "Delete"
-#~ msgstr "Iðtrinti"
-
-#~ msgid "Session Options"
-#~ msgstr "Sesijos parinktys"
-
-#~ msgid "Priority"
-#~ msgstr "Svarbumas"
-
-#~ msgid "Command"
-#~ msgstr "Komanda"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Perþiûrëti dabar bëganèias programas..."
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programos su maþesnëmis reikðmëmis yra paleidþiamos prieð tas su "
-#~ "didesnëmis reikðmëmis. Áprastinë reikðmë turëtø bûti gera."
 
 #~ msgid ""
 #~ "Cannot execute the gmc-client program,\n"
@@ -3523,9 +3574,6 @@ msgstr "Paleidþiam GNOME"
 
 #~ msgid "GNOME Desktop Guide (Pager)"
 #~ msgstr "GNOME darbalaukiø gidas (peidþeris)"
-
-#~ msgid "Startup Hint"
-#~ msgstr "Pradþios patarimai"
 
 #~ msgid "Browse the startup hints"
 #~ msgstr "Narðyti pradþios patarimus"

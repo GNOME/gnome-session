@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-12-31 16:35+03:00\n"
 "Last-Translator: Valek Filippov <frob@df.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -286,14 +286,98 @@ msgstr "Текущий сеанс"
 msgid "Save current state of desktop"
 msgstr "Сохранить текущие настройки"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr ""
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr ""
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr ""
+
+#: gnome-session/session-names.c:202
+#, fuzzy
+msgid "Edit session name"
+msgstr "Остановить сеанс"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+#, fuzzy
+msgid "Options"
+msgstr "Действия"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+#, fuzzy
+msgid "Choose Current Session"
+msgstr "Текущий сеанс"
+
+#: gnome-session/session-properties-capplet.c:226
+#, fuzzy
+msgid "Session Name"
+msgstr "Сеанс"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+#, fuzzy
+msgid "Add..."
+msgstr "Дополнительно..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+#, fuzzy
+msgid "Edit..."
+msgstr "Правка"
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+#, fuzzy
+msgid "Delete"
+msgstr "По умолчанию"
+
+#: gnome-session/session-properties-capplet.c:262
+#, fuzzy
+msgid "Session Options"
+msgstr "Свойства сеанса"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Настройка диспетчера рабочей сессии в GNOME"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Свойства сеанса"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:292
+#, fuzzy
+msgid "Command"
+msgstr "Команда:"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:330
+#, fuzzy
+msgid "Startup Programs"
+msgstr "Программы"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -320,6 +404,11 @@ msgstr "Отмена"
 msgid "Help"
 msgstr "Справка"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Свойства сеанса"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Сеанс"
@@ -345,6 +434,10 @@ msgstr "Инициализировать настройку сеанса"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Свойства сеанса"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Настройка диспетчера рабочей сессии в GNOME"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -407,13 +500,38 @@ msgstr "Запуск GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Запуск GNOME: сделано"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Запуск GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#, fuzzy
+msgid "Startup Command"
+msgstr "Команда:"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr ""
+
+#: gnome-session/startup-programs.c:373
+#, fuzzy
+msgid "Add Startup Program"
+msgstr "Запустить программу"
+
+#: gnome-session/startup-programs.c:391
+#, fuzzy
+msgid "Edit Startup Program"
+msgstr "Свойства сеанса"
 
 #~ msgid "No name"
 #~ msgstr "Без имени"
@@ -450,9 +568,6 @@ msgstr "Запуск GNOME"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "Команда:"
 
 #~ msgid "Name:"
 #~ msgstr "Название:"
@@ -504,9 +619,6 @@ msgstr "Запуск GNOME"
 
 #~ msgid "The GNOME terminal emulation program."
 #~ msgstr "Программа эмуляции терминала GNOME"
-
-#~ msgid "Default"
-#~ msgstr "По умолчанию"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -807,9 +919,6 @@ msgstr "Запуск GNOME"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Скопировать адрес ссылки"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
 
 #~ msgid "File"
 #~ msgstr "Файл"
@@ -1569,10 +1678,6 @@ msgstr "Запуск GNOME"
 #~ msgstr "Поднимать панели при наезде мышью"
 
 #, fuzzy
-#~ msgid "Options"
-#~ msgstr "Действия"
-
-#, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Просмотр:"
 
@@ -1625,9 +1730,6 @@ msgstr "Запуск GNOME"
 #~ msgid "Hide the advanced controls below this button."
 #~ msgstr "Скрыть дополнительные пункты за этой кнопкой."
 
-#~ msgid "Advanced..."
-#~ msgstr "Дополнительно..."
-
 #~ msgid ""
 #~ "Allow typing in a command line instead of choosing an application from "
 #~ "the list"
@@ -1636,9 +1738,6 @@ msgstr "Запуск GNOME"
 #, fuzzy
 #~ msgid "_Run ..."
 #~ msgstr "Запуск..."
-
-#~ msgid "Run Program"
-#~ msgstr "Запустить программу"
 
 #~ msgid "This launch icon does not specify a url to show"
 #~ msgstr "У этой кнопки не определён URL для отображения"
@@ -1908,9 +2007,6 @@ msgstr "Запуск GNOME"
 #~ msgstr ""
 #~ "Закончить этот сеанс, чтобы войти как другой пользователь или выключить "
 #~ "компьютер"
-
-#~ msgid "Programs"
-#~ msgstr "Программы"
 
 #~ msgid "Applets"
 #~ msgstr "Апплеты"

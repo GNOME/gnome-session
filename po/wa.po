@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 1999-03-18 23:11+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -290,14 +290,88 @@ msgstr "Schaper li sesion do moumint"
 msgid "Save current state of desktop"
 msgstr "Schaper li waitroûlêye sol _sicribanne:"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Li no del session ni pout nén esse vûde"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Ci no di session egzisteye dedja"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Radjouter ene novele session"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Candjî l' no del session"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Tchûzes"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Tchwezi li session do moumint"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "No del session"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Radjouter..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Candjî..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Disfacer"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Tchûzes del session"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+#, fuzzy
+msgid "Non-session-managed Startup Programs"
 msgstr "Po candjî les prôprietés èt apontyî li manaedje di sessions di Gnome"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Prôpietés del session"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prumîristé"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Comande"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Foyter etur les programes en alaedje pol moumint..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Programes a l' enondaedje"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -324,6 +398,11 @@ msgstr "Rinoncî"
 msgid "Help"
 msgstr "Aidance"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Prôpietés del session"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Session"
@@ -349,6 +428,10 @@ msgstr "Dj' enonde l' apontiaedje del session"
 #, fuzzy
 msgid "Session Properties & Startup Programs"
 msgstr "Prôpietés del session"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Po candjî les prôprietés èt apontyî li manaedje di sessions di Gnome"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -411,13 +494,38 @@ msgstr "Enondaedje di GNOME: %s"
 msgid "Starting GNOME: done"
 msgstr "Enondaedje di GNOME: fwait"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "Enondaedje di GNOME"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Comande d' enondaedje"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Les programes avou des pus ptites valixhances sont-st enondés divant  les "
+"cis avou des pus grandes valixhances. Li prémetowe valixhance duvreut esse "
+"bone."
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Li cmande d' enondaedje ni pout nén esse vûde"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Radjouter on programe d' enondaedje"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Candjî on programe d' enondaedje"
 
 #, fuzzy
 #~ msgid "No name"
@@ -1439,9 +1547,6 @@ msgstr "Enondaedje di GNOME"
 #~ msgid "%s%cScreenshot-%d.png"
 #~ msgstr "Waitroûlêye"
 
-#~ msgid "Options"
-#~ msgstr "Tchûzes"
-
 #, fuzzy
 #~ msgid "Preview"
 #~ msgstr "Vey divant"
@@ -1995,73 +2100,11 @@ msgstr "Enondaedje di GNOME"
 #~ msgid "Applet"
 #~ msgstr "Aplikete"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Li no del session ni pout nén esse vûde"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Ci no di session egzisteye dedja"
-
-#~ msgid "Add a new session"
-#~ msgstr "Radjouter ene novele session"
-
-#~ msgid "Edit session name"
-#~ msgstr "Candjî l' no del session"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Tchwezi li session do moumint"
-
-#~ msgid "Session Name"
-#~ msgstr "No del session"
-
-#~ msgid "Add..."
-#~ msgstr "Radjouter..."
-
-#~ msgid "Edit..."
-#~ msgstr "Candjî..."
-
-#~ msgid "Delete"
-#~ msgstr "Disfacer"
-
-#~ msgid "Session Options"
-#~ msgstr "Tchûzes del session"
-
-#~ msgid "Priority"
-#~ msgstr "Prumîristé"
-
-#~ msgid "Command"
-#~ msgstr "Comande"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Foyter etur les programes en alaedje pol moumint..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programes a l' enondaedje"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-*-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*,*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-*-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*,*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Comande d' enondaedje"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Les programes avou des pus ptites valixhances sont-st enondés divant  les "
-#~ "cis avou des pus grandes valixhances. Li prémetowe valixhance duvreut "
-#~ "esse bone."
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Li cmande d' enondaedje ni pout nén esse vûde"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Radjouter on programe d' enondaedje"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Candjî on programe d' enondaedje"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core HEAD\n"
-"POT-Creation-Date: 2002-02-13 11:39+0000\n"
+"POT-Creation-Date: 2002-02-18 19:01+0000\n"
 "PO-Revision-Date: 2001-05-04 11:14+0200\n"
 "Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
@@ -287,15 +287,88 @@ msgstr "Szezon (session) elmentése"
 msgid "Save current state of desktop"
 msgstr "A képernyőfotó mentése a _munkafelületre"
 
-#: gnome-session/session.desktop.in.h:1
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "A munkafolyamat neve nem lehet üres"
+
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Már létezik ilyen nevű munkafolyamat"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Új munkafolyamat hozzáadása"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Munkafolyamat nevének szerkesztése"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Beállítások"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Indítási üzenet megjelenítése belépéskor"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Megerősítés kérése kilépés előtt"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Munkafolyamat változásainak automatikus mentése"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Munkafolyamat választása"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Munkafolyamat neve"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Hozzáadás..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Szerkesztés..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Törlés"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Munkafolyamat beállításai"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
 #, fuzzy
-msgid "Current session managed programs"
+msgid "Non-session-managed Startup Programs"
 msgstr "Munkafolyamat-vezérlésre képtelen elindítandó programok"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Munkafolyamat beállításai"
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritás"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Parancs"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "A jelenleg futó programok listája..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Automatikusan elinduló programok"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -322,6 +395,11 @@ msgstr "Mégsem"
 msgid "Help"
 msgstr "Súgó"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Munkafolyamat beállításai"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Munkafolyamat"
@@ -346,6 +424,11 @@ msgstr "Munkafolyamat tulajdonságok beállítása"
 #: gnome-session/session-properties.desktop.in.h:1
 #, fuzzy
 msgid "Session Properties & Startup Programs"
+msgstr "Munkafolyamat-vezérlésre képtelen elindítandó programok"
+
+#: gnome-session/session.desktop.in.h:1
+#, fuzzy
+msgid "Current session managed programs"
 msgstr "Munkafolyamat-vezérlésre képtelen elindítandó programok"
 
 #: gnome-session/splash.c:55
@@ -409,13 +492,37 @@ msgstr "A GNOME indítása: %s"
 msgid "Starting GNOME: done"
 msgstr "A GNOME indítása: kész"
 
-#: gnome-session/splash.c:439
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:459
 msgid "Starting GNOME"
 msgstr "A GNOME indul"
+
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Elindítandó parancs"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"A kisebb értékkel rendelkező programok a nagyobb értékkel rendelkezők előtt "
+"fognak elindulni. Az alapértemezett értékek valószínűleg helyesek."
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Az elindítandó parancs nem lehet üres"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Elindítandó program hozzáadása"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Elindítandó program szerkesztése"
 
 #~ msgid "No name"
 #~ msgstr "Névtelen"
@@ -1790,9 +1897,6 @@ msgstr "A GNOME indul"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Nem tudok képernyőfotót készíteni a jelenlegi felületről."
 
-#~ msgid "Options"
-#~ msgstr "Beállítások"
-
 #~ msgid "Preview"
 #~ msgstr "Előnézet"
 
@@ -2517,81 +2621,11 @@ msgstr "A GNOME indul"
 #~ msgid "Applet"
 #~ msgstr "Applet"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "A munkafolyamat neve nem lehet üres"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Már létezik ilyen nevű munkafolyamat"
-
-#~ msgid "Add a new session"
-#~ msgstr "Új munkafolyamat hozzáadása"
-
-#~ msgid "Edit session name"
-#~ msgstr "Munkafolyamat nevének szerkesztése"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Indítási üzenet megjelenítése belépéskor"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Megerősítés kérése kilépés előtt"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Munkafolyamat változásainak automatikus mentése"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Munkafolyamat választása"
-
-#~ msgid "Session Name"
-#~ msgstr "Munkafolyamat neve"
-
-#~ msgid "Add..."
-#~ msgstr "Hozzáadás..."
-
-#~ msgid "Edit..."
-#~ msgstr "Szerkesztés..."
-
-#~ msgid "Delete"
-#~ msgstr "Törlés"
-
-#~ msgid "Session Options"
-#~ msgstr "Munkafolyamat beállításai"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritás"
-
-#~ msgid "Command"
-#~ msgstr "Parancs"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "A jelenleg futó programok listája..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Automatikusan elinduló programok"
-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"
 
 #~ msgid "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
 #~ msgstr "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"
-
-#~ msgid "Startup Command"
-#~ msgstr "Elindítandó parancs"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "A kisebb értékkel rendelkező programok a nagyobb értékkel rendelkezők "
-#~ "előtt fognak elindulni. Az alapértemezett értékek valószínűleg helyesek."
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Az elindítandó parancs nem lehet üres"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Elindítandó program hozzáadása"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Elindítandó program szerkesztése"
 
 #, fuzzy
 #~ msgid "(c) 2001 the Free Software Foundation"
