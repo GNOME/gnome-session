@@ -12,37 +12,45 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 1.5.19\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-05-27 12:26+0800\n"
+"Project-Id-Version: gnome-session 2.0.1\n"
+"POT-Creation-Date: 2002-06-22 18:37+0800\n"
+"PO-Revision-Date: 2002-06-22 22:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
 msgstr "GNOME 登入"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
+#: gnome-session/gnome-login-check.c:152
+msgid "Log In"
 msgstr "登入"
 
-#: gnome-session/gnome-login-check.c:148
+#: gnome-session/gnome-login-check.c:183
 msgid "Start with default programs"
 msgstr "啟動預設程式"
 
-#: gnome-session/gnome-login-check.c:152
+#: gnome-session/gnome-login-check.c:187
 msgid "Reset all user settings"
 msgstr "重設所有使用者設定"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr "是否重設 %s 的所有 GNOME 使用者設定？"
 
-#: gnome-session/gnome-login-check.c:195
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "否"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "重設所有設定"
+
+#: gnome-session/gnome-login-check.c:236
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -52,15 +60,15 @@ msgstr ""
 "目錄 /tmp/orbit-%s 不屬於目前的使用者 %s。\n"
 "請聯絡該目錄的擁有人。"
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "再試"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "強迫登入"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "繼續"
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
+msgstr "重試"
 
-#: gnome-session/gnome-login-check.c:219
+#: gnome-session/gnome-login-check.c:258
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -69,30 +77,9 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "無法查詢 %s 的網絡位址。\n"
-"這會使 Gnome 無法正常工作。\n"
+"這會使 Gnome 無法正常運作。\n"
 "或許將 %s 加入 /etc/hosts\n"
-"可以更正這個錯誤。"
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"libICE 版本有錯誤，會妨礙 gnome-session 正常運作。\n"
-"\n"
-"如果是 Solaris 作業系統，那應該更新 Solaris\n"
-"修正檔 #108376-16 或將 Solaris 7 的 libICE.so.6\n"
-"複製至 /usr/openwin/lib。（多謝 Andy Reitz\n"
-"提供有關此問題的資料）。\n"
-"\n"
-"GNOME 作業階段會在此對話窗關閉後終止。"
+"可以避免此問題出現。"
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -198,6 +185,55 @@ msgstr "設定"
 msgid "Always started on every login."
 msgstr "每次登入時都會啟動。"
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"啟動 GNOME 設定伺服程式時發生錯誤。\n"
+"\n"
+"一部份例如佈景主題、音效或背景圖案等的設定將無法正常運作。"
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"最後的錯誤訊息是：\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"下次登入時，GNOME 仍然會嘗試重新啟動設定伺服程式。"
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "出現不明的啟動錯誤。"
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "設定伺服程式重新啟動的次數太多。"
+
 #: gnome-session/logout.c:225
 msgid "Really log out?"
 msgstr "是否確定登出？"
@@ -222,23 +258,23 @@ msgstr "關機"
 msgid "Reboot"
 msgstr "重新啟動電腦"
 
-#: gnome-session/main.c:73
-msgid "Specify a session name to load"
-msgstr "指定載入的作業階段名稱"
-
-#: gnome-session/main.c:74
-msgid "Only read saved sessions from the default.session file"
-msgstr "只從預設作業階段檔案中讀取已儲存的作業階段"
-
 #: gnome-session/main.c:75
+msgid "Specify a session name to load"
+msgstr "指定準備載入的作業階段名稱"
+
+#: gnome-session/main.c:76
+msgid "Only read saved sessions from the default.session file"
+msgstr "只從預設作業階段檔案 (default.session) 中讀取已儲存的作業階段"
+
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
 
@@ -358,7 +394,7 @@ msgstr "新增..."
 #: gnome-session/session-properties-capplet.c:275
 #: gnome-session/session-properties-capplet.c:353
 msgid "Edit..."
-msgstr "編輯..."
+msgstr "修改..."
 
 #: gnome-session/session-properties-capplet.c:279
 #: gnome-session/session-properties-capplet.c:358
@@ -391,32 +427,15 @@ msgstr "初始啟動程式"
 msgid "Current Session"
 msgstr "目前的作業階段"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "在作業階段中移除已選取的程式。"
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "目前作業階段中正在運行的程式的清單。"
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "作業階段"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "作業階段選擇程式"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "啟動作業階段"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "取消登入"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "初始化作業階段設定"
 
@@ -510,6 +529,41 @@ msgstr "新增初始啟動程式"
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
 
+#~ msgid "Continue"
+#~ msgstr "繼續"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "libICE 版本有錯誤，會妨礙 gnome-session 正常運作。\n"
+#~ "\n"
+#~ "如果是 Solaris 作業系統，那應該更新 Solaris\n"
+#~ "修正檔 #108376-16 或將 Solaris 7 的 libICE.so.6\n"
+#~ "複製至 /usr/openwin/lib。（多謝 Andy Reitz\n"
+#~ "提供有關此問題的資料）。\n"
+#~ "\n"
+#~ "GNOME 作業階段會在此對話窗關閉後終止。"
+
+#~ msgid "Session"
+#~ msgstr "作業階段"
+
+#~ msgid "Session Chooser"
+#~ msgstr "作業階段選擇程式"
+
+#~ msgid "Start Session"
+#~ msgstr "啟動作業階段"
+
+#~ msgid "Cancel Login"
+#~ msgstr "取消登入"
+
 #~ msgid "_Log Out"
 #~ msgstr "登出(_L)"
 
@@ -524,9 +578,6 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "Current session managed programs"
 #~ msgstr "目前接受作業階段管理的程式"
-
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Enlightenment 視窗管理程式"
 
 #~ msgid "Desktop"
 #~ msgstr "桌面"
