@@ -78,7 +78,7 @@ man_MANS = gnome-wm.1 save-session.1 default.session.5 gnome-session.1
 manuals = gnome-wm.1 default.session.5.in gnome-session.1.in save-session.1
 
 pixmapdir = $(datadir)/pixmaps/splash/
-pixmap_DATA = gnome-splash.png
+pixmap_DATA = gnome-splash.png gnome-splash-1.4.0.png
 
 EXTRA_DIST =			\
 	default.in		\
@@ -87,7 +87,7 @@ EXTRA_DIST =			\
 	save-session.desktop 	\
 	session.desktop		\
 	$(manuals)		\
-	gnome-splash.png	\
+	$(pixmap_DATA)		\
 	session-properties.desktop
 
 

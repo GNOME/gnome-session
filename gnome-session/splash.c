@@ -28,6 +28,7 @@
 typedef struct {
   GtkWidget *dialog;
   GnomeCanvasItem *label;
+  GnomeCanvasItem *label_shadow;
   GSList *icon_items;
   GSList *icon_pixbufs;
   GtkWidget *hbox;
@@ -280,6 +281,7 @@ icon_cb (gpointer data)
   }
 
   gnome_canvas_item_set (sd->label, "text", msg, NULL);
+  gnome_canvas_item_set (sd->label_shadow, "text", msg, NULL);
 
   g_free (msg);
   g_free (text);
@@ -368,8 +370,31 @@ start_splash (gfloat max)
   {
     GdkPixbuf *pb;
     int height, width;
+    char *filename;
+    int maj, minor, pl;
 
-    pb = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/splash/gnome-splash.png");
+    /* Find a splahsscreen by looking at "gnome-splash-major.minor.pl.png",
+       "gnome-splash-major.minor.png" and "gnome-splash.png" */
+    if (sscanf (VERSION, "%d.%d.%d", &maj, &minor, &pl) != 3) {
+	    pl = 0;
+	    if (sscanf (VERSION, "%d.%d", &maj, &minor) != 2) {
+		    maj = minor = pl = 0; /* sort of illegal version */
+	    }
+    }
+
+    filename = g_strdup_printf ("%s/splash/gnome-splash-%d.%d.%d.png",
+				GNOME_ICONDIR, maj, minor, pl);
+    pb = gdk_pixbuf_new_from_file (filename);
+    g_free (filename);
+    if (pb == NULL) {
+	    filename = g_strdup_printf ("%s/splash/gnome-splash-%d.%d.png",
+					GNOME_ICONDIR, maj, minor);
+	    pb = gdk_pixbuf_new_from_file (filename);
+	    g_free (filename);
+    }
+
+    if (pb == NULL)
+	    pb = gdk_pixbuf_new_from_file (GNOME_ICONDIR "/splash/gnome-splash.png");
 
     if (pb == NULL) {
 	    height = 220;
@@ -412,6 +437,15 @@ start_splash (gfloat max)
 				   NULL);
     }
 
+    sd->label_shadow = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
+					      GNOME_TYPE_CANVAS_TEXT,
+					      "text", _("Starting GNOME"),
+					      "x", (gdouble)(width / 2 + 1.0),
+					      "y", (gdouble)(height - 7.5 + 1.0),
+					      "fontset", _("-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"),
+					      "anchor", GTK_ANCHOR_CENTER,
+					      "fill_color", "black",
+					      NULL);
     sd->label = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				       GNOME_TYPE_CANVAS_TEXT,
 				       "text", _("Starting GNOME"),

@@ -1,3 +1,12 @@
+Wed May 02 16:38:01 2001  George Lebl <jirka@5z.com>
+
+	* splash.c, Makefile.am, gnome-splash-1.4.0.png: Add code to pick a
+	  splash screen according to the version with the old
+	  gnome-splash.png as a fallback.  So this new 1.4 splashscreen will
+	  only show up in 1.4.0.x releases.  Just in case we forget to change
+	  it.  Also add a black shadow to the text on the splashscreen to make
+	  it nicer.
+
 2001-05-01  Glynn Foster <glynn.foster@sun.com>
 	* save.c: Get rid of stupid warning 
 
