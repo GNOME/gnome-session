@@ -1,0 +1,549 @@
+<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[
+]>
+<article id="index">
+  <artheader>
+<!--
+    <title>Session Properties Manual</title>
+-->
+    <title>セッションプロパティマネージャ</title>
+    <copyright>
+      <year>2000</year>
+      <holder>Eric Baudais</holder>
+    </copyright>
+    
+     <copyright>
+     <year>2001</year>
+     <holder>UMEDA Norihiro (日本語訳)</holder>
+     </copyright>
+
+
+
+    <!-- do not put authorname in the header except in copyright - use
+    section "authors" below -->
+    
+  <legalnotice id="legalnotice">
+
+   <para>Permission is granted to copy, distribute and/or modify this
+   document under the terms of the <ulink type="help"
+   url="gnome-help:fdl"><citetitle>GNU Free Documentation
+   License</citetitle></ulink>, Version 1.1 or any later version
+   published by the Free Software Foundation with no Invariant
+   Sections, no Front-Cover Texts, and no Back-Cover Texts.  A copy of
+   the license can be found <ulink type="help"
+   url="gnome-help:fdl">here</ulink>.</para>
+
+   <para>Many of the names used by companies to distinguish their
+   products and services are claimed as trademarks. Where those names
+   appear in any GNOME documentation, and those trademarks are made
+   aware to the members of the GNOME Documentation Project, the names
+   have been printed in caps or initial caps. </para>
+
+  </legalnotice>
+
+
+    <!-- this is version of manual, not application --> <releaseinfo>
+      This is version 1.0 of Session Properties manual.
+    </releaseinfo>
+<!-- FIXME:  Need to add a longer introduction. -->
+  </artheader>
+  <sect1 id="session-properties">
+<!--
+    <title>Session Properties</title>
+-->
+    <title>セッションプロパティ</title>
+    <para>
+<!--
+      <systemitem>Session Properties</systemitem> monitors the 
+      state of current GNOME running applications and capplets, as seen in
+      <link linkend="session-properties-screenshot">Figure 1</link>.  <systemitem>
+      Session Properties</systemitem> displays a list of all the 
+      applications and capplets currently running, what will happen to 
+      the program if you logout, and the state of the application.  It allows 
+      you to change the style and priority of each program.  You 
+      can shut down applications, if you wish, and those applications 
+      will be removed from your GNOME session.  You can also use 
+      <systemitem>Session Properties</systemitem> to kill a GNOME 
+      application and remove it from <systemitem>session management
+      </systemitem> so it will not be restarted when you log in next 
+      time.  Of course, there are other ways to kill an 
+      application, such as using an explicit kill command, but they 
+      would not prevent an application from being restarted if it has 
+      the <link linkend="session-properties-respawn"><guilabel>Respawn 
+      Style</guilabel></link>.  The only way to permanently remove such 
+      an application is with the <link linkend="session-properties-remove">
+      <guibutton>Remove</guibutton></link> button.
+-->
+      <systemitem>セッションプロパティ</systemitem>は<link linkend="session-properties-screenshot">Figure 1</link>のようにGNOMEで動作しているアプリケーションやキャプレットの状態を監視しています。
+      <systemitem>セッションプロパティ</systemitem>は現在動作中のアプリケーション及びキャプレットの一覧を表示します。
+      このプロパティでは各プログラムのスタイルと優先度を変更することが可能です。
+      お望みなら、アプリケーションを終了させてGNOMEセッションから削除できますし、また<systemitem>セッションプロパティ</systemitem>でGNOMEアプリケーションを殺して<systemitem>セッションマネージャ</systemitem>から削除することで、次回のログインから再起動しないように設定することもできます。
+      当然killコマンドで明示的にアプリケーションを殺すなど他にも方法もありますが、<link linkend="session-properties-respawn"><guilabel>復活状態</guilabel></link>にあるアプリケーションの再起動を止めさせることはできません。
+      そのようなアプリケーションを永続的に除くには<link linkend="session-properties-remove"><guibutton>削除</guibutton></link>ボタンを使う以外に方法はありません。
+    </para>
+
+    <note>
+<!--
+      <title>Note:</title>
+-->
+      <title>追記</title>
+
+      <para>
+<!--
+	Applications that are not 100 percent GNOME compliant are not managed
+	by the <systemitem>session manager</systemitem>.  To check if 
+	an application is GNOME compliant start <systemitem>Session 
+	Properties</systemitem>.  If the application is shown in the 
+	list it is compliant with GNOME and is managed by the 
+	<systemitem>session manager</systemitem>.  In order 
+	to restart non-GNOME complaint applications when you log in 
+	 <link linkend="startup-programs-non-session-managed"> see 
+	Non-session-managed Startup Programs </link> .
+-->
+	完全にGNOME対応でないアプリケーションは<systemitem>セッションマネージャ</systemitem>で管理されません。
+	アプリケーションがGNOMEに対応しているかどうか調べるには<systemitem>セッションプロパティ</systemitem>を起動して下さい。
+	<systemitem>セッションマネージャ</systemitem>で管理されている場合、一覧の中にそのアプリケーションが表示されているはずです。
+	ログイン時にGNOME非対応なアプリケーションを再起動させるためには、<!-- <link linkend="startup-programs-non-session-managed"> -->Non-session-managed Startup Programs<!-- </link> -->の章をご覧下さい。
+      </para>
+    </note>
+
+    <!-- FIXME: Need to add a section over basic usage. -->
+
+    <!-- FIXME: Need to add an introduction to customization of the SM. -->
+    <figure id="session-properties-screenshot">
+<!--
+      <title>Session Properties Dialog</title>
+-->
+      <title>セッションプロパティ ダイアログ</title>
+      <screenshot>
+<!--
+	<screeninfo>Screenshot of the session properties manager.</screeninfo>
+-->
+	<screeninfo>セッションプロパティ マネージャのスクリーンショット</screeninfo>
+	<graphic Format="png" Fileref="session-properties.png" srccredit="UMEDA Norihiro">
+	</graphic>
+      </screenshot>
+    </figure>
+
+    <sect2 id="session-properties-save">
+<!--
+      <title>Saving the GNOME Session</title>
+-->
+      <title>GNOMEセッションの保存</title>
+
+      <para>
+<!--
+	To save your GNOME session select <menuchoice><guimenu>Main Menu</guimenu>
+	<guisubmenu>Programs</guisubmenu><guisubmenu>Settings</guisubmenu>
+	<guisubmenu>Session</guisubmenu><guimenuitem>Save Current Session
+	</guimenuitem></menuchoice>.  This causes all the applications to save 
+	their current state: the application's current settings 
+	and work (open files and unsaved data).
+-->
+	GNOMEセッションを保存するには<menuchoice><guimenu>メインメニュー</guimenu><guisubmenu>プログラム</guisubmenu><guisubmenu>デスクトップ設定</guisubmenu><guisubmenu>セッション</guisubmenu><guimenuitem>現在のセッションを保存</guimenuitem></menuchoice>を選択します。
+	ここでは、アプリケーションの設定や作業(開いているファイルや未保存のデータ)などの状態を保存できます。
+      </para>
+
+      <note>
+<!--
+	<title>Note:</title>
+-->
+	<title>追記</title>
+	<para>
+<!--
+	  Applications that are not compliant with GNOME will not save the current settings 
+	  or work associated with the application.  It is recommended that you save your work 
+	  periodically in case of a calamity.
+-->
+	  GNOMEに対応していないアプリケーションでは現在の設定やそれに関連する作業は保存されません。不測の事態に備え定期的に作業を保存することをおすすめします。
+	</para>
+      </note>
+    </sect2>
+
+    <sect2 id="session-properties-order">
+<!--
+      <title>Priority Order</title>
+-->
+      <title>順番</title>
+      <para>
+<!--	
+	The <guilabel>priority order</guilabel> sets the order the applications 
+	will start in the GNOME <link linkend="session-properties-screenshot">
+	<systemitem>Session Manager</systemitem></link>.  This lets applications be started 
+	after other applications or capplets they are dependent upon.  
+	If an application needs to start before the <systemitem>window manager
+	</systemitem>, like a server, you can change the <guilabel>order</guilabel>
+	number to be lower than the <systemitem>window manager's</systemitem>
+	<guilabel>order</guilabel> number.  Usually most applications will have 
+	an order number of 50.  If the application or capplet is a part of the 
+	<systemitem>window manager</systemitem> or critical system then it 
+	should be assigned a lower <guilabel>order</guilabel> number.
+-->
+	<guilabel>順番</guilabel>ではGNOME<link linkend="session-properties-screenshot"><systemitem>セッションマネージャ</systemitem></link>上で起動するアプリケーションの順番を設定します。
+	ここで依存関係にあるアプリケーションやキャプレットを起動した後で他のアプリケーションを起動させることが可能になります。
+	もしサーバのような<systemitem>ウィンドウマネージャ</systemitem>より先に起動させる必要があるアプリケーションは、<guilabel>順番</guilabel>の値を変更して下さい。大抵のアプリケーションは値が50になっています。
+	もしアプリケーションやキャプレットが<systemitem>ウィンドウマネージャ</systemitem>の一部をなしていたり重要なシステムであったら<guilabel>順番</guilabel>に小さい値を指定して下さい。
+      </para>
+
+      <important>
+<!--
+	<title>Important:</title>
+-->
+	<title>重要</title>
+	<para>
+<!--
+	  The <guilabel>priority order</guilabel> is for advanced user only.  Unless you are familiar 
+	  with the <guilabel>priority order</guilabel> you should not change it.
+-->
+	  <guilabel>順番</guilabel>は上級ユーザのみを対象にしています。
+	  <guilabel>順番</guilabel>についての知識を持たない方が値を変更することは控えたほうが無難です。
+	</para>
+      </important>
+    </sect2>
+
+    <sect2 id="session-properties-style">
+<!--
+      <title>Style Options</title>
+-->
+      <title>スタイルオプション</title>
+      <para>
+<!--
+	The <guilabel>Style</guilabel> option sets the restart style of 
+	each application running in the GNOME <link linkend="session-properties-screenshot">
+	<systemitem>Session Manager</systemitem></link>.  When an application closes the <guilabel>style
+	</guilabel> option controls what happens to the program.  The style most 
+	applications run with is <guilabel>Normal</guilabel>.  There are currently 
+	four styles of applications and capplets.
+-->
+	<guilabel>スタイル</guilabel>オプションはGNOME<link linkend="session-properties-screenshot">
+	<systemitem>セッションマネージャ</systemitem></link>上で動作するアプリケーションの再起動時のスタイルを設定します。
+	<guilabel>スタイル</guilabel>オプションによって、アプリケーションの終了時における振舞いが変わります。
+	ほとんどのアプリケーションスタイルは<guilabel>標準</guilabel>になっています。
+	現在アプリケーション及びキャプレットのスタイルは4種類あります。   
+	</para>
+      <itemizedlist mark="opencircle">
+	<listitem>
+	  <para id="session-properties-normal">
+<!--
+	    <guilabel>Normal</guilabel> - This style starts the application 
+	    when you log back in, but it allows the application to close 
+	    normally given a <command>kill</command> command.
+	    The vast majority of applications you run will have this style 
+	    and it is safe to assume this style when in doubt.  All you will 
+	    see is a blank space in the <guilabel>style</guilabel> row unlike 
+	    other styles.
+-->
+	    <guilabel>通常</guilabel> - このスタイルでは再ログイン時にアプリケーションが起動しますが、通常と同じく<command>kill</command>コマンドで終了できます。
+	    大抵のアプリケーションはこれで動作しますし、また判断に迷う際にはこのスタイルが安全です。
+	    他のスタイルとは異なり<guilabel>スタイル</guilabel>欄には何も表示されていません。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-respawn">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_refresh.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Respawn</guilabel> - This style starts the application 
+	    or capplet again once it is given the <command>kill</command> 
+	    command.  It is used primarily for applications or servers that 
+	    need to run continuously regardless of user intervention.  Two 
+	    examples of applications running with the <guilabel>respawn</guilabel> 
+	    style is the GNOME <systemitem>Session Manager</systemitem> and 
+	    the GNOME <systemitem>Panel</systemitem>.
+-->
+	    <guilabel>復活</guilabel> - このスタイルのアプリケーション及びキャプレットは<command>kill</command>コマンドを受けても再び起動します。
+	    このオプションは第一にユーザの干渉にかかわらず継続的に動作するアプリケーションやサーバに利用されます。
+	    <guilabel>復活</guilabel>スタイルで動作するアプリケーションの例として<systemitem>セッションマネージャ</systemitem>とGNOME<systemitem>パネル</systemitem>が挙げられます。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-trash">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_trash.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Trash</guilabel> - This style indicates applications 
+	    or capplets that are only temporary.  When you logout, the applications 
+	    with this style are killed, after saving their data, and do not restart 
+	    when you login again.
+-->
+	    <guilabel>ゴミ</guilabel> - このスタイルではアプリケーションやキャプレットが一時的な存在であることを示しています。
+	    ログアウトするとデータを保存後にアプリケーションは終了し、再ログインしても再起動はしません。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-settings">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_preferences.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Settings</guilabel> - This style indicates applications 
+	    or capplets used only for storing and relaying your settings to 
+	    GNOME and GNOME compliant applications.  These applications and 
+	    capplets usually have a lower priority order and handle configurations.
+-->
+	    <guilabel>設定</guilabel> - このスタイルは、そのアプリケーションが単にGNOMEやGNOME対応のソフトウェアの設定を保存、読み込みのためだけに動作していることを示しています。
+	    これらのアプリケーションやキャプレットは通常低い優先度やハンドル設定になっています。
+	  </para>
+	</listitem>
+      </itemizedlist>
+
+      <important>
+<!--
+	<title>Important:</title>
+-->
+	<title>重要</title>
+	<para>
+<!--
+	  The <guilabel>Style</guilabel> option is for advanced users only.  
+	  Unless you are familiar with the <guilabel>Style</guilabel> settings 
+	  you should not change it.
+-->
+	  <guilabel>スタイル</guilabel>オプションは上級ユーザのみを対象にしています。<guilabel>スタイル</guilabel>について知識を持たない方が値を変更することは控えたほうが無難です。
+  	</para>
+      </important>
+     </sect2>
+
+    <sect2 id="startup-programs-state">
+<!--
+      <title>State</title>
+-->
+      <title>状態</title>
+      <para>
+<!--
+	The <guilabel>state</guilabel> of an application tells you what the 
+	application or capplet is doing, at the moment, in the GNOME 
+	<link linkend="session-properties-screenshot"><systemitem>
+	Session Manager</systemitem></link>.  Most of the time you will see 
+	they are either in the <link linkend="session-properties-inactive">
+	Inactive</link> state or in the <link linkend="session-properties-run">
+	Running</link> state.
+-->
+	<guilabel>状態</guilabel>ではGNOME<link linkend="session-properties-screenshot"><systemitem>セッションマネージャ<systemitem></link>上でアプリケーションやキャプレットがその瞬間どうなっているかを表示します。
+	目にするのはほとんど <link linkend="session-properties-inactive">休止</link>状態か<link linkend="session-properties-run">活動</link>状態のいずれかです。
+      </para>
+
+      <itemizedlist mark="opencircle">
+	<listitem>
+	  <para id="session-properties-inactive">
+<!--
+	    <guilabel>Inactive</guilabel> - Applications in the <guilabel>inactive 
+	    state</guilabel> are either waiting to start or have finished running.  
+	    These applications are waiting for you or another user to run them.  
+	    Unlike other states the <guilabel>inactive state</guilabel> has no 
+	    icon associated with it.  All you will see is a blank space in the 
+	    <guilabel>state</guilabel> row.
+-->
+	    <guilabel>休止</guilabel> - <guilabel>休止</guilabel>状態にあるアプリケーションは、動作開始待ちか既に動作を終えたかのどちらかです。
+	    これらのアプリケーションはユーザ待ちの状態にあります。他の状態と違い<guilabel>休止</guilabel>状態にアイコンは表示されません。
+	    <guilabel>状態</guilabel>の欄には空白になっているだけです。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-run">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_exec.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Running</guilabel> - Applications in the <guilabel>running 
+	    state</guilabel> are running normally in your session.  This is the 
+	    default state for applications and the most common.
+-->
+	    <guilabel>動作</guilabel> - <guilabel>動作</guilabel>状態にあるアプリケーションは、セッションの中で通常通りに走っています。これはアプリケーションの通常の状態であり、最もありふれたものです。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-start">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_timer.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Starting</guilabel> - Applications in the <guilabel>starting 
+	    state</guilabel> are being given time to get running.  Most applications 
+	    go to the <guilabel>running state</guilabel> almost instanteously.  You 
+	    usually won't see this state unless it takes a little bit of time for the 
+	    application to start.
+-->
+	    <guilabel>開始</guilabel> - <guilabel>開始</guilabel>状態にあるアプリケーションは動作状態に移行する最中にあります。
+	    ほとんどのアプリケーションは瞬間的に<guilabel>動作状態</guilabel>に移行します。アプリケーションの開始に若干時間がかかっている場合を除いて、通常この状態を目にすることはありません。
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="sessionm-properties-saving">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_save.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Saving</guilabel> - Applications in the <guilabel>saving 
+	    state</guilabel> are saving their current settings and data.  This 
+	    state occurs when the GNOME <systemitem>session manager</systemitem> 
+	    tells each application to save when you logout or when you 
+	    <link linkend="session-properties-save">save the session</link> manually.
+-->
+	    <guilabel>保存</guilabel> - <guilabel>保存</guilabel>状態にあるアプリケーションは設定やデータを保存しています。
+	    この状態はログアウト時や手動で<link linkend="session-properties-save">セッションを保存する</link>時、GNOME<systemitem>セッションマネージャ</systemitem>が各アプリケーションにデータ保存を命ずる際に起こります。
+	    </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-unknown">
+	    <guiicon>
+	      <inlinegraphic fileref="stock_help.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+<!--
+	    <guilabel>Unknown</guilabel> - Applications in the <guilabel>unknown 
+	    state</guilabel> do not have any contact with the GNOME <systemitem>
+	    session manager</systemitem>.  This usually means the application 
+	    has crashed.  If this happens highlight the application in <systemitem>
+	    Session Properties</systemitem> and then click the <link linkend="session-properties-remove">
+	    <guibutton>Remove</guibutton></link> button.
+-->
+	    <guilabel>不明</guilabel> - <guilabel>不明</guilabel>状態のアプリケーションはGNOME<systemitem>セッションマネージャ</systemitem>に対する応答が帰ってこない状態にあります。。
+	    一般的に、<guilabel>不明</guilabel>状態にあるアプリケーションは暴走しています。
+	    この状態に陥ったアプリケーションがあったら、<systemitem>セッションプロパティ</systemitem>内をクリックして強調表示させ、<link linkend="session-properties-remove"><guibutton>削除</guibutton>ボタンを押してください。
+    	  </para>
+	</listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="session-properties-remove">
+<!--
+      <title>Remove Button</title>
+-->
+      <title>削除ボタン</title>
+      <para>
+	<guiicon>
+	  <inlinegraphic fileref="button_remove.png" format="png" srccredit="UMEDA Norihiro">
+	  </inlinegraphic>
+	</guiicon>
+<!--
+	The <guibutton>Remove</guibutton> button removes the application from the GNOME 
+	<link linkend="session-properties-screenshot"><systemitem>session manager</systemitem>
+	</link> and kills the application.  You should 
+	use the <guibutton>Remove</guibutton> button to kill an application after it 
+	crashes or when its <guilabel>state</guilabel> is <link linkend="session-properties-respawn">
+	<guilabel>Respawn</guilabel></link>.
+-->
+	<guibutton>削除</guibutton>ボタンはGNOME<link linkend="session-properties-screenshot"><systemitem>セッションマネージャ</systemitem></link>からアプリケーションを削除、終了させます。
+	アプリケーションが暴走した後や、<guilabel>状態</guilabel>欄が<link linkend="session-properties-respawn"><guilabel>復活</guilabel></link>の場合は、<guibutton>削除</guibutton>ボタンで終了させることをおすすめします。
+      </para>
+    </sect2>
+  </sect1>
+  
+  <!-- ============= Bugs ================================== -->
+  
+  <sect1 id="bugs">
+<!--
+    <title>Known Bugs and Limitations</title>
+-->
+    <title>既知のバグと制限</title>
+    <para>
+<!--
+      This application has no known bugs.
+-->
+      現在このアプリケーションについてのバグは報告されていません。
+    </para>
+  </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+  <sect1 id="authors">
+<!--
+    <title>Authors</title>
+-->
+    <title>著者</title>
+    <para>
+<!--
+      <application>Session Management</application> was written by Tom Tromey
+      (<email>tromey@cygnus.com</email>).  It is currently being maintianed 
+      by Jacob Berkman (<email>jacob@helixcode.com</email>). Please send all 
+      comments, suggestions, and bug
+      reports to the <ulink url="http://bugs.gnome.org/" type="http">GNOME
+      bug tracking database</ulink>. Instructions for submitting bug
+      reports can be found on-line at <ulink
+      url="http://bugs.gnome.org/Reporting.html" type="http">
+      http://bugs.gnome.org/Reporting.html</ulink>. If you are using
+      GNOME 1.1 or later, you can also use <application>Bug Report
+      Tool</application> (<command>bug-buddy</command>), available in the
+      <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
+      Menu</guimenu>, for submitting bug reports.
+-->
+      <application>セッション マネージャ</application>はTom Tromey(<email>tromey@cygnus.com</email>)によって書かれました。
+      現在はJacob Berkman(<email>jacob@helixcode.com</email>)によってメンテナンスされています。
+      全てのコメント、提案、バグ報告は<ulink url="http://bugs.gnome.org/" type="http">GNOME bug tracking database</ulink>にお願いします。
+      提出されたバグ報告の一覧は<ulink url="http://bugs.gnome.org/Reporting.html" type="http">http://bugs.gnome.org/Reporting.html</ulink>でご覧になれます。
+      GNOME 1.1以降を利用している場合は、<guimenu>メインメニュー</guimenu>内の<guisubmenu>ユーティリティー</guisubmenu>にある<application>不具合報告ツール</application>(<command>bug-buddy</command>)もバグ報告に利用できます。
+    </para>
+
+    <para>
+<!--
+      This manual was written by Eric Baudais
+      (<email>baudais@okstate.edu</email>). Please send all comments and
+      suggestions regarding this manual to the <ulink type="http"
+      url="http://developer.gnome.org/projects/gdp/">GNOME Documentation Project</ulink> 
+      by sending an email to <email>docs@gnome.org</email>. You can also
+      add your comments online by using the <ulink type="http"
+      url="http://developer.gnome.org/projects/gdp/doctable/">GNOME Documentation Status
+      Table</ulink>.
+-->
+      このマニュアルはEric Baudais(<email>baudais@okstate.edu</email>)によって書かれました。
+      このマニュアルに対する全てのコメント、提案は<ulink type="http" url="http://developer.gnome.org/projects/gdp/">GNOME Documentation Project</ulink>へ<email>docs@gnome.org</email>にメールでお願いします。
+      また、<ulink type="http" url="http://developer.gnome.org/projects/gdp/doctable/">GNOME Documentation Status Table</ulink>
+    </para>
+
+    
+  <para>
+    このヘルプの日本語訳は梅田典宏(<email>aee0372@mx9.ttcn.ne.jp</email>)によってなされました。
+    この訳に対する全てのコメント、提案は<email>aee0372@mx9.ttcn.ne.jp</email>にメールでお願いします。
+  </para>
+
+
+  </sect1>
+
+
+  <!-- ============= Application License ============================= -->
+
+  <sect1 id="license">
+
+    <title>License</title>
+
+    <para>
+      This program is free software; you can redistribute it and/or
+      modify it under the terms of the <ulink type="help"
+      url="gnome-help:gpl"><citetitle>GNU General Public
+      License</citetitle></ulink> as published by the Free Software
+      Foundation; either version 2 of the License, or (at your option)
+      any later version.
+    </para>
+    <para>
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      <ulink type="help" url="gnome-help:gpl"><citetitle>GNU General
+      Public License</citetitle></ulink> for more details.
+    </para>
+    <para>
+      A copy of the <ulink type="help"
+      url="gnome-help:gpl"><citetitle>GNU General Public
+      License</citetitle></ulink> is included with the GNOME documentation. 
+      You may also obtain a copy of the <ulink type="help"
+      url="gnome-help:gpl"><citetitle>GNU General Public
+      License</citetitle></ulink> from the Free Software Foundation by
+      visiting <ulink type="http" url="http://www.fsf.org/">their Web
+      site</ulink> or by writing to
+      <address>
+	The Free Software Foundation, Inc., 
+	<street>59 Temple Place</street> - Suite 330, 
+	<city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>,
+	<country>USA</country>
+      </address>
+    </para>
+  </sect1>
+</article>
