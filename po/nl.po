@@ -8,18 +8,19 @@
 # Huib Kleinhout <huib@stack.nl>, 2002.
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
 # Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>, 2002.
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2003-07-15 16:54+0100\n"
-"PO-Revision-Date: 2003-06-23 23:01+0200\n"
-"Last-Translator: Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"Project-Id-Version: gnome-session 2.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-27 20:18+0200\n"
+"PO-Revision-Date: 2003-07-28 00:55+0100\n"
+"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
+"Language-Team: Dutch <vertaling@nl.linux.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
@@ -40,8 +41,8 @@ msgstr ""
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Wanneer dit aanstaat zal gnome-sessie om bevestiging vragen alvorens een "
-"sessie te beeindigen."
+"Wanneer dit aanstaat zal de computer om bevestiging vragen alvorens een "
+"sessie te beëindigen."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
@@ -54,7 +55,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr "Afmeld-venster"
+msgstr "Afmeldvenster"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
@@ -97,7 +98,7 @@ msgid "_Style:"
 msgstr "_Stijl: "
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:387
+#: gnome-session/session-properties-capplet.c:391
 msgid "Order"
 msgstr "Volgorde"
 
@@ -171,7 +172,7 @@ msgstr "Mag niet stoppen."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Verwijderen"
+msgstr "Weggooien"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
@@ -200,7 +201,7 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Er ging iets mis bij het starten van de GNOME Instellingen Daemon.\n"
+"Er ging iets mis bij het starten van de GNOME instellingen-voorziening.\n"
 "\n"
 "Sommige dingen zoals thema's, geluiden of bureaubladinstellingen zouden "
 "verkeerd kunnen functioneren."
@@ -225,8 +226,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon "
-"proberen te starten."
+"GNOME zal de volgende keer dat u zich aanmeldt toch de instellingen-"
+"voorziening proberen te starten."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -236,27 +237,27 @@ msgstr "Er is een onbekende activerings-fout opgetreden."
 msgid "The Settings Daemon restarted too many times."
 msgstr "De Instellingen Daemon is te vaak herstart."
 
-#: gnome-session/logout.c:386
+#: gnome-session/logout.c:387
 msgid "Are you sure you want to log out?"
-msgstr "Weet je zeker dat je je wilt afmelden?"
+msgstr "Weet u zeker dat u zich wilt afmelden?"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:417
 msgid "_Save current setup"
-msgstr "_Huidige instellingen opslaan"
+msgstr "Hui_dige instellingen opslaan"
 
-#: gnome-session/logout.c:441
+#: gnome-session/logout.c:442
 msgid "Action"
 msgstr "Actie"
 
-#: gnome-session/logout.c:458
+#: gnome-session/logout.c:459
 msgid "_Log out"
-msgstr "_Afmelden"
+msgstr "Af_melden"
 
-#: gnome-session/logout.c:462
+#: gnome-session/logout.c:463
 msgid "Sh_ut down"
 msgstr "_Uitschakelen"
 
-#: gnome-session/logout.c:466
+#: gnome-session/logout.c:467
 msgid "_Restart the computer"
 msgstr "_De computer herstarten"
 
@@ -295,11 +296,11 @@ msgstr ""
 
 #: gnome-session/main.c:261
 msgid "Log in Anyway"
-msgstr "Log toch in"
+msgstr "Toch aanmelden"
 
 #: gnome-session/main.c:262
 msgid "Try Again"
-msgstr "Probeer opnieuw"
+msgstr "Opnieuw proberen"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
@@ -387,43 +388,43 @@ msgstr ""
 msgid "Sessions"
 msgstr "Sessies"
 
-#: gnome-session/session-properties-capplet.c:248
+#: gnome-session/session-properties-capplet.c:252
 msgid "Show splash screen on _login"
 msgstr "_Introvenster tonen bij aanmelden"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:263
 msgid "_Prompt on logout"
 msgstr "_Bevestigen bij afmelden"
 
-#: gnome-session/session-properties-capplet.c:270
+#: gnome-session/session-properties-capplet.c:274
 msgid "Automatically save chan_ges to session"
 msgstr "_Veranderingen aan sessie automatisch opslaan"
 
-#: gnome-session/session-properties-capplet.c:281
+#: gnome-session/session-properties-capplet.c:285
 msgid "_Sessions:"
 msgstr "_Sessies:"
 
-#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:303
 msgid "Session Name"
 msgstr "Sessienaam"
 
-#: gnome-session/session-properties-capplet.c:350
+#: gnome-session/session-properties-capplet.c:354
 msgid "Session Options"
 msgstr "Sessie-eigenschappen"
 
-#: gnome-session/session-properties-capplet.c:359
+#: gnome-session/session-properties-capplet.c:363
 msgid "Current Session"
 msgstr "Huidige sessie"
 
-#: gnome-session/session-properties-capplet.c:368
+#: gnome-session/session-properties-capplet.c:372
 msgid "Additional startup _programs:"
 msgstr "Extra te starten _programma's:"
 
-#: gnome-session/session-properties-capplet.c:389
+#: gnome-session/session-properties-capplet.c:393
 msgid "Command"
 msgstr "Opdracht"
 
-#: gnome-session/session-properties-capplet.c:421
+#: gnome-session/session-properties-capplet.c:425
 msgid "Startup Programs"
 msgstr "Programma's starten"
 
@@ -449,7 +450,7 @@ msgstr "Initialiseer sessie-instellingen"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr "Configureer je sessies"
+msgstr "Configureer uw sessies"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
@@ -477,7 +478,7 @@ msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
-msgstr "Bureaublad instellingen"
+msgstr "Werkomgeving-instellingen"
 
 #: gnome-session/startup-programs.c:288
 msgid "_Startup Command:"
