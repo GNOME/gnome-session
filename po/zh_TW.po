@@ -12,11 +12,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.1.5\n"
-"POT-Creation-Date: 2003-01-21 18:24+1300\n"
-"PO-Revision-Date: 2003-01-02 03:07+0800\n"
+"Project-Id-Version: gnome-session 2.2.0.1\n"
+"POT-Creation-Date: 2003-01-23 23:53+0800\n"
+"PO-Revision-Date: 2003-01-24 00:09+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
-"Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
@@ -38,14 +38,14 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "如啟用本選項，gnome-session 會在終止作業階段前先提示使用者。"
+msgstr "如選用本選項，gnome-session 會在終止作業階段前先提示使用者。"
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"如啟用本選項，gnome-session 會自動儲存作業階段，否則登出時對話窗會出現有關儲"
+"如選用本選項，gnome-session 會自動儲存作業階段，否則登出時對話窗會出現有關儲"
 "存作業階段的選項。"
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
@@ -72,7 +72,7 @@ msgstr "當啟動作業階段時顯示啟動畫面"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr "啟動畫面圖像"
+msgstr "作為啟動畫面的圖像"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
@@ -80,7 +80,7 @@ msgstr "次序(_O)："
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr "作業階段中應用程式啟動的次序。"
+msgstr "在作業階段中，應用程式啟動的次序。"
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
@@ -137,7 +137,7 @@ msgstr "儲存中"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "正在儲存作業階段細節。"
+msgstr "正在儲存作業階段詳細資料。"
 
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -153,7 +153,7 @@ msgstr "一般"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "不受登入影響但可以終止。"
+msgstr "不受登出影響但可以終止。"
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -280,10 +280,10 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"無法查詢 %s 的網絡位址。\n"
-"這會使 Gnome 無法正常運作。\n"
-"或許將 %s 加入 /etc/hosts\n"
-"可以避免此問題出現。"
+"無法查詢 %s 的網路位址。\n"
+"這會使 GNOME 無法正常運作。\n"
+"將 %s 加入 /etc/hosts\n"
+"可能可以避免此問題出現。"
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
@@ -312,7 +312,7 @@ msgstr "程式可能很慢，已停止或中斷。"
 
 #: gnome-session/manager.c:906
 msgid "You may wait for it to respond or remove it."
-msgstr "可以等待回應或移除該程式。"
+msgstr "可以等待回應或中止該程式。"
 
 #: gnome-session/manager.c:1516
 msgid "Restart abandoned due to failures."
@@ -324,7 +324,7 @@ msgstr "己經正在關閉作業階段。"
 
 #: gnome-session/save-session.c:42
 msgid "Kill session"
-msgstr "強行終止作業階段"
+msgstr "強行中止作業階段"
 
 #: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
@@ -387,6 +387,10 @@ msgstr "登出前先提示(_P)"
 msgid "Automatically save chan_ges to session"
 msgstr "自動儲存作業階段(_G)"
 
+#: gnome-session/session-properties-capplet.c:262
+msgid "_Sessions:"
+msgstr "作業階段(_S)："
+
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "作業階段名稱"
@@ -398,6 +402,10 @@ msgstr "作業階段選項"
 #: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "目前的作業階段"
+
+#: gnome-session/session-properties-capplet.c:344
+msgid "Additional startup _programs:"
+msgstr "新增初始啟動程式(_P)："
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
