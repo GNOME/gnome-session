@@ -119,8 +119,8 @@ calc_text_box (SplashWidget *sw)
 			  pixel_rect.width / 2);
 	sw->text_box.y = (sw->image_bounds.y + sw->image_bounds.height -
 			  pixel_rect.height - SPLASH_LABEL_V_OFFSET);
-	sw->text_box.width = pixel_rect.width;
-	sw->text_box.height = pixel_rect.height;
+	sw->text_box.width = pixel_rect.width + 1;
+	sw->text_box.height = pixel_rect.height + 1;
 }
 
 static gboolean
