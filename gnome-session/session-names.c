@@ -101,20 +101,20 @@ edit_session_name (gchar *title, gchar **editsession,
   if (*editsession)
     old_session_name = g_strdup (*editsession);
 
-  *dialog = gnome_dialog_new (title, GNOME_STOCK_BUTTON_CANCEL,
-				GNOME_STOCK_BUTTON_OK,
-				NULL);
-  gnome_dialog_close_hides (GNOME_DIALOG (*dialog), TRUE);
-  gtk_window_set_policy (GTK_WINDOW (*dialog), FALSE, TRUE, FALSE);
+  *dialog = gtk_dialog_new_with_buttons (title,
+					 GTK_WINDOW (parent_dlg),
+					 GTK_DIALOG_MODAL,
+					 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					 GTK_STOCK_OK, GTK_RESPONSE_OK,
+					 NULL);
   gtk_window_set_default_size (GTK_WINDOW (*dialog), 400, -1);
 
-  gtk_window_set_type_hint(GTK_WINDOW (*dialog),GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_window_set_transient_for (GTK_WINDOW (*dialog), GTK_WINDOW (parent_dlg));
   vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
 
-  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (*dialog)->vbox), vbox,
-			TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (*dialog)->vbox), vbox,
+		      TRUE, TRUE, 0);
   frame = gtk_frame_new (title);
   gtk_container_add (GTK_CONTAINER(vbox),frame);
   entry = gtk_entry_new();
@@ -126,7 +126,7 @@ edit_session_name (gchar *title, gchar **editsession,
 
   gtk_widget_show_all (*dialog); 
 
-  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1) {  
+  while (gtk_dialog_run (GTK_DIALOG (*dialog)) == GTK_RESPONSE_OK) {  
     gboolean name_changed = TRUE;
 
     *editsession = gtk_editable_get_chars (GTK_EDITABLE (entry),0,-1);
@@ -136,22 +136,24 @@ edit_session_name (gchar *title, gchar **editsession,
     if (is_blank (*editsession)) {
       GtkWidget *msgbox;
       gtk_widget_show (*dialog);
-      msgbox = gnome_message_box_new (_("The session name cannot be empty"),
- 			GNOME_MESSAGE_BOX_ERROR,
-			GNOME_STOCK_BUTTON_OK,
-			NULL);
-      gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (*dialog));
-      gnome_dialog_run (GNOME_DIALOG (msgbox));
+      msgbox = gtk_message_dialog_new (GTK_WINDOW (parent_dlg),
+				       GTK_DIALOG_MODAL,
+				       GTK_MESSAGE_ERROR,
+				       GTK_BUTTONS_OK,
+				       _("The session name cannot be empty"));
+      gtk_dialog_run (GTK_DIALOG (msgbox));
+      gtk_widget_destroy (msgbox);
     } 
     else if (name_changed && checkduplication (*editsession, sess_list)) {
       GtkWidget *msgbox;
       gtk_widget_show (*dialog);
-      msgbox = gnome_message_box_new (_("The session name already exists"),
- 			GNOME_MESSAGE_BOX_ERROR,
-			GNOME_STOCK_BUTTON_OK,
-			NULL);
-      gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (*dialog));
-      gnome_dialog_run (GNOME_DIALOG (msgbox));
+      msgbox = gtk_message_dialog_new (GTK_WINDOW (parent_dlg),
+				       GTK_DIALOG_MODAL,
+				       GTK_MESSAGE_ERROR,
+				       GTK_BUTTONS_OK,
+				       _("The session name already exists"));
+      gtk_dialog_run (GTK_DIALOG (msgbox));
+      gtk_widget_destroy (msgbox);
     }
     else {
       gtk_widget_destroy (*dialog);

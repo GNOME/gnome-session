@@ -266,21 +266,20 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 
   gchar *tmp;
 
-  *dialog = gnome_dialog_new (title,
-			     GNOME_STOCK_BUTTON_CANCEL,
-			     GNOME_STOCK_BUTTON_OK,
-			     NULL);
+  *dialog = gtk_dialog_new_with_buttons (title,
+					 GTK_WINDOW (parent_dlg),
+					 GTK_DIALOG_MODAL,
+					 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					 GTK_STOCK_OK, GTK_RESPONSE_OK,
+					 NULL);
 
-  gnome_dialog_close_hides (GNOME_DIALOG (*dialog), TRUE);
-  gtk_window_set_policy (GTK_WINDOW (*dialog), FALSE, TRUE, FALSE);
   gtk_window_set_default_size (GTK_WINDOW (*dialog), 400, -1);
  
-  gtk_window_set_type_hint(GTK_WINDOW (*dialog),GDK_WINDOW_TYPE_HINT_DIALOG);
   gtk_window_set_transient_for (GTK_WINDOW (*dialog), GTK_WINDOW (parent_dlg));
   vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
   
-  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (*dialog)->vbox), vbox,
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (*dialog)->vbox), vbox,
 		      TRUE, TRUE, 0);
 
   hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
@@ -325,7 +324,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   
   gtk_widget_show_all (vbox);
 
-  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1)
+  while (gtk_dialog_run (GTK_DIALOG (*dialog)) == GTK_RESPONSE_OK)
     {
       const gchar *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
 
@@ -335,13 +334,13 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 	  
 	  gtk_widget_show (*dialog);
 	  
-	  msgbox = gnome_message_box_new (_("The startup command cannot be empty"),
-					  GNOME_MESSAGE_BOX_ERROR,
-					  GNOME_STOCK_BUTTON_OK,
-					  NULL);
-	  
-	  gnome_dialog_set_parent (GNOME_DIALOG (msgbox), GTK_WINDOW (*dialog));
-	  gnome_dialog_run (GNOME_DIALOG (msgbox));
+	  msgbox = gtk_message_dialog_new (GTK_WINDOW (parent_dlg),
+					   GTK_DIALOG_MODAL,
+					   GTK_MESSAGE_ERROR,
+					   GTK_BUTTONS_OK,
+					   _("The startup command cannot be empty"));
+	  gtk_dialog_run (GTK_DIALOG (msgbox));
+	  gtk_widget_destroy (msgbox);
 	}
       else
 	{
