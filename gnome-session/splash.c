@@ -66,7 +66,7 @@ static const SplashApp splash_map_table[] = {
 	{ N_("Session Manager Proxy"),        "gnome-smproxy",                  "gnome-session.png" },
 	{ N_("Window Manager"),               "gnome-wm",                       "gnome-ccwindowmanager.png" },
 	{ N_("Desktop"),                      "gmc",                            "gnome-ccdesktop.png" },
-	{ N_("Nautilus"),                     "nautilus",                       "gnome-launch-icon.png" },
+	{ N_("Nautilus"),                     "nautilus",                       "gnome-ccdesktop.png" },
 	{ NULL }
 };
 
