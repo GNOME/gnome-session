@@ -56,143 +56,27 @@ get_hostname (gboolean readable)
 		return readable ? "(Unknown)" : NULL;
 }
 
-/* Timeout function to update the activity progress bar */
-static gint
-timeout (gpointer data)
-{
-	gint *progress_amount = data;
-	float amount;
-	
-	if (!dns_dialog) {
-		gchar *msg = g_strdup_printf (_("Looking up internet address for %s"), get_hostname(TRUE));
-		
-		dns_dialog = gnome_message_box_new (msg,
-						    GNOME_MESSAGE_BOX_INFO,
-						    _("Hide"),
-						    NULL);
-		g_free (msg);
-
-		gnome_dialog_close_hides (GNOME_DIALOG (dns_dialog), TRUE);
-		gtk_window_set_position (GTK_WINDOW (dns_dialog), GTK_WIN_POS_CENTER);
-		gtk_window_set_title (GTK_WINDOW (dns_dialog), "Address Lookup");
-
-		progress = gtk_progress_bar_new ();
-		gtk_progress_set_activity_mode (GTK_PROGRESS (progress), TRUE);
-		gtk_progress_bar_set_activity_blocks (GTK_PROGRESS_BAR (progress), 10);
-		gtk_progress_bar_set_activity_step (GTK_PROGRESS_BAR (progress), 5);
-		
-		gtk_widget_show (progress);
-		gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(dns_dialog)->vbox),
-				   progress,
-				   FALSE, TRUE, 0);
-
-		gtk_widget_show_all (dns_dialog);
-	}
-
-	amount = *progress_amount % 18;
-	if (amount > 9)
-		amount = 18 - amount;
-
-	amount = amount / 10;
-
-	gtk_progress_set_percentage (GTK_PROGRESS (progress), amount);
-	*progress_amount = *progress_amount + 1;
-	
-	return TRUE;
-}
-
-static gboolean
-startup_timeout (gpointer data)
-{
-	timeout_tag = gtk_timeout_add (50, timeout, data);
-	return FALSE;
-}
-
-/* Called when dns-helper reports its result */
-static void
-input_callback (gpointer data, gint fd, GdkInputCondition condition)
-{
-	gint count;
-	struct in_addr ip_addr;
-	gboolean *success = data;
-
-	count = read (fd, &ip_addr, sizeof(ip_addr));
-
-	if (count != sizeof(ip_addr)) {
-		g_print ("here\n");
-		*success = FALSE;
-	} else {
-		*success = (ip_addr.s_addr != 0);
-	}
-
-	wait(NULL);
-
-	gdk_input_remove (input_tag);
-	gtk_timeout_remove (timeout_tag);
-
-	if (dns_dialog) {
-		gtk_widget_destroy (dns_dialog);
-		dns_dialog = NULL;
-		progress = NULL;
-	}
-	
-	gtk_main_quit ();
-}
-
 /* Check if a DNS lookup on `hostname` can be done */
 static gboolean
 check_for_dns (void)
 {
-	gchar *hostname;
+	gchar          *hostname;
+	struct hostent *host;
+	struct in_addr  addr;
 
-	gboolean success;
-	gint progress_amount = 0;
-
-	hostname = get_hostname(FALSE);
+	hostname = get_hostname (FALSE);
 	
 	if (!hostname)
 		return FALSE;
-	else {
-		gint pid;
-		int in_fd[2];
-		int out_fd[2];
-		
-		if (pipe(in_fd))
-			return FALSE;
-		if (pipe(out_fd))
-			return FALSE;
-		
-		if (!(pid = fork())) { /* Child */
-			close (in_fd[1]);
-			close (out_fd[0]);
-			
-			dup2 (in_fd[0], STDIN_FILENO);
-			dup2 (out_fd[1], STDOUT_FILENO);
-			
-			execlp ("dns-helper", "dns-helper", NULL);
 
-			/* Should never be reached */
-			_exit (0);
+	/*
+	 * FIXME:
+	 *  we should probably be a lot more robust here
+	 */
+	if (!gethostbyname (hostname))
+		return FALSE;
 
-		} else if (pid > 0) { /* Parent */
-			write (in_fd[1], hostname, strlen(hostname));
-			close (in_fd[1]);
-			close (in_fd[0]);
-			
-			close (out_fd[1]);
-			
-			/* GDK_INPUT_EXCEPTION is a temporary hack here */
-			input_tag = gdk_input_add (out_fd[0], GDK_INPUT_READ | GDK_INPUT_EXCEPTION,
-						   input_callback, &success);
-			timeout_tag = gtk_timeout_add (1000, startup_timeout, &progress_amount);
-
-			gtk_main ();
-			
-			return success;
-		  
-		} else
-			return FALSE;
-	}
+	return TRUE;
 }
 
 static gboolean

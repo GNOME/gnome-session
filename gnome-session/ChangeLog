@@ -1,3 +1,9 @@
+2002-02-11  Mark McLoughlin  <mark@skynet.ie>
+
+	* gnome-login-check.c: (check_for_dns): drastically simplify
+	and remove dependancy on dns-helper which we don't ship
+	anymore. Probably not as robust though.
+
 2002-02-10  Gediminas Paulauskas <menesis@delfi.lt>
 
 	* Makefile.am: use intltool for .desktop files.
