@@ -1,11 +1,13 @@
 # Italian translation for gnome-desktop
 # Copyright (C) 1997-2002 Free Software Foundation, Inc.
 # Copyright (C) 1997-2002 Christopher R. Gabriel <cgabriel@pluto.linux.it>
+# Copyright (C) 2004 Luca Ferretti <elle.uca@infinito.it>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.11\n"
-"POT-Creation-Date: 2004-02-16 10:51+0000\n"
-"PO-Revision-Date: 2003-06-30 22:15+0200\n"
+"POT-Creation-Date: 2004-02-16 15:24+0100\n"
+"PO-Revision-Date: 2004-02-17 10:09+0100\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -24,34 +26,35 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Per motivi di sicurezza, su piattaforme che utilizzano _IceTcpTransNoListen"
-"() (sistemi XFree86), gnome-session non ascolta per connessioni su porte "
-"TCP. Questa opzione consente connessioni da macchine remote (autorizzate). "
-"Sarà comunque necessario riavviare gnome-session affiché le modifiche "
-"abbiano effetto."
+"() (sistemi XFree86), gnome-session non resta in ascolto di connessioni su "
+"porte TCP. Questa opzione consente connessioni da macchine remote "
+"(autorizzate). Sarà comunque necessario riavviare gnome-session affiché le "
+"modifiche abbiano effetto."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Se abilitato, gnome-session chiederà conferma prima di terminare la sessione."
+"Se abilitato, gnome-session chiede conferma prima di terminare la sessione."
 
 #: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Se abilitato, gnome-session salverà la sessione automaticamente. Altrimenti, "
-"la finestra di dialogo di uscita mostrerà una opzione per salvarla."
+"Se abilitato, gnome-session salva la sessione automaticamente. Altrimenti, "
+"la finestra di dialogo per terminare la sessione mostra una opzione per "
+"salvarla."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Conferma disconnessione"
+msgstr "Conferma fine sessione"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"Immagine da utilizzare come schermata di avvio al momento di ingresso in "
+"Immagine da utilizzare come schermata di avvio al momento di ingresso nello "
 "GNOME Desktop"
 
 #: gnome-session/gnome-session.schemas.in.h:7
@@ -72,11 +75,11 @@ msgstr "Immagine schermata di avvio"
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
-msgstr "_Ordine: "
+msgstr "_Ordine:"
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "L'ordine nel quale verranno avviate le applicazioni nella sessione."
+msgstr "L'ordine di avvio delle applicazioni nella sessione."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
@@ -84,7 +87,7 @@ msgstr "Cosa accade all'applicazione quando questa termina."
 
 #: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Stile: "
+msgstr "_Stile:"
 
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:412
@@ -109,7 +112,7 @@ msgstr "Inattivo"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "In attesa di avvio o già terminato."
+msgstr "In attesa di avvio o già finito."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -125,7 +128,7 @@ msgstr "In esecuzione"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "Un normale elemento della sessione."
+msgstr "Un normale membro della sessione."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
@@ -149,7 +152,7 @@ msgstr "Normale"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Non affetto dall'uscita ma può terminare."
+msgstr "Non affetto dal termine della sessione, ma può terminare."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -165,7 +168,7 @@ msgstr "Cestino"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Ignorato all'uscita e può terminare."
+msgstr "Ignorato al termine della sessione e può terminare."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -190,10 +193,11 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Si è verificato un errore durante l'avvio del Settings Daemon di GNOME.\n"
+"Si è verificato un errore durante l'avvio del demome delle impostazioni di "
+"GNOME.\n"
 "\n"
-"È possibile che alcuni aspetti come temi, suoni o impostazioni dello sfondo "
-"non funzionino correttamente."
+"Alcuni aspetti come temi, suoni o impostazioni dello sfondo potrebbero non "
+"funzionare correttamente."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -204,7 +208,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"L'ultimo messaggio di errore é stato:\n"
+"L'ultimo messaggio di errore è stato:\n"
 "\n"
 
 #: gnome-session/gsm-gsd.c:58
@@ -215,7 +219,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME tenterà di riavviare il Settings Daemon al prossimo login."
+"GNOME tenterà di riavviare il demone delle impostazioni al prossimo login."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -223,11 +227,11 @@ msgstr "Si é verificato un errore di attivazione sconosciuto."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Il Setting Daemon è stato riavviato troppe volte."
+msgstr "Il demone delle impostazioni è stato riavviato troppe volte."
 
 #: gnome-session/logout.c:374
 msgid "Are you sure you want to log out?"
-msgstr "Uscire veramente?"
+msgstr "Terminare veramente questa sessione?"
 
 #: gnome-session/logout.c:391
 msgid "_Save current setup"
@@ -237,21 +241,23 @@ msgstr "_Salva impostazioni correnti"
 msgid "Action"
 msgstr "Azione"
 
+# visto che sono "Azioni" ho preferito usare l'infinito
 #: gnome-session/logout.c:433
 msgid "_Log out"
-msgstr "_Esci"
+msgstr "_Terminare la sessione"
 
+# aggiunto per fare scopa con il successivo
 #: gnome-session/logout.c:437
 msgid "Sh_ut down"
-msgstr "A_rresta"
+msgstr "A_rrestare il computer"
 
 #: gnome-session/logout.c:441
 msgid "_Restart the computer"
-msgstr "_Riavvia il computer"
+msgstr "Ria_vviare il computer"
 
 #: gnome-session/main.c:80
 msgid "Specify a session name to load"
-msgstr "Specifica il nome della sessione da avviare"
+msgstr "Specifica un nome di sessione da caricare"
 
 #: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
@@ -279,8 +285,8 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Impossibile risolvere l'indirizzo internet per %s.\n"
-"Questo non permette a GNOME di operare correttamente.\n"
+"Non è possibile risolvere l'indirizzo internet per %s.\n"
+"Ciò non permette a GNOME di operare correttamente.\n"
 "È eventualmente possibile correggere l'errore aggiungendo\n"
 "%s al file /etc/hosts."
 
@@ -307,7 +313,7 @@ msgstr "Nessuna risposta al comando %s."
 
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
-msgstr "Il programma potrebbe essere lento, interrotto o non funzionante."
+msgstr "Il programma potrebbe essere lento, fermo o non funzionante."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
@@ -319,7 +325,7 @@ msgstr "Riavvio interrotto a causa di errori."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
-msgstr "La chiusura di una sessione è in corso."
+msgstr "L'arresto della sessione è in corso."
 
 #: gnome-session/save-session.c:46
 msgid "Set the current session"
@@ -339,23 +345,24 @@ msgstr "Impossibile collegarsi al gestore di sessione"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
-msgstr "Il nome della sessione non può essere vuoto"
+msgstr "Il nome di sessione non può essere vuoto"
 
 #: gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr "Il nome della sessione è già presente"
+msgstr "Il nome di sessione esiste già"
 
 #: gnome-session/session-names.c:188
 msgid "Add a new session"
-msgstr "Aggiungi nuova session"
+msgstr "Aggiunge una nuova session"
 
 #: gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "Modifica nome sessione"
+msgstr "Modifica il nome di sessione"
 
+# c'è già il pulsante eli_mina
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "_Modifica"
+msgstr "M_odifica"
 
 #: gnome-session/session-properties-capplet.c:190
 msgid ""
@@ -376,7 +383,7 @@ msgstr "Mostrare schermata di avvio al _login"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "_Chiedere conferma all'uscita"
+msgstr "Confermare il _termine della sessione"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -408,11 +415,11 @@ msgstr "Comando"
 
 #: gnome-session/session-properties-capplet.c:446
 msgid "Startup Programs"
-msgstr "Programmi all'avvio"
+msgstr "Programmi d'avvio"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Rimuove il programma selezionato dalla sessione."
+msgstr "Rimuove il client attualmente selezionato dalla sessione."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
@@ -420,7 +427,7 @@ msgstr "Applica modifiche alla sessione corrente"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr "Lista dei programmi nella sessione."
+msgstr "L'elenco dei programmi nella sessione."
 
 #: gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
@@ -476,26 +483,8 @@ msgstr "Il comando di avvio non può essere vuoto"
 
 #: gnome-session/startup-programs.c:379
 msgid "Add Startup Program"
-msgstr "Aggiungi Programma all'avvio"
+msgstr "Aggiungi programma d'avvio"
 
 #: gnome-session/startup-programs.c:400
 msgid "Edit Startup Program"
-msgstr "Modifica programmi di avvio"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Salva la sessione corrente"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Salva lo stato attuale del desktop"
-
-#~ msgid "Audio Settings"
-#~ msgstr "Impostazioni audio"
-
-#~ msgid "Screensaver"
-#~ msgstr "Salvaschermo"
-
-#~ msgid "Background Settings"
-#~ msgstr "Impostazioni sfondo"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Impostazioni mouse"
+msgstr "Modifica programma d'avvio"
