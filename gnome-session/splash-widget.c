@@ -283,7 +283,12 @@ splash_widget_finalize (GObject *object)
 	g_list_foreach (sw->icons, (GFunc) splash_icon_destroy, NULL);
 	g_list_free (sw->icons);
 
+	if (sw->background)
+		g_object_unref (sw->background);
+	sw->background = NULL;
+
 	g_object_unref (sw->layout);
+	sw->layout = NULL;
 
 	GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
 }
