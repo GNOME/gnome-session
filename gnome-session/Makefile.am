@@ -15,7 +15,7 @@ sysdir = $(datadir)/apps/Settings
 
 if SESSION
 noinst_DATA = session.desktop
-bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties
+bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties gnome-libice-check
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
@@ -31,6 +31,8 @@ gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
 session.h
 
 gnome_login_check_SOURCES = gnome-login-check.c
+
+gnome_libice_check_SOURCES = gnome-libice-check.c
 
 bin_SCRIPTS = gnome-wm
 
