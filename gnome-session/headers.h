@@ -140,6 +140,9 @@ typedef struct
   /* If the client has been loaded from, or saved to, disk */
   gboolean session_saved;
 
+  /* Purge timeout ID; see start_client() */
+  guint purge_timeout_id;
+
   guint magic;
 } Client;
 
