@@ -7,15 +7,63 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2002-10-09 05:21+0200\n"
-"PO-Revision-Date: 2002-10-24 09:30+EST\n"
+"POT-Creation-Date: 2003-01-06 06:00+0100\n"
+"PO-Revision-Date: 2003-01-07 10:33+EDT\n"
 "Last-Translator: Ge'ez Frontier Foundation <locales@geez.org>\n"
 "Language-Team: Amharic <locales@geez.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "ክፍለ ጊዜዎችን አስቀምጥ"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
 msgstr "ቅደም _ተከተል፦"
 
@@ -29,15 +77,16 @@ msgstr "ፕሮግራሙ በሚወጣበት ጊዜ ምን ተፈጠረ።"
 
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
-msgstr "_ዘዴ፦"
+msgstr "_ዘይቤ፦"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "ቅደም ተከተል"
 
 #: gnome-session/gsm-client-list.c:155
 msgid "Style"
-msgstr "ዘዴ"
+msgstr "ዘይቤ"
 
 #: gnome-session/gsm-client-list.c:160
 msgid "State"
@@ -89,7 +138,7 @@ msgstr ""
 
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
-msgstr ""
+msgstr "የተለመደ"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
@@ -113,7 +162,7 @@ msgstr ""
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "ይዞታዎች"
+msgstr "ምርጫዎች"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
@@ -158,27 +207,27 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:232
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "ዘግቶ ለመውጣት እርግጠኛ ነዎት?"
 
-#: gnome-session/logout.c:260
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "አሁኑ የተቋቋመውን _አስቀምጡ"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:318
 msgid "Action"
-msgstr "እንቅስቃሴ"
+msgstr "ትግባር"
 
-#: gnome-session/logout.c:288
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "_ዘግተው ይውጡ"
 
-#: gnome-session/logout.c:291
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "_አጥፉ"
 
-#: gnome-session/logout.c:294
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "ኮምፒውተሩን _እንደገና አስጀምሩ"
 
@@ -213,7 +262,7 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr "ዝምብለህ ግባ"
+msgstr "ለማንኛውም ዝምብሎ ይግባ"
 
 #: gnome-session/main.c:220
 msgid "Try Again"
@@ -268,21 +317,21 @@ msgstr "የአሁኑን ክፍለ ጊዜ አስቀምጡ"
 msgid "Save current state of desktop"
 msgstr ""
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:139
 msgid "The session name cannot be empty"
 msgstr ""
 
-#: gnome-session/session-names.c:147
+#: gnome-session/session-names.c:149
 msgid "The session name already exists"
 msgstr ""
 
-#: gnome-session/session-names.c:183
+#: gnome-session/session-names.c:185
 msgid "Add a new session"
-msgstr ""
+msgstr "አዲስ የክፍለ ጊዜው ጨምር"
 
-#: gnome-session/session-names.c:213
+#: gnome-session/session-names.c:215
 msgid "Edit session name"
-msgstr ""
+msgstr "የክፍለ ጊዜው ስም ያስተካክሉ"
 
 #: gnome-session/session-properties-capplet.c:104
 msgid "_Edit"
@@ -325,10 +374,6 @@ msgstr "የአሁኑን ክፍለ ይዞታዎች"
 msgid "Current Session"
 msgstr "የአሁኑን ክፍለ ጊዜው"
 
-#: gnome-session/session-properties-capplet.c:362
-msgid "Priority"
-msgstr "ቅድሚያ"
-
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "ትእዛዝ"
@@ -361,79 +406,68 @@ msgstr "ለክፍለ ጊዜው ይዞታ ምልክት አድርጉ"
 msgid "Configure your sessions"
 msgstr "ክፍለ ጊዜዎትን ያስተካክሉ"
 
-#: gnome-session/splash-widget.c:41
-msgid "Audio Settings"
-msgstr "የድምጽ ይዞታዎች"
-
 #: gnome-session/splash-widget.c:42
-msgid "Screensaver"
-msgstr "የመመልከቻው አዳኝ"
-
-#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish መስኮቱን መቆጣጠሪያ"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Metacity መስኮቱን መቆጣጠሪያ"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "መስኮቱን መቆጣጠሪያ"
 
-#: gnome-session/splash-widget.c:46
-msgid "Background Settings"
-msgstr "የመደቡ ይዞታዎች"
-
-#: gnome-session/splash-widget.c:47
-msgid "Mouse Settings"
-msgstr "የመክፈቻና የመፈለጊያው ይዞታዎች"
-
-#: gnome-session/splash-widget.c:48
-msgid "Keyboard Settings"
-msgstr "የፊደል ሠሌዳው ይዞታዎች"
-
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "ፓነሉ"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr ""
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/splash-widget.c:48
+msgid "Desktop Settings"
+msgstr "የሠሌዳ ምርጫዎች"
+
+#: gnome-session/startup-programs.c:289
 msgid "_Startup Command:"
 msgstr ""
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:295
 msgid "Startup Command"
 msgstr ""
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "_ቅድሚያ፦"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:338
 msgid "The startup command cannot be empty"
 msgstr ""
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
 msgstr ""
 
-#: gnome-session/startup-programs.c:396
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr ""
 
-#~ msgid "No"
-#~ msgstr "አይደለም"
+#~ msgid "Priority"
+#~ msgstr "ቅድሚያ"
 
-#~ msgid "Delete"
-#~ msgstr "መሰረዣ"
+#~ msgid "Audio Settings"
+#~ msgstr "የድምጽ ይዞታዎች"
 
-#~ msgid "GNOME"
-#~ msgstr "ኖም"
+#~ msgid "Screensaver"
+#~ msgstr "የመመልከቻው አዳኝ"
+
+#~ msgid "Background Settings"
+#~ msgstr "የመደቡ ይዞታዎች"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "የመክፈቻና የመፈለጊያው ይዞታዎች"
+
+#~ msgid "_Priority:"
+#~ msgstr "_ቅድሚያ፦"
