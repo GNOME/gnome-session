@@ -1,0 +1,469 @@
+# Nepali translation of gnome-session
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-session package.
+# Pawan Chitrakar <pawan@nplinux.org>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session\n"
+"Report-Msgid-Bugs-To: <pawan@nplinux.org>\n"
+"POT-Creation-Date: 2004-06-29 04:15+0200\n"
+"PO-Revision-Date: 2004-07-12 01:00+0545\n"
+"Last-Translator: KU <info@ku.edu.np>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "Allow TCP connections"
+msgstr "टिसिपि सम्बन्धको लागि अनुमति"
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "यदि सक्षम भए प्रयोगकर्ताले अधिबेसन समाप्त हुनु अगाडि समयमानै जिनोम-अधिबेसन गर्नेछ"
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr "यदि सक्षम भए जिनोम-अधिबेसन आफै अधिबेसनमा बचत हुने छ।" 
+"अन्यथा अधिबेशन बचतको बिकल्पसंगै सम्बाद बाहिर जाने छ "
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid "Logout prompt"
+msgstr "समयमै बाहिर जाउ"
+
+#: gnome-session/gnome-session.schemas.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid "Save sessions"
+msgstr "अधिबेसनहरु बचत गर"
+
+#: gnome-session/gnome-session.schemas.in.h:8
+msgid "Show the splash screen"
+msgstr "भिजेको पर्दा देखाउ"
+
+#: gnome-session/gnome-session.schemas.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "भिजेको पर्दा देखाउ जब अधिबेसन शुरु हुने छ"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Splash Screen Image"
+msgstr "भिजेको पर्दा चित्र"
+
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
+msgid "_Order:"
+msgstr "_आदेश"
+
+#: gnome-session/gsm-client-editor.c:99
+msgid "The order in which applications are started in the session."
+msgstr "यो अधिबेसनमा कुन अनरोधपत्र मा आदेस सुरु हन्छ"
+
+#: gnome-session/gsm-client-editor.c:106
+msgid "What happens to the application when it exits."
+msgstr "यो अनुरोध पत्रहरुमा क भयो जब यो बाहिरियो"
+
+#: gnome-session/gsm-client-editor.c:109
+msgid "_Style:"
+msgstr "_शैलि"
+
+#: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:412
+msgid "Order"
+msgstr "आदेश"
+
+#: gnome-session/gsm-client-list.c:155
+msgid "Style"
+msgstr "शैलि"
+
+#: gnome-session/gsm-client-list.c:160
+msgid "State"
+msgstr "स्थिति"
+
+#: gnome-session/gsm-client-list.c:165
+msgid "Program"
+msgstr "कार्यक्रम"
+
+#: gnome-session/gsm-client-row.c:31
+msgid "Inactive"
+msgstr "निस्क्रिय"
+
+#: gnome-session/gsm-client-row.c:32
+msgid "Waiting to start or already finished."
+msgstr "सुरु हुन पर्खिरहेको अथवा पहिले नै समाप्त भएको"
+
+#: gnome-session/gsm-client-row.c:34
+msgid "Starting"
+msgstr "सुरु भइरहेको"
+
+#: gnome-session/gsm-client-row.c:35
+msgid "Started but has not yet reported state."
+msgstr "शुरु गरिएको तर अहिले सम्म प्रतिबेदन बर्णन गरिएको छैन"
+
+#: gnome-session/gsm-client-row.c:37
+msgid "Running"
+msgstr "दौडि रहेको"
+
+#: gnome-session/gsm-client-row.c:38
+msgid "A normal member of the session."
+msgstr "अधिबेसनको समान्य सदस्य"
+
+#: gnome-session/gsm-client-row.c:40
+msgid "Saving"
+msgstr "बचत भईरहेको"
+
+#: gnome-session/gsm-client-row.c:41
+msgid "Saving session details."
+msgstr "अधिबेसन सबिस्तार बचत भईरहेको छ"
+
+#: gnome-session/gsm-client-row.c:43
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#: gnome-session/gsm-client-row.c:44
+msgid "State not reported within timeout."
+msgstr "समय सकिनु अगादि प्रतिबेदन बर्णन गरिएको छैन"
+
+#: gnome-session/gsm-client-row.c:50
+msgid "Normal"
+msgstr "साधारण"
+
+#: gnome-session/gsm-client-row.c:51
+msgid "Unaffected by logouts but can die."
+msgstr "बाहिरजानु बाट प्रभाबित भएन तर मर्न सक्छ"
+
+#: gnome-session/gsm-client-row.c:53
+msgid "Restart"
+msgstr "पुन:सुरु गर्नु"
+
+#: gnome-session/gsm-client-row.c:54
+msgid "Never allowed to die."
+msgstr "मर्नलाई कहिले पानि अनुमति दिईएन"
+
+#: gnome-session/gsm-client-row.c:56
+msgid "Trash"
+msgstr "व्यर्थकुरा"
+
+#: gnome-session/gsm-client-row.c:57
+msgid "Discarded on logout and can die."
+msgstr "बाहिर जान फ्याकिदियो र मर्नसक्छ"
+
+#: gnome-session/gsm-client-row.c:59
+msgid "Settings"
+msgstr "मिलाउने काम"
+
+#: gnome-session/gsm-client-row.c:60
+msgid "Always started on every login."
+msgstr "प्रत्येक भित्र छिर्नलाई संधै सुरु गरियो"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid "There was an error starting the GNOME Settings Daemon. \n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr " जिनोम मिलाइएको छैन \n "
+"\n"
+" त्यंहा एउटा त्रुटि शुरु हुंदै थियो "
+"सारभुत छनोट,ध्वनिहरु,वा पृष्टभुमि जस्ता केहि चिजहरु मिलाउने ठिकसंग काम गर्न सकिरहेको छैन"
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"अन्तिमको गलत खबर थियो:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr " त्यँहा एउटा अज्ञात शुरुवाति त्रुटि थियो "
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "मिलाइएको डेइमोनले धेरैपटक पुन: शुरु गरिसक्यो"
+
+#: gnome-session/logout.c:374
+msgid "Are you sure you want to log out?"
+msgstr "के तपाइ साँच्चैनै निकाश चाहनुहुन्छ?"
+
+#: gnome-session/logout.c:391
+msgid "_Save current setup"
+msgstr "_तत्काल गरिएको उपकाण जडान बचत गर"
+
+#: gnome-session/logout.c:416
+msgid "Action"
+msgstr "कार्य"
+
+#: gnome-session/logout.c:433
+msgid "_Log out"
+msgstr "बाहिर जाउ"
+
+#: gnome-session/logout.c:437
+msgid "Sh_ut down"
+msgstr "बन्द गर"
+
+#: gnome-session/logout.c:441
+msgid "_Restart the computer"
+msgstr "कम्प्युटर पुन:सुरु गर"
+
+#: gnome-session/main.c:80
+msgid "Specify a session name to load"
+msgstr " अधिवेसनको नाम लोड गर्नलाइ परिचित गर"
+
+#: gnome-session/main.c:81
+msgid "Only read saved sessions from the default.session file"
+msgstr "पुर्वनिर्धारित अधिवेशन लेखपत्रबाट बचत गरिएको अधिवेशन मात्र पढ"
+
+#: gnome-session/main.c:82
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr ""
+
+#: gnome-session/main.c:83
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr ""
+
+#: gnome-session/main.c:84
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "रोगिहरु मर्नलाइ पर्खदा मिलिसेकेण्ड समय बित्यो (0=संधै)"
+
+#: gnome-session/main.c:264
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s. लागि ईन्टरनेट ठगाना हेर्न सकिएन। \n"
+" ठिकसंग संचालन बाट यसले जिनोम रोकथाम गर्नेछ। \n "
+"\n"
+"%s  /etc/hosts फाइलमा थपी मिलाऊ"
+
+#: gnome-session/main.c:271
+msgid "Log in Anyway"
+msgstr "जसरि भए पानि प्रवेश गर "
+
+#: gnome-session/main.c:272
+msgid "Try Again"
+msgstr "फरि कोशिष गर"
+
+#: gnome-session/manager.c:174
+msgid "Your session has been saved"
+msgstr "तिम्रो बैठक बचत गरिएको छ"
+
+#: gnome-session/manager.c:455
+msgid "Wait abandoned due to conflict."
+msgstr "उचित बिरोधहरु पर्खन गर्ने छाडियो"
+
+#: gnome-session/manager.c:894
+#, c-format
+msgid "No response to the %s command."
+msgstr "%s आदेशको जवाफ छैन"
+
+#: gnome-session/manager.c:895
+msgid "The program may be slow, stopped or broken."
+msgstr "कार्यक्रम ढिलो हुन सक्छ, रोकियो वा भाँचियो"
+
+#: gnome-session/manager.c:896
+msgid "You may wait for it to respond or remove it."
+msgstr "यसको जावाफ दिन अथवा यसलाई हटाउन को लागि तिमिले केहि समय पर्खनै पर्छ"
+
+#: gnome-session/manager.c:1506
+msgid "Restart abandoned due to failures."
+msgstr "उचित असफलताहरु पुन सुरु गर्ने छाडियो"
+
+#: gnome-session/manager.c:1682
+msgid "A session shutdown is in progress."
+msgstr "बैठक प्रगतिमा बन्द छ"
+
+#: gnome-session/save-session.c:46
+msgid "Set the current session"
+msgstr "तत्काल बैठक स्थापित गर"
+
+#: gnome-session/save-session.c:47
+msgid "Kill session"
+msgstr "बैठक नास गर"
+
+#: gnome-session/save-session.c:48
+msgid "Use dialog boxes"
+msgstr "सम्बाद बाकसहरु प्रयोग गर"
+
+#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+msgid "Could not connect to the session manager"
+msgstr "बैठक प्रबन्धक संग संबन्ध गर्न सकिएन"
+
+#: gnome-session/session-names.c:143
+msgid "The session name cannot be empty"
+msgstr "बैठकको नाम खालि हुन सक्दैन"
+
+#: gnome-session/session-names.c:154
+msgid "The session name already exists"
+msgstr "बैठकको नाम अघिनै निस्किसकेको छ"
+
+#: gnome-session/session-names.c:188
+msgid "Add a new session"
+msgstr "एउटा नया बैठक जोड"
+
+#: gnome-session/session-names.c:218
+msgid "Edit session name"
+msgstr "बैठक नाम सम्पादन गर्नु "
+
+#: gnome-session/session-properties-capplet.c:122
+msgid "_Edit"
+msgstr "_सम्पादन गर्नु"
+
+#: gnome-session/session-properties-capplet.c:190
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr " केहि परिवर्तनहरु बचत भएनन्। \n"
+"तैपनि बाहिर निस्कनु हुन्छ?"
+
+#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "बैठकहरु"
+
+#: gnome-session/session-properties-capplet.c:273
+msgid "Show splash screen on _login"
+msgstr "भिजेको पर्दामा प्रबेशगरेर देखाउ"
+
+#: gnome-session/session-properties-capplet.c:284
+msgid "_Prompt on logout"
+msgstr "समयमै बाहिर जाउ"
+
+#: gnome-session/session-properties-capplet.c:295
+msgid "Automatically save chan_ges to session"
+msgstr "बैठकलाई आफै परिवर्तनहरु बचत गर"
+
+#: gnome-session/session-properties-capplet.c:306
+msgid "_Sessions:"
+msgstr "_बैठकहरु:"
+
+#: gnome-session/session-properties-capplet.c:324
+msgid "Session Name"
+msgstr "बैठकको नाम"
+
+#: gnome-session/session-properties-capplet.c:375
+msgid "Session Options"
+msgstr "बैठकका विकल्पहरु"
+
+#: gnome-session/session-properties-capplet.c:384
+msgid "Current Session"
+msgstr "तत्कालको बैठक"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Additional startup _programs:"
+msgstr "अतिरिक्त कार्यक्रमहरुको काम थाल"
+
+#: gnome-session/session-properties-capplet.c:414
+msgid "Command"
+msgstr "आदेश"
+
+#: gnome-session/session-properties-capplet.c:446
+msgid "Startup Programs"
+msgstr "कार्यक्रमहरुको काम थाल"
+
+#: gnome-session/session-properties.c:49
+msgid "Remove the currently selected client from the session."
+msgstr "बैठक बाट तत्काल छानिएका ग्राहक हटाउ"
+
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "तत्काल बैठक देखि परिवर्तन लागु गर"
+
+#: gnome-session/session-properties.c:61
+msgid "The list of programs in the session."
+msgstr "बैठकमा कार्यक्रमहरुको सुचि "
+
+#: gnome-session/session-properties.c:88
+msgid "Currently running _programs:"
+msgstr "तत्कालै चलिरहेको _ कार्यक्रम"
+
+#: gnome-session/session-properties.c:104
+msgid "Initialize session settings"
+msgstr "बैठक स्थापितको शुरुआत"
+
+#: gnome-session/session-properties.desktop.in.h:1
+msgid "Configure your sessions"
+msgstr "तपाइको बैठकहरु को ढाँचा"
+
+#: gnome-session/splash-widget.c:43
+msgid "Sawfish Window Manager"
+msgstr "सफिस द्वार प्रबन्धक"
+
+#: gnome-session/splash-widget.c:44
+msgid "Metacity Window Manager"
+msgstr "मेटासिटि द्वार प्रबन्धक "
+
+#: gnome-session/splash-widget.c:45
+msgid "Window Manager"
+msgstr "द्वार प्रबन्धक"
+
+#: gnome-session/splash-widget.c:46
+msgid "The Panel"
+msgstr "समुह / गठबन्धन"
+
+#: gnome-session/splash-widget.c:47
+msgid "Session Manager Proxy"
+msgstr "अधिबेसन पर्तिनिधित्व प्रबन्धक"
+
+#: gnome-session/splash-widget.c:48
+msgid "Nautilus"
+msgstr "नटलस"
+
+#: gnome-session/splash-widget.c:49
+msgid "Desktop Settings"
+msgstr "शिर्षप्रिष्ठ स्थापित"
+
+#: gnome-session/startup-programs.c:288
+msgid "_Startup Command:"
+msgstr "_काम थालिएको निर्देशन: "
+
+#: gnome-session/startup-programs.c:294
+msgid "Startup Command"
+msgstr "काम थालिएको निर्देशन "
+
+#: gnome-session/startup-programs.c:343
+msgid "The startup command cannot be empty"
+msgstr "काम थालिएको निर्देशन खालि हुन सकेन"
+
+#: gnome-session/startup-programs.c:380
+msgid "Add Startup Program"
+msgstr "काम थालिएको कार्यक्रम जोड्नु"
+
+#: gnome-session/startup-programs.c:401
+msgid "Edit Startup Program"
+msgstr "काम थालिएको कार्यक्रम सम्पादन गर्नु"
