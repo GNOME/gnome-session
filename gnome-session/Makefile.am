@@ -35,6 +35,7 @@ STANDARD_PROPERTIES_CFLAGS =                                    \
 
 gnome_session_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 gnome_session_save_LDADD = $(GNOME_SESSION_LIBS)
+gnome_session_remove_LDADD = $(GNOME_SESSION_LIBS)
 gnome_session_properties_LDADD = $(GNOME_SESSION_LIBS)
 splash_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
 logout_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
@@ -49,6 +50,7 @@ noinst_PROGRAMS = \
 bin_PROGRAMS = \
 	gnome-session		\
 	gnome-session-save	\
+	gnome-session-remove    \
 	gnome-session-properties
 endif
 
@@ -114,6 +116,13 @@ gnome_session_save_SOURCES =	\
 	gsm-protocol.c		\
 	gsm-protocol.h
 
+gnome_session_remove_SOURCES = \
+	gsm-remove-client.c \
+	gsm-typebuiltins.c \
+	gsm-typebuiltins.h \
+	gsm-protocol.c \
+	gsm-protocol.h
+
 gnome_session_properties_SOURCES = \
 	session-properties-capplet.c	\
 	session-properties-capplet.h	\
@@ -134,8 +143,6 @@ gnome_session_properties_SOURCES = \
 	session.h			\
 	gsm-typebuiltins.c		\
 	gsm-typebuiltins.h
-
-# 	session.h			
 
 bin_SCRIPTS = gnome-wm
 

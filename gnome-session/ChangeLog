@@ -1,3 +1,17 @@
+2003-06-05  Mark McLoughlin  <mark@skynet.ie>
+
+	Add a small command line utility to remove clients from
+	the session e.g. gnome-session-remove gnome-panel
+	Yes, its on crack. But its useful crack.
+
+	* Makefile.am: build gnome-session-remove.
+	
+	* gsm-protocol.[ch]:
+	(gsm_client_class_init), (dispatch_event): expose the SmProgram
+	property.
+	
+	* gsm-remove-client.c: add.
+
 2003-06-02  Michael Meeks  <michael@ximian.com>
 
 	* gsm-gsd.c (broken_cb): use ORBitConnection not Linc foo.

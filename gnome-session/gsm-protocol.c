@@ -105,6 +105,7 @@ enum {
   STATE,
   STYLE,
   ORDER,
+  PROGRAM,
   NSIGNALS
 };
 
@@ -401,6 +402,16 @@ gsm_client_class_init (GsmClientClass *klass)
 			g_cclosure_marshal_VOID__INT,
 			G_TYPE_NONE, 1, G_TYPE_INT);
  
+	gsm_client_signals [PROGRAM] =
+		g_signal_new (
+			"program",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, program),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__STRING,
+			G_TYPE_NONE, 1, G_TYPE_STRING);
+ 
 	gobject_class->finalize = gsm_client_finalize;
 	
 	klass->remove   = NULL;
@@ -409,6 +420,7 @@ gsm_client_class_init (GsmClientClass *klass)
 	klass->state    = NULL;
 	klass->style    = NULL;
 	klass->order    = NULL;
+	klass->program  = NULL;
 }
 
 static void
@@ -857,6 +869,14 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 			      restart_command = gsm_prop_to_sh (props[i]);
 			      tmp_command = restart_command;
 			    }
+			}
+		      else if (!strcmp (name, SmProgram))
+			{
+			  char *program;
+
+			  program = GSM_PROP_STRING (props [i]);
+			  g_signal_emit (client, gsm_client_signals [PROGRAM], 0, program); 
+			  client->program = g_strdup (program);
 			}
 		      prop_free (props[i]);
 		    }

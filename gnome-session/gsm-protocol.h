@@ -165,6 +165,7 @@ typedef struct {
   GsmStyle    style;                        /* restart style */
   GsmState    state;                        /* state of client */
   gchar*      command;                      /* command (SmCloneCommand) */ 
+  gchar*      program;                      /* program (SmProgram) */
 } GsmClient;
 
 typedef struct {
@@ -176,6 +177,7 @@ typedef struct {
   void (* style)     (GsmClient *client, GsmStyle new_style);
   void (* state)     (GsmClient *client, GsmState new_state);
   void (* command)   (GsmClient *client, gchar* new_command);
+  void (* program)   (GsmClient *client, gchar* new_program);
   /* Signal emitted when gnome-session encounters an client error:
    * Confirm is TRUE when the client must be removed explicitly. */
   void (* reasons)   (GsmClient *client, gboolean confirm, GSList* reasons);
