@@ -329,12 +329,12 @@ run_command (Client* client, const gchar* command)
       if (restart_info)
 	g_free (restart_info);
 
-      if (errno)
+      if (pid < 0)
 	{
 	  if (strcmp (command, SmRestartCommand) || client->connection)
 	    {
 	      gchar *message;
-	      message = g_strconcat (argv[0], " : ", g_strerror(errno), NULL);
+	      message = g_strconcat (argv[0], " : Failed to execute : ", g_strerror(errno), NULL);
 	      client_reasons (client, FALSE, 1, &message); 
 	      g_free (message);
 	    }

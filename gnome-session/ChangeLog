@@ -1,3 +1,8 @@
+2002-03-28  Mark McLoughlin  <mark@skynet.ie>
+
+	* manager.c: (run_command): don't assume errno isn't set
+	on success. (52781)
+
 2002-03-22  Mark McLoughlin  <mark@skynet.ie>
 
 	* logout.c: (display_gui): don't destroy the dialog before
