@@ -17,7 +17,7 @@ bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
-	command.c session.h remote.c logout.c
+	command.c session.h remote.c logout.c splash.h splash.c
 
 gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
 
@@ -26,7 +26,7 @@ save_session_SOURCES = save-session.c gsm-protocol.c
 session_properties_SOURCES = session-properties.c \
 gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
 gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
-session.h 
+session.h
 
 gnome_login_check_SOURCES = gnome-login-check.c
 

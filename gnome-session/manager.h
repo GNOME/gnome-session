@@ -58,6 +58,13 @@
 /* Name of key used to store number of clients in a session. */
 #define CLIENT_COUNT_KEY "num_clients"
 
+/* Name of key used to store whether show the splash screen */
+#define SPLASH_SCREEN_KEY "SplashScreen"
+
+#ifndef SPLASH_SCREEN_DEFAULT
+#define SPLASH_SCREEN_DEFAULT "true"
+#endif
+
 /* Name of key used to store trash mode. */
 #define TRASH_MODE_KEY "TrashMode"
 

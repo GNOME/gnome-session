@@ -31,6 +31,7 @@ extern int errno;
 
 #include "manager.h"
 #include "session.h"
+#include "splash.h"
 
 /* The save_state gives a description of what we are doing */
 static enum {
@@ -295,6 +296,8 @@ run_command (Client* client, const gchar* command)
 	 ENVV in find_vector_property but rejected it for other
 	 reasons.  */
       free_vector (envc, envv);
+
+      update_splash (argv[0], (gfloat)client->priority);
 
       restart_info = NULL;
       find_string_property (client, GsmRestartService, &restart_info);
@@ -1065,6 +1068,7 @@ update_save_state ()
 	    return;
 	}
       save_state = MANAGER_IDLE;
+      stop_splash ();
      }    
 
   if (save_state == SAVE_PHASE_1)

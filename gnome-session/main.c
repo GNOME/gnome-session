@@ -28,6 +28,7 @@
 #include "libgnomeui/libgnomeui.h"
 #include "manager.h"
 #include "session.h"
+#include "splash.h"
 
 /* Parsing function.  */
 
@@ -83,9 +84,11 @@ ignore (int sig)
 int
 main (int argc, char *argv[])
 {
+  gboolean splashing;
   char *ep;
   poptContext ctx;
   char **leftovers;
+  Session *the_session;
   
   /* We do this as a separate executable, and do it first so that we
    * make sure we have a absolutely clean setup if the user blows
@@ -116,6 +119,8 @@ main (int argc, char *argv[])
 
   /* Read in config options */
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+  splashing = gnome_config_get_bool
+    (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
   trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
   gnome_config_pop_prefix ();
 
@@ -129,8 +134,12 @@ main (int argc, char *argv[])
     session = get_last_session ();
 
   set_session_name (session);
+  the_session = read_session (session);
 
-  start_session (read_session (session));
+  if (splashing)
+    start_splash (49.0);
+
+  start_session (the_session);
 
   gtk_main ();
 
