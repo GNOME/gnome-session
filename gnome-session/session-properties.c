@@ -99,7 +99,7 @@ create_gui ()
 
   /* table */
   table = gtk_table_new (3, 2, FALSE);
-  gtk_container_border_width (GTK_CONTAINER (table), 5);
+  gtk_container_set_border_width (GTK_CONTAINER (table), 5);
   gtk_notebook_append_page (
       GTK_NOTEBOOK (startup_info.propertybox->notebook),
       GTK_WIDGET (table),
