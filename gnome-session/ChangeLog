@@ -1,3 +1,12 @@
+Thu Nov 02 01:58:03 2000  George Lebl <jirka@5z.com>
+
+	* manager.c (update_save_state):  When concatenating, copy the
+	  list.  Also free the old list since we used a copy to concat.
+	  this is because the send_message is mucking around inside the
+	  list which really confuses things unless it works on it's own
+	  private copy.  This pases with glib compiled with glists really
+	  being freed.
+
 2000-10-31  Jacob "Ulysses" Berkman  <jacob@helixcode.com>
 
 	* gnome-login-check.c (main): patch from KUSANO Takayuki
