@@ -72,22 +72,30 @@ static PixmapAndMask style_pixmap[GSM_NSTYLES];
 
 static void create_stock_menu_pixmaps (GsmClientList *client_list);
 
-static GsmClientClass *parent_class = NULL;
+static GsmClientClass *gsm_client_row_parent_class = NULL;
 
-static void gsm_client_row_destroy  (GtkObject *o);
 static void client_remove   (GsmClient* client);
 static void client_command  (GsmClient* client, gchar* command);
 static void client_state    (GsmClient* client, GsmState state);
 static void client_style    (GsmClient* client, GsmStyle style);
 static void client_order    (GsmClient* client, guint order);
 
+static void 
+gsm_client_row_finalize (GObject *object)
+{
+  GsmClientRow *client_row = (GsmClientRow *) object;
+
+  g_return_if_fail (client_row != NULL);
+  g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
+
+  G_OBJECT_CLASS (gsm_client_row_parent_class)->finalize (object);
+}
+
 static void
 gsm_client_row_class_init (GsmClientRowClass *klass)
 {
-  GtkObjectClass *object_class = (GtkObjectClass*) klass;
-  GsmClientClass *client_class = (GsmClientClass*) klass;
-
-  parent_class = gtk_type_class (gsm_client_get_type ());
+  GsmClientClass *client_class = (GsmClientClass *) klass;
+  GObjectClass   *gobject_class = (GObjectClass *) klass;
 
   client_class->remove   = client_remove;
   client_class->state    = client_state;
@@ -95,56 +103,54 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   client_class->style    = client_style;
   client_class->order    = client_order;
 
-  object_class->destroy = gsm_client_row_destroy;
+  gobject_class->finalize = gsm_client_row_finalize;
 }
 
-static GtkTypeInfo gsm_client_row_info = 
+static void
+gsm_client_row_instance_init (GsmClientRow *client_row)
 {
-  "GsmClientRow",
-  sizeof (GsmClientRow),
-  sizeof (GsmClientRowClass),
-  (GtkClassInitFunc) gsm_client_row_class_init,
-  (GtkObjectInitFunc) NULL,
-  NULL,
-  NULL,
-  (GtkClassInitFunc) NULL
-};
+  client_row->row    = -1;
+  client_row->change = GSM_CLIENT_ROW_NONE;
+}
 
-guint
+GType
 gsm_client_row_get_type (void)
 {
-  static guint type = 0;
+	static GType retval = 0;
 
-  if (!type)
-    type = gtk_type_unique (gsm_client_get_type (), &gsm_client_row_info);
-  return type;
+	if (!retval) {
+		static const GTypeInfo info = {
+			sizeof (GsmClientRowClass),
+			(GBaseInitFunc)     NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc)    gsm_client_row_class_init,
+			NULL,               /* class_finalize */
+			NULL,               /* class_data */
+			sizeof (GsmClientRow),
+			0,                  /* n_preallocs */
+			(GInstanceInitFunc) gsm_client_row_instance_init
+		};
+
+		retval = g_type_register_static (GSM_TYPE_CLIENT, "GsmClientRow", &info, 0);
+		gsm_client_row_parent_class = g_type_class_ref (GSM_TYPE_CLIENT);
+	}
+
+	return retval;
 }
 
-GtkObject* 
-gsm_client_row_new (GsmClientList* client_list)
+GsmClientRow * 
+gsm_client_row_new (GsmClientList *client_list)
 {
-  GsmClientRow* client_row;
+  GsmClientRow *client_row;
 
-  client_row = gtk_type_new(gsm_client_row_get_type());
+  client_row = g_object_new (GSM_TYPE_CLIENT_ROW, NULL);
+
   client_row->client_list = client_list;
-  client_row->row = -1;
-  client_row->change = GSM_CLIENT_ROW_NONE;
 
   if (!state_pixmap[0].pixmap)
 	  create_stock_menu_pixmaps (client_list);
 
-  return GTK_OBJECT (client_row);
-}
-
-static void 
-gsm_client_row_destroy (GtkObject *o)
-{
-  GsmClientRow* client_row = (GsmClientRow*)o;
-
-  g_return_if_fail(client_row != NULL);
-  g_return_if_fail(GSM_IS_CLIENT_ROW(client_row));
-
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+  return client_row;
 }
 
 void

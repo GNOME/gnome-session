@@ -291,13 +291,15 @@ create_left (void)
 }
 
 static void
-last_session (GtkWidget *w, gchar* name)
+last_session (GObject *obj,
+	      char    *name)
 {
   selected_session = name;
 }
 
 static void
-saved_sessions (GtkWidget *w, GSList* session_names)
+saved_sessions (GObject *obj,
+		GSList  *session_names)
 {
   GSList *list;
 
@@ -343,12 +345,12 @@ create_dialog (void)
   gtk_signal_connect (GTK_OBJECT (app), "delete_event",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
-  gtk_signal_connect (GTK_OBJECT (protocol), "last_session", 
-		      GTK_SIGNAL_FUNC (last_session), NULL);
+  g_signal_connect (protocol, "last_session", 
+		    G_CALLBACK (last_session), NULL);
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
 
-  gtk_signal_connect (GTK_OBJECT (protocol), "saved_sessions", 
-		      GTK_SIGNAL_FUNC (saved_sessions), NULL);
+  g_signal_connect (protocol, "saved_sessions", 
+		    G_CALLBACK (saved_sessions), NULL);
   gsm_protocol_get_saved_sessions (GSM_PROTOCOL (protocol));
 
   return app;

@@ -25,12 +25,12 @@
 #include "gsm-protocol.h"
 #include "gsm-client-list.h"
 
-#define GSM_IS_CLIENT_ROW(obj)      GTK_CHECK_TYPE (obj, gsm_client_row_get_type ())
-#define GSM_CLIENT_ROW(obj)         GTK_CHECK_CAST (obj, gsm_client_row_get_type (), GsmClientRow)
-#define GSM_CLIENT_ROW_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_row_get_type (), GsmClientRowClass)
-
-typedef struct _GsmClientRow GsmClientRow;
-typedef struct _GsmClientRowClass GsmClientRowClass;
+#define GSM_TYPE_CLIENT_ROW         (gsm_client_row_get_type ())
+#define GSM_CLIENT_ROW(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_CLIENT_ROW, GsmClientRow))
+#define GSM_CLIENT_ROW_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_CLIENT_ROW, GsmClientRowClass))
+#define GSM_IS_CLIENT_ROW(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_CLIENT_ROW))
+#define GSM_IS_CLIENT_ROW_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_CLIENT_ROW))
+#define GSM_CLIENT_ROW_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_CLIENT_ROW, GsmClientRowClass))
 
 typedef enum {
   GSM_CLIENT_ROW_ADD,
@@ -39,8 +39,8 @@ typedef enum {
   GSM_CLIENT_ROW_NONE
 } GsmClientRowChange;
 
-struct _GsmClientRow {
-  GsmClient client;
+typedef struct {
+  GsmClient          client;
 
   GsmClientList*     client_list;  /* where we are displayed (when visible) */
   gint               row;          /* row in the client_list */
@@ -49,16 +49,16 @@ struct _GsmClientRow {
   GsmClientRowChange change;
   gint               revert_order;
   gint               revert_style;
-};
+} GsmClientRow;
 
-struct _GsmClientRowClass {
+typedef struct {
   GsmClientClass parent_class;
-};
+} GsmClientRowClass;
 
-guint gsm_client_row_get_type  (void);
+GType gsm_client_row_get_type  (void);
 
 /* creates a client row to appear in the GsmClientList */
-GtkObject* gsm_client_row_new (GsmClientList* client_list);
+GsmClientRow *gsm_client_row_new (GsmClientList* client_list);
 
 /* removes the row from its GsmClientList */
 void gsm_client_row_remove (GsmClientRow* client_row);

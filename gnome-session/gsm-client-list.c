@@ -178,9 +178,8 @@ gsm_client_list_live_session (GsmClientList* client_list)
   client_list->session = 
     gsm_session_live ((GsmClientFactory)gsm_client_row_new, client_list);
 
-  gtk_signal_connect_object (GTK_OBJECT (client_list->session), "initialized",
-			     GTK_SIGNAL_FUNC (initialized_cb), 
-			     GTK_OBJECT (client_list));
+  g_signal_connect_swapped (client_list->session, "initialized",
+			    G_CALLBACK (initialized_cb), client_list);
 }
 
 void 
@@ -196,9 +195,8 @@ gsm_client_list_saved_session (GsmClientList* client_list, gchar* name)
   client_list->session = 
     gsm_session_new (name, (GsmClientFactory)gsm_client_row_new, client_list);
 
-  gtk_signal_connect_object (GTK_OBJECT (client_list->session), "initialized",
-			     GTK_SIGNAL_FUNC (initialized_cb), 
-			     GTK_OBJECT (client_list));
+  g_signal_connect_swapped (client_list->session, "initialized",
+			    G_CALLBACK (initialized_cb), client_list);
 }
 
 void 
@@ -222,7 +220,9 @@ static void
 register_change (GsmClientList* client_list, GsmClientRow* client_row,
 		 GsmClientRowChange change)
 {
-  GsmClient* client = (GsmClient*)client_row;
+  GsmClient *client;
+
+  client = GSM_CLIENT (client_row);
     
   gtk_signal_emit ((GtkObject*)client_list, gsm_client_list_signals[DIRTY]); 
 
@@ -237,7 +237,7 @@ register_change (GsmClientList* client_list, GsmClientRow* client_row,
       client_list->changes = g_slist_prepend (client_list->changes,
 					      client_row);
       if (change != GSM_CLIENT_ROW_ADD)
-	gtk_object_ref ((GtkObject*)client_row);
+	g_object_ref (client_row);
       client_row->change = change;
       break;
 
@@ -255,7 +255,7 @@ register_change (GsmClientList* client_list, GsmClientRow* client_row,
 	{
 	  client_list->changes = g_slist_remove (client_list->changes,
 						 client_row);
-	  gtk_object_unref ((GtkObject*)client_row);
+	  g_object_unref (client_row);
 	}
       break;
 
@@ -280,8 +280,11 @@ gsm_client_list_commit_changes (GsmClientList* client_list)
       
       for (list = client_list->changes; list; list = list->next)
 	{
-	  GsmClientRow* client_row = (GsmClientRow*)list->data;
-	  GsmClient* client = (GsmClient*)client_row;
+	  GsmClientRow *client_row = list->data;
+	  GsmClient    *client;
+
+	  client = GSM_CLIENT (client_row);
+
 	  switch (client_row->change)
 	    {
 	    case GSM_CLIENT_ROW_ADD:
@@ -315,9 +318,9 @@ gsm_client_list_discard_changes (GsmClientList* client_list)
 
   for (list = client_list->changes; list; list = list->next)
     {
-      GsmClientRow* client_row = (GsmClientRow*)list->data;
+      GsmClientRow *client_row = list->data;
 
-      gtk_object_unref ((GtkObject*)client_row);
+      g_object_unref (client_row);
       client_row->change = GSM_CLIENT_ROW_NONE;
     }
   g_slist_free (client_list->changes);
@@ -339,7 +342,8 @@ gsm_client_list_revert_changes (GsmClientList* client_list)
   gtk_clist_freeze (clist);
   for (list = client_list->changes; list;)
     {
-      GsmClientRow* client_row = (GsmClientRow*)list->data;
+      GsmClientRow *client_row = list->data;
+
       list = list->next;
       switch (client_row->change)
 	{
@@ -359,8 +363,11 @@ gsm_client_list_revert_changes (GsmClientList* client_list)
     {
       for (list = client_list->changes; list;)
 	{
-	  GsmClientRow* client_row = (GsmClientRow*)list->data;
-	  GsmClient* client = (GsmClient*)client_row;
+	  GsmClientRow *client_row = list->data;
+	  GsmClient    *client;
+
+	  client = GSM_CLIENT (client_row);
+
 	  list = list->next;
 	  switch (client_row->change)
 	    {
@@ -385,9 +392,9 @@ gboolean
 gsm_client_list_add_program (GsmClientList *client_list,
 			     const char    *command)
 {
-  GsmClientRow* client_row;
-  GtkCList* clist = (GtkCList*)client_list;
-  gboolean command_complete;
+  GsmClientRow *client_row;
+  GtkCList     *clist = (GtkCList*)client_list;
+  gboolean      command_complete;
 
   g_return_val_if_fail(client_list != NULL, FALSE);
   g_return_val_if_fail(GSM_IS_CLIENT_LIST(client_list), FALSE);
@@ -395,7 +402,7 @@ gsm_client_list_add_program (GsmClientList *client_list,
   if ((command_complete = gsm_sh_quotes_balance(command)))
     {
       gtk_clist_freeze (clist);
-      client_row = GSM_CLIENT_ROW (gsm_client_row_new (client_list));
+      client_row = gsm_client_row_new (client_list);
       GSM_CLIENT (client_row)->command = g_strdup(command);
       gsm_client_row_add (client_row);
       register_change (client_list, client_row, GSM_CLIENT_ROW_ADD);
@@ -415,8 +422,8 @@ gsm_client_list_remove_selection (GsmClientList* client_list)
 
   gtk_clist_freeze (clist);
   {
-    gpointer data = gtk_clist_get_row_data (clist, row);
-    GsmClientRow* client_row = GSM_CLIENT_ROW (data);
+    gpointer      data = gtk_clist_get_row_data (clist, row);
+    GsmClientRow *client_row = GSM_CLIENT_ROW (data);
     
     if (client_row) {
       gsm_client_row_remove (client_row);
@@ -430,8 +437,11 @@ gsm_client_list_remove_selection (GsmClientList* client_list)
 static void
 changed_cb (GsmClientEditor *client_editor, guint order, GsmStyle style)
 {
-  GsmClientRow *client_row = (GsmClientRow*)client_editor->client;
-  GsmClientList *client_list = client_row->client_list;
+  GsmClientRow  *client_row;
+  GsmClientList *client_list;
+
+  client_row = GSM_CLIENT_ROW (client_editor->client);
+  client_list = client_row->client_list;
 
   register_change (client_list, client_row, GSM_CLIENT_ROW_EDIT);
   gsm_client_row_set_order (client_row, order);

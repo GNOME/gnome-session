@@ -1,3 +1,24 @@
+2002-03-20  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-client-list.c: (gsm_client_list_live_session),
+	(gsm_client_list_saved_session) (register_change),
+	(gsm_client_list_discard_changes): GsmSession is not a GtkObject
+	(gsm_client_list_add_program), (gsm_client_list_remove_selection),
+	(changed_cb): upd for ClientRow changes.
+
+	* gsm-client-row.h: port to GObject
+
+	* gsm-client-row.c: (gsm_client_row_finalize): impl.
+	(gsm_client_row_class_init): kill parent_class stuff.
+	(gsm_client_row_instance_init): impl.
+	(gsm_client_row_get_type): port to GType
+	(gsm_client_row_new): upd.
+
+	* gsm-protocol.c: (gsm_client_class_init): kill signal decl.
+
+	* session-properties.c: (last_session), (saved_sessions),
+	(create_dialog): update for GsmProtocol port to GObject
+
 2002-03-19  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: install session properties capplet .desktops in

@@ -381,13 +381,14 @@ gsm_client_class_init (GsmClientClass *klass)
 			G_TYPE_NONE, 1, G_TYPE_INT);
 
 	gsm_client_signals [STYLE] =
-		g_signal_new ("style",
+		g_signal_new (
+			"style",
 			G_TYPE_FROM_CLASS (gobject_class),
 			G_SIGNAL_RUN_LAST,
 			G_STRUCT_OFFSET (GsmClientClass, style),
 			NULL, NULL,
 			g_cclosure_marshal_VOID__INT,
-			G_TYPE_NONE, 1, G_TYPE_NONE);
+			G_TYPE_NONE, 1, G_TYPE_INT);
 
 	gsm_client_signals [ORDER] =
 		g_signal_new (
