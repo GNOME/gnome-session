@@ -481,6 +481,33 @@ set_display_properties (void)
 #endif
 }
 
+static void
+gsm_shutdown_gconfd (void)
+{
+  GError *error;
+  char   *command;
+  int     status;
+
+  command = g_strjoin (" ", GCONFTOOL_CMD, "--shutdown", NULL);
+
+  status = 0;
+  error  = NULL;
+  if (!g_spawn_command_line_sync (command, NULL, NULL, &status, &error))
+    {
+      g_warning ("Failed to execute '%s' on logout: %s\n",
+		 command, error->message);
+      g_error_free (error);
+    }
+
+  if (status)
+    {
+      g_warning ("Running '%s' at logout returned an exit status of '%d'",
+		 command, status);
+    }
+
+  g_free (command);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -631,6 +658,8 @@ main (int argc, char *argv[])
   gtk_main ();
 
   gsm_sound_logout ();
+
+  gsm_shutdown_gconfd ();
 
   clean_ice ();
 

@@ -13,6 +13,7 @@ INCLUDES =						\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\
+	-DGCONFTOOL_CMD=\""$(GCONFTOOL)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""		\
 	-DESD_SERVER="\"$(ESD_SERVER)\""
 

@@ -1,3 +1,14 @@
+2003-12-02  Mark McLoughlin  <mark@skynet.ie>
+
+	Based on a patch from W. Michael Petullo <gnome@flyn.org>
+	in bug #97361.
+
+	* main.c:
+	(gsm_shutdown_gconfd): impl. shutting down gconfd.
+	(main): Shut down gconfd on logout.
+	
+	* Makefile.am: define GCONFTOOL_CMD.
+
 2003-11-17  Bill Haneman <billh@gnome.org>
 
 	* logout.c:
