@@ -67,10 +67,10 @@ write_one_client (int number, const Client *client)
 {
   /* We over-allocate; it doesn't matter.  */
   int i, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
-  char **argvs[NUM_PROPERTIES];
+  static char **argvs[NUM_PROPERTIES];
   char *strings[NUM_PROPERTIES];
-  const char *argv_names[NUM_PROPERTIES];
-  const char *string_names[NUM_PROPERTIES];
+  char *argv_names[NUM_PROPERTIES];
+  char *string_names[NUM_PROPERTIES];
   int style;
 
   /* Do nothing with RestartNever clients.  */
@@ -95,7 +95,7 @@ write_one_client (int number, const Client *client)
 		}
 	    }
 	  else
-	    argv_names[vec_count++] = properties[i].name;
+	    argv_names[vec_count++] = (char*) properties[i].name;
 	}
       else
 	{
@@ -109,7 +109,7 @@ write_one_client (int number, const Client *client)
 		}
 	    }
 	  else
-	    string_names[string_count++] = properties[i].name;
+	    string_names[string_count++] = (char*)properties[i].name;
 	}
     }
 
@@ -118,11 +118,11 @@ write_one_client (int number, const Client *client)
     {
       gnome_config_set_string ("id", client->id);
 
-      for (i = 0; i < vec_count; ++i)
-	gnome_config_set_vector (argv_names[i], argcs[i],
-				 (const char * const *) argvs[i]);
+      for (i = 0; i < vec_count; ++i) 
+	gnome_config_set_vector (argv_names[i], argcs[i], 
+      				 (const char * const *) argvs[i]);
 
-      for (i = 0; i < string_count; ++i)
+      for (i = 0; i < string_count; ++i) 
 	gnome_config_set_string (string_names[i], strings[i]);
     }
 
@@ -141,7 +141,7 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
 {
   char prefix[1024];
   int i, step;
-  const GSList *list;
+  GSList *list;
 
   /* This is somewhat losing.  But we really do want to make sure any
      existing session with this same name has been cleaned up before
@@ -150,12 +150,13 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
 
   i = 0;
   step = 0;
-  list = list1;
+  list = (GSList *)list1;
   while (step < 2)
     {
       for (; list; list = list->next)
 	{
 	  Client *client = (Client *) list->data;
+
 	  sprintf (prefix, "session/%s/%d,",
 		   session_name ? session_name : DEFAULT_SESSION,
 		   i);
@@ -164,10 +165,10 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
 	    ++i;
 	  gnome_config_pop_prefix ();
 	}
-      list = list2;
+      list = (GSList *)list2;
       ++step;
     }
-
+  
   sprintf (prefix, "session/%s/num_clients",
 	   session_name ? session_name : DEFAULT_SESSION);
   gnome_config_set_int (prefix, i);
