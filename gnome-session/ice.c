@@ -102,7 +102,7 @@ accept_connection (GIOChannel   *source,
   char *ctmp;
 #endif
 
-  gsm_verbose ("Acception a connection...\n");
+  gsm_verbose ("Accepting a connection...\n");
 
   connection = IceAcceptConnection (listener, &status);
   if (status != IceAcceptSuccess)

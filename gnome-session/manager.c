@@ -319,7 +319,7 @@ free_client (Client *client)
   client->get_prop_replies = NULL; /* sanity */
 
   if (client->last_discard)
-    g_free (client->last_discard);
+    SmFreeProperty (client->last_discard);
 
   g_free (client);
 }

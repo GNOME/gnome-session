@@ -55,14 +55,14 @@ gsm_prop_copy (const SmProp *prop)
   int     i;
 
   if (!prop)
-    return;
+    return NULL;
 
-  retval = g_new (SmProp, 1);
+  retval = (SmProp *)malloc (sizeof (SmProp));
 
   retval->name     = strdup (prop->name);
   retval->type     = strdup (prop->type);
   retval->num_vals = prop->num_vals;
-  retval->vals     = g_new (SmPropValue, retval->num_vals);
+  retval->vals     = (SmPropValue *)malloc (sizeof (SmPropValue) * prop->num_vals);
 
   for (i = 0; i < retval->num_vals; i++)
     {

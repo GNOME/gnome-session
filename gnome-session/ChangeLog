@@ -1,3 +1,15 @@
+2002-06-07  jacob berkman  <jacob@ximian.com>
+
+	* prop.c (gsm_prop_copy): don't "return" void when prop is NULL,
+	and prefer malloc to g_new for consistency
+
+	fixes bug #84503
+
+	* manager.c (free_client): free the discard property with
+	SmFreeProperty (fixes a memleak)
+
+	* ice.c (accept_connection): fix embarassing typo
+
 2002-06-06  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am (INCLUDES): set localedir to
