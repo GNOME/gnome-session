@@ -194,8 +194,10 @@ setup ()
   gtk_box_pack_start (page, box, FALSE, FALSE, GNOME_PAD_SMALL);
 
   del_button = gtk_button_new_with_label (_("Delete"));
+  sw = gtk_scrolled_window_new (NULL, NULL);
   clist = gtk_clist_new (1);
-
+  gtk_container_add (GTK_CONTAINER (sw), cl);
+  
   /* We allocate this but never free it.  It doesn't matter.  */
   info = (struct info *) malloc (sizeof (struct info));
   info->propertybox = propertybox;
@@ -206,21 +208,13 @@ setup ()
   gtk_signal_connect (GTK_OBJECT (del_button), "clicked",
 		      GTK_SIGNAL_FUNC (remove_items), (gpointer) info);
 
-  gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_MULTIPLE);
-
-#ifdef GTK_HAVE_FEATURES_1_1_4
-  sw = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-  gtk_container_add (GTK_CONTAINER (sw), clist);
-  gtk_box_pack_start (page, sw, FALSE, TRUE, GNOME_PAD_SMALL);
-  gtk_widget_show (sw);
-#else
-  gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
-			GTK_POLICY_AUTOMATIC);
-  gtk_box_pack_start (page, clist, FALSE, FALSE, GNOME_PAD_SMALL);
-#endif
-
+  /* FIXME: put clist into a multi-select mode.  */
+  gtk_scrolled_window_set_policy (
+	  GTK_SCROLLED_WINDOW (sw),
+	  GTK_POLICY_AUTOMATIC,
+	  GTK_POLICY_AUTOMATIC);
+  
+  gtk_box_pack_start (page, sw, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_signal_connect (GTK_OBJECT (clist), "select_row",
 		      GTK_SIGNAL_FUNC (row_selected), (gpointer) del_button);
   gtk_signal_connect (GTK_OBJECT (clist), "unselect_row",
