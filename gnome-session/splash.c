@@ -67,6 +67,7 @@ start_splash (gfloat max)
 {
   GtkWidget *box;
   GtkWidget *w;
+  GtkWidget *frame;
   char *file;
 
   g_return_if_fail (sd == NULL);
@@ -75,7 +76,7 @@ start_splash (gfloat max)
 
   sd->max = max;
   
-  sd->dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  sd->dialog = gtk_window_new (GTK_WINDOW_POPUP);
   gtk_window_set_position (GTK_WINDOW (sd->dialog),
 			   GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (sd->dialog),
@@ -97,9 +98,13 @@ start_splash (gfloat max)
 		      "destroy",
 		      GTK_SIGNAL_FUNC (splash_cleanup),
 		      NULL);
-  
+
+  frame = gtk_frame_new (NULL);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
+  gtk_container_add (GTK_CONTAINER (sd->dialog), frame);
+
   box = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (sd->dialog), box);
+  gtk_container_add (GTK_CONTAINER (frame), box);
   
   file = gnome_pixmap_file ("gnome-splash.png");
   w = gnome_pixmap_new_from_file (file);
