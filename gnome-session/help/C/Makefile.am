@@ -1,16 +1,17 @@
 figs = \
-	button_remove.png		\
-	session-properties.png		\
-	stock_exec.png			\
-	stock_help.png			\
-	stock_preferences.png		\
-	stock_refresh.png		\
-	stock_save.png			\
-	stock_timer.png			\
-	stock_trash.png
-app = session
+	figures/button_remove.png		\
+	figures/session-properties.png		\
+	figures/stock_exec.png			\
+	figures/stock_help.png			\
+	figures/stock_preferences.png		\
+	figures/stock_refresh.png		\
+	figures/stock_save.png			\
+	figures/stock_timer.png			\
+	figures/stock_trash.png
+docname = session
 lang = C
-omffiles = session-C.omf
-include $(top_srcdir)/app-docs.make
+omffile = session-C.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook
 
