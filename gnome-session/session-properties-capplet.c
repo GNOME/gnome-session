@@ -91,6 +91,25 @@ static void saved_sessions (GtkWidget *widget, GSList *session_names);
 #define SESSION_STOCK_EDIT "session-stock-edit"
 
 static void
+selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
+{
+  gboolean sel;
+  GtkWidget *edit_button;
+  GtkWidget *delete_button;
+
+  edit_button = g_object_get_data (G_OBJECT (view), "edit");
+  delete_button = g_object_get_data (G_OBJECT (view), "delete");
+
+  if (!edit_button || !delete_button)
+	return;
+
+  sel = gtk_tree_selection_get_selected (selection, NULL, NULL);
+
+  gtk_widget_set_sensitive (edit_button, sel);
+  gtk_widget_set_sensitive (delete_button, sel);
+}
+
+static void
 register_stock_for_edit (void)
 {
   static gboolean registered = FALSE;
@@ -275,6 +294,7 @@ capplet_build (void)
 		  		 GTK_WIDGET (sessions_view));
   sessions_sel = gtk_tree_view_get_selection (sessions_view);
   gtk_tree_selection_set_mode (sessions_sel, GTK_SELECTION_SINGLE);
+  g_signal_connect (G_OBJECT (sessions_sel), "changed", (GCallback) selection_changed_cb, sessions_view);
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Session Name"), renderer, "text", 0, NULL);
   gtk_tree_view_append_column (sessions_view, column);
@@ -292,10 +312,14 @@ capplet_build (void)
   button = left_aligned_stock_button (SESSION_STOCK_EDIT);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (edit_session_cb), NULL);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (sessions_view), "edit", button);
 
   button = left_aligned_stock_button (GTK_STOCK_DELETE);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (delete_session_cb), NULL);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (sessions_view), "delete", button);
  
   /* Set up the hash table to keep tracked of edited session names */
 
@@ -358,6 +382,7 @@ capplet_build (void)
 		  		 GTK_WIDGET (startup_view));
   startup_sel = gtk_tree_view_get_selection (startup_view);
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
+  g_signal_connect (G_OBJECT (startup_sel), "changed", (GCallback) selection_changed_cb, startup_view);
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Order"), renderer, "text", 1, NULL);
   gtk_tree_view_append_column (startup_view, column);
@@ -379,11 +404,15 @@ capplet_build (void)
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (edit_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (startup_view), "edit", button);
   
   button = left_aligned_stock_button (GTK_STOCK_DELETE);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (delete_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (startup_view), "delete", button);
 
   /* Button for running session-properties */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
