@@ -1,3 +1,11 @@
+1998-11-29  Herbert Valerio Riedel  <hvr@hvrlab.ml.org>
+
+	* session-properties.c (program_remove_cb): added one GPOINTER_TO_INT
+
+	* manager.[ch] (find_client_by_id): added const to arguments
+
+	* prop.c: added #include <string.h> for memcpy-prototype 
+
 Sat Nov 28 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* prop.c (find_string_property): fixed problem that created need

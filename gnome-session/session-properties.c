@@ -396,7 +396,7 @@ program_remove_cb (GtkWidget *widget)
 
   while (GTK_CLIST (startup_info.clist)->selection != NULL)
     {
-      int row = (int) GTK_CLIST (startup_info.clist)->selection->data;
+      gint row = GPOINTER_TO_INT (GTK_CLIST (startup_info.clist)->selection->data);
       /* This modifies clist->selection, so eventually the loop will
        * terminate.
        */

@@ -90,7 +90,7 @@ send_message (GSList *list, message_func *message)
 
 
 Client *
-find_client_by_id (GSList *list, char *id)
+find_client_by_id (const GSList *list, const char *id)
 {
   for (; list; list = list->next)
     {

@@ -94,7 +94,7 @@ void delete_session (const char *name,
 		     const GSList* list1, const GSList* list2);
 
 /* used in write_session */
-Client * find_client_by_id (GSList *list, char *id);
+Client * find_client_by_id (const GSList *list, const char *id);
 
 /*
  * ice.c
