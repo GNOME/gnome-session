@@ -11,7 +11,7 @@
 static void
 gsm_assistive_tech_exec (gchar *exec_string)
 {
-  GError *error;
+  GError *error = NULL;
   gchar *s = g_find_program_in_path (exec_string);
   if (s) {
     g_spawn_command_line_async (exec_string, &error);
@@ -22,7 +22,7 @@ gsm_assistive_tech_exec (gchar *exec_string)
 void 
 gsm_assistive_technologies_start (void)
 {
-  GError *error;
+  GError *error = NULL;
   GConfClient *client;
   GSList *list;
 

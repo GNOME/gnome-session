@@ -568,7 +568,7 @@ main (int argc, char *argv[])
 
   start_session (the_session);
 
-  if (a_t_support & 0) /* the ATs are happier if the session has started */
+  if (a_t_support) /* the ATs are happier if the session has started */
     gsm_assistive_technologies_start ();
 
   gtk_main ();
