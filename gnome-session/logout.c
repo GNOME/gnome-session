@@ -344,7 +344,7 @@ display_gui (void)
         {
           GtkWidget *dialog;
 
-          dialog = gtk_message_dialog_new (GTK_WINDOW (box),
+          dialog = gtk_message_dialog_new (NULL,
         				   GTK_DIALOG_DESTROY_WITH_PARENT,
         				   GTK_MESSAGE_ERROR,
         				   GTK_BUTTONS_CLOSE,

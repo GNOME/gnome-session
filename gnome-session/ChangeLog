@@ -1,5 +1,8 @@
 2002-07-15  jacob berkman  <jacob@ximian.com>
 
+	* logout.c (display_gui): don't reference a destroyed widget
+	(#86618)
+
 	* main.c (gnome_login_check): kill the dialog when we're done
 	(bugzilla.ximian.com #27747)
 
