@@ -23,7 +23,7 @@
 
 typedef struct {
   GtkWidget *dialog;
-  GtkWidget *progessbar;
+  GtkWidget *progressbar;
   GtkWidget *label;
   gfloat max;
 } SplashData;
@@ -115,7 +115,7 @@ start_splash (gfloat max)
   gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, 0);
   
   w = gtk_progress_bar_new();
-  sd->progessbar = w;
+  sd->progressbar = w;
   gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, 0);
   
   gtk_widget_show_all (sd->dialog);
@@ -139,6 +139,6 @@ update_splash (const gchar *text, gfloat priority)
   gtk_label_set_text (GTK_LABEL (sd->label), msg);
   g_free (msg);
   
-  gtk_progress_set_percentage (GTK_PROGRESS (sd->progessbar),
+  gtk_progress_set_percentage (GTK_PROGRESS (sd->progressbar),
 			       (float)priority / sd->max);
 }
