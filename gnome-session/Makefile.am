@@ -75,20 +75,20 @@ session_properties_SOURCES = \
 	gsm-protocol.h		\
 	session.h
 
-session_properties_capplet_SOURCES_ = \
-	session-properties-capplet.c	\
-	session-properties-capplet.h	\
-	session.h			\
-	startup-programs.c		\
-	session-names.c			\
-	gsm-protocol.c			\
-	gsm-protocol.h			\
-	gsm-client-list.c		\
-	gsm-client-list.h		\
-	gsm-client-row.c		\
-	gsm-client-row.h		\
-	gsm-client-editor.c		\
-	gsm-client-editor.h 
+# session_properties_capplet_SOURCES = \
+# 	session-properties-capplet.c	\
+# 	session-properties-capplet.h	\
+# 	session.h			\
+# 	startup-programs.c		\
+# 	session-names.c			\
+# 	gsm-protocol.c			\
+# 	gsm-protocol.h			\
+# 	gsm-client-list.c		\
+# 	gsm-client-list.h		\
+# 	gsm-client-row.c		\
+# 	gsm-client-row.h		\
+# 	gsm-client-editor.c		\
+# 	gsm-client-editor.h 
 
 gnome_login_check_SOURCES = gnome-login-check.c
 
