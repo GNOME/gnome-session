@@ -1,3 +1,9 @@
+1999-01-21  Carsten Schaar  <nhadcasc@fs-maphy.uni-hannover.de>
+
+	* ice.c (initialize_ice): Removed the 'free' call to the argument
+ 	of 'putenv', because this breaks the setting of the environment
+ 	variable at least on my libc5 system.
+
 Tue Jan 19 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* manager.c (kill_client_connection): close protocol cleanly.

@@ -100,10 +100,8 @@ initialize_ice (void)
 
   ids = IceComposeNetworkIdList (num_transports, listeners);
 #define ENVNAME "SESSION_MANAGER"
-  p = g_new (char, sizeof ENVNAME + strlen (ids) + 1);
-  sprintf (p, "%s=%s", ENVNAME, ids);
+  p = g_strconcat (ENVNAME "=", ids, NULL);
   putenv (p);
-  g_free(p);
 
   return 1;
 }
