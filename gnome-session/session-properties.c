@@ -20,11 +20,27 @@
 #include <config.h>
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
 #include "session.h"
+
+
+
+/* This is used as the client data for some callbacks.  It just holds
+   pointers to whatever we might need.  */
+struct info
+{
+  /* The property box.  */
+  GnomePropertyBox *propertybox;
+  /* The clist.  */
+  GtkWidget *clist;
+};
+
+
 
 /* This is called when the dialog is dismissed.  */
 static void
@@ -89,6 +105,42 @@ entry_changed (GtkWidget *w, gpointer client_data)
   gnome_property_box_changed (GNOME_PROPERTY_BOX (client_data));
 }
 
+/* This is called when user pressed Return in the entry.  */
+static void
+entry_ok (GtkWidget *w, gpointer client_data)
+{
+  GtkEntry *entry = GTK_ENTRY (w);
+  GtkCList *clist = GTK_CLIST (client_data);
+  gchar *text;
+
+  text = gtk_entry_get_text (entry);
+  if (strcmp (text, ""))
+    gtk_clist_append (clist, &text);
+
+  gtk_entry_set_text (entry, "");
+}
+
+/* Remove selected items from clist.  */
+static void
+remove_items (GtkWidget *w, gpointer client_data)
+{
+  struct info *info = (struct info *) client_data;
+  GtkCList *clist = GTK_CLIST (info->clist);
+
+  gtk_clist_freeze (clist);
+
+  while (clist->selection != NULL)
+    {
+      int row = (int) clist->selection->data;
+      /* This modifies clist->selection, so eventually the loop will
+	 terminate.  */
+      gtk_clist_remove (clist, row);
+    }
+
+  gtk_clist_thaw (clist);
+  gnome_property_box_changed (info->propertybox);
+}
+
 /* Fill in the clist with information from gnome_config.  */
 static void
 fill_clist (GtkCList *list)
@@ -122,6 +174,7 @@ setup ()
   GnomePropertyBox *propertybox;
   GtkWidget *w, *del_button, *bbox, *clist, *box;
   GtkBox *page;
+  struct info *info;
 
   propertybox = GNOME_PROPERTY_BOX (gnome_property_box_new ());
 
@@ -138,8 +191,18 @@ setup ()
   gtk_box_pack_start (page, box, FALSE, FALSE, 0);
 
   del_button = gtk_button_new_with_label (_("Delete"));
-
   clist = gtk_clist_new (1);
+
+  /* We allocate this but never free it.  It doesn't matter.  */
+  info = (struct info *) malloc (sizeof (struct info));
+  info->propertybox = propertybox;
+  info->clist = clist;
+
+  gtk_widget_set_sensitive (del_button, 0);
+  gtk_signal_connect (GTK_OBJECT (del_button), "clicked",
+		      GTK_SIGNAL_FUNC (remove_items), (gpointer) info);
+
+  /* FIXME: put clist into a multi-select mode.  */
   gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
 			GTK_POLICY_AUTOMATIC);
   gtk_box_pack_start (page, clist, FALSE, FALSE, 0);
@@ -158,8 +221,8 @@ setup ()
   gtk_box_pack_start (page, w, FALSE, FALSE, 0);
   gtk_signal_connect (GTK_OBJECT (w), "changed",
 		      GTK_SIGNAL_FUNC (entry_changed), (gpointer) propertybox);
-  /* FIXME: if user types Enter in entry, then should accept it and
-     add to list.  */
+  gtk_signal_connect (GTK_OBJECT (w), "activate",
+		      GTK_SIGNAL_FUNC (entry_ok), (gpointer) clist);
 
   fill_clist (GTK_CLIST (clist));
 

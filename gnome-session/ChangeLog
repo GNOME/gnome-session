@@ -1,5 +1,12 @@
 Tue Jul 21 10:25:55 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* session-properties.c (setup): Connect to "activate" signal on
+	entry.  Disable "Delete" button initially.  Connect to "clicked"
+	signal on button.
+	(entry_ok): New function.
+	(remove_items): New function.
+	(struct info): New structure.
+
 	* save.c (run_default_session): Use run_preloads to run default
 	session.
 

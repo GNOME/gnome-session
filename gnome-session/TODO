@@ -2,11 +2,9 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Write property configurator.  Things to tweak:
-  X List of losing programs to run at startup
-    Partially done -- must clean up FIXMEs
-  * Name of session?  Whether session is saved per-display?  (Maybe
-    only for this display?)
+* Additions to property configurator:
+  * Name of session?
+  * Whether session is saved per-display?  (Maybe only for this display)
 
 * Look at .xsm files - clean up?  move into gnome-conf?
 
@@ -44,6 +42,7 @@ This is still a work in progress.  Here's my plan of attack:
   by embedder apps.  This probably requires merging with
   gnome-client.[ch], since the resulting program will have to be both
   a client and a server, and the two parts must collude.
+  It isn't clear that this will actually be useful.
 
 
 I don't have a schedule for this work.  Feel free to hack on it if you
