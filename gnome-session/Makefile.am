@@ -14,7 +14,9 @@ LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 sysdir = $(datadir)/applications
 
 if SESSION
-noinst_DATA = session.desktop
+noinst_in_files = session.desktop.in
+noinst_DATA = $(noinst_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
 
 noinst_PROGRAMS = \
 	splash-test
@@ -103,13 +105,15 @@ desktop_DATA = save-session.desktop session.desktop
 sysdir = $(datadir)/control-center/Session
 
 if SESSION
-sys_DATA = session-properties.desktop
+sys_in_files = session-properties.desktop.in
+sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 endif
 
 settingsdir = $(datadir)/control-center/capplets
 
 if SESSION
-settings_DATA = session-properties.desktop
+settings_in_files = session-properties.desktop.in
+settings_DATA = $(settings_in_files:.desktop.in=.desktop)
 endif
 
 default.session: default.in ../config.status
@@ -133,12 +137,12 @@ EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
-	save-session.desktop 	\
-	session.desktop		\
+	save-session.desktop.in 	\
+	session.desktop.in		\
 	$(manuals)		\
 	$(pixmap_DATA)		\
 	gsm-marshal.list	\
-	session-properties.desktop
+	session-properties.desktop.in
 
 marshal_sources = gsm-marshal.c gsm-marshal.h
 
