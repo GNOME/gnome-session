@@ -46,6 +46,7 @@ typedef enum {
   MANAGER_IDLE,
   SENDING_MESSAGES,
   SENDING_INTERACT,
+  SENDING_INTERACT_2,
   SAVE_PHASE_1,
   SAVE_PHASE_2,
   SAVE_CANCELLED,
@@ -846,12 +847,14 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
 					     compare_interact_request);
       if (send) 
 	{
-	  SaveState old_state;
-	  old_state = save_state;
-	  save_state = SENDING_INTERACT;
+	  save_state = (save_state == SAVE_PHASE_1) 
+	    ? SENDING_INTERACT
+	    : SENDING_INTERACT_2;
 	  interact_ping_replied = TRUE;
 	  SmsInteract (connection);
-	  save_state = old_state;
+	  save_state = (save_sate == SENDING_INTERACT)
+	    ? SAVE_PHASE_1
+	    : SAVE_PHASE_2;
 	}
     }
 }
@@ -992,11 +995,15 @@ interact_done (SmsConn connection, SmPointer data, gboolean cancel)
 
   if (interact_list)
     {
-      save_state = SENDING_INTERACT;
+      save_state = (save_state == SAVE_PHASE_1)
+	? SENDING_INTERACT
+	: SENDING_INTERACT_2;
       client = (Client *) interact_list->data;
       interact_ping_replied = TRUE;
       SmsInteract (client->connection);
-      save_state = SAVE_PHASE_1;
+      save_state = (save_state == SENDING_INTERACT)
+	? SAVE_PHASE_1
+	: SAVE_PHASE_2;
     }
   /* Check in case the client sent a SaveYourselfDone during
      the interaction */ 
@@ -1519,7 +1526,7 @@ client_clean_up (Client* client)
       break;
     }
   
-  if (save_state == SENDING_INTERACT)
+  if (save_state == SENDING_INTERACT || save_state == SENDING_INTERACT_2)
     {
       if (interact_list)
 	{
@@ -1527,7 +1534,9 @@ client_clean_up (Client* client)
 	  interact_ping_replied = TRUE;
 	  SmsInteract (client->connection);
 	}
-      save_state = SAVE_PHASE_1;
+      save_state = (save_state == SENDING_INTERACT)
+	? SAVE_PHASE_1
+	: SAVE_PHASE_2;
     }
   
   update_save_state ();
