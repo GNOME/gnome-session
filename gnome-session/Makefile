@@ -1,5 +1,5 @@
 LDFLAGS=-lgtk -lgdk -lglib -lm
-CFLAGS=-Wall -O2 -g -fno-exceptions
+CFLAGS=-Wall -O2 -g
 
 gsm: gsm.o
 
