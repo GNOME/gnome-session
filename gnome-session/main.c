@@ -27,33 +27,38 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
 #include "manager.h"
+#include "session.h"
 
 /* Parsing function.  */
 
 /* The name of the session to load.  */
 static char *session = NULL;
 
-/* If nonzero, we are debugging and don't want to load an initial
-   session.  */
+/* Wait period for clients to register. */
 guint purge_delay = 30000;
 
-/* If nonzero, we are debugging and don't want to load an initial
-   session.  */
-static int debugging = 0;
+/* Wait period for clients to die during shutdown. */
+guint suicide_delay = 30000;
 
 static const struct poptOption options[] = {
-  {"debug", '\0', POPT_ARG_NONE, &debugging, 0, N_("Enable gsm debugging"), NULL},
   {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
+  {"suicide-delay", '\0', POPT_ARG_INT, &suicide_delay, 0, N_("Millisecond period spent waiting for clients to die (0=forever)"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
 
 /* A separate function to ease the impending #if hell.  */
 static void
+sig_ignore_handler (int num)
+{
+  return;
+}
+
+static void
 ignore (int sig)
 {
   struct sigaction act;
 
-  act.sa_handler = SIG_IGN;
+  act.sa_handler = sig_ignore_handler;
   sigemptyset (& act.sa_mask);
   act.sa_flags = 0;
 
@@ -66,28 +71,20 @@ main (int argc, char *argv[])
   char *ep;
   poptContext ctx;
   char **leftovers;
+  char *chooser;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
   initialize_ice ();
-  /* FIXME: this is debugging that can eventually be removed.  */
-  fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
+  /* fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER")); */
   gnome_client_disable_master_connection ();
   gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
 			     &ctx);
   leftovers = poptGetArgs(ctx);
-  if(leftovers) {
-    if(leftovers[0] && leftovers[1]) {
-      /* too many args */
-      perror("Too many arguments.");
-      poptPrintHelp(ctx, stderr, 0);
-    } /* else if(!leftovers[0]) */ /* XXX do we need to require a
-	                              session name on the cmdline here? */
-
+  if(leftovers && leftovers[0]) 
     session = leftovers[0];
-  }
   poptFreeContext(ctx);
 
   /* Make sure children see the right value for DISPLAY.  This is
@@ -96,8 +93,20 @@ main (int argc, char *argv[])
   putenv (ep);
 
   ignore (SIGPIPE);
-  if (! debugging)
-    read_session (session);
+
+  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
+  chooser = gnome_config_get_string (CHOOSER_SESSION_KEY);
+  gnome_config_pop_prefix ();
+      
+  if (!session && chooser)
+    session = chooser;
+
+  if (!session)
+    session = get_last_session ();
+
+  set_session_name (session);
+
+  start_session (read_session (session));
 
   gtk_main ();
 
