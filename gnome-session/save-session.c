@@ -30,7 +30,7 @@
 static int zap = 0;
 
 static const struct poptOption options[] = {
-  {"kill", '\0', POPT_ARG_NONE, &zap, N_("Kill session"), NULL},
+  {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
 
@@ -60,6 +60,7 @@ main (int argc, char *argv[])
      there is no way to request a shutdown without a save.  */
   gnome_client_request_save (client, GNOME_SAVE_BOTH, zap,
 			     GNOME_INTERACT_ANY, 0, 1);
+
   gnome_client_disconnect (client);
 
   return 0;
