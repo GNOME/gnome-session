@@ -1,3 +1,9 @@
+Sat Feb 17 21:04:19 2001  George Lebl <jirka@5z.com>
+
+	* logout.c:  instead of simply checking for existance of
+	  /usr/bin/shutdown, check for it being executable for the
+	  current user.
+
 2001-02-15  jacob berkman  <jacob@ximian.com>
 
 	* save.c (read_session): still look in user dir if session is

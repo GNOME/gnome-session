@@ -230,7 +230,7 @@ display_gui (void)
    */
   s = g_strconcat ("/var/lock/console/", g_get_user_name (), NULL);
   if ((geteuid () == 0 || g_file_exists (s)) &&
-      g_file_exists (halt_command[0]))
+      access (halt_command[0], X_OK) == 0)
     {
       GtkWidget *frame;
       GtkWidget *action_vbox;
