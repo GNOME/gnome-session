@@ -314,7 +314,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   gtk_box_pack_start (GTK_BOX (hbox), alignment, FALSE, FALSE, 0);
 
   adjustment = gtk_adjustment_new (client->priority,
-				   -200.0, 200.0, 1.0, 10.0, 10.0); 
+				   0.0, 200.0, 1.0, 10.0, 10.0); 
   spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (adjustment), 1.0, 0);
   gtk_container_add (GTK_CONTAINER (alignment), spinbutton);
 
