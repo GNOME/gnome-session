@@ -1,3 +1,10 @@
+2002-09-23  Mark McLoughlin  <mark@skynet.ie>
+
+	* session-names.c: (edit_session_name): don't warn
+	about the session name already existing if we
+	haven't changed the name. Fixes #92748.
+	Patch from Matt Brubeck <mbrubeck@cs.hmc.edu>.
+
 2002-09-20  Mark McLoughlin  <mark@skynet.ie>
 
 	* session-properties-capplet.c: (apply): set
