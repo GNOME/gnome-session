@@ -26,6 +26,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <netdb.h>
 
 #include <gconf/gconf-client.h>
 
@@ -248,6 +249,13 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  /* gnome_login_check() needs gtk initialized. however, these do
+   * sanity checks for gnome stuff, so we don't want to initialize
+   * gnome yet
+   */
+  gtk_init (&argc, &argv);
+  gnome_login_check ();
+
   err = NULL;
   g_spawn_command_line_sync ("gconf-sanity-check-2", NULL, NULL, &status,
                              &err);
@@ -279,8 +287,6 @@ main (int argc, char *argv[])
     fprintf (stderr, "gnome-session: you're already running a session manager\n");
     exit (1);
   }
-
-  gnome_login_check ();
 
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
