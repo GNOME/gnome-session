@@ -195,6 +195,7 @@ display_gui (void)
   GtkWidget *halt = NULL;
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
+  gboolean   retval = FALSE;
 
   /* It's really bad here if someone else has the pointer
    * grabbed, so we first grab the pointer and keyboard
@@ -299,7 +300,6 @@ display_gui (void)
 	  gtk_widget_grab_focus (GTK_WINDOW (box)->default_widget);
 
   response = gtk_dialog_run (GTK_DIALOG (box));
-  gtk_widget_destroy (box);
 
   refresh_screen ();
   XUngrabServer (GDK_DISPLAY ());
@@ -309,28 +309,35 @@ display_gui (void)
 
   gdk_flush ();
 
-  switch (response)
-    {
+  switch (response) {
     case GTK_RESPONSE_YES:
-	/* We want to know if we should trash changes (and lose forever)
-	 * or save them */
-	if(!autosave)
-		save_selected = GTK_TOGGLE_BUTTON (toggle_button)->active;
-     if (halt)
+      /* We want to know if we should trash changes (and lose forever)
+       * or save them */
+      if(!autosave)
+        save_selected = GTK_TOGGLE_BUTTON (toggle_button)->active;
+
+      if (halt)
 	{
 	  if (GTK_TOGGLE_BUTTON (halt)->active)
 	    action = HALT;
 	  else if (GTK_TOGGLE_BUTTON (reboot)->active)
 	    action = REBOOT;
 	}
-      return TRUE;
+      retval = TRUE;
+      break;
     default:
     case GTK_RESPONSE_NO:
-      return FALSE;
+      retval= FALSE;
+      break;
     case GTK_RESPONSE_HELP:
       gnome_help_display("panelbasics.html#LOGGINGOUT", NULL, NULL);
-      return FALSE;
+      retval = FALSE;
+      break;
     }
+
+  gtk_widget_destroy (box);
+
+  return retval;
 }
 
 /* Display GUI if user wants it.  Returns TRUE if save should
