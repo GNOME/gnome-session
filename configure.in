@@ -93,6 +93,13 @@ fi
 
 AC_SUBST(GCONF_SANITY_CHECK)
 PATH=$old_path
+	
+AC_PATH_PROG(GNOME_KEYRING_DAEMON, gnome-keyring-daemon, no)
+if test x"$GNOME_KEYRING_DAEMON" = xno; then
+  AC_MSG_ERROR([gnome-keyring-daemon executable not found in your path - should be installed with gnome-keyring])
+fi
+	
+AC_SUBST(GNOME_KEYRING_DAEMON)
 
 # esd
 ESDSERVERDIR=`$PKG_CONFIG --variable=esd_serverdir esound`

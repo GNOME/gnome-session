@@ -1,3 +1,16 @@
+2003-12-08  Alexander Larsson  <alexl@redhat.com>
+
+	* gsm-xrandr.[ch]:
+	XRandR support (from main.c)
+
+	* gsm-keyring.[ch]:
+	Keyring support
+
+	* Makefile.am (INCLUDES): 
+	* main.c (gsm_start_keyring_daemon):
+	Start the keyring daemon on startup and set env var
+	Stop it on shutdown
+
 2003-12-02  Mark McLoughlin  <mark@skynet.ie>
 
 	* logout.c: (display_gui): Revert Bill's patch for #122737

@@ -9,6 +9,7 @@ INCLUDES =						\
 	$(DISABLE_DEPRECATED_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(prefix)/${DATADIRNAME}/locale\""	\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\"	    \
+	-DGNOME_KEYRING_DAEMON=\""$(GNOME_KEYRING_DAEMON)"\"	    \
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
@@ -86,6 +87,10 @@ gnome_session_SOURCES =		\
 	logout.h		\
 	splash-widget.c		\
 	splash-widget.h		\
+	gsm-xrandr.c		\
+	gsm-xrandr.h		\
+	gsm-keyring.c		\
+	gsm-keyring.h		\
 	gsm-gsd.c		\
 	gsm-gsd.h		\
 	gsm-protocol.c		\
