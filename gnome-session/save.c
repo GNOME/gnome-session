@@ -225,11 +225,11 @@ read_one_client (Client *client)
 						&argc, &vector, &def);
 	  if (!def)
 	    {
-	      SmProp *prop = g_new (SmProp, 1);
+	      SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
 	      prop->name = strdup (properties[i].name);
 	      prop->type = strdup (SmLISTofARRAY8);
 	      prop->num_vals = argc;
-	      prop->vals = g_new (SmPropValue, argc);
+	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * argc);
 	      for (j = 0; j < argc; j++)
 		{
 		  prop->vals[j].length = strlen (vector[j]);
@@ -246,11 +246,11 @@ read_one_client (Client *client)
 						  &def);
 	  if (!def)
 	    {
-	      SmProp *prop = g_new (SmProp, 1);
+	      SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
 	      prop->name = strdup (properties[i].name);
 	      prop->type = strdup (SmARRAY8);
 	      prop->num_vals = 1;
-	      prop->vals = g_new (SmPropValue, 1);
+	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue));
 	      prop->vals[0].length = strlen (string);
 	      prop->vals[0].value = string;
 	      APPEND (client->properties, prop);      
@@ -263,13 +263,13 @@ read_one_client (Client *client)
 					       &def);
 	  if (!def)
 	    {
-	      SmProp *prop = g_new (SmProp, 1);
-	      gchar* value = g_new0 (gchar, 2);
+	      SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
+	      gchar* value = (gchar*) calloc (sizeof(gchar), 2);
 	      value[0] = (gchar) number;
 	      prop->name = strdup (properties[i].name);
 	      prop->type = strdup (SmCARD8);
 	      prop->num_vals = 1;
-	      prop->vals = g_new (SmPropValue, 1);
+	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue));
 	      prop->vals[0].length = 1;
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
