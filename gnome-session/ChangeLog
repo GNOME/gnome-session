@@ -1,4 +1,11 @@
-1999-0-21  Owen Taylor  <otaylor@redhat.com>
+1999-09-22 Owen Taylor  <otaylor@redhat.com>
+
+	* ice.c (ice_watch): Try to remove freed watches from
+	  the watch list, in case it they are being removed
+	  before we set a clean_up handler.
+	  (Fixes session manager crashes? fingers-crossed...)
+
+1999-09-21  Owen Taylor  <otaylor@redhat.com>
 
 	* save.c (set_trash_mode): Fix logic fix so that we
 	  set the trash mode variable before invoking

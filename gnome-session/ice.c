@@ -107,6 +107,7 @@ ice_watch (IceConn connection, IcePointer client_data, Bool opening,
       Watch *watch = (Watch*)*watch_data;
       if (watch->clean_up)
 	watch->clean_up (watch->data);
+      REMOVE (watch_list, watch);
       g_free (watch);
     }
 }
