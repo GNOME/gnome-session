@@ -28,6 +28,8 @@ Author:  Ralph Mor, X Consortium
 ******************************************************************************/
 /* $XFree86: xc/programs/smproxy/save.c,v 1.1.1.1.10.2 1997/05/13 11:31:35 hohndel Exp $ */
 
+#include <libgnome/libgnome.h>
+
 #include "smproxy.h"
 #include <unistd.h>
 
@@ -371,11 +373,11 @@ WriteProxyFile ()
 
     path = getenv ("SM_SAVE_DIR");
     if (!path)
-    {
-	path = getenv ("HOME");
-	if (!path)
-	    path = ".";
-    }
+      path = gnome_util_home_file (NULL);
+    if (!path)
+      path = getenv ("HOME");
+    if (!path)
+      path = ".";
 
     if ((filename = unique_filename (path, ".prx", &fd)) == NULL)
 	goto bad;
