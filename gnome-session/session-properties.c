@@ -205,7 +205,7 @@ refresh_gui_data ()
       text = gnome_config_get_string_with_default (buf, &def);
       if (! def)
 	{
-	  gtk_clist_append (GTK_CLIST (startup_info.clist), (const gchar **) &text);
+	  gtk_clist_append (GTK_CLIST (startup_info.clist), (gchar **) &text);
 	}
       g_free (text);
     }
@@ -381,7 +381,7 @@ program_add_cb (GtkWidget *widget)
   text = gtk_entry_get_text (GTK_ENTRY (startup_info.entry));
   if (strcmp (text, ""))
     {
-      gtk_clist_append (GTK_CLIST (startup_info.clist), (const gchar **) &text);
+      gtk_clist_append (GTK_CLIST (startup_info.clist), (gchar **) &text);
     }
 
   gtk_entry_set_text (GTK_ENTRY (startup_info.entry), "");
