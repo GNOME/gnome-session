@@ -164,7 +164,6 @@ display_gui (void)
 {
   GtkWidget *box;
   GtkWidget *toggle_button = NULL;
-  GtkWidget *ask;
   gint result;
   gchar *s;
   GtkWidget *halt = NULL;
@@ -225,18 +224,13 @@ display_gui (void)
 			  FALSE, TRUE, 0);
     }
 
-  ask = gtk_check_button_new_with_label (_("Ask next time"));
-  gtk_widget_show (ask);
-  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (box)->vbox), ask,
-		      FALSE, TRUE, 0);
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (ask), TRUE);
-
   /* Red Hat specific code to check if the user has a
    * good chance of being able to shutdown the system,
    * and if so, give them that option
    */
   s = g_strconcat ("/var/lock/console/", g_get_user_name (), NULL);
-  if (geteuid () == 0 || g_file_exists (s))
+  if ((geteuid () == 0 || g_file_exists (s)) &&
+      g_file_exists (halt_command[0]))
     {
       GtkWidget *frame;
       GtkWidget *action_vbox;
@@ -278,9 +272,6 @@ display_gui (void)
 
   gdk_flush ();
 
-  if (! GTK_TOGGLE_BUTTON (ask)->active)
-    gnome_config_set_bool (GSM_OPTION_CONFIG_PREFIX "/LogoutPrompt", FALSE);
-
   if (result != 0)
     return FALSE;
   else
@@ -307,7 +298,7 @@ gboolean
 maybe_display_gui ()
 {
   gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX
-						   "/LogoutPrompt=true");
+						   "LogoutPrompt=true");
   if (! prompt)
     return TRUE;
 

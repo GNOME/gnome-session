@@ -54,9 +54,9 @@ char* ids;
 GSList *auth_entries;
 
 /* The "sockets" which we listen on */
-static IceListenObj *sockets;
+IceListenObj *sockets;
 static gint *input_id;
-static guint num_sockets;
+gint num_sockets;
 
 /* File containing the ICE authorization data (usually ~/.ICEauthority) */
 static gchar* authfile;
@@ -152,6 +152,7 @@ ice_watch (IceConn connection, IcePointer client_data, Bool opening,
       Watch *watch = (Watch*)*watch_data;
       if (watch->clean_up)
 	watch->clean_up (watch->data);
+      REMOVE (watch_list, watch);
       g_free (watch);
     }
 }
@@ -243,7 +244,7 @@ initialize_ice (void)
   if (! SmsInitialize (GsmVendor, VERSION, new_client, NULL,
 		       auth_proc, sizeof error, error) ||
       ! IceListenForConnections (&num_sockets, &sockets,
-				 sizeof error, error))
+				 sizeof(error), error))
     {
       g_warning (error);
       exit (1);

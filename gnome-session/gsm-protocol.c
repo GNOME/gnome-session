@@ -89,7 +89,7 @@ enum {
   NSIGNALS2
 };
 
-static gint gsm_session_signals[NSIGNALS2];
+static guint gsm_session_signals[NSIGNALS2];
 static GtkObjectClass *parent_class = NULL;
 
 static void
@@ -131,15 +131,15 @@ gsm_session_object_init (GsmSession* session)
   session->waiting     = -1;
 }
 
-GtkTypeInfo gsm_session_info = 
+static GtkTypeInfo gsm_session_info = 
 {
   "GsmSession",
   sizeof (GsmSession),
   sizeof (GsmSessionClass),
   (GtkClassInitFunc) gsm_session_class_init,
   (GtkObjectInitFunc) gsm_session_object_init,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -289,7 +289,7 @@ enum {
   NSIGNALS
 };
 
-static gint gsm_client_signals[NSIGNALS];
+static guint gsm_client_signals[NSIGNALS];
 static void client_reasons (GsmClient* client, gboolean confirm, 
 			    GSList* reasons);
 
@@ -374,8 +374,7 @@ GtkTypeInfo gsm_client_info =
   sizeof (GsmClientClass),
   (GtkClassInitFunc) gsm_client_class_init,
   (GtkObjectInitFunc) gsm_client_object_init,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL, NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -495,7 +494,7 @@ client_reasons (GsmClient* client, gboolean confirm, GSList* reasons)
   
   /* Hmm, may need to be override redirect as well since WMs are quite
      likely to be the source of the errors... */
-  //dialog = gnome_warning_dialog (message);
+  /* dialog = gnome_warning_dialog (message); */
   dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_WARNING, NULL);
   gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog),
 					  _("Remove Program"),
@@ -528,7 +527,7 @@ enum {
   NSIGNALS3
 };
 
-static gint gsm_protocol_signals[NSIGNALS3];
+static guint gsm_protocol_signals[NSIGNALS3];
 
 static void
 gsm_protocol_class_init (GsmProtocolClass *klass)
@@ -567,8 +566,8 @@ GtkTypeInfo gsm_protocol_info =
   sizeof (GsmProtocolClass),
   (GtkClassInitFunc) gsm_protocol_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -647,6 +646,30 @@ gsm_protocol_get_last_session (GsmProtocol* protocol)
   command (protocol, 
 	   gsm_args_to_prop (GsmCommand, 
 			     GsmGetLastSession, NULL), NULL);  
+}
+
+void 
+gsm_protocol_set_trash_mode (GsmProtocol *protocol,
+			     gboolean     trash)
+{
+  SmProp prop;
+  SmPropValue vals[2];
+
+  g_return_if_fail(protocol != NULL);
+  g_return_if_fail(GSM_IS_PROTOCOL (protocol));
+
+  vals[0].length = strlen (GsmTrashMode);
+  vals[0].value = GsmTrashMode;
+
+  vals[1].length = 1;
+  vals[1].value = trash ? "1" : "0";
+
+  prop.name = GsmCommand;
+  prop.type = SmLISTofARRAY8;
+  prop.num_vals = 2;
+  prop.vals = vals;
+  
+  command (protocol, &prop, NULL);
 }
 
 /* Public utilities */

@@ -428,14 +428,15 @@ set_session_name (const char *name)
 void
 set_trash_mode (gboolean new_mode)
 {
-  if (trashing && !new_mode)
+  if (trashing != new_mode)
     {
-      trashing = FALSE;
-      if (saved_session_name)
+      trashing = new_mode;
+
+      if (trashing)
+	set_session_name (session_name);
+      else if (saved_session_name)
 	set_session_name (saved_session_name);
     }
-  else if (!new_mode)
-    trashing = TRUE;
 }
 
 

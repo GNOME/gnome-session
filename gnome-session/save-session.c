@@ -26,21 +26,46 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
 
+#include "manager.h"
+#include "gsm-protocol.h"
+
+#include <X11/SM/SMlib.h>
+
 /* True if killing.  */
 static int zap = 0;
+
+/* True if the session manager is currently in trash mode */
+static int trashing = FALSE;
 
 static const struct poptOption options[] = {
   {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
 
-static exit_status = 0;
+static int exit_status = 0;
+
+/* The protocol object for communicating with the session */
+static GsmProtocol *protocol;
+
+static void
+ping_reply (IceConn ice_conn, IcePointer clientData)
+{
+  gtk_main_quit ();
+}
 
 static void
 save_complete (GnomeClient* client, gpointer data)
 {
+  /* Set this back if we aren't shutting down */
+  if (trashing && !zap)
+    gsm_protocol_set_trash_mode (protocol, TRUE);
+
   exit_status = (data != NULL);
-  gtk_main_quit ();
+
+  /* We can't exit immediately, because the trash mode above
+   * might be discarded. So we do the equivalent of an XSync.
+   */
+  IcePing (SmcGetIceConnection (protocol->smc_conn), ping_reply, NULL);
 }
 
 int
@@ -55,7 +80,6 @@ main (int argc, char *argv[])
   gnome_init_with_popt_table("save-session", VERSION, argc, argv, options, 0, NULL);
 
   client = gnome_master_client ();
-
   if (! GNOME_CLIENT_CONNECTED (client))
     {
       fprintf (stderr,
@@ -63,7 +87,32 @@ main (int argc, char *argv[])
       return 1;
     }
 
+  protocol = (GsmProtocol *)gsm_protocol_new (client);
+  if (!protocol)
+    {
+      g_warning ("Could not connect to gnome-session.");
+      exit (1);
+    }
+
+  /* We make this call immediately, as a convenient way
+   * of putting ourselves into command mode; if we
+   * don't do this, then the "event loop" that
+   * GsmProtocol creates will leak memory all over the
+   * place.
+   *
+   * We ignore the resulting "last_session" signal.
+   */
+  gsm_protocol_get_last_session (GSM_PROTOCOL (protocol));
+	
+  gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+  trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
+  gnome_config_pop_prefix ();
+
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
+
+  if (trashing)
+    gsm_protocol_set_trash_mode (protocol, FALSE);
+
   /* We could expose more of the arguments to the user if we wanted
      to.  Some of them aren't particularly useful.  Interestingly,
      there is no way to request a shutdown without a save.  */

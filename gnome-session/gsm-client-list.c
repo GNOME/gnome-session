@@ -57,7 +57,7 @@ enum {
   NSIGNALS
 };
 
-static gint gsm_client_list_signals[NSIGNALS];
+static guint gsm_client_list_signals[NSIGNALS];
 static GtkCListClass *parent_class = NULL;
 
 static void
@@ -99,15 +99,15 @@ gsm_client_list_class_init (GsmClientListClass *klass)
   object_class->destroy = gsm_client_list_destroy;
 }
 
-GtkTypeInfo gsm_client_list_info = 
+static GtkTypeInfo gsm_client_list_info = 
 {
   "GsmClientList",
   sizeof (GsmClientList),
   sizeof (GsmClientListClass),
   (GtkClassInitFunc) gsm_client_list_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -127,7 +127,11 @@ gsm_client_list_new (void)
   GsmClientList* client_list = gtk_type_new(gsm_client_list_get_type());
   GtkCList* clist = (GtkCList*) client_list;
   GdkFont*  font;
-  gchar*    titles[4] = { _("Order"), _("Style"), _("State"), _("Program") };
+  gchar*    titles[4] = { N_("Order"), N_("Style"), N_("State"), N_("Program") };
+  int i;
+
+  for(i = 0; i < sizeof(titles)/sizeof(titles[0]); i++)
+    titles[i] = gettext(titles[i]);
 
   client_list->client_editor = gsm_client_editor_new ();
   client_list->session   = NULL;

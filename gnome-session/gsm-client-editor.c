@@ -30,7 +30,7 @@ enum {
   NSIGNALS
 };
 
-static gint gsm_client_editor_signals[NSIGNALS];
+static guint gsm_client_editor_signals[NSIGNALS];
 static GtkHBoxClass *parent_class = NULL;
 
 static void gsm_client_editor_destroy  (GtkObject *o);
@@ -66,8 +66,7 @@ GtkTypeInfo gsm_client_editor_info =
   sizeof (GsmClientEditorClass),
   (GtkClassInitFunc) gsm_client_editor_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL, NULL,
   (GtkClassInitFunc) NULL
 };
 

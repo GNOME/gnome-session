@@ -83,6 +83,11 @@ void gsm_protocol_get_saved_sessions (GsmProtocol* protocol);
  * which it would load by default). Emits "last_session" */
 void gsm_protocol_get_last_session (GsmProtocol* protocol);
 
+/* Sets the trash mode for the session manager
+ */
+void gsm_protocol_set_trash_mode (GsmProtocol *protocol,
+				  gboolean     trash);
+
 /* GSM_SESSION object */
 
 #define GSM_IS_SESSION(obj)      GTK_CHECK_TYPE (obj, gsm_session_get_type ())

@@ -95,15 +95,15 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   object_class->destroy = gsm_client_row_destroy;
 }
 
-GtkTypeInfo gsm_client_row_info = 
+static GtkTypeInfo gsm_client_row_info = 
 {
   "GsmClientRow",
   sizeof (GsmClientRow),
   sizeof (GsmClientRowClass),
   (GtkClassInitFunc) gsm_client_row_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -155,7 +155,9 @@ gsm_client_row_add (GsmClientRow* client_row)
       GtkCList* clist = (GtkCList*)client_list;
       guint row;
       char temp[3];
-      char* text[] = { temp, NULL, NULL, NULL };  
+      char* text[] = { NULL, NULL, NULL, NULL };  
+
+      text[0] = temp;
 
       snprintf (temp, 3, "%.02d", client->order);
       text[3] = client->command;

@@ -198,10 +198,14 @@ set_client_restart_style (Client *client, char style)
 static void
 broadcast_restart_style (Client *client, char style)
 {
-  char value[2] = { style, '\0' };
-  SmPropValue val = { 1, &value };
-  SmProp hint = { SmRestartStyleHint, SmCARD8, 1, &val };
+  char value[2] = { '\0', '\0' };
+  SmPropValue val = { 1, NULL };
+  SmProp hint = { SmRestartStyleHint, SmCARD8, 1, NULL };
   SmProp *prop = &hint;
+
+  value[0] = style;
+  val.value = &value;
+  hint.vals = &val;
   
   client_property (client->handle, 1, &prop);    
 }

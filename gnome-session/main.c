@@ -86,6 +86,12 @@ main (int argc, char *argv[])
   char *ep;
   poptContext ctx;
   char **leftovers;
+  
+  /* We do this as a separate executable, and do it first so that we
+   * make sure we have a absolutely clean setup if the user blows
+   * their configs away with the Ctrl-Shift hotkey.
+   */
+  system ("gnome-login-check");
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);

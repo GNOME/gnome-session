@@ -41,7 +41,7 @@ typedef enum
 {
   COMMAND_ACTIVE = 0,
   COMMAND_HANDLE_WARNINGS,
-  COMMAND_INACTIVE,
+  COMMAND_INACTIVE
 } CommandState;
 
 /* Data maintained for clients that speak the _GSM_Command protocol: */
@@ -529,9 +529,12 @@ command (Client* client, int nprops, SmProp** props)
 	  if (purged)
 	    {
 	      char value[2] = { SmRestartAnyway, '\0' };
-	      SmPropValue val = { 1, &value };
-	      SmProp hint = { SmRestartStyleHint, SmCARD8, 1, &val };
+	      SmPropValue val = { 1, NULL };
+	      SmProp hint = { SmRestartStyleHint, SmCARD8, 1, NULL };
 	      SmProp *prop = &hint;
+
+	      val.value = &value;
+	      hint.vals = &val;
 
 	      if (purge_drop)
 		value[0] = SmRestartNever;
@@ -612,7 +615,15 @@ command (Client* client, int nprops, SmProp** props)
 	  client_property (client1->handle, nprops - 1, &props[1]);
 	}
     }
-
+  else if (arg && !strcmp (prop->vals[0].value, GsmTrashMode))
+    {
+      if (prop->num_vals != 2)
+ 	g_warning ("%s command needs exactly one argument",
+ 		   GsmTrashMode);
+      else
+ 	set_trash_mode (atoi(prop->vals[1].value) != 0);
+    }
+ 
   SmFreeProperty (prop);
   free (props);
   return;
