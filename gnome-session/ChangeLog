@@ -1,3 +1,8 @@
+1999-07-05  David Kaelbling <drk@sgi.com>
+
+	* manager.c: time_t is not always a long as it was assumed.  ON
+	64-mahcines it might be sometehing else.
+
 1999-05-22  Felix Bellaby  <felix@pooh.u-net.com> 
 
 	* ice.c (initialize_ice): incorporate Martin's change of 1999-05-20
