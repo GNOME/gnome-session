@@ -176,7 +176,8 @@ run_commands (const char *name, int number, const char *command)
   /* Run each delete command.  */
   for (i = 0; i < number; ++i)
     {
-      int argc, def, j;
+      int argc, j;
+      gboolean def;
       char **argv, prefix[1024];
 
       sprintf (prefix, "session/%s/%d,%s=", name, i, command);
@@ -221,7 +222,8 @@ run_default_session (void)
 int
 read_session (const char *name)
 {
-  int i, def, num_clients;
+  int i, num_clients;
+  gboolean def;
   char prefix[1024];
 
   if (! session_name)
@@ -261,7 +263,8 @@ read_session (const char *name)
 void
 delete_session (const char *name)
 {
-  int i, def, number;
+  int i, number;
+  gboolean def;
   char prefix[1024];
 
   if (! name)
