@@ -8,89 +8,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.21\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-06-07 00:23+0200\n"
+"POT-Creation-Date: 2002-07-04 17:42+0200\n"
+"PO-Revision-Date: 2002-07-04 17:45+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "Connexion GNOME"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Connexion"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Démarrer avec les programmes par défaut"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Remettre à zéro tous les paramètres utilisateurs"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Effacer réellement les propriétés GNOME de l'utilisateur %s ?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Le répertoire /tmp/orbit-%s n'appartient pas à\n"
-"l'utilisateur courant, %s.\n"
-"Veuillez corriger le nom du possesseur de ce répertoire."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Réessayer"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Continuer"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Impossible de chercher l'adresse Internet pour %s.\n"
-"Cela empêchera GNOME de fonctionner correctement.\n"
-"Il est possible de corriger le problème en ajoutant\n"
-"%s au fichier /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Votre version de libICE a une anomalie qui empêche gnome-session\n"
-"de fonctionner correctement.\n"
-"\n"
-"Si vous êtes sur Solaris, vous devriez soit mettre à jour vers le correctif\n"
-"Solaris #108376-16 ou utiliser libICE.so.6 depuis le Solaris 7 d'origine.\n"
-"Copier le fichier dans /usr/openwin/lib.  (Merci à Andy Reitz\n"
-"pour l'information sur cette anomalie).\n"
-"\n"
-"Votre session GNOME se terminera après la fermeture de cette boîte de "
-"dialogue."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -196,53 +120,125 @@ msgstr "Paramètres"
 msgid "Always started on every login."
 msgstr "Toujours démarré à chaque connexion."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Il y a eu une erreur lors du démarrage du démon des préférences GNOME.\n"
+"\n"
+"Certaines fonctionnalités, comme les thèmes, les sons ou les fonds d'écran "
+"peuvent ne pas fonctionner correctement."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Le dernier message d'erreur était :\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME essaiera de redémarrer le démon des préférences la prochaine fois "
+"que vous vous connecterez."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Il y a eu une erreur d'activation inconnue."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Le démon des préférences a redémarré trop de fois."
+
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Voulez-vous vraiment vous déconnecter ?"
+msgid "Are you sure you want to log out?"
+msgstr "Voulez-vous vraiment fermer cette session ?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Enregistrer la configuration actuelle"
+msgid "_Save current setup"
+msgstr "_Enregistrer la configuration actuelle"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "Action"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Clore la session"
+msgid "_Log Out"
+msgstr "_Clore la session"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Éteindre"
+msgid "Sh_ut Down"
+msgstr "É_teindre"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Redémarrer"
+msgid "_Restart the computer"
+msgstr "_Redémarrer l'ordinateur"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Spécifie le nom de session à charger"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr ""
 "Lit les sessions enregistrées seulement à partir du fichier default.session"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Temps en millisecondes passé à attendre pour l'enregistrement des clients "
 "(0=infini)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Temps en millisecondes passé à attendre la réponse des clients (0=infini)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Temps en millisecondes passé à attendre la fin des clients (0=infini)"
+msgstr ""
+"Temps en millisecondes passé à attendre la fin des clients (0=infini)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Impossible de chercher l'adresse Internet pour %s.\n"
+"Cela empêchera GNOME de fonctionner correctement.\n"
+"Il est possible de corriger le problème en ajoutant\n"
+"%s au fichier /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Se connecter quand même"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Réessayer"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -393,32 +389,15 @@ msgstr "Programmes au démarrage"
 msgid "Current Session"
 msgstr "Session en cours"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Supprimer le client sélectionné de la session."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "La liste des programmes de la session."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Session"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sélecteur de session"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Démarrer la session"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Annuler la connexion"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Initialiser les paramètres de session"
 
@@ -497,8 +476,8 @@ msgid ""
 "The default value should be OK"
 msgstr ""
 "Les programmes avec les valeurs les plus petites sont démarrés avant ceux "
-"avec les valeurs les plus élévées.  Les valeurs par défaut devraient être "
-"correctes."
+"avec les valeurs les plus élévées.  Les valeurs par défaut devraient "
+"être correctes."
 
 #: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
@@ -512,8 +491,77 @@ msgstr "Ajouter un programme de démarrage"
 msgid "Edit Startup Program"
 msgstr "Éditer le programme de démarrage"
 
-#~ msgid "_Log Out"
-#~ msgstr "_Clore la session"
+#~ msgid "GNOME Login"
+#~ msgstr "Connexion GNOME"
+
+#~ msgid "Login"
+#~ msgstr "Connexion"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Démarrer avec les programmes par défaut"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Remettre à zéro tous les paramètres utilisateurs"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Effacer réellement les propriétés GNOME de l'utilisateur %s ?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Le répertoire /tmp/orbit-%s n'appartient pas à\n"
+#~ "l'utilisateur courant, %s.\n"
+#~ "Veuillez corriger le nom du possesseur de ce répertoire."
+
+#~ msgid "Continue"
+#~ msgstr "Continuer"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Votre version de libICE a une anomalie qui empêche gnome-session\n"
+#~ "de fonctionner correctement.\n"
+#~ "\n"
+#~ "Si vous êtes sur Solaris, vous devriez soit mettre à jour vers le "
+#~ "correctif\n"
+#~ "Solaris #108376-16 ou utiliser libICE.so.6 depuis le Solaris 7 "
+#~ "d'origine.\n"
+#~ "Copier le fichier dans /usr/openwin/lib.  (Merci à Andy Reitz\n"
+#~ "pour l'information sur cette anomalie).\n"
+#~ "\n"
+#~ "Votre session GNOME se terminera après la fermeture de cette boîte de "
+#~ "dialogue."
+
+#~ msgid "Really log out?"
+#~ msgstr "Voulez-vous vraiment vous déconnecter ?"
+
+#~ msgid "Logout"
+#~ msgstr "Clore la session"
+
+#~ msgid "Reboot"
+#~ msgstr "Redémarrer"
+
+#~ msgid "Session"
+#~ msgstr "Session"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Sélecteur de session"
+
+#~ msgid "Start Session"
+#~ msgstr "Démarrer la session"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Annuler la connexion"
 
 #~ msgid "Browse Currently Running Programs..."
 #~ msgstr "Parcourir les programmes en cours de fonctionnement..."
