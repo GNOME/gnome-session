@@ -17,7 +17,7 @@ main (int argc, char *argv[])
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
 
   gtk_init (&argc, &argv);
-  gnome_init (&argc, &argv);
+  gnome_init ("gsm-testbed", &argc, &argv);
 
   /* FIXME: real argument handling.  */
   if (argc >= 2)
