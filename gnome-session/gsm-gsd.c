@@ -75,7 +75,7 @@ gsd_error_dialog (GnomeSettingsData *gsd, const char *error)
 }
 
 static void
-broken_cb (LINCConnection *cnx, GnomeSettingsData *gsd)
+broken_cb (ORBitConnection *cnx, GnomeSettingsData *gsd)
 {
   g_return_if_fail (gsd != NULL);
   g_return_if_fail (gsd->gsd_object != CORBA_OBJECT_NIL);
