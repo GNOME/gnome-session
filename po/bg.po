@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-01-21 18:24+1300\n"
-"PO-Revision-Date: 2002-12-18 19:44+0200\n"
+"POT-Creation-Date: 2003-01-24 14:43+0200\n"
+"PO-Revision-Date: 2003-01-24 12:54+0200\n"
 "Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Поради причини свързани със сигурността, на платформи, които притежават "
 "функцията _IceTcpTransNoListen() (XFree86 системите), gnome-session не слуша "
 "за връзки на TCP портовете. Тази настройка позволява връзки от (оторизирани) "
-"отдалечени машини. gnome-session трябва да се рестарира, за да има ефект."
+"отдалечени машини. gnome-session трябва да се рестартира, за да има ефект."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -284,7 +284,7 @@ msgid ""
 msgstr ""
 "Не мога да открия интернет адреса на %s.\n"
 "Това ще попречи на ГНОМ да работи нормално.\n"
-"Проблемъ може и да се оправи чрез добавяне на\n"
+"Проблемът може и да се оправи чрез добавяне на\n"
 "%s във файла /etc/hosts."
 
 #: gnome-session/main.c:219
@@ -389,6 +389,10 @@ msgstr "_Питане при излизане"
 msgid "Automatically save chan_ges to session"
 msgstr "Автоматично запазва п_ромените в сесията"
 
+#: gnome-session/session-properties-capplet.c:262
+msgid "_Sessions:"
+msgstr "_Сесии:"
+
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
 msgstr "Име на сесия"
@@ -400,6 +404,10 @@ msgstr "Настройки на сесия"
 #: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Текуща сесия"
+
+#: gnome-session/session-properties-capplet.c:344
+msgid "Additional startup _programs:"
+msgstr "Допълнителни начални _програми:"
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
@@ -435,11 +443,11 @@ msgstr "Конфигурация на сесиите"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
-msgstr "Мениджър на прозорци Sawfish"
+msgstr "Мениджър на прозорци Софиш"
 
 #: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
-msgstr "Мениджър на прозорци Metacity"
+msgstr "Мениджър на прозорци Метасити"
 
 #: gnome-session/splash-widget.c:44
 msgid "Window Manager"
@@ -455,7 +463,7 @@ msgstr "Прокси за мениджър на сесии"
 
 #: gnome-session/splash-widget.c:47
 msgid "Nautilus"
-msgstr "Nautilus"
+msgstr "Наутилус"
 
 #: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
