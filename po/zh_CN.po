@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-11-04 10:10+1300\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -14,11 +14,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -26,44 +26,44 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 
 # gsm/logout.c:248
-#: gnome-session/gnome-session.schemas.in.h:5
+#: gnome-session/gnome-session.schemas.in.in.h:5
 #, fuzzy
 msgid "Logout prompt"
 msgstr "注销"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
 
 # gsm/session-properties.c:264
-#: gnome-session/gnome-session.schemas.in.h:7
+#: gnome-session/gnome-session.schemas.in.in.h:7
 #, fuzzy
 msgid "Save sessions"
 msgstr "会话"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: gnome-session/gnome-session.schemas.in.in.h:8
 #, fuzzy
 msgid "Show the splash screen"
 msgstr "登录时显示图片展示"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
 msgstr ""
 
@@ -460,57 +460,39 @@ msgstr "初始化会话设置"
 msgid "Configure your sessions"
 msgstr ""
 
-# gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/splash-widget.c:42
-msgid "Audio Settings"
-msgstr "声音设置"
-
-#: gnome-session/splash-widget.c:43
-msgid "Screensaver"
-msgstr "屏幕保护程序"
-
-#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:43
 #, fuzzy
 msgid "Metacity Window Manager"
 msgstr "窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "窗口管理器"
 
-# gnome-terminal/gnome-terminal.c:1193
-#: gnome-session/splash-widget.c:47
-msgid "Background Settings"
-msgstr "背景设置"
-
-# gnome-terminal/gnome-terminal.c:1590
-#: gnome-session/splash-widget.c:48
-msgid "Mouse Settings"
-msgstr "鼠标设置"
-
-# gnome-terminal/gnome-terminal.c:1590
-#: gnome-session/splash-widget.c:49
-msgid "Keyboard Settings"
-msgstr "键盘设置"
-
 # panel/menu.c:543
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "会话管理器代理"
 
-#: gnome-session/splash-widget.c:52
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
+
+# gnome-terminal/gnome-terminal.c:1590
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "键盘设置"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: gnome-session/startup-programs.c:287
@@ -535,6 +517,21 @@ msgstr "添加启动程序"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
+
+# gnome-terminal/gnome-terminal.c:1590
+#~ msgid "Audio Settings"
+#~ msgstr "声音设置"
+
+#~ msgid "Screensaver"
+#~ msgstr "屏幕保护程序"
+
+# gnome-terminal/gnome-terminal.c:1193
+#~ msgid "Background Settings"
+#~ msgstr "背景设置"
+
+# gnome-terminal/gnome-terminal.c:1590
+#~ msgid "Mouse Settings"
+#~ msgstr "鼠标设置"
 
 #~ msgid "Priority"
 #~ msgstr "优先级"

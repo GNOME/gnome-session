@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.11\n"
-"POT-Creation-Date: 2002-11-19 15:33+0100\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-11-19 16:15+01:00\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
@@ -22,17 +22,24 @@ msgid ""
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr "Per motivi di sicurezza, su piattaforma che utilizzano _IceTcpTransNoListen() (sistemi XFree96), gnome-session non ascolta per connessioni su porte TCP. Questa opzione permette connessioni da macchine remote (autorizzate. gnome-session dovrà essere riavviato per attivare questa caratteristica."
+msgstr ""
+"Per motivi di sicurezza, su piattaforma che utilizzano _IceTcpTransNoListen"
+"() (sistemi XFree96), gnome-session non ascolta per connessioni su porte "
+"TCP. Questa opzione permette connessioni da macchine remote (autorizzate. "
+"gnome-session dovrà essere riavviato per attivare questa caratteristica."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Se abilitato, gnome-session chiederà conferma prima di terminare la sessione."
+msgstr ""
+"Se abilitato, gnome-session chiederà conferma prima di terminare la sessione."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr "Se abilitato, gnome-session salverà la sessione automaticamente. Altrimenti, la finestra di dialogo di uscita mostrerà una opzione per salvarla."
+msgstr ""
+"Se abilitato, gnome-session salverà la sessione automaticamente. Altrimenti, "
+"la finestra di dialogo di uscita mostrerà una opzione per salvarla."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -42,7 +49,9 @@ msgstr "Conferma uscita"
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr "Image preferita da utilizzare come schermata di avvio al momento di ingresso in GNOME"
+msgstr ""
+"Image preferita da utilizzare come schermata di avvio al momento di ingresso "
+"in GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
@@ -182,7 +191,8 @@ msgid ""
 msgstr ""
 "Si è verificato un errore durante l'avvio del Settings Daemon di GNOME.\n"
 "\n"
-"Alcuni aspetti, come temi, suoni o impostazioni dello sfondo potranno non funzionare correttamente."
+"Alcuni aspetti, come temi, suoni o impostazioni dello sfondo potranno non "
+"funzionare correttamente."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -190,14 +200,21 @@ msgid ""
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr "\n\nL'ultimo messaggio di errore é stato:\n\n"
+msgstr ""
+"\n"
+"\n"
+"L'ultimo messaggio di errore é stato:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr "\n\nGNOME tenterà di riavviare il Settings Daemon al prossimo login."
+msgstr ""
+"\n"
+"\n"
+"GNOME tenterà di riavviare il Settings Daemon al prossimo login."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -413,48 +430,33 @@ msgid "Configure your sessions"
 msgstr "Configura le sessioni"
 
 #: gnome-session/splash-widget.c:42
-msgid "Audio Settings"
-msgstr "Impostazioni audio"
-
-#: gnome-session/splash-widget.c:43
-msgid "Screensaver"
-msgstr "Salvaschermo"
-
-#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Gestore di finestre Sawfish"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Gestore di finestre Metacity"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Gestore di finestre"
 
-#: gnome-session/splash-widget.c:47
-msgid "Background Settings"
-msgstr "Impostazioni sfondo"
-
-#: gnome-session/splash-widget.c:48
-msgid "Mouse Settings"
-msgstr "Impostazioni mouse"
-
-#: gnome-session/splash-widget.c:49
-msgid "Keyboard Settings"
-msgstr "Impostazioni tastiera"
-
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Il Pannello"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Proxy per il gestore di sessione"
 
-#: gnome-session/splash-widget.c:52
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
+
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "Impostazioni tastiera"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
@@ -476,3 +478,14 @@ msgstr "Aggiungi Programma all'avvio"
 msgid "Edit Startup Program"
 msgstr "Modifica programmi di avvio"
 
+#~ msgid "Audio Settings"
+#~ msgstr "Impostazioni audio"
+
+#~ msgid "Screensaver"
+#~ msgstr "Salvaschermo"
+
+#~ msgid "Background Settings"
+#~ msgstr "Impostazioni sfondo"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "Impostazioni mouse"

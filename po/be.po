@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-11-04 09:29+0100\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-11-05 11:33+0200\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -13,7 +13,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+#, fuzzy
+msgid "Save sessions"
+msgstr "Сэансы"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "Паказываць застаўку пад час уваходу"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Парадак:"
 
@@ -30,6 +80,7 @@ msgid "_Style:"
 msgstr "_Стыль:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Парадак"
 
@@ -156,8 +207,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME паспрабуе перазапусьціць дэмана наладак пад час наступнага "
-"ўваходу."
+"GNOME паспрабуе перазапусьціць дэмана наладак пад час наступнага ўваходу."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -167,27 +217,27 @@ msgstr "Гэта невядомая памылка актывацыі."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Дэман усталёвак перазапушчаны зашмат разоў."
 
-#: gnome-session/logout.c:232
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "Вы ўпэўненыя што жадаеце выйсьці?"
 
-#: gnome-session/logout.c:260
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "Захаваць бягучыя ўсталёўкі"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Дзеяньне"
 
-#: gnome-session/logout.c:288
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "Выйсьці"
 
-#: gnome-session/logout.c:291
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "Выключыць"
 
-#: gnome-session/logout.c:294
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "Перазапусьціць кампутар"
 
@@ -338,10 +388,6 @@ msgstr "Опцыі сэансу"
 msgid "Current Session"
 msgstr "Бягучы сэанс"
 
-#: gnome-session/session-properties-capplet.c:362
-msgid "Priority"
-msgstr "Прыярытэт"
-
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Каманда"
@@ -374,73 +420,72 @@ msgstr "Ініцыялізацыя ўсталёвак сэансу"
 msgid "Configure your sessions"
 msgstr "Наладка вашага сэансу"
 
-#: gnome-session/splash-widget.c:41
-msgid "Audio Settings"
-msgstr "Наладка аўдыё"
-
 #: gnome-session/splash-widget.c:42
-msgid "Screensaver"
-msgstr "Ахоўнік экрану"
-
-#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Мэнаджар вокнаў - Sawfish"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Мэнаджар вокнаў - Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Мэнаджар вокнаў"
 
-#: gnome-session/splash-widget.c:46
-msgid "Background Settings"
-msgstr "Наладка тла"
-
-#: gnome-session/splash-widget.c:47
-msgid "Mouse Settings"
-msgstr "Усталёўкі мышы"
-
-#: gnome-session/splash-widget.c:48
-msgid "Keyboard Settings"
-msgstr "Усталёўкі клявіятуры"
-
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Панэль"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Проксі мэнаджару сэансу"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "Усталёўкі клявіятуры"
+
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "Каманда аўтазапуску:"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Каманда аўтазапуску"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "Прыярытэт:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Каманда аўтазапуску ня можа быць пустой"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Даданьне праграмы аўтазапуску"
 
-#: gnome-session/startup-programs.c:396
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Рэдагаваньне праграмы аўтазапуску"
+
+#~ msgid "Priority"
+#~ msgstr "Прыярытэт"
+
+#~ msgid "Audio Settings"
+#~ msgstr "Наладка аўдыё"
+
+#~ msgid "Screensaver"
+#~ msgstr "Ахоўнік экрану"
+
+#~ msgid "Background Settings"
+#~ msgstr "Наладка тла"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "Усталёўкі мышы"
+
+#~ msgid "_Priority:"
+#~ msgstr "Прыярытэт:"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "Запуск GNOME: %s"
@@ -453,4 +498,3 @@ msgstr "Рэдагаваньне праграмы аўтазапуску"
 
 #~ msgid "Starting GNOME"
 #~ msgstr "Запуск GNOME"
-

@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-11-04 10:10+1300\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-06-22 22:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -21,11 +21,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -33,42 +33,42 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#: gnome-session/gnome-session.schemas.in.in.h:5
 #, fuzzy
 msgid "Logout prompt"
 msgstr "登出"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: gnome-session/gnome-session.schemas.in.in.h:7
 #, fuzzy
 msgid "Save sessions"
 msgstr "作業階段"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: gnome-session/gnome-session.schemas.in.in.h:8
 #, fuzzy
 msgid "Show the splash screen"
 msgstr "登入時顯示啟動畫面"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
 msgstr ""
 
@@ -441,48 +441,33 @@ msgid "Configure your sessions"
 msgstr ""
 
 #: gnome-session/splash-widget.c:42
-msgid "Audio Settings"
-msgstr "音效設定"
-
-#: gnome-session/splash-widget.c:43
-msgid "Screensaver"
-msgstr "螢幕保護程式"
-
-#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 視窗管理程式"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Metacity 視窗管理程式"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "視窗管理程式"
 
-#: gnome-session/splash-widget.c:47
-msgid "Background Settings"
-msgstr "背景圖案設定"
-
-#: gnome-session/splash-widget.c:48
-msgid "Mouse Settings"
-msgstr "滑鼠設定"
-
-#: gnome-session/splash-widget.c:49
-msgid "Keyboard Settings"
-msgstr "鍵盤設定"
-
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "作業階段管理程式代理"
 
-#: gnome-session/splash-widget.c:52
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
+
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "重設所有設定"
 
 #: gnome-session/startup-programs.c:287
 #, fuzzy
@@ -504,6 +489,21 @@ msgstr "新增初始啟動程式"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
+
+#~ msgid "Audio Settings"
+#~ msgstr "音效設定"
+
+#~ msgid "Screensaver"
+#~ msgstr "螢幕保護程式"
+
+#~ msgid "Background Settings"
+#~ msgstr "背景圖案設定"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "滑鼠設定"
+
+#~ msgid "Keyboard Settings"
+#~ msgstr "鍵盤設定"
 
 #~ msgid "Priority"
 #~ msgstr "優先值"
@@ -541,9 +541,6 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "No"
 #~ msgstr "否"
-
-#~ msgid "Reset all Settings"
-#~ msgstr "重設所有設定"
 
 #~ msgid ""
 #~ "The directory /tmp/orbit-%s is not owned\n"

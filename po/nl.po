@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-11-26 05:55+0100\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-11-26 14:30+0100\n"
 "Last-Translator: Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -26,10 +26,10 @@ msgstr "TCP-verbindingen toestaan"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 "
-"systems), gnome-session does not listen for connections on TCP ports. This "
-"option will allow connections from (authorized) remote hosts. gnome-session "
-"must be restarted for this to take effect."
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
 msgstr ""
 "Om veiligheidredenen luistert gnome-sessie niet naar verbindingen op TCP "
 "poorten op systemen die '_IceTcpTransNoListen() (XFree86 systemen)' hebben. "
@@ -37,19 +37,18 @@ msgstr ""
 "computers. Gnome-sessie moet herstart worden om dit te activeren."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
-msgid ""
-"If enabled, gnome-session will prompt the user before ending a session."
+msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Wanneer dit aanstaat zal gnome-sessie om bevestiging vragen alvorens een "
 "sessie te beeindigen."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, the "
-"logout dialog will have an option to save the session."
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
 msgstr ""
-"Wanneer dit aanstaat zal gnome-sessie een sessie automatisch opslaan. Als dit "
-"uitstaat zal de gebruiker de mogelijkheid tot opslaan hebben in het "
+"Wanneer dit aanstaat zal gnome-sessie een sessie automatisch opslaan. Als "
+"dit uitstaat zal de gebruiker de mogelijkheid tot opslaan hebben in het "
 "afmeld-venster."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
@@ -225,8 +224,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon proberen "
-"te starten."
+"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon "
+"proberen te starten."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -440,48 +439,33 @@ msgid "Configure your sessions"
 msgstr "Configureer je sessies"
 
 #: gnome-session/splash-widget.c:42
-msgid "Audio Settings"
-msgstr "Audio-instellingen"
-
-#: gnome-session/splash-widget.c:43
-msgid "Screensaver"
-msgstr "Schermbeveiling"
-
-#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish Windowmanager"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Metacity Windowmanager"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Windowmanager"
 
-#: gnome-session/splash-widget.c:47
-msgid "Background Settings"
-msgstr "Achtergrond-instellingen"
-
-#: gnome-session/splash-widget.c:48
-msgid "Mouse Settings"
-msgstr "Muis-instellingen"
-
-#: gnome-session/splash-widget.c:49
-msgid "Keyboard Settings"
-msgstr "Toetsenbord-instellingen"
-
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Het Paneel"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Sessiebeheer Proxy"
 
-#: gnome-session/splash-widget.c:52
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
+
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "Herstel alle gebruikersinstellingen"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
@@ -502,6 +486,21 @@ msgstr "Te starten programma toevoegen"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
+
+#~ msgid "Audio Settings"
+#~ msgstr "Audio-instellingen"
+
+#~ msgid "Screensaver"
+#~ msgstr "Schermbeveiling"
+
+#~ msgid "Background Settings"
+#~ msgstr "Achtergrond-instellingen"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "Muis-instellingen"
+
+#~ msgid "Keyboard Settings"
+#~ msgstr "Toetsenbord-instellingen"
 
 #~ msgid "Priority"
 #~ msgstr "Prioriteit"
@@ -538,9 +537,6 @@ msgstr "Te starten programma bewerken"
 
 #~ msgid "No"
 #~ msgstr "Nee"
-
-#~ msgid "Reset all Settings"
-#~ msgstr "Herstel alle gebruikersinstellingen"
 
 #~ msgid ""
 #~ "The directory /tmp/orbit-%s is not owned\n"

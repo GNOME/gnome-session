@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.17\n"
-"POT-Creation-Date: 2002-11-22 05:06+0100\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-11-22 23:25+0200\n"
 "Last-Translator: Sinan İmamoğlu <sinan@myrealbox.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -16,7 +16,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+#, fuzzy
+msgid "Save sessions"
+msgstr "Oturumlar"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "_Girişte açılış ekranı göster"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Sıra: "
 
@@ -33,6 +83,7 @@ msgid "_Style:"
 msgstr "_Biçem:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "Sıra"
 
@@ -132,11 +183,13 @@ msgstr "Her girişte başlat."
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
 "GNOME Ayarları Sunucusunu başlatırken hata oluştu.\n"
 "\n"
-"Bazı şeyler, örneğin temalar, sesler ya da artalan ayarları, doğru çalışmayabilir."
+"Bazı şeyler, örneğin temalar, sesler ya da artalan ayarları, doğru "
+"çalışmayabilir."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -158,7 +211,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Yine de GNOME bir dahaki girişinizde Ayarlar Sunucusunu yeniden başlatmayı deneyecek."
+"Yine de GNOME bir dahaki girişinizde Ayarlar Sunucusunu yeniden başlatmayı "
+"deneyecek."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -168,27 +222,27 @@ msgstr "Bilinmeyen bir etkinleştirme hatası oldu."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Ayarlar Sunucusu çok fazla kez yeniden başlatıldı."
 
-#: gnome-session/logout.c:232
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "Çıkmakta kararlı mısınız?"
 
-#: gnome-session/logout.c:260
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "_Geçerli ayarları kaydet"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "Eylem"
 
-#: gnome-session/logout.c:288
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "Çı_k"
 
-#: gnome-session/logout.c:291
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "Kapa_t"
 
-#: gnome-session/logout.c:294
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "Bilgisayarı _yeniden başlat"
 
@@ -202,15 +256,18 @@ msgstr "default.session dosyasından yalnızca kaydedilmiş oturumları oku"
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "İstemcilerin kaydolması için milisaniye cinsinden bekleme zamanı (0=sınırsız)"
+msgstr ""
+"İstemcilerin kaydolması için milisaniye cinsinden bekleme zamanı (0=sınırsız)"
 
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "İstemcilerin yanıtı için milisaniye cinsinden bekleme zamanı (0=sonsuz)"
+msgstr ""
+"İstemcilerin yanıtı için milisaniye cinsinden bekleme zamanı (0=sonsuz)"
 
 #: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "İstemcilerin çıkması için milisaniye cinsinden bekleme zamanı (0=sonsuz)"
+msgstr ""
+"İstemcilerin çıkması için milisaniye cinsinden bekleme zamanı (0=sonsuz)"
 
 #: gnome-session/main.c:212
 #, c-format
@@ -303,7 +360,8 @@ msgid "_Edit"
 msgstr "_Düzenle..."
 
 #: gnome-session/session-properties-capplet.c:172
-msgid "Some changes are not saved.\n"
+msgid ""
+"Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 "Bazı değişiklikler kaydedilmemiş.\n"
@@ -339,10 +397,6 @@ msgstr "Oturum Seçenekleri"
 msgid "Current Session"
 msgstr "Geçerli Oturum"
 
-#: gnome-session/session-properties-capplet.c:362
-msgid "Priority"
-msgstr "Öncelik"
-
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "Komut"
@@ -375,71 +429,69 @@ msgstr "Oturum ayarlarını ilklendir"
 msgid "Configure your sessions"
 msgstr "Oturumlarınızı Ayarlayın"
 
-#: gnome-session/splash-widget.c:41
-msgid "Audio Settings"
-msgstr "Ses Ayarları"
-
 #: gnome-session/splash-widget.c:42
-msgid "Screensaver"
-msgstr "Ekran Koruyucu"
-
-#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish Pencere Yöneticisi"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Metacity Pencere Yöneticisi"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Pencere Yöneticisi"
 
-#: gnome-session/splash-widget.c:46
-msgid "Background Settings"
-msgstr "Artalan Ayarları"
-
-#: gnome-session/splash-widget.c:47
-msgid "Mouse Settings"
-msgstr "Fare Ayarları"
-
-#: gnome-session/splash-widget.c:48
-msgid "Keyboard Settings"
-msgstr "Klavye Ayarları"
-
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Gnome Paneli"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Oturum Yöneticisi Vekili"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "Klavye Ayarları"
+
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "_Başlangıç Komutları"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "Başlangıç Komutu"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "Ö_ncelik:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "Başlangıç komutu boş olmamalı"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "Başlangıç Uygulaması Ekle"
 
-#: gnome-session/startup-programs.c:396
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Başlangıç Uygulaması Düzenle"
 
+#~ msgid "Priority"
+#~ msgstr "Öncelik"
+
+#~ msgid "Audio Settings"
+#~ msgstr "Ses Ayarları"
+
+#~ msgid "Screensaver"
+#~ msgstr "Ekran Koruyucu"
+
+#~ msgid "Background Settings"
+#~ msgstr "Artalan Ayarları"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "Fare Ayarları"
+
+#~ msgid "_Priority:"
+#~ msgstr "Ö_ncelik:"

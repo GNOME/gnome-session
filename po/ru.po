@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-11-04 10:10+1300\n"
+"POT-Creation-Date: 2002-11-28 17:29+1300\n"
 "PO-Revision-Date: 2002-07-14 12:44+0400\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
@@ -13,11 +13,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -25,45 +25,45 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 
 # gnome-session/logout.c:274
-#: gnome-session/gnome-session.schemas.in.h:5
+#: gnome-session/gnome-session.schemas.in.in.h:5
 #, fuzzy
 msgid "Logout prompt"
 msgstr "Завершить работу"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
 
 # gnome-session/session-properties.c:272
-#: gnome-session/gnome-session.schemas.in.h:7
+#: gnome-session/gnome-session.schemas.in.in.h:7
 #, fuzzy
 msgid "Save sessions"
 msgstr "Сеансы"
 
 # gnome-session/session-properties-capplet.c:227
-#: gnome-session/gnome-session.schemas.in.h:8
+#: gnome-session/gnome-session.schemas.in.in.h:8
 #, fuzzy
 msgid "Show the splash screen"
 msgstr "Показывать заставку при ре_гистрации"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
 msgstr ""
 
@@ -492,60 +492,41 @@ msgstr "Инициализировать установки сеанса"
 msgid "Configure your sessions"
 msgstr "Настроить ваш сеанс"
 
-# gnome-session/splash.c:59
-#: gnome-session/splash-widget.c:42
-msgid "Audio Settings"
-msgstr "Установки звука"
-
-# gnome-session/splash.c:60 gnome-session/splash.c:61
-#: gnome-session/splash-widget.c:43
-msgid "Screensaver"
-msgstr "Хранитель экрана"
-
 # gnome-session/splash.c:62 gnome-session/splash.c:63
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
 msgstr "Диспетчер окон Sawfish"
 
 # gnome-session/splash.c:71
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "Диспетчер окон Metacity"
 
 # gnome-session/splash.c:71
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "Диспетчер окон"
 
-# gnome-session/splash.c:65
-#: gnome-session/splash-widget.c:47
-msgid "Background Settings"
-msgstr "Установки фона"
-
-# gnome-session/splash.c:67
-#: gnome-session/splash-widget.c:48
-msgid "Mouse Settings"
-msgstr "Установки мыши"
-
-# gnome-session/splash.c:68
-#: gnome-session/splash-widget.c:49
-msgid "Keyboard Settings"
-msgstr "Установки клавиатуры"
-
 # gnome-session/splash.c:69
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "Панель"
 
 # gnome-session/splash.c:70
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Прокси диспетчера сеансов"
 
 # gnome-session/splash.c:73
-#: gnome-session/splash-widget.c:52
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
+
+# gnome-session/gnome-login-check.c:161
+#: gnome-session/splash-widget.c:48
+#, fuzzy
+msgid "Desktop Settings"
+msgstr "Сбросить все установки"
 
 # gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #: gnome-session/startup-programs.c:287
@@ -571,6 +552,26 @@ msgstr "Добавить программу, запускаемую при ст�
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Изменить программу, запускаемую при старте"
+
+# gnome-session/splash.c:59
+#~ msgid "Audio Settings"
+#~ msgstr "Установки звука"
+
+# gnome-session/splash.c:60 gnome-session/splash.c:61
+#~ msgid "Screensaver"
+#~ msgstr "Хранитель экрана"
+
+# gnome-session/splash.c:65
+#~ msgid "Background Settings"
+#~ msgstr "Установки фона"
+
+# gnome-session/splash.c:67
+#~ msgid "Mouse Settings"
+#~ msgstr "Установки мыши"
+
+# gnome-session/splash.c:68
+#~ msgid "Keyboard Settings"
+#~ msgstr "Установки клавиатуры"
 
 # gnome-session/session-properties-capplet.c:360
 # gnome-session/startup-programs.c:298
@@ -665,10 +666,6 @@ msgstr "Изменить программу, запускаемую при ст�
 
 #~ msgid "No"
 #~ msgstr "Нет"
-
-# gnome-session/gnome-login-check.c:161
-#~ msgid "Reset all Settings"
-#~ msgstr "Сбросить все установки"
 
 # gnome-session/gnome-login-check.c:204
 #~ msgid ""
