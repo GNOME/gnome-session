@@ -1,0 +1,415 @@
+<!DOCTYPE Article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.0//EN"[
+]>
+<article id="index">
+  <artheader>
+    <title>Session Properties</title>
+    <copyright>
+      <year>2000</year>
+      <holder>Eric Baudais</holder>
+    </copyright>
+    
+    <!-- translators: uncomment this:
+    
+  <copyright>
+  <year>2000</year>
+  <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
+  </copyright>
+
+    -->
+
+    <!-- do not put authorname in the header except in copyright - use
+    section "authors" below -->
+    
+    <legalnotice>
+      <para>
+	Permission is granted to copy, distribute and/or modify this
+	document under the terms of the <citetitle>GNU Free Documentation
+	License</citetitle>, Version 1.1 or any later version published
+	by the Free Software Foundation with no Invariant Sections, no
+	Front-Cover Texts, and no Back-Cover Texts. You may obtain a copy
+	of the <citetitle>GNU Free Documentation License</citetitle> from
+	the Free Software Foundation by visiting <ulink type="http"
+	url="http://www.fsf.org">their Web site</ulink> or by writing to
+	The Free Software Foundation, Inc., 
+	59 Temple Place - Suite 330, 
+	Boston, MA 02111-1307,
+	USA
+      </para>
+
+      <para>
+	X Window System is a trademark of X Consortium, Inc.
+      </para>
+      <para>
+	All other trademarks are property of their respective owners.
+      </para>
+    </legalnotice>
+
+    <!-- this is version of manual, not application --> <releaseinfo>
+      This is version 1.0 of MY-GNOME-APP manual.
+    </releaseinfo>
+<!-- FIXME:  Need to add a longer introduction. -->
+  </artheader>
+  <sect1 id="session-properties">
+    <title>Session Properties</title>
+    <para>
+      <systemitem>Session Properties</systemitem> monitors the 
+      state of current GNOME running applications and capplets, as seen in
+      <link linkend="session-properties-screenshot">Figure 1</link>.  <systemitem>
+      Session Properties</systemitem> displays a list of all the 
+      applications and capplets currently running, what will happen to 
+      the program if you logout, and the state of the application.  It allows 
+      you to change the style and priority of each program.  You 
+      can shut down applications, if you wish, and those applications 
+      will be removed from your GNOME session.  You can also use 
+      <systemitem>Session Properties</systemitem> to kill a GNOME 
+      application and remove it from <systemitem>session management
+      </systemitem> so it will not be restarted when you log in next 
+      time.  Of course, there are other ways to kill an 
+      application, such as using an explicit kill command, but they 
+      would not prevent an application from being restarted if it has 
+      the <link linkend="session-properties-respawn"><guilabel>Respawn 
+      Style</guilabel></link>.  The only way to permanently remove such 
+      an application is with the <link linkend="session-properties-remove">
+      <guibutton>Remove</guibutton></link> button.
+    </para>
+
+    <note>
+      <title>Note:</title>
+      <para>
+	Applications that are not 100% GNOME compliant are not managed
+	by the <systemitem>session manager</systemitem>.  To check if 
+	an application is GNOME compliant start <systemitem>Session 
+	Properties</systemitem>.  If the application is shown in the 
+	list it is compliant with GNOME and is managed by the 
+	<systemitem>session manager</systemitem>.  In order 
+	to restart non-GNOME complaint applications when you log in 
+	<link linkend="startup-programs-non-session-managed">see 
+	Non-session-managed Startup Programs</link>.
+      </para>
+    </note>
+
+    <!-- FIXME: Need to add a section over basic usage. -->
+
+    <!-- FIXME: Need to add an introduction to customization of the SM. -->
+    <figure id="session-properties-screenshot">
+      <title>Session Properties Dialog</title>
+      <screenshot>
+	<screeninfo>Screenshot of the session properties manager.</screeninfo>
+	<Graphic Format="png" Fileref="session-properties.png" srccredit="Eric Baudais">
+	</graphic>
+      </screenshot>
+    </figure>
+
+    <sect2 id="session-properties-save">
+      <title>Saving the GNOME Session</title>
+      <para>
+	To save your GNOME session select <menuchoice><guimenu>Main Menu</guimenu>
+	<guisubmenu>Programs</guisubmenu><guisubmenu>Settings</guisubmenu>
+	<guisubmenu>Session</guisubmenu><guimenuitem>Save Current Session
+	</guimenuitem></menuchoice>.  This causes all the applications to save 
+	their current state: the application's current settings 
+	and work (open files and unsaved data).
+      </para>
+
+      <note>
+	<title>Note:</title>
+	<para>
+	  Applications that are not compliant with GNOME will not save the current settings 
+	  or work associated with the application.  It is recommended that you save your work 
+	  periodically in case of a calamity.
+	</para>
+      </note>
+    </sect2>
+
+    <sect2 id="session-properties-order">
+      <title>Priority Order</title>
+      <para>
+	The <guilabel>priority order</guilabel> sets the order the applications 
+	will start in the GNOME <link linkend="session-properties-screenshot">
+	<systemitem>Session Manager</systemitem></link>.  This lets applications be started 
+	after other applications or capplets they are dependent upon.  
+	If an application needs to start before the <systemitem>window manager
+	</systemitem>, like a server, you can change the <guilabel>order</guilabel>
+	number to be lower than the <systemitem>window manager's</systemitem>
+	<guilabel>order</guilabel> number.  Usually most applications will have 
+	an order number of 50.  If the application or capplet is a part of the 
+	<systemitem>window manager</systemitem> or critical system then it 
+	should be assigned a lower <guilabel>order</guilabel> number.
+      </para>
+
+      <important>
+	<title>Important:</title>
+	<para>
+	  The <guilabel>priority order</guilabel> is for advanced user only.  Unless you are familiar 
+	  with the <guilabel>priority order</guilabel> you should not change it.
+	</para>
+      </important>
+    </sect2>
+
+    <sect2 id="session-properties-style">
+      <title>Style Options</title>
+      <para>
+	The <guilabel>Style</guilabel> option sets the restart style of 
+	each application running in the GNOME <link linkend="session-properties-screenshot">
+	<systemitem>Session Manager</systemitem></link>.  When an application closes the <guilabel>style
+	</guilabel> option controls what happens to the program.  The style most 
+	applications run with is <guilabel>Normal</guilabel>.  There are currently 
+	four styles of applications and capplets.
+      </para>
+      <itemizedlist mark="opencircle">
+	<listitem>
+	  <para id="session-properties-normal">
+	    <guilabel>Normal</guilabel> - This style starts the application 
+	    when you log back in, but it allows the application to close 
+	    normally given a <command>kill</command> command.
+	    The vast majority of applications you run will have this style 
+	    and it is safe to assume this style when in doubt.  All you will 
+	    see is a blank space in the <guilabel>style</guilabel> row unlike 
+	    other styles.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-respawn">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_refresh.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Respawn</guilabel> - This style starts the application 
+	    or capplet again once it is given the <command>kill</command> 
+	    command.  It is used primarily for applications or servers that 
+	    need to run continuously regardless of user intervention.  Two 
+	    examples of applications running with the <guilabel>respawn</guilabel> 
+	    style is the GNOME <systemitem>Session Manager</systemitem> and 
+	    the GNOME <systemitem>Panel</systemitem>.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-trash">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_trash.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Trash</guilabel> - This style indicates applications 
+	    or capplets that are only temporary.  When you logout, the applications 
+	    with this style are killed, after saving their data, and do not restart 
+	    when you login again.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-settings">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_preferences.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Settings</guilabel> - This style indicates applications 
+	    or capplets used only for storing and relaying your settings to 
+	    GNOME and GNOME compliant applications.  These applications and 
+	    capplets usually have a lower priority order and handle configurations.
+	  </para>
+	</listitem>
+      </itemizedlist>
+
+      <important>
+	<title>Important:</title>
+	<para>
+	  The <guilabel>Style</guilabel> option is for advanced users only.  
+	  Unless you are familiar with the <guilabel>Style</guilabel> settings 
+	  you should not change it.
+	</para>
+      </important>
+     </sect2>
+
+    <sect2 id="startup-programs-state">
+      <title>State</title>
+      <para>
+	The <guilabel>state</guilabel> of an application tells you what the 
+	application or capplet is doing, at the moment, in the GNOME 
+	<link linkend="session-properties-screenshot"><systemitem>
+	Session Manager</systemitem></link>.  Most of the time you will see 
+	they are either in the <link linkend="session-properties-inactive">
+	Inactive</link> state or in the <link linkend="session-properties-run">
+	Running</link> state.
+      </para>
+
+      <itemizedlist mark="opencircle">
+	<listitem>
+	  <para id="session-properties-inactive">
+	    <guilabel>Inactive</guilabel> - Applications in the <guilabel>inactive 
+	    state</guilabel> are either waiting to start or have finished running.  
+	    These applications are waiting for you or another user to run them.  
+	    Unlike other states the <guilabel>inactive state</guilabel> has no 
+	    icon associated with it.  All you will see is a blank space in the 
+	    <guilabel>state</guilabel> row.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-run">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_exec.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Running</guilabel> - Applications in the <guilabel>running 
+	    state</guilabel> are running normally in your session.  This is the 
+	    default state for applications and the most common.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-start">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_timer.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Starting</guilabel> - Applications in the <guilabel>starting 
+	    state</guilabel> are being given time to get running.  Most applications 
+	    go to the <guilabel>running state</guilabel> almost instanteously.  You 
+	    usually won't see this state unless it takes a little bit of time for the 
+	    application to start.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="sessionm-properties-saving">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_save.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Saving</guilabel> - Applications in the <guilabel>saving 
+	    state</guilabel> are saving their current settings and data.  This 
+	    state occurs when the GNOME <systemitem>session manager</systemitem> 
+	    tells each application to save when you logout or when you 
+	    <link linkend="session-properties-save">save the session</link> manually.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para id="session-properties-unknown">
+	    <guiicon>
+	      <inlinegraphic fileref="figs/stock_help.png" format="png" srccredit="Tuomas Kuosmanen">
+	      </inlinegraphic>
+	    </guiicon>
+	    <guilabel>Unknown</guilabel> - Applications in the <guilabel>unknown 
+	    state</guilabel> do not have any contact with the GNOME <systemitem>
+	    session manager</systemitem>.  This usually means the application 
+	    has crashed.  If this happens highlight the application in <systemitem>
+	    Session Properties</systemitem> and then click the <link linkend="session-properties-remove">
+	    <guibutton>Remove</guibutton></link> button.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2 id="session-properties-remove">
+      <title>Remove Button</title>
+      <para>
+	<guiicon>
+	  <inlinegraphic fileref="figs/button_remove.png" format="png" srccredit="Eric Baudais">
+	  </inlinegraphic>
+	</guiicon>
+	The <guibutton>Remove</guibutton> button removes the application from the GNOME 
+	<link linkend="session-properties-screenshot"><systemitem>session manager</systemitem>
+	</link> and kills the application.  You should 
+	use the <guibutton>Remove</guibutton> button to kill an application after it 
+	crashes or when its <guilabel>state</guilabel> is <link linkend="session-properties-respawn">
+	<guilabel>Respawn</guilabel></link>.
+      </para>
+    </sect2>
+  </sect1>
+  
+  <!-- ============= Bugs ================================== -->
+  
+  <sect1 id="bugs">
+    <title>Known Bugs and Limitations</title>
+    <para>
+      This application has no known bugs.
+    </para>
+  </sect1>
+
+
+<!-- ============= Authors ================================ -->
+
+  <sect1 id="authors">
+    <title>Authors</title>
+    <para>
+      <application>Session Management</application> was written by Tom Tromey
+      (<email>tromey@cygnus.com</email>).  It is currently being maintianed 
+      by Jacob Berkman (<email>jacob@helixcode.com</email>). Please send all 
+      comments, suggestions, and bug
+      reports to the <ulink url="http://bugs.gnome.org" type="http">GNOME
+      bug tracking database</ulink>. Instructions for submitting bug
+      reports can be found on-line at <ulink
+      url="http://bugs.gnome.org/Reporting.html" type="http">
+      http://bugs.gnome.org/Reporting.html</ulink>. If you are using
+      GNOME 1.1 or later, you can also use <application>Bug Report
+      Tool</application> (<command>bug-buddy</command>), available in the
+      <guisubmenu>Utilities</guisubmenu> submenu of <guimenu>Main
+      Menu</guimenu>, for submitting bug reports.
+    </para>
+
+    <para>
+      This manual was written by Eric Baudais
+      (<email>baudais@okstate.edu</email>). Please send all comments and
+      suggestions regarding this manual to the <ulink type="http"
+      url="http://www.gnome.org/gdp">GNOME Documentation Project</ulink> 
+      by sending an email to <email>docs@gnome.org</email>. You can also
+      add your comments online by using the <ulink type="http"
+      url="http://www.gnome.org/gdp/doctable/">GNOME Documentation Status
+      Table</ulink>.
+    </para>
+
+    <!-- For translations: uncomment this:
+    
+  <para>
+    Latin translation was done by ME
+   (<email>MYNAME@MYADDRESS</email>). Please send all  comments  and
+   suggestions regarding this translation to SOMEWHERE.
+  </para>
+
+    -->
+
+  </sect1>
+
+
+  <!-- ============= Application License ============================= -->
+
+  <sect1 id="license">
+    <title>License</title>
+    <para>
+      This program is free software; you can redistribute it and/or
+      modify it under the terms of the <citetitle>GNU General Public
+      License</citetitle> as published by the Free Software Foundation;
+      either version 2 of the License, or (at your option) any later
+      version.
+    </para>
+    <para>
+      This program is distributed in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      <citetitle>GNU General Public License</citetitle> for more details.
+    </para>
+    <para>
+      A copy of the <citetitle>GNU General Public License</citetitle> is
+      included as an appendix to the <citetitle>GNOME Users
+      Guide</citetitle>.  You may also obtain a copy of the
+      <citetitle>GNU General Public License</citetitle> from the Free
+      Software Foundation by visiting <ulink type="http"
+      url="http://www.fsf.org">their Web site</ulink> or by writing to
+      <address>
+	The Free Software Foundation, Inc., 
+	<street>59 Temple Place</street> - Suite 330, 
+	<city>Boston</city>, <state>MA</state> <postcode>02111-1307</postcode>,
+	<country>USA</country>
+      </address>
+    </para>
+  </sect1>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
