@@ -297,7 +297,7 @@ gboolean
 maybe_display_gui ()
 {
   gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX
-						   "/LogoutPrompt=true");
+						   "LogoutPrompt=true");
   if (! prompt)
     return TRUE;
 
