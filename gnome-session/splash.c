@@ -116,14 +116,6 @@ hide_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
   return TRUE;
 }
 
-static void
-hint (void)
-{
-  char *cmd[] = { "gnome-hint", "--session-login", NULL };
-  if (HINTING)
-    gnome_execute_async (NULL, 2, cmd);
-}
-
 static gboolean
 splash_cleanup (GtkObject *o, gpointer data)
 {
@@ -151,8 +143,6 @@ splash_cleanup (GtkObject *o, gpointer data)
 
   g_free (sd);
   sd = NULL;
-
-  hint ();
 
   return FALSE;
 }
@@ -326,7 +316,6 @@ void
 stop_splash (void)
 {
   if (!SPLASHING) {
-    hint ();
     return;
   }
 
