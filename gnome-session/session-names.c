@@ -170,6 +170,7 @@ session_list_add_dialog (GSList **sess_list, GtkWidget **dialog)
   if(edit_session_name (_("Add a new session"), &new_session_name, sess_list, dialog)) {
     *sess_list = g_slist_prepend (*sess_list,g_strdup(new_session_name));
     *sess_list = g_slist_sort (*sess_list, (GCompareFunc)session_compare);
+    spc_write_state ();
   }
   g_free(new_session_name);
 }
@@ -186,6 +187,7 @@ session_list_delete (GSList **sess_list, const gchar *old_session_name,
     }
   }
   *sess_list = g_slist_sort (*sess_list, (GCompareFunc)session_compare);
+  spc_write_state ();
 }
 
 void
@@ -206,6 +208,7 @@ session_list_edit_dialog (GSList **sess_list, const gchar *old_session_name,
     *sess_list = g_slist_sort (*sess_list, (GCompareFunc)session_compare);
     g_hash_table_insert(*hash, g_strdup(edited_session_name), g_strdup(old_session_name));
     g_hash_table_insert(*hash, g_strdup(old_session_name), g_strdup(edited_session_name)); 
+   spc_write_state ();
   }
 }
 

@@ -74,7 +74,6 @@ static GtkWidget *startup_command_dialog;
 static GtkWidget *session_command_dialog;
 
 /* Other callbacks */
-static void spc_write_state (void);
 void apply (void);
 static void help_cb (void);
 static void update_gui (void);
@@ -404,7 +403,6 @@ capplet_build (void)
 void
 apply (void)
 {
-  spc_write_state ();
   session_properties_apply ();
 
   gtk_widget_set_sensitive (apply_button, FALSE);
@@ -437,7 +435,8 @@ help_cb (void)
 
   }
 }
-static void
+
+void
 spc_write_state (void)
 {
   GtkTreeIter iter;

@@ -376,6 +376,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog)
     {
       *sl = g_slist_prepend (*sl, client);
       *sl = g_slist_sort (*sl, client_compare);
+      spc_write_state ();
     }
   else
     client_free (client);
@@ -394,6 +395,7 @@ startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *se
 
   if (edit_client (_("Edit Startup Program"), client, dialog)) {
     *sl = g_slist_sort (*sl, client_compare);
+    spc_write_state ();
   }
 }
 
@@ -409,5 +411,6 @@ startup_list_delete (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   gtk_tree_model_get (model, &iter, 0, &client, -1);
 
   *sl = g_slist_remove (*sl, client);
+  spc_write_state ();
   client_free (client);
 }

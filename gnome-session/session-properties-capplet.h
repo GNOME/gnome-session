@@ -4,6 +4,8 @@
 
 GSList	*startup_list_read (gchar *name);
 
+void    spc_write_state (void);
+
 void	startup_list_write (GSList *cl, 
 			    const gchar *name);
 
