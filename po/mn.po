@@ -1,0 +1,477 @@
+# translation of gnome-session.HEAD.mn.po to Mongolian
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Sanlig Badral <badral@chinggis.com>, 2003
+# SukhOchir <sukhochir@csms.edu.mn>,
+# Bayarsaihan <bijinhenemongol@yahoo.com>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session.HEAD.mn\n"
+"POT-Creation-Date: 2003-01-16 04:03+0100\n"
+"PO-Revision-Date: 2003-01-21 02:56+0100\n"
+"Last-Translator: Bayarsaihan <bijinhenemongol@yahoo.com>\n"
+"Language-Team: Mongolian <mn@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.1\n"
+
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr "TCP холболтыг зөвшөөрөх"
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Найдвартай байдлын үүднээс , _IceTcpTransNoListen() -тай платтформ"
+"(XFree86 systems), gnome-session TCP холболтын портыг сонсохгүй."
+". Энэ сонголт (authorized) алсын хостын холболтыг зөвшөөрөх ба "
+"нөлөөлүүлэхийн тулд gnome-session эргэж шинээр эхлүүлэх ёстой."
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "Хэрвээ нээлттэй бол gnome-session хэрэглэгчийг гарахын өмнө сонордуулна."
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Хэрвээ нээлттэй бол gnome-session хэрэглэгчийг гарахын өмнө суултыг "
+"нь автоматаар хадгалана. Эсвэл гарахынх нь өмнө диалог харуулна."
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr "Горимоос гарах"
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr "GNOME дэлгэцэнд орох үед сонгосон зургийг дэлгэцэнд тавина"
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "Суултыг хадгалах"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr "Дэлгэцн өнгийг харуулах"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "Суулт эхлэхэд дэлгэцэнд харуулах өнгө"
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr "Дэлгэцэнд тавих зураг"
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
+msgid "_Order:"
+msgstr "Цуваа"
+
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr "Суултанд эхэлсэн програмын цуваа"
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr "Програмаас гарах үед юу болов"
+
+#: gnome-session/gsm-client-editor.c:108
+msgid "_Style:"
+msgstr "Загвар"
+
+#: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
+msgid "Order"
+msgstr "Цуваа"
+
+#: gnome-session/gsm-client-list.c:155
+msgid "Style"
+msgstr "Загвар"
+
+#: gnome-session/gsm-client-list.c:160
+msgid "State"
+msgstr "Хэсэг"
+
+#: gnome-session/gsm-client-list.c:165
+msgid "Program"
+msgstr "Програм"
+
+#: gnome-session/gsm-client-row.c:31
+msgid "Inactive"
+msgstr "Идэвхгүй"
+
+#: gnome-session/gsm-client-row.c:32
+msgid "Waiting to start or already finished."
+msgstr "Бүүр дуусгах эсвэл эхлүүлэхийг хүлээж байна"
+
+#: gnome-session/gsm-client-row.c:34
+msgid "Starting"
+msgstr "Эхэлж байна"
+
+#: gnome-session/gsm-client-row.c:35
+msgid "Started but has not yet reported state."
+msgstr "Эхлэнэ, гэхдээ төлвийг дамжуулахгүй"
+
+#: gnome-session/gsm-client-row.c:37
+msgid "Running"
+msgstr "Ажиллуулж байна"
+
+#: gnome-session/gsm-client-row.c:38
+msgid "A normal member of the session."
+msgstr "Суултын энгийн гишүүн "
+
+#: gnome-session/gsm-client-row.c:40
+msgid "Saving"
+msgstr "Хадгалж байна"
+
+#: gnome-session/gsm-client-row.c:41
+msgid "Saving session details."
+msgstr "Суултыг нарийвчлан хадгалж байна"
+
+#: gnome-session/gsm-client-row.c:43
+msgid "Unknown"
+msgstr "Тодорхойлогдоогүй"
+
+#: gnome-session/gsm-client-row.c:44
+msgid "State not reported within timeout."
+msgstr "Тасарсан учир тодорхойлогдсонгүй"
+
+#: gnome-session/gsm-client-row.c:50
+msgid "Normal"
+msgstr "Хэвийн"
+
+#: gnome-session/gsm-client-row.c:51
+msgid "Unaffected by logouts but can die."
+msgstr "Гаралтаар хандалтгүй болох боловч устана"
+
+#: gnome-session/gsm-client-row.c:53
+msgid "Restart"
+msgstr "Дахин эхлэх"
+
+#: gnome-session/gsm-client-row.c:54
+msgid "Never allowed to die."
+msgstr "Устахыг хэзээ ч зөвшөөрөхгүй"
+
+#: gnome-session/gsm-client-row.c:56
+msgid "Trash"
+msgstr "Хогийн сав"
+
+#: gnome-session/gsm-client-row.c:57
+msgid "Discarded on logout and can die."
+msgstr "Гаралтаар ажиллагаа зогсож,устана"
+
+#: gnome-session/gsm-client-row.c:59
+msgid "Settings"
+msgstr "Тохиргоо"
+
+#: gnome-session/gsm-client-row.c:60
+msgid "Always started on every login."
+msgstr "Горим руу орох бүрд үргэлж эхэлсэн байх"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"GNOME демоны тохиргоог эхлүүлэхэд алдаа гарлаа.\n"
+"\n"
+"Яригч, ар зэрэг зарим зүйлсийн тохиргоо зөв ажиллагаагүй байна."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Сүүлийн алдааны мэдээлэл нь:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME системийг дахин ачаалахад таны тохиргоо хийгдэнэ"
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Алдаа тодорхойгүй байна"
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Демон тохируулгыг хэтэрхий олон удаа ачаалсан байна"
+
+#: gnome-session/logout.c:270
+msgid "Are you sure you want to log out?"
+msgstr "Та үнэхээр гарах уу?"
+
+#: gnome-session/logout.c:298
+msgid "_Save current setup"
+msgstr "Сонгосон бүтцийг хадгалах"
+
+#: gnome-session/logout.c:318
+msgid "Action"
+msgstr "Бүлэг"
+
+#: gnome-session/logout.c:326
+msgid "_Log Out"
+msgstr "Гарах"
+
+#: gnome-session/logout.c:329
+msgid "Sh_ut Down"
+msgstr "Унтраах"
+
+#: gnome-session/logout.c:332
+msgid "_Restart the computer"
+msgstr "Компьютерийг дахин асаах"
+
+#: gnome-session/main.c:76
+msgid "Specify a session name to load"
+msgstr "Тодорхойлогдсон суултыг ачаалж байна"
+
+#: gnome-session/main.c:77
+msgid "Only read saved sessions from the default.session file"
+msgstr "Анхдагч суулт файлаас суултыг зөвхөн уншигдахаар хадгалсан"
+
+#: gnome-session/main.c:78
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "Клиентүүдийг бүртгэтэл хэдэн хором хүлээнэ үү(0=тасралтгүй)"
+
+#: gnome-session/main.c:79
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "Клиентүүдийг хариу өгтөл хэдэн хором хүлээнэ үү(0=тасралтгүй)"
+
+#: gnome-session/main.c:80
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "Клиентүүдийг усттал хэдэн хором хүлээнэ үү(0=тасралтгүй)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s интернет хаягийг олсонгүй.\n"
+"GNOME зөв ажиллахыг сануулах болно.\n"
+"Та %s /etc/hosts файлд нэмснээр асуудал шийдэгдэх боломжтой"
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Ямар нэгэн аргаар орох"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Дахиад оролдоод үзэх"
+
+#: gnome-session/manager.c:176
+msgid "Your session has been saved"
+msgstr "Таны суулт хадгалагдсан байна"
+
+#: gnome-session/manager.c:457
+msgid "Wait abandoned due to conflict."
+msgstr "Давхцал хүртэл эвдрэлийг хүлээ"
+
+#: gnome-session/manager.c:904
+#, c-format
+msgid "No response to the %s command."
+msgstr "%s команд биелэгдэхгүй байна."
+
+#: gnome-session/manager.c:905
+msgid "The program may be slow, stopped or broken."
+msgstr "Программ удаан байвал зогсоо эсвэл тасал"
+
+#: gnome-session/manager.c:906
+msgid "You may wait for it to respond or remove it."
+msgstr "Та үүнийг хариу өгөхийг нь хүлээ эсвэл устга"
+
+#: gnome-session/manager.c:1516
+msgid "Restart abandoned due to failures."
+msgstr "Алдаа гартал дахин эхлүүл"
+
+#: gnome-session/manager.c:1692
+msgid "A session shutdown is in progress."
+msgstr "Суултыг ажиллаж байхад нь унтраах"
+
+#: gnome-session/save-session.c:42
+msgid "Kill session"
+msgstr "Суултыг таслах"
+
+#: gnome-session/save-session.c:43
+msgid "Use dialog boxes"
+msgstr "Харилцах цонхнууд ашиглах"
+
+#: gnome-session/save-session.c:156
+msgid "Could not connect to the session manager"
+msgstr "Суулт менежерт холбогдож чадсангүй"
+
+#: gnome-session/save-session.desktop.in.h:1
+msgid "Save Current Session"
+msgstr "Ажиллаж буй суултыг хадгалах"
+
+#: gnome-session/save-session.desktop.in.h:2
+msgid "Save current state of desktop"
+msgstr "Дэлгэцний тодорхой хэсгийг хадгалах"
+
+#: gnome-session/session-names.c:139
+msgid "The session name cannot be empty"
+msgstr "Суултын нэр тохирохгүй байна"
+
+#: gnome-session/session-names.c:149
+msgid "The session name already exists"
+msgstr "Суултын нэр тохирч байна"
+
+#: gnome-session/session-names.c:185
+msgid "Add a new session"
+msgstr "Шинэ суулт нэмэх"
+
+#: gnome-session/session-names.c:215
+msgid "Edit session name"
+msgstr "Суултын нэрийг засах"
+
+#: gnome-session/session-properties-capplet.c:104
+msgid "_Edit"
+msgstr "Засах"
+
+#: gnome-session/session-properties-capplet.c:172
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+"Зарим өөрчлөлтүүд хадгалагдсангүй.\n"
+"Гаралтыг үргэлжлүүлэх үү?"
+
+#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "Суултууд"
+
+#: gnome-session/session-properties-capplet.c:229
+msgid "Show splash screen on _login"
+msgstr "Ороход дэлгэцийн өнгийг харуулах"
+
+#: gnome-session/session-properties-capplet.c:240
+msgid "_Prompt on logout"
+msgstr "Горимоос гарах"
+
+#: gnome-session/session-properties-capplet.c:251
+msgid "Automatically save chan_ges to session"
+msgstr "Суултын өөрчлөлтүүдийг автоматаар хадгалах"
+
+#: gnome-session/session-properties-capplet.c:279
+msgid "Session Name"
+msgstr "Суултын нэр"
+
+#: gnome-session/session-properties-capplet.c:326
+msgid "Session Options"
+msgstr "Суултын тохиргоо"
+
+#: gnome-session/session-properties-capplet.c:335
+msgid "Current Session"
+msgstr "Ажиллаж буй суулт"
+
+#: gnome-session/session-properties-capplet.c:364
+msgid "Command"
+msgstr "Команд"
+
+#: gnome-session/session-properties-capplet.c:392
+msgid "Startup Programs"
+msgstr "Ажиллуулах програмууд"
+
+#: gnome-session/session-properties.c:49
+msgid "Remove the currently selected client from the session."
+msgstr "Суултын тэмдэглэгдсэн клиентийг усгах"
+
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "Ажиллаж буй суултий өөрчлөлтүүдийг хавсаргах"
+
+#: gnome-session/session-properties.c:61
+msgid "The list of programs in the session."
+msgstr "Суулт дэх програмын жагсаалт"
+
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "Сонгосон програмыг ажиллуулж байна"
+
+#: gnome-session/session-properties.c:104
+msgid "Initialize session settings"
+msgstr "Суултын тохиргоог хийх"
+
+#: gnome-session/session-properties.desktop.in.h:1
+msgid "Configure your sessions"
+msgstr "Таны суултын тохиргоо"
+
+#: gnome-session/splash-widget.c:42
+msgid "Sawfish Window Manager"
+msgstr "Sawfish цонхны менежер"
+
+#: gnome-session/splash-widget.c:43
+msgid "Metacity Window Manager"
+msgstr "Metacity цонхны менежер"
+
+#: gnome-session/splash-widget.c:44
+msgid "Window Manager"
+msgstr "Цонхны менежер"
+
+#: gnome-session/splash-widget.c:45
+msgid "The Panel"
+msgstr "Самбар"
+
+#: gnome-session/splash-widget.c:46
+msgid "Session Manager Proxy"
+msgstr "Суулт менежер"
+
+#: gnome-session/splash-widget.c:47
+msgid "Nautilus"
+msgstr "Хэрэгсэл"
+
+#: gnome-session/splash-widget.c:48
+msgid "Desktop Settings"
+msgstr "Дэлгэцийн тохиргоо"
+
+#: gnome-session/startup-programs.c:289
+msgid "_Startup Command:"
+msgstr "Ажиллуулах команд:"
+
+#: gnome-session/startup-programs.c:295
+msgid "Startup Command"
+msgstr "Ажиллуулах команд:"
+
+#: gnome-session/startup-programs.c:338
+msgid "The startup command cannot be empty"
+msgstr "Ажиллуулах команд биелэгдсэнгүй"
+
+#: gnome-session/startup-programs.c:378
+msgid "Add Startup Program"
+msgstr "Ажиллуулах програм нэмэх"
+
+#: gnome-session/startup-programs.c:399
+msgid "Edit Startup Program"
+msgstr "Ажиллуулах програм засварлах"
+
