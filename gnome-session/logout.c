@@ -404,7 +404,7 @@ display_gui (void)
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_OK, GTK_RESPONSE_OK);
 
-  gtk_window_set_decorated (GTK_WINDOW (box), FALSE);
+  g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
   gtk_window_set_screen (GTK_WINDOW (box), screen);
