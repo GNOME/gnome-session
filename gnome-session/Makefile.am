@@ -29,11 +29,17 @@ save_session_SOURCES = save-session.c
 
 session_properties_SOURCES = session-properties.c session.h
 
-data_DATA = default.session
+data_DATA = default.session default.wm
 
 default.session: default.in
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
 		< $(srcdir)/default.in > default.tmp \
 	  && mv default.tmp default.session
 
-EXTRA_DIST = session.desktop default.in
+default.wm: default.wm.in
+	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
+		< $(srcdir)/default.wm.in > default.wm.tmp \
+	  && mv default.wm.tmp default.wm
+
+EXTRA_DIST = session.desktop default.in default.wm.in
+
