@@ -365,13 +365,11 @@ start_splash (gfloat max)
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
   gtk_container_add (GTK_CONTAINER (sd->dialog), frame);
 
-  gtk_widget_push_visual (gdk_rgb_get_visual ());
   gtk_widget_push_colormap (gdk_rgb_get_cmap ());
 
   sd->hbox = gnome_canvas_new_aa ();
 
   gtk_widget_pop_colormap ();
-  gtk_widget_pop_visual ();
 
   gtk_container_add (GTK_CONTAINER (frame), sd->hbox);
 
