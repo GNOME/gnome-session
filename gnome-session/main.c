@@ -35,6 +35,7 @@
 #include "save.h"
 #include "command.h"
 #include "splash.h"
+#include "util.h"
 
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
@@ -129,6 +130,9 @@ main (int argc, char *argv[])
   char *ep;
   char *session_name_env;
   Session *the_session;
+
+  if (getenv ("GSM_VERBOSE_DEBUG"))
+    gsm_set_verbose (TRUE);
   
   set_lang();
 

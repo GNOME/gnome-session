@@ -29,6 +29,7 @@
 #include "session.h"
 #include "prop.h"
 #include "command.h"
+#include "util.h"
 
 /* These are the only ones which we use at present but eventually we
  * will need to save all the properties (when they have been set)
@@ -66,6 +67,8 @@ write_one_client (const Client *client)
   gchar *vector_names[NUM_PROPERTIES];
   gchar *string_names[NUM_PROPERTIES];
   gchar *number_names[NUM_PROPERTIES];
+
+  gsm_verbose ("writing out client \"%s\"\n", client->id ? client->id : "(unknown)");
 
   /* Retrieve each property we care to save.  */
   saved = TRUE;
@@ -144,6 +147,8 @@ write_session (void)
   char prefix[1024];
   int i = 0;
   GSList *list = NULL;
+
+  gsm_verbose ("Writing out session \"%s\"\n", session_name);
 
   delete_session (session_name);
 

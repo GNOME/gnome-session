@@ -39,6 +39,7 @@ extern int errno;
 #include "logout.h"
 #include "ice.h"
 #include "gsm-protocol.h"
+#include "util.h"
 
 /* The save_state gives a description of what we are doing */
 static enum {
@@ -231,6 +232,9 @@ void
 free_client (Client *client)
 {
  GSList *list; 
+
+ gsm_verbose ("free_client(): %p\n", client);
+
  if (! client)
     return;
   if(client->magic != CLIENT_MAGIC)
@@ -938,6 +942,8 @@ static void
 process_save_request (Client* client, int save_type, gboolean shutdown, 
 		      int interact_style, gboolean fast, gboolean global)
 {
+  gsm_verbose ("process_save_request(): client %p\n", client);
+
   save_state = SENDING_MESSAGES;
   if (global)
     {
@@ -1312,6 +1318,8 @@ close_connection (SmsConn connection, SmPointer data, int count,
   Client *client = (Client *) data;
   IceConn ice_conn = SmsGetIceConnection (connection);
 
+  gsm_verbose ("close_connection: connection %p\n", connection);
+
   client_reasons (client, FALSE, count, reasons);
   SmFreeReasons (count, reasons);
 
@@ -1328,6 +1336,8 @@ client_clean_up (Client* client)
   int style;
   GSList *list;
   
+  gsm_verbose ("client_clean_up: client %p\n", client);
+
   command_clean_up (client);
   
   SmsCleanUp (client->connection);
@@ -1536,6 +1546,8 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 {
   Client *client;
 
+  gsm_verbose ("new_client(): connection %p\n", connection);
+
   if (shutting_down)
     {
       *reasons  = strdup (_("A session shutdown is in progress."));
@@ -1616,8 +1628,13 @@ save_session (int save_type, gboolean shutdown, int interact_style,
       request->global = TRUE;
       
       APPEND (save_request_list, request);
+
+      gsm_verbose ("save_session(): delaying because we are not idle\n");
     }
   else
-    process_save_request (NULL, save_type, shutdown, 
-			  interact_style, fast, TRUE);
+    {
+      gsm_verbose ("save_session(): initiating session save\n");
+      process_save_request (NULL, save_type, shutdown, 
+			    interact_style, fast, TRUE);
+    }
 }

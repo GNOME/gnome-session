@@ -44,6 +44,7 @@
 #include "ice.h"
 #include "session.h"
 #include "manager.h"
+#include "util.h"
 
 /* Network ids.  */
 static char* ids;
@@ -84,7 +85,8 @@ my_ice_error_handler(IceConn cnx,
 	int severity,
 	IcePointer values)
 {
-      IceCloseConnection(cnx);
+  gsm_verbose ("Closing connection: %p\n", cnx);
+  IceCloseConnection(cnx);
 }
 
 static void
@@ -99,9 +101,14 @@ accept_connection (GIOChannel   *source,
   char *ctmp;
 #endif
 
+  gsm_verbose ("Acception a connection...\n");
+
   connection = IceAcceptConnection (listener, &status);
   if (status != IceAcceptSuccess)
-    return;
+    {
+      gsm_verbose ("IceAcceptConnection returned %d\n", status);
+      return;
+    }
 
 #if defined(HAVE_TCPD_H) && defined(HAVE_HOSTS_ACCESS) && defined(HAVE_SYSLOG_H)
   ctmp = IceGetListenConnectionString (listener);
@@ -129,10 +136,12 @@ accept_connection (GIOChannel   *source,
       /* Freeze ice while doing the gtk iteration. We don't want to recurse
          here */
       ice_frozen();
+      gsm_verbose ("iterate...\n");
       g_main_context_iteration (NULL, TRUE);
       ice_thawed();
       status2 = IceConnectionStatus (connection);
     }
+  gsm_verbose ("Done.\n");
 }
 
 static guint
@@ -140,6 +149,8 @@ ice_add_listener (IceListenObj listener)
 {
   GIOChannel *channel;
   guint       retval;
+
+  gsm_verbose ("Adding listener for %p\n", listener);
 
   channel = g_io_channel_unix_new (IceGetListenConnectionNumber (listener));
 
@@ -156,6 +167,9 @@ static void
 ice_watch (IceConn connection, IcePointer client_data, Bool opening,
 	   IcePointer *watch_data)
 {
+
+  gsm_verbose ("ice_watch():\tconnection: %p\topening: %d\n", connection, opening);
+
   if (opening)
     {
       Watch *watch = g_new0 (Watch, 1); 
@@ -178,6 +192,9 @@ ice_set_clean_up_handler (IceConn connection,
 			  GDestroyNotify clean_up, gpointer data)
 {
   GSList* list;
+
+  gsm_verbose ("setting clean up handler for connection %p\n", connection);
+
   for (list = watch_list; list; list = list->next)
     {
       Watch *watch = (Watch*)list->data;
@@ -388,7 +405,10 @@ void ice_frozen (void)
 	if (++ice_depth == 1)
 		/* First disable so turn off the events */
 		for (i = 0; i < num_sockets; i++)
-			g_source_remove (input_id [i]);      
+		  {
+		    gsm_verbose ("Removing listener for %p\n", sockets[i]);
+		    g_source_remove (input_id [i]);
+		  }
 }
 
 void
@@ -416,7 +436,8 @@ clean_ice (void)
 	    }
 	}
 
-      g_source_remove (input_id [i]);      
+      gsm_verbose ("Removing listener for %p\n", sockets[i]);
+      g_source_remove (input_id [i]);
       free (network_id);
     }
 
