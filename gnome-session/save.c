@@ -67,7 +67,7 @@ write_one_client (int number, const Client *client)
 {
   /* We over-allocate; it doesn't matter.  */
   int i, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
-  static char **argvs[NUM_PROPERTIES];
+  char **argvs[NUM_PROPERTIES];
   char *strings[NUM_PROPERTIES];
   char *argv_names[NUM_PROPERTIES];
   char *string_names[NUM_PROPERTIES];
