@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-20 15:29+0200\n"
-"PO-Revision-Date: 2002-06-20 15:29+0200\n"
+"POT-Creation-Date: 2002-06-23 19:39+0200\n"
+"PO-Revision-Date: 2002-06-23 19:41+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -182,6 +182,57 @@ msgstr "Ustawienia"
 #: gnome-session/gsm-client-row.c:1
 msgid "Always started on every login."
 msgstr "Uruchamiany zawsze po zalogowaniu."
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:1
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Przy uruchamianiu Demona ustawień GNOME wystąpił błąd.\n"
+"\n"
+"Niektóre z ustawień, takich, jak motywy, dźwięk lub ustawienia tła, mogą być "
+"niepoprawne."
+
+#: gnome-session/gsm-gsd.c:1
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Ostatnim komunikatem o błędzie był:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:1
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"Przy następnym zalogowaniu środowisko GNOME nadal będzie próbowało ponownie "
+"uruchomić Demona ustawień GNOME."
+
+#: gnome-session/gsm-gsd.c:1
+msgid "There was an unknown activation error."
+msgstr "Przy aktywacji wystąpił nieznany błąd."
+
+#: gnome-session/gsm-gsd.c:1
+msgid "The Settings Daemon restarted too many times."
+msgstr "Demon ustawień został uruchomiony ponownie zbyt wiele razy."
 
 #: gnome-session/logout.c:1
 msgid "Really log out?"
@@ -388,23 +439,6 @@ msgstr "Usuwa z sesji zaznaczonego klienta."
 #: gnome-session/session-properties.c:1
 msgid "The list of programs in the session."
 msgstr "Lista programów wchodzących w skład sesji."
-
-#: gnome-session/session-properties.c:1
-msgid "Session"
-msgstr "Sesja"
-
-#. app
-#: gnome-session/session-properties.c:1
-msgid "Session Chooser"
-msgstr "Wybór sesji"
-
-#: gnome-session/session-properties.c:1
-msgid "Start Session"
-msgstr "Rozpocznij sesję"
-
-#: gnome-session/session-properties.c:1
-msgid "Cancel Login"
-msgstr "Anuluj"
 
 #: gnome-session/session-properties.c:1
 msgid "Initialize session settings"
