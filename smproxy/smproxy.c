@@ -44,6 +44,7 @@ Atom wmStateAtom;
 Atom smClientIdAtom;
 Atom wmClientLeaderAtom;
 Atom dtSaveModeAtom;
+Atom dtRestoreModeAtom;
 
 Bool debug = 0;
 
@@ -1430,6 +1431,7 @@ char **argv;
     smClientIdAtom = XInternAtom (disp, "SM_CLIENT_ID", False);
     wmClientLeaderAtom = XInternAtom (disp, "WM_CLIENT_LEADER", False);
     dtSaveModeAtom = XInternAtom (disp, "_DT_SAVE_MODE", False);
+    dtRestoreModeAtom = XInternAtom (disp, "_DT_RESTORE_MODE", False);
 
     /* Workaround for utterly broken CDE applications.
      * See http://bugzilla.gnome.org/show_bug.cgi?id=81343
@@ -1437,6 +1439,9 @@ char **argv;
      */
     XChangeProperty (disp, RootWindow (disp, 0),
                      dtSaveModeAtom, XA_STRING, 8, PropModeReplace,
+		     "gnome", strlen ("gnome") + 1);
+    XChangeProperty (disp, RootWindow (disp, 0),
+                     dtRestoreModeAtom, XA_STRING, 8, PropModeReplace,
 		     "gnome", strlen ("gnome") + 1);
 
     for (i = 0; i < ScreenCount (disp); i++)
