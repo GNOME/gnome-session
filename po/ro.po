@@ -1,22 +1,22 @@
 # gnome-session
 # Copyright (C) 2000, 2001 Free Software Foundation, Inc.
-# Marius Andreiana <mandreiana@yahoo.com>, 2000, 2002.
+# Marius Andreiana <marius galuna.ro>, 2000, 2002.
 # Dan Damian <dand@dnttm.ro>, 2000, 2001.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0\n"
+"Project-Id-Version: gnome-session 2.2\n"
 "POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-08-18 17:16+0200\n"
-"Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
-"Language-Team: Romanian <ro@li.org>\n"
+"PO-Revision-Date: 2002-12-03 17:16+0200\n"
+"Last-Translator: Marius Andreiana <marius galuna.ro>\n"
+"Language-Team: Română <ro@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Pemite conexiuni TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -28,42 +28,40 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "Dacă este activat, gnome-session va întreba utilizatorul înainte de terminarea sesiunii."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr ""
+msgstr "Dacă este activat, gnome-session va salva sesiunea automat. Altfel, dialogul de ieşire "
+"va avea o opţiune pentru salvarea sesiunii."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Ieşire"
+msgstr "Întreabă la ieşire"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "Imaginea preferată pentru ecranul de splash afişat la intrarea în Desktopul GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sesiune"
+msgstr "Salvează sesiunile"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Arată ecranul de splash la _pornire"
+msgstr "Arată ecranul de splash"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Arată ecranul de splash când porneşte sesiunea"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Imagine ecran splash"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -193,6 +191,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Ultimul mesaj de eroare a fost:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -203,11 +205,11 @@ msgstr ""
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "A fost o eroare necunoscută la activare."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Daemonul Setări a fost repornit de prea multe ori."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
@@ -227,11 +229,11 @@ msgstr "_Ieşi"
 
 #: gnome-session/logout.c:329
 msgid "Sh_ut Down"
-msgstr "_Opreşte"
+msgstr "O_preşte"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr "_Reporneşte calculatorul"
+msgstr "R_eporneşte calculatorul"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -243,19 +245,16 @@ msgstr "Citeşte numai sesiunile salvate din fişierul default.session"
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"Perioada în milisecunde petrecută aşteptând clienţii să se înregistreze "
+msgstr "Perioada în milisecunde petrecută aşteptând clienţii să se înregistreze "
 "(0=mereu)"
 
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr ""
-"Perioada în milisecunde petrecută aşteptând clienţii să răspundă (0=mereu)"
+msgstr "Perioada în milisecunde petrecută aşteptând clienţii să răspundă (0=mereu)"
 
 #: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"Perioada în milisecunde petrecută aşteptând clienţii să moară (0=mereu)"
+msgstr "Perioada în milisecunde petrecută aşteptând clienţii să moară (0=mereu)"
 
 #: gnome-session/main.c:212
 #, c-format
@@ -264,8 +263,7 @@ msgid ""
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
-msgstr ""
-"Nu s-a putut găsi adresa internet pentru %s.\n"
+msgstr "Nu s-a putut găsi adresa internet pentru %s.\n"
 "Acesta va împiedica GNOME să opereze corect.\n"
 "Este posibilă corectarea problemei prin adăugarea\n"
 "%s la fişierul /etc/hosts."
@@ -351,8 +349,7 @@ msgstr "_Editare"
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr ""
-"Unele schimbări nu sunt salvate.\n"
+msgstr "Unele schimbări nu sunt salvate.\n"
 "Doriţi să ieşiti?"
 
 #: gnome-session/session-properties-capplet.c:201
