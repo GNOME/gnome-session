@@ -1,3 +1,9 @@
+2003-08-08  Mark McLoughlin  <mark@skynet.ie>
+
+	* main.c: (main): make sure SM_CLIENT_ID gets set
+	to a dummy id so that smproxy doesn't think we
+	need to be session managed. Should fix bug 118063.
+
 2003-08-07  Frederic Crozat  <fcrozat@mandrakesoft.com>
 
 	* command.c: (set_logout_command):

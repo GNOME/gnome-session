@@ -504,6 +504,13 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  /* Make sure the splash screen has the SM_CLIENT_ID
+   * property set so smproxy doesn't try and session
+   * manage us.
+   * See http://bugzilla.gnome.org/show_bug.cgi?id=118063
+   */
+  gdk_set_sm_client_id ("gnome-session-dummy-id");
+
   /* gnome_login_check() needs gtk initialized. however, these do
    * sanity checks for gnome stuff, so we don't want to initialize
    * gnome yet
