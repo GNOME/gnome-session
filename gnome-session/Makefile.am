@@ -149,7 +149,7 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-settingsdir = $(datadir)/control-center-2.0/capplets
+settingsdir = $(datadir)/applications
 
 if SESSION
 settings_in_files = session-properties.desktop.in
