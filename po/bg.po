@@ -1,23 +1,24 @@
 # Bulgarian translation of gnome-session for GNOME2.
 # Copyright (C) 2001, 2002, 2004 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
-# small improvements for completeness , Yanko Kaneti <yaneti@declera.com>, 2002.
-# Alexander Shopov <al_shopov@yahoo.com> - updates and spellcheck, 2002.
-# Updated by Vladimir  Petkov <vpetkov@i-space.org>, 2004
-# Updated by Peter Slavov <pslavov@i-space.org>, 2004
-# 
-# 
+# Yanko Kaneti <yaneti@declera.com>, 2002.
+# Alexander Shopov <al_shopov@yahoo.com>, 2002.
+# Vladimir  Petkov <vpetkov@i-space.org>, 2004
+# Peter Slavov <pslavov@i-space.org>, 2004
+# Alexander Shopov <al_shopov@yahoo.com>, 2005.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session gnome 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-08-04 10:36+0300\n"
+"POT-Creation-Date: 2005-02-16 19:12+0200\n"
+"PO-Revision-Date: 2005-02-16 19:11+0200\n"
 "Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
-"Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
+"Language-Team: Bulgarian <dict@fsa-bg org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -53,10 +54,9 @@ msgid "Logout prompt"
 msgstr "Питане при изход"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "Изображението, което да се показва при зареждането на GNOME."
+msgid "Preferred Image to use for login splash screen"
+msgstr ""
+"Предпочитаното изображение, което да се показва при зареждането на GNOME."
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -71,8 +71,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Показва прозореца със зареждането в началото на сесията"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Изображението за прозореца при зареждане"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Това е относителен път на базата на папката $datadir/pixmaps/. Валидни имена "
+"са подпапки и имена на изображения. Промяната на тази стойност ще е валидна "
+"за следващото влизане в системата."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -380,7 +386,6 @@ msgid "Show splash screen on _login"
 msgstr "Показване на прозоре_ца със зареждането по време на влизане"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "_Питане при излизане"
 
@@ -487,6 +492,9 @@ msgstr "Добавяне на начална програма"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Редактиране на начална програма"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Изображението за прозореца при зареждане"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Записва текущата сесия"
