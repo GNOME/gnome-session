@@ -1047,9 +1047,4 @@ io_error_handler (IceConn ice_conn)
     {
       close_connection (client->connection, (SmPointer)client, 0, NULL);
     }
-  else
-    {
-      IceSetShutdownNegotiation (ice_conn, False);
-      IceCloseConnection (ice_conn);
-    }
 }
