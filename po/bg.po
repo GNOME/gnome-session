@@ -5,36 +5,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-06-13 22:20+0200\n"
+"POT-Creation-Date: 2002-06-20 16:47+0200\n"
+"PO-Revision-Date: 2002-06-20 16:50+0200\n"
 "Last-Translator: Yanko Kaneti <yaneti@declera.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
-msgstr "GNOME Login"
+msgstr "GNOME Вход"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
+#: gnome-session/gnome-login-check.c:152
+msgid "Log In"
 msgstr "Име"
 
-#: gnome-session/gnome-login-check.c:148
+#: gnome-session/gnome-login-check.c:183
 msgid "Start with default programs"
 msgstr "Започни с програмите по подразбиране"
 
-#: gnome-session/gnome-login-check.c:152
+#: gnome-session/gnome-login-check.c:187
 msgid "Reset all user settings"
 msgstr "Нулирай всички потребителски настройки"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr "Наистина ли да нулирам всички настройки за потребител %s?"
 
-#: gnome-session/gnome-login-check.c:195
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "Не"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "Нулирай всички потребителски настройки"
+
+#: gnome-session/gnome-login-check.c:236
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -45,15 +53,15 @@ msgstr ""
 "на текущия потребител, %s.\n"
 "Моля, поправете собствеността на директорията."
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "Вход, въпреки всичко"
+
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
 msgstr "Пробвай отново"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Продължи"
-
-#: gnome-session/gnome-login-check.c:219
+#: gnome-session/gnome-login-check.c:258
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -65,27 +73,6 @@ msgstr ""
 "Това ще попречи на GNOME да работи нормално.\n"
 "Вероятно е проблема да се оправи чрез добавяне на\n"
 "%s във файла /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Вашата версия на libICE има грешка което ще попречи на\n"
-"сесията на GNOME да работи нормално.\n"
-"\n"
-"Ако сте със Solaris, трябва да обновите с пач #108376-16\n"
-"или да използвате libICE.so.6 от оригиналния Solaris 7.\n"
-"Копирайте файла в /usr/openwin/lib..\n"
-"\n"
-"Вашата сесия с GNOME ще завърши след затваряне на този диалог."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -217,24 +204,24 @@ msgstr "Спира системата"
 msgid "Reboot"
 msgstr "Рестартиране"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
 msgstr "Име на сесия"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Прочитай само запазените сесии от default.session файла"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Време за изчакване на клиентите да се регистрират (0=до безкрайност) [ms]"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Време за изчакване на клиентите да отговорят (0=до брезкрайност) [ms]"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Време за изчакване на клиентите да умрат (0=до брезкрайност) [ms]"
 
@@ -505,6 +492,29 @@ msgstr "Добави програма"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Редактиране на програма за стартиране"
+
+#~ msgid "Continue"
+#~ msgstr "Продължи"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Вашата версия на libICE има грешка което ще попречи на\n"
+#~ "сесията на GNOME да работи нормално.\n"
+#~ "\n"
+#~ "Ако сте със Solaris, трябва да обновите с пач #108376-16\n"
+#~ "или да използвате libICE.so.6 от оригиналния Solaris 7.\n"
+#~ "Копирайте файла в /usr/openwin/lib..\n"
+#~ "\n"
+#~ "Вашата сесия с GNOME ще завърши след затваряне на този диалог."
 
 #~ msgid "_Log Out"
 #~ msgstr "Изход"
@@ -859,10 +869,6 @@ msgstr "Редактиране на програма за стартиране"
 
 #~ msgid "Image"
 #~ msgstr "Изображение"
-
-#, fuzzy
-#~ msgid "None"
-#~ msgstr "Без фон"
 
 #~ msgid "Pick a color"
 #~ msgstr "Изберете цвят"
