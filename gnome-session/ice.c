@@ -269,14 +269,19 @@ initialize_ice (void)
   if (SmsInitialize (GsmVendor, VERSION, new_client, NULL,
 		     auth_proc, sizeof error, error)) 
     {
+#warning FIXME: we really do not want to allow TCP connections by default
+#if 0
       if (allow_tcp)
 	{
+#endif
 	  if (IceListenForConnections (&num_sockets, &sockets,
 				       sizeof(error), error))
 	    init_error = FALSE;
+#if 0
 	}
       else if (init_well_known_connections ())
 	init_error = FALSE;
+#endif
     }
 
   if (init_error)
