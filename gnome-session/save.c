@@ -273,7 +273,7 @@ run_default_session (void)
 #endif
   gnome_execute_async (NULL, 1, argv);
 
-  argv[0] = "smproxy";
+  argv[0] = "gnome-smproxy";
   gnome_execute_async (NULL, 1, argv);
 
   return 1;
