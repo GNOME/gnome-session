@@ -225,6 +225,11 @@ main (int argc, char *argv[])
   if(session_name == NULL) {
 	/* If there is no key specified, fall back to the default session */	
 	session_name = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
+	/* if key was specified but is blank, just use the default */
+	if (!*session_name) {
+		g_free (session_name);
+		session_name = g_strdup (DEFAULT_SESSION);
+	}
   }
    
   gnome_config_pop_prefix ();

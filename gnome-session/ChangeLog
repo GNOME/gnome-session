@@ -1,5 +1,11 @@
 2002-05-21  jacob berkman  <jacob@ximian.com>
 
+	* session-properties-capplet.c (capplet_build): 
+	* main.c (main): if the current session is an empty string, use
+	the default session
+
+	fixes #79076
+
 	* logout.c (display_gui): don't reference destroyed widgets.
 	thanks owen.
 
