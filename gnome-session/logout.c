@@ -31,6 +31,7 @@
 #include "ice.h"
 #include "logout.h"
 #include "command.h"
+#include "util.h"
 
 #define SESSION_STOCK_LOGOUT "session-logout"
 
@@ -69,31 +70,15 @@ iris_callback (gpointer data)
   height_step = MIN (iris_rect.width / 2, iris_block);
 
   for (i = 0; i < MIN (width_step, height_step); i++)
-    {
-      GdkPoint points[5];
-      static gchar dash_list[2] =
-      {1, 1};
-
-      gdk_gc_set_dashes (iris_gc, i % 1, dash_list, 2);
-
-      points[0].x = iris_rect.x + i;
-      points[0].y = iris_rect.y + i;
-      points[1].x = iris_rect.x + iris_rect.width - i;
-      points[1].y = iris_rect.y + i;
-      points[2].x = iris_rect.x + iris_rect.width - i;
-      points[2].y = iris_rect.y + iris_rect.height - i;
-      points[3].x = iris_rect.x + i;
-      points[3].y = iris_rect.y + iris_rect.height - i;
-      points[4].x = iris_rect.x + i;
-      points[4].y = iris_rect.y + i;
-
-      gdk_draw_lines (GDK_ROOT_PARENT (), iris_gc, points, 5);
-    }
+    gdk_draw_rectangle (GDK_ROOT_PARENT (), iris_gc, FALSE,
+			iris_rect.x + i, iris_rect.y + i,
+			(gint)iris_rect.width - 2 * i,
+			(gint)iris_rect.height - 2 * i);
 
   gdk_flush ();
 
   iris_rect.x += width_step;
-  iris_rect.y += width_step;
+  iris_rect.y += height_step;
   iris_rect.width -= MIN (iris_rect.width, iris_block * 2);
   iris_rect.height -= MIN (iris_rect.height, iris_block * 2);
 
@@ -117,6 +102,7 @@ iris (void)
   if (!iris_gc)
     {
       GdkGCValues values;
+      static gchar dash_list[2] = {1, 1};
 
       values.line_style = GDK_LINE_ON_OFF_DASH;
       values.subwindow_mode = GDK_INCLUDE_INFERIORS;
@@ -124,6 +110,8 @@ iris (void)
       iris_gc = gdk_gc_new_with_values (GDK_ROOT_PARENT (),
 					&values,
 				      GDK_GC_LINE_STYLE | GDK_GC_SUBWINDOW);
+
+      gdk_gc_set_dashes (iris_gc, 0, dash_list, 2);
     }
 
   /* Plan for a time of 0.5 seconds for effect */
@@ -152,7 +140,7 @@ refresh_screen (void)
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.override_redirect = TRUE;
   attributes.event_mask = 0;
-  
+
   window = gdk_window_new (NULL, &attributes,
 			   GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR);
 
@@ -221,6 +209,8 @@ display_gui (void)
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
   gboolean   retval = FALSE;
+
+  gsm_verbose ("display_gui: showing logout dialog\n");
 
   /* It's really bad here if someone else has the pointer
    * grabbed, so we first grab the pointer and keyboard
@@ -366,6 +356,9 @@ gboolean
 maybe_display_gui (void)
 {
   gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX "LogoutPrompt=true");
+
+  gsm_verbose ("maybe_display_gui(): showing dialog %d\n", prompt);
+
   if (! prompt)
     return TRUE;
 

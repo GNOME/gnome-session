@@ -1,3 +1,26 @@
+2002-05-01  jacob berkman  <jacob@ximian.com>
+
+	* manager.c (maybe_write_session): merge code that was in 4 or so
+	places into one function, and have it display a dialog saying it
+	saved the session in some cases.
+	(process_save_request): don't send a SaveCancelled message to the
+	client, as they weren't sent a SaveYourself command yet and this
+	spewed XSMP protocol error messages!
+	(various): add debug spew
+
+	* save-session.c: don't use the bogus gsm "protocol" and just ask
+	the SM to save the session.  also fix to be a little less lame,
+	using some neat libICE hacks.  also don't pop a dialog saying the
+	session was saved as g-s does that for us now.
+
+	this should fix #75850
+
+	* Makefile.am: don't link in gsm-protocol.[ch] anymore
+
+	* logout.c (iris_callback): merge patch from RHL from owen (fixes
+	#8547)
+	(maybe_display_gui): add some debug spew
+	
 2002-04-29  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am:

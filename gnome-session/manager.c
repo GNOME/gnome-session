@@ -129,6 +129,9 @@ gchar   *events[]       = { GsmInactive, GsmInactive,
 
 static gint compare_interact_request (gconstpointer a, gconstpointer b);
 
+/* whether our current save is global */
+static gboolean global_save;
+
 typedef void message_func (SmsConn connection);
 
 static void
@@ -146,7 +149,36 @@ set_properties (SmsConn connection, SmPointer data,
 
 static void update_save_state (void);
 
+static void
+maybe_write_session (void)
+{
+  if (autosave || save_selected || session_save)
+    write_session ();
 
+  save_selected = session_save = FALSE;
+
+  if (!shutting_down && global_save)
+    {
+      static GtkWidget *dialog = NULL;
+
+      if (dialog)
+	{
+	  gtk_window_present (GTK_WINDOW (dialog));
+	}
+      else
+	{
+	  dialog = gtk_message_dialog_new (NULL, 0, 
+					   GTK_MESSAGE_INFO,
+					   GTK_BUTTONS_OK, 
+					   _("Your session has been saved"));
+	  g_signal_connect (dialog, "response",
+			    G_CALLBACK (gtk_widget_destroy),
+			    NULL);
+	  g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer *)&dialog);
+	  gtk_widget_show (dialog);
+	}
+    }
+}
 
 Client *
 find_client_by_id (const GSList *list, const char *id)
@@ -666,6 +698,8 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 {
   Client *client = (Client *) data;
 
+  gsm_verbose ("register_client: %p\n", connection);
+
   if (previous_id)
     {
       Client *offspring = find_client_by_id (pending_list, previous_id);
@@ -770,6 +804,8 @@ static void
 interact_request (SmsConn connection, SmPointer data, int dialog_type)
 {
   Client *client = (Client *) data;
+
+  gsm_verbose ("interact_request: %p\n", connection);
 
   /* These seem to be the only circumstances in which interactions
      can be allowed without breaking the protocol.
@@ -901,6 +937,8 @@ interact_done (SmsConn connection, SmPointer data, gboolean cancel)
 {
   Client *client = (Client *) data;
 
+  gsm_verbose ("interact_done: %p\n", connection);
+
   /* if client != interact_list->data then libSM will NOT call
      this function when the client at the head of the interact_list
      sends its SmInteractDone. Therefore, we need to remove the
@@ -944,7 +982,12 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 {
   gsm_verbose ("process_save_request(): client %p\n", client);
 
+  gsm_verbose ("\ttype: %d\tshutting down: %d\tinteract: %d\n"
+	       "\tfast: %d\tglobal: %d\n",
+	       save_type, shutdown, interact_style, fast, global);
+
   save_state = SENDING_MESSAGES;
+  global_save = global;
   if (global)
     {
       shutting_down = shutdown;
@@ -957,8 +1000,6 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	  shutting_down = FALSE;
 	  if (client && client->magic != CLIENT_MAGIC)
 	    g_warning("Oh my god the dead clients are walking again, please report this!");
-	  else if (client)
-	    SmsShutdownCancelled (client->connection);
 	}
       else
 	{ 
@@ -971,6 +1012,9 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	      SmsSaveYourself (tmp_client->connection, save_type, shutting_down,
 			       interact_style, fast);
 	    }
+
+	  if (!shutdown)
+	    save_selected = TRUE;
 	}
     }
   else
@@ -1002,6 +1046,9 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 		       gboolean global)
 {
   Client *client = (Client *) data;
+
+  gsm_verbose ("save_yourself_request: %p\n", connection);
+  
     if (save_state != MANAGER_IDLE)
       {
         SaveRequest *request = g_new (SaveRequest, 1);
@@ -1023,6 +1070,8 @@ static void
 save_yourself_p2_request (SmsConn connection, SmPointer data)
 {
   Client *client = (Client *) data;
+
+  gsm_verbose ("save_yourself_p2_request: %p\n", connection);
 
   if (g_slist_find (save_yourself_list, client) != NULL) 
     {
@@ -1124,9 +1173,8 @@ update_save_state (void)
 	      REMOVE (purge_drop_list, client);
 	      free_client (client);
 	    }
-          if(autosave || save_selected || session_save)
-	    write_session ();
-
+	  maybe_write_session ();
+	    
 	  for (list = save_finished_list; list;)
 	    {
 	      Client *client = (Client *)list->data;
@@ -1148,8 +1196,7 @@ update_save_state (void)
 	}
       else
 	{
-          if(autosave || save_selected || session_save)
-	    write_session ();
+	  maybe_write_session ();
 
 	  save_state = SENDING_MESSAGES;
 	  send_message (&save_finished_list, SmsSaveComplete);
@@ -1182,8 +1229,7 @@ update_save_state (void)
 
       CONCAT (live_list, save_finished_list);
       save_finished_list = NULL;
-      if(autosave || save_selected || session_save)
-        write_session ();
+      maybe_write_session ();
 
       save_state = MANAGER_IDLE;
     }
@@ -1219,6 +1265,8 @@ save_yourself_done (SmsConn connection, SmPointer data, gboolean success)
 {
   Client *client = (Client *) data;
   GSList *prop_list = NULL;
+
+  gsm_verbose ("save_yourself_done: %p\n", connection);
 
   if (save_state == MANAGER_IDLE || save_state == STARTING_SESSION ||
       (g_slist_find (save_yourself_list, client) == NULL &&
@@ -1429,6 +1477,8 @@ set_properties (SmsConn connection, SmPointer data, int nprops, SmProp **props)
   Client *client = (Client *) data;
   int i;
 
+  gsm_verbose ("set_properties: %p\n", connection);
+
   if (!nprops)
     return;
 
@@ -1464,6 +1514,8 @@ delete_properties (SmsConn connection, SmPointer data, int nprops,
   Client *client = (Client *) data;
   int i;
 
+  gsm_verbose ("delete_properties: %p\n", connection);
+
   for (i = 0; i < nprops; ++i)
     {
       SmProp *prop;
@@ -1492,6 +1544,8 @@ get_properties (SmsConn connection, SmPointer data)
 {
   Client *client = (Client *) data;
   GSList *prop_list, *list;
+
+  gsm_verbose ("get_properties: %p\n", connection);
 
   client->get_prop_requests++;
 

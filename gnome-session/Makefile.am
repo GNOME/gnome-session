@@ -79,11 +79,7 @@ gnome_session_SOURCES =		\
 	util.h
 
 save_session_SOURCES =		\
-	save-session.c		\
-	gsm-protocol.c		\
-	gsm-protocol.h		\
-	gsm-typebuiltins.c	\
-	gsm-typebuiltins.h
+	save-session.c
 
 session_properties_SOURCES = 	\
 	session-properties-capplet.c	\
