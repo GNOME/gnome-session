@@ -6,11 +6,12 @@
 # Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2001.
 # Huib Kleinhout <huib@stack.nl>, 2002.
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
+# Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-06-23 17:33+0200\n"
 "PO-Revision-Date: 2002-05-31 02:33+02:00\n"
 "Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -18,29 +19,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
 msgstr "GNOME Aanmelden"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
+#: gnome-session/gnome-login-check.c:152
+msgid "Log In"
 msgstr "Aanmelden"
 
-#: gnome-session/gnome-login-check.c:148
+#: gnome-session/gnome-login-check.c:183
 msgid "Start with default programs"
 msgstr "Start met standaard programma's"
 
-#: gnome-session/gnome-login-check.c:152
+#: gnome-session/gnome-login-check.c:187
 msgid "Reset all user settings"
 msgstr "Herstel alle gebruikersinstellingen"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
-msgstr "Wilt u alle GNOME gebruikers instellingen voor %s wissen?"
+msgstr "Wilt u alle GNOME gebruikersinstellingen voor %s wissen?"
 
-#: gnome-session/gnome-login-check.c:195
-#, c-format
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "Nee"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "Herstel alle gebruikersinstellingen"
+
+#: gnome-session/gnome-login-check.c:236
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
 "by the current user, %s.\n"
@@ -50,48 +58,25 @@ msgstr ""
 "aan de huidige gebruiker %s.\n"
 "Gelieve de eigenaar van deze map aan te passen."
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "Log toch in"
+
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
 msgstr "Probeer opnieuw"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Doorgaan"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
+#: gnome-session/gnome-login-check.c:258
 msgid ""
 "Could not look up internet address for %s.\n"
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Er kon geen internet adres gevonden worden voor %s.\n"
+"Er kon geen internetadres gevonden worden voor %s.\n"
 "GNOME kan daardoor niet correct functioneren. Het \n"
-"Probleem kan verholpen worden door %s toe te voegen \n"
-"aan het /etc/hosts bestand."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Uw versie van libICE heeft een fout die ervoor kan zorgen dat\n"
-"gnome-session niet naar behoren werkt.\n"
-"\n"
-"Als u Solaris gebruikt dan zult u of moeten upgraden naar Solaris\n"
-"patch #108376-16 of u zult libICE.so.6 moeten gebruiken van Solaris 7.\n"
-"Kopiëer het bestand naar /usr/openwin/lib. (Dank gaat naar Andy Reitz\n"
-"voor de informatie over deze fout).\n"
-"\n"
-"Uw GNOME sessie zal afgesloten worden na het sluiten van dit dialoogvenster."
+"probleem zou verholpen kunnen worden door %s toe te \n"
+"voegen aan het /etc/hosts bestand."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -197,6 +182,56 @@ msgstr "Instellingen"
 msgid "Always started on every login."
 msgstr "Wordt opgestart bij elke aanmelding."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Er ging iets mis bij het starten van de GNOME Instellingen Daemon.\n"
+"\n"
+"Sommige dingen zoals thema's, geluiden of bureaubladinstellingen zouden "
+"verkeerd kunnen functioneren."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"De laatste foutmelding was:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon proberen te starten."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Er is een onbekende activerings-fout opgetreden."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "De Instellingen Daemon is te vaak herstart."
+
 #: gnome-session/logout.c:225
 msgid "Really log out?"
 msgstr "Weet u zeker dat u zich wilt afmelden?"
@@ -221,23 +256,23 @@ msgstr "Uitschakelen"
 msgid "Reboot"
 msgstr "Herstarten"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
-msgstr "Geef een te laden sessie naam"
+msgstr "Geef de naam van de sessie die geladen moet worden"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lees opgeslagen sessies alleen uit het default.session bestand"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Maximale wachttijd (ms) voor registratie cliënten (0=eeuwig)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Maximale wachttijd (ms) voor reactie van cliënten (0=eeuwig)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Maximale wachttijd (ms) voor afsterven van cliënten (0=eeuwig)"
 
@@ -390,32 +425,15 @@ msgstr "Programma's starten"
 msgid "Current Session"
 msgstr "Huidige Sessie"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Verwijder de geselecteerde cliënt uit de sessie."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Lijst van programma's in de sessie."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Sessie"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sessiekiezer"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Start Sessie"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Aanmelden afbreken"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Initialiseer sessie-instellingen"
 
@@ -493,8 +511,8 @@ msgid ""
 "Programs with smaller values are started before programs with higher values. "
 "The default value should be OK"
 msgstr ""
-"Programma's met kleinere waarde worden gestart voor programma's met een "
-"grotere waarde. De standaardwaarde zou goed moeten zijn."
+"Programma's met kleinere waarden worden gestart voor programma's met "
+"grotere waarden. De standaardwaarde zou goed moeten zijn."
 
 #: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
@@ -502,8 +520,46 @@ msgstr "De opstartopdracht mag niet leeg zijn"
 
 #: gnome-session/startup-programs.c:373
 msgid "Add Startup Program"
-msgstr "Te Starten Programma Toevoegen"
+msgstr "Te starten programma toevoegen"
 
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
-msgstr "Te Starten Programma Bewerken"
+msgstr "Te starten programma bewerken"
+
+#~ msgid "Continue"
+#~ msgstr "Doorgaan"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Uw versie van libICE heeft een fout die ervoor kan zorgen dat\n"
+#~ "gnome-session niet naar behoren werkt.\n"
+#~ "\n"
+#~ "Als u Solaris gebruikt dan zult u of moeten upgraden naar Solaris\n"
+#~ "patch #108376-16 of u zult libICE.so.6 moeten gebruiken van Solaris 7.\n"
+#~ "Kopiëer het bestand naar /usr/openwin/lib. (Dank gaat naar Andy Reitz\n"
+#~ "voor de informatie over deze fout).\n"
+#~ "\n"
+#~ "Uw GNOME sessie zal afgesloten worden na het sluiten van dit "
+#~ "dialoogvenster."
+
+#~ msgid "Session"
+#~ msgstr "Sessie"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Sessiekiezer"
+
+#~ msgid "Start Session"
+#~ msgstr "Start Sessie"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Aanmelden afbreken"
+
