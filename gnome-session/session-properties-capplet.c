@@ -468,7 +468,7 @@ static void
 help_cb (void)
 {
   GError *error = NULL;
-  gnome_help_display_desktop (NULL, "user-guide", "wgoscustlookandfeel.xml",
+  gnome_help_display_desktop (NULL, "user-guide", "user-guide.xml",
                               "goscustsession-5", &error);
   if (error) {
     GtkWidget *dialog;

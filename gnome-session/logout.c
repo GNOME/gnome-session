@@ -513,7 +513,7 @@ display_gui (void)
       break;
     case GTK_RESPONSE_HELP:
       egg_help_display_desktop_on_screen (NULL, "user-guide",
-					  "wgosstartsession.xml",
+					  "user-guide.xml",
 					  "gosgetstarted-73",
 					  screen,
 					  &error);
