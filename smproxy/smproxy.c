@@ -746,8 +746,6 @@ WinInfo *winptr;
 
     if (!HasXSMPsupport (leader_winptr->window))
     {
-	Bool participating_in_session = False;
-
 	XGetWMName (disp, leader_winptr->window, &leader_winptr->wm_name);
 
 	XGetCommand (disp, leader_winptr->window,
@@ -759,33 +757,18 @@ WinInfo *winptr;
 	XGetWMClientMachine (disp, leader_winptr->window,
 	    &leader_winptr->wm_client_machine);
 
-	leader_winptr->has_save_yourself =
-		HasSaveYourself (leader_winptr->window);
-
-	/* According to the ICCCM, a client indicates that it is
-	 * participating in the session by initialising its
-	 * WM_COMMAND property with argv.
-	 *
-	 * We loosen the constraint here to also include clients
-	 * that are participating in the WM_SAVE_YOURSELF
-	 * protocol because of Java's misinterpretation of the
-	 * specification.
-	 *
-	 * See http://bugzilla.gnome.org/show_bug.cgi?id=85933
-	 */
-	if (leader_winptr->has_save_yourself ||
-	    (leader_winptr->wm_command != NULL &&
-	     leader_winptr->wm_command_count > 0))
-	    participating_in_session = True;
-
-	if (participating_in_session &&
-	    leader_winptr->wm_name.value != NULL &&
+	if (leader_winptr->wm_name.value != NULL &&
 	    leader_winptr->wm_name.nitems != 0 &&
+	    leader_winptr->wm_command != NULL &&
+	    leader_winptr->wm_command_count > 0 &&
 	    leader_winptr->class.res_name != NULL &&
 	    leader_winptr->class.res_class != NULL &&
 	    leader_winptr->wm_client_machine.value != NULL &&
 	    leader_winptr->wm_client_machine.nitems != 0)
 	{
+	    leader_winptr->has_save_yourself =
+		HasSaveYourself (leader_winptr->window);
+
 	    ConnectClientToSM (leader_winptr);
 	}
     }

@@ -1,3 +1,9 @@
+2002-08-05  Mark McLoughlin  <mark@skynet.ie>
+
+	* smproxy.c: revert the previous change. Java's
+	session management is even more broken than
+	that and the change causes crashes - #89968.
+
 2002-07-10  Mark McLoughlin  <mark@skynet.ie>
 
 	* smproxy.c: loosen the constraint vaguely
