@@ -23,6 +23,7 @@
 #include <gnome.h>
 #include "capplet-widget.h"
 #include "session-properties-capplet.h"
+#include "headers.h"
 #include "gsm-protocol.h"
 
 extern GSList *deleted_sessions;
@@ -66,7 +67,6 @@ session_list_update_gui (GSList *sess_list, GtkWidget *clist, gchar *curr_sess)
 {
   GSList *temp_list = NULL; 
   gtk_clist_clear (GTK_CLIST (clist));
-  
   for(temp_list = sess_list; temp_list; temp_list = temp_list->next) {
     gint row;
     gchar *name = (gchar*)temp_list->data;
@@ -253,7 +253,7 @@ session_list_write (GSList *sess_list, GSList *sess_list_rev, GHashTable *hash)
   gchar *sess_name = NULL;
   gchar *sess_name_old = NULL;
   gboolean existed_before = FALSE;
- 
+  
   for(tmp_sess=sess_list; tmp_sess; tmp_sess=tmp_sess->next) {
     existed_before = FALSE;
     sess_name = (gchar *)tmp_sess->data;
@@ -271,7 +271,7 @@ session_list_write (GSList *sess_list, GSList *sess_list_rev, GHashTable *hash)
       if(sess_name_old) {
         /* So we copy then delete section and paste with new section header */       
         change_session_section_name (sess_name, sess_name_old); 
-	g_free(sess_name_old);
+	sess_name_old = NULL;
       }
       else {  
         /* We may possibly need to restore a session */
@@ -327,7 +327,6 @@ delete_sessions (GSList *sess_list)
       gnome_config_push_prefix(CONFIG_PREFIX);
       gnome_config_clean_section(g_strdup(name));
       gnome_config_pop_prefix ();
-      g_free(session_object);
       g_free(path);
     }
   }
@@ -392,7 +391,7 @@ read_session_clients (SessionObject **session_object)
         current = g_new0 (ClientObject, 1);
         handle = g_strdup(key);
        
-        (*session_object)->clients = g_slist_append((*session_object)->clients, current);
+        (*session_object)->clients = APPEND((*session_object)->clients, current);
       }
       if(strcmp(p+1, "id") == 0)
         current->id = g_strdup(value); 
@@ -476,4 +475,16 @@ void
 session_list_free (GSList *sess_list) 
 {
   g_slist_free (sess_list);
+}
+
+void
+deleted_session_list_free ()
+{
+  if(deleted_sessions) {
+    GSList *temp = NULL;
+    for(temp=deleted_sessions; temp; temp=temp->next) {
+      g_free(temp->data);
+    }
+  } 
+  deleted_sessions = NULL;
 }

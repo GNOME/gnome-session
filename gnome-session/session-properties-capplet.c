@@ -45,8 +45,8 @@ static gboolean logout_prompt_revert;
 static gboolean login_splash;
 static gboolean login_splash_revert;
 
-static GSList *session_list;
-static GSList *session_list_revert;
+static GSList *session_list = NULL;
+static GSList *session_list_revert = NULL;
 
 static gchar* current_session;
 static gchar* current_session_revert;
@@ -140,7 +140,11 @@ capplet_build (void)
 
   login_splash = gnome_config_get_bool (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
   login_splash_revert = login_splash;
-
+  
+  /* FIXME - don't really want this here...the protocol should set current_session
+     but I'm a little unsure if it actually does though */ 
+  current_session = gnome_config_get_string (CURRENT_SESSION_KEY);
+  
   gnome_config_pop_prefix ();
   
   startup_list = NULL;
@@ -225,15 +229,16 @@ capplet_build (void)
 
   gtk_signal_connect (GTK_OBJECT (clist_session), "select_row",
 			GTK_SIGNAL_FUNC (select_row), NULL); 
+  
   gtk_signal_connect (GTK_OBJECT (protocol), "current_session",
   			GTK_SIGNAL_FUNC (protocol_set_current_session), NULL);
-
-   gtk_signal_connect (GTK_OBJECT (protocol), "saved_sessions",
-			GTK_SIGNAL_FUNC (saved_sessions), NULL);
-   gsm_protocol_get_saved_sessions (GSM_PROTOCOL (protocol));
   
+  gtk_signal_connect (GTK_OBJECT (protocol), "saved_sessions",
+			GTK_SIGNAL_FUNC (saved_sessions), NULL);
 
+  gsm_protocol_get_saved_sessions (GSM_PROTOCOL (protocol));
 
+  
   gtk_box_pack_start (GTK_BOX (hbox), scrolled_window, TRUE, TRUE, 0);
 
   util_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
@@ -335,6 +340,8 @@ capplet_build (void)
 		      GTK_SIGNAL_FUNC (dirty_cb), capplet);
   gtk_signal_connect (GTK_OBJECT (login_splash_button), "toggled",
 		      GTK_SIGNAL_FUNC (dirty_cb), capplet);
+  
+  update_gui();
   gtk_widget_show_all (capplet);
 }
 
@@ -342,13 +349,20 @@ capplet_build (void)
 static void
 write_state (void)
 {
+  gchar *current_session_tmp = NULL;
   autosave = GTK_TOGGLE_BUTTON (autosave_button)->active;
   logout_prompt = GTK_TOGGLE_BUTTON (logout_prompt_button)->active;
   login_splash  = GTK_TOGGLE_BUTTON (login_splash_button)->active;
-  
-  current_session = NULL; 
-  gtk_clist_get_text (GTK_CLIST(clist_session), selected_row, 0, &current_session);
-  
+ 
+  if(clist_session) { 
+    gtk_clist_get_text (GTK_CLIST(clist_session), selected_row, 0, &current_session_tmp);
+  }
+  if(current_session_tmp) {
+  /* If the user removes all the session listing we don't want to set 
+   * the current session */
+    current_session = NULL;
+    current_session = g_strdup(current_session_tmp);
+  } 
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
   gnome_config_set_bool (AUTOSAVE_MODE_KEY, autosave);
   gnome_config_set_bool (LOGOUT_SCREEN_KEY, logout_prompt);
@@ -361,7 +375,6 @@ write_state (void)
   
   gsm_protocol_set_autosave_mode (GSM_PROTOCOL(protocol), autosave);
  
-  /* Okay...for some reason this isn't working right now - FIXME */
   gsm_protocol_set_session_name (GSM_PROTOCOL(protocol), current_session);  
   
   session_list_write (session_list, session_list_revert, hashed_sessions);
@@ -401,7 +414,7 @@ revert (void)
 {
   revert_state ();
   write_state ();
-
+  deleted_session_list_free();
   update_gui ();
 }
 
@@ -409,7 +422,7 @@ static void
 ok (void)
 {
   write_state ();
-
+  deleted_session_list_free();
   gtk_main_quit();
 }
 
@@ -418,7 +431,7 @@ cancel (void)
 {
   revert_state ();
   write_state ();
-  
+  deleted_session_list_free(); 
   gtk_main_quit();  
 }
 
@@ -463,7 +476,7 @@ page_hidden (void)
 /* Called to make the contents of the GUI reflect the current settings */
 static void
 update_gui (void)
-{
+{ 
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
 				autosave);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
@@ -528,27 +541,45 @@ select_row (GtkWidget *widget, gint row) {
 static void 
 protocol_set_current_session (GtkWidget *widget, gchar* name)
 {
-  g_free(current_session);
-  current_session = g_strdup(name);
+  if(!name) {
+    current_session = NULL; 
+    current_session = g_strdup(name); 
+  }
 }
 
 static void
 saved_sessions (GtkWidget *widget, GSList* session_names)
 {
-  GSList *list;
-  session_list = session_list_duplicate (session_names);
-  session_list_revert = session_list_duplicate (session_names);
-  for(list = session_list; list; list = list->next) {
-    gint row;
-    gchar* name = (gchar*)list->data;
+  GSList *tmplist;
+  GSList *tmp;
+  gchar *name;
+  gint row;
+  gboolean current_found = FALSE; 
+  
+  tmplist = session_list_duplicate (session_names);
+  
+  for(tmp = tmplist; tmp; tmp = tmp->next) {
+    name = (gchar*)tmp->data;
     row = gtk_clist_append (GTK_CLIST (clist_session), &name);
     if(!strcmp (current_session, name)) {
        current_session_revert = g_strdup(current_session);
        gtk_clist_select_row (GTK_CLIST (clist_session), row, 0);
        selected_row = row;
        selected_row_revert = row;
+       current_found = TRUE;
     }
   }
+  if(!current_found) {
+    name = g_strdup(current_session);
+    row = gtk_clist_append (GTK_CLIST (clist_session), &name);
+    gtk_clist_select_row (GTK_CLIST (clist_session), row, 0);
+    selected_row = row;
+    selected_row_revert = row;
+    tmplist = APPEND (tmplist, g_strdup(current_session));
+  } 
+  
+  session_list = session_list_duplicate (tmplist);
+  session_list_revert = session_list_duplicate (tmplist);
 }
 
 /* Add a new session name to the list */
@@ -649,7 +680,7 @@ main (int argc, char *argv[])
    * We ignore the resulting "current_session" signal.
    */
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
-
+  
   switch(init_result) 
     {
     case 0:

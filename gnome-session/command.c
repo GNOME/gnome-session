@@ -353,11 +353,12 @@ command (Client* client, int nprops, SmProp** props)
 	  iter = gnome_config_init_iterator_sections (CONFIG_PREFIX);
 	  
 	  while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
-	    {
+	    { 
+              /* This check is still here for binary compatibility */
+
 	      if (g_strcasecmp (section, GSM_CONFIG_SECTION))
 		{
 		  SmProp* tmp_prop = make_command (GsmReadSession, section);
-		  
 		  prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
 		}
 	    }
