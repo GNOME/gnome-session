@@ -17,6 +17,7 @@ bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
+gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
 command.c session.h remote.c logout.c
 
 save_session_SOURCES = save-session.c
