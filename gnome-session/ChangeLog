@@ -1,3 +1,21 @@
+2002-06-19  jacob berkman  <jacob@ximian.com>
+
+	* main.c (main): call the gsd and sound functions
+
+	* gsm-sound.[ch] (gsm_sound_login): if built with esound support,
+	start esd and load the login sound, and play the login sound
+	(gsm_sound_logout): play the logout sound
+	
+	fixes bug #84774
+
+	* gnome-login-check.c (main): remove gnomeui dependency, and only
+	init libgnome if we need to find the pixmap.  helps bug #85115
+
+	* default.in (num_clients): remove gnome-settings-daemon
+
+	* gsm-gsd.[ch] (gsm_gsd_start): start gnome-settings-daemon via
+	bonobo-activation, and restart it if it dies.  fixes #85030
+
 2002-06-17  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am, gnome-splash-1.4.0.png: remove.

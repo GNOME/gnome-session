@@ -19,8 +19,15 @@
    02111-1307, USA.  */
 
 #include <config.h>
-#include <gnome.h>
+
+#include <libgnome/gnome-i18n.h>
+#include <libgnome/gnome-program.h>
+#include <libgnome/gnome-util.h>
+#include <libgnome/gnome-init.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkx.h>
+
+#include <unistd.h>
 #include <stdio.h>
 #include <netinet/in.h>
 #include <netdb.h>
@@ -30,10 +37,19 @@
 #include <pwd.h>
 #include <sys/stat.h>
 
+/* for performance checking */
+#if 1
+static struct stat dummy_sb;
+#define DUMMY_STAT(s) (stat ((s), &dummy_sb))
+#else /* !DO_DUMMY_STATS */
+#define DUMMY_STAT(s)
+#endif /* !DO_DUMMY_STATS */
+
 GtkWidget *dns_dialog = NULL;
 GtkWidget *progress = NULL;
 gint input_tag = FALSE;
 gint timeout_tag = FALSE;
+
 
 /* returns the hostname */
 static gchar *
@@ -42,6 +58,8 @@ get_hostname (gboolean readable)
 	static gboolean init = FALSE;
 	static gchar *result = NULL;
 	
+	DUMMY_STAT ("get_hostname");
+
 	if (!init){
 		char hostname[256];
 		
@@ -62,6 +80,8 @@ static gboolean
 check_for_dns (void)
 {
 	char *hostname;
+
+	DUMMY_STAT ("check_for_dns");
 
 	hostname = get_hostname (FALSE);
 	
@@ -84,6 +104,8 @@ check_orbit_dir(void)
   char buf[PATH_MAX];
   struct stat sbuf;
 
+  DUMMY_STAT ("check_orbit_dir");
+
   g_snprintf(buf, sizeof(buf), "/tmp/orbit-%s", g_get_user_name());
   if(stat(buf, &sbuf))
     return TRUE; /* Doesn't exist - things are fine */
@@ -94,6 +116,12 @@ check_orbit_dir(void)
 
   return TRUE;
 }
+
+enum {
+	RESPONSE_LOG_IN,
+	RESPONSE_TRY_AGAIN,
+	RESPONSE_RESET
+};
 
 int
 main (int argc, char **argv)
@@ -108,31 +136,38 @@ main (int argc, char **argv)
 	GtkWidget *frame;
 	GtkWidget *pixmap = NULL;
 	gchar *msg, *s;
+	int response;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
  	textdomain (GETTEXT_PACKAGE);
 
-	gnome_init ("gnome-login-check", "0.1", argc, argv);
+	gtk_init (&argc, &argv);
 
 	gdk_window_get_pointer (GDK_ROOT_PARENT(), NULL, NULL, &state);
 
 	if ((state & (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
-		dialog = gnome_dialog_new (_("GNOME Login"), _("Login"), NULL);
+		dialog = gtk_dialog_new_with_buttons (_("GNOME Login"), 
+						      NULL, GTK_DIALOG_NO_SEPARATOR,
+						      _("Log In"), RESPONSE_LOG_IN,
+						      NULL);
+		
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
 
-		hbox = gtk_hbox_new (FALSE, GNOME_PAD);
-		gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (dialog)->vbox),
+		hbox = gtk_hbox_new (FALSE, 5);
+		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox),
 				    hbox, FALSE, FALSE, 0);
 
-		s = gnome_unconditional_pixmap_file("gnome-logo-large.png");
+		gnome_program_init ("gnome-login-check", VERSION,
+				    LIBGNOME_MODULE, argc, argv,
+				    NULL);
+		s = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_PIXMAP, "gnome-logo-large.png", FALSE, NULL);
 		if (s) {
-                        pixmap = gnome_pixmap_new_from_file(s);
+			pixmap = gtk_image_new_from_file (s);
                         g_free(s);
 			
 			frame = gtk_frame_new (NULL);
-			gtk_container_set_border_width (GTK_CONTAINER (frame),
-							GNOME_PAD_SMALL);
+			gtk_container_set_border_width (GTK_CONTAINER (frame), 5);
 			gtk_frame_set_shadow_type (GTK_FRAME (frame),
 						   GTK_SHADOW_IN);
 			gtk_container_add (GTK_CONTAINER (frame), pixmap);
@@ -141,7 +176,7 @@ main (int argc, char **argv)
 					    frame, FALSE, FALSE, 0);
                 }
 
-		vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+		vbox = gtk_vbox_new (FALSE, 5);
 		gtk_box_pack_start (GTK_BOX (hbox),
 				    vbox, FALSE, FALSE, 0);
 
@@ -153,26 +188,30 @@ main (int argc, char **argv)
 		gtk_box_pack_start (GTK_BOX (vbox), settings_toggle,
 				    FALSE, FALSE, 0);
 	    
-		gnome_dialog_close_hides (GNOME_DIALOG (dialog), TRUE);
-
 		while (1) {
 		        gtk_widget_show_all (dialog);
-			gnome_dialog_run (GNOME_DIALOG (dialog));
+			response = gtk_dialog_run (GTK_DIALOG (dialog));
 
 			if (GTK_TOGGLE_BUTTON (settings_toggle)->active) {
 				msg = g_strdup_printf (_("Really reset all GNOME user settings for %s?"), g_get_user_name());
-				msgbox = gnome_message_box_new (msg,
-								GNOME_MESSAGE_BOX_QUESTION,
-								GNOME_STOCK_BUTTON_OK,
-								GNOME_STOCK_BUTTON_CANCEL,
-								NULL);
+				msgbox = gtk_message_dialog_new (GTK_WINDOW (dialog), 0,
+								 GTK_MESSAGE_QUESTION,
+								 GTK_BUTTONS_NONE,
+								 _("Really reset all GNOME user settings for %s?"),
+								 g_get_user_name ());
+				gtk_dialog_add_buttons (GTK_DIALOG (msgbox),
+							_("No"), GTK_RESPONSE_NO,
+							_("Reset all Settings"), RESPONSE_RESET,
+							NULL);
 				gtk_window_set_position (GTK_WINDOW (msgbox),
 							 GTK_WIN_POS_CENTER);
 
-				if (gnome_dialog_run (GNOME_DIALOG (msgbox)) != 0)
+				response = gtk_dialog_run (GTK_DIALOG (msgbox));
+				gtk_widget_destroy (msgbox);
+				if (response != RESPONSE_RESET)
 					continue;
 			}
-
+			
 			break;
 		}
 		
@@ -190,75 +229,50 @@ main (int argc, char **argv)
 
 	if (!check_orbit_dir ()) {
 		GtkWidget *tmp_msgbox;
-		gchar *tmp_msg;
-		tmp_msg = g_strdup_printf (
-			_("The directory /tmp/orbit-%s is not owned\nby the current user, %s.\n"
-			  "Please correct the ownership of this directory."),
-			g_get_user_name(), g_get_user_name());
+
+		tmp_msgbox = gtk_message_dialog_new (NULL, 0,
+						     GTK_MESSAGE_WARNING,
+						     GTK_BUTTONS_NONE,
+						     _("The directory /tmp/orbit-%s is not owned\nby the current user, %s.\n"
+						       "Please correct the ownership of this directory."),
+						     g_get_user_name(), g_get_user_name());
 		
-		tmp_msgbox = gnome_message_box_new (
-			tmp_msg,
-			GNOME_MESSAGE_BOX_WARNING,
-			_("Try again"),
-			_("Continue"),
-			NULL);
+		gtk_dialog_add_buttons (GTK_DIALOG (tmp_msgbox),
+					_("Log in Anyway"), RESPONSE_LOG_IN,
+					_("Try Again"), RESPONSE_TRY_AGAIN,
+					NULL);
 	  
 		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
-		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
 		
-		while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
+		while ((RESPONSE_TRY_AGAIN == gtk_dialog_run (GTK_DIALOG (tmp_msgbox))) &&
 		       !check_orbit_dir ())
 			/* Nothing */;
 	}
 	
 	if (!check_for_dns ()) {
 		GtkWidget *tmp_msgbox;
-		gchar *tmp_msg;
-		
-		tmp_msg = g_strdup_printf (
-		  _("Could not look up internet address for %s.\n"
-		    "This will prevent GNOME from operating correctly.\n"
-		    "It may be possible to correct the problem by adding\n"
-		    "%s to the file /etc/hosts."),
-		  get_hostname(TRUE), get_hostname(TRUE));
-		
-		tmp_msgbox = gnome_message_box_new (tmp_msg,
-						GNOME_MESSAGE_BOX_WARNING,
-						_("Try again"),
-						_("Continue"),
-						NULL);
 
+		tmp_msgbox = gtk_message_dialog_new (NULL, 0,
+						     GTK_MESSAGE_WARNING,
+						     GTK_BUTTONS_NONE,
+						     _("Could not look up internet address for %s.\n"
+						       "This will prevent GNOME from operating correctly.\n"
+						       "It may be possible to correct the problem by adding\n"
+						       "%s to the file /etc/hosts."),
+						     get_hostname(TRUE), get_hostname(TRUE));
+		
+		gtk_dialog_add_buttons (GTK_DIALOG (tmp_msgbox),
+					_("Log in Anyway"), RESPONSE_LOG_IN,
+					_("Try Again"), RESPONSE_TRY_AGAIN,
+					NULL);
+	  
 		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
-		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
-
-		while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
+		
+		while ((RESPONSE_TRY_AGAIN == gtk_dialog_run (GTK_DIALOG (tmp_msgbox))) &&
 		       !check_for_dns ())
 			/* Nothing */;
 			
 	}
-
-#ifdef DO_LIBICE_CHECK
-	if (!check_for_libice_bug ()) {
-		GtkWidget *tmp_msgbox;
-		
-		tmp_msgbox = gnome_message_box_new (
-			_("Your version of libICE has a bug which causes gnome-session\n"
-			  "to not function correctly.\n\n"
-			  "If you are on Solaris, you should either upgrade to Solaris patch\n"
-			  "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-			  "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-			  "for information on this bug).\n\n"
-			  "Your GNOME session will terminate after closing this dialog."),
-			GNOME_MESSAGE_BOX_ERROR,
-			GNOME_STOCK_BUTTON_OK,
-			NULL);
-		
-		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
-		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
-
-		gnome_dialog_run (GNOME_DIALOG (tmp_msgbox));
-	}	
-#endif
 
 	return 0;
 }

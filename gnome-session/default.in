@@ -8,22 +8,19 @@
 # The clients must be numbered from 0 to the value of num_clients - 1.
 
 [Default]
-num_clients=5
+num_clients=4
 0,id=default0
 0,Priority=0
 0,RestartCommand=gnome-smproxy --sm-client-id default0
 1,id=default1
-1,Priority=5
-1,RestartCommand=gnome-settings-daemon --sm-client-id default1
+1,Priority=10
+1,RestartCommand=gnome-wm --default-wm gnome-wm --sm-client-id default1
 2,id=default2
-2,Priority=10
-2,RestartCommand=gnome-wm --default-wm gnome-wm --sm-client-id default2
+2,Priority=40
+2,RestartCommand=gnome-panel --sm-client-id default2
 3,id=default3
 3,Priority=40
-3,RestartCommand=gnome-panel --sm-client-id default3
+3,RestartCommand=nautilus --no-default-window --sm-client-id default3
 4,id=default4
-4,Priority=40
-4,RestartCommand=nautilus --no-default-window --sm-client-id default4
-5,id=default5
-5,Priority=50
-5,RestartCommand=gnome-terminal --sm-client-id default5
+4,Priority=50
+4,RestartCommand=gnome-terminal --sm-client-id default4

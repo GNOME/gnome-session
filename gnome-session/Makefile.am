@@ -30,7 +30,11 @@ STANDARD_PROPERTIES_CFLAGS =                                    \
 	-DDATADIR=\""$(datadir)"\"                              \
 	$(NULL)
 
-LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
+gnome_session_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
+gnome_session_save_LDADD = $(GNOME_SESSION_LIBS)
+gnome_login_check_LDADD = $(LOGIN_CHECK_LIBS)
+gnome_session_properties_LDADD = $(GNOME_SESSION_LIBS)
+splash_test_LDADD = $(GNOME_SESSION_LIBS)
 
 if SESSION
 @INTLTOOL_DESKTOP_RULE@
@@ -69,8 +73,12 @@ gnome_session_SOURCES =		\
 	logout.h		\
 	splash.c		\
 	splash.h		\
+	gsm-gsd.c		\
+	gsm-gsd.h		\
 	gsm-protocol.c		\
 	gsm-protocol.h		\
+	gsm-sound.c		\
+	gsm-sound.h		\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h	\
 	headers.h		\

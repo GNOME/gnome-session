@@ -40,6 +40,8 @@
 #include "command.h"
 #include "splash.h"
 #include "util.h"
+#include "gsm-sound.h"
+#include "gsm-gsd.h"
 
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
@@ -260,9 +262,13 @@ main (int argc, char *argv[])
   if(failsafe)
 	session_name = FAILSAFE_SESSION;
   
-  session_name_env = g_strconcat ("GNOME_DESKTOP_SESSION_ID=", g_strdup (session_name), NULL);
+  session_name_env = g_strconcat ("GNOME_DESKTOP_SESSION_ID=", session_name, NULL);
   putenv (session_name_env);
   the_session = read_session (session_name);
+
+  gsm_sound_login ();
+
+  gsm_gsd_start ();
 
   if (splashing)
     start_splash (49.0);
@@ -270,6 +276,8 @@ main (int argc, char *argv[])
   start_session (the_session);
 
   gtk_main ();
+
+  gsm_sound_logout ();
 
   clean_ice ();
 
