@@ -1,4 +1,4 @@
-# Swedish messages for gnome-core.
+# Swedish messages for gnome-session.
 # Copyright (C) 1998, 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998.
 # Anders Carlsson <anders.carlsson@tordata.se>, 1999.
@@ -10,9 +10,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-02-12 16:24+0000\n"
-"PO-Revision-Date: 2002-01-31 14:50+0100\n"
+"Project-Id-Version: gnome-session\n"
+"POT-Creation-Date: 2002-02-12 21:38+0100\n"
+"PO-Revision-Date: 2002-02-12 21:38+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -288,18 +288,90 @@ msgid "Save Current Session"
 msgstr "Spara nuvarande session"
 
 #: gnome-session/save-session.desktop.in.h:2
-#, fuzzy
 msgid "Save current state of desktop"
-msgstr "Spara skärmdumpen till skriv_bordet"
+msgstr "Spara skrivbordets aktuella tillstånd"
 
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "Sessionshanterade program för tillfället"
+#: gnome-session/session-names.c:126
+msgid "The session name cannot be empty"
+msgstr "Sessionsnamnet får inte vara tomt"
 
-#. app
-#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Sessionsegenskaper"
+#: gnome-session/session-names.c:136
+msgid "The session name already exists"
+msgstr "Sessionen finns redan"
+
+#: gnome-session/session-names.c:170
+msgid "Add a new session"
+msgstr "Lägg till en ny session"
+
+#: gnome-session/session-names.c:202
+msgid "Edit session name"
+msgstr "Redigera sessionsnamn"
+
+#. frame for options
+#: gnome-session/session-properties-capplet.c:181
+msgid "Options"
+msgstr "Alternativ"
+
+#: gnome-session/session-properties-capplet.c:192
+msgid "Show splash screen on login"
+msgstr "Visa startbild vid inloggning"
+
+#: gnome-session/session-properties-capplet.c:199
+msgid "Prompt on logout"
+msgstr "Fråga vid utloggning"
+
+#: gnome-session/session-properties-capplet.c:206
+msgid "Automatically save changes to session"
+msgstr "Spara ändringarna i sessionen automatiskt"
+
+#: gnome-session/session-properties-capplet.c:209
+msgid "Choose Current Session"
+msgstr "Välj nuvarande session"
+
+#: gnome-session/session-properties-capplet.c:226
+msgid "Session Name"
+msgstr "Sessionsnamn"
+
+#: gnome-session/session-properties-capplet.c:247
+#: gnome-session/session-properties-capplet.c:301
+msgid "Add..."
+msgstr "Lägg till..."
+
+#: gnome-session/session-properties-capplet.c:252
+#: gnome-session/session-properties-capplet.c:306
+msgid "Edit..."
+msgstr "Redigera..."
+
+#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:311
+msgid "Delete"
+msgstr "Ta bort"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "Session Options"
+msgstr "Sessionsalternativ"
+
+#. Frame for non-session managed startup programs
+#: gnome-session/session-properties-capplet.c:274
+msgid "Non-session-managed Startup Programs"
+msgstr "Startprogram som inte är sessionskontrollerade"
+
+#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/startup-programs.c:299
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:292
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:321
+msgid "Browse Currently Running Programs..."
+msgstr "Välj bland program som kör nu..."
+
+#: gnome-session/session-properties-capplet.c:330
+msgid "Startup Programs"
+msgstr "Startprogram"
 
 #: gnome-session/session-properties.c:101
 msgid "Remove"
@@ -326,6 +398,11 @@ msgstr "Avbryt"
 msgid "Help"
 msgstr "Hjälp"
 
+#. app
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
+msgid "Session Properties"
+msgstr "Sessionsegenskaper"
+
 #: gnome-session/session-properties.c:272
 msgid "Session"
 msgstr "Session"
@@ -350,6 +427,10 @@ msgstr "Initiera sessionsinställningar"
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Sessionsegenskaper och program vid uppstart"
+
+#: gnome-session/session.desktop.in.h:1
+msgid "Current session managed programs"
+msgstr "Sessionshanterade program för tillfället"
 
 #: gnome-session/splash.c:55
 msgid "Audio Settings"
@@ -420,6 +501,30 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Startar GNOME"
 
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+msgid "Startup Command"
+msgstr "Startkommando"
+
+#: gnome-session/startup-programs.c:314
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Program med låga värden startas före program med höga värden.  "
+"Standardvärdet borde vara okej."
+
+#: gnome-session/startup-programs.c:333
+msgid "The startup command cannot be empty"
+msgstr "Startkommandot får inte vara tomt"
+
+#: gnome-session/startup-programs.c:373
+msgid "Add Startup Program"
+msgstr "Lägg till startprogram"
+
+#: gnome-session/startup-programs.c:391
+msgid "Edit Startup Program"
+msgstr "Redigera startprogram"
+
 #~ msgid "No name"
 #~ msgstr "Inget namn"
 
@@ -458,9 +563,6 @@ msgstr "Startar GNOME"
 
 #~ msgid "URL:"
 #~ msgstr "URL:"
-
-#~ msgid "Command:"
-#~ msgstr "Kommando:"
 
 #~ msgid "Name:"
 #~ msgstr "Namn:"
@@ -1122,22 +1224,6 @@ msgstr "Startar GNOME"
 #~ msgid "... and many more"
 #~ msgstr "...och många fler"
 
-#, fuzzy
-#~ msgid "Incomplete '%s' background type received"
-#~ msgstr "panel_applet_set_prop: Ofullständig \"%s\"-bakgrundstyp mottogs"
-
-#, fuzzy
-#~ msgid "Incomplete '%s' background type received: %s"
-#~ msgstr "panel_applet_set_prop: Ofullständig \"%s\"-bakgrundstyp mottogs: %s"
-
-#, fuzzy
-#~ msgid "Failed to get pixmap %s"
-#~ msgstr "panel_applet_set_prop: Misslyckades med att hämta bilden %s"
-
-#, fuzzy
-#~ msgid "Unknown background type received"
-#~ msgstr "panel_applet_set_prop: Okänd bakgrundstyp mottogs"
-
 #~ msgid "The Applet's containing Panel's orientation"
 #~ msgstr "Panelprogrammet innehåller panelens orientering"
 
@@ -1785,9 +1871,6 @@ msgstr "Startar GNOME"
 #~ msgid "Unable to take a screenshot of the current desktop."
 #~ msgstr "Kan inte ta en skärmdump av det aktuella skrivbordet."
 
-#~ msgid "Options"
-#~ msgstr "Alternativ"
-
 #~ msgid "Preview"
 #~ msgstr "Förhandsgranskning"
 
@@ -1856,10 +1939,6 @@ msgstr "Startar GNOME"
 #~ msgstr ""
 #~ "Tillåt att en kommandorad skrivs in istället för att ett program väljs "
 #~ "från listan"
-
-#, fuzzy
-#~ msgid "_Run ..."
-#~ msgstr "Kör..."
 
 #~ msgid "Run Program"
 #~ msgstr "Kör program"
@@ -1948,26 +2027,6 @@ msgstr "Startar GNOME"
 #~ "Det här programmet kan köra andra program, bädda in små panelprogram i "
 #~ "sig själv, skapa världsfred, och orsaka diverse X-krascher."
 
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "Running in \"Lockdown\" mode.  This means your system administrator has "
-#~ "prohibited any changes to the panel's configuration to take place."
-#~ msgstr ""
-#~ "Kör i \"låst\" läge. Detta betyder att din systemadministratör har "
-#~ "förbjudit alla ändringar i panelkonfigurationen."
-
-#~ msgid "The GNOME Panel"
-#~ msgstr "GNOME-panelen"
-
-#, fuzzy
-#~ msgid "(C) 1997-2002 the Free Software Foundation"
-#~ msgstr "© 1997-2000 Free Software Foundation"
-
-#~ msgid "End world hunger"
-#~ msgstr "Stoppa svälten i världen"
-
 #~ msgid "Can't execute 'About GNOME'"
 #~ msgstr "Kan inte köra \"Om GNOME\""
 
@@ -2027,16 +2086,6 @@ msgstr "Startar GNOME"
 
 #~ msgid "No 'Exec' or 'URL' field in entry"
 #~ msgstr "Inget \"Exec\"- eller \"URL\"-fält i posten"
-
-#, fuzzy
-#~ msgid ""
-#~ "<b>Cannot save changes to menu entry</b>\n"
-#~ "\n"
-#~ "Details: %s"
-#~ msgstr ""
-#~ "<b>Kan inte visa hjälpdokument</b>\n"
-#~ "\n"
-#~ "Detaljer: %s"
 
 #~ msgid "Desktop entry properties"
 #~ msgstr "Egenskaper förs skrivbordspost"
@@ -2192,10 +2241,6 @@ msgstr "Startar GNOME"
 
 #~ msgid "Run a command"
 #~ msgstr "Kör ett kommando"
-
-#, fuzzy
-#~ msgid "Menu:"
-#~ msgstr "Meny"
 
 #~ msgid "Main Menu"
 #~ msgstr "Huvudmeny"
@@ -2448,16 +2493,6 @@ msgstr "Startar GNOME"
 #~ msgid "Graphics"
 #~ msgstr "Grafik"
 
-#~ msgid "Graphics menu"
-#~ msgstr "Grafikmeny"
-
-#, fuzzy
-#~ msgid "Home Applications"
-#~ msgstr "Applikationer"
-
-#~ msgid "Internet"
-#~ msgstr "Internet"
-
 #~ msgid "Programs for Internet and networks"
 #~ msgstr "Program för Internet och nätverk"
 
@@ -2472,14 +2507,6 @@ msgstr "Startar GNOME"
 
 #~ msgid "Netscape Web Browser"
 #~ msgstr "Netscape"
-
-#, fuzzy
-#~ msgid "Office"
-#~ msgstr "Av"
-
-#, fuzzy
-#~ msgid "Office Applications"
-#~ msgstr "Applikationer"
 
 #~ msgid "Desktop Settings"
 #~ msgstr "Skrivbordsinställningar"
@@ -3148,9 +3175,6 @@ msgstr "Startar GNOME"
 #~ msgid "Create a new item"
 #~ msgstr "Skapa ett nytt menyval"
 
-#~ msgid "Delete"
-#~ msgstr "Ta bort"
-
 #~ msgid "Delete selected menu item"
 #~ msgstr "Ta bort markerat menyval"
 
@@ -3403,73 +3427,6 @@ msgstr "Startar GNOME"
 #~ "\n"
 #~ "Läs linux/Documentation/Changes för information om hur man\n"
 #~ "konfigurerar dem korrekt."
-
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Sessionsnamnet får inte vara tomt"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Sessionen finns redan"
-
-#~ msgid "Add a new session"
-#~ msgstr "Lägg till en ny session"
-
-#~ msgid "Edit session name"
-#~ msgstr "Redigera sessionsnamn"
-
-#~ msgid "Show splash screen on login"
-#~ msgstr "Visa startbild vid inloggning"
-
-#~ msgid "Prompt on logout"
-#~ msgstr "Fråga vid utloggning"
-
-#~ msgid "Automatically save changes to session"
-#~ msgstr "Spara ändringarna i sessionen automatiskt"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Välj nuvarande session"
-
-#~ msgid "Session Name"
-#~ msgstr "Sessionsnamn"
-
-#~ msgid "Add..."
-#~ msgstr "Lägg till..."
-
-#~ msgid "Edit..."
-#~ msgstr "Redigera..."
-
-#~ msgid "Session Options"
-#~ msgstr "Sessionsalternativ"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Startprogram som inte är sessionskontrollerade"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritet"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Välj bland program som kör nu..."
-
-#~ msgid "Startup Programs"
-#~ msgstr "Startprogram"
-
-#~ msgid "Startup Command"
-#~ msgstr "Startkommando"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Program med låga värden startas före program med höga värden.  "
-#~ "Standardvärdet borde vara okej."
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Startkommandot får inte vara tomt"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Lägg till startprogram"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Redigera startprogram"
 
 #~ msgid "Bookmark"
 #~ msgstr "Bokmärke"
