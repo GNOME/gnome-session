@@ -289,6 +289,7 @@ display_gui (void)
 	    action = REBOOT;
 	}
       return TRUE;
+    default:
     case 1:
       return FALSE;
     case 2:

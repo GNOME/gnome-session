@@ -63,7 +63,9 @@ static void remove_cb (GtkWidget *widget);
 static void select_cb (GtkCList *clist);
 static void unselect_cb (GtkCList *clist);
 static void dirty_cb (GtkWidget *widget);
+/* UNUSED
 static void initialized_cb (GtkWidget *widget);
+*/
 
 static GtkWidget*
 create_right (void)

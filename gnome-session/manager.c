@@ -123,7 +123,9 @@ gchar   *events[]       = { GsmInactive, GsmInactive,
 			    GsmConnected, NULL };
 
 /* Index used to identify clients uniquely over the gsm protocol extensions. */
-static guint handle = 0;
+/*UNUSED
+ * static guint handle = 0;
+ */
 
 static gint compare_interact_request (gconstpointer a, gconstpointer b);
 typedef void message_func (SmsConn connection);

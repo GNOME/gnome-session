@@ -45,7 +45,9 @@ static void    prop_free (SmProp* prop);
 static gchar*  gsm_prop_to_sh (SmProp* prop);
 static GSList* gsm_prop_to_list (SmProp* prop);
 static SmProp* gsm_sh_to_prop (gchar* name, gchar* sh);
+/* UNUSED
 static SmProp* gsm_list_to_prop (gchar* name, GSList* list);
+*/
 static SmProp* gsm_int_to_prop (gchar* name, gint value);
 static SmProp* gsm_args_to_propv (gchar* name, va_list args);
 static SmProp* gsm_args_to_prop (gchar* name, ...);
@@ -1031,6 +1033,8 @@ gsm_prop_to_list (SmProp* prop)
   return ret;
 }
 
+#if 0
+/* UNUSED */
 static SmProp*
 gsm_list_to_prop (gchar* name, GSList* list)
 {
@@ -1052,6 +1056,7 @@ gsm_list_to_prop (gchar* name, GSList* list)
 
   return prop;
 }
+#endif
 
 static SmProp*
 gsm_int_to_prop (gchar* name, gint value)

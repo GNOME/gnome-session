@@ -242,6 +242,11 @@ init_ice_connections (void)
 }
 #endif
 
+/* FIX warning, is this ever defined anywhere? */
+#ifdef HAVE__ICETRANSNOLISTEN
+void _IceTransNoListen (char *foo);
+#endif
+
 void
 initialize_ice (void)
 {

@@ -34,7 +34,7 @@
 /* Parsing function.  */
 
 /* The name of the session to load.  */
-static char *session = NULL;
+static const char *session = NULL;
 
 /* Flag indicating chooser should be used. */
 gboolean choosing = FALSE;
@@ -88,7 +88,7 @@ main (int argc, char *argv[])
   gboolean splashing;
   char *ep;
   poptContext ctx;
-  char **leftovers;
+  const char **leftovers;
   Session *the_session;
   
   /* We do this as a separate executable, and do it first so that we
