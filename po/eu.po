@@ -1,23 +1,24 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) 1999 Free Software Foundation, Inc.
-# euskara <linux-eu@chanae.alphanet.ch>, 1999
-# Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000
+# translation of gnome-session.HEAD.po to basque
+# Copyright (C) 1999, 2004 Free Software Foundation, Inc.
+# Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2004-03-09 10:55+0000\n"
-"PO-Revision-Date: 1999-04-01 17:11+0200\n"
-"Last-Translator: Joseba Bidaurrazaga van Dierdonck <jbv@euskalnet.net>\n"
-"Language-Team: euskara <linux-eu@chanae.alphanet.ch>\n"
+"Project-Id-Version: gnome-session.HEAD\n"
+"POT-Creation-Date: 2004-04-15 12:48+0200\n"
+"PO-Revision-Date: 2004-03-08 12:21GMT\n"
+"Last-Translator: Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>\n"
+"Language-Team: basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.3\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
-#, fuzzy
 msgid "Allow TCP connections"
-msgstr "Konexioa egiaztu"
+msgstr "Baimendu TCP konexioak"
 
 #: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -26,63 +27,68 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Segurtasuna dela eta, _IceTcpTransNoListen() duten plataformetan (XFree86 "
+"sistemetan), gnome-session-ek ez ditu TCP ataketako konexioak entzuten. "
+"Aukera honek (baimendutako) urruneko ostalaritik konexioak egitea baimenduko "
+"du. gnome-session berrabiarazi egin behar da horrek eragina izateko."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Gaituta badago, gnome-session-ek erabiltzaileari galdetuko dio saioa bukatu "
+"aurretik."
 
 #: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Gaituta badago, gnome-session-ek saioa automatikoki gordeko du. Bestela, "
+"saio-amaierako elkarrizketa-koadroak saioa gordetzeko aukera emango du."
 
 #: gnome-session/gnome-session.schemas.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Logout"
+msgstr "Saio-amaierako gonbita"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Saioa hastean GNOMEren mahaigainean splash pantailan erabiltzeko irudi "
+"gogokoena"
 
 #: gnome-session/gnome-session.schemas.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sesio"
+msgstr "Gorde saioak"
 
 #: gnome-session/gnome-session.schemas.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Erakuts splash pantaila log egiterakoan"
+msgstr "Erakutsi splash pantaila"
 
 #: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Erakutsi splash pantaila saioa abiaraztean"
 
 #: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Splash pantailako irudia"
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
-#, fuzzy
 msgid "_Order:"
-msgstr "Ordena: "
+msgstr "_Ordena:"
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "Aplikazioak zein ordenatan abiaraziko diren saioan."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "Aplikazioarekin zer gertatzen den hura ixtean."
 
 #: gnome-session/gsm-client-editor.c:109
-#, fuzzy
 msgid "_Style:"
-msgstr "Estiloa: "
+msgstr "_Estiloa:"
 
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:412
@@ -103,27 +109,27 @@ msgstr "Programa"
 
 #: gnome-session/gsm-client-row.c:31
 msgid "Inactive"
-msgstr "Ez-aktiboa"
+msgstr "Inaktibo"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Abiarazteko zain edo benetan bukatuta."
+msgstr "Hasteko zain edo dagoeneko amaituta."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "abiarazten"
+msgstr "Hasten"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Abiatua, baina oraindik egoeraz jabetu gabe."
+msgstr "Hasita, baina oraindik ez da egoeraren berri eman."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "Ekinean"
+msgstr "Exekutatzen"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "Sesioko bazkide arrunta"
+msgstr "Saioko kide normal bat."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
@@ -131,7 +137,7 @@ msgstr "Gordetzen"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "Sesioaren detaileak gordetzen."
+msgstr "Saioaren xehetasunak gordetzen."
 
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -139,40 +145,39 @@ msgstr "Ezezaguna"
 
 #: gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "Egoeraren berririk ez emandako denboran"
+msgstr "Ez da egoeraren berri eman denbora-mugaren barruan."
 
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
-msgstr "Arrunta"
+msgstr "Normala"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Logouten eraginik gabe baina hilkor."
+msgstr "Irteerek ez diete eragiten, baina bukatu egin daitezke."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Berritu"
+msgstr "Berrabiarazi"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "Hilezkortu."
+msgstr "Inoiz ez utzi bukatzen."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Zarama"
+msgstr "Zakarrontzia"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Logoutean kanporatua eta hilkor."
+msgstr "Irteeran baztertu egingo da eta bukatu egin daiteke."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Konfigurazioa"
+msgstr "Ezarpenak"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Abiarazia log guztietan"
+msgstr "Abiarazi beti saio-hasiera bakoitzean."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -189,6 +194,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Errorea gertatu da GNOMEren ezarpenen daemon-a abiaraztean.\n"
+"\n"
+"Baliteke gauza batzuek, adibidez, gaiek, soinuek edo atzeko planoaren "
+"ezarpenek behar bezala ez funtzionatzea."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -197,6 +206,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Azken errore-mezua hau da:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -204,62 +217,63 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME saioa hasten duzun hurrengo aldian ere saiatuko da ezarpenen daemon-a "
+"berrabiarazten."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Aktibatze-errore ezezaguna gertatu da."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Ezarpenen daemon-a gehiegitan berrabiarazi da."
 
 #: gnome-session/logout.c:374
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "Submenu hau, daukan guztiarekin ezabatu nahi duzu? zihur zuade?"
+msgstr "Ziur zaude saiotik irten nahi duzula?"
 
 #: gnome-session/logout.c:391
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Oraingo aukerak gorde"
+msgstr "_Gorde uneko konfigurazioa"
 
 #: gnome-session/logout.c:416
 msgid "Action"
-msgstr "Akzioa"
+msgstr "Ekintza"
 
 #: gnome-session/logout.c:433
-#, fuzzy
 msgid "_Log out"
-msgstr "Log out"
+msgstr "Amaitu _saioa"
 
 #: gnome-session/logout.c:437
-#, fuzzy
 msgid "Sh_ut down"
-msgstr "Itzali"
+msgstr "I_tzali"
 
 #: gnome-session/logout.c:441
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Berrabiarazi ordenagailua"
 
 #: gnome-session/main.c:80
 msgid "Specify a session name to load"
-msgstr "Aipa sesio izena zamatzearren"
+msgstr "Idatzi kargatu nahi duzun saioaren izena"
 
 #: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
-msgstr "Bakarrik jatorriko sesio fitxategitik irakurri gordetako sesioak"
+msgstr "Gordetako saioak default.session fitxategitik bakarrik irakurri"
 
 #: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Bezeroak erregistratzeko itxaron denbora milisegundutan (0=betirako)"
+msgstr ""
+"Bezeroak erregistratu zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Bezeroen erantzuna itxaron denbora milisegundutan (0=betirako)"
+msgstr "Bezeroek erantzun zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Bezeroen heriotza itxaron denbora milisegundutan (0=betirako)"
+msgstr "Bezeroak hil zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
 #: gnome-session/main.c:264
 #, c-format
@@ -269,137 +283,128 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Ezin aurkitu internet helbiderik %s-rako.\n"
-"Ondorioz ezin GNOME zuzen erabili.\n"
-"Agian arazoa konpon daiteke\n"
-"%s gehituz hurrengo fitxategira: /etc/hosts."
+"Ezin izan da %s(r)en Interneteko helbidea begiratu.\n"
+"Horrek GNOMEk behar bezala ez funtzionatzea eragingo du.\n"
+"Baliteke arazoa konpontzea %s gehituz\n"
+"/etc/hosts fitxategiari."
 
 #: gnome-session/main.c:271
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Sartu hala ere"
 
 #: gnome-session/main.c:272
-#, fuzzy
 msgid "Try Again"
-msgstr "Saia zaite berriro"
+msgstr "Saiatu berriro"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
-msgstr "Zure sesioa gorde dut"
+msgstr "Zure saioa gorde da"
 
 #: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
-msgstr "Itxarotea etenda konfliktuagatik"
+msgstr "Itxaronaldia bertan behera utzi da, gatazka sortu delako."
 
 #: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
-msgstr "%s komandoari erantzunik ez"
+msgstr "Ez dago %s komandoaren erantzunik."
 
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
-msgstr "Programa geldoa, geratua edo urratua"
+msgstr "Programa mantso, geldirik edo etenda egon daiteke."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
-msgstr "Erantzuna itxaron edo ezabatu"
+msgstr "Erantzun arte itxaron edo kendu egin dezakezu."
 
 #: gnome-session/manager.c:1506
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Berhasi akatzen ondorioz utzitakoa"
+msgstr "Berrabiaraztea bertan behera utzi da hutsegiteengatik."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
-msgstr "Sesioaren bukarea abian"
+msgstr "Saioa ixten ari da."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Automatikoki gorde aldaketak sesioari"
+msgstr "Ezarri uneko saioa"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
-msgstr "Erahil sessioa"
+msgstr "Hil saioa"
 
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
-msgstr "Erabili dialogo kutxak"
+msgstr "Erabili elkarrizketa-koadroak"
 
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
-msgstr "Sesio kudeatzailearekin ezin konektatu"
+msgstr "Ezin izan da saio-kudeatzailearekin konektatu"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
-msgstr "Sesioaren izena ezin hutsik egon"
+msgstr "Saioaren izena ezin da hutsik egon"
 
 #: gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr "Sesio izena dagoeneko erabilia"
+msgstr "Saio-izena badago lehendik"
 
 #: gnome-session/session-names.c:188
 msgid "Add a new session"
-msgstr "Gehitu sesio berria"
+msgstr "Gehitu saio berria"
 
 #: gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "Sesio izena editatu"
+msgstr "Editatu saioaren izena"
 
 #: gnome-session/session-properties-capplet.c:122
-#, fuzzy
 msgid "_Edit"
-msgstr "Argitaratu"
+msgstr "_Editatu"
 
 #: gnome-session/session-properties-capplet.c:190
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"Aldaketa batzuk ez dira gorde.\n"
+"Hala ere irten egin nahi duzu?"
 
 #: gnome-session/session-properties-capplet.c:240
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Sesio"
+msgstr "Saioak"
 
 #: gnome-session/session-properties-capplet.c:273
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Erakuts splash pantaila log egiterakoan"
+msgstr "Erakutsi splash _pantaila saio-hasieran"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Promt logoutean"
+msgstr "_Galdetu saioa amaitzean"
 
 #: gnome-session/session-properties-capplet.c:295
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Automatikoki gorde aldaketak sesioari"
+msgstr "Gorde saioko _aldaketak automatikoki"
 
 #: gnome-session/session-properties-capplet.c:306
-#, fuzzy
 msgid "_Sessions:"
-msgstr "Sesio"
+msgstr "_Saioak:"
 
 #: gnome-session/session-properties-capplet.c:324
 msgid "Session Name"
-msgstr "Sesio izena"
+msgstr "Saio-izena"
 
 #: gnome-session/session-properties-capplet.c:375
 msgid "Session Options"
-msgstr "Sesioaren aukerak"
+msgstr "Saio-aukerak"
 
 #: gnome-session/session-properties-capplet.c:384
-#, fuzzy
 msgid "Current Session"
-msgstr "Hauta oraingo sesioa"
+msgstr "Uneko saioa"
 
 #: gnome-session/session-properties-capplet.c:393
-#, fuzzy
 msgid "Additional startup _programs:"
-msgstr "Gehitu programa abiarazlea"
+msgstr "Abioko _programa osagarriak:"
 
 #: gnome-session/session-properties-capplet.c:414
 msgid "Command"
@@ -407,46 +412,43 @@ msgstr "Komandoa"
 
 #: gnome-session/session-properties-capplet.c:446
 msgid "Startup Programs"
-msgstr "Abiaratzeko Programak"
+msgstr "Abioko programak"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "Kendu unean hautatutako bezeroa saiotik."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Automatikoki gorde aldaketak sesioari"
+msgstr "Aplikatu aldaketak uneko saioari"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "Saioko programa-zerrenda."
 
 #: gnome-session/session-properties.c:88
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Zerrendatu abioan dauden programak..."
+msgstr "Unean exekutatzen ari diren _programak:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Berhasi sesioaren ezarpenak"
+msgstr "Hasieratu saioaren ezarpenak "
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Konfiguratu zure saioak"
 
 #: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
-msgstr "Sawfish Window Manager"
+msgstr "Sawfish leiho-kudeatzailea"
 
 #: gnome-session/splash-widget.c:44
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "Lehio-kudeatzailea"
+msgstr "Metacity leiho-kudeatzailea"
 
 #: gnome-session/splash-widget.c:45
 msgid "Window Manager"
-msgstr "Lehio-kudeatzailea"
+msgstr "Leiho-kudeatzailea"
 
 #: gnome-session/splash-widget.c:46
 msgid "The Panel"
@@ -454,7 +456,7 @@ msgstr "Panela"
 
 #: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
-msgstr "Sesio kudeatzailearen proxya"
+msgstr "Saio-kudeatzailearen proxy-a"
 
 #: gnome-session/splash-widget.c:48
 msgid "Nautilus"
@@ -462,36 +464,33 @@ msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
-msgstr "Erakuslehioaren aukerak"
+msgstr "Mahaigaineko ezarpenak"
 
 #: gnome-session/startup-programs.c:288
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Abiatze komandoa"
+msgstr "_Abioko komandoa:"
 
 #: gnome-session/startup-programs.c:294
 msgid "Startup Command"
-msgstr "Abiatze komandoa"
+msgstr "Abioko komandoa"
 
 #: gnome-session/startup-programs.c:343
 msgid "The startup command cannot be empty"
-msgstr "Abiatze komandoa ezin hutsik egon"
+msgstr "Abioko komandoa ezin da hutsik egon"
 
 #: gnome-session/startup-programs.c:380
 msgid "Add Startup Program"
-msgstr "Gehitu programa abiarazlea"
+msgstr "Gehitu abioko programa"
 
 #: gnome-session/startup-programs.c:401
 msgid "Edit Startup Program"
-msgstr "Editatu programa abiarazlea"
+msgstr "Editatu abioko programa"
 
-#, fuzzy
 #~ msgid "Save Current Session"
-#~ msgstr "Hauta oraingo sesioa"
+#~ msgstr "Gorde uneko saioa"
 
-#, fuzzy
 #~ msgid "Save current state of desktop"
-#~ msgstr "Gorde pantailakada _idazmahian"
+#~ msgstr "Gorde mahaigainaren uneko egoera"
 
 #, fuzzy
 #~ msgid "_Log Out"
@@ -1211,10 +1210,10 @@ msgstr "Editatu programa abiarazlea"
 #~ msgstr "Jerome Bolliet"
 
 #~ msgid "Frederic Devernay"
-#~ msgstr "Frédéric Devernay"
+#~ msgstr "Fr�c)d�c)ric Devernay"
 
 #~ msgid "Gergo Erdi"
-#~ msgstr "Gergo Érdi"
+#~ msgstr "Gergo �rdi"
 
 #~ msgid "Raul Perusquia Flores"
 #~ msgstr "Raul Perusquia Flores"
@@ -1244,7 +1243,7 @@ msgstr "Editatu programa abiarazlea"
 #~ msgstr "Martin Norbäck"
 
 #~ msgid "Tomas Oegren"
-#~ msgstr "Tomas Ögren"
+#~ msgstr "Tomas �gren"
 
 #~ msgid "Carlos Perello Marin"
 #~ msgstr "Carlos Perello Marin"
@@ -3658,7 +3657,7 @@ msgstr "Editatu programa abiarazlea"
 #~ msgstr "Ezin applet-a gehitu!"
 
 #~ msgid "Whoops! for some reason we can't add to the panel"
-#~ msgstr "Ño! batek daki zergatik baina ezin dugu panelera gehitu"
+#~ msgstr "�o! batek daki zergatik baina ezin dugu panelera gehitu"
 
 #~ msgid "No socket was created"
 #~ msgstr "Ez da socket-ik eratu"
@@ -4182,7 +4181,7 @@ msgstr "Editatu programa abiarazlea"
 #~ msgstr "Slashdot-ko izenburuak erakusteko pegatina\n"
 
 #~ msgid "(C) 1998"
-#~ msgstr "© 1998"
+#~ msgstr "�c) 1998"
 
 #~ msgid "SlashApp"
 #~ msgstr "SlashApp"
@@ -4521,7 +4520,7 @@ msgstr "Editatu programa abiarazlea"
 #~ "Eskerrak Balasz Nagy (Kevin)<julian7@kva.hu> laguntzeagatik."
 
 #~ msgid "(C) 1998-99 LSC - Linux Supporting Center"
-#~ msgstr "© 1998-1999 LSC - Linux Supporting Center"
+#~ msgstr "�c) 1998-1999 LSC - Linux Supporting Center"
 
 #~ msgid "1.0.1"
 #~ msgstr "1.0.1"
@@ -4591,7 +4590,7 @@ msgstr "Editatu programa abiarazlea"
 #~ msgstr "Esound Manager-aren applet-a"
 
 #~ msgid "Copyright (C)1998 Red Hat Software"
-#~ msgstr "Copyright © 1998 Red Hat Software"
+#~ msgstr "Copyright �c) 1998 Red Hat Software"
 
 #~ msgid "Use automount friendly status test"
 #~ msgstr "Erabili automuntaketa test lagungarria."
@@ -4716,7 +4715,7 @@ msgstr "Editatu programa abiarazlea"
 #~ "postaz ohartzeko izan daiteke."
 
 #~ msgid "(C) 1999"
-#~ msgstr "© 1999"
+#~ msgstr "�c) 1999"
 
 #~ msgid "Clock and Mail Notify Applet"
 #~ msgstr "Erlojua eta postaz ohartzeko Applet-a"
@@ -4735,7 +4734,7 @@ msgstr "Editatu programa abiarazlea"
 #~ "lizentzia publiko orokorrarrarekin."
 
 #~ msgid "Copyright (C) 1998"
-#~ msgstr "Copyright © 1998"
+#~ msgstr "Copyright �c) 1998"
 
 #~ msgid "0.02"
 #~ msgstr "0.02"
