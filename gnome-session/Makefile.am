@@ -135,10 +135,6 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
-man_MANS = gnome-wm.1 save-session.1 default.session.5 gnome-session.1
-
-manuals = gnome-wm.1 default.session.5.in gnome-session.1.in save-session.1
-
 pixmapdir = $(datadir)/pixmaps/splash/
 pixmap_DATA = gnome-splash.png
 
@@ -160,7 +156,6 @@ EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
-	$(manuals)		\
 	$(pixmap_DATA)		\
 	$(schemas_in_files)	\
 	gsm-marshal.list	\
