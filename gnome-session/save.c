@@ -253,6 +253,7 @@ run_commands (const char *name, int number, const char *command,
 			}
 		    }
 		}
+	      g_free(id);
 	    }
 
 	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, SmCurrentDirectory);

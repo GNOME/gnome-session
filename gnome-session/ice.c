@@ -103,6 +103,7 @@ initialize_ice (void)
   p = g_new (char, sizeof ENVNAME + strlen (ids) + 1);
   sprintf (p, "%s=%s", ENVNAME, ids);
   putenv (p);
+  g_free(p);
 
   return 1;
 }
