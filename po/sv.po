@@ -1,10 +1,10 @@
 # Swedish messages for gnome-session.
-# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998.
 # Anders Carlsson <anders.carlsson@tordata.se>, 1999.
 # Andreas Hyden  <a.hyden@cyberpoint.se>, 2000.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
-# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004.
+# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 #
 # $Id$
 #
@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-12-22 21:24+0100\n"
+"POT-Creation-Date: 2005-02-11 12:41+0100\n"
+"PO-Revision-Date: 2005-02-11 12:41+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,11 +56,8 @@ msgid "Logout prompt"
 msgstr "Utloggningsfråga"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Föredragen bild att använda som startbild vid inloggning i GNOME-skrivbordet"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Föredragen bild att använda som startbild vid inloggning"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -75,8 +72,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Visa startbilden då sessionen startar"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Startbild"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Detta är en relativ sökväg som baseras på katalogen $datadir/pixmaps/. "
+"Giltiga värden är underkataloger och bildnamn. Att ändra detta värde kommer "
+"att påverka nästa sessionsinloggning."
 
 # SUN CHANGED MESSAGE
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
@@ -508,6 +511,9 @@ msgstr "Lägg till startprogram"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Startbild"
 
 #~ msgid "_Ask on logout"
 #~ msgstr "_Fråga vid utloggning"
