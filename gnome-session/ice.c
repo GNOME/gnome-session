@@ -234,7 +234,7 @@ init_well_known_connections (void)
 
 	for (i = 1; i < 256; i++){
 		sprintf (buffer, "-%d", i); 
-		if (IceListenForWellKnownConnections (buffer, &num_sockets, sockets, sizeof(error), error))
+		if (IceListenForWellKnownConnections (buffer, &num_sockets, &sockets, sizeof(error), error))
 			return TRUE;
 	}
 	return FALSE;
