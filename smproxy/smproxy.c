@@ -29,6 +29,8 @@ Author:  Ralph Mor, X Consortium
 
 #include "smproxy.h"
 
+#include <unistd.h>
+
 XtAppContext appContext;
 Display *disp;
 
@@ -58,9 +60,13 @@ Bool sent_save_done = 0;
 int Argc;
 char **Argv;
 
+
+
+static Bool LookupWindow (Window window, WinInfo **ptr_ret,
+			  WinInfo **prev_ptr_ret);
 
 
-Bool
+static Bool
 HasSaveYourself (window)
 
 Window window;
@@ -91,7 +97,7 @@ Window window;
 
 
 
-Bool
+static Bool
 HasXSMPsupport (window)
 
 Window window;
@@ -114,7 +120,7 @@ Window window;
 
 
 
-WinInfo *
+static WinInfo *
 GetClientLeader (winptr)
 
 WinInfo *winptr;
@@ -166,7 +172,7 @@ WinInfo *winptr;
 
 
 
-char *
+static char *
 CheckFullyQuantifiedName (name, newstring)
 
 char *name;
@@ -215,7 +221,7 @@ int *newstring;
 
 
 
-void FinishSaveYourself (winInfo, has_WM_SAVEYOURSELF)
+static void FinishSaveYourself (winInfo, has_WM_SAVEYOURSELF)
 
 WinInfo *winInfo;
 Bool has_WM_SAVEYOURSELF;
@@ -310,7 +316,7 @@ Bool has_WM_SAVEYOURSELF;
 
 
 
-void
+static void
 SaveYourselfCB (smcConn, clientData, saveType, shutdown, interactStyle, fast)
 
 SmcConn smcConn;
@@ -366,7 +372,7 @@ Bool fast;
 
 
 
-void
+static void
 DieCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -404,7 +410,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 SaveCompleteCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -418,7 +424,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 ShutdownCancelledCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -434,7 +440,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 ProcessIceMsgProc (client_data, source, id)
 
 XtPointer	client_data;
@@ -449,7 +455,7 @@ XtInputId	*id;
 
 
 
-void
+static void
 NullIceErrorHandler (iceConn, swap,
     offendingMinorOpcode, offendingSequence, errorClass, severity, values)
 
@@ -466,7 +472,7 @@ IcePointer	values;
 }
 
 
-void
+static void
 ConnectClientToSM (winInfo)
 
 WinInfo *winInfo;
@@ -539,7 +545,7 @@ WinInfo *winInfo;
 
 
 
-int
+static int
 MyErrorHandler (display, event)
 
 Display *display;
@@ -547,6 +553,8 @@ XErrorEvent *event;
 
 {
     caught_error = 1;
+    /* Placate compiler.  */
+    return 0;
 }
 
 
@@ -589,7 +597,7 @@ WinInfo **prev_ptr_ret;
 
 
 
-WinInfo *
+static WinInfo *
 AddNewWindow (window)
 
 Window window;
@@ -628,7 +636,7 @@ Window window;
 
 
 
-void
+static void
 RemoveWindow (winptr)
 
 WinInfo *winptr;
@@ -667,7 +675,7 @@ WinInfo *winptr;
 
 
 
-void
+static void
 Got_WM_STATE (winptr)
 
 WinInfo *winptr;
@@ -764,7 +772,7 @@ WinInfo *winptr;
 
 
 
-void
+static void
 HandleCreate (event)
 
 XCreateWindowEvent *event;
@@ -849,7 +857,7 @@ XCreateWindowEvent *event;
 
 
 
-void
+static void
 HandleDestroy (event)
 
 XDestroyWindowEvent *event;
@@ -878,7 +886,7 @@ XDestroyWindowEvent *event;
 
 
 
-void
+static void
 HandleUpdate (event)
 
 XPropertyEvent *event;
@@ -916,7 +924,7 @@ XPropertyEvent *event;
 
 
 
-void
+static void
 ProxySaveYourselfPhase2CB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -929,7 +937,6 @@ SmPointer clientData;
     SmPropValue prop1val, prop2val, prop3val;
     char discardCommand[80];
     int numVals, i;
-    WinInfo *winptr;
     static int first_time = 1;
 
     if (first_time)
@@ -1042,7 +1049,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 ProxySaveYourselfCB (smcConn, clientData, saveType,
     shutdown, interactStyle, fast)
 
@@ -1072,7 +1079,7 @@ Bool fast;
 
 
 
-void
+static void
 ProxyDieCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -1090,7 +1097,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 ProxySaveCompleteCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -1102,7 +1109,7 @@ SmPointer clientData;
 
 
 
-void
+static void
 ProxyShutdownCancelledCB (smcConn, clientData)
 
 SmcConn smcConn;
@@ -1118,7 +1125,7 @@ SmPointer clientData;
 
 
 
-Status
+static Status
 ConnectProxyToSM (previous_id)
 
 char *previous_id;
@@ -1172,7 +1179,7 @@ char *previous_id;
 
 
 
-void
+static void
 CheckForExistingWindows (root)
 
 Window root;
@@ -1214,6 +1221,7 @@ Window root;
 
 
 
+int
 main (argc, argv)
 
 int argc;
@@ -1314,4 +1322,6 @@ char **argv;
 	    break;
 	}
     }
+
+    return 0;
 }

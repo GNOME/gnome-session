@@ -219,7 +219,7 @@ WinInfo *theWindow;
 }
 
 
-int
+static int
 ReadProxyFileEntry (proxyFile, pentry)
 
 FILE *proxyFile;

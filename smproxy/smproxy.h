@@ -56,12 +56,12 @@ typedef struct WinInfo {
 
 } WinInfo;
 
+struct ProxyFileEntry;
 
-extern int WriteProxyFileEntry ();
-extern int ReadProxyFileEntry ();
-extern void ReadProxyFile ();
-extern char *WriteProxyFile ();
-extern char *LookupClientID ();
+extern int WriteProxyFileEntry (FILE *, WinInfo *);
+extern void ReadProxyFile (char *);
+extern char *WriteProxyFile (void);
+extern char *LookupClientID (WinInfo *);
 
 
 #define SAVEFILE_VERSION 1

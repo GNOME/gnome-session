@@ -1,3 +1,38 @@
+1998-10-08  Tom Tromey  <tromey@cygnus.com>
+
+	Fixed many warnings:
+	* smproxy.h: Added some prototypes.
+	* save.c (ReadProxyFileEntry): Now static.
+	* smproxy.c: Include <unistd.h>.
+	(HasSaveYourself): Now static.
+	(HasXSMPsupport): Likewise.
+	(GetClientLeader): Likewise.
+	(LookupWindow): Likewise.
+	(CheckFullyQuantifiedName): Likewise.
+	(FinishSaveYourself): Likewise.
+	(SaveYourselfCB): Likewise.
+	(DieCB): Likewise.
+	(SaveCompleteCB): Likewise.
+	(ShutdownCancelledCB): Likewise.
+	(ProcessIceMsgProc): Likewise.
+	(NullIceErrorHandler): Likewise.
+	(ConnectClientToSM): Likewise.
+	(MyErrorHandler): Likewise.
+	(AddNewWindow): Likewise.
+	(RemoveWindow): Likewise.
+	(Got_WM_STATE): Likewise.
+	(HandleCreate): Likewise.
+	(HandleDestroy): Likewise.
+	(HandleUpdate): Likewise.
+	(ProxySaveYourselfPhase2CB): Likewise.
+	(ProxySaveYourselfCB): Likewise.
+	(ProxyDieCB): Likewise.
+	(ProxySaveCompleteCB): Likewise.
+	(ProxyShutdownCancelledCB): Likewise.
+	(ConnectClientToSM): Likewise.
+	(CheckForExistingWindows): Likewise.
+	(main): Returns int.
+
 Thu Aug 20 00:25:11 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* smproxy.h: Don't include <X11/Xosdefs.h> or <X11/Xfuncs.h>.
