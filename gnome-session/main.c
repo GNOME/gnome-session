@@ -39,7 +39,7 @@
 #include "ice.h"
 #include "save.h"
 #include "command.h"
-#include "splash.h"
+#include "splash-widget.h"
 #include "util.h"
 #include "gsm-sound.h"
 #include "gsm-gsd.h"
@@ -229,7 +229,8 @@ gnome_login_check (void)
 	break;
     }
 
-  gtk_widget_destroy (tmp_msgbox);
+  if (tmp_msgbox)
+    gtk_widget_destroy (tmp_msgbox);
 }
 
 int
@@ -356,7 +357,7 @@ main (int argc, char *argv[])
   gsm_gsd_start ();
 
   if (splashing)
-    start_splash (49.0);
+    splash_start ();
 
   start_session (the_session);
 

@@ -1,11 +1,11 @@
 #include <config.h>
 
-#include <splash.h>
+#include <splash-widget.h>
 
 #include <gtk/gtkmain.h>
 #include <libgnomeui/gnome-ui-init.h>
 
-#define LAST_SPLASH 7
+#define LAST_SPLASH 45
 
 static gboolean
 time_cb (gpointer data)
@@ -17,15 +17,25 @@ time_cb (gpointer data)
 
 	switch (i) {
 	case LAST_SPLASH:
-		stop_splash ();
+		splash_stop ();
 		gtk_main_quit ();
 		return FALSE;
 	case 0:
-		start_splash (LAST_SPLASH);
+		splash_start ();
 		/* FALL THROUGH */
+	case 1:
+		splash_update ("metacity");
+		break;
+	case 2:
+		splash_update ("gnome-wm");
+		break;
+	case 3:
+		splash_update ("gnome-panel");
+		break;
+
 	default:
-		s = g_strdup_printf ("%d", i);
-		update_splash (s, (gfloat)i);
+		s = g_strdup_printf ("Item %d", i);
+		splash_update (s);
 		g_free (s);
 		break;
 	}
@@ -42,7 +52,7 @@ main (int argc, char *argv[])
 			    LIBGNOMEUI_MODULE,
 			    argc, argv, NULL);
 
-	g_timeout_add (1000, time_cb, NULL);
+	g_timeout_add (500, time_cb, NULL);
 
 	gtk_main ();
 

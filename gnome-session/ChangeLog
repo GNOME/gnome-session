@@ -1,3 +1,25 @@
+2002-07-17  Michael Meeks  <michael@ximian.com>
+
+	* main.c (gnome_login_check): only destroy the
+	widget if we created it.
+
+	* splash-widget.c (layout_icon): only scale if
+	necessary.
+
+2002-07-15  Michael Meeks  <michael@ximian.com>
+
+	* splash-widget.[ch]: re-write the splash widget
+	completely, to use pure Gtk+ instead of the canvas,
+	to improve performance by avoiding the Pango stuff.
+
+	* splash.[ch]: kill.
+
+	* manager.c (run_command_prop): upd.
+
+	* main.c (main): upd.
+
+	* Makefile.am: upd.
+
 2002-07-15  jacob berkman  <jacob@ximian.com>
 
 	* logout.c (display_gui): don't reference a destroyed widget

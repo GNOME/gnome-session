@@ -33,7 +33,7 @@ extern int errno;
 #include "session.h"
 #include "prop.h"
 #include "command.h"
-#include "splash.h"
+#include "splash-widget.h"
 #include "remote.h"
 #include "save.h"
 #include "logout.h"
@@ -365,7 +365,7 @@ run_command_prop (Client     *client,
       envv = NULL; /* sanity */
       envc = 0;
 
-      update_splash (argv[0], (gfloat)client->priority);
+      splash_update (argv [0]);
 
       restart_info = NULL;
       find_string_property (client, GsmRestartService, &restart_info);
@@ -1170,7 +1170,7 @@ update_save_state (void)
 	    return;
 	}
       save_state = MANAGER_IDLE;
-      stop_splash ();
+      splash_stop ();
      }    
 
   if (save_state == SAVE_PHASE_1)

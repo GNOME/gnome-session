@@ -50,9 +50,9 @@ bin_PROGRAMS = \
 	gnome-session-properties
 endif
 
-splash_test_SOURCES = \
-	splash.c	\
-	splash.h	\
+splash_test_SOURCES =	\
+	splash-widget.c	\
+	splash-widget.h	\
 	splash-test.c
 
 gnome_session_SOURCES =		\
@@ -72,8 +72,8 @@ gnome_session_SOURCES =		\
 	remote.h		\
 	logout.c		\
 	logout.h		\
-	splash.c		\
-	splash.h		\
+	splash-widget.c		\
+	splash-widget.h		\
 	gsm-gsd.c		\
 	gsm-gsd.h		\
 	gsm-protocol.c		\
