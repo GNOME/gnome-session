@@ -365,6 +365,7 @@ int
 main (int argc, char *argv[])
 {
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
   gnome_init_with_popt_table ("session-properties", VERSION, argc, argv, 
