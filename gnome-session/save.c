@@ -401,8 +401,11 @@ read_session (const char *name)
   if(name) {
     if(!g_strcasecmp(name,DEFAULT_SESSION))
       list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
-    else     
+    else {
       list = read_clients (CONFIG_PREFIX,name,MATCH_ID);
+      if (!list)
+	list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
+    }
   } 
   
   /* If the the specified session from the command line doesn't

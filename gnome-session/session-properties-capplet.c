@@ -143,7 +143,7 @@ capplet_build (void)
   
   /* FIXME - don't really want this here...the protocol should set current_session
      but I'm a little unsure if it actually does though */ 
-  current_session = gnome_config_get_string (CURRENT_SESSION_KEY);
+  current_session = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
   
   gnome_config_pop_prefix ();
   
