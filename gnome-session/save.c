@@ -234,6 +234,11 @@ run_default_session (void)
   argv[0] = "gmc";
   execute_async (NULL, 1, argv);
 
+#ifdef WINDOW_MANAGER
+  argv[0] = WINDOW_MANAGER;
+  execute_async (NULL, 1, argv);
+#endif
+
   /* Add more here.  We can't really do it until other pieces are
      written.  */
 
