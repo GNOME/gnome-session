@@ -5,7 +5,7 @@
 # Birger Langkjer <birger.langkjer@image.dk>, 1999.
 # Keld Simonsen <keld@dkuug.dk>, 2000-2001.
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
-# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 #
 # Konventioner:
 #
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-11-23 11:16+0100\n"
+"POT-Creation-Date: 2005-02-21 13:48+0100\n"
+"PO-Revision-Date: 2005-02-21 13:51+0100\n"
 "Last-Translator: Martin Willemoes Hansen <mwh@sysrq.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -62,11 +62,8 @@ msgid "Logout prompt"
 msgstr "Log ud-prompt"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Foretrukket billede til velkomstskærmen når der logges på Gnome-skrivebordet."
+msgid "Preferred Image to use for login splash screen"
+msgstr "Foretrukket billede til brug for velkomstvinduet"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -81,8 +78,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Vis velkomstvinduet når sessionen starter"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Billede til velkomstvindue"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Dette er en relativ stiværdi baseret på $datadir/pixmaps/-kataloget. Under-"
+"kataloger og billednavne er gyldige værdier. Ændring af denne værdi vil "
+"påvirke det næste sessionslogind."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -386,12 +389,11 @@ msgstr "Sessioner"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "Vis _velkomstsvindue ved log-ind"
+msgstr "Vis _velkomstsvindue ved logind"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "S_pørg ved log-ud"
+msgstr "Sp_ørg ved logud"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -496,6 +498,9 @@ msgstr "Tilføj startet program"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Redigér startet program"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Billede til velkomstvindue"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Gem session"
