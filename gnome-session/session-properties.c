@@ -43,7 +43,7 @@ static void dirty_cb (GtkWidget *widget);
 static GtkWidget*
 create_table (void)
 {
-  GtkWidget *table, *vbox, *hbox,  *alignment, *label;
+  GtkWidget *vbox, *hbox,  *alignment, *label;
 
   remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
   gsm_atk_set_description (remove_button, _("Remove the currently selected client from the session."));

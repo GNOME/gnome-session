@@ -65,7 +65,7 @@ gsd_error_dialog (GnomeSettingsData *gsd, const char *error)
 				   GTK_MESSAGE_ERROR,
 				   GTK_BUTTONS_CLOSE,
 				   "%s", msg->str);
-  g_object_add_weak_pointer (G_OBJECT (dialog), &dialog);
+  g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer *) &dialog);
   g_string_free (msg, TRUE);
 
   g_signal_connect (dialog, "response",
