@@ -425,10 +425,11 @@ cancel (void)
 static void
 help (void)
 {
-  gchar* file = gnome_help_file_find_file(program_invocation_short_name, 
-					  "index.html");
-  if (file)
-    gnome_help_goto (NULL, file);
+	GnomeHelpMenuEntry help_entry = {
+		"session",
+		"index.html"
+	};
+	gnome_help_display(NULL, &help_entry);
 }
 
 /* This is called when user has changed the entry  */
