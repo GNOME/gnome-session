@@ -86,8 +86,34 @@ my_ice_error_handler(IceConn cnx,
 	int severity,
 	IcePointer values)
 {
-  gsm_verbose ("Closing connection: %p\n", cnx);
-  IceCloseConnection(cnx);
+  IceCloseStatus close_status;
+  const char *msg;
+
+  gsm_verbose ("my_ice_error_handler (cnx %p, %s, %d, %lx, %d, %d)\n",
+	       cnx, swap ? "TRUE" : "FALSE", offendingMinorOpcode, offendingSequence, errorClass, severity);
+
+  close_status = IceCloseConnection(cnx);
+
+  switch (close_status)
+    {
+    case IceClosedNow:
+      msg = "IceClosedNow";
+      break;
+    case IceClosedASAP:
+      msg = "IceClosedASAP";
+      break;
+    case IceConnectionInUse:
+      msg = "IceConnectionInUse";
+      break;
+    case IceStartedShutdownNegotiation:
+      msg = "IceStartedShutdownNegotiation";
+      break;
+    default:
+      msg = "UNKNOWN";
+      break;
+    }
+
+  gsm_verbose ("IceCloseConnection (cnx %p) returned %s\n", cnx, msg);
 }
 
 static void
@@ -102,12 +128,12 @@ accept_connection (GIOChannel   *source,
   char *ctmp;
 #endif
 
-  gsm_verbose ("Accepting a connection...\n");
+  gsm_verbose ("accept_connection() for listener %p...\n", listener);
 
   connection = IceAcceptConnection (listener, &status);
   if (status != IceAcceptSuccess)
     {
-      gsm_verbose ("IceAcceptConnection returned %d\n", status);
+      gsm_verbose ("IceAcceptConnection (listener %p) returned %d\n", listener, status);
       return;
     }
 

@@ -1,3 +1,18 @@
+2004-09-27  Federico Mena Quintero  <federico@ximian.com>
+
+	* util.c (gsm_verbose_indent): New function; controls indentation
+	in the debug spew.
+	(gsm_verbose): Print indentation.
+	(gsm_fatal): Likewise.
+	(gsm_warning): Likewise.
+
+	* manager.c: Add a lot of debug spew; this is essentially a
+	time-stamped, indented stack trace of interesting places in the
+	code.
+
+	* gsm-gsd.c: Add debugging spew.
+	* ice.c: Likewise.
+
 2004-09-24  Mark McLoughlin  <mark@skynet.ie>
 
 	Based on a patch from Kjartan Maraas in bug #53448

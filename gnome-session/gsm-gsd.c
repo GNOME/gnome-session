@@ -81,7 +81,7 @@ broken_cb (ORBitConnection *cnx, GnomeSettingsData *gsd)
   g_return_if_fail (gsd->gsd_object != CORBA_OBJECT_NIL);
   g_return_if_fail (gsd->activating == FALSE);
 
-  gsm_verbose ("broken_cb()");
+  gsm_verbose ("broken_cb()\n");
 
   gsd->gsd_object = CORBA_OBJECT_NIL;
 
@@ -95,7 +95,7 @@ activate_cb (Bonobo_Unknown     object,
 {
   GnomeSettingsData *gsd = user_data;
   
-  gsm_verbose ("activate_cb(): object: %p", object);
+  gsm_verbose ("activate_cb(): object: %p\n", object);
 
   g_return_if_fail (gsd != NULL);
   g_return_if_fail (gsd->gsd_object == CORBA_OBJECT_NIL);
@@ -128,7 +128,7 @@ gsm_gsd_start (void)
   CORBA_Environment ev;
   time_t now;
 
-  gsm_verbose ("gsm_gsd_start(): starting");
+  gsm_verbose ("gsm_gsd_start(): starting\n");
 
   if (gsd.activating)
     return;
@@ -140,7 +140,7 @@ gsm_gsd_start (void)
 	  ORBit_small_get_connection_status (gsd.gsd_object))
 	return;
       
-      gsm_warning ("disconnected...");
+      gsm_warning ("disconnected...\n");
       gsd.gsd_object = CORBA_OBJECT_NIL;
     }
 

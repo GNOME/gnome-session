@@ -2,6 +2,7 @@
 #define UTIL_H
 
 #include <glib.h>
+#include <stdio.h>
 
 void gsm_warning    (const char *format,
                      ...) G_GNUC_PRINTF (1, 2);
@@ -9,6 +10,8 @@ void gsm_fatal      (const char *format,
                      ...) G_GNUC_PRINTF (1, 2);
 void gsm_verbose    (const char *format,
                      ...) G_GNUC_PRINTF (1, 2);
+void gsm_verbose_indent (gboolean indent);
+void gsm_verbose_print_indent (FILE *file);
 
 void gsm_set_verbose (gboolean setting);
 
