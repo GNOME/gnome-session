@@ -207,8 +207,10 @@ setup ()
 		      GTK_SIGNAL_FUNC (remove_items), (gpointer) info);
 
   /* FIXME: put clist into a multi-select mode.  */
+#if 0
   gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
 			GTK_POLICY_AUTOMATIC);
+#endif
   gtk_box_pack_start (page, clist, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_signal_connect (GTK_OBJECT (clist), "select_row",
 		      GTK_SIGNAL_FUNC (row_selected), (gpointer) del_button);
