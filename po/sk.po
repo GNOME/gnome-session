@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sk\n"
-"POT-Creation-Date: 2002-06-20 16:26+0200\n"
-"PO-Revision-Date: 2002-06-20 16:26+0200\n"
+"POT-Creation-Date: 2002-07-02 16:48+0200\n"
+"PO-Revision-Date: 2002-07-02 16:50+0200\n"
 "Last-Translator: Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
@@ -14,66 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "<bobo@bobo.bspc.sk>\n"
 "X-Generator: KBabel 1.0beta2\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "GNOME Prihlásenie"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "Prihlásiť"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "Spustiť so štandardnými programami"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "Zrušiť všetky používateľské nastavenia"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Naozaj chcete zrušiť všetky používateľské nastavenia GNOME pre %s?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "Nie"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "Zrušiť všetky nastavenia"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Priečinok /tmp/orbit-%s nevlastní aktuálny\n"
-"používateľ, %s.\n"
-"Prosím, opravte vlastníka tohoto priečinku."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "Prihlásiť aj tak"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "Skúsiť znovu"
-
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Nepodarilo sa nájsť internetovú adresu pre %s.\n"
-"To môže spôsobiť problémy s GNOME.\n"
-"Možno by stačilo pridať %s do súboru /etc/hosts."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -179,29 +119,79 @@ msgstr "Nastavenie"
 msgid "Always started on every login."
 msgstr "Vždy spustený pri každom prihlásení."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Pri spúšťaní démona nastavenia GNOME nastala chyba.\n"
+"\n"
+"Niektoré veci, ako sú témy, zvuky alebo nastavenie pozadia nemusia "
+"správne fungovať."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Posledná chybová správa bola:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME sa ajtak pokúsi reštartovať démona nastavenia pri budúcom prihlásení."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Nastala neznáma chyba pri aktivácii."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Démon pre nastavenia sa príliš často reštartoval."
+
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Naozaj odhlásiť?"
+msgid "Are you sure you want to log out?"
+msgstr "Naozaj sa chcete odhlásiť?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Uložiť aktuálne nastavenie"
+msgid "_Save current setup"
+msgstr "_Uložiť aktuálne nastavenie"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "Akcia"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Odhlásiť"
+msgid "_Log Out"
+msgstr "_Odhlásiť"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Vypnúť počítač"
+msgid "Sh_ut Down"
+msgstr "_Vypnúť počítač"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Reštartovať počítač"
+msgid "_Restart the computer"
+msgstr "_Reštartovať počítač"
 
 #: gnome-session/main.c:75
 msgid "Specify a session name to load"
@@ -213,8 +203,7 @@ msgstr "Načítané iba uložené sedenia zo súboru default.session"
 
 #: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"Čas v milisekundách strávený čakaním na registráciu klientov (0=navždy)"
+msgstr "Čas v milisekundách strávený čakaním na registráciu klientov (0=navždy)"
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -223,6 +212,26 @@ msgstr "Čas v milisekundách strávený čakaním na reakciu klientov (0=navžd
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Čas v milisekundách strávený čakaním na ukončenie klientov (0=navždy)"
+
+#: gnome-session/main.c:211
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Nepodarilo sa nájsť internetovú adresu pre %s.\n"
+"To môže spôsobiť problémy s GNOME.\n"
+"Možno by stačilo pridať %s do súboru /etc/hosts."
+
+#: gnome-session/main.c:218
+msgid "Log in Anyway"
+msgstr "Prihlásiť aj tak"
+
+#: gnome-session/main.c:219
+msgid "Try Again"
+msgstr "Skúsiť znovu"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -373,32 +382,15 @@ msgstr "Programy pri štarte"
 msgid "Current Session"
 msgstr "Aktuálne sedenie"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Odstráni momentálne vybraného klienta zo sedenia."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Zoznam programov v sedení."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Sedenie"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Výber sedenia"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Štart sedenia"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Zrušiť prihlásenie"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Inicializovať nastavenie sedenia"
 
@@ -491,6 +483,57 @@ msgstr "Pridať program pri štarte"
 msgid "Edit Startup Program"
 msgstr "Upraviť program pri štarte"
 
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Prihlásenie"
+
+#~ msgid "Log In"
+#~ msgstr "Prihlásiť"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Spustiť so štandardnými programami"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Zrušiť všetky používateľské nastavenia"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Naozaj chcete zrušiť všetky používateľské nastavenia GNOME pre %s?"
+
+#~ msgid "No"
+#~ msgstr "Nie"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Zrušiť všetky nastavenia"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Priečinok /tmp/orbit-%s nevlastní aktuálny\n"
+#~ "používateľ, %s.\n"
+#~ "Prosím, opravte vlastníka tohoto priečinku."
+
+#~ msgid "Really log out?"
+#~ msgstr "Naozaj odhlásiť?"
+
+#~ msgid "Logout"
+#~ msgstr "Odhlásiť"
+
+#~ msgid "Reboot"
+#~ msgstr "Reštartovať počítač"
+
+#~ msgid "Session"
+#~ msgstr "Sedenie"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Výber sedenia"
+
+#~ msgid "Start Session"
+#~ msgstr "Štart sedenia"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Zrušiť prihlásenie"
+
 #~ msgid "Continue"
 #~ msgstr "Pokračovať"
 
@@ -514,9 +557,6 @@ msgstr "Upraviť program pri štarte"
 #~ "(Vďaka Andymu Reitzovi za informáciu o tejto chybe).\n"
 #~ "\n"
 #~ "Po zatvorení tohoto dialógu bude vaše GNOME sedenie ukončené."
-
-#~ msgid "_Log Out"
-#~ msgstr "_Odhlásiť"
 
 #~ msgid "Browse Currently Running Programs..."
 #~ msgstr "Prechádzať momentálne bežiace programy..."
@@ -2661,3 +2701,4 @@ msgstr "Upraviť program pri štarte"
 
 #~ msgid "the GNOME menu editor"
 #~ msgstr "Menu editor GNOME"
+
