@@ -1,3 +1,12 @@
+2001-06-15  Glynn Foster <glynn.foster@sun.com>
+
+	* main.c: (set_lang), (main)
+	  save.c: (set_session_name)
+	Fixed some sort of env var inconsistancy now uses g_
+	equivalent. Started the first stage of multi-session
+	panel implementation. We now have GNOME_SESSION_NAME
+	env var for any app to use if need be.
+
 2001-06-11  Glynn Foster  <glynn.foster@sun.com>
 
 	Removed some C duplicate variables - bug # 54780 from

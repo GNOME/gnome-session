@@ -379,11 +379,14 @@ set_session_name (const char *name)
 {
   if (name)
     {
+      char *session_name_env;
       session_name = g_strdup(name);
       gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
       gnome_config_set_string (CURRENT_SESSION_KEY, name);
       gnome_config_pop_prefix ();
       gnome_config_sync ();
+      session_name_env = g_strconcat ("GNOME_SESSION_NAME=", g_strdup (name));
+      putenv (session_name_env);
     }
 }
 

@@ -98,7 +98,7 @@ set_lang (void)
   char *short_lang;
   char *p;
 
-  gdm_lang = getenv("GDM_LANG");
+  gdm_lang = g_getenv("GDM_LANG");
   if (gdm_lang)
     {
       short_lang = g_strdup (gdm_lang);
@@ -126,6 +126,7 @@ main (int argc, char *argv[])
   gboolean splashing;
   char *ep;
   poptContext ctx;
+  char *session_name_env;
   Session *the_session;
   
   set_lang();
@@ -181,6 +182,8 @@ main (int argc, char *argv[])
   if(failsafe)
 	session_name = FAILSAFE_SESSION;
   
+  session_name_env = g_strconcat ("GNOME_SESSION_NAME=", g_strdup (session_name));
+  putenv (session_name_env);
   the_session = read_session (session_name);
 
   if (splashing)
