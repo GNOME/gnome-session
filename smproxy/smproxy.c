@@ -1027,14 +1027,23 @@ SmPointer clientData;
 
     prop1.num_vals = numVals;
 
-
-    sprintf (discardCommand, "rm %s", filename);
     prop2.name = SmDiscardCommand;
-    prop2.type = SmARRAY8;
-    prop2.num_vals = 1;
-    prop2.vals = &prop2val;
-    prop2val.value = (SmPointer) discardCommand;
-    prop2val.length = strlen (discardCommand);
+    prop2.type = SmLISTofARRAY8;
+    prop2.vals = (SmPropValue *) malloc (2 * sizeof (SmPropValue));
+
+    if (!prop2.vals)
+    {
+	success = False;
+	goto finishUp;
+    }
+
+    prop2.vals[0].value = (SmPointer) "rm";
+    prop2.vals[0].length = 2;
+
+    prop2.vals[1].value = (SmPointer) filename;
+    prop2.vals[1].length = strlen (filename);
+
+    prop2.num_vals = 2;
 
     props[0] = &prop1;
     props[1] = &prop2;
