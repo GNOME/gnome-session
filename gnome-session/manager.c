@@ -61,6 +61,10 @@ static GSList *save_finished_list = NULL;
    in case one of these clients starts up again.  */
 static GSList *anyway_list = NULL;
 
+/* List of clients to which a message has been sent during send_message: 
+   needed to cope with io errors. */ 
+static GSList *message_sent_list = NULL;
+
 
 
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
@@ -71,20 +75,20 @@ static GSList *anyway_list = NULL;
 
 typedef void message_func (SmsConn connection);
 
-/* Helper for send_message.  */
-static void
-do_send_message (gpointer data, gpointer user_data)
-{
-  Client *client = (Client *) data;
-  message_func *message = (message_func *) user_data;
-  (*message) (client->connection);
-}
-
 /* Send a message to every client on LIST.  */
 static void
 send_message (GSList *list, message_func *message)
 {
-  g_slist_foreach (list, do_send_message, message);
+  /* Protect against io_errors by using static lists */
+  while (list)
+    {
+      Client *client = list->data;
+      REMOVE (list, client);
+      APPEND (message_sent_list, client);
+      (*message) (client->connection);
+    }
+  list = message_sent_list;
+  message_sent_list = NULL;
 }
 
 
@@ -115,6 +119,8 @@ find_client_by_connection (GSList *list, IceConn connection)
 
 
 
+#if 0
+/* This is hard to debug using gdb */
 static void
 free_a_prop (gpointer data, gpointer user_data)
 {
@@ -136,7 +142,27 @@ free_client (Client *client)
 
   free (client);
 }
+#else
+static void
+free_client (Client *client)
+{
+ GSList *list; 
+ if (! client)
+    return;
 
+  if (client->id)
+    free (client->id);
+
+  for (list = client->properties; list; list = list->next)
+    {
+      SmProp *sp = (SmProp *) list->data;
+      SmFreeProperty (sp);
+    }
+  g_slist_free (client->properties);
+
+  free (client);
+}
+#endif
 
 
 /* At shutdown time, we forcibly close each client connection.  This
@@ -207,10 +233,12 @@ interact_done (SmsConn connection, SmPointer data, Bool cancel)
   REMOVE (interact_list, client);
   APPEND (save_yourself_list, client);
 
-  if (cancel)
+  /* Protocol does not allow a cancel unless we are shutting down */
+  if (shutting_down && cancel)
     {
       /* Cancel whatever we're doing.  */
       saving = 0;
+      shutting_down = 0;
 
       send_message (interact_list, SmsShutdownCancelled);
       CONCAT (live_list, interact_list);
@@ -256,8 +284,8 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 
       saving = 1;
       shutting_down = 0;
-      REMOVE (live_list, client);
       g_assert (! save_yourself_list);
+      REMOVE (live_list, client);
       APPEND (save_yourself_list, client);
       /* We ignore `shutdown' when a single-client save requested.  */
       SmsSaveYourself (client->connection, save_type, 0, interact_style,
@@ -304,13 +332,24 @@ check_session_end (int found)
 {
   if (! interact_list && ! save_yourself_list)
     {
-      if (! save_yourself_p2_list)
+      if (save_yourself_p2_list && found)
+	{
+	  /* Just saw the last ordinary client finish saving.  So tell
+	     the Phase 2 clients that they're ok to go.  */
+	  /* disable check_session_end tests during the send message: */
+	  saving = 0;
+	  send_message (save_yourself_p2_list, SmsSaveYourselfPhase2);
+	  saving = 1;
+	  /* NB: io errors could wipe out the save_yourself_p2_list */
+	}
+
+      if (!save_yourself_p2_list)
 	{
 	  /* The write_session should include all live_list members 
-             following a SaveYourselfRequest with global == FALSE. 
+	     following a SaveYourselfRequest with global == FALSE. 
 	     The live_list == NULL in all other cases. */
 	  CONCAT (live_list, save_finished_list);
-
+	  
 	  /* All clients have responded to the save.  Now shut down or
 	     continue as appropriate.  Save the `anyway_list' first,
 	     in hopes of getting initialization commands started
@@ -328,18 +367,12 @@ check_session_end (int found)
 		 them all.  */
 	      run_shutdown_commands (anyway_list);
 	      run_shutdown_commands (live_list);
-
+	      
 	      /* Make sure that all client connections are closed.  */
 	      send_message (live_list, kill_client_connection);
-
+	      
 	      gtk_main_quit ();
 	    }
-	}
-      else if (found)
-	{
-	  /* Just saw the last ordinary client finish saving.  So tell
-	     the Phase 2 clients that they're ok to go.  */
-	  send_message (save_yourself_p2_list, SmsSaveYourselfPhase2);
 	}
     }
 }
@@ -350,13 +383,15 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
   Client *client = (Client *) data;
   GSList *found;
 
-  found = g_slist_find (save_yourself_list, client);
+  /* if a Shutdown Cancelled was sent then saving may be == 0 ! */
+  if (saving) {
+    found = g_slist_find (save_yourself_list, client);
+    REMOVE (save_yourself_list, client);
+    REMOVE (save_yourself_p2_list, client);
+    APPEND (save_finished_list, client);
 
-  REMOVE (save_yourself_list, client);
-  REMOVE (save_yourself_p2_list, client);
-  APPEND (save_finished_list, client);
-
-  check_session_end (found != NULL);
+    check_session_end (found != NULL);
+  }
 }
 
 /* FIXME: Display REASONS to user, per spec.  */
@@ -382,6 +417,8 @@ close_connection (SmsConn connection, SmPointer data, int count,
   REMOVE (save_yourself_list, client);
   REMOVE (save_yourself_p2_list, client);
   REMOVE (save_finished_list, client);
+
+  REMOVE (message_sent_list, client);
 
   /* Take appropriate action based on the restart style.  The default
      is RestartIfRunning, so if the value isn't found, we just do
@@ -555,19 +592,21 @@ save_session (int save_type, gboolean shutdown, int interact_style,
   if (saving)
     return;
 
-  saving = 1;
   shutting_down = shutdown;
 
-  for (list = live_list; list; list = list->next)
+  g_assert (! save_yourself_list);
+  /* Protect against io_errors by using static lists */
+  while (live_list) 
     {
-      Client *client = (Client *) list->data;
+      Client *client = (Client *) live_list->data;
+      REMOVE (live_list, client);
+      APPEND (save_yourself_list, client);
       SmsSaveYourself (client->connection, save_type, shutting_down,
 		       interact_style, fast);
     }
-
-  g_assert (! save_yourself_list);
-  save_yourself_list = live_list;
-  live_list = NULL;
+  /* enable check_session_end tests AFTER sending the last save yourself */
+  saving = 1;
+  check_session_end (FALSE);
 }
 
 
@@ -597,6 +636,8 @@ io_error_handler (IceConn connection)
     client = find_client_by_connection (save_yourself_p2_list, connection);
   if (! client)
     client = find_client_by_connection (save_finished_list, connection);
+  if (! client)
+    client = find_client_by_connection (message_sent_list, connection);
 
   /* The client might not be found.  For instance this could happen if
      the client exited before registering.  */

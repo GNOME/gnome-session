@@ -1,3 +1,13 @@
+Fri Dec 11 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.c (send_message): protect against io errors.
+	* manager.c (save_session): protect against io errors.
+	* manager.c (check_session_end): protect against io errors.
+	* manager.c (interact_done): cancel shutdown when a shutdown cancel
+	is sent. Ignore cancels when not shutting down.
+	* manager.c (save_yourself_done): do nothing if a shutdown cancelled
+	has already been sent.
+	
 Thu Dec 10 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* save.c (run_commands): fix broken logic on last change.
