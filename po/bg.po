@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-20 16:47+0200\n"
-"PO-Revision-Date: 2002-06-20 16:50+0200\n"
+"POT-Creation-Date: 2002-06-24 08:19+0200\n"
+"PO-Revision-Date: 2002-06-24 08:25+0200\n"
 "Last-Translator: Yanko Kaneti <yaneti@declera.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -179,6 +179,56 @@ msgstr "Настройки"
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Винаги стартиран при всеки login."
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Има грешка при стартиране на Сървъра за Настройки на GNOME.\n"
+"\n"
+"Някои неща, като теми, звуци или настройки на фона на екрана "
+"може да не работят правилно."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Последното съобщение за грешка беше:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME ще опита да рестартира Сървъра за Настройки при следващото Ви влизане."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Имаше незивестна грешка при активация."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Сървъра за Настройки е рестартиран повече от допустимото пъти."
 
 #: gnome-session/logout.c:225
 msgid "Really log out?"
@@ -374,33 +424,15 @@ msgstr "Стартирани програми"
 msgid "Current Session"
 msgstr "Текуща сесия"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Премахване на текущо избрания клиент от сесията."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Списък с програми в сесията."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Сесия"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Избор на сесия"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Започни сесия"
-
-# ##
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Прекъсни Login"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Инициализирай настройките на сесията"
 
@@ -492,6 +524,19 @@ msgstr "Добави програма"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Редактиране на програма за стартиране"
+
+#~ msgid "Session"
+#~ msgstr "Сесия"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Избор на сесия"
+
+#~ msgid "Start Session"
+#~ msgstr "Започни сесия"
+
+# ##
+#~ msgid "Cancel Login"
+#~ msgstr "Прекъсни Login"
 
 #~ msgid "Continue"
 #~ msgstr "Продължи"
