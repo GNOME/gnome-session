@@ -177,8 +177,8 @@ gsm_client_list_new (void)
   g_signal_connect (selection, "changed",
 		    G_CALLBACK (selection_changed), client_list);
 
-  gtk_signal_connect(GTK_OBJECT(client_list->client_editor), "changed",
-		     GTK_SIGNAL_FUNC (changed_cb), NULL);
+  g_signal_connect (client_list->client_editor, "changed",
+		    G_CALLBACK (changed_cb), NULL);
 
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 #ifdef FIXME

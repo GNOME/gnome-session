@@ -421,20 +421,20 @@ capplet_build (void)
 
   /* Add/Edit/Delete buttons */
   button = left_aligned_stock_button (GTK_STOCK_ADD);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		      GTK_SIGNAL_FUNC (add_startup_cb), NULL);
+  g_signal_connect (button, "clicked",
+		    G_CALLBACK (add_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   
   button = left_aligned_stock_button (SESSION_STOCK_EDIT);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		      GTK_SIGNAL_FUNC (edit_startup_cb), NULL);
+  g_signal_connect (button, "clicked",
+		    G_CALLBACK (edit_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "edit", button);
   
   button = left_aligned_stock_button (GTK_STOCK_DELETE);
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-		      GTK_SIGNAL_FUNC (delete_startup_cb), NULL);
+  g_signal_connect (button, "clicked",
+		    G_CALLBACK (delete_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "delete", button);

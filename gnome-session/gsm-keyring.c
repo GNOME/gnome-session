@@ -33,7 +33,7 @@ gsm_keyring_daemon_start (void)
   int status;
   long pid;
   char *pid_str, *end;
-  char *old_keyring;
+  const char *old_keyring;
 
   /* If there is already a working keyring, don't start a new daemon */
   old_keyring = g_getenv ("GNOME_KEYRING_SOCKET");

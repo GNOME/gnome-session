@@ -44,7 +44,7 @@ client_factory (void)
 }
 
 static void
-client_removed ()
+client_removed (void)
 {
   gtk_main_quit ();
 }

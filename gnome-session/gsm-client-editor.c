@@ -113,12 +113,12 @@ gsm_client_editor_new (void)
   gtk_box_pack_end (GTK_BOX (hbox), label,
 		      FALSE, FALSE, GNOME_PAD_SMALL);
 
-  gtk_signal_connect_object (GTK_OBJECT (client_editor->spin_button), 
-			     "value-changed", GTK_SIGNAL_FUNC (change), 
-			     GTK_OBJECT (client_editor));
-  gtk_signal_connect_object (GTK_OBJECT (menu), 
-			     "deactivate",  GTK_SIGNAL_FUNC (change),
-			     GTK_OBJECT (client_editor));
+  g_signal_connect_swapped (client_editor->spin_button, 
+			    "value-changed", G_CALLBACK (change), 
+			    client_editor);
+  g_signal_connect_swapped (menu, 
+			    "deactivate",  G_CALLBACK (change),
+			    client_editor);
 
 
   return GTK_WIDGET (client_editor);

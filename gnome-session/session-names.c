@@ -493,7 +493,7 @@ session_list_free (GSList *sess_list)
 }
 
 void
-deleted_session_list_free ()
+deleted_session_list_free (void)
 {
   if(deleted_sessions) {
     GSList *temp = NULL;

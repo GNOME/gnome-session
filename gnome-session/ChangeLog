@@ -1,3 +1,17 @@
+2004-08-21  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gsm-client-editor.c: (gsm_client_editor_new): Use non
+	deprecated signal api.
+	* gsm-client-list.c: (gsm_client_list_new): Same here.
+	* gsm-keyring.c: (gsm_keyring_daemon_start): Fix a warning.
+	* gsm-protocol.c: (dispatch_event): Test against the
+	correct variable.
+	* gsm-remove-client.c: (client_removed): ANSIfication.
+	* session-names.c: (deleted_session_list_free): Same.
+	* session-properties-capplet.c: (show_message_dialog),
+	(capplet_build): Same and use g_signal_*
+	* session-properties.c: (create_table): use g_signal_*
+
 ==================== 2.7.91 ====================
 
 2004-08-16  Mark McLoughlin  <mark@skynet.ie>

@@ -864,7 +864,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 			}
 		      else if (!strcmp (name, SmRestartCommand))
 			{
-			  if (! command && ! client->command)
+			  if (!tmp_command && !client->command)
 			    {
 			      restart_command = gsm_prop_to_sh (props[i]);
 			      tmp_command = restart_command;

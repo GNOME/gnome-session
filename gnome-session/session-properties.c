@@ -48,8 +48,8 @@ create_table (void)
   remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
   gsm_atk_set_description (remove_button, _("Remove the currently selected client from the session."));
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
-  gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
-		     GTK_SIGNAL_FUNC (remove_cb), NULL);
+  g_signal_connect(remove_button, "clicked",
+		   G_CALLBACK (remove_cb), NULL);
 
   apply_button = gtk_button_new_from_stock (GTK_STOCK_APPLY);
   gsm_atk_set_description (apply_button, _("Apply changes to the current session"));
@@ -63,8 +63,8 @@ create_table (void)
   g_signal_connect(gtk_tree_view_get_selection (GTK_TREE_VIEW (client_list)),
 		   "changed", G_CALLBACK (selection_changed),
 		   client_list);
-  gtk_signal_connect(GTK_OBJECT(client_list), "dirty",
-		     GTK_SIGNAL_FUNC (session_properties_dirty_cb), NULL);
+  g_signal_connect(client_list, "dirty",
+		     G_CALLBACK (session_properties_dirty_cb), NULL);
 
   client_editor = gsm_client_list_get_editor (GSM_CLIENT_LIST (client_list));
 
