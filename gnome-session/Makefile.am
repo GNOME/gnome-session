@@ -148,8 +148,6 @@ gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
 gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --body --prefix=gsm_marshal > $@
 
-gsm-protocol.c: $(marshal_sources)
-
 BUILT_SOURCES = $(marshal_sources)
 CLEANFILES    = $(BUILT_SOURCES)
 

@@ -94,10 +94,10 @@ ignore (int sig)
 static void
 set_lang (void)
 {
-  char *gdm_lang;
-  char *env_string;
-  char *short_lang;
-  char *p;
+  const char *gdm_lang;
+  char       *env_string;
+  char       *short_lang;
+  char       *p;
 
   gdm_lang = g_getenv("GDM_LANG");
   if (gdm_lang)
