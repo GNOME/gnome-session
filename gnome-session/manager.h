@@ -54,18 +54,22 @@ void io_error_handler (IceConn connection);
 
 /* Write session contents to a file.  LIST is a list of `Client*'s.
    SHUTDOWN is true if shutting down.  */
-void write_session (GSList *list, int shutdown);
+void write_session (const GSList *list, int shutdown);
 
 /* Set name of the current session.  This is used to determine which
    file to save to.  */
-void set_session_name (char *name);
+void set_session_name (const char *name);
 
 /* Start a session.  This does *not* shut down the current session; it
    simply adds the new one.  As a side effect it will set the current
    session name if it has not already been set.  If NAME is NULL then
    the `default' session is tried; if that session does not exist,
    then it is created using some internal defaults.  */
-void read_session (char *name);
+void read_session (const char *name);
+
+/* Delete a session as saved on disk.  This has no effect on the
+   currently running applications.  */
+void delete_session (const char *name);
 
 
 /*
@@ -85,19 +89,19 @@ void clean_ice (void);
 
 /* Call this to find the named property for a client.  Returns NULL if
    not found.  */
-SmProp *find_property_by_name (Client *client, const char *name);
+SmProp *find_property_by_name (const Client *client, const char *name);
 
 /* Find property NAME attached to CLIENT.  If not found, or type is
    not CARD8, then return FALSE.  Otherwise set *RESULT to the value
    and return TRUE.  */
-gboolean find_card8_property (Client *client, const char *name,
+gboolean find_card8_property (const Client *client, const char *name,
 			      int *result);
 
 /* Find property NAME attached to CLIENT.  If not found, or type is
    not ARRAY8, then return FALSE.  Otherwise set *RESULT to the value
    and return TRUE.  *RESULT is malloc()d and must be freed by the
    caller.  */
-gboolean find_string_property (Client *client, const char *name,
+gboolean find_string_property (const Client *client, const char *name,
 			       char **result);
 
 /* Find property NAME attached to CLIENT.  If not found, or type is
@@ -105,7 +109,7 @@ gboolean find_string_property (Client *client, const char *name,
    number of vector elements, *ARGVP to the elements themselves, and
    return TRUE.  Each element of *ARGVP is malloc()d, as is *ARGVP
    itself.  You can use `free_vector' to free the result.  */
-gboolean find_vector_property (Client *client, const char *name,
+gboolean find_vector_property (const Client *client, const char *name,
 			       int *argcp, char ***argvp);
 
 /* Free the return result from find_vector_property.  */

@@ -2,22 +2,17 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Debug communications code using testbed.c.
-  Right now the code work enough to let a simple client connect.
-  The plan of attack is to put breakpoints everywhere and make
-  sure various client requests do the right thing.
-  Probably should write some guile scripts to do the testing; then
-  automation might be possible.
+* Write code that restores and removes sessions
 
-* Write code that saves, restores, and removes sessions
-  I plan to do this by first writing some code that understands how to
-  interpret SmProp structures; then write code on top of that to extract
-  the useful properties.
+* Write code that understands restart hints, etc.
 
 * Write a user interface of some sort.
   Initially this will be very minimal.
   I'm tentatively planning to do the UI in Guile, so that different
   personalities can easily be tacked on.
+
+* Write code to use timeouts in useful places.
+  A session save shouldn't hang because of one losing client.
 
 * Export a CORBA interface exposing all interesting functionality
 
@@ -27,6 +22,13 @@ feel like it.  Also feel free to contact me about it.
 
 	Tom Tromey
 	tromey@cygnus.com
+
+================================================================
+
+Some known bugs:
+
+- run gsm; connect with notepad; use debugging option to trigger a save
+  gsm will get an XSMP protocol error.  I don't know why.
 
 
 ================================================================

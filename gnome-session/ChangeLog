@@ -1,3 +1,27 @@
+Fri Jan  2 00:11:49 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* manager.c (save_yourself_done): Move save_finished_list to
+	live_list when done.
+
+Thu Jan  1 15:53:26 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* manager.h: Declare delete_session.
+	* manager.c (save_yourself_done): Call write_session.
+	* save.c (set_session_name): Made name argument const.
+	(read_session): Likewise.
+	(write_session): Made list argument const.
+	(propsave): New type.
+	(properties): New array.
+	(NUM_PROPERTIES): New macro.
+	(write_one_client): New function.
+	(write_session): Wrote.
+	(delete_session): New function.
+
+	* prop.c (find_property_by_name): Made client argument const.
+	(find_card8_property): Likewise.
+	(find_string_property): Likewise.
+	(find_vector_property): Likewise.
+
 Sat Dec 27 12:39:40 1997  Tom Tromey  <tromey@cygnus.com>
 
 	* save.c: New file.

@@ -8,7 +8,7 @@
 /* Find a property given the client and the property name.  Returns
    NULL if not found.  */
 SmProp *
-find_property_by_name (Client *client, const char *name)
+find_property_by_name (const Client *client, const char *name)
 {
   GSList *list;
 
@@ -23,7 +23,7 @@ find_property_by_name (Client *client, const char *name)
 }
 
 gboolean
-find_card8_property (Client *client, const char *name,
+find_card8_property (const Client *client, const char *name,
 		     int *result)
 {
   SmProp *prop;
@@ -40,7 +40,7 @@ find_card8_property (Client *client, const char *name,
 }
 
 gboolean
-find_string_property (Client *client, const char *name,
+find_string_property (const Client *client, const char *name,
 		      char **result)
 {
   SmProp *prop;
@@ -57,7 +57,7 @@ find_string_property (Client *client, const char *name,
 }
 
 gboolean
-find_vector_property (Client *client, const char *name,
+find_vector_property (const Client *client, const char *name,
 		      int *argcp, char ***argvp)
 {
   SmProp *prop;

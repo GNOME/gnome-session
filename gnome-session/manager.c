@@ -239,9 +239,12 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 	{
 	  /* All clients have responded to the save.  Now shut down or
 	     continue as appropriate.  */
+	  write_session (save_finished_list, shutting_down);
 	  saving = 0;
 	  send_message (save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
+	  live_list = save_finished_list;
+	  save_finished_list = NULL;
 	}
       else if (! found)
 	{
