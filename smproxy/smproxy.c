@@ -1286,11 +1286,15 @@ char **argv;
       else if (!strcmp("--sm-config-prefix", argv[i]))
 	{
 	  char* path;
+	  int must_free_path = 0;
+	  
 	  if (++i >= argc) goto usage;
 
 	  path = getenv ("SM_SAVE_DIR");
-	  if (!path)
+	  if (!path){
 	    path = gnome_util_home_file (NULL);
+	    must_free_path = 1;
+	  }
 	  if (!path)
 	    path = getenv ("HOME");
 	  if (!path)
@@ -1299,7 +1303,8 @@ char **argv;
 	  restore_filename = malloc (strlen(path)+strlen(argv[i])+1);
 	  restore_filename = strcat (strcpy (restore_filename, path),argv[i]); 
 	  restore_filename[strlen (restore_filename) - 1] ='\0';
-	  free (path);
+	  if (must_free_path)
+	    free (path);
 	  continue;
 	}
       else if(!strcmp("-restore", argv[i]))
