@@ -2,9 +2,13 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Write exec.c and do the first real test
-
 * Write code that understands restart hints, etc.
+
+* Add a default profile so that something will happen if one doesn't
+  exist.  The default profile is described below.
+
+* Add remote-start capabilities, like XSM.  However, support krsh and
+  ssh as well.
 
 * Write a user interface of some sort.
   Initially this will be very minimal.
@@ -15,6 +19,7 @@ This is still a work in progress.  Here's my plan of attack:
   A session save shouldn't hang because of one losing client.
 
 * Export a CORBA interface exposing all interesting functionality
+  (See Elliot's IDL code in components/)
 
 * Update exec.c to report errors in some meaningful way
   A dialog is simplest, but a post to the event manager is perhaps best.
@@ -39,6 +44,20 @@ Some known bugs:
 
 ================================================================
 
+The default profile:
+
+We'll provide a default profile so that first time users will see
+something sensible.  The current thinking for the default profile:
+
+* Whatever magic Gnome programs are required (i.e., CORBA daemons)
+* A window manager (not sure which one yet; it depends on what is
+  available, easy-to-use, and Gnome-compliant)
+* The panel
+* The file manager opened to `~'
+* The help browser opened to an "About Gnome" page
+
+================================================================
+
 Some random stuff:
 
 - handle initialization commands
@@ -54,5 +73,3 @@ Some random stuff:
 
 - If program crashes during save yourself, gsm doesn't notice
   and will hang
-
-- should be named `gnome'
