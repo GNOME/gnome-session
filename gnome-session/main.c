@@ -24,6 +24,8 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #include <gconf/gconf-client.h>
 
@@ -151,7 +153,9 @@ main (int argc, char *argv[])
   Session *the_session;
   GConfClient *gconf_client;
   gboolean splashing;
-
+  GError *err;
+  int status;
+  
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
   
@@ -167,7 +171,26 @@ main (int argc, char *argv[])
    * their configs away with the Ctrl-Shift hotkey.
    */
   system ("gnome-login-check");
-
+      
+  err = NULL;
+  g_spawn_command_line_sync ("gconf-sanity-check-2", NULL, NULL, &status,
+                             &err);
+  if (err != NULL)
+    {
+      g_printerr ("Failed to run gconf-sanity-check-2: %s\n",
+                  err->message);
+      g_error_free (err);
+      /* who knows what's wrong, just continue */
+    }
+  else
+    {
+      if (WIFEXITED (status) && WEXITSTATUS (status) != 0)
+        {
+          g_printerr ("gconf-sanity-check-2 did not pass, logging back out\n");
+          exit (1);
+        }
+    }
+  
   gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
 		  GNOME_PARAM_POPT_TABLE, options,
 		  NULL);
