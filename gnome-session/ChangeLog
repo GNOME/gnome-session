@@ -1,5 +1,7 @@
 Mon Mar 16 00:52:21 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* main.c (ignore): Use sigemptyset to initialize sa_mask member.
+
 	* save-session.c (main): Removed local "zap" variable.
 
 	* main.c (ignore): New function.

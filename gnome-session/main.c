@@ -64,7 +64,7 @@ ignore (int sig)
   struct sigaction act;
 
   act.sa_handler = SIG_IGN;
-  act.sa_mask = 0;
+  sigemptyset (& act.sa_mask);
   act.sa_flags = 0;
 
   sigaction (sig, &act, NULL);
