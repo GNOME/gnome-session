@@ -72,4 +72,8 @@ void       gsm_client_row_set_style (GsmClientRow *client_row, GsmStyle style);
 /* changes the start order for the row */
 void       gsm_client_row_set_order (GsmClientRow *client_row, guint order);
 
+/* menu data */
+extern GnomeUIInfo state_data[GSM_NSTATES + 1];
+extern GnomeUIInfo style_data[GSM_NSTYLES + 1];
+
 #endif /* GSM_CLIENT_ROW_H */

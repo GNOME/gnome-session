@@ -24,14 +24,23 @@
 #include <gnome.h>
 
 #include "gsm-client-list.h"
+#include "gsm-client-row.h"
+#include "gsm-protocol.h"
+
+GtkObject *protocol;
 
 GtkWidget *entry;
 GtkWidget *add_button;
 GtkWidget *remove_button;
 GtkWidget *scrolled_window;
 GtkWidget *client_list;
+GtkWidget *client_editor;
+GtkWidget *session_list;
 
 GtkWidget *app;
+GtkWidget *paned;
+GtkWidget *gnome_foot;
+GtkWidget *left;
 
 GtkWidget* try_button;
 GtkWidget* revert_button;
@@ -56,9 +65,24 @@ static void dirty_cb (GtkWidget *widget);
 static void initialized_cb (GtkWidget *widget);
 
 static GtkWidget*
+create_right (void)
+{
+  /* client list */
+  client_list = gsm_client_list_new ();
+
+  /* scrolled window - disabled until the client_list "initialized" signal */
+  scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+  gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
+
+  return scrolled_window;
+}
+
+static GtkWidget*
 create_table (void)
 {
-  GtkWidget *table;
+  GtkWidget *table, *right;
 
   /* program entry box */
   entry = gtk_entry_new ();
@@ -75,21 +99,20 @@ create_table (void)
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
   gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
 		     GTK_SIGNAL_FUNC (remove_cb), NULL);
+
   /* client list */
   client_list = gsm_client_list_new ();
-  if (!client_list)
-    {
-      g_warning ("Could not connect to gnome-session.");
-      exit (1);
-    }
+  gsm_client_list_live_session (GSM_CLIENT_LIST (client_list));
+  gtk_signal_connect(GTK_OBJECT (client_list), "initialized",
+		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
   gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
 		     GTK_SIGNAL_FUNC (select_cb), NULL);
   gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",
 		     GTK_SIGNAL_FUNC (unselect_cb), NULL);
   gtk_signal_connect(GTK_OBJECT(client_list), "dirty",
 		     GTK_SIGNAL_FUNC (dirty_cb), NULL);
-  gtk_signal_connect(GTK_OBJECT(client_list), "initialized",
-		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
+
+  client_editor = gsm_client_list_get_editor (GSM_CLIENT_LIST (client_list));
 
   /* scrolled window - disabled until the client_list "initialized" signal */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -98,7 +121,7 @@ create_table (void)
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
   /* table */
-  table = gtk_table_new (3, 4, FALSE);
+  table = gtk_table_new (3, 5, FALSE);
   gtk_table_attach (GTK_TABLE (table), gtk_label_new (_("Program:")),
 		    0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
   gtk_table_attach (GTK_TABLE (table), gtk_hbox_new (FALSE, 0), 
@@ -109,8 +132,10 @@ create_table (void)
 		    3, 4, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
   gtk_table_attach (GTK_TABLE (table), entry, 
 		    0, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), scrolled_window, 
-		    0, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND,0, 0);
+  gtk_table_attach (GTK_TABLE (table), client_editor, 
+		    0, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+  gtk_table_attach (GTK_TABLE (table), scrolled_window,
+		    0, 4, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND,0, 0);
   gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD);
   gtk_table_set_row_spacings (GTK_TABLE (table), GNOME_PAD);
 
@@ -120,7 +145,7 @@ create_table (void)
 static GtkWidget*
 create_buttons (GtkWidget * table)
 {
-  GtkWidget* frame;
+  GtkWidget* frame, *table2;
   GtkWidget* bbox, *vbox;
 
   /* frame */
@@ -163,25 +188,152 @@ create_buttons (GtkWidget * table)
   gtk_container_add (GTK_CONTAINER (bbox), help_button);
 
   /* table */
-  table = gtk_table_new (3, 1, FALSE);
-  gtk_table_attach (GTK_TABLE (table), frame,
+  table2 = gtk_table_new (3, 1, FALSE);
+  gtk_table_attach (GTK_TABLE (table2), frame,
 		    0, 1, 0, 1, GTK_FILL|GTK_EXPAND,GTK_FILL|GTK_EXPAND, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), gtk_hseparator_new (),
+  gtk_table_attach (GTK_TABLE (table2), gtk_hseparator_new (),
 		    0, 1, 1, 2, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), bbox,
+  gtk_table_attach (GTK_TABLE (table2), bbox,
 		    0, 1, 2, 3, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
-  return table;
+  return table2;
 }  
 
 static GtkWidget*
-create_app (GtkWidget *table)
+create_app (void)
 {
   /* app*/
   app = gnome_app_new ("Session", "Session Properties");
-  gnome_app_set_contents (GNOME_APP (app), table);
+  gnome_app_set_contents (GNOME_APP (app), create_buttons (create_table ()));
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+  return app;
+}
+
+static gchar* selected_session = NULL;
+
+static void
+sess_select_row (GtkWidget *w, gint row)
+{
+  gchar* name;
+
+  gtk_clist_get_text (GTK_CLIST (w), row, 0, &name);
+
+  gsm_client_list_saved_session (GSM_CLIENT_LIST (client_list), name);
+  gtk_signal_connect(GTK_OBJECT (client_list), "initialized",
+		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
+}
+
+static void
+sess_start (GtkWidget *w)
+{
+  GtkWidget *viewport;
+
+  gsm_client_list_start_session (GSM_CLIENT_LIST (client_list));
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (left),
+				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+  gtk_container_remove (GTK_CONTAINER (left), session_list);
+  viewport =
+    gtk_viewport_new (gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (left)),
+		      gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (left)));
+  gtk_container_add (GTK_CONTAINER (viewport), gnome_foot);
+  gtk_widget_show_all (viewport);
+
+  gnome_dialog_set_sensitive (GNOME_DIALOG (app), 0, FALSE);
+  /* FIXME: might be nice to be able to cancel ... */
+  gnome_dialog_set_sensitive (GNOME_DIALOG (app), 1, FALSE);
+
+  gtk_container_add (GTK_CONTAINER (left), viewport);
+}
+
+static void
+sess_cancel (GtkWidget *w)
+{
+}
+
+static GtkWidget*
+create_left (void)
+{
+  gchar* foot_file = gnome_pixmap_file ("gnome-logo-large.png");
+  gchar* title = _("Session");
+  GtkRequisition req;
+
+  gnome_foot = gnome_pixmap_new_from_file (foot_file);
+  gtk_widget_size_request (gnome_foot, &req);
+
+  session_list = gtk_clist_new_with_titles(1, &title);
+  gtk_widget_set_usize (session_list, req.width, req.height);
+  gtk_signal_connect (GTK_OBJECT (session_list), "select_row",
+		      sess_select_row, NULL);
+
+  /* scrolled window */
+  left = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (left),
+				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+  gtk_container_add (GTK_CONTAINER (left), session_list);
+
+  return left;
+}
+
+static void
+last_session (GtkWidget *w, gchar* name)
+{
+  selected_session = name;
+}
+
+static void
+saved_sessions (GtkWidget *w, GSList* session_names)
+{
+  GSList *list;
+
+  for (list = session_names; list; list = list->next)
+    {
+      gint row;
+      gchar* name = (gchar*)list->data;
+      row = gtk_clist_append (GTK_CLIST (session_list), &name);
+      if (! strcmp (selected_session, name))
+	gtk_clist_select_row (GTK_CLIST (session_list), row, 0);
+    }
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (left),
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+}
+
+static GtkWidget*
+create_dialog (void)
+{
+  /* paned window */
+  paned = gtk_hpaned_new();
+  gtk_paned_handle_size (GTK_PANED (paned), 10);
+  gtk_paned_gutter_size (GTK_PANED (paned), 10);
+  gtk_paned_add1 (GTK_PANED (paned), create_left ());
+  gtk_paned_add2 (GTK_PANED (paned), create_right ());
+
+  /* app*/
+  app = gnome_dialog_new (_("Session Chooser"), NULL);
+  gtk_container_add (GTK_CONTAINER (GNOME_DIALOG (app)->vbox), paned);
+  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (app),
+					  _("Start Session"),
+					  GNOME_STOCK_BUTTON_OK);
+  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (app),
+					  _("Cancel Login"),
+					  GNOME_STOCK_BUTTON_CANCEL);
+  gnome_dialog_set_default (GNOME_DIALOG (app), 0);
+  gnome_dialog_button_connect (GNOME_DIALOG (app), 0,
+			       GTK_SIGNAL_FUNC (sess_start), NULL);
+  gnome_dialog_button_connect (GNOME_DIALOG (app), 1,
+			       GTK_SIGNAL_FUNC (sess_cancel), NULL);
+
+  gtk_signal_connect (GTK_OBJECT (app), "delete_event",
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+
+  gtk_signal_connect (GTK_OBJECT (protocol), "last_session", 
+		      GTK_SIGNAL_FUNC (last_session), NULL);
+  gsm_protocol_get_last_session (GSM_PROTOCOL (protocol));
+
+  gtk_signal_connect (GTK_OBJECT (protocol), "saved_sessions", 
+		      GTK_SIGNAL_FUNC (saved_sessions), NULL);
+  gsm_protocol_get_saved_sessions (GSM_PROTOCOL (protocol));
+
   return app;
 }
 
@@ -196,7 +348,16 @@ main (int argc, char *argv[])
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
-  create_app (create_buttons (create_table()));
+  protocol = gsm_protocol_new (gnome_master_client());
+  if (!protocol)
+    {
+      g_warning ("Could not connect to gnome-session.");
+      exit (1);
+    }
+  if (argc == 1)
+    create_app ();
+  else
+    create_dialog ();
 
   gtk_main ();
 
@@ -285,7 +446,6 @@ unselect_cb (GtkCList *clist)
   if (! clist->selection)
     {
       gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
-      gtk_widget_grab_focus (GTK_WIDGET (entry));
     }
 }
 

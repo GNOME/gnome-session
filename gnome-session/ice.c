@@ -184,7 +184,6 @@ initialize_ice (void)
 
   p = g_strconcat (ENVNAME "=", ids, NULL);
   putenv (p);
-  g_free (p);
 }
 
 void

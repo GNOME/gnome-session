@@ -23,7 +23,49 @@
 #include <gnome.h>
 
 #include "gsm-client-row.h"
-#include "gsm-column.h"
+#include "gsm-client-editor.h"
+
+#define GNOME_STOCK_MENU_HELP "Menu_Help"
+
+GnomeUIInfo state_data[] = {
+  GNOMEUIINFO_ITEM_STOCK(N_("Inactive"), 
+			 N_("Waiting to start or already finished."), 
+			 NULL, GNOME_STOCK_MENU_BLANK),
+  GNOMEUIINFO_ITEM_STOCK(N_("Starting"), 
+			 N_("Started but has not yet reported state."), 
+			 NULL, GNOME_STOCK_MENU_TIMER),
+  GNOMEUIINFO_ITEM_STOCK(N_("Running"), 
+			 N_("A normal member of the session."), 
+			 NULL, GNOME_STOCK_MENU_EXEC),
+  GNOMEUIINFO_ITEM_STOCK(N_("Saving"), 
+			 N_("Saving session details."), 
+			 NULL, GNOME_STOCK_MENU_SAVE),
+  GNOMEUIINFO_ITEM_STOCK(N_("Unknown"), 
+			 N_("State not reported within timeout."), 
+			 NULL, GNOME_STOCK_MENU_HELP),
+  GNOMEUIINFO_END
+};
+
+GnomeUIInfo style_data[] = {
+  GNOMEUIINFO_ITEM_STOCK(N_("Normal"), 
+			 N_("Unaffected by logouts but can die."),
+			 NULL, GNOME_STOCK_MENU_BLANK),
+  GNOMEUIINFO_ITEM_STOCK(N_("Respawn"), 
+			 N_("Never allowed to die."),
+			 NULL, GNOME_STOCK_MENU_REFRESH),
+  GNOMEUIINFO_ITEM_STOCK(N_("Trash"), 
+			 N_("Discarded on logout and can die."),
+			 NULL, GNOME_STOCK_MENU_TRASH),
+  GNOMEUIINFO_ITEM_STOCK(N_("Settings"), 
+			 N_("Always started on every login."),
+			 NULL, GNOME_STOCK_MENU_PREF),
+  GNOMEUIINFO_END
+};
+
+static GnomePixmap *state_pixmap[GSM_NSTATES];
+static GnomePixmap *style_pixmap[GSM_NSTYLES];
+
+static void create_stock_menu_pixmaps (void);
 
 static GsmClientClass *parent_class = NULL;
 
@@ -49,6 +91,8 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   client_class->style    = client_style;
   client_class->order    = client_order;
   client_class->reasons  = client_reasons;
+
+  create_stock_menu_pixmaps ();
 
   object_class->destroy = gsm_client_row_destroy;
 }
@@ -84,6 +128,7 @@ gsm_client_row_new (GsmClientList* client_list)
   client_row->client_list = client_list;
   client_row->row = -1;
   client_row->change = GSM_CLIENT_ROW_NONE;
+
   return GTK_OBJECT (client_row);
 }
 
@@ -109,6 +154,8 @@ gsm_client_row_add (GsmClientRow* client_row)
   if (client_row->row < 0)
     {
       GsmClientList* client_list = client_row->client_list;
+      GsmClientEditor* client_editor = 
+	(GsmClientEditor*)client_list->client_editor;
       GtkCList* clist = (GtkCList*)client_list;
       guint row;
       char temp[3];
@@ -123,10 +170,12 @@ gsm_client_row_add (GsmClientRow* client_row)
 	  gpointer data = gtk_clist_get_row_data (clist, row);
 	  GSM_CLIENT_ROW (data)->row = row;
 	}
-      gsm_column_set_pixmap (GSM_COLUMN (client_row->client_list->style_col),
-			     client_row->row, client->style);
-      gsm_column_set_pixmap (GSM_COLUMN (client_row->client_list->state_col),
-			     client_row->row, client->state);
+      gtk_clist_set_pixmap (clist, client_row->row, 1, 
+			    style_pixmap[client->style]->pixmap, 
+			    style_pixmap[client->style]->mask);
+      gtk_clist_set_pixmap (clist, client_row->row, 2, 
+			    state_pixmap[client->state]->pixmap, 
+			    state_pixmap[client->state]->mask);
     }
 }
 
@@ -199,8 +248,13 @@ client_state (GsmClient* client, GsmState state)
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
   if (client_row->row > -1 && client->state != state)
-    gsm_column_set_pixmap (GSM_COLUMN (client_row->client_list->state_col),
-			   client_row->row, state);
+    {
+      GtkCList* clist = (GtkCList*)client_row->client_list;
+
+      gtk_clist_set_pixmap (clist, client_row->row, 2, 
+			    state_pixmap[state]->pixmap, 
+			    state_pixmap[state]->mask);
+    }
 }
 
 void
@@ -229,6 +283,7 @@ gsm_client_row_set_order (GsmClientRow* client_row, guint order)
 	      gpointer data = gtk_clist_get_row_data (clist, row);
 	      GSM_CLIENT_ROW (data)->row = row;
 	    }
+	  gtk_clist_select_row (clist, client_row->row, 0);
 	  gtk_clist_thaw (clist);
 	}
     }
@@ -253,8 +308,13 @@ gsm_client_row_set_style (GsmClientRow* client_row, GsmStyle style)
       client->style = style;
 
       if (client_row->row > -1)
-	gsm_column_set_pixmap (GSM_COLUMN (client_row->client_list->style_col),
-			       client_row->row, style);
+	{
+	  GtkCList* clist = (GtkCList*)client_row->client_list;
+
+	  gtk_clist_set_pixmap (clist, client_row->row, 1, 
+				style_pixmap[style]->pixmap, 
+				style_pixmap[style]->mask);
+	}
     }
 }
 
@@ -276,4 +336,31 @@ client_reasons (GsmClient* client, GSList* reasons)
   
   dialog = gnome_warning_dialog (message);
   g_free (message);
+}
+
+static void
+create_stock_menu_pixmaps (void)
+{
+  GnomeStockPixmapEntry *pixmap_help; 
+  GnomeStockPixmapEntry *menu_blank; 
+  GnomeStockPixmapEntry *menu_help;
+  gint i;
+
+  menu_blank = gnome_stock_pixmap_checkfor (GNOME_STOCK_MENU_BLANK,
+					    GNOME_STOCK_PIXMAP_REGULAR);
+  pixmap_help = gnome_stock_pixmap_checkfor (GNOME_STOCK_PIXMAP_HELP,
+					     GNOME_STOCK_PIXMAP_REGULAR);
+  menu_help = g_malloc(sizeof(GnomeStockPixmapEntry));
+  memcpy (menu_help, pixmap_help, sizeof (GnomeStockPixmapEntry));
+  menu_help->imlib_s.scaled_width = menu_blank->imlib_s.scaled_width;
+  menu_help->imlib_s.scaled_height = menu_blank->imlib_s.scaled_height;
+  gnome_stock_pixmap_register (GNOME_STOCK_MENU_HELP,
+			       GNOME_STOCK_PIXMAP_REGULAR, menu_help);
+
+  for (i = 0; i < GSM_NSTATES; i++)
+    state_pixmap [i] = 
+      (GnomePixmap*)gnome_stock_new_with_icon (state_data[i].pixmap_info);
+  for (i = 0; i < GSM_NSTYLES; i++)
+    style_pixmap [i] = 
+      (GnomePixmap*)gnome_stock_new_with_icon (style_data[i].pixmap_info);
 }

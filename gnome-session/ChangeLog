@@ -1,3 +1,17 @@
+1999-03-18  Felix Bellaby  <felix@pooh.u-net.com> 
+
+	* save.c (read_one_client): never use glib to alloc client->id. 
+	* manager.c (free_client): use free to free client->id because libSM
+	allocs client->id using malloc.
+	(remove_client): also remove clients which have yet to be started.
+	(purge_client): put GsmAddClient clients into purge_retain_list.
+	* ice.c (initialize_ice): do not free value passed to putenv.
+	* Makefile.am: change files used in build as follows...
+	* gsm-column.*: no longer used.
+	* gsm-client-editor.*: alternative means of editing clients.
+	* gsm-*: change GUI details and add session chooser stuff.
+	* session-properties.c: updated for changs in GUI.
+
 1999-03-17  Nuno Ferreira  <nmrf@rnl.ist.utl.pt>
 
 	* manager.c (free_client): use g_free() to free client->id instead

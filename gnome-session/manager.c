@@ -224,7 +224,7 @@ free_client (Client *client)
     return;
 
   if (client->id)
-    g_free (client->id);
+    free (client->id);
 
   if (client->handle)
     command_handle_free (client->handle);
@@ -408,8 +408,16 @@ purge (gpointer data)
   if (g_slist_find (pending_list, client))
     {
       REMOVE (pending_list, client);
-      APPEND (purge_drop_list, client);
-      broadcast_restart_style (client, SmRestartNever);
+      if (client->match_rule == MATCH_PROP)
+	{
+	  APPEND (purge_retain_list, client);
+	  broadcast_restart_style (client, SmRestartAnyway);
+	}
+      else
+	{
+	  APPEND (purge_drop_list, client);
+	  broadcast_restart_style (client, SmRestartNever);
+	}
       client_event (client->handle, GsmUnknown);
 
       update_save_state();
@@ -458,6 +466,7 @@ start_client (Client* client)
 gint 
 remove_client (Client* client)
 {
+  GSList* list;
   /* This only uses the ammunition provided by the protocol to kill clients.
    * The user must resort to kill or xkill to destroy badly broken clients 
    * and can place these in the SmShutdownCommand to facilitate logouts. */
@@ -507,6 +516,33 @@ remove_client (Client* client)
       free_client (client);
       update_save_state ();
       return 1;
+    }
+
+  if (g_slist_find (start_list, client))
+    {
+      REMOVE (start_list, client);
+      client_event (client->handle, GsmRemove);
+      free_client (client);
+      update_save_state ();
+      return 1;
+    }
+
+  for (list = load_request_list; list; list == list->next)
+    {
+      GSList* client_list = (GSList*)list->data;
+      
+      if (g_slist_find (client_list, client))
+	{
+	  REMOVE (client_list, client);
+	  if (client_list)
+	    list->data = client_list;
+	  else
+	    load_request_list = g_slist_remove_link (load_request_list, list);
+	  client_event (client->handle, GsmRemove);
+	  free_client (client);
+	  update_save_state ();
+	  return 1;
+	}
     }
 
   return 0;

@@ -34,11 +34,8 @@ typedef struct _GsmClientListClass GsmClientListClass;
 struct _GsmClientList {
   GtkCList   clist;
 
-  GtkTooltips* tooltips;
-  GtkObject* selector;
-  GtkWidget* order_col;
-  GtkWidget* style_col;
-  GtkWidget* state_col;
+  GtkWidget* client_editor;
+  GtkObject* session;
   gboolean   committed;
   gboolean   dirty;
   GSList*    changes;
@@ -53,12 +50,22 @@ struct _GsmClientListClass {
 
 guint gsm_client_list_get_type  (void);
 
-/* Creates a client list.
- * NB: The current implementation only allows one list per gnome executable.
- * If anyone ever wants more than one than it could be changed... */
+/* Creates an empty client list. */
 GtkWidget* gsm_client_list_new (void);
 
-/* Removes the currently selected clients from the list. */
+/* Returns a widget which may be used to edit the selected client. */
+GtkWidget* gsm_client_list_get_editor (GsmClientList* client_list);
+
+/* Fills out the list with the clients in the live session. */
+void gsm_client_list_live_session (GsmClientList* client_list);
+
+/* Fills out the list with the clients in the session saved under "name". */
+void gsm_client_list_saved_session (GsmClientList* client_list, gchar* name);
+
+/* Starts the clients in a SAVED session. */
+void gsm_client_list_start_session (GsmClientList* client_list);
+
+/* Removes the currently selected client from the list. */
 void gsm_client_list_remove_selection (GsmClientList* client_list);
 
 /* Adds a client to the list. 

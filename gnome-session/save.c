@@ -248,8 +248,9 @@ read_one_client (Client *client)
 {
   int i, j;
   gboolean def;
+  gchar* id;
 
-  client->id = gnome_config_get_string ("id");
+  client->id = NULL;
   client->properties = NULL;
   client->priority = 50;
   client->handle = command_handle_new ((gpointer)client);
@@ -257,6 +258,12 @@ read_one_client (Client *client)
   client->get_prop_requests = 0;
   client->command_data = NULL;
 
+  id = gnome_config_get_string ("id");
+  if (id)
+    {
+      client->id = strdup(id);
+      g_free (id);
+    }
   /* Read each property that we save.  */
   for (i = 0; i < NUM_PROPERTIES; ++i)
     {
@@ -349,7 +356,7 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
 
   for (i = 0; i < num_clients; ++i)
     {
-      Client *client = (Client*)malloc (sizeof(Client));
+      Client *client = (Client*)calloc (1, sizeof(Client));
 
       g_snprintf (prefix, sizeof(prefix), "%s%s/%d,", file, session, i);
 
