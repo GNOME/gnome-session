@@ -40,10 +40,10 @@ noinst_PROGRAMS = \
 
 bin_PROGRAMS = \
 	gnome-session		\
-	save-session		\
+	gnome-session-save	\
 	gnome-login-check	\
 	gnome-libice-check	\
-	session-properties
+	gnome-session-properties
 endif
 
 splash_test_SOURCES = \
@@ -78,10 +78,10 @@ gnome_session_SOURCES =		\
 	util.c			\
 	util.h
 
-save_session_SOURCES =		\
+gnome_session_save_SOURCES = \
 	save-session.c
 
-session_properties_SOURCES = 	\
+gnome_session_properties_SOURCES = \
 	session-properties-capplet.c	\
 	session-properties-capplet.h	\
 	startup-programs.c		\
@@ -112,13 +112,6 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-sysdir = $(datadir)/control-center/Session
-
-if SESSION
-sys_in_files = session-properties.desktop.in
-sys_DATA = $(sys_in_files:.desktop.in=.desktop)
-endif
-
 settingsdir = $(datadir)/control-center-2.0/capplets
 
 if SESSION
@@ -143,12 +136,22 @@ manuals = gnome-wm.1 default.session.5.in gnome-session.1.in save-session.1
 pixmapdir = $(datadir)/pixmaps/splash/
 pixmap_DATA = gnome-splash.png gnome-splash-1.4.0.png
 
+schemadir = @GCONF_SCHEMA_FILE_DIR@
+schema_DATA = \
+	gnome-session.schemas
+
+schema_source_data = $(foreach file, $(schema_DATA), $(srcdir)/$(file))
+
+install-data-local: $(schema_installed_data)
+	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(schema_source_data)
+
 EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
 	$(manuals)		\
 	$(pixmap_DATA)		\
+	$(schema_DATA)		\
 	gsm-marshal.list	\
 	session-properties.desktop.in
 

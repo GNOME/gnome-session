@@ -25,6 +25,7 @@
 #include <gnome.h>
 #include "session-properties-capplet.h"
 #include "gsm-protocol.h"
+#include "headers.h"
 
 /* Structure for storing information about one client */
 typedef struct _ManualClient ManualClient;

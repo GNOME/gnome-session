@@ -40,6 +40,7 @@
 
 #include <libgnomeui/gnome-ice.h>
 #include <libgnome/libgnome.h>
+#include <gconf/gconf-client.h>
 
 #include "ice.h"
 #include "session.h"
@@ -306,8 +307,7 @@ initialize_ice (void)
   saved_umask = umask (0);
   umask (saved_umask);
 
-  allow_tcp = gnome_config_get_bool ("/" GSM_OPTION_CONFIG_PREFIX
-				     ALLOW_TCP_KEY"="ALLOW_TCP_DEFAULT);
+  allow_tcp = gconf_client_get_bool (gconf_client_get_default (), ALLOW_TCP_KEY, NULL);
  
   if (SmsInitialize (GsmVendor, VERSION, new_client, NULL,
 		     auth_proc, sizeof error, error)) 

@@ -48,26 +48,27 @@
 /* Name of key used to store number of clients in a session. */
 #define CLIENT_COUNT_KEY "num_clients"
 
-/* Name of key used to store whether show the splash screen */
-#define SPLASH_SCREEN_KEY "SplashScreen"
+/* 
+ * These are stored in GConf
+ *
+ * autosave and logout prompt are auto-notified, the others loaded the
+ * one time they are needed.
+ */
 
-#ifndef SPLASH_SCREEN_DEFAULT
-#define SPLASH_SCREEN_DEFAULT "TRUE"
-#endif
+#define GSM_GCONF_CONFIG_PREFIX    "/apps/gnome-session/options"
+/* Name of key used to store whether show the splash screen */
+#define SPLASH_SCREEN_KEY          GSM_GCONF_CONFIG_PREFIX "/show_splash_screen"
 
 /* Name of key used to store autosave mode. */
-#define AUTOSAVE_MODE_KEY "AutoSave"
+#define AUTOSAVE_MODE_KEY          GSM_GCONF_CONFIG_PREFIX "/auto_save_session"
 
-#ifndef AUTOSAVE_MODE_DEFAULT
-#define AUTOSAVE_MODE_DEFAULT "FALSE"
-#endif
+/* Prompt on logout */
+#define LOGOUT_PROMPT_KEY          GSM_GCONF_CONFIG_PREFIX "/logout_prompt"
 
 /* Allow TCP connections to the session manager. */
-#define ALLOW_TCP_KEY "AllowTCP"
+#define ALLOW_TCP_KEY              GSM_GCONF_CONFIG_PREFIX "/allow_tcp_connections"
 
-#ifndef ALLOW_TCP_DEFAULT
-#define ALLOW_TCP_DEFAULT "FALSE"
-#endif
+
 
 /* Convenience macros: */
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
@@ -168,6 +169,11 @@ extern gboolean autosave;
  * manually saves session and set to false otherwise. Dirty hack to avoid
  * saving on logout */
 extern gboolean session_save;
+
+/*
+ * whether to prompt the user on logout
+ */
+extern gboolean logout_prompt;
 
 /* When prompted to save session on logout, this flag indicates to save or 
  * not to save */

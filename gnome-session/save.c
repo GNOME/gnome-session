@@ -22,8 +22,10 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#include "libgnome/libgnome.h"
-#include "libgnomeui/gnome-client.h"
+#include <gconf/gconf-client.h>
+
+#include <libgnome/libgnome.h>
+#include <libgnomeui/gnome-client.h>
 
 #include "save.h"
 #include "session.h"
@@ -372,11 +374,7 @@ set_sessionsave_mode (gboolean sessionsave)
 void 
 set_autosave_mode (gboolean auto_save_mode)
 {
-      autosave = auto_save_mode;
-      gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-      gnome_config_set_bool (AUTOSAVE_MODE_KEY, auto_save_mode);
-      gnome_config_pop_prefix ();
-      gnome_config_sync (); 
+      gconf_client_set_bool (gconf_client_get_default (), AUTOSAVE_MODE_KEY, auto_save_mode, NULL);
 }
 
 void

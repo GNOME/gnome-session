@@ -25,6 +25,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <gconf/gconf-client.h>
+
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
@@ -40,6 +42,8 @@
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
 gboolean autosave = FALSE;
+
+gboolean logout_prompt = TRUE;
 
 /* Flag indicating that an independant session save is taking place */
 gboolean session_save = FALSE;
@@ -122,14 +126,31 @@ set_lang (void)
     }
 }
 
+static void
+update_boolean (GConfClient *client,
+		guint cnxn_id,
+		GConfEntry *entry,
+		gpointer user_data)
+{
+  GConfValue *value;
+  gboolean *bool_value = user_data;
+
+  value = gconf_entry_get_value (entry);
+  *bool_value = gconf_value_get_bool (value);
+
+  gsm_verbose ("%s is now %s.\n", 
+	       gconf_entry_get_key (entry), 
+	       *bool_value ? "On" : "Off");
+}
 
 int
 main (int argc, char *argv[])
 {
-  gboolean splashing;
   char *ep;
   char *session_name_env;
   Session *the_session;
+  GConfClient *gconf_client;
+  gboolean splashing;
 
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
@@ -172,11 +193,25 @@ main (int argc, char *argv[])
 
   ignore (SIGPIPE);
 
-  /* Read in config options */
+  /* Read in config options */  
+  gconf_client = gconf_client_get_default ();
+
+  gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
+  splashing      = gconf_client_get_bool (gconf_client, SPLASH_SCREEN_KEY, NULL);
+  autosave       = gconf_client_get_bool (gconf_client, AUTOSAVE_MODE_KEY, NULL);
+  logout_prompt  = gconf_client_get_bool (gconf_client, LOGOUT_PROMPT_KEY, NULL);
+
+  gconf_client_notify_add (gconf_client,
+			   AUTOSAVE_MODE_KEY,
+			   update_boolean,
+			   &autosave, NULL, NULL);
+
+  gconf_client_notify_add (gconf_client,
+			   LOGOUT_PROMPT_KEY,
+			   update_boolean,
+			   &logout_prompt, NULL, NULL);
+
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  splashing = gnome_config_get_bool (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
-  autosave = gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT);
- 
 
   /* If the session wasn't set on the command line, but we see a
    * GDM_GNOME_SESSION env var, use that.  The user is using the GDM chooser

@@ -2,19 +2,6 @@
 #define SESSIONPROPERTIESCAPPLET_H
 #include <gtk/gtk.h>
 
-#define DEFAULT_CONFIG_PREFIX "=" DEFAULTDIR "/default.session=/"
-#define CONFIG_PREFIX "session/"
-#define MANUAL_CONFIG_PREFIX "session-manual/"
-#define DEFAULT_SESSION "Default"
-#define GSM_OPTION_CONFIG_PREFIX "session-options/Options/"
-#define CURRENT_SESSION_KEY "CurrentSession"
-#define LOGOUT_SCREEN_KEY "LogoutPrompt"
-#define LOGOUT_SCREEN_DEFAULT "TRUE"
-#define SPLASH_SCREEN_KEY "SplashScreen"
-#define SPLASH_SCREEN_DEFAULT "TRUE"
-#define AUTOSAVE_MODE_KEY "AutoSave"
-#define AUTOSAVE_MODE_DEFAULT "FALSE"
-
 GSList	*startup_list_read (gchar *name);
 
 void	startup_list_write (GSList *cl, 

@@ -150,7 +150,7 @@ main (int argc, char *argv[])
 
   IceAddConnectionWatch (ice_connection_watch, NULL);
 
-  gnome_program_init ("save-session", VERSION, LIBGNOMEUI_MODULE,
+  gnome_program_init ("gnome-session-save", VERSION, LIBGNOMEUI_MODULE,
 		      argc, argv,
 		      GNOME_PARAM_POPT_TABLE, options,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,

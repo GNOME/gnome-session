@@ -70,9 +70,6 @@ static const SplashApp splash_map_table[] = {
 	{ NULL }
 };
 
-#define SPLASHING (gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX SPLASH_SCREEN_KEY"="SPLASH_SCREEN_DEFAULT))
-#define HINTING (gnome_config_get_bool ("Gnome/Login/RunHints=true"))
-
 #define BASE_WIDTH 480
 #define BASE_ICONSIZE 36
 
@@ -317,10 +314,6 @@ queue_icon_action (void)
 void
 stop_splash (void)
 {
-  if (!SPLASHING) {
-    return;
-  }
-
   if (!sd || sd->timeout)
     return;
 

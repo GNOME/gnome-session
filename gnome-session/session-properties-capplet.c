@@ -19,19 +19,6 @@
 
    Authors: Felix Bellaby, Owen Taylor */
 
-/* FIXME: Session manager does not use GConf now (Lauris) */
-/* FIXME: But if it will be ported using it, here is some code (Lauris) */
-#define noUSE_GCONF
-
-#ifndef USE_GCONF
-/* FIXME: I put some dummy paths here, until I know the real keys (Lauris) */
-/* FIXME: If ported to GConf, these should go to public header (Lauris) */
-#define SPC_GCONF_DIR "/apps/gnome-session"
-#define SPC_GCONF_KEY_SPLASH "/apps/gnome-session/splash"
-#define SPC_GCONF_KEY_PROMPT "/apps/gnome-session/prompt"
-#define SPC_GCONF_KEY_AUTOSAVE "/apps/gnome-session/autosave"
-#endif
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -40,11 +27,8 @@
 
 #include <gnome.h>
 
-#ifdef USE_GCONF
 #include <gconf/gconf-client.h>
-#else
 #include "headers.h"
-#endif
 
 #include "gsm-protocol.h"
 #include "session-properties-capplet.h"
@@ -100,7 +84,6 @@ static void delete_startup_cb (void);
 static void add_session_cb (void);
 static void edit_session_cb (void);
 static void delete_session_cb (void);
-static void browse_session_cb (void);
 
 static void protocol_set_current_session (GtkWidget *widget, gchar *name);
 static void saved_sessions (GtkWidget *widget, GSList *session_names);
@@ -118,7 +101,6 @@ left_aligned_button (gchar *label)
 static void
 spc_value_toggled (GtkToggleButton *tb, gpointer data)
 {
-#ifdef USE_GCONF
 	GConfClient *client;
 	gboolean gval, bval;
 	const gchar *key;
@@ -133,13 +115,8 @@ spc_value_toggled (GtkToggleButton *tb, gpointer data)
 	if (gval != bval) {
 		gconf_client_set_bool (client, key, bval, NULL);
 	}
-#else
-	/* FIXME: button sensitivity */
-	dirty_cb ();
-#endif
 }
 
-#ifdef USE_GCONF
 static void
 spc_value_notify (GConfClient *client, guint id, GConfEntry *entry, gpointer tb)
 {
@@ -153,7 +130,6 @@ spc_value_notify (GConfClient *client, guint id, GConfEntry *entry, gpointer tb)
 		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tb), gval);
 	}
 }
-#endif
 
 static void
 spc_close (void)
@@ -172,7 +148,7 @@ spc_close (void)
 }
 
 static GtkWidget *
-capplet_build (gpointer client)
+capplet_build (void)
 {
   GtkWidget *vbox;
   GtkWidget *util_vbox;
@@ -185,23 +161,27 @@ capplet_build (gpointer client)
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
 
+  GConfClient *client;
+
+  client = gconf_client_get_default ();
+
   /* Create toplevel dialog */
   dlg = gtk_dialog_new ();
+  gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
   gtk_window_set_title (GTK_WINDOW (dlg), _("Session properties"));
   apply_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_APPLY, GTK_RESPONSE_APPLY);
   gtk_widget_set_sensitive (GTK_WIDGET (apply_button), FALSE);
   g_signal_connect (G_OBJECT (apply_button), "clicked", apply, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
+  g_signal_connect (dlg, "delete-event", spc_close, NULL);
 
   /* FIXME: Get rid of global capplet variable, or use only it, not both (Lauris) */
   capplet = dlg;
 
   /* Retrieve options */
 
-#ifndef USE_GCONF
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-#endif
   
   /* Set up the notebook */
   notebook = gtk_notebook_new();
@@ -225,31 +205,21 @@ capplet_build (gpointer client)
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
   login_splash_button = gtk_check_button_new_with_label (_("Show splash screen on login"));
   gtk_container_add (GTK_CONTAINER (a), login_splash_button);
-#ifdef USE_GCONF
-  g_object_set_data (G_OBJECT (login_splash_button), "key", SPC_GCONF_KEY_SPLASH);
+  g_object_set_data (G_OBJECT (login_splash_button), "key", SPLASH_SCREEN_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (login_splash_button),
-				gconf_client_get_bool (client, SPC_GCONF_KEY_SPLASH, NULL));
-  gconf_client_notify_add (client, SPC_GCONF_KEY_SPLASH, spc_value_notify, login_splash_button, NULL, NULL);
-#else
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (login_splash_button),
-				gnome_config_get_bool (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT));
-#endif
-  g_signal_connect (G_OBJECT (login_splash_button), "toggled", G_CALLBACK (spc_value_toggled), client);
+				gconf_client_get_bool (client, SPLASH_SCREEN_KEY, NULL));
+  gconf_client_notify_add (client, SPLASH_SCREEN_KEY, spc_value_notify, login_splash_button, NULL, NULL);
+  g_signal_connect (login_splash_button, "toggled", G_CALLBACK (spc_value_toggled), client);
 
   /* Logout prompt */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
   logout_prompt_button = gtk_check_button_new_with_label (_("Prompt on logout"));
   gtk_container_add (GTK_CONTAINER (a), logout_prompt_button);
-#ifdef USE_GCONF
-  g_object_set_data (G_OBJECT (logout_prompt_button), "key", SPC_GCONF_KEY_PROMPT);
+  g_object_set_data (G_OBJECT (logout_prompt_button), "key", LOGOUT_PROMPT_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
-				gconf_client_get_bool (client, SPC_GCONF_KEY_PROMPT, NULL));
-  gconf_client_notify_add (client, SPC_GCONF_KEY_PROMPT, spc_value_notify, logout_prompt_button, NULL, NULL);
-#else
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
-				gnome_config_get_bool (LOGOUT_SCREEN_KEY "=" LOGOUT_SCREEN_DEFAULT));
-#endif
+				gconf_client_get_bool (client, LOGOUT_PROMPT_KEY, NULL));
+  gconf_client_notify_add (client, LOGOUT_PROMPT_KEY, spc_value_notify, logout_prompt_button, NULL, NULL);
   g_signal_connect (G_OBJECT (logout_prompt_button), "toggled", G_CALLBACK (spc_value_toggled), client);
 
   /* Autosave */
@@ -257,16 +227,16 @@ capplet_build (gpointer client)
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
   autosave_button = gtk_check_button_new_with_label (_("Automatically save changes to session"));
   gtk_container_add (GTK_CONTAINER (a), autosave_button);
-#ifdef USE_GCONF
-  g_object_set_data (G_OBJECT (autosave_button), "key", SPC_GCONF_KEY_AUTOSAVE);
+  g_object_set_data (G_OBJECT (autosave_button), "key", AUTOSAVE_MODE_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
-				gconf_client_get_bool (client, SPC_GCONF_KEY_AUTOSAVE, NULL));
-  gconf_client_notify_add (client, SPC_GCONF_KEY_AUTOSAVE, spc_value_notify, autosave_button, NULL, NULL);
-#else
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
-				gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT));
-#endif
+				gconf_client_get_bool (client, AUTOSAVE_MODE_KEY, NULL));
+  gconf_client_notify_add (client, AUTOSAVE_MODE_KEY, spc_value_notify, autosave_button, NULL, NULL);
   g_signal_connect (G_OBJECT (autosave_button), "toggled", G_CALLBACK (spc_value_toggled), client);
+
+  label = gtk_label_new (NULL);
+  gtk_label_set_markup (GTK_LABEL (label),
+			_("<i>These changes take effect immediately</i>"));
+  gtk_box_pack_start (GTK_BOX (util_vbox), label, FALSE, FALSE, 4);
  
   /* Session names list */
   frame = gtk_frame_new (_("Choose Current Session"));
@@ -386,15 +356,6 @@ capplet_build (gpointer client)
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
   
-  button = gtk_button_new_with_label (_("Browse Currently Running Programs..."));
-  gtk_misc_set_padding (GTK_MISC (GTK_BIN (button)->child),
-			GNOME_PAD, 0);
-  
-  gtk_container_add (GTK_CONTAINER (a), button);
-
-  gtk_signal_connect (GTK_OBJECT (button), "clicked",
-  		      GTK_SIGNAL_FUNC (browse_session_cb), NULL);
-
   label = gtk_label_new (_("Startup Programs"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
   
@@ -434,17 +395,6 @@ spc_write_state (void)
       current_session = g_strdup (str);
     }
   }
-  gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  gnome_config_set_bool (LOGOUT_SCREEN_KEY, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (logout_prompt_button)));
-  gnome_config_set_bool (SPLASH_SCREEN_KEY, gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (login_splash_button)));
-  gnome_config_pop_prefix ();
-  gnome_config_sync ();
-
-  /* Set the autosave mode in the session manager so it takes 
-   * effect immediately.  */
-  
-  gsm_protocol_set_autosave_mode (GSM_PROTOCOL(protocol), gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (autosave_button)));
-  gsm_protocol_set_session_name (GSM_PROTOCOL(protocol), current_session);
   
   session_list_write (session_list, session_list_revert, hashed_sessions);
   startup_list_write (startup_list, current_session);
@@ -589,38 +539,25 @@ delete_session_cb (void)
   update_gui ();
 }
 
-/* Run a browser for the currently running session managed clients */
-static void
-browse_session_cb (void)
-{
-  static char *const command[] = {
-    "session-properties"
-  };
-
-  gnome_execute_async (NULL, 1, command);
-}
-
-
 int
 main (int argc, char *argv[])
 {
-#ifdef USE_GCONF
   GConfClient *client;
-#endif
   GtkWidget *dlg;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gnome_program_init (argv[0], VERSION, LIBGNOMEUI_MODULE, argc, argv, NULL);
+  gnome_program_init ("gnome-session-properties", VERSION, 
+		      LIBGNOMEUI_MODULE, argc, argv, 
+		      GNOME_PROGRAM_STANDARD_PROPERTIES,
+		      NULL);
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR "/gnome-session.png");
 
-#ifdef USE_GCONF
   client = gconf_client_get_default ();
-  gconf_client_add_dir (client, SPC_GCONF_DIR, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
-#endif
+  gconf_client_add_dir (client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
 
   protocol = gsm_protocol_new (gnome_master_client());
   if (!protocol) {
@@ -637,11 +574,7 @@ main (int argc, char *argv[])
    */
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
 
-#ifdef USE_GCONF
-  dlg = capplet_build (client);
-#else
-  dlg = capplet_build (NULL);
-#endif
+  dlg = capplet_build ();
 
   gtk_main ();
 
