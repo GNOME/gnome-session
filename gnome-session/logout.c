@@ -264,6 +264,9 @@ hide_fadeout_windows (void)
       gdk_window_hide (GDK_WINDOW (l->data));
       g_object_unref (l->data);
     }
+
+  g_list_free (fadeout_windows);
+  fadeout_windows = NULL;
 }
 
 /* FIXME:
