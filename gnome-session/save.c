@@ -333,7 +333,7 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
   for (i = 0; i < num_clients; ++i)
     {
       Client *client = (Client*)g_new0 (Client, 1);
-
+      client->magic = CLIENT_MAGIC;
       g_snprintf (prefix, sizeof(prefix), "%s%s/%d,", file, session, i);
 
       gnome_config_push_prefix (prefix);
@@ -512,6 +512,8 @@ delete_session (const char *name)
       int old_argc;
       char **old_argv;
       char *old_system;
+      
+      old_client->magic = CLIENT_MAGIC;
       
       g_snprintf (prefix, sizeof(prefix), CONFIG_PREFIX "%s/%d,", name, i);
       gnome_config_push_prefix (prefix);

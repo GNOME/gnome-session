@@ -405,6 +405,8 @@ command (Client* client, int nprops, SmProp** props)
 	  Client* client1 = (Client*)calloc (1, sizeof(Client));
 	  int i;
 	  
+	  client1->magic = CLIENT_MAGIC;
+	  
 	  for (i = 1; i < nprops; ++i)
 	    APPEND (client1->properties, props[i]);
 

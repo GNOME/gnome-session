@@ -125,7 +125,11 @@ accept_connection (gpointer client_data, gint source,
      connection.  */
   while (status2 == IceConnectPending)
     {
+      /* Freeze ice while doing the gtk iteration. We don't want to recurse
+         here */
+      ice_frozen();
       gtk_main_iteration ();
+      ice_thawed();
       status2 = IceConnectionStatus (connection);
     }
 }
@@ -241,6 +245,8 @@ init_ice_connections (void)
 void _IceTransNoListen (char *foo);
 #endif
 
+static int ice_depth = 0;
+
 void
 initialize_ice (void)
 {
@@ -337,6 +343,44 @@ initialize_ice (void)
 
   p = g_strconcat (ENVNAME "=", ids, NULL);
   putenv (p);
+  
+  ice_depth = 0;	/* We are live */
+}
+
+
+/*
+ *	Re-enable ice processing
+ */
+ 
+void ice_thawed(void)
+{
+	guint i;
+	
+	ice_depth--;
+	if(ice_depth)
+		return;
+	
+	/* Last disable cancelled so listen again */
+	for (i = 0; i < num_sockets; i++)
+	{
+		input_id[i] = gdk_input_add (IceGetListenConnectionNumber (sockets[i]),
+				   GDK_INPUT_READ, accept_connection,
+				   (gpointer) sockets[i]);
+	}
+}
+
+void ice_frozen(void)
+{
+	guint i;
+	
+	if(++ice_depth == 1)
+	{
+		/* First disable so turn off the events */
+		for (i = 0; i < num_sockets; i++)
+		{
+			gtk_input_remove (input_id[i]);      
+		}
+	}
 }
 
 void
@@ -373,6 +417,8 @@ clean_ice (void)
   g_free (input_id);
   free (ids);
   IceFreeListenObjs (num_sockets, sockets);
+  
+  ice_depth = ~0;	/* We are very frozen, like totally off */
 }
 
 /* Creates a new entry for inclusion in the ICE authority file and

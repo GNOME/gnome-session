@@ -44,4 +44,8 @@ void initialize_ice (void);
 /* Clean up ICE when exiting.  */
 void clean_ice (void);
 
+/* ICE recursion guards */
+void ice_frozen(void);
+void ice_thawed(void);
+
 #endif /* ICE_H */

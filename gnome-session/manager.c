@@ -236,6 +236,16 @@ free_client (Client *client)
  GSList *list; 
  if (! client)
     return;
+  if(client->magic != CLIENT_MAGIC)
+    {
+       if(client->magic != CLIENT_DEAD)
+               g_warning("free_client: Passed a bogon.");
+       else    /* Its that common problem for hungry cannibal lawyers...who live on cheap Czech beer */
+               g_warning("free_client: Passed a dead client.");
+       return;
+    }
+
+  client->magic = CLIENT_DEAD; /* Bang bang, you're dead etc */
 
   if (client->id != NULL)
     g_free (client->id);
@@ -959,7 +969,9 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	{
 	  /* Just ignore the save.  */
 	  shutting_down = FALSE;
-	  if (client)
+	  if (client && client->magic != CLIENT_MAGIC)
+	    g_warning("Oh my god the dead clients are walking again, please report this!");
+	  else if (client)
 	    SmsShutdownCancelled (client->connection);
 	}
       else
@@ -1551,6 +1563,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
     }
 
   client = (Client*)g_new0 (Client, 1);
+  client->magic = CLIENT_MAGIC;
   client->priority = DEFAULT_PRIORITY;
   client->connection = connection;
   client->attempts = 1;

@@ -318,10 +318,16 @@ maybe_display_gui (void)
   if (! prompt)
     return TRUE;
 
+  /*
+   *	Don't let ICE run during the dialog, otherwise we may free clients
+   *	during the dialog and rather suprise and offend the caller.
+   */
+  ice_frozen();
   result = display_gui ();
   if (action == HALT)
     set_logout_command (halt_command);
   else if (action == REBOOT)
     set_logout_command (reboot_command);
+  ice_thawed();
   return result;
 }

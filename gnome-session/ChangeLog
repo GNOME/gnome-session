@@ -1,3 +1,12 @@
+2001-05-11  Glynn Foster <glynn.foster@sun.com>
+	* command.c ice.c logout.c manager.c manager.h save.c: Apply patch
+	  from Alan Cox. If this works [ie. fixes the enormous amount of 
+          bugs against gsm] he will have saved the day once more, if it 
+	  doesn't it probably will have done more good than harm. We can 
+	  now freeze and thaw ICE while doing some gtk iterations so 
+	  hopefully ICE won't stomp on other things.....
+	  [Apparently].
+
 2001-05-01  Glynn Foster <glynn.foster@sun.com>
 	* session-names.c: Removed an unused variable that might just
           have caused an ugly segv

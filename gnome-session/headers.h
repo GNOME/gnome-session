@@ -77,6 +77,9 @@
 #define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
 #define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))
 
+#define CLIENT_MAGIC 0xFEED50DA
+#define CLIENT_DEAD  0xBADC0DE5
+
 /* Rule used to match client: gets around need to specify proper client ids
  * when starting from sysadmin files or via the GsmAddClient protocol.
  * This is a big burden off end users and only creates the possibility of
@@ -131,6 +134,8 @@ typedef struct
 
   /* Additional details for clients that speak our command protocol */
   CommandData *command_data;
+
+  guint magic;
 } Client;
 
 typedef struct {
