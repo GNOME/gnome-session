@@ -212,7 +212,7 @@ fadeout_screen (GdkScreen *screen,
   attr.override_redirect = TRUE;
   attr_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_NOREDIR;
 
-  fadeout->draw_window = gdk_window_new (NULL, &attr, attr_mask);
+  fadeout->draw_window = gdk_window_new (fadeout->root_window, &attr, attr_mask);
   fadeout_windows = g_list_prepend (fadeout_windows, fadeout->draw_window);
   
   fadeout->start_pb = gdk_pixbuf_get_from_drawable (NULL,
