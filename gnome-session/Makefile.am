@@ -32,7 +32,7 @@ gnome_login_check_SOURCES = gnome-login-check.c
 
 bin_SCRIPTS = gnome-wm
 
-default_DATAo = default.session default.wm
+default_DATA = default.session default.wm
 
 desktopdir = $(datadir)/gnome/apps/Settings
 desktop_DATA = save-session.desktop session.desktop
