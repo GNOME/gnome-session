@@ -13,7 +13,7 @@ report_errno (int fd)
 {
   int n = errno;
 
-  fprintf (stderr, "failure %d\n", errno);
+  /* fprintf (stderr, "failure %d\n", errno); */
   /* We don't care if it fails.  */
   write (fd, &n, sizeof n);
   _exit (1);
@@ -22,7 +22,8 @@ report_errno (int fd)
 void
 execute_async (int argc, char *argv[])
 {
-  int pid, status, count;
+  pid_t pid;
+  int status, count;
   int p[2];
 
   /* FIXME: error handling.  */
@@ -31,20 +32,21 @@ execute_async (int argc, char *argv[])
 
   /* FIXME: error handling.  */
   pid = fork ();
-  if (pid == -1)
+  if (pid == (pid_t) -1)
     return;
 
   if (pid == 0)
     {
       /* Child.  Fork again so child won't become a zombie.  */
+      close (p[0]);
       pid = fork ();
-      if (pid == -1)
+      if (pid == (pid_t) -1)
 	report_errno (p[1]);
       if (pid != 0)
 	_exit (0);
 
       /* Child of the child.  */
-      fcntl (p[0], F_SETFD, 1);
+      fcntl (p[1], F_SETFD, 1);
       execvp (argv[0], argv);
       report_errno (p[1]);
     }

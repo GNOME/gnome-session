@@ -207,6 +207,9 @@ run_default_session (void)
   argv[1] = NULL;
   execute_async (1, argv);
 
+  argv[0] = "gnome-help-browser";
+  execute_async (1, argv);
+
   /* Add more here.  We can't really do it until other pieces are
      written.  */
 

@@ -1,3 +1,10 @@
+Thu Feb 26 02:26:51 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* exec.c (execute_async): "pid" is a pid_t, not an int.  Close
+	read end of pipe in child; mark write end as close-on-exec.
+
+	* save.c (run_default_session): Run gnome-help-browser.
+
 Mon Feb 23 00:49:05 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* save.c (run_default_session): NULL-terminate argv.
