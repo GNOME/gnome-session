@@ -43,7 +43,7 @@ OLDIFS=$IFS
 IFS=":"
 if [ -z "$WINDOW_MANAGER" ] ; then
   if [ -z "$DEFWM" -o "x$DEFWM" = "xgnome-wm" ]; then
-    for wm in sawfish sawmill metacity enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm ; do
+    for wm in metacity sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm ; do
       for dir in $PATH ; do
 	if [ -x "$dir/$wm" ] ; then
 	  WINDOW_MANAGER="$dir/$wm"
