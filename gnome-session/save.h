@@ -50,6 +50,9 @@ void unlock_session (void);
 /* Returns name of last session run (with a default) */
 gchar* get_current_session(void);
 
+/* Set the autosave key in the session-options file */
+void set_autosave_mode (gboolean autosave);
+
 /* Set the session name key in the session-options file */
 void set_session_name (const gchar *name);
 

@@ -364,7 +364,6 @@ write_state (void)
     current_session = g_strdup(current_session_tmp);
   } 
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  gnome_config_set_bool (AUTOSAVE_MODE_KEY, autosave);
   gnome_config_set_bool (LOGOUT_SCREEN_KEY, logout_prompt);
   gnome_config_set_bool (SPLASH_SCREEN_KEY, login_splash);
   gnome_config_pop_prefix ();
@@ -374,7 +373,6 @@ write_state (void)
    * effect immediately.  */
   
   gsm_protocol_set_autosave_mode (GSM_PROTOCOL(protocol), autosave);
- 
   gsm_protocol_set_session_name (GSM_PROTOCOL(protocol), current_session);  
   
   session_list_write (session_list, session_list_revert, hashed_sessions);

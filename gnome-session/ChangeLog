@@ -1,3 +1,14 @@
+2001-02-26  Glynn Foster  <glynn.foster@sun.com>
+
+	* command.c: (command): Make sure that call with 
+	  GsmAutoSaveMode is doing the right thing
+	* save.c: (set_autosave_mode): Added function to set
+          autosave variable [somehow got removed previously]
+	* save.h: function definition
+	* session-properties-capplet.c: (write_state): Don't
+          use gnome_config to set autosave since it is set by
+          the protocol.
+
 Sat Feb 17 21:04:19 2001  George Lebl <jirka@5z.com>
 
 	* logout.c:  instead of simply checking for existance of

@@ -358,6 +358,16 @@ unlock_session (void)
    name may be locked).  
    Returns the name that has been assigned to the session. */
 
+void 
+set_autosave_mode (gboolean auto_save_mode)
+{
+      autosave = auto_save_mode;
+      gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+      gnome_config_set_bool (AUTOSAVE_MODE_KEY, auto_save_mode);
+      gnome_config_pop_prefix ();
+      gnome_config_sync (); 
+}
+
 void
 set_session_name (const char *name)
 {
