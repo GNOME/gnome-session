@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-11-11 13:16+0000\n"
+"POT-Creation-Date: 2003-12-08 18:33+0000\n"
 "PO-Revision-Date: 2003-08-29 02:08+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
+#: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Tillåt TCP-anslutningar"
 
-#: gnome-session/gnome-session.schemas.in.in.h:2
+#: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -35,13 +35,13 @@ msgstr ""
 "alternativ tillåter anslutningar från (auktoriserade) fjärrvärdar. gnome-"
 "session måste startas om för att detta ska börja gälla."
 
-#: gnome-session/gnome-session.schemas.in.in.h:3
+#: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Om detta är aktiverat kommer gnome-session att fråga användaren innan en "
 "session avslutas."
 
-#: gnome-session/gnome-session.schemas.in.in.h:4
+#: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -50,30 +50,30 @@ msgstr ""
 "Annars kommer utloggningsdialogen att ha ett alternativ för att spara "
 "sessionen."
 
-#: gnome-session/gnome-session.schemas.in.in.h:5
+#: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Utloggningsfråga"
 
-#: gnome-session/gnome-session.schemas.in.in.h:6
+#: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
 "Föredragen bild att använda som startbild vid inloggning i GNOME-skrivbordet"
 
-#: gnome-session/gnome-session.schemas.in.in.h:7
+#: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Spara sessioner"
 
-#: gnome-session/gnome-session.schemas.in.in.h:8
+#: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
 msgstr "Visa startbilden"
 
-#: gnome-session/gnome-session.schemas.in.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr "Visa startbilden då sessionen startar"
 
-#: gnome-session/gnome-session.schemas.in.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
 msgstr "Startbild"
 
@@ -269,27 +269,27 @@ msgstr "St_äng ner"
 msgid "_Restart the computer"
 msgstr "_Starta om datorn"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "Ange namn för session som ska läsas"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "Läs bara sparade sessioner från filen default.session"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att registrera sig (0=oändlig)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att svara (0=oändlig)"
 
-#: gnome-session/main.c:87
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att dö (0=oändlig)"
 
-#: gnome-session/main.c:267
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -302,11 +302,11 @@ msgstr ""
 "Det är möjligt att det går att lösa genom att lägga\n"
 "till %s till filen /etc/hosts."
 
-#: gnome-session/main.c:274
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "Logga in ändå"
 
-#: gnome-session/main.c:275
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "Försök igen"
 
@@ -463,7 +463,7 @@ msgstr "Initiera sessionsinställningar"
 msgid "Configure your sessions"
 msgstr "Konfigurera dina sessioner"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Fönsterhanteraren Sawfish"
 
@@ -472,27 +472,27 @@ msgstr "Fönsterhanteraren Sawfish"
 # Sun vill ha detta till "Metacity fönsterhanterare"
 # Jag vill ha det till "Fönsterhanteraren Metacity"
 #
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Fönsterhanteraren Metacity"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Fönsterhanterare"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Panelen"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
 msgstr "Sessionshanterarproxy"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Skrivbordsinställningar"
 

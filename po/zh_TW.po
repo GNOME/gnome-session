@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.3.1\n"
-"POT-Creation-Date: 2003-11-11 13:16+0000\n"
+"POT-Creation-Date: 2003-12-08 18:33+0000\n"
 "PO-Revision-Date: 2003-07-06 19:49+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -22,11 +22,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=l10n\n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
+#: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "可接受 TCP 連線"
 
-#: gnome-session/gnome-session.schemas.in.in.h:2
+#: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -37,11 +37,11 @@ msgstr ""
 "session 不會接受 TCP 連線。使用本選項後即可接受 (獲授權的) 遠端主機連線。"
 "gnome-session 必須重新啟動方可令本選項生效。"
 
-#: gnome-session/gnome-session.schemas.in.in.h:3
+#: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如選用本選項，gnome-session 會在作業階段終止前先提示使用者。"
 
-#: gnome-session/gnome-session.schemas.in.in.h:4
+#: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -49,29 +49,29 @@ msgstr ""
 "如選用本選項，gnome-session 會自動儲存作業階段，否則在登出時，對話方塊會提供"
 "選項，讓您選擇是否儲存作業階段。"
 
-#: gnome-session/gnome-session.schemas.in.in.h:5
+#: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "登出提示"
 
-#: gnome-session/gnome-session.schemas.in.in.h:6
+#: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr "當登入 GNOME 桌面時，優先使用作為啟動畫面的圖像。"
 
-#: gnome-session/gnome-session.schemas.in.in.h:7
+#: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "儲存作業階段"
 
-#: gnome-session/gnome-session.schemas.in.in.h:8
+#: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
 msgstr "登入時顯示啟動畫面"
 
-#: gnome-session/gnome-session.schemas.in.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr "當啟動作業階段時顯示啟動畫面"
 
-#: gnome-session/gnome-session.schemas.in.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
 msgstr "作為啟動畫面的圖像"
 
@@ -253,27 +253,27 @@ msgstr "關機(_U)"
 msgid "_Restart the computer"
 msgstr "重新啟動電腦(_R)"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "指定準備載入的作業階段名稱"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "只從預設的作業階段檔案 (default.session) 中讀取已儲存的作業階段"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:87
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:267
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -286,11 +286,11 @@ msgstr ""
 "將 %s 加入 /etc/hosts\n"
 "可能可以避免此問題出現。"
 
-#: gnome-session/main.c:274
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "強迫登入"
 
-#: gnome-session/main.c:275
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "重試"
 
@@ -444,31 +444,31 @@ msgstr "初始化作業階段設定"
 msgid "Configure your sessions"
 msgstr "設定作業階段"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 視窗總管"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Metacity 視窗總管"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "視窗總管"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
 msgstr "作業階段總管代理"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "桌面設定"
 

@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.4.x\n"
-"POT-Creation-Date: 2003-11-11 13:16+0000\n"
+"POT-Creation-Date: 2003-12-08 18:33+0000\n"
 "PO-Revision-Date: 2003-07-13 10:38+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Report-Msgid-Bugs-To: \n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
+#: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "TCP-Verbindungen zulassen"
 
-#: gnome-session/gnome-session.schemas.in.in.h:2
+#: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -37,11 +37,11 @@ msgstr ""
 "dennoch der Verbindungsaufbau gestattet werden soll. gnome-session muss neu "
 "gestartet werden, damit eine Änderung an diesem Schlüssel wirksam wird."
 
-#: gnome-session/gnome-session.schemas.in.in.h:3
+#: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Soll gnome-session den Benutzer vor dem Beenden einer Sitzung fragen?"
 
-#: gnome-session/gnome-session.schemas.in.in.h:4
+#: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -50,11 +50,11 @@ msgstr ""
 "Abmeldedialog eine Option hinzugefügt, mit dem die Sitzung manuell "
 "gespeichert werden kann."
 
-#: gnome-session/gnome-session.schemas.in.in.h:5
+#: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Abmeldedialog"
 
-#: gnome-session/gnome-session.schemas.in.in.h:6
+#: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
@@ -62,19 +62,19 @@ msgstr ""
 "Das für den Begrüßungsbilschirm zu verwendende Bild. Dieses immer dann "
 "angezeigt, wenn Sie sich am GNOME-Desktop anmelden"
 
-#: gnome-session/gnome-session.schemas.in.in.h:7
+#: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Sitzungen speichern"
 
-#: gnome-session/gnome-session.schemas.in.in.h:8
+#: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
 msgstr "Den Begrüßungsbildschirm anzeigen"
 
-#: gnome-session/gnome-session.schemas.in.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr "Beim Sitzungsstart den Begrüßungsbildschirm anzeigen"
 
-#: gnome-session/gnome-session.schemas.in.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
 msgstr "Bild für Begrüßungsbilschirm"
 
@@ -258,28 +258,28 @@ msgstr "_Herunterfahren"
 msgid "_Restart the computer"
 msgstr "Den Computer _neu starten"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "Geben Sie einen zu ladenden Sitzungsnamen an"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "Gespeicherte Sitzungen nur aus der Datei »default.session« einlesen"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Wieviele Millisekunden auf Registrieren der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Wieviele Milliskunden auf Antwort der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:87
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Wieviele Millisekunden auf Tod der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:267
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -292,11 +292,11 @@ msgstr ""
 "Möglicherweise kann dieser Fehler durch das Hinzufügen\n"
 "von %s zur Datei »/etc/hosts« zu korrigieren."
 
-#: gnome-session/main.c:274
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "Dennoch anmelden"
 
-#: gnome-session/main.c:275
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
@@ -450,31 +450,31 @@ msgstr "Sitzungseinstellungen initialisieren"
 msgid "Configure your sessions"
 msgstr "Ihre Sitzungen konfigurieren"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Fenstermanager Sawfish"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Fenstermanager Metacity"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Fenstermanager"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Das Panel"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
 msgstr "Sitzungsmanager-Proxy"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Desktop-Einstellungen"
 

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.2.0\n"
-"POT-Creation-Date: 2003-11-11 13:16+0000\n"
+"POT-Creation-Date: 2003-12-08 18:33+0000\n"
 "PO-Revision-Date: 2003-08-23 18:12+0200\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Emacs+PO-mode\n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
+#: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Dozvoli TCP konekcije"
 
-#: gnome-session/gnome-session.schemas.in.in.h:2
+#: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -33,12 +33,12 @@ msgstr ""
 "opcija će omogućiti povezivanje sa (ovlašćenih) udaljenih računara. gnome-"
 "session se mora ponovo pokreniti kako bi ovo imalo uticaja."
 
-#: gnome-session/gnome-session.schemas.in.in.h:3
+#: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Ukoliko je omogućeno, gnome-session će pitati korisnika pre okončanja sesije."
 
-#: gnome-session/gnome-session.schemas.in.in.h:4
+#: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -46,29 +46,29 @@ msgstr ""
 "Ukoliko je omogućeno, gnome-session će snimati sesiju automatski. Inače, "
 "prozorče za odjavu će sadržati mogućnost snimanja sesije."
 
-#: gnome-session/gnome-session.schemas.in.in.h:5
+#: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Pitanje pred odjavu"
 
-#: gnome-session/gnome-session.schemas.in.in.h:6
+#: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr "Slika koja će se prikazivati pri prijavi na Gnomovu radnu površinu"
 
-#: gnome-session/gnome-session.schemas.in.in.h:7
+#: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Snimi sesije"
 
-#: gnome-session/gnome-session.schemas.in.in.h:8
+#: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
 msgstr "Prikaži pozdravni ekran pri prijavi"
 
-#: gnome-session/gnome-session.schemas.in.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr "Prikaži pozdravni ekran po pokretanju sesije"
 
-#: gnome-session/gnome-session.schemas.in.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
 msgstr "Slika za pozdravni ekran"
 
@@ -252,30 +252,30 @@ msgstr "U_gasi"
 msgid "_Restart the computer"
 msgstr "_Resetuj računar"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "Navedite ime sesije koju želite da učitate"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "Čitaj samo sesije snimljene u datoteci default.session"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Period u milisekundama utrošen čekajući da se klijenti prijave (0=zauvek)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Period u milisekundama utrošen čekajući da klijenti odgovore (0=zauvek)"
 
-#: gnome-session/main.c:87
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Period u milisekundama utrošen čekajući na klijente da završe (0=zauvek)"
 
-#: gnome-session/main.c:267
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -288,11 +288,11 @@ msgstr ""
 "Ovu nezgodu možete rešiti dodavanjem \n"
 "%s u datoteku /etc/hosts."
 
-#: gnome-session/main.c:274
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "Prijavi se svakako"
 
-#: gnome-session/main.c:275
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "Pokušaj ponovo"
 
@@ -446,31 +446,31 @@ msgstr "Učitavanje podešavanja sesije"
 msgid "Configure your sessions"
 msgstr "Podesite vaše sesije"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish upravnik prozora"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Metacity upravnik prozora"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Upravnik prozora"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Panel"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
 msgstr "Glasnik upravnika sesija"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Podešavanja radne površine"
 

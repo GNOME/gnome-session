@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-11-11 13:16+0000\n"
+"POT-Creation-Date: 2003-12-08 18:33+0000\n"
 "PO-Revision-Date: 2003-10-24 13:41+0100\n"
 "Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 "Report-Msgid-Bugs-To: \n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
+#: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Caniatáu cysylltiadau TCP"
 
-#: gnome-session/gnome-session.schemas.in.in.h:2
+#: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -31,13 +31,13 @@ msgstr ""
 "opsiwn hwn yn caniatàu cysylltiadau o westeion pell (awdurdodedig). Mae'n "
 "rhaid ailgychwyn gnome-session cyn bo hyn yn cael effaith."
 
-#: gnome-session/gnome-session.schemas.in.in.h:3
+#: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Os galluogir hyn, fe fydd gnome-session yn gofyn am gadarnhad cyn diweddu "
 "sesiwn."
 
-#: gnome-session/gnome-session.schemas.in.in.h:4
+#: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -45,11 +45,11 @@ msgstr ""
 "Os galluogir hyn, fe fydd gnome-session yn cadw'r sessiwn yn awtomatig. Fel "
 "arall, fe fydd gan y deialog allgofnodi opsiwn i gadw'r sesiwn."
 
-#: gnome-session/gnome-session.schemas.in.in.h:5
+#: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Annog allgofnodi"
 
-#: gnome-session/gnome-session.schemas.in.in.h:6
+#: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
@@ -57,19 +57,19 @@ msgstr ""
 "Y ddelwedd hoffech gael ei ddefnyddio yn y sgrîn gychwyn wrth fewngofnodi i "
 "Fwrdd Gwaith GNOME"
 
-#: gnome-session/gnome-session.schemas.in.in.h:7
+#: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Cadw sesiynau"
 
-#: gnome-session/gnome-session.schemas.in.in.h:8
+#: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
 msgstr "Dangos y sgrîn gychwyn"
 
-#: gnome-session/gnome-session.schemas.in.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
 msgstr "Dangos y sgrîn gychwyn wrth gychwyn sesiwn"
 
-#: gnome-session/gnome-session.schemas.in.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
 msgstr "Delwedd y Sgrîn Gychwyn"
 
@@ -254,28 +254,28 @@ msgstr "_Troi'r cyfrifiadur bant"
 msgid "_Restart the computer"
 msgstr "Ail_gychwyn y cyfrifiadur"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "Penodwch enw sesiwn i'w lwytho"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "Darllen sesiynau wedi'u cadw o'r ffeil default.session yn unig"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Y milfedau o eiliadau dylid aros am gleientau i gofrestru (0 = am byth)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Y milfedau o eiliadau dylid aros am gleientau i ateb (0 = am byth)"
 
-#: gnome-session/main.c:87
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Y milfedau o eiliadau dylid aros am gleientau i derfynu (0 = am byth)"
 
-#: gnome-session/main.c:267
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -288,11 +288,11 @@ msgstr ""
 "Fe all fod yn bosib i gywiro'r broblem gan ychwanegu\n"
 "%s y ffeil /etc/hosts."
 
-#: gnome-session/main.c:274
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "Mewngofnodi Fodd Bynnag"
 
-#: gnome-session/main.c:275
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "Ceisio Eto"
 
@@ -446,31 +446,31 @@ msgstr "Cychwyn gosodiadau'r sesiwn"
 msgid "Configure your sessions"
 msgstr "Ffurfosod eich sesiynau"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Y Rheolwr Ffenestri Sawfish"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Y Rheolwr Ffenestri Metacity"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Rheolwr Ffenestri"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Y Panel"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
 msgstr "Dirprwy Rheolwr Sesiynau"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Gosodiadau Penbwrdd"
 
