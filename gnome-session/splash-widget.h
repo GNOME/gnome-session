@@ -62,8 +62,7 @@ void  splash_widget_add_icon (SplashWidget *sw,
 #define SPLASH_BASE_HEIGHT 220
 
 /* offset from bottom of label & font */
-#define SPLASH_LABEL_V_OFFSET 8
-#define SPLASH_LABEL_V_HEIGHT 8
+#define SPLASH_LABEL_V_OFFSET -3
 #define SPLASH_LABEL_FONT_SIZE 8
 
 /* icon border, spacing, offset from bottom and initial size */

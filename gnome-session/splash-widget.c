@@ -110,6 +110,21 @@ re_scale (SplashWidget *sw)
 		return TRUE;
 }
 
+static void
+calc_text_box (SplashWidget *sw)
+{
+	PangoRectangle pixel_rect;
+	
+	pango_layout_get_pixel_extents (sw->layout, NULL, &pixel_rect);
+	
+	sw->text_box.x = (sw->image_bounds.x + sw->image_bounds.width / 2 -
+			  pixel_rect.width / 2);
+	sw->text_box.y = (sw->image_bounds.y + sw->image_bounds.height -
+			  pixel_rect.height - SPLASH_LABEL_V_OFFSET);
+	sw->text_box.width = pixel_rect.width;
+	sw->text_box.height = pixel_rect.height;
+}
+
 static gboolean
 splash_widget_expose_event (GtkWidget      *widget,
 			    GdkEventExpose *event)
@@ -140,8 +155,8 @@ splash_widget_expose_event (GtkWidget      *widget,
 			gdk_pixbuf_render_to_drawable (
 				si->scaled, widget->window,
 				widget->style->black_gc,
-				si->position.x - exposed.x,
-				si->position.y - exposed.y,
+				exposed.x - si->position.x,
+				exposed.y - si->position.y,
 				exposed.x, exposed.y,
 				exposed.width, exposed.height,
 				GDK_RGB_DITHER_NORMAL,
@@ -149,26 +164,19 @@ splash_widget_expose_event (GtkWidget      *widget,
 	}
 
 	if (sw->layout) {
-		GdkRectangle text;
-		PangoRectangle pixel_rect;
-
-		pango_layout_get_pixel_extents (sw->layout, NULL, &pixel_rect);
-
-		text.x = (sw->text_box.x + sw->text_box.width / 2 - pixel_rect.width / 2);
-		text.y = sw->text_box.y;
-		text.width = pixel_rect.width;
-		text.height = pixel_rect.height;
-
-		if (gdk_rectangle_intersect (&event->area, &text, &exposed)) {
+		calc_text_box (sw);
+		if (gdk_rectangle_intersect (&event->area, &sw->text_box, &exposed)) {
 			/* drop shadow */
 			gdk_draw_layout (widget->window,
 					 widget->style->black_gc,
-					 text.x + 1, text.y + 1, sw->layout);
+					 sw->text_box.x + 1, sw->text_box.y + 1,
+					 sw->layout);
 			
 			/* text */
 			gdk_draw_layout (widget->window,
 					 widget->style->white_gc,
-					 text.x, text.y, sw->layout);
+					 sw->text_box.x, sw->text_box.y,
+					 sw->layout);
 		}
 	}
 
@@ -190,12 +198,6 @@ splash_widget_size_allocate (GtkWidget     *widget,
 	SplashWidget *sw = SPLASH_WIDGET (widget);
 
 	sw->image_bounds = *allocation;
-
-	sw->text_box.x = allocation->x;
-	sw->text_box.y = (allocation->y + allocation->height -
-			  SPLASH_LABEL_V_OFFSET - SPLASH_LABEL_V_HEIGHT);
-	sw->text_box.width = allocation->width;
-	sw->text_box.height = allocation->height - sw->text_box.y;
 
 	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate, (widget, allocation));
 }
@@ -487,7 +489,20 @@ splash_widget_add_icon (SplashWidget *sw,
 	if (!text)
 		text = basename;
 
+	/* re-draw the old text extents */
+	gtk_widget_queue_draw_area (
+		GTK_WIDGET (sw),
+		sw->text_box.x, sw->text_box.y,
+		sw->text_box.width, sw->text_box.height);
+
 	pango_layout_set_text (sw->layout, text, -1);
+	calc_text_box (sw);
+
+	/* re-draw the new text extents */
+	gtk_widget_queue_draw_area (
+		GTK_WIDGET (sw),
+		sw->text_box.x, sw->text_box.y,
+		sw->text_box.width, sw->text_box.height);
 
 	if (pb) {
 		SplashIcon *si;
@@ -505,11 +520,6 @@ splash_widget_add_icon (SplashWidget *sw,
 			area.x, area.y,
 			area.width, area.height);
 	}
-
-	gtk_widget_queue_draw_area (
-		GTK_WIDGET (sw),
-		sw->text_box.x, sw->text_box.y,
-		sw->text_box.width, sw->text_box.height);
 }
 
 static SplashWidget *global_splash = NULL;

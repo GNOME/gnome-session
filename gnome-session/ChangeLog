@@ -1,3 +1,12 @@
+2002-07-25  Michael Meeks  <michael@ximian.com>
+
+	* splash-widget.c (splash_widget_expose_event),
+	(splash_widget_add_icon, calc_text_box): improve
+	the text rendering so it's never clipped and
+	positioning is saner.
+
+	* splash-widget.h: tweak the text positioning.
+
 2002-07-17  jacob berkman  <jacob@ximian.com>
 
 	* main.c (gnome_login_check): fix some failed assertions
