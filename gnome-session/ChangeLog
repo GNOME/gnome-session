@@ -1,3 +1,9 @@
+Mon Feb 23 00:49:05 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (run_default_session): NULL-terminate argv.
+	* exec.c (report_errno): New function.
+	(execute_async): Use it.
+
 1998-02-19  Federico Mena Quintero  <federico@nuclecu.unam.mx>
 
 	* testbed.c (main): Added app_id "gsm-testbed".
