@@ -229,8 +229,10 @@ sess_select_row (GtkWidget *w, gint row)
   gtk_clist_get_text (GTK_CLIST (w), row, 0, &name);
 
   gsm_client_list_saved_session (GSM_CLIENT_LIST (client_list), name);
+#if 0
   gtk_signal_connect(GTK_OBJECT (client_list), "initialized",
 		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
+#endif
 }
 
 static void
