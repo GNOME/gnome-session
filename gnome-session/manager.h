@@ -135,13 +135,4 @@ gboolean find_vector_property (const Client *client, const char *name,
 /* Free the return result from find_vector_property.  */
 void free_vector (int argc, char **argv);
 
-/*
- * exec.c
- */
-
-/* Execute some command in the background and immediately return.  DIR
-   is the directory in which the command should be run; NULL means
-   inherit the current directory from this process.  */
-void execute_async (const char *dir, int argc, char *argv[]);
-
 #endif /* MANAGER_H */

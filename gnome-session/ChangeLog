@@ -1,4 +1,15 @@
+Sat May 16 00:47:11 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* Makefile.am (gnome_session_SOURCES): Removed exec.c.
+	* manager.h: Don't declare execute_async.
+	* save.c (run_commands): Use gnome_execute_async.
+	(run_default_session): Likewise.
+	* exec.c: Removed.
+
 Thu May 14 09:49:08 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (run_default_session): Make icewm the default window
+	manager.
 
 	* save-session.c (main): Print error if couldn't connect to
 	session manager.

@@ -203,7 +203,7 @@ run_commands (const char *name, int number, const char *command)
 
       if (! def)
 	{
-	  execute_async (dir, argc, argv);
+	  gnome_execute_async (dir, argc, argv);
 	  result = 1;
 	}
 
@@ -226,21 +226,25 @@ run_default_session (void)
 
   argv[0] = "panel";
   argv[1] = NULL;
-  execute_async (NULL, 1, argv);
+  gnome_execute_async (NULL, 1, argv);
 
   argv[0] = "gnome-help-browser";
-  execute_async (NULL, 1, argv);
+  gnome_execute_async (NULL, 1, argv);
 
   argv[0] = "gmc";
-  execute_async (NULL, 1, argv);
+  gnome_execute_async (NULL, 1, argv);
 
 #ifdef WINDOW_MANAGER
   argv[0] = WINDOW_MANAGER;
-  execute_async (NULL, 1, argv);
+#else
+  /* icewm is the default because it actually implements session
+     management.  */
+  argv[0] = "icewm";
 #endif
+  gnome_execute_async (NULL, 1, argv);
 
   argv[0] = "smproxy";
-  execute_async (NULL, 1, argv);
+  gnome_execute_async (NULL, 1, argv);
 
   return 1;
 }
