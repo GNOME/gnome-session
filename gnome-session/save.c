@@ -428,12 +428,6 @@ read_session (const char *name)
 
   } 
 
-  /* If the the specified session from the command line doesn't
-   * exist, try to load the clients from the user's default session
-   * then the system's default session
-   */
-  if (!list)
-    list = read_clients (CONFIG_PREFIX, DEFAULT_SESSION, MATCH_ID);
   if (!list) 
     list = read_clients (
 		DEFAULT_CONFIG_PREFIX, DEFAULT_SESSION, MATCH_FAKE_ID);
