@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.7.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-30 14:49+0100\n"
-"PO-Revision-Date: 2004-08-08 00:45+0900\n"
+"POT-Creation-Date: 2004-07-19 19:17+0100\n"
+"PO-Revision-Date: 2004-09-20 09:21+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "비활성"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "시작하기 위해 기다리는 중이거나 이미 끝났음."
+msgstr "시작하려고 기다리는 중이거나 이미 끝났음."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -113,7 +113,7 @@ msgstr "시작중"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "시작되었으나 상태가 아직 알려지지 않았음."
+msgstr "시작했으나 아직 상태를 보고하지 않았음."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
@@ -137,7 +137,7 @@ msgstr "모름"
 
 #: gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "타임아웃이 발생할 때까지 상태가 보고되지 않았음."
+msgstr "타임아웃이 발생할 때까지 상태를 보고하지 않았음."
 
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
@@ -153,7 +153,7 @@ msgstr "재시작"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "죽는 게 허용되지 않음."
+msgstr "죽도록 허용하지 않음."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
@@ -245,28 +245,28 @@ msgstr "컴퓨터 끄기(_U)"
 msgid "_Restart the computer"
 msgstr "컴퓨터 다시 시작(_R)"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:80
 msgid "Specify a session name to load"
 msgstr "읽을 세션이름 지정"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
 msgstr "기본세션(default) 파일에서만 저장된 세션을 읽어오기"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "클라이언트가 등록하기까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "클라이언트가 대답할 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "클라이언트가 끝날 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
 # 받침이 있는지 없는지 모르므로 "를(을)"이라고 쓴다.
-#: gnome-session/main.c:265
+#: gnome-session/main.c:264
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -279,17 +279,17 @@ msgstr ""
 "%s를(을) /etc/hosts 파일에 더해서 문제가 해결될\n"
 "수도 있습니다."
 
-#: gnome-session/main.c:272
+#: gnome-session/main.c:271
 msgid "Log in Anyway"
 msgstr "그래도 로그인"
 
-#: gnome-session/main.c:273
+#: gnome-session/main.c:272
 msgid "Try Again"
 msgstr "다시 시도"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
-msgstr "세션이 저장되었습니다"
+msgstr "세션을 저장했습니다"
 
 #: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
@@ -310,7 +310,7 @@ msgstr "계속 응답을 기다리거나 강제종료할 수 있습니다."
 
 #: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
-msgstr "실패로 인해 재시작하지 않습니다."
+msgstr "실패로 인해 다시 시작하지 않습니다."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
@@ -357,7 +357,7 @@ msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"바뀐 부분이 저장되지 않았습니다.\n"
+"바뀐 부분을 저장하지 않았습니다.\n"
 "끝내도 상관 없습니까?"
 
 #: gnome-session/session-properties-capplet.c:240
@@ -367,11 +367,11 @@ msgstr "세션"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "로그인 시에 시작 화면 보이기(_L)"
+msgstr "로그인할 때 시작 화면 보이기(_L)"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "로그아웃 시에 물어보기(_P)"
+msgstr "로그아웃할 때 물어보기(_P)"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
