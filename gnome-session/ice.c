@@ -31,6 +31,13 @@
 #include <unistd.h>
 #include <string.h>
 
+#ifdef HAVE_SYSLOG_H
+#include <syslog.h>
+#endif
+#ifdef HAVE_TCPD_H
+#include <tcpd.h>
+#endif
+
 #include <libgnomeui/gnome-ice.h>
 #include <libgnome/libgnome.h>
 
@@ -61,6 +68,23 @@ static void write_authfile(gchar* filename, GSList* entries);
 
 /* This is called when a client tries to connect. 
  * We still accept connections during a shutdown so we can handle warnings. */
+
+#ifdef HAVE_SYSLOG_H
+int allow_severity = LOG_INFO, deny_severity = LOG_NOTICE;
+#endif
+
+static void
+my_ice_error_handler(IceConn cnx,
+	Bool swap,
+	int offendingMinorOpcode,
+	unsigned long offendingSequence,
+	int errorClass,
+	int severity,
+	IcePointer values)
+{
+      IceCloseConnection(cnx);
+}
+
 static void
 accept_connection (gpointer client_data, gint source,
 		   GdkInputCondition conditon)
@@ -68,10 +92,31 @@ accept_connection (gpointer client_data, gint source,
   IceConn connection;
   IceAcceptStatus status;
   IceConnectStatus status2 = IceConnectPending;
+#if defined(HAVE_TCPD_H) && defined(HAVE_HOSTS_ACCESS) && defined(HAVE_SYSLOG_H)
+  char *ctmp;
+#endif
 
   connection = IceAcceptConnection ((IceListenObj) client_data, &status);
   if (status != IceAcceptSuccess)
     return;
+
+#if defined(HAVE_TCPD_H) && defined(HAVE_HOSTS_ACCESS) && defined(HAVE_SYSLOG_H)
+  ctmp = IceGetListenConnectionString((IceListenObj) client_data);
+  if(!strncmp(ctmp, "tcp/", 4)) { /* It's a TCP connection */
+    struct request_info request;
+    
+    request_init(&request, RQ_DAEMON, "gnome-session", RQ_FILE, IceConnectionNumber(connection), 0);
+    
+    fromhost(&request);
+    if(!hosts_access(&request)) {
+      syslog(deny_severity, "[gnome-session] refused connect from %s", eval_client(&request));
+      IceCloseConnection(connection);
+      return;
+    } else
+      syslog(allow_severity, "[gnome-session] connect from %s", eval_client(&request));
+  }
+  free(ctmp);
+#endif
 
   /* Must wait until connection leaves pending state.  */
   /* FIXME: after a certain amount of time, just reject the
@@ -160,6 +205,7 @@ startup_clean_ice (void)
 	    }
 	}
 
+      free (network_id);
     }
 
   write_authfile (authfile, entries);
@@ -185,6 +231,8 @@ initialize_ice (void)
   int saved_umask;
 
   gnome_ice_init ();
+
+  IceSetErrorHandler(my_ice_error_handler);
 
   IceAddConnectionWatch (ice_watch, NULL);
 

@@ -17,6 +17,7 @@ endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
 command.c session.h remote.c logout.c
+gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
 
 save_session_SOURCES = save-session.c gsm-protocol.c
 
