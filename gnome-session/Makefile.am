@@ -18,4 +18,4 @@ LDADD = \
 
 bin_PROGRAMS = gsm
 
-gsm_SOURCES = manager.c manager.h ice.c auth.c auth.h testbed.c
+gsm_SOURCES = manager.c manager.h ice.c auth.c auth.h testbed.c prop.c save.c

@@ -1,3 +1,16 @@
+Sat Dec 27 12:39:40 1997  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c: New file.
+	* prop.c: New file.
+	* Makefile.am (gsm_SOURCES): Include prop.c, save.c.
+
+	* manager.h: Declare find_property_by_name.
+
+	* manager.c (save_helper): Removed.
+	(x_save_type, x_interact_style, x_fast): Removed.
+	(save_session): Traverse list by hand.
+	(find_property_by_name): Moved to prop.c; exported.
+
 Fri Dec 26 00:00:42 1997  Tom Tromey  <tromey@cygnus.com>
 
 	* manager.c (find_client_by_connection): New function.

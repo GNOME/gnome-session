@@ -10,7 +10,7 @@ static int saving = 0;
 
 /* This is true if the current save is in response to a shutdown
    request.  */
-static int shutting_down = NULL;
+static int shutting_down = 0;
 
 /* List of all zombie clients.  A zombie client is one that was
    running in the previous session but has not yet been restored to
@@ -288,21 +288,6 @@ close_connection (SmsConn connection, SmPointer data, int count,
 
 
 
-SmProp *
-find_property_by_name (Client *client, char *name)
-{
-  GSList *list;
-
-  for (list = client->properties; list; list = list->next)
-    {
-      SmProp *prop = (SmProp *) list->data;
-      if (! strcmp (prop->name, name))
-	return prop;
-    }
-
-  return NULL;
-}
-
 /* It doesn't matter that this is inefficient.  */
 static void
 set_properties (SmsConn connection, SmPointer data, int nprops, SmProp **props)
@@ -430,38 +415,26 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 
 
 
-/* Some data for save_helper.  */
-static int x_save_type = 0;
-static int x_interact_style = 0;
-static int x_fast = 0;
-
-/* Helper for save_session.  Sends save yourself message to all
-   clients.  */
-static void
-save_helper (gpointer data, gpointer dummy)
-{
-  Client *client = (Client *) data;
-  SmsSaveYourself (client->connection, x_save_type, shutting_down,
-		   x_interact_style, x_fast);
-}
-
 /* This function is exported to the rest of gsm.  It sets up and
    performs a session save, possibly followed by a shutdown.  */
 void
-save_session (int save_type, gboolean shutdown, int interact_style, gboolean fast)
+save_session (int save_type, gboolean shutdown, int interact_style,
+	      gboolean fast)
 {
+  GSList *list;
+
   if (saving)
     return;
 
   saving = 1;
   shutting_down = shutdown;
 
-  /* Sigh.  */
-  x_save_type = save_type;
-  x_interact_style = interact_style;
-  x_fast = fast;
-
-  g_slist_foreach (live_list, save_helper, NULL);
+  for (list = live_list; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      SmsSaveYourself (client->connection, save_type, shutting_down,
+		       interact_style, fast);
+    }
 
   g_assert (! save_yourself_list);
   save_yourself_list = live_list;

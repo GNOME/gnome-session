@@ -79,4 +79,36 @@ int initialize_ice (void);
 /* Call this to clean up ICE when exiting.  */
 void clean_ice (void);
 
+/*
+ * prop.c
+ */
+
+/* Call this to find the named property for a client.  Returns NULL if
+   not found.  */
+SmProp *find_property_by_name (Client *client, const char *name);
+
+/* Find property NAME attached to CLIENT.  If not found, or type is
+   not CARD8, then return FALSE.  Otherwise set *RESULT to the value
+   and return TRUE.  */
+gboolean find_card8_property (Client *client, const char *name,
+			      int *result);
+
+/* Find property NAME attached to CLIENT.  If not found, or type is
+   not ARRAY8, then return FALSE.  Otherwise set *RESULT to the value
+   and return TRUE.  *RESULT is malloc()d and must be freed by the
+   caller.  */
+gboolean find_string_property (Client *client, const char *name,
+			       char **result);
+
+/* Find property NAME attached to CLIENT.  If not found, or type is
+   not LISTofARRAY8, then return FALSE.  Otherwise set *ARGCP to the
+   number of vector elements, *ARGVP to the elements themselves, and
+   return TRUE.  Each element of *ARGVP is malloc()d, as is *ARGVP
+   itself.  You can use `free_vector' to free the result.  */
+gboolean find_vector_property (Client *client, const char *name,
+			       int *argcp, char ***argvp);
+
+/* Free the return result from find_vector_property.  */
+void free_vector (int argc, char **argv);
+
 #endif /* MANAGER_H */
