@@ -325,7 +325,7 @@ free_client (Client *client)
 }
 
 /* Run a command on a client. */
-gint
+static int
 run_command_prop (Client     *client, 
 		  const char *command, 
 		  SmProp     *prop)

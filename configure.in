@@ -14,7 +14,7 @@ AM_PROG_LIBTOOL
 AC_PATH_PROGS(PATH_TO_XRDB, "xrdb")
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
-GNOME_COMPILE_WARNINGS
+GNOME_COMPILE_WARNINGS(yes)
 
 dnl If you add a version number here, you *must* add an AC_SUBST line for
 dnl it too, or it will never make it into the spec file!
