@@ -542,6 +542,10 @@ io_error_handler (IceConn connection)
 	 */
       close_connection (client->connection, (SmPointer) client, 0, NULL);
     }
+
+  /* Close the connection regardless of whether we discovered a
+     client.  */
+  IceCloseConnection (connection);
 }
 
 
