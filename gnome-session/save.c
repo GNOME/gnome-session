@@ -32,9 +32,6 @@
 /* Used to save xsm style string valued SmDiscardCommand properties. */
 #define XsmDiscardCommand SmDiscardCommand "[string]"
 
-/* Used to communicate runlevels for clients with gnome aware apps */
-#define GnomePriority "_GSM_Priority"
-
 /* Name of the base session. This must be set before we load any
    clients (so that we can save them) and it must not be in use by
    any other gnome-session process when we set it */
@@ -45,7 +42,8 @@ extern gboolean base_loaded;
 extern GSList* live_list;
 extern GSList* zombie_list;
 extern GSList* pending_list;
-extern GSList* purged_list;
+extern GSList* purge_drop_list;
+extern GSList* purge_retain_list;
 
 typedef enum
 {
@@ -70,17 +68,17 @@ typedef struct
 static propsave properties[] =
 {
   { SmRestartStyleHint, NUMBER, 0, SmRestartStyleHint },
-  { GnomePriority,      NUMBER, 0, "Priority" },
+  { GsmPriority,        NUMBER, 0, "Priority" },
   { SmProgram,          STRING, 0, SmProgram },
   { SmCurrentDirectory, STRING, 0, SmCurrentDirectory },
   { SmDiscardCommand,   STRING, 0, XsmDiscardCommand }, /* for legacy apps */
   { SmDiscardCommand,   VECTOR, 0, SmDiscardCommand },
+  { SmCloneCommand,     VECTOR, 0, SmCloneCommand },
   { SmRestartCommand,   VECTOR, 1, SmRestartCommand },
   { SmEnvironment,      VECTOR, 0, SmEnvironment }
 };
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
-#define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
 
 
 
@@ -142,7 +140,8 @@ write_one_client (const Client *client)
   /* Write each property we found.  */
   if (saved)
     {
-      gnome_config_set_string ("id", client->id);
+      if (client->id)
+	gnome_config_set_string ("id", client->id);
 
       for (i = 0; i < number_count; ++i) 
 	gnome_config_set_int (number_names[i], numbers[i]);
@@ -164,8 +163,6 @@ write_one_client (const Client *client)
   return saved;
 }
 
-GSList* unaware_list = NULL;
-
 /* Write our session data.  */
 void
 write_session (void)
@@ -174,21 +171,8 @@ write_session (void)
   int i = 0;
   GSList *list;
 
-  delete_session (session_name);
 
-  /* Until gnome-session gui is ready we treat these clients specially */
-  while (unaware_list)
-    {
-      Client *client = (Client *) unaware_list->data;
-      
-      g_snprintf (prefix, sizeof(prefix), 
-		  CONFIG_PREFIX "%s/%d,", session_name, i);
-      gnome_config_push_prefix (prefix);
-      i += (write_one_client (client));
-      gnome_config_pop_prefix ();
-      unaware_list = g_slist_remove (unaware_list, client);
-      free_client (client);
-    }
+  delete_session (session_name);
 
   for (list = zombie_list; list; list = list->next)
     {
@@ -225,7 +209,7 @@ write_session (void)
       gnome_config_pop_prefix ();
     }
 
-  for (list = purged_list; list; list = list->next)
+  for (list = purge_drop_list; list; list = list->next)
     {
       Client *client = (Client *) list->data;
       
@@ -236,10 +220,24 @@ write_session (void)
       gnome_config_pop_prefix ();
     }
 
-  g_snprintf (prefix, sizeof(prefix), 
-	      CONFIG_PREFIX "%s/" CLIENT_COUNT_KEY, session_name);
-  gnome_config_set_int (prefix, i);
-  gnome_config_sync ();
+  for (list = purge_retain_list; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      
+      g_snprintf (prefix, sizeof(prefix),
+		  CONFIG_PREFIX "%s/%d,", session_name, i);
+      gnome_config_push_prefix (prefix);
+      i += (write_one_client (client));
+      gnome_config_pop_prefix ();
+    }
+
+  if (i > 0)
+    {
+      g_snprintf (prefix, sizeof(prefix), 
+		  CONFIG_PREFIX "%s/" CLIENT_COUNT_KEY, session_name);
+      gnome_config_set_int (prefix, i);
+      gnome_config_sync ();
+    }
 }
 
 /* We need to read clients as well as writing them because the
@@ -254,6 +252,10 @@ read_one_client (Client *client)
   client->id = gnome_config_get_string ("id");
   client->properties = NULL;
   client->priority = 50;
+  client->handle = command_handle_new ((gpointer)client);
+  client->get_prop_replies = NULL;
+  client->get_prop_requests = 0;
+  client->command_data = NULL;
 
   /* Read each property that we save.  */
   for (i = 0; i < NUM_PROPERTIES; ++i)
@@ -321,7 +323,7 @@ read_one_client (Client *client)
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
 
-	      if (properties[i].name == GnomePriority)
+	      if (properties[i].name == GsmPriority)
 		client->priority = number;
 	    }
 	  break;
@@ -333,7 +335,7 @@ read_one_client (Client *client)
 
 /* Read the session clients recorded in a config file section */
 static GSList *
-read_clients (const char* file, const char *session, gboolean fake_ids)
+read_clients (const char* file, const char *session, MatchRule match_rule)
 {
   int i, num_clients;
   char prefix[1024];
@@ -354,7 +356,7 @@ read_clients (const char* file, const char *session, gboolean fake_ids)
       gnome_config_push_prefix (prefix);
       read_one_client (client);
       gnome_config_pop_prefix ();
-      client->faked_id = fake_ids;
+      client->match_rule = match_rule;
       APPEND (list, client);
     }
   return list;
@@ -377,51 +379,65 @@ unlock_session (void)
 gchar*
 set_session_name (const char *name)
 {
-  /* FIXME: generate a new unique name when the requested one is locked */
-  /* FIXME: establish lock on the name */
-  
-  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-  gnome_config_set_string (CURRENT_SESSION_KEY, name);
-  gnome_config_pop_prefix ();
-  gnome_config_sync ();
-
-  if (session_name)
-      unlock_session ();
-
-  session_name = strdup (name);
+  if (name)
+    {
+      /* FIXME: generate a new unique name when the requested one is locked */
+      /* FIXME: establish lock on the name */
+      
+      gnome_config_push_prefix (GSM_CONFIG_PREFIX);
+      gnome_config_set_string (CURRENT_SESSION_KEY, name);
+      gnome_config_pop_prefix ();
+      gnome_config_sync ();
+      
+      if (session_name)
+	unlock_session ();
+      session_name = strdup (name);
+    }
   return session_name;
 }
 
 
 
+gchar*
+get_last_session (void)
+{
+  gchar* last;
+
+  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
+  last = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
+  gnome_config_pop_prefix ();
+  
+  return last;
+}
+
 /* Load a session from the config file by name. */
-gint
+Session*
 read_session (const char *name)
 {
-  GSList *list = NULL;
+  GSList *list = NULL, *list1;
   gboolean try_last, try_def;
   gchar* last = NULL;
+  Session *session = g_new0 (Session, 1);
+
+  session->name   = g_strdup (name);
+  session->handle = command_handle_new ((gpointer)session);
  
   try_last = try_def = (session_name == NULL);
 
   if (try_last)
     {
-      gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-      last = gnome_config_get_string (CURRENT_SESSION_KEY "=" DEFAULT_SESSION);
-      gnome_config_pop_prefix ();
+      last = get_last_session ();
 
       if (! name)
 	name = last;
-
-      set_session_name (name);
     }
 
   while (name)
     {
-      if ((list = read_clients (CONFIG_PREFIX, name, FALSE)))
+      if ((list = read_clients (CONFIG_PREFIX, name, MATCH_ID)))
 	break;
 	  
-      if ((list = read_clients (DEFAULT_CONFIG_PREFIX, name, TRUE)))
+      if ((list = read_clients (DEFAULT_CONFIG_PREFIX, name, MATCH_FAKE_ID)))
 	break;
 
       try_last = try_last && (strcmp (name, last) != 0);
@@ -431,10 +447,54 @@ read_session (const char *name)
     }
   g_free (last);
 
-  load_session (list);
-  return list != NULL;
+  session->client_list = list;
+  return session;
 }
 
+void
+start_session (Session* session)
+{
+  /* Do not copy discard commands between sessions. */
+  if (strcmp (session->name, session_name))
+    {
+      GSList* list = session->client_list;
+
+      for (; list; list = list->next)
+	{
+	  Client* client = (Client*)list->data;
+	  GSList* prop_list = client->properties;
+
+	  for (; prop_list; prop_list = prop_list->next)
+	    {
+	      SmProp* prop = (SmProp*)prop_list->data;
+	      
+	      if (!strcmp (prop->name, SmDiscardCommand))
+		{
+		  REMOVE (client->properties, prop);
+		  break;
+		}
+	    }
+	}
+    }
+
+  start_clients (session->client_list);
+  session->client_list = NULL;
+  free_session (session);
+}
+
+void
+free_session (Session* session)
+{
+  while (session->client_list)
+    {
+      Client *client1 = (Client*)session->client_list->data;
+      REMOVE (session->client_list, client1);
+      free_client (client1);		  
+    }	      
+  command_handle_free (session->handle);  
+  g_free (session->name);
+  g_free (session);
+}
 
 
 /* Delete a session. 
@@ -461,7 +521,7 @@ delete_session (const char *name)
   for (i = 0; i < number; ++i)
     {
       Client* cur_client;
-      Client* old_client = (Client*)malloc (sizeof(Client));
+      Client* old_client = (Client*)calloc (1, sizeof(Client));
       
       int old_argc;
       char **old_argv;
@@ -474,6 +534,7 @@ delete_session (const char *name)
 	 we need to read almost everything anyway (: */
       read_one_client (old_client);
 
+      /* Only delete data for clients that were connected. */
       if (old_client->id)
 	{	  
 	  /* Is this client still part of the running session ? */
@@ -484,7 +545,9 @@ delete_session (const char *name)
 	  if (!cur_client) 
 	    cur_client = find_client_by_id (pending_list, old_client->id);
 	  if (!cur_client) 
-	    cur_client = find_client_by_id (purged_list, old_client->id);
+	    cur_client = find_client_by_id (purge_drop_list, old_client->id);
+	  if (!cur_client) 
+	    cur_client = find_client_by_id (purge_retain_list, old_client->id);
 	  
 	  if (find_vector_property (old_client, SmDiscardCommand, 
 				    &old_argc, &old_argv))
@@ -545,15 +608,8 @@ delete_session (const char *name)
 	  
 	      free (old_system);
 	    }
-	  free_client (old_client);
-	}
-      else
-	{
-	  /* Until the gnome-session gui is ready we keep the details
-	   * of the unaware clients in the config file */
-	  unaware_list = g_slist_prepend (unaware_list, old_client);
-	}
-      
+	}      
+      free_client (old_client);
       gnome_config_pop_prefix ();
     }
 
