@@ -1,72 +1,23 @@
 # Ukrainian translation of gnome-core module
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999-2002.
+# Maxim Dzumanenko <mvd@mylinux.com.ua>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.5.4\n"
-"POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-05-23 08:48+0200\n"
+"Project-Id-Version: gnome-session 2.0.8\n"
+"POT-Creation-Date: 2002-12-03 19:33+0200\n"
+"PO-Revision-Date: 2002-12-03 08:37--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
-msgid "Allow TCP connections"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
-msgid "Logout prompt"
-msgstr "Завершити роботу"
-
-#: gnome-session/gnome-session.schemas.in.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
-msgid "Save sessions"
-msgstr "Сеанс"
-
-#: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
-msgid "Show the splash screen"
-msgstr "Показувати заставку під час реєстрації"
-
-#: gnome-session/gnome-session.schemas.in.in.h:9
-msgid "Show the splash screen when the session starts up"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:10
-msgid "Splash Screen Image"
-msgstr ""
-
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
+#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/startup-programs.c:308
 msgid "_Order:"
-msgstr "_Прядок:"
+msgstr "_Порядок:"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
@@ -99,7 +50,7 @@ msgstr "Програма"
 
 #: gnome-session/gsm-client-row.c:31
 msgid "Inactive"
-msgstr "Простоювання"
+msgstr "Неактивне"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
@@ -147,7 +98,7 @@ msgstr "Зберігається при завершені роботи, але 
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr ""
+msgstr "Перезапускати"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -163,7 +114,7 @@ msgstr "Викидається при завершені роботи і \"см�
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Установки"
+msgstr "Настроювач"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
@@ -181,9 +132,11 @@ msgstr "Запускається під час кожної реєстрації
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
+"Сталася помилка при виконанні служби параметрів GNOME.\n"
+"\n"
+"Деякі речі, наприклад теми, звуки, тло можуть робити неправильно."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -192,6 +145,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Останнє повідомлення про помилку:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -199,23 +156,25 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME спробує перезапустити службу параметрів наступного разу при реєстрації."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Сталася невідома помилка активації."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Служба параметрів перезапустилась надто багато разів."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "Чи ви впевнені що хочете вийти?"
 
 #: gnome-session/logout.c:298
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Зберегти поточні установки"
+msgstr "З_берегти поточні установки"
 
 #: gnome-session/logout.c:318
 msgid "Action"
@@ -226,13 +185,12 @@ msgid "_Log Out"
 msgstr "_Завершити роботу"
 
 #: gnome-session/logout.c:329
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Вимкнути"
+msgstr "Вим_кнути"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Перезапустити комп'ютер"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -268,10 +226,9 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Зареєструватись будь-яким чином"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "Спробувати знову"
 
@@ -297,9 +254,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Ви можете чекати на відповідь або видалити програму."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Розгалуження не відбулось через помилки."
+msgstr "Перезапуск відмінено через помилки."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -342,38 +298,31 @@ msgid "Edit session name"
 msgstr "Виправити назву сеансу"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Виправити..."
+msgstr "Ви_правити"
 
 #: gnome-session/session-properties-capplet.c:172
-msgid ""
-"Some changes are not saved.\n"
+msgid "Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr ""
-"Деякі зміни не збережено.\n"
+msgstr "Деякі зміни не збережено.\n"
 "Справді вийти?"
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Сеанс"
+msgstr "Сеанси"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Показувати заставку під час реєстрації"
+msgstr "Показувати заставку під час _реєстрації"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Перепитування перед завершенням сеансу"
+msgstr "Переп_итування перед завершенням сеансу"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Автоматично зберігати зміни в сеансі"
+msgstr "Автоматично зберігати з_міни в сеансі"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -400,9 +349,8 @@ msgid "Remove the currently selected client from the session."
 msgstr "Видалити вибраного клієнта з сеансу."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Автоматично зберігати зміни в сеансі"
+msgstr "Застосувати зміни до поточного сеансу"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
@@ -410,7 +358,7 @@ msgstr "Список програм у сеансі."
 
 #: gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
-msgstr ""
+msgstr "П_рограми що виконуються зараз:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -418,7 +366,7 @@ msgstr "Ініціалізація установок сеансу"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Налаштовування сеансів"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
@@ -445,14 +393,12 @@ msgid "Nautilus"
 msgstr "Наутілус"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "Установки клавіатури"
+msgstr "Параметри стільниці"
 
 #: gnome-session/startup-programs.c:287
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Початкові команди"
+msgstr "_Запускати команду:"
 
 #: gnome-session/startup-programs.c:293
 msgid "Startup Command"
@@ -470,131 +416,3 @@ msgstr "Додати програму"
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
 
-#~ msgid "Audio Settings"
-#~ msgstr "Установки аудіо"
-
-#~ msgid "Screensaver"
-#~ msgstr "Зберігач екрана"
-
-#~ msgid "Background Settings"
-#~ msgstr "Установки тла"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Установки миші"
-
-#~ msgid "Priority"
-#~ msgstr "Пріоритет"
-
-#, fuzzy
-#~ msgid "_Priority:"
-#~ msgstr "Пріоритет"
-
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "Запуск GNOME: %s"
-
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Запуск GNOME: завершено"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "Запуск GNOME"
-
-#~ msgid "GNOME Login"
-#~ msgstr "Розпочати роботу з GNOME"
-
-#~ msgid "Login"
-#~ msgstr "Зареєструватися"
-
-#~ msgid "Start with default programs"
-#~ msgstr "Розпочати з типовими програмами"
-
-#~ msgid "Reset all user settings"
-#~ msgstr "Скасувати всі установки користувача"
-
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "Дійсно скасувати усі установки GNOME користувача для %s?"
-
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "Каталог/tmp/orbit-%s не належить\n"
-#~ "поточному користувачу, %s.\n"
-#~ "Будь ласка, виправте право на володіння цим каталогом."
-
-#~ msgid "Continue"
-#~ msgstr "Продовжити"
-
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "Ваша версія libICE містить помилку, яка призводить до некоректної\n"
-#~ "роботи gnome-session.\n"
-#~ "\n"
-#~ "Якщо ви використовуєте Solaris, вам потрібно або поновити систему до\n"
-#~ "латки #108376-16, або використовувати libICE.so.6 з оригінального Solaris "
-#~ "7.\n"
-#~ "Ви можете просто скопіювати файл в /usr/openwin/lib. (Дякуємо Andy Reitz\n"
-#~ "за інформацію про цю помилку).\n"
-#~ "\n"
-#~ "Ваш сеанс роботи в GNOME буде завершено після закривання цього вікна."
-
-#~ msgid "Respawn"
-#~ msgstr "Постійна"
-
-#~ msgid "Really log out?"
-#~ msgstr "Справді завершити роботу?"
-
-#~ msgid "Reboot"
-#~ msgstr "Перезавантаження"
-
-#~ msgid "Session properties"
-#~ msgstr "Властивості сеансу"
-
-#~ msgid "Options"
-#~ msgstr "Параметри"
-
-#~ msgid "<i>These changes take effect immediately</i>"
-#~ msgstr "<i>Ця зміни буде застосовано негайно</i>"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Вибрати поточний сеанс"
-
-#~ msgid "Add..."
-#~ msgstr "Додати..."
-
-#~ msgid "Delete"
-#~ msgstr "Стерти"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Програми, що запускаються поза менеджером сеансів"
-
-#~ msgid "Session Chooser"
-#~ msgstr "Вибір сеансу"
-
-#~ msgid "Start Session"
-#~ msgstr "Запустити сеанс"
-
-#~ msgid "Cancel Login"
-#~ msgstr "Відмінити реєстрацію"
-
-#~ msgid "Session Properties & Startup Programs"
-#~ msgstr "Властивості сеансу і початкові програми"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Програми з меншими значеннями запускаються перед програмами з більшими "
-#~ "значеннями. Типове значення має підійти."
