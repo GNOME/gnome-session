@@ -36,6 +36,10 @@ Author:  Ralph Mor, X Consortium
 #include <unistd.h>
 #include <netdb.h>
 
+#ifndef MAXHOSTNAMELEN
+#define MAXHOSTNAMELEN (256+1)
+#endif
+
 #if !defined (NI_MAXHOST)
 #define NI_MAXHOST MAXHOSTNAMELEN
 #endif
