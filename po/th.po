@@ -1,23 +1,23 @@
 # Thai translation for gnome-session.
-# Copyright (C) YEAR Free Software Foundation, Inc.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-session package.
 #
 # Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
-# Paisa Seeluangsawat <paisa@users.sf.net>, 2003
-#
+# Paisa Seeluangsawat <paisa@users.sf.net>, 2004
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "POT-Creation-Date: 2004-02-16 10:51+0000\n"
-"PO-Revision-Date: 2003-12-05 08:11-0600\n"
+"PO-Revision-Date: 2004-02-17 23:08-0600\n"
 "Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
-"Language-Team: THAI <L10n@opentle.org>\n"
+"Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "ยอมรับการเชื่อมต่อ TCP"
 
 #: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -26,6 +26,9 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"บนเครื่องที่มี _IceTcpTransNoListen() (เช่นเครื่องที่ใช้ XFree86) เพื่อความปลอดภัย gnome-"
+"session จะไม่รับการติดต่อ TCP  ตั้งค่านี้แล้วโปรแกรมจะ รับการติดต่อจากเครื่องที่อนุญาต ต้องเริ่ม "
+"gnome-session ใหม่ก่อนที่ค่าตั้งจะเริ่มบังคับใช้"
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -41,13 +44,13 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr ""
+msgstr "ถามก่อนจะออกจากระบบ"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr "รูปที่จะใช้ใน splash screen เมื่อเข้าสู่ระบบ"
+msgstr "รูปที่จะแสดงขณะกำลังเข้าสู่ระบบ"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -55,15 +58,15 @@ msgstr "รักษารายละเอียดวาระ"
 
 #: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
-msgstr "แสดง splash screen"
+msgstr "แสดงรูปขณะกำลังเข้าสู่ระบบ"
 
 #: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "แสดง splash screen ตอนเริ่มวาระใช้งาน"
+msgstr "แสดงรูปอย่างชั่วคราวขณะที่กำลังเข้าสู่ระบบ"
 
 #: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
-msgstr "รูปสำหรับ splash screen"
+msgstr "รูปขณะเข้าระบบ"
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
@@ -225,7 +228,7 @@ msgstr "จะออกจากระบบแน่ไหม ?"
 
 #: gnome-session/logout.c:391
 msgid "_Save current setup"
-msgstr "รักษารายละเอียดวาระปัจจุบัน (_S)"
+msgstr "_รักษารายละเอียดวาระปัจจุบัน"
 
 #: gnome-session/logout.c:416
 msgid "Action"
@@ -233,15 +236,15 @@ msgstr "การกระทำ"
 
 #: gnome-session/logout.c:433
 msgid "_Log out"
-msgstr "ออกจากระบบ (_L)"
+msgstr "_ออกจากระบบ"
 
 #: gnome-session/logout.c:437
 msgid "Sh_ut down"
-msgstr "ปิดเครื่อง (_U)"
+msgstr "_ปิดเครื่อง"
 
 #: gnome-session/logout.c:441
 msgid "_Restart the computer"
-msgstr "เริ่มการทำงานของเครื่องใหม่ (_R)"
+msgstr "เ_ริ่มการทำงานของเครื่องใหม่"
 
 #: gnome-session/main.c:80
 msgid "Specify a session name to load"
@@ -281,7 +284,7 @@ msgstr "เข้าระบบต่อไป"
 
 #: gnome-session/main.c:272
 msgid "Try Again"
-msgstr "พยายามอีกครั้ง"
+msgstr "ลองอีกครั้ง"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
@@ -346,7 +349,7 @@ msgstr "แก้ชื่อวาระ"
 
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "แก้ไข (_E)"
+msgstr "แ_ก้ไข"
 
 #: gnome-session/session-properties-capplet.c:190
 msgid ""
@@ -363,15 +366,15 @@ msgstr "วาระ"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "แสดง splash screen ตอนเข้าสู่ระบบ (_L)"
+msgstr "แ_สดงรูปขณะกำลังเข้าสู่ระบบ"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "ถามก่อนจะออกจากระบบ (_P)"
+msgstr "ถ_ามก่อนจะออกจากระบบ"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
-msgstr "บันทึกรายละเอียดวาระโดยอัตโนมัติ (_G)"
+msgstr "_บันทึกรายละเอียดวาระโดยอัตโนมัติ"
 
 #: gnome-session/session-properties-capplet.c:306
 msgid "_Sessions:"
@@ -391,7 +394,7 @@ msgstr "วาระปัจจุบัน"
 
 #: gnome-session/session-properties-capplet.c:393
 msgid "Additional startup _programs:"
-msgstr "โปรแกรมเริ่มการทำงานเพิ่มเติม (_P)"
+msgstr "โ_ปรแกรมเริ่มการทำงานเพิ่มเติม"
 
 #: gnome-session/session-properties-capplet.c:414
 msgid "Command"
@@ -415,11 +418,11 @@ msgstr "รายการของโปรแกรมที่อยู่ใ
 
 #: gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "โปรแกรมที่กำลังทำงานอยู่ (_P):"
+msgstr "โ_ปรแกรมที่กำลังทำงานอยู่:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr ""
+msgstr "กำลังเตรียมค่าตั้งของวาระ"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
@@ -443,7 +446,7 @@ msgstr "พาเนล"
 
 #: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
-msgstr ""
+msgstr "พร็อกซีตัวจัดการวาระ"
 
 #: gnome-session/splash-widget.c:48
 msgid "Nautilus"
@@ -455,7 +458,7 @@ msgstr "ค่าตั้งของพื้นโต้ะ"
 
 #: gnome-session/startup-programs.c:288
 msgid "_Startup Command:"
-msgstr "คำสั่งที่เรียกตอนเริ่มทำงาน (_S):"
+msgstr "_คำสั่งที่เรียกตอนเริ่มทำงาน:"
 
 #: gnome-session/startup-programs.c:294
 msgid "Startup Command"
