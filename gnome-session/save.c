@@ -399,7 +399,7 @@ delete_session (const char *name)
   for (i = 0; i < number; ++i)
     {
       Client* cur_client;
-      Client old_client;
+      Client* old_client = g_new (Client, 1);
       
       int old_argc;
       char **old_argv;
@@ -410,14 +410,14 @@ delete_session (const char *name)
 	  
       /* To call these commands in a network independent fashion
 	 we need to read almost everything anyway (: */
-      read_one_client (&old_client);
+      read_one_client (old_client);
       
       /* Is this client still part of the running session ? */
-      cur_client = find_client_by_id (zombie_list, old_client.id);
+      cur_client = find_client_by_id (zombie_list, old_client->id);
       if (!cur_client) 
-	cur_client = find_client_by_id (live_list, old_client.id);
+	cur_client = find_client_by_id (live_list, old_client->id);
       
-      if (find_vector_property (&old_client, SmDiscardCommand, 
+      if (find_vector_property (old_client, SmDiscardCommand, 
 				&old_argc, &old_argv))
 	{
 	  int cur_argc;
@@ -447,7 +447,7 @@ delete_session (const char *name)
 	    }
 	  
 	  if (! ignore) 
-	    run_command (&old_client, SmDiscardCommand);
+	    run_command (old_client, SmDiscardCommand);
 	  
 	  free_vector (old_argc, old_argv);
 	}
@@ -455,7 +455,7 @@ delete_session (const char *name)
       /* Now, repeat the whole process for apps with SmARRAY8 commands:
        * This code is a direct crib from xsm because we are only doing
        * this for backwards compatibility purposes. */
-      if (find_string_property (&old_client, XsmDiscardCommand, 
+      if (find_string_property (old_client, XsmDiscardCommand, 
 				&old_system))
 	{
 	  char *cur_system;
@@ -477,7 +477,7 @@ delete_session (const char *name)
 	  free (old_system);
 	}
 
-      g_free(old_client.id);
+      free (old_client);
       gnome_config_pop_prefix ();
     }
 
