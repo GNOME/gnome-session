@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2005-01-04 11:43+0100\n"
+"POT-Creation-Date: 2005-02-02 05:49+0100\n"
+"PO-Revision-Date: 2005-02-02 11:00+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -50,12 +50,8 @@ msgid "Logout prompt"
 msgstr "Terminali i daljes"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Figura e preferuar për t'u përdorur si sfond kur futesh për në hapësirën e "
-"punës së GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Figura e preferuar për t'u përdorur tek dritarja e hyrjes"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -70,8 +66,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Tregon sfondin splash kur seanca fillon"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Figura e splash-it"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Është një pozicion relativ i directory $datadir/pixmaps/. Nën-directories dhe emrat "
+"e figurave janë vlera të pranueshme. Ndryshimi i kësaj vlere do të ketë efekt në "
+"seancën e ardhshme të hyrjes."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -274,8 +276,7 @@ msgstr ""
 
 #: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"Milisekonda të shpenzuara në pritje që klienti të mbyllet (0=përgjithmonë)"
+msgstr "Milisekonda të shpenzuara në pritje që klienti të mbyllet (0=përgjithmonë)"
 
 #: gnome-session/main.c:265
 #, c-format
@@ -487,3 +488,4 @@ msgstr "Shto një program hapës"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Ndrysho programin hapës"
+
