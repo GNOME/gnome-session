@@ -63,15 +63,24 @@ iris_callback (gpointer data)
   gint i;
   gint width_step;
   gint height_step;
+  gint width;
+  gint height;
 
   width_step = MIN (iris_rect.width / 2, iris_block);
   height_step = MIN (iris_rect.width / 2, iris_block);
 
   for (i = 0; i < MIN (width_step, height_step); i++)
-    gdk_draw_rectangle (GDK_ROOT_PARENT (), iris_gc, FALSE,
-			iris_rect.x + i, iris_rect.y + i,
-			(gint)iris_rect.width - 2 * i,
-			(gint)iris_rect.height - 2 * i);
+    {
+      width  = (gint)iris_rect.width  - 2 * i;
+      height = (gint)iris_rect.height - 2 * i;
+
+      if (width < 0 || height < 0)
+        break;
+
+      gdk_draw_rectangle (GDK_ROOT_PARENT (), iris_gc, FALSE,
+                          iris_rect.x + i, iris_rect.y + i,
+                          width, height);
+    }
 
   gdk_flush ();
 
