@@ -43,7 +43,7 @@ OLDIFS=$IFS
 IFS=":"
 if [ -z "$WINDOW_MANAGER" ] ; then
   if [ -z "$DEFWM" -o "x$DEFWM" = "xgnome-wm" ]; then
-    for wm in sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm ; do
+    for wm in sawfish sawmill metacity enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm ; do
       for dir in $PATH ; do
 	if [ -x "$dir/$wm" ] ; then
 	  WINDOW_MANAGER="$dir/$wm"
@@ -69,7 +69,7 @@ OPT1=
 OPT2=
 if [ ! -z "$SMID" ] ; then
   case `basename $WINDOW_MANAGER` in
-    sawfish|sawmill)
+    sawfish|sawmill|metacity)
       OPT1=--sm-client-id=$SMID
       ;;
     enlightenment|twm)
