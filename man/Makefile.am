@@ -6,7 +6,7 @@ man_MANS =			\
 	gnome-session.1		\
 	default.session.5
 
-EXTRA_DIST =
+EXTRA_DIST =			\
 	$(man_MANS)		\
 	gnome-session.1.in	\
 	default.session.5.in

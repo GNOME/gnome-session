@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.8\n"
-"POT-Creation-Date: 2002-12-03 19:33+0200\n"
+"POT-Creation-Date: 2002-12-10 12:17+1300\n"
 "PO-Revision-Date: 2002-12-03 08:37--500\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -14,8 +14,57 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gsm-client-editor.c:96
-#: gnome-session/startup-programs.c:308
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+#, fuzzy
+msgid "Save sessions"
+msgstr "Сеанси"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "Показувати заставку під час _реєстрації"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_Порядок:"
 
@@ -132,7 +181,8 @@ msgstr "Запускається під час кожної реєстрації
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
 "Сталася помилка при виконанні служби параметрів GNOME.\n"
 "\n"
@@ -302,9 +352,11 @@ msgid "_Edit"
 msgstr "Ви_правити"
 
 #: gnome-session/session-properties-capplet.c:172
-msgid "Some changes are not saved.\n"
+msgid ""
+"Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr "Деякі зміни не збережено.\n"
+msgstr ""
+"Деякі зміни не збережено.\n"
 "Справді вийти?"
 
 #: gnome-session/session-properties-capplet.c:201
@@ -415,4 +467,3 @@ msgstr "Додати програму"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
-
