@@ -492,6 +492,9 @@ splash_widget_add_icon (SplashWidget *sw,
          */
 
 	if (!pb)
+		pb = get_splash_icon (sw, basename);
+
+	if (!pb)
 		pb = get_splash_icon (sw, "gnome-unknown.png");
 
 	if (!text)
