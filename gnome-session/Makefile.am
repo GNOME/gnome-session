@@ -7,7 +7,7 @@ INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 
 LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
-sysdir = $(datadir)/apps/System
+sysdir = $(datadir)/apps/Settings
 
 #if HAVE_CONTROL_CENTER
 NONCC =
