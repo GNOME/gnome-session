@@ -208,35 +208,35 @@ startup_list_free  (GSList *sl)
 
 /* Update the given clist to display the given client list */
 void
-startup_list_update_gui (GSList *sl, GtkWidget *clist)
+startup_list_update_gui (GSList *sl, GtkTreeModel *model, GtkTreeSelection *sel)
 {
   GSList *tmp_list;
-  gint new_row;
-  
-  gtk_clist_clear (GTK_CLIST (clist));
+  GtkTreeIter iter;
+
+  gtk_list_store_clear (GTK_LIST_STORE (model));
 
   tmp_list = sl;
-  while (tmp_list)
-    {
-      gchar *vals[2];
-      ManualClient *client = tmp_list->data;
-      
-      vals[0] = g_strdup_printf ("%d", client->priority);
-      vals[1] = gnome_config_assemble_vector (client->argc,
-					      (const char * const *)client->argv);
-      new_row = gtk_clist_append (GTK_CLIST (clist), vals);
-      gtk_clist_set_row_data (GTK_CLIST (clist), new_row, client);
-      
-      g_free (vals[0]);
-      g_free (vals[1]);
+  while (tmp_list) {
+    gchar *pri, *name;
+    ManualClient *client = tmp_list->data;
 
-      tmp_list = tmp_list->next;
-    }
+    pri = g_strdup_printf ("%d", client->priority);
+    name = gnome_config_assemble_vector (client->argc,
+					    (const char * const *)client->argv);
+
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, client, 1, pri, 2, name, -1);
+
+    g_free (pri);
+    g_free (name);
+
+    tmp_list = tmp_list->next;
+  }
 }
 
 /* Util function - check if a string is blank */
 static gboolean
-is_blank (gchar *str)
+is_blank (const gchar *str)
 {
         while (*str) {
                 if (!isspace(*str))
@@ -322,7 +322,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
 
   while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 0)
     {
-      gchar *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
+      const gchar *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
 
       if (is_blank (tmp))
 	{
@@ -363,7 +363,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
 
 /* Prompt the user with a dialog for adding a new client */
 void
-startup_list_add_dialog (GSList **sl, GtkWidget *clist, GtkWidget **dialog)
+startup_list_add_dialog (GSList **sl, GtkWidget **dialog)
 {
   ManualClient *client = g_new (ManualClient, 1);
   client->priority = 50;
@@ -381,28 +381,31 @@ startup_list_add_dialog (GSList **sl, GtkWidget *clist, GtkWidget **dialog)
 
 /* Prompt the user with a dialog for editing the currently selected client */
 void
-startup_list_edit_dialog (GSList **sl, GtkWidget *clist, GtkWidget **dialog)
+startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel, GtkWidget **dialog)
 {
-  if (GTK_CLIST (clist)->selection)
-    {
-      gint selected_row = GPOINTER_TO_UINT (GTK_CLIST (clist)->selection->data);
-      ManualClient *client = gtk_clist_get_row_data (GTK_CLIST (clist), selected_row);
+  ManualClient *client;
+  GtkTreeIter iter;
 
-      if (edit_client (_("Edit Startup Program"), client, dialog))
-	*sl = g_slist_sort (*sl, client_compare);
-    }
+  if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
+
+  gtk_tree_model_get (model, &iter, 0, &client, -1);
+
+  if (edit_client (_("Edit Startup Program"), client, dialog)) {
+    *sl = g_slist_sort (*sl, client_compare);
+  }
 }
 
 /* Delete the currently selected client */
 void
-startup_list_delete (GSList **sl, GtkWidget *clist)
+startup_list_delete (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
 {
-  if (GTK_CLIST (clist)->selection)
-    {
-      gint selected_row = GPOINTER_TO_UINT (GTK_CLIST (clist)->selection->data);
-      ManualClient *client = gtk_clist_get_row_data (GTK_CLIST (clist), selected_row);
+  ManualClient *client;
+  GtkTreeIter iter;
 
-      *sl = g_slist_remove (*sl, client);
-      client_free (client);
-    }
+  if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
+
+  gtk_tree_model_get (model, &iter, 0, &client, -1);
+
+  *sl = g_slist_remove (*sl, client);
+  client_free (client);
 }

@@ -29,36 +29,33 @@ GSList	*startup_list_duplicate (GSList *sl);
 void	startup_list_free (GSList *sl);
 
 void	startup_list_update_gui (GSList *sl, 
-				 GtkWidget *clist);
+				 GtkTreeModel *model, GtkTreeSelection *sel);
 
 void	startup_list_add_dialog (GSList **sl, 
-				 GtkWidget *clist, 
 				 GtkWidget **dialog);
 
 void	startup_list_edit_dialog (GSList **sl, 
-				  GtkWidget *clist, 
+				  GtkTreeModel *model, GtkTreeSelection *sel,
 				  GtkWidget **dialog);
 
 void	startup_list_delete (GSList **sl, 
-			     GtkWidget *clist);
+			     GtkTreeModel *model, GtkTreeSelection *sel);
 
-void	session_list_update_gui (GSList *sess_list, 
-				 GtkWidget *clist, 
-				 gchar *curr_sess);
+void session_list_update_gui (GSList *sess_list,
+			      GtkTreeModel *model,
+			      GtkTreeSelection *sel,
+			      gchar *curr_sess);
 
 void	session_list_add_dialog (GSList **sess_list, 
-				 GtkWidget *clist,
 				 GtkWidget **dialog);
 
-void	session_list_delete (GSList **sess_list, 
-			     GtkWidget *clist, 
-			     gint row,
-			     GtkWidget **dialog);
+void session_list_delete (GSList **sess_list,
+			  const gchar *old_session_name,
+			  GtkWidget **dialog);
 
 void	session_list_edit_dialog (GSList **sess_list, 
-				  GtkWidget *clist, 
+				  const gchar *old_session_name,
 				  GHashTable **hash, 
-				  gint row, 
 				  GtkWidget **dialog);
 
 GSList	*session_list_duplicate (GSList *list);

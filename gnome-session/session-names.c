@@ -63,16 +63,18 @@ static void read_session_clients (SessionObject **session_object);
 static void write_session_clients (SessionObject *session_object);
 
 void
-session_list_update_gui (GSList *sess_list, GtkWidget *clist, gchar *curr_sess) 
+session_list_update_gui (GSList *sess_list, GtkTreeModel *model, GtkTreeSelection *sel, gchar *curr_sess) 
 {
-  GSList *temp_list = NULL; 
-  gtk_clist_clear (GTK_CLIST (clist));
+  GSList *temp_list = NULL;
+  GtkTreeIter iter;
+
+  gtk_list_store_clear (GTK_LIST_STORE (model));
   for(temp_list = sess_list; temp_list; temp_list = temp_list->next) {
-    gint row;
     gchar *name = (gchar*)temp_list->data;
-    row = gtk_clist_append (GTK_CLIST (clist), &name);
+    gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, name, -1);
     if(!strcmp (curr_sess, name)) {
-      gtk_clist_select_row (GTK_CLIST (clist), row, 0);
+      gtk_tree_selection_select_iter (sel, &iter);
     }
   }
 }
@@ -162,8 +164,7 @@ checkduplication (gchar *sessionname, GSList **sess_list)
   return FALSE;
 }
 void 
-session_list_add_dialog (GSList **sess_list, GtkWidget *clist,
-						GtkWidget **dialog)
+session_list_add_dialog (GSList **sess_list, GtkWidget **dialog)
 {
   gchar *new_session_name = NULL;
     
@@ -175,12 +176,10 @@ session_list_add_dialog (GSList **sess_list, GtkWidget *clist,
 }
 
 void 
-session_list_delete (GSList **sess_list, GtkWidget *clist, gint row, 
+session_list_delete (GSList **sess_list, const gchar *old_session_name,
 			GtkWidget **dialog)
 {	
   GSList *temp = NULL;
-  gchar *old_session_name = NULL; 
-  gtk_clist_get_text (GTK_CLIST(clist), row, 0, &old_session_name);
   for(temp = *sess_list; temp; temp=temp->next) {
     if(!strcmp((gchar *)temp->data, old_session_name)) {
       *sess_list = g_slist_remove(*sess_list,(gpointer)temp->data);
@@ -191,13 +190,11 @@ session_list_delete (GSList **sess_list, GtkWidget *clist, gint row,
 }
 
 void
-session_list_edit_dialog (GSList **sess_list, GtkWidget *clist, 
-			  GHashTable **hash, gint row, GtkWidget **dialog)
+session_list_edit_dialog (GSList **sess_list, const gchar *old_session_name,
+			  GHashTable **hash, GtkWidget **dialog)
 {
   GSList *temp = NULL;
   gchar *edited_session_name = NULL;
-  gchar *old_session_name = NULL;
-  gtk_clist_get_text (GTK_CLIST(clist), row, 0, &old_session_name);
   edited_session_name = g_strdup(old_session_name);
   if(edit_session_name (_("Edit session name"), &edited_session_name, 
                           sess_list, dialog)) {
@@ -257,7 +254,7 @@ session_list_write (GSList *sess_list, GSList *sess_list_rev, GHashTable *hash)
   for(tmp_sess=sess_list; tmp_sess; tmp_sess=tmp_sess->next) {
     existed_before = FALSE;
     sess_name = (gchar *)tmp_sess->data;
-   
+
     for(tmp_sess_revert=sess_list_rev; tmp_sess_revert; tmp_sess_revert=tmp_sess_revert->next) {
       /* If the session had existed before we set the flag existed_before */ 
       if(!strcmp((gchar *)tmp_sess_revert->data,sess_name)) 

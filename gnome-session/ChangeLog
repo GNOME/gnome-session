@@ -1,3 +1,25 @@
+2002-03-31  Lauris Kaplinski  <lauris@ximian.com>
+
+	* startup-programs.c (startup_list_update_gui): Port to GtkTreeModel
+	(is_blank): Made argument const to kill warning
+	(startup_list_add_dialog): No need for clist argument at all
+	(startup_list_edit_dialog): Remove GtkCList dependency
+	(startup_list_delete): Ditto
+
+	* session-names.c (session_list_update_gui): Port to GtkTreeModel
+	(session_list_add_dialog): We do not need clist argument at all
+	(session_list_delete): Remove GtkCList dependency
+	(session_list_edit_dialog): Ditto
+
+	* session-properties-capplet.h: Changed GUI method signatures to fit
+	with GtkTreeView architecture
+
+	* session-properties-capplet.c: Ported it to GtkTreeView, removed
+	old libcapplet dependencies, ported to new session core. As almost all
+	methods changed it does not make sense to list these here one-by-one
+
+	* Makefile.am: Re-enabled session-properties-capplet
+
 2002-03-29  Mark McLoughlin  <mark@skynet.ie>
 
 	* gsm-client-list.c: (gsm_client_list_remove_selection): don't
