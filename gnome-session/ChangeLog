@@ -1,3 +1,10 @@
+1999-09-22  Owen Taylor  <otaylor@redhat.com>
+
+	* save-session.c (save_complete): Do an IcePing 
+	  to get an XSync() equivalent that makes sure that
+	  our last command (to set the trash mode) was actually
+	  processed.
+
 1999-09-22 Owen Taylor  <otaylor@redhat.com>
 
 	* ice.c (ice_watch): Try to remove freed watches from

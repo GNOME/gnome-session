@@ -29,6 +29,8 @@
 #include "manager.h"
 #include "gsm-protocol.h"
 
+#include <X11/SM/SMlib.h>
+
 /* True if killing.  */
 static int zap = 0;
 
@@ -46,6 +48,12 @@ static int exit_status = 0;
 static GsmProtocol *protocol;
 
 static void
+ping_reply (IceConn ice_conn, IcePointer clientData)
+{
+  gtk_main_quit ();
+}
+
+static void
 save_complete (GnomeClient* client, gpointer data)
 {
   /* Set this back if we aren't shutting down */
@@ -53,7 +61,11 @@ save_complete (GnomeClient* client, gpointer data)
     gsm_protocol_set_trash_mode (protocol, TRUE);
 
   exit_status = (data != NULL);
-  gtk_main_quit ();
+
+  /* We can't exit immediately, because the trash mode above
+   * might be discarded. So we do the equivalent of an XSync.
+   */
+  IcePing (SmcGetIceConnection (protocol->smc_conn), ping_reply, NULL);
 }
 
 int
