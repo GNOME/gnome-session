@@ -40,6 +40,7 @@ static enum {
   SAVE_PHASE_2,
   SAVE_CANCELLED,
   STARTING_SESSION,
+  STARTING_WARNER,
   SHUTDOWN
 } save_state;
 
@@ -61,6 +62,12 @@ GSList *purge_retain_list = NULL;
 /* List of all live clients in the default state.  */
 GSList *live_list = NULL;
 
+/* Timeout for clients that are slow to respond to SmSaveYourselfRequest */
+gint warn_timeout_id = -1;
+
+/* Used to monitor programs that claim to be interacting. */
+gboolean interact_ping_replied = TRUE;
+
 /* A queued save yourself request */
 typedef struct _SaveRequest
 {
@@ -77,6 +84,9 @@ static GSList *save_request_list = NULL;
 
 /* This is true if a shutdown is expected to follow the current save.  */
 static int shutting_down = 0;
+
+/* This is true if we are starting a client to print warnings. */
+static int starting_warner = 0;
 
 /* List of all clients waiting for the interaction token.  The head of
    the list actually has the token.  */
@@ -117,6 +127,9 @@ guint handle = 0;
 static gint compare_interact_request (gconstpointer a, gconstpointer b);
 typedef void message_func (SmsConn connection);
 
+static void
+close_connection (SmsConn connection, SmPointer data, int count,
+		  char **reasons);
 static void
 save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 		       Bool shutdown, int interact_style, Bool fast,
@@ -256,7 +269,7 @@ free_client (Client *client)
 
 /* Run a command on a client. */
 gint
-run_command (const Client* client, const gchar* command)
+run_command (Client* client, const gchar* command)
 {
   int argc, envc, envpc, pid = -1;
   gboolean def, envd;
@@ -289,10 +302,13 @@ run_command (const Client* client, const gchar* command)
 
       if (errno)
 	{
-	  gchar *message;
-	  message = g_strconcat (argv[0], " : ", g_strerror(errno), NULL);
-	  client_reasons (client->handle, 1, &message); 
-	  g_free (message);
+	  if (strcmp (command, SmRestartCommand) || client->connection)
+	    {
+	      gchar *message;
+	      message = g_strconcat (argv[0], " : ", g_strerror(errno), NULL);
+	      client_reasons (client, FALSE, 1, &message); 
+	      g_free (message);
+	    }
 	  pid = -1;
 	  errno = 0;
 	}
@@ -356,7 +372,7 @@ process_load_request (GSList *client_list)
       if (bad_match)
 	{
 	  gchar *message = _("Wait abandoned due to conflict."); 
-	  client_reasons (client->handle, 1, &message); 
+	  client_reasons (client, FALSE, 1, &message); 
 	  client_event (client->handle, GsmRemove);
 	  REMOVE (purge_drop_list, client);
 	  free_client (client);
@@ -467,17 +483,66 @@ gint
 remove_client (Client* client)
 {
   GSList* list;
-  /* This only uses the ammunition provided by the protocol to kill clients.
-   * The user must resort to kill or xkill to destroy badly broken clients 
-   * and can place these in the SmShutdownCommand to facilitate logouts. */
 
-  if (save_state != MANAGER_IDLE && save_state != STARTING_SESSION)
+  if (g_slist_find (interact_list, client))
     return -1;
-
+  
   if (g_slist_find (live_list, client))
     {
+      if (save_state != SHUTDOWN)
+	{
+	  set_client_restart_style (client, SmRestartNever);
+	  SmsDie (client->connection);
+	}
+      else
+	{
+	  IceConn ice_conn = SmsGetIceConnection (client->connection);
+	  
+	  IceSetShutdownNegotiation (ice_conn, False);
+	  IceCloseConnection (ice_conn);
+	  REMOVE (live_list, client);
+	  client_event (client->handle, GsmRemove);
+	  update_save_state ();
+	}
+      return 1;
+    }
+
+  for (list = save_request_list; list;)
+    {
+      SaveRequest *request = (SaveRequest*)list->data;
+      
+      list = list->next;
+      if (request->client == client) {
+	g_free(request);
+	REMOVE (save_request_list, request);
+      }
+    }
+  
+  if (g_slist_find (save_yourself_list, client))
+    {
+      IceConn ice_conn = SmsGetIceConnection (client->connection);
+
       set_client_restart_style (client, SmRestartNever);
       SmsDie (client->connection);
+      IceSetShutdownNegotiation (ice_conn, False);
+      IceCloseConnection (ice_conn);
+      REMOVE (save_yourself_list, client);
+      client_event (client->handle, GsmRemove);
+      update_save_state ();
+      return 1;
+    }
+
+  if (g_slist_find (save_yourself_p2_list, client))
+    {
+      IceConn ice_conn = SmsGetIceConnection (client->connection);
+
+      set_client_restart_style (client, SmRestartNever);
+      SmsDie (client->connection);
+      IceSetShutdownNegotiation (ice_conn, False);
+      IceCloseConnection (ice_conn);
+      REMOVE (save_yourself_p2_list, client);
+      client_event (client->handle, GsmRemove);
+      update_save_state ();
       return 1;
     }
 
@@ -678,10 +743,133 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
       if (send) 
 	{
 	  save_state = SENDING_INTERACT;
+	  interact_ping_replied = TRUE;
 	  SmsInteract (connection);
 	  save_state = SAVE_PHASE_1;
 	}
     }
+}
+
+static void 
+interact_ping_reply (IceConn ice_conn, IcePointer data)
+{
+  if (interact_list && 
+      interact_list->data == data)
+    interact_ping_replied = TRUE;
+}
+
+/* Used to tell GUI when things are going slowly. The GUI may intervene
+ * by removing the clients from the session. Clients that fail to respond
+ * to a DIe are always removed. */
+static gint
+no_response_warning (gpointer data)
+{
+  GSList *list;
+  gchar *message;
+  gchar *reasons[3];
+  Client* warner = get_warner ();
+
+  if (!warner)
+    {
+      if (!starting_warner)
+	{
+	  Session *session;
+	  gboolean old_failsafe = failsafe;
+	  failsafe = TRUE;
+	  session = read_session (WARNER_SESSION);
+	  failsafe = old_failsafe;
+	  warner = (Client*)session->client_list->data;
+	  start_client(warner);
+	  g_slist_free (session->client_list);
+	  session->client_list = NULL;
+	  free_session (session);
+	}
+      starting_warner++;
+      if (starting_warner < 5)
+	return 1;
+    }
+  starting_warner = 0;
+
+  switch (save_state)
+    {
+    case SAVE_CANCELLED:
+      message = "ShutdownCancelled";
+      break;
+
+    case SAVE_PHASE_2:
+      message = "SaveYourselfPhase2";
+      break;
+      
+    case SAVE_PHASE_1:
+      message = interact_list ? "Interact" : "SaveYourself";
+      break;
+
+    case SHUTDOWN:
+      message = "Die";
+      break;
+
+    default:
+      /* not possible */
+      return 0;
+    }
+
+  reasons[0] = g_strdup_printf(_("No response to the %s command."), message);
+  reasons[1] = _("The program may be slow, stopped or broken.");
+  reasons[2] = _("You may wait for it to respond or remove it.");
+
+  if (interact_list)
+    {
+      Client *client = (Client *)interact_list->data;
+
+      if (interact_ping_replied)
+	{
+	  IceConn ice_conn = SmsGetIceConnection (client->connection);
+	  interact_ping_replied = FALSE;
+	  IcePing (ice_conn, interact_ping_reply, (IcePointer)client);
+	}
+      else
+	{
+	  client_reasons (client, TRUE, 3, reasons);	  
+	}
+    }
+  else
+    switch (save_state)
+      {
+      case SAVE_CANCELLED:
+      case SAVE_PHASE_2:
+	for (list = save_yourself_p2_list; list; )
+	  {
+	    Client* client = (Client *) list->data;
+	    list = list->next;
+	    client_reasons (client, TRUE, 3, reasons);
+	  }
+	/* fall through */
+	
+      case SAVE_PHASE_1:
+	for (list = save_yourself_list; list; )
+	  {
+	    Client* client = (Client *) list->data;
+	    list = list->next;
+	    client_reasons (client, TRUE, 3, reasons);
+	  }
+	break;
+	
+      case SHUTDOWN:
+	for (list = live_list; list; )
+	  {
+	    Client* client = (Client *) list->data;
+	    list = list->next;
+	    if (client != warner)
+	    client_reasons (client, TRUE, 3, reasons);
+	  }
+	break;
+	
+      default:
+	/* not possible */
+	break;
+      }
+  g_free (reasons[0]);
+  return 1;
 }
 
 static void
@@ -716,6 +904,7 @@ interact_done (SmsConn connection, SmPointer data, Bool cancel)
     {
       save_state = SENDING_INTERACT;
       client = (Client *) interact_list->data;
+      interact_ping_replied = TRUE;
       SmsInteract (client->connection);
       save_state = SAVE_PHASE_1;
     }
@@ -750,8 +939,15 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       SmsSaveYourself (client->connection, 
 		       save_type, 0, interact_style, fast);
     }
-  if (shutting_down || save_yourself_list) 
-    save_state = SAVE_PHASE_1; 
+  if (shutting_down || save_yourself_list)
+    { 
+      /* Give apps extra time on first save as they may call SmcOpenConnection
+       * long before entering the select on the resulting connection. */
+      gint delay = client->handle ? warn_delay : purge_delay;
+      save_state = SAVE_PHASE_1;
+      if (delay)
+	warn_timeout_id = gtk_timeout_add (delay, no_response_warning, NULL); 
+    }
   else
     save_state = MANAGER_IDLE;
 
@@ -807,23 +1003,6 @@ run_shutdown_commands (const GSList *list)
     }
 }
 
-/* Used to exit */
-static gint
-suicide (gpointer data)
-{
-  while (live_list)
-    {
-      Client *client = (Client*)live_list->data;
-      
-      client_event (client->handle, GsmRemove);
-      REMOVE (live_list, client);
-      g_warning ("Client %s failed to respond to the Die command", client->id);
-      free_client (client);
-    }
-  gtk_main_quit ();
-  return 0;
-}
-
 /* This is a helper function which makes sure that the save_state
    variable is correctly set after a change to the save_yourself lists. */
 static void
@@ -869,6 +1048,12 @@ update_save_state ()
 	{
 	  save_state = SENDING_MESSAGES;
 	  send_message (&save_yourself_p2_list, SmsSaveYourselfPhase2);
+
+	  if (warn_timeout_id > -1)
+	    gtk_timeout_remove (warn_timeout_id);
+	  if (warn_delay)
+	    warn_timeout_id = gtk_timeout_add (warn_delay, 
+					       no_response_warning, NULL);
 	}
       save_state = SAVE_PHASE_2;
     }
@@ -878,10 +1063,17 @@ update_save_state ()
       if (save_yourself_p2_list)
 	return;
 
+      if (warn_timeout_id > -1)
+	gtk_timeout_remove (warn_timeout_id);
+      warn_timeout_id = -1;
+
       CONCAT (live_list, save_finished_list);
 	  
       if (shutting_down)
 	{
+	  Client *warner = get_warner();
+	  GSList* list;
+
 	  while (purge_drop_list)
 	    {
 	      Client *client = (Client*)purge_drop_list->data;
@@ -890,19 +1082,16 @@ update_save_state ()
 	      REMOVE (purge_drop_list, client);
 	      free_client (client);
 	    }
-	}
+	  write_session ();
 
-      write_session ();
-
-      save_state = SENDING_MESSAGES;
-
-      send_message (&save_finished_list,
-		    shutting_down ? SmsDie : SmsSaveComplete);
-      save_finished_list = NULL;
-      save_state = MANAGER_IDLE;
-      
-      if (shutting_down)
-	{
+	  for (list = save_finished_list; list;)
+	    {
+	      Client *client = (Client *)list->data;
+	      list = list->next;
+	      if (client != warner)
+		SmsDie (client->connection);
+	    }
+	  save_finished_list = NULL;
 	  save_state  = SHUTDOWN;
 	  /* Run each shutdown command. These commands are only strictly
 	   * needed by zombie clients. */
@@ -910,22 +1099,40 @@ update_save_state ()
 	  run_shutdown_commands (live_list);
 
 	  if (suicide_delay)
-	    gtk_timeout_add (suicide_delay, suicide, NULL); 
+	    warn_timeout_id = gtk_timeout_add (suicide_delay, 
+					       no_response_warning, NULL); 
+	}
+      else
+	{
+	  write_session ();
+
+	  save_state = SENDING_MESSAGES;
+	  send_message (&save_finished_list, SmsSaveComplete);
+	  save_finished_list = NULL;
+	  save_state  = MANAGER_IDLE;
 	}
     }
 
   if (save_state == SHUTDOWN)
     {
-      if (live_list)
-	return;
-
-      suicide (NULL);
+      if (! live_list)
+	gtk_main_quit ();
+      else if (!live_list->next)
+	{
+	  Client* client = (Client *) live_list->data;
+	  if (client == get_warner())
+	    SmsDie (client->connection);
+	}
     }
 
   if (save_state == SAVE_CANCELLED)
     {
       if (save_yourself_list || save_yourself_p2_list)
 	return;
+
+      if (warn_timeout_id > -1)
+	gtk_timeout_remove (warn_timeout_id);
+      warn_timeout_id = -1;
 
       CONCAT (live_list, save_finished_list);
 
@@ -971,9 +1178,17 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
       (g_slist_find (save_yourself_list, client) == NULL &&
        g_slist_find (save_yourself_p2_list, client) == NULL))
     {
-      /* A SmSaveYourselfDone from a broken client. 
-	 FIXME: Should we inform the user ? */
+      /* The use of timeouts in the save process introduces the possibility
+       * that these are messages which the user was too impatient to wait
+       * for ... the clients concerned should have received die messages... */
       return;
+    }
+
+  if (client->match_rule == MATCH_WARN)
+    {
+      client_event (client->handle, GsmRemove);
+      command_handle_free (client->handle);
+      client->handle = NULL;
     }
 
   /* Must delay assignment of handle for gsm protocol extensions until
@@ -1067,7 +1282,7 @@ close_connection (SmsConn connection, SmPointer data, int count,
   Client *client = (Client *) data;
   IceConn ice_conn = SmsGetIceConnection (connection);
 
-  client_reasons (client->handle, count, reasons);
+  client_reasons (client, FALSE, count, reasons);
   SmFreeReasons (count, reasons);
 
   IceSetShutdownNegotiation (ice_conn, False);
@@ -1128,7 +1343,8 @@ client_clean_up (Client* client)
 	else
 	  {
 	    gchar *message = _("Respawn abandoned due to failures.");
-	    client_reasons (client->handle, 1, &message); 
+	    /* This is a candidate for a confirm = TRUE. */
+	    client_reasons (client, FALSE, 1, &message); 
 	    client_event (client->handle, GsmRemove);
 	    free_client (client);
 	  }
@@ -1153,6 +1369,7 @@ client_clean_up (Client* client)
       if (interact_list)
 	{
 	  client = (Client *) interact_list->data;
+	  interact_ping_replied = TRUE;
 	  SmsInteract (client->connection);
 	}
       save_state = SAVE_PHASE_1;
@@ -1291,7 +1508,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 {
   Client *client;
 
-  if (shutting_down)
+  if (shutting_down && !starting_warner)
     {
       *reasons  = strdup (_("A session shutdown is in progress."));
       return 0;
@@ -1302,6 +1519,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
   client->connection = connection;
   client->attempts = 1;
   client->connect_time = time (NULL);
+  client->warning = FALSE;
 
   ice_set_clean_up_handler (SmsGetIceConnection (connection),
 			    (GDestroyNotify)client_clean_up, (gpointer)client);
@@ -1375,10 +1593,3 @@ save_session (int save_type, gboolean shutdown, int interact_style,
     process_save_request (NULL, save_type, shutdown, 
 			  interact_style, fast, TRUE);
 }
-
-int
-shutdown_in_progress_p (void)
-{
-  return save_state != MANAGER_IDLE && shutting_down;
-}
-

@@ -55,8 +55,8 @@ static IceAuthFileEntry* file_entry_new (const gchar* protocol,
 static GSList* read_authfile(gchar* filename);
 static void write_authfile(gchar* filename, GSList* entries);
 
-/* This is called when a client tries to connect.  We accept most
-   connections.  We reject connections while doing a shutdown.  */
+/* This is called when a client tries to connect. 
+ * We still accept connections during a shutdown so we can handle warnings. */
 static void
 accept_connection (gpointer client_data, gint source,
 		   GdkInputCondition conditon)
@@ -64,9 +64,6 @@ accept_connection (gpointer client_data, gint source,
   IceConn connection;
   IceAcceptStatus status;
   IceConnectStatus status2 = IceConnectPending;
-
-  if (shutdown_in_progress_p ())
-    return;
 
   connection = IceAcceptConnection ((IceListenObj) client_data, &status);
   if (status != IceAcceptSuccess)

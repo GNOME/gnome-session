@@ -38,6 +38,9 @@
 #define CHOOSER_SESSION "Chooser"
 
 /* Trash session name. */
+#define WARNER_SESSION "Warner"
+
+/* Trash session name. */
 #define TRASH_SESSION "Trash"
 
 /* Config section used for gnome-session's own config details. */
@@ -61,7 +64,8 @@ typedef enum {
   MATCH_ID,
   MATCH_FAKE_ID,
   MATCH_DONE,
-  MATCH_PROP
+  MATCH_PROP,
+  MATCH_WARN
 } MatchRule;
 
 /* Additional details for clients that speak our command protocol */
@@ -95,6 +99,9 @@ typedef struct
   /* Used to avoid registering clients with ids from default.session */
   MatchRule match_rule;
 
+  /* Used to suspend further warnings while user is responding to a warning */
+  gboolean warning;
+
   /* Used to decouple SmsGetPropertiesProc and SmsReturnProperties
    * for the purpose of extending the protocol: */
   GSList* get_prop_replies;
@@ -124,7 +131,7 @@ extern guint purge_delay;
 extern guint suicide_delay;
 
 /* Milliseconds to wait for clients to complete save before reporting error. */
-extern guint save_delay;
+extern guint warn_delay;
 
 /* Waiting for the chooser to tell us which session to start. */ 
 extern gboolean choosing;
@@ -155,17 +162,12 @@ void free_client (Client* client);
 
 /* Run the Discard, Resign or Shutdown command on a client.
  * Returns the pid or -1 if unsuccessful. */
-gint run_command (const Client* client, const gchar* command);
+gint run_command (Client* client, const gchar* command);
 
 /* Call this to initiate a session save, and perhaps a shutdown.
    Save requests are queued internally. */
 void save_session (int save_type, gboolean shutdown, int interact_style,
 		   gboolean fast);
-
-/* Returns true if shutdown in progress, false otherwise.  Note it is
-   possible for this function to return true and then later return
-   false -- the shutdown might be cancelled.  */
-int shutdown_in_progress_p (void);
 
 /* This is called via ICE when a new client first connects.  */
 Status new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
@@ -265,7 +267,11 @@ void client_event (const gchar* handle, const gchar* event);
 void client_property (const gchar* handle, int nprops, SmProp** props);
 
 /* Log reasons for an event with the client event selectors. */
-void client_reasons (const gchar* handle, gint count, gchar** reasons);
+void client_reasons (Client* client, gboolean confirm, 
+		     gint count, gchar** reasons);
+
+/* Returns the client that prints up warnings for gnome-session (if any). */
+Client* get_warner (void);
 
 /* Process a _GSM_Command protocol message. */
 void command (Client* client, int nprops, SmProp** props);

@@ -204,6 +204,9 @@ gsm_session_live (GsmClientFactory client_factory, gpointer data)
 				 GsmSelectClientEvents, NULL), NULL);
       command (the_protocol, 
 	       gsm_args_to_prop (GsmCommand, 
+				 GsmHandleWarnings, NULL), NULL);
+      command (the_protocol, 
+	       gsm_args_to_prop (GsmCommand, 
 				 GsmListClients, NULL), NULL);
     }
   return GTK_OBJECT (session);
@@ -288,6 +291,8 @@ enum {
 };
 
 static gint gsm_client_signals[NSIGNALS];
+static void client_reasons (GsmClient* client, gboolean confirm, 
+			    GSList* reasons);
 
 static void
 gsm_client_class_init (GsmClientClass *klass)
@@ -306,11 +311,11 @@ gsm_client_class_init (GsmClientClass *klass)
 		    GTK_TYPE_NONE, 0); 
   gsm_client_signals[REASONS] =
     gtk_signal_new ("reasons",
-		    GTK_RUN_LAST,
+		    GTK_RUN_FIRST,
 		    object_class->type,
 		    GTK_SIGNAL_OFFSET (GsmClientClass, reasons),
-		    gtk_marshal_NONE__POINTER,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+		    gtk_marshal_NONE__INT_POINTER,
+		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_POINTER);
   gsm_client_signals[COMMAND] =
     gtk_signal_new ("command",
 		    GTK_RUN_LAST,
@@ -345,7 +350,7 @@ gsm_client_class_init (GsmClientClass *klass)
   object_class->destroy = gsm_client_destroy;
   
   klass->remove   = NULL;
-  klass->reasons  = NULL;
+  klass->reasons  = client_reasons;
   klass->command  = NULL;
   klass->state    = NULL;
   klass->style    = NULL;
@@ -479,6 +484,40 @@ gsm_client_commit_order (GsmClient *client)
 			     GsmChangeProperties, client->handle, NULL),
 	   gsm_int_to_prop (GsmPriority, client->order), 
 	   NULL);
+}
+
+static void
+client_reasons (GsmClient* client, gboolean confirm, GSList* reasons)
+{
+  GtkWidget* dialog;
+  gchar* message = g_strjoin ("\n", client->command, "", NULL);
+  
+  for (;reasons; reasons = reasons->next)
+    message = g_strjoin ("\n", message, (gchar*)reasons->data, NULL);
+  
+  /* Hmm, may need to be override redirect as well since WMs are quite
+     likely to be the source of the errors... */
+  //dialog = gnome_warning_dialog (message);
+  dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_WARNING, NULL);
+  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog),
+					  _("Remove Program"),
+					  GNOME_STOCK_PIXMAP_TRASH);
+  if (confirm)
+    {
+      gnome_dialog_append_button (GNOME_DIALOG (dialog),
+				  GNOME_STOCK_BUTTON_CANCEL);
+      gnome_dialog_set_default (GNOME_DIALOG (dialog), 1);
+      gnome_dialog_button_connect_object (GNOME_DIALOG (dialog), 0,
+					  GTK_SIGNAL_FUNC (gsm_client_commit_remove), 
+					  GTK_OBJECT (client));
+    }
+  gtk_window_set_position ((GtkWindow *) dialog, GTK_WIN_POS_CENTER);
+  gtk_window_set_modal ((GtkWindow *) (dialog), TRUE);
+  gtk_widget_show_all (dialog);
+  gnome_win_hints_set_state((GtkWidget *) dialog, WIN_STATE_FIXED_POSITION);
+  gnome_win_hints_set_layer((GtkWidget *) dialog, WIN_LAYER_ABOVE_DOCK);
+  gnome_dialog_run ((GnomeDialog *) (dialog));
+  g_free (message);
 }
 
 /* GSM_PROTOCOL object */
@@ -694,7 +733,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	    {
 	      gint i;
 	      gchar *restart_command = NULL, *command = NULL;
-	      GsmClient* client = find_client (props[0], data);
+	      GsmClient* client = find_client (props[0], live_session);
 	      GsmSession* session = client->session;
 	      prop_free (props[0]);
 
@@ -764,11 +803,20 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		  if (!strcmp (type, GsmReasons))
 		    {
 		      GSList *list = gsm_prop_to_list (props[i]);
+		      gboolean confirm; 
 		      
 		      list = g_slist_remove (list, list->data);
 		      list = g_slist_remove (list, list->data);
+		      confirm = strcmp (list->data, "0");
+		      list = g_slist_remove (list, list->data);
 		      gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[REASONS], list);
+				       gsm_client_signals[REASONS], 
+				       confirm, list);
+		      command (protocol, 
+			       gsm_args_to_prop (GsmCommand, 
+						 GsmClearClientWarning, 
+						 client->handle, NULL), 
+			       NULL);  
 		      g_slist_free (list);
 		    }
 		  else if (!strcmp (type, GsmRemove))

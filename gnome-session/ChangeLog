@@ -1,3 +1,17 @@
+1999-03-22  Felix Bellaby  <felix@pooh.u-net.com> 
+
+	* manager.c (no_response_warning): remove clients on failure to 
+	respond to XSMP commands with user confirmation via separate GUI.
+ 	(remove_client): add capacity to remove unresponsive clients.
+	* session.h, command.c, save.c: add confirmations to warning dialogs.
+	* main.c: add warn-delay option.
+	* ice.c (accept_connection): accept during shutdown to return error.
+	* manager.h: update to match above changes.
+	* default.in: new session containing a client which shows warnings.
+	* session-properties.c: support a warning only mode.
+	* gsm-client-row.c: relocate warning handler code into parent:
+	* gsm-protocol.c, gsm-protocol.h: obtain user confirmations.
+
 1999-03-19  Felix Bellaby  <felix@pooh.u-net.com> 
 
 	* main.c (main): extra command line options.

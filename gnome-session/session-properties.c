@@ -337,13 +337,23 @@ create_dialog (void)
   return app;
 }
 
+static gboolean init_settings = FALSE;
+static gboolean warner = FALSE;
+
+static const struct poptOption options[] = {
+  {"init-session-settings", '\0', POPT_ARG_NONE, &init_settings, 0, N_("Initialize session settings"), NULL},
+  {"warner", '\0', POPT_ARG_NONE, &warner, 0, N_("Only display warnings."), NULL},
+  {NULL, '\0', 0, NULL, 0}
+};
+
 int
 main (int argc, char *argv[])
 {
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init ("session-properties", VERSION, argc, argv);
+  gnome_init_with_popt_table ("session-properties", VERSION, argc, argv, 
+			      options, 0, NULL);
 
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
@@ -354,10 +364,12 @@ main (int argc, char *argv[])
       g_warning ("Could not connect to gnome-session.");
       exit (1);
     }
-  if (argc == 1)
-    create_app ();
-  else
+  if (warner)
+    gsm_session_live (gsm_client_new, NULL);
+  else if (init_settings)
     create_dialog ();
+  else
+    create_app ();
 
   gtk_main ();
 

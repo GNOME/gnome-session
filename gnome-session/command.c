@@ -35,6 +35,7 @@ static GHashTable* handle_table = NULL;
 typedef enum
 {
   COMMAND_ACTIVE = 0,
+  COMMAND_HANDLE_WARNINGS,
   COMMAND_INACTIVE,
 } CommandState;
 
@@ -83,7 +84,7 @@ make_command (const gchar* command_name, const gchar* argument)
 }
 
 static SmProp*
-make_client_reasons (const gchar* client_handle, 
+make_client_reasons (const gchar* client_handle, const gboolean confirm,
 		     const guint count, gchar** reasons)
 {
   SmProp *prop = (SmProp*) malloc (sizeof (SmProp));      
@@ -91,16 +92,18 @@ make_client_reasons (const gchar* client_handle,
 
   prop->name = strdup (GsmClientEvent);
   prop->type = strdup (SmLISTofARRAY8);
-  prop->num_vals = 2 + count;
+  prop->num_vals = 3 + count;
   prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
   prop->vals[0].value = strdup (GsmReasons);
   prop->vals[0].length = strlen (prop->vals[0].value);
-  prop->vals[1].value = strdup(client_handle);
+  prop->vals[1].value = strdup (client_handle);
   prop->vals[1].length = strlen (prop->vals[1].value);
+  prop->vals[2].value = strdup (confirm ? "1" : "0");
+  prop->vals[2].length = strlen (prop->vals[2].value);
   for (i = 0; i < count; i++)
     {
-      prop->vals[i+2].value = strdup(reasons[i]);
-      prop->vals[i+2].length = strlen (prop->vals[i+2].value);
+      prop->vals[i+3].value = strdup(reasons[i]);
+      prop->vals[i+3].length = strlen (prop->vals[i+3].value);
     }
 
   return prop;
@@ -124,19 +127,60 @@ prop_dup (const SmProp* old_prop)
   return prop;
 }
 
-void
-client_reasons (const gchar* client_handle, gint count, gchar** reasons)
+Client* get_warner (void)
 {
-  if (count > 0 && client_handle)
+  GSList *list;
+
+  for (list = selector_list; list; list = list->next)
     {
-      GSList *list;
-      for (list = selector_list; list; list = list->next)
+      Client *client = (Client*)selector_list->data;
+      if (client->command_data->state == COMMAND_HANDLE_WARNINGS)
+	return client;
+    }
+  return NULL;
+}
+
+void
+client_reasons (Client* client, gboolean confirm,
+		gint count, gchar** reasons)
+{
+  if (count > 0 && client->connection && !client->warning)
+    {
+      Client *warner = get_warner ();
+
+      if (warner)
 	{
-	  Client *client = (Client*)list->data;
-	  GSList* prop_list = NULL;
-	  APPEND (prop_list, make_client_reasons (client_handle, 
+	  GSList* prop_list = NULL;	
+
+	  if (!client->handle)
+	    {
+	      SmProp* prop;
+	      /* client is making a mess of its very first save ... 
+	       * have to tell the warner who the client is first: */
+	      client->match_rule = MATCH_WARN;
+	      client->handle = command_handle_new (client);
+	      APPEND (prop_list, make_client_event (client->handle, GsmSave));
+	      send_properties (warner, prop_list);
+	      prop_list = NULL;
+	      if ((prop = find_property_by_name (client, SmRestartCommand)))
+		{
+		  APPEND (prop_list, make_client_event (client->handle, 
+							GsmProperty));
+		  APPEND (prop_list, prop_dup (prop));
+		  send_properties (warner, prop_list);
+		  prop_list = NULL;
+		}
+	    }
+
+	  APPEND (prop_list, make_client_reasons (client->handle, confirm,
 						  count, reasons));
-	  send_properties (client, prop_list);
+	  send_properties (warner, prop_list);
+	  client->warning = TRUE;
+	}
+      else if (confirm)
+	{
+	  /* This is a failsafe that should never be needed */
+	  remove_client (client);
 	}
     }
 }
@@ -273,6 +317,11 @@ command (Client* client, int nprops, SmProp** props)
     APPEND (selector_list, client);
   else if (!strcmp (prop->vals[0].value, GsmDeselectClientEvents))
     REMOVE (selector_list, client);
+  else if (!strcmp (prop->vals[0].value, GsmHandleWarnings))
+    {
+      if (g_slist_find (selector_list, client))
+	client->command_data->state = COMMAND_HANDLE_WARNINGS;
+    }
   else if (!strcmp (prop->vals[0].value, GsmGetLastSession))
     {
       GSList* prop_list = NULL;
@@ -305,7 +354,8 @@ command (Client* client, int nprops, SmProp** props)
 
       while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	{
-	  if (strcasecmp (section, CHOOSER_SESSION))
+	  if (strcasecmp (section, CHOOSER_SESSION) &&
+	      strcasecmp (section, WARNER_SESSION))
 	    {
 	      SmProp* prop = make_command (GsmReadSession, section);
 	      
@@ -474,6 +524,13 @@ command (Client* client, int nprops, SmProp** props)
 	       * and a means to add clients. Hmm... */
 	    }
 	}
+    }
+  else if (arg && !strcmp (prop->vals[0].value, GsmClearClientWarning))
+    {
+      Client* client1 = (Client*) command_handle_lookup (arg);
+
+      if (client1)
+	client1->warning = FALSE;
     }
   else if (arg && !strcmp (prop->vals[0].value, GsmChangeProperties))
     {

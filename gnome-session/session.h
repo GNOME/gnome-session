@@ -54,7 +54,10 @@
  * properties for the client with the specified handle */
 #define GsmReasons               "Reasons"   /* explanation for next event */
 /* These are sent when gnome-session has information about why a client
- * is being removed from the session: val[2], ... give the reasons. */
+ * is being removed or might need to be removed from the session: 
+ * val[2].value=confirm = "0" removed by gnome-session automatically.
+ *                      = "1" removed iff a GsmRemoveClient is sent in reply.
+ * val[3].value, val[4].value, ...=the reasons(array of strings). */
 
 /* THE GSM COMMAND PROTOCOL:
  * Call SmcSetProperty with the FIRST property having:
@@ -73,10 +76,16 @@
  * its operation: */
 
 #define GsmSelectClientEvents    "SelectClientEvents"
-/* Selects events occuring to gsm */
+/* Selects events occuring to gsm clients */
 
 #define GsmDeselectClientEvents  "DeselectClientEvents"
 /* Deselects events occuring to gsm clients */
+
+#define GsmHandleWarnings        "HandleWarnings"
+/* This flags that you are able to handle the warning messages that
+ * gnome-session sometimes needs to generate when clients are unresponsive.
+ * gnome-session will rely on ONE of the clients that sets this flag to handle
+ * the warnings. Only send this command when your warning handler works!!! */
 
 #define GsmListClients           "ListClients"
 /* Returns the clients that are currently running as an array of events. 
@@ -109,6 +118,12 @@
  * message on connected clients and the SmResignCommand on disconnected 
  * or silent clients. Any SmDiscardCommand will be called when the session 
  * is next saved. */
+
+#define GsmClearClientWarning    "ClearClientWarning"
+/* Instructs gnome-session that a GsmReasons event with confirm=TRUE has been
+ * displayed to the user and any action chosen by the user has been taken.
+ * gnome-session suspends further warnings on the client until this command 
+ * has been received. */
 
 #define GsmChangeProperties      "ChangeProperties"
 /* Changes some properties for the client with the given GsmClientEvent handle.

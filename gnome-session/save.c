@@ -256,6 +256,7 @@ read_one_client (Client *client)
   client->properties = NULL;
   client->priority = 50;
   client->handle = command_handle_new ((gpointer)client);
+  client->warning = FALSE;
   client->get_prop_replies = NULL;
   client->get_prop_requests = 0;
   client->command_data = NULL;

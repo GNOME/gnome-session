@@ -162,8 +162,8 @@ struct _GsmClientClass {
   void (* state)     (GsmClient *client, GsmState new_state);
   void (* command)   (GsmClient *client, gchar* new_command);
   /* Signal emitted when gnome-session encounters an client error:
-   * the list of strings argument is freed internally. */
-  void (* reasons)   (GsmClient *client, GSList* reasons);
+   * Confirm is TRUE when the client must be removed explicitly. */
+  void (* reasons)   (GsmClient *client, gboolean confirm, GSList* reasons);
 };
 
 guint gsm_client_get_type  (void);

@@ -71,7 +71,6 @@ static GsmClientClass *parent_class = NULL;
 
 static void gsm_client_row_destroy  (GtkObject *o);
 static void client_remove   (GsmClient* client);
-static void client_reasons  (GsmClient* client, GSList* reasons);
 static void client_command  (GsmClient* client, gchar* command);
 static void client_state    (GsmClient* client, GsmState state);
 static void client_style    (GsmClient* client, GsmStyle style);
@@ -90,7 +89,6 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   client_class->command  = client_command;
   client_class->style    = client_style;
   client_class->order    = client_order;
-  client_class->reasons  = client_reasons;
 
   create_stock_menu_pixmaps ();
 
@@ -329,20 +327,6 @@ static void
 client_style (GsmClient* client, GsmStyle style)
 {
   gsm_client_row_set_style ((GsmClientRow*)client, style);
-}
-
-/* FIXME: this could almost certainly be improved ... */
-static void
-client_reasons (GsmClient* client, GSList* reasons)
-{
-  GtkWidget* dialog;
-  gchar* message = client->command;
-  
-  for (;reasons; reasons = reasons->next)
-    message = g_strjoin ("\n", message, (gchar*)reasons->data, NULL);
-  
-  dialog = gnome_warning_dialog (message);
-  g_free (message);
 }
 
 static void

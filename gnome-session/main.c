@@ -47,7 +47,7 @@ gboolean trashing = FALSE;
 guint purge_delay = 30000;
 
 /* Wait period for clients to save. */
-guint save_delay = 30000;
+guint warn_delay = 5000;
 
 /* Wait period for clients to die during shutdown. */
 guint suicide_delay = 10000;
@@ -57,7 +57,7 @@ static const struct poptOption options[] = {
   {"trash-saves", '\0', POPT_ARG_NONE, &trashing, 0, N_("Disable normal operation by saving into the Trash session"), NULL},
   {"failsafe", '\0', POPT_ARG_NONE, &failsafe, 0, N_("Only read saved sessions from the default.session file"), NULL},
   {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
-  {"save-delay", '\0', POPT_ARG_INT, &save_delay, 0, N_("Millisecond period spent waiting for all clients to save (0=forever)"), NULL},
+  {"warn-delay", '\0', POPT_ARG_INT, &warn_delay, 0, N_("Millisecond period spent waiting for clients to respond (0=forever)"), NULL},
   {"suicide-delay", '\0', POPT_ARG_INT, &suicide_delay, 0, N_("Millisecond period spent waiting for clients to die (0=forever)"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
