@@ -78,17 +78,18 @@ static void check_session_end (int found);
 
 /* Send a message to every client on LIST.  */
 static void
-send_message (GSList *list, message_func *message)
+send_message (GSList **list, message_func *message)
 {
   /* Protect against io_errors by using static lists */
-  while (list)
+  while (*list)
     {
-      Client *client = list->data;
-      list = list->next;
-
-      (*message) (client->connection);
+      Client *client = (*list)->data;
+      REMOVE (*list, client);
       APPEND (message_sent_list, client);
+      (*message) (client->connection);
     }
+  *list = message_sent_list;
+  message_sent_list = NULL;
 }
 
 
@@ -240,19 +241,19 @@ interact_done (SmsConn connection, SmPointer data, Bool cancel)
       saving = 0;
       shutting_down = 0;
 
-      send_message (interact_list, SmsShutdownCancelled);
+      send_message (&interact_list, SmsShutdownCancelled);
       CONCAT (live_list, interact_list);
       interact_list = NULL;
 
-      send_message (save_yourself_list, SmsShutdownCancelled);
+      send_message (&save_yourself_list, SmsShutdownCancelled);
       CONCAT (live_list, save_yourself_list);
       save_yourself_list = NULL;
 
-      send_message (save_yourself_p2_list, SmsShutdownCancelled);
+      send_message (&save_yourself_p2_list, SmsShutdownCancelled);
       CONCAT (live_list, save_yourself_p2_list);
       save_yourself_p2_list = NULL;
 
-      send_message (save_finished_list, SmsShutdownCancelled);
+      send_message (&save_finished_list, SmsShutdownCancelled);
       CONCAT (live_list, save_finished_list);
       save_finished_list = NULL;
     }
@@ -344,7 +345,7 @@ check_session_end (int found)
 	     the Phase 2 clients that they're ok to go.  */
 	  /* disable check_session_end tests during the send message: */
 	  saving = 0;
-	  send_message (save_yourself_p2_list, SmsSaveYourselfPhase2);
+	  send_message (&save_yourself_p2_list, SmsSaveYourselfPhase2);
 	  saving = 1;
 	  /* NB: io errors could wipe out the save_yourself_p2_list */
 	}
@@ -362,7 +363,7 @@ check_session_end (int found)
 	     first.  */
 	  write_session (anyway_list, live_list, shutting_down);
 	  saving = 0;
-	  send_message (save_finished_list,
+	  send_message (&save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
 	  save_finished_list = NULL;
 	  if (shutting_down)
@@ -375,7 +376,7 @@ check_session_end (int found)
 	      run_shutdown_commands (live_list);
 	      
 	      /* Make sure that all client connections are closed.  */
-	      send_message (live_list, kill_client_connection);
+	      send_message (&live_list, kill_client_connection);
 	      
 	      gtk_main_quit ();
 	    }
