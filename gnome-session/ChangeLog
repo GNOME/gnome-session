@@ -1,5 +1,8 @@
 Thu May 14 09:49:08 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* save-session.c (main): Print error if couldn't connect to
+	session manager.
+
 	* manager.c (kill_client_connection): New function.
 	(check_session_end): Correctly determine when last ordinary client
 	finishes.  Send kill_client_connection message to each client,

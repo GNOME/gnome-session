@@ -76,6 +76,13 @@ main (int argc, char *argv[])
 
   gnome_init ("session", &parser, argc, argv, 0, NULL);
 
+  if (! GNOME_CLIENT_CONNECTED (client))
+    {
+      fprintf (stderr,
+	       _("save-session: couldn't connect to session manager\n"));
+      return 1;
+    }
+
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
   /* We could expose more of the arguments to the user if we wanted
      to.  Some of them aren't particularly useful.  Interestingly,
