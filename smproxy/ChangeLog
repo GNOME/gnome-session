@@ -1,3 +1,11 @@
+Thu Aug 20 00:25:11 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* smproxy.h: Don't include <X11/Xosdefs.h> or <X11/Xfuncs.h>.
+	Unconditionally include <stdio.h>, <stdlib.h>, and <limits.h>.
+	* Makefile.am (INCLUDES): Don't define HAS_MKSTEMP.  Don't include
+	SMPROXY_DEFS.
+	* save.c: Assume HAS_MKSTEMP everywhere.
+
 1998-07-18  Raja R Harinath  <harinath@cs.umn.edu>
 
 	* Makefile.am (INCLUDES): Add $(SMPROXY_DEFS).  Need to build

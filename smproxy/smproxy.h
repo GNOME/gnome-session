@@ -27,50 +27,15 @@ in this Software without prior written authorization from the X Consortium.
 Author:  Ralph Mor, X Consortium
 ******************************************************************************/
 
-#include <X11/Xosdefs.h>
-#include <X11/Xfuncs.h>
-
 #include <X11/StringDefs.h>
 #include <X11/Intrinsic.h>
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 #include <X11/SM/SMlib.h>
 
-#ifndef _POSIX_SOURCE
-#define _POSIX_SOURCE
 #include <stdio.h>
-#undef _POSIX_SOURCE
-#else
-#include <stdio.h>
-#endif
-
-#ifndef X_NOT_STDC_ENV
 #include <stdlib.h>
-#else
-extern char *malloc(), *calloc(), *realloc(), *getenv();
-extern void free();
-#endif
-
-#ifndef X_NOT_POSIX
-#ifdef _POSIX_SOURCE
 #include <limits.h>
-#else
-#define _POSIX_SOURCE
-#include <limits.h>
-#undef _POSIX_SOURCE
-#endif
-#endif /* X_NOT_POSIX */
-#ifndef PATH_MAX
-#include <sys/param.h>
-#ifndef PATH_MAX
-#ifdef MAXPATHLEN
-#define PATH_MAX MAXPATHLEN
-#else
-#define PATH_MAX 1024
-#endif
-#endif
-#endif /* PATH_MAX */
-
 
 typedef struct WinInfo {
     Window window;

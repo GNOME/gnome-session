@@ -29,9 +29,7 @@ Author:  Ralph Mor, X Consortium
 /* $XFree86: xc/programs/smproxy/save.c,v 1.1.1.1.10.2 1997/05/13 11:31:35 hohndel Exp $ */
 
 #include "smproxy.h"
-#ifdef HAS_MKSTEMP
 #include <unistd.h>
-#endif
 
 typedef struct ProxyFileEntry
 {
@@ -338,39 +336,13 @@ char *filename;
 
 
 
-#ifndef HAS_MKSTEMP
-static char *
-unique_filename (path, prefix)
-char *path;
-char *prefix;
-#else
 static char *
 unique_filename (path, prefix, pFd)
 char *path;
 char *prefix;
 int *pFd;
-#endif
 
 {
-#ifndef HAS_MKSTEMP
-#ifndef X_NOT_POSIX
-    return ((char *) tempnam (path, prefix));
-#else
-    char tempFile[PATH_MAX];
-    char *tmp;
-
-    sprintf (tempFile, "%s/%sXXXXXX", path, prefix);
-    tmp = (char *) mktemp (tempFile);
-    if (tmp)
-    {
-	char *ptr = (char *) malloc (strlen (tmp) + 1);
-	strcpy (ptr, tmp);
-	return (ptr);
-    }
-    else
-	return (NULL);
-#endif
-#else 
     char tempFile[PATH_MAX];
     char *ptr;
 
@@ -382,7 +354,6 @@ int *pFd;
 	*pFd =  mkstemp(ptr);
     }
     return ptr;
-#endif
 }
 
 
@@ -393,9 +364,7 @@ WriteProxyFile ()
 {
     FILE *proxyFile = NULL;
     char *filename = NULL;
-#ifdef HAS_MKSTEMP
     int fd;
-#endif
     char *path;
     WinInfo *winptr;
     Bool success = False;
@@ -408,19 +377,12 @@ WriteProxyFile ()
 	    path = ".";
     }
 
-#ifndef HAS_MKSTEMP
-    if ((filename = unique_filename (path, ".prx")) == NULL)
-	goto bad;
-
-    if (!(proxyFile = fopen (filename, "wb")))
-	goto bad;
-#else
     if ((filename = unique_filename (path, ".prx", &fd)) == NULL)
 	goto bad;
 
     if (!(proxyFile = fdopen(fd, "wb"))) 
 	goto bad;
-#endif
+
     if (!write_short (proxyFile, SAVEFILE_VERSION))
 	goto bad;
 
