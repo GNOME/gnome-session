@@ -150,7 +150,8 @@ refresh_screen (void)
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.override_redirect = TRUE;
   attributes.event_mask = 0;
-
+  gtk_rc_reparse_all ();
+  
   window = gdk_window_new (NULL, &attributes,
 			   GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR);
 
