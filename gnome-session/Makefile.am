@@ -146,7 +146,7 @@ EXTRA_DIST =			\
 
 marshal_sources = gsm-marshal.c gsm-marshal.h
 
-$(top_srcdir)/gsm/gsm-protocol.c: $(marshal_sources)
+$(gnome_session_OBJECTS) $(save_session_OBJECTS) $(session_properties_OBJECTS): $(marshal_sources)
 
 gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=gsm_marshal > $@
