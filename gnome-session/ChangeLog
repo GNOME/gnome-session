@@ -1,3 +1,21 @@
+Sun Mar  8 18:36:38 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* Makefile.am (INCLUDES): Added GNOME_INCLUDEDIR.  Define
+	GNOMELOCALEDIR.
+
+Sat Mar  7 11:45:07 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save-session.c (options): New structure.
+	(parser): Likewise.
+	(usage): Removed.
+	(zap): New global.
+	(parse_an_arg): New function.
+	(main): Use new argument parsing and client-handling functions.
+	* Makefile.am (gnome_session_SOURCES): Removed testbed.c, added
+	main.c.
+	* testbed.c: Removed.
+	* main.c: New file.
+
 Thu Feb 26 02:26:51 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* exec.c (errno): Declare if not a macro.
