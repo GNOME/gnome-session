@@ -13,7 +13,8 @@ INCLUDES =						\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\
-	-DDEFAULTDIR="\"$(defaultdir)\""
+	-DDEFAULTDIR="\"$(defaultdir)\""		\
+	-DESD_SERVER="\"$(ESD_SERVER)\""
 
 # Flags to make sure we're not using any deprecated functions
 DISABLE_DEPRECATED_CFLAGS = 
