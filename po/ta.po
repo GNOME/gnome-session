@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome Translation v. 1.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-05-31 14:20+0100\n"
-"PO-Revision-Date: 2004-03-10 21:58-0600\n"
-"Last-Translator: Dinesh Nadarajah <dinesh_list@sbcglobal.net>\n"
+"POT-Creation-Date: 2004-05-31 08:58-0500\n"
+"PO-Revision-Date: 2004-05-31 10:52+0530\n"
+"Last-Translator: zhakanini <tamilpc@ambalam.com>\n"
 "Language-Team: Tamil <tamillinux-users@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,16 +25,18 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"பாதுகாப்பு காரணங்கள், ஜினோம் அமர்வுகளை  TCP  பாதையில் இணைக்கமுடியாது.தொலை முனையம் "
+"புரவனை மட்டும் இணைக்கும்,ஜினோம் அமர்வுகளை மீண்டும் புதுப்பிக்கவும்."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "செயல்படுத்தப்பட்ட,gnome அமர்வுகளை பயன்படுத்தி அமர்வுகளை முடி."
 
 #: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr ""
+msgstr "செயல்படுத்தப்பட்ட,gnome அமர்வுகளை தானாகவே சேமித்துக்கொள்ள முடியும்."
 
 # gsm/logout.c:248
 #: gnome-session/gnome-session.schemas.in.h:5
@@ -45,7 +47,7 @@ msgstr "விலகு தூண்டி"
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "விரும்பிய படங்களை உபயோகிப்படுத்தி GNOME திரைமேசையில் அமை."
 
 # gsm/session-properties.c:272
 #: gnome-session/gnome-session.schemas.in.h:7
@@ -67,13 +69,12 @@ msgstr "தொடங்கல் திரை ஓவியம்"
 
 # gsm/gsm-client-editor.c:94
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
-#, fuzzy
 msgid "_Order:"
-msgstr "உத்தரவு:"
+msgstr "உத்தரவு"
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "பயன்பாட்டின் அமர்வுகளைத்துவக்கு."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
@@ -195,14 +196,6 @@ msgstr "அமைவுகள்"
 msgid "Always started on every login."
 msgstr "எப்போலுதும் ஒவ்வறு தொடங்கலிலும் ஆறம்பிக்கும்"
 
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
 #: gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
@@ -210,6 +203,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"GNOME மறைநிரல் அமைப்புகளில் பிழைகள் துவங்கியுள்ளது.\n"
+"\n"
+"எதாவது,பொருள்கள்,ஒலி,"
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -229,6 +225,9 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME அப்படியே உள்ளது மீண்டும் துவக்கு மறைநிரல் அமைப்புகளை நுழை."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -236,13 +235,12 @@ msgstr "தெரியாத ஒரு தொடக்க-பிழை."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "மறைநிரல் அமைப்புகளை அதிக நேரம் துவக்கு."
 
 # gmenu/treedel.c:146
 #: gnome-session/logout.c:374
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "இன்த துணைப்பட்டியையும் அதன் பொருள்களையும் நீக்க வேண்டுமா?"
+msgstr "இதனை விட்டு வெளியேற வேண்டுமா?"
 
 # gsm/logout.c:220
 #: gnome-session/logout.c:391
