@@ -34,12 +34,12 @@
 
 static gchar *halt_command[] =
 {
-  "/usr/bin/shutdown", "-h", "now", NULL
+  "/usr/bin/poweroff", NULL
 };
 
 static gchar *reboot_command[] =
 {
-  "/usr/bin/shutdown", "-r", "now", NULL
+  "/usr/bin/reboot", NULL
 };
 
 /* What action to take upon shutdown */
