@@ -226,11 +226,11 @@ gnome_login_check (void)
       gtk_dialog_set_default_response (GTK_DIALOG (tmp_msgbox), RESPONSE_TRY_AGAIN);
 
       if (RESPONSE_TRY_AGAIN != gtk_dialog_run (GTK_DIALOG (tmp_msgbox)))
-	break;
+	{
+	  gtk_widget_destroy (tmp_msgbox);
+  	  break;
+	}
     }
-
-  if (tmp_msgbox)
-    gtk_widget_destroy (tmp_msgbox);
 }
 
 int
