@@ -89,7 +89,7 @@ enum {
   NSIGNALS2
 };
 
-static gint gsm_session_signals[NSIGNALS2];
+static guint gsm_session_signals[NSIGNALS2];
 static GtkObjectClass *parent_class = NULL;
 
 static void
@@ -131,15 +131,15 @@ gsm_session_object_init (GsmSession* session)
   session->waiting     = -1;
 }
 
-GtkTypeInfo gsm_session_info = 
+static GtkTypeInfo gsm_session_info = 
 {
   "GsmSession",
   sizeof (GsmSession),
   sizeof (GsmSessionClass),
   (GtkClassInitFunc) gsm_session_class_init,
   (GtkObjectInitFunc) gsm_session_object_init,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -289,7 +289,7 @@ enum {
   NSIGNALS
 };
 
-static gint gsm_client_signals[NSIGNALS];
+static guint gsm_client_signals[NSIGNALS];
 static void client_reasons (GsmClient* client, gboolean confirm, 
 			    GSList* reasons);
 
@@ -374,8 +374,7 @@ GtkTypeInfo gsm_client_info =
   sizeof (GsmClientClass),
   (GtkClassInitFunc) gsm_client_class_init,
   (GtkObjectInitFunc) gsm_client_object_init,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL, NULL,
   (GtkClassInitFunc) NULL
 };
 
@@ -528,7 +527,7 @@ enum {
   NSIGNALS3
 };
 
-static gint gsm_protocol_signals[NSIGNALS3];
+static guint gsm_protocol_signals[NSIGNALS3];
 
 static void
 gsm_protocol_class_init (GsmProtocolClass *klass)
@@ -567,8 +566,8 @@ GtkTypeInfo gsm_protocol_info =
   sizeof (GsmProtocolClass),
   (GtkClassInitFunc) gsm_protocol_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 

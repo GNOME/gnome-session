@@ -34,7 +34,7 @@ static const struct poptOption options[] = {
   {NULL, '\0', 0, NULL, 0}
 };
 
-static exit_status = 0;
+static int exit_status = 0;
 
 static void
 save_complete (GnomeClient* client, gpointer data)

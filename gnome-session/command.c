@@ -36,7 +36,7 @@ typedef enum
 {
   COMMAND_ACTIVE = 0,
   COMMAND_HANDLE_WARNINGS,
-  COMMAND_INACTIVE,
+  COMMAND_INACTIVE
 } CommandState;
 
 /* Data maintained for clients that speak the _GSM_Command protocol: */

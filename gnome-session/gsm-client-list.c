@@ -57,7 +57,7 @@ enum {
   NSIGNALS
 };
 
-static gint gsm_client_list_signals[NSIGNALS];
+static guint gsm_client_list_signals[NSIGNALS];
 static GtkCListClass *parent_class = NULL;
 
 static void
@@ -99,15 +99,15 @@ gsm_client_list_class_init (GsmClientListClass *klass)
   object_class->destroy = gsm_client_list_destroy;
 }
 
-GtkTypeInfo gsm_client_list_info = 
+static GtkTypeInfo gsm_client_list_info = 
 {
   "GsmClientList",
   sizeof (GsmClientList),
   sizeof (GsmClientListClass),
   (GtkClassInitFunc) gsm_client_list_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 

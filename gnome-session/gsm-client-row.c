@@ -95,15 +95,15 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
   object_class->destroy = gsm_client_row_destroy;
 }
 
-GtkTypeInfo gsm_client_row_info = 
+static GtkTypeInfo gsm_client_row_info = 
 {
   "GsmClientRow",
   sizeof (GsmClientRow),
   sizeof (GsmClientRowClass),
   (GtkClassInitFunc) gsm_client_row_class_init,
   (GtkObjectInitFunc) NULL,
-  (GtkArgSetFunc) NULL,
-  (GtkArgGetFunc) NULL,
+  NULL,
+  NULL,
   (GtkClassInitFunc) NULL
 };
 

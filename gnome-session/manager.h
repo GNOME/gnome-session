@@ -143,7 +143,7 @@ extern gboolean trashing;
 extern gboolean failsafe;
 
 /* Vector of sockets we are listening on, and size of vector.  */
-extern guint num_sockets;
+extern gint num_sockets;
 extern IceListenObj *sockets;
 
 /* List of auth entries.  */
