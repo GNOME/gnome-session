@@ -47,7 +47,8 @@ static propsave properties[] =
 {
   { SmCurrentDirectory, 0, 0 },
   { SmDiscardCommand, 1, 0 },
-  { SmRestartCommand, 1, 1 }
+  { SmRestartCommand, 1, 1 },
+  { SmEnvironment, 1, 0 }
 };
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
@@ -192,22 +193,42 @@ run_commands (const char *name, int number, const char *command)
   /* Run each command.  */
   for (i = 0; i < number; ++i)
     {
-      int argc;
-      gboolean def;
-      char **argv, *dir, prefix[1024];
+      int argc, envc;
+      gboolean def, envd;
+      char **argv, *dir, prefix[1024], **envv, **envp;
 
       sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
       dir = gnome_config_get_string (prefix);
       sprintf (prefix, "session/%s/%d,%s=", name, i, command);
       gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
+      sprintf (prefix, "session/%s/%d,%s=", name, i, SmEnvironment);
+      gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
+      if (envd)
+	envp = NULL;
+      else
+	{
+	  char **newenv = (char **) malloc ((envc / 2 + 2) * sizeof (char *));
+	  int i;
+
+	  for (i = 0; i < envc / 2; ++i)
+	    newenv[i] = g_copy_strings (envv[2 * i], "=", envv[2 * i + 1],
+					NULL);
+	  newenv[i] = NULL;
+	  free_vector (envc, envv);
+	  envc = i;
+	  envv = newenv;
+	  envp = newenv;
+	}
+
       if (! def)
 	{
-	  gnome_execute_async (dir, argc, argv);
+	  gnome_execute_async_with_env (dir, argc, argv, envc, envp);
 	  result = 1;
 	}
 
       free_vector (argc, argv);
+      free_vector (envc, envv);
       if (dir)
 	free (dir);
     }

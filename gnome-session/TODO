@@ -27,6 +27,9 @@ This is still a work in progress.  Here's my plan of attack:
   I'm tentatively planning to do the UI in Guile, so that different
   personalities can easily be tacked on.
 
+* Save and restore more of the standard properties.
+  CurrentDirectory at least is useful
+
 * Write code to use timeouts in useful places.
   A session save shouldn't hang because of one losing client.
   [ This is complicated if we have managers which are also clients.

@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
 #include <signal.h>
+#include <stdlib.h>
 
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
@@ -74,6 +75,8 @@ ignore (int sig)
 int
 main (int argc, char *argv[])
 {
+  char *ep;
+
   argp_program_version = VERSION;
 
   /* Initialize the i18n stuff */
@@ -85,6 +88,11 @@ main (int argc, char *argv[])
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
   gnome_client_disable_master_connection ();
   gnome_init ("gnome-session", &parser, argc, argv, 0, NULL);
+
+  /* Make sure children see the right value for DISPLAY.  This is
+     useful if --display was specified on the command line.  */
+  ep = g_copy_strings ("DISPLAY=", gdk_get_display (), NULL);
+  putenv (ep);
 
   ignore (SIGPIPE);
   read_session (session);
