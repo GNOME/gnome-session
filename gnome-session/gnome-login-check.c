@@ -233,6 +233,9 @@ main (int argc, char **argv)
 	GtkWidget *pixmap = NULL;
 	gchar *msg, *s;
 
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+ 	textdomain (PACKAGE);
+
 	gnome_init ("gnome-login-check", "0.1", argc, argv);
 
 	gdk_window_get_pointer (GDK_ROOT_PARENT(), NULL, NULL, &state);
