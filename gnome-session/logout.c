@@ -270,32 +270,6 @@ hide_fadeout_windows (void)
   fadeout_windows = NULL;
 }
 
-/* FIXME:
- * 	Hackaround for Pango opening a separate display
- * connection and doing a server grab while we have a grab
- * on the primary display connection. This forces Pango
- * to go ahead and do its font cache before we try to
- * grab the server.
- *
- * c/f metacity/src/ui.c:meta_ui_init()
- */
-static void
-force_pango_cache_init ()
-{
-	PangoFontMetrics     *metrics;
-	PangoLanguage        *lang;
-	PangoContext         *context;
-	PangoFontDescription *font_desc;
-
-	context = gdk_pango_context_get ();
-	lang = gtk_get_default_language ();
-	font_desc = pango_font_description_from_string ("Sans 12");
-	metrics = pango_context_get_metrics (context, font_desc, lang);
-
-	pango_font_metrics_unref (metrics);
-	pango_font_description_free (font_desc);
-}
-
 static GtkWidget *
 make_title_label (const char *text)
 {
@@ -352,22 +326,34 @@ display_gui (void)
 
   gtk_widget_show (invisible);
 
-  while (1)
+  a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (invisible));
+
+  /* Only create a managed window if a11y is enabled */
+  if (!a11y_enabled)
     {
-      if (gdk_pointer_grab (invisible->window, FALSE, 0,
-			    NULL, NULL, GDK_CURRENT_TIME) == Success)
+      while (1)
 	{
-	  if (gdk_keyboard_grab (invisible->window, FALSE, GDK_CURRENT_TIME)
-	      == Success)
-	    break;
-	  gdk_pointer_ungrab (GDK_CURRENT_TIME);
+	  if (gdk_pointer_grab (invisible->window, FALSE, 0,
+				NULL, NULL, GDK_CURRENT_TIME) == Success)
+	    {
+	      if (gdk_keyboard_grab (invisible->window, FALSE, GDK_CURRENT_TIME)
+		  == Success)
+		break;
+	      gdk_pointer_ungrab (GDK_CURRENT_TIME);
+	    }
+	  sleep (1);
 	}
-      sleep (1);
+
+      box = g_object_new (GTK_TYPE_DIALOG,
+			  "type", GTK_WINDOW_POPUP,
+			  NULL);
+    }
+  else
+    {
+      box = gtk_dialog_new ();
+      gtk_window_set_decorated (GTK_WINDOW (box), FALSE);
     }
 
-  force_pango_cache_init ();
-
-  box = gtk_dialog_new ();
   gtk_dialog_set_has_separator (GTK_DIALOG (box), FALSE);
 
   vbox = gtk_vbox_new (FALSE, 12);
@@ -389,22 +375,9 @@ display_gui (void)
   gtk_misc_set_alignment (GTK_MISC (title), 0, 0.5);
   gtk_widget_show (title);
   
-  a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (box));
-
-  /* Grabbing the Xserver when accessibility is enabled will cause
-   * a hang. See #93103 for details.
-   */
-  if (!a11y_enabled)
-    {
-      XGrabServer (GDK_DISPLAY ());
-      gsm_foreach_screen (fadeout_screen);
-    }
-
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_OK, GTK_RESPONSE_OK);
-
-  g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
   gtk_window_set_screen (GTK_WINDOW (box), screen);
@@ -473,16 +446,28 @@ display_gui (void)
 
   gsm_center_window_on_screen (GTK_WINDOW (box), screen, monitor);
 
+  /* Grabbing the Xserver when accessibility is enabled will cause
+   * a hang. See #93103 for details.
+   */
+  if (!a11y_enabled)
+    {
+      XGrabServer (GDK_DISPLAY ());
+      gsm_foreach_screen (fadeout_screen);
+    }
+
   gtk_widget_show_all (box);
 
-  /* Move the grabs to our message box */
-  gdk_pointer_grab (box->window, TRUE, 0,
-		    NULL, NULL, GDK_CURRENT_TIME);
-  gdk_keyboard_grab (box->window, FALSE, GDK_CURRENT_TIME);
-  XSetInputFocus (GDK_DISPLAY (),
-		  GDK_WINDOW_XWINDOW (box->window),
-		  RevertToParent,
-		  CurrentTime);
+  if (!a11y_enabled)
+    {
+      /* Move the grabs to our message box */
+      gdk_pointer_grab (box->window, TRUE, 0,
+			NULL, NULL, GDK_CURRENT_TIME);
+      gdk_keyboard_grab (box->window, FALSE, GDK_CURRENT_TIME);
+      XSetInputFocus (GDK_DISPLAY (),
+		      GDK_WINDOW_XWINDOW (box->window),
+		      RevertToParent,
+		      CurrentTime);
+    }
 
   response = gtk_dialog_run (GTK_DIALOG (box));
 
@@ -496,17 +481,18 @@ display_gui (void)
     save_active = GTK_TOGGLE_BUTTON (toggle_button)->active;
 
   gtk_widget_destroy (box);
+  gtk_widget_destroy (invisible);
 
   if (!a11y_enabled)
     {
       hide_fadeout_windows ();
       XUngrabServer (GDK_DISPLAY ());
+
+      gdk_pointer_ungrab (GDK_CURRENT_TIME);
+      gdk_keyboard_ungrab (GDK_CURRENT_TIME);
+
+      gdk_flush ();
     }
-
-  gdk_pointer_ungrab (GDK_CURRENT_TIME);
-  gdk_keyboard_ungrab (GDK_CURRENT_TIME);
-
-  gdk_flush ();
 
   switch (response) {
     case GTK_RESPONSE_OK:

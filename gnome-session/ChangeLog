@@ -1,3 +1,21 @@
+2004-01-14  Mark McLoughlin  <mark@skynet.ie>
+
+	Fix logout freezing reported in bug #129402. Also, make
+	the logout window WM managed if a11y is enabled, see
+	bug #122737.
+
+	* logout.c:
+	(force_pango_cache_init): kill, we're not using the
+	pangox backend anymore.
+	(display_gui): Don't grab the keyboard or mouse if
+	a11y is enabled. Also, only create a override_redirect
+	window if a11y is disabled. Don't try and set the
+	GtkWindow's "type" property after construction as gtk+
+	2.3 doesn't allow this anymore. Delay grabbing the
+	Xserver as long as possible. Don't leak the invisible
+	window.
+	
+
 2003-12-18  Calum Benson  <calum.benson@sun.com>
 
 	* session-properties.c: (create_table):
