@@ -1,11 +1,7 @@
 ## Process this file with automake to produce Makefile.in.
 
 INCLUDES = 			\
-	-I../.. 		\
-	-I$(srcdir)/../.. 	\
-	-I$(includedir)		\
-	-I$(top_srcdir)/intl	\
-	$(X_CFLAGS)
+	-I$(includedir)
 
 LDADD = \
 	@LEXLIB@					\
