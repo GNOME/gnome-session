@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "POT-Creation-Date: 2003-01-08 12:34+0300\n"
-"PO-Revision-Date: 2003-01-08 16:00+0400\n"
+"PO-Revision-Date: 2003-01-18 13:58+0300\n"
 "Last-Translator: Dmitry G. Mastrukov <dmitry@taurussoft.org>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -166,17 +166,17 @@ msgstr "Состояние не установлено в течении тай�
 # gnome-session/gsm-client-row.c:50
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
-msgstr "Обычная"
+msgstr "обычная"
 
 # gnome-session/gsm-client-row.c:51
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Не зависят от выхода из системы, но могут умереть."
+msgstr "Не зависят от выхода из сеанса, но могут умереть."
 
 # gnome-session/session-properties.c:173
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr "Перезапускаемая"
+msgstr "перезапускаемая"
 
 # gnome-session/gsm-client-row.c:54
 #: gnome-session/gsm-client-row.c:54
@@ -186,22 +186,22 @@ msgstr "Никогда не позволять умирать."
 # gnome-session/gsm-client-row.c:56
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Удалённая"
+msgstr "удалённая"
 
 # gnome-session/gsm-client-row.c:57
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Закрываются при выходе и могут умереть."
+msgstr "Закрываются при выходе из сеанса и могут умереть."
 
 # gnome-session/gsm-client-row.c:59
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Настроечная"
+msgstr "настроечная"
 
 # gnome-session/gsm-client-row.c:60
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Всегда запускается при каждой регистрации."
+msgstr "Всегда запускается при начале сеанса."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -244,7 +244,7 @@ msgstr ""
 "\n"
 "\n"
 "Среда Гном попробует перезапустить демон установок в следующий раз при "
-"регистрации."
+"начале сеанса."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -256,7 +256,7 @@ msgstr "Демон установок перезапускался слишко�
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
-msgstr "Вы уверены, что хотите завершить работу"
+msgstr "Вы уверены, что хотите завершить сеанс"
 
 # gnome-session/logout.c:246
 #: gnome-session/logout.c:298
@@ -271,7 +271,7 @@ msgstr "Команда"
 # gnome-session/logout.c:274
 #: gnome-session/logout.c:326
 msgid "_Log Out"
-msgstr "_Завершить работу"
+msgstr "_Завершить сеанс"
 
 # gnome-session/logout.c:277
 #: gnome-session/logout.c:329
@@ -323,7 +323,7 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr "Зарегестрироваться любым путём"
+msgstr "Начать сеанс любым путём"
 
 # gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
 #: gnome-session/main.c:220
@@ -435,12 +435,12 @@ msgstr "Сеансы"
 # gnome-session/session-properties-capplet.c:227
 #: gnome-session/session-properties-capplet.c:229
 msgid "Show splash screen on _login"
-msgstr "Показывать заставку при ре_гистрации"
+msgstr "Показывать заставку при на_чале сеанса"
 
 # gnome-session/session-properties-capplet.c:243
 #: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
-msgstr "Показывать пред_упреждение при выходе из системы"
+msgstr "Показывать пред_упреждение при завершении сеанса"
 
 # gnome-session/session-properties-capplet.c:259
 #: gnome-session/session-properties-capplet.c:251
@@ -497,7 +497,7 @@ msgstr "Инициализировать установки сеанса"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr "Настроить ваш сеанс"
+msgstr "Диалог настроек сеанса"
 
 # gnome-session/splash.c:62 gnome-session/splash.c:63
 #: gnome-session/splash-widget.c:42
@@ -558,219 +558,3 @@ msgstr "Добавить программу, запускаемую при ст�
 #: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Изменить программу, запускаемую при старте"
-
-# gnome-session/session-properties-capplet.c:360
-# gnome-session/startup-programs.c:298
-#~ msgid "Priority"
-#~ msgstr "Приоритет"
-
-# gnome-session/splash.c:59
-#~ msgid "Audio Settings"
-#~ msgstr "Установки звука"
-
-# gnome-session/splash.c:60 gnome-session/splash.c:61
-#~ msgid "Screensaver"
-#~ msgstr "Хранитель экрана"
-
-# gnome-session/splash.c:65
-#~ msgid "Background Settings"
-#~ msgstr "Установки фона"
-
-# gnome-session/splash.c:67
-#~ msgid "Mouse Settings"
-#~ msgstr "Установки мыши"
-
-# gnome-session/splash.c:68
-#~ msgid "Keyboard Settings"
-#~ msgstr "Установки клавиатуры"
-
-# gnome-session/splash.c:293
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "Запуск среды GNOME: %s"
-
-# gnome-session/splash.c:295
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Запуск среды GNOME: сделано"
-
-# gnome-session/splash.c:439
-#~ msgid "GNOME"
-#~ msgstr "Среда GNOME"
-
-# gnome-session/splash.c:461
-#~ msgid "Starting GNOME"
-#~ msgstr "Запуск среды GNOME"
-
-# gnome-session/session-properties-capplet.c:360
-# gnome-session/startup-programs.c:298
-#~ msgid "_Priority:"
-#~ msgstr "П_риоритет:"
-
-# gnome-session/gsm-client-row.c:53
-#~ msgid "Respawn"
-#~ msgstr "Возобновляемая"
-
-# gnome-session/session-properties-capplet.c:191
-#~ msgid "Session properties"
-#~ msgstr "Настройки сеанса"
-
-# gnome-session/session-properties-capplet.c:217
-#~ msgid "Options"
-#~ msgstr "Параметры"
-
-#~ msgid "<i>These changes take effect immediately</i>"
-#~ msgstr "<i>Эти изменения вступят в силу немедленно</i>"
-
-# gnome-session/session-properties-capplet.c:273
-#~ msgid "Choose Current Session"
-#~ msgstr "Выбрать текущий сеанс"
-
-# gnome-session/session-properties-capplet.c:299
-# gnome-session/session-properties-capplet.c:371
-#~ msgid "Add..."
-#~ msgstr "Добавить..."
-
-# gnome-session/session-properties-capplet.c:307
-# gnome-session/session-properties-capplet.c:381
-#~ msgid "Delete"
-#~ msgstr "Удалить"
-
-# gnome-session/session-properties-capplet.c:343
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Не управляемые сеансом программы, запускаемые при старте"
-
-# gnome-session/session-properties.desktop.in.h:1
-#~ msgid "Session Properties & Startup Programs"
-#~ msgstr "Настройки сеанса и запускаемые при старте программы"
-
-# gnome-session/startup-programs.c:313
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Программы с меньшими значениями запускаются раньше программ с большими. "
-#~ "Установленное по умолчанию значение подойдёт в большинстве случаев."
-
-# gnome-session/gnome-login-check.c:130
-#~ msgid "GNOME Login"
-#~ msgstr "Регистрация в среде GNOME"
-
-# gnome-session/gnome-login-check.c:130
-#~ msgid "Log In"
-#~ msgstr "Регистрация"
-
-# gnome-session/gnome-login-check.c:157
-#~ msgid "Start with default programs"
-#~ msgstr "Запуск программ по умолчанию"
-
-# gnome-session/gnome-login-check.c:161
-#~ msgid "Reset all user settings"
-#~ msgstr "Сбросить все установки пользователя"
-
-# gnome-session/gnome-login-check.c:172
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "Сбросить все установки пользователя среды GNOME для %s?"
-
-#~ msgid "No"
-#~ msgstr "Нет"
-
-# gnome-session/gnome-login-check.c:204
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "Каталог /tmp/orbit-%s не принадлежит\n"
-#~ "текущему пользователю %s.\n"
-#~ "Исправьте права владения для этого каталога."
-
-# gnome-session/logout.c:231
-#~ msgid "Really log out?"
-#~ msgstr "Завершить работу?"
-
-# gnome-session/logout.c:280
-#~ msgid "Reboot"
-#~ msgstr "Перезагрузить"
-
-# gnome-session/session-properties.c:331
-#~ msgid "Session Chooser"
-#~ msgstr "Выбор сеанса"
-
-# gnome-session/session-properties.c:334
-#~ msgid "Start Session"
-#~ msgstr "Начать сеанс"
-
-# gnome-session/session-properties.c:337
-#~ msgid "Cancel Login"
-#~ msgstr "Отменить регистрацию"
-
-# gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
-#~ msgid "Continue"
-#~ msgstr "Продолжить"
-
-# gnome-session/gnome-login-check.c:254
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "Ваша версия libICE содержит ошибку, которая приводит к некорректной\n"
-#~ "работе gnome-session.\n"
-#~ "\n"
-#~ "Если вы используете Solaris, вам либо надо обновить Solaris заплатой \n"
-#~ "#108376-16 или использовать libICE.so.6 из оригинального Solaris 7.\n"
-#~ "Вы можете просто скопировать файл в /usr/openwin/lib. (Спасибо Andy "
-#~ "Reitz\n"
-#~ "за информацию об этой ошибке).\n"
-#~ "\n"
-#~ "Ваш сеанс работы в среде GNOME будет прерван после закрытия этого окна."
-
-# gnome-session/save-session.c:120
-#~ msgid "Could not connect to gnome-session"
-#~ msgstr "Не удалось подключиться к gnome-session"
-
-# gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
-#~ msgid "Session Properties"
-#~ msgstr "Настройки сеанса"
-
-# gnome-session/session.desktop.in.h:1
-#~ msgid "Current session managed programs"
-#~ msgstr ""
-#~ "Управляемые менеджером сеанса программы, запущенные к настоящему моменту"
-
-# gnome-session/splash.c:64
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Диспетчер окон Enlightenment"
-
-# gnome-session/splash.c:66
-#~ msgid "Keyboard Bell"
-#~ msgstr "Установки гудка клавиатуры"
-
-# gnome-session/splash.c:72
-#~ msgid "Desktop"
-#~ msgstr "Рабочий стол"
-
-# gnome-session/session-properties.c:101
-#~ msgid "Remove"
-#~ msgstr "Убрать"
-
-# gnome-session/session-properties.c:170
-#~ msgid "Try"
-#~ msgstr "Попробовать"
-
-# gnome-session/session-properties.c:176
-#~ msgid "OK"
-#~ msgstr "OK"
-
-# gnome-session/session-properties.c:179
-#~ msgid "Cancel"
-#~ msgstr "Отменить"
-
-# gnome-session/session-properties.c:182
-#~ msgid "Help"
-#~ msgstr "Справка"
