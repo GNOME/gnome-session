@@ -70,7 +70,8 @@ logout_test_SOURCES =		\
 	util.c			\
 	util.h			\
 	gsm-multiscreen.c	\
-	gsm-multiscreen.h
+	gsm-multiscreen.h	\
+	$(EGGFILES)
 
 gnome_session_SOURCES =		\
 	manager.c		\
