@@ -146,7 +146,7 @@ EXTRA_DIST =			\
 
 marshal_sources = gsm-marshal.c gsm-marshal.h
 
-gsm-protocol.c: $(marshal_sources)
+$(top_srcdir)/gsm/gsm-protocol.c: $(marshal_sources)
 
 gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=gsm_marshal > $@
