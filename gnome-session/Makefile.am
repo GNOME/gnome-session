@@ -6,11 +6,10 @@ defaultdir = $(datadir)/gnome
 
 INCLUDES = \
 	$(GNOME_SESSION_CFLAGS)				\
-	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
-LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS) $(INTLLIBS)
+LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 
 sysdir = $(datadir)/applications
 
