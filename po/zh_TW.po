@@ -1,5 +1,5 @@
-# traditional chinese translation of gnome-session
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# traditional Chinese translation of gnome-session.
+# Copyright (C) 1999, 2000, 01, 02, 03 Free Software Foundation, Inc.
 #
 # gnome-core:
 # Yuan-Chung Cheng <platin@linux.org.tw>, 1999.
@@ -12,9 +12,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.2.0.1\n"
-"POT-Creation-Date: 2003-05-15 11:28+0100\n"
-"PO-Revision-Date: 2003-01-24 00:09+0800\n"
+"Project-Id-Version: gnome-session 2.2.2\n"
+"POT-Creation-Date: 2003-05-17 00:15+0800\n"
+"PO-Revision-Date: 2003-05-17 00:11+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr "允許使用 TCP 連線"
+msgstr "可接受 TCP 連線"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -32,21 +32,21 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"因安全理由，在支援 _IceTcpTransNoListen() 的平台 (XFree86 系統)，gnome-"
-"session 不會接受 TCP 連線。使用本選項後即可接受(獲授權的)遠端主機連線。gnome-"
-"session 必須重新啟動方可令本選項生效。"
+"因安全理由，在支援 _IceTcpTransNoListen() 的平台中 (XFree86 系統)，gnome-"
+"session 不會接受 TCP 連線。使用本選項後即可接受 (獲授權的) 遠端主機連線。"
+"gnome-session 必須重新啟動方可令本選項生效。"
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "如選用本選項，gnome-session 會在終止作業階段前先提示使用者。"
+msgstr "如選用本選項，gnome-session 會在作業階段終止前先提示使用者。"
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"如選用本選項，gnome-session 會自動儲存作業階段，否則登出時對話窗會出現有關儲"
-"存作業階段的選項。"
+"如選用本選項，gnome-session 會自動儲存作業階段，否則在登出時，對話方塊會提供"
+"選項，讓您選擇是否儲存作業階段。"
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -218,7 +218,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"下次登入時，GNOME 仍然會嘗試重新啟動設定伺服程式。"
+"下次登入時，GNOME 仍然會嘗試重新啟動「設定伺服程式」。"
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -226,7 +226,7 @@ msgstr "出現不明的啟動錯誤。"
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "設定伺服程式重新啟動的次數太多。"
+msgstr "「設定伺服程式」重新啟動的次數太多。"
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
@@ -258,7 +258,7 @@ msgstr "指定準備載入的作業階段名稱"
 
 #: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
-msgstr "只從預設作業階段檔案 (default.session) 中讀取已儲存的作業階段"
+msgstr "只從預設的作業階段檔案 (default.session) 中讀取已儲存的作業階段"
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
@@ -280,8 +280,8 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"無法查詢 %s 的網路位址。\n"
-"這會使 GNOME 無法正常運作。\n"
+"找不到 %s 的網路位址。\n"
+"這會妨礙 GNOME 的正常運作。\n"
 "將 %s 加入 /etc/hosts\n"
 "可能可以避免此問題出現。"
 
@@ -328,11 +328,11 @@ msgstr "強行中止作業階段"
 
 #: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
-msgstr "使用對話窗"
+msgstr "使用對話方塊"
 
 #: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
-msgstr "無法連接作業階段管理程式"
+msgstr "無法連接作業階段總管"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -348,7 +348,7 @@ msgstr "作業階段名稱不能留空"
 
 #: gnome-session/session-names.c:149
 msgid "The session name already exists"
-msgstr "此作業階段名稱已經存在"
+msgstr "該作業階段名稱已經存在"
 
 #: gnome-session/session-names.c:185
 msgid "Add a new session"
@@ -381,7 +381,7 @@ msgstr "登入時顯示啟動畫面(_L)"
 
 #: gnome-session/session-properties-capplet.c:240
 msgid "_Prompt on logout"
-msgstr "登出前先提示(_P)"
+msgstr "登出前提示用戶(_P)"
 
 #: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
@@ -405,7 +405,7 @@ msgstr "目前的作業階段"
 
 #: gnome-session/session-properties-capplet.c:344
 msgid "Additional startup _programs:"
-msgstr "新增初始啟動程式(_P)："
+msgstr "啟動時額外執行以下的程式(_P)："
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
@@ -417,11 +417,11 @@ msgstr "初始啟動程式"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "在作業階段中移除已選取的程式。"
+msgstr "在作業階段中移除選定的程式。"
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "將已更改的設定套用至目前的作業階段"
+msgstr "將更改後的設定套用至目前的作業階段"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
@@ -441,15 +441,15 @@ msgstr "設定作業階段"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
-msgstr "Sawfish 視窗管理程式"
+msgstr "Sawfish 視窗總管"
 
 #: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
-msgstr "Metacity 視窗管理程式"
+msgstr "Metacity 視窗總管"
 
 #: gnome-session/splash-widget.c:44
 msgid "Window Manager"
-msgstr "視窗管理程式"
+msgstr "視窗總管"
 
 #: gnome-session/splash-widget.c:45
 msgid "The Panel"
@@ -457,7 +457,7 @@ msgstr "面板"
 
 #: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
-msgstr "作業階段管理程式代理"
+msgstr "作業階段總管代理"
 
 #: gnome-session/splash-widget.c:47
 msgid "Nautilus"
