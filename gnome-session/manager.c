@@ -242,8 +242,10 @@ check_session_end (int found)
       if (! save_yourself_p2_list)
 	{
 	  /* All clients have responded to the save.  Now shut down or
-	     continue as appropriate.  */
-	  write_session (save_finished_list, anyway_list, shutting_down);
+	     continue as appropriate.  Save the `anyway_list' first,
+	     in hopes of getting initialization commands started
+	     first.  */
+	  write_session (anyway_list, save_finished_list, shutting_down);
 	  saving = 0;
 	  send_message (save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
