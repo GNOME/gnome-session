@@ -351,6 +351,7 @@ display_gui (void)
   else
     {
       box = gtk_dialog_new ();
+      atk_object_set_role (gtk_widget_get_accessible (box), ATK_ROLE_ALERT);
       gtk_window_set_decorated (GTK_WINDOW (box), FALSE);
     }
 
