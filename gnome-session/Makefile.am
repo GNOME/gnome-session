@@ -197,21 +197,20 @@ gsm-typebuiltins.h: @REBUILD@ $(gsm_enum_headers)
 			--eprod "GType @enum_name@_get_type (void);\n" \
 		$(gsm_enum_headers) >  $@
 
-marshal_sources = gsm-marshal.c gsm-marshal.h
-
-$(gnome_session_OBJECTS) $(save_session_OBJECTS) $(session_properties_OBJECTS): $(marshal_sources)
+$(gnome_session_OBJECTS) $(save_session_OBJECTS) $(session_properties_OBJECTS): $(built_sources)
 
 gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=gsm_marshal > $@
 gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --body --prefix=gsm_marshal > $@
 
-BUILT_SOURCES =			\
-	$(marshal_sources)	\
+built_sources =			\
+	gsm-marshal.c		\
+	gsm-marshal.h		\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h
 
-CLEANFILES = $(BUILT_SOURCES)
+CLEANFILES = $(built_sources)
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
