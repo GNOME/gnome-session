@@ -5,36 +5,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.3.2\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-05-20 01:09+0200\n"
+"POT-Creation-Date: 2002-06-23 14:58+0200\n"
+"PO-Revision-Date: 2002-06-23 15:04+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
-msgstr "GNOME login"
+msgstr "GNOME - logg inn"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Login"
+#: gnome-session/gnome-login-check.c:152
+msgid "Log In"
+msgstr "Logg inn"
 
-#: gnome-session/gnome-login-check.c:148
+#: gnome-session/gnome-login-check.c:183
 msgid "Start with default programs"
 msgstr "Start med forvalgte programmer"
 
-#: gnome-session/gnome-login-check.c:152
+#: gnome-session/gnome-login-check.c:187
 msgid "Reset all user settings"
 msgstr "Nullstill alle brukerinstillinger"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr "Virkelig nullstille alle GNOME brukerinstillinger for %s?"
 
-#: gnome-session/gnome-login-check.c:195
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "Nei"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "Nullstill alle instillinger"
+
+#: gnome-session/gnome-login-check.c:236
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -45,15 +53,15 @@ msgstr ""
 "aktiv bruker, %s.\n"
 "Vennligst korriger eierskapet på denne katalogen."
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "Logg inn likevel"
+
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
 msgstr "Prøv igjen"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Fortsett"
-
-#: gnome-session/gnome-login-check.c:219
+#: gnome-session/gnome-login-check.c:258
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -65,28 +73,6 @@ msgstr ""
 "Dette vil hindre GNOME i å virke ordentlig.\n"
 "Det er mulig å rette opp problemet ved å legge\n"
 "til %s i filen /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Din versjon av libICE har en feil som forårsaker at gnome-session\n"
-"ikke fungerer riktig.\n"
-"\n"
-"Hvis du bruker Solaris, bør du enten oppgradere til Solaris patch\n"
-"#108376-16 eller bruke libICE.so.6 fra den originale Solaris 7. \n"
-"Kopier filen til /usr/openwin/lib. (Takk til Andy Reitz\n"
-"for informasjon om denne feilen).\n"
-"\n"
-"Din GNOME-sesjon vil avsluttes når denne dialogen lukkes."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -192,6 +178,48 @@ msgstr "Innstillinger"
 msgid "Always started on every login."
 msgstr "Startes ved hvert login."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Det oppsto en feil under oppstart av programmet som styrer innstillinger for GNOME.\n"
+"\n"
+"Enkelte ting, som tema, lyder eller innstillinger for bakgrunn vil kanskje ikke fungere riktig."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr "\n\nDen siste feilmeldingen var:\n\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr "\n\nGNOME vil likevel prøve å starte innstillingsdaemonen neste gang du logger inn."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Det oppsto en ukjent aktiveringsfeil."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Innstillingsdaemonen startet på nytt for mange ganger."
+
 #: gnome-session/logout.c:225
 msgid "Really log out?"
 msgstr "Virkelig logge ut?"
@@ -216,24 +244,24 @@ msgstr "Steng ned"
 msgid "Reboot"
 msgstr "Start om"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
 msgstr "Spesifiserer et sesjonsnavn som skal startes"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Kun skrivebeskyttede sesjoner fra default.session filen"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal svare (0=uendelig)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal dø (0=uendelig)"
 
@@ -321,7 +349,7 @@ msgstr "Alternativer"
 
 #: gnome-session/session-properties-capplet.c:209
 msgid "Show splash screen on login"
-msgstr "Vis \"splash\"-skjerm ved pålogging"
+msgstr "Vis oppstartskjerm ved pålogging"
 
 #: gnome-session/session-properties-capplet.c:220
 msgid "Prompt on logout"
@@ -386,32 +414,15 @@ msgstr "Oppstartsprogrammer"
 msgid "Current Session"
 msgstr "Aktiv sesjon"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "Fjern valgt klient fra sesjonen."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Liste over programmer i sesjonen."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Sesjon"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sesjonsvelger"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Start sesjon"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Avbryt innlogging"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Initialiser innstillinger for sesjon"
 
@@ -457,7 +468,7 @@ msgstr "Panelet"
 
 #: gnome-session/splash.c:68
 msgid "Session Manager Proxy"
-msgstr "Sesjonshåndterer proxy"
+msgstr "Proxy for sesjonshåndterer"
 
 #: gnome-session/splash.c:69
 msgid "Nautilus"
@@ -503,6 +514,3 @@ msgstr "Legg til oppstartsprogram"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
-
-#~ msgid "_Log Out"
-#~ msgstr "_Logg ut"
