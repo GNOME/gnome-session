@@ -199,8 +199,12 @@ EXTRA_DIST =			\
 gsm_enum_headers =					\
 	$(top_srcdir)/gnome-session/gsm-protocol.h
 
+BUILT_SOURCES = \
+  gsm-typebuiltins.c gsm-typebuiltins.h gsm-marshal.c gsm-marshal.h
+
 gsm-typebuiltins.c: @REBUILD@ $(gsm_enum_headers)
-	glib-mkenums    --fhead "#include <glib-object.h>\n" \
+	(cd $(srcdir) \
+	&&glib-mkenums  --fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gsm-typebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--fprod "\n#include \"@filename@\"\n" \
@@ -212,10 +216,15 @@ gsm-typebuiltins.c: @REBUILD@ $(gsm_enum_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-		$(gsm_enum_headers) > $@
+		$(gsm_enum_headers) ) > xgen-gtc \
+	&& cp xgen-gtc $(@F) \
+	&& rm -f xgen-gtc
 
-gsm-typebuiltins.h: @REBUILD@ $(gsm_enum_headers)
-	glib-mkenums    --fhead "#ifndef __GSM_TYPEBUILTINS_H__\n" \
+gsm-typebuiltins.h: stamp-gsm-typebuiltins.h
+	@true
+stamp-gsm-typebuiltins.h: @REBUILD@ $(gsm_enum_headers)
+	(cd $(srcdir) \
+	&& glib-mkenums --fhead "#ifndef __GSM_TYPEBUILTINS_H__\n" \
 			--fhead "#define __GSM_TYPEBUILTINS_H__ 1\n\n" \
 			--fhead "G_BEGIN_DECLS\n\n" \
 			--ftail "G_END_DECLS\n\n" \
@@ -223,25 +232,35 @@ gsm-typebuiltins.h: @REBUILD@ $(gsm_enum_headers)
 			--fprod "\n/* --- @filename@ --- */" \
 			--eprod "#define GSM_TYPE_@ENUMNAME@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
-		$(gsm_enum_headers) >  $@
+		$(gsm_enum_headers) ) > xgen-gth \
+	&& (cmp -s xgen-gth gsm-typebuiltins.h || cp xgen-gth gsm-typebuiltins.h) \
+	&& rm -f xgen-gth \
+	&& echo timestamp > $(@F)
 
-$(gnome_session_OBJECTS) $(save_session_OBJECTS) $(session_properties_OBJECTS): $(built_sources)
+gsm-marshal.h: stamp-gsm-marshal.h
+	@true
+stamp-gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
+	$(GLIB_GENMARSHAL) $(srcdir)/gsm-marshal.list --header --prefix=gsm_marshal > xgen-gmh \
+	&& (cmp -s xgen-gmh gsm-marshal.h || cp xgen-gmh gsm-marshal.h) \
+	&& rm -f xgen-gmh \
+	&& echo timestamp > $(@F)
 
-gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --header --prefix=gsm_marshal > $@
 gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
-	$(GLIB_GENMARSHAL) $< --body --prefix=gsm_marshal > $@
+	$(GLIB_GENMARSHAL) $(srcdir)/gsm-marshal.list --body --prefix=gsm_marshal > xgen-gmc \
+	&& cp xgen-gmc $@ \
+	&& rm -f xgen-gmc
 
-built_sources =			\
-	gsm-marshal.c		\
-	gsm-marshal.h		\
-	gsm-typebuiltins.c	\
-	gsm-typebuiltins.h
+MAINTAINERCLEANFILES = stamp-gsm-typebuiltins.h stamp-gsm-marshal.h \
+  $(BUILT_SOURCES)
+CLEANFILES = xgen-gtc xgen-gth xgen-gmc xgen-gmh \
+  default.wm default.session gnome-session.schemas session-properties.desktop
 
-CLEANFILES = $(built_sources)
-
-dist-hook:
-	cd $(distdir) ; rm -f $(CLEANFILES)
+# if srcdir!=builddir, clean out maintainer-clean files from builddir
+# this allows dist to pass.
+distclean-local:
+	if test $(srcdir) != .; then \
+	  rm -f $(MAINTAINERCLEANFILES); \
+	fi
 
 EGGDIR = $(srcdir)/../../libegg/libegg/screen-exec
 
