@@ -1,8 +1,6 @@
+# translation of el.po to Greek
 # gnome-session Greek PO file.
 # Copyright (C) 1999, 2000, 2001, 2002, 2003 Free Software Foundation, Inc.
-# Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 1999.
-# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002,
-# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
 #
 # Comment: Most of the work done by Spiros (around 600 messages).
 # Comment: Simos/Sarantis did 12%.
@@ -22,18 +20,23 @@
 # simos: 96 messages, 19Aug2992, compelte translation.
 # kostas: 10Dec2002, updated translation for Gnome 2.1x
 # kostas: 26Jan2003, one more update.
+# kostas:03Aug2003, updated translation for Gnome2.4
+# Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 1999.
+# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002,
+# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
+# Kostas Papadimas <pkst@gmx.net>, 2003
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.5\n"
-"POT-Creation-Date: 2003-07-15 16:54+0100\n"
-"PO-Revision-Date: 2003-01-26 12:29+0200\n"
+"Project-Id-Version: el\n"
+"POT-Creation-Date: 2003-08-03 18:00+0300\n"
+"PO-Revision-Date: 2003-08-03 18:02+0300\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"X-Generator: KBabel 1.0\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
@@ -112,7 +115,7 @@ msgid "_Style:"
 msgstr "_Στυλ:"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:387
+#: gnome-session/session-properties-capplet.c:392
 msgid "Order"
 msgstr "Σειρά"
 
@@ -250,29 +253,27 @@ msgstr "Υπήρξε ένα άγνωστο σφάλμα ενεργοποίηση
 msgid "The Settings Daemon restarted too many times."
 msgstr "Η Υπηρεσία Ρυθμίσεων επανεκκινήθηκε πάρα πολλές φορές."
 
-#: gnome-session/logout.c:386
+#: gnome-session/logout.c:387
 msgid "Are you sure you want to log out?"
 msgstr "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:417
 msgid "_Save current setup"
 msgstr "Απο_θήκευση τρεχόντων ρυθμίσεων"
 
-#: gnome-session/logout.c:441
+#: gnome-session/logout.c:442
 msgid "Action"
 msgstr "Κίνηση"
 
-#: gnome-session/logout.c:458
-#, fuzzy
+#: gnome-session/logout.c:459
 msgid "_Log out"
-msgstr "Τερματισμός"
+msgstr "Απο_σύνδεση"
 
-#: gnome-session/logout.c:462
-#, fuzzy
+#: gnome-session/logout.c:463
 msgid "Sh_ut down"
 msgstr "Κ_λείσιμο Συστήματος"
 
-#: gnome-session/logout.c:466
+#: gnome-session/logout.c:467
 msgid "_Restart the computer"
 msgstr "_Επανεκκίνηση του υπολογιστή"
 
@@ -296,7 +297,7 @@ msgstr "Χιλιοστά δευτερολέπτων αναμονής για απ
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Χιλιοστά δευτερολέπτων αναμονής τερματισμού πελατών (0=για πάντα)"
 
-#: gnome-session/main.c:254
+#: gnome-session/main.c:267
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -309,11 +310,11 @@ msgstr ""
 "Το πρόβλημα είναι πιθανό να διορθωθεί με προσθήκη του\n"
 "%s στο αρχείο /etc/hosts."
 
-#: gnome-session/main.c:261
+#: gnome-session/main.c:274
 msgid "Log in Anyway"
 msgstr "Σύνδεση Ούτως ή Άλλως"
 
-#: gnome-session/main.c:262
+#: gnome-session/main.c:275
 msgid "Try Again"
 msgstr "Δοκιμάστε Ξανά"
 
@@ -347,9 +348,8 @@ msgid "A session shutdown is in progress."
 msgstr "Τερματισμός συνεδρίας σε εξέλιξη."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Αποθήκευση αλλαγών στην τρέχουσα συνεδρία"
+msgstr "Ορισμός της τρέχουσας συνεδρίας"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -404,43 +404,43 @@ msgstr ""
 msgid "Sessions"
 msgstr "Συνεδρίες"
 
-#: gnome-session/session-properties-capplet.c:248
+#: gnome-session/session-properties-capplet.c:253
 msgid "Show splash screen on _login"
 msgstr "Εμφάνιση αρχικής οθόνης στη διαδικα_σία της σύνδεσης"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:264
 msgid "_Prompt on logout"
 msgstr "Επιβε_βαίωση για αποσύνδεση"
 
-#: gnome-session/session-properties-capplet.c:270
+#: gnome-session/session-properties-capplet.c:275
 msgid "Automatically save chan_ges to session"
 msgstr "Αυτόματη αποθήκευση αλλα_γών της συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:281
+#: gnome-session/session-properties-capplet.c:286
 msgid "_Sessions:"
 msgstr "_Συνεδρίες"
 
-#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:304
 msgid "Session Name"
 msgstr "Όνομα Συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:350
+#: gnome-session/session-properties-capplet.c:355
 msgid "Session Options"
 msgstr "Επιλογές Συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:359
+#: gnome-session/session-properties-capplet.c:364
 msgid "Current Session"
 msgstr "Τρέχουσα Συνεδρία"
 
-#: gnome-session/session-properties-capplet.c:368
+#: gnome-session/session-properties-capplet.c:373
 msgid "Additional startup _programs:"
 msgstr "Πρόσθετα _προγράμματα εκκίνησης"
 
-#: gnome-session/session-properties-capplet.c:389
+#: gnome-session/session-properties-capplet.c:394
 msgid "Command"
 msgstr "Εντολή"
 
-#: gnome-session/session-properties-capplet.c:421
+#: gnome-session/session-properties-capplet.c:426
 msgid "Startup Programs"
 msgstr "Εκκίνηση Προγραμμάτων"
 
@@ -4055,3 +4055,4 @@ msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 
 #~ msgid "the GNOME menu editor"
 #~ msgstr "Επεξεργαστής μενού του GNOME"
+
