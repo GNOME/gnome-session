@@ -38,6 +38,9 @@
  * save the session */
 gboolean autosave = FALSE;
 
+/* Flag indicating that an independant session save is taking place */
+gboolean session_save = FALSE;
+
 /* Flag indicating the save tick box on logout - user when prompted at 
  * log out as to  whether to save session or not - only applicable if
  * autosave is FALSE */

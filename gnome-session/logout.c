@@ -169,7 +169,19 @@ display_gui (void)
   GtkWidget *halt = NULL;
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
+  GsmProtocol *protocol;
 
+
+  protocol = (GsmProtocol *)gsm_protocol_new (gnome_master_client());
+  if( !protocol) {
+    gchar *string = _("Could not connect to the session manager");
+    g_printerr("%s\n", string);
+    g_free(string);
+  }
+  
+  gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
+
+  
   /* It's really bad here if someone else has the pointer
    * grabbed, so we first grab the pointer and keyboard
    * to an offscreen window, and then once we have the
@@ -287,7 +299,7 @@ display_gui (void)
 	/* We want to know if we should trash changes (and lose forever)
 	 * or save them */
 	if(!autosave)
-		save_selected = !GTK_TOGGLE_BUTTON (toggle_button)->active;
+		save_selected = GTK_TOGGLE_BUTTON (toggle_button)->active;
      if (halt)
 	{
 	  if (GTK_TOGGLE_BUTTON (halt)->active)

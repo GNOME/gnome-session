@@ -1004,22 +1004,21 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 		       gboolean global)
 {
   Client *client = (Client *) data;
-
-  if (save_state != MANAGER_IDLE)
-    {
-      SaveRequest *request = g_new (SaveRequest, 1);
-      request->client = client;
-      request->save_type = save_type;
-      request->shutdown = shutdown;
-      request->interact_style = interact_style;
-      request->fast = fast;
-      request->global = global;
+    if (save_state != MANAGER_IDLE)
+      {
+        SaveRequest *request = g_new (SaveRequest, 1);
+        request->client = client;
+        request->save_type = save_type;
+        request->shutdown = shutdown;
+        request->interact_style = interact_style;
+        request->fast = fast;
+        request->global = global;
       
-      APPEND (save_request_list, request);
-    }
-  else
-    process_save_request (client, save_type, shutdown, 
-			  interact_style, fast, global);
+        APPEND (save_request_list, request);
+      }
+    else
+      process_save_request (client, save_type, shutdown, 
+			    interact_style, fast, global);
 }
 
 static void
@@ -1127,7 +1126,8 @@ update_save_state (void)
 	      REMOVE (purge_drop_list, client);
 	      free_client (client);
 	    }
-	  write_session ();
+          if(autosave || save_selected || session_save)
+	    write_session ();
 
 	  for (list = save_finished_list; list;)
 	    {
@@ -1150,7 +1150,8 @@ update_save_state (void)
 	}
       else
 	{
-	  write_session ();
+          if(autosave || save_selected || session_save)
+	    write_session ();
 
 	  save_state = SENDING_MESSAGES;
 	  send_message (&save_finished_list, SmsSaveComplete);
@@ -1183,8 +1184,8 @@ update_save_state (void)
 
       CONCAT (live_list, save_finished_list);
       save_finished_list = NULL;
-
-      write_session ();
+      if(autosave || save_selected || session_save)
+        write_session ();
 
       save_state = MANAGER_IDLE;
     }
@@ -1548,11 +1549,6 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
       *reasons  = strdup (_("A session shutdown is in progress."));
       return 0;
     }
-  if (save_selected) {
-	save_state = SHUTDOWN;
-	update_save_state();
-	return 1;
-  }
 
   client = (Client*)g_new0 (Client, 1);
   client->priority = DEFAULT_PRIORITY;

@@ -184,4 +184,7 @@
 #define GsmAutoSaveMode		"AutoSaveMode"
 /* Set the autosave mode of the session manager. */
 
+#define GsmSessionSaveMode	"SessionSaveMode"
+/* Set the sessionsave mode of the session manager. */
+
 #endif /* SESSION_H */

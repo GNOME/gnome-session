@@ -87,6 +87,10 @@ void gsm_protocol_get_current_session (GsmProtocol* protocol);
 void gsm_protocol_set_autosave_mode (GsmProtocol *protocol,
 				  gboolean     auto_save);
 
+/* Sets the sessionsave mode for the session manager */
+void gsm_protocol_set_sessionsave_mode (GsmProtocol *protocol,
+				  gboolean     sessionsave);
+
 /* Sets the current session for the session manager */
 void gsm_protocol_set_session_name (GsmProtocol *protocol,
 				  gchar *session_name);

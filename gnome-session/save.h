@@ -53,6 +53,10 @@ gchar* get_current_session(void);
 /* Set the autosave key in the session-options file */
 void set_autosave_mode (gboolean autosave);
 
+/* Set the session_save variable to indicate that an 
+ independant session is being saved */
+void set_sessionsave_mode (gboolean sessionsave);
+
 /* Set the session name key in the session-options file */
 void set_session_name (const gchar *name);
 

@@ -162,6 +162,11 @@ extern guint warn_delay;
  * logout */
 extern gboolean autosave;
 
+/* This is just a temporary variable that is set to true when the user 
+ * manually saves session and set to false otherwise. Dirty hack to avoid
+ * saving on logout */
+extern gboolean session_save;
+
 /* When prompted to save session on logout, this flag indicates to save or 
  * not to save */
 extern gboolean save_selected;

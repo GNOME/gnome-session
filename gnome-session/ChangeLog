@@ -1,3 +1,31 @@
+2001-03-07  Glynn Foster  <glynn.foster@sun.com>
+
+	The following contains some gruesome hacks to not get gnome-session
+        saving all the time. Actually it does carry out the save
+        proccess but only writes to the session file when it should. It
+        seems that this is the quickest hack to get things working 
+        correctly.
+
+	* command.c: (command): Add command for new GsmSessionSaveMode
+	* gsm-protocol.c: (gsm_protocol_set_sessionsave_mode): Added 
+        new function to set up the session save. 
+	* gsm-protocol.h: Added function header
+	* headers.h: Added extern gboolean session_save
+	* logout.c: (display_gui): toggle_button was being reverse 
+        engineered? [remove !]
+	* main.c: Added gboolean session_save
+	* manager.c: (save_yourself_request), (update_save_state),
+	(new_client): So we save all the time - but do we write all
+        the time?
+	* save-session.c: (main): Now sets the value of session_save
+        at the start of the save to TRUE and sets it back to false at
+        the end of the save. This is just a klunky way of making sure 
+        that the session gets saved.
+	* save.c: (set_sessionsave_mode): Added new function. Sets the 
+        session_save variable
+	* save.h: Added function header
+	* session.h: Added GsmSessionSaveMode hash-define.
+
 2001-02-26  Glynn Foster  <glynn.foster@sun.com>
 
 	* command.c: (command): Make sure that call with 

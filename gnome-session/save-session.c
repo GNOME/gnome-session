@@ -125,6 +125,7 @@ main (int argc, char *argv[])
    * We ignore the resulting "last_session" signal.
    */
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
+  gsm_protocol_set_sessionsave_mode (GSM_PROTOCOL (protocol), TRUE);
 	
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
 
@@ -143,7 +144,6 @@ main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (save_complete), NULL);
   gtk_signal_connect (GTK_OBJECT (client), "shutdown_cancelled",
 		      GTK_SIGNAL_FUNC (save_complete), (gpointer)1);
-
   gtk_main ();
 
   if (gui)
@@ -153,6 +153,7 @@ main (int argc, char *argv[])
 				      GNOME_STOCK_BUTTON_OK, NULL);
       gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
     }
+  gsm_protocol_set_sessionsave_mode (GSM_PROTOCOL (protocol), FALSE);
 
   return exit_status;
 }

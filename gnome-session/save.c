@@ -358,6 +358,12 @@ unlock_session (void)
    name may be locked).  
    Returns the name that has been assigned to the session. */
 
+void
+set_sessionsave_mode (gboolean sessionsave)
+{
+      session_save = sessionsave;
+}
+
 void 
 set_autosave_mode (gboolean auto_save_mode)
 {

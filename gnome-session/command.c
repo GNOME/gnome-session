@@ -445,6 +445,10 @@ command (Client* client, int nprops, SmProp** props)
     {
       set_autosave_mode (atoi(prop->vals[1].value) != 0);
     }
+  else if (!strcmp (prop->vals[0].value, GsmSessionSaveMode))
+    {
+      set_sessionsave_mode (atoi(prop->vals[1].value) !=0);
+    }
   else if (arg && !strcmp (prop->vals[0].value, GsmReadSession))
     {
       GSList  *prop_list = NULL;
