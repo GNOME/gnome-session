@@ -20,15 +20,15 @@ This is still a work in progress.  Here's my plan of attack:
   A session save shouldn't hang because of one losing client.
 
 * Export a CORBA interface exposing all interesting functionality
-  (See Elliot's IDL code in components/)
+  (See Elliot's IDL in components/)
 
 * Update exec.c to report errors in some meaningful way
   A dialog is simplest, but a post to the event manager is perhaps best.
 
 * Change session management code into library that can be used
   by embedder apps.  This probably requires merging with
-  gnome-session, since the resulting program will have to be both a
-  client and a server, and the two parts must collude.
+  gnome-client.[ch], since the resulting program will have to be both
+  a client and a server, and the two parts must collude.
 
 
 I don't have a schedule for this work.  Feel free to hack on it if you
