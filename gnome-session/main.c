@@ -257,8 +257,7 @@ main (int argc, char *argv[])
   gnome_login_check ();
 
   err = NULL;
-  g_spawn_command_line_sync ("gconf-sanity-check-2", NULL, NULL, &status,
-                             &err);
+  g_spawn_command_line_sync (GCONF_SANITY_CHECK, NULL, NULL, &status, &err);
   if (err != NULL)
     {
       g_printerr ("Failed to run gconf-sanity-check-2: %s\n",

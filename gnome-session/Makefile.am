@@ -8,6 +8,7 @@ INCLUDES =						\
 	$(STANDARD_PROPERTIES_CFLAGS)			\
 	$(WARN_CFLAGS)					\
 	-DGNOMELOCALEDIR=\""$(prefix)/${DATADIRNAME}/locale\""	\
+	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\"	    \
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\

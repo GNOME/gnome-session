@@ -21,7 +21,7 @@ start_esd (void)
   GError *err = NULL;
   time_t starttime;
 	
-  if (!g_spawn_command_line_async ("esd -nobeeps", &err))
+  if (!g_spawn_command_line_async (ESD_SERVER" -nobeeps", &err))
     {
       g_warning ("Could not start esd: %s\n", err->message);
       g_error_free (err);
