@@ -1,3 +1,17 @@
+2002-04-29  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+	* session-properties-capplet.c: (capplet_build), (apply),
+	(spc_write_state):
+	* session-properties.c: (session_properties_create_page),
+	(session_properties_apply), (dirty_cb):
+	* session-properties.desktop.in:
+	* session.desktop.in:
+
+	Merge the two session-related capplets together in the spirit
+	of the new minimalistic control center. Make current session
+	a tab in the old session-properties-capplet.
+	
 2002-04-24  Tom Tromey <tromey@redhat.com>
 
 	* main.c: don't allow to start 2 instances of gnome-session. Fixes

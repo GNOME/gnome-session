@@ -29,6 +29,8 @@
 #include "gsm-protocol.h"
 #include "gsm-atk.h"
 
+#include "session-properties.h"
+
 GsmProtocol *protocol;
 
 GtkWidget *entry;
@@ -48,8 +50,9 @@ GtkWidget* close_button;
 GtkWidget* apply_button;
 GtkWidget* help_button;
 
+DirtyCallbackFunc parent_dirty_cb;
+
 /* capplet callback prototypes */
-static void apply (void);
 static void help (void);
 
 /* table widget callback prototypes */
@@ -150,68 +153,6 @@ create_table (void)
   gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
   return vbox;
-}
-
-static GtkWidget*
-create_buttons (GtkWidget * table)
-{
-  GtkWidget* frame, *table2;
-  GtkWidget* bbox;
-
-  /* frame */
-  frame = gtk_frame_new (NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-  gtk_container_set_border_width (GTK_CONTAINER (frame), GNOME_PAD_SMALL);
-  gtk_container_add (GTK_CONTAINER (frame), table);
-  
-  /* buttons */
-  apply_button = gtk_button_new_from_stock (GTK_STOCK_APPLY);
-  gtk_signal_connect (GTK_OBJECT (apply_button), "clicked", 
-		      GTK_SIGNAL_FUNC (apply), NULL);
-  close_button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
-  gtk_signal_connect (GTK_OBJECT (close_button), "clicked", 
-		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
-  help_button = gtk_button_new_from_stock (GTK_STOCK_HELP);
-  gtk_signal_connect (GTK_OBJECT (help_button), "clicked", 
-		      GTK_SIGNAL_FUNC (help), NULL);
-  gtk_widget_set_sensitive (apply_button, FALSE);
-
-  /* button box */
-  bbox = gtk_hbutton_box_new ();
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
-  gtk_button_box_set_spacing (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL);
-  gtk_button_box_set_child_size (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL, -1);
-  gtk_container_set_border_width (GTK_CONTAINER (bbox), GNOME_PAD_SMALL);
-
-  gtk_container_add (GTK_CONTAINER (bbox), apply_button);
-  gtk_container_add (GTK_CONTAINER (bbox), close_button);
-  gtk_container_add (GTK_CONTAINER (bbox), help_button);
-
-  gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (bbox), help_button, TRUE);
-
-  /* table */
-  table2 = gtk_table_new (3, 1, FALSE);
-  gtk_table_attach (GTK_TABLE (table2), frame,
-		    0, 1, 0, 1, GTK_FILL|GTK_EXPAND,GTK_FILL|GTK_EXPAND, 0, 0);
-#if 0
-  gtk_table_attach (GTK_TABLE (table2), gtk_hseparator_new (),
-		    0, 1, 1, 2, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
-#endif
-  gtk_table_attach (GTK_TABLE (table2), bbox,
-		    0, 1, 2, 3, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
-  return table2;
-}  
-
-static GtkWidget*
-create_app (void)
-{
-  /* app*/
-  app = gnome_app_new ("Session", _("Session Properties"));
-  gnome_app_set_contents (GNOME_APP (app), create_buttons (create_table ()));
-
-  gtk_signal_connect (GTK_OBJECT (app), "delete_event",
-		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
-  return app;
 }
 
 static gchar* selected_session = NULL;
@@ -359,62 +300,27 @@ static const struct poptOption options[] = {
   {NULL, '\0', 0, NULL, 0}
 };
 
-int
-main (int argc, char *argv[])
+GtkWidget *
+session_properties_create_page (DirtyCallbackFunc dcf)
 {
-  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain (GETTEXT_PACKAGE);
+  GtkWidget *page;
 
-  gnome_init_with_popt_table ("session-properties", VERSION, argc, argv, 
-			      options, 0, NULL);
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
+  parent_dirty_cb = dcf;
 
-  gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
-		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+  page = create_table ();
 
-#if 0
-  /*
-   * The following 2 lines represent an ugly hack for multivisual
-   * machines.  Imlib has changed slightly to use the best visual
-   * it can find (i.e. the gdkrgb visual), however, since we're
-   * rendering pixmaps into GTK widgets, which use the default
-   * visual....
-   *
-   * The following 2 lines should be removed someday when sanity
-   * prevails.
-   *
-   */
-
-  gtk_widget_set_default_colormap (gdk_rgb_get_cmap ());
-  gtk_widget_set_default_visual (gdk_rgb_get_visual ());
-#endif
-  protocol = gsm_protocol_new (gnome_master_client());
-  if (!protocol)
-    {
-      g_warning ("Could not connect to gnome-session.");
-      exit (1);
-    }
-  if (init_settings)
-    create_dialog ();
-  else
-    create_app ();
-  /* show these here since things are broken */
-  gtk_widget_show_all (app);
+  gtk_widget_show_all (page);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-  gtk_main ();
-
-  return 0;
+  return page;
 }
 
 /* CAPPLET CALLBACKS */
-static void
-apply (void)
+void
+session_properties_apply (void)
 {
   gsm_client_list_commit_changes (GSM_CLIENT_LIST (client_list));
-  gtk_widget_set_sensitive (apply_button, FALSE);
 }
 
 static void
@@ -463,7 +369,7 @@ selection_changed (GtkTreeSelection *selection)
 static void
 dirty_cb (GtkWidget *widget)
 {
-  gtk_widget_set_sensitive (apply_button, TRUE);
+  (parent_dirty_cb) ();
 }
 
 #if 0

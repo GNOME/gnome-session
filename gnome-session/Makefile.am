@@ -33,8 +33,6 @@ STANDARD_PROPERTIES_CFLAGS =                                    \
 LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 
 if SESSION
-noinst_in_files = session.desktop.in
-noinst_DATA = $(noinst_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
 noinst_PROGRAMS = \
@@ -44,9 +42,8 @@ bin_PROGRAMS = \
 	gnome-session		\
 	save-session		\
 	gnome-login-check	\
-	session-properties	\
 	gnome-libice-check	\
-	session-properties-capplet
+	session-properties
 endif
 
 splash_test_SOURCES = \
@@ -86,32 +83,25 @@ save_session_SOURCES =		\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h
 
-session_properties_SOURCES = \
-	session-properties.c	\
-	gsm-atk.c		\
-	gsm-atk.h		\
-	gsm-client-list.c	\
-	gsm-client-list.h	\
-	gsm-client-editor.c	\
-	gsm-client-editor.h	\
-	gsm-client-row.c	\
-	gsm-client-row.h	\
-	gsm-protocol.c		\
-	gsm-protocol.h		\
-	session.h		\
-	gsm-typebuiltins.c	\
-	gsm-typebuiltins.h
-
-session_properties_capplet_SOURCES = \
+session_properties_SOURCES = 	\
 	session-properties-capplet.c	\
 	session-properties-capplet.h	\
+	startup-programs.c		\
+	session-names.c			\
+	session-properties.c		\
+	gsm-atk.c			\
+	gsm-atk.h			\
+	gsm-client-list.c		\
+	gsm-client-list.h		\
+	gsm-client-editor.c		\
+	gsm-client-editor.h		\
+	gsm-client-row.c		\
+	gsm-client-row.h		\
 	gsm-protocol.c			\
 	gsm-protocol.h			\
+	session.h			\
 	gsm-typebuiltins.c		\
-	gsm-typebuiltins.h		\
-	startup-programs.c		\
-	session-names.c
-
+	gsm-typebuiltins.h
 
 # 	session.h			\
 
@@ -122,9 +112,6 @@ gnome_libice_check_SOURCES = gnome-libice-check.c
 bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
-
-desktopdir = $(datadir)/control-center-2.0/capplets
-desktop_DATA = session.desktop
 
 sysdir = $(datadir)/control-center/Session
 
@@ -161,7 +148,6 @@ EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
-	session.desktop.in	\
 	$(manuals)		\
 	$(pixmap_DATA)		\
 	gsm-marshal.list	\

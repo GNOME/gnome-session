@@ -48,6 +48,7 @@
 
 #include "gsm-protocol.h"
 #include "session-properties-capplet.h"
+#include "session-properties.h"
 
 /* Indicates whether we have to ask for save on close */
 static gboolean state_dirty = FALSE;
@@ -90,7 +91,7 @@ static GtkWidget *session_command_dialog;
 
 /* Other callbacks */
 static void spc_write_state (void);
-
+static void apply (void);
 static void update_gui (void);
 static void dirty_cb (void);
 static void add_startup_cb (void);
@@ -189,7 +190,7 @@ capplet_build (gpointer client)
   gtk_window_set_title (GTK_WINDOW (dlg), _("Session properties"));
   apply_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_APPLY, GTK_RESPONSE_APPLY);
   gtk_widget_set_sensitive (GTK_WIDGET (apply_button), FALSE);
-  g_signal_connect (G_OBJECT (apply_button), "clicked", spc_write_state, NULL);
+  g_signal_connect (G_OBJECT (apply_button), "clicked", apply, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
 
@@ -397,11 +398,25 @@ capplet_build (gpointer client)
   label = gtk_label_new (_("Startup Programs"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
   
+  vbox = session_properties_create_page (&dirty_cb);
+
+  label = gtk_label_new (_("Current Session"));
+  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
+
   update_gui ();
 
   gtk_widget_show_all (dlg);
 
   return dlg;
+}
+
+static void
+apply (void)
+{
+  spc_write_state ();
+  session_properties_apply ();
+
+  gtk_widget_set_sensitive (apply_button, FALSE);
 }
 
 static void
@@ -435,7 +450,6 @@ spc_write_state (void)
   startup_list_write (startup_list, current_session);
 
   state_dirty = FALSE;
-  gtk_widget_set_sensitive (apply_button, FALSE);
 }
 
 /* Called to make the contents of the GUI reflect the current settings */
