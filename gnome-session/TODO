@@ -2,7 +2,7 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Write code that restores and removes sessions
+* Test code that restores and deletes sessions
 
 * Write code that understands restart hints, etc.
 
@@ -17,7 +17,9 @@ This is still a work in progress.  Here's my plan of attack:
 * Export a CORBA interface exposing all interesting functionality
 
 * Change session management code into library that can be used
-  by embedder apps.
+  by embedder apps.  This probably requires merging with
+  gnome-session, since the resulting program will have to be both a
+  client and a server, and the two parts must collude.
 
 
 I don't have a schedule for this work.  Feel free to hack on it if you
@@ -42,3 +44,6 @@ Some random stuff:
 
 - make rsh stuff configurable somehow
   in particular support ssh
+
+- doesn't support current directory on restart yet.
+  (or is this even required??)

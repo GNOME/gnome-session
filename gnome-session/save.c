@@ -16,9 +16,6 @@
 /* Name of current session.  A NULL value means the default.  */
 static char *session_name = NULL;
 
-/* The name we're using when saving.  This is completely lame.  */
-static char prefix[1024];
-
 /* This is used to hold a table of all properties we care to save.  */
 typedef struct
 {
@@ -40,9 +37,10 @@ static propsave properties[] =
 
 
 
-/* Write a single client to the current session.  */
-static void
-write_one_client (const Client *client)
+/* Write a single client to the current session.  Return 1 on success,
+   0 on failure.  */
+static int
+write_one_client (int number, const Client *client)
 {
   /* We over-allocate; it doesn't matter.  */
   int i, j, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
@@ -89,12 +87,18 @@ write_one_client (const Client *client)
   /* Write each property we found.  */
   if (! failure)
     {
+      gnome_config_set_string ("id", client->id);
+
       for (i = 0; i < vec_count; ++i)
 	{
 	  char buf[256];
+
+	  sprintf (buf, "%s/count", argv_names[i]);
+	  gnome_config_set_int (buf, argcs[i]);
+
 	  for (j = 0; j < argcs[i]; ++j)
 	    {
-	      sprintf (buf, "%s,%d", argv_names[i], j);
+	      sprintf (buf, "%s/%d", argv_names[i], j);
 	      gnome_config_set_string (buf, argvs[i][j]);
 	    }
 	}
@@ -108,27 +112,38 @@ write_one_client (const Client *client)
     free_vector (argcs[i], argvs[i]);
   for (i = 0; i < string_count; ++i)
     free (strings[i]);
+
+  return ! failure;
 }
 
 /* Actually write the session data.  */
 void
 write_session (const GSList *list, int shutdown)
 {
+  char prefix[1024];
+  int i;
+
   /* This is somewhat losing.  But we really do want to make sure any
      existing session with this same name has been cleaned up before
      we write the new info.  */
   delete_session (session_name);
 
+  i = 0;
   for (; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      sprintf (prefix, "gsm/%s/%s,",
+      sprintf (prefix, "gsm/%s/%d,",
 	       session_name ? session_name : DEFAULT_SESSION,
-	       client->id);
+	       i);
       gnome_config_push_prefix (prefix);
-      write_one_client (client);
+      if (write_one_client (i, client))
+	++i;
       gnome_config_pop_prefix ();
     }
+
+  sprintf (prefix, "gsm/%s/num_clients",
+	   session_name ? session_name : DEFAULT_SESSION);
+  gnome_config_set_int (prefix, i);
 
   gnome_config_sync ();
 }
@@ -145,19 +160,113 @@ set_session_name (const char *name)
     session_name = NULL;
 }
 
-/* Load a new session.  This does not shut down the current session.  */
-void
+
+
+/* Run a set of commands from a session.  Return 1 if any were run.  */
+static int
+run_commands (const char *name, int number, const char *command,
+	      execute_func *executor)
+{
+  int i, result = 0;
+
+  /* Run each delete command.  */
+  for (i = 0; i < number; ++i)
+    {
+      int argc, def, j;
+      char **argv, prefix[1024];
+
+      sprintf (prefix, "gsm/%s/%s/count=-1", name, command);
+      argc = gnome_config_get_int_with_default (prefix, &def);
+      if (def)
+	continue;
+
+      argv = (char **) malloc (argc * sizeof (char *));
+      for (j = 0; j < argc; ++j)
+	{
+	  sprintf (prefix, "gsm/%s/%s/%d", name, command, j);
+	  argv[j] = gnome_config_get_string (prefix);
+	  if (! argv[j])
+	    {
+	      free_vector (j, argv);
+	      break;
+	    }
+	}
+
+      if (j == argc)
+	{
+	  /* Successfully collected all parts of command.  Now execute
+	     command.  */
+	  (*executor) (argc, argv);
+	  free_vector (argc, argv);
+	  result = 1;
+	}
+    }
+
+  return result;
+}
+
+
+
+/* Load a new session.  This does not shut down the current session.
+   Returns 1 if anything happened, 0 otherwise.  */
+int
 read_session (const char *name)
 {
+  int i, def, num_clients;
+  char prefix[1024];
+
   if (! session_name)
     set_session_name (name);
+  if (! name)
+    name = DEFAULT_SESSION;
 
+  sprintf (prefix, "gsm/%s/num_clients=-1", name);
+  num_clients = gnome_config_get_int_with_default (prefix, &def);
+
+  /* If default, then no client info exists.  */
+  if (def)
+    return 0;
+
+  /* We must register each saved client as a `zombie' client.  Then
+     when the client restarts it will get its new client id
+     correctly.  */
+  for (i = 0; i < num_clients; ++i)
+    {
+      char *id;
+
+      sprintf (prefix, "gsm/%s/%d/id", name, i);
+      id = gnome_config_get_string (prefix);
+      if (id)
+	add_zombie (id);
+    }
+
+  /* Run each initialization command.  */
+  run_commands (name, num_clients, GNOME_SM_INIT_COMMAND, execute_once);
+
+  /* Run each restart command.  */
+  return run_commands (name, num_clients, SmRestartCommand, execute_async);
 }
 
 /* Delete a session.  */
 void
 delete_session (const char *name)
 {
+  int i, def, number;
+  char prefix[1024];
+
   if (! name)
     name = DEFAULT_SESSION;
+
+  sprintf (prefix, "gsm/%s/num_clients=-1", name);
+  number = gnome_config_get_int_with_default (prefix, &def);
+  if (def)
+    {
+      /* No client info to get, so just bail.  */
+      return;
+    }
+
+  run_commands (name, number, SmDiscardCommand, execute_async);
+
+  sprintf (prefix, "gsm/%s", name);
+  gnome_config_clean_section (prefix);
 }

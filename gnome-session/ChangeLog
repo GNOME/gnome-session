@@ -1,3 +1,23 @@
+Sun Jan  4 13:24:47 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (read_session): Changed return value.  Started
+	implementation.
+	(run_commands): New function.
+	(delete_session): Use it.
+
+	* manager.c (add_zombie): New function.
+	* manager.h (add_zombie): Declare.
+
+	* Makefile.am (gsm_SOURCES): Include exec.c.
+	* exec.c: New file.
+	* manager.h (execute_async): Declare.
+
+	* save.c (write_one_client): Added `number' argument; changed
+	return value; changed how information represented in file.
+	(prefix): No longer global.
+	(write_session): Changed how information represented in file.
+	(delete_session): Wrote.
+
 Fri Jan  2 00:11:49 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* manager.c (save_yourself_done): Move save_finished_list to

@@ -482,3 +482,19 @@ io_error_handler (IceConn connection)
       close_connection (client->connection, (SmPointer) client, 0, NULL);
     }
 }
+
+
+
+/* Register a new zombie.  */
+void
+add_zombie (const char *id)
+{
+  Client *client;
+
+  client = g_new (Client, 1);
+  client->id = strdup (id);
+  client->connection = NULL;
+  client->properties = NULL;
+
+  APPEND (zombie_list, client);
+}

@@ -47,6 +47,8 @@ Status new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
    after the client.  */
 void io_error_handler (IceConn connection);
 
+/* Declare a new zombie that was read from an init file.  */
+void add_zombie (const char *id);
 
 /*
  * save.c
@@ -64,8 +66,9 @@ void set_session_name (const char *name);
    simply adds the new one.  As a side effect it will set the current
    session name if it has not already been set.  If NAME is NULL then
    the `default' session is tried; if that session does not exist,
-   then it is created using some internal defaults.  */
-void read_session (const char *name);
+   then it is created using some internal defaults.  Returns 1 if
+   any client was started, 0 otherwise.  */
+int read_session (const char *name);
 
 /* Delete a session as saved on disk.  This has no effect on the
    currently running applications.  */
@@ -114,5 +117,18 @@ gboolean find_vector_property (const Client *client, const char *name,
 
 /* Free the return result from find_vector_property.  */
 void free_vector (int argc, char **argv);
+
+/*
+ * exec.c
+ */
+
+/* A function that can execute some command.  */
+typedef void execute_func (int argc, char *argv[]);
+
+/* Execute some command in the background and immediately return.  */
+void execute_async (int argc, char *argv[]);
+
+/* Like execute_async, but run a given command exactly once.  */
+void execute_once (int argc, char *argv[]);
 
 #endif /* MANAGER_H */
