@@ -1,13 +1,13 @@
 figs = \
-	button_remove.png		\
-	session-properties.png		\
-	stock_exec.png			\
-	stock_help.png			\
-	stock_preferences.png		\
-	stock_refresh.png		\
-	stock_save.png			\
-	stock_timer.png			\
-	stock_trash.png
+	figures/button_remove.png		\
+	figures/session-properties.png		\
+	figures/stock_exec.png			\
+	figures/stock_help.png			\
+	figures/stock_preferences.png		\
+	figures/stock_refresh.png		\
+	figures/stock_save.png			\
+	figures/stock_timer.png			\
+	figures/stock_trash.png
 app = session
 lang = ja
 omffiles = session-ja.omf
