@@ -1,3 +1,13 @@
+2002-09-19  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-multiscreen.c: (gsm_foreach_screen),
+	(gsm_screen_contains_pointer), (gsm_locate_screen_with_pointer),
+	(gsm_screen_get_width), (gsm_screen_get_height),
+	(gsm_center_window_on_screen):
+	* logout.c: (iris_on_screen), (refresh_screen), (display_gui):
+	kill HAVE_GTK_MULTIHEAD conditionals. We require gtk+
+	HEAD now.
+
 2002-09-17  jacob berkman  <jacob@ximian.com>
 
 	* splash-widget.h (SPLASH_LABEL_V_OFFSET): the code assumes this

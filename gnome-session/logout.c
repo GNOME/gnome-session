@@ -129,11 +129,7 @@ iris_on_screen (GdkScreen *screen,
   data->iris_rect.width = gsm_screen_get_width (screen, monitor);
   data->iris_rect.height = gsm_screen_get_height (screen, monitor);
 
-#ifdef HAVE_GTK_MULTIHEAD
   data->root_window = gdk_screen_get_root_window (screen);
-#else
-  data->root_window = gdk_get_default_root_window ();
-#endif
 
   values.line_style = GDK_LINE_ON_OFF_DASH;
   values.subwindow_mode = GDK_INCLUDE_INFERIORS;
@@ -181,11 +177,7 @@ refresh_screen (GdkScreen *screen,
   attributes.override_redirect = TRUE;
   attributes.event_mask = 0;
 
-#ifdef HAVE_GTK_MULTIHEAD
   parent = gdk_screen_get_root_window (screen);
-#else
-  parent = NULL;
-#endif
 
   window = gdk_window_new (parent, &attributes,
 			   GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR);
@@ -248,18 +240,11 @@ display_gui (void)
    */
   gtk_rc_reparse_all ();
 
-#ifdef HAVE_GTK_MULTIHEAD
   screen = gsm_locate_screen_with_pointer (&monitor);
   if (!screen)
     screen = gdk_screen_get_default ();
 
   invisible = gtk_invisible_new_for_screen (screen);
-#else
-  screen = NULL;
-  monitor = 0;
-
-  invisible = gtk_invisible_new ();
-#endif
 
   gtk_widget_show (invisible);
 
@@ -293,9 +278,7 @@ display_gui (void)
   g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
-#ifdef HAVE_GTK_MULTIHEAD
   gtk_window_set_screen (GTK_WINDOW (box), screen);
-#endif
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
   gtk_container_set_border_width (
@@ -412,9 +395,7 @@ display_gui (void)
 	   		    G_CALLBACK (gtk_widget_destroy),
 			    NULL);
 
-#ifdef HAVE_GTK_MULTIHEAD
 	  gtk_window_set_screen (GTK_WINDOW (dialog), screen);
-#endif
 
           gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
           gtk_widget_show (dialog);

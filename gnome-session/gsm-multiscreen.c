@@ -30,7 +30,6 @@
 void
 gsm_foreach_screen (GsmScreenForeachFunc callback)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GdkDisplay *display;
 	int         n_screens, i;
 
@@ -47,9 +46,6 @@ gsm_foreach_screen (GsmScreenForeachFunc callback)
 		for (j = 0; j < n_monitors; j++)
 			callback (screen, j);
 	}
-#else
-	callback (NULL, 0);
-#endif
 }
 
 static gboolean
@@ -57,7 +53,6 @@ gsm_screen_contains_pointer (GdkScreen *screen,
 			     int       *x,
 			     int       *y)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GdkWindow    *root_window;
 	Window        root, child;
 	Bool          retval;
@@ -77,15 +72,11 @@ gsm_screen_contains_pointer (GdkScreen *screen,
 		*y = retval ? rooty : -1;
 
 	return retval;
-#else
-	return FALSE;
-#endif
 }
 
 GdkScreen *
 gsm_locate_screen_with_pointer (int *monitor_ret)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GdkDisplay *display;
 	int         n_screens, i;
 
@@ -105,7 +96,7 @@ gsm_locate_screen_with_pointer (int *monitor_ret)
 			return screen;
 		}
 	}
-#endif
+
 	if (monitor_ret)
 		*monitor_ret = 0;
 
@@ -116,30 +107,22 @@ int
 gsm_screen_get_width (GdkScreen *screen,
 		      int        monitor)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GdkRectangle geometry;
 
 	gdk_screen_get_monitor_geometry (screen, monitor, &geometry);
 
 	return geometry.width;
-#else
-	return gdk_screen_width ();
-#endif
 }
 
 int
 gsm_screen_get_height (GdkScreen *screen,
 		       int        monitor)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GdkRectangle geometry;
 
 	gdk_screen_get_monitor_geometry (screen, monitor, &geometry);
 
 	return geometry.height;
-#else
-	return gdk_screen_height ();
-#endif
 }
 
 void
@@ -147,7 +130,6 @@ gsm_center_window_on_screen (GtkWindow *window,
 			     GdkScreen *screen,
 			     int        monitor)
 {
-#ifdef HAVE_GTK_MULTIHEAD
 	GtkRequisition requisition;
 	GdkRectangle   geometry;
 	int            x, y;
@@ -159,7 +141,4 @@ gsm_center_window_on_screen (GtkWindow *window,
 	y = geometry.y + (geometry.height - requisition.height) / 2;
 
 	gtk_window_move (window, x, y);
-#else
-	gtk_window_set_position (window, GTK_WIN_POS_CENTER);
-#endif
 }

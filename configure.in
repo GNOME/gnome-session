@@ -21,6 +21,7 @@ dnl it too, or it will never make it into the spec file!
 
 ESOUND_REQUIRED=0.2.26
 LIBGNOMEUI_REQUIRED=1.1
+GTK_REQUIRED=2.1.0
 
 AC_SUBST(ESOUND_REQUIRED)
 AC_SUBST(LIBGNOMEUI_REQUIRED)
@@ -37,23 +38,12 @@ PKG_CHECK_MODULES(SOUND_TEST, $ESOUND_MODULE, [
 	ESOUND_MODULE=""
 ])
 
-PKG_CHECK_MODULES(GNOME_SESSION, libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE)
+PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE)
 AC_SUBST(GNOME_SESSION_CFLAGS)
 AC_SUBST(GNOME_SESSION_LIBS)
 
 PKG_CHECK_MODULES(SMPROXY, libgnome-2.0)
 AC_SUBST(SMPROXY_LIBS)
-
-dnl
-dnl Check for gtk+ with multihead support
-dnl
-AC_MSG_CHECKING([for gtk+ multihead support])
-if $PKG_CONFIG --atleast-version 2.1.0 gtk+-2.0; then
-   AC_DEFINE(HAVE_GTK_MULTIHEAD,,[gtk+ with multihead support found])
-   AC_MSG_RESULT(yes)
-else
-   AC_MSG_RESULT(no)
-fi
 
 dnl gconf checks
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
