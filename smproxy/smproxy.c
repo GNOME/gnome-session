@@ -40,6 +40,10 @@ Author:  Ralph Mor, X Consortium
 #include <sys/param.h> /* for MAXHOSTNAMELEN */
 #endif
 
+#ifndef MAXHOSTNAMELEN
+#define MAXHOSTNAMELEN (256+1)
+#endif
+
 #if !defined (NI_MAXHOST)
 #define NI_MAXHOST MAXHOSTNAMELEN
 #endif
