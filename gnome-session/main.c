@@ -139,6 +139,14 @@ main (int argc, char *argv[])
   set_session_name (session);
   the_session = read_session (session);
 
+  /* fall back to the default session if the session is empty */
+  if (!the_session->client_list)
+    {
+      free_session (the_session);
+      failsafe = TRUE;
+      the_session = read_session (session);
+    }
+
   if (splashing)
     start_splash (49.0);
 

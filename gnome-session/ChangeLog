@@ -1,3 +1,9 @@
+Thu Jun 29 02:39:04 2000  Tim Janik  <timj@gtk.org>
+
+	* main.c (main): if the session loaded is empty (probably because
+	the session name is a new one), fallback to failsafe and reload,
+	so the clients of the default session are present.
+
 Sat May 27 12:33:19 2000  George Lebl <jirka@5z.com>
 
 	* main.c, manager.c, session-properties.c, gsm-protocol.c, ice.c:
