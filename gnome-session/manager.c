@@ -1006,8 +1006,8 @@ io_error_handler (IceConn ice_conn)
       free(program);
     }
   else
-    reason = _("The Gnome Session Manager unexpectedly\n"
-	       "lost contact with an unnamed program.");
+    reason = g_strdup(_("The Gnome Session Manager unexpectedly\n"
+	       "lost contact with an unnamed program."));
 	  
   display_reasons (1, &reason);
 
