@@ -106,7 +106,7 @@ if SESSION
 sys_DATA = session-properties.desktop
 endif
 
-settingsdir = $(datadir)/gnome/apps/Settings/Session
+settingsdir = $(datadir)/control-center/capplets
 
 if SESSION
 settings_DATA = session-properties.desktop
