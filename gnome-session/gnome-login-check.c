@@ -360,6 +360,7 @@ main (int argc, char **argv)
 			
 	}
 
+#ifdef DO_LIBICE_CHECK
 	if (!check_for_libice_bug ()) {
 		GtkWidget *tmp_msgbox;
 		
@@ -380,6 +381,7 @@ main (int argc, char **argv)
 
 		gnome_dialog_run (GNOME_DIALOG (tmp_msgbox));
 	}	
+#endif
 
 	return 0;
 }
