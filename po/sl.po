@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-11-04 10:10+1300\n"
+"POT-Creation-Date: 2002-11-27 01:56+0100\n"
 "PO-Revision-Date: 2001-02-28 18:36+0200\n"
 "Last-Translator: Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -12,56 +12,58 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Dovoli povezave TCP"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Zaradi varnostnih razlogov na platformah, ki imajo _IceTcpTransNoListen() "
+"(sistemi XFree86), gnome-session ne posluša na vratih TCP. Ta možnost bo omogočila povezave z (avtoriziranih) oddaljenih računalnikov. "
+"Da se možnost uveljavi je potrebno program gnome-session vnovič pognati."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "Če je vključeno, bo gnome-session pred zaključkom seje vprašal uporabnika."
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Če je vključeno, bo gnome-session samodejno shranil sejo. Sicer bo imel odjavni dialog možnost za shranitev seje."
 
-#: gnome-session/gnome-session.schemas.in.h:5
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr "Odjava"
+msgstr "Odjavni zaslon"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Slika, ki naj se uporabi kot špica za prijavo v Namizje GNOME"
 
-#: gnome-session/gnome-session.schemas.in.h:7
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
-msgstr "Seja"
+msgstr "Shrani seje"
 
-#: gnome-session/gnome-session.schemas.in.h:8
-#, fuzzy
+#: gnome-session/gnome-session.schemas.in.in.h:8
 msgid "Show the splash screen"
-msgstr "Kaži začetni zaslon ob prijavi"
+msgstr "Kaži špico"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Ob pričetku seje kaži špico"
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Slika špice"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -145,9 +147,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Neodvisen od odjave, a lahko umre."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Povrni"
+msgstr "Vnovič poženi"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -222,12 +223,11 @@ msgstr "Daemon nastavitev se je prevečkrat znova zagnal."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "Ste prepričani, da se želite odjaviti?"
 
 #: gnome-session/logout.c:298
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Shrani trenutno stanje"
+msgstr "_Shrani trenutne nastavitve"
 
 #: gnome-session/logout.c:318
 msgid "Action"
@@ -238,13 +238,12 @@ msgid "_Log Out"
 msgstr "_Odjava"
 
 #: gnome-session/logout.c:329
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Zaustavitev sistema"
+msgstr "_Zaustavitev sistema"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Vnovič zaženi računalnik"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -309,9 +308,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Lahko čakate nanj ali pa ga odstranite."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Ponovni zagon razveljavljen zaradi napake."
+msgstr "Vnovični zagon razveljavljen zaradi napak."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -354,9 +352,8 @@ msgid "Edit session name"
 msgstr "Uredi ime seje"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Uredi..."
+msgstr "_Uredi"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -368,24 +365,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Seja"
+msgstr "Seje"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Kaži začetni zaslon ob prijavi"
+msgstr "Ob _prijavi kaži špico"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Vprašaj ob odjavi"
+msgstr "_Vprašaj ob odjavi"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Samodejno shrani spremembe seje"
+msgstr "Samodejno shrani _spremembe seje"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -412,18 +405,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "S seje odstrani trenutno izbranega odjemalca"
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Samodejno shrani spremembe seje"
+msgstr "Uveljavi spremembe na trenutni seji"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Seznam programov v seji."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Brskaj po trenutno pognanih programih..."
+msgstr "Trenutno pognani _programi:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -431,7 +422,7 @@ msgstr "Inicializiraj nastavitve seje"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Nastavi vašo sejo"
 
 #: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
@@ -478,9 +469,8 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/startup-programs.c:287
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Začetni ukaz"
+msgstr "_Začetni ukaz:"
 
 #: gnome-session/startup-programs.c:293
 msgid "Startup Command"
@@ -497,25 +487,6 @@ msgstr "Dodaj začetni program"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Uredi začetni program"
-
-#~ msgid "Priority"
-#~ msgstr "Prioriteta"
-
-#, fuzzy
-#~ msgid "_Priority:"
-#~ msgstr "Prioriteta"
-
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "GNOME se zaganja: %s"
-
-#~ msgid "Starting GNOME: done"
-#~ msgstr "GNOME se zaganja: opravljeno"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "GNOME se zaganja"
 
 #~ msgid "GNOME Login"
 #~ msgstr "GNOME prijava"
@@ -577,8 +548,23 @@ msgstr "Uredi začetni program"
 #~ msgid "Non-session-managed Startup Programs"
 #~ msgstr "Začetni programi, ki niso upravljani s sejo"
 
+#~ msgid "Priority"
+#~ msgstr "Prioriteta"
+
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "Lastnosti seje in začetni programi"
+
+#~ msgid "Starting GNOME: %s"
+#~ msgstr "GNOME se zaganja: %s"
+
+#~ msgid "Starting GNOME: done"
+#~ msgstr "GNOME se zaganja: opravljeno"
+
+#~ msgid "GNOME"
+#~ msgstr "GNOME"
+
+#~ msgid "Starting GNOME"
+#~ msgstr "GNOME se zaganja"
 
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
