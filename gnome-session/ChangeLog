@@ -1,3 +1,10 @@
+2003-11-17  Bill Haneman <billh@gnome.org>
+
+	* logout.c:
+	Call gtk_window_set_decorated (..., FALSE)
+	on logout dialog instead of making it 
+	override-redirect; fixes bug #122737.
+
 2003-11-13  Mark McLoughlin  <mark@skynet.ie>
 
 	Fixes a weird problem I was seeing that after
