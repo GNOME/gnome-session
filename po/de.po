@@ -10,9 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.2.x\n"
-"POT-Creation-Date: 2003-07-04 08:45+0100\n"
-"PO-Revision-Date: 2003-01-23 14:44+0100\n"
+"Project-Id-Version: gnome-session 2.4.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-07-13 10:39+0200\n"
+"PO-Revision-Date: 2003-07-13 10:38+0200\n"
 "Last-Translator: Christian Neumair <chris@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +32,7 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Aus Sicherheitsgründen horcht gnome-session auf Plattformen, die "
-"»_IceTcpTransNoListen()« unterstützen (XFree86-Systeme), an TCP-Ports nicht "
+"»_IceTcpTransNoListen()« unterstützen (XFree86-Systeme) an TCP-Ports nicht "
 "nach Verbindungen. Dieser Schlüssel legt fest, ob (legitimierten) Rechnern "
 "dennoch der Verbindungsaufbau gestattet werden soll. gnome-session muss neu "
 "gestartet werden, damit eine Änderung an diesem Schlüssel wirksam wird."
@@ -246,12 +247,10 @@ msgid "Action"
 msgstr "Aktion"
 
 #: gnome-session/logout.c:458
-#, fuzzy
 msgid "_Log out"
 msgstr "_Abmelden"
 
 #: gnome-session/logout.c:462
-#, fuzzy
 msgid "Sh_ut down"
 msgstr "_Herunterfahren"
 
@@ -259,28 +258,28 @@ msgstr "_Herunterfahren"
 msgid "_Restart the computer"
 msgstr "Den Computer _neu starten"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Geben Sie einen zu ladenden Sitzungsnamen an"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "Gespeicherte Sitzungen nur aus der Datei »default.session« einlesen"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Wieviele Millisekunden auf Registrieren der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Wieviele Milliskunden auf Antwort der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:86
+#: gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Wieviele Millisekunden auf Tod der Clients warten (0=unbegrenzt)"
 
-#: gnome-session/main.c:218
+#: gnome-session/main.c:254
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -293,11 +292,11 @@ msgstr ""
 "Möglicherweise kann dieser Fehler durch das Hinzufügen\n"
 "von %s zur Datei »/etc/hosts« zu korrigieren."
 
-#: gnome-session/main.c:225
+#: gnome-session/main.c:261
 msgid "Log in Anyway"
 msgstr "Dennoch anmelden"
 
-#: gnome-session/main.c:226
+#: gnome-session/main.c:262
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
@@ -331,9 +330,8 @@ msgid "A session shutdown is in progress."
 msgstr "Die Sitzung wird gerade heruntergefahren."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Änderungen auf die aktuelle Sitzung anwenden"
+msgstr "Die momentan geöffnete Sitzung festlegen"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -349,11 +347,11 @@ msgstr "Sitzungsmanager konnte nicht kontaktiert werden"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
-msgstr "Aktuelle Sitzung speichern"
+msgstr "Momentan geöffnete Sitzung speichern"
 
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
-msgstr "Den aktuellen Zustand des Desktops speichern"
+msgstr "Den momentanen Zustand des Desktops speichern"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -434,7 +432,7 @@ msgstr "Den momentan gewählten Client aus der Sitzung entfernen."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "Änderungen auf die aktuelle Sitzung anwenden"
+msgstr "Änderungen auf die momentan geöffnete Sitzung anwenden"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
