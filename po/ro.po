@@ -1,14 +1,15 @@
 # Romanian translation for gnome-session
-# Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+# Copyright (C) 2000 - 2004 Free Software Foundation, Inc.
 # Marius Andreiana <marius galuna.ro>, 2000, 2002.
 # Dan Damian <dand@dnttm.ro>, 2000, 2001.
-# Mişu Moldovan <dumol@go.ro>, 2003.
+# Mişu Moldovan <dumol@go.ro>, 2003, 2004.
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.3.90\n"
-"POT-Creation-Date: 2004-03-09 10:55+0000\n"
-"PO-Revision-Date: 2002-09-06 17:16+0200\n"
+"Project-Id-Version: gnome-session\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-21 03:04+0200\n"
+"PO-Revision-Date: 2004-03-20 22:54+0200\n"
 "Last-Translator: Mişu Moldovan <dumol@go.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -27,14 +28,14 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Din motive de securitate, pe platformele ce suportă „_IceTcpTransNoListen"
-"()“ (sistemele XFree86), gnome-session nu monitorizează porturile pentru "
+"()” (sistemele XFree86), gnome-session nu monitorizează porturile pentru "
 "conexiuni TCP. Această opţiune permite conexiuni de la gazde la distanţă "
 "(autorizate). Gnome-session trebuie restartat la schimbarea acestei opţiuni."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"La activare gnome-session va întreba utilizatorul înainte de terminarea "
+"La activare, gnome-session va întreba utilizatorul înainte de terminarea "
 "sesiunii."
 
 #: gnome-session/gnome-session.schemas.in.h:4
@@ -42,7 +43,7 @@ msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"La activare gnome-session va salva sesiunea automat. Altfel, dialogul de "
+"La activare, gnome-session va salva sesiunea automat. Altfel, dialogul de "
 "ieşire va avea o opţiune pentru salvarea sesiunii."
 
 #: gnome-session/gnome-session.schemas.in.h:5
@@ -120,11 +121,11 @@ msgstr "Porneşte"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Pornit dar nu a raportat încă starea."
+msgstr "Pornit, dar nu a raportat încă starea."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "Rulează"
+msgstr "Pornit"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
@@ -152,7 +153,7 @@ msgstr "Normal"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Neafectate de logout-uri, dar pot muri."
+msgstr "Neafectate de ieşirea din GNOME, dar pot muri."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -168,7 +169,7 @@ msgstr "De şters"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Uitate la logout şi pot muri."
+msgstr "Uitate la ieşirea din GNOME şi pot muri."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -176,7 +177,7 @@ msgstr "Setări"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Totdeauna pornite la fiecare login."
+msgstr "Totdeauna pornite la fiecare autentificare."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -218,7 +219,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME v-a încerca să restarteze demonul setărilor la următoarea logare."
+"GNOME va încerca să restarteze demonul setărilor la următoarea logare."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -264,16 +265,17 @@ msgstr "Citeşte numai sesiunile salvate în fişierul default.session"
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Timp în milisecunde petrecut aşteptând clienţii să se înregistreze (0 = "
-"mereu)"
+"nelimitat"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
-"Timp în milisecunde petrecut aşteptând clienţii să răspundă (0 = mereu)"
+"Timp în milisecunde petrecut aşteptând clienţii să răspundă (0 = nelimitat)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Timp în milisecunde petrecut aşteptând clienţii să moară (0 = mereu)"
+msgstr ""
+"Timp în milisecunde petrecut aşteptând clienţii să moară (0 = nelimitat)"
 
 #: gnome-session/main.c:264
 #, c-format
@@ -290,7 +292,7 @@ msgstr ""
 
 #: gnome-session/main.c:271
 msgid "Log in Anyway"
-msgstr "Login oricum"
+msgstr "Autentificare oricum"
 
 #: gnome-session/main.c:272
 msgid "Try Again"
@@ -307,7 +309,7 @@ msgstr "Aşteptare abandonată datorită unui conflict."
 #: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
-msgstr "Nici un raspuns la comanda %s."
+msgstr "Nici un răspuns la comanda %s."
 
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
@@ -331,7 +333,7 @@ msgstr "Setaţi sesiunea curentă"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
-msgstr "Omoară sesiunea"
+msgstr "Închide forţat sesiunea"
 
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
@@ -339,7 +341,7 @@ msgstr "Utilizează ferestre de dialog"
 
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
-msgstr "Nu s-a putut conecta la managerul de sesiuni"
+msgstr "Nu s-a putut conecta la administratorul sesiunilor"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -376,11 +378,11 @@ msgstr "Sesiuni"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "A_rată imaginea de pornire la login"
+msgstr "A_rată imaginea de pornire la autentificare"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "Î_ntreabă la logout"
+msgstr "Î_ntreabă la ieşirea din GNOME"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -456,7 +458,7 @@ msgstr "Panoul"
 
 #: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
-msgstr "Proxy-ul administratorului de sesiuni"
+msgstr "Proxy administrator de sesiuni"
 
 #: gnome-session/splash-widget.c:48
 msgid "Nautilus"
@@ -485,9 +487,3 @@ msgstr "Adaugă un program de pornite"
 #: gnome-session/startup-programs.c:401
 msgid "Edit Startup Program"
 msgstr "Editare program de pornit"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Salvează sesiunea curentă"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Salvează starea curentă a desktopului"
