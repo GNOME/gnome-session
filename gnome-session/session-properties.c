@@ -370,6 +370,21 @@ main (int argc, char *argv[])
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
 
+  /*
+   * The following 2 lines represent an ugly hack for multivisual
+   * machines.  Imlib has changed slightly to use the best visual
+   * it can find (i.e. the gdkrgb visual), however, since we're
+   * rendering pixmaps into GTK widgets, which use the default
+   * visual....
+   *
+   * The following 2 lines should be removed someday when sanity
+   * prevails.
+   *
+   */
+
+  gtk_widget_set_default_colormap (gdk_rgb_get_cmap ());
+  gtk_widget_set_default_visual (gdk_rgb_get_visual ());
+
   protocol = gsm_protocol_new (gnome_master_client());
   if (!protocol)
     {
