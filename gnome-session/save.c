@@ -296,8 +296,8 @@ read_one_client (Client *client)
 	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * argc);
 	      for (j = 0; j < argc; j++)
 		{
-		  prop->vals[j].length = strlen (vector[j]);
-		  prop->vals[j].value = strdup(vector[j]);
+		  prop->vals[j].length = vector[j] ? strlen (vector[j]) : 0;
+		  prop->vals[j].value  = vector[j] ? strdup (vector[j]) : NULL;
 		  g_free (vector[j]);
 		}
 	      APPEND (client->properties, prop);      
