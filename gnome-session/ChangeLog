@@ -11,13 +11,21 @@
 	* session-properties-capplet.c (capplet_build): default to the
 	default session
 
+2001-02-14 Glynn Foster <glynn.foster@ireland.sun.com>
+	
+	* session-properties-capplet.c/session-names.c: Was freeing 
+          something I shouldn't, so 'try' and 'revert' *should* work 
+	  like you think they should work, only different :)
+	* session-properties-capplet.h: Added mindless whitespace hacking
+	* command.c: Added mindless comment
+
 2001-02-14  Christophe Merlet  <redfox@eikonex.org>
 
 	* session-properties.c: Marqued string for translation.
 
 Tue Feb 13 23:41:58 2001  George Lebl <jirka@5z.com>
 
-	* splash.c: use the windowmanager icon for sawfihs, not sawfish.png,
+	* splash.c: use the windowmanager icon for sawfish, not sawfish.png,
 	  until there is a nice sawfish icon
 
 Tue Feb 13 21:57:18 2001  George Lebl <jirka@5z.com>

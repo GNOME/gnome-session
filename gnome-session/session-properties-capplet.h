@@ -65,6 +65,6 @@ GSList	*session_list_duplicate (GSList *list);
 
 void	session_list_free (GSList *list);
 
-void deleted_session_list_free (void);
+void	deleted_session_list_free (void);
 
 #endif
