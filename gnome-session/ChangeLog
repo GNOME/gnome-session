@@ -1,5 +1,12 @@
 1999-02-14 Felix Bellaby  <felix@pooh.u-net.com>
 
+	* manager.c (io_error_handler): NEVER close connections outside
+	gnome-ice.c because the ICElibs sometimes go haywire if you close 
+	a connection inside the IceProcessMessages call!
+	(kill_client_connection): redundant and removed.
+	
+1999-02-14 Felix Bellaby  <felix@pooh.u-net.com>
+
 	* manager.c (io_error_handler): do not close connections which
 	have no matching clients as gnome-ice.c does this for us.
 	

@@ -200,19 +200,6 @@ run_command (const Client* client, const gchar* command)
 
 
 
-/* Clean up a client connection following an close connection or session 
-   shutdown. */
-static void
-kill_client_connection (SmsConn connection)
-{
-  IceConn ice_conn;
-
-  ice_conn = SmsGetIceConnection (connection);
-  SmsCleanUp(connection);
-  IceSetShutdownNegotiation (ice_conn, False);
-  IceCloseConnection (ice_conn);
-}
-
 /* Send a message to every client on LIST.  */
 static void
 send_message (GSList **list, message_func *message)
@@ -811,7 +798,8 @@ close_connection (SmsConn connection, SmPointer data, int count,
 
   SmFreeReasons (count, reasons);
 
-  kill_client_connection (connection);
+  /* Even doing this results in segfaults under some cicumstances ! */
+  //SmsCleanUp(connection);
 
   update_save_state ();
 }
