@@ -30,11 +30,6 @@
 /* This is true if we are saving the session.  */
 static int saving = 0;
 
-/* This is true if we are saving a pseudo-session.  */
-static int saving_ps = 0;
-
-char *old_sess;
-
 /* This is true if the current save is in response to a shutdown
    request.  */
 static int shutting_down = 0;
@@ -246,35 +241,27 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 		       Bool global)
 {
   Client *client = (Client *) data;
-  SmProp *prop;
-  char *sess, *id;
-  void save_ps (char *, char *);
-  void restart_session (char *);
 
   if (saving)
-    return;
+    {
+      /* FIXME: should queue the save for later.  */
+      return;
+    }
 
-  saving_ps = 0;
-
-  prop = find_property_by_name (client, "GnSaveSess");
-  if (prop) { /* This should be replaced by CORBA */
-	sess = g_strdup (prop->vals->value);
-	prop = find_property_by_name (client, "GnSaveID");
-	id = g_strdup (prop->vals->value);
-	printf("Saving process %s in pseudo-session %s.\n", id, sess);
-	save_ps (sess, id);
-	return;
-	}
-  prop = find_property_by_name (client, "GnRestartSess");
-  if (prop) {
-	sess = g_strdup (prop->vals->value);
-	printf("Restarting session %s.\n",sess);
-	restart_session(sess);
-	return;
-	}
   if (! global)
     {
-      /* FIXME ... */
+      /* Discard single saves requested for a non-live client.  */
+      if (! g_slist_find (live_list, client))
+	return;
+
+      saving = 1;
+      shutting_down = 0;
+      REMOVE (live_list, client);
+      g_assert (! save_yourself_request);
+      APPEND (save_yourself_list, client);
+      /* We ignore `shutdown' when a single-client save requested.  */
+      SmsSaveYourself (client->connection, save_type, 0, interact_style,
+		       fast);
     }
   else
     {
@@ -325,9 +312,6 @@ check_session_end (int found)
 	     first.  */
 	  write_session (anyway_list, save_finished_list, shutting_down);
 	  saving = 0;
-	  saving_ps = 0;
-	  set_session_name (old_sess);
-	  g_free (old_sess);
 	  send_message (save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
 	  CONCAT (live_list, save_finished_list);
@@ -580,45 +564,6 @@ save_session (int save_type, gboolean shutdown, int interact_style,
   g_assert (! save_yourself_list);
   save_yourself_list = live_list;
   live_list = NULL;
-}
-
-
-
-void save_ps (char *sess, char *id)
-{
-  GSList *list;
-  Client *client = NULL;
-
-  for (list = live_list; list; list = list->next)
-    {
-      client = (Client *) list->data;
-      if(!strcmp(client->id, id)) break;
-    }
-  if(strcmp(client->id, id)) return;
-
-  saving = 1;
-  saving_ps = 1;
-  old_sess = g_strdup (get_session_name());
-  set_session_name(sess);
-
-  SmsSaveYourself (client->connection, 0, 0, 0, 0);
-
-  g_assert (! save_yourself_list);
-  
-  REMOVE (live_list, client);
-  APPEND (save_yourself_list, client);
-}
-
-
-
-void restart_session (char *sess)
-{
-  old_sess = g_strdup (get_session_name());
-
-  read_session(sess);
-
-  set_session_name (old_sess);
-  g_free (old_sess);
 }
 
 

@@ -79,10 +79,6 @@ void write_session (const GSList *list1, const GSList *list2, int shutdown);
    file to save to.  */
 void set_session_name (const char *name);
 
-/* Get name of the current session.  This is used to remember it when
-   saving pseudo-sessions. */
-char *get_session_name ();
-
 /* Start a session.  This does *not* shut down the current session; it
    simply adds the new one.  As a side effect it will set the current
    session name if it has not already been set.  If NAME is NULL then
