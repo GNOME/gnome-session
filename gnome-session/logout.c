@@ -33,8 +33,6 @@
 #include "command.h"
 #include "util.h"
 
-#define SESSION_STOCK_LOGOUT "session-logout"
-
 static gchar *halt_command[] =
 {
   HALT_COMMAND, NULL
@@ -175,29 +173,6 @@ force_pango_cache_init ()
 	pango_font_description_free (font_desc);
 }
 
-static inline void
-register_logout_stock_item (void)
-{
-	static gboolean registered = FALSE;
-
-	if (!registered) {
-		GtkIconFactory      *factory;
-		GtkIconSet          *quit_icons;
-
-		static GtkStockItem  logout_item [] = {
-			{ SESSION_STOCK_LOGOUT, N_("_Log Out"), 0, 0, GETTEXT_PACKAGE },
-		};
-
-		quit_icons = gtk_icon_factory_lookup_default (GTK_STOCK_QUIT);
-		factory = gtk_icon_factory_new ();
-		gtk_icon_factory_add (factory, SESSION_STOCK_LOGOUT, quit_icons);
-		gtk_icon_factory_add_default (factory);
-		gtk_stock_add_static (logout_item, 1);
-
-		registered = TRUE;
-	}
-}
-
 static gboolean
 display_gui (void)
 {
@@ -243,8 +218,6 @@ display_gui (void)
   XGrabServer (GDK_DISPLAY ());
   iris ();
 
-  register_logout_stock_item ();
-
   box = gtk_message_dialog_new (NULL, 0,
 				GTK_MESSAGE_QUESTION,
 				GTK_BUTTONS_NONE,
@@ -252,7 +225,7 @@ display_gui (void)
 
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-  gtk_dialog_add_button (GTK_DIALOG (box), SESSION_STOCK_LOGOUT, GTK_RESPONSE_OK);
+  gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_OK, GTK_RESPONSE_OK);
 
   g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
