@@ -214,7 +214,7 @@ static GtkWidget*
 create_app (void)
 {
   /* app*/
-  app = gnome_app_new ("Session", "Session Properties");
+  app = gnome_app_new ("Session", _("Session Properties"));
   gnome_app_set_contents (GNOME_APP (app), create_buttons (create_table ()));
 
   gtk_signal_connect (GTK_OBJECT (app), "delete_event",
