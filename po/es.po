@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME 2.0\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-05-27 18:31+0100\n"
+"POT-Creation-Date: 2002-06-20 12:39+0200\n"
+"PO-Revision-Date: 2002-06-20 12:45+0200\n"
 "Last-Translator: Juan Manuel García Molina <juanma_gm@wanadoo.es>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,30 +19,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.6\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
 msgstr "Sesión GNOME"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Acceso"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Arrancar con los programas por omisión"
-
 #: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Resetear todas las propiedades como usuario"
+msgid "Log In"
+msgstr "Entrar"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:183
+msgid "Start with default programs"
+msgstr "Arrancar con los programas predeterminados"
+
+#: gnome-session/gnome-login-check.c:187
+msgid "Reset all user settings"
+msgstr "Restaurar todas las preferencias de usuario"
+
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr ""
-"¿Realmente quieres resetear todas las propiedades de %s como usuario de "
-"GNOME?"
+"¿Realmente quiere restaurar todas las preferencias de usuario "
+"GNOME para %s?"
 
-#: gnome-session/gnome-login-check.c:195
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "No"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "Restaurar todas las preferencias"
+
+#: gnome-session/gnome-login-check.c:236
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -53,15 +61,15 @@ msgstr ""
 "del usuario actual, %s.\n"
 "Por favor corrija la propiedad de este directorio."
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Inténtalo de nuevo"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "Entrar de todas formas"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Continuar"
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
+msgstr "Intentarlo de nuevo"
 
-#: gnome-session/gnome-login-check.c:219
+#: gnome-session/gnome-login-check.c:258
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -72,28 +80,6 @@ msgstr ""
 "No se pudo obtener la dirección de internet de %s.\n"
 "Esto causará que el comportamento de GNOME no sea adecuado. Puede ser\n"
 "posible corregir el problema añadiendo %s al archivo /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Su versión de libICE tiene un error que causa que gnome-session no funcione\n"
-"correctamente.\n"
-"\n"
-"Si está en solaris, debe o bien actualizar al parche de Solaris #108376-16\n"
-"o usar el libICE.so.6 del Solaris 7 original. Copie el archivo en\n"
-"/usr/openwin/lib.  (Gracias a Andy Reitz por la información sobre este "
-"error).\n"
-"\n"
-"Su sesión de GNOME acabará tras cerrar este diálogo."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -223,23 +209,23 @@ msgstr "Apagar"
 msgid "Reboot"
 msgstr "Reiniciar el equipo"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
 msgstr "Indicar nombre de sesión para cargar"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Leer únicamente las sesiones guardadas del archivo default.session"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Período de espera (ms) para que los clientes se registren (0=infinito)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Período de espera (ms) para que los clientes respondan (0=infinito)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Período de espera (ms) para que los clientes se mueran (0=infinito)"
 
@@ -510,3 +496,29 @@ msgstr "Añadir programa de inicio"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
+
+#~ msgid "Continue"
+#~ msgstr "Continuar"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Su versión de libICE tiene un error que causa que gnome-session no "
+#~ "funcione\n"
+#~ "correctamente.\n"
+#~ "\n"
+#~ "Si está en solaris, debe o bien actualizar al parche de Solaris #108376-"
+#~ "16\n"
+#~ "o usar el libICE.so.6 del Solaris 7 original. Copie el archivo en\n"
+#~ "/usr/openwin/lib.  (Gracias a Andy Reitz por la información sobre este "
+#~ "error).\n"
+#~ "\n"
+#~ "Su sesión de GNOME acabará tras cerrar este diálogo."
