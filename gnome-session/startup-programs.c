@@ -292,6 +292,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
 
   gnome_entry = gnome_file_entry_new ("startup-commands", _("Startup Command"));
+  g_object_set (G_OBJECT (gnome_entry), "use_filechooser", TRUE, NULL);
   gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
   entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
   gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
