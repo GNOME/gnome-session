@@ -1,3 +1,9 @@
+1999-05-22  Felix Bellaby  <felix@pooh.u-net.com> 
+
+	* ice.c (initialize_ice): incorporate Martin's change of 1999-05-20
+	into initialize_ice so that gsm only locks the authority file once.
+	(startup_clean_ice): redundant and removed.
+	
 1999-05-20  Martin Baulig  <martin@home-of-linux.org>
 
 	* ice.c (startup_clean_ice): New static function. After an unclean
