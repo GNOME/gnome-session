@@ -222,7 +222,7 @@ display_gui (void)
   box = gtk_message_dialog_new (NULL, 0,
 				GTK_MESSAGE_QUESTION,
 				GTK_BUTTONS_NONE,
-				_("Really log out?"));
+				_("Are you sure you want to log out?"));
 
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
@@ -239,7 +239,7 @@ display_gui (void)
 
   if (!autosave)
     {
-      toggle_button = gtk_check_button_new_with_label (_("Save current setup"));
+      toggle_button = gtk_check_button_new_with_mnemonic (_("_Save current setup"));
       gtk_widget_show (toggle_button);
       gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
 			  toggle_button,
@@ -267,13 +267,13 @@ display_gui (void)
       action_vbox = gtk_vbox_new (FALSE, 0);
       gtk_container_add (GTK_CONTAINER (frame), action_vbox);
 
-      r = gtk_radio_button_new_with_label (NULL, _("Logout"));
+      r = gtk_radio_button_new_with_mnemonic (NULL, _("_Log Out"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 
-      r = halt = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (r), _("Shut Down"));
+      r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut Down"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 
-      r = reboot = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (r), _("Reboot"));
+      r = reboot = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("_Restart the computer"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
     }
   g_free (s);
