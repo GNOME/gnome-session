@@ -391,7 +391,6 @@ gchar*
 get_current_session(void) 
 {
   if(session_name) {
-      g_warning("SAVE[%s]\n",session_name);
       return session_name;
   }
   else {
