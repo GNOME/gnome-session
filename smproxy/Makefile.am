@@ -1,6 +1,7 @@
 INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
 	$(WARN_CFLAGS)					\
+	$(DISABLE_DEPRECATED_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""
 
 ## FIXME: this sucks.  We should just rewrite to use Gtk and not Xt.

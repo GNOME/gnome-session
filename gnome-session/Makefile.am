@@ -4,9 +4,9 @@ defaultdir = $(datadir)/gnome
 
 INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
-	$(DISABLE_DEPRECATED_CFLAGS)			\
 	$(STANDARD_PROPERTIES_CFLAGS)			\
 	$(WARN_CFLAGS)					\
+	$(DISABLE_DEPRECATED_CFLAGS)			\
 	-DGNOMELOCALEDIR=\""$(prefix)/${DATADIRNAME}/locale\""	\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\"	    \
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
@@ -15,15 +15,6 @@ INCLUDES =						\
 	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""		\
 	-DESD_SERVER="\"$(ESD_SERVER)\""
-
-# Flags to make sure we're not using any deprecated functions
-DISABLE_DEPRECATED_CFLAGS = 
-#	-DG_DISABLE_DEPRECATED                                  \
-#	-DGDK_DISABLE_DEPRECATED                                \
-#	-DGTK_DISABLE_DEPRECATED                                \
-#	-DGDK_PIXBUF_DISABLE_DEPRECATED                         \
-#	-DGNOME_DISABLE_DEPRECATED                              \
-#	$(NULL)
 
 # Used by the GNOME_PROGRAM_STANDARD_PROPERTIES macros
 STANDARD_PROPERTIES_CFLAGS =                                    \
