@@ -3,12 +3,7 @@
 INCLUDES = 			\
 	-I$(includedir)
 
-LDADD = \
-	@LEXLIB@					\
-	$(GNOME_LIBDIR)					\
-	$(GNOMEUI_LIBS)					\
-	$(DL_LIB)					\
-        @XF86MISC_LIBS@
+LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 bin_PROGRAMS = gnome-session
 
