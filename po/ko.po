@@ -7,75 +7,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 2.0.1\n"
-"POT-Creation-Date: 2002-06-25 16:24+0900\n"
-"PO-Revision-Date: 2002-06-25 16:26+0900\n"
+"POT-Creation-Date: 2002-07-09 20:15+0900\n"
+"PO-Revision-Date: 2002-07-09 20:16+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: Korean <gnome-kr-translation@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "그놈 로그인"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "로그인"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "기본 프로그램으로 시작"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "모든 사용자 설정 취소"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "정말로 %s의 모든 그놈 사용자 설정을 취소하시겠습니까?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "아니오"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "모든 설정 초기화"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-" /tmp/orbit-%s 디렉토리가 현재사용자인 \n"
-"%s 의 권한으로 되어 있지 않습니다.\n"
-"이 디렉토리의 소유권을 바꾸어 주십시오."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "그래도 로그인"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "다시 시도"
-
-# 받침이 있는지 없는지 모르므로 "를(을)"이라고 쓴다.
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"%s의 인터넷 주소를 찾을 수 없습니다.\n"
-"이것때문에 그놈이 정상적으로 동작하지 못할 수도 있습니다.\n"
-"%s를(을) /etc/hosts 파일에 추가함으로서 문제가 해결될\n"
-"수도 있습니다."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -206,14 +144,21 @@ msgid ""
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr "\n\n마지막 오류 메세지는:\n\n"
+msgstr ""
+"\n"
+"\n"
+"마지막 오류 메세지는:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr "\n\n다음에 로그인 할 때 그놈 설정 데몬을 재시작하도록 시도할 것입니다."
+msgstr ""
+"\n"
+"\n"
+"다음에 로그인 할 때 그놈 설정 데몬을 재시작하도록 시도할 것입니다."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -224,48 +169,70 @@ msgid "The Settings Daemon restarted too many times."
 msgstr "설정 데몬이 너무 많이 재시작합니다."
 
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "정말로 로그아웃할까요?"
+msgid "Are you sure you want to log out?"
+msgstr "정말로 로그 아웃하시겠습니까?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "현재 설정 저장"
+msgid "_Save current setup"
+msgstr "현재 설정 저장(_S)"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "동작"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "로그아웃"
+msgid "_Log Out"
+msgstr "로그아웃(_L)"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "컴퓨터 끄기"
+msgid "Sh_ut Down"
+msgstr "컴퓨터 끄기(_U)"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "재시동"
+msgid "_Restart the computer"
+msgstr "컴퓨터 재시작(_R)"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "읽을 세션이름 지정"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "기본세션(default) 파일에서만 저장된 세션을 읽어오기"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "클라이언트가 등록하기까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "클라이언트가 대답할 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "클라이언트가 끝날 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
+
+# 받침이 있는지 없는지 모르므로 "를(을)"이라고 쓴다.
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s의 인터넷 주소를 찾을 수 없습니다.\n"
+"이것때문에 그놈이 정상적으로 동작하지 못할 수도 있습니다.\n"
+"%s를(을) /etc/hosts 파일에 추가함으로서 문제가 해결될\n"
+"수도 있습니다."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "그래도 로그인"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "다시 시도"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
