@@ -28,8 +28,6 @@
 
 static void gsm_client_list_destroy  (GtkObject *o);
 static void initialized_cb (GsmClientList* client_list);
-static void unselect_cb (GsmClientList* client_list);
-static void select_cb (GsmClientList* client_list, gint row);
 static void changed_cb (GsmClientEditor* client_editor, 
 			guint order, GsmStyle style);
 static void dirty (GsmClientList* client_list);
@@ -49,7 +47,7 @@ gsm_client_list_class_init (GsmClientListClass *klass)
 {
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
 
-  parent_class = gtk_type_class (gtk_clist_get_type ());
+  parent_class = gtk_type_class (GTK_TYPE_TREE_VIEW);
 
   gsm_client_list_signals[DIRTY] =
     gtk_signal_new ("dirty",
@@ -80,67 +78,112 @@ gsm_client_list_class_init (GsmClientListClass *klass)
   object_class->destroy = gsm_client_list_destroy;
 }
 
-static GtkTypeInfo gsm_client_list_info = 
-{
-  "GsmClientList",
-  sizeof (GsmClientList),
-  sizeof (GsmClientListClass),
-  (GtkClassInitFunc) gsm_client_list_class_init,
-  (GtkObjectInitFunc) NULL,
-  NULL,
-  NULL,
-  (GtkClassInitFunc) NULL
-};
-
-guint
+GType
 gsm_client_list_get_type (void)
 {
-  static guint type = 0;
+  static GType type = 0;
 
   if (!type)
-    type = gtk_type_unique (gtk_clist_get_type (), &gsm_client_list_info);
+    {
+      static GTypeInfo gsm_client_list_info = 
+	{
+	  sizeof (GsmClientListClass),
+	  (GBaseInitFunc)     NULL,
+	  (GBaseFinalizeFunc) NULL,
+	  (GClassInitFunc) gsm_client_list_class_init,
+	  NULL,
+	  NULL,
+	  sizeof (GsmClientList),
+	  0,
+	  (GInstanceInitFunc) NULL,
+	};
+
+      type = g_type_register_static (GTK_TYPE_TREE_VIEW, "GsmClientList", &gsm_client_list_info, 0);
+    }
+
   return type;
+}
+
+static void
+selection_changed (GtkTreeSelection *selection,
+		   GsmClientList *client_list)
+{
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  GsmClient *client = NULL;
+
+  if (gtk_tree_selection_get_selected (selection, &model, &iter))
+    gtk_tree_model_get (model, &iter,
+			GSM_CLIENT_LIST_COL_CLIENT_ROW, &client,
+			-1);
+
+  gsm_client_editor_set_client (GSM_CLIENT_EDITOR (client_list->client_editor), client);
 }
 
 GtkWidget* 
 gsm_client_list_new (void)
 {
   GsmClientList* client_list;
-  GtkCList* clist;
-  int i, n_titles;
-  gchar*    titles[4] = { N_("Order"), N_("Style"), N_("State"), N_("Program") };
+  GtkTreeView *view;
+  GtkCellRenderer *text_cell, *pixbuf_cell;
+  GtkTreeSelection *selection;
 
-  n_titles = sizeof (titles) / sizeof (titles[0]);
+  client_list = g_object_new (gsm_client_list_get_type(), NULL);
+  view = GTK_TREE_VIEW (client_list);
 
-  client_list = g_object_new (gsm_client_list_get_type(),
-			      "n_columns", n_titles,
-			      NULL);
-  clist = GTK_CLIST (client_list);
+  gtk_tree_view_set_rules_hint (view, TRUE);
 
-  for (i = 0; i < n_titles; i++)
-	  gtk_clist_set_column_title (clist, i, _(titles[i]));
-  gtk_clist_column_titles_show (clist);
+  client_list->model = gtk_list_store_new (GSM_CLIENT_LIST_COL_LAST,
+					   G_TYPE_STRING,
+					   GDK_TYPE_PIXBUF,
+					   GDK_TYPE_PIXBUF,
+					   G_TYPE_STRING,
+					   gsm_client_row_get_type ());
 
+  gtk_tree_view_set_model (view,
+			   GTK_TREE_MODEL (client_list->model));
+  
+  text_cell = gtk_cell_renderer_text_new ();
+  pixbuf_cell = gtk_cell_renderer_pixbuf_new ();
+
+  gtk_tree_view_insert_column_with_attributes (view, -1,
+					       _("Order"), text_cell,
+					       "text", GSM_CLIENT_LIST_COL_ORDER,
+					       NULL);
+
+  gtk_tree_view_insert_column_with_attributes (view, -1,
+					       _("Style"), pixbuf_cell,
+					       "pixbuf", GSM_CLIENT_LIST_COL_STYLE,
+					       NULL);
+
+  gtk_tree_view_insert_column_with_attributes (view, -1,
+					       _("State"), pixbuf_cell,
+					       "pixbuf", GSM_CLIENT_LIST_COL_STATE,
+					       NULL);
+
+  gtk_tree_view_insert_column_with_attributes (view, -1,
+					       _("Program"), text_cell,
+					       "text", GSM_CLIENT_LIST_COL_COMMAND,
+					       NULL);
+					       
   client_list->client_editor = gsm_client_editor_new ();
   client_list->session   = NULL;
   client_list->committed = FALSE;
   client_list->dirty     = FALSE;
   client_list->changes   = NULL;
 
-  gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
-		     GTK_SIGNAL_FUNC (select_cb), NULL);
-  gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",
-		     GTK_SIGNAL_FUNC (unselect_cb), NULL);
+  selection = gtk_tree_view_get_selection (view);
+
+  g_signal_connect (selection, "changed",
+		    G_CALLBACK (selection_changed), client_list);
+
   gtk_signal_connect(GTK_OBJECT(client_list->client_editor), "changed",
 		     GTK_SIGNAL_FUNC (changed_cb), NULL);
 
-  gtk_clist_set_selection_mode (clist, GTK_SELECTION_BROWSE);
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
+#ifdef FIXME
   gtk_clist_set_auto_sort (clist, TRUE);
-
-  gtk_clist_set_column_justification (clist, 0, GTK_JUSTIFY_CENTER);
-  gtk_clist_set_column_justification (clist, 1, GTK_JUSTIFY_CENTER);
-  gtk_clist_set_column_justification (clist, 2, GTK_JUSTIFY_CENTER);
-  gtk_clist_column_titles_passive (clist);
+#endif
 
   return GTK_WIDGET (client_list);
 }
@@ -168,10 +211,9 @@ gsm_client_list_get_editor (GsmClientList* client_list)
 void 
 gsm_client_list_live_session (GsmClientList* client_list)
 {
-  gtk_clist_freeze (GTK_CLIST (client_list));
   if (client_list->session)
     {
-      gtk_clist_clear (GTK_CLIST (client_list));
+      gtk_list_store_clear (client_list->model);
       g_object_unref (client_list->session);
     }
 
@@ -185,10 +227,9 @@ gsm_client_list_live_session (GsmClientList* client_list)
 void 
 gsm_client_list_saved_session (GsmClientList* client_list, gchar* name)
 {
-  gtk_clist_freeze (GTK_CLIST (client_list));
   if (client_list->session)
     {
-      gtk_clist_clear (GTK_CLIST (client_list));
+      gtk_list_store_clear (client_list->model);
       g_object_unref (client_list->session);
     }
 
@@ -203,7 +244,7 @@ void
 gsm_client_list_start_session (GsmClientList* client_list)
 {
   gsm_session_start (GSM_SESSION (client_list->session));
-  client_list->pending = ((GtkCList*)client_list)->rows;
+  client_list->pending = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (client_list->model), NULL);
 }
 
 static void 
@@ -334,12 +375,10 @@ void
 gsm_client_list_revert_changes (GsmClientList* client_list)
 {
   GSList *list;
-  GtkCList* clist = (GtkCList*)client_list;
 
   g_return_if_fail(client_list != NULL);
   g_return_if_fail(GSM_IS_CLIENT_LIST(client_list));
 
-  gtk_clist_freeze (clist);
   for (list = client_list->changes; list;)
     {
       GsmClientRow *client_row = list->data;
@@ -384,7 +423,6 @@ gsm_client_list_revert_changes (GsmClientList* client_list)
 	    }
 	}
     }
-  gtk_clist_thaw (clist);
   gsm_client_list_discard_changes (client_list);
 }
 
@@ -393,7 +431,6 @@ gsm_client_list_add_program (GsmClientList *client_list,
 			     const char    *command)
 {
   GsmClientRow *client_row;
-  GtkCList     *clist = (GtkCList*)client_list;
   gboolean      command_complete;
 
   g_return_val_if_fail(client_list != NULL, FALSE);
@@ -401,12 +438,10 @@ gsm_client_list_add_program (GsmClientList *client_list,
 
   if ((command_complete = gsm_sh_quotes_balance(command)))
     {
-      gtk_clist_freeze (clist);
       client_row = gsm_client_row_new (client_list);
       GSM_CLIENT (client_row)->command = g_strdup(command);
       gsm_client_row_add (client_row);
       register_change (client_list, client_row, GSM_CLIENT_ROW_ADD);
-      gtk_clist_thaw (clist);
     }
   return command_complete;
 }
@@ -414,29 +449,29 @@ gsm_client_list_add_program (GsmClientList *client_list,
 void
 gsm_client_list_remove_selection (GsmClientList* client_list)
 {
-  GtkCList* clist = (GtkCList*)client_list;
-  gint row;
-
-  if (!clist->selection)
-	  return;
-
-  row = GPOINTER_TO_INT (clist->selection->data);
+  GtkTreeSelection *selection;
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  GsmClientRow *client_row;
 
   g_return_if_fail(client_list != NULL);
   g_return_if_fail(GSM_IS_CLIENT_LIST(client_list));
 
-  gtk_clist_freeze (clist);
-  {
-    gpointer      data = gtk_clist_get_row_data (clist, row);
-    GsmClientRow *client_row = GSM_CLIENT_ROW (data);
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (client_list));
+
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return;
+
+  gtk_tree_model_get (model, &iter,
+		      GSM_CLIENT_LIST_COL_CLIENT_ROW, &client_row,
+		      -1);
     
-    if (client_row) {
-      gsm_client_row_remove (client_row);
-      register_change (client_list, client_row, GSM_CLIENT_ROW_REMOVE);
-    }
-  }
-  gtk_clist_thaw (clist);
+  gsm_client_row_remove (client_row);
+  register_change (client_list, client_row, GSM_CLIENT_ROW_REMOVE);
+
+#ifdef FIXME
   gtk_clist_select_row (clist, row - 1, 0);
+#endif
 }
 
 static void
@@ -456,34 +491,10 @@ changed_cb (GsmClientEditor *client_editor, guint order, GsmStyle style)
 static void 
 initialized_cb (GsmClientList* client_list)
 {
-  GtkCList *clist = (GtkCList*) client_list;
-
-  gtk_clist_set_column_width (clist, 3,
-			      gtk_clist_optimal_column_width (clist, 3));
+#ifdef FIXME
   if (clist->rows > 0)
     select_cb (client_list, clist->rows - 1);
-  gtk_clist_thaw (clist);
+#endif
   gtk_signal_emit ((GtkObject*)client_list, 
 		   gsm_client_list_signals[INITIALIZED]);
-  gtk_clist_set_column_max_width (clist, 3, -1);
-  gtk_clist_set_column_auto_resize (clist, 3, TRUE);
-}
-
-static void 
-select_cb (GsmClientList* client_list, gint row)
-{
-  GsmClientEditor *client_editor=(GsmClientEditor*)client_list->client_editor;
-  GtkCList *clist = (GtkCList*)client_list;
-  gpointer data = gtk_clist_get_row_data (clist, row);
-
-  if (data)
-    gsm_client_editor_set_client (client_editor, data);  
-}
-
-static void 
-unselect_cb (GsmClientList* client_list)
-{
-  GsmClientEditor *client_editor=(GsmClientEditor*)client_list->client_editor;
-
-  gsm_client_editor_set_client (client_editor, NULL);
 }

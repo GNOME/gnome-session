@@ -43,25 +43,19 @@ GtkWidget *paned;
 GtkWidget *gnome_foot;
 GtkWidget *left;
 
-GtkWidget* try_button;
-GtkWidget* revert_button;
-GtkWidget* ok_button;
-GtkWidget* cancel_button;
+GtkWidget* close_button;
+GtkWidget* apply_button;
 GtkWidget* help_button;
 
 /* capplet callback prototypes */
-static void try (void);
-static void revert (void);
-static void ok (void);
-static void cancel (void);
+static void apply (void);
 static void help (void);
 
 /* table widget callback prototypes */
 static void entry_changed_cb (GtkWidget *widget);
 static void add_cb (GtkWidget *widget);
 static void remove_cb (GtkWidget *widget);
-static void select_cb (GtkCList *clist);
-static void unselect_cb (GtkCList *clist);
+static void selection_changed (GtkTreeSelection *selection);
 static void dirty_cb (GtkWidget *widget);
 /* UNUSED
 static void initialized_cb (GtkWidget *widget);
@@ -98,7 +92,7 @@ create_table (void)
   gtk_widget_set_sensitive (GTK_WIDGET (add_button), FALSE);
   gtk_signal_connect (GTK_OBJECT (add_button), "clicked",
 		      GTK_SIGNAL_FUNC (add_cb), NULL);
-  remove_button = gtk_button_new_with_label (_("Remove"));
+  remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
   gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
 		     GTK_SIGNAL_FUNC (remove_cb), NULL);
@@ -110,10 +104,9 @@ create_table (void)
   gtk_signal_connect(GTK_OBJECT (client_list), "initialized",
 		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
 #endif
-  gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
-		     GTK_SIGNAL_FUNC (select_cb), NULL);
-  gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",
-		     GTK_SIGNAL_FUNC (unselect_cb), NULL);
+  g_signal_connect(gtk_tree_view_get_selection (GTK_TREE_VIEW (client_list)),
+		   "changed", G_CALLBACK (selection_changed),
+		   client_list);
   gtk_signal_connect(GTK_OBJECT(client_list), "dirty",
 		     GTK_SIGNAL_FUNC (dirty_cb), NULL);
 
@@ -124,6 +117,8 @@ create_table (void)
   gtk_widget_set_usize (GTK_WIDGET (scrolled_window), -2, 250);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
+				       GTK_SHADOW_IN);
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
   /* table */
@@ -167,44 +162,38 @@ create_buttons (GtkWidget * table)
   gtk_container_add (GTK_CONTAINER (frame), table);
   
   /* buttons */
-  try_button = gtk_button_new_with_label (_("Try"));
-  gtk_signal_connect (GTK_OBJECT (try_button), "clicked", 
-		      GTK_SIGNAL_FUNC (try), NULL);
-  revert_button = gtk_button_new_with_label (_("Revert"));
-  gtk_signal_connect (GTK_OBJECT (revert_button), "clicked", 
-		      GTK_SIGNAL_FUNC (revert), NULL);
-  ok_button = gtk_button_new_with_label (_("OK"));
-  gtk_signal_connect (GTK_OBJECT (ok_button), "clicked", 
-		      GTK_SIGNAL_FUNC (ok), NULL);
-  cancel_button = gtk_button_new_with_label (_("Cancel"));
-  gtk_signal_connect (GTK_OBJECT (cancel_button), "clicked", 
-		      GTK_SIGNAL_FUNC (cancel), NULL);
-  help_button = gtk_button_new_with_label (_("Help"));
+  apply_button = gtk_button_new_from_stock (GTK_STOCK_APPLY);
+  gtk_signal_connect (GTK_OBJECT (apply_button), "clicked", 
+		      GTK_SIGNAL_FUNC (apply), NULL);
+  close_button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  gtk_signal_connect (GTK_OBJECT (close_button), "clicked", 
+		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+  help_button = gtk_button_new_from_stock (GTK_STOCK_HELP);
   gtk_signal_connect (GTK_OBJECT (help_button), "clicked", 
 		      GTK_SIGNAL_FUNC (help), NULL);
-  gtk_widget_set_sensitive (try_button, FALSE);
-  gtk_widget_set_sensitive (revert_button, FALSE);
-  gtk_widget_set_sensitive (ok_button, FALSE);
+  gtk_widget_set_sensitive (apply_button, FALSE);
 
   /* button box */
   bbox = gtk_hbutton_box_new ();
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_SPREAD);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
   gtk_button_box_set_spacing (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL);
   gtk_button_box_set_child_size (GTK_BUTTON_BOX (bbox), GNOME_PAD_SMALL, -1);
   gtk_container_set_border_width (GTK_CONTAINER (bbox), GNOME_PAD_SMALL);
 
-  gtk_container_add (GTK_CONTAINER (bbox), try_button);
-  gtk_container_add (GTK_CONTAINER (bbox), revert_button);
-  gtk_container_add (GTK_CONTAINER (bbox), ok_button);
-  gtk_container_add (GTK_CONTAINER (bbox), cancel_button);
+  gtk_container_add (GTK_CONTAINER (bbox), apply_button);
+  gtk_container_add (GTK_CONTAINER (bbox), close_button);
   gtk_container_add (GTK_CONTAINER (bbox), help_button);
+
+  gtk_button_box_set_child_secondary (GTK_BUTTON_BOX (bbox), help_button, TRUE);
 
   /* table */
   table2 = gtk_table_new (3, 1, FALSE);
   gtk_table_attach (GTK_TABLE (table2), frame,
 		    0, 1, 0, 1, GTK_FILL|GTK_EXPAND,GTK_FILL|GTK_EXPAND, 0, 0);
+#if 0
   gtk_table_attach (GTK_TABLE (table2), gtk_hseparator_new (),
 		    0, 1, 1, 2, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
+#endif
   gtk_table_attach (GTK_TABLE (table2), bbox,
 		    0, 1, 2, 3, GTK_FILL|GTK_EXPAND,GTK_FILL, 0, 0);
   return table2;
@@ -228,6 +217,8 @@ static void
 sess_select_row (GtkWidget *w, gint row)
 {
   gchar* name;
+
+  g_assert_not_reached ();
 
   gtk_clist_get_text (GTK_CLIST (w), row, 0, &name);
 
@@ -274,6 +265,8 @@ create_left (void)
 
   gnome_foot = gnome_pixmap_new_from_file (foot_file);
   gtk_widget_size_request (gnome_foot, &req);
+
+  g_assert_not_reached ();
 
   session_list = gtk_clist_new_with_titles(1, &title);
   gtk_widget_set_usize (session_list, req.width, req.height);
@@ -415,45 +408,16 @@ main (int argc, char *argv[])
 
 /* CAPPLET CALLBACKS */
 static void
-try (void)
+apply (void)
 {
   gsm_client_list_commit_changes (GSM_CLIENT_LIST (client_list));
-  gtk_widget_set_sensitive (try_button, FALSE);
-  gtk_widget_set_sensitive (revert_button, TRUE);
-}
-
-static void
-revert (void)
-{
-  gsm_client_list_revert_changes (GSM_CLIENT_LIST (client_list));
-  gtk_widget_set_sensitive (try_button, FALSE);
-  gtk_widget_set_sensitive (revert_button, FALSE);
-}
-
-static void
-ok (void)
-{
-  try();
-  gtk_main_quit();
-}
-
-static void
-cancel (void)
-{
-  revert();
-  gtk_main_quit();  
+  gtk_widget_set_sensitive (apply_button, FALSE);
 }
 
 static void
 help (void)
 {
-#if 0
-	GnomeHelpMenuEntry help_entry = {
-		"session",
-		"index.html"
-	};
-	gnome_help_display(NULL, &help_entry);
-#endif
+  gnome_help_display ("session", NULL, NULL);
 }
 
 /* This is called when user has changed the entry  */
@@ -486,28 +450,17 @@ remove_cb (GtkWidget *widget)
 
 /* This is called when a client is selected.  */
 static void
-select_cb (GtkCList *clist)
+selection_changed (GtkTreeSelection *selection)
 {
-  gtk_widget_set_sensitive (GTK_WIDGET (remove_button), TRUE);
-}
-
-/* This is called when no clients are selected.  */
-static void
-unselect_cb (GtkCList *clist)
-{
-  if (! clist->selection)
-    {
-      gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
-    }
+  gtk_widget_set_sensitive (GTK_WIDGET (remove_button),
+			    gtk_tree_selection_get_selected (selection, NULL, NULL));
 }
 
 /* This is called when an change is made in the client list.  */
 static void
 dirty_cb (GtkWidget *widget)
 {
-  gtk_widget_set_sensitive (try_button, TRUE);
-  gtk_widget_set_sensitive (revert_button, TRUE);
-  gtk_widget_set_sensitive (ok_button, TRUE);
+  gtk_widget_set_sensitive (apply_button, TRUE);
 }
 
 #if 0

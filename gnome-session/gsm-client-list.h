@@ -30,12 +30,22 @@
 #define GSM_CLIENT_LIST(obj)         GTK_CHECK_CAST (obj, gsm_client_list_get_type (), GsmClientList)
 #define GSM_CLIENT_LIST_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_list_get_type (), GsmClientListClass)
 
+typedef enum {
+	GSM_CLIENT_LIST_COL_ORDER,
+	GSM_CLIENT_LIST_COL_STYLE,
+	GSM_CLIENT_LIST_COL_STATE,
+	GSM_CLIENT_LIST_COL_COMMAND,
+	GSM_CLIENT_LIST_COL_CLIENT_ROW,
+	GSM_CLIENT_LIST_COL_LAST
+} GsmClientListColumn;
+
 typedef struct _GsmClientList GsmClientList;
 typedef struct _GsmClientListClass GsmClientListClass;
 
 struct _GsmClientList {
-  GtkCList   clist;
+  GtkTreeView clist;
 
+  GtkListStore *model;
   GtkWidget* client_editor;
   GsmSession *session;
   gboolean   committed;
@@ -45,14 +55,14 @@ struct _GsmClientList {
 };
 
 struct _GsmClientListClass {
-  GtkCListClass parent_class;
+  GtkTreeViewClass parent_class;
 
   void (* dirty)       (GsmClientList *client_list); /* user did something */
   void (* started)     (GsmClientList *client_list); /* all clients started */
   void (* initialized) (GsmClientList *client_list); /* list ready to show */
 };
 
-guint gsm_client_list_get_type  (void);
+GType gsm_client_list_get_type  (void);
 
 /* Creates an empty client list. */
 GtkWidget* gsm_client_list_new (void);

@@ -29,46 +29,41 @@
 
 GnomeUIInfo state_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Inactive"), 
-			 N_("Waiting to start or already finished."), 
-			 NULL, GNOME_STOCK_MENU_BLANK),
+                         N_("Waiting to start or already finished."), 
+                         NULL, GNOME_STOCK_MENU_BLANK),
   GNOMEUIINFO_ITEM_STOCK(N_("Starting"), 
-			 N_("Started but has not yet reported state."), 
-			 NULL, GNOME_STOCK_MENU_TIMER),
+                         N_("Started but has not yet reported state."), 
+                         NULL, GNOME_STOCK_MENU_TIMER),
   GNOMEUIINFO_ITEM_STOCK(N_("Running"), 
-			 N_("A normal member of the session."), 
-			 NULL, GNOME_STOCK_MENU_EXEC),
+                         N_("A normal member of the session."), 
+                         NULL, GNOME_STOCK_MENU_EXEC),
   GNOMEUIINFO_ITEM_STOCK(N_("Saving"), 
-			 N_("Saving session details."), 
-			 NULL, GNOME_STOCK_MENU_SAVE),
+                         N_("Saving session details."), 
+                         NULL, GNOME_STOCK_MENU_SAVE),
   GNOMEUIINFO_ITEM_STOCK(N_("Unknown"), 
-			 N_("State not reported within timeout."), 
-			 NULL, GNOME_STOCK_PIXMAP_HELP),
+                         N_("State not reported within timeout."), 
+                         NULL, GNOME_STOCK_PIXMAP_HELP),
   GNOMEUIINFO_END
 };
 
 GnomeUIInfo style_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Normal"), 
-			 N_("Unaffected by logouts but can die."),
-			 NULL, GNOME_STOCK_MENU_BLANK),
+                         N_("Unaffected by logouts but can die."),
+                         NULL, GNOME_STOCK_MENU_BLANK),
   GNOMEUIINFO_ITEM_STOCK(N_("Respawn"), 
-			 N_("Never allowed to die."),
-			 NULL, GNOME_STOCK_MENU_REFRESH),
+                         N_("Never allowed to die."),
+                         NULL, GNOME_STOCK_MENU_REFRESH),
   GNOMEUIINFO_ITEM_STOCK(N_("Trash"), 
-			 N_("Discarded on logout and can die."),
-			 NULL, GNOME_STOCK_MENU_TRASH),
+                         N_("Discarded on logout and can die."),
+                         NULL, GNOME_STOCK_MENU_TRASH),
   GNOMEUIINFO_ITEM_STOCK(N_("Settings"), 
-			 N_("Always started on every login."),
-			 NULL, GNOME_STOCK_MENU_PREF),
+                         N_("Always started on every login."),
+                         NULL, GNOME_STOCK_MENU_PREF),
   GNOMEUIINFO_END
 };
 
-typedef struct {
-	GdkPixmap *pixmap;
-	GdkBitmap *mask;
-} PixmapAndMask;
-
-static PixmapAndMask state_pixmap[GSM_NSTATES];
-static PixmapAndMask style_pixmap[GSM_NSTYLES];
+static GdkPixbuf *state_pixmap[GSM_NSTATES];
+static GdkPixbuf *style_pixmap[GSM_NSTYLES];
 
 static void create_stock_menu_pixmaps (GsmClientList *client_list);
 
@@ -109,7 +104,7 @@ gsm_client_row_class_init (GsmClientRowClass *klass)
 static void
 gsm_client_row_instance_init (GsmClientRow *client_row)
 {
-  client_row->row    = -1;
+  client_row->state  = GSM_CLIENT_ROW_NEW;
   client_row->change = GSM_CLIENT_ROW_NONE;
 }
 
@@ -146,9 +141,10 @@ gsm_client_row_new (GsmClientList *client_list)
   client_row = g_object_new (GSM_TYPE_CLIENT_ROW, NULL);
 
   client_row->client_list = client_list;
+  client_row->model = gtk_tree_view_get_model (GTK_TREE_VIEW (client_list));
 
-  if (!state_pixmap[0].pixmap)
-	  create_stock_menu_pixmaps (client_list);
+  if (!state_pixmap[0])
+    create_stock_menu_pixmaps (client_list);
 
   return client_row;
 }
@@ -157,61 +153,44 @@ void
 gsm_client_row_add (GsmClientRow* client_row)
 {
   GsmClient *client = (GsmClient*)client_row;
+  char temp[3];
 
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (client_row->row < 0)
-    {
-      GsmClientList* client_list = client_row->client_list;
-      GtkCList* clist = (GtkCList*)client_list;
-      guint row;
-      char temp[3];
-      char* text[] = { NULL, NULL, NULL, NULL };  
+  if (client_row->state == GSM_CLIENT_ROW_ADDED)
+    return;
 
-      text[0] = temp;
+  gtk_list_store_append (GTK_LIST_STORE (client_row->model), &client_row->iter);
 
-      snprintf (temp, 3, "%.02d", client->order);
-      text[3] = client->command;
-      client_row->row = gtk_clist_append (clist, text);
-      gtk_clist_set_row_data (clist, client_row->row, client_row);
-      for (row = client_row->row; row < clist->rows; row++)
-	{
-	  gpointer data = gtk_clist_get_row_data (clist, row);
-	  GSM_CLIENT_ROW (data)->row = row;
-	}
-      gtk_clist_set_pixmap (clist, client_row->row, 1, 
-			    style_pixmap[client->style].pixmap, 
-			    style_pixmap[client->style].mask);
-      gtk_clist_set_pixmap (clist, client_row->row, 2, 
-			    state_pixmap[client->state].pixmap, 
-			    state_pixmap[client->state].mask);
-    }
+  snprintf (temp, 3, "%.02d", client->order);
+
+  gtk_list_store_set (GTK_LIST_STORE (client_row->model), &client_row->iter,
+		      GSM_CLIENT_LIST_COL_ORDER, temp,
+		      GSM_CLIENT_LIST_COL_STYLE, style_pixmap[client->style],
+		      GSM_CLIENT_LIST_COL_STATE, state_pixmap[client->state],
+		      GSM_CLIENT_LIST_COL_COMMAND, client->command,
+		      GSM_CLIENT_LIST_COL_CLIENT_ROW, client_row,
+		      -1);
+
+  client_row->state = GSM_CLIENT_ROW_ADDED;
 }
 
-void gsm_client_row_remove (GsmClientRow* client_row)
+void
+gsm_client_row_remove (GsmClientRow* client_row)
 {
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (client_row->row > -1)
+  if (client_row->state == GSM_CLIENT_ROW_ADDED)
     {
-      GsmClientList* client_list = client_row->client_list;
-      GtkCList* clist = (GtkCList*)client_list;
-      guint row;
-      
-      gtk_clist_remove (clist, client_row->row);
-      for (row = client_row->row; row < clist->rows; row++)
-	{
-	  gpointer data = gtk_clist_get_row_data (clist, row);
-	  GSM_CLIENT_ROW (data)->row = row;
-	}
-      client_row->row = -2;
+      gtk_list_store_remove (GTK_LIST_STORE (client_row->model),
+			     &client_row->iter);
+      client_row->state = GSM_CLIENT_ROW_REMOVED;
     }
   else
     {
-      /* removal completed */
-      client_row->row = -1;
+      client_row->state = GSM_CLIENT_ROW_NEW;
     }
 }
 
@@ -227,24 +206,30 @@ static void
 client_command (GsmClient* client, gchar* command)
 {
   GsmClientRow *client_row = (GsmClientRow*)client;
+  char *old_command;
 
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (client_row->row > -2)
-    {
-      gchar* old_command = client->command;
-      GtkCList* clist = (GtkCList*)client_row->client_list;
+  old_command = client->command;
+  client->command = command;
 
-      client->command = command;
-      gtk_clist_freeze (clist);
-      if (client_row->row > -1)
-	gtk_clist_set_text (clist, client_row->row, 3, command);
-      else 
-	gsm_client_row_add (client_row);
-      gtk_clist_thaw (clist);
-      client->command = old_command;
+  switch (client_row->state)
+    {
+    case GSM_CLIENT_ROW_ADDED:
+      gtk_list_store_set (GTK_LIST_STORE (client_row->model),
+			  &client_row->iter,
+			  GSM_CLIENT_LIST_COL_COMMAND, command,
+			  -1);
+      break;
+    case GSM_CLIENT_ROW_NEW:
+      gsm_client_row_add (client_row);
+      break;
+    default:
+      break;
     }
+
+  client->command = old_command;
 }
 
 static void
@@ -255,53 +240,43 @@ client_state (GsmClient* client, GsmState state)
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (client_row->row > -1 && client->state != state)
-    {
-      GtkCList* clist = (GtkCList*)client_row->client_list;
+  if (state == client->state)
+    return;
 
-      gtk_clist_set_pixmap (clist, client_row->row, 2, 
-			    state_pixmap[state].pixmap, 
-			    state_pixmap[state].mask);
-      if (client->state < GSM_CONNECTED && state >= GSM_CONNECTED)
-	{
-	  if (client_row->client_list->pending > 0 && 
-	      --client_row->client_list->pending == 0)
-	    gtk_signal_emit_by_name ((GtkObject*)client_row->client_list, 
-				     "started");
-	}
-    }
+  client->state = state;
+
+  if (client_row->state != GSM_CLIENT_ROW_ADDED)
+    return;
+  
+  gtk_list_store_set (GTK_LIST_STORE (client_row->model),
+		      &client_row->iter,
+		      GSM_CLIENT_LIST_COL_STATE, state_pixmap[state],
+		      -1);
 }
 
 void
 gsm_client_row_set_order (GsmClientRow* client_row, guint order)
 {
   GsmClient *client = (GsmClient*)client_row;
+  char temp[3];
 
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (order != client->order)
-    {	  
-      gint row = client_row->row;
-      client->order = order;
+  if (order == client->order)
+    return;
 
-      if (row > -1)
-	{
-	  GtkCList* clist = (GtkCList*)client_row->client_list;
-	  
-	  gtk_clist_freeze (clist);
-	  gtk_clist_remove (clist, client_row->row);
-	  client_row->row = -1;
-	  gsm_client_row_add (client_row);
-	  for (; row < client_row->row; row++)
-	    {
-	      gpointer data = gtk_clist_get_row_data (clist, row);
-	      GSM_CLIENT_ROW (data)->row = row;
-	    }
-	  gtk_clist_select_row (clist, client_row->row, 0);
-	  gtk_clist_thaw (clist);
-	}
-    }
+  client->order = order;
+
+  if (client_row->state != GSM_CLIENT_ROW_ADDED)
+    return;
+
+  snprintf (temp, 3, "%.02d", client->order);
+
+  gtk_list_store_set (GTK_LIST_STORE (client_row->model),
+		      &client_row->iter,
+		      GSM_CLIENT_LIST_COL_ORDER, temp,
+		      -1);
 }
 
 static void
@@ -318,19 +293,18 @@ gsm_client_row_set_style (GsmClientRow* client_row, GsmStyle style)
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 
-  if (style != client->style)
-    {
-      client->style = style;
+  if (style == client->style)
+    return;
 
-      if (client_row->row > -1)
-	{
-	  GtkCList* clist = (GtkCList*)client_row->client_list;
+  client->style = style;
 
-	  gtk_clist_set_pixmap (clist, client_row->row, 1, 
-				style_pixmap[style].pixmap, 
-				style_pixmap[style].mask);
-	}
-    }
+  if (client_row->state != GSM_CLIENT_ROW_ADDED)
+    return;
+
+  gtk_list_store_set (GTK_LIST_STORE (client_row->model),
+		      &client_row->iter,
+		      GSM_CLIENT_LIST_COL_STYLE, style_pixmap[style],
+		      -1);
 }
 
 static void
@@ -345,26 +319,16 @@ create_stock_menu_pixmaps (GsmClientList *client_list)
 	gint i;
 	
 	for (i = 0; i < GSM_NSTATES; i++) {
-		GdkPixbuf *pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
-							    state_data[i].pixmap_info,
-							    GTK_ICON_SIZE_MENU,
-							    NULL);
-		gdk_pixbuf_render_pixmap_and_mask (pixbuf, 
-						   &state_pixmap[i].pixmap,
-						   &state_pixmap[i].mask,
-						   0x80);
-		g_object_unref (pixbuf);
+	  state_pixmap[i] = gtk_widget_render_icon (GTK_WIDGET (client_list),
+						    state_data[i].pixmap_info,
+						    GTK_ICON_SIZE_MENU,
+						    NULL);
 	}
 		
 	for (i = 0; i < GSM_NSTYLES; i++) {
-		GdkPixbuf *pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
-						 style_data[i].pixmap_info,
-						 GTK_ICON_SIZE_MENU,
-						 NULL);
-		gdk_pixbuf_render_pixmap_and_mask (pixbuf, 
-						   &style_pixmap[i].pixmap,
-						   &style_pixmap[i].mask,
-						   0x80);
-		g_object_unref (pixbuf);
+	  style_pixmap[i] = gtk_widget_render_icon (GTK_WIDGET (client_list),
+						    style_data[i].pixmap_info,
+						    GTK_ICON_SIZE_MENU,
+						    NULL);
 	}
 }

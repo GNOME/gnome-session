@@ -1,4 +1,4 @@
-#/* gsm-client-row.h - a gsm-client object for entry into a clist
+/* gsm-client-row.h - a gsm-client object for entry into a clist
 
    Copyright 1999 Free Software Foundation, Inc.
 
@@ -38,12 +38,19 @@ typedef enum {
   GSM_CLIENT_ROW_EDIT,
   GSM_CLIENT_ROW_NONE
 } GsmClientRowChange;
+typedef enum {
+  GSM_CLIENT_ROW_NEW,
+  GSM_CLIENT_ROW_ADDED, /* iter is valid */
+  GSM_CLIENT_ROW_REMOVED
+} GsmClientRowState;
 
 typedef struct {
   GsmClient          client;
 
-  GsmClientList*     client_list;  /* where we are displayed (when visible) */
-  gint               row;          /* row in the client_list */
+  GsmClientList     *client_list;
+  GtkTreeModel      *model;
+  GtkTreeIter        iter;
+  GsmClientRowState  state;
 
   /* used in implementing reversion */
   GsmClientRowChange change;
