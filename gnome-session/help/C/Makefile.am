@@ -8,7 +8,7 @@ figs = \
 	stock_save.png			\
 	stock_timer.png			\
 	stock_trash.png
-app = gsm
+app = session
 lang = C
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook
