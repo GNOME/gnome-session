@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-07-12 13:55+0200\n"
-"PO-Revision-Date: 2002-07-12 13:55+0200\n"
+"POT-Creation-Date: 2002-07-13 21:09+0200\n"
+"PO-Revision-Date: 2002-07-13 21:13+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <gnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -96,8 +96,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "No l'afecten les sortides però pot morir"
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Tornar-lo a crear"
+msgid "Restart"
+msgstr "Reinicia"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -261,8 +261,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Podeu esperar que respongui o eliminar-lo."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
-msgstr "S'ha abandonat el reviscolament degut a errors."
+msgid "Restart abandoned due to failures."
+msgstr "S'ha abandonat el reinici degut a errors."
 
 #: gnome-session/manager.c:1683
 msgid "A session shutdown is in progress."
@@ -304,7 +304,11 @@ msgstr "Afegeix una nova sessió"
 msgid "Edit session name"
 msgstr "Edita el nom de la sessió"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+msgid "_Edit"
+msgstr "_Edita"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -312,101 +316,70 @@ msgstr ""
 "Alguns canvis no estan desats.\n"
 "Encara voleu sortir?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Propietats de la sessió"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "Sessions"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Opcions"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
-msgstr "Mostrar la pantalla de presentació a l'entrar"
-
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
-msgstr "Preguntar abans de sortir"
-
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
-msgstr "Desar automàticament els canvis a la sessió"
+#: gnome-session/session-properties-capplet.c:230
+msgid "Show splash screen on _login"
+msgstr "Mostra la pantalla de presentació a l'en_trar"
 
 #: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Aquests canvis tenen efecte immediatament</i>"
+msgid "_Prompt on logout"
+msgstr "_Pregunta abans de sortir"
 
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Selecciona la sessió actual"
+#: gnome-session/session-properties-capplet.c:252
+msgid "Automatically save chan_ges to session"
+msgstr "Desa automàticament els can_vis a la sessió"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Nom de la sessió"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Afegeix..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Edita..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Suprimeix"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Opcions de la sessió"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Programes d'inici no controlats per la sessió"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritat"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Ordre"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Programes d'inici"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Sessió actual"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritat"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Ordre"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Programes d'inici"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Elimina el client actualment seleccionat de la sessió."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "Aplica els canvis a la sessió actual"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "La llista dels programes en la sessió."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "_Programes actualment en execució:"
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Inicialitza els paràmetres de la sessió."
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
 msgstr "Configureu les vostres sessions"
-
-#: gnome-session/session-properties.desktop.in.h:2
-msgid "Sessions"
-msgstr "Sessions"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -469,29 +442,60 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "S'està iniciant el GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+msgid "_Startup Command:"
+msgstr "Ordre d'_inici:"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Ordre d'inici"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Els programes amb valors més baixos s'executen abans que els programes amb "
-"valors més alts. El valor per defecte hauria de valdre."
+#: gnome-session/startup-programs.c:306
+msgid "_Priority:"
+msgstr "_Prioritat:"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "L'ordre d'inici no pot estar buida"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Afegeix un programa d'inici"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Edita el programa d'inici"
+
+#~ msgid "Respawn"
+#~ msgstr "Tornar-lo a crear"
+
+#~ msgid "Session properties"
+#~ msgstr "Propietats de la sessió"
+
+#~ msgid "Options"
+#~ msgstr "Opcions"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Aquests canvis tenen efecte immediatament</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Selecciona la sessió actual"
+
+#~ msgid "Add..."
+#~ msgstr "Afegeix..."
+
+#~ msgid "Delete"
+#~ msgstr "Suprimeix"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Programes d'inici no controlats per la sessió"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Els programes amb valors més baixos s'executen abans que els programes "
+#~ "amb valors més alts. El valor per defecte hauria de valdre."
 
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "Propietats de la sessió i programes d'inici"
