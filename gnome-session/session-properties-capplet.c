@@ -406,6 +406,7 @@ apply (void)
   session_properties_apply ();
 
   gtk_widget_set_sensitive (apply_button, FALSE);
+  state_dirty = FALSE;
 }
 
 
