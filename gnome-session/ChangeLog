@@ -1,3 +1,14 @@
+2004-09-01  Federico Mena Quintero  <federico@ximian.com>
+
+	Fix #151664:
+
+	* headers.h (Client): Add a purge_timeout_id field.
+
+	* manager.c (start_client): Save the purge_timeout_id when we
+	install the timeout.
+	(free_client): Remove the purge timeout if it exists.
+	(purge): Reset the client->purge_timeout_id to 0.
+
 ==================== 2.8.0 ====================
 
 ==================== 2.7.92 ====================

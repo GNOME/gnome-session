@@ -318,6 +318,13 @@ free_client (Client *client)
 
   if (client->last_discard)
     SmFreeProperty (client->last_discard);
+  client->last_discard = NULL;
+
+  if (client->purge_timeout_id != 0)
+    {
+      gtk_timeout_remove (client->purge_timeout_id);
+      client->purge_timeout_id = 0;
+    }
 
   g_free (client);
 }
@@ -501,6 +508,8 @@ purge (gpointer data)
 {
   Client* client = (Client*)data;
 
+  client->purge_timeout_id = 0;
+
   if (g_slist_find (pending_list, client))
     {
       REMOVE (pending_list, client);
@@ -570,7 +579,10 @@ start_client (Client* client)
     {
       APPEND (pending_list, client);
       if (purge_delay)
-	gtk_timeout_add (purge_delay, purge, (gpointer)client); 
+	{
+	  g_assert (client->purge_timeout_id == 0);
+	  client->purge_timeout_id = gtk_timeout_add (purge_delay, purge, client);
+	}
     }
   else
     {
