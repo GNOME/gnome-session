@@ -177,7 +177,7 @@ static struct info *
 setup ()
 {
   GnomePropertyBox *propertybox;
-  GtkWidget *w, *del_button, *bbox, *clist, *box;
+  GtkWidget *w, *del_button, *bbox, *clist, *sw, *box;
   GtkBox *page;
   struct info *info;
 
@@ -206,12 +206,21 @@ setup ()
   gtk_signal_connect (GTK_OBJECT (del_button), "clicked",
 		      GTK_SIGNAL_FUNC (remove_items), (gpointer) info);
 
-  /* FIXME: put clist into a multi-select mode.  */
-#if 0
+  gtk_clist_set_selection_mode(GTK_CLIST(clist), GTK_SELECTION_MULTIPLE);
+
+#ifdef GTK_HAVE_FEATURES_1_1_4
+  sw = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_container_add (GTK_CONTAINER (sw), clist);
+  gtk_box_pack_start (page, sw, FALSE, TRUE, GNOME_PAD_SMALL);
+  gtk_widget_show (sw);
+#else
   gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
 			GTK_POLICY_AUTOMATIC);
-#endif
   gtk_box_pack_start (page, clist, FALSE, FALSE, GNOME_PAD_SMALL);
+#endif
+
   gtk_signal_connect (GTK_OBJECT (clist), "select_row",
 		      GTK_SIGNAL_FUNC (row_selected), (gpointer) del_button);
   gtk_signal_connect (GTK_OBJECT (clist), "unselect_row",

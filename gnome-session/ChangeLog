@@ -1,3 +1,12 @@
+1998-11-24  Martin Baulig  <martin@home-of-linux.org>
+
+	* session-properties.c (setup): Put the GtkCList into a
+	GtkScrolledWindow and use gtk_scrolled_window_set_policy ()
+	if using Gtk 1.1.4.
+
+	* session-properties.c (setup): Set the GtkCList in multiple
+	selection mode to fix this fixme.
+
 Wed Nov 11 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* save.c (write_one_client) change argvs to static variable -
