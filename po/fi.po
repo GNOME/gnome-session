@@ -9,17 +9,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-07-19 20:15+0200\n"
+"POT-Creation-Date: 2002-11-30 22:12+0200\n"
+"PO-Revision-Date: 2002-11-30 22:31+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
+"sourceforge\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+".net>\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Salli TCP-yhteydet"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -28,44 +30,49 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Turvallisuussyistä gnome-session ei kuuntele yhteyksiä TCP-portteihin, jos "
+"alustalla (kuten XFree86-järjestelmillä) ei ole _IceTcpTransNoListen()-"
+"kutsua. Tämä asetus sallii yhteydet (sallituista) etäkoneista. gnome-session "
+"täytyy käynnistää uudelleen, jotta tämä tulisi voimaan."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Jos käytössä, gnome-session kysyy käyttäjältä ennen istunnon lopettamista."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Jos käytössä, gnome-session tallentaa istunnon itsestään. Muulloin "
+"uloskirjautumisikkunasta voi valita tallentuuko istunto."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr ""
+msgstr "Uloskirjautumiskysely"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "Haluttu kuva, joka näkyy Gnome-työpöydän käynnistymisikkunassa."
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Istunnot"
+msgstr "Tallenna istunnot"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Näytä aloitusikkuna _käynnistyessä"
+msgstr "Näytä käynnistymisikkuna"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Näytä käynnistymiskuva, kun istunto alkaa"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Käynnistymiskuva"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -77,7 +84,7 @@ msgstr "Järjestys, jossa sovellukset käynnistyvät istunnon aluksi."
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr "Mitä tapahtuu kun sovellus sulkeutuu."
+msgstr "Mitä sovellukselle tapahtuu, kun se sulkeutuu."
 
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
@@ -170,7 +177,7 @@ msgstr "Asetukset"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Käynnistyy sisäänkirjauduttaessa."
+msgstr "Käynnistyy sisään kirjauduttaessa."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -187,7 +194,7 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Gnomen asetusdaemonin käynnistys epäonnistui.\n"
+"Gnomen asetusdemonin käynnistys epäonnistui.\n"
 "\n"
 "Jotkin ominaisuudet, kuten teemat, äänet tai taustan asetukset eivät "
 "välttämättä toimi kunnolla."
@@ -212,7 +219,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME yrittää vielä käynnistää asetusdaemonin uudestaan, kun kirjaudut "
+"Gnome yrittää vielä käynnistää asetusdemonin uudestaan, kun kirjaudut "
 "seuraavan kerran sisään."
 
 #: gnome-session/gsm-gsd.c:115
@@ -221,7 +228,7 @@ msgstr "Tuntematon aktivointivirhe tapahtui."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Asetusdaemoni on käynnistynyt liian monta kertaa uudestaan."
+msgstr "Asetusdemoni on käynnistynyt liian monta kertaa uudestaan."
 
 #: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
@@ -258,15 +265,15 @@ msgstr "Lue tallennetut istunnot vain oletusistuntotiedostosta"
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
-"Asiakasohjelmien rekisteröitymisen odotusaika millisekunneissa (0=ikuisesti)"
+"Asiakasohjelmien rekisteröitymisen odotusaika millisekunteina (0=ikuisesti)"
 
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Asiakasohjelmien vastauksen odotusaika millisekunneissa (0=ikuisesti)"
+msgstr "Asiakasohjelmien vastauksen odotusaika millisekunteina (0=ikuisesti)"
 
 #: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Asiakasohjelmien sammumisen odotusaika millisekunneissa (0=ikuisesti)"
+msgstr "Asiakasohjelmien sammumisen odotusaika millisekunteina (0=ikuisesti)"
 
 #: gnome-session/main.c:212
 #, c-format
@@ -276,7 +283,7 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Koneelle %s ei saatu Internet-osoitetta,\n"
+"Koneen %s Internet-osoite ei selvinnyt,\n"
 "mikä estää Gnomea toimimasta kunnolla.\n"
 "Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
 "%s tiedostoon /etc/hosts."
@@ -320,7 +327,7 @@ msgstr "Istunto sulkeutuu."
 
 #: gnome-session/save-session.c:42
 msgid "Kill session"
-msgstr "Sulje istunto väkisin"
+msgstr "Tapa istunto"
 
 #: gnome-session/save-session.c:43
 msgid "Use dialog boxes"
@@ -328,7 +335,7 @@ msgstr "Käytä valintaikkunoita"
 
 #: gnome-session/save-session.c:156
 msgid "Could not connect to the session manager"
-msgstr "Istunnonhallintaan ei saatu yhteyttä"
+msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -336,7 +343,7 @@ msgstr "Tallenna nykyinen istunto"
 
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
-msgstr "Väri 4"
+msgstr "Tallenna työpöydän nykyinen tila"
 
 #: gnome-session/session-names.c:137
 msgid "The session name cannot be empty"
@@ -405,7 +412,7 @@ msgstr "Käynnistyvät ohjelmat"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Poista valittu asiakas istunnosta."
+msgstr "Poista valittu asiakasohjelma istunnosta."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
@@ -452,9 +459,8 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "Näppäimistöasetukset"
+msgstr "Työpöydän asetukset"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
@@ -466,7 +472,7 @@ msgstr "Käynnistyskomento:"
 
 #: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
-msgstr "Aloituskomento ei voi olla tyhjä"
+msgstr "Käynnistyskomento ei voi olla tyhjä"
 
 #: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
@@ -476,20 +482,3 @@ msgstr "Lisää käynnistyvä ohjelma"
 msgid "Edit Startup Program"
 msgstr "Muokkaa käynnistyvää ohjelmaa"
 
-#~ msgid "Audio Settings"
-#~ msgstr "Ääniasetukset"
-
-#~ msgid "Screensaver"
-#~ msgstr "Näytönsäästäjä"
-
-#~ msgid "Background Settings"
-#~ msgstr "Taustan asetukset"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Hiiriasetukset"
-
-#~ msgid "Priority"
-#~ msgstr "Tärkeys"
-
-#~ msgid "_Priority:"
-#~ msgstr "_Tärkeys:"
