@@ -8,9 +8,10 @@ figs = \
 	figures/stock_save.png			\
 	figures/stock_timer.png			\
 	figures/stock_trash.png
-app = session
+docname = session
 lang = ja
-omffiles = session-ja.omf
-include $(top_srcdir)/app-docs.make
+omffile = session-ja.omf
+sgml_ents =
+include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook
 
