@@ -1,4 +1,12 @@
-2001-11-12  Frank Belew <frb@ximian.com?
+Mon, 19 Nov 2001 01:25:40 -0500 Frank Belew <frb@ximian.com>
+
+	* Makefile.am: added gsm-marshal.list to EXTRA_DIST
+	* gnome-login-check.c, main.c, save-session.c,
+	  session-properties-capplet.c, session-properties.c:
+	  replaced PACKAGE with GETTEXT_PACKAGE on all
+          calls to bindtextdomain and textdomain
+
+2001-11-12  Frank Belew <frb@ximian.com>
 	
 	* Makefile.am: comment out SUBDIRS entirely, or Makefiles break
 

@@ -81,8 +81,8 @@ main (int argc, char *argv[])
   char *s;
 
   /* Initialize the i18n stuff */
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  textdomain (GETTEXT_PACKAGE);
 
   gnome_init_with_popt_table("save-session", VERSION, argc, argv, options, 0, NULL);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/mc/i-floppy.png");

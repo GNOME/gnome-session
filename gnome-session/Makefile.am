@@ -138,6 +138,7 @@ EXTRA_DIST =			\
 	session.desktop		\
 	$(manuals)		\
 	$(pixmap_DATA)		\
+	gsm-marshal.list	\
 	session-properties.desktop
 
 marshal_sources = gsm-marshal.c gsm-marshal.h

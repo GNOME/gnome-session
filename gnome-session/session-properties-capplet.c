@@ -622,8 +622,8 @@ main (int argc, char *argv[])
 {
   gint init_result;
 
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  textdomain (GETTEXT_PACKAGE);
 
   init_result = gnome_capplet_init("session-properties", VERSION, argc, argv,
 				   NULL, 0, NULL);

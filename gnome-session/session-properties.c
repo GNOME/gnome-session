@@ -364,8 +364,8 @@ static const struct poptOption options[] = {
 int
 main (int argc, char *argv[])
 {
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
+  bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+  textdomain (GETTEXT_PACKAGE);
 
   gnome_init_with_popt_table ("session-properties", VERSION, argc, argv, 
 			      options, 0, NULL);
