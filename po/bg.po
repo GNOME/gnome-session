@@ -1,25 +1,28 @@
 # Bulgarian translation of gnome-session for GNOME2.
-# Copyright (C) 2001, 2002 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2004 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # small improvements for completeness , Yanko Kaneti <yaneti@declera.com>, 2002.
 # Alexander Shopov <al_shopov@yahoo.com> - updates and spellcheck, 2002.
+# Updated by Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004
+# Updated by Peter "Peshka" Slavov <pslavov@i-space.org>, 2004
+
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2004-03-09 10:55+0000\n"
-"PO-Revision-Date: 2003-01-24 12:54+0200\n"
-"Last-Translator: Alexander Shopov <al_shopov@yahoo.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-14 12:35+0000\n"
+"PO-Revision-Date: 2004-03-03 12:47+0200\n"
+"Last-Translator: Vladimir \"Kaladan\" Petkov <vpetkov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 0.9.6\n"
+"Content-Transfer-Encoding: 8bit"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr "Позволи TCP връзки"
+msgstr "Позволява TCP връзки"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -31,11 +34,11 @@ msgstr ""
 "за връзки на TCP портовете. Тази настройка позволява връзки от (оторизирани) "
 "отдалечени машини. gnome-session трябва да се рестартира, за да има ефект."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Ако е включено, gnome-session ще предупреди преди да приключи сесия."
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -44,52 +47,52 @@ msgstr ""
 "случай, диалогът при излизане от средата ще дава възможност за записване на "
 "сесията."
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr "Питай при изход"
+msgstr "Пита при изход"
 
-#: gnome-session/gnome-session.schemas.in.h:6
+#: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"Картинка, която да се показва върху прозореца със зареждането при "
-"включването в средата Гном."
+"Изображение, което да се показва върху прозореца със зареждането при "
+"включването в работната среда."
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
-msgstr "Запазвай сесиите"
+msgstr "Запазва сесиите"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: gnome-session/gnome-session.schemas.in.in.h:8
 msgid "Show the splash screen"
-msgstr "Показвай прозореца със зареждането"
+msgstr "Показва прозореца със зареждането"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Показвай прозореца със зареждането при началото на сесията"
+msgstr "Показва прозореца със зареждането в началото на сесията"
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
 msgstr "Картинка за прозореца при зареждане"
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "_Ред: "
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "Редът на стартиране на приложенията от тази сесия."
+msgstr "Редът за стартиране на приложенията от тази сесия."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "Какво се случва на приложението при изход"
+msgstr "Какво се случва на приложението при изход."
 
 #: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Стил: "
+msgstr "_Стил:"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#: gnome-session/session-properties-capplet.c:392
 msgid "Order"
 msgstr "Ред"
 
@@ -111,7 +114,7 @@ msgstr "Неактивен"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Чака да започне или вече е приключил."
+msgstr "Чака за да започне или вече е приключил."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -128,7 +131,7 @@ msgstr "Изпълнява се"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "Нормален член на сесията"
+msgstr "Нормален член на сесията."
 
 # ###
 #: gnome-session/gsm-client-row.c:40
@@ -157,7 +160,7 @@ msgstr "Не се влияе от изходи, но може да умре"
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr "Рестарт"
+msgstr "Рестартира"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -177,7 +180,7 @@ msgstr "Настройки"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Винаги стартиран при всяко влизане"
+msgstr "Винаги стартиран при всяко влизане."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -194,7 +197,7 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Има грешка при стартиране на сървъра за настройки на ГНОМ.\n"
+"Има грешка при стартиране на сървъра за настройки на GNOME.\n"
 "\n"
 "Някои неща, като теми, звуци или настройки на фона на екрана може да не "
 "работят правилно."
@@ -219,7 +222,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"ГНОМ ще опита да рестартира сървъра за настройки при следващото Ви влизане."
+"GNOME ще опита да рестартира сървъра за настройки при следващото Ви влизане."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -227,56 +230,54 @@ msgstr "Имаше неизвестна грешка при активиране
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Сървърът за настройки е рестартиран прекалено много пъти."
+msgstr "Сървърът за настройки е рестартиран твърде много пъти."
 
-#: gnome-session/logout.c:374
+#: gnome-session/logout.c:389
 msgid "Are you sure you want to log out?"
 msgstr "Сигурни ли сте, че искате да излезете?"
 
-#: gnome-session/logout.c:391
+#: gnome-session/logout.c:417
 msgid "_Save current setup"
-msgstr "_Запази текущото обкръжение"
+msgstr "_Запазва текущото обкръжение"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:442
 msgid "Action"
 msgstr "Действие"
 
-#: gnome-session/logout.c:433
-#, fuzzy
+#: gnome-session/logout.c:459
 msgid "_Log out"
 msgstr "_Изход"
 
-#: gnome-session/logout.c:437
-#, fuzzy
+#: gnome-session/logout.c:463
 msgid "Sh_ut down"
-msgstr "С_при системата"
+msgstr "С_пира компютъра"
 
-#: gnome-session/logout.c:441
+#: gnome-session/logout.c:467
 msgid "_Restart the computer"
-msgstr "_Рестартирай компютъра"
+msgstr "_Рестартира компютъра"
 
-#: gnome-session/main.c:80
+#: gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Име на сесия, която да се зареди"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
-msgstr "Прочитай само запазените сесии от default.session файла"
+msgstr "Прочита само запазените сесии от default.session файла"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Време за изчакване на клиентите да се регистрират (0=до безкрайност) [ms]"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Време за изчакване на клиентите да отговорят (0=до безкрайност) [ms]"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Време за изчакване на клиентите да умрат (0=до безкрайност) [ms]"
 
-#: gnome-session/main.c:264
+#: gnome-session/main.c:267
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -285,17 +286,17 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "Не мога да открия интернет адреса на %s.\n"
-"Това ще попречи на ГНОМ да работи нормално.\n"
+"Това ще попречи на GNOME да работи нормално.\n"
 "Проблемът може и да се оправи чрез добавяне на\n"
 "%s във файла /etc/hosts."
 
-#: gnome-session/main.c:271
+#: gnome-session/main.c:274
 msgid "Log in Anyway"
-msgstr "Вход, въпреки всичко"
+msgstr "Влиза, въпреки всичко"
 
-#: gnome-session/main.c:272
+#: gnome-session/main.c:275
 msgid "Try Again"
-msgstr "Пробвай отново"
+msgstr "Пробва отново"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
@@ -316,7 +317,7 @@ msgstr "Програмата може да е бавна, спряна или р
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
-msgstr "Може да почакате да отговори или да я премахнете"
+msgstr "Може да почакате да отговори или да я премахнете."
 
 #: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
@@ -327,21 +328,28 @@ msgid "A session shutdown is in progress."
 msgstr "В действие е край на сесия."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Приложи промените в текущата сесия"
+msgstr "Прилага промените в текущата сесия"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
-msgstr "Убий сесията"
+msgstr "Убива сесията"
 
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
-msgstr "Използвай диалогови кутии"
+msgstr "Използва диалогови кутии"
 
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Не мога да се свържа с мениджъра на сесии"
+
+#: gnome-session/save-session.desktop.in.h:1
+msgid "Save Current Session"
+msgstr "Записва текущата сесия"
+
+#: gnome-session/save-session.desktop.in.h:2
+msgid "Save current state of desktop"
+msgstr "Записва текущото състояние на работно пространство"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -351,19 +359,19 @@ msgstr "Името на сесията не може да е празно"
 msgid "The session name already exists"
 msgstr "Името на сесията вече съществува"
 
-#: gnome-session/session-names.c:188
+#: gnome-session/session-names.c:187
 msgid "Add a new session"
-msgstr "Добави нова сесия"
+msgstr "Добавя нова сесия"
 
-#: gnome-session/session-names.c:218
+#: gnome-session/session-names.c:217
 msgid "Edit session name"
-msgstr "Редактирай име на сесия"
+msgstr "Редактира име на сесия"
 
-#: gnome-session/session-properties-capplet.c:122
+#: gnome-session/session-properties-capplet.c:123
 msgid "_Edit"
 msgstr "_Редактиране"
 
-#: gnome-session/session-properties-capplet.c:190
+#: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -371,100 +379,100 @@ msgstr ""
 "Някой промени не са записани.\n"
 "Да изляза ли от програмата?"
 
-#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Сесии"
 
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:253
 msgid "Show splash screen on _login"
-msgstr "Покажи прозоре_ца със зареждането при влизане"
+msgstr "Показва прозоре_ца със зареждането по време на влизане"
 
-#: gnome-session/session-properties-capplet.c:284
+#: gnome-session/session-properties-capplet.c:264
 msgid "_Prompt on logout"
 msgstr "_Питане при излизане"
 
-#: gnome-session/session-properties-capplet.c:295
+#: gnome-session/session-properties-capplet.c:275
 msgid "Automatically save chan_ges to session"
 msgstr "Автоматично запазва п_ромените в сесията"
 
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:286
 msgid "_Sessions:"
 msgstr "_Сесии:"
 
-#: gnome-session/session-properties-capplet.c:324
+#: gnome-session/session-properties-capplet.c:304
 msgid "Session Name"
 msgstr "Име на сесия"
 
-#: gnome-session/session-properties-capplet.c:375
+#: gnome-session/session-properties-capplet.c:355
 msgid "Session Options"
 msgstr "Настройки на сесия"
 
-#: gnome-session/session-properties-capplet.c:384
+#: gnome-session/session-properties-capplet.c:364
 msgid "Current Session"
 msgstr "Текуща сесия"
 
-#: gnome-session/session-properties-capplet.c:393
+#: gnome-session/session-properties-capplet.c:373
 msgid "Additional startup _programs:"
 msgstr "Допълнителни начални _програми:"
 
-#: gnome-session/session-properties-capplet.c:414
+#: gnome-session/session-properties-capplet.c:394
 msgid "Command"
 msgstr "Команда"
 
-#: gnome-session/session-properties-capplet.c:446
+#: gnome-session/session-properties-capplet.c:426
 msgid "Startup Programs"
 msgstr "Начални програми"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Премахни избрания клиент от сесията."
+msgstr "Премахва избрания клиент от сесията."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "Приложи промените в текущата сесия"
+msgstr "Прилага промените в текущата сесия"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Списък с програми в сесията."
 
-#: gnome-session/session-properties.c:88
+#: gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
 msgstr "Текущо работещи _програми:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Инициализирай настройките на сесията"
+msgstr "Инициализира настройките на сесията"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
 msgstr "Конфигурация на сесиите"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
-msgstr "Мениджър на прозорци Софиш"
+msgstr "Мениджър на прозорци Sawfish"
+
+#: gnome-session/splash-widget.c:43
+msgid "Metacity Window Manager"
+msgstr "Мениджър на прозорци Metacity"
 
 #: gnome-session/splash-widget.c:44
-msgid "Metacity Window Manager"
-msgstr "Мениджър на прозорци Метасити"
-
-#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Мениджър на прозорци"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
-msgstr "Панел"
+msgstr "Панелът"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "Прокси за мениджър на сесии"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
-msgstr "Наутилус"
+msgstr "Наутилус - файлов мениджър"
 
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Настройки на средата"
 
@@ -476,20 +484,15 @@ msgstr "_Начална команда:"
 msgid "Startup Command"
 msgstr "Начална команда"
 
-#: gnome-session/startup-programs.c:343
+#: gnome-session/startup-programs.c:342
 msgid "The startup command cannot be empty"
 msgstr "Името на командата за стартиране не може да бъде празно"
 
-#: gnome-session/startup-programs.c:380
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
-msgstr "Добави начална програма"
+msgstr "Добавя начална програма"
 
-#: gnome-session/startup-programs.c:401
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Редактиране на начална програма"
 
-#~ msgid "Save Current Session"
-#~ msgstr "Запиши текущата сесия"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Запиши текущото състояние на работно пространство"
