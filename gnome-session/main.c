@@ -82,6 +82,38 @@ ignore (int sig)
   sigaction (sig, &act, NULL);
 }
 
+/* Set language environment variables based on what GDM is setting
+ */
+static void
+set_lang (void)
+{
+  char *gdm_lang;
+  char *env_string;
+  char *short_lang;
+  char *p;
+
+  gdm_lang = getenv("GDM_LANG");
+  if (gdm_lang)
+    {
+      short_lang = g_strdup (gdm_lang);
+      p = strchr(short_lang, '_');
+      if (p)
+	*p = '\0';
+
+      env_string = g_strconcat ("LANG=", gdm_lang, NULL);
+      putenv (env_string);
+
+      /* env_string = g_strconcat ("LANGUAGE=", short_lang, NULL);
+      putenv (env_string); */
+
+      /* env_string = g_strconcat ("LC_ALL=", gdm_lang, NULL);
+      putenv (env_string); */
+
+      g_free (short_lang);
+    }
+}
+
+
 int
 main (int argc, char *argv[])
 {
@@ -91,15 +123,17 @@ main (int argc, char *argv[])
   const char **leftovers;
   Session *the_session;
   
+  set_lang();
+
+  /* Initialize the i18n stuff */
+  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+  textdomain (PACKAGE);
+
   /* We do this as a separate executable, and do it first so that we
    * make sure we have a absolutely clean setup if the user blows
    * their configs away with the Ctrl-Shift hotkey.
    */
   system ("gnome-login-check");
-
-  /* Initialize the i18n stuff */
-  bindtextdomain (PACKAGE, GNOMELOCALEDIR);
-  textdomain (PACKAGE);
 
   gnomelib_init ("gnome-session", VERSION);
   initialize_ice ();

@@ -7,7 +7,7 @@ defaultdir = $(datadir)/gnome
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
-	-DDEFAULTDIR="\"$(defaultdir)\""
+	-DDEFAULTDIR="\"$(defaultdir)\"" @CANVAS_PIXBUF_CFLAGS@
 
 LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
@@ -21,7 +21,7 @@ endif
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
 	command.c session.h remote.c logout.c splash.h splash.c
 
-gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
+gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@ @CANVAS_PIXBUF_LIBS@
 
 save_session_SOURCES = save-session.c gsm-protocol.c
 

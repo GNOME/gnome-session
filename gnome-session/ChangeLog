@@ -1,3 +1,20 @@
+Wed Jan 10 11:08:06 2001  George Lebl <jirka@5z.com>
+
+	Applying the patches from helix rpms, redhat stuff and other
+	fixes.
+
+	* Makefile.am: compile with gdkpixmap canvas stuff
+
+	* gnome-login-check.c: warning fix
+
+	* main.c: apply the GDM_LANG patch from redhat stuff
+
+	* splash.c: Use the helix version, but use the normal gnome
+	  splash screen.  Fixup warnings, handle all error case, fix
+	  a segfault and scale stuff correctly to the size of the
+	  splashscreen image so that it works with any size splashscreen
+	  image nicely and some i18n fixes
+
 Mon Dec 18 00:10:13 2000  George Lebl <jirka@5z.com>
 
 	* logout.c:  Just before showing the dialog, focus the default widget
