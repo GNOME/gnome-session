@@ -36,6 +36,10 @@ Author:  Ralph Mor, X Consortium
 #include <unistd.h>
 #include <netdb.h>
 
+#if !defined (NI_MAXHOST)
+#define NI_MAXHOST MAXHOSTNAMELEN
+#endif
+
 XtAppContext appContext;
 Display *disp;
 
