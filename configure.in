@@ -19,17 +19,35 @@ GNOME_COMPILE_WARNINGS
 dnl If you add a version number here, you *must* add an AC_SUBST line for
 dnl it too, or it will never make it into the spec file!
 
-LIBGNOMECANVAS_REQUIRED=2.0.0
-LIBGNOMEUI_REQUIRED=2.0.0
+ESOUND_REQUIRED=0.2.26
+LIBGNOMECANVAS_REQUIRED=1.1
+LIBGNOMEUI_REQUIRED=1.1
 
+AC_SUBST(ESOUND_REQUIRED)
 AC_SUBST(LIBGNOMECANVAS_REQUIRED)
 AC_SUBST(LIBGNOMEUI_REQUIRED)
 
 dnl pkg-config dependency checks
 
-PKG_CHECK_MODULES(GNOME_SESSION, libgnomecanvas-2.0 >= $LIBGNOMECANVAS_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+dnl We first check for esound and audiofile (which has conditional
+dnl support built in)
+
+ESOUND_MODULE="esound >= $ESOUND_REQUIRED"
+PKG_CHECK_MODULES(SOUND_TEST, $ESOUND_MODULE, [
+	AC_DEFINE(HAVE_ESD)
+],[
+	ESOUND_MODULE=""
+])
+
+PKG_CHECK_MODULES(GNOME_SESSION, libgnomecanvas-2.0 >= $LIBGNOMECANVAS_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE)
 AC_SUBST(GNOME_SESSION_CFLAGS)
 AC_SUBST(GNOME_SESSION_LIBS)
+
+PKG_CHECK_MODULES(LOGIN_CHECK, libgnome-2.0 gtk+-2.0)
+AC_SUBST(LOGIN_CHECK_LIBS)
+
+PKG_CHECK_MODULES(SMPROXY, libgnome-2.0)
+AC_SUBST(SMPROXY_LIBS)
 
 dnl gconf checks
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
@@ -216,6 +234,7 @@ AC_CHECK_FUNCS(_IceTransNoListen)
 LIBS="$oLIBS"
 dnl -----------------------------------------------------------
 
+AC_CHECK_FUNCS(usleep)
 
 dnl Build Flags
 
@@ -245,9 +264,10 @@ AC_ARG_WITH(reboot-command,
 [  --with-reboot-command=COMMAND
 			  Specify the command for rebooting the system],[
     REBOOT_COMMAND="$with_reboot_command"], [
-    AC_PATH_PROGS(REBOOT_COMMAND, reboot, [
-	AC_MSG_ERROR([The reboot command was not found. Please use the --with-reboot-command option.])
-    ])
+    AC_PATH_PROGS(REBOOT_COMMAND, reboot)
+    if test x$REBOOT_COMMAND = x ; then
+	AC_MSG_WARN([The reboot command was not found. Restarting from the logout dialog will be disabled.])
+    fi
 ])
 AC_SUBST(REBOOT_COMMAND)
 
@@ -255,9 +275,10 @@ AC_ARG_WITH(halt-command,
 [  --with-halt-command=COMMAND
 			  Specify the command for halting the system],[
     HALT_COMMAND="$with_halt_command"], [
-    AC_PATH_PROGS(HALT_COMMAND, poweroff halt, [
-	AC_MSG_ERROR([The halt command was not found. Please use the --with-halt-command option.])
-    ])
+    AC_PATH_PROGS(HALT_COMMAND, [poweroff halt])
+    if test x$HALT_COMMAND = x ; then
+	AC_MSG_WARN([The halt command was not found. Shutting down from the logout dialog will be disabled.])
+    fi
 ])
 AC_SUBST(HALT_COMMAND)
 
