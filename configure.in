@@ -44,6 +44,17 @@ AC_SUBST(GNOME_SESSION_LIBS)
 PKG_CHECK_MODULES(SMPROXY, libgnome-2.0)
 AC_SUBST(SMPROXY_LIBS)
 
+dnl
+dnl Check for gtk+ with multihead support
+dnl
+AC_MSG_CHECKING([for gtk+ multihead support])
+if $PKG_CONFIG --atleast-version 2.1.0 gtk+-2.0; then
+   AC_DEFINE(HAVE_GTK_MULTIHEAD,,[gtk+ with multihead support found])
+   AC_MSG_RESULT(yes)
+else
+   AC_MSG_RESULT(no)
+fi
+
 dnl gconf checks
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 

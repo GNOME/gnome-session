@@ -1,3 +1,19 @@
+2002-08-08  Mark McLoughlin  <mark@skynet.ie>
+
+	* Makefile.am: add gsm-multiscreen.[ch] to
+	the build.
+
+	* gsm-multiscreen.[ch]: (gsm_foreach_screen),
+	(gsm_screen_contains_pointer), (gsm_locate_screen_with_pointer),
+	(gsm_screen_get_width), (gsm_screen_get_height),
+	(gsm_center_window_on_screen): impl various multiscreen
+	helper functions.
+
+	* logout.c: (iris_callback), (iris_on_screen), (iris),
+	(refresh_screen), (display_gui): draw the iris on both
+	screens and realise the logout dialog on the screen
+	which currently contains the pointer.
+
 2002-08-05  jacob berkman  <jacob@ximian.com>
 
 	* gnome-wm: prefer metacity to sawfish

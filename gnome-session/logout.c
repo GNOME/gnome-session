@@ -32,6 +32,7 @@
 #include "logout.h"
 #include "command.h"
 #include "util.h"
+#include "gsm-multiscreen.h"
 
 static gchar *halt_command[] =
 {
@@ -52,13 +53,19 @@ static enum
 }
 action = LOGOUT;
 
-/* Some globals for rendering the iris.  */
-static GdkRectangle iris_rect;
-static gint iris_block = 0;
-static GdkGC *iris_gc = NULL;
+typedef struct {
+	GdkScreen    *screen;
+	int           monitor;
+	GdkRectangle  iris_rect;
+	GdkWindow    *root_window;
+	int           iris_block;
+	GdkGC        *iris_gc;
+} IrisData;
+
+static int num_iris_timeouts = 0;
 
 static gint
-iris_callback (gpointer data)
+iris_callback (IrisData *data)
 {
   gint i;
   gint width_step;
@@ -66,32 +73,38 @@ iris_callback (gpointer data)
   gint width;
   gint height;
 
-  width_step = MIN (iris_rect.width / 2, iris_block);
-  height_step = MIN (iris_rect.width / 2, iris_block);
+  width_step = MIN (data->iris_rect.width / 2, data->iris_block);
+  height_step = MIN (data->iris_rect.width / 2, data->iris_block);
 
   for (i = 0; i < MIN (width_step, height_step); i++)
     {
-      width  = (gint)iris_rect.width  - 2 * i;
-      height = (gint)iris_rect.height - 2 * i;
+      width  = (gint)data->iris_rect.width  - 2 * i;
+      height = (gint)data->iris_rect.height - 2 * i;
 
       if (width < 0 || height < 0)
         break;
 
-      gdk_draw_rectangle (GDK_ROOT_PARENT (), iris_gc, FALSE,
-                          iris_rect.x + i, iris_rect.y + i,
+      gdk_draw_rectangle (data->root_window, data->iris_gc, FALSE,
+                          data->iris_rect.x + i,
+			  data->iris_rect.y + i,
                           width, height);
     }
 
   gdk_flush ();
 
-  iris_rect.x += width_step;
-  iris_rect.y += height_step;
-  iris_rect.width -= MIN (iris_rect.width, iris_block * 2);
-  iris_rect.height -= MIN (iris_rect.height, iris_block * 2);
+  data->iris_rect.x += width_step;
+  data->iris_rect.y += height_step;
+  data->iris_rect.width -= MIN (data->iris_rect.width, data->iris_block * 2);
+  data->iris_rect.height -= MIN (data->iris_rect.height, data->iris_block * 2);
 
-  if (iris_rect.width == 0 || iris_rect.height == 0)
+  if (data->iris_rect.width == 0 || data->iris_rect.height == 0)
     {
-      gtk_main_quit ();
+      g_object_unref (data->iris_gc);
+      g_free (data);
+
+      if (!--num_iris_timeouts)
+        gtk_main_quit ();
+
       return FALSE;
     }
   else
@@ -99,56 +112,82 @@ iris_callback (gpointer data)
 }
 
 static void
-iris (void)
+iris_on_screen (GdkScreen *screen,
+		int        monitor)
 {
-  iris_rect.x = 0;
-  iris_rect.y = 0;
-  iris_rect.width = gdk_screen_width ();
-  iris_rect.height = gdk_screen_height ();
+  static char  dash_list [2] = {1, 1};
+  GdkGCValues  values;
+  IrisData    *data;
 
-  if (!iris_gc)
-    {
-      GdkGCValues values;
-      static gchar dash_list[2] = {1, 1};
+  data = g_new (IrisData, 1);
 
-      values.line_style = GDK_LINE_ON_OFF_DASH;
-      values.subwindow_mode = GDK_INCLUDE_INFERIORS;
+  data->screen = screen;
+  data->monitor = monitor;
 
-      iris_gc = gdk_gc_new_with_values (GDK_ROOT_PARENT (),
-					&values,
-				      GDK_GC_LINE_STYLE | GDK_GC_SUBWINDOW);
+  data->iris_rect.x = 0;
+  data->iris_rect.y = 0;
+  data->iris_rect.width = gsm_screen_get_width (screen, monitor);
+  data->iris_rect.height = gsm_screen_get_height (screen, monitor);
 
-      gdk_gc_set_dashes (iris_gc, 0, dash_list, 2);
-    }
+#ifdef HAVE_GTK_MULTIHEAD
+  data->root_window = gdk_screen_get_root_window (screen);
+#else
+  data->root_window = gdk_get_default_root_window ();
+#endif
+
+  values.line_style = GDK_LINE_ON_OFF_DASH;
+  values.subwindow_mode = GDK_INCLUDE_INFERIORS;
+
+  data->iris_gc = gdk_gc_new_with_values (data->root_window,
+					  &values,
+					  GDK_GC_LINE_STYLE | GDK_GC_SUBWINDOW);
+  gdk_gc_set_dashes (data->iris_gc, 0, dash_list, 2);
 
   /* Plan for a time of 0.5 seconds for effect */
-  iris_block = iris_rect.height / (500 / 20);
-  if (iris_block < 8)
-    {
-      iris_block = 8;
-    }
+  data->iris_block = data->iris_rect.height / (500 / 20);
+  if (data->iris_block < 8)
+    data->iris_block = 8;
 
-  gtk_timeout_add (20, iris_callback, NULL);
-
-  gtk_main ();
+  g_timeout_add (20, (GSourceFunc) iris_callback, data);
+  num_iris_timeouts++;
 }
 
 static void
-refresh_screen (void)
+iris (void)
+{
+  num_iris_timeouts = 0;
+
+  gsm_foreach_screen (iris_on_screen);
+
+  gtk_main ();
+
+  g_assert (num_iris_timeouts == 0);
+}
+
+static void
+refresh_screen (GdkScreen *screen,
+		int        monitor)
 {
   GdkWindowAttr attributes;
   GdkWindow *window;
+  GdkWindow *parent;
 
   attributes.x = 0;
   attributes.y = 0;
-  attributes.width = gdk_screen_width ();
-  attributes.height = gdk_screen_height ();
+  attributes.width = gsm_screen_get_width (screen, monitor);
+  attributes.height = gsm_screen_get_height (screen, monitor);
   attributes.window_type = GDK_WINDOW_TOPLEVEL;
   attributes.wclass = GDK_INPUT_OUTPUT;
   attributes.override_redirect = TRUE;
   attributes.event_mask = 0;
 
-  window = gdk_window_new (NULL, &attributes,
+#ifdef HAVE_GTK_MULTIHEAD
+  parent = gdk_screen_get_root_window (screen);
+#else
+  parent = NULL;
+#endif
+
+  window = gdk_window_new (parent, &attributes,
 			   GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR);
 
   gdk_window_show (window);
@@ -197,6 +236,8 @@ display_gui (void)
   gboolean halt_active = FALSE;
   gboolean reboot_active = FALSE;
   GError *error = NULL;
+  GdkScreen *screen;
+  int monitor;
 
   gsm_verbose ("display_gui: showing logout dialog\n");
 
@@ -207,7 +248,19 @@ display_gui (void)
    */
   gtk_rc_reparse_all ();
 
+#ifdef HAVE_GTK_MULTIHEAD
+  screen = gsm_locate_screen_with_pointer (&monitor);
+  if (!screen)
+    screen = gdk_screen_get_default ();
+
+  invisible = gtk_invisible_new_for_screen (screen);
+#else
+  screen = NULL;
+  monitor = 0;
+
   invisible = gtk_invisible_new ();
+#endif
+
   gtk_widget_show (invisible);
 
   while (1)
@@ -240,7 +293,9 @@ display_gui (void)
   g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
-  gtk_window_set_position (GTK_WINDOW (box), GTK_WIN_POS_CENTER);
+#ifdef HAVE_GTK_MULTIHEAD
+  gtk_window_set_screen (GTK_WINDOW (box), screen);
+#endif
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
   gtk_container_set_border_width (
@@ -288,6 +343,8 @@ display_gui (void)
   g_free (s);
   g_free (t);
 
+  gsm_center_window_on_screen (GTK_WINDOW (box), screen, monitor);
+
   gtk_widget_show_all (box);
 
   /* Move the grabs to our message box */
@@ -312,7 +369,7 @@ display_gui (void)
 
   gtk_widget_destroy (box);
 
-  refresh_screen ();
+  gsm_foreach_screen (refresh_screen);
   XUngrabServer (GDK_DISPLAY ());
 
   gdk_pointer_ungrab (GDK_CURRENT_TIME);
@@ -354,6 +411,10 @@ display_gui (void)
           g_signal_connect (G_OBJECT (dialog), "response",
 	   		    G_CALLBACK (gtk_widget_destroy),
 			    NULL);
+
+#ifdef HAVE_GTK_MULTIHEAD
+	  gtk_window_set_screen (GTK_WINDOW (dialog), screen);
+#endif
 
           gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
           gtk_widget_show (dialog);
