@@ -4,7 +4,8 @@ Sat Dec 27 12:39:40 1997  Tom Tromey  <tromey@cygnus.com>
 	* prop.c: New file.
 	* Makefile.am (gsm_SOURCES): Include prop.c, save.c.
 
-	* manager.h: Declare find_property_by_name.
+	* manager.h: Declare find_property_by_name, find_card8_property,
+	find_string_property, find_vector_property.
 
 	* manager.c (save_helper): Removed.
 	(x_save_type, x_interact_style, x_fast): Removed.
