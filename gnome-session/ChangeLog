@@ -1,3 +1,16 @@
+Mon Jan 10 17:26:50 2000  George Lebl <jirka@5z.com>
+
+	* gnome-wm: Take two arguments, --default-wm and --sm-client-id
+	  and run a windowmanager with the client id translated into an
+	  appropriate option for any given windowmanager.
+
+	* default.in: add the --sm-client-id option and always call gnome-wm
+	  script and pass the @WINDOW_MANAGER@ configure variable as the
+	  --default-wm
+
+	* gnome-wm.1: update for the two options and the new behaviour and
+	  fix a couple spelling errors
+
 2000-01-08  Jacob Berkman  <jacob@helixcode.com>
 
 	* splash.c: remove debuggin' output

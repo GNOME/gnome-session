@@ -16,7 +16,7 @@
 1,RestartCommand=sound-properties --init-session-settings --sm-client-id default1
 2,id=default2
 2,Priority=10
-2,RestartCommand=@WINDOW_MANAGER@
+2,RestartCommand=gnome-wm --default-wm @WINDOW_MANAGER@ --sm-client-id default2
 3,id=default3
 3,Priority=20
 3,RestartCommand=background-properties-capplet --init-session-settings --sm-client-id default3

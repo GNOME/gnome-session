@@ -7,16 +7,23 @@ gnome-wm \- Launches the user selected window manager for the GNOME
 session
 .SH SYNOPSIS
 .PP
-.B gnome-wm [wm arguments]
+.B gnome-wm [--default-wm windowmanager] [--sm-client-id id]
 .SH DESCRIPTION
 The \fIgnome-wm\fP script invokes the user selected window manager.
 If the user has not chosen a window manager it will try to launch a
-GNOME compliang window manager.
+GNOME compliant window manager.
 .PP
 The user can overwrite the selection of a window manager by setting
 the 
 .B WINDOW_MANAGER
-environment variable.
+environment variable.  If a --default-wm option is given the script uses
+that window manager in case
+.B WINDOW_MANAGER
+is not set.  If gnome-wm is given as the argument to --default-wm then it
+is the same as if no default was given.
+.PP
+The script takes the --sm-client-id argument and translates the id to an
+appropriate option depending on which window manager was selected.
 .PP
 
 .SH ENVIRONMENT
@@ -33,7 +40,7 @@ The program stores the current selection of a window manager in the
 WM=path-to-wm
 .fi
 .SH SEE ALSO
-.BR gnome-session(1), defaut.session(5)
+.BR gnome-session(1), default.session(5)
 .SH BUGS
 If you find bugs in the \fIgnome-wm\fP program, please report
 these using the \fIgnome-bug\fP script included with the GNOME
