@@ -1,3 +1,8 @@
+1999-01-16  Felix Bellaby  <felix@pooh.u-net.com>
+
+	* smproxy.c (HandleUpdate): protect against clients that
+	delete the WM_COMMAND property (e.g. mozilla )
+	
 1998-12-09  Felix Bellaby  <felix@pooh.u-net.com>
 
 	* smproxy.c (ProxySaveYourselfPhase2CB): Changed SmDiscardCommand 

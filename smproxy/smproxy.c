@@ -910,16 +910,25 @@ XPropertyEvent *event;
     {
 	/* Finish off the Save Yourself */
 
-	if (winptr->wm_command)
-	{
-	    XFreeStringList (winptr->wm_command);
-	    winptr->wm_command = NULL;
-	    winptr->wm_command_count = 0;
-	}
+        char ** argv;
+        int argc;
 
-	XGetCommand (disp, window,
-	    &winptr->wm_command,
-	    &winptr->wm_command_count);
+	XGetCommand (disp, window, &argv, &argc);
+
+      	/* Some particularly horrid clients (mozilla!) sometimes 
+	   delete the value of the WM_COMMAND property rather 
+	   than changing it. The only feasible response that
+           I can see to this behavior is too ignore that the
+	   WM_COMMAND has been changed at all... */
+
+	if (argv != 0 && argc > 0)
+	{
+	    if (winptr->wm_command)
+	      XFreeStringList (winptr->wm_command);
+
+	    winptr->wm_command = argv;
+	    winptr->wm_command_count = argc;
+	}
 
 	winptr->waiting_for_update = 0;
 	FinishSaveYourself (winptr, True);
