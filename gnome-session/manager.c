@@ -158,18 +158,6 @@ find_client_by_id (const GSList *list, const char *id)
 }
 
 static Client *
-find_client_by_connection (GSList *list, IceConn ice_conn)
-{
-  for (; list; list = list->next)
-    {
-      Client *client = (Client *) list->data;
-      if (SmsGetIceConnection (client->connection) == ice_conn)
-	return client;
-    }
-  return NULL;
-}
-
-static Client *
 find_client_by_argv0 (const GSList *list, const char *argv0)
 {
   for (; list; list = list->next)
@@ -272,8 +260,7 @@ gint
 run_command (Client* client, const gchar* command)
 {
   int argc, envc, envpc, pid = -1;
-  gboolean def, envd;
-  char **argv, *dir, prefix[1024], **envv, **envp, *restart_info;
+  char **argv, *dir, **envv, **envp, *restart_info;
 
   if (find_vector_property (client, command, &argc, &argv))
     {
@@ -620,7 +607,7 @@ remove_client (Client* client)
       return 1;
     }
 
-  for (list = load_request_list; list; list == list->next)
+  for (list = load_request_list; list; list = list->next)
     {
       GSList* client_list = (GSList*)list->data;
       

@@ -430,7 +430,7 @@ get_last_session (void)
 Session*
 read_session (const char *name)
 {
-  GSList *list = NULL, *list1;
+  GSList *list = NULL;
   gboolean try_last, try_def;
   gchar* last = NULL;
   Session *session = g_new0 (Session, 1);

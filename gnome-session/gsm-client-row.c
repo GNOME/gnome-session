@@ -152,8 +152,6 @@ gsm_client_row_add (GsmClientRow* client_row)
   if (client_row->row < 0)
     {
       GsmClientList* client_list = client_row->client_list;
-      GsmClientEditor* client_editor = 
-	(GsmClientEditor*)client_list->client_editor;
       GtkCList* clist = (GtkCList*)client_list;
       guint row;
       char temp[3];
@@ -179,8 +177,6 @@ gsm_client_row_add (GsmClientRow* client_row)
 
 void gsm_client_row_remove (GsmClientRow* client_row)
 {
-  GsmClient *client = (GsmClient*)client_row;
-
   g_return_if_fail (client_row != NULL);
   g_return_if_fail (GSM_IS_CLIENT_ROW (client_row));
 

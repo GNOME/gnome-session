@@ -1,6 +1,6 @@
 /* main.c - Main program for gnome-session.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -87,7 +87,6 @@ main (int argc, char *argv[])
   char *ep;
   poptContext ctx;
   char **leftovers;
-  char *chooser;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);

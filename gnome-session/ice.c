@@ -178,7 +178,6 @@ void
 initialize_ice (void)
 {
   char error[256];
-  IceListenObj *listeners;
   char *p;
   guint i;
   GSList* entries;

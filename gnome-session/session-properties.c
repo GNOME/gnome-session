@@ -82,7 +82,7 @@ create_right (void)
 static GtkWidget*
 create_table (void)
 {
-  GtkWidget *table, *right;
+  GtkWidget *table;
 
   /* program entry box */
   entry = gtk_entry_new ();
@@ -146,7 +146,7 @@ static GtkWidget*
 create_buttons (GtkWidget * table)
 {
   GtkWidget* frame, *table2;
-  GtkWidget* bbox, *vbox;
+  GtkWidget* bbox;
 
   /* frame */
   frame = gtk_frame_new (NULL);

@@ -216,7 +216,6 @@ static void
 gsm_session_destroy (GtkObject *o)
 {
   GsmSession* session = (GsmSession*)o;
-  guint i, j;
 
   g_return_if_fail(session != NULL);
   g_return_if_fail(GSM_IS_SESSION(session));
@@ -226,7 +225,7 @@ gsm_session_destroy (GtkObject *o)
       command (the_protocol, 
 	       gsm_args_to_prop (GsmCommand, 
 				 GsmDeselectClientEvents, NULL), NULL);
-      live_session == NULL;
+      live_session = NULL;
     }
   else
     {
@@ -416,7 +415,6 @@ static void
 gsm_client_destroy (GtkObject *o)
 {
   GsmClient* client;
-  guint i, j;
 
   g_return_if_fail(o != NULL);
   g_return_if_fail(GSM_IS_CLIENT(o));
@@ -618,7 +616,6 @@ static void
 gsm_protocol_destroy (GtkObject *o)
 {
   GsmProtocol* protocol = (GsmProtocol*)o;
-  guint i, j;
 
   g_return_if_fail(protocol != NULL);
   g_return_if_fail(protocol == the_protocol);
@@ -900,7 +897,6 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		   reads)
 	    {
 	      GsmSession* session = (GsmSession*)reads->data;
-	      GSList *list = NULL;
 	      gint i;
 
 	      session->handle = g_strdup (GSM_COMMAND_ARG1 (props[0]));

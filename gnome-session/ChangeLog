@@ -1,3 +1,30 @@
+1999-07-16  Tom Tromey  <tromey@cygnus.com>
+
+	Warning cleanups:
+	* gsm-protocol.c (gsm_session_destroy): Actually NULL
+	live_session.
+	(gsm_session_destroy): Removed unused variables.
+	(gsm_client_destroy): Likewise.
+	(gsm_protocol_destroy): Likewise.
+	(dispatch_event): Likewise.
+	* gsm-client-row.c (gsm_client_row_add): Removed unused variable.
+	(gsm_client_row_remove): Likewise.
+	* gsm-client-editor.c (gsm_client_editor_class_init): Removed
+	unused variable.
+	(gsm_client_editor_new): Likewise.
+	* gsm-client-list.c (gsm_client_list_class_init): Removed unused
+	variable.
+	(gsm_client_list_new): Likewise.
+	* session-properties.c (create_table): Removed unused variable.
+	(create_buttons): Likewise.
+	* remote.c (remote_start): Removed unused variable.
+	* save.c (read_session): Removed unused variable.
+	* main.c (main): Removed unused variable.
+	* ice.c (initialize_ice): Removed unused variable.
+	* manager.c (run_command): Removed unused variables.
+	(remove_client): Actually traverse linked list.
+	(find_client_by_connection): Removed unused function.
+
 1999-07-15  Tom Tromey  <tromey@cygnus.com>
 
 	* ice.c (initialize_ice): Save umask while calling
