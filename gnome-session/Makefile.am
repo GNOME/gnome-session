@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in.
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
+	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
 	-DDEFAULTDIR="\"$(datadir)\""
 
