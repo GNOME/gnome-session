@@ -1,3 +1,18 @@
+2001-05-30  Glynn Foster  <glynn.foster@sun.com>
+
+	* headers.h: Added FAILSAFE_SESSION #def - mostly useless
+	* main.c: (main): Removed setting of CurrentSession - the 
+	  hack that was put in for gdm which killed the concept of 
+	  multiple concurrent sessions. If in failsafe mode, make 
+	  sure we just load Default from default.session only...even
+	  if the session is called Failsafe for now - in theory we
+	  should have a Failsafe session in default.session but for
+	  the moment Default will do.
+	* save.c: (read_session): Make sure we load Failsafe [ie.
+	  Default] from default.session only...
+
+	* gsm/*.[ch] - Man, this stuff is confusing...
+
 2001-05-27  Stanislav Brabec  <utx@penguin.cz>
 
 	* save-session.desktop, session-properties.desktop: Added

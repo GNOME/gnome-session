@@ -35,6 +35,8 @@
 /* Default session name. */
 #define DEFAULT_SESSION "Default"
 
+#define FAILSAFE_SESSION "Failsafe"
+
 #define WARNER_SESSION "Warner"
 
 /* Config section used for gnome-session's own config details. */

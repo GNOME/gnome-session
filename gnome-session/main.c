@@ -160,6 +160,7 @@ main (int argc, char *argv[])
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
   splashing = gnome_config_get_bool (SPLASH_SCREEN_KEY "=" SPLASH_SCREEN_DEFAULT);
   autosave = gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT);
+ 
 
   /* If the session wasn't set on the command line, but we see a
    * GDM_GNOME_SESSION env var, use that.  The user is using the GDM chooser
@@ -168,13 +169,6 @@ main (int argc, char *argv[])
       g_getenv ("GDM_GNOME_SESSION") != NULL) {
     session_name = g_strdup (g_getenv ("GDM_GNOME_SESSION"));
   }
-
- /* If the session has been set at the command line we want to update the
-    value of CurrentSession - a special fix for the gdm session chooser */
-
- if(session_name) {
-   gnome_config_set_string (CURRENT_SESSION_KEY, session_name);
- } 
 
   /* If the session name hasn't been specified from the command line */ 
   if(session_name == NULL) {
@@ -185,7 +179,7 @@ main (int argc, char *argv[])
   gnome_config_pop_prefix ();
    
   if(failsafe)
-	session_name = DEFAULT_SESSION;
+	session_name = FAILSAFE_SESSION;
   
   the_session = read_session (session_name);
 
