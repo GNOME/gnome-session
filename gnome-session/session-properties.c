@@ -84,14 +84,14 @@ create_table (void)
   gtk_box_pack_start (GTK_BOX (hbox), remove_button, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), apply_button, FALSE, FALSE, 0);
   
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
-
   alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   label = gtk_label_new_with_mnemonic (_("Currently running _programs:"));
   gtk_container_add (GTK_CONTAINER (alignment), label);
   gtk_box_pack_start (GTK_BOX (vbox), alignment, FALSE, FALSE, 0);
   
   gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
+
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_list);
 
