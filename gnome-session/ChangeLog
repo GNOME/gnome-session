@@ -1,3 +1,11 @@
+Tue Dec 7 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* save.c (run_commands): call discard commands on clients that are
+	still in the session IF they have changed their discard commands.
+	[ partial reversion of change on Nov 28 ] 
+	* manager.c (check_session_end): write all running SmRestartIfRunning 
+	clients even when the Save Yourself only covered a single client.
+	
 Sat Dec 5 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* manager.c (save_yourself_request): fix g_assert.

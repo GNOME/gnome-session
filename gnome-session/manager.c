@@ -306,15 +306,19 @@ check_session_end (int found)
     {
       if (! save_yourself_p2_list)
 	{
+	  /* The write_session should include all live_list members 
+             following a SaveYourselfRequest with global == FALSE. 
+	     The live_list == NULL in all other cases. */
+	  CONCAT (live_list, save_finished_list);
+
 	  /* All clients have responded to the save.  Now shut down or
 	     continue as appropriate.  Save the `anyway_list' first,
 	     in hopes of getting initialization commands started
 	     first.  */
-	  write_session (anyway_list, save_finished_list, shutting_down);
+	  write_session (anyway_list, live_list, shutting_down);
 	  saving = 0;
 	  send_message (save_finished_list,
 			shutting_down ? SmsDie : SmsSaveComplete);
-	  CONCAT (live_list, save_finished_list);
 	  save_finished_list = NULL;
 	  if (shutting_down)
 	    {

@@ -202,20 +202,45 @@ run_commands (const char *name, int number, const char *command,
   for (i = 0; i < number; ++i)
     {
       int argc, envc;
-      gboolean def, envd, excluded;
+      gboolean def, envd;
       char **argv, *dir, prefix[1024], **envv, **envp;
-      char *id;
 
-      /* Ignore clients in list1 or list2 */
-      sprintf (prefix, "session/%s/%d,id=", name, i);
-      id = gnome_config_get_string (prefix);
-      if (find_client_by_id (list1, id) || find_client_by_id (list2, id))
-	continue;
+      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
+      gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
+
+      /* Do not call discard commands on clients which have just
+       * completed a save but have NOT changed their discard commands. 
+       * These clients are broken but, unfortunately, the gnome-libs 
+       * encourage the writing of broken clients. */
+      if (!strcmp (command, SmDiscardCommand)) 
+	{
+	  int curargc;
+	  char **curargv;
+	  char *id;
+	  Client *client;
+	  
+	  sprintf (prefix, "session/%s/%d,id=", name, i);
+	  id = gnome_config_get_string (prefix);
+	  
+	  if ((client = find_client_by_id (list1, id)) || 
+	      (client = find_client_by_id (list2, id))) 
+	    {
+	      if (find_vector_property (client, command, &curargc, &curargv) &&
+		  argc == curargc) 
+		{
+		  for (i = 0; i < argc; i++)
+		    if (strcmp (argv[i], curargv[i])) break;
+		  
+		  free_vector (curargc, curargv);
+
+		  if (i == argc) 
+		    continue;
+		}
+	    }
+	}
 
       sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
       dir = gnome_config_get_string (prefix);
-      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
-      gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
       sprintf (prefix, "session/%s/%d,%s=", name, i, SmEnvironment);
       gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
