@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-09 12:20+0200\n"
+"POT-Creation-Date: 2004-08-30 14:49+0100\n"
 "PO-Revision-Date: 2004-09-09 20:01+0300\n"
 "Last-Translator: Priit Laes <amd@tt.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -21,24 +21,42 @@ msgid "Allow TCP connections"
 msgstr "TCP ühenduste lubamine"
 
 #: gnome-session/gnome-session.schemas.in.h:2
-msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
-msgstr "Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP portidesse tulevaid ühendusi.  See valik lubab ühendusi (autoriseeritud) välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see seade tööle hakkaks."
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis "
+"omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP "
+"portidesse tulevaid ühendusi.  See valik lubab ühendusi (autoriseeritud) "
+"välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see "
+"seade tööle hakkaks."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne sessiooni lõpetamist."
+msgstr ""
+"Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne sessiooni "
+"lõpetamist."
 
 #: gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "Kui määratud, siis gnome-session salvestab sessiooni automaatselt. Kui ei, siis väljalogimisdialoogil näidatakse sessiooni salvestamise valikut."
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Kui määratud, siis gnome-session salvestab sessiooni automaatselt. Kui ei, "
+"siis väljalogimisdialoogil näidatakse sessiooni salvestamise valikut."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Väljalogimisviip"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid "Preferred Image to use for the splash screen when logging in to the GNOME Desktop"
-msgstr "Pildieelistus, mida kasutatakse GNOME töökeskkonda sisselogimise tiitelkuval"
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+"Pildieelistus, mida kasutatakse GNOME töökeskkonda sisselogimise tiitelkuval"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -56,8 +74,7 @@ msgstr "Näita sisselogimisel tiitelkuva"
 msgid "Splash Screen Image"
 msgstr "Tiitelkuva pilt"
 
-#: gnome-session/gsm-client-editor.c:97
-#: gnome-session/startup-programs.c:310
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:310
 msgid "_Order:"
 msgstr "_Järjekord:"
 
@@ -162,18 +179,25 @@ msgstr "Häälestus"
 msgid "Always started on every login."
 msgstr "Käivitatakse alati igal sisselogimisel."
 
+#.
 #. * it would be nice to have a dialog which either:
-#. * 1.  lets you change the message on it
 #. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
 #: gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
 "GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
 "\n"
-"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult töötada."
+"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult "
+"töötada."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -195,7 +219,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, sätetedeemonit taaskäivitada."
+"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, "
+"sätetedeemonit taaskäivitada."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -239,7 +264,8 @@ msgstr "Loe salvestatud sessioone ainult default.session failist"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
+msgstr ""
+"Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -311,8 +337,7 @@ msgstr "Tapa sessioon"
 msgid "Use dialog boxes"
 msgstr "Kasuta dialoogiaknaid"
 
-#: gnome-session/save-session.c:146
-#: gnome-session/save-session.c:179
+#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Ei saa ühendust sessioonihalduriga"
 
@@ -460,4 +485,3 @@ msgstr "Lisa käivitusprogramm"
 #: gnome-session/startup-programs.c:401
 msgid "Edit Startup Program"
 msgstr "Muuda käivitusprogrammi"
-
