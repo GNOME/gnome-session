@@ -229,6 +229,7 @@ icon_cb (gpointer data)
   text = sd->icons->data;
   sd->icons = g_slist_remove (sd->icons, text);
 
+  /* do not translate "done" */
   if (strcmp (text, "done") != 0) {
     SplashApp *app = get_splash_app (g_basename (text));
     char *pix = NULL;
@@ -272,9 +273,12 @@ icon_cb (gpointer data)
     }
 
     g_free (pix);
+
+    msg = g_strdup_printf (_("Starting GNOME: %s"), text);
+  } else {
+    msg = g_strdup (_("Starting GNOME: done"));
   }
 
-  msg = g_strdup_printf (_("Starting GNOME: %s"), text);
   gnome_canvas_item_set (sd->label, "text", msg, NULL);
 
   g_free (msg);
@@ -308,6 +312,7 @@ stop_splash (void)
   if (!sd || sd->timeout)
     return;
 
+  /* do not translate "done" it's used as a delimiter */
   update_splash ("done", sd->max);
   sd->timeout = gtk_timeout_add (2000, timeout_cb, NULL);
 }
