@@ -1,15 +1,20 @@
 # traditional chinese translation of gnome-session
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
+#
+# gnome-core:
 # Yuan-Chung Cheng <platin@linux.org.tw>, 1999.
 # Jing-Jong SHYUE <shyue@sonoma.com.tw>, 2000.
 # Chih-Wei Huang <cwhuang@linux.org.tw>, 2000.
 # Abel Cheung <maddog@linux.org.hk>, 2001-2002.
 #
+# gnome-session:
+# Abel Cheung <maddog@linux.org.hk>, 2002.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 1.5.16\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
-"PO-Revision-Date: 2002-04-22 06:12+0800\n"
+"Project-Id-Version: gnome-session 1.5.18\n"
+"POT-Creation-Date: 2002-05-09 18:51+0800\n"
+"PO-Revision-Date: 2002-05-09 19:02+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +68,7 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"無法查詢 %s 的互聯網位址。\n"
+"無法查詢 %s 的網絡位址。\n"
 "這會使 Gnome 無法正常工作。\n"
 "或許將 %s 加入 /etc/hosts\n"
 "可以更正這個錯誤。"
@@ -82,12 +87,12 @@ msgid ""
 msgstr ""
 "libICE 版本有錯誤，會妨礙 gnome-session 正常運作。\n"
 "\n"
-"如果你使用 Solaris，那應該更新 Solaris 修正檔\n"
-"#108376-16 或將 Solaris 7 的 libICE.so.6\n"
-"複製到 /usr/openwin/lib。（感謝 Andy Reitz\n"
-"提供此問題的資料）。\n"
+"如果是 Solaris 作業系統，那應該更新 Solaris\n"
+"修正檔 #108376-16 或將 Solaris 7 的 libICE.so.6\n"
+"複製至 /usr/openwin/lib。（多謝 Andy Reitz\n"
+"提供有關此問題的資料）。\n"
 "\n"
-"GNOME 工作階段會在此對話窗關閉後終止。"
+"GNOME 作業階段會在此對話窗關閉後終止。"
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -95,7 +100,7 @@ msgstr "次序(_O)："
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr "工作階段中應用程式啟動的次序。"
+msgstr "作業階段中應用程式啟動的次序。"
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
@@ -143,7 +148,7 @@ msgstr "執行中"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "工作階段中的普通成員。"
+msgstr "作業階段中的普通成員。"
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
@@ -151,7 +156,7 @@ msgstr "儲存中"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "正在儲存工作階段細節。"
+msgstr "正在儲存作業階段細節。"
 
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -193,102 +198,98 @@ msgstr "設定"
 msgid "Always started on every login."
 msgstr "每次登入時都會啟動。"
 
-#: gnome-session/logout.c:200
+#: gnome-session/logout.c:188
 msgid "_Log Out"
 msgstr "登出(_L)"
 
-#: gnome-session/logout.c:258
+#: gnome-session/logout.c:248
 msgid "Really log out?"
 msgstr "是否確定登出？"
 
-#: gnome-session/logout.c:275
+#: gnome-session/logout.c:265
 msgid "Save current setup"
 msgstr "儲存目前設定"
 
-#: gnome-session/logout.c:295
+#: gnome-session/logout.c:285
 msgid "Action"
 msgstr "行動"
 
-#: gnome-session/logout.c:303
+#: gnome-session/logout.c:293
 msgid "Logout"
 msgstr "登出"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:296
 msgid "Shut Down"
 msgstr "關機"
 
-#: gnome-session/logout.c:309
+#: gnome-session/logout.c:299
 msgid "Reboot"
-msgstr "重新啟動主機"
-
-#: gnome-session/main.c:66
-msgid "Specify a session name to load"
-msgstr "指定載入的工作階段名稱"
+msgstr "重新啟動電腦"
 
 #: gnome-session/main.c:67
-msgid "Only read saved sessions from the default.session file"
-msgstr "只從預設工作階段檔案中讀取已儲存的工作階段"
+msgid "Specify a session name to load"
+msgstr "指定載入的作業階段名稱"
 
 #: gnome-session/main.c:68
+msgid "Only read saved sessions from the default.session file"
+msgstr "只從預設作業階段檔案中讀取已儲存的作業階段"
+
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:70
+#: gnome-session/main.c:71
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/manager.c:400
-msgid "Wait abandoned due to conflict."
-msgstr "因為有衝突所以不等待。"
+#: gnome-session/manager.c:173
+msgid "Your session has been saved"
+msgstr "已經儲存作業階段"
 
-#: gnome-session/manager.c:834
+#: gnome-session/manager.c:436
+msgid "Wait abandoned due to conflict."
+msgstr "因為有衝突所以不會等待。"
+
+#: gnome-session/manager.c:874
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s 指令沒有回應。"
 
-#: gnome-session/manager.c:835
+#: gnome-session/manager.c:875
 msgid "The program may be slow, stopped or broken."
 msgstr "程式可能很慢，已停止或中斷。"
 
-#: gnome-session/manager.c:836
+#: gnome-session/manager.c:876
 msgid "You may wait for it to respond or remove it."
 msgstr "可以等待回應或移除該程式。"
 
-#: gnome-session/manager.c:1375
+#: gnome-session/manager.c:1433
 msgid "Respawn abandoned due to failures."
 msgstr "因為多次失敗所以放棄自動再生。"
 
-#: gnome-session/manager.c:1541
+#: gnome-session/manager.c:1607
 msgid "A session shutdown is in progress."
-msgstr "正在關閉工作階段。"
-
-#: gnome-session/save-session.c:43
-msgid "Kill session"
-msgstr "強行終止工作階段"
+msgstr "正在關閉作業階段。"
 
 #: gnome-session/save-session.c:44
+msgid "Kill session"
+msgstr "強行終止作業階段"
+
+#: gnome-session/save-session.c:45
 msgid "Use dialog boxes"
 msgstr "使用對話框"
 
-#: gnome-session/save-session.c:112
+#: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
-msgstr "無法連接工作階段管理程式"
-
-#: gnome-session/save-session.c:120
-msgid "Could not connect to gnome-session"
-msgstr "無法連接 gnome-session"
-
-#: gnome-session/save-session.c:160
-msgid "Your session has been saved"
-msgstr "工作階段已經儲存"
+msgstr "無法連接作業階段管理程式"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
-msgstr "儲存目前的工作階段"
+msgstr "儲存目前的作業階段"
 
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
@@ -296,21 +297,21 @@ msgstr "儲存目前的桌面狀態"
 
 #: gnome-session/session-names.c:127
 msgid "The session name cannot be empty"
-msgstr "工作階段名稱不能留空"
+msgstr "作業階段名稱不能留空"
 
 #: gnome-session/session-names.c:137
 msgid "The session name already exists"
-msgstr "此工作階段名稱已經存在"
+msgstr "此作業階段名稱已經存在"
 
 #: gnome-session/session-names.c:170
 msgid "Add a new session"
-msgstr "新增工作階段"
+msgstr "新增作業階段"
 
 #: gnome-session/session-names.c:198
 msgid "Edit session name"
-msgstr "修改工作階段名稱"
+msgstr "修改作業階段名稱"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:165
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -318,119 +319,114 @@ msgstr ""
 "一部份改變仍未儲存。\n"
 "是否仍然要離開？"
 
-#: gnome-session/session-properties-capplet.c:189
+#: gnome-session/session-properties-capplet.c:190
 msgid "Session properties"
-msgstr "工作階段偏好設定"
+msgstr "作業階段偏好設定"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:216
 msgid "Options"
 msgstr "選項"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:226
 msgid "Show splash screen on login"
 msgstr "登入時顯示啟動畫面"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:242
 msgid "Prompt on logout"
 msgstr "登出前先提示"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:258
 msgid "Automatically save changes to session"
-msgstr "自動儲存工作階段"
+msgstr "自動儲存作業階段"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:272
 msgid "Choose Current Session"
-msgstr "選擇目前的工作階段"
+msgstr "選擇目前的作業階段"
 
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:289
 msgid "Session Name"
-msgstr "工作階段名稱"
+msgstr "作業階段名稱"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:298
+#: gnome-session/session-properties-capplet.c:370
 msgid "Add..."
 msgstr "新增..."
 
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:302
+#: gnome-session/session-properties-capplet.c:375
 msgid "Edit..."
 msgstr "編輯..."
 
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:380
 msgid "Delete"
 msgstr "刪除"
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:331
 msgid "Session Options"
-msgstr "工作階段選項"
+msgstr "作業階段選項"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
+#: gnome-session/session-properties-capplet.c:342
 msgid "Non-session-managed Startup Programs"
-msgstr "並非由工作階段管理的啟動程式"
+msgstr "並非由作業階段管理的啟動程式"
 
-#: gnome-session/session-properties-capplet.c:358
+#: gnome-session/session-properties-capplet.c:359
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "優先值"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:361
 msgid "Command"
 msgstr "指令"
 
-#: gnome-session/session-properties-capplet.c:388
+#: gnome-session/session-properties-capplet.c:389
 msgid "Browse Currently Running Programs..."
 msgstr "瀏覽執行中的程式..."
 
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:398
 msgid "Startup Programs"
 msgstr "啟動程式"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:403
+msgid "Current Session"
+msgstr "目前的作業階段"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
-msgstr "在工作階段中移除已選取的程式。"
+msgstr "在作業階段中移除已選取的程式。"
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
-msgstr "目前工作階段中正在運行的程式的清單。"
+msgstr "目前作業階段中正在運行的程式的清單。"
 
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "工作階段屬性"
-
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
-msgstr "工作階段"
+msgstr "作業階段"
 
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
-msgstr "工作階段選擇程式"
+msgstr "作業階段選擇程式"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
-msgstr "啟動工作階段"
+msgstr "啟動作業階段"
 
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "取消登入"
 
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
-msgstr "初始化工作階段設定"
+msgstr "初始化作業階段設定"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
-msgstr "工作階段屬性及啟動程式"
-
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "目前接受工作階段管理的程式"
+msgstr "作業階段屬性及啟動程式"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -470,7 +466,7 @@ msgstr "面板"
 
 #: gnome-session/splash.c:68
 msgid "Session Manager Proxy"
-msgstr "工作階段管理程式代理"
+msgstr "作業階段管理程式代理"
 
 #: gnome-session/splash.c:69
 msgid "Nautilus"
@@ -479,11 +475,11 @@ msgstr "Nautilus"
 #: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
-msgstr "正在啟動 GNOME：%s"
+msgstr "啟動 GNOME：%s"
 
 #: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
-msgstr "正在啟動 GNOME：完成"
+msgstr "啟動 GNOME：完成"
 
 #: gnome-session/splash.c:437
 msgid "GNOME"
@@ -491,7 +487,7 @@ msgstr "GNOME"
 
 #: gnome-session/splash.c:461
 msgid "Starting GNOME"
-msgstr "正在啟動 GNOME"
+msgstr "啟動 GNOME"
 
 #: gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 msgid "Startup Command"
@@ -516,7 +512,16 @@ msgstr "新增啟動程式"
 
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
-msgstr "編輯啟動程式"
+msgstr "修改啟動程式"
+
+#~ msgid "Could not connect to gnome-session"
+#~ msgstr "無法連接 gnome-session"
+
+#~ msgid "Session Properties"
+#~ msgstr "作業階段屬性"
+
+#~ msgid "Current session managed programs"
+#~ msgstr "目前接受作業階段管理的程式"
 
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Enlightenment 視窗管理程式"
