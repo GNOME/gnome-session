@@ -1,5 +1,11 @@
 2002-07-02  Mark McLoughlin  <mark@skynet.ie>
 
+	* save.c, smproxy.[ch]: Use XGetWMName instead
+	of XFetchName and update for use of XTextProperty.
+	Reported by Brian Cameron.
+
+2002-07-02  Mark McLoughlin  <mark@skynet.ie>
+
 	* smproxy.c: also set _DT_RESTORE_MODE to "gnome"
 	for very broken CDE apps. See #81343.
 

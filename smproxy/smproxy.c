@@ -634,7 +634,8 @@ Window window;
     newptr->wm_command_count = 0;
     newptr->class.res_name = NULL;
     newptr->class.res_class = NULL;
-    newptr->wm_name = NULL;
+    newptr->wm_name.value = NULL;
+    newptr->wm_name.nitems = 0;
     newptr->wm_client_machine.value = NULL;
     newptr->wm_client_machine.nitems = 0;
     newptr->has_save_yourself = 0;
@@ -667,8 +668,8 @@ WinInfo *winptr;
 	if (ptr->wm_command)
 	    XFreeStringList (ptr->wm_command);
 	
-	if (ptr->wm_name)
-	    XFree (ptr->wm_name);
+	if (ptr->wm_name.value)
+	    XFree (ptr->wm_name.value);
 	
 	if (ptr->wm_client_machine.value)
 	    XFree (ptr->wm_client_machine.value);
@@ -744,7 +745,7 @@ WinInfo *winptr;
 
     if (!HasXSMPsupport (leader_winptr->window))
     {
-	XFetchName (disp, leader_winptr->window, &leader_winptr->wm_name);
+	XGetWMName (disp, leader_winptr->window, &leader_winptr->wm_name);
 
 	XGetCommand (disp, leader_winptr->window,
 	    &leader_winptr->wm_command,
@@ -755,7 +756,8 @@ WinInfo *winptr;
 	XGetWMClientMachine (disp, leader_winptr->window,
 	    &leader_winptr->wm_client_machine);
 
-	if (leader_winptr->wm_name != NULL &&
+	if (leader_winptr->wm_name.value != NULL &&
+	    leader_winptr->wm_name.nitems != 0 &&
 	    leader_winptr->wm_command != NULL &&
 	    leader_winptr->wm_command_count > 0 &&
 	    leader_winptr->class.res_name != NULL &&

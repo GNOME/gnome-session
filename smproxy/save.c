@@ -200,7 +200,7 @@ WinInfo *theWindow;
 	return 0;
     if (!write_counted_string (proxyFile, theWindow->class.res_class))
 	return 0;
-    if (!write_counted_string (proxyFile, theWindow->wm_name))
+    if (!write_counted_string (proxyFile, theWindow->wm_name.value))
 	return 0;
     
     if (!theWindow->wm_command || theWindow->wm_command_count == 0)
@@ -435,7 +435,7 @@ WinInfo *theWindow;
 	if (!ptr->tag &&
             strcmp (theWindow->class.res_name, ptr->class.res_name) == 0 &&
 	    strcmp (theWindow->class.res_class, ptr->class.res_class) == 0 &&
-	    strcmp (theWindow->wm_name, ptr->wm_name) == 0)
+	    strcmp (theWindow->wm_name.value, ptr->wm_name) == 0)
 	{
 	    int i;
 

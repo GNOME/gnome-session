@@ -45,7 +45,7 @@ typedef struct WinInfo {
     char **wm_command;
     int wm_command_count;
     XClassHint class;
-    char *wm_name;
+    XTextProperty wm_name;
     XTextProperty wm_client_machine;
     struct WinInfo *next;
 
