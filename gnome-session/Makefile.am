@@ -131,7 +131,7 @@ man_MANS = gnome-wm.1 save-session.1 default.session.5 gnome-session.1
 manuals = gnome-wm.1 default.session.5.in gnome-session.1.in save-session.1
 
 pixmapdir = $(datadir)/pixmaps/splash/
-pixmap_DATA = gnome-splash.png gnome-splash-1.4.0.png
+pixmap_DATA = gnome-splash.png
 
 schemadir = @GCONF_SCHEMA_FILE_DIR@
 schema_DATA = \
