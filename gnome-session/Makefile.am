@@ -118,7 +118,7 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-desktopdir = $(datadir)/control-center-2/capplets
+desktopdir = $(datadir)/control-center-2.0/capplets
 desktop_DATA = session.desktop
 
 sysdir = $(datadir)/control-center/Session
@@ -128,7 +128,7 @@ sys_in_files = session-properties.desktop.in
 sys_DATA = $(sys_in_files:.desktop.in=.desktop)
 endif
 
-settingsdir = $(datadir)/control-center-2/capplets
+settingsdir = $(datadir)/control-center-2.0/capplets
 
 if SESSION
 settings_in_files = session-properties.desktop.in
