@@ -4,9 +4,10 @@
 
 defaultdir = $(datadir)/gnome
 
-INCLUDES = \
+INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
+	-DGNOMELOCALEDIR=\""$(datadir)/locale\""	\
+	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
 LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)

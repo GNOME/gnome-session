@@ -5,9 +5,9 @@ SUBDIRS =			\
 	omf-install		\
 	man
 
-EXTRA_DIST = \
-	gnome-core.spec.in	\
-	gnome-core.spec		\
+EXTRA_DIST =			\
+	gnome-session.spec.in	\
+	gnome-session.spec	\
 	COPYING-DOCS		\
 	HACKING			\
 	sgmldocs.make		\
