@@ -313,8 +313,8 @@ run_command (Client* client, const gchar* command)
 	{
 	  envpc = 0;
 	  envp = NULL;
-	  envc = 0;
-	  envv = NULL;
+	  /* we do not set envv and envc to NULL since this is
+	   * now done correctly in find_vector_property */
 	}
 
       /* We can't run this in the `if' because we might have allocated
@@ -322,6 +322,7 @@ run_command (Client* client, const gchar* command)
 	 reasons.  */
       g_strfreev (envv);
       envv = NULL; /* sanity */
+      envc = 0;
 
       update_splash (argv[0], (gfloat)client->priority);
 
@@ -733,7 +734,7 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	  /* The typecast there is for 64-bit machines */
 	  client->id = g_malloc (43);
 	  g_snprintf (client->id, 43, "1%s%.13ld%.10ld%.4ld", address,
-		      (long) time(NULL), getpid (), sequence);
+		      (long) time(NULL), (long) getpid (), sequence);
 	  sequence++;
 	  
 	  sequence %= 10000;

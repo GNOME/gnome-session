@@ -28,6 +28,7 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/libgnomeui.h"
 
+#include "ice.h"
 #include "logout.h"
 #include "command.h"
 

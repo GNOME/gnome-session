@@ -46,9 +46,14 @@ find_card8_property (const Client *client, const char *name,
   SmProp *prop;
   char *p;
 
+  g_return_val_if_fail (result != NULL, FALSE);
+
   prop = find_property_by_name (client, name);
   if (! prop || strcmp (prop->type, SmCARD8))
-    return FALSE;
+    {
+      *result = 0;
+      return FALSE;
+    }
 
   p = prop->vals[0].value;
   *result = *p;
@@ -62,9 +67,14 @@ find_string_property (const Client *client, const char *name,
 {
   SmProp *prop;
 
+  g_return_val_if_fail (result != NULL, FALSE);
+
   prop = find_property_by_name (client, name);
   if (! prop || strcmp (prop->type, SmARRAY8))
-    return FALSE;
+    {
+      *result = NULL;
+      return FALSE;
+    }
 
   *result = g_malloc (prop->vals[0].length + 1);
   memcpy (*result, prop->vals[0].value, prop->vals[0].length);
@@ -80,9 +90,16 @@ find_vector_property (const Client *client, const char *name,
   SmProp *prop;
   int i;
 
+  g_return_val_if_fail (argcp != NULL, FALSE);
+  g_return_val_if_fail (argvp != NULL, FALSE);
+
   prop = find_property_by_name (client, name);
   if (! prop || strcmp (prop->type, SmLISTofARRAY8))
-    return FALSE;
+    {
+      *argcp = 0;
+      *argvp = NULL;
+      return FALSE;
+    }
 
   *argcp = prop->num_vals;
   *argvp = g_new0 (char *, *argcp + 1);

@@ -1,3 +1,15 @@
+Thu May 10 19:06:12 2001  George Lebl <jirka@5z.com>
+
+	* logout.c: include ice.h
+
+	* manager.c, save.c, prop.c: In trying to procrastinate from doing
+	  homework I sanitized the property code a little bit and fixed
+	  a corner case minor leak.  Basically now the functions for
+	  getting properties 1) have some preconditions 2) always set
+	  the pointers when returning through an argument list (to NULL or 0)
+	  to avoid possible uses of some uninitialized memory.  Also
+	  fixed one 64bitness issue by casting pid_t to long in printf
+
 2001-05-11  Glynn Foster <glynn.foster@sun.com>
 	* command.c ice.c logout.c manager.c manager.h save.c: Apply patch
 	  from Alan Cox. If this works [ie. fixes the enormous amount of 
