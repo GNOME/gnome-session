@@ -32,7 +32,6 @@ STANDARD_PROPERTIES_CFLAGS =                                    \
 
 gnome_session_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 gnome_session_save_LDADD = $(GNOME_SESSION_LIBS)
-gnome_login_check_LDADD = $(LOGIN_CHECK_LIBS)
 gnome_session_properties_LDADD = $(GNOME_SESSION_LIBS)
 splash_test_LDADD = $(GNOME_SESSION_LIBS)
 
@@ -45,7 +44,6 @@ noinst_PROGRAMS = \
 bin_PROGRAMS = \
 	gnome-session		\
 	gnome-session-save	\
-	gnome-login-check	\
 	gnome-session-properties
 endif
 
@@ -110,8 +108,6 @@ gnome_session_properties_SOURCES = \
 	gsm-typebuiltins.h
 
 # 	session.h			
-
-gnome_login_check_SOURCES = gnome-login-check.c
 
 bin_SCRIPTS = gnome-wm
 

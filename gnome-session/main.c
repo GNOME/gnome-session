@@ -147,6 +147,86 @@ update_boolean (GConfClient *client,
 	       *bool_value ? "On" : "Off");
 }
 
+/* returns the hostname */
+static gchar *
+get_hostname (gboolean readable)
+{
+  static gboolean init = FALSE;
+  static gchar *result = NULL;
+  
+  if (!init)
+    {
+      char hostname[256];
+      
+      if (gethostname (hostname, sizeof (hostname)) == 0)
+	result = g_strdup (hostname);
+		
+      init = TRUE;
+    }
+	
+  if (result)
+    return result;
+  else
+    return readable ? "(Unknown)" : NULL;
+}
+
+/* Check if a DNS lookup on `hostname` can be done */
+static gboolean
+check_for_dns (void)
+{
+  char *hostname;
+  
+  hostname = get_hostname (FALSE);
+	
+  if (!hostname)
+    return FALSE;
+
+  /*
+   * FIXME:
+   *  we should probably be a lot more robust here
+   */
+  if (!gethostbyname (hostname))
+    return FALSE;
+  
+  return TRUE;
+}
+
+enum {
+  RESPONSE_LOG_IN,
+  RESPONSE_TRY_AGAIN
+};
+    
+static void
+gnome_login_check (void)
+{
+  GtkWidget *tmp_msgbox = NULL;
+
+  while (!check_for_dns ())
+    {
+      if (!tmp_msgbox)
+	{
+	  tmp_msgbox = gtk_message_dialog_new (NULL, 0,
+					       GTK_MESSAGE_WARNING,
+					       GTK_BUTTONS_NONE,
+					       _("Could not look up internet address for %s.\n"
+						 "This will prevent GNOME from operating correctly.\n"
+						 "It may be possible to correct the problem by adding\n"
+						 "%s to the file /etc/hosts."),
+					       get_hostname(TRUE), get_hostname(TRUE));
+  
+	  gtk_dialog_add_buttons (GTK_DIALOG (tmp_msgbox),
+				  _("Log in Anyway"), RESPONSE_LOG_IN,
+				  _("Try Again"), RESPONSE_TRY_AGAIN,
+				  NULL);
+	  
+	  gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
+	}
+
+      if (RESPONSE_TRY_AGAIN != gtk_dialog_run (GTK_DIALOG (tmp_msgbox)))
+	break;
+    }
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -168,12 +248,6 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  /* We do this as a separate executable, and do it first so that we
-   * make sure we have a absolutely clean setup if the user blows
-   * their configs away with the Ctrl-Shift hotkey.
-   */
-  system ("gnome-login-check");
-      
   err = NULL;
   g_spawn_command_line_sync ("gconf-sanity-check-2", NULL, NULL, &status,
                              &err);
@@ -205,6 +279,8 @@ main (int argc, char *argv[])
     fprintf (stderr, "gnome-session: you're already running a session manager\n");
     exit (1);
   }
+
+  gnome_login_check ();
 
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
