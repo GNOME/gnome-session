@@ -112,3 +112,4 @@ find_vector_property (const Client *client, const char *name,
 
   return TRUE;
 }
+
