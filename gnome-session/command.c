@@ -621,7 +621,7 @@ command (Client* client, int nprops, SmProp** props)
  	g_warning ("%s command needs exactly one argument",
  		   GsmTrashMode);
       else
- 	set_trash_mode (atoi(prop->vals[0].value) != 0);
+ 	set_trash_mode (atoi(prop->vals[1].value) != 0);
     }
  
 
