@@ -1,16 +1,16 @@
 # Lithuanian translation of gnome-session
-# Copyright (C) 2000-2002 Free Software Foundation, Inc.
-# Gediminas Paulauskas <menesis@delfi.lt>, 2000-2002.
-# Žygimantas Beručka <uid0@tuxfamily.org>, 2003.Gediminas Paulauskas <menesis@delfi.lt>, 2003.
+# Copyright (C) 2000-2004 Free Software Foundation, Inc.
+# Gediminas Paulauskas <menesis@delfi.lt>, 2000-2003.
+# Žygimantas Beručka <uid0@akl.lt>, 2003-2004.
 # 
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session\n"
+"Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-04-19 15:28+0100\n"
-"PO-Revision-Date: 2003-10-11 20:15+0300\n"
-"Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
+"POT-Creation-Date: 2004-05-03 14:20+0300\n"
+"PO-Revision-Date: 2004-05-03 14:20+0300\n"
+"Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,9 +28,9 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Saugumo sumetimais, platformose kurios turi _IceTcpTransNoListen() (XFree86 "
-"sistemos), gnome-session nelaukia prisijungimų TCP prievadais. Ši parinktis "
-"leis prisijungimus iš (autorizuotų) nuotolinių hostų. Kad pakeitimai "
-"įsigalėtų gnome-session turi būti perkrauta."
+"sistemos), gnome-session nelaukia prisijungimų TCP prievadais. Šis "
+"nustatymas leis prisijungimus iš (autorizuotų) nuotolinių hostų. Kad "
+"pakeitimai įsigalėtų gnome-session turi būti perkrauta."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -121,7 +121,7 @@ msgstr "Paleista, bet kol kas nepranešė būsenos."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "Bėganti"
+msgstr "Veikianti"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
@@ -149,7 +149,7 @@ msgstr "Normali"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Nepaveikiama atsijungimo bet gali mirti."
+msgstr "Nepaveikiama atsijungimų bet gali mirti."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -165,11 +165,11 @@ msgstr "Šiukšlės"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Atmetama atsijungiant ir gali mirti."
+msgstr "Išjungiama atsijungiant ir gali mirti."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Nuostatos"
+msgstr "Nustatymai"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
@@ -190,9 +190,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Įvyko klaida paleidžiant GNOME Nuostatų Demoną.\n"
+"Įvyko klaida paleidžiant GNOME Nustatymų Demoną.\n"
 "\n"
-"Kai kurie dalykai, tokie kaip temos, garsai ir fono nuostatos gali veikti "
+"Kai kurie dalykai, tokie kaip temos, garsai ir fono nustatymai gali veikti "
 "neteisingai arba iš viso neveikti."
 
 #: gnome-session/gsm-gsd.c:53
@@ -223,7 +223,7 @@ msgstr "Įvyko nežinoma aktyvavimo klaida."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Nuostatų demonas buvo perkrautas perdaug kartų."
+msgstr "Nustatymų demonas buvo perkrautas perdaug kartų."
 
 #: gnome-session/logout.c:374
 msgid "Are you sure you want to log out?"
@@ -251,7 +251,7 @@ msgstr "Pe_rkrauti kompiuterį"
 
 #: gnome-session/main.c:80
 msgid "Specify a session name to load"
-msgstr "Nurodyk įkeliamos sesijos pavadinimą"
+msgstr "Nurodykit įkeliamos sesijos pavadinimą"
 
 #: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
@@ -292,7 +292,7 @@ msgstr "Bandyti vėl"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
-msgstr "Tavo sesija buvo išsaugota"
+msgstr "Jūsų sesija buvo išsaugota"
 
 #: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
@@ -309,11 +309,11 @@ msgstr "Programa gali būti lėta, sustabdyta arba nulūžusi."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
-msgstr "Gali palaukti, kol ji atsakys, arba ją pašalinti"
+msgstr "Galit palaukti, kol ji atsakys, arba ją pašalinti."
 
 #: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
-msgstr "Perkrovimas dėl nesėkmių atšauktas"
+msgstr "Perkrovimas dėl nesėkmių atšauktas."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
@@ -353,7 +353,7 @@ msgstr "Pervadinti sesiją"
 
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "_Keisti"
+msgstr "K_eisti"
 
 #: gnome-session/session-properties-capplet.c:190
 msgid ""
@@ -374,7 +374,7 @@ msgstr "Rodyti paveiks_liuką prisijungimo metu"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "Atsijungiant pa_klausti"
+msgstr "Atsijungiant _paklausti"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -390,7 +390,7 @@ msgstr "Sesijos pavadinimas"
 
 #: gnome-session/session-properties-capplet.c:375
 msgid "Session Options"
-msgstr "Sesijos parinktys"
+msgstr "Sesijos nustatymai"
 
 #: gnome-session/session-properties-capplet.c:384
 msgid "Current Session"
@@ -426,11 +426,11 @@ msgstr "Dabar veikiančios _programos:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Inicializuoti sesijos nuostatas"
+msgstr "Inicializuoti sesijos nustatymus"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr "Konfigūruok savo sesijas"
+msgstr "Konfigūruokite savo sesijas"
 
 #: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
@@ -458,7 +458,7 @@ msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
-msgstr "Darbastalio nuostatos"
+msgstr "Darbastalio nustatymai"
 
 #: gnome-session/startup-programs.c:288
 msgid "_Startup Command:"
