@@ -58,7 +58,7 @@ static propsave properties[] =
    FALSE on failure.  */
 
 static gint
-write_one_client (const Client *client)
+write_one_client (Client *client)
 {
   gint  i, vector_count, string_count, number_count;
   gboolean saved;
@@ -131,6 +131,8 @@ write_one_client (const Client *client)
       for (i = 0; i < vector_count; ++i) 
 	gnome_config_set_vector (vector_names[i], argcs[i], 
       				 (const char * const *) vectors[i]);
+
+      client->session_saved = TRUE;
     }
 
   /* Clean up.  */
@@ -347,6 +349,7 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
       read_one_client (client);
       gnome_config_pop_prefix ();
       client->match_rule = match_rule;
+      client->session_saved = TRUE; 
       APPEND (list, client);
     }
   return list;
@@ -563,21 +566,13 @@ delete_session (const char *name)
 		  find_vector_property (cur_client, SmDiscardCommand, 
 					&cur_argc, &cur_argv))
 		{
-		  int j;
-		  ignore = (old_argc == cur_argc);
-		  
-		  if (ignore)
-		    for (j = 0; j < old_argc; j++)
-		      if (strcmp (old_argv[j], cur_argv[j]))
-			{ 
-			  ignore = FALSE;
-			  break;
-			}
+		  ignore = gsm_compare_commands (old_argc, old_argv,
+						 cur_argc, cur_argv);
 		  
 		  g_strfreev (cur_argv);
 		}
 	      
-	      if (! ignore) 
+	      if (! ignore)
 		run_command (old_client, SmDiscardCommand);
 	      
 	      g_strfreev (old_argv);

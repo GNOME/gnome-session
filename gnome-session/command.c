@@ -107,24 +107,6 @@ make_client_reasons (const gchar* client_handle, const gboolean confirm,
   return prop;
 }
 
-static SmProp*
-prop_dup (const SmProp* old_prop)
-{
-  SmProp *prop = (SmProp*) malloc (sizeof (SmProp));      
-  gint i;
-
-  prop->name = strdup (old_prop->name);
-  prop->type = strdup (old_prop->type);
-  prop->num_vals = old_prop->num_vals;
-  prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
-  for (i = 0; i < prop->num_vals; i++)
-    {
-      prop->vals[i].value = strdup(old_prop->vals[i].value);
-      prop->vals[i].length = strlen (prop->vals[i].value);
-    }
-  return prop;
-}
-
 Client* get_warner (void)
 {
   GSList *list;
@@ -164,7 +146,7 @@ client_reasons (Client* client, gboolean confirm,
 		{
 		  APPEND (prop_list, make_client_event (client->handle, 
 							GsmProperty));
-		  APPEND (prop_list, prop_dup (prop));
+		  APPEND (prop_list, gsm_prop_copy (prop));
 		  send_properties (warner, prop_list);
 		  prop_list = NULL;
 		}
@@ -214,7 +196,7 @@ client_property (const gchar* client_handle, int nprops, SmProp** props)
 	  
 	  APPEND (prop_list, make_client_event (client_handle, GsmProperty));
 	  for (i = 0; i < nprops; ++i)
-	    APPEND (prop_list, prop_dup (props[i]));
+	    APPEND (prop_list, gsm_prop_copy (props[i]));
 	  send_properties (client, prop_list);
 	}
     }
@@ -512,7 +494,7 @@ command (Client* client, int nprops, SmProp** props)
 	      SmProp* tmp_prop = (SmProp*)list->data;
 
 	      if (! purged || strcmp (tmp_prop->name, SmRestartStyleHint))
-		APPEND (prop_list, prop_dup (tmp_prop));
+		APPEND (prop_list, gsm_prop_copy (tmp_prop));
 	    }
 		
 	  if (purged)
@@ -528,7 +510,7 @@ command (Client* client, int nprops, SmProp** props)
 	      if (purge_drop)
 		value[0] = SmRestartNever;
 
-	      APPEND (prop_list, prop_dup (tmp_prop));
+	      APPEND (prop_list, gsm_prop_copy (tmp_prop));
 	    }
 	  send_properties (client, prop_list);      
 	}

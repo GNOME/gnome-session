@@ -315,17 +315,22 @@ free_client (Client *client)
   g_slist_free (client->get_prop_replies);
   client->get_prop_replies = NULL; /* sanity */
 
+  if (client->last_discard)
+    g_free (client->last_discard);
+
   g_free (client);
 }
 
 /* Run a command on a client. */
 gint
-run_command (Client* client, const gchar* command)
+run_command_prop (Client     *client, 
+		  const char *command, 
+		  SmProp     *prop)
 {
   int argc, envc, envpc, pid = -1;
   char **argv, *dir, **envv, **envp, *restart_info;
 
-  if (find_vector_property (client, command, &argc, &argv))
+  if (gsm_parse_vector_prop (prop, &argc, &argv))
     {
       if (!find_string_property (client, SmCurrentDirectory, &dir))
 	dir = NULL;
@@ -385,6 +390,19 @@ run_command (Client* client, const gchar* command)
       g_strfreev (argv);
     }
   return pid;
+}
+
+int
+run_command (Client      *client,
+	     const gchar *command)
+{
+  SmProp *prop;
+
+  prop = find_property_by_name (client, command);
+  if (!prop)
+    return -1;
+
+  return run_command_prop (client, command, prop);
 }
 
 /* Send a message to every client on LIST.  */
@@ -503,19 +521,23 @@ purge (gpointer data)
 }
 
 static void
-reincarnate_client (Client *old_client, Client *new_client)
+reincarnate_client (Client *old_client,
+		    Client *new_client)
 {
-  new_client->properties        = old_client->properties;
-  new_client->priority          = old_client->priority;
-  new_client->match_rule        = old_client->match_rule;
-  new_client->attempts          = old_client->attempts;
-  new_client->connect_time      = old_client->connect_time;
-  new_client->command_data      = old_client->command_data;
+  new_client->properties    = old_client->properties;
+  new_client->priority      = old_client->priority;
+  new_client->match_rule    = old_client->match_rule;
+  new_client->attempts      = old_client->attempts;
+  new_client->connect_time  = old_client->connect_time;
+  new_client->command_data  = old_client->command_data;
+  new_client->session_saved = old_client->session_saved;
   
   old_client->properties = NULL;
+
   if (old_client->handle)
     new_client->handle = command_handle_reassign (old_client->handle, new_client);
   old_client->handle = NULL;
+
   free_client (old_client);	  
 }
 
@@ -1006,9 +1028,14 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	  while (live_list) 
 	    {
 	      Client *tmp_client = (Client *) live_list->data;
+
 	      client_event (tmp_client->handle, GsmSave);
 	      REMOVE (live_list, tmp_client);
 	      APPEND (save_yourself_list, tmp_client);
+
+	      tmp_client->last_discard = gsm_prop_copy (
+			find_property_by_name (tmp_client, SmDiscardCommand));
+
 	      SmsSaveYourself (tmp_client->connection, save_type, shutting_down,
 			       interact_style, fast);
 	    }
@@ -1022,6 +1049,10 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       client_event (client->handle, GsmSave);
       REMOVE (live_list, client);
       APPEND (save_yourself_list, client);
+
+      client->last_discard = gsm_prop_copy (
+		find_property_by_name (client, SmDiscardCommand));
+
       SmsSaveYourself (client->connection, 
 		       save_type, 0, interact_style, fast);
     }
@@ -1163,7 +1194,7 @@ update_save_state (void)
       if (shutting_down)
 	{
 	  Client *warner = get_warner();
-	  GSList* list;
+	  GSList *list;
 
 	  while (purge_drop_list)
 	    {
@@ -1173,11 +1204,13 @@ update_save_state (void)
 	      REMOVE (purge_drop_list, client);
 	      free_client (client);
 	    }
+
 	  maybe_write_session ();
-	    
+
 	  for (list = save_finished_list; list;)
 	    {
-	      Client *client = (Client *)list->data;
+	      Client *client = list->data;
+
 	      list = list->next;
 	      if (client != warner)
 		SmsDie (client->connection);
@@ -1258,6 +1291,33 @@ update_save_state (void)
 	  process_load_request (client_list);
 	}
     }
+}
+
+/*
+ * The basic rule here is that every time we
+ * 'forget' a RestartCommand we need to run
+ * the DiscardCommand.
+ */
+static void
+maybe_run_discard_commands (Client *client)
+{
+  SmProp *discard;
+
+  discard = find_property_by_name (client, SmDiscardCommand);
+
+  /* Broken Client: not saving its session data on a
+   * per-SaveYourself basis.
+   * See 'Advice to Implementors' under the SaveYourself
+   * section in the XSMP spec.
+   */
+   if (gsm_prop_compare (client->last_discard, discard))
+     return;
+
+   if (client->last_discard && !client->session_saved)
+     run_command_prop (client, SmDiscardCommand, client->last_discard);
+
+   if (discard && shutting_down && !save_selected)
+     run_command_prop (client, SmDiscardCommand, discard);
 }
 
 static void
@@ -1348,6 +1408,8 @@ save_yourself_done (SmsConn connection, SmPointer data, gboolean success)
       g_slist_free (prop_list);
       set_properties(client->connection, (SmPointer)client, nprops, props);
     }
+
+  maybe_run_discard_commands (client);
 
   REMOVE (save_yourself_list, client);
   REMOVE (save_yourself_p2_list, client);

@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 static gboolean is_verbose = FALSE;
 
@@ -78,4 +79,20 @@ gsm_verbose (const char *format, ...)
   fflush (stdout);
   
   g_free (str);
+}
+
+gboolean
+gsm_compare_commands (int argc1, char **argv1,
+		      int argc2, char **argv2)
+{
+	int i;
+
+	if (argc1 != argc2)
+		return FALSE;
+
+	for (i = 0; i < argc1; i++)
+		if (strcmp (argv1 [i], argv2 [i]))
+			return FALSE;
+
+	return TRUE;
 }

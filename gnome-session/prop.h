@@ -22,6 +22,15 @@
 
 #include "headers.h"
 
+gboolean gsm_parse_vector_prop (SmProp   *prop,
+				int      *argcp,
+				char   ***argvp);
+
+SmProp  *gsm_prop_copy         (const SmProp *prop);
+
+gboolean gsm_prop_compare      (const SmProp *a,
+				const SmProp *b);
+
 /* Call this to find the named property for a client.  Returns NULL if
    not found.  */
 SmProp *find_property_by_name (const Client *client, const char *name);

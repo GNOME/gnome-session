@@ -12,4 +12,8 @@ void gsm_verbose    (const char *format,
 
 void gsm_set_verbose (gboolean setting);
 
+
+gboolean gsm_compare_commands (int argc1, char **argv1,
+			       int argc2, char **argv2);
+
 #endif /* UTIL_H */

@@ -22,6 +22,111 @@
 
 #include "prop.h"
 
+gboolean
+gsm_parse_vector_prop (SmProp   *prop,
+		       int      *argcp,
+		       char   ***argvp)
+{
+  int i;
+
+  if (!prop || strcmp (prop->type, SmLISTofARRAY8))
+    {
+      *argcp = 0;
+      *argvp = NULL;
+      return FALSE;
+    }
+
+  *argcp = prop->num_vals;
+  *argvp = g_new0 (char *, prop->num_vals + 1);
+  for (i = 0; i < prop->num_vals; ++i)
+    {
+      (*argvp) [i] = g_malloc (prop->vals [i].length + 1);
+      memcpy ((*argvp) [i], prop->vals [i].value, prop->vals [i].length);
+      (*argvp) [i][prop->vals [i].length] = '\0';
+    }
+
+  return TRUE;
+}
+
+SmProp *
+gsm_prop_copy (const SmProp *prop)
+{
+  SmProp *retval;
+  int     i;
+
+  if (!prop)
+    return;
+
+  retval = g_new (SmProp, 1);
+
+  retval->name     = strdup (prop->name);
+  retval->type     = strdup (prop->type);
+  retval->num_vals = prop->num_vals;
+  retval->vals     = g_new (SmPropValue, retval->num_vals);
+
+  for (i = 0; i < retval->num_vals; i++)
+    {
+      retval->vals [i].length = prop->vals [i].length;
+      retval->vals [i].value  = strdup (prop->vals [i].value);
+    }
+
+  return retval;
+}
+
+static gboolean
+gsm_array8_compare (SmPropValue *a,
+		    SmPropValue *b)
+{
+  int i;
+
+  if (a->length != b->length)
+    return FALSE;
+
+  for (i = 0; i < a->length; i++)
+    if (((char *) a->value) [i] != ((char *) b->value) [i])
+      return FALSE;
+
+  return TRUE;
+}
+
+gboolean
+gsm_prop_compare (const SmProp *a,
+                  const SmProp *b)
+{
+  if (!a || !b)
+    return FALSE;
+
+  if (a->num_vals != b->num_vals)
+    return FALSE;
+
+  if (strcmp (a->type, b->type))
+    return FALSE;
+
+  if (!strcmp (a->type, SmCARD8))
+    {
+      if (*(char *) a->vals [0].value !=
+          *(char *) b->vals [0].value)
+	return FALSE;
+    }
+  else if (!strcmp (a->type, SmARRAY8))
+    {
+      if (!gsm_array8_compare (&a->vals [0], &b->vals [0]))
+	return FALSE;
+    }
+  else if (!strcmp (a->type, SmLISTofARRAY8))
+    {
+      int i;
+
+      for (i = 0; i < a->num_vals; i++)
+	if (!gsm_array8_compare (&a->vals [i], &b->vals [i]))
+	  return FALSE;
+    }
+  else
+    return FALSE;
+
+  return TRUE;
+}
+
 /* Find a property given the client and the property name.  Returns
    NULL if not found.  */
 SmProp *
@@ -88,28 +193,11 @@ find_vector_property (const Client *client, const char *name,
 		      int *argcp, char ***argvp)
 {
   SmProp *prop;
-  int i;
 
   g_return_val_if_fail (argcp != NULL, FALSE);
   g_return_val_if_fail (argvp != NULL, FALSE);
 
   prop = find_property_by_name (client, name);
-  if (! prop || strcmp (prop->type, SmLISTofARRAY8))
-    {
-      *argcp = 0;
-      *argvp = NULL;
-      return FALSE;
-    }
 
-  *argcp = prop->num_vals;
-  *argvp = g_new0 (char *, *argcp + 1);
-  for (i = 0; i < *argcp; ++i)
-    {
-      (*argvp)[i] = g_malloc (prop->vals[i].length + 1);
-      memcpy ((*argvp)[i], prop->vals[i].value, prop->vals[i].length);
-      (*argvp)[i][prop->vals[i].length] = '\0';
-    }
-
-  return TRUE;
+  return gsm_parse_vector_prop (prop, argcp, argvp);
 }
-

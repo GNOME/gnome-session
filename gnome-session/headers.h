@@ -133,6 +133,12 @@ typedef struct
   /* Additional details for clients that speak our command protocol */
   CommandData *command_data;
 
+  /* The last DiscardCommand we received */
+  SmProp *last_discard;
+
+  /* If the client has been loaded from, or saved to, disk */
+  gboolean session_saved;
+
   guint magic;
 } Client;
 

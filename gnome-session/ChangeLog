@@ -1,3 +1,19 @@
+2002-05-28  Mark McLoughlin  <mark@skynet.ie>
+
+	reviewed by: <delete if not using a buddy>
+
+	* command.c: (client_reasons), (client_property), (command):
+	* headers.h:
+	* manager.c: (free_client), (run_command_prop), (run_command),
+	(reincarnate_client), (process_save_request), (update_save_state),
+	(maybe_run_discard_commands), (save_yourself_done):
+	* prop.c: (gsm_parse_vector_prop), (gsm_prop_copy),
+	(gsm_array8_compare), (gsm_prop_compare), (find_vector_property):
+	* prop.h:
+	* save.c: (write_one_client), (read_clients), (delete_session):
+	* util.c: (gsm_verbose), (gsm_compare_commands):
+	* util.h:
+
 2002-05-25  Mark McLoughlin  <mark@skynet.ie>
 
 	* logout.c: (display_gui): revert back the dialog to OK_CANCEL.
