@@ -1,6 +1,6 @@
 /* save.c - Code to save session.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@ static propsave properties[] =
 {
   { SmRestartStyleHint, NUMBER, 0, SmRestartStyleHint },
   { GsmPriority,        NUMBER, 0, "Priority" },
+  { GsmRestartService,  STRING, 0, "RestartService" },
   { SmProgram,          STRING, 0, SmProgram },
   { SmCurrentDirectory, STRING, 0, SmCurrentDirectory },
   { SmDiscardCommand,   STRING, 0, XsmDiscardCommand }, /* for legacy apps */
@@ -254,7 +255,7 @@ read_one_client (Client *client)
 
   client->id = NULL;
   client->properties = NULL;
-  client->priority = 50;
+  client->priority = DEFAULT_PRIORITY;
   client->handle = command_handle_new ((gpointer)client);
   client->warning = FALSE;
   client->get_prop_replies = NULL;

@@ -14,10 +14,9 @@ This is still a work in progress.  Here's my plan of attack:
 
 * Documentation!
 
-* Add remote-start capabilities, like XSM.  However, support krsh and
-  ssh as well.
-
-* Implement RestartImmediately hint.
+* save/restore DISPLAY and some other env variables
+* Save and restore more of the standard properties.
+  CurrentDirectory at least is useful
 
 * Write code that understands resign commands
   (This doesn't seem very important in practice)
@@ -25,8 +24,6 @@ This is still a work in progress.  Here's my plan of attack:
 * Write a user interface of some sort.
   Should talk to sm via CORBA
 
-* Save and restore more of the standard properties.
-  CurrentDirectory at least is useful
 
 * Write code to use timeouts in useful places.
   A session save shouldn't hang because of one losing client.
@@ -46,6 +43,7 @@ This is still a work in progress.  Here's my plan of attack:
   a client and a server, and the two parts must collude.
   It isn't clear that this will actually be useful.
 
+* support krsh and ssh as well in rstart
 
 I don't have a schedule for this work.  Feel free to hack on it if you
 feel like it.  Please contact me if you do so.
@@ -57,7 +55,9 @@ feel like it.  Please contact me if you do so.
 
 Some known bugs:
 
-- None??
+- gsm doesn't keep track of user information
+  if program is run by a different user, should try *something*
+  (what to do with rstart at least is obvious)
 
 ================================================================
 

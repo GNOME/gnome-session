@@ -1,3 +1,35 @@
+1999-07-15  Tom Tromey  <tromey@cygnus.com>
+
+	* ice.c (initialize_ice): Save umask while calling
+	IceListenForConnections.  From Roberto Zunino
+	<zunino@cli.di.unipi.it>.
+
+	* session.h (DEFAULT_PRIORITY): New macro.
+	* save.c (read_one_client): Use DEFAULT_PRIORITY.
+	* manager.c (new_client): Use DEFAULT_PRIORITY.
+	* gsm-protocol.c (gsm_client_object_init): Use DEFAULT_PRIORITY.
+	* command.c (command): Use DEFAULT_PRIORITY.
+
+	* prop.c (free_vector): Only free `argv' if not NULL.
+
+	* ice.c (write_authfile): Don't remove entries from list.  Don't
+	free entries.
+	(auth_entries): New global.
+	(initialize_ice): Set it.
+
+	* manager.h (remote_start, auth_entries): Declare.
+	* Makefile.am (gnome_session_SOURCES): Added remote.c.
+	* remote.c: New file; modified from X11R6.3 xsm.
+	* manager.c (run_command): Correctly determine when `envc' is
+	even.  Always call free_vector on environment list.  Remote start
+	client if appropriate.
+
+	* session.h (GsmRestartService): New macro.
+	* save.c (properties): Added _XC_RestartService entry.
+
+	* auth.h: Removed.
+	* auth.c: Removed.
+
 1999-07-05  David Kaelbling <drk@sgi.com>
 
 	* manager.c: time_t is not always a long as it was assumed.  ON

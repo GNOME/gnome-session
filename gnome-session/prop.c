@@ -1,6 +1,6 @@
 /* prop.c - Functions to manipulate client properties.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -103,5 +103,6 @@ free_vector (int argc, char **argv)
 
   for (i = 0; i < argc; ++i)
     free (argv[i]);
-  free (argv);
+  if (argv)
+    free (argv);
 }

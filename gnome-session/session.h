@@ -31,6 +31,22 @@
  * the client is started up (as in a SysV start up). */
 #define GsmPriority              "_GSM_Priority"
 
+/* Default priority.  */
+#define DEFAULT_PRIORITY 50
+
+/* THE RESTART SERVICE STRING
+ * type=SmLISTofARRAY8,
+ * The format is "remote_start_protocol/remote_start_data".  An
+ * example is "rstart-rsh/hostname".  This is a non-standard property,
+ * which is the whole reason we need this function in order to determine
+ * the restart method.  The proxy uses this property to over-ride the
+ * 'client_host_name' from the ICE connection (the proxy is connected to
+ * the SM via a local connection, but the proxy may be acting as a proxy
+ * for a remote client).
+ * This property was first introduced by xsm.
+ */
+#define GsmRestartService	"_XC_RestartService"
+
 /* THE GSM CLIENT EVENT PROTOCOL:
  * Invoke the GsmSelectClientEvents command (see below) and then you can 
  * retrieve the stream of events occuring to gnome-session clients using 

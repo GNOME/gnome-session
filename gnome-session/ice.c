@@ -1,7 +1,7 @@
 
 /* ice.c - Handle session manager/ICE integration.
 
-   Copyright (C) 1998 Tom Tromey
+   Copyright (C) 1998, 1999 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -42,6 +42,9 @@
 
 /* Network ids.  */
 char* ids;
+
+/* List of all auth entries.  */
+GSList *auth_entries;
 
 /* The "sockets" which we listen on */
 static IceListenObj *sockets;
@@ -144,11 +147,17 @@ initialize_ice (void)
   char *p;
   guint i;
   GSList* entries;
+  int saved_umask;
 
   gnome_ice_init ();
 
   IceAddConnectionWatch (ice_watch, NULL);
 
+  /* Some versions of IceListenForConnections have a bug which causes
+     the umask to be set to 0 on certain types of failures.  So we
+     work around this by saving and restoring the umask.  */
+  saved_umask = umask (0);
+  umask (saved_umask);
   if (! SmsInitialize (GsmVendor, VERSION, new_client, NULL,
 		       auth_proc, sizeof error, error) ||
       ! IceListenForConnections (&num_sockets, &sockets,
@@ -157,6 +166,8 @@ initialize_ice (void)
       g_warning (error);
       exit (1);
     }
+  /* See above.  */
+  umask (saved_umask);
 
   input_id = g_new (gint, num_sockets);
 
@@ -199,6 +210,7 @@ initialize_ice (void)
     }
 
   write_authfile (authfile, entries);
+  auth_entries = entries;
 
   ids = IceComposeNetworkIdList (num_sockets, sockets);
 
@@ -324,11 +336,8 @@ write_authfile (gchar* filename, GSList* entries)
     while (list)
       {
 	IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
-
-	REMOVE (list, file_entry);
-
 	IceWriteAuthFileEntry (fp, file_entry);	
-	IceFreeAuthFileEntry (file_entry);
+	list = list->next;
       }
     fclose (fp);
   } else {

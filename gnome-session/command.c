@@ -398,7 +398,7 @@ command (Client* client, int nprops, SmProp** props)
 	    {
 	      GSList *prop_list = NULL, *one_client = NULL;
 
-	      client1->priority = 50;
+	      client1->priority = DEFAULT_PRIORITY;
 	      client1->handle = command_handle_new (client1);
 	      client1->match_rule = MATCH_PROP;
 	      
