@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-01-27 12:00+0200\n"
-"PO-Revision-Date: 2005-01-27 12:00+0200\n"
+"PO-Revision-Date: 2005-03-04 14:11+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "Atsijungiant paklausti patvirtinimo"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "Paveikslėlis rodomas prisijungio metu"
+msgstr "Įkelties paveikslėlis rodomas prisijungio metu"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -58,11 +58,11 @@ msgstr "Išsaugoti sesijas"
 
 #: gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
-msgstr "Rodyti paveiksliuką"
+msgstr "Rodyti įkelties paveiksliuką"
 
 #: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Sesijos paleidimo metu rodyti paveiksliuką"
+msgstr "Sesijos paleidimo metu rodyti įkelties paveiksliuką"
 
 #: gnome-session/gnome-session.schemas.in.h:10
 msgid ""
@@ -227,7 +227,7 @@ msgstr "Įvyko nežinoma aktyvavimo klaida."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Nustatymų demonas buvo perkrautas perdaug kartų."
+msgstr "Nustatymų demonas buvo perkrautas per daug kartų."
 
 #: gnome-session/logout.c:355
 msgid "Are you sure you want to log out?"
@@ -263,15 +263,15 @@ msgstr "Tik perskaityti išsaugotas sesijas iš default.session bylos"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Kiek milisekundžių laukti, kol klientai prisiregistruos (0=visada)"
+msgstr "Kiek milisekundžių laukti, kol klientai prisiregistruos (0=amžinai)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=visada)"
+msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=amžinai)"
 
 #: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Kiek milisekundžių laukti, kol klientai numirs (0=forever)"
+msgstr "Kiek milisekundžių laukti, kol klientai „numirs“ (0=amžinai)"
 
 #: gnome-session/main.c:265
 #, c-format
@@ -281,10 +281,10 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Ieškoti adreso %s Internete nepavyko.\n"
-"Todėl GNOME greičiausiai neveiks taip kaip turėtų.\n"
-"Problemą įmanoma pataisyti, prirašius\n"
-"%s į bylą /etc/hosts."
+"Surasti adreso %s Internete nepavyko.\n"
+"GNOME greičiausiai neveiks taip, kaip turėtų.\n"
+"Problemą įmanoma išpręsti, byloje /etc/hosts\n"
+"prirašius %s."
 
 #: gnome-session/main.c:272
 msgid "Log in Anyway"
@@ -374,7 +374,7 @@ msgstr "Sesijos"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "Rodyti paveiks_liuką prisijungimo metu"
+msgstr "Prisijungimo metu rodyti įkelties paveiks_liuką"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "As_k on logout"
@@ -483,6 +483,3 @@ msgstr "Pridėti paleidžiamą programą"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Keisti paleidžiamą programą"
-
-#~ msgid "Splash Screen Image"
-#~ msgstr "Paveikliukas"
