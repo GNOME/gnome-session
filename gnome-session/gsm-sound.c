@@ -3,16 +3,56 @@
 #include "gsm-sound.h"
 
 #ifdef HAVE_ESD /* almost whole file */
+#include <unistd.h>
 #include <libgnome/libgnome.h>
 #include <gconf/gconf-client.h>
 #include <esd.h>
 
+#define ENABLE_ESD_KEY    "/desktop/gnome/sound/enable_esd"
+#define ENABLE_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
+
 static gboolean
-sound_enabled (void)
+esd_enabled (void)
 {
-  GConfClient *client = gconf_client_get_default ();
-  return (gconf_client_get_bool (client, "/desktop/gnome/sound/enable_esd", NULL) &&
-	  gconf_client_get_bool (client, "/desktop/gnome/sound/event_sounds", NULL));
+  GConfClient *client;
+  GError      *error = NULL;
+  gboolean     retval;
+
+  client = gconf_client_get_default ();
+
+  retval = gconf_client_get_bool (client, ENABLE_ESD_KEY, &error);
+  if (error)
+    {
+      g_warning ("Error getting value of " ENABLE_ESD_KEY ": %s", error->message);
+      g_error_free (error);
+      return FALSE;  /* Fallback value */
+    }
+
+  g_object_unref (client);
+
+  return retval;
+}
+
+static gboolean
+sound_events_enabled (void)
+{
+  GConfClient *client;
+  GError      *error = NULL;
+  gboolean     retval;
+
+  client = gconf_client_get_default ();
+
+  retval = gconf_client_get_bool (client, ENABLE_SOUNDS_KEY, &error);
+  if (error)
+    {
+      g_warning ("Error getting value of " ENABLE_SOUNDS_KEY ": %s", error->message);
+      g_error_free (error);
+      return FALSE;  /* Fallback value */
+    }
+
+  g_object_unref (client);
+
+  return retval;
 }
 
 static void
@@ -111,7 +151,7 @@ static gboolean
 sound_init (void)
 {
 
-  if (!sound_enabled ())
+  if (!esd_enabled ())
     return FALSE;
 
   if (gnome_sound_connection_get () < 0)
@@ -122,6 +162,9 @@ sound_init (void)
       g_warning ("Esound failed to start.\n");
       return FALSE;
     }
+
+  if (!sound_events_enabled ())
+    return FALSE;
 
   return load_login_sample ();
 }
@@ -148,7 +191,7 @@ void
 gsm_sound_logout (void)
 {
 #ifdef HAVE_ESD
-  if (sound_enabled ())
+  if (sound_events_enabled ())
     play_trigger ("logout");
 #endif
 }
