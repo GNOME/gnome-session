@@ -30,8 +30,6 @@
 
 #include <X11/SM/SMlib.h>
 
-#define d(x)
-
 /* True if killing.  */
 static gboolean zap = FALSE;
 
@@ -51,14 +49,12 @@ static int exit_status = 0;
 static void
 ping_reply (IceConn ice_conn, IcePointer clientData)
 {
-  d(g_message ("ping_reply()"));
   gtk_main_quit ();
 }
 
 static void
 ice_ping (void)
 {
-  d(g_message ("ice_ping ()"));
   /* We can't exit immediately, because the trash mode above
    * might be discarded. So we do the equivalent of an XSync.
    */
@@ -71,8 +67,6 @@ ice_ping (void)
 static void
 save_complete (GnomeClient* client, gpointer data)
 {
-  d(g_message ("save_complete()"));
-
   /* We could expose more of the arguments to the user if we wanted
      to.  Some of them aren't particularly useful.  Interestingly,
      there is no way to request a shutdown without a save.  */
@@ -86,14 +80,12 @@ save_complete (GnomeClient* client, gpointer data)
 static void
 die_cb (GnomeClient *client, gpointer data)
 {
-  d(g_message ("die_cb()"));
   ice_ping ();
 }
 
 static void
 cancelled_cb (GnomeClient *client, gpointer data)
 {
-  d(g_message ("cancelled_cb()"));
   ice_ping ();
 
 }
