@@ -47,14 +47,13 @@ gboolean trashing = FALSE;
 guint purge_delay = 30000;
 
 /* Wait period for clients to save. */
-guint warn_delay = 5000;
+guint warn_delay = 10000;
 
 /* Wait period for clients to die during shutdown. */
 guint suicide_delay = 10000;
 
 static const struct poptOption options[] = {
   {"choose-session", '\0', POPT_ARG_NONE, &choosing, 0, N_("Start chooser and pick the session"), NULL},
-  {"trash-saves", '\0', POPT_ARG_NONE, &trashing, 0, N_("Disable normal operation by saving into the Trash session"), NULL},
   {"failsafe", '\0', POPT_ARG_NONE, &failsafe, 0, N_("Only read saved sessions from the default.session file"), NULL},
   {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
   {"warn-delay", '\0', POPT_ARG_INT, &warn_delay, 0, N_("Millisecond period spent waiting for clients to respond (0=forever)"), NULL},
@@ -93,7 +92,7 @@ main (int argc, char *argv[])
   textdomain (PACKAGE);
 
   initialize_ice ();
-  /* fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER")); */
+  fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
   gnome_client_disable_master_connection ();
   gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
 			     &ctx);
@@ -108,6 +107,11 @@ main (int argc, char *argv[])
   putenv (ep);
 
   ignore (SIGPIPE);
+
+  /* Read in config options */
+  gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
+  trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
+  gnome_config_pop_prefix ();
 
   if (choosing || (session && !strcmp(session, CHOOSER_SESSION)))
     {
@@ -126,5 +130,8 @@ main (int argc, char *argv[])
 
   clean_ice ();
 
+  /* If a logout command was set, the following will not return */
+  execute_logout ();
+  
   return 0;
 }

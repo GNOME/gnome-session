@@ -31,6 +31,9 @@
 /* Config prefix used to store the users' sessions. */
 #define CONFIG_PREFIX "session/"
 
+/* Config prefix used to store the users' sessions. */
+#define MANUAL_CONFIG_PREFIX "session-manual/"
+
 /* Default session name. */
 #define DEFAULT_SESSION "Default"
 
@@ -46,11 +49,21 @@
 /* Config section used for gnome-session's own config details. */
 #define GSM_CONFIG_SECTION "__gsm__"
 
+/* Config section used for session-related options */
+#define GSM_OPTION_CONFIG_PREFIX "session-options/Options/"
+
 /* Name of key used to store the current session name. */
 #define CURRENT_SESSION_KEY "Current Session"
 
 /* Name of key used to store number of clients in a session. */
 #define CLIENT_COUNT_KEY "num_clients"
+
+/* Name of key used to store trash mode. */
+#define TRASH_MODE_KEY "TrashMode"
+
+#ifndef TRASH_MODE_DEFAULT
+#define TRASH_MODE_DEFAULT "true"
+#endif
 
 /* Convenience macros: */
 #define GSM_CONFIG_PREFIX CONFIG_PREFIX GSM_CONFIG_SECTION "/"
@@ -150,6 +163,13 @@ extern IceListenObj *sockets;
 GSList *auth_entries;
 
 /*
+ * logout.c
+ */
+
+gboolean maybe_display_gui (void);
+
+
+/*
  * manager.c
  */
 
@@ -197,6 +217,9 @@ gchar* set_session_name (const gchar *name);
 
 /* Returns name of last session run (with a default) */
 gchar* get_last_session (void);
+
+/* Set the trash mode */
+void set_trash_mode (gboolean new_mode);
 
 /* Releases the lock on the session name when shutting down the session */
 void unlock_session (void);
@@ -297,6 +320,12 @@ gchar* command_handle_reassign (gchar* handle, gpointer new_object);
 
 /* Free an object handle */
 void command_handle_free (gchar* handle);
+
+/* If a logout command exits, exec() it and don't return */
+void execute_logout (void);
+
+/* Set the logout command.  */
+void set_logout_command (char **command);
 
 /* Convenience macros */
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))

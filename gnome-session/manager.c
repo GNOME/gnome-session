@@ -931,14 +931,27 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
   if (global)
     {
       shutting_down = shutdown;
-      while (live_list) 
+      if (shutting_down
+	  && interact_style == SmInteractStyleAny
+	  && ! fast
+	  && ! maybe_display_gui ())
 	{
-	  Client *client = (Client *) live_list->data;
-	  client_event (client->handle, GsmSave);
-	  REMOVE (live_list, client);
-	  APPEND (save_yourself_list, client);
-	  SmsSaveYourself (client->connection, save_type, shutting_down,
-			   interact_style, fast);
+	  /* Just ignore the save.  */
+	  shutting_down = FALSE;
+	  if (client)
+	    SmsShutdownCancelled (client->connection);
+	}
+      else
+	{	
+	  while (live_list) 
+	    {
+	      Client *client = (Client *) live_list->data;
+	      client_event (client->handle, GsmSave);
+	      REMOVE (live_list, client);
+	      APPEND (save_yourself_list, client);
+	      SmsSaveYourself (client->connection, save_type, shutting_down,
+			       interact_style, fast);
+	    }
 	}
     }
   else
@@ -949,6 +962,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       SmsSaveYourself (client->connection, 
 		       save_type, 0, interact_style, fast);
     }
+
   if (shutting_down || save_yourself_list)
     { 
       /* Give apps extra time on first save as they may call SmcOpenConnection
@@ -1020,7 +1034,7 @@ update_save_state ()
 {
   if (save_state == STARTING_SESSION)
     {
-      int runlevel = 1000;
+      unsigned int runlevel = 1000;
       
       if (pending_list)
 	{

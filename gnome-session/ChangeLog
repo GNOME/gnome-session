@@ -1,3 +1,70 @@
+1999-08-17  Jacob Berkman  <jberkman@andrew.cmu.edu>
+
+	* gnome-wm: add twm as a last-chance-best-effort try
+	for a window manager
+
+	<Myth> twm is better than nothing at all	
+
+1999-08-01  Tom Tromey  <tromey@cygnus.com>
+
+	* logout.c (display_gui): Call set_trash_mode.
+	(save): Removed.
+
+	* logout.c: Reverted previous patch.  It turns out that saves can
+	happen at "random" times, so this change would have caused user
+	confusion and not much more.
+
+1999-08-01  Jacob Berkman  <jberkman@andrew.cmu.edu>
+
+	* logout.c (display_gui): always display the "save current setup"
+	check box, but uncheck it if we are trashing the session
+
+1999-07-31  Tom Tromey  <tromey@cygnus.com>
+
+	* logout.c (display_gui): Added `ask next time' button.
+
+	* manager.c (process_save_request): Cancel a shutdown cancelled by
+	user.
+
+1999-07-30  Tom Tromey  <tromey@cygnus.com>
+
+	* gnome-login-check.c (timeout): Removed unused variable.
+	(check_for_dns): Now static.
+
+	* manager.h (set_logout_command): Declare.
+	(maybe_display_gui): Declare.
+	* command.c (set_logout_command): New function.
+	(prop_dup): Made `i' signed.
+	* manager.c (process_save_request): Query user on interactive
+	shutdown.
+	(update_save_state): Made `runlevel' unsigned.
+
+	* logout.c: New file (modified from patch by Owen Taylor).
+
+1999-07-30  Owen Taylor  <otaylor@redhat.com>
+
+	* Makefile.am (noinst_PROGRAMS): Removed.
+	(bin_PROGRAMS): Include session-properties again.  Added
+	gnome-login-check.
+	(gnome_login_check_SOURCES): New macro.
+	* command.c (logout_command_argc, logout_command_argv): New
+	globals.
+	(execute_logout): New function.
+	* gnome-login-check.c: New file.
+	* main.c (options): Removed --trash-saves.
+	(main): Set `trashing' based on user option.  Call
+	execute_logout.
+	* manager.h (MANUAL_CONFIG_PREFIX): New macro.
+	(GSM_OPTION_CONFIG_PREFIX): Likewise.
+	(TRASH_MODE_KEY, TRASH_MODE_DEFAULT): Likewise.
+	(execute_logout): Declare.
+	(set_trash_mode): Likewise.
+	* save.c (saved_session_name): New global.
+	(set_session_name): Set it.
+	(set_trash_mode): New function.
+	(read_session): Read manual client list from config file.
+	* session-properties.c (create_table): Omit "Program" field.
+
 1999-07-16  Tom Tromey  <tromey@cygnus.com>
 
 	Warning cleanups:
@@ -24,6 +91,17 @@
 	* manager.c (run_command): Removed unused variables.
 	(remove_client): Actually traverse linked list.
 	(find_client_by_connection): Removed unused function.
+
+Wed Jun 16 09:28:48 1999  Owen Taylor  <otaylor@redhat.com>
+
+	* manager.c (reincarnate_client): Account for the
+	fact that a client that has not yet had a handle
+	assigned to it may be restarted if it dies during
+	initialization. (Fixes problem where control-C'ing
+	gmc while it was waiting for the metadata lock
+	would kill gnome-session)
+
+	Split some common code off into a separate function. 
 
 1999-07-15  Tom Tromey  <tromey@cygnus.com>
 
@@ -61,17 +139,6 @@
 
 	* manager.c: time_t is not always a long as it was assumed.  ON
 	64-mahcines it might be sometehing else.
-
-Wed Jun 16 09:28:48 1999  Owen Taylor  <otaylor@redhat.com>
-
-	* manager.c (reincarnate_client): Account for the
-	fact that a client that has not yet had a handle
-	assigned to it may be restarted if it dies during
-	initialization. (Fixes problem where control-C'ing
-	gmc while it was waiting for the metadata lock
-	would kill gnome-session)
-
-	Split some common code off into a separate function. 
 
 1999-05-22  Felix Bellaby  <felix@pooh.u-net.com> 
 

@@ -32,6 +32,11 @@ static guint handle;
 /* Hash table for handle lookups: */
 static GHashTable* handle_table = NULL;
 
+/* If set, exec() this command on shutdown instead of exiting
+ */
+gint logout_command_argc = 0;
+gchar **logout_command_argv = NULL;
+
 typedef enum
 {
   COMMAND_ACTIVE = 0,
@@ -113,7 +118,7 @@ static SmProp*
 prop_dup (const SmProp* old_prop)
 {
   SmProp *prop = (SmProp*) malloc (sizeof (SmProp));      
-  guint i;
+  gint i;
 
   prop->name = strdup (old_prop->name);
   prop->type = strdup (old_prop->type);
@@ -279,6 +284,13 @@ command_active (Client* client)
 	  client->command_data->state != COMMAND_INACTIVE);
 }
 
+void
+execute_logout (void)
+{
+  if (logout_command_argv)
+    execvp (logout_command_argv[0], logout_command_argv);
+}
+
 extern GSList **client_lists[];
 extern gchar  *events[];
 extern GSList *zombie_list;
@@ -293,6 +305,25 @@ cmp_args (gconstpointer a, gconstpointer b)
 
   return strcmp (arg_a, arg_b);
 }
+
+void
+set_logout_command (char **command)
+{
+  int j;
+  if (logout_command_argv)
+    {
+      for (j = 0; j < logout_command_argc; j++)
+	g_free (logout_command_argv[j]);
+      g_free (logout_command_argv);
+    }
+  for (j = 0; command[j]; ++j)
+    ;
+  logout_command_argv = g_new (gchar *, j + 1);
+  for (j = 0; command[j]; ++j)
+    logout_command_argv[j] = g_strdup (command[j]);
+  logout_command_argv[j] = NULL;
+}
+
 
 void
 command (Client* client, int nprops, SmProp** props)
@@ -582,7 +613,7 @@ command (Client* client, int nprops, SmProp** props)
 	    }
 
 	  client_property (client1->handle, nprops - 1, &props[1]);
-	}      
+	}
     }
 
   SmFreeProperty (prop);
