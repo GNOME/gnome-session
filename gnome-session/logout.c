@@ -32,27 +32,9 @@
 #include "logout.h"
 #include "command.h"
 #include "util.h"
+#include "gdm-logout-action.h"
 #include "gsm-multiscreen.h"
 #include "egg-screen-help.h"
-
-static gchar *halt_command[] =
-{
-  HALT_COMMAND, NULL
-};
-
-static gchar *reboot_command[] =
-{
-  REBOOT_COMMAND, NULL
-};
-
-/* What action to take upon shutdown */
-static enum
-{
-  LOGOUT,
-  HALT,
-  REBOOT
-}
-action = LOGOUT;
 
 typedef struct {
   GdkScreen    *screen;
@@ -293,14 +275,16 @@ display_gui (void)
   GtkWidget *image;
   GtkWidget *toggle_button = NULL;
   gint response;
-  gchar *s, *t;
   GtkWidget *halt = NULL;
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
-  gboolean   retval = FALSE;
+  gboolean halt_supported = FALSE;
+  gboolean reboot_supported = FALSE;
+  gboolean retval = FALSE;
   gboolean save_active = FALSE;
   gboolean halt_active = FALSE;
   gboolean reboot_active = FALSE;
+  GdmLogoutAction logout_action = GDM_LOGOUT_ACTION_NONE;
   gboolean a11y_enabled;
   GError *error = NULL;
   GdkScreen *screen;
@@ -392,14 +376,10 @@ display_gui (void)
 			  FALSE, TRUE, 0);
     }
 
-  /* Red Hat specific code to check if the user has a
-   * good chance of being able to shutdown the system,
-   * and if so, give them that option
-   */
-  s = g_strconcat ("/var/lock/console/", g_get_user_name (), NULL);
-  t = g_strconcat ("/var/run/console/", g_get_user_name (), NULL);
-  if (((geteuid () == 0) || g_file_exists (t) || g_file_exists(s)) &&
-      access (halt_command[0], X_OK) == 0)
+  halt_supported   = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+  reboot_supported = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+
+  if (halt_supported || reboot_supported)
     {
       GtkWidget *title, *spacer;
       GtkWidget *action_vbox, *hbox;
@@ -431,16 +411,20 @@ display_gui (void)
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
       gtk_widget_show (r);
 
-      r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut down"));
-      gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
-      gtk_widget_show (r);
+      if (halt_supported)
+	{
+	  r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut down"));
+	  gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
+	  gtk_widget_show (r);
+	}
 
-      r = reboot = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("_Restart the computer"));
-      gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
-      gtk_widget_show (r);
+      if (reboot_supported)
+	{
+	  r = reboot = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("_Restart the computer"));
+	  gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
+	  gtk_widget_show (r);
+	}
     }
-  g_free (s);
-  g_free (t);
 
   gsm_center_window_on_screen (GTK_WINDOW (box), screen, monitor);
 
@@ -499,9 +483,9 @@ display_gui (void)
       if(save_active)
 	save_selected = save_active;
       if (halt_active)
-	action = HALT;
+	logout_action = GDM_LOGOUT_ACTION_SHUTDOWN;
       else if (reboot_active)
-	action = REBOOT;
+	logout_action = GDM_LOGOUT_ACTION_REBOOT;
       retval = TRUE;
       break;
     default:
@@ -541,6 +525,8 @@ display_gui (void)
       break;
     }
 
+  gdm_set_logout_action (logout_action);
+
   return retval;
 }
 
@@ -562,10 +548,8 @@ maybe_display_gui (void)
    */
   ice_frozen();
   result = display_gui ();
-  if (action == HALT)
-    set_logout_command (halt_command);
-  else if (action == REBOOT)
-    set_logout_command (reboot_command);
-  ice_thawed();
+
+  ice_thawed ();
+
   return result;
 }

@@ -72,12 +72,6 @@ void command_clean_up (Client* client);
 /* TRUE when the _GSM_Command protocol is enabled for this client. */
 gboolean command_active (Client* client);
 
-/* If a logout command exits, exec() it and don't return */
-void execute_logout (void);
-
-/* Set the logout command.  */
-void set_logout_command (char **command);
-
 /* Process a _GSM_Command protocol message. */
 void command (Client* client, int nprops, SmProp** props);
 

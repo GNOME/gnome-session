@@ -1,3 +1,23 @@
+2005-01-10  Mark McLoughlin  <mark@skynet.ie>
+
+	Based on work Raffaele Sandrini <rasa@gmx.ch>
+
+	* gdm-logout-action.[ch]: add implementation of GDM's
+	logout action protocol.
+	
+	* logout.c:
+	(display_gui): use GDM to reboot/shutdown post logout.
+	(maybe_display_gui): upd.
+	
+	* Makefile.am: build gdm-logout-action.[ch]
+
+	* command.[ch]:
+	(set_logout_action), (execute_logout): remove.
+	
+	* main.c: (main): update.
+	
+	* logout-test.c: remove set_logout_action() prototype.
+
 2004-12-22  Vincent Noel  <vnoel@cox.net>
 
 	* session-properties-capplet.c (capplet_build): Change "Prompt" to

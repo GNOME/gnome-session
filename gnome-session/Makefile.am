@@ -66,6 +66,8 @@ logout_test_SOURCES =		\
 	util.h			\
 	gsm-multiscreen.c	\
 	gsm-multiscreen.h	\
+	gdm-logout-action.c	\
+	gdm-logout-action.h	\
 	$(EGGFILES)
 
 gnome_session_SOURCES =		\
@@ -105,6 +107,8 @@ gnome_session_SOURCES =		\
 	gsm-multiscreen.h	\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h	\
+	gdm-logout-action.c	\
+	gdm-logout-action.h	\
 	headers.h		\
 	util.c			\
 	util.h			\

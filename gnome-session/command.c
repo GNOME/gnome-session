@@ -33,10 +33,6 @@
 /* List of clients that are selecting events on our clients */
 static GSList* selector_list = NULL;
 
-/* If set, exec() this command on shutdown instead of exiting
- */
-static gchar **logout_command_argv = NULL;
-
 /* Counter for generating unique handles: */
 static guint handle;
 
@@ -259,13 +255,6 @@ command_active (Client* client)
 	  client->command_data->state != COMMAND_INACTIVE);
 }
 
-void
-execute_logout (void)
-{
-  if (logout_command_argv)
-    execvp (logout_command_argv[0], logout_command_argv);
-}
-
 static gint		
 cmp_args (gconstpointer a, gconstpointer b)
 {
@@ -273,13 +262,6 @@ cmp_args (gconstpointer a, gconstpointer b)
   gchar* arg_b = (gchar*)((SmProp*)b)->vals[1].value;
 
   return strcmp (arg_a, arg_b);
-}
-
-void
-set_logout_command (char **command)
-{
-  g_strfreev (logout_command_argv);
-  logout_command_argv = g_strdupv (command);
 }
 
 void

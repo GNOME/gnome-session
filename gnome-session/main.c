@@ -477,8 +477,5 @@ main (int argc, char *argv[])
 
   clean_ice ();
 
-  /* If a logout command was set, the following will not return */
-  execute_logout ();
-  
   return 0;
 }

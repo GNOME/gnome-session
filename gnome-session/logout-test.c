@@ -8,8 +8,6 @@
 #define ice_thawed()
 
 #define COMMAND_H
-static void set_logout_command (char **command) {}
-
 static gboolean autosave = FALSE;
 static gboolean save_selected = FALSE;
 static gboolean logout_prompt = TRUE;
