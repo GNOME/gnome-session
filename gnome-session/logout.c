@@ -229,7 +229,8 @@ display_gui (void)
    * and if so, give them that option
    */
   s = g_strconcat ("/var/lock/console/", g_get_user_name (), NULL);
-  if (geteuid () == 0 || g_file_exists (s))
+  if ((geteuid () == 0 || g_file_exists (s)) &&
+      g_file_exists (halt_command[0]))
     {
       GtkWidget *frame;
       GtkWidget *action_vbox;
