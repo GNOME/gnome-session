@@ -200,6 +200,7 @@ display_gui (void)
 			       GNOME_MESSAGE_BOX_QUESTION,
 			       GNOME_STOCK_BUTTON_YES,
 			       GNOME_STOCK_BUTTON_NO,
+			       GNOME_STOCK_BUTTON_HELP,
 			       NULL);
 
   gtk_object_set (GTK_OBJECT (box),
@@ -272,15 +273,14 @@ display_gui (void)
 
   gdk_flush ();
 
-  if (result != 0)
-    return FALSE;
-  else
+  switch (result)
     {
+    case 0:
       /* This is only called when we are going to exit, so it is ok to
 	 change `trashing'.  */
       if (trashing)
 	set_trash_mode (! GTK_TOGGLE_BUTTON (toggle_button)->active);
-
+      
       if (halt)
 	{
 	  if (GTK_TOGGLE_BUTTON (halt)->active)
@@ -289,6 +289,16 @@ display_gui (void)
 	    action = REBOOT;
 	}
       return TRUE;
+    case 1:
+      return FALSE;
+    case 2:
+      {
+	GnomeHelpMenuEntry help_entry = {
+	  "panel", "panelbasics.html#LOGGINGOUT"
+	};
+	gnome_help_display (NULL, &help_entry);
+      }
+      return FALSE;
     }
 }
 
