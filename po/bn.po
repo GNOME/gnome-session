@@ -1,0 +1,479 @@
+# Bangla translation of gnome-session.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-session package.
+# Taneem Ahmed <taneem@eyetap.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session\n"
+"POT-Creation-Date: 2003-04-21 21:38-0700\n"
+"PO-Revision-Date: 2003-03-08 02:25-0800\n"
+"Last-Translator: Taneem Ahmed <taneem@eyetap.org>\n"
+"Language-Team: Bangla <gnome-translation@bengalinux.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr "টিসিপি কানেকসন অনুমত"
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"যদি কার্যকর করা হয়, সেশন শেষ করার আগে gnome-session ব্যবহারকারীকে জিজ্গাসা করবে।"
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"যদি কার্যকর করা হয়, gnome-session স্বয়ংক্রিয় ভাবে সেশন সংরক্ষন করবে। তা না "
+"হলেলগআউট ডায়ালগে সেশন সংরক্ষন করার জন্য একটি অপসন থাকবে।"
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr "লগ-আউট প্রম্পট"
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr "গুহ্‍নোম ডেস্কটপে লগইনের সময় যেই ছবিটি দেখতে চান"
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "সেশন সমুহ সংরক্ষন করুন"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr "প্রাথমিক স্ক্রিন দেখান"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "সেশনের শুরুতে প্রাথমিক স্ক্রিন দেখান"
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr "প্রাথমিক স্ক্রিনের ছবি"
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
+msgid "_Order:"
+msgstr "_ধারা:"
+
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr "যেই ধারা অনুযাই সেশনে অ্যাপ্লিকেসন শুরু হয়েছে।"
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr "অ্যাপ্লিকেসনটির কি হয় যখন সেটি শেষ হয়।"
+
+#: gnome-session/gsm-client-editor.c:108
+msgid "_Style:"
+msgstr "ধ_রন:"
+
+#: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
+msgid "Order"
+msgstr "ধারা"
+
+#: gnome-session/gsm-client-list.c:155
+msgid "Style"
+msgstr "ধরন"
+
+#: gnome-session/gsm-client-list.c:160
+msgid "State"
+msgstr "অবস্থা"
+
+#: gnome-session/gsm-client-list.c:165
+msgid "Program"
+msgstr "প্রোগ্রাম"
+
+#: gnome-session/gsm-client-row.c:31
+msgid "Inactive"
+msgstr "চলছে না"
+
+#: gnome-session/gsm-client-row.c:32
+msgid "Waiting to start or already finished."
+msgstr "শুরু হওয়ার অপেক্ষায় অথবা শেষ হয়ে গিয়েছে।"
+
+#: gnome-session/gsm-client-row.c:34
+msgid "Starting"
+msgstr "শুরু হচ্ছে"
+
+#: gnome-session/gsm-client-row.c:35
+msgid "Started but has not yet reported state."
+msgstr "শুরু করেছি কিন্তু অবস্থা জানান হয়নি।"
+
+#: gnome-session/gsm-client-row.c:37
+msgid "Running"
+msgstr "চলছে"
+
+#: gnome-session/gsm-client-row.c:38
+msgid "A normal member of the session."
+msgstr "সেশনের এক জন সাধারণ সদস্য।"
+
+#: gnome-session/gsm-client-row.c:40
+msgid "Saving"
+msgstr "সংরক্ষন করছি"
+
+#: gnome-session/gsm-client-row.c:41
+msgid "Saving session details."
+msgstr "সেশনের বিস্তারিত সংরক্ষন করা হচ্ছে।"
+
+#: gnome-session/gsm-client-row.c:43
+msgid "Unknown"
+msgstr "অজ্ঞাত"
+
+#: gnome-session/gsm-client-row.c:44
+msgid "State not reported within timeout."
+msgstr "নির্ধারিত সময় এর মধ্যে অবস্থা জানান হয়নি।"
+
+#: gnome-session/gsm-client-row.c:50
+msgid "Normal"
+msgstr "সাধারন"
+
+#: gnome-session/gsm-client-row.c:51
+msgid "Unaffected by logouts but can die."
+msgstr ""
+
+#: gnome-session/gsm-client-row.c:53
+msgid "Restart"
+msgstr "পুনরায় শুরু"
+
+#: gnome-session/gsm-client-row.c:54
+msgid "Never allowed to die."
+msgstr "কখনো শেষ হতে দিবে না।"
+
+#: gnome-session/gsm-client-row.c:56
+msgid "Trash"
+msgstr "আবর্জনা"
+
+#: gnome-session/gsm-client-row.c:57
+msgid "Discarded on logout and can die."
+msgstr ""
+
+#: gnome-session/gsm-client-row.c:59
+msgid "Settings"
+msgstr "সেটিংস"
+
+#: gnome-session/gsm-client-row.c:60
+msgid "Always started on every login."
+msgstr "প্রতিবার লগইনের সময় শুরু করুন।"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"গুহ্‍নোম সেটিংস ডিমন চালু করার সময় একটি ভুল হয়েছে।\n"
+"\n"
+"কিছু জিনিস, যেমন থিমস, শ্বদ, অথবা ব্যকগ্রাউন্ড সেটিংস ঠিক মত কাজ নাও করতে পারে।"
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"শেষ ভুল বার্তাটি ছিল:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"আপনি যখন পরের বার লগইন করবেন তখনও গুহ্‍নোম পুনরায় সেটিংস ডিমন চালু করার চেস্টা "
+"করবে।"
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "শুরু করার সময় একটি অজ্ঞাত ত্রুটি হয়েছে।"
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "সেটিংস ডিমন অতিরিক্ত বার পুনরায় চালু করা হয়েছে।"
+
+#: gnome-session/logout.c:270
+msgid "Are you sure you want to log out?"
+msgstr "আপনি কি নিশ্চিত যে আপনি লগ আউট করতে চান?"
+
+#: gnome-session/logout.c:298
+msgid "_Save current setup"
+msgstr "বর্তমান অবস্থা _সংরক্ষন করুন"
+
+#: gnome-session/logout.c:318
+msgid "Action"
+msgstr "কাজ"
+
+#: gnome-session/logout.c:326
+msgid "_Log Out"
+msgstr "_লগ আউট"
+
+#: gnome-session/logout.c:329
+msgid "Sh_ut Down"
+msgstr "বন্ধ _করুন"
+
+#: gnome-session/logout.c:332
+msgid "_Restart the computer"
+msgstr "কম্পিউটার পুনরায় _চালু করুন"
+
+#: gnome-session/main.c:76
+msgid "Specify a session name to load"
+msgstr "চালু করার জন্য একটি সেশনের নাম দিন"
+
+#: gnome-session/main.c:77
+msgid "Only read saved sessions from the default.session file"
+msgstr "default.session ফাইল থেকে শুধু সংরক্ষিত সেশন সমুহ পড়ুন"
+
+#: gnome-session/main.c:78
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "ক্লায়েন্টটি রেজিস্টার হওয়ার জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
+
+#: gnome-session/main.c:79
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "ক্লায়েন্টটির জবাবের জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
+
+#: gnome-session/main.c:80
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "ক্লায়েন্টটি শেষ হওয়ার জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s এর ইন্টারনেট ঠিকানা খুজে পওয়া যায়নি।\n"
+"এর ফলে গুহ্‍নোম ঠিকমত চলবে না।\n"
+"%s কে /etc/hosts ফাইলের মধ্যে যোগ করে এই সমস্যাটি হয়তো ঠিক করা যাবে।"
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "তাও লগইন করুন"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "আবার চেস্টা করুন"
+
+#: gnome-session/manager.c:176
+msgid "Your session has been saved"
+msgstr "আপনার সেশন সংরক্ষিত করা হয়েছে"
+
+#: gnome-session/manager.c:457
+msgid "Wait abandoned due to conflict."
+msgstr "গোলযোগের কারনে অপেক্ষা করা বাতিল করা হয়েছে।"
+
+#: gnome-session/manager.c:904
+#, c-format
+msgid "No response to the %s command."
+msgstr "%s কমান্ডের কোন জবাব পাওয়া যায়নি।"
+
+#: gnome-session/manager.c:905
+msgid "The program may be slow, stopped or broken."
+msgstr "প্রোগ্রামটি হয়তো ধীরে চলছে, বন্ধ হয়ে গিয়েছে অথবা ভেঙ্গে গিয়েছে।"
+
+#: gnome-session/manager.c:906
+msgid "You may wait for it to respond or remove it."
+msgstr "আপনি এটির জবাবের অপেক্ষা করতে পারেন অথবা পুনরায় চালু করতে পারেন।"
+
+#: gnome-session/manager.c:1516
+msgid "Restart abandoned due to failures."
+msgstr "কিছু ভুলের জন্য পুনরায় শুরু করা হচ্ছে না।"
+
+#: gnome-session/manager.c:1692
+msgid "A session shutdown is in progress."
+msgstr "সেশন বন্ধ হওয়ার প্রক্রিয়াধীন।"
+
+#: gnome-session/save-session.c:42
+msgid "Kill session"
+msgstr "সেশন বন্ধ করুন"
+
+#: gnome-session/save-session.c:43
+msgid "Use dialog boxes"
+msgstr "ডায়ালগ বাক্স ব্যবহার করুন"
+
+#: gnome-session/save-session.c:156
+msgid "Could not connect to the session manager"
+msgstr "সেশন ম্যানেজারের সাথে যোগাযোগ করা যায়নি"
+
+#: gnome-session/save-session.desktop.in.h:1
+msgid "Save Current Session"
+msgstr "বর্তমান সেশন সংরক্ষন করুন"
+
+#: gnome-session/save-session.desktop.in.h:2
+msgid "Save current state of desktop"
+msgstr "ডেস্কটপের বর্তমান অবস্থা সংরক্ষন করুন"
+
+#: gnome-session/session-names.c:139
+msgid "The session name cannot be empty"
+msgstr "সেশন নাম খালি থাকতে পারবে না"
+
+#: gnome-session/session-names.c:149
+msgid "The session name already exists"
+msgstr "এই সেশন নামটি "
+
+#: gnome-session/session-names.c:185
+msgid "Add a new session"
+msgstr "নতুন সেশন যোগ করুন"
+
+#: gnome-session/session-names.c:215
+msgid "Edit session name"
+msgstr "সেশনের নাম পরিবর্তন করুন"
+
+#: gnome-session/session-properties-capplet.c:104
+msgid "_Edit"
+msgstr "_পরিবর্তন"
+
+#: gnome-session/session-properties-capplet.c:172
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+"কিছু কিছু পরিবর্তন সংরক্ষিত নয়।\n"
+"তাও কি বের হওয়া ঠিক আছে?"
+
+#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "সেশন সমুহ"
+
+#: gnome-session/session-properties-capplet.c:229
+msgid "Show splash screen on _login"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:240
+msgid "_Prompt on logout"
+msgstr "লগআউটের _সময় জিজ্গাসা করুন"
+
+#: gnome-session/session-properties-capplet.c:251
+msgid "Automatically save chan_ges to session"
+msgstr "স্বয়ংক্রিয় সেশনের _পরিবর্তন সমুহ সংরক্ষন করুন"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "_Sessions:"
+msgstr "সে_সন সমুহ:"
+
+#: gnome-session/session-properties-capplet.c:279
+msgid "Session Name"
+msgstr "সেশনের নাম"
+
+#: gnome-session/session-properties-capplet.c:326
+msgid "Session Options"
+msgstr "সেশনের অপ্সন সমুহ"
+
+#: gnome-session/session-properties-capplet.c:335
+msgid "Current Session"
+msgstr "বর্তমান সেশন"
+
+#: gnome-session/session-properties-capplet.c:344
+msgid "Additional startup _programs:"
+msgstr "বার্তি প্রথমে সুরু করার প্রোগ্রাম:"
+
+#: gnome-session/session-properties-capplet.c:364
+msgid "Command"
+msgstr "কমান্ড"
+
+#: gnome-session/session-properties-capplet.c:392
+msgid "Startup Programs"
+msgstr "প্রথমে সুরু করার প্রোগ্রাম"
+
+#: gnome-session/session-properties.c:49
+msgid "Remove the currently selected client from the session."
+msgstr "বর্তমানে উল্লেখিত ক্লায়েন্টটি কে সেশন থেকে সরিয়ে ফেলুন।"
+
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "বর্তমান সেশনের পরিবর্তন কার্যকর করুন"
+
+#: gnome-session/session-properties.c:61
+msgid "The list of programs in the session."
+msgstr "সেশনের প্রোগ্রাম তালিকা।"
+
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "বর্তমানে যেসব প্রোগরাম _চলছে:"
+
+#: gnome-session/session-properties.c:104
+msgid "Initialize session settings"
+msgstr "সেশনের সেটিং সমুহ তৈরি করুন"
+
+#: gnome-session/session-properties.desktop.in.h:1
+msgid "Configure your sessions"
+msgstr "আপনার সেশন কনফিগার করুন"
+
+#: gnome-session/splash-widget.c:42
+msgid "Sawfish Window Manager"
+msgstr "স্যা-ফিস ইউনডো ম্যানেজার"
+
+#: gnome-session/splash-widget.c:43
+msgid "Metacity Window Manager"
+msgstr "মেটাসিটি ইউনডো ম্যানেজার"
+
+#: gnome-session/splash-widget.c:44
+msgid "Window Manager"
+msgstr "ইউনডো ম্যানেজার"
+
+#: gnome-session/splash-widget.c:45
+msgid "The Panel"
+msgstr "প্যানেল"
+
+#: gnome-session/splash-widget.c:46
+msgid "Session Manager Proxy"
+msgstr "সেশন ম্যানেজার প্রক্সি"
+
+#: gnome-session/splash-widget.c:47
+msgid "Nautilus"
+msgstr "নটিল্যাস"
+
+#: gnome-session/splash-widget.c:48
+msgid "Desktop Settings"
+msgstr "ডেস্কটপ সেটিং"
+
+#: gnome-session/startup-programs.c:289
+msgid "_Startup Command:"
+msgstr "প্র_থমে সুরু করার কমান্ড:"
+
+#: gnome-session/startup-programs.c:295
+msgid "Startup Command"
+msgstr "প্রথমে সুরু করার কমান্ড"
+
+#: gnome-session/startup-programs.c:338
+msgid "The startup command cannot be empty"
+msgstr "প্রথমে সুরু করার কমান্ড খালি হতে পারে না"
+
+#: gnome-session/startup-programs.c:378
+msgid "Add Startup Program"
+msgstr "প্রথমে সুরু করার প্রোগ্রাম যোগ করুন"
+
+#: gnome-session/startup-programs.c:399
+msgid "Edit Startup Program"
+msgstr "প্রথমে সুরু করার প্রোগ্রাম পরিবর্তন করুন"
