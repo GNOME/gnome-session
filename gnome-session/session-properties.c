@@ -178,17 +178,15 @@ setup ()
 
   propertybox = GNOME_PROPERTY_BOX (gnome_property_box_new ());
 
-  /* FIXME: don't use a constant.  */
-  page = GTK_BOX (gtk_vbox_new (FALSE, 4));
+  page = GTK_BOX (gtk_vbox_new (FALSE, GNOME_PAD));
 
   gtk_notebook_append_page (GTK_NOTEBOOK (propertybox->notebook),
 			    GTK_WIDGET (page), gtk_label_new (_("Startup")));
 
-  /* FIXME: don't use a constant.  */
-  box = gtk_hbox_new (FALSE, 4);
+  box = gtk_hbox_new (FALSE, GNOME_PAD);
   w = gtk_label_new (_("Programs to invoke at session startup:"));
-  gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, 0);
-  gtk_box_pack_start (page, box, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, GNOME_PAD_SMALL);
+  gtk_box_pack_start (page, box, FALSE, FALSE, GNOME_PAD_SMALL);
 
   del_button = gtk_button_new_with_label (_("Delete"));
   clist = gtk_clist_new (1);
@@ -205,7 +203,7 @@ setup ()
   /* FIXME: put clist into a multi-select mode.  */
   gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
 			GTK_POLICY_AUTOMATIC);
-  gtk_box_pack_start (page, clist, FALSE, FALSE, 0);
+  gtk_box_pack_start (page, clist, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_signal_connect (GTK_OBJECT (clist), "select_row",
 		      GTK_SIGNAL_FUNC (row_selected), (gpointer) del_button);
   gtk_signal_connect (GTK_OBJECT (clist), "unselect_row",
@@ -214,11 +212,12 @@ setup ()
   bbox = gtk_hbutton_box_new ();
   gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
   /* FIXME: put some space around the Delete button.  */
-  gtk_box_pack_start (GTK_BOX (bbox), del_button, FALSE, FALSE, 0);
-  gtk_box_pack_start (page, bbox, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bbox), del_button, FALSE, FALSE,
+		      GNOME_PAD_SMALL);
+  gtk_box_pack_start (page, bbox, FALSE, FALSE, GNOME_PAD_SMALL);
 
   w = gtk_entry_new ();
-  gtk_box_pack_start (page, w, FALSE, FALSE, 0);
+  gtk_box_pack_start (page, w, FALSE, FALSE, GNOME_PAD_SMALL);
   gtk_signal_connect (GTK_OBJECT (w), "changed",
 		      GTK_SIGNAL_FUNC (entry_changed), (gpointer) propertybox);
   gtk_signal_connect (GTK_OBJECT (w), "activate",
