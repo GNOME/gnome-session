@@ -259,7 +259,7 @@ capplet_build (void)
   /* Session names list */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
-  label = gtk_label_new_with_mnemonic ("_Sessions:");
+  label = gtk_label_new_with_mnemonic (_("_Sessions:"));
   gtk_container_add (GTK_CONTAINER (a), label);
   hb = gtk_hbox_new (FALSE, GNOME_PAD);
   gtk_box_pack_start (GTK_BOX (vbox), hb, TRUE, TRUE, 0);
@@ -341,7 +341,7 @@ capplet_build (void)
   /*non-session managed startup programs */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
-  label = gtk_label_new_with_mnemonic ("Additional startup _programs:");
+  label = gtk_label_new_with_mnemonic (_("Additional startup _programs:"));
   gtk_container_add (GTK_CONTAINER (a), label);
 
   hb = gtk_hbox_new (FALSE, GNOME_PAD);
