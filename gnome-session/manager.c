@@ -257,7 +257,7 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
       saving = 1;
       shutting_down = 0;
       REMOVE (live_list, client);
-      g_assert (! save_yourself_request);
+      g_assert (! save_yourself_list);
       APPEND (save_yourself_list, client);
       /* We ignore `shutdown' when a single-client save requested.  */
       SmsSaveYourself (client->connection, save_type, 0, interact_style,
