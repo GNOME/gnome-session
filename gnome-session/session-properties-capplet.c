@@ -281,7 +281,7 @@ capplet_build (void)
   /* Logout prompt */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
-  logout_prompt_button = gtk_check_button_new_with_mnemonic (_("_Prompt on logout"));
+  logout_prompt_button = gtk_check_button_new_with_mnemonic (_("As_k on logout"));
   gtk_container_add (GTK_CONTAINER (a), logout_prompt_button);
   g_object_set_data (G_OBJECT (logout_prompt_button), "key", LOGOUT_PROMPT_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
