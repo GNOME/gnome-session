@@ -52,6 +52,14 @@ bin_PROGRAMS = \
 	gnome-session-properties
 endif
 
+EGGFILES =			\
+	egg-screen-exec.h	\
+	egg-screen-exec.c	\
+	egg-screen-help.h	\
+	egg-screen-help.c	\
+	egg-screen-url.h	\
+	egg-screen-url.c
+
 splash_test_SOURCES =	\
 	splash-widget.c	\
 	splash-widget.h	\
@@ -95,7 +103,8 @@ gnome_session_SOURCES =		\
 	gsm-typebuiltins.h	\
 	headers.h		\
 	util.c			\
-	util.h
+	util.h			\
+	$(EGGFILES)
 
 gnome_session_save_SOURCES = \
 	save-session.c
@@ -220,3 +229,8 @@ CLEANFILES = $(built_sources)
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
+
+EGGDIR = $(srcdir)/../../libegg/libegg/screen-exec
+
+regenerate-built-sources:
+        EGGFILES="$(EGGFILES)" EGGDIR="$(EGGDIR)" $(srcdir)/update-from-egg.sh

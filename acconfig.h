@@ -1,3 +1,4 @@
+#define HAVE_GTK_MULTIHEAD /* for egg-screen-exec */
 #undef ENABLE_NLS
 #undef HAVE_CATGETS
 #undef HAVE_DEVGTK

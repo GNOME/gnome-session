@@ -389,8 +389,9 @@ display_gui (void)
       retval= FALSE;
       break;
     case GTK_RESPONSE_HELP:
-      gnome_help_display_desktop (NULL, "user-guide", "wgosstartsession.xml",
-				  "gosgetstarted-73", &error);
+      egg_screen_help_display_desktop (screen, NULL, "user-guide",
+				       "wgosstartsession.xml",
+				       "gosgetstarted-73", &error);
 
       if (error) 
         {
