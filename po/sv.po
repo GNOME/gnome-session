@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-07-12 12:34+0200\n"
-"PO-Revision-Date: 2002-07-12 12:34+0200\n"
+"POT-Creation-Date: 2002-07-13 22:38+0200\n"
+"PO-Revision-Date: 2002-07-13 22:38+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgid "Unaffected by logouts but can die."
 msgstr "Opåverkad av utloggningar men kan dö."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
+msgid "Restart"
 msgstr "Starta om"
 
 #: gnome-session/gsm-client-row.c:54
@@ -273,8 +273,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vänta på att det svarar eller ta bort det."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
-msgstr "Återupplivande övergett på grund av fel."
+msgid "Restart abandoned due to failures."
+msgstr "Omstart övergiven på grund av fel."
 
 #: gnome-session/manager.c:1683
 msgid "A session shutdown is in progress."
@@ -316,8 +316,12 @@ msgstr "Lägg till en ny session"
 msgid "Edit session name"
 msgstr "Redigera sessionsnamn"
 
+#: gnome-session/session-properties-capplet.c:105
+msgid "_Edit"
+msgstr "_Redigera"
+
 # SUN NEW TRANSLATION
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -325,103 +329,72 @@ msgstr ""
 "En del ändringar har inte sparats.\n"
 "Vill du avsluta ändå?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Sessionsegenskaper"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "Sessioner"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Alternativ"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
-msgstr "Visa startbild vid inloggning"
-
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
-msgstr "Fråga vid utloggning"
-
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
-msgstr "Spara ändringarna i sessionen automatiskt"
+#: gnome-session/session-properties-capplet.c:230
+msgid "Show splash screen on _login"
+msgstr "Visa startbild vid _inloggning"
 
 #: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Dessa ändringar verkställs omedelbart</i>"
+msgid "_Prompt on logout"
+msgstr "_Fråga vid utloggning"
 
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Välj nuvarande session"
+#: gnome-session/session-properties-capplet.c:252
+msgid "Automatically save chan_ges to session"
+msgstr "Spara _ändringar i sessionen automatiskt"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Sessionsnamn"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Lägg till..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Redigera..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Ta bort"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Sessionsalternativ"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Startprogram som inte är sessionskontrollerade"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritet"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Kommando"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Startprogram"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Nuvarande session"
 
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Startprogram"
+
 # SUN NEW TRANSLATION
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Ta bort den nu markerade klienten från sessionen."
 
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "Verkställ ändringar i den aktuella sessionen"
+
 # SUN NEW TRANSLATION
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Listan över program i sessionen."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "_Program som kör för tillfället:"
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Initiera sessionsinställningar"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
 msgstr "Konfigurera dina sessioner"
-
-#: gnome-session/session-properties.desktop.in.h:2
-msgid "Sessions"
-msgstr "Sessioner"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -489,29 +462,66 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Startar GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+msgid "_Startup Command:"
+msgstr "_Startkommando:"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Startkommando"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Program med låga värden startas före program med höga värden.  "
-"Standardvärdet bör vara OK"
+#: gnome-session/startup-programs.c:306
+msgid "_Priority:"
+msgstr "_Prioritet:"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Startkommandot får inte vara tomt"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Lägg till startprogram"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
+
+#~ msgid "Reset"
+#~ msgstr "Återställ"
+
+#~ msgid "Respawn"
+#~ msgstr "Starta om"
+
+#~ msgid "Session properties"
+#~ msgstr "Sessionsegenskaper"
+
+#~ msgid "Options"
+#~ msgstr "Alternativ"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Dessa ändringar verkställs omedelbart</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Välj nuvarande session"
+
+#~ msgid "Add..."
+#~ msgstr "Lägg till..."
+
+#~ msgid "Edit..."
+#~ msgstr "Redigera..."
+
+#~ msgid "Delete"
+#~ msgstr "Ta bort"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Startprogram som inte är sessionskontrollerade"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Program med låga värden startas före program med höga värden.  "
+#~ "Standardvärdet bör vara OK"
 
 #~ msgid "Configure your session"
 #~ msgstr "Konfigurera din session"
@@ -600,9 +610,6 @@ msgstr "Redigera startprogram"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Kunde inte ansluta till gnome-session"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Välj bland program som kör nu..."
 
 #~ msgid "Session Properties"
 #~ msgstr "Sessionsegenskaper"
@@ -1035,9 +1042,6 @@ msgstr "Redigera startprogram"
 
 #~ msgid "Copy _link location"
 #~ msgstr "Kopiera _länkplats"
-
-#~ msgid "Edit"
-#~ msgstr "Redigera"
 
 #~ msgid "File"
 #~ msgstr "Arkiv"
@@ -3111,9 +3115,6 @@ msgstr "Redigera startprogram"
 #~ msgstr ""
 #~ "Varning! Osparade ändringar kommer att förloras!\n"
 #~ "Vill du fortsätta?"
-
-#~ msgid "Restore"
-#~ msgstr "Återställ"
 
 #~ msgid "Iconify"
 #~ msgstr "Ikonifiera"
