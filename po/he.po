@@ -1,20 +1,79 @@
+# translation of gnome-session.HEAD.he.po to Hebrew
 # translation of gnome-session.gnome-2-0.po to Hebrew
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # Gil Osher <dolfin@rpg.org.il>, 2002
+# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.gnome-2-0\n"
-"POT-Creation-Date: 2002-11-30 05:42+0100\n"
-"PO-Revision-Date: 2002-09-07 18:55+0300\n"
-"Last-Translator: Gil Osher <dolfin@rpg.org.il>\n"
+"Project-Id-Version: gnome-session.HEAD.he\n"
+"POT-Creation-Date: 2002-12-01 06:13+0100\n"
+"PO-Revision-Date: 2002-12-01 10:53+0200\n"
+"Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0beta2\n"
 
-#: gnome-session/gsm-client-editor.c:96
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr "הרשה חיבורי TCP"
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"בגלל סיבות ביטחוניות, בפלטפורומות שיש בהן _IceTcpTransNoListen() "
+"(מערכות XFree86), תצורת ההפעלה של GNOME לא מקשיבה להתחברויות ביציאות "
+"TCP. אפשרות זו תאפשר התחברויות ממארחים מרוחקים (ומאושרים). "
+"תצורת ההפעלה של GNOME חייבת להתחיל מחדש כדי שאפשרות זו תפעל."
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "אם מאופשר, תצורת ההפעלה של GNOME תתריע את המשתמש לפני סיום ההפעלה."
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"אם מאופשר, תצורת ההפעלה של GNOME תשמר אוטומטית. אחרת, "
+"תיבת דו-השיח להתנתקות תכיל אפשרות לשמירת תצורת ההפעלה."
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr "התרע לפני התנתקות"
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+"תמונה מועדפת לשימוש במסך הפתיחה כאשר מתחברים לשולחן "
+"העבודה של GNOME"
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "שמור תצורות הפעלה"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr "הצג את מסך הפתיחה"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "הצג את מסך הפתיחה בעת ההפעלה"
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr "תמונת מסך הפתיחה"
+
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
 msgstr "_סדר:"
 
@@ -31,6 +90,7 @@ msgid "_Style:"
 msgstr "_סגנון:"
 
 #: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "סדר"
 
@@ -167,27 +227,27 @@ msgstr "ארעה שגיאת הפעלה לא ידועה."
 msgid "The Settings Daemon restarted too many times."
 msgstr "תהליך שירות ההגדרות הופעל מחדש יותר מידי פעמים."
 
-#: gnome-session/logout.c:232
+#: gnome-session/logout.c:270
 msgid "Are you sure you want to log out?"
 msgstr "אתה בטוח שברצונך להתנתק?"
 
-#: gnome-session/logout.c:260
+#: gnome-session/logout.c:298
 msgid "_Save current setup"
 msgstr "_שמור תצורה נוכחית"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:318
 msgid "Action"
 msgstr "פעולה"
 
-#: gnome-session/logout.c:288
+#: gnome-session/logout.c:326
 msgid "_Log Out"
 msgstr "_התנתק"
 
-#: gnome-session/logout.c:291
+#: gnome-session/logout.c:329
 msgid "Sh_ut Down"
 msgstr "_כיבוי"
 
-#: gnome-session/logout.c:294
+#: gnome-session/logout.c:332
 msgid "_Restart the computer"
 msgstr "הפעל _מחדש את המחשב"
 
@@ -338,10 +398,6 @@ msgstr "אפשרויות תצורות ההפעלה"
 msgid "Current Session"
 msgstr "תצורת הפעלה נוכחית"
 
-#: gnome-session/session-properties-capplet.c:362
-msgid "Priority"
-msgstr "עדיפות"
-
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
 msgstr "פקודה"
@@ -374,70 +430,69 @@ msgstr "אתחל הגדרות תצורת הפעלה"
 msgid "Configure your sessions"
 msgstr "הגדר את תצורות ההפעלה שלך"
 
-#: gnome-session/splash-widget.c:41
-msgid "Audio Settings"
-msgstr "הגדרות שמע"
-
 #: gnome-session/splash-widget.c:42
-msgid "Screensaver"
-msgstr "שומר מסך"
-
-#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "מנהל החלונות Sawfish"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:43
 msgid "Metacity Window Manager"
 msgstr "מנהל החלונות Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:44
 msgid "Window Manager"
 msgstr "מנהל חלונות"
 
-#: gnome-session/splash-widget.c:46
-msgid "Background Settings"
-msgstr "הגדרות רקע"
-
-#: gnome-session/splash-widget.c:47
-msgid "Mouse Settings"
-msgstr "הגדרות עכבר"
-
-#: gnome-session/splash-widget.c:48
-msgid "Keyboard Settings"
-msgstr "הגדרות מקלדת"
-
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:45
 msgid "The Panel"
 msgstr "הלוח"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:46
 msgid "Session Manager Proxy"
 msgstr "מתווך מנהל תצורת ההפעלה"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/startup-programs.c:286
+#: gnome-session/splash-widget.c:48
+msgid "Desktop Settings"
+msgstr "הגדרות שולחן עבודה"
+
+#: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
 msgstr "_פקודת הפעלה:"
 
-#: gnome-session/startup-programs.c:292
+#: gnome-session/startup-programs.c:293
 msgid "Startup Command"
 msgstr "פקודת הפעלה"
 
-#: gnome-session/startup-programs.c:307
-msgid "_Priority:"
-msgstr "_עדיפות:"
-
-#: gnome-session/startup-programs.c:335
+#: gnome-session/startup-programs.c:336
 msgid "The startup command cannot be empty"
 msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 
-#: gnome-session/startup-programs.c:375
+#: gnome-session/startup-programs.c:376
 msgid "Add Startup Program"
 msgstr "הוסף תוכנית הפעלה"
 
-#: gnome-session/startup-programs.c:396
+#: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "ערוך תוכנית הפעלה"
+
+#~ msgid "Priority"
+#~ msgstr "עדיפות"
+
+#~ msgid "Audio Settings"
+#~ msgstr "הגדרות שמע"
+
+#~ msgid "Screensaver"
+#~ msgstr "שומר מסך"
+
+#~ msgid "Background Settings"
+#~ msgstr "הגדרות רקע"
+
+#~ msgid "Mouse Settings"
+#~ msgstr "הגדרות עכבר"
+
+#~ msgid "_Priority:"
+#~ msgstr "_עדיפות:"
+
