@@ -800,6 +800,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		      if (! client->command && session->waiting)
 			{
 			  session->waiting--;
+			  g_message ("waiting is now: %d", session->waiting);
 			  if (!session->waiting)
 			    gtk_signal_emit (GTK_OBJECT (session),
 					     gsm_session_signals[INITIALIZED]);
@@ -868,6 +869,8 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 			session->waiting = 1;
 		      else if (session->waiting)
 			session->waiting++;
+		      g_message ("waiting is now: %d", session->waiting);
+		      
 		    }
 		  prop_free (props[i]);
 		}
@@ -948,6 +951,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		    session->waiting = 1;
 		  else if (session->waiting)
 		    session->waiting++;
+		  g_message ("waiting is now: %d", session->waiting);
 		  prop_free (props[i]);
 		}  
 	      reads = g_slist_remove (reads, session);

@@ -1,3 +1,10 @@
+2000-01-23  Jacob Berkman  <jacob@helixcode.com>
+
+	* session-properties.c (create_table): don't wait for the 
+	initialized signal
+	(initialized_cb): disable this code for now
+	(main): show the app here
+
 2000-01-11  Anders Carlsson  <andersca@gnu.org>
 
 	* splash.c (start_splash): Changed the splash window to a 

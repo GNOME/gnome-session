@@ -103,8 +103,10 @@ create_table (void)
   /* client list */
   client_list = gsm_client_list_new ();
   gsm_client_list_live_session (GSM_CLIENT_LIST (client_list));
+#if 0 /* this is currently broken */
   gtk_signal_connect(GTK_OBJECT (client_list), "initialized",
 		     GTK_SIGNAL_FUNC (initialized_cb), NULL);
+#endif
   gtk_signal_connect(GTK_OBJECT(client_list), "select_row",
 		     GTK_SIGNAL_FUNC (select_cb), NULL);
   gtk_signal_connect(GTK_OBJECT(client_list), "unselect_row",
@@ -116,6 +118,7 @@ create_table (void)
 
   /* scrolled window - disabled until the client_list "initialized" signal */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_set_usize (GTK_WIDGET (scrolled_window), -2, 250);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
@@ -376,6 +379,10 @@ main (int argc, char *argv[])
     create_dialog ();
   else
     create_app ();
+  /* show these here since things are broken */
+  gtk_widget_show_all (app);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
   gtk_main ();
 
@@ -476,6 +483,7 @@ dirty_cb (GtkWidget *widget)
   gtk_widget_set_sensitive (ok_button, TRUE);
 }
 
+#if 0
 /* This is called when the client_list has been filled by gnome-session */
 static void
 initialized_cb (GtkWidget *widget)
@@ -484,3 +492,4 @@ initialized_cb (GtkWidget *widget)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 }
+#endif
