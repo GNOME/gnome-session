@@ -40,6 +40,10 @@ int        gsm_screen_get_width           (GdkScreen *screen,
 					   int        monitor);
 int        gsm_screen_get_height          (GdkScreen *screen,
 					   int        monitor);
+int        gsm_screen_get_x               (GdkScreen *screen,
+					   int        monitor);
+int        gsm_screen_get_y               (GdkScreen *screen,
+					   int        monitor);
 
 void       gsm_center_window_on_screen    (GtkWindow *window,
 					   GdkScreen *screen,

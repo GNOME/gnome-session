@@ -124,8 +124,8 @@ iris_on_screen (GdkScreen *screen,
   data->screen = screen;
   data->monitor = monitor;
 
-  data->iris_rect.x = 0;
-  data->iris_rect.y = 0;
+  data->iris_rect.x = gsm_screen_get_x (screen, monitor);
+  data->iris_rect.y = gsm_screen_get_y (screen, monitor);
   data->iris_rect.width = gsm_screen_get_width (screen, monitor);
   data->iris_rect.height = gsm_screen_get_height (screen, monitor);
 

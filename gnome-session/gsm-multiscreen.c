@@ -125,6 +125,28 @@ gsm_screen_get_height (GdkScreen *screen,
 	return geometry.height;
 }
 
+int
+gsm_screen_get_x (GdkScreen *screen,
+		  int        monitor)
+{
+	GdkRectangle geometry;
+
+	gdk_screen_get_monitor_geometry (screen, monitor, &geometry);
+
+	return geometry.x;
+}
+
+int
+gsm_screen_get_y (GdkScreen *screen,
+		  int        monitor)
+{
+	GdkRectangle geometry;
+
+	gdk_screen_get_monitor_geometry (screen, monitor, &geometry);
+
+	return geometry.y;
+}
+
 void
 gsm_center_window_on_screen (GtkWindow *window,
 			     GdkScreen *screen,
