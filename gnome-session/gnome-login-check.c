@@ -38,23 +38,22 @@ gint timeout_tag = FALSE;
 static gchar *
 get_hostname (gboolean readable)
 {
-  static gboolean init = FALSE;
-  static gchar *result = NULL;
-
-  if (!init)
-    {
-      char hostname[256];
-      
-      if (gethostname (hostname, sizeof (hostname)) == 0)
-	result = g_strdup (hostname);
-
-      init = TRUE;
-    }
-
-  if (result)
-    return result;
-  else
-    return readable ? "(Unknown)" : NULL;
+	static gboolean init = FALSE;
+	static gchar *result = NULL;
+	
+	if (!init){
+		char hostname[256];
+		
+		if (gethostname (hostname, sizeof (hostname)) == 0)
+			result = g_strdup (hostname);
+		
+		init = TRUE;
+	}
+	
+	if (result)
+		return result;
+	else
+		return readable ? "(Unknown)" : NULL;
 }
 
 /* Timeout function to update the activity progress bar */
@@ -92,7 +91,7 @@ timeout (gpointer data)
 
 	amount = *progress_amount % 18;
 	if (amount > 9)
-	  amount = 18 - amount;
+		amount = 18 - amount;
 
 	amount = amount / 10;
 
@@ -302,28 +301,29 @@ main (int argc, char **argv)
 		}
 	}
 
-	if (!check_orbit_dir() ) {
-	  GtkWidget *tmp_msgbox;
-	  gchar *tmp_msg;
-	  tmp_msg = g_strdup_printf (
-				     _("The directory /tmp/orbit-%s is not owned\nby the current user, %s.\n"
-				       "Please correct the ownership of this directory."),
-				     g_get_user_name(), g_get_user_name());
-
-	  tmp_msgbox = gnome_message_box_new (tmp_msg,
-					      GNOME_MESSAGE_BOX_WARNING,
-					      _("Try again"),
-					      _("Continue"),
-					      NULL);
+	if (!check_orbit_dir ()) {
+		GtkWidget *tmp_msgbox;
+		gchar *tmp_msg;
+		tmp_msg = g_strdup_printf (
+			_("The directory /tmp/orbit-%s is not owned\nby the current user, %s.\n"
+			  "Please correct the ownership of this directory."),
+			g_get_user_name(), g_get_user_name());
+		
+		tmp_msgbox = gnome_message_box_new (
+			tmp_msg,
+			GNOME_MESSAGE_BOX_WARNING,
+			_("Try again"),
+			_("Continue"),
+			NULL);
 	  
-	  gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
-	  gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
-
-	  while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
-		 !check_orbit_dir ())
-	    /* Nothing */;
+		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
+		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
+		
+		while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
+		       !check_orbit_dir ())
+			/* Nothing */;
 	}
-
+	
 	if (!check_for_dns ()) {
 		GtkWidget *tmp_msgbox;
 		gchar *tmp_msg;
