@@ -1,3 +1,9 @@
+1999-02-11 Felix Bellaby  <felix@pooh.u-net.com>
+	* save.c: Replace "Priority with "_GSM_Priority" throughout.
+	(write_session): write details of clients in the pending_list.
+	* manager.c (close_connection): use start_client on respawned clients
+ 	so that they are purged when they fail to connect.
+
 1999-02-10 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* save.c (delete_session): do not call discard commands on clients
