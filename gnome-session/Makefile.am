@@ -95,6 +95,8 @@ gnome_session_SOURCES =		\
 	gsm-gsd.h		\
 	gsm-protocol.c		\
 	gsm-protocol.h		\
+	gsm-remote-desktop.c	\
+	gsm-remote-desktop.h	\
 	gsm-sound.c		\
 	gsm-sound.h		\
 	gsm-at-startup.c	\

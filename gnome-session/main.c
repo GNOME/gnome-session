@@ -47,6 +47,7 @@
 #include "gsm-keyring.h"
 #include "gsm-xrandr.h"
 #include "gsm-at-startup.h"
+#include "gsm-remote-desktop.h"
 
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
@@ -454,6 +455,8 @@ main (int argc, char *argv[])
 
   gsm_gsd_start ();
 
+  gsm_remote_desktop_start ();
+
   if (splashing)
     splash_start ();
 
@@ -463,6 +466,8 @@ main (int argc, char *argv[])
     gsm_assistive_technologies_start ();
 
   gtk_main ();
+
+  gsm_remote_desktop_cleanup ();
 
   gsm_sound_logout ();
 
