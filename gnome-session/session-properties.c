@@ -107,7 +107,7 @@ create_gui ()
   gtk_widget_show (table);
 
   /* label for the exec entry */
-  label = gtk_label_new ("Program:");
+  label = gtk_label_new (_("Program:"));
   gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
   gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, 
 		    GTK_FILL, GTK_FILL|GTK_EXPAND, 10, 0);
@@ -134,7 +134,7 @@ create_gui ()
   gtk_widget_show(startup_info.entry);
 
   /* add/remove buttons */
-  startup_info.add_button = gtk_button_new_with_label ("Add");
+  startup_info.add_button = gtk_button_new_with_label (_("Add"));
   gtk_table_attach (GTK_TABLE (table), startup_info.add_button,
 		    0, 1, 1, 2, GTK_FILL, GTK_EXPAND, 5, 5);
   gtk_signal_connect (
@@ -144,7 +144,7 @@ create_gui ()
       NULL);
   gtk_widget_show (startup_info.add_button);
 
-  startup_info.remove_button = gtk_button_new_with_label ("Remove");
+  startup_info.remove_button = gtk_button_new_with_label (_("Remove"));
   gtk_table_attach (GTK_TABLE (table), startup_info.remove_button, 
 		    0, 1, 2, 3, GTK_FILL, GTK_EXPAND, 5, 5);
   gtk_signal_connect(
