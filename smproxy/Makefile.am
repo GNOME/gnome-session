@@ -3,7 +3,7 @@
 ## Gnome programs can assume the existence of mkstemp.
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
-	-DHAS_MKSTEMP
+	-DHAS_MKSTEMP $(SMPROXY_DEFS)
 
 ## FIXME: this sucks.  We should just rewrite to use Gtk and not Xt.
 LDADD = -lXt -lXmu $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
