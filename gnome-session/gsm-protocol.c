@@ -605,7 +605,7 @@ gsm_protocol_new (GnomeClient* gnome_client)
   protocol->smc_conn = gnome_client->smc_conn;
   the_protocol = protocol;
 
-  gtk_idle_add (request_event, (gpointer)protocol);
+  g_idle_add (request_event, protocol);
 
   return GTK_OBJECT (protocol);
 }
@@ -1005,7 +1005,8 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	}
       free (props);
     }
-  gtk_idle_add (request_event, data);
+
+  g_idle_add (request_event, data);
 }
 
 /* libSM prevents us form calling SmcGetProperties within its own callback

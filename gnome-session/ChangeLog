@@ -1,3 +1,9 @@
+2001-11-28  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-protocol.c: (gsm_protocol_new), (dispatch_event): use
+	  g_idle_add instead of gtk_idle_add and save a few
+	  stackframes.
+
 2001-11-27  Seth Nickell  <snickell@stanford.edu>
 
 	* Makefile.am:
