@@ -34,7 +34,7 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-desktopdir = $(datadir)/gnome/apps/Settings/Session
+desktopdir = $(datadir)/gnome/apps/Settings/Session/
 desktop_DATA = save-session.desktop session.desktop
 
 default.session: default.in ../config.status
