@@ -196,6 +196,7 @@ display_gui (void)
   gboolean save_active = FALSE;
   gboolean halt_active = FALSE;
   gboolean reboot_active = FALSE;
+  gboolean a11y_enabled;
   GError *error = NULL;
 
   gsm_verbose ("display_gui: showing logout dialog\n");
@@ -225,13 +226,21 @@ display_gui (void)
 
   force_pango_cache_init ();
 
-  XGrabServer (GDK_DISPLAY ());
-  iris ();
-
   box = gtk_message_dialog_new (NULL, 0,
 				GTK_MESSAGE_QUESTION,
 				GTK_BUTTONS_NONE,
 				_("Are you sure you want to log out?"));
+
+  a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (box));
+
+  /* Grabbing the Xserver when accessibility is enabled will cause
+   * a hang. See #93103 for details.
+   */
+  if (!a11y_enabled)
+    {
+      XGrabServer (GDK_DISPLAY ());
+      iris ();
+    }
 
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
@@ -312,8 +321,11 @@ display_gui (void)
 
   gtk_widget_destroy (box);
 
-  refresh_screen ();
-  XUngrabServer (GDK_DISPLAY ());
+  if (!a11y_enabled)
+    {
+      refresh_screen ();
+      XUngrabServer (GDK_DISPLAY ());
+   }
 
   gdk_pointer_ungrab (GDK_CURRENT_TIME);
   gdk_keyboard_ungrab (GDK_CURRENT_TIME);

@@ -1,3 +1,10 @@
+2002-09-20  Mark McLoughlin  <mark@skynet.ie>
+
+	* logout.c: (display_gui): only grab the server and
+	draw the iris if accessibility is not enabled. Fixes
+	hang on logout with accessibility, #93103. Patch
+	from Padraig O'Briain.
+
 2002-09-16  Mark McLoughlin  <mark@skynet.ie>
 
 	* startup-programs.c: (edit_client): don't allow
