@@ -247,7 +247,7 @@ display_gui (void)
       r = gtk_radio_button_new_with_label (NULL, _("Logout"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 
-      r = halt = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (r), _("Halt"));
+      r = halt = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (r), _("Shut Down"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 
       r = reboot = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (r), _("Reboot"));
