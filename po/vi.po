@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2002-07-15 11:23+1200\n"
-"PO-Revision-Date: 2002-05-30 16:41+0700\n"
+"POT-Creation-Date: 2002-07-25 13:17+0200\n"
+"PO-Revision-Date: 2002-07-26 12:47+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -94,9 +94,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Không bị tác động bởi lệnh đăng xuất, như có thể kết thúc."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Hoàn nguyên"
+msgstr "Khởi động lại"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -133,6 +132,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Lỗi khởi động Daemon Thiết lập GNOME.\n"
+"\n"
+"Một vài thứ, như là thiết lập theme, thiết lập âm thanh hoặc thiết lập nền có thể sẽ không làm việc đúng."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -140,49 +142,46 @@ msgid ""
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr ""
+msgstr "\n\nThông báo lỗi cuối cùng là:\n\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
+msgstr "\n\nGNOME sẽ vẫn cố khởi động lại Daemon Thiết lập lần kế bạn đăng nhập."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Lỗi kích hoạt lạ."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Daemon Thiết lập được khởi động lại quá nhiều lần."
 
 #: gnome-session/logout.c:234
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "Bạn có chắc muốn đăng xuất không?"
 
 #: gnome-session/logout.c:251
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Lưu thiết lập hiện thời"
+msgstr "_Lưu thiết lập hiện thời"
 
 #: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Hành động"
 
 #: gnome-session/logout.c:279
-#, fuzzy
 msgid "_Log Out"
-msgstr "Đăng xuất"
+msgstr "Đăng _xuất"
 
 #: gnome-session/logout.c:282
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Tắt máy"
+msgstr "_Tắt máy"
 
 #: gnome-session/logout.c:285
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Khởi động lại máy tính"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -219,10 +218,9 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Đăng nhập bằng mọi giá"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "Thử lại"
 
@@ -248,7 +246,6 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Bạn có thể chờ trả lời hoặc loại bỏ nó."
 
 #: gnome-session/manager.c:1507
-#, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "Quá trình tái khởi động bị ngắt vì lỗi."
 
@@ -293,9 +290,8 @@ msgid "Edit session name"
 msgstr "Sửa tên session"
 
 #: gnome-session/session-properties-capplet.c:105
-#, fuzzy
 msgid "_Edit"
-msgstr "Sửa..."
+msgstr "_Sửa"
 
 #: gnome-session/session-properties-capplet.c:173
 msgid ""
@@ -307,24 +303,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:202
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
 msgstr "Session"
 
 #: gnome-session/session-properties-capplet.c:230
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Hiện Splash Screen khi đăng nhập"
+msgstr "Hiện Splash Screen khi đăng _nhập"
 
 #: gnome-session/session-properties-capplet.c:241
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Hỏi trước khi đăng xuất"
+msgstr "_Hỏi trước khi đăng xuất"
 
 #: gnome-session/session-properties-capplet.c:252
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Tự động lưu các thay đổi hiện thời của session"
+msgstr "Tự động _lưu các thay đổi của session"
 
 #: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
@@ -355,18 +347,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "Loại bỏ client được chọn khỏi session."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Tự động lưu các thay đổi hiện thời của session"
+msgstr "Áp dụng các thay đổi trong session hiện thời"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Danh sách chương trình trong session."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Duyệt các chương trình đang chạy..."
+msgstr "Các chương trình đang chạy:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -374,82 +364,63 @@ msgstr "Khởi động thông số session"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Cấu hình session của bạn"
 
-#: gnome-session/splash.c:59
+#: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
 msgstr "Thông số audio"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash-widget.c:42
 msgid "Screensaver"
 msgstr "Screensaver"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Bộ quản lý cửa sổ Sawfish"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Bộ quản lý cửa sổ Metacity"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Bộ quản lý cửa sổ"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash-widget.c:46
 msgid "Background Settings"
 msgstr "Thông số nền"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash-widget.c:47
 msgid "Mouse Settings"
 msgstr "Thông số chuột"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash-widget.c:48
 msgid "Keyboard Settings"
 msgstr "Thông số bàn phím"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash-widget.c:49
 msgid "The Panel"
 msgstr "Panel"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash-widget.c:50
 msgid "Session Manager Proxy"
 msgstr "Proxy của bộ quản lý session"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash-widget.c:51
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:286
-#, c-format
-msgid "Starting GNOME: %s"
-msgstr "Khởi động GNOME: %s"
-
-#: gnome-session/splash.c:288
-msgid "Starting GNOME: done"
-msgstr "Khởi động GNOME: xong"
-
-#: gnome-session/splash.c:430
-msgid "GNOME"
-msgstr "GNOME"
-
-#: gnome-session/splash.c:454
-msgid "Starting GNOME"
-msgstr "Đang khởi động GNOME"
-
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Lệnh khởi động"
+msgstr "_Lệnh khởi động:"
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Lệnh khởi động"
 
 #: gnome-session/startup-programs.c:306
-#, fuzzy
 msgid "_Priority:"
-msgstr "Độ ưu tiên"
+msgstr "Ư_u tiên:"
 
 #: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
@@ -550,6 +521,18 @@ msgstr "Sửa chương trình khởi động"
 
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "Thuộc tính session & chương trình khởi động"
+
+#~ msgid "Starting GNOME: %s"
+#~ msgstr "Khởi động GNOME: %s"
+
+#~ msgid "Starting GNOME: done"
+#~ msgstr "Khởi động GNOME: xong"
+
+#~ msgid "GNOME"
+#~ msgstr "GNOME"
+
+#~ msgid "Starting GNOME"
+#~ msgstr "Đang khởi động GNOME"
 
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
