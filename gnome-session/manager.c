@@ -690,9 +690,10 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	      sprintf (address, "0%.8x", rand());
 	    };
 
+	  /* The typecast there is for 64-bit machines */
 	  client->id = malloc (43);
 	  sprintf (client->id, "1%s%.13ld%.10d%.4d", address,
-		   time(NULL), getpid (), sequence++);
+		   (long) time(NULL), getpid (), sequence++);
 	  
 	  sequence %= 10000;
 	}
