@@ -1,8 +1,9 @@
 # gnome-session Greek PO file.
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
 # Spiros Papadimitriou <spapadim+@cs.cmu.edu>, 1999.
-# Simos Xenitellis <simos@hellug.gr>, 1999-2002.
+# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
 # Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.         
+#
 # Comment: Most of the work done by Spiros (around 600 messages).
 # Comment: Simos/Sarantis did 12%.
 # Comment: Simos/Sarantis did review.
@@ -18,12 +19,13 @@
 # simos: 897 messages, 28Nov2001, (feeling good to translate HEAD)
 # Split from gnome-core as gnome-session.
 # simos: 112 messages, 20Apr2002, complete translation.
+# simos: 96 messages, 19Aug2992, compelte translation.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 1.5.16\n"
-"POT-Creation-Date: 2002-08-05 20:07+1200\n"
-"PO-Revision-Date: 2002-04-20 18:12+0100\n"
+"Project-Id-Version: gnome-session 2.0.5\n"
+"POT-Creation-Date: 2002-08-19 12:55+0100\n"
+"PO-Revision-Date: 2002-08-19 13:30+0100\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -111,9 +113,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Μη επηρεαζόμενο από λήξεις συνεδρίας αλλά μπορεί να σκοτωθεί."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Επαναφορά"
+msgstr "Επανεκκίνηση"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -150,6 +151,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Υπήρξε ένα σφάλμα κατά την εκκίνηση της Υπηρεσίας Ρυθμίσεων GNOME.\n"
+"\n"
+"Μερικά βοηθήματα όπως θέματα, ήχοι ή ρυθμίσεις παρασκηνίου μπορεί να μη "
+"λειτουργήσουν σωστά."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -158,6 +163,9 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Το τελευταίο μήνυμα σφάλματος ήταν:\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -165,26 +173,26 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"Το GNOME θα συνεχίσει να εκτελεί την Υπηρεσία Ρυθμίσεων την επόμενη φορά που "
+"θα συνδεθείτε."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Υπήρξε ένα άγνωστο σφάλμα ενεργοποίησης."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Η Υπηρεσία Ρυθμίσεων επανεκκινήθηκε πάρα πολλές φορές."
 
 #: gnome-session/logout.c:234
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr ""
-"Είστε βέβαιοι ότι θέλετε να διαγράψετε το παρόν υπομενού και όλα τα "
-"περιεχόμενά του;"
+msgstr "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
 
 #: gnome-session/logout.c:251
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Αποθήκευση τρεχόντων ρυθμίσεων"
+msgstr "Απο_θήκευση τρεχόντων ρυθμίσεων"
 
 #: gnome-session/logout.c:271
 msgid "Action"
@@ -195,13 +203,12 @@ msgid "_Log Out"
 msgstr "_Τερματισμός Συνεδρίας"
 
 #: gnome-session/logout.c:282
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Κλείσιμο Συστήματος"
+msgstr "Κ_λείσιμο Συστήματος"
 
 #: gnome-session/logout.c:285
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Επανεκκίνηση του υπολογιστή"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -238,12 +245,11 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Σύνδεση Ούτως ή Άλλως"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
-msgstr "Δοκιμάστε ξανά"
+msgstr "Δοκιμάστε Ξανά"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -267,9 +273,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Μπορείτε να περιμένετε μέχρι να αποκριθεί ή να το αφαιρέσετε."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Εγκατάλειψη επανεκκίνησης λόγω προβλημάτων."
+msgstr "Αποτυχία επανεκκίνησης λόγω προβλημάτων."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -312,9 +317,8 @@ msgid "Edit session name"
 msgstr "Αλλαγή ονόματος συνεδρίας"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Επεξεργασία"
+msgstr "Επεξεργα_σία"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -326,24 +330,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Συνεδρία"
+msgstr "Συνεδρίες"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Εμφάνιση στατικής εικόνας κατά τη διάρκεια της σύνδεσης"
+msgstr "Εμφάνιση στατικής εικόνας στη διαδικα_σία της σύνδεσης"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Επιβεβαίωση αποσύνδεσης"
+msgstr "Επιβε_βαίωση για αποσύνδεση"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Αυτόματη αποθήκευση αλλαγών της συνεδρίας"
+msgstr "Αυτόματη αποθήκευση αλλα_γών της συνεδρίας"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -354,9 +354,8 @@ msgid "Session Options"
 msgstr "Επιλογές Συνεδρίας"
 
 #: gnome-session/session-properties-capplet.c:335
-#, fuzzy
 msgid "Current Session"
-msgstr "Αποθήκευση Τρεχούσης Συνεδρίας"
+msgstr "Τρέχουσα Συνεδρία"
 
 #: gnome-session/session-properties-capplet.c:362
 msgid "Priority"
@@ -375,18 +374,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "Διαγραφή του τρέχωντος επιλεγμένου πελάτη από τη συνεδρία."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Αυτόματη αποθήκευση αλλαγών της συνεδρίας"
+msgstr "Αποθήκευση αλλαγών στην τρέχουσα συνεδρία"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Λίστα προγραμμάτων της συνεδρίας."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Περιήγηση στα Τρέχοντα Εκτελούμενα Προγράμματα..."
+msgstr "Προγράμματα που εκτελούνται _τώρα:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -394,7 +391,7 @@ msgstr "Αρχικοποίηση ρυθμίσεων συνεδρίας"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Ρύθμιση των συνεδριών σας"
 
 #: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
@@ -441,18 +438,16 @@ msgid "Nautilus"
 msgstr "Ναυτίλος"
 
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Εντολή Εκκίνησης"
+msgstr "Εντολή Ε_κκίνησης:"
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Εντολή Εκκίνησης"
 
 #: gnome-session/startup-programs.c:307
-#, fuzzy
 msgid "_Priority:"
-msgstr "Προτεραιότητα"
+msgstr "_Προτεραιότητα:"
 
 #: gnome-session/startup-programs.c:335
 msgid "The startup command cannot be empty"
