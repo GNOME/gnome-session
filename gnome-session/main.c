@@ -27,7 +27,7 @@
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
-/* #include <libgnomeui/gnome-window-icon.h> */
+#include <libgnomeui/gnome-window-icon.h>
 
 #include "manager.h"
 #include "ice.h"
@@ -147,7 +147,7 @@ main (int argc, char *argv[])
   gnome_client_disable_master_connection ();
   gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
 			     &ctx);
-  /* gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png"); */
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
 
   poptFreeContext(ctx);
 

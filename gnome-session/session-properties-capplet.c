@@ -25,7 +25,7 @@
 
 #include <string.h>
 #include <gnome.h>
-/* #include <libgnomeui/gnome-window-icon.h> */
+#include <libgnomeui/gnome-window-icon.h>
 #include <capplet-widget.h>
 #include "headers.h"
 #include "gsm-client-list.h"
@@ -627,7 +627,7 @@ main (int argc, char *argv[])
 
   init_result = gnome_capplet_init("session-properties", VERSION, argc, argv,
 				   NULL, 0, NULL);
-  /* gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png"); */
+  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
 
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
