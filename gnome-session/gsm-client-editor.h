@@ -47,7 +47,7 @@ struct _GsmClientEditorClass {
 		    guint order, GsmStyle style);    /* user change */
 };
 
-guint gsm_client_editor_get_type  (void);
+GtkType gsm_client_editor_get_type  (void);
 
 /* Creates a client_editor widget */
 GtkWidget* gsm_client_editor_new (void);

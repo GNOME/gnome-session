@@ -68,10 +68,10 @@ GtkTypeInfo gsm_client_editor_info =
   (GtkClassInitFunc) NULL
 };
 
-guint
+GtkType
 gsm_client_editor_get_type (void)
 {
-  static guint type = 0;
+  static GtkType type = 0;
 
   if (!type)
     type = gtk_type_unique (gtk_hbox_get_type (), &gsm_client_editor_info);
