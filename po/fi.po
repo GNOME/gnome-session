@@ -9,8 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
-"PO-Revision-Date: 2003-01-23 23:56--200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-17 20:59+0300\n"
+"PO-Revision-Date: 2003-06-16 21:41+0200\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
 "sourceforge>\n"
@@ -229,52 +230,52 @@ msgstr "Tuntematon aktivointivirhe tapahtui."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Asetusdemoni on käynnistynyt liian monta kertaa uudestaan."
 
-#: gnome-session/logout.c:368
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "Oletko varma, että haluat kirjautua ulos?"
 
-#: gnome-session/logout.c:397
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "_Tallenna nykyinen tila"
 
-#: gnome-session/logout.c:417
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "Toiminto"
 
-#: gnome-session/logout.c:430
-msgid "_Log Out"
+#: gnome-session/logout.c:458
+msgid "_Log out"
 msgstr "Kirjaudu _ulos"
 
-#: gnome-session/logout.c:433
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+msgid "Sh_ut down"
 msgstr "_Sammuta"
 
-#: gnome-session/logout.c:436
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "_Käynnistä tietokone uudelleen"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Valitse ladattavan istunnon nimi"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lue tallennetut istunnot vain oletusistuntotiedostosta"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Asiakasohjelmien rekisteröitymisen odotusaika millisekunteina (0=ikuisesti)"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Asiakasohjelmien vastauksen odotusaika millisekunteina (0=ikuisesti)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Asiakasohjelmien sammumisen odotusaika millisekunteina (0=ikuisesti)"
 
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -287,11 +288,11 @@ msgstr ""
 "Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
 "%s tiedostoon /etc/hosts."
 
-#: gnome-session/main.c:224
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "Kirjaudu sisään kaikesta huolimatta"
 
-#: gnome-session/main.c:225
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "Yritä uudelleen"
 
@@ -325,9 +326,8 @@ msgid "A session shutdown is in progress."
 msgstr "Istunto sulkeutuu."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Ota istunnon muutokset käyttöön"
+msgstr "Aseta nykyinen istunto"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
