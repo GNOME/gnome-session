@@ -1,5 +1,8 @@
 1998-10-08  Tom Tromey  <tromey@cygnus.com>
 
+	* smproxy.c: Include X11/Xmu/Winutil.h.
+	Added various casts to placate -Wformat.
+
 	Fixed many warnings:
 	* smproxy.h: Added some prototypes.
 	* save.c (ReadProxyFileEntry): Now static.

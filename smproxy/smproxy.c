@@ -29,6 +29,10 @@ Author:  Ralph Mor, X Consortium
 
 #include "smproxy.h"
 
+/* This is probably nonportable.  But then so is the call to
+   XmuClientWindow below.  */
+#include <X11/Xmu/WinUtil.h>
+
 #include <unistd.h>
 
 XtAppContext appContext;
@@ -354,7 +358,7 @@ Bool fast;
 
 	    if (debug)
 	    {
-		printf ("Sent SAVE YOURSELF to 0x%x\n", winInfo->window);    
+		printf ("Sent SAVE YOURSELF to 0x%x\n", (unsigned int) winInfo->window);
 		printf ("\n");
 	    }
 	}
@@ -363,7 +367,7 @@ Bool fast;
 	    if (debug)
 	    {
 		printf ("Failed to send SAVE YOURSELF to 0x%x\n",
-		    winInfo->window);    
+		    (unsigned int) winInfo->window);
 		printf ("\n");
 	    }
 	}
@@ -388,7 +392,7 @@ SmPointer clientData;
     /* Now tell the client to die */
 
     if (debug)
-	printf ("Trying to kill 0x%x\n", winInfo->window);
+	printf ("Trying to kill 0x%x\n", (unsigned int) winInfo->window);
 
     XSync (disp, 0);
     XKillClient (disp, winInfo->window);
@@ -536,7 +540,7 @@ WinInfo *winInfo;
 
     if (debug)
     {
-	printf ("Connected to SM, window = 0x%x\n", winInfo->window);
+	printf ("Connected to SM, window = 0x%x\n", (unsigned int) winInfo->window);
 	printf ("\n");
     }
 
@@ -876,7 +880,7 @@ XDestroyWindowEvent *event;
 
 	if (debug)
 	{
-	    printf ("Removed window (window = 0x%x)\n", winptr->window);
+	    printf ("Removed window (window = 0x%x)\n", (unsigned int) winptr->window);
 	    printf ("\n");
 	}
 
