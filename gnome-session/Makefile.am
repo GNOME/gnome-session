@@ -41,5 +41,8 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
-EXTRA_DIST = session.desktop default.in default.wm.in
-
+EXTRA_DIST =		\
+	session.desktop	\
+	default.in	\
+	default.wm.in	\
+	gnome-wm
