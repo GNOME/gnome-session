@@ -319,6 +319,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   adjustment = gtk_adjustment_new (client->order,
 				   0.0, 200.0, 1.0, 10.0, 10.0); 
   spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (adjustment), 1.0, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (spinbutton), TRUE);
   gtk_container_add (GTK_CONTAINER (alignment), spinbutton);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (spinbutton));

@@ -93,6 +93,7 @@ gsm_client_editor_new (void)
   adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (50.0, 0.0, 99.0, 
 						   1.0, 10.0, 0.0));
   client_editor->spin_button = gtk_spin_button_new (adjustment, 1.0, 0);
+  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (client_editor->spin_button), TRUE);
   label = gtk_label_new_with_mnemonic (_("_Order:"));
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_editor->spin_button);
   gsm_atk_set_description (client_editor->spin_button, _("The order in which applications are started in the session."));
