@@ -1,8 +1,18 @@
+2000-03-31  Jacob Berkman  <jacob@helixcode.com>
+
+	* ice.c (initialize_ice): 
+
+	* main.c (main): we need to gnomelib_init() before
+	initialize_ice() due to the fact that gnome-libs is
+	broken, and we need to gnome_config() in initialize_ice()
+
 2000-04-03  Alastair McKinstry <mckinstry@computer.org>
 
 	* gsm.desktop: Add Irish (Gaelic) translation.
 
 2000-03-30  Jacob Berkman  <jacob@helixcode.com>
+
+	* splash.c (hint): remove some more debugging stuff
 
 	* default.in: bell-capplet is no more
 

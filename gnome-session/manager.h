@@ -72,6 +72,13 @@
 #define TRASH_MODE_DEFAULT "true"
 #endif
 
+/* Allow TCP connections to the session manager. */
+#define ALLOW_TCP_KEY "AllowTCP"
+
+#ifndef ALLOW_TCP_DEFAULT
+#define ALLOW_TCP_DEFAULT "false"
+#endif
+
 /* Convenience macros: */
 #define GSM_CONFIG_PREFIX CONFIG_PREFIX GSM_CONFIG_SECTION "/"
 

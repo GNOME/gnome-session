@@ -229,6 +229,8 @@ initialize_ice (void)
   guint i;
   GSList* entries;
   int saved_umask;
+  gboolean allow_tcp;
+  gboolean init_error = TRUE;
 
   gnome_ice_init ();
 
@@ -241,10 +243,25 @@ initialize_ice (void)
      work around this by saving and restoring the umask.  */
   saved_umask = umask (0);
   umask (saved_umask);
-  if (! SmsInitialize (GsmVendor, VERSION, new_client, NULL,
-		       auth_proc, sizeof error, error) ||
-      ! IceListenForConnections (&num_sockets, &sockets,
-				 sizeof(error), error))
+
+  allow_tcp = gnome_config_get_bool ("/" GSM_OPTION_CONFIG_PREFIX
+				     ALLOW_TCP_KEY"="ALLOW_TCP_DEFAULT);
+ 
+  if (SmsInitialize (GsmVendor, VERSION, new_client, NULL,
+		     auth_proc, sizeof error, error)) 
+    {
+      if (allow_tcp)
+	{
+	  if (IceListenForConnections (&num_sockets, &sockets,
+				       sizeof(error), error))
+	    init_error = FALSE;
+	}
+      else if (IceListenForWellKnownConnections ("-1", &num_sockets, &sockets,
+						 sizeof(error), error))
+	init_error = FALSE;
+    }
+
+  if (init_error)
     {
       g_warning (error);
       exit (1);

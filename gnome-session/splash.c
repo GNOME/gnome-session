@@ -45,7 +45,6 @@ static void
 hint ()
 {
   char *cmd[] = { "gnome-hint", NULL };
-  g_message ("about to hint: %d", HINTING);
   if (HINTING)
     gnome_execute_async (NULL, 1, cmd);
 }

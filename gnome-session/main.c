@@ -100,6 +100,7 @@ main (int argc, char *argv[])
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
+  gnomelib_init ("gnome-session", VERSION);
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
   gnome_client_disable_master_connection ();
