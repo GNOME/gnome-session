@@ -1,18 +1,18 @@
 # Hungarian translation of gnome-session.
-# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 # Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-09-12 12:58+0200\n"
+"POT-Creation-Date: 2005-03-04 06:10+0100\n"
+"PO-Revision-Date: 2005-03-04 13:16+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
@@ -56,10 +56,8 @@ msgid "Logout prompt"
 msgstr "Kijelentkezés megerősítése"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "A GNOME rendszerbe belépéskor megjelenítendő indulókép"
+msgid "Preferred Image to use for login splash screen"
+msgstr "A bejelentkezéskor megjelenítendő indulókép"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -74,12 +72,18 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Indulókép megjelenítése a munkamenet kezdetekor"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Indulókép"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Ez egy relatív útvonal a $datadir/pixmaps/ könyvtárhoz képest. Az "
+"alkönyvtár- és fájlnevek érvényes értékek. Ezen érték megváltoztatása a "
+"következő munkamenetbe való bejelentkezéskor lép életbe."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
-msgstr "_Sorrend:"
+msgstr "S_orrend:"
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
@@ -388,7 +392,6 @@ msgid "Show splash screen on _login"
 msgstr "Indulókép megjelenítése _bejelentkezéskor"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "M_egerősítés kérése kilépés előtt"
 
