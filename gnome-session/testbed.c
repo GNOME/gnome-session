@@ -10,11 +10,22 @@
 int
 main (int argc, char *argv[])
 {
+  char *session = NULL;
+
   initialize_ice ();
 
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
 
   gtk_init (&argc, &argv);
   gnome_init (&argc, &argv);
+
+  /* FIXME: real argument handling.  */
+  if (argc >= 2)
+    session = argv[1];
+
+  read_session (session);
+
   gtk_main ();
+
+  return 0;
 }

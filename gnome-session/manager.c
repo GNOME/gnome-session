@@ -1,6 +1,8 @@
 /* manager.c - Session manager back end.
    Written by Tom Tromey <tromey@cygnus.com>.  */
 
+#include <string.h>
+
 #include "manager.h"
 
 

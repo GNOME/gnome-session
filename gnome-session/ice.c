@@ -1,6 +1,8 @@
 /* ice.c - Handle session manager/ICE integration.
    Written by Tom Tromey <tromey@cygnus.com>.  */
 
+#include <config.h>
+
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>
 #include <gdk/gdk.h>
@@ -61,8 +63,7 @@ initialize_ice (void)
   /* We don't care about the previous IO error handler.  */
   IceSetIOErrorHandler (io_error_handler);
 
-  /* FIXME: Version number.  */
-  if (! SmsInitialize ("GnomeSM", "0.1", new_client, NULL,
+  if (! SmsInitialize ("GnomeSM", VERSION, new_client, NULL,
 		       HostBasedAuthProc, sizeof error, error))
     return 0;
 
