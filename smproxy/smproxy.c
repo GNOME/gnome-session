@@ -1079,7 +1079,7 @@ SmPointer clientData;
     props[1] = &prop2;
     props[2] = &prop3;
 
-    SmcSetProperties (smcConn, 2, props);
+    SmcSetProperties (smcConn, 3, props);
     free ((char *) prop1.vals);
     free (prefix);
 
