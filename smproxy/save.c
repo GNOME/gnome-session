@@ -367,7 +367,7 @@ WriteProxyFile ()
     FILE *proxyFile = NULL;
     char *filename = NULL;
     int fd;
-    char *path;
+    const char *path;
     WinInfo *winptr;
     Bool success = False;
 
