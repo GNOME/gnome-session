@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.3.2\n"
-"POT-Creation-Date: 2002-10-14 13:53+1300\n"
-"PO-Revision-Date: 2002-07-13 17:43+0200\n"
+"POT-Creation-Date: 2002-10-21 12:10+0200\n"
+"PO-Revision-Date: 2002-10-21 12:15+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,66 +14,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8-bit\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
-msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
-msgstr ""
+msgid "Allow TCP connections"
+msgstr "Tillat TCP-forbindelser"
 
 #: gnome-session/gnome-session.schemas.in.h:2
-msgid "Allow TCP connections"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:3
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr ""
+msgstr "Av sikkerhetsårsaker lytter ikke gnome-session etter forbindelser på TCP-porter på plattformer som har _IceTcpTransNoListen(). Dette alternativet vil tillate autoriserte tilkoblinge fra eksterne verter. gnome-session må startes på nytt før dette trer i kraft."
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "Aktiveres hvis brukeren ønsker en spørsmålsdialog før sesjonen avsluttes."
 
 #: gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:5
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr ""
+msgstr "Hvis dette aktiveres vil gnome-session lagre sesjonen automatisk. Hvis ikke vil avloggingsdialogen ha et valg for å lagre sesjonen."
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid "Logout prompt"
+msgstr "Spør ved avlogging"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid "Logout prompt"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:7
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging til GNOME skrivebordet"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid "Save sessions"
+msgstr "Lagre sesjoner"
 
 #: gnome-session/gnome-session.schemas.in.h:8
-#, fuzzy
-msgid "Save sessions"
-msgstr "Sesjoner"
+msgid "Show the splash screen"
+msgstr "Vis oppstartskjerm"
 
 #: gnome-session/gnome-session.schemas.in.h:9
-#, fuzzy
-msgid "Show the splash screen"
-msgstr "Vis oppstartskjerm ved inn_logging"
+msgid "Show the splash screen when the session starts up"
+msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Show the splash screen when the session starts up"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:11
 msgid "Splash Screen Image"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:12
-msgid "false"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:13
-msgid "true"
-msgstr ""
+msgstr "Bilde for oppstartskjerm"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -499,21 +485,3 @@ msgstr "Legg til oppstartsprogram"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritet"
-
-#~ msgid "_Priority:"
-#~ msgstr "_Prioritet:"
-
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "Starter GNOME: %s"
-
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Starter GNOME: ferdig"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "Starter GNOME"
