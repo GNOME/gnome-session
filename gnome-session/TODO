@@ -3,12 +3,12 @@ Gnome Session Manager
 This is still a work in progress.  Here's my plan of attack:
 
 * Put default session into a file that sysadmin can edit
-
-* Let user specify list of losing (non-SM) programs to run at startup
+  [ this should be handled the same way that losing programs are handled ]
 
 * Write property configurator.  Things to tweak:
-  * List of losing programs to run at startup
-  * Whether or not smproxy should be run (if no, delete it from saved session)
+  X List of losing programs to run at startup
+    Partially done -- must clean up FIXMEs and change gnome-session
+    to respect settings
   * Name of session?  Whether session is saved per-display?  (Maybe
     only for this display?)
 
@@ -23,9 +23,7 @@ This is still a work in progress.  Here's my plan of attack:
   (This doesn't seem very important in practice)
 
 * Write a user interface of some sort.
-  Initially this will be very minimal.
-  I'm tentatively planning to do the UI in Guile, so that different
-  personalities can easily be tacked on.
+  Should talk to sm via CORBA
 
 * Save and restore more of the standard properties.
   CurrentDirectory at least is useful
