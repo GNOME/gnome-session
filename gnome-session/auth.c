@@ -136,7 +136,7 @@ IceAuthDataEntry	**authDataEntries;
 {
     FILE	*addfp = NULL;
     FILE	*removefp = NULL;
-    char	*path;
+    char	*path = NULL;
     int		original_umask;
     char	command[256];
     int		i;
@@ -199,9 +199,11 @@ IceAuthDataEntry	**authDataEntries;
 
     unlink (addAuthFile);
 
+    g_free(path);
     return (1);
 
  bad:
+    g_free(path);
 
     if (addfp)
 	fclose (addfp);

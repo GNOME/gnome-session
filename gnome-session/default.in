@@ -4,10 +4,17 @@
 # go from 0 to NUM_PRELOADS-1.
 
 [Default]
-0=panel
-1=gnome-help-browser
-2=gmc
-3=@WINDOW_MANAGER@
-4=gnome-smproxy
-5=sound-properties --init
-num_preloads=6
+# Yes, sound-properties goes before the window manager, so
+# E can get its esound and similar.
+0=sound-properties --init-session-settings
+1=@WINDOW_MANAGER@
+2=background-properties-capplet --init-session-settings
+3=mouse-properties-capplet --init-session-settings
+4=bell-properties-capplet --init-session-settings
+5=screensaver-properties-capplet --init-session-settings
+6=keyboard-properties --init-session-settings
+7=panel
+8=gnome-help-browser
+9=gmc
+10=gnome-smproxy
+num_preloads=11
