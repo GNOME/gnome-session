@@ -63,7 +63,7 @@ parse_an_arg (int key, char *arg, struct argp_state *state)
 int
 main (int argc, char *argv[])
 {
-  int zap = 0, i;
+  int i;
   GnomeClient *client;
 
   argp_program_version = VERSION;

@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 #include <gtk/gtk.h>
+#include <signal.h>
 
 #include "libgnome/libgnome.h"
 #include "manager.h"
@@ -56,6 +57,19 @@ parse_an_arg (int key, char *arg, struct argp_state *state)
   return 0;
 }
 
+/* A separate function to ease the impending #if hell.  */
+static void
+ignore (int sig)
+{
+  struct sigaction act;
+
+  act.sa_handler = SIG_IGN;
+  act.sa_mask = 0;
+  act.sa_flags = 0;
+
+  sigaction (sig, &act, NULL);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -71,6 +85,7 @@ main (int argc, char *argv[])
 
   gnome_init ("gnome-session", &parser, argc, argv, 0, NULL);
 
+  ignore (SIGPIPE);
   read_session (session);
 
   gtk_main ();

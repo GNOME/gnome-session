@@ -1,3 +1,10 @@
+Mon Mar 16 00:52:21 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save-session.c (main): Removed local "zap" variable.
+
+	* main.c (ignore): New function.
+	(main): Ignore SIGPIPE.
+
 Tue Mar 10 21:40:28 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* save.c (run_commands): Pass saved directory information to
