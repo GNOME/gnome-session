@@ -497,59 +497,50 @@ void
 splash_widget_add_icon (SplashWidget *sw,
 			const char   *executable_name)
 {
-	char *text;
-	char *basename;
-	GdkPixbuf *pb;
 	const SplashApp *app;
+	char            *basename;
+	GdkPixbuf       *pb = NULL;
 
 	g_return_if_fail (SPLASH_IS_WIDGET (sw));
 
 	if (!executable_name || executable_name [0] == '\0')
 		return;
 
-	basename = g_path_get_basename (executable_name);
-
-	pb = NULL;
-	text = NULL;
-	app = get_splash_app (basename);
-
-	if (app) {
-		pb = get_splash_icon (sw, app->icon);
-		text = _(app->human_name);
-	}
-
 	/* FIXME: we should allow arbitrary apps to install
          * stuff here, by passing the icon name to the SM
          * as a session property
          */
 
+	basename = g_path_get_basename (executable_name);
+	app = get_splash_app (basename);
+
+	if (app)
+		pb = get_splash_icon (sw, app->icon);
+
 	if (!pb)
 		pb = get_splash_icon (sw, basename);
 
-	if (!pb)
-		pb = get_splash_icon (sw, "gnome-unknown.png");
-
-	if (!text)
-		text = basename;
-
-	/* re-draw the old text extents */
-	gtk_widget_queue_draw_area (
-		GTK_WIDGET (sw),
-		sw->text_box.x, sw->text_box.y,
-		sw->text_box.width, sw->text_box.height);
-
-	pango_layout_set_text (sw->layout, text, -1);
-	calc_text_box (sw);
-
-	/* re-draw the new text extents */
-	gtk_widget_queue_draw_area (
-		GTK_WIDGET (sw),
-		sw->text_box.x, sw->text_box.y,
-		sw->text_box.width, sw->text_box.height);
-
 	if (pb) {
-		SplashIcon *si;
-		GdkRectangle area;
+		SplashIcon   *si;
+		GdkRectangle  area;
+		char         *text;
+
+		text = app && app->human_name ?  _(app->human_name) : basename;
+
+		/* re-draw the old text extents */
+		gtk_widget_queue_draw_area (
+			GTK_WIDGET (sw),
+			sw->text_box.x, sw->text_box.y,
+			sw->text_box.width, sw->text_box.height);
+
+		pango_layout_set_text (sw->layout, text, -1);
+		calc_text_box (sw);
+
+		/* re-draw the new text extents */
+		gtk_widget_queue_draw_area (
+			GTK_WIDGET (sw),
+			sw->text_box.x, sw->text_box.y,
+			sw->text_box.width, sw->text_box.height);
 
 		si = g_new0 (SplashIcon, 1);
 		si->unscaled = pb;
@@ -563,6 +554,8 @@ splash_widget_add_icon (SplashWidget *sw,
 			area.x, area.y,
 			area.width, area.height);
 	}
+
+	g_free (basename);
 }
 
 static SplashWidget *global_splash = NULL;
