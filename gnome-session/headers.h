@@ -179,10 +179,6 @@ extern gboolean save_selected;
 /* Ignoring ~/.gnome/session as it is deemed to be unreliable. */
 extern gboolean failsafe;
 
-/* Vector of sockets we are listening on, and size of vector.  */
-extern gint num_sockets;
-extern IceListenObj *sockets;
-
 /* List of auth entries.  */
 extern GSList *auth_entries;
 

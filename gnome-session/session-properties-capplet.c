@@ -36,8 +36,8 @@
 /* Current state */
 GSList *deleted_sessions = NULL;
 
-static gboolean autosave;
-static gboolean autosave_revert;
+static gboolean auto_save;
+static gboolean auto_save_revert;
 
 static gboolean logout_prompt;
 static gboolean logout_prompt_revert;
@@ -132,8 +132,8 @@ capplet_build (void)
   /* Retrieve options */
 
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  autosave = gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT);
-  autosave_revert = autosave;
+  auto_save = gnome_config_get_bool (AUTOSAVE_MODE_KEY "=" AUTOSAVE_MODE_DEFAULT);
+  auto_save_revert = auto_save;
 
   logout_prompt = gnome_config_get_bool (LOGOUT_SCREEN_KEY "=" LOGOUT_SCREEN_DEFAULT);
   logout_prompt_revert = logout_prompt;
@@ -350,7 +350,7 @@ static void
 write_state (void)
 {
   gchar *current_session_tmp = NULL;
-  autosave = GTK_TOGGLE_BUTTON (autosave_button)->active;
+  auto_save = GTK_TOGGLE_BUTTON (autosave_button)->active;
   logout_prompt = GTK_TOGGLE_BUTTON (logout_prompt_button)->active;
   login_splash  = GTK_TOGGLE_BUTTON (login_splash_button)->active;
  
@@ -372,7 +372,7 @@ write_state (void)
   /* Set the autosave mode in the session manager so it takes 
    * effect immediately.  */
   
-  gsm_protocol_set_autosave_mode (GSM_PROTOCOL(protocol), autosave);
+  gsm_protocol_set_autosave_mode (GSM_PROTOCOL(protocol), auto_save);
   gsm_protocol_set_session_name (GSM_PROTOCOL(protocol), current_session);  
   
   session_list_write (session_list, session_list_revert, hashed_sessions);
@@ -383,7 +383,7 @@ static void
 revert_state (void)
 { 
   GSList *temp;
-  autosave = autosave_revert;
+  auto_save = auto_save_revert;
   logout_prompt = logout_prompt_revert;
   login_splash  = login_splash_revert;
   current_session = NULL;
@@ -476,7 +476,7 @@ static void
 update_gui (void)
 { 
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
-				autosave);
+				auto_save);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
 				logout_prompt);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (login_splash_button),

@@ -1,5 +1,12 @@
 2001-06-11  Glynn Foster  <glynn.foster@sun.com>
 
+	Removed some C duplicate variables - bug # 54780 from
+	Dan McNichol. Just removed the extern ref's to the 
+	ICE stuff from headers.h. Also renamed static variable
+	in session-properties-capplet.c just to be pedantic :)
+
+2001-06-11  Glynn Foster  <glynn.foster@sun.com>
+
 	Right I've had enough of this stinking 'warner' thing
 	so I've removed about 99% of the references in it. Also
 	cleaned up the default.session to remove the Warner and
