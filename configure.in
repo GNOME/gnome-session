@@ -279,6 +279,19 @@ AC_ARG_WITH(halt-command,
 ])
 AC_SUBST(HALT_COMMAND)
 
+AC_ARG_WITH(rsh-command,
+[  --with-rsh-command=COMMAND
+			  Specify the command for executing a remote shell],[
+    RSH_COMMAND="$with_rsh_command"], [
+    AC_PATH_PROG(RSH_COMMAND, rsh)
+    if test x$RSH_COMMAND = x ; then
+	AC_MSG_WARN([The rsh command was not found.])
+    fi
+])
+AC_SUBST(RSH_COMMAND)
+
+
+
 AC_OUTPUT([
 Makefile
 gnome-session.spec

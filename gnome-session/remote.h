@@ -34,9 +34,6 @@ in this Software without prior written authorization from the X Consortium.
 /* Name of protocol we understand.  */
 #define RSTART_RSH "rstart-rsh"
 
-/* For now, we only support rsh.  FIXME.  */
-#define RSHCMD "rsh"
-
 /* Try to start a program remotely, if appropriate, else locally.  */
 gint remote_start (char *restart_info, int argc, char **argv,
                    char *cwd, int envpc, char **envp);

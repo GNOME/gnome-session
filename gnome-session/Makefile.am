@@ -11,6 +11,7 @@ INCLUDES =						\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
+	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
 # Flags to make sure we're not using any deprecated functions

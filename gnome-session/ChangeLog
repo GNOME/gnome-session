@@ -1,3 +1,12 @@
+2002-07-08  Mark McLoughlin  <mark@skynet.ie>
+
+	* Makefile.am: define RSH_COMMAND.
+
+	* remote.c: (remote_start): use it here, checking
+	to see if exists first of all.
+
+	* remote.h: delete RSHCMD.
+
 2002-07-02  jacob berkman  <jacob@ximian.com>
 
 	* main.c (main): move gnome_login_check() back to where it was -

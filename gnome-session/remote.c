@@ -97,7 +97,8 @@ remote_start (char *restart_info, int argc, char **argv,
 	    dup (pipefd[0]);
 	    close (pipefd[0]);
 
-	    execlp (RSHCMD, machine, "rstartd", (char *) 0);
+            if (access (RSH_COMMAND, X_OK) == 0)
+              execlp (RSH_COMMAND, machine, "rstartd", (char *) 0);
 
 	    g_error ("gnome-session: execlp() of rstartd failed for remote start of %s",
 		     argv[0]);
