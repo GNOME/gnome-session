@@ -254,6 +254,13 @@ client_state (GsmClient* client, GsmState state)
       gtk_clist_set_pixmap (clist, client_row->row, 2, 
 			    state_pixmap[state]->pixmap, 
 			    state_pixmap[state]->mask);
+      if (client->state < GSM_CONNECTED && state >= GSM_CONNECTED)
+	{
+	  if (client_row->client_list->pending > 0 && 
+	      --client_row->client_list->pending == 0)
+	    gtk_signal_emit_by_name ((GtkObject*)client_row->client_list, 
+				     "started");
+	}
     }
 }
 

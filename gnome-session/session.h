@@ -93,7 +93,7 @@
 
 #define GsmAddClient             "AddClient"
 /* Attempts to adds the client to the current session. Returns a (bogus) 
- * GsmAddClient command which has the new client handle as a parameter and 
+ * GsmAddClient command which has the new client handle as an argument and 
  * simultaneoulsy generates a GsmUnstarted event. 
  * The remaining properties in the SmcSetProperties call give initial 
  * properties for the new client and generate a GsmProperty event. You must
@@ -119,15 +119,10 @@
 /* Returns an array of GsmReadSession commands to read the clients in each
  * of the sessions that gnome-session has saved in the past. */ 
 
-#define GsmSetChooserSession     "SetChooserSession"
-/* Sets the name of a session which will be loaded before the "real" session.
- * The main client in the chooser session must enable the user to choose a 
- * session and then load it using GsmStartSession (see below). The chooser 
- * should start the session returned by GsmGetNormalSession after a timeout. */
-
 #define GsmGetLastSession        "GetLastSession"
-/* Returns the GsmReadSession command to read the session which gnome-session
- * would load with no command line arguments and no chooser session. */
+/* Returns a (bogus) GsmGetLastSession command which has the name of the 
+ * session which gnome-session would load with no command line arguments and 
+ * no chooser as its only argument. */
 
 #define GsmSetSessionName        "SetSessionName"
 /* Changes the name of the current session. When the requested session name
@@ -154,37 +149,5 @@
 /* The opaque command returned by GsmReadSession to free the session.
  * Sessions are also freed when GsmStartSession is called or when the client
  * which read the session disconnects or dies. */
-
-
-/* Config prefix used to store the sysadmin's default sessions. */
-#define DEFAULT_CONFIG_PREFIX "=" DEFAULTDIR "/default.session=/"
-
-/* Config prefix used to store the users' sessions. */
-#define CONFIG_PREFIX "session/"
-
-/* Default session name. */
-#define DEFAULT_SESSION "Default"
-
-/* Failsafe session name. */
-#define FAILSAFE_SESSION "Failsafe"
-
-/* Config section used for gnome-session's own config details. */
-#define GSM_CONFIG_SECTION "__gsm__"
-
-/* Config section used for gnome-session's own config details. */
-#define GSM_RESERVED_SECTION "__gsm_reserved__"
-
-/* Name of key used to store the current session name. */
-#define CURRENT_SESSION_KEY "Current Session"
-
-/* Name of key used to store the chooser session name. */
-#define CHOOSER_SESSION_KEY "Chooser Session"
-
-/* Name of key used to store number of clients in a session. */
-#define CLIENT_COUNT_KEY "num_clients"
-
-/* Convenience macros: */
-#define GSM_CONFIG_PREFIX CONFIG_PREFIX GSM_CONFIG_SECTION "/"
-#define GSM_RESERVED_PREFIX CONFIG_PREFIX GSM_RESERVED_SECTION "/"
 
 #endif /* SESSION_H */

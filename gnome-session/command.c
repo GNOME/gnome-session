@@ -277,7 +277,8 @@ command (Client* client, int nprops, SmProp** props)
     {
       GSList* prop_list = NULL;
 
-      APPEND (prop_list, make_command (GsmReadSession, get_last_session ()));
+      APPEND (prop_list, make_command (GsmGetLastSession, 
+				       get_last_session ()));
       send_properties (client, prop_list);      
     }
   else if (!strcmp (prop->vals[0].value, GsmListSessions))
@@ -286,28 +287,33 @@ command (Client* client, int nprops, SmProp** props)
       gchar  *section;
       void   *iter;
 
-      iter = gnome_config_init_iterator_sections (CONFIG_PREFIX);
-      
-      while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
+      if (! failsafe)
 	{
-	  if (strcasecmp (section, GSM_CONFIG_SECTION) &&
-	      strcasecmp (section, GSM_RESERVED_SECTION))
+	  iter = gnome_config_init_iterator_sections (CONFIG_PREFIX);
+	  
+	  while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	    {
-	      SmProp* prop = make_command (GsmReadSession, section);
-
-	      prop_list = g_slist_insert_sorted (prop_list, prop, cmp_args);
+	      if (strcasecmp (section, GSM_CONFIG_SECTION))
+		{
+		  SmProp* prop = make_command (GsmReadSession, section);
+		  
+		  prop_list = g_slist_insert_sorted (prop_list, prop,cmp_args);
+		}
 	    }
 	}
       iter = gnome_config_init_iterator_sections (DEFAULT_CONFIG_PREFIX);
 
       while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	{
-	  SmProp* prop = make_command (GsmReadSession, section);
-
-	  if (!g_slist_find_custom (prop_list, prop, cmp_args))
-	    prop_list = g_slist_insert_sorted (prop_list, prop, cmp_args);
-	  else
-	    SmFreeProperty (prop);
+	  if (strcasecmp (section, CHOOSER_SESSION))
+	    {
+	      SmProp* prop = make_command (GsmReadSession, section);
+	      
+	      if (!g_slist_find_custom (prop_list, prop, cmp_args))
+		prop_list = g_slist_insert_sorted (prop_list, prop, cmp_args);
+	      else
+		SmFreeProperty (prop);
+	    }
 	}
       send_properties (client, prop_list);      
     }
@@ -361,17 +367,14 @@ command (Client* client, int nprops, SmProp** props)
     }
   else if (!strcmp (prop->vals[0].value, GsmSetSessionName))
     {
-      gchar* name = set_session_name (arg);
+      gchar* name;
       GSList* prop_list = NULL;
+      
+      choosing = FALSE;
+      name = set_session_name (arg);
       
       APPEND (prop_list, make_command (GsmSetSessionName, name));
       send_properties (client, prop_list);      
-    }
-  else if (arg && !strcmp (prop->vals[0].value, GsmSetChooserSession))
-    {
-      gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-      gnome_config_set_string (CHOOSER_SESSION_KEY, arg);
-      gnome_config_pop_prefix ();
     }
   else if (arg && !strcmp (prop->vals[0].value, GsmReadSession))
     {
@@ -394,7 +397,7 @@ command (Client* client, int nprops, SmProp** props)
   else if (arg && !strcmp (prop->vals[0].value, GsmStartSession))
     {
       GSList *list;
-      
+
       for (list = client->command_data->sessions; list; list = list->next)
 	{
 	  Session *session = (Session*)list->data;

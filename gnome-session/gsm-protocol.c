@@ -169,7 +169,7 @@ gsm_session_new (gchar* name, GsmClientFactory client_factory,
   g_return_val_if_fail (the_protocol != NULL, NULL);
 
   session = gtk_type_new(gsm_session_get_type());
-  session->name           = name;
+  session->name           = g_strdup (name);
   session->client_factory = client_factory;
   session->data           = data;
 
@@ -231,6 +231,8 @@ gsm_session_destroy (GtkObject *o)
 	       gsm_args_to_prop (GsmCommand, 
 				 GsmFreeSession, session->handle, NULL), NULL);
     }
+  g_free (session->name);
+
   (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
 }
 
@@ -813,7 +815,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	      adds = g_slist_remove (adds, client);
 	      prop_free (props[0]);
 	    }
-	  if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmSetSessionName) && 
+	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmSetSessionName) && 
 	      names)
 	    {
 	      GsmSession* session = (GsmSession*) names->data;
@@ -825,31 +827,29 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	      names = g_slist_remove (names, session);
 	      prop_free (props[0]);
 	    }
-	  if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmReadSession))
+	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmReadSession))
 	    {
-	      if (nprops == 1)
-		{
-		  gtk_signal_emit (GTK_OBJECT (protocol), 
-				   gsm_protocol_signals[LAST_SESSION], 
-				   GSM_COMMAND_ARG1 (props[0]));
-		}
-	      else
-		{
-		  GSList *list = NULL;
-		  gint i;
-		  
-		  for (i = 0; i < nprops; i++)
-		    list = g_slist_append (list, GSM_COMMAND_ARG1 (props[i]));
-		  
-		  gtk_signal_emit (GTK_OBJECT (protocol), 
-				   gsm_protocol_signals[SAVED_SESSIONS], list);
-		  
-		  for (i = 0; i < nprops; i++)
-		    prop_free (props[i]);
-		  g_slist_free (list);
-		}
+	      GSList *list = NULL;
+	      gint i;
+	      
+	      for (i = 0; i < nprops; i++)
+		list = g_slist_append (list, GSM_COMMAND_ARG1 (props[i]));
+	      
+	      gtk_signal_emit (GTK_OBJECT (protocol), 
+			       gsm_protocol_signals[SAVED_SESSIONS], list);
+	      
+	      for (i = 0; i < nprops; i++)
+		prop_free (props[i]);
+	      g_slist_free (list);
 	    }
-	  if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmStartSession) && reads)
+	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmGetLastSession))
+	    {
+	      gtk_signal_emit (GTK_OBJECT (protocol), 
+			       gsm_protocol_signals[LAST_SESSION], 
+			       GSM_COMMAND_ARG1 (props[0]));
+	    }
+	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmStartSession) && 
+		   reads)
 	    {
 	      GsmSession* session = (GsmSession*)reads->data;
 	      GSList *list = NULL;

@@ -171,6 +171,8 @@ write_session (void)
   int i = 0;
   GSList *list;
 
+  if (choosing)
+    return;
 
   delete_session (session_name);
 
@@ -390,12 +392,17 @@ set_session_name (const char *name)
     {
       /* FIXME: generate a new unique name when the requested one is locked */
       /* FIXME: establish lock on the name */
-      
-      gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-      gnome_config_set_string (CURRENT_SESSION_KEY, name);
-      gnome_config_pop_prefix ();
-      gnome_config_sync ();
-      
+
+      if (trashing)
+	name = TRASH_SESSION;
+
+      if (! choosing && !trashing)
+	{
+	  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
+	  gnome_config_set_string (CURRENT_SESSION_KEY, name);
+	  gnome_config_pop_prefix ();
+	  gnome_config_sync ();
+	}
       if (session_name)
 	unlock_session ();
       session_name = strdup (name);
@@ -429,7 +436,7 @@ read_session (const char *name)
   session->name   = g_strdup (name);
   session->handle = command_handle_new ((gpointer)session);
  
-  try_last = try_def = (session_name == NULL);
+  try_last = try_def = (failsafe || session_name == NULL);
 
   if (try_last)
     {
@@ -441,7 +448,7 @@ read_session (const char *name)
 
   while (name)
     {
-      if ((list = read_clients (CONFIG_PREFIX, name, MATCH_ID)))
+      if (!failsafe && (list = read_clients (CONFIG_PREFIX, name, MATCH_ID)))
 	break;
 	  
       if ((list = read_clients (DEFAULT_CONFIG_PREFIX, name, MATCH_FAKE_ID)))

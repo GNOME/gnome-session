@@ -52,6 +52,7 @@ static void dirty (GsmClientList* client_list);
 
 enum {
   DIRTY,
+  STARTED,
   INITIALIZED,
   NSIGNALS
 };
@@ -74,6 +75,13 @@ gsm_client_list_class_init (GsmClientListClass *klass)
 		    GTK_SIGNAL_OFFSET (GsmClientListClass, dirty),
 		    gtk_signal_default_marshaller,
 		    GTK_TYPE_NONE, 0); 
+  gsm_client_list_signals[STARTED] =
+    gtk_signal_new ("started",
+		    GTK_RUN_LAST,
+		    object_class->type,
+		    GTK_SIGNAL_OFFSET (GsmClientListClass, started),
+		    gtk_signal_default_marshaller,
+		    GTK_TYPE_NONE, 0); 
   gsm_client_list_signals[INITIALIZED] =
     gtk_signal_new ("initialized",
 		    GTK_RUN_LAST,
@@ -86,6 +94,7 @@ gsm_client_list_class_init (GsmClientListClass *klass)
 				NSIGNALS);
 
   klass->dirty       = dirty;
+  klass->started     = NULL;
   klass->initialized = NULL;
 
   object_class->destroy = gsm_client_list_destroy;
@@ -210,6 +219,7 @@ void
 gsm_client_list_start_session (GsmClientList* client_list)
 {
   gsm_session_start (GSM_SESSION (client_list->session));
+  client_list->pending = ((GtkCList*)client_list)->rows;
 }
 
 static void 

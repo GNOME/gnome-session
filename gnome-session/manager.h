@@ -25,6 +25,33 @@
 
 #include "glib.h"
 
+/* Config prefix used to store the sysadmin's default sessions. */
+#define DEFAULT_CONFIG_PREFIX "=" DEFAULTDIR "/default.session=/"
+
+/* Config prefix used to store the users' sessions. */
+#define CONFIG_PREFIX "session/"
+
+/* Default session name. */
+#define DEFAULT_SESSION "Default"
+
+/* Chooser session name. */
+#define CHOOSER_SESSION "Chooser"
+
+/* Trash session name. */
+#define TRASH_SESSION "Trash"
+
+/* Config section used for gnome-session's own config details. */
+#define GSM_CONFIG_SECTION "__gsm__"
+
+/* Name of key used to store the current session name. */
+#define CURRENT_SESSION_KEY "Current Session"
+
+/* Name of key used to store number of clients in a session. */
+#define CLIENT_COUNT_KEY "num_clients"
+
+/* Convenience macros: */
+#define GSM_CONFIG_PREFIX CONFIG_PREFIX GSM_CONFIG_SECTION "/"
+
 /* Rule used to match client: gets around need to specify proper client ids
  * when starting from sysadmin files or via the GsmAddClient protocol.
  * This is a big burden off end users and only creates the possibility of
@@ -95,6 +122,18 @@ extern guint purge_delay;
 
 /* Milliseconds to wait for clients to die before cutting our throat. */
 extern guint suicide_delay;
+
+/* Milliseconds to wait for clients to complete save before reporting error. */
+extern guint save_delay;
+
+/* Waiting for the chooser to tell us which session to start. */ 
+extern gboolean choosing;
+
+/* Putting all saves into the "Trash" session. */
+extern gboolean trashing;
+
+/* Ignoring ~/.gnome/session as it is deemed to be unreliable. */
+extern gboolean failsafe;
 
 /*
  * manager.c

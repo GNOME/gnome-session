@@ -34,14 +34,30 @@
 /* The name of the session to load.  */
 static char *session = NULL;
 
+/* Flag indicating chooser should be used. */
+gboolean choosing = FALSE;
+
+/* Flag indicating that the normal CONFIG_PREFIX should not be used. */
+gboolean failsafe = FALSE;
+
+/* Flag indicating Trash session should be used for saves. */
+gboolean trashing = FALSE;
+
 /* Wait period for clients to register. */
 guint purge_delay = 30000;
 
+/* Wait period for clients to save. */
+guint save_delay = 30000;
+
 /* Wait period for clients to die during shutdown. */
-guint suicide_delay = 30000;
+guint suicide_delay = 10000;
 
 static const struct poptOption options[] = {
+  {"choose-session", '\0', POPT_ARG_NONE, &choosing, 0, N_("Start chooser and pick the session"), NULL},
+  {"trash-saves", '\0', POPT_ARG_NONE, &trashing, 0, N_("Disable normal operation by saving into the Trash session"), NULL},
+  {"failsafe", '\0', POPT_ARG_NONE, &failsafe, 0, N_("Only read saved sessions from the default.session file"), NULL},
   {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
+  {"save-delay", '\0', POPT_ARG_INT, &save_delay, 0, N_("Millisecond period spent waiting for all clients to save (0=forever)"), NULL},
   {"suicide-delay", '\0', POPT_ARG_INT, &suicide_delay, 0, N_("Millisecond period spent waiting for clients to die (0=forever)"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
@@ -94,12 +110,11 @@ main (int argc, char *argv[])
 
   ignore (SIGPIPE);
 
-  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
-  chooser = gnome_config_get_string (CHOOSER_SESSION_KEY);
-  gnome_config_pop_prefix ();
-      
-  if (!session && chooser)
-    session = chooser;
+  if (choosing || (session && !strcmp(session, CHOOSER_SESSION)))
+    {
+      session = CHOOSER_SESSION;
+      choosing = TRUE;
+    }
 
   if (!session)
     session = get_last_session ();

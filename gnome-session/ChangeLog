@@ -1,3 +1,14 @@
+1999-03-19  Felix Bellaby  <felix@pooh.u-net.com> 
+
+	* main.c (main): extra command line options.
+	* save.c (set_session_name): set name to TRASH_SESSION on trash-saves.
+	(read_session): ignore CONFIG_PREFIX on failsafe.
+	(write_session): do not write the CHOOSER_SESSION.
+	* session.h, comand.c(command): minor protocol refinements. 
+	* manager.h: add items from session.h that are private to gnome-session
+	* default.in: add specification of the chooser command/session.
+	* gsm-client-*: signal end of session startup. 
+	
 1999-03-18  Felix Bellaby  <felix@pooh.u-net.com> 
 
 	* save.c (read_one_client): never use glib to alloc client->id. 

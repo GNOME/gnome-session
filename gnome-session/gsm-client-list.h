@@ -38,6 +38,7 @@ struct _GsmClientList {
   GtkObject* session;
   gboolean   committed;
   gboolean   dirty;
+  guint      pending;
   GSList*    changes;
 };
 
@@ -45,6 +46,7 @@ struct _GsmClientListClass {
   GtkCListClass parent_class;
 
   void (* dirty)       (GsmClientList *client_list); /* user did something */
+  void (* started)     (GsmClientList *client_list); /* all clients started */
   void (* initialized) (GsmClientList *client_list); /* list ready to show */
 };
 
