@@ -1357,10 +1357,10 @@ char **argv;
 					      10, 10, 10, 10, 0, 0, 0);
     XChangeProperty (disp, gnomeSmProxyWindow, gnomeSmProxyAtom, 
 		     XA_CARDINAL, 32, PropModeReplace, 
-		     (char*)&gnomeSmProxyWindow, 1); 
+		     (guchar*)&gnomeSmProxyWindow, 1); 
     XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
 		     XA_CARDINAL, 32, PropModeAppend, 
-		     (char*)&gnomeSmProxyWindow, 1); 
+		     (guchar*)&gnomeSmProxyWindow, 1); 
 
     while (XGetWindowProperty(disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
 			   0, 100, False, XA_CARDINAL, 
@@ -1372,7 +1372,7 @@ char **argv;
 	 * We grab it back for use by gnome-smproxy. */
 	XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
 			 XA_CARDINAL, 32, PropModeReplace, 
-			 (char*)&gnomeSmProxyWindow, 1); 
+			 (guchar*)&gnomeSmProxyWindow, 1); 
       }
 
     /* Avoid choking on X errors when testing stale locks */
@@ -1409,7 +1409,7 @@ char **argv;
     /* Clean up the lock property */
     XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
 		     XA_CARDINAL, 32, PropModeReplace, 
-		     (char*)&gnomeSmProxyWindow, 1);
+		     (guchar*)&gnomeSmProxyWindow, 1);
 
     if (restore_filename)
 	ReadProxyFile (restore_filename);
