@@ -8,7 +8,7 @@
 #
 
 if [ -z "$WINDOW_MANAGER" ] ; then
-  for wm in enlightenment icewm wmaker fvwm2 fvwm twm ; do
+  for wm in sawmill enlightenment icewm wmaker fvwm2 fvwm twm ; do
     check=`which $wm`
     if [ $? -eq 0 ] ; then
       WINDOW_MANAGER=$check
