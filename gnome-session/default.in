@@ -3,7 +3,8 @@
 # The RestartCommand specifies the command to run from the $PATH.
 # The Priority determines the order in which the commands are started
 # (with Priority = 0 first) and defaults to 50.
-# The id specifies 
+# The id provides a name that is unique within this file and passed to the
+# app as the client id which it must use to register with gnome-session.
 # The clients must be numbered from 0 to the value of num_clients - 1.
 
 [Default]
@@ -12,30 +13,33 @@
 0,RestartCommand=gnome-smproxy --sm-client-id default0
 1,id=default1
 1,Priority=5
-1,RestartCommand=sound-properties --init-session-settings --sm-client-id default1
+1,RestartCommand=esd --sm-client-id default1
 2,id=default2
-2,Priority=10
-2,RestartCommand=@WINDOW_MANAGER@ -clientId default2 -smid default2
+2,Priority=7
+2,RestartCommand=sound-properties --init-session-settings --sm-client-id default2
 3,id=default3
-3,Priority=20
-3,RestartCommand=background-properties-capplet --init-session-settings --sm-client-id default3
+3,Priority=10
+3,RestartCommand=@WINDOW_MANAGER@ -clientId default2 -smid default3
 4,id=default4
 4,Priority=20
-4,RestartCommand=mouse-properties-capplet --init-session-settings --sm-client-id default4
+4,RestartCommand=background-properties-capplet --init-session-settings --sm-client-id default4
 5,id=default5
 5,Priority=20
-5,RestartCommand=bell-properties-capplet --init-session-settings --sm-client-id default5
+5,RestartCommand=mouse-properties-capplet --init-session-settings --sm-client-id default5
 6,id=default6
 6,Priority=20
-6,RestartCommand=screensaver-properties-capplet --init-session-settings --sm-client-id default6
+6,RestartCommand=bell-properties-capplet --init-session-settings --sm-client-id default6
 7,id=default7
 7,Priority=20
-7,RestartCommand=keyboard-properties --init-session-settings --sm-client-id default7
+7,RestartCommand=screensaver-properties-capplet --init-session-settings --sm-client-id default7
 8,id=default8
-8,Priority=40
-8,RestartCommand=panel --sm-client-id default8
+8,Priority=20
+8,RestartCommand=keyboard-properties --init-session-settings --sm-client-id default8
 9,id=default9
-9,RestartCommand=gnome-help-browser --sm-client-id default9
+9,Priority=40
+9,RestartCommand=panel --sm-client-id default9
 10,id=default10
-10,RestartCommand=gmc --sm-client-id default10
-num_clients=11
+10,RestartCommand=gnome-help-browser --sm-client-id default10
+11,id=default11
+11,RestartCommand=gmc --sm-client-id default11
+num_clients=12
