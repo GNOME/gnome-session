@@ -1,13 +1,13 @@
 # gnome-core's Português translation
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2003-01-21 18:24+1300\n"
-"PO-Revision-Date: 2002-05-29 03:40+0000\n"
+"POT-Creation-Date: 2003-02-01 17:29+0000\n"
+"PO-Revision-Date: 2003-02-01 17:35+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Português <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -15,9 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
-#, fuzzy
 msgid "Allow TCP connections"
-msgstr "Confirmar ligação"
+msgstr "Permitir ligações TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -26,45 +25,50 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Por motivos de segurança, em plataformas que tenham _IceTcpTransNoListen() "
+"(sistemas XFree86), o gnome-session não escuta por ligações em portos TCP. "
+"Esta opção permitirá ligações de servidores remotos (autorizados). O "
+"gnome-session tem de ser reiniciado para que esta opção tenha efeito."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "Se activo, o gnome-session questionará o utilizador antes de terminar uma sessão."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Se activo, o gnome-session gravará a sessão automaticamente. Caso contrário, "
+"o diálogo de terminar sessão terá uma opção para gravar a sessão."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Terminar sessão"
+msgstr "Perguntar ao terminar sessão"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Imagem Preferida a utilizar para o ecrã de logotipo ao iniciar sessão no "
+"ambiente de trabalho GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sessão"
+msgstr "Gravar sessões"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Mostrar imagem do GNOME no login"
+msgstr "Mostrar ecrã de logotipo"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Mostrar ecrã de logotipo ao iniciar sessão"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Imagem de Ecrã de Logotipo"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
@@ -148,9 +152,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Não afectado por fim de sessão mas pode morrer."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Repor"
+msgstr "Reiniciar"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -187,6 +190,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Ocorreu um erro ao iniciar o Deamon de Configurações GNOME.\n"
+"\n"
+"Algumas coisas, tais como temas, sons ou configurações do fundo do ambiente "
+"poderão não funcionar correctamente."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -195,6 +202,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"A última mensagem de erro foi:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -202,24 +213,26 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"O GNOME tentará ainda assim reiniciar o Deamon de Configurações da próxima "
+"vez que iniciar sessão."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Ocorreu um erro de activação desconhecido."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "O Deamon de Configurações reinicio-se demasiadas vezes."
 
 #: gnome-session/logout.c:270
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "Deseja efectuar a ligação?"
+msgstr "Tem a certeza de que deseja terminar a sessão?"
 
 #: gnome-session/logout.c:298
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Gravar configuração actual"
+msgstr "_Gravar configuração actual"
 
 #: gnome-session/logout.c:318
 msgid "Action"
@@ -230,13 +243,12 @@ msgid "_Log Out"
 msgstr "_Terminar Sessão"
 
 #: gnome-session/logout.c:329
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Desligar Sistema"
+msgstr "Desli_gar Sistema"
 
 #: gnome-session/logout.c:332
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Reiniciar o computador"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -273,12 +285,11 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Mesmo Assim Registar em Log"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
-msgstr "Tentar novamente"
+msgstr "Tentar Novamente"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -302,9 +313,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Pode aguardar que ele responda ou remove-lo."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Re-execução abandonada devido a falhas."
+msgstr "Reiníco abandonado devido a falhas."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -347,9 +357,8 @@ msgid "Edit session name"
 msgstr "Editar nome de sessão"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Editar"
+msgstr "_Editar"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -361,24 +370,24 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Sessão"
+msgstr "Sesssões"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Mostrar imagem do GNOME no login"
+msgstr "Mostrar _logotipo do GNOME ao iniciar sessão"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Perguntar no logout"
+msgstr "_Perguntar ao terminar sessão"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Gravar modificações à sessão automaticamente"
+msgstr "_Gravar modificações à sessão automaticamente"
+
+#: gnome-session/session-properties-capplet.c:262
+msgid "_Sessions:"
+msgstr "_Sessões:"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -391,6 +400,10 @@ msgstr "Opções de Sessão"
 #: gnome-session/session-properties-capplet.c:335
 msgid "Current Session"
 msgstr "Sessão Actual"
+
+#: gnome-session/session-properties-capplet.c:344
+msgid "Additional startup _programs:"
+msgstr "A_plicações de arranque adicionais:"
 
 #: gnome-session/session-properties-capplet.c:364
 msgid "Command"
@@ -405,18 +418,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "Remover o cliente actualmente seleccionado da sessão."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Gravar modificações à sessão automaticamente"
+msgstr "Aplicar alterações à sessão actual"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "A lista de aplicações na sessão."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Pesquisar Aplicações Actualmente em Execução..."
+msgstr "Aplicações actualmente em e_xecução:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -424,7 +435,7 @@ msgstr "Inicializar definições de sessão"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Configurar as suas sessões"
 
 #: gnome-session/splash-widget.c:42
 msgid "Sawfish Window Manager"
@@ -455,9 +466,8 @@ msgid "Desktop Settings"
 msgstr "Definições Ambiente"
 
 #: gnome-session/startup-programs.c:289
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Comados de Arranque"
+msgstr "Comado de _Arranque:"
 
 #: gnome-session/startup-programs.c:295
 msgid "Startup Command"
@@ -475,6 +485,9 @@ msgstr "Adicionar Aplicação de Arranque"
 msgid "Edit Startup Program"
 msgstr "Editar Aplicação de Arranque"
 
+#~ msgid "Priority"
+#~ msgstr "Prioridade"
+
 #~ msgid "Audio Settings"
 #~ msgstr "Definições Audio"
 
@@ -490,16 +503,8 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgid "Keyboard Settings"
 #~ msgstr "Definições do Teclado"
 
-#, fuzzy
-#~ msgid "false"
-#~ msgstr "Fechar"
-
-#~ msgid "Priority"
-#~ msgstr "Prioridade"
-
-#, fuzzy
 #~ msgid "_Priority:"
-#~ msgstr "Prioridade"
+#~ msgstr "_Prioridade:"
 
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "A iniciar GNOME: %s"
@@ -520,7 +525,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Login"
 
 #~ msgid "Start with default programs"
-#~ msgstr "Começar com aplicações de defeito"
+#~ msgstr "Começar com aplicações por omissão"
 
 #~ msgid "Reset all user settings"
 #~ msgstr "Limpar todas as definições do utilizador"
@@ -611,7 +616,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ "values. The default value should be OK"
 #~ msgstr ""
 #~ "Aplicações com valores mais baixos são iniciadas antes de aplicações com "
-#~ "valores mais altos. O valor de defeito deverá estar bom"
+#~ "valores mais altos. O valor por omissão deverá estar bom"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Não foi possível conectar ao gnome-session"
@@ -749,7 +754,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "O emulador de consola GNOME."
 
 #~ msgid "Default"
-#~ msgstr "Defeito"
+#~ msgstr "Por Omissão"
 
 #~ msgid ""
 #~ "You have switched the class of this window. Do you\n"
@@ -757,7 +762,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ "configuration of the new class?"
 #~ msgstr ""
 #~ "Você mudou a classe desta janela. Deseja reconfigurar\n"
-#~ "esta janela para ficar igual à configuração por defeito\n"
+#~ "esta janela para ficar igual à configuração por omissão\n"
 #~ "da nova classe?"
 
 #~ msgid "Linux console"
@@ -1046,7 +1051,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Transparente"
 
 #~ msgid "Use --login by default"
-#~ msgstr "Usar --login por defeito"
+#~ msgstr "Usar --login por omissão"
 
 #~ msgid "C_olor selector"
 #~ msgstr "Selector de c_ores"
@@ -2958,7 +2963,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Nível da janela do painel"
 
 #~ msgid "Default (from global preferences)"
-#~ msgstr "Defeito (das preferências globais)"
+#~ msgstr "Por omissão (das preferências globais)"
 
 #~ msgid "Above other windows"
 #~ msgstr "Sobre outras janelas"
@@ -3252,7 +3257,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Linhas de processos:"
 
 #~ msgid "Default task size:"
-#~ msgstr "Tamanho defeito de processo:"
+#~ msgstr "Tamanho por omissão de processo:"
 
 #~ msgid "Tasklist width is fixed"
 #~ msgstr "Largura de lista de processos é fixa"
@@ -3766,7 +3771,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Ajuda GNOME"
 
 #~ msgid "<BODY>Could not load default TOC page</BODY>"
-#~ msgstr "<BODY>Impossível carregar índice de defeito</BODY>"
+#~ msgstr "<BODY>Impossível carregar índice por omissão</BODY>"
 
 #~ msgid "<BODY>Unknown TOC argument</BODY>"
 #~ msgstr "<BODY>Argumento de índice desconhecido</BODY>"
@@ -4088,7 +4093,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Crescimento rápido mas de má qualidade dos ícones de botões"
 
 #~ msgid "Default movement mode"
-#~ msgstr "Modo de movimento de defeito"
+#~ msgstr "Modo de movimento por omissão"
 
 #~ msgid "Switched movement (or use Ctrl)"
 #~ msgstr "Movimento trocado (ou utilizar Ctrl)"
@@ -4315,6 +4320,9 @@ msgstr "Editar Aplicação de Arranque"
 
 #~ msgid "Only display warnings."
 #~ msgstr "Só mostrar avisos."
+
+#~ msgid "Close"
+#~ msgstr "Fechar"
 
 #~ msgid "AnotherLevel menus"
 #~ msgstr "Menus AnotherLevel"
@@ -5060,7 +5068,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgstr "Temas:"
 
 #~ msgid "None (default)"
-#~ msgstr "Nenhum (por defeito)"
+#~ msgstr "Nenhum (por por omissão)"
 
 #~ msgid " (GMT %+d)"
 #~ msgstr " (GMT %+d)"
@@ -5222,7 +5230,7 @@ msgstr "Editar Aplicação de Arranque"
 #~ msgid ""
 #~ "Since you are root, would you like to set the system's default timezone?"
 #~ msgstr ""
-#~ "Como é root, gostaria de escolher a zona horária de defeito do sistema?"
+#~ "Como é root, gostaria de escolher a zona horária por omissão do sistema?"
 
 #~ msgid "Who said NeXT is dead?"
 #~ msgstr "Quem disse que o NeXT está morto?"
