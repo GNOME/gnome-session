@@ -35,10 +35,15 @@ static char *session = NULL;
 
 /* If nonzero, we are debugging and don't want to load an initial
    session.  */
+guint purge_delay = 30000;
+
+/* If nonzero, we are debugging and don't want to load an initial
+   session.  */
 static int debugging = 0;
 
 static const struct poptOption options[] = {
   {"debug", '\0', POPT_ARG_NONE, &debugging, 0, N_("Enable gsm debugging"), NULL},
+  {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
 

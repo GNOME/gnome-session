@@ -34,6 +34,15 @@ static const struct poptOption options[] = {
   {NULL, '\0', 0, NULL, 0}
 };
 
+static exit_status = 0;
+
+static void
+save_complete (GnomeClient* client, gpointer data)
+{
+  exit_status = (data != NULL);
+  gtk_main_quit ();
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -61,7 +70,17 @@ main (int argc, char *argv[])
   gnome_client_request_save (client, GNOME_SAVE_BOTH, zap,
 			     GNOME_INTERACT_ANY, 0, 1);
 
-  gnome_client_disconnect (client);
+  /* Wait until our request is acknowledged:
+   * gnome-session queues requests but does not honour them if the
+   * requesting client is dead when the save starts. */
+  gtk_signal_connect (GTK_OBJECT (client), "save_complete",
+		      GTK_SIGNAL_FUNC (save_complete), NULL);
+  gtk_signal_connect (GTK_OBJECT (client), "die",
+		      GTK_SIGNAL_FUNC (save_complete), NULL);
+  gtk_signal_connect (GTK_OBJECT (client), "shutdown_cancelled",
+		      GTK_SIGNAL_FUNC (save_complete), (gpointer)1);
 
-  return 0;
+  gtk_main ();
+
+  return exit_status;
 }

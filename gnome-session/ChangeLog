@@ -1,3 +1,19 @@
+1999-01-22 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.h, manager.c (load_session) : queue session starts.
+	(process_load_request): initialise load bas on priority ordering.
+	(purge): clear slow clients from list of awaited registrations.
+	(start_client) support non-session aware clients as well.
+	(register_client): maximise retention of previous client ids.
+	(update_save_state): startup clients in run level order.
+	* save.c (unlock_session, set_session_name) skeleton for name locking.
+	* main.c (main): new option to set purge-delay during start up.
+	* default.in (accept_connection): new format including runlevels.
+	* ice.c (accept_connection): do not close connection on an error
+	as the gtk_main_loop does this now inside gnome-ice.c.
+	* save-session.c (main): wait until request is acknowledged before
+	dying because gnome-session no longer honours requests from zombies.
+	
 1999-01-21  Carsten Schaar  <nhadcasc@fs-maphy.uni-hannover.de>
 
 	* ice.c (initialize_ice): Removed the 'free' call to the argument

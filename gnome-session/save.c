@@ -29,21 +29,21 @@
 
 
 
-/* Default session name.  */
-#define DEFAULT_SESSION "Default"
-
-/* "Client id" for children which are not session aware */
-#define NULL_ID "<none>"
-
 /* Used to save xsm style string valued SmDiscardCommand properties. */
 #define XsmDiscardCommand SmDiscardCommand "[string]"
 
-/* Name of current session.  A NULL value means the default.  */
+/* Used to communicate runlevels for clients with gnome aware apps */
+#define GnomePriority "Priority"
+
+/* Name of the base session. This must be set before we load any
+   clients (so that we can save them) and it must not be in use by
+   any other gnome-session process when we set it */
 static char *session_name = NULL;
 
-/* This is true if we've ever started a session.  We use this to see
-   if we need to run the preloads again.  */
-static int session_loaded = 0;
+/* See manager.c */
+extern gboolean base_loaded;
+extern GSList* live_list;
+extern GSList* zombie_list;
 
 typedef enum
 {
@@ -68,6 +68,7 @@ typedef struct
 static propsave properties[] =
 {
   { SmRestartStyleHint, NUMBER, 0, SmRestartStyleHint },
+  { GnomePriority,      NUMBER, 0, GnomePriority },
   { SmProgram,          STRING, 0, SmProgram },
   { SmCurrentDirectory, STRING, 0, SmCurrentDirectory },
   { SmDiscardCommand,   STRING, 0, XsmDiscardCommand }, /* for legacy apps */
@@ -95,7 +96,7 @@ write_one_client (const Client *client)
   gchar *string_names[NUM_PROPERTIES];
   gchar *number_names[NUM_PROPERTIES];
 
-  /* Read each property we care to save.  */
+  /* Retrieve each property we care to save.  */
   saved = 1;
   vector_count = string_count = number_count = 0;
   for (i = 0; (i < NUM_PROPERTIES) && saved; ++i)
@@ -163,54 +164,38 @@ write_one_client (const Client *client)
 
 /* Write our session data.  */
 void
-write_session (const GSList *list1, const GSList *list2)
+write_session (void)
 {
   char prefix[1024];
-  int i, step;
+  int i = 0;
   GSList *list;
 
-  delete_session (session_name, list1, list2);
+  delete_session (session_name);
 
-  i = 0;
-  step = 0;
-  list = (GSList *)list1;
-  while (step < 2)
+  for (list = zombie_list; list; list = list->next)
     {
-      for (; list; list = list->next)
-	{
-	  Client *client = (Client *) list->data;
-
-	  g_snprintf (prefix, sizeof(prefix), 
-		      "session/%s/%d,", session_name, i);
-	  gnome_config_push_prefix (prefix);
-	  if (write_one_client (client))
-	    ++i;
-	  gnome_config_pop_prefix ();
-	}
-      list = (GSList *)list2;
-      ++step;
+      Client *client = (Client *) list->data;
+      
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", session_name, i);
+      gnome_config_push_prefix (prefix);
+      i += (write_one_client (client));
+      gnome_config_pop_prefix ();
     }
-  
-  g_snprintf (prefix, sizeof(prefix), 
-	      "session/%s/num_clients", session_name);
-  gnome_config_set_int (prefix, i);
 
+  for (list = live_list; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", session_name, i);
+      gnome_config_push_prefix (prefix);
+      i += (write_one_client (client));
+      gnome_config_pop_prefix ();
+    }
+
+  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients", session_name);
+  gnome_config_set_int (prefix, i);
   gnome_config_sync ();
 }
-
-/* Set current session name.  */
-void
-set_session_name (const char *name)
-{
-  if (session_name)
-    free (session_name);
-  if (name)
-    session_name = strdup (name);
-  else
-    session_name = NULL;
-}
-
-
 
 /* We need to read clients as well as writing them because the
  * protocol does not oblige clients to specify thier properties
@@ -221,8 +206,9 @@ read_one_client (Client *client)
   int i, j;
   gboolean def;
 
-  client->id = gnome_config_get_string ("id=" NULL_ID); 
+  client->id = gnome_config_get_string ("id=");
   client->properties = NULL;
+  client->priority = 50;
 
   /* Read each property that we save.  */
   for (i = 0; i < NUM_PROPERTIES; ++i)
@@ -287,6 +273,9 @@ read_one_client (Client *client)
 	      prop->vals[0].length = 1;
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
+
+	      if (properties[i].save_name == GnomePriority)
+		client->priority = number;
 	    }
 	  break;
 	}
@@ -297,13 +286,13 @@ read_one_client (Client *client)
 
 /* Read the session clients recorded in a config file section */
 static GSList *
-read_clients (const char *name)
+read_clients (const char* file, const char *session, gboolean fake_ids)
 {
   int i, num_clients;
   char prefix[1024];
   GSList* list = 0;
 
-  g_snprintf (prefix, sizeof(prefix), "session/%s/", name);
+  g_snprintf (prefix, sizeof(prefix), "%s/%s/", file, session);
 
   gnome_config_push_prefix (prefix);
   num_clients = gnome_config_get_int ("num_clients=0");
@@ -313,11 +302,12 @@ read_clients (const char *name)
     {
       Client *client = g_new0 (Client, 1);
 
-      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", name, i);
+      g_snprintf (prefix, sizeof(prefix), "%s/%s/%d,", file, session, i);
 
       gnome_config_push_prefix (prefix);
       read_one_client (client);
       gnome_config_pop_prefix ();
+      client->faked_id = fake_ids;
       APPEND (list, client);
     }
   return list;
@@ -325,101 +315,63 @@ read_clients (const char *name)
 
 
 
-/* Return number of preloads.  */
-static int
-num_preloads (void)
+/* frees lock on session at shutdown */
+void 
+unlock_session (void)
 {
-  return gnome_config_get_int (PRELOAD_PREFIX PRELOAD_COUNT_KEY "=0");
+  /* FIXME: release lock on the name */
+
+  free (session_name);
+  session_name = NULL;
 }
 
-/* Run all the preloads, if required.  */
-static void
-run_preloads (int count)
+/* Attempts to set the session name (the requested name may be locked).
+ * Returns the name that has been assigned to the session. */
+gchar*
+set_session_name (const char *name)
 {
-  int i;
+  if (! name)
+    name = DEFAULT_SESSION;
 
-  /* Only run once.  */
-  if (session_loaded)
-    return;
-  session_loaded = 1;
+  /* FIXME: return old name if name is locked by a LIVE gnome-session. */
+  /* FIXME: establish lock on the name */
 
-  if (count <= 0)
-    return;
+  if (session_name)
+      unlock_session ();
 
-  for (i = 0; i < count; ++i)
-    {
-      char *text, buf[20];
-      gboolean def;
-
-      g_snprintf (buf, sizeof(buf), "%d=true", i);
-      text = gnome_config_get_string_with_default (buf, &def);
-      if (! def)
-	gnome_execute_shell (NULL, text);
-      g_free (text);
-    }
-}
-
-/* Run the default session.  */
-static int
-run_default_session (void)
-{
-  int count;
-
-  gnome_config_push_prefix ("=" DEFAULTDIR "/default.session=/Default/");
-  count = gnome_config_get_int ("num_preloads");
-  run_preloads (count);
-  gnome_config_pop_prefix ();
-
-  return 1;
+  session_name = strdup (name);
+  return session_name;
 }
 
 
 
-/* Load a session from the config file by name.
- * This never closes any existing clients.
- * The first time that it is called it establishes the name for the
- * current session and sets this to a default value when a NULL name is 
- * passed. 
- * In order to avoid client id conflicts the loaded session is cloned
- * rather than restarted when there is already a session running. */
-int
+/* Load a session from the config file by name. */
+gint
 read_session (const char *name)
 {
-  int preloads;
-  char prefix[1024];
   GSList *list;
-
-  gboolean clone = (session_name != NULL);
+  gboolean already_locked = (session_name != NULL);
+  gboolean use_previous_ids = TRUE;
 
   if (! name)
     name = DEFAULT_SESSION;
 
-  if (! clone)
-    set_session_name (name);
+  /* Before loading any clients we need a lock over a base session name 
+   * into which we can write the session details: */
+  if (! already_locked && ! set_session_name (name))
+    return 0;
 
-  list = read_clients (name);
+  list = read_clients ("session", name, FALSE);
 
-  preloads = num_preloads ();
-
-  if (! list && ! preloads)
+  if (! list && ! already_locked)
     {
-      /* Nothing to run - use the fallback */
-      if (! strcmp (name, DEFAULT_SESSION))
-	return run_default_session ();
-      return 0;
+      /* Fill out empty base sessions: */
+      list = read_clients ("=" DEFAULTDIR "/default.session=", name, TRUE);
+      use_previous_ids = FALSE;
     }
 
-  gnome_config_push_prefix (PRELOAD_PREFIX);
-  run_preloads (preloads);
-  gnome_config_pop_prefix ();
-
-  for (; list; list = list->next)
-    {
-      Client *client = (Client*)list->data;
-
-      start_client (client, clone);
-    }
-  return 1;
+  load_session (list);
+  return list != NULL;
 }
 
 
@@ -429,51 +381,56 @@ read_session (const char *name)
  * session data and only a few of the clients may have conducted
  * a save since the session was last written */
 void
-delete_session (const char *name, const GSList* list1, const GSList* list2)
+delete_session (const char *name)
 {
-  int number;
+  int i, number;
   gboolean ignore;
   char prefix[1024];
-  int i;
 
   if (! name)
-    name = DEFAULT_SESSION;
-
-  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=-1", name);
-  number = gnome_config_get_int_with_default (prefix, &ignore);
-
-  if (ignore)
     return;
+
+  /* FIXME: need to obtain a lock on a session name before deleting it! */
+
+  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=0", name);
+  number = gnome_config_get_int (prefix);
 
   /* For each client in the deleted session */
   for (i = 0; i < number; ++i)
     {
-      char *id;
-      Client *client;
-      int old_argc, old_envc, old_envpc;
-      char **old_argv, *old_dir, **old_envv, **old_envp, *old_system;
-
+      Client* cur_client;
+      Client old_client;
+      
+      int old_argc;
+      char **old_argv;
+      char *old_system;
+      
       g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", name, i);
       gnome_config_push_prefix (prefix);
-
-      /* Is it a client in the current session ? */
-      id = gnome_config_get_string ("id");
-      if (!(client = find_client_by_id (list1, id))) 
-	client = find_client_by_id (list2, id);
-      g_free(id);
-
-      gnome_config_get_vector_with_default (SmDiscardCommand, 
-					    &old_argc, &old_argv,
-					    &ignore);
-      if (! ignore)
+	  
+      /* To call these commands in a network independent fashion
+	 we need to read almost everything anyway (: */
+      read_one_client (&old_client);
+      
+      /* Is this client still part of the running session ? */
+      cur_client = find_client_by_id (zombie_list, old_client.id);
+      if (!cur_client) 
+	cur_client = find_client_by_id (live_list, old_client.id);
+      
+      if (find_vector_property (&old_client, SmDiscardCommand, 
+				&old_argc, &old_argv))
 	{
-	  /* Do not call discard commands on running clients which 
-	   * have not changed their discard commands. */
 	  int cur_argc;
 	  char **cur_argv;
-	      
-	  if (client && find_vector_property (client, SmDiscardCommand, 
-					      &cur_argc, &cur_argv))
+	  
+	  /* Do not call discard commands on running clients which 
+	   * have not changed their discard commands. These clients
+	   * did not take part in the save or are broken in some way. */
+	  ignore = FALSE;
+	  
+	  if (cur_client && 
+	      find_vector_property (cur_client, SmDiscardCommand, 
+				    &cur_argc, &cur_argv))
 	    {
 	      int j;
 	      ignore = (old_argc == cur_argc);
@@ -488,66 +445,37 @@ delete_session (const char *name, const GSList* list1, const GSList* list2)
 	      
 	      free_vector (cur_argc, cur_argv);
 	    }
-		      
+	  
 	  if (! ignore) 
-	    {
-	      old_dir = gnome_config_get_string (SmCurrentDirectory);
-	      
-	      gnome_config_get_vector_with_default (SmEnvironment, 
-						    &old_envc, &old_envv, 
-						    &ignore);
-	      if (! ignore && old_envc > 0 && !(old_envc | 1))
-		{
-		  int i;
-
-		  old_envpc = old_envc / 2;
-		  old_envp = g_new0 (gchar*, old_envpc + 1);
-		  
-		  for (i = 0; i < old_envpc; i++)
-		    old_envp[i] = g_strconcat (old_envv[2*i], "=", 
-					       old_envv[2*i+1], NULL);
-
-		  free_vector (old_envc, old_envv);
-		}
-	      else
-		{
-		  old_envpc = 0;
-		  old_envp = NULL;
-		}
-
-	      gnome_execute_async_with_env (old_dir, old_argc, old_argv, 
-					    old_envc, old_envp);
-
-	      if (old_envp)
-		free_vector (old_envpc, old_envp);
-	      if (old_dir)
-		free (old_dir);	  
-	    }
+	    run_command (&old_client, SmDiscardCommand);
+	  
+	  free_vector (old_argc, old_argv);
 	}
-      free_vector (old_argc, old_argv);
-
+      
       /* Now, repeat the whole process for apps with SmARRAY8 commands:
        * This code is a direct crib from xsm because we are only doing
-       * this for compatibility purposes. */
-      old_system = gnome_config_get_string_with_default (XsmDiscardCommand, 
-							 &ignore);
-      if (! ignore)
+       * this for backwards compatibility purposes. */
+      if (find_string_property (&old_client, XsmDiscardCommand, 
+				&old_system))
 	{
 	  char *cur_system;
 	  
-	  if (client && find_string_property (client, XsmDiscardCommand, 
-					      &cur_system))
+	  ignore = FALSE;
+	  
+	  if (cur_client &&
+	      find_string_property (cur_client, XsmDiscardCommand, 
+				    &cur_system))
 	    {
 	      ignore = !strcmp (cur_system, old_system);
 	      
 	      free (cur_system);
 	    }	      
-
+	  
 	  if (! ignore)
 	    system (old_system);
-	}
-      free (old_system);
-
+	  
+	  free (old_system);
+	}	  
       gnome_config_pop_prefix ();
     }
 

@@ -62,9 +62,12 @@ accept_connection (gpointer client_data, gint source,
       gtk_main_iteration ();
       status2 = IceConnectionStatus (connection);
     }
-
+#if 0
+  /* I think that the changes to gnome-ice.c mean that the connection
+     is being closed before we get here - FIXME: check this */
   if (status2 != IceConnectAccepted)
     IceCloseConnection (connection);
+#endif
 }
 
 /* FIXME: error message text could be returned somehow.  Or at least

@@ -25,6 +25,9 @@
 
 #include "glib.h"
 
+/* Default session name.  */
+#define DEFAULT_SESSION "Default"
+
 /* Each client is represented by one of these.  Note that the client's
    state is not kept explicitly.  A client is on only one of several
    linked lists at a given time; the state is implicit in the list.  */
@@ -40,14 +43,33 @@ typedef struct
      is an `SmProp *'.  */
   GSList *properties;
 
-  /* Used to detect clients which are thrashing */
+  /* Used to detect clients which are dying quickly */
   time_t connect_time;
+
+  /* Used to determine order in which clients are started */
+  guint priority;
+
+  /* Used to avoid registering clients with ids from default.session */
+  gboolean faked_id;
 } Client;
 
+/* Milliseconds to wait for clients to register before assuming that
+ * they have finished any initialisation needed by other clients. */
+extern guint purge_delay;
 
 /*
  * manager.c
  */
+
+/* Start an individual client. */
+void start_client (Client* client);
+
+/* Starts a list of clients in order of their priority. */
+void load_session (GSList* clients);
+
+/* Run the Discard, Resign or Shutdown command on a client.
+ * Returns the pid or -1 if unsuccessful. */
+gint run_command (const Client* client, const gchar* command);
 
 /* Call this to initiate a session save, and perhaps a shutdown.
    Save requests are queued internally. */
@@ -63,41 +85,38 @@ int shutdown_in_progress_p (void);
 Status new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 		   SmsCallbacks *callbacks, char **reasons);
 
+/* Find a client from a list */
+Client* find_client_by_id (const GSList *list, const char *id);
+
 /* Handler for IO errors on an ICE connection.  This just cleans up
    after the client.  */
 void io_error_handler (IceConn connection);
-
-/* Restart or clone an individual client. */
-void start_client (const Client* client, gboolean clone);
 
 /*
  * save.c
  */
 
-/* Write session clients in list1 and list2 to the config file. */
-void write_session (const GSList *list1, const GSList *list2);
+/* Attempts to set the session name (the requested name may be locked).
+ * Returns the name that has been assigned to the session. */
+gchar* set_session_name (const gchar *name);
 
-/* Set name of the current session. 
- * This determines the config section into which our session data is saved. */
-void set_session_name (const char *name);
+/* Releases the lock on the session name when shutting down the session */
+void unlock_session (void);
 
-/* Start a session. 
- * If there is no session started yet then this sets the session name 
- * and calls the restart commands on for all the session clients.
- * If there is a session running then this calls the clone commands
- * on the session clients - merging the session into the current one.
- * (Note that clone commands must be used to avoid  */
+/* Write current session to the config file. */
+void write_session (void);
+
+/* Load a session from our configuration by name.
+ * The first time that this is called it establishes the name for the
+ * base session.
+ * An empty base session is filled out with the clients in default.session.
+ * Later calls merge the requested session into the base session.
+ * Returns TRUE when some clients were loaded. */
 int read_session (const char *name);
 
 /* Delete a session from the config file and discard any stale
- * session info saved by clients that were in the session.
- * list1 and list2 can be used to specify clients that are still
- * in this session to protect against discarding info is NOT stale. */
-void delete_session (const char *name, 
-		     const GSList* list1, const GSList* list2);
-
-/* used in write_session */
-Client * find_client_by_id (const GSList *list, const char *id);
+ * session info saved by clients that were in the session. */
+void delete_session (const char *name);
 
 /*
  * ice.c
