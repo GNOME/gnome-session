@@ -183,7 +183,7 @@ main (int argc, char *argv[])
   if(failsafe)
 	session_name = FAILSAFE_SESSION;
   
-  session_name_env = g_strconcat ("GNOME_SESSION_NAME=", g_strdup (session_name), NULL);
+  session_name_env = g_strconcat ("GNOME_DESKTOP_SESSION_ID=", g_strdup (session_name), NULL);
   putenv (session_name_env);
   the_session = read_session (session_name);
 
