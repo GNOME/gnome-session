@@ -37,12 +37,14 @@ gnome_session_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 gnome_session_save_LDADD = $(GNOME_SESSION_LIBS)
 gnome_session_properties_LDADD = $(GNOME_SESSION_LIBS)
 splash_test_LDADD = $(GNOME_SESSION_LIBS)
+logout_test_LDADD = $(GNOME_SESSION_LIBS)
 
 if SESSION
 @INTLTOOL_DESKTOP_RULE@
 
 noinst_PROGRAMS = \
-	splash-test
+	splash-test \
+	logout-test
 
 bin_PROGRAMS = \
 	gnome-session		\
@@ -54,6 +56,13 @@ splash_test_SOURCES =	\
 	splash-widget.c	\
 	splash-widget.h	\
 	splash-test.c
+
+logout_test_SOURCES =		\
+	logout-test.c		\
+	util.c			\
+	util.h			\
+	gsm-multiscreen.c	\
+	gsm-multiscreen.h
 
 gnome_session_SOURCES =		\
 	manager.c		\
