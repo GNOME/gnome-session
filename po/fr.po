@@ -1,16 +1,17 @@
 # French translation of gnome-session.
-# Copyright (C) 1998-2002 Free Software Foundation, Inc.
+# Copyright (C) 1998-2005 Free Software Foundation, Inc.
+#
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
-# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2002.
+# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2005.
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.3.4\n"
+"Project-Id-Version: gnome-session 2.9.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-07-31 21:20+0200\n"
+"POT-Creation-Date: 2005-02-21 00:10+0100\n"
+"PO-Revision-Date: 2005-02-21 00:05+0100\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +29,7 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"Pour des raisons de sécurité, sur les plate-formes qui ont "
+"Pour des raisons de sécurité, sur les plates-formes qui ont "
 "_IceTcpTransNoListen() (systèmes XFree86), gnome-session n'est pas à "
 "l'écoute de connexions sur les ports TCP. Cette option autorise les "
 "connexions depuis les hôtes distants (autorisés). gnome-session doit être "
@@ -54,12 +55,8 @@ msgid "Logout prompt"
 msgstr "Invite de déconnexion"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Image préférée à utiliser pour l'écran d'acceuil lors de la connexion au "
-"bureau GNOME."
+msgid "Preferred Image to use for login splash screen"
+msgstr "Image préférée à utiliser pour l'écran d'accueil"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -71,11 +68,17 @@ msgstr "Afficher l'écran d'accueil"
 
 #: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Affiche l'écran d'acceuil au démarrage de la session"
+msgstr "Affiche l'écran d'accueil au démarrage de la session"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Image de l'écran d'acceuil"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"C'est un chemin relatif basé sur le répertoire $datadir/pixmaps/. Les sous-"
+"répertoires et les noms d'images sont des valeur valides. Modifier cette "
+"valeur prendra effet lors de la prochaine ouverture de session."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -384,7 +387,6 @@ msgid "Show splash screen on _login"
 msgstr "Afficher l'écran d'accueil à la _connexion"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "_Demander à la déconnexion"
 
@@ -491,176 +493,3 @@ msgstr "Ajouter un programme de démarrage"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Éditer le programme de démarrage"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Enregistrer la session en cours"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Enregistre la session en cours"
-
-#~ msgid "Audio Settings"
-#~ msgstr "Paramètres audio"
-
-#~ msgid "Screensaver"
-#~ msgstr "Économiseur d'écran"
-
-#~ msgid "Background Settings"
-#~ msgstr "Paramètres de l'arrière-plan"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Paramètres de la souris"
-
-#~ msgid "Priority"
-#~ msgstr "Priorité"
-
-#~ msgid "_Priority:"
-#~ msgstr "_Priorité :"
-
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "Démarrage de GNOME : %s"
-
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Démarrage de GNOME : effectué"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "Démarrage de GNOME"
-
-#~ msgid "Respawn"
-#~ msgstr "Re-créer"
-
-#~ msgid "Session properties"
-#~ msgstr "Propriétés de la session"
-
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "<i>These changes take effect immediately</i>"
-#~ msgstr "<i>Ces changements prennent effet immédiatement</i>"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Choisissez la session courante"
-
-#~ msgid "Add..."
-#~ msgstr "Ajouter..."
-
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Démarrage des programmes non gérés par la session"
-
-#~ msgid "Session Properties & Startup Programs"
-#~ msgstr "Propriétés de la session & Programme au démarrage"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Les programmes avec les valeurs les plus petites sont démarrés avant ceux "
-#~ "avec les valeurs les plus élévées.  Les valeurs par défaut devraient être "
-#~ "correctes."
-
-#~ msgid "GNOME Login"
-#~ msgstr "Connexion GNOME"
-
-#~ msgid "Login"
-#~ msgstr "Connexion"
-
-#~ msgid "Start with default programs"
-#~ msgstr "Démarrer avec les programmes par défaut"
-
-#~ msgid "Reset all user settings"
-#~ msgstr "Remettre à zéro tous les paramètres utilisateurs"
-
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "Effacer réellement les propriétés GNOME de l'utilisateur %s ?"
-
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "Le répertoire /tmp/orbit-%s n'appartient pas à\n"
-#~ "l'utilisateur courant, %s.\n"
-#~ "Veuillez corriger le nom du possesseur de ce répertoire."
-
-#~ msgid "Continue"
-#~ msgstr "Continuer"
-
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "Votre version de libICE a une anomalie qui empêche gnome-session\n"
-#~ "de fonctionner correctement.\n"
-#~ "\n"
-#~ "Si vous êtes sur Solaris, vous devriez soit mettre à jour vers le "
-#~ "correctif\n"
-#~ "Solaris #108376-16 ou utiliser libICE.so.6 depuis le Solaris 7 "
-#~ "d'origine.\n"
-#~ "Copier le fichier dans /usr/openwin/lib.  (Merci à Andy Reitz\n"
-#~ "pour l'information sur cette anomalie).\n"
-#~ "\n"
-#~ "Votre session GNOME se terminera après la fermeture de cette boîte de "
-#~ "dialogue."
-
-#~ msgid "Really log out?"
-#~ msgstr "Voulez-vous vraiment vous déconnecter ?"
-
-#~ msgid "Reboot"
-#~ msgstr "Redémarrer"
-
-#~ msgid "Session Chooser"
-#~ msgstr "Sélecteur de sessions"
-
-#~ msgid "Start Session"
-#~ msgstr "Démarrer la session"
-
-#~ msgid "Cancel Login"
-#~ msgstr "Annuler la connexion"
-
-#~ msgid "Could not connect to gnome-session"
-#~ msgstr "Ne peut se connecter à gnome-session"
-
-#~ msgid "Session Properties"
-#~ msgstr "Propriétés de la session"
-
-#~ msgid "Current session managed programs"
-#~ msgstr "Configuration des programmes gérés par la session"
-
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Gestionnaire de fenêtres Enlightenment"
-
-#~ msgid "Keyboard Bell"
-#~ msgstr "Bip de clavier"
-
-#~ msgid "Desktop"
-#~ msgstr "Bureau"
-
-#~ msgid "Remove"
-#~ msgstr "Enlever"
-
-#~ msgid "Try"
-#~ msgstr "Essai"
-
-#~ msgid "OK"
-#~ msgstr "Valider"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgid "Help"
-#~ msgstr "Aide"
-
-#~ msgid "Remove Program"
-#~ msgstr "Enlever le programme"
