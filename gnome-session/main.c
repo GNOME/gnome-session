@@ -126,7 +126,6 @@ main (int argc, char *argv[])
 {
   gboolean splashing;
   char *ep;
-  poptContext ctx;
   char *session_name_env;
   Session *the_session;
   
@@ -143,14 +142,14 @@ main (int argc, char *argv[])
    */
   system ("gnome-login-check");
 
+  gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
+		  GNOME_PARAM_POPT_TABLE, options,
+		  GNOME_CLIENT_PARAM_SM_CONNECT, FALSE,
+		  NULL);
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
-  gnome_client_disable_master_connection ();
-  gnome_init_with_popt_table("gnome-session", VERSION, argc, argv, options, 0,
-			     &ctx);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
 
-  poptFreeContext(ctx);
 
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */
