@@ -5,6 +5,9 @@
 #include "gsm-xrandr.h"
 
 #ifdef HAVE_RANDR
+#include <stdio.h>
+#include <unistd.h>
+#include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <X11/extensions/Xrandr.h>
 #endif
