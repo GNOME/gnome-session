@@ -10,7 +10,7 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
-LDADD = $(GNOME_SESSION_LIBS) $(INTLLIBS)
+LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS) $(INTLLIBS)
 
 sysdir = $(datadir)/apps/Settings
 

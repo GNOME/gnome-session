@@ -1,3 +1,10 @@
+2001-09-20  jacob berkman  <jacob@ximian.com>
+
+	* gsm-client-list.c (gsm_client_list_new): #if 0 out some code
+	which doesn't seem to affect anything and uses style->font
+
+	* Makefile.am (LDADD): link against -lwrap when we are supposed to
+
 2001-09-12  jacob berkman  <jacob@ximian.com>
 
 	* session-properties-capplet.c (main):

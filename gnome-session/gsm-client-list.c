@@ -143,9 +143,11 @@ gsm_client_list_new (void)
   gtk_clist_set_column_justification (clist, 2, GTK_JUSTIFY_CENTER);
   gtk_clist_column_titles_passive (clist);
 
+#if 0
   font = gtk_widget_get_style (GTK_WIDGET (client_list))->font;
   gtk_clist_set_column_min_width (clist, 3, 40 * gdk_string_width (font, "n"));
   gtk_clist_set_column_max_width (clist, 3, 50 * gdk_string_width (font, "n"));
+#endif
   return GTK_WIDGET (client_list);
 }
 
