@@ -218,9 +218,12 @@ capplet_build (void)
   dlg = gtk_dialog_new ();
   gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
   gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions"));
+  gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
   help_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+  gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_CLOSE);
   g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
   g_signal_connect (dlg, "delete-event", spc_close, NULL);
 
@@ -233,6 +236,7 @@ capplet_build (void)
   
   /* Set up the notebook */
   notebook = gtk_notebook_new();
+  gtk_container_set_border_width (GTK_CONTAINER (notebook), 5);
   gtk_notebook_set_tab_pos (GTK_NOTEBOOK (notebook), GTK_POS_TOP);
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dlg)->vbox), notebook, TRUE, TRUE, 0);
 
