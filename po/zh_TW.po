@@ -12,9 +12,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-08-27 15:36+1200\n"
-"PO-Revision-Date: 2002-06-22 22:35+0800\n"
+"Project-Id-Version: gnome-session 2.0.7\n"
+"POT-Creation-Date: 2002-09-21 05:01+0200\n"
+"PO-Revision-Date: 2002-09-25 20:21+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
@@ -102,9 +102,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "不受登入影響但可以終止。"
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "還原"
+msgstr "重新啟動"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -175,31 +174,29 @@ msgstr "出現不明的啟動錯誤。"
 msgid "The Settings Daemon restarted too many times."
 msgstr "設定伺服程式重新啟動的次數太多。"
 
-#: gnome-session/logout.c:234
+#: gnome-session/logout.c:232
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "是否確定要登出？"
 
-#: gnome-session/logout.c:251
-#, fuzzy
+#: gnome-session/logout.c:260
 msgid "_Save current setup"
-msgstr "儲存目前的設定"
+msgstr "儲存目前的設定(_S)"
 
-#: gnome-session/logout.c:271
+#: gnome-session/logout.c:280
 msgid "Action"
 msgstr "行動"
 
-#: gnome-session/logout.c:279
+#: gnome-session/logout.c:288
 msgid "_Log Out"
 msgstr "登出(_L)"
 
-#: gnome-session/logout.c:282
-#, fuzzy
+#: gnome-session/logout.c:291
 msgid "Sh_ut Down"
-msgstr "關機"
+msgstr "關機(_U)"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:294
 msgid "_Restart the computer"
-msgstr ""
+msgstr "重新啟動電腦(_R)"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -264,9 +261,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "可以等待回應或移除該程式。"
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "因為多次失敗所以放棄自動再生。"
+msgstr "因為多次失敗所以放棄重新啟動。"
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -309,9 +305,8 @@ msgid "Edit session name"
 msgstr "修改作業階段名稱"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "修改..."
+msgstr "修改(_E)"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -323,24 +318,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
 msgstr "作業階段"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "登入時顯示啟動畫面"
+msgstr "登入時顯示啟動畫面(_L)"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "登出前先提示"
+msgstr "登出前先提示(_P)"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "自動儲存作業階段"
+msgstr "自動儲存作業階段(_G)"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -371,18 +362,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "在作業階段中移除已選取的程式。"
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "自動儲存作業階段"
+msgstr "將已更改的設定套用至目前的作業階段"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "目前作業階段中正在運行的程式的清單。"
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "瀏覽執行中的程式..."
+msgstr "目前正在執行的程式(_P)："
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -390,7 +379,7 @@ msgstr "初始化作業階段設定"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "設定作業階段"
 
 #: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
@@ -437,18 +426,16 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "初始啟動指令"
+msgstr "初始啟動指令(_S)："
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "初始啟動指令"
 
 #: gnome-session/startup-programs.c:307
-#, fuzzy
 msgid "_Priority:"
-msgstr "優先值"
+msgstr "優先值(_P)："
 
 #: gnome-session/startup-programs.c:335
 msgid "The startup command cannot be empty"
@@ -495,17 +482,6 @@ msgstr "修改初始啟動程式"
 #~ msgid "Reset all Settings"
 #~ msgstr "重設所有設定"
 
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "目錄 /tmp/orbit-%s 不屬於目前的使用者 %s。\n"
-#~ "請聯絡該目錄的擁有人。"
-
-#~ msgid "Respawn"
-#~ msgstr "自動再生"
-
 #~ msgid "Really log out?"
 #~ msgstr "是否確定登出？"
 
@@ -550,26 +526,6 @@ msgstr "修改初始啟動程式"
 #~ msgid "Continue"
 #~ msgstr "繼續"
 
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "libICE 版本有錯誤，會妨礙 gnome-session 正常運作。\n"
-#~ "\n"
-#~ "如果是 Solaris 作業系統，那應該更新 Solaris\n"
-#~ "修正檔 #108376-16 或將 Solaris 7 的 libICE.so.6\n"
-#~ "複製至 /usr/openwin/lib。（多謝 Andy Reitz\n"
-#~ "提供有關此問題的資料）。\n"
-#~ "\n"
-#~ "GNOME 作業階段會在此對話窗關閉後終止。"
-
 #~ msgid "Session Chooser"
 #~ msgstr "作業階段選擇程式"
 
@@ -596,12 +552,3 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "Try"
 #~ msgstr "嘗試"
-
-#~ msgid "OK"
-#~ msgstr "確定"
-
-#~ msgid "Cancel"
-#~ msgstr "取消"
-
-#~ msgid "Help"
-#~ msgstr "說明"
