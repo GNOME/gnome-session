@@ -1,23 +1,26 @@
+# translation of nn.po to Norwegian (nynorsk)
 # Norwegian (nynorsk) translation of gnome-core.
-# Copyright (C) 1998-2000 Free Software Foundation, Inc.
+# Copyright (C) 1998-2000, 2003 Free Software Foundation, Inc.
 # Christian Fredrik Kalager Schaller <Uraeus@linuxrising.org>, 2000-2001.
 # Kjartan Maraas  <kmaraas@gnome.org>, 2001.
 # Roy-Magne Mo <rmo@sunnmore.net>, 2001-2002.
 # Monica Gausen <monica@gausen.net>, 2001.
+# Åsmund Skjæveland <aasmunds@fys.uio.no>, 2003.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core 1.4.0.5\n"
+"Project-Id-Version: nn\n"
 "POT-Creation-Date: 2003-08-13 14:07+0100\n"
-"PO-Revision-Date: 2002-01-27 02:54+0100\n"
-"Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
-"Language-Team: nynorsk <nn@li.org>\n"
+"PO-Revision-Date: 2003-09-27 16:27+0200\n"
+"Last-Translator: Åsmund Skjæveland <aasmunds@fys.uio.no>\n"
+"Language-Team: Norwegian (nynorsk) <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.2\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Tillat TCP-tilkoplingar"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -26,68 +29,71 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Av omsyn til tryggleiken vil ikkje gnome-session lytta etter tilkoplingar "
+"på TCP-portar på system som har _IceTcpTransNoListen() (XFree86-system). "
+"Dette valet vil la autoriserte eksterne vertar kopla til. gnome-session "
+"må startast på nytt før dette valet blir aktivt."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Dersom dette er vald, vil brukaren få ein spørsmålsdialog før "
+"økta vert avslutta."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Dersom denne er slått på, vil gnome-session lagra økta automatisk. Viss ikkje, "
+"så vil utloggingsdialogen ha eit val for å lagra økta."
 
 # gsm/logout.c:247
 #: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "Logg ut"
+msgstr "Spør ved avlogging"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "Bilete som skal brukast til oppstartsskjermen når du loggar på GNOME-skrivebordet"
 
 # gsm/session-properties.c:272
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Økt"
+msgstr "Lagra økter"
 
 # gsm/session-properties-capplet.c:192
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Vis «splash»-skjerm ved pålogging"
+msgstr "Vis oppstartsskjerm ved pålogging"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Vis oppstartsskjermen når økta startar"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Bilete for oppstartsskjerm"
 
 # gsm/gsm-client-editor.c:97
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
-#, fuzzy
 msgid "_Order:"
-msgstr "Rekkefølge: "
+msgstr "_Rekkefølgje: "
 
 #: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "Rekkefølgja som applikasjonane blir starta i når økta startar."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "Kva som skjer med applikasjonen når han avsluttar."
 
 # gsm/gsm-client-editor.c:107
 #: gnome-session/gsm-client-editor.c:109
-#, fuzzy
 msgid "_Style:"
-msgstr "Stil: "
+msgstr "_Stil: "
 
 # gsm/gsm-client-list.c:119
 #: gnome-session/gsm-client-list.c:150
@@ -172,9 +178,8 @@ msgstr "Ikkje påvirka av avlogging, men kan døy."
 
 # applets/tasklist/tasklist_menu.c:258
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Gjenopprette"
+msgstr "Start på nytt"
 
 # gsm/gsm-client-row.c:54
 #: gnome-session/gsm-client-row.c:54
@@ -217,6 +222,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Ein feil oppstod då programmet som styrer instillingane i GNOME vart starta.\n"
+"\n"
+"Somme ting, slik som drakt, lydar og bakgrunnsinnstillingar vil kanskje ikkje "
+"virka ordentleg."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -225,6 +234,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"Den siste feilmeldinga var:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -232,26 +245,28 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME vil likevel prøva å starta innstillingsprogrammet neste gong du loggar "
+"inn."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Ein ukjent aktiviseringsfeil oppstod."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "Innstillingsprogrammet starta på nytt for mange gongar."
 
 # gmenu/treedel.c:146
 #: gnome-session/logout.c:387
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "Er du sikker på at du vil slette denne undermenyen med alt innhald?"
+msgstr "Er du sikker på at du vil logga ut?"
 
 # gsm/logout.c:220
 #: gnome-session/logout.c:417
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Lagre noverande oppsett"
+msgstr "L_agra noverande oppsett"
 
 # gsm/logout.c:239
 #: gnome-session/logout.c:442
@@ -260,19 +275,17 @@ msgstr "Handling"
 
 # panel/logout.c:74 panel/menu.c:5340
 #: gnome-session/logout.c:459
-#, fuzzy
 msgid "_Log out"
-msgstr "Logg ut"
+msgstr "_Logg ut"
 
 # gsm/logout.c:250
 #: gnome-session/logout.c:463
-#, fuzzy
 msgid "Sh_ut down"
-msgstr "Slå av"
+msgstr "Avsl_utt"
 
 #: gnome-session/logout.c:467
 msgid "_Restart the computer"
-msgstr ""
+msgstr "Sta_rt maskinen på nytt"
 
 # gsm/main.c:64
 #: gnome-session/main.c:83
@@ -315,11 +328,10 @@ msgstr ""
 
 #: gnome-session/main.c:274
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Logg inn likevel"
 
 # gsm/gnome-login-check.c:327 gsm/gnome-login-check.c:352
 #: gnome-session/main.c:275
-#, fuzzy
 msgid "Try Again"
 msgstr "Prøv igjen"
 
@@ -351,7 +363,6 @@ msgstr "Du kan vente på svar, eller fjerne det."
 
 # gsm/manager.c:1375
 #: gnome-session/manager.c:1506
-#, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "Gjenoppstart program som er forlatt pga feil."
 
@@ -362,9 +373,8 @@ msgstr "Nedstenging av økta er i gang."
 
 # gsm/session-properties-capplet.c:206
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Lagre endringar i økta automatisk"
+msgstr "Vel aktiv økt"
 
 # gsm/save-session.c:42
 #: gnome-session/save-session.c:47
@@ -411,46 +421,42 @@ msgstr "Rediger namnet på økta"
 
 # gnome-terminal/gnome-terminal.c:1591
 #: gnome-session/session-properties-capplet.c:123
-#, fuzzy
 msgid "_Edit"
-msgstr "Rediger"
+msgstr "R_ediger"
 
 #: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"Somme endringar er ikkje lagra.\n"
+"Vil du avslutta likevel?"
 
 # gsm/session-properties.c:272
 #: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Økt"
+msgstr "Økter"
 
 # gsm/session-properties-capplet.c:192
 #: gnome-session/session-properties-capplet.c:253
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Vis «splash»-skjerm ved pålogging"
+msgstr "Vis oppstartskjerm ved inn_logging"
 
 # gsm/session-properties-capplet.c:199
 #: gnome-session/session-properties-capplet.c:264
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Spør ved utlogging"
+msgstr "S_pør før du loggar ut"
 
 # gsm/session-properties-capplet.c:206
 #: gnome-session/session-properties-capplet.c:275
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Lagre endringar i økta automatisk"
+msgstr "Lagra endrin_gar i økta automatisk"
 
 # gsm/session-properties.c:272
 #: gnome-session/session-properties-capplet.c:286
-#, fuzzy
 msgid "_Sessions:"
-msgstr "Økt"
+msgstr "_Økter:"
 
 # gsm/session-properties-capplet.c:226
 #: gnome-session/session-properties-capplet.c:304
@@ -463,15 +469,13 @@ msgid "Session Options"
 msgstr "Øktval"
 
 #: gnome-session/session-properties-capplet.c:364
-#, fuzzy
 msgid "Current Session"
-msgstr "Lagra aktiv økt"
+msgstr "Aktiv økt"
 
 # gsm/startup-programs.c:373
 #: gnome-session/session-properties-capplet.c:373
-#, fuzzy
 msgid "Additional startup _programs:"
-msgstr "Legg til oppstartsprogram"
+msgstr "Fleire oppstarts_program:"
 
 # gsm/session-properties-capplet.c:292
 #: gnome-session/session-properties-capplet.c:394
@@ -485,23 +489,21 @@ msgstr "Oppstartsprogram"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "Fjern den valde klienten frå økta."
 
 # gsm/session-properties-capplet.c:206
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Lagre endringar i økta automatisk"
+msgstr "Bruk endringane i den aktive økta"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "Liste over program i økta."
 
 # gsm/session-properties-capplet.c:321
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Sjå gjennom køyrande program ..."
+msgstr "_Program som køyrer no:"
 
 # gsm/session-properties.c:357
 #: gnome-session/session-properties.c:104
@@ -510,7 +512,7 @@ msgstr "Initialiser innstillingar for økt"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Set opp øktene dine"
 
 # gsm/splash.c:58 gsm/splash.c:59
 #: gnome-session/splash-widget.c:42
@@ -519,14 +521,13 @@ msgstr "Sawfish vindaugehandsamar"
 
 # gsm/splash.c:67
 #: gnome-session/splash-widget.c:43
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "Vindaugshandsamar"
+msgstr "Metacity vindaugehandsamar"
 
 # gsm/splash.c:67
 #: gnome-session/splash-widget.c:44
 msgid "Window Manager"
-msgstr "Vindaugshandsamar"
+msgstr "Vindaugehandsamar"
 
 # gsm/splash.c:65
 #: gnome-session/splash-widget.c:45
@@ -550,9 +551,8 @@ msgstr "Instillingar for skrivebord"
 
 # gsm/startup-programs.c:283 gsm/startup-programs.c:290
 #: gnome-session/startup-programs.c:288
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Oppstartskommando"
+msgstr "Opp_startskommando:"
 
 # gsm/startup-programs.c:283 gsm/startup-programs.c:290
 #: gnome-session/startup-programs.c:294
@@ -5302,3 +5302,4 @@ msgstr "Rediger oppstartsprogram"
 
 #~ msgid "Menu editor"
 #~ msgstr "Menyredigering"
+
