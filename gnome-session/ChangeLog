@@ -1,3 +1,10 @@
+Tue May 02 23:42:25 2000  George Lebl <jirka@5z.com>
+
+	* ice.c: since the code using IceListenForWellKnownConnections is
+	  comment it out, comment out the init_well_known_connections
+	  function, this will make it at least for now compile on non
+	  Linux or IRIX systems.
+
 2000-05-03  Yukihiro Nakai <nakai@gnome.gr.jp>
 
 	* save-session.desktop: Add Japanese translation.

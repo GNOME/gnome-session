@@ -221,6 +221,7 @@ auth_proc (char* hostname)
     return 0; /* always reject */
 }
 
+#if 0
 /*
  * This routine tries to launch the ICE listen port without an open socket
  * to the world.  It loops from -1 to -256, as the socket might be in use
@@ -239,6 +240,7 @@ init_well_known_connections (void)
 	}
 	return FALSE;
 }
+#endif
 
 void
 initialize_ice (void)
