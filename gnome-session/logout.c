@@ -159,12 +159,38 @@ refresh_screen (void)
   gdk_window_hide (window);
 }
 
+/* FIXME:
+ * 	Hackaround for Pango opening a separate display
+ * connection and doing a server grab while we have a grab
+ * on the primary display connection. This forces Pango
+ * to go ahead and do its font cache before we try to
+ * grab the server.
+ *
+ * c/f metacity/src/ui.c:meta_ui_init()
+ */
+static void
+force_pango_cache_init ()
+{
+	PangoFontMetrics     *metrics;
+	PangoLanguage        *lang;
+	PangoContext         *context;
+	PangoFontDescription *font_desc;
+
+	context = gdk_pango_context_get ();
+	lang = gtk_get_default_language ();
+	font_desc = pango_font_description_from_string ("Sans 12");
+	metrics = pango_context_get_metrics (context, font_desc, lang);
+
+	pango_font_metrics_unref (metrics);
+	pango_font_description_free (font_desc);
+}
+
 static gboolean
 display_gui (void)
 {
   GtkWidget *box;
   GtkWidget *toggle_button = NULL;
-  gint result;
+  gint response;
   gchar *s, *t;
   GtkWidget *halt = NULL;
   GtkWidget *reboot = NULL;
@@ -193,33 +219,32 @@ display_gui (void)
       sleep (1);
     }
 
+  force_pango_cache_init ();
+
   XGrabServer (GDK_DISPLAY ());
   iris ();
 
-  box = gnome_message_box_new (_("Really log out?"),
-			       GNOME_MESSAGE_BOX_QUESTION,
-			       GNOME_STOCK_BUTTON_HELP,
-			       GNOME_STOCK_BUTTON_NO,
-			       GNOME_STOCK_BUTTON_YES,
-			       NULL);
+  box = gtk_message_dialog_new (NULL, 0,
+				GTK_MESSAGE_QUESTION,
+				GTK_BUTTONS_YES_NO,
+				_("Really log out?"));
 
-  gtk_object_set (GTK_OBJECT (box),
-		  "type", GTK_WINDOW_POPUP,
-		  NULL);
+  gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
+		  	     
+  g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
-  gnome_dialog_set_default (GNOME_DIALOG (box), 2);
+  gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_NO);
   gtk_window_set_position (GTK_WINDOW (box), GTK_WIN_POS_CENTER);
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
-  gnome_dialog_close_hides (GNOME_DIALOG (box), TRUE);
+  gtk_container_set_border_width (
+		GTK_CONTAINER (GTK_DIALOG (box)->vbox), GNOME_PAD);
 
-  gtk_container_set_border_width (GTK_CONTAINER (GNOME_DIALOG (box)->vbox),
-				  GNOME_PAD);
   if (!autosave)
     {
       toggle_button = gtk_check_button_new_with_label (_("Save current setup"));
       gtk_widget_show (toggle_button);
-      gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (box)->vbox),
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
 			  toggle_button,
 			  FALSE, TRUE, 0);
     }
@@ -238,7 +263,7 @@ display_gui (void)
       GtkWidget *r;
 
       frame = gtk_frame_new (_("Action"));
-      gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (box)->vbox),
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
 			  frame,
 			  FALSE, TRUE, GNOME_PAD_SMALL);
 
@@ -273,7 +298,8 @@ display_gui (void)
   if (GTK_WINDOW (box)->default_widget != NULL)
 	  gtk_widget_grab_focus (GTK_WINDOW (box)->default_widget);
 
-  result = gnome_dialog_run (GNOME_DIALOG (box));
+  response = gtk_dialog_run (GTK_DIALOG (box));
+  gtk_widget_destroy (box);
 
   refresh_screen ();
   XUngrabServer (GDK_DISPLAY ());
@@ -283,9 +309,9 @@ display_gui (void)
 
   gdk_flush ();
 
-  switch (result)
+  switch (response)
     {
-    case 2:
+    case GTK_RESPONSE_YES:
 	/* We want to know if we should trash changes (and lose forever)
 	 * or save them */
 	if(!autosave)
@@ -299,9 +325,9 @@ display_gui (void)
 	}
       return TRUE;
     default:
-    case 1:
+    case GTK_RESPONSE_NO:
       return FALSE;
-    case 0:
+    case GTK_RESPONSE_HELP:
       gnome_help_display("panelbasics.html#LOGGINGOUT", NULL, NULL);
       return FALSE;
     }

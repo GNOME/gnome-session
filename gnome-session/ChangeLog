@@ -1,3 +1,10 @@
+2002-03-21  Mark McLoughlin  <mark@skynet.ie>
+
+	* logout.c:
+	(force_pango_cache_init): copy hack from metacity to force
+	pango to do its grab before ours - thanks Owen/Havoc.
+	(display_gui): port the logout dialog to GtkDialog.
+
 2002-03-20  jacob berkman  <jacob@ximian.com>
 
 	* Makefile.am (built_sources): fix up built sources rules
