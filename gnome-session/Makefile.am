@@ -27,14 +27,16 @@ gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
 gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
 session.h 
 
+bin_SCRIPTS = gnome-wm
+
 default_DATA = default.session default.wm
 
-default.session: default.in
+default.session: default.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
 		< $(srcdir)/default.in > default.tmp \
 	  && mv default.tmp default.session
 
-default.wm: default.wm.in
+default.wm: default.wm.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# The user can specify his prefered WM by setting the WINDOW_MANAGER
+# environment variable.
+#
+# If this is not set, we search a list of known windowmanagers and use
+# the first one that is found in the users's PATH
+#
+
+if [ -z "$WINDOW_MANAGER" ] ; then
+  for wm in enlightenment icewm windowmaker fvwm2 fvwm ; do
+    check=`which $wm`
+    if [ $? -eq 0 ] ; then
+      WINDOW_MANAGER=$check
+      break
+    fi
+  done
+fi
+
+# If no window manager can be found, we default to xterm
+
+if [ -z "$WINDOW_MANAGER" ] ; then
+  echo "WARNING: No window manger can be found."
+  WINDOW_MANAGER=xterm
+fi
+
+# Store the selected WM so the wm-properties-capplet can find it
+
+if [ ! -d $HOME/.gnome ] ; then
+  mkdir $HOME/.gnome
+  chmod 700 $HOME/.gnome
+fi
+
+rm -f $HOME/.gnome/default.wm
+cat > $HOME/.gnome/default.wm <<EOF
+[Default]
+WM=$WINDOW_MANAGER
+EOF
+
+exec $WINDOW_MANAGER $*
+
