@@ -5,89 +5,37 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-02-19 16:19+0800\n"
+"Project-Id-Version: gnome-session\n"
+"POT-Creation-Date: 2002-11-15 16:54+1300\n"
+"PO-Revision-Date: 2002-09-13 14:56+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.in.h:1
-msgid "Allow TCP connections"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-
-# gsm/logout.c:248
-#: gnome-session/gnome-session.schemas.in.in.h:5
-#, fuzzy
-msgid "Logout prompt"
-msgstr "注销"
-
-#: gnome-session/gnome-session.schemas.in.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-
-# gsm/session-properties.c:264
-#: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
-msgid "Save sessions"
-msgstr "会话"
-
-#: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
-msgid "Show the splash screen"
-msgstr "登录时显示图片展示"
-
-#: gnome-session/gnome-session.schemas.in.in.h:9
-msgid "Show the splash screen when the session starts up"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.in.h:10
-msgid "Splash Screen Image"
-msgstr ""
-
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
-#, fuzzy
+# SUN CHANGED MESSAGE
+#: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
-msgstr "顺序："
+msgstr "顺序(_O)："
 
+# SUN NEW TRANSLATION
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "在会话中启动应用程序的顺序。"
 
+# SUN NEW TRANSLATION
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "当应用程序退出时发生的情况。"
 
+# SUN CHANGED MESSAGE
 #: gnome-session/gsm-client-editor.c:108
-#, fuzzy
 msgid "_Style:"
-msgstr "风格："
+msgstr "风格(_S)："
 
 # applets/multiload/main.c:31
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:362
 msgid "Order"
 msgstr "顺序"
 
@@ -159,9 +107,8 @@ msgstr "不受退出的影响，但会死掉。"
 
 # gmenu/edit.c:336 gsm/session-properties.c:167
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "还原"
+msgstr "自动重启"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -200,6 +147,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"启动 GNOME 设置守护进程时出错。\n"
+"\n"
+"主题、声音或者背景设置等可能不会正常工作。"
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -208,6 +158,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"最后的错误信息是：\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -215,44 +169,44 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME 在您下次登录时仍将试图重启动设置守护进程。"
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "出现未知的激活错误。"
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "设置守护进程重新启动的次数太多。"
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:232
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "您确定要注销吗？"
 
 # gsm/logout.c:221
-#: gnome-session/logout.c:298
-#, fuzzy
+#: gnome-session/logout.c:260
 msgid "_Save current setup"
-msgstr "保存当前设置"
+msgstr "保存当前设置(_S)"
 
 # gsm/logout.c:240
-#: gnome-session/logout.c:318
+#: gnome-session/logout.c:280
 msgid "Action"
 msgstr "动作"
 
 # gsm/logout.c:248
-#: gnome-session/logout.c:326
-#, fuzzy
+#: gnome-session/logout.c:288
 msgid "_Log Out"
-msgstr "注销"
+msgstr "注销(_L)"
 
-#: gnome-session/logout.c:329
-#, fuzzy
+#: gnome-session/logout.c:291
 msgid "Sh_ut Down"
-msgstr "关机"
+msgstr "关机(_U)"
 
-#: gnome-session/logout.c:332
+#: gnome-session/logout.c:294
 msgid "_Restart the computer"
-msgstr ""
+msgstr "重新启动(_R)"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -291,10 +245,9 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "继续登录"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "再试一次"
 
@@ -325,7 +278,6 @@ msgstr "你可以等待它响应或者删除它。"
 
 # gsm/manager.c:1359
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "由于失败导致放弃重新运行。"
 
@@ -376,37 +328,35 @@ msgstr "编辑会话名称"
 
 # gnome-terminal/gnome-terminal.c:1585
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "编辑..."
+msgstr "编辑(_E)..."
 
+# SUN NEW TRANSLATION
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"有些更改没有保存。\n"
+"是否依然要退出？"
 
 # gsm/session-properties.c:264
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
 msgstr "会话"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "登录时显示图片展示"
+msgstr "登录时显示启动画面(_L)"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "注销时提示"
+msgstr "注销时提示(_P)"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "自动保存变动到会话中"
+msgstr "自动保存变动到会话中(_G)"
 
 # gsm/session-properties.c:264
 #: gnome-session/session-properties-capplet.c:279
@@ -419,9 +369,12 @@ msgid "Session Options"
 msgstr "会话选项"
 
 #: gnome-session/session-properties-capplet.c:335
-#, fuzzy
 msgid "Current Session"
-msgstr "保存当前会话"
+msgstr "当前会话"
+
+#: gnome-session/session-properties-capplet.c:362
+msgid "Priority"
+msgstr "优先级"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: gnome-session/session-properties-capplet.c:364
@@ -433,23 +386,23 @@ msgstr "命令"
 msgid "Startup Programs"
 msgstr "启动程序"
 
+# SUN NEW TRANSLATION
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "从会话删除当前选定的客户。"
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "自动保存变动到会话中"
+msgstr "应用变动到会话中"
 
+# SUN NEW TRANSLATION
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "会话中的程序列表。"
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "浏览当前运行的程序..."
+msgstr "当前运行的程序(_P)："
 
 # gsm/session-properties.c:350
 #: gnome-session/session-properties.c:104
@@ -458,104 +411,86 @@ msgstr "初始化会话设置"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "配置对话"
+
+# gnome-terminal/gnome-terminal.c:1590
+#: gnome-session/splash-widget.c:41
+msgid "Audio Settings"
+msgstr "声音设置"
 
 #: gnome-session/splash-widget.c:42
-msgid "Sawfish Window Manager"
-msgstr "Sawfish窗口管理器"
+msgid "Screensaver"
+msgstr "屏幕保护程序"
 
-# applets/desk-guide/deskguide_applet.c:134
 #: gnome-session/splash-widget.c:43
-#, fuzzy
-msgid "Metacity Window Manager"
-msgstr "窗口管理器"
+msgid "Sawfish Window Manager"
+msgstr "Sawfish 窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
+# SUN CHANGED MESSAGE
 #: gnome-session/splash-widget.c:44
+msgid "Metacity Window Manager"
+msgstr "Metacity 窗口管理器"
+
+# applets/desk-guide/deskguide_applet.c:134
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "窗口管理器"
 
-# panel/menu.c:543
-#: gnome-session/splash-widget.c:45
-msgid "The Panel"
-msgstr "面板"
-
+# gnome-terminal/gnome-terminal.c:1193
 #: gnome-session/splash-widget.c:46
-msgid "Session Manager Proxy"
-msgstr "会话管理器代理"
+msgid "Background Settings"
+msgstr "背景设置"
 
+# gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/splash-widget.c:47
-msgid "Nautilus"
-msgstr "Nautilus"
+msgid "Mouse Settings"
+msgstr "鼠标设置"
 
 # gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/splash-widget.c:48
-#, fuzzy
-msgid "Desktop Settings"
+msgid "Keyboard Settings"
 msgstr "键盘设置"
 
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/startup-programs.c:287
-#, fuzzy
-msgid "_Startup Command:"
-msgstr "启动命令"
+# panel/menu.c:543
+#: gnome-session/splash-widget.c:49
+msgid "The Panel"
+msgstr "面板"
+
+#: gnome-session/splash-widget.c:50
+msgid "Session Manager Proxy"
+msgstr "会话管理器代理"
+
+#: gnome-session/splash-widget.c:51
+msgid "Nautilus"
+msgstr "Nautilus"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/startup-programs.c:293
+#: gnome-session/startup-programs.c:286
+msgid "_Startup Command:"
+msgstr "启动命令(_S)："
+
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "启动命令"
 
-#: gnome-session/startup-programs.c:336
+#: gnome-session/startup-programs.c:307
+msgid "_Priority:"
+msgstr "优先级(_P)："
+
+#: gnome-session/startup-programs.c:335
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
 # applets/gkb/gkb.c:262
-#: gnome-session/startup-programs.c:376
+#: gnome-session/startup-programs.c:375
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: gnome-session/startup-programs.c:397
+#: gnome-session/startup-programs.c:396
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
-
-# gnome-terminal/gnome-terminal.c:1590
-#~ msgid "Audio Settings"
-#~ msgstr "声音设置"
-
-#~ msgid "Screensaver"
-#~ msgstr "屏幕保护程序"
-
-# gnome-terminal/gnome-terminal.c:1193
-#~ msgid "Background Settings"
-#~ msgstr "背景设置"
-
-# gnome-terminal/gnome-terminal.c:1590
-#~ msgid "Mouse Settings"
-#~ msgstr "鼠标设置"
-
-#~ msgid "Priority"
-#~ msgstr "优先级"
-
-#, fuzzy
-#~ msgid "_Priority:"
-#~ msgstr "优先级"
-
-# applets/mini-commander/src/command_line.c:116
-# applets/mini-commander/src/exec.c:63
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "正在启动GNOME：%s"
-
-# applets/mini-commander/src/command_line.c:116
-# applets/mini-commander/src/exec.c:63
-#~ msgid "Starting GNOME: done"
-#~ msgstr "正在启动GNOME：完毕"
-
-# help-browser/toc.c:159
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "正在启动GNOME"
 
 # gnome-terminal/gnome-terminal.c:208
 #~ msgid "GNOME Login"
@@ -616,6 +551,10 @@ msgstr "编辑启动程序"
 #~ msgid "Really log out?"
 #~ msgstr "真的要注销？"
 
+# gsm/logout.c:248
+#~ msgid "Logout"
+#~ msgstr "注销"
+
 # gsm/logout.c:254
 #~ msgid "Reboot"
 #~ msgstr "重新启动"
@@ -657,6 +596,23 @@ msgstr "编辑启动程序"
 
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "会话属性和启动程序"
+
+# applets/mini-commander/src/command_line.c:116
+# applets/mini-commander/src/exec.c:63
+#~ msgid "Starting GNOME: %s"
+#~ msgstr "正在启动GNOME：%s"
+
+# applets/mini-commander/src/command_line.c:116
+# applets/mini-commander/src/exec.c:63
+#~ msgid "Starting GNOME: done"
+#~ msgstr "正在启动GNOME：完毕"
+
+# help-browser/toc.c:159
+#~ msgid "GNOME"
+#~ msgstr "GNOME"
+
+#~ msgid "Starting GNOME"
+#~ msgstr "正在启动GNOME"
 
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
