@@ -1,3 +1,12 @@
+2002-10-08  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-sound.c:
+	(esd_enabled): check the enable_esd key.
+	(sound_events_enabled): check the enable_sounds key.
+	(sound_init), (gsm_sound_logout):
+	start esd if enable_esd is set and play the sounds
+	if enable_sounds is set. Fixes #94956.
+
 2002-09-17  jacob berkman  <jacob@ximian.com>
 
         * splash-widget.h (SPLASH_LABEL_V_OFFSET): the code assumes this
