@@ -399,13 +399,9 @@ read_session (const char *name)
   session->handle = command_handle_new ((gpointer)session);
  
   if(name) {
-    if(!g_strcasecmp(name,DEFAULT_SESSION))
+    list = read_clients (CONFIG_PREFIX,name,MATCH_ID);
+    if (!list)
       list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
-    else {
-      list = read_clients (CONFIG_PREFIX,name,MATCH_ID);
-      if (!list)
-	list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
-    }
   } 
   
   /* If the the specified session from the command line doesn't
