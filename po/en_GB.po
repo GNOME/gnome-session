@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-03-19 16:34-0500\n"
-"Last-Translator: Gareth Owen <gowen72@yahoo.com>\n"
+"POT-Creation-Date: 2005-02-13 21:39+0000\n"
+"PO-Revision-Date: 2005-02-13 21:39+0100\n"
+"Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,41 +19,24 @@ msgid "Allow TCP connections"
 msgstr "Allow TCP connections"
 
 #: gnome-session/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
+msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
+msgstr "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"If enabled, gnome-session will prompt the user before ending a session."
+msgstr "If enabled, gnome-session will prompt the user before ending a session."
 
 #: gnome-session/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialogue will have an option to save the session."
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialogue will have an option to save the session."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Logout prompt"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Preferred Image to use for login splash screen"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -68,10 +51,11 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Show the splash screen when the session starts up"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Splash Screen Image"
+msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
+msgstr "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: gnome-session/gsm-client-editor.c:97
+#: gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Order:"
 
@@ -176,25 +160,18 @@ msgstr "Settings"
 msgid "Always started on every login."
 msgstr "Always started on every login."
 
-#.
 #. * it would be nice to have a dialog which either:
-#. *
 #. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
 #. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
 #: gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -332,7 +309,8 @@ msgstr "Kill session"
 msgid "Use dialog boxes"
 msgstr "Use dialogue boxes"
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: gnome-session/save-session.c:146
+#: gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Could not connect to the session manager"
 
@@ -374,9 +352,8 @@ msgid "Show splash screen on _login"
 msgstr "Show splash screen on _login"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "_Prompt on logout"
+msgstr "As_k on logout"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -482,293 +459,3 @@ msgstr "Add Startup Program"
 msgid "Edit Startup Program"
 msgstr "Edit Startup Program"
 
-#, fuzzy
-#~ msgid "Background Settings"
-#~ msgstr "Background colour"
-
-#~ msgid "Color Xterm"
-#~ msgstr "Colour Xterm"
-
-#~ msgid "Custom"
-#~ msgstr "Custom"
-
-#~ msgid "Custom colors"
-#~ msgstr "Custom colours"
-
-#~ msgid "Color selector"
-#~ msgstr "Colour selector"
-
-#~ msgid "Foreground color"
-#~ msgstr "Foreground colour"
-
-#~ msgid "COLOR"
-#~ msgstr "COLOUR"
-
-#~ msgid "Background color"
-#~ msgstr "Background colour"
-
-#~ msgid "Background color:"
-#~ msgstr "Background colour:"
-
-#, fuzzy
-#~ msgid "Background should be shaded"
-#~ msgstr "Background colour"
-
-#, fuzzy
-#~ msgid "Background type"
-#~ msgstr "Background colour"
-
-#~ msgid "Color palette:"
-#~ msgstr "Colour palette:"
-
-#~ msgid "Color scheme:"
-#~ msgstr "Colour scheme:"
-
-#~ msgid "Colors"
-#~ msgstr "Colours"
-
-#, fuzzy
-#~ msgid "Fore/Background Color:"
-#~ msgstr "Fore/Background Colour:"
-
-#~ msgid "Foreground color:"
-#~ msgstr "Foreground colour:"
-
-#, fuzzy
-#~ msgid "Pick a color"
-#~ msgstr "Clock colour"
-
-#, fuzzy
-#~ msgid "C_olor selector"
-#~ msgstr "Colour selector"
-
-#, fuzzy
-#~ msgid "_Close terminal"
-#~ msgstr "Colour Xterm"
-
-#, fuzzy
-#~ msgid "Font Selection"
-#~ msgstr "Colour selector"
-
-#~ msgid "Szabolcs 'Shooby' Ban"
-#~ msgstr "Szabolcs 'Shooby' Bán"
-
-#~ msgid "Frederic Devernay"
-#~ msgstr "Frédéric Devernay"
-
-#~ msgid "Gergo Erdi"
-#~ msgstr "Gergo Érdi"
-
-#~ msgid "Alexandre Muniz"
-#~ msgstr "Alexandre Muñiz"
-
-#~ msgid "Martin Norbaeck"
-#~ msgstr "Martin Norbäck"
-
-#~ msgid "Tomas Oegren"
-#~ msgstr "Tomas Ögren"
-
-#~ msgid "Inigo Serna"
-#~ msgstr "Iñigo Serna"
-
-#~ msgid "%H:%M"
-#~ msgstr "%H%M"
-
-#, fuzzy
-#~ msgid "Select animation"
-#~ msgstr "Colour selector"
-
-#, fuzzy
-#~ msgid "Text only"
-#~ msgstr "Text Colour"
-
-#, fuzzy
-#~ msgid "Solaris"
-#~ msgstr "Colours"
-
-#, fuzzy
-#~ msgid "%l:%M %p"
-#~ msgstr "%H%M %Z"
-
-#, fuzzy
-#~ msgid "%l:%M:%S %p"
-#~ msgstr "%H%M %Z"
-
-#, fuzzy
-#~ msgid "%I:%M:%S %p"
-#~ msgstr "%H%M %Z"
-
-#, fuzzy
-#~ msgid "Panel Settings"
-#~ msgstr "Background colour"
-
-#, fuzzy
-#~ msgid "No program selected"
-#~ msgstr "Colour selector"
-
-#, fuzzy
-#~ msgid "%I: %M: %S: %p"
-#~ msgstr "%H%M %Z"
-
-#~ msgid "Color"
-#~ msgstr "Colour"
-
-#~ msgid "Color to use:"
-#~ msgstr "Colour to use:"
-
-#, fuzzy
-#~ msgid "Games menu"
-#~ msgstr "Favourites menu"
-
-#, fuzzy
-#~ msgid "rxvt terminal"
-#~ msgstr "Colour Xterm"
-
-#, fuzzy
-#~ msgid "X Terminal"
-#~ msgstr "Colour Xterm"
-
-#~ msgid "Favorites"
-#~ msgstr "Favourites"
-
-#, fuzzy
-#~ msgid "Add this program to Favorites"
-#~ msgstr "Add this to Favourites menu"
-
-#~ msgid "Add this to Favorites menu"
-#~ msgstr "Add this to Favourites menu"
-
-#~ msgid "Favorites: "
-#~ msgstr "Favourites: "
-
-#~ msgid "Show iconified (minimized) applications"
-#~ msgstr "Show iconified (minimised) applications"
-
-#~ msgid "Show iconified (minimized) applications on all desktops"
-#~ msgstr "Show iconified (minimised) applications on all desktops"
-
-#~ msgid "Favorites (user menus)"
-#~ msgstr "Favourites (user menus)"
-
-#~ msgid ""
-#~ "Released under the terms of the GNU Public License.\n"
-#~ "GNOME menu editor."
-#~ msgstr ""
-#~ "Released under the terms of the GNU Public Licence.\n"
-#~ "GNOME menu editor."
-
-#~ msgid ""
-#~ "Alternate editor types are not supported by gnome-edit yet.\n"
-#~ "Please choose a standard executable editor in the gnome-edit capplet\n"
-#~ "in the gnome control center."
-#~ msgstr ""
-#~ "Alternate editor types are not supported by gnome-edit yet.\n"
-#~ "Please choose a standard executable editor in the gnome-edit capplet\n"
-#~ "in the gnome control centre."
-
-#~ msgid ""
-#~ "You've chosen to disable the startup hint.\n"
-#~ "To re-enable it, choose \"Startup Hint\"\n"
-#~ "in the GNOME Control Center"
-#~ msgstr ""
-#~ "You've chosen to disable the startup hint.\n"
-#~ "To re-enable it, choose \"Startup Hint\"\n"
-#~ "in the GNOME Control Centre"
-
-#, fuzzy
-#~ msgid "Copy date to selection"
-#~ msgstr "Colour selector"
-
-#~ msgid "C_olor selector..."
-#~ msgstr "C_olour selector..."
-
-#~ msgid ""
-#~ "Released under the GNU general public license.\n"
-#~ "A modem status indicator and dialer.Lights in order from the top or left "
-#~ "are RX and TX"
-#~ msgstr ""
-#~ "Released under the GNU general public licence.\n"
-#~ "A modem status indicator and dialer.Lights in order from the top or left "
-#~ "are RX and TX"
-
-#~ msgid ""
-#~ "This GNOME applet adds a command line to the panel. It features command "
-#~ "completion, command history, changeable macros and an optional built-in "
-#~ "clock.\n"
-#~ "\n"
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version."
-#~ msgstr ""
-#~ "This GNOME applet adds a command line to the panel. It features command "
-#~ "completion, command history, changeable macros and an optional built-in "
-#~ "clock.\n"
-#~ "\n"
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public Licence as published by the "
-#~ "Free Software Foundation; either version 2 of the Licence, or (at your "
-#~ "option) any later version."
-
-#~ msgid ""
-#~ "Released under the GNU general public license.\n"
-#~ "Displays time in Binary Coded Decimal\n"
-#~ "http://snoopy.net/~jon/jbc/."
-#~ msgstr ""
-#~ "Released under the GNU general public licence.\n"
-#~ "Displays time in Binary Coded Decimal\n"
-#~ "http://snoopy.net/~jon/jbc/."
-
-#~ msgid "Inactive Desktop Color"
-#~ msgstr "Inactive Desktop Colour"
-
-#~ msgid "Inactive Window Color"
-#~ msgstr "Inactive Window Colour"
-
-#~ msgid "Active Window Color"
-#~ msgstr "Active Window Colour"
-
-#~ msgid ""
-#~ "Released under the GNU general public license.\n"
-#~ "Mounts and Unmounts drives.."
-#~ msgstr ""
-#~ "Released under the GNU general public licence.\n"
-#~ "Mounts and Unmounts drives.."
-
-#~ msgid "Backgroundcolor"
-#~ msgstr "Background Colour"
-
-#~ msgid ""
-#~ "Released under the GNU general public license.\n"
-#~ "Basic digital clock with date in a tooltip. Optional 12/24 time display. "
-#~ "Mail blinking can be for any unread mail, or only briefly when new mail "
-#~ "arrives."
-#~ msgstr ""
-#~ "Released under the GNU general public licence.\n"
-#~ "Basic digital clock with date in a tooltip. Optional 12/24 time display. "
-#~ "Mail blinking can be for any unread mail, or only briefly when new mail "
-#~ "arrives."
-
-#~ msgid "Graph Tick Color:"
-#~ msgstr "Graph Tick Colour:"
-
-#~ msgid "Graph Battery Low Color:"
-#~ msgstr "Graph Battery Low Colour:"
-
-#~ msgid "Low Battery Color:"
-#~ msgstr "Low Battery Color:"
-
-#~ msgid "AC-Off Battery Color:"
-#~ msgstr "AC-Off Battery Colour:"
-
-#~ msgid "AC-On Battery Color:"
-#~ msgstr "AC-On Battery Colour:"
-
-#~ msgid "Second needle color"
-#~ msgstr "Second needle colour"
-
-#~ msgid "Minute needle color"
-#~ msgstr "Minute needle colour"
-
-#~ msgid "Hour needle color"
-#~ msgstr "Hour needle colour"
