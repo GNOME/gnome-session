@@ -1,4 +1,4 @@
-# Gnome yn Gymraeg.
+# GNOME yn Gymraeg.
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # www.gyfieithu.co.uk <kyfieithu@dotmon.com>, 2003.
 # and contributors
@@ -7,20 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "POT-Creation-Date: 2003-05-20 13:24+0100\n"
-"PO-Revision-Date: 2003-05-02 21:50+0200\n"
-"Last-Translator: www.gyfieithu.co.uk <kyfieithu@dotmon.com>\n"
+"PO-Revision-Date: 2003-06-06 12:25+0100\n"
+"Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
 "Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"X-Generator: Kartouche 0.0.1a\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
 msgstr "Caniatàu cysylltiadau TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
-#, fuzzy
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -29,8 +27,8 @@ msgid ""
 msgstr ""
 "Am resymau diogelwch, nid yw gnome-session yn caniatàu cysylltiadau TCP ar "
 "systemau sy'n darparu _IceTcpTransNoListen() (systemau XFree86). Mae'r "
-"dewisiad hwn yn caniatàu cysylltiadau o westeion pell (awdurdodedig). Mae'n "
-"rhaid ail-ddechrau gnome-session cyn bo hyn yn cael effaith."
+"opsiwn hwn yn caniatàu cysylltiadau o westeion pell (awdurdodedig). Mae'n "
+"rhaid ailgychwyn gnome-session cyn bo hyn yn cael effaith."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -39,30 +37,28 @@ msgstr ""
 "sesiwn."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
-#, fuzzy
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Os galluogir hyn, fe fydd gnome-session yn arbed y sessiwn yn awtomatig. Fel "
-"arall, fe fydd gan y deialog allgofnodi ddewisiad i arbed y sesiwn."
+"Os galluogir hyn, fe fydd gnome-session yn cadw'r sessiwn yn awtomatig. "
+"Fel arall, fe fydd gan y deialog allgofnodi opsiwn i gadw'r sesiwn."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
 msgstr "Annog allgofnodi"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
-#, fuzzy
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"Yr iaith hoffech gael ei ddefnyddio yn y sgrîn gychwyn wrth fewngofnodi i "
-"Fwrdd Gwaith GNOME"
+"Y ddelwedd hoffech gael ei ddefnyddio yn y sgrîn gychwyn wrth "
+"fewngofnodi i Fwrdd Gwaith GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
-msgstr "Arbed sesiynau"
+msgstr "Cadw sesiynau"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
 msgid "Show the splash screen"
@@ -70,7 +66,7 @@ msgstr "Dangos y sgrîn gychwyn"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Dangos y sgrîn gychwyn wrth ddechrau sesiwn"
+msgstr "Dangos y sgrîn gychwyn wrth gychwyn sesiwn"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
@@ -115,7 +111,7 @@ msgstr "Anweithredol"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Aros i ddechrau neu wedi gorffen."
+msgstr "Aros i gychwyn neu wedi gorffen."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -135,11 +131,11 @@ msgstr "Aelod normal o'r sesiwn."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "Wrthi'n Arbed"
+msgstr "Wrthi'n Cadw"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "Wrthi'n arbed manylion y sesiwn."
+msgstr "Wrthi'n cadw manylion y sesiwn."
 
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -179,7 +175,7 @@ msgstr "Gosodiadau"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Caiff ei ddechrau wrth bob mewngofnodiad."
+msgstr "Caiff ei gychwyn wrth bob mewngofnodiad."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -190,43 +186,40 @@ msgstr "Caiff ei ddechrau wrth bob mewngofnodiad."
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
 #: gnome-session/gsm-gsd.c:41
-#, fuzzy
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Roedd gwall wrth ddechrau Daemon Gosodiadau GNOME.\n"
-" \n"
-" Efallai ni fydd rhai pethau (megis themau, seiniau a cefndir) yn gweithio'n "
-"gywir.\n"
+"Roedd gwall wrth gychwyn Daemon Gosodiadau GNOME.\n"
+"\n"
+"Efallai ni fydd rhai pethau (megis themàu, seiniau a cefndir) yn "
+"gweithio'n gywir."
 
 #: gnome-session/gsm-gsd.c:53
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "The last error message was:\n"
 "\n"
 msgstr ""
-" \n"
-" \n"
-" Y neges gwall ddiwethaf oedd:\n"
-" \n"
+"\n"
+"\n"
+"Y neges gwall ddiwethaf oedd:\n"
+"\n"
 "\n"
 
 #: gnome-session/gsm-gsd.c:58
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
-" \n"
-" \n"
-" Bydd GNOME yn dal i geisio ail-ddechrau y Daemon Gosodiadau y tro nesaf i "
-"chi mewn-gofnodi.\n"
+"\n"
+"\n"
+"Bydd GNOME o hyd yn ceisio ailgychwyn y Daemon Gosodiadau y tro nesaf i "
+"chi fewngofnodi.\n"
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -242,7 +235,7 @@ msgstr "Ydych chi'n sicr eich bod eisiau allgofnodi?"
 
 #: gnome-session/logout.c:394
 msgid "_Save current setup"
-msgstr "_Arbed y Cyflwr Cyfredol"
+msgstr "_Cadw'r cyflwr cyfredol"
 
 #: gnome-session/logout.c:414
 msgid "Action"
@@ -266,7 +259,7 @@ msgstr "Penodwch enw sesiwn i'w lwytho"
 
 #: gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
-msgstr "Darllenwyd sesiynau wedi'i arbed o'r ffeil default.session yn unig"
+msgstr "Darllen sesiynau wedi'u cadw o'r ffeil default.session yn unig"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
@@ -282,7 +275,7 @@ msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Y milfedau o eiliadau dylid aros am gleientau i derfynu (0 = am byth)"
 
 #: gnome-session/main.c:217
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
 "This will prevent GNOME from operating correctly.\n"
@@ -290,9 +283,9 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "Methu canfod y cyfeiriad rhyngrwyd ar gyfer %s.\n"
-" Fe fydd hyn yn rhwystro GNOME rhag weithredu'n gywir.\n"
-" Fe all fod yn bosib i gywiro'r broblem gan ychwanegu\n"
-" %s y ffeil /etc/hosts.\n"
+"Fe fydd hyn yn rhwystro GNOME rhag weithredu'n gywir.\n"
+"Fe all fod yn bosib i gywiro'r broblem gan ychwanegu\n"
+"%s y ffeil /etc/hosts.\n"
 
 #: gnome-session/main.c:224
 msgid "Log in Anyway"
@@ -304,7 +297,7 @@ msgstr "Ceisio Eto"
 
 #: gnome-session/manager.c:174
 msgid "Your session has been saved"
-msgstr "Arbedwyd eich sesiwn"
+msgstr "Mae eich sesiwn wedi ei gadw"
 
 #: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
@@ -332,9 +325,8 @@ msgid "A session shutdown is in progress."
 msgstr "Mae terfyniad sesiwn yn digwydd."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Gosod y newidiadau i'r sesiwn gyfredol"
+msgstr "Gosod y sesiwn gyfredol"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -350,15 +342,15 @@ msgstr "Methu cysylltu â'r rheolwr sesiwn"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
-msgstr "Arbed y Sesiwn Gyfredol"
+msgstr "Cadw'r Sesiwn Gyfredol"
 
 #: gnome-session/save-session.desktop.in.h:2
 msgid "Save current state of desktop"
-msgstr "Arbed cyflwr gyfredol y bwrdd gwaith"
+msgstr "Cadw cyflwr cyfredol y bwrdd gwaith"
 
 #: gnome-session/session-names.c:139
 msgid "The session name cannot be empty"
-msgstr "Ni chaniateir enw sesiwn gwag"
+msgstr "Ni all enw'r sesiwn fod yn wag"
 
 #: gnome-session/session-names.c:149
 msgid "The session name already exists"
@@ -377,13 +369,12 @@ msgid "_Edit"
 msgstr "_Golygu"
 
 #: gnome-session/session-properties-capplet.c:172
-#, fuzzy
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-" Mae rhai newidiadau heb eu arbed.\n"
-"Ydy hi'n iawn i derfynu fodd bynnag?\n"
+"Mae rhai newidiadau heb eu cadw.\n"
+"Ydy hi'n iawn i derfynnu fodd bynnag?"
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
@@ -400,7 +391,7 @@ msgstr "_Cadarnhau wrth allgofnodi"
 
 #: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
-msgstr "Arbed newidiadau i'r sesiwn yn _awtomatig"
+msgstr "Cadw newidiadau i'r sesiwn yn _awtomatig"
 
 #: gnome-session/session-properties-capplet.c:262
 msgid "_Sessions:"
@@ -428,7 +419,7 @@ msgstr "Gorchymyn"
 
 #: gnome-session/session-properties-capplet.c:392
 msgid "Startup Programs"
-msgstr "Rhaglenni Wrth Ddechrau"
+msgstr "Rhaglenni Wrth Gychwyn"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -484,15 +475,15 @@ msgstr "Gosodiadau Bwrth Gwaith"
 
 #: gnome-session/startup-programs.c:289
 msgid "_Startup Command:"
-msgstr "_Gorchymyn Wrth Ddechrau:"
+msgstr "_Gorchymyn Wrth Gychwyn:"
 
 #: gnome-session/startup-programs.c:295
 msgid "Startup Command"
-msgstr "Gorchymyn Wrth Ddechrau"
+msgstr "Gorchymyn Wrth Gychwyn"
 
 #: gnome-session/startup-programs.c:338
 msgid "The startup command cannot be empty"
-msgstr "Ni chaiff y gorchymyn wrth ddechrau fod yn wag"
+msgstr "Ni chaiff y gorchymyn wrth gychwyn fod yn wag"
 
 #: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
