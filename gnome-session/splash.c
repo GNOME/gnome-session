@@ -55,6 +55,16 @@ stop_splash ()
   gtk_widget_destroy (sd->dialog);
 }
 
+static void
+window_realize (GtkWidget *win)
+{
+  /* this is done because on startup the splash screen should 
+     be on top of the hints which are at WIN_LAYER_ONTOP,
+     in fact, the splash screen is only temporary and should
+     be above everything */
+  gnome_win_hints_set_layer(win,WIN_LAYER_ABOVE_DOCK);
+}
+
 void
 start_splash (gfloat max)
 {
@@ -75,6 +85,11 @@ start_splash (gfloat max)
 			 FALSE, FALSE, FALSE);
 
   gtk_widget_add_events (sd->dialog, GDK_BUTTON_RELEASE_MASK);
+
+  gtk_signal_connect_after (GTK_OBJECT (sd->dialog),
+			    "realize",
+			    GTK_SIGNAL_FUNC (window_realize),
+			    NULL);
 
   gtk_signal_connect (GTK_OBJECT (sd->dialog),
 		      "button-release-event",
