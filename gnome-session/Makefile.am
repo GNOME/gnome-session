@@ -6,6 +6,7 @@ INCLUDES = 			\
 LDADD = \
 	@LEXLIB@					\
 	$(GNOMEUI_LIBS)					\
+	$(DL_LIB)					\
         @XF86MISC_LIBS@
 
 bin_PROGRAMS = gnome-session
