@@ -403,8 +403,9 @@ set_session_name (const char *name)
 	{
 	  if (saved_session_name)
 	    g_free (saved_session_name);
-	  
-	  saved_session_name = g_strdup (name);
+
+	  if (name)	  
+	    saved_session_name = g_strdup (name);
 	  
 	  name = TRASH_SESSION;
 	}
