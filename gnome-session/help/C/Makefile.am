@@ -10,6 +10,7 @@ figs = \
 	stock_trash.png
 app = session
 lang = C
+omffiles = session-C.omf
 include $(top_srcdir)/app-docs.make
 dist-hook: app-dist-hook
 
