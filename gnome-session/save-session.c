@@ -34,12 +34,16 @@
 /* True if killing.  */
 static int zap = 0;
 
+/* True if we should use dialog boxes */
+static int gui = 0; 
+
 /* True if the session manager is currently in trash mode */
 static int save_trashing = FALSE;
 
 static const struct poptOption options[] = {
-  {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"), NULL},
-  {NULL, '\0', 0, NULL, 0}
+  {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"),     NULL},
+  {"gui",  '\0', POPT_ARG_NONE, &gui, 0, N_("Use dialog boxes"), NULL},
+  {NULL,   '\0', 0, NULL, 0}
 };
 
 static int exit_status = 0;
@@ -56,6 +60,11 @@ ping_reply (IceConn ice_conn, IcePointer clientData)
 static void
 save_complete (GnomeClient* client, gpointer data)
 {
+  /* this seems to be called twice */
+  static int been_here;
+  if (been_here) return;
+    been_here = TRUE;
+    
   /* Set this back if we aren't shutting down */
   if (save_trashing && !zap)
     gsm_protocol_set_trash_mode (protocol, TRUE);
@@ -72,6 +81,8 @@ int
 main (int argc, char *argv[])
 {
   GnomeClient *client;
+  GtkWidget *dialog;
+  char *s;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
@@ -82,15 +93,30 @@ main (int argc, char *argv[])
   client = gnome_master_client ();
   if (! GNOME_CLIENT_CONNECTED (client))
     {
-      fprintf (stderr,
-	       _("save-session: couldn't connect to session manager\n"));
+      s = _("Could not connect to the session manager");
+      if (gui)
+	{
+	  dialog = gnome_message_box_new (s, GNOME_MESSAGE_BOX_ERROR,
+					  GNOME_STOCK_BUTTON_OK, NULL);
+	  gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+	}
+      else
+	g_printerr ("%s\n", s);
       return 1;
     }
 
   protocol = (GsmProtocol *)gsm_protocol_new (client);
   if (!protocol)
     {
-      g_warning ("Could not connect to gnome-session.");
+      s = _("Could not connect to gnome-session");
+      if (gui)
+	{
+	  dialog = gnome_message_box_new (s, GNOME_MESSAGE_BOX_ERROR,
+					  GNOME_STOCK_BUTTON_OK, NULL);
+	  gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+	}
+      else
+	g_printerr ("%s\n", s);
       exit (1);
     }
 
@@ -130,6 +156,14 @@ main (int argc, char *argv[])
 		      GTK_SIGNAL_FUNC (save_complete), (gpointer)1);
 
   gtk_main ();
+
+  if (gui)
+    {      
+      dialog = gnome_message_box_new (_("Your session has been saved"),
+				      GNOME_MESSAGE_BOX_INFO,
+				      GNOME_STOCK_BUTTON_OK, NULL);
+      gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+    }
 
   return exit_status;
 }
