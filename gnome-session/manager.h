@@ -25,6 +25,21 @@
 
 #include "glib.h"
 
+/* Rule used to match client: gets around need to specify proper client ids
+ * when starting from sysadmin files or via the GsmAddClient protocol.
+ * This is a big burden off end users and only creates the possibility of
+ * confusion between PURGED SM aware clients started by GsmAddClient. */
+typedef enum {
+  MATCH_NONE,
+  MATCH_ID,
+  MATCH_FAKE_ID,
+  MATCH_DONE,
+  MATCH_PROP
+} MatchRule;
+
+/* Additional details for clients that speak our command protocol */
+typedef struct _CommandData CommandData;
+
 /* Each client is represented by one of these.  Note that the client's
    state is not kept explicitly.  A client is on only one of several
    linked lists at a given time; the state is implicit in the list.  */
@@ -32,6 +47,9 @@ typedef struct
 {
   /* Client's session id.  */
   char *id;
+
+  /* Handle for the GsmCommand protocol */
+  gchar* handle;
 
   /* Client's connection.  */
   SmsConn connection;
@@ -48,12 +66,35 @@ typedef struct
   guint priority;
 
   /* Used to avoid registering clients with ids from default.session */
-  gboolean faked_id;
+  MatchRule match_rule;
+
+  /* Used to decouple SmsGetPropertiesProc and SmsReturnProperties
+   * for the purpose of extending the protocol: */
+  GSList* get_prop_replies;
+  guint get_prop_requests;
+
+  /* Additional details for clients that speak our command protocol */
+  CommandData *command_data;
 } Client;
+
+typedef struct {
+  /* Handle for the GsmCommand protocol */
+  gchar*  handle;
+
+  /* session name for user presentation */
+  gchar*  name;
+
+  /* The Client* members of the session */
+  GSList *client_list;
+} Session;
+
 
 /* Milliseconds to wait for clients to register before assuming that
  * they have finished any initialisation needed by other clients. */
 extern guint purge_delay;
+
+/* Milliseconds to wait for clients to die before cutting our throat. */
+extern guint suicide_delay;
 
 /*
  * manager.c
@@ -62,11 +103,16 @@ extern guint purge_delay;
 /* Start an individual client. */
 void start_client (Client* client);
 
+/* Start a list of clients in priority order. */
+void start_clients (GSList* client_list);
+
+/* Remove a client from the session (completely).
+ * Returns 1 on success, 0 when the client was not found in the current 
+ * session and -1 when a save is in progress. */
+gint remove_client (Client* client);
+
 /* Free the memory used by a client. */
 void free_client (Client* client);
-
-/* Starts a list of clients in order of their priority. */
-void load_session (GSList* clients);
 
 /* Run the Discard, Resign or Shutdown command on a client.
  * Returns the pid or -1 if unsuccessful. */
@@ -89,9 +135,9 @@ Status new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 /* Find a client from a list */
 Client* find_client_by_id (const GSList *list, const char *id);
 
-/* Handler for IO errors on an ICE connection.  This just cleans up
-   after the client.  */
-void io_error_handler (IceConn connection);
+/* This is used to send properties to clients that use the _GSM_Command
+ * protocol extension. */
+void send_properties (Client* client, GSList* prop_list);
 
 /*
  * save.c
@@ -101,19 +147,23 @@ void io_error_handler (IceConn connection);
  * Returns the name that has been assigned to the session. */
 gchar* set_session_name (const gchar *name);
 
+/* Returns name of last session run (with a default) */
+gchar* get_last_session (void);
+
 /* Releases the lock on the session name when shutting down the session */
 void unlock_session (void);
 
 /* Write current session to the config file. */
 void write_session (void);
 
-/* Load a session from our configuration by name.
- * The first time that this is called it establishes the name for the
- * base session.
- * An empty base session is filled out with the clients in default.session.
- * Later calls merge the requested session into the base session.
- * Returns TRUE when some clients were loaded. */
-int read_session (const char *name);
+/* Load a session from our configuration by name. */
+Session* read_session (const char *name);
+
+/* Starts the clients in a session and frees the session. */
+void start_session (Session* session);
+
+/* Frees the memory used by a session. */
+void free_session (Session* session);
 
 /* Delete a session from the config file and discard any stale
  * session info saved by clients that were in the session. */
@@ -123,11 +173,14 @@ void delete_session (const char *name);
  * ice.c
  */
 
-/* Call this to initialize the ICE part of the session manager.
-   Returns 1 on success, 0 on error.  */
-int initialize_ice (void);
+/* Initialize the ICE part of the session manager. */
+void initialize_ice (void);
 
-/* Call this to clean up ICE when exiting.  */
+/* Set a clean up callback for when the ice_conn is closed. */
+void ice_set_clean_up_handler (IceConn ice_conn, 
+			       GDestroyNotify, gpointer data);
+
+/* Clean up ICE when exiting.  */
 void clean_ice (void);
 
 /*
@@ -161,5 +214,41 @@ gboolean find_vector_property (const Client *client, const char *name,
 
 /* Free the return result from find_vector_property.  */
 void free_vector (int argc, char **argv);
+
+/*
+ * command.c
+ */
+
+/* Log change in the state of a client with the client event selectors. */
+void client_event (const gchar* handle, const gchar* event);
+
+/* Log change in the properties of a client with the client event selectors. */
+void client_property (const gchar* handle, int nprops, SmProp** props);
+
+/* Log reasons for an event with the client event selectors. */
+void client_reasons (const gchar* handle, gint count, gchar** reasons);
+
+/* Process a _GSM_Command protocol message. */
+void command (Client* client, int nprops, SmProp** props);
+
+/* TRUE when the _GSM_Command protocol is enabled for this client. */
+gboolean command_active (Client* client);
+
+/* Clean up the _GSM_Command protocol for a client. */
+void command_clean_up (Client* client);
+
+/* Create an object handle for use in the _GSM_Command protocol. */
+gchar* command_handle_new (gpointer object);
+
+/* Move an object handle from one object to another. */ 
+gchar* command_handle_reassign (gchar* handle, gpointer new_object);
+
+/* Free an object handle */
+void command_handle_free (gchar* handle);
+
+/* Convenience macros */
+#define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
+#define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
+#define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))
 
 #endif /* MANAGER_H */
