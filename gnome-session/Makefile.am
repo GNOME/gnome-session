@@ -233,4 +233,4 @@ dist-hook:
 EGGDIR = $(srcdir)/../../libegg/libegg/screen-exec
 
 regenerate-built-sources:
-        EGGFILES="$(EGGFILES)" EGGDIR="$(EGGDIR)" $(srcdir)/update-from-egg.sh
+	EGGFILES="$(EGGFILES)" EGGDIR="$(EGGDIR)" $(srcdir)/update-from-egg.sh
