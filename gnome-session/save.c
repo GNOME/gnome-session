@@ -162,9 +162,9 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
 	{
 	  Client *client = (Client *) list->data;
 
-	  sprintf (prefix, "session/%s/%d,",
-		   session_name ? session_name : DEFAULT_SESSION,
-		   i);
+	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,",
+		      session_name ? session_name : DEFAULT_SESSION,
+		      i);
 	  gnome_config_push_prefix (prefix);
 	  if (write_one_client (i, client))
 	    ++i;
@@ -174,8 +174,8 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
       ++step;
     }
   
-  sprintf (prefix, "session/%s/num_clients",
-	   session_name ? session_name : DEFAULT_SESSION);
+  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients",
+	      session_name ? session_name : DEFAULT_SESSION);
   gnome_config_set_int (prefix, i);
 
   gnome_config_sync ();
@@ -209,7 +209,7 @@ run_commands (const char *name, int number, const char *command,
       gboolean def, envd;
       char **argv, *dir, prefix[1024], **envv, **envp;
 
-      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, command);
       gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
       if (! def)
@@ -225,7 +225,7 @@ run_commands (const char *name, int number, const char *command,
 	      char *id;
 	      Client *client;
 	      
-	      sprintf (prefix, "session/%s/%d,id=", name, i);
+	      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id=", name, i);
 	      id = gnome_config_get_string (prefix);
 	      
 	      if ((client = find_client_by_id (list1, id)) || 
@@ -255,10 +255,10 @@ run_commands (const char *name, int number, const char *command,
 		}
 	    }
 
-	  sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
+	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, SmCurrentDirectory);
 	  dir = gnome_config_get_string (prefix);
 	  
-	  sprintf (prefix, "session/%s/%d,%s=", name, i, SmEnvironment);
+	  g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, SmEnvironment);
 	  gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
 	  if (envd)
 	    envp = NULL;
@@ -305,7 +305,7 @@ run_string_commands (const char *name, int number, const char *command,
       gboolean def;
       char *old_command, prefix[1024];
 
-      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,%s=", name, i, command);
       old_command = gnome_config_get_string_with_default (prefix, &def);
 
       if (! def)
@@ -318,7 +318,7 @@ run_string_commands (const char *name, int number, const char *command,
 	      char *id;
 	      Client *client;
 	      
-	      sprintf (prefix, "session/%s/%d,id=", name, i);
+	      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id=", name, i);
 	      id = gnome_config_get_string (prefix);
 	      
 	      if ((client = find_client_by_id (list1, id)) || 
@@ -377,7 +377,7 @@ run_preloads (int count)
       char *text, buf[20];
       gboolean def;
 
-      sprintf (buf, "%d", i);
+      g_snprintf (buf, sizeof(buf), "%d=true", i);
       text = gnome_config_get_string_with_default (buf, &def);
       if (! def)
 	gnome_execute_shell (NULL, text);
@@ -412,7 +412,7 @@ read_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "session/%s/num_clients=0", name);
+  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=0", name);
   num_clients = gnome_config_get_int (prefix);
 
   preloads = num_preloads ();
@@ -442,7 +442,7 @@ read_session (const char *name)
     {
       char *id;
 
-      sprintf (prefix, "session/%s/%d,id", name, i);
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,id", name, i);
       id = gnome_config_get_string (prefix);
       if (id)
 	add_zombie (id);
@@ -463,7 +463,7 @@ delete_session (const char *name, const GSList* list1, const GSList* list2)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "session/%s/num_clients=-1", name);
+  g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients=-1", name);
   number = gnome_config_get_int_with_default (prefix, &def);
   if (def)
     {
@@ -474,7 +474,7 @@ delete_session (const char *name, const GSList* list1, const GSList* list2)
   run_commands (name, number, SmDiscardCommand, list1, list2);
   run_string_commands (name, number, XsmDiscardCommand, list1, list2);
 
-  sprintf (prefix, "session/%s", name);
+  g_snprintf (prefix, sizeof(prefix), "session/%s", name);
   gnome_config_clean_section (prefix);
   gnome_config_sync ();
 }
