@@ -50,7 +50,7 @@ GnomeUIInfo style_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Normal"), 
                          N_("Unaffected by logouts but can die."),
                          NULL, GNOME_STOCK_MENU_BLANK),
-  GNOMEUIINFO_ITEM_STOCK(N_("Respawn"), 
+  GNOMEUIINFO_ITEM_STOCK(N_("Restart"), 
                          N_("Never allowed to die."),
                          NULL, GNOME_STOCK_MENU_REFRESH),
   GNOMEUIINFO_ITEM_STOCK(N_("Trash"), 

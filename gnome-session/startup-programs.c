@@ -255,9 +255,9 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   GtkWidget *entry;
   GtkWidget *spinbutton;
   GtkWidget *label;
-  GtkWidget *frame;
+  GtkWidget *a;
   GtkWidget *vbox;
-  GtkWidget *util_vbox;
+  GtkWidget *hbox;
   GtkWidget *alignment;
   GtkWidget *gnome_entry;
   
@@ -266,8 +266,8 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   gchar *tmp;
 
   *dialog = gnome_dialog_new (title,
-			     GNOME_STOCK_BUTTON_OK,
 			     GNOME_STOCK_BUTTON_CANCEL,
+			     GNOME_STOCK_BUTTON_OK,
 			     NULL);
 
   gnome_dialog_close_hides (GNOME_DIALOG (*dialog), TRUE);
@@ -280,47 +280,48 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (*dialog)->vbox), vbox,
 		      TRUE, TRUE, 0);
 
-  frame = gtk_frame_new (_("Startup Command"));
-  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
+  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+  gtk_box_pack_start (GTK_BOX (hbox), a, FALSE, FALSE, 0);
+  label = gtk_label_new_with_mnemonic (_("_Startup Command:"));
+  gtk_container_add (GTK_CONTAINER (a), label);
 
-  util_vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (util_vbox), GNOME_PAD_SMALL);
-  gtk_container_add (GTK_CONTAINER (frame), util_vbox);
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), GNOME_PAD_SMALL);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
 
   gnome_entry = gnome_file_entry_new ("startup-commands", _("Startup Command"));
   entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
-  gtk_box_pack_start (GTK_BOX (util_vbox), gnome_entry, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
+
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
 
   tmp = gnome_config_assemble_vector (client->argc,
 				      (const char * const *)client->argv);
   gtk_entry_set_text (GTK_ENTRY (entry), tmp);
   g_free (tmp);
-  
-  frame = gtk_frame_new (_("Priority"));
-  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
 
-  util_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-  gtk_container_set_border_width (GTK_CONTAINER (util_vbox), GNOME_PAD_SMALL);
-  gtk_container_add (GTK_CONTAINER (frame), util_vbox);
+  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+  gtk_box_pack_start (GTK_BOX (hbox), a, FALSE, FALSE, 0);
+  label = gtk_label_new_with_mnemonic (_("_Priority:"));
+  gtk_container_add (GTK_CONTAINER (a), label);
+
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), GNOME_PAD_SMALL);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
 
   alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
-  gtk_box_pack_start (GTK_BOX (util_vbox), alignment, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), alignment, FALSE, FALSE, 0);
 
   adjustment = gtk_adjustment_new (client->priority,
 				   -200.0, 200.0, 1.0, 10.0, 10.0); 
   spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (adjustment), 1.0, 0);
   gtk_container_add (GTK_CONTAINER (alignment), spinbutton);
-  
-  label = gtk_label_new (_("Programs with smaller values are started before programs with higher values. The default value should be OK"));
-  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-  gtk_label_set_line_wrap (GTK_LABEL (label), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  
-  gtk_box_pack_start (GTK_BOX (util_vbox), label, FALSE, FALSE, 0);
+
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (spinbutton));
   
   gtk_widget_show_all (*dialog);
 
-  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 0)
+  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1)
     {
       const gchar *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
 

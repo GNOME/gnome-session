@@ -96,8 +96,8 @@ edit_session_name (gchar *title, gchar **editsession,
   GtkWidget *vbox;
   GtkWidget *entry;
   GtkWidget *frame;
-  *dialog = gnome_dialog_new (title, GNOME_STOCK_BUTTON_OK,
-				GNOME_STOCK_BUTTON_CANCEL,
+  *dialog = gnome_dialog_new (title, GNOME_STOCK_BUTTON_CANCEL,
+				GNOME_STOCK_BUTTON_OK,
 				NULL);
   gnome_dialog_close_hides (GNOME_DIALOG (*dialog), TRUE);
   gtk_window_set_policy (GTK_WINDOW (*dialog), FALSE, TRUE, FALSE);
@@ -119,7 +119,7 @@ edit_session_name (gchar *title, gchar **editsession,
 
   gtk_widget_show_all (*dialog); 
 
-  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 0) {  
+  while (gnome_dialog_run (GNOME_DIALOG (*dialog)) == 1) {  
     *editsession = gtk_editable_get_chars (GTK_EDITABLE (entry),0,-1);
     if (is_blank (*editsession)) {
       GtkWidget *msgbox;

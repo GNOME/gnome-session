@@ -1504,7 +1504,7 @@ client_clean_up (Client* client)
 	  start_client (client);
 	else
 	  {
-	    gchar *message = _("Respawn abandoned due to failures.");
+	    gchar *message = _("Restart abandoned due to failures.");
 	    /* This is a candidate for a confirm = TRUE. */
 	    client_reasons (client, FALSE, 1, &message); 
 	    client_event (client->handle, GsmRemove);

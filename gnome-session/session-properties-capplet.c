@@ -37,7 +37,7 @@
 /* Indicates whether we have to ask for save on close */
 static gboolean state_dirty = FALSE;
 /* Apply button (for toggling sensitivity) */
-static GtkWidget *apply_button;
+extern GtkWidget *apply_button;
 
 /* Current state */
 GSList *deleted_sessions = NULL;
@@ -75,7 +75,7 @@ static GtkWidget *session_command_dialog;
 
 /* Other callbacks */
 static void spc_write_state (void);
-static void apply (void);
+void apply (void);
 static void help_cb (void);
 static void update_gui (void);
 static void dirty_cb (void);
@@ -89,12 +89,43 @@ static void delete_session_cb (void);
 static void protocol_set_current_session (GtkWidget *widget, gchar *name);
 static void saved_sessions (GtkWidget *widget, GSList *session_names);
 
-static GtkWidget *
-left_aligned_button (gchar *label)
+#define SESSION_STOCK_EDIT "session-stock-edit"
+
+static void
+register_stock_for_edit (void)
 {
-  GtkWidget *button = gtk_button_new_with_label (label);
-  gtk_misc_set_alignment (GTK_MISC (GTK_BIN (button)->child), 0.0, 0.5);
-  gtk_misc_set_padding (GTK_MISC (GTK_BIN (button)->child), GNOME_PAD_SMALL, 0);
+  static gboolean registered = FALSE;
+
+  if (!registered)
+  {
+    GtkIconFactory *factory;
+    GtkIconSet     *icons;
+
+    static GtkStockItem edit_item [] = {
+	{ SESSION_STOCK_EDIT, N_("_Edit"), 0, 0, GETTEXT_PACKAGE }, 
+    	};
+
+    icons = gtk_icon_factory_lookup_default (GTK_STOCK_PREFERENCES);
+    factory = gtk_icon_factory_new ();
+    gtk_icon_factory_add (factory, SESSION_STOCK_EDIT, icons);
+    gtk_icon_factory_add_default (factory);
+    gtk_stock_add_static (edit_item, 1);
+    registered = TRUE;
+  }
+}
+
+static GtkWidget *
+left_aligned_stock_button (gchar *label)
+{
+  GtkWidget *button = gtk_button_new_from_stock (label);
+  GtkWidget *child  = gtk_bin_get_child (GTK_BIN (button));
+
+  child = gtk_bin_get_child (GTK_BIN (button));
+
+  if (GTK_IS_ALIGNMENT (child))
+	        g_object_set (G_OBJECT (child), "xalign", 0.0, NULL);
+  else if (GTK_IS_LABEL (child))
+		g_object_set (G_OBJECT (child), "xalign", 0.0, NULL);
 
   return button;
 }
@@ -153,7 +184,6 @@ capplet_build (void)
 {
   GtkWidget *vbox;
   GtkWidget *util_vbox;
-  GtkWidget *frame;
   GtkWidget *button;
   GtkWidget *notebook;
   GtkWidget *label;
@@ -169,12 +199,9 @@ capplet_build (void)
   /* Create toplevel dialog */
   dlg = gtk_dialog_new ();
   gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
-  gtk_window_set_title (GTK_WINDOW (dlg), _("Session properties"));
+  gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions"));
   help_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
-  apply_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_APPLY, GTK_RESPONSE_APPLY);
-  gtk_widget_set_sensitive (GTK_WIDGET (apply_button), FALSE);
-  g_signal_connect (G_OBJECT (apply_button), "clicked", apply, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
   g_signal_connect (dlg, "delete-event", spc_close, NULL);
@@ -193,20 +220,14 @@ capplet_build (void)
 
   /* Options page - Set Current Session, Logout Prompt, Autosave, Splash */
   vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
   
-  /* Frame for options */
-  frame = gtk_frame_new (_("Options"));
-  gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
-
   util_vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (frame), util_vbox);
-  gtk_container_set_border_width (GTK_CONTAINER (util_vbox), GNOME_PAD_SMALL);
-  
+  gtk_box_pack_start (GTK_BOX (vbox), util_vbox, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox) , GNOME_PAD);
   /* Splash screen */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
-  login_splash_button = gtk_check_button_new_with_label (_("Show splash screen on login"));
+  login_splash_button = gtk_check_button_new_with_mnemonic (_("Show splash screen on _login"));
   gtk_container_add (GTK_CONTAINER (a), login_splash_button);
   g_object_set_data (G_OBJECT (login_splash_button), "key", SPLASH_SCREEN_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (login_splash_button),
@@ -217,7 +238,7 @@ capplet_build (void)
   /* Logout prompt */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
-  logout_prompt_button = gtk_check_button_new_with_label (_("Prompt on logout"));
+  logout_prompt_button = gtk_check_button_new_with_mnemonic (_("_Prompt on logout"));
   gtk_container_add (GTK_CONTAINER (a), logout_prompt_button);
   g_object_set_data (G_OBJECT (logout_prompt_button), "key", LOGOUT_PROMPT_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (logout_prompt_button),
@@ -228,7 +249,7 @@ capplet_build (void)
   /* Autosave */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
-  autosave_button = gtk_check_button_new_with_label (_("Automatically save changes to session"));
+  autosave_button = gtk_check_button_new_with_mnemonic (_("Automatically save chan_ges to session"));
   gtk_container_add (GTK_CONTAINER (a), autosave_button);
   g_object_set_data (G_OBJECT (autosave_button), "key", AUTOSAVE_MODE_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
@@ -236,18 +257,13 @@ capplet_build (void)
   gconf_client_notify_add (client, AUTOSAVE_MODE_KEY, spc_value_notify, autosave_button, NULL, NULL);
   g_signal_connect (G_OBJECT (autosave_button), "toggled", G_CALLBACK (spc_value_toggled), client);
 
-  label = gtk_label_new (NULL);
-  gtk_label_set_markup (GTK_LABEL (label),
-			_("<i>These changes take effect immediately</i>"));
-  gtk_box_pack_start (GTK_BOX (util_vbox), label, FALSE, FALSE, 4);
- 
   /* Session names list */
-  frame = gtk_frame_new (_("Choose Current Session"));
-  gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
- 
+  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+  gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
+  label = gtk_label_new_with_mnemonic ("_Sessions:");
+  gtk_container_add (GTK_CONTAINER (a), label);
   hb = gtk_hbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (hb), GNOME_PAD);
-  gtk_container_add (GTK_CONTAINER (frame), hb);
+  gtk_box_pack_start (GTK_BOX (vbox), hb, TRUE, TRUE, 0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -256,6 +272,8 @@ capplet_build (void)
 
   sessions_store = (GtkTreeModel *) gtk_list_store_new (1, G_TYPE_STRING);
   sessions_view = (GtkTreeView *) gtk_tree_view_new_with_model (sessions_store);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), 
+		  		 GTK_WIDGET (sessions_view));
   sessions_sel = gtk_tree_view_get_selection (sessions_view);
   gtk_tree_selection_set_mode (sessions_sel, GTK_SELECTION_SINGLE);
   renderer = gtk_cell_renderer_text_new ();
@@ -268,15 +286,15 @@ capplet_build (void)
   util_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_box_pack_start (GTK_BOX (hb), util_vbox, FALSE, FALSE, 0);
 
-  button = left_aligned_button (_("Add..."));
+  button = left_aligned_stock_button (GTK_STOCK_ADD);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (add_session_cb), NULL);
 
-  button = left_aligned_button (_("Edit..."));
+  button = left_aligned_stock_button (SESSION_STOCK_EDIT);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (edit_session_cb), NULL);
 
-  button = left_aligned_button (_("Delete"));
+  button = left_aligned_stock_button (GTK_STOCK_DELETE);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (delete_session_cb), NULL);
  
@@ -312,17 +330,23 @@ capplet_build (void)
   /* Frame for manually started programs */
   startup_list = startup_list_read ("Default");
   startup_list_revert = startup_list_duplicate (startup_list);
+
+  vbox = session_properties_create_page (&dirty_cb);
+
+  label = gtk_label_new (_("Current Session"));
+  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
  
   vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
  
-  /* Frame for non-session managed startup programs */
-   frame = gtk_frame_new (_("Non-session-managed Startup Programs"));
-  gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
+  /*non-session managed startup programs */
+  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+  gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
+  label = gtk_label_new_with_mnemonic ("Additional startup _programs:");
+  gtk_container_add (GTK_CONTAINER (a), label);
 
   hb = gtk_hbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (hb), GNOME_PAD);
-  gtk_container_add (GTK_CONTAINER (frame), hb);
+  gtk_box_pack_start (GTK_BOX (vbox), hb, TRUE, TRUE,0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -331,6 +355,8 @@ capplet_build (void)
   
   startup_store = (GtkTreeModel *) gtk_list_store_new (3, G_TYPE_POINTER, G_TYPE_STRING, G_TYPE_STRING);
   startup_view = (GtkTreeView *) gtk_tree_view_new_with_model (startup_store);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label),
+		  		 GTK_WIDGET (startup_view));
   startup_sel = gtk_tree_view_get_selection (startup_view);
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
   renderer = gtk_cell_renderer_text_new ();
@@ -345,17 +371,17 @@ capplet_build (void)
   gtk_box_pack_start (GTK_BOX (hb), util_vbox, FALSE, FALSE, 0);
 
   /* Add/Edit/Delete buttons */
-  button = left_aligned_button (_("Add..."));
+  button = left_aligned_stock_button (GTK_STOCK_ADD);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (add_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   
-  button = left_aligned_button (_("Edit..."));
+  button = left_aligned_stock_button (SESSION_STOCK_EDIT);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (edit_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   
-  button = left_aligned_button (_("Delete"));
+  button = left_aligned_stock_button (GTK_STOCK_DELETE);
   gtk_signal_connect (GTK_OBJECT (button), "clicked",
 		      GTK_SIGNAL_FUNC (delete_startup_cb), NULL);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
@@ -367,19 +393,15 @@ capplet_build (void)
   label = gtk_label_new (_("Startup Programs"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
   
-  vbox = session_properties_create_page (&dirty_cb);
-
-  label = gtk_label_new (_("Current Session"));
-  gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
-
   update_gui ();
 
   gtk_widget_show_all (dlg);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), 0);
 
   return dlg;
 }
 
-static void
+void
 apply (void)
 {
   spc_write_state ();
@@ -610,6 +632,8 @@ main (int argc, char *argv[])
    * We ignore the resulting "current_session" signal.
    */
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
+
+  register_stock_for_edit ();
 
   dlg = capplet_build ();
 

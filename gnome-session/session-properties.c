@@ -25,8 +25,10 @@
 #include "gsm-atk.h"
 
 #include "session-properties.h"
+#include "session-properties-capplet.h"
 
 static GtkWidget *remove_button;
+GtkWidget *apply_button;
 static GtkWidget *scrolled_window;
 static GtkWidget *client_list;
 static GtkWidget *client_editor;
@@ -41,13 +43,18 @@ static void dirty_cb (GtkWidget *widget);
 static GtkWidget*
 create_table (void)
 {
-  GtkWidget *table, *vbox, *alignment;
+  GtkWidget *table, *vbox, *hbox,  *alignment, *label;
 
   remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
   gsm_atk_set_description (remove_button, _("Remove the currently selected client from the session."));
   gtk_widget_set_sensitive (GTK_WIDGET (remove_button), FALSE);
   gtk_signal_connect(GTK_OBJECT (remove_button), "clicked",
 		     GTK_SIGNAL_FUNC (remove_cb), NULL);
+
+  apply_button = gtk_button_new_from_stock (GTK_STOCK_APPLY);
+  gsm_atk_set_description (apply_button, _("Apply changes to the current session"));
+  gtk_widget_set_sensitive (GTK_WIDGET (apply_button), FALSE);
+  g_signal_connect (G_OBJECT (apply_button), "clicked", apply, NULL);
 
   /* client list */
   client_list = gsm_client_list_new ();
@@ -63,29 +70,30 @@ create_table (void)
 
   /* scrolled window - disabled until the client_list "initialized" signal */
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-  gtk_widget_set_usize (GTK_WIDGET (scrolled_window), -2, 250);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_NEVER, GTK_POLICY_NEVER);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
 				       GTK_SHADOW_IN);
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
-  /* table */
   vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-	  
-  table = gtk_table_new (1, 4, TRUE);
-  gtk_table_attach (GTK_TABLE (table), client_editor, 
-		    0, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
-  gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
 
-  alignment = gtk_alignment_new (1.0, 0.5, 0.0, 0.0);
-  gtk_container_add (GTK_CONTAINER (alignment), remove_button);
+  hbox = gtk_hbox_new (FALSE, GNOME_PAD);
+  gtk_box_pack_start (GTK_BOX (hbox), client_editor, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), remove_button, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), apply_button, FALSE, FALSE, 0);
   
-  gtk_table_attach (GTK_TABLE (table), alignment, 
-		    3, 4, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-  gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
+  alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+  label = gtk_label_new_with_mnemonic (_("Currently running _programs:"));
+  gtk_container_add (GTK_CONTAINER (alignment), label);
+  gtk_box_pack_start (GTK_BOX (vbox), alignment, FALSE, FALSE, 0);
+  
   gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
+
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_list);
 
   return vbox;
 }
