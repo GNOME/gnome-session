@@ -913,15 +913,14 @@ XPropertyEvent *event;
         char ** argv;
         int argc;
 
-	XGetCommand (disp, window, &argv, &argc);
-
       	/* Some particularly horrid clients (mozilla!) sometimes 
 	   delete the value of the WM_COMMAND property rather 
 	   than changing it. The only feasible response that
            I can see to this behavior is too ignore that the
 	   WM_COMMAND has been changed at all... */
 
-	if (argv != 0 && argc > 0)
+	if (XGetCommand (disp, window, &argv, &argc) &&
+	    argv && argc > 0)
 	{
 	    if (winptr->wm_command)
 	      XFreeStringList (winptr->wm_command);
