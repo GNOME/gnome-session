@@ -372,6 +372,7 @@ display_gui (void)
 
   vbox = gtk_vbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox), vbox, FALSE, FALSE, 0);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (box)->vbox), 2);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
   gtk_widget_show (vbox);
   
