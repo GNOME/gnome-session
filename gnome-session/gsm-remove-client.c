@@ -58,16 +58,37 @@ session_initialized (GsmSession *session,
   for (l = clients; l; l = l->next)
     {
       GsmClient *client = l->data;
+      char *client_program = NULL;
 
-      if (do_list && strcmp (client->program, "gnome-session-remove-client"))
-	g_print ("  %s\n", client->program);
+      if (client->program != NULL)
+        client_program = g_strdup (client->program);
+      else
+        {
+          char **argv = NULL;
+          int argc;
 
-      if (program && !strcmp (client->program, program))
+          if (g_shell_parse_argv (client->command, &argc, &argv, NULL))
+            {
+              client_program = g_strdup (argv[0]);
+            }
+
+          if (argv)
+            g_strfreev (argv);
+        }
+
+      if (do_list && client_program &&
+          strcmp (client_program, "gnome-session-remove"))
+	g_print ("  %s\n", client_program);
+
+      if (program && client_program && !strcmp (client_program, program))
 	{
 	  gsm_client_commit_remove (client);
 	  g_signal_connect (client, "remove",
 			    G_CALLBACK (client_removed), NULL);
 	}
+
+      if (client_program)
+        g_free (client_program);
     }
 
   if (!program)
@@ -86,7 +107,7 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gnome_program_init ("gnome-session-remove-client",
+  gnome_program_init ("gnome-session-remove",
 		      VERSION, LIBGNOMEUI_MODULE,
                       argc, argv,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
@@ -94,7 +115,7 @@ main (int argc, char **argv)
 
   if (argc != 2 && argc != 3)
     {
-      fprintf (stderr, "usage: gnome-session-remove-client [--list] [<program>]\n");
+      fprintf (stderr, "usage: gnome-session-remove [--list] [<program>]\n");
       return 1;
     }
 

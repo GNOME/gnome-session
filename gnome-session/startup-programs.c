@@ -151,6 +151,10 @@ startup_list_write (GSList *sl, const gchar *name)
 			       (const char * const *)client->argv);
       g_free (key);
 
+      key = g_strdup_printf ("%d,%s", i, "Program");
+      gnome_config_set_string (key, client->argv[0]);
+      g_free (key);
+
       tmp_list = tmp_list->next;
       i++;
     }

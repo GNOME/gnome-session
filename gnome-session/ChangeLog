@@ -1,3 +1,17 @@
+2004-10-07  Ray Strode  <rstrode@redhat.com>
+
+	Fix for #153133.
+
+	* gsm-remove-client.c (session_initialized):
+	guess program name from command if program name is
+	NULL.
+	(main): 
+	s/gnome-session-remove-client/gnome-session-remove/
+
+	* startup-programs.c (startup_list_write):
+	Set program name from command for manually added
+	programs.
+
 2004-10-07  James Henstridge  <james@jamesh.id.au>
 
 	* .cvsignore: add some more files to ignore.
