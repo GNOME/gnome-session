@@ -1,18 +1,18 @@
 # translation of gnome-session to Czech
 # Copyright (C) 1999,2003 Free Software Foundation, Inc.
-# Copyright (C) 2004 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>
 # GIS <gis@academy.cas.cz>, 1999.
 # David Šauer <davids@penguin.cz>, 1999.
 # George Lebl <jirka@5z.com>, 2000-2001.
 # Stanislav Brabec <utx@penguin.cz>, 2000-2001.
 # Michal Bukovjan <bukm@centrum.cz>, 2002,2003
-# Miloslav Trmac <mitr@volny.cz>, 2004.
+# Miloslav Trmac <mitr@volny.cz>, 2004, 2005.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-12-25 15:49+0100\n"
+"POT-Creation-Date: 2005-01-28 12:27+0100\n"
+"PO-Revision-Date: 2005-01-28 15:02+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -53,12 +53,8 @@ msgid "Logout prompt"
 msgstr "Dotaz na odhlášení"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Preferovaný obrázek, který se použije na úvodní obrazovce při přihlašování "
-"do prostředí GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Preferovaný obrázek, který používat na úvodní obrazovce při přihlašování"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -73,8 +69,11 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Zobrazovat úvodní obrazovku při startu sezení"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Obrázek úvodní obrazovky"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Toto je relativní cesta vůči adresáři $datadir/pixmaps/. Platné hodnoty jsou názvy podadresářů aobrázků. Změna této hodnoty se projeví při příštím příhlášení."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -486,6 +485,9 @@ msgstr "Přidat program při přihlášení"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Upravit program při přihlášení"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Obrázek úvodní obrazovky"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Uložit aktuální sezení"
