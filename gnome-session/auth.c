@@ -32,6 +32,10 @@ in this Software without prior written authorization from the X Consortium.
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>
 
+#include <libgnome/libgnome.h>
+
+#include "auth.h"
+
 static char *addAuthFile = NULL;
 static char *remAuthFile = NULL;
 
@@ -139,13 +143,7 @@ IceAuthDataEntry	**authDataEntries;
 
     original_umask = umask (0077);	/* disallow non-owner access */
 
-    path = (char *) getenv ("SM_SAVE_DIR");
-    if (!path)
-    {
-	path = (char *) getenv ("HOME");
-	if (!path)
-	    path = ".";
-    }
+    path = gnome_util_prepend_user_home (".gnome");
 
     if ((addAuthFile = unique_filename (path, ".xsm")) == NULL)
 	goto bad;

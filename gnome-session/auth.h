@@ -28,8 +28,10 @@ in this Software without prior written authorization from the X Consortium.
 #ifndef AUTH_H
 #define AUTH_H
 
-extern Status SetAuthentication ();
-extern void FreeAuthenticationData ();
-extern Bool HostBasedAuthProc ();
+extern Status SetAuthentication (int count, IceListenObj *listenObjs,
+				 IceAuthDataEntry **authDataEntries);
+extern void FreeAuthenticationData (int count,
+				    IceAuthDataEntry *authDataEntries);
+extern Bool HostBasedAuthProc (char *hostname);
 
 #endif /* AUTH_H */

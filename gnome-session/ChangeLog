@@ -1,3 +1,14 @@
+Sun Aug 16 17:47:00 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* main.c (main): Call clean_ice().
+	(options): New array.
+	(debugging): New global.
+	(parse_an_arg): Recognize --debug.
+	(main): Handle debugging case.
+	* auth.h: Use real function prototypes.
+	* auth.c: Include auth.h and libgnome/libgnome.h.
+	(SetAuthentication): Put .xsm files into ~/.gnome/.
+
 Thu Jul 23 21:50:33 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* session-properties.c (session_die): New function.

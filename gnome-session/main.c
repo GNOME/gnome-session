@@ -28,16 +28,29 @@
 #include "libgnomeui/libgnomeui.h"
 #include "manager.h"
 
+/* Parsing function.  */
+static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
+
+
+
 /* The name of the session to load.  */
 static char *session = NULL;
 
-/* Parsing function.  */
-static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
+/* If nonzero, we are debugging and don't want to load an initial
+   session.  */
+static int debugging = 0;
+
+/* Arguments we understand.  */
+static struct argp_option options[] =
+{
+  { "debug", -1, NULL, OPTION_HIDDEN, NULL, 1 },
+  { NULL, 0, NULL, 0, NULL, 0 }
+};
 
 /* Our argument parser.  */
 static struct argp parser =
 {
-  NULL,
+  options,
   parse_an_arg,
   N_("[SESSION]"),
   NULL,
@@ -49,6 +62,12 @@ static struct argp parser =
 static error_t
 parse_an_arg (int key, char *arg, struct argp_state *state)
 {
+  if (key == -1)
+    {
+      debugging = 1;
+      return 0;
+    }
+
   if (key != ARGP_KEY_ARG)
     return ARGP_ERR_UNKNOWN;
 
@@ -95,9 +114,12 @@ main (int argc, char *argv[])
   putenv (ep);
 
   ignore (SIGPIPE);
-  read_session (session);
+  if (! debugging)
+    read_session (session);
 
   gtk_main ();
+
+  clean_ice ();
 
   return 0;
 }
