@@ -23,6 +23,8 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
+#include "gsm-protocol.h"
+
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
@@ -36,9 +38,12 @@ static gboolean zap = FALSE;
 /* True if we should use dialog boxes */
 static gboolean gui = FALSE; 
 
+static char *session_name = NULL;
+
 static IceConn ice_conn = NULL;
 
 static const struct poptOption options[] = {
+  {"session-name", 's', POPT_ARG_STRING, &session_name, 0, N_("Set the current session"), NULL},
   {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"),     NULL},
   {"gui",  '\0', POPT_ARG_NONE, &gui, 0, N_("Use dialog boxes"), NULL},
   {NULL,   '\0', 0, NULL, 0}
@@ -129,6 +134,24 @@ ice_connection_watch (IceConn connection, IcePointer client_data,
     }
 }
 
+static void
+set_session_name (GnomeClient *client,
+                  const char  *session_name)
+{
+  GsmProtocol *gsm;
+
+  gsm = gsm_protocol_new (client);
+  if (!gsm)
+    {
+      display_error (_("Could not connect to the session manager"));
+      return;
+    }
+
+  gsm_protocol_set_session_name (gsm, session_name);
+
+  g_object_unref (gsm);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -159,6 +182,9 @@ main (int argc, char *argv[])
     }
 	
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
+
+  if (session_name)
+    set_session_name (client, session_name);
 
   /* Wait until our request is acknowledged:
    * gnome-session queues requests but does not honour them if the

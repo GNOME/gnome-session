@@ -107,8 +107,12 @@ gnome_session_SOURCES =		\
 	util.h			\
 	$(EGGFILES)
 
-gnome_session_save_SOURCES = \
-	save-session.c
+gnome_session_save_SOURCES =	\
+	save-session.c		\
+	gsm-typebuiltins.c	\
+	gsm-typebuiltins.h	\
+	gsm-protocol.c		\
+	gsm-protocol.h
 
 gnome_session_properties_SOURCES = \
 	session-properties-capplet.c	\
