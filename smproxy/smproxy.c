@@ -952,7 +952,6 @@ SmPointer clientData;
     Bool success = True;
     SmProp prop1, prop2, prop3, prop4, *props[4];
     SmPropValue prop1val, prop2val, prop3val, prop4val;
-    char discardCommand[80];
     int numVals, i;
     static int first_time = 1;
 

@@ -197,7 +197,7 @@ void       gsm_client_commit_order (GsmClient *client);
 
 /* UTILITIES */
 
-gboolean   gsm_sh_quotes_balance (gchar* command);
+gboolean   gsm_sh_quotes_balance (const char* command);
 /* Returns true when "command" has balanced quotes under the sh syntax and
  * contains some non-whitespace characters (i.e. it might be a commmand).  
  * Does NOT interpret sh metacharacters like "|", ">", etc. */

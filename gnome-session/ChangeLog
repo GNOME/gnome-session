@@ -1,3 +1,20 @@
+2002-02-26  Mark McLoughlin  <mark@skynet.ie>
+
+	* Makefile.am: add WARN_CFLAGS.
+
+	* gnome-login-check.c: include netdb.h.
+	(check_for_dns): kill unused variables.
+
+	* gsm-client-editor.c: (change): kill unused var.
+
+	* gsm-client-list.[ch]:
+	(gsm_client_list_new): kill unused var/code.
+	(gsm_client_list_add_program): make command arg const.
+
+	* gsm-protocol.[ch]:
+	(gsm_sh_quotes_balance), (gsm_sh_to_prop): make char* args
+	const char*.
+
 2002-2-21  Jonathan Blandford  <jrb@redhat.com>
 
 	* default.in: confusingly enough, it's gnome2-settings-daemon,

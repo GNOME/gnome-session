@@ -72,8 +72,8 @@ void gsm_client_list_remove_selection (GsmClientList* client_list);
 
 /* Adds a client to the list. 
  * Returns FALSE when the command line contains unbalanced quotes. */
-gboolean gsm_client_list_add_program (GsmClientList* client_list,
-				      gchar* command);
+gboolean gsm_client_list_add_program (GsmClientList *client_list,
+				      const char    *command);
 
 /* Commits any changes made in the list over to gnome-session. */
 void gsm_client_list_commit_changes (GsmClientList* client_list);

@@ -23,6 +23,7 @@
 #include <gdk/gdkx.h>
 #include <stdio.h>
 #include <netinet/in.h>
+#include <netdb.h>
 #include <sys/wait.h>
 #include <errno.h>
 #include <limits.h>
@@ -60,9 +61,7 @@ get_hostname (gboolean readable)
 static gboolean
 check_for_dns (void)
 {
-	gchar          *hostname;
-	struct hostent *host;
-	struct in_addr  addr;
+	char *hostname;
 
 	hostname = get_hostname (FALSE);
 	

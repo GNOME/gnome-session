@@ -52,7 +52,7 @@ static gint    request_event (gpointer data);
 static void    prop_free (SmProp* prop);
 static gchar*  gsm_prop_to_sh (SmProp* prop);
 static GSList* gsm_prop_to_list (SmProp* prop);
-static SmProp* gsm_sh_to_prop (gchar* name, gchar* sh);
+static SmProp* gsm_sh_to_prop (const gchar* name, const gchar* sh);
 static SmProp* gsm_int_to_prop (gchar* name, gint value);
 static SmProp* gsm_args_to_propv (gchar* name, va_list args);
 static SmProp* gsm_args_to_prop (gchar* name, ...);
@@ -721,7 +721,7 @@ gsm_protocol_set_session_name (GsmProtocol *protocol, gchar *name)
 }  
 
 /* Public utilities */
-gboolean   gsm_sh_quotes_balance (gchar* sh)
+gboolean   gsm_sh_quotes_balance (const char *sh)
 {
   SmProp* prop = gsm_sh_to_prop (SmRestartCommand, sh);
   gboolean complete = prop != NULL;
@@ -1103,15 +1103,16 @@ gsm_int_to_prop (gchar* name, gint value)
  * Returns NULL when sh would require a continuation or ignore the line.
  * sh metacharcters are copied verbatim rather than generating errors. */ 
 static SmProp*
-gsm_sh_to_prop (gchar* name, gchar* sh)
+gsm_sh_to_prop (const char *name,
+		const char *sh)
 {
   SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
-  gchar *dest, *src;
+  gchar *dest, *src, *tmp;
   gint i;
   
   prop->num_vals = 0;
 
-  dest = src = sh = strdup (sh);
+  dest = src = tmp = strdup (sh);
 
   while (*src)
     {
@@ -1169,18 +1170,19 @@ gsm_sh_to_prop (gchar* name, gchar* sh)
   prop->type = strdup (SmLISTofARRAY8);
   prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
 
-  for (i = 0, src = sh; i < prop->num_vals; i++)
+  for (i = 0, src = tmp; i < prop->num_vals; i++)
     {
       prop->vals[i].value = strdup (src);
       prop->vals[i].length = strlen (prop->vals[i].value);
       src += prop->vals[i].length + 1;
     }
-  free (sh);
+
+  free (tmp);
 
   return prop;
 
  error:
-  free (sh);
+  free (tmp);
   free (prop);
 
   return NULL;

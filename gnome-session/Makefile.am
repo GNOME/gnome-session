@@ -6,6 +6,7 @@ defaultdir = $(datadir)/gnome
 
 INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
+	$(WARN_CFLAGS)					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""	\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
