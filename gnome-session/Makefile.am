@@ -12,7 +12,6 @@ LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 sysdir = $(datadir)/apps/Settings
 
 if SESSION
-noinst_DATA = session.desktop
 bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties
 endif
 
@@ -32,6 +31,9 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
+desktopdir = $(datadir)/gnome/apps/Settings
+desktop_DATA = save-session.desktop session.desktop
+
 default.session: default.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
 		< $(srcdir)/default.in > default.tmp \
@@ -43,7 +45,8 @@ default.wm: default.wm.in ../config.status
 	  && mv default.wm.tmp default.wm
 
 EXTRA_DIST =		\
-	session.desktop	\
 	default.in	\
 	default.wm.in	\
-	gnome-wm
+	gnome-wm \
+	save-session.desktop \
+	session.desktop
