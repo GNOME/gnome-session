@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-02-25 15:17+0000\n"
+"POT-Creation-Date: 2002-03-18 13:44+0000\n"
 "PO-Revision-Date: 2002-03-01 18:19+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -17,28 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-login-check.c:131
+#: gnome-session/gnome-login-check.c:130
 msgid "GNOME Login"
 msgstr "Logowanie GNOME"
 
-#: gnome-session/gnome-login-check.c:131
+#: gnome-session/gnome-login-check.c:130
 msgid "Login"
 msgstr "Login"
 
-#: gnome-session/gnome-login-check.c:158
+#: gnome-session/gnome-login-check.c:157
 msgid "Start with default programs"
 msgstr "Rozpoczęcie z domyślnymi programami"
 
-#: gnome-session/gnome-login-check.c:162
+#: gnome-session/gnome-login-check.c:161
 msgid "Reset all user settings"
 msgstr "Odświeżenie ustawień użytkownika"
 
-#: gnome-session/gnome-login-check.c:173
+#: gnome-session/gnome-login-check.c:172
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
-msgstr "Czy rzeczywiście odświeżyć wszystkie ustawienia GNOME dla użytkownika %s?"
+msgstr ""
+"Czy rzeczywiście odświeżyć wszystkie ustawienia GNOME dla użytkownika %s?"
 
-#: gnome-session/gnome-login-check.c:205
+#: gnome-session/gnome-login-check.c:204
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -49,17 +50,15 @@ msgstr ""
 "bieżący użytkownik, %s.\n"
 "Skoryguj prawa dostępu do tego katalogu."
 
-#: gnome-session/gnome-login-check.c:212
-#: gnome-session/gnome-login-check.c:237
+#: gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 
-#: gnome-session/gnome-login-check.c:213
-#: gnome-session/gnome-login-check.c:238
+#: gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
 msgid "Continue"
 msgstr "Kontynuuj"
 
-#: gnome-session/gnome-login-check.c:229
+#: gnome-session/gnome-login-check.c:228
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -72,7 +71,7 @@ msgstr ""
 "Usunięcie tego problemu może być możliwe poprzez\n"
 "dodanie %s do pliku /etc/hosts."
 
-#: gnome-session/gnome-login-check.c:255
+#: gnome-session/gnome-login-check.c:254
 msgid ""
 "Your version of libICE has a bug which causes gnome-session\n"
 "to not function correctly.\n"
@@ -102,19 +101,19 @@ msgstr "Kolejność: "
 msgid "Style: "
 msgstr "Styl:"
 
-#: gnome-session/gsm-client-list.c:112
+#: gnome-session/gsm-client-list.c:111
 msgid "Order"
 msgstr "Kolejność"
 
-#: gnome-session/gsm-client-list.c:112
+#: gnome-session/gsm-client-list.c:111
 msgid "Style"
 msgstr "Styl"
 
-#: gnome-session/gsm-client-list.c:112
+#: gnome-session/gsm-client-list.c:111
 msgid "State"
 msgstr "Stan"
 
-#: gnome-session/gsm-client-list.c:112
+#: gnome-session/gsm-client-list.c:111
 msgid "Program"
 msgstr "Program"
 
@@ -228,15 +227,20 @@ msgstr "Odczyt tylko zapisanych sesji z pliku default.session (domyślna sesja)"
 
 #: gnome-session/main.c:67
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Czas oczekiwania (w milisekundach) na zarejestrowanie się klientów (0=bez ograniczenia)"
+msgstr ""
+"Czas oczekiwania (w milisekundach) na zarejestrowanie się klientów (0=bez "
+"ograniczenia)"
 
 #: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Czas (w milisekundach) oczekiwania na odpowiedź klientów (0=bez ograniczenia)"
+msgstr ""
+"Czas (w milisekundach) oczekiwania na odpowiedź klientów (0=bez ograniczenia)"
 
 #: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Czas (w milisekundach) oczekiwania na zakończenie klientów (0=bez ograniczenia)"
+msgstr ""
+"Czas (w milisekundach) oczekiwania na zakończenie klientów (0=bez "
+"ograniczenia)"
 
 #: gnome-session/manager.c:400
 msgid "Wait abandoned due to conflict."
@@ -399,8 +403,7 @@ msgid "Help"
 msgstr "Pomoc"
 
 #. app
-#: gnome-session/session-properties.c:217
-#: gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:217 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Właściwości sesji"
 
@@ -437,13 +440,11 @@ msgstr "Programy w ramach bieżącej sesji"
 msgid "Audio Settings"
 msgstr "Ustawienia dźwięku"
 
-#: gnome-session/splash.c:56
-#: gnome-session/splash.c:57
+#: gnome-session/splash.c:56 gnome-session/splash.c:57
 msgid "Screensaver"
 msgstr "Wygaszacz ekranu"
 
-#: gnome-session/splash.c:58
-#: gnome-session/splash.c:59
+#: gnome-session/splash.c:58 gnome-session/splash.c:59
 msgid "Sawfish Window Manager"
 msgstr "Menedżer okien Sawfish"
 
@@ -504,14 +505,17 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Uruchamianie GNOME"
 
-#: gnome-session/startup-programs.c:283
-#: gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
 msgid "Startup Command"
 msgstr "Polecenie startowe"
 
 #: gnome-session/startup-programs.c:314
-msgid "Programs with smaller values are started before programs with higher values. The default value should be OK"
-msgstr "Programy z mniejszymi wartościami są uruchamiane przed tymi z mniejszymi. Domyślna wartość zwykle jest odpowiednia."
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programy z mniejszymi wartościami są uruchamiane przed tymi z mniejszymi. "
+"Domyślna wartość zwykle jest odpowiednia."
 
 #: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
@@ -524,4 +528,3 @@ msgstr "Nowy program startowy"
 #: gnome-session/startup-programs.c:391
 msgid "Edit Startup Program"
 msgstr "Modyfikacja programu startowego"
-
