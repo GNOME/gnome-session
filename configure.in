@@ -19,6 +19,10 @@ dnl the better solution; this does the trick for automake-1.4
 dnl gnome-autogen.sh sets ACLOCAL_FLAGS, which points to the cvs gnome
 dnl autoconf macros
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+ACSUBST(ACLOCAL, "$ACLOCAL"))
+
+dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
+AC_SUBST(ACLOCAL_AMFLAGS, "$ACLOCAL_FLAGS")
 
 GNOME_COMPILE_WARNINGS(yes)
 
