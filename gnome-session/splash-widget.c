@@ -45,7 +45,7 @@ static const SplashApp splash_map_table[] = {
 	{ N_("The Panel"),               "gnome-panel",           "gnome-panel.png" },
 	{ N_("Session Manager Proxy"),   "gnome-smproxy",         "gnome-session.png" },
 	{ N_("Nautilus"),                "nautilus",              "gnome-ccdesktop.png" },
-	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings.png" },
+	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings.png" }
 };
 
 static const SplashApp *
@@ -276,6 +276,9 @@ splash_widget_finalize (GObject *object)
 {
 	SplashWidget *sw = (SplashWidget *) object;
 
+	g_object_unref (sw->icon_theme);
+	sw->icon_theme = NULL;
+        
 	g_list_foreach (sw->icons, (GFunc) splash_icon_destroy, NULL);
 	g_list_free (sw->icons);
 
@@ -351,6 +354,8 @@ splash_widget_instance_init (SplashWidget *sw)
 	pango_layout_set_attributes (sw->layout, attrs);
 	pango_attr_list_unref (attrs);
 
+	sw->icon_theme = gnome_icon_theme_new ();
+        
 	read_background (sw);
 }
 
@@ -359,16 +364,39 @@ get_splash_icon (SplashWidget *sw, const char *icon_name)
 {
 	char *fname;
 	GdkPixbuf *pb;
+	char *icon_no_extension;
+	char *p;
 
-	fname = g_build_filename (GNOME_ICONDIR, icon_name, NULL);
+	icon_no_extension = g_strdup (icon_name);
+	p = strrchr (icon_no_extension, '.');
+	if (p &&
+	    (strcmp (p, ".png") == 0 ||
+	     strcmp (p, ".xpm") == 0 ||
+	     strcmp (p, ".svg") == 0)) {
+		*p = 0;
+	}
 
-	if (g_file_test (fname, G_FILE_TEST_EXISTS))
+	fname = gnome_icon_theme_lookup_icon (sw->icon_theme,
+					      icon_no_extension,
+					      48, /* icon size */
+					      NULL, NULL);
+	
+	g_free (icon_no_extension);
+
+	if (fname != NULL)
 		pb = gdk_pixbuf_new_from_file (fname, NULL);
 	else
 		pb = NULL;
+	
+	if (pb == NULL) {
+		g_free (fname);
+		fname = g_build_filename (GNOME_ICONDIR, icon_name, NULL);
 
+		pb = gdk_pixbuf_new_from_file (fname, NULL);
+	}
+	
 	g_free (fname);
-
+	
 	return pb;
 }
 
@@ -459,8 +487,9 @@ splash_widget_add_icon (SplashWidget *sw,
 	}
 
 	/* FIXME: we should allow arbitrary apps to install
-	   stuff here, by mangling the app name to a pixmap
-	   name */
+         * stuff here, by passing the icon name to the SM
+         * as a session property
+         */
 
 	if (!pb)
 		pb = get_splash_icon (sw, "gnome-unknown.png");
