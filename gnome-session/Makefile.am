@@ -36,8 +36,8 @@ STANDARD_PROPERTIES_CFLAGS =                                    \
 gnome_session_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 gnome_session_save_LDADD = $(GNOME_SESSION_LIBS)
 gnome_session_properties_LDADD = $(GNOME_SESSION_LIBS)
-splash_test_LDADD = $(GNOME_SESSION_LIBS)
-logout_test_LDADD = $(GNOME_SESSION_LIBS)
+splash_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
+logout_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
 
 if SESSION
 @INTLTOOL_DESKTOP_RULE@
