@@ -32,7 +32,7 @@ typedef struct _ManualClient ManualClient;
 
 struct _ManualClient
 {
-  int    priority;
+  int    order;
   int    argc;
   char **argv;
 };
@@ -50,14 +50,14 @@ client_free (ManualClient *client)
   g_free (client);
 }
 
-/* Compare client records by priority */
+/* Compare client records by order */
 static gint
 client_compare (gconstpointer a, gconstpointer b)
 {
   const ManualClient *client_a = a;
   const ManualClient *client_b = b;
   
-  return client_a->priority - client_b->priority;
+  return client_a->order - client_b->order;
 }
 
 /* Read in the client record for a given session */
@@ -99,7 +99,7 @@ startup_list_read (gchar *name)
 	    }
 
 	  if (strcmp (p+1, "Priority") == 0)
-	    current->priority = atoi (value);
+	    current->order = atoi (value);
 	  else if (strcmp (p+1, "RestartCommand") == 0)
 	    gnome_config_make_vector (value, &current->argc, &current->argv);
 	}
@@ -143,7 +143,7 @@ startup_list_write (GSList *sl, const gchar *name)
       g_free (key);
 
       key = g_strdup_printf ("%d,%s", i, "Priority");
-      gnome_config_set_int (key, client->priority);
+      gnome_config_set_int (key, client->order);
       g_free (key);
 
       key = g_strdup_printf ("%d,%s", i, "RestartCommand");
@@ -173,7 +173,7 @@ startup_list_duplicate (GSList *sl)
       ManualClient *client = tmp_list->data;
       ManualClient *new_client = g_new (ManualClient, 1);
 
-      new_client->priority = client->priority;
+      new_client->order = client->order;
       new_client->argc = client->argc;
       new_client->argv = g_new (gchar *, client->argc);
       
@@ -217,17 +217,18 @@ startup_list_update_gui (GSList *sl, GtkTreeModel *model, GtkTreeSelection *sel)
 
   tmp_list = sl;
   while (tmp_list) {
-    gchar *pri, *name;
     ManualClient *client = tmp_list->data;
+    char         *order;
+    char         *name;
 
-    pri = g_strdup_printf ("%d", client->priority);
+    order = g_strdup_printf ("%d", client->order);
     name = gnome_config_assemble_vector (client->argc,
-					    (const char * const *)client->argv);
+					 (const char * const *)client->argv);
 
     gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, client, 1, pri, 2, name, -1);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, client, 1, order, 2, name, -1);
 
-    g_free (pri);
+    g_free (order);
     g_free (name);
 
     tmp_list = tmp_list->next;
@@ -304,7 +305,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (hbox), a, FALSE, FALSE, 0);
-  label = gtk_label_new_with_mnemonic (_("_Priority:"));
+  label = gtk_label_new_with_mnemonic (_("_Order:"));
   gtk_container_add (GTK_CONTAINER (a), label);
 
   gtk_container_set_border_width (GTK_CONTAINER (hbox), GNOME_PAD_SMALL);
@@ -313,7 +314,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (hbox), alignment, FALSE, FALSE, 0);
 
-  adjustment = gtk_adjustment_new (client->priority,
+  adjustment = gtk_adjustment_new (client->order,
 				   0.0, 200.0, 1.0, 10.0, 10.0); 
   spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (adjustment), 1.0, 0);
   gtk_container_add (GTK_CONTAINER (alignment), spinbutton);
@@ -349,7 +350,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
 	  g_free (client->argv);
 	  
 	  gnome_config_make_vector (tmp, &client->argc, &client->argv);
-	  client->priority = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinbutton));
+	  client->order = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinbutton));
 
 	  gtk_widget_destroy (*dialog);
 	  *dialog = NULL;
@@ -368,7 +369,7 @@ void
 startup_list_add_dialog (GSList **sl, GtkWidget **dialog)
 {
   ManualClient *client = g_new (ManualClient, 1);
-  client->priority = 50;
+  client->order = 50;
   client->argc = 0;
   client->argv = NULL;
 

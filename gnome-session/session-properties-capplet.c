@@ -359,7 +359,7 @@ capplet_build (void)
   startup_sel = gtk_tree_view_get_selection (startup_view);
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
   renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Priority"), renderer, "text", 1, NULL);
+  column = gtk_tree_view_column_new_with_attributes (_("Order"), renderer, "text", 1, NULL);
   gtk_tree_view_append_column (startup_view, column);
   column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", 2, NULL);
   gtk_tree_view_append_column (startup_view, column);
