@@ -6,17 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2005-01-08 21:17+0100\n"
+"POT-Creation-Date: 2005-01-27 20:27+0100\n"
+"PO-Revision-Date: 2005-01-27 22:21+0100\n"
 "Last-Translator: Ivan Stojmirov <stojmir@linux.net.mk>\n"
 "Language-Team: Macedonian <mk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "Дозволи TCP конекции"
+msgstr "Дозволи TCP врски"
 
 #: gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "Заради сигурносни причини, на платформи кои имаат _IceTcpTransNoListen() "
 "(XFree86 системи), gnome-session не слуша за конекции на TCP портови. Оваа "
-"опција ќе овозможи конекции од (авторизирани) надворешни хостови. gnome-"
-"session мора да се рестартира за ова да има ефект."
+"опција ќе овозможи врски од (авторизирани) надворешни хостови. gnome-"
+"session мора да се рестартира за да се применат ефектите."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -49,9 +49,7 @@ msgid "Logout prompt"
 msgstr "Дијалог за одјавување"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "Преферирана слика која ќе се користи за поздравниот екран при најава во "
 "работната околина Гном"
@@ -69,8 +67,11 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Прикажи го поздравниот екран при стартување на сесијата"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Слика за поздравниот екран"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Ова е релативна вредност за патека базирана на директориумот $datadir/pixmaps/. Под-директориумите и имињата на сликите не се валидни вредности. Доколку ја промените оваа вредност, промените ќе се одразат при наредното најавување."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -482,6 +483,9 @@ msgstr "Додај програма за подигнување"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Уреди програма за подигнување"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Слика за поздравниот екран"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Зачувај ја Тековната Сесија"
