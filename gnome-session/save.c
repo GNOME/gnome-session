@@ -90,18 +90,8 @@ write_one_client (int number, const Client *client)
       gnome_config_set_string ("id", client->id);
 
       for (i = 0; i < vec_count; ++i)
-	{
-	  char buf[256];
-
-	  sprintf (buf, "%s/count", argv_names[i]);
-	  gnome_config_set_int (buf, argcs[i]);
-
-	  for (j = 0; j < argcs[i]; ++j)
-	    {
-	      sprintf (buf, "%s/%d", argv_names[i], j);
-	      gnome_config_set_string (buf, argvs[i][j]);
-	    }
-	}
+	gnome_config_set_vector (argv_names[i], argcs[i],
+				 (const char * const *) argvs[i]);
 
       for (i = 0; i < string_count; ++i)
 	gnome_config_set_string (string_names[i], strings[i]);
@@ -132,7 +122,7 @@ write_session (const GSList *list, int shutdown)
   for (; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      sprintf (prefix, "gsm/%s/%d,",
+      sprintf (prefix, "gnome/%s/%d,",
 	       session_name ? session_name : DEFAULT_SESSION,
 	       i);
       gnome_config_push_prefix (prefix);
@@ -141,7 +131,7 @@ write_session (const GSList *list, int shutdown)
       gnome_config_pop_prefix ();
     }
 
-  sprintf (prefix, "gsm/%s/num_clients",
+  sprintf (prefix, "gnome/%s/num_clients",
 	   session_name ? session_name : DEFAULT_SESSION);
   gnome_config_set_int (prefix, i);
 
@@ -175,31 +165,16 @@ run_commands (const char *name, int number, const char *command,
       int argc, def, j;
       char **argv, prefix[1024];
 
-      sprintf (prefix, "gsm/%s/%s/count=-1", name, command);
-      argc = gnome_config_get_int_with_default (prefix, &def);
-      if (def)
-	continue;
+      sprintf (prefix, "gnome/%s/%d,%s=", name, i, command);
+      gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
-      argv = (char **) malloc (argc * sizeof (char *));
-      for (j = 0; j < argc; ++j)
+      if (! def)
 	{
-	  sprintf (prefix, "gsm/%s/%s/%d", name, command, j);
-	  argv[j] = gnome_config_get_string (prefix);
-	  if (! argv[j])
-	    {
-	      free_vector (j, argv);
-	      break;
-	    }
-	}
-
-      if (j == argc)
-	{
-	  /* Successfully collected all parts of command.  Now execute
-	     command.  */
 	  (*executor) (argc, argv);
-	  free_vector (argc, argv);
 	  result = 1;
 	}
+
+      free_vector (argc, argv);
     }
 
   return result;
@@ -220,7 +195,7 @@ read_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "gsm/%s/num_clients=-1", name);
+  sprintf (prefix, "gnome/%s/num_clients=-1", name);
   num_clients = gnome_config_get_int_with_default (prefix, &def);
 
   /* If default, then no client info exists.  */
@@ -234,7 +209,7 @@ read_session (const char *name)
     {
       char *id;
 
-      sprintf (prefix, "gsm/%s/%d/id", name, i);
+      sprintf (prefix, "gnome/%s/%d,id", name, i);
       id = gnome_config_get_string (prefix);
       if (id)
 	add_zombie (id);
@@ -257,7 +232,7 @@ delete_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "gsm/%s/num_clients=-1", name);
+  sprintf (prefix, "gnome/%s/num_clients=-1", name);
   number = gnome_config_get_int_with_default (prefix, &def);
   if (def)
     {
@@ -267,6 +242,7 @@ delete_session (const char *name)
 
   run_commands (name, number, SmDiscardCommand, execute_async);
 
-  sprintf (prefix, "gsm/%s", name);
+  sprintf (prefix, "gnome/%s", name);
   gnome_config_clean_section (prefix);
+  gnome_config_sync ();
 }

@@ -2,10 +2,6 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Test code that restores and deletes sessions
-  [ the gnome config functions need a going over before this will work ]
-  [ test restores by hacking the config file by hand ]
-
 * Write exec.c and do the first real test
 
 * Write code that understands restart hints, etc.
@@ -19,6 +15,9 @@ This is still a work in progress.  Here's my plan of attack:
   A session save shouldn't hang because of one losing client.
 
 * Export a CORBA interface exposing all interesting functionality
+
+* Update exec.c to report errors in some meaningful way
+  A dialog is simplest, but a post to the event manager is perhaps best.
 
 * Change session management code into library that can be used
   by embedder apps.  This probably requires merging with
@@ -36,7 +35,7 @@ feel like it.  Please contact me if you do so.
 
 Some known bugs:
 
-- None??  (Well, saving doesn't work, but that is gnome-config's fault)
+- None??
 
 ================================================================
 

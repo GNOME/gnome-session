@@ -6,12 +6,26 @@
 void
 execute_async (int argc, char *argv[])
 {
-  /* Dummy implementation.  */
-  int i;
-  printf ("execute_async:");
-  for (i = 0; i < argc; ++i)
-    printf (" %s", argv[i]);
-  printf ("\n");
+  int i, pid;
+
+  pid = fork ();
+
+  /* FIXME: error handling.  */
+  if (pid == -1)
+    return;
+
+  if (pid == 0)
+    {
+      /* Child.  Fork again so child won't become a zombie.  */
+      pid = fork ();
+      if (pid == -1)
+	_exit (1);
+      if (pid == 0)
+	_exit (0);
+
+      execvp (argv[0], argv);
+      _exit (1);
+    }
 }
 
 void

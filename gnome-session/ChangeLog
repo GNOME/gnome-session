@@ -1,3 +1,24 @@
+Tue Feb  3 00:38:40 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (write_session): gsm->gnome.
+	(run_commands): Likewise.
+	(read_session): Likewise.
+	(delete_session): Likewise.
+
+	* exec.c (execute_async): Wrote.
+
+	* Makefile.am (bin_PROGRAMS): Program named "gnome".
+	(gnome_SOURCES): Renamed.
+
+	* save.c (delete_session): Call gnome_config_sync().
+
+Mon Feb  2 23:08:50 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (write_one_client): Use gnome_config_set_vector.
+	(write_session): Use prefix that doesn't result in new sub-keys.
+	(read_session): Use new prefix.
+	(run_commands): Likewise.  Use gnome_config_get_vector_with_default.
+
 Thu Jan 29 16:49:12 EST 1998 Nathan Bryant <bryant@cs.usm.maine.edu>
 
 	* Makefile.am: add DL_LIB.
