@@ -4,7 +4,7 @@ INCLUDES =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""
 
 ## FIXME: this sucks.  We should just rewrite to use Gtk and not Xt.
-LDADD = $(X_LIBS) -lXt -lXmu $(SMPROXY_LIBS) $(INTLLIBS)
+LDADD = -lXt -lXmu $(X_LIBS) $(SMPROXY_LIBS) $(INTLLIBS)
 
 if SESSION
 bin_PROGRAMS = gnome-smproxy

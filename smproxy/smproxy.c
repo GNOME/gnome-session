@@ -27,6 +27,7 @@ in this Software without prior written authorization from the X Consortium.
 Author:  Ralph Mor, X Consortium
 ******************************************************************************/
 
+#include "config.h"
 #include "smproxy.h"
 
 /* This is probably nonportable.  But then so is the call to
@@ -35,6 +36,9 @@ Author:  Ralph Mor, X Consortium
 #include <libgnome/libgnome.h>
 #include <unistd.h>
 #include <netdb.h>
+#ifdef HAVE_SYS_PARAM_H
+#include <sys/param.h> /* for MAXHOSTNAMELEN */
+#endif
 
 #if !defined (NI_MAXHOST)
 #define NI_MAXHOST MAXHOSTNAMELEN

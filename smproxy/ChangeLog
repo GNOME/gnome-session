@@ -1,3 +1,10 @@
+2003-05-15  Masahiro Sakai  <sakai@tom.sfc.keio.ac.jp>
+
+	* smproxy.c: include config.h and sys/param.h for MAXHOSTNAMELEN.
+
+	* Makefile.am (LDADD): move -lXt and -lXmu ahead of $(X_LIBS) since
+	they depend on -lX11.
+
 2003-01-25  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: don't reference smproxy.man. It
