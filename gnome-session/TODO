@@ -36,8 +36,13 @@ This is still a work in progress.  Here's my plan of attack:
     We'd like the sub-manager to time out before the parent manager
     does. ]
 
+* Some nice (?) features:
+  - ability to checkpoint and then tell gsm to start at this checkpoint,
+    not at final state.
+
 * Export a CORBA interface exposing all interesting functionality
   (See Elliot's IDL in components/)
+  E.g., save current session and start a different one
 
 * Report exec errors in some useful way
 
