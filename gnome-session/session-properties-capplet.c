@@ -81,7 +81,7 @@ static void try (void);
 static void revert (void);
 static void ok (void);
 static void cancel (void);
-static void help (void);
+static void show_help (void);
 static void page_hidden (void);
 static void page_shown (void);
 
@@ -164,7 +164,7 @@ capplet_build (void)
   gtk_signal_connect (GTK_OBJECT (capplet), "page_shown",
 		      GTK_SIGNAL_FUNC (page_shown), NULL);
   gtk_signal_connect (GTK_OBJECT (capplet), "help",
-		      GTK_SIGNAL_FUNC (help), NULL);
+		      GTK_SIGNAL_FUNC (show_help), NULL);
 
   /**** GUI ****/
 
@@ -434,23 +434,13 @@ cancel (void)
 }
 
 static void
-help (void)
+show_help (void)
 {
-  gchar *tmp;
 
-  tmp = gnome_help_file_find_file ("control-center", "session.html#STARTUP-PROGS");
-  if (tmp) {
-    gnome_help_goto (NULL, tmp);
-    g_free(tmp);
-  } else {
-    GtkWidget *mbox;
-    
-    mbox = gnome_message_box_new(_("No help is available/installed for these settings. Please make sure you\nhave the GNOME User's Guide installed on your system."),
-				 GNOME_MESSAGE_BOX_ERROR,
-				 _("Close"), NULL);
-    
-    gtk_widget_show(mbox);
-  }
+  GnomeHelpMenuEntry help_entry = { "control-center" };
+  help_entry.path = 	"session.html#STARTUP-PROGS";
+  gnome_help_display (NULL, &help_entry);
+
 }
 
 static void
