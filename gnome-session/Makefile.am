@@ -12,7 +12,7 @@ INCLUDES = \
 
 LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS) $(INTLLIBS)
 
-sysdir = $(datadir)/apps/Settings
+sysdir = $(datadir)/applications
 
 if SESSION
 noinst_DATA = session.desktop
