@@ -106,7 +106,7 @@ start_splash (gfloat max)
   box = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (frame), box);
   
-  file = gnome_pixmap_file ("gnome-splash.png");
+  file = gnome_pixmap_file ("splash/gnome-splash.png");
   w = gnome_pixmap_new_from_file (file);
   gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, 0);
   

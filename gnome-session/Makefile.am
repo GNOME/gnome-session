@@ -34,7 +34,7 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-desktopdir = $(datadir)/gnome/apps/Settings
+desktopdir = $(datadir)/gnome/apps/Settings/Session
 desktop_DATA = save-session.desktop session.desktop
 
 default.session: default.in ../config.status
@@ -51,12 +51,16 @@ man_MANS = gnome-wm.1 save-session.1 default.session.5 gnome-session.1
 
 manuals = gnome-wm.1 default.session.5.in gnome-session.1.in save-session.1
 
+pixmapdir = $(datadir)/pixmaps/splash/
+pixmap_DATA = gnome-splash.png
+
 EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
 	save-session.desktop 	\
 	session.desktop		\
-	$(manuals)
+	$(manuals)		\
+	gnome-splash.png
 
 
