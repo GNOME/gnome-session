@@ -1,3 +1,9 @@
+2002-06-05  jacob berkman  <jacob@ximian.com>
+
+	* manager.c (maybe_run_discard_commands): don't run the current
+	discard command if we are autosaving (tracked down by Gustavo
+	Giráldez <gustavo.giraldez@gmx.net>)
+
 2002-06-03  jacob berkman  <jacob@ximian.com>
 
 	* manager.c (interact_request): accept interacts in phase 2.  fix

@@ -1321,7 +1321,7 @@ maybe_run_discard_commands (Client *client)
    if (client->last_discard && !client->session_saved)
      run_command_prop (client, SmDiscardCommand, client->last_discard);
 
-   if (discard && shutting_down && !save_selected)
+   if (discard && shutting_down && !(autosave || save_selected))
      run_command_prop (client, SmDiscardCommand, discard);
 }
 
