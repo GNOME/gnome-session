@@ -97,7 +97,7 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
-desktopdir = $(datadir)/gnome/apps/Settings/Session/
+desktopdir = $(datadir)/control-center/capplets
 desktop_DATA = save-session.desktop session.desktop
 
 sysdir = $(datadir)/control-center/Session
