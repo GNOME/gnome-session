@@ -1,5 +1,11 @@
 2002-04-12  Mark McLoughlin  <mark@skynet.ie>
 
+	* save.c: (read_session): if loading a named session
+	failed try loading the user's Default session before
+	trying the system Default. (78042)
+
+2002-04-12  Mark McLoughlin  <mark@skynet.ie>
+
 	* splash.c: (start_splash): fix font description.
 	Patch from Changwoo Ryu <78001>.
 

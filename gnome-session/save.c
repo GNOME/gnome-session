@@ -416,19 +416,27 @@ read_session (const char *name)
   session->name   = g_strdup (name);
   session->handle = command_handle_new ((gpointer)session);
 
-  if(name) {
+  if (name) {
     if (!strcmp (name, FAILSAFE_SESSION)) 
-      list = read_clients (DEFAULT_CONFIG_PREFIX,DEFAULT_SESSION,MATCH_FAKE_ID);
+      list = read_clients (
+		DEFAULT_CONFIG_PREFIX, DEFAULT_SESSION, MATCH_FAKE_ID);
     else 
-      list = read_clients (CONFIG_PREFIX,name,MATCH_ID);
+      list = read_clients (CONFIG_PREFIX, name, MATCH_ID);
+
     if (!list)
       list = read_clients (DEFAULT_CONFIG_PREFIX,name,MATCH_FAKE_ID);
+
   } 
-  
+
   /* If the the specified session from the command line doesn't
-   * exist, load the clients off the default session */
-  if(!list) 
-      list = read_clients (DEFAULT_CONFIG_PREFIX,DEFAULT_SESSION,MATCH_FAKE_ID);  
+   * exist, try to load the clients from the user's default session
+   * then the system's default session
+   */
+  if (!list)
+    list = read_clients (CONFIG_PREFIX, DEFAULT_SESSION, MATCH_ID);
+  if (!list) 
+    list = read_clients (
+		DEFAULT_CONFIG_PREFIX, DEFAULT_SESSION, MATCH_FAKE_ID);
 
   session->client_list = list;
 
