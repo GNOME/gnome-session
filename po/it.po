@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.11\n"
-"POT-Creation-Date: 2002-05-13 22:10+0100\n"
+"POT-Creation-Date: 2002-05-29 01:21+1200\n"
 "PO-Revision-Date: 2002-03-03 17:58+0100\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -12,28 +12,28 @@ msgstr ""
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-login-check.c:130
+#: gnome-session/gnome-login-check.c:121
 msgid "GNOME Login"
 msgstr "Avvio di GNOME"
 
-#: gnome-session/gnome-login-check.c:130
+#: gnome-session/gnome-login-check.c:121
 msgid "Login"
 msgstr "Login"
 
-#: gnome-session/gnome-login-check.c:157
+#: gnome-session/gnome-login-check.c:148
 msgid "Start with default programs"
 msgstr "Avvia con programmi di default"
 
-#: gnome-session/gnome-login-check.c:161
+#: gnome-session/gnome-login-check.c:152
 msgid "Reset all user settings"
 msgstr "Annulla tutte le impostazioni utente"
 
-#: gnome-session/gnome-login-check.c:172
+#: gnome-session/gnome-login-check.c:163
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr "Annullare veramente tutte le impostazioni utenti di GNOME per %s?"
 
-#: gnome-session/gnome-login-check.c:204
+#: gnome-session/gnome-login-check.c:195
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -44,15 +44,15 @@ msgstr ""
 "dall'utente corrente, %s.\n"
 "Correggere i permessi a questa directory."
 
-#: gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
+#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
 msgid "Try again"
 msgstr "Prova ancora"
 
-#: gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
+#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
 msgid "Continue"
 msgstr "Continua"
 
-#: gnome-session/gnome-login-check.c:228
+#: gnome-session/gnome-login-check.c:219
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -65,7 +65,7 @@ msgstr ""
 "È eventualmente possibile correggere l'errore aggiungendo\n"
 "%s al file /etc/hosts."
 
-#: gnome-session/gnome-login-check.c:254
+#: gnome-session/gnome-login-check.c:245
 msgid ""
 "Your version of libICE has a bug which causes gnome-session\n"
 "to not function correctly.\n"
@@ -193,32 +193,27 @@ msgstr "Impostazioni"
 msgid "Always started on every login."
 msgstr "Avviato ad ogni login."
 
-#: gnome-session/logout.c:188
-#, fuzzy
-msgid "_Log Out"
-msgstr "Esci"
-
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:224
 msgid "Really log out?"
 msgstr "Sicuri di voler uscire?"
 
-#: gnome-session/logout.c:265
+#: gnome-session/logout.c:241
 msgid "Save current setup"
 msgstr "Salva impostazioni correnti"
 
-#: gnome-session/logout.c:285
+#: gnome-session/logout.c:261
 msgid "Action"
 msgstr "Azione"
 
-#: gnome-session/logout.c:293
+#: gnome-session/logout.c:269
 msgid "Logout"
 msgstr "Esci"
 
-#: gnome-session/logout.c:296
+#: gnome-session/logout.c:272
 msgid "Shut Down"
 msgstr "Arresta il sistema"
 
-#: gnome-session/logout.c:299
+#: gnome-session/logout.c:275
 msgid "Reboot"
 msgstr "Riavvia"
 
@@ -248,28 +243,28 @@ msgstr "Tempo speso in attesa della morte del client (in ms, 0 = infinito)"
 msgid "Your session has been saved"
 msgstr "La vostra sessione è stata salvata"
 
-#: gnome-session/manager.c:436
+#: gnome-session/manager.c:454
 msgid "Wait abandoned due to conflict."
 msgstr "Attesa interrotta a causa di un conflitto."
 
-#: gnome-session/manager.c:874
+#: gnome-session/manager.c:896
 #, c-format
 msgid "No response to the %s command."
 msgstr "Nessuna risposta al comando %s."
 
-#: gnome-session/manager.c:875
+#: gnome-session/manager.c:897
 msgid "The program may be slow, stopped or broken."
 msgstr "Il programma potrebbe essere lento, interrotto o non funzionante."
 
-#: gnome-session/manager.c:876
+#: gnome-session/manager.c:898
 msgid "You may wait for it to respond or remove it."
 msgstr "È possibile attendere che risponda o rimuoverlo."
 
-#: gnome-session/manager.c:1433
+#: gnome-session/manager.c:1495
 msgid "Respawn abandoned due to failures."
 msgstr "Riavvio interrotto a causa di errori."
 
-#: gnome-session/manager.c:1607
+#: gnome-session/manager.c:1669
 msgid "A session shutdown is in progress."
 msgstr "La chiusura di una sessione è in corso."
 
@@ -309,86 +304,86 @@ msgstr "Aggiungi nuova session"
 msgid "Edit session name"
 msgstr "Modifica nome sessione"
 
-#: gnome-session/session-properties-capplet.c:141
+#: gnome-session/session-properties-capplet.c:142
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:171
+#: gnome-session/session-properties-capplet.c:172
 #, fuzzy
 msgid "Session properties"
 msgstr "Proprietà sessione"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:196
+#: gnome-session/session-properties-capplet.c:199
 msgid "Options"
 msgstr "Opzioni"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:209
 msgid "Show splash screen on login"
 msgstr "Mostra schermata di avvio al login"
 
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:220
 msgid "Prompt on logout"
 msgstr "Chiedi conferma all'uscita"
 
-#: gnome-session/session-properties-capplet.c:228
+#: gnome-session/session-properties-capplet.c:231
 msgid "Automatically save changes to session"
 msgstr "Salva automaticamente le modifiche alla sessione"
 
-#: gnome-session/session-properties-capplet.c:238
+#: gnome-session/session-properties-capplet.c:241
 msgid "<i>These changes take effect immediately</i>"
 msgstr ""
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:242
+#: gnome-session/session-properties-capplet.c:245
 msgid "Choose Current Session"
 msgstr "Scegli sessione corrente"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:262
 msgid "Session Name"
 msgstr "Nome Sessione"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:268
-#: gnome-session/session-properties-capplet.c:340
+#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:348
 msgid "Add..."
 msgstr "Aggiungi..."
 
-#: gnome-session/session-properties-capplet.c:272
-#: gnome-session/session-properties-capplet.c:345
+#: gnome-session/session-properties-capplet.c:275
+#: gnome-session/session-properties-capplet.c:353
 msgid "Edit..."
 msgstr "Modifica..."
 
-#: gnome-session/session-properties-capplet.c:276
-#: gnome-session/session-properties-capplet.c:350
+#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:358
 msgid "Delete"
 msgstr "Elimina"
 
-#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:309
 msgid "Session Options"
 msgstr "Opzioni sessione"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:312
+#: gnome-session/session-properties-capplet.c:320
 msgid "Non-session-managed Startup Programs"
 msgstr "Programmi da avviare indipendenti dal gestore di sessione"
 
-#: gnome-session/session-properties-capplet.c:329
+#: gnome-session/session-properties-capplet.c:337
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "Priorità"
 
-#: gnome-session/session-properties-capplet.c:331
+#: gnome-session/session-properties-capplet.c:339
 msgid "Command"
 msgstr "Comando"
 
-#: gnome-session/session-properties-capplet.c:359
+#: gnome-session/session-properties-capplet.c:367
 msgid "Startup Programs"
 msgstr "Programmi all'avvio"
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:372
 #, fuzzy
 msgid "Current Session"
 msgstr "Salva la sessione corrente"
@@ -511,6 +506,10 @@ msgstr "Aggiungi Programma all'avvio"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Modifica programmi di avvio"
+
+#, fuzzy
+#~ msgid "_Log Out"
+#~ msgstr "Esci"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Impossibile effettuare una connessione a gnome-session"

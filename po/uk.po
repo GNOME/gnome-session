@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.4\n"
-"POT-Creation-Date: 2002-05-23 09:27+0300\n"
+"POT-Creation-Date: 2002-05-29 01:21+1200\n"
 "PO-Revision-Date: 2002-05-23 08:48+0200\n"
 "Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -45,13 +45,11 @@ msgstr ""
 "поточному користувачу, %s.\n"
 "Будь ласка, виправте право на володіння цим каталогом."
 
-#: gnome-session/gnome-login-check.c:202
-#: gnome-session/gnome-login-check.c:227
+#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
 msgid "Try again"
 msgstr "Спробувати знову"
 
-#: gnome-session/gnome-login-check.c:203
-#: gnome-session/gnome-login-check.c:228
+#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
 msgid "Continue"
 msgstr "Продовжити"
 
@@ -83,7 +81,8 @@ msgstr ""
 "роботи gnome-session.\n"
 "\n"
 "Якщо ви використовуєте Solaris, вам потрібно або поновити систему до\n"
-"латки #108376-16, або використовувати libICE.so.6 з ориґінального Solaris 7.\n"
+"латки #108376-16, або використовувати libICE.so.6 з ориґінального Solaris "
+"7.\n"
 "Ви можете просто скопіювати файл в /usr/openwin/lib. (Дякуємо Andy Reitz\n"
 "за інформацію про цю помилку).\n"
 "\n"
@@ -193,31 +192,27 @@ msgstr "Установки"
 msgid "Always started on every login."
 msgstr "Запускається під час кожної реєстрації."
 
-#: gnome-session/logout.c:188
-msgid "_Log Out"
-msgstr "_Завершити роботу"
-
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:224
 msgid "Really log out?"
 msgstr "Справді завершити роботу?"
 
-#: gnome-session/logout.c:268
+#: gnome-session/logout.c:241
 msgid "Save current setup"
 msgstr "Зберегти поточні установки"
 
-#: gnome-session/logout.c:288
+#: gnome-session/logout.c:261
 msgid "Action"
 msgstr "Дія"
 
-#: gnome-session/logout.c:296
+#: gnome-session/logout.c:269
 msgid "Logout"
 msgstr "Завершити роботу"
 
-#: gnome-session/logout.c:299
+#: gnome-session/logout.c:272
 msgid "Shut Down"
 msgstr "Вимкнути"
 
-#: gnome-session/logout.c:302
+#: gnome-session/logout.c:275
 msgid "Reboot"
 msgstr "Перезавантаження"
 
@@ -245,28 +240,28 @@ msgstr "Час очікування на завершення роботи кл�
 msgid "Your session has been saved"
 msgstr "Ваш сеанс збережено"
 
-#: gnome-session/manager.c:436
+#: gnome-session/manager.c:454
 msgid "Wait abandoned due to conflict."
 msgstr "Очікування перервано через конфлікт."
 
-#: gnome-session/manager.c:874
+#: gnome-session/manager.c:896
 #, c-format
 msgid "No response to the %s command."
 msgstr "Немає відповіді на команду %s."
 
-#: gnome-session/manager.c:875
+#: gnome-session/manager.c:897
 msgid "The program may be slow, stopped or broken."
 msgstr "Пожливо що програму зупинено, зломано чи вона просто повільна"
 
-#: gnome-session/manager.c:876
+#: gnome-session/manager.c:898
 msgid "You may wait for it to respond or remove it."
 msgstr "Ви можете чекати на відповідь або видалити програму."
 
-#: gnome-session/manager.c:1433
+#: gnome-session/manager.c:1495
 msgid "Respawn abandoned due to failures."
 msgstr "Розгалудження не відбулось через помилки."
 
-#: gnome-session/manager.c:1607
+#: gnome-session/manager.c:1669
 msgid "A session shutdown is in progress."
 msgstr "Відбувається завершення сеансу."
 
@@ -306,85 +301,87 @@ msgstr "Додати новий сеанс"
 msgid "Edit session name"
 msgstr "Виправити назву сеансу"
 
-#: gnome-session/session-properties-capplet.c:141
-msgid "Some changes are not saved.\n"
+#: gnome-session/session-properties-capplet.c:142
+msgid ""
+"Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr "Деякі зміни не збережено.\n"
+msgstr ""
+"Деякі зміни не збережено.\n"
 "Справді вийти?"
 
-#: gnome-session/session-properties-capplet.c:171
+#: gnome-session/session-properties-capplet.c:172
 msgid "Session properties"
 msgstr "Властивості сеансу"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:196
+#: gnome-session/session-properties-capplet.c:199
 msgid "Options"
 msgstr "Параметри"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:209
 msgid "Show splash screen on login"
 msgstr "Показувати заставку під час реєстрації"
 
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:220
 msgid "Prompt on logout"
 msgstr "Перепитування перед завершенням сеансу"
 
-#: gnome-session/session-properties-capplet.c:228
+#: gnome-session/session-properties-capplet.c:231
 msgid "Automatically save changes to session"
 msgstr "Автоматично зберігати зміни в сеансі"
 
-#: gnome-session/session-properties-capplet.c:238
+#: gnome-session/session-properties-capplet.c:241
 msgid "<i>These changes take effect immediately</i>"
 msgstr "<i>Ця зміни буде застосовано негайно</i>"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:242
+#: gnome-session/session-properties-capplet.c:245
 msgid "Choose Current Session"
 msgstr "Вибрати поточний сеанс"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:262
 msgid "Session Name"
 msgstr "Назва сеансу"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:268
-#: gnome-session/session-properties-capplet.c:345
+#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:348
 msgid "Add..."
 msgstr "Додати..."
 
-#: gnome-session/session-properties-capplet.c:272
-#: gnome-session/session-properties-capplet.c:350
+#: gnome-session/session-properties-capplet.c:275
+#: gnome-session/session-properties-capplet.c:353
 msgid "Edit..."
 msgstr "Виправити..."
 
-#: gnome-session/session-properties-capplet.c:276
-#: gnome-session/session-properties-capplet.c:355
+#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:358
 msgid "Delete"
 msgstr "Стерти"
 
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:309
 msgid "Session Options"
 msgstr "Параметри сеансу"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:317
+#: gnome-session/session-properties-capplet.c:320
 msgid "Non-session-managed Startup Programs"
 msgstr "Програми, що запускаються поза менеджером сеансів"
 
-#: gnome-session/session-properties-capplet.c:334
+#: gnome-session/session-properties-capplet.c:337
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "Пріоритет"
 
-#: gnome-session/session-properties-capplet.c:336
+#: gnome-session/session-properties-capplet.c:339
 msgid "Command"
 msgstr "Команда"
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:367
 msgid "Startup Programs"
 msgstr "Початкові програми"
 
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:372
 msgid "Current Session"
 msgstr "Поточний сеанс"
 
@@ -482,14 +479,17 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Запуск GNOME"
 
-#: gnome-session/startup-programs.c:283
-#: gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
 msgid "Startup Command"
 msgstr "Початкові команди"
 
 #: gnome-session/startup-programs.c:314
-msgid "Programs with smaller values are started before programs with higher values. The default value should be OK"
-msgstr "Програми з меншими значеннями запускаються перед програмами з більшими значеннями. Типове значення має підійти."
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Програми з меншими значеннями запускаються перед програмами з більшими "
+"значеннями. Типове значення має підійти."
 
 #: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
@@ -503,3 +503,5 @@ msgstr "Додати програму"
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
 
+#~ msgid "_Log Out"
+#~ msgstr "_Завершити роботу"
