@@ -1,3 +1,9 @@
+1999-08-01  Tom Tromey  <tromey@cygnus.com>
+
+	* logout.c: Reverted previous patch.  It turns out that saves can
+	happen at "random" times, so this change would have caused user
+	confusion and not much more.
+
 1999-08-01  Jacob Berkman  <jberkman@andrew.cmu.edu>
 
 	* logout.c (display_gui): always display the "save current setup"

@@ -218,12 +218,14 @@ display_gui (void)
   gtk_container_set_border_width (GTK_CONTAINER (GNOME_DIALOG (box)->vbox),
 				  GNOME_PAD);
 
-  toggle_button = gtk_check_button_new_with_label (_("Save current setup"));
-  gtk_toggle_button_set_active (toggle_button, !trashing);
-  gtk_widget_show (toggle_button);
-  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (box)->vbox),
-		      toggle_button,
-		      FALSE, TRUE, 0);
+  if (trashing)
+    {
+      toggle_button = gtk_check_button_new_with_label (_("Save current setup"));
+      gtk_widget_show (toggle_button);
+      gtk_box_pack_start (GTK_BOX (GNOME_DIALOG (box)->vbox),
+			  toggle_button,
+			  FALSE, TRUE, 0);
+    }
 
   ask = gtk_check_button_new_with_label (_("Ask next time"));
   gtk_widget_show (ask);
