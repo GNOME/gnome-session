@@ -10,6 +10,12 @@
 	* gsm-client-editor.c: (gsm_client_editor_get_type):
 	* gsm-client-editor.h: s/guint/GtkType/g.
 
+2003-04-22  Alexander Larsson  <alexl@redhat.com>
+
+	* main.c (set_display_properties):
+	Xrandr support. We set the new resolution as early as possible
+	to avoid changing it after any UI is shown.
+
 2003-01-03  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: add gsm-procotol.[ch] to the session-save
