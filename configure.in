@@ -356,29 +356,6 @@ if test "x$enable_rebuilds" = "xyes" && \
 fi
 AC_SUBST(REBUILD)
 
-dnl find the commands to use for rebooting/halting the system
-AC_ARG_WITH(reboot-command,
-    AC_HELP_STRING([--with-reboot-command=COMMAND],
-		   [Specify the command for rebooting the system]),
-    [REBOOT_COMMAND="$with_reboot_command"],
-    [AC_PATH_PROGS(REBOOT_COMMAND, reboot)
-    if test x$REBOOT_COMMAND = x ; then
-	AC_MSG_WARN([The reboot command was not found. Restarting from the logout dialog will be disabled.])
-    fi
-])
-AC_SUBST(REBOOT_COMMAND)
-
-AC_ARG_WITH(halt-command,
-    AC_HELP_STRING([--with-halt-command=COMMAND],
-		   [Specify the command for halting the system]),
-    [HALT_COMMAND="$with_halt_command"],
-    [AC_PATH_PROGS(HALT_COMMAND, [poweroff halt])
-    if test x$HALT_COMMAND = x ; then
-	AC_MSG_WARN([The halt command was not found. Shutting down from the logout dialog will be disabled.])
-    fi
-])
-AC_SUBST(HALT_COMMAND)
-
 AC_ARG_WITH(rsh-command,
     AC_HELP_STRING([--with-rsh-command=COMMAND],
 		   [Specify the command for executing a remote shell]),
