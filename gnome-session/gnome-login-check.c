@@ -367,9 +367,9 @@ main (int argc, char **argv)
 		tmp_msgbox = gnome_message_box_new (
 			_("Your version of libICE has a bug which causes gnome-session\n"
 			  "to not function correctly.\n\n"
-			  "If you are on Solaris, you should either upgrade to Solaris 8\n"
-			  "or use the libICE.so.6 from the original Solaris 7.  You can\n"
-			  "just copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+			  "If you are on Solaris, you should either upgrade to Solaris patch\n"
+			  "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+			  "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
 			  "for information on this bug).\n\n"
 			  "Your GNOME session will terminate after closing this dialog."),
 			GNOME_MESSAGE_BOX_ERROR,
