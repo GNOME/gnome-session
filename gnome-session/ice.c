@@ -221,6 +221,25 @@ auth_proc (char* hostname)
     return 0; /* always reject */
 }
 
+/*
+ * This routine tries to launch the ICE listen port without an open socket
+ * to the world.  It loops from -1 to -256, as the socket might be in use
+ */
+static gboolean
+init_well_known_connections (void)
+{
+	char error [256];
+	char buffer [32];
+	int i;
+
+	for (i = 1; i < 256; i++){
+		sprintf (buffer, "-%d", i); 
+		if (IceListenForWellKnownConnections (buffer, &num_sockets, sockets, sizeof(error), error))
+			return TRUE;
+	}
+	return FALSE;
+}
+
 void
 initialize_ice (void)
 {
@@ -256,8 +275,7 @@ initialize_ice (void)
 				       sizeof(error), error))
 	    init_error = FALSE;
 	}
-      else if (IceListenForWellKnownConnections ("-1", &num_sockets, &sockets,
-						 sizeof(error), error))
+      else if (init_well_known_connections ())
 	init_error = FALSE;
     }
 
