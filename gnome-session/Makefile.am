@@ -16,7 +16,7 @@ LDADD = \
 	@LEXLIB@					\
 	$(INTLLIBS) $(DL_LIB)
 
-bin_PROGRAMS = gnome
+bin_PROGRAMS = gnome-session
 
-gnome_SOURCES = manager.c manager.h ice.c auth.c auth.h testbed.c \
-prop.c save.c exec.c
+gnome_session_SOURCES = manager.c manager.h ice.c auth.c auth.h	\
+testbed.c prop.c save.c exec.c

@@ -122,7 +122,7 @@ write_session (const GSList *list, int shutdown)
   for (; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      sprintf (prefix, "gnome/%s/%d,",
+      sprintf (prefix, "session/%s/%d,",
 	       session_name ? session_name : DEFAULT_SESSION,
 	       i);
       gnome_config_push_prefix (prefix);
@@ -131,7 +131,7 @@ write_session (const GSList *list, int shutdown)
       gnome_config_pop_prefix ();
     }
 
-  sprintf (prefix, "gnome/%s/num_clients",
+  sprintf (prefix, "session/%s/num_clients",
 	   session_name ? session_name : DEFAULT_SESSION);
   gnome_config_set_int (prefix, i);
 
@@ -165,7 +165,7 @@ run_commands (const char *name, int number, const char *command,
       int argc, def, j;
       char **argv, prefix[1024];
 
-      sprintf (prefix, "gnome/%s/%d,%s=", name, i, command);
+      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
       gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
       if (! def)
@@ -195,7 +195,7 @@ read_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "gnome/%s/num_clients=-1", name);
+  sprintf (prefix, "session/%s/num_clients=-1", name);
   num_clients = gnome_config_get_int_with_default (prefix, &def);
 
   /* If default, then no client info exists.  */
@@ -209,7 +209,7 @@ read_session (const char *name)
     {
       char *id;
 
-      sprintf (prefix, "gnome/%s/%d,id", name, i);
+      sprintf (prefix, "session/%s/%d,id", name, i);
       id = gnome_config_get_string (prefix);
       if (id)
 	add_zombie (id);
@@ -232,7 +232,7 @@ delete_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "gnome/%s/num_clients=-1", name);
+  sprintf (prefix, "session/%s/num_clients=-1", name);
   number = gnome_config_get_int_with_default (prefix, &def);
   if (def)
     {
@@ -242,7 +242,7 @@ delete_session (const char *name)
 
   run_commands (name, number, SmDiscardCommand, execute_async);
 
-  sprintf (prefix, "gnome/%s", name);
+  sprintf (prefix, "session/%s", name);
   gnome_config_clean_section (prefix);
   gnome_config_sync ();
 }
