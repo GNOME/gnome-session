@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.gnome-2-2.be\n"
-"POT-Creation-Date: 2003-02-18 04:55+0100\n"
+"POT-Creation-Date: 2003-05-04 15:35+0530\n"
 "PO-Revision-Date: 2003-02-19 18:50GMT+2\n"
 "Last-Translator: Vital Khilko <dojlid@mova.org>\n"
 "Language-Team: belarusian <i18n@mova.org>\n"
@@ -25,23 +25,23 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"З погляду бясьпекі, на плятформах дзе маецца _IceTcpTransNoListen() "
-"(XFree86 сыстэмы), gnome-session ня праслухоўвае парты TCPдля "
-"далучэньняў. Гэты парамэтар дазваляе далучэньні з (аўтарызаваных) "
-"аддаленух вузлоў. gnome-session павінна быць перазапушчана каб "
-"зьмены мелі эфект."
+"З погляду бясьпекі, на плятформах дзе маецца _IceTcpTransNoListen() (XFree86 "
+"сыстэмы), gnome-session ня праслухоўвае парты TCPдля далучэньняў. Гэты "
+"парамэтар дазваляе далучэньні з (аўтарызаваных) аддаленух вузлоў. gnome-"
+"session павінна быць перазапушчана каб зьмены мелі эфект."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Калі уключана, gnome-sessionнагадае карыстальніку перад заканчэньнем сэанса."
+msgstr ""
+"Калі уключана, gnome-sessionнагадае карыстальніку перад заканчэньнем сэанса."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Калі ўключана, gnome-session захавае сэанс аўтаматычна. Інакш, "
-"дыялёг пад час выхаду будзе мець выбар захаваньня сэанса."
+"Калі ўключана, gnome-session захавае сэанс аўтаматычна. Інакш, дыялёг пад "
+"час выхаду будзе мець выбар захаваньня сэанса."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -52,8 +52,8 @@ msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"Пераважны відарыс для выкарыстаньня ў якасьці застаўкі GNOME, "
-"які ўсплывае пад час запуску."
+"Пераважны відарыс для выкарыстаньня ў якасьці застаўкі GNOME, які ўсплывае "
+"пад час запуску."
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
@@ -225,51 +225,51 @@ msgstr "Гэта невядомая памылка актывацыі."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Дэман усталёвак перазапушчаны зашмат разоў."
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:365
 msgid "Are you sure you want to log out?"
 msgstr "Вы ўпэўненыя што жадаеце выйсьці?"
 
-#: gnome-session/logout.c:298
+#: gnome-session/logout.c:394
 msgid "_Save current setup"
 msgstr "Захаваць бягучыя ўсталёўкі"
 
-#: gnome-session/logout.c:318
+#: gnome-session/logout.c:414
 msgid "Action"
 msgstr "Дзеяньне"
 
-#: gnome-session/logout.c:326
+#: gnome-session/logout.c:427
 msgid "_Log Out"
 msgstr "Вы_йсьці"
 
-#: gnome-session/logout.c:329
+#: gnome-session/logout.c:430
 msgid "Sh_ut Down"
 msgstr "Вы_ключыць"
 
-#: gnome-session/logout.c:332
+#: gnome-session/logout.c:433
 msgid "_Restart the computer"
 msgstr "Пера_запусьціць кампутар"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:81
 msgid "Specify a session name to load"
 msgstr "Увядзіце назву сэанса для загрузкі"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
 msgstr "Чытаць захаваныя сэансы толькі з файлу default.session"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Пэрыяд чаканьня рэгістрацыі кліентаў, у мілісэкундах (0=заўсёды)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Пэрыяд чаканьня адказу кліентаў, у мілісэкундах (0=заўсёды)"
 
-#: gnome-session/main.c:80
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Пэрыяд чаканьня сьмерці кліентаў, у мілісэкундах (0=заўсёды)"
 
-#: gnome-session/main.c:212
+#: gnome-session/main.c:217
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -282,40 +282,40 @@ msgstr ""
 "Вы можаце зьліквідаваць праблему, дадаўшы\n"
 "%s у файл /etc/hosts."
 
-#: gnome-session/main.c:219
+#: gnome-session/main.c:224
 msgid "Log in Anyway"
 msgstr "Выйсьці ў любым выпадку"
 
-#: gnome-session/main.c:220
+#: gnome-session/main.c:225
 msgid "Try Again"
 msgstr "Паспрабаваць нанова"
 
-#: gnome-session/manager.c:176
+#: gnome-session/manager.c:174
 msgid "Your session has been saved"
 msgstr "Ваш сэанс захаваны"
 
-#: gnome-session/manager.c:457
+#: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
 msgstr "Чаканьне перарванае ў сувязі з канфліктам."
 
-#: gnome-session/manager.c:904
+#: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
 msgstr "Няма адказа на каманду %s."
 
-#: gnome-session/manager.c:905
+#: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
 msgstr "Мажліва праграма запаволена, спынена ці зламана."
 
-#: gnome-session/manager.c:906
+#: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
 msgstr "Вы можаце чакаць адказу ці выдаліць гэта."
 
-#: gnome-session/manager.c:1516
+#: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
 msgstr "Перазапуск ня зроблены з-за няўдачы."
 
-#: gnome-session/manager.c:1692
+#: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
 msgstr "Адбываецца заканчэньне сэанса працы."
 
@@ -513,4 +513,3 @@ msgstr "Рэдагаваньне праграмы аўтазапуску"
 
 #~ msgid "Starting GNOME"
 #~ msgstr "Запуск GNOME"
-
