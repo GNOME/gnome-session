@@ -44,37 +44,38 @@ typedef enum {
   GSM_NSTYLES
 } GsmStyle;
 
-typedef GtkObject* (*GsmClientFactory) ();
+typedef GObject *(*GsmClientFactory) ();
 
 /* GSM_PROTOCOL object */
 
-#define GSM_IS_PROTOCOL(obj)      GTK_CHECK_TYPE (obj, gsm_protocol_get_type ())
-#define GSM_PROTOCOL(obj)         GTK_CHECK_CAST (obj, gsm_protocol_get_type (), GsmProtocol)
-#define GSM_PROTOCOL_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_protocol_get_type (), GsmProtocolClass)
+#define GSM_TYPE_PROTOCOL         (gsm_protocol_get_type ())
+#define GSM_PROTOCOL(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_PROTOCOL, GsmProtocol))
+#define GSM_PROTOCOL_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_PROTOCOL, GsmProtocolClass))
+#define GSM_IS_PROTOCOL(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_PROTOCOL))
+#define GSM_IS_PROTOCOL_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_PROTOCOL))
+#define GSM_PROTOCOL_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_PROTOCOL, GsmProtocolClass))
 
-typedef struct _GsmProtocol GsmProtocol;
-typedef struct _GsmProtocolClass GsmProtocolClass;
+typedef struct {
+  GObject   object;
 
-struct _GsmProtocol {
-  GtkObject object;
-  gpointer         smc_conn;              /* connection used for protocol */
-};
+  gpointer  smc_conn; /* connection used for protocol */
+} GsmProtocol;
 
-struct _GsmProtocolClass {
-  GtkObjectClass parent_class;
+typedef struct {
+  GObjectClass parent_class;
 
   /* signals emitted when gnome-session returns a value. */
-  void (* saved_sessions) (GsmProtocol *protocol, GSList* saved_sessions); 
+  void (* saved_sessions)  (GsmProtocol *protocol, GSList* saved_sessions); 
   void (* current_session) (GsmProtocol *protocol, gchar* current_session);
-};
+} GsmProtocolClass;
 
-guint gsm_protocol_get_type  (void);
+GType gsm_protocol_get_type  (void);
 
 /* Creating a GsmProtocol turns on the protocol over the connection used by
  * the specified GnomeClient (the gnome_master_client is the best choice).
  * NB: only ONE GsmProtocol may be created and it must be created before
  * creating any GsmSession or GsmClient derived objects. */
-GtkObject* gsm_protocol_new (GnomeClient *gnome_client);
+GsmProtocol *gsm_protocol_new (GnomeClient *gnome_client);
 
 /* Requests gnome-session to list its saved sessions. Emits "saved_sessions" */
 void gsm_protocol_get_saved_sessions (GsmProtocol* protocol);
@@ -97,15 +98,15 @@ void gsm_protocol_set_session_name (GsmProtocol *protocol,
 
 /* GSM_SESSION object */
 
-#define GSM_IS_SESSION(obj)      GTK_CHECK_TYPE (obj, gsm_session_get_type ())
-#define GSM_SESSION(obj)         GTK_CHECK_CAST (obj, gsm_session_get_type (), GsmSession)
-#define GSM_SESSION_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_session_get_type (), GsmSessionClass)
+#define GSM_TYPE_SESSION         (gsm_session_get_type ())
+#define GSM_SESSION(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_SESSION, GsmSession))
+#define GSM_SESSION_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_SESSION, GsmSessionClass))
+#define GSM_IS_SESSION(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_SESSION))
+#define GSM_IS_SESSION_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_SESSION))
+#define GSM_SESSION_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_SESSION, GsmSessionClass))
 
-typedef struct _GsmSession GsmSession;
-typedef struct _GsmSessionClass GsmSessionClass;
-
-struct _GsmSession {
-  GtkObject object;
+typedef struct {
+  GObject          object;
 
   gchar*           handle;             /* internal use */
   gint             waiting;            /* internal use */
@@ -113,28 +114,30 @@ struct _GsmSession {
   gchar*           name;               /* session name used by user */
   GsmClientFactory client_factory;     /* creates new GsmClient objects */
   gpointer         data;               /* data passed to client_factory */
-};
+} GsmSession;
 
-struct _GsmSessionClass {
-  GtkObjectClass parent_class;
+typedef struct {
+  GObjectClass parent_class;
 
   void (* initialized)    (GsmSession *session); /* all clients ready */
   void (* session_name)   (GsmSession *session, gchar* name); 
                                                  /* session name change */
-};
+} GsmSessionClass;
 
-guint gsm_session_get_type  (void);
+GType gsm_session_get_type  (void);
 
 /* Creates a session object for the clients in the session saved under name.
  * The client_factory is used to create new GsmClient derived objects
  * for each client that is in the session and is passed the "data" pointer.
  * The details of the client are recorded in its GsmClient object and this
  * object emits signals when those details change. */
-GtkObject* gsm_session_new (gchar* name, 
-			    GsmClientFactory client_factory, gpointer data);
+GsmSession *gsm_session_new  (char             *name, 
+			      GsmClientFactory  client_factory,
+			      gpointer          data);
 
 /* Creates a session object for the clients in the live session. */
-GtkObject* gsm_session_live (GsmClientFactory client_factory, gpointer data);
+GsmSession *gsm_session_live (GsmClientFactory  client_factory,
+			      gpointer          data);
 
 /* Starts a saved session. Makes it into the live session when no live
  * session has been created. */
@@ -145,27 +148,27 @@ void       gsm_session_set_name (GsmSession *session, gchar* name);
 
 /* GSM_CLIENT object */
 
-#define GSM_IS_CLIENT(obj)      GTK_CHECK_TYPE (obj, gsm_client_get_type ())
-#define GSM_CLIENT(obj)         GTK_CHECK_CAST (obj, gsm_client_get_type (), GsmClient)
-#define GSM_CLIENT_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_get_type (), GsmClientClass)
+#define GSM_TYPE_CLIENT         (gsm_client_get_type ())
+#define GSM_CLIENT(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_CLIENT, GsmClient))
+#define GSM_CLIENT_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_CLIENT, GsmClientClass))
+#define GSM_IS_CLIENT(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_CLIENT))
+#define GSM_IS_CLIENT_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_CLIENT))
+#define GSM_CLIENT_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_CLIENT, GsmClientClass))
 
-typedef struct _GsmClient GsmClient;
-typedef struct _GsmClientClass GsmClientClass;
+typedef struct {
+  GObject     object;
 
-struct _GsmClient {
-  GtkObject object;
-
-  gchar*      handle;                       /* internal use */
-  GsmSession* session;                      /* session containing client */
+  gchar      *handle;                       /* internal use */
+  GsmSession *session;                      /* session containing client */
 
   guint       order;                        /* startup order */ 
   GsmStyle    style;                        /* restart style */
   GsmState    state;                        /* state of client */
   gchar*      command;                      /* command (SmCloneCommand) */ 
-};
+} GsmClient;
 
-struct _GsmClientClass {
-  GtkObjectClass parent_class;
+typedef struct {
+  GObjectClass parent_class;
 
   /* Signals emitted when gnome-session notifies a change: */
   void (* remove)    (GsmClient *client);
@@ -176,12 +179,12 @@ struct _GsmClientClass {
   /* Signal emitted when gnome-session encounters an client error:
    * Confirm is TRUE when the client must be removed explicitly. */
   void (* reasons)   (GsmClient *client, gboolean confirm, GSList* reasons);
-};
+} GsmClientClass;
 
-guint gsm_client_get_type  (void);
+GType gsm_client_get_type  (void);
 
 /* Creates a client (without adding it to the live session) */
-GtkObject* gsm_client_new (void);
+GsmClient *gsm_client_new (void);
 
 /* Adds the client to the live session. 
  * Increases the ref count by 1 immediately. */

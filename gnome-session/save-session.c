@@ -45,7 +45,7 @@ static const struct poptOption options[] = {
   {NULL,   '\0', 0, NULL, 0}
 };
 
-static gboolean exit_status = FALSE;
+static int exit_status = FALSE;
 
 /* The protocol object for communicating with the session */
 static GsmProtocol *protocol;
@@ -60,12 +60,13 @@ static void
 save_complete (GnomeClient* client, gpointer data)
 {
   /* this seems to be called twice */
-  static int been_here;
-  if (been_here) return;
-    been_here = TRUE;
-    
+  static int been_here = FALSE;
 
-  exit_status = (data != NULL);
+  if (been_here)
+	  return;
+  been_here = TRUE;
+    
+  exit_status = GPOINTER_TO_INT (data);
 
   /* We can't exit immediately, because the trash mode above
    * might be discarded. So we do the equivalent of an XSync.
@@ -73,49 +74,52 @@ save_complete (GnomeClient* client, gpointer data)
   IcePing (SmcGetIceConnection (protocol->smc_conn), ping_reply, NULL);
 }
 
+static void
+display_error (const char *message)
+{
+	if (gui) {
+		GtkWidget *dialog;
+
+		dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_OK, message);
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+	} else
+		g_printerr ("%s\n", message);
+}
+
 int
 main (int argc, char *argv[])
 {
   GnomeClient *client;
-  GtkWidget *dialog;
-  char *s;
 
   /* Initialize the i18n stuff */
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gnome_init_with_popt_table("save-session", VERSION, argc, argv, options, 0, NULL);
+  gnome_program_init ("save-session", VERSION, LIBGNOMEUI_MODULE,
+		      argc, argv,
+		      GNOME_PARAM_POPT_TABLE, options,
+		      GNOME_PROGRAM_STANDARD_PROPERTIES,
+		      NULL);
+
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/mc/i-floppy.png");
 
   client = gnome_master_client ();
-  if (! GNOME_CLIENT_CONNECTED (client))
+  if (!GNOME_CLIENT_CONNECTED (client))
     {
-      s = _("Could not connect to the session manager");
-      if (gui)
-	{
-	  dialog = gnome_message_box_new (s, GNOME_MESSAGE_BOX_ERROR,
-					  GNOME_STOCK_BUTTON_OK, NULL);
-	  gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
-	}
-      else
-	g_printerr ("%s\n", s);
+      display_error (_("Could not connect to the session manager"));
+
       return 1;
     }
 
   protocol = (GsmProtocol *)gsm_protocol_new (client);
   if (!protocol)
     {
-      s = _("Could not connect to gnome-session");
-      if (gui)
-	{
-	  dialog = gnome_message_box_new (s, GNOME_MESSAGE_BOX_ERROR,
-					  GNOME_STOCK_BUTTON_OK, NULL);
-	  gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
-	}
-      else
-	g_printerr ("%s\n", s);
-      exit (1);
+      display_error (_("Could not connect to gnome-session"));
+
+      return 1;
     }
 
   /* We make this call immediately, as a convenient way
@@ -140,21 +144,24 @@ main (int argc, char *argv[])
   /* Wait until our request is acknowledged:
    * gnome-session queues requests but does not honour them if the
    * requesting client is dead when the save starts. */
-  gtk_signal_connect (GTK_OBJECT (client), "save_complete",
-		      GTK_SIGNAL_FUNC (save_complete), NULL);
-  gtk_signal_connect (GTK_OBJECT (client), "die",
-		      GTK_SIGNAL_FUNC (save_complete), NULL);
-  gtk_signal_connect (GTK_OBJECT (client), "shutdown_cancelled",
-		      GTK_SIGNAL_FUNC (save_complete), (gpointer)1);
+  g_signal_connect (client, "save_complete",
+		    G_CALLBACK (save_complete), GINT_TO_POINTER (0));
+  g_signal_connect (client, "die",
+		    G_CALLBACK (save_complete), GINT_TO_POINTER (0));
+  g_signal_connect (client, "shutdown_cancelled",
+		    G_CALLBACK (save_complete), GINT_TO_POINTER (1));
   gtk_main ();
 
   if (gui)
-    {      
-      dialog = gnome_message_box_new (_("Your session has been saved"),
-				      GNOME_MESSAGE_BOX_INFO,
-				      GNOME_STOCK_BUTTON_OK, NULL);
-      gnome_dialog_run_and_close (GNOME_DIALOG (dialog));
+    {
+      GtkWidget *dialog;
+
+      dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_INFO,
+		      		       GTK_BUTTONS_OK, _("Your session has been saved"));
+      gtk_dialog_run (GTK_DIALOG (dialog));
+      gtk_widget_destroy (dialog);
     }
+
   gsm_protocol_set_sessionsave_mode (GSM_PROTOCOL (protocol), FALSE);
 
   return exit_status;

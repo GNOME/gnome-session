@@ -23,6 +23,7 @@
 #include <gtk/gtk.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>

@@ -1,3 +1,27 @@
+2002-03-19  Mark McLoughlin  <mark@skynet.ie>
+
+	* Makefile.am: add disable deprecated and standard properties cflags.
+
+	* command.c: (command): kill old __gsm__ config code.
+
+	* gsm-client-list.h: include gsm-protocol.h and make the session member
+	of GsmClientList a GsmSession.
+
+	* gsm-protocol.[ch]: port from GtkObject to GObject, gnome dialogs to
+	gtk dialogs etc.
+
+	* headers.h: kill old config defines.
+
+	* ice.c: port Ice connection source from deprecated calls.
+
+	* main.c: include string.h to kill warnings.
+
+	* save-session.c: use gtk dialogs.
+
+	* session-properties.c: use GsmProtocol instead of GtkObject.
+
+	* splash.c, gsm-client-list.c: various more braindead porting.
+
 2002-03-17  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* Makefile.am: Remove bogus define of sysdir.

@@ -1,17 +1,34 @@
-## Process this file with automake to produce Makefile.in.
-
-#SUBDIRS = help
+NULL =
 
 defaultdir = $(datadir)/gnome
 
 INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
+	$(DISABLE_DEPRECATED_CFLAGS)			\
+	$(STANDARD_PROPERTIES_CFLAGS)			\
 	$(WARN_CFLAGS)					\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\""	\
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""
+
+# Flags to make sure we're not using any deprecated functions
+DISABLE_DEPRECATED_CFLAGS = 
+#	-DG_DISABLE_DEPRECATED                                  \
+#	-DGDK_DISABLE_DEPRECATED                                \
+#	-DGTK_DISABLE_DEPRECATED                                \
+#	-DGDK_PIXBUF_DISABLE_DEPRECATED                         \
+#	-DGNOME_DISABLE_DEPRECATED                              \
+#	$(NULL)
+
+# Used by the GNOME_PROGRAM_STANDARD_PROPERTIES macros
+STANDARD_PROPERTIES_CFLAGS =                                    \
+	-DPREFIX=\""$(prefix)"\"                                \
+	-DSYSCONFDIR=\""$(sysconfdir)"\"                        \
+	-DLIBDIR=\""$(libdir)"\"                                \
+	-DDATADIR=\""$(datadir)"\"                              \
+	$(NULL)
 
 LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 

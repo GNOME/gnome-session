@@ -28,7 +28,7 @@
 #include "gsm-client-row.h"
 #include "gsm-protocol.h"
 
-GtkObject *protocol;
+GsmProtocol *protocol;
 
 GtkWidget *entry;
 GtkWidget *add_button;

@@ -24,6 +24,8 @@
 
 #include <gtk/gtk.h>
 
+#include "gsm-protocol.h"
+
 #define GSM_IS_CLIENT_LIST(obj)      GTK_CHECK_TYPE (obj, gsm_client_list_get_type ())
 #define GSM_CLIENT_LIST(obj)         GTK_CHECK_CAST (obj, gsm_client_list_get_type (), GsmClientList)
 #define GSM_CLIENT_LIST_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_list_get_type (), GsmClientListClass)
@@ -35,7 +37,7 @@ struct _GsmClientList {
   GtkCList   clist;
 
   GtkWidget* client_editor;
-  GtkObject* session;
+  GsmSession *session;
   gboolean   committed;
   gboolean   dirty;
   guint      pending;

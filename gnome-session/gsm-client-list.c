@@ -172,7 +172,7 @@ gsm_client_list_live_session (GsmClientList* client_list)
   if (client_list->session)
     {
       gtk_clist_clear (GTK_CLIST (client_list));
-      gtk_object_unref (client_list->session);
+      g_object_unref (client_list->session);
     }
 
   client_list->session = 
@@ -190,7 +190,7 @@ gsm_client_list_saved_session (GsmClientList* client_list, gchar* name)
   if (client_list->session)
     {
       gtk_clist_clear (GTK_CLIST (client_list));
-      gtk_object_unref (client_list->session);
+      g_object_unref (client_list->session);
     }
 
   client_list->session = 

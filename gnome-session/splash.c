@@ -19,11 +19,15 @@
    02111-1307, USA.  */
 
 #include <config.h>
-#include <gnome.h>
+#include <string.h>
+
+#include <gtk/gtk.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <libgnome/libgnome.h>
+#include <libgnomecanvas/libgnomecanvas.h>
+
 #include "splash.h"
 #include "manager.h"
-#include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libgnomecanvas/gnome-canvas-pixbuf.h>
 
 typedef struct {
   GtkWidget *dialog;
@@ -124,13 +128,13 @@ splash_cleanup (GtkObject *o, gpointer data)
   cleanup_app_table ();
 
   if (sd->timeout != 0)
-	  gtk_timeout_remove (sd->timeout);
+	  g_source_remove (sd->timeout);
   sd->timeout = 0;
   if (sd->icon_timeout != 0)
-	  gtk_timeout_remove (sd->icon_timeout);
+	  g_source_remove (sd->icon_timeout);
   sd->icon_timeout = 0;
 
-  g_slist_foreach (sd->icon_pixbufs, (GFunc)gdk_pixbuf_unref, NULL);
+  g_slist_foreach (sd->icon_pixbufs, (GFunc) g_object_unref, NULL);
   g_slist_free (sd->icon_pixbufs);
   sd->icon_pixbufs = NULL;
 
@@ -200,7 +204,7 @@ check_icon_fit (void)
 					      "x", (gdouble)(3.0 + 42.0 * i * sd->scalefactor),
 					      "y", (gdouble)(sd->height - 15.0 - 42.0 * sd->scalefactor),
 					      NULL);
-		gdk_pixbuf_unref (pb2);
+		g_object_unref (pb2);
 
 		ili->data = item;
 	}
@@ -210,12 +214,14 @@ static void
 redo_shadow (SplashData *sd)
 {
 	double x, y, width, height;
-	gtk_object_get (GTK_OBJECT (sd->label),
-			"x", &x,
-			"y", &y,
-			"text_width", &width,
-			"text_height", &height,
-			NULL);
+
+	g_object_get (sd->label,
+		      "x", &x,
+		      "y", &y,
+		      "text_width", &width,
+		      "text_height", &height,
+		      NULL);
+
 	gnome_canvas_item_set (sd->label_shadow,
 			       "x1", x - (width/2.0) - 3.0,
 			       "y1", y - (height/2.0) - 1.0,
@@ -241,7 +247,7 @@ icon_cb (gpointer data)
 
   /* do not translate "done" */
   if (strcmp (text, "done") != 0) {
-    SplashApp *app = get_splash_app (g_basename (text));
+    SplashApp *app = get_splash_app (g_path_get_basename (text));
     char *pix = NULL;
 
     if (app != NULL) {
@@ -250,12 +256,12 @@ icon_cb (gpointer data)
       text = g_strdup (_(app->human_name));
     }
 
-    if (!pix || !g_file_exists (pix)) {
+    if (!pix || !g_file_test (pix, G_FILE_TEST_EXISTS)) {
       g_free (pix);
       pix = g_strdup (GNOME_ICONDIR"/gnome-unknown.png");
     }
     
-    if (g_file_exists (pix)) {
+    if (g_file_test (pix, G_FILE_TEST_EXISTS)) {
       GdkPixbuf *pb;
       GnomeCanvasItem *item;
 
@@ -275,7 +281,7 @@ icon_cb (gpointer data)
 				      "x", (gdouble)(3.0 + 42.0 * sd->count * sd->scalefactor),
 				      "y", (gdouble)(sd->height - 15.0 - 42.0 * sd->scalefactor),
 				      NULL);
-        gdk_pixbuf_unref (pb2);
+        g_object_unref (pb2);
 	sd->count++;
 	sd->icon_items = g_slist_append (sd->icon_items, item);
 	sd->icon_pixbufs = g_slist_append (sd->icon_pixbufs, pb);
@@ -308,7 +314,7 @@ queue_icon_action (void)
 {
 	if (sd != NULL &&
 	    sd->icon_timeout == 0) {
-		sd->icon_timeout = gtk_timeout_add (100, icon_cb, sd);
+		sd->icon_timeout = g_timeout_add (100, icon_cb, sd);
 	}
 }
 
@@ -324,7 +330,7 @@ stop_splash (void)
 
   /* do not translate "done" it's used as a delimiter */
   update_splash ("done", sd->max);
-  sd->timeout = gtk_timeout_add (2000, timeout_cb, NULL);
+  sd->timeout = g_timeout_add (2000, timeout_cb, NULL);
 }
 
 void
@@ -346,26 +352,22 @@ start_splash (gfloat max)
 
   gtk_window_set_position (GTK_WINDOW (sd->dialog),
 			   GTK_WIN_POS_CENTER);
-  gtk_window_set_policy (GTK_WINDOW (sd->dialog),
-			 FALSE, FALSE, FALSE);
+
+  g_object_set (sd->dialog, "allow_shrink", FALSE, "allow_grow", FALSE, NULL);
 
   gtk_widget_add_events (sd->dialog, GDK_BUTTON_RELEASE_MASK);
 
-  gtk_signal_connect (GTK_OBJECT (sd->dialog),
-		      "button-release-event",
-		      GTK_SIGNAL_FUNC (hide_dialog),
-		      NULL);
+  g_signal_connect (sd->dialog, "button-release-event",
+		    G_CALLBACK (hide_dialog), NULL);
 
-  gtk_signal_connect (GTK_OBJECT (sd->dialog),
-		      "destroy",
-		      GTK_SIGNAL_FUNC (splash_cleanup),
-		      NULL);
+  g_signal_connect (sd->dialog, "destroy",
+		    G_CALLBACK (splash_cleanup), NULL);
 
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_OUT);
   gtk_container_add (GTK_CONTAINER (sd->dialog), frame);
 
-  gtk_widget_push_colormap (gdk_rgb_get_cmap ());
+  gtk_widget_push_colormap (gdk_rgb_get_colormap ());
 
   sd->hbox = gnome_canvas_new_aa ();
 
@@ -422,7 +424,7 @@ start_splash (gfloat max)
     sd->width = width;
     sd->height = height;
 
-    gtk_widget_set_usize (sd->hbox, width, height);
+    gtk_widget_set_size_request (sd->hbox, width, height);
     gnome_canvas_set_scroll_region (GNOME_CANVAS (sd->hbox), 0, 0, width, height);
     gtk_window_set_default_size (GTK_WINDOW (sd->dialog), width, height);
     
@@ -430,7 +432,7 @@ start_splash (gfloat max)
 	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				   GNOME_TYPE_CANVAS_PIXBUF, "pixbuf", pb, NULL);
 
-	    gdk_pixbuf_unref (pb);
+	    g_object_unref (pb);
     } else {
 	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
 				   GNOME_TYPE_CANVAS_TEXT,

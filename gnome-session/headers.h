@@ -38,9 +38,6 @@
 
 #define FAILSAFE_SESSION "Failsafe"
 
-/* Config section used for gnome-session's own config details. */
-#define GSM_CONFIG_SECTION "__gsm__"
-
 /* Config section used for session-related options */
 #define GSM_OPTION_CONFIG_PREFIX "session-options/Options/"
 
@@ -73,7 +70,6 @@
 #endif
 
 /* Convenience macros: */
-#define GSM_CONFIG_PREFIX CONFIG_PREFIX GSM_CONFIG_SECTION "/"
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
 #define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
 #define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))

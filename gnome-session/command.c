@@ -19,7 +19,11 @@
 
    Authors: Felix Bellaby */
 
-#include <gnome.h>
+#include <config.h>
+#include <string.h>
+#include <unistd.h>
+
+#include <libgnome/libgnome.h>
 
 #include "command.h"
 #include "session.h"
@@ -353,29 +357,23 @@ command (Client* client, int nprops, SmProp** props)
 	  iter = gnome_config_init_iterator_sections (CONFIG_PREFIX);
 	  
 	  while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
-	    { 
-              /* This check is still here for binary compatibility */
-
-	      if (g_strcasecmp (section, GSM_CONFIG_SECTION))
-		{
-		  SmProp* tmp_prop = make_command (GsmReadSession, section);
-		  prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
-		}
-	    }
+	    prop_list = g_slist_insert_sorted (
+				prop_list, make_command (GsmReadSession, section), cmp_args);
 	}
-      else {
-      iter = gnome_config_init_iterator_sections (DEFAULT_CONFIG_PREFIX);
+      else
+        {
+	  iter = gnome_config_init_iterator_sections (DEFAULT_CONFIG_PREFIX);
 
-      while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
-	{ 
+	  while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
+	    { 
 	      SmProp* tmp_prop = make_command (GsmReadSession, section);
 	      
 	      if (!g_slist_find_custom (prop_list, tmp_prop, cmp_args))
 		prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
 	      else
 		SmFreeProperty (tmp_prop);
+	    }
 	}
-      }
       send_properties (client, prop_list);      
     }
   else if (!strcmp (prop->vals[0].value, GsmListClients))

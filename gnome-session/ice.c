@@ -88,8 +88,9 @@ my_ice_error_handler(IceConn cnx,
 }
 
 static void
-accept_connection (gpointer client_data, gint source,
-		   GdkInputCondition conditon)
+accept_connection (GIOChannel   *source,
+		   GIOCondition  condition,
+		   IceListenObj  listener)
 {
   IceConn connection;
   IceAcceptStatus status;
@@ -98,12 +99,12 @@ accept_connection (gpointer client_data, gint source,
   char *ctmp;
 #endif
 
-  connection = IceAcceptConnection ((IceListenObj) client_data, &status);
+  connection = IceAcceptConnection (listener, &status);
   if (status != IceAcceptSuccess)
     return;
 
 #if defined(HAVE_TCPD_H) && defined(HAVE_HOSTS_ACCESS) && defined(HAVE_SYSLOG_H)
-  ctmp = IceGetListenConnectionString((IceListenObj) client_data);
+  ctmp = IceGetListenConnectionString (listener);
   if(!strncmp(ctmp, "tcp/", 4)) { /* It's a TCP connection */
     struct request_info request;
     
@@ -128,10 +129,27 @@ accept_connection (gpointer client_data, gint source,
       /* Freeze ice while doing the gtk iteration. We don't want to recurse
          here */
       ice_frozen();
-      g_main_iteration (TRUE);
+      g_main_context_iteration (NULL, TRUE);
       ice_thawed();
       status2 = IceConnectionStatus (connection);
     }
+}
+
+static guint
+ice_add_listener (IceListenObj listener)
+{
+  GIOChannel *channel;
+  guint       retval;
+
+  channel = g_io_channel_unix_new (IceGetListenConnectionNumber (listener));
+
+  retval = g_io_add_watch (
+		channel, G_IO_IN | G_IO_HUP | G_IO_ERR,
+		(GIOFunc) accept_connection, listener);
+
+  g_io_channel_unref (channel);
+
+  return retval;
 }
 
 static void
@@ -328,11 +346,9 @@ initialize_ice (void)
 
       APPEND (entries, file_entry_new ("ICE", sockets[i]));
       APPEND (entries, file_entry_new ("XSMP", sockets[i]));
-      
-      input_id[i] = gdk_input_add (IceGetListenConnectionNumber (sockets[i]),
-				   GDK_INPUT_READ, accept_connection,
-				   (gpointer) sockets[i]);
 
+      input_id [i] = ice_add_listener (sockets [i]);
+      
       IceSetHostBasedAuthProc (sockets[i], auth_proc);
     }
 
@@ -349,38 +365,30 @@ initialize_ice (void)
 
 
 /*
- *	Re-enable ice processing
+ * Re-enable ice processing
  */
  
-void ice_thawed(void)
+void ice_thawed (void)
 {
 	guint i;
 	
 	ice_depth--;
-	if(ice_depth)
+	if (ice_depth)
 		return;
 	
 	/* Last disable cancelled so listen again */
 	for (i = 0; i < num_sockets; i++)
-	{
-		input_id[i] = gdk_input_add (IceGetListenConnectionNumber (sockets[i]),
-				   GDK_INPUT_READ, accept_connection,
-				   (gpointer) sockets[i]);
-	}
+		input_id [i] = ice_add_listener (sockets [i]);
 }
 
-void ice_frozen(void)
+void ice_frozen (void)
 {
 	guint i;
 	
-	if(++ice_depth == 1)
-	{
+	if (++ice_depth == 1)
 		/* First disable so turn off the events */
 		for (i = 0; i < num_sockets; i++)
-		{
-			gtk_input_remove (input_id[i]);      
-		}
-	}
+			g_source_remove (input_id [i]);      
 }
 
 void
@@ -408,7 +416,7 @@ clean_ice (void)
 	    }
 	}
 
-      gtk_input_remove (input_id[i]);      
+      g_source_remove (input_id [i]);      
       free (network_id);
     }
 

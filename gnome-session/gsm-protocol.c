@@ -20,6 +20,7 @@
    Authors: Felix Bellaby */
 
 #include <config.h>
+#include <string.h>
 
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
@@ -32,6 +33,7 @@
 #include "gsm-marshal.c"
 
 #define GSM_IS_CLIENT_EVENT(event) (!strncmp (((SmProp*)(event))->name, GsmClientEvent, strlen (GsmClientEvent))) 
+#define GSM_IS_GNOME_CLIENT(client) (!strcmp (SmcVendor ((SmcConn) client->smc_conn), GsmVendor))
 #define GSM_CLIENT_TYPE(event) ((gchar*)((SmProp*)event)->vals[0].value)
 #define GSM_CLIENT_HANDLE(event) ((gchar*)((SmProp*)event)->vals[1].value)
 #define GSM_IS_COMMAND(command) (!strncmp (((SmProp*)(command))->name, GsmCommand, strlen (GsmCommand)))
@@ -57,11 +59,6 @@ static SmProp* gsm_int_to_prop (gchar* name, gint value);
 static SmProp* gsm_args_to_propv (gchar* name, va_list args);
 static SmProp* gsm_args_to_prop (gchar* name, ...);
 
-/* GSM_PROTOCOL object */
-static void gsm_protocol_destroy (GtkObject *o);
-
-static void gsm_session_destroy (GtkObject *o);
-
 /* The object required to operate the protocol (assumed unique) */
 static GsmProtocol* the_protocol = NULL;
 /* The live session (assumed unique) */
@@ -72,6 +69,8 @@ static GSList* reads = NULL;
 
 /* List of sessions on which we are getting/setting names: */
 static GSList* names = NULL;
+
+static GnomeClient *gnome_client_used = NULL;
 
 /* Translation tables - hmmm... probably a temporary measure */
 static const guint styles[] =
@@ -110,7 +109,9 @@ enum {
 
 static guint gsm_client_signals[NSIGNALS];
 
-static GtkObjectClass *parent_class = NULL;
+static GObjectClass *gsm_session_parent_class = NULL;
+static GObjectClass *gsm_protocol_parent_class = NULL;
+static GObjectClass *gsm_client_parent_class = NULL;
 
 /* These variables are session manager specific but this code only supports
  * a single session manager: */
@@ -131,143 +132,148 @@ enum {
 
 static guint gsm_protocol_signals[NSIGNALS3];
 
+static void 
+gsm_session_finalize (GObject *object)
+{
+	GsmSession* session = (GsmSession *) object;
+
+	g_return_if_fail (GSM_IS_SESSION (session));
+
+	if (session == live_session) {
+		command (the_protocol, 
+			 gsm_args_to_prop (GsmCommand, GsmDeselectClientEvents, NULL),
+			 NULL);
+
+		live_session = NULL;
+	} else
+		command (the_protocol, 
+			 gsm_args_to_prop (GsmCommand, GsmFreeSession, session->handle, NULL),
+			 NULL);
+
+	g_free (session->name);
+
+	gsm_session_parent_class->finalize (object);
+}
+
 static void
 gsm_session_class_init (GsmSessionClass *klass)
 {
-  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+	GObjectClass *gobject_class = (GObjectClass *) klass;
 
-  if (!parent_class)
-    parent_class = gtk_type_class (gtk_object_get_type ());
+	gsm_session_signals [INITIALIZED] =
+		g_signal_new (
+			"initialized",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmSessionClass, initialized),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0); 
 
-  gsm_session_signals[INITIALIZED] =
-    gtk_signal_new ("initialized",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmSessionClass, initialized),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
-  gsm_session_signals[SESSION_NAME] =
-    gtk_signal_new ("session_name",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmSessionClass, session_name),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
+	gsm_session_signals [SESSION_NAME] =
+		g_signal_new (
+			"session_name",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmSessionClass, session_name),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0); 
 
-  object_class->destroy = gsm_session_destroy;
+	gobject_class->finalize = gsm_session_finalize;
   
-  klass->initialized = NULL;
-  klass->session_name = NULL;
+	klass->initialized  = NULL;
+	klass->session_name = NULL;
 }
 
 static void
-gsm_session_object_init (GsmSession* session)
+gsm_session_instance_init (GsmSession *session)
 {
-  session->name        = NULL;
-  session->handle      = NULL;
-  session->waiting     = -1;
+	session->name    = NULL;
+	session->handle  = NULL;
+	session->waiting = -1;
 }
 
-static GtkTypeInfo gsm_session_info = 
-{
-  "GsmSession",
-  sizeof (GsmSession),
-  sizeof (GsmSessionClass),
-  (GtkClassInitFunc) gsm_session_class_init,
-  (GtkObjectInitFunc) gsm_session_object_init,
-  NULL,
-  NULL,
-  (GtkClassInitFunc) NULL
-};
-
-guint
+GType
 gsm_session_get_type (void)
 {
-  static guint type = 0;
+	static GType retval = 0;
 
-  if (!type)
-    type = gtk_type_unique (gtk_object_get_type (), &gsm_session_info);
-  return type;
+	if (!retval) {
+		static const GTypeInfo info = {
+			sizeof (GsmSessionClass),
+			(GBaseInitFunc)     NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc)    gsm_session_class_init,
+			NULL,               /* class_finalize */
+			NULL,               /* class_data */
+			sizeof (GsmSession),
+			0,                  /* n_preallocs */
+			(GInstanceInitFunc) gsm_session_instance_init
+		};
+
+		retval = g_type_register_static (G_TYPE_OBJECT, "GsmSession", &info, 0);
+		gsm_session_parent_class = g_type_class_ref (G_TYPE_OBJECT);
+	}
+
+	return retval;
 }
 
-
-GtkObject* 
-gsm_session_new (gchar* name, GsmClientFactory client_factory, 
-		 gpointer data)
+GsmSession * 
+gsm_session_new (char             *name,
+		 GsmClientFactory  client_factory, 
+		 gpointer          user_data)
 {
-  GsmSession* session;
+	GsmSession *session;
 
-  g_return_val_if_fail (name != NULL, NULL);
-  g_return_val_if_fail (the_protocol != NULL, NULL);
+	g_return_val_if_fail (name != NULL, NULL);
+	g_return_val_if_fail (the_protocol != NULL, NULL);
 
-  session = gtk_type_new(gsm_session_get_type());
-  session->name           = g_strdup (name);
-  session->client_factory = client_factory;
-  session->data           = data;
+	session = g_object_new (GSM_TYPE_SESSION, NULL);
 
-  command (the_protocol, 
-	   gsm_args_to_prop (GsmCommand, GsmReadSession, name, NULL), NULL);
-  reads = g_slist_append (reads, session);
+	session->name           = g_strdup (name);
+	session->client_factory = client_factory;
+	session->data           = user_data;
+
+	command (the_protocol, 
+		 gsm_args_to_prop (GsmCommand, GsmReadSession, name, NULL), NULL);
+	reads = g_slist_append (reads, session);
   
-  return GTK_OBJECT (session);
+	return session;
 }
 
-GtkObject* 
-gsm_session_live (GsmClientFactory client_factory, gpointer data)
+GsmSession * 
+gsm_session_live (GsmClientFactory client_factory,
+		  gpointer         user_data)
 {
-  GsmSession* session;
+	GsmSession *session;
 
-  g_return_val_if_fail (the_protocol != NULL, NULL);
+	g_return_val_if_fail (the_protocol != NULL, NULL);
 
-  if (live_session)
-    {
-      session = live_session;
-      gtk_object_ref ((GtkObject*)live_session);
-    }
-  else
-    {
-      session = gtk_type_new(gsm_session_get_type());
-      session->name           = NULL; /* FIXME */
-      session->client_factory = client_factory;
-      session->data           = data;
-      live_session = session;
-      command (the_protocol, 
-	       gsm_args_to_prop (GsmCommand, 
-				 GsmSelectClientEvents, NULL), NULL);
-      command (the_protocol, 
-	       gsm_args_to_prop (GsmCommand, 
-				 GsmHandleWarnings, NULL), NULL); 
-      command (the_protocol, 
-	       gsm_args_to_prop (GsmCommand, 
-				 GsmListClients, NULL), NULL);
-    }
-  return GTK_OBJECT (session);
-}
+	if (live_session) {
+		session = live_session;
+		g_object_ref (live_session);
+	} else {
+		session = g_object_new (GSM_TYPE_SESSION, NULL);
 
-static void 
-gsm_session_destroy (GtkObject *o)
-{
-  GsmSession* session = (GsmSession*)o;
+		session->name           = NULL; /* FIXME */
+		session->client_factory = client_factory;
+		session->data           = user_data;
 
-  g_return_if_fail(session != NULL);
-  g_return_if_fail(GSM_IS_SESSION(session));
+		live_session = session;
 
-  if (session == live_session)
-    {
-      command (the_protocol, 
-	       gsm_args_to_prop (GsmCommand, 
-				 GsmDeselectClientEvents, NULL), NULL);
-      live_session = NULL;
-    }
-  else
-    {
-      command (the_protocol, 
-	       gsm_args_to_prop (GsmCommand, 
-				 GsmFreeSession, session->handle, NULL), NULL);
-    }
-  g_free (session->name);
+		command (the_protocol, 
+			 gsm_args_to_prop (GsmCommand, 
+					   GsmSelectClientEvents, NULL), NULL);
+		command (the_protocol, 
+			 gsm_args_to_prop (GsmCommand, 
+					   GsmHandleWarnings, NULL), NULL); 
+		command (the_protocol, 
+			  gsm_args_to_prop (GsmCommand, 
+					    GsmListClients, NULL), NULL);
+	}
 
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+	return session;
 }
 
 void
@@ -309,132 +315,146 @@ gsm_session_set_name (GsmSession* session, gchar* name)
 
 /* GSM_CLIENT object */
 
-static void gsm_client_destroy (GtkObject *o);
+static void 
+gsm_client_finalize (GObject *object)
+{
+	GsmClient *client;
 
+	client = GSM_CLIENT (object);
 
-static void client_reasons (GsmClient* client, gboolean confirm, 
-			    GSList* reasons);
+	if (client->handle)
+		g_hash_table_remove (handle_table, client->handle);
+
+	g_free (client->command);
+	g_free (client->handle);
+
+	gsm_client_parent_class->finalize (object);
+}
+
+static void client_reasons (GsmClient *client,
+			    gboolean   confirm, 
+			    GSList    *reasons);
 
 static void
 gsm_client_class_init (GsmClientClass *klass)
 {
-  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+	GObjectClass *gobject_class = (GObjectClass*) klass;
 
-  if (!parent_class)
-    parent_class = gtk_type_class (gtk_object_get_type ());
+	gsm_client_signals [REMOVE] =
+		g_signal_new (
+			"remove",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, remove),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__VOID,
+			G_TYPE_NONE, 0); 
 
-  gsm_client_signals[REMOVE] =
-    gtk_signal_new ("remove",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, remove),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
-  gsm_client_signals[REASONS] =
-    gtk_signal_new ("reasons",
-		    GTK_RUN_FIRST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, reasons),
-		    gsm_marshal_NONE__INT_POINTER,
-		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_POINTER);
-  gsm_client_signals[COMMAND] =
-    gtk_signal_new ("command",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, command),
-		    gtk_marshal_NONE__POINTER,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
-  gsm_client_signals[STATE] =
-    gtk_signal_new ("state",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, state),
-		    gtk_marshal_NONE__INT,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
-  gsm_client_signals[STYLE] =
-    gtk_signal_new ("style",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, style),
-		    gtk_marshal_NONE__INT,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
-  gsm_client_signals[ORDER] =
-    gtk_signal_new ("order",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientClass, order),
-		    gtk_marshal_NONE__INT,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_INT);
+	gsm_client_signals [REASONS] =
+		g_signal_new (
+			"reasons",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_FIRST,
+			G_STRUCT_OFFSET (GsmClientClass, reasons),
+			NULL, NULL,
+			gsm_marshal_VOID__INT_POINTER,
+			G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_POINTER);
+
+	gsm_client_signals [COMMAND] =
+		g_signal_new (
+			"command",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, command),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__POINTER,
+			G_TYPE_NONE, 1, G_TYPE_POINTER);
+
+	gsm_client_signals [STATE] =
+		g_signal_new (
+			"state",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, state),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT,
+			G_TYPE_NONE, 1, G_TYPE_INT);
+
+	gsm_client_signals [STYLE] =
+		g_signal_new ("style",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, style),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT,
+			G_TYPE_NONE, 1, G_TYPE_NONE);
+
+	gsm_client_signals [ORDER] =
+		g_signal_new (
+			"order",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmClientClass, order),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__INT,
+			G_TYPE_NONE, 1, G_TYPE_INT);
  
-  object_class->destroy = gsm_client_destroy;
-  
-  klass->remove   = NULL;
-  klass->reasons  = client_reasons;
-  klass->command  = NULL;
-  klass->state    = NULL;
-  klass->style    = NULL;
-  klass->order    = NULL;
+	gobject_class->finalize = gsm_client_finalize;
+	
+	klass->remove   = NULL;
+	klass->reasons  = client_reasons;
+	klass->command  = NULL;
+	klass->state    = NULL;
+	klass->style    = NULL;
+	klass->order    = NULL;
 }
 
 static void
-gsm_client_object_init (GsmClient* client)
+gsm_client_instance_init (GsmClient *client)
 {
-  client->handle = NULL;
-  client->session = (GsmSession*)live_session;
-  client->order = DEFAULT_PRIORITY;
-  client->style = GSM_NORMAL;
-  client->state = GSM_INACTIVE;
-  client->command = NULL;
+	client->handle  = NULL;
+	client->session = (GsmSession *) live_session;
+	client->order   = DEFAULT_PRIORITY;
+	client->style   = GSM_NORMAL;
+	client->state   = GSM_INACTIVE;
+	client->command = NULL;
 }
 
-GtkTypeInfo gsm_client_info = 
-{
-  "GsmClient",
-  sizeof (GsmClient),
-  sizeof (GsmClientClass),
-  (GtkClassInitFunc) gsm_client_class_init,
-  (GtkObjectInitFunc) gsm_client_object_init,
-  NULL, NULL,
-  (GtkClassInitFunc) NULL
-};
-
-guint
+GType
 gsm_client_get_type (void)
 {
-  static guint type = 0;
+	static GType retval = 0;
 
-  if (!type)
-    type = gtk_type_unique (gtk_object_get_type (), &gsm_client_info);
-  return type;
+	if (!retval) {
+		static const GTypeInfo info = {
+			sizeof (GsmClientClass),
+			(GBaseInitFunc)     NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc)    gsm_client_class_init,
+			NULL,               /* class_finalize */
+			NULL,               /* class_data */
+			sizeof (GsmClient),
+			0,                  /* n_preallocs */
+			(GInstanceInitFunc) gsm_client_instance_init
+		};
+
+		retval = g_type_register_static (G_TYPE_OBJECT, "GsmClient", &info, 0);
+		gsm_client_parent_class = g_type_class_ref (G_TYPE_OBJECT);
+	}
+
+	return retval;
 }
 
-
-GtkObject* 
+GsmClient * 
 gsm_client_new (void)
 {
-  GsmClient* client;
+	GsmClient *client;
 
-  g_return_val_if_fail (the_protocol != NULL, NULL);
+	g_return_val_if_fail (the_protocol != NULL, NULL);
 
-  client = gtk_type_new(gsm_client_get_type());
-  return GTK_OBJECT (client);
-}
+	client = g_object_new (GSM_TYPE_CLIENT, NULL);
 
-static void 
-gsm_client_destroy (GtkObject *o)
-{
-  GsmClient* client;
-
-  g_return_if_fail(o != NULL);
-  g_return_if_fail(GSM_IS_CLIENT(o));
-
-  client = GSM_CLIENT(o);
-
-  if (client->handle)
-      g_hash_table_remove (handle_table, client->handle);
-  g_free (client->command);
-  g_free (client->handle);
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+	return client;
 }
 
 void
@@ -462,7 +482,7 @@ gsm_client_commit_add (GsmClient *client)
 	   gsm_sh_to_prop (SmRestartCommand, client->command),
 	   gsm_int_to_prop (SmRestartStyleHint, styles[client->style]), 
 	   gsm_int_to_prop (GsmPriority, client->order), NULL);
-  gtk_object_ref ((GtkObject*)client);
+  g_object_ref (client);
   adds = g_slist_append (adds, client);
 }
 
@@ -494,135 +514,135 @@ gsm_client_commit_order (GsmClient *client)
 }
 
 static void
-client_reasons (GsmClient* client, gboolean confirm, GSList* reasons)
+client_reasons (GsmClient *client,
+		gboolean   confirm,
+		GSList    *reasons)
 {
-  GtkWidget* dialog;
-  gchar* message = g_strjoin ("\n", client->command, "", NULL);
+	GtkWidget *dialog;
+	GString   *message;
+	int        response;
+
+	message = g_string_new (client->command);
+
+	for (;reasons; reasons = reasons->next) {
+		g_string_append_c (message, '\n');
+		g_string_append (message, (char *) reasons->data);
+	}
+
+	dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_WARNING,
+					 confirm ? GTK_BUTTONS_OK_CANCEL : GTK_BUTTONS_OK,
+					 message->str);
   
-  for (;reasons; reasons = reasons->next)
-    message = g_strjoin ("\n", message, (gchar*)reasons->data, NULL);
-  
-  /* Hmm, may need to be override redirect as well since WMs are quite
-     likely to be the source of the errors... */
-  /* dialog = gnome_warning_dialog (message); */
-  dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_WARNING, NULL);
-  gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog),
-					  _("Remove Program"),
-					  GNOME_STOCK_PIXMAP_TRASH);
-  if (confirm)
-    {
-      gnome_dialog_append_button (GNOME_DIALOG (dialog),
-				  GNOME_STOCK_BUTTON_CANCEL);
-      gnome_dialog_set_default (GNOME_DIALOG (dialog), 1);
-      gnome_dialog_button_connect_object (GNOME_DIALOG (dialog), 0,
-					  GTK_SIGNAL_FUNC (gsm_client_commit_remove), 
-					  GTK_OBJECT (client));
-    }
-  gtk_window_set_position ((GtkWindow *) dialog, GTK_WIN_POS_CENTER);
-  gtk_window_set_modal ((GtkWindow *) (dialog), TRUE);
-  gtk_widget_show_all (dialog);
-#if 0
-  gnome_win_hints_set_state((GtkWidget *) dialog, WIN_STATE_FIXED_POSITION);
-  gnome_win_hints_set_layer((GtkWidget *) dialog, WIN_LAYER_ABOVE_DOCK);
-#endif
-  gnome_dialog_run ((GnomeDialog *) (dialog));
-  g_free (message);
+	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
+
+	gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+	gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+
+	gtk_widget_show_all (dialog);
+
+	response = gtk_dialog_run (GTK_DIALOG (dialog));
+	gtk_widget_destroy (dialog);
+
+	if (confirm && response == GTK_RESPONSE_OK)
+		gsm_client_commit_remove (client);
+
+	g_string_free (message, TRUE);
+}
+
+static void 
+gsm_protocol_finalize (GObject *object)
+{
+	GsmProtocol *protocol;
+
+	protocol = GSM_PROTOCOL (object);
+
+	g_return_if_fail (protocol == the_protocol);
+
+	if (gnome_client_used) {
+		g_object_unref (gnome_client_used);
+		gnome_client_used = NULL;
+	}
+
+	the_protocol = NULL;
+
+	gsm_protocol_parent_class->finalize (object);
 }
 
 static void
 gsm_protocol_class_init (GsmProtocolClass *klass)
 {
-  GtkObjectClass *object_class = (GtkObjectClass*) klass;
+	GObjectClass *gobject_class = (GObjectClass*) klass;
 
-  if (!parent_class)
-    parent_class = gtk_type_class (gtk_object_get_type ());
+	gsm_protocol_signals [SAVED_SESSIONS] =
+		g_signal_new (
+			"saved_sessions",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmProtocolClass, saved_sessions),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__POINTER,
+			G_TYPE_NONE, 1, G_TYPE_POINTER); 
 
-  gsm_protocol_signals[SAVED_SESSIONS] =
-    gtk_signal_new ("saved_sessions",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmProtocolClass, saved_sessions),
-		    gtk_marshal_NONE__POINTER,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER); 
-  gsm_protocol_signals[CURRENT_SESSION] =
-    gtk_signal_new ("current_session",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmProtocolClass, current_session),
-		    gtk_marshal_NONE__POINTER,
-		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+	gsm_protocol_signals [CURRENT_SESSION] =
+		g_signal_new (
+			"current_session",
+			G_TYPE_FROM_CLASS (gobject_class),
+			G_SIGNAL_RUN_LAST,
+			G_STRUCT_OFFSET (GsmProtocolClass, current_session),
+			NULL, NULL,
+			g_cclosure_marshal_VOID__POINTER,
+			G_TYPE_NONE, 1, G_TYPE_POINTER);
 
-  object_class->destroy = gsm_protocol_destroy;
+	gobject_class->finalize = gsm_protocol_finalize;
   
-  klass->saved_sessions = NULL;
-  klass->current_session = NULL;
+	klass->saved_sessions = NULL;
+	klass->current_session = NULL;
 }
 
-GtkTypeInfo gsm_protocol_info = 
-{
-  "GsmProtocol",
-  sizeof (GsmProtocol),
-  sizeof (GsmProtocolClass),
-  (GtkClassInitFunc) gsm_protocol_class_init,
-  (GtkObjectInitFunc) NULL,
-  NULL,
-  NULL,
-  (GtkClassInitFunc) NULL
-};
-
-guint
+GType
 gsm_protocol_get_type (void)
 {
-  static guint type = 0;
+	static GType retval = 0;
 
-  if (!type)
-    type = gtk_type_unique (gtk_object_get_type (), &gsm_protocol_info);
-  return type;
+	if (!retval) {
+		static const GTypeInfo info = {
+			sizeof (GsmProtocolClass),
+			(GBaseInitFunc)     NULL,
+			(GBaseFinalizeFunc) NULL,
+			(GClassInitFunc)    gsm_protocol_class_init,
+			NULL,               /* class_finalize */
+			NULL,               /* class_data */
+			sizeof (GsmProtocol),
+			0,                  /* n_preallocs */
+			(GInstanceInitFunc) NULL
+		};
+
+		retval = g_type_register_static (G_TYPE_OBJECT, "GsmProtocol", &info, 0);
+		gsm_protocol_parent_class = g_type_class_ref (G_TYPE_OBJECT);
+	}
+
+	return retval;
 }
 
-static gboolean
-gnome_session_client (GnomeClient* gnome_client)
+GsmProtocol * 
+gsm_protocol_new (GnomeClient *gnome_client)
 {
-  return !strcmp(SmcVendor((SmcConn)gnome_client->smc_conn), GsmVendor);
-}
+	GsmProtocol *protocol;
 
-static GnomeClient* gnome_client_used = NULL;
+	g_return_val_if_fail (!the_protocol, NULL);
+	g_return_val_if_fail (GNOME_IS_CLIENT (gnome_client), NULL);
+	g_return_val_if_fail (GNOME_CLIENT_CONNECTED (gnome_client), NULL);
+	g_return_val_if_fail (GSM_IS_GNOME_CLIENT (gnome_client), NULL);
 
-GtkObject* 
-gsm_protocol_new (GnomeClient* gnome_client)
-{
-  GsmProtocol* protocol;
+	gnome_client_used = g_object_ref (gnome_client);
 
-  g_return_val_if_fail (the_protocol == NULL, NULL);
-  g_return_val_if_fail (gnome_client, NULL);
-  g_return_val_if_fail (GNOME_CLIENT_CONNECTED (gnome_client), NULL);
-  g_return_val_if_fail (gnome_session_client (gnome_client), NULL);
+	protocol = g_object_new (GSM_TYPE_PROTOCOL, NULL);
+	protocol->smc_conn = gnome_client->smc_conn;
+	the_protocol = protocol;
 
-  gnome_client_used = gnome_client;
-  gtk_object_ref (GTK_OBJECT (gnome_client_used));
+	g_idle_add (request_event, protocol);
 
-  protocol = gtk_type_new(gsm_protocol_get_type());
-  protocol->smc_conn = gnome_client->smc_conn;
-  the_protocol = protocol;
-
-  g_idle_add (request_event, protocol);
-
-  return GTK_OBJECT (protocol);
-}
-
-static void 
-gsm_protocol_destroy (GtkObject *o)
-{
-  GsmProtocol* protocol = (GsmProtocol*)o;
-
-  g_return_if_fail(protocol != NULL);
-  g_return_if_fail(protocol == the_protocol);
-
-  if (gnome_client_used)
-    gtk_object_unref (GTK_OBJECT (gnome_client_used));
-  the_protocol = NULL;
-
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+	return protocol;
 }
 
 void 
@@ -814,15 +834,13 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		      if (!strcmp (name, GsmPriority))
 			{
 			  guint order = GSM_PROP_INT (props[i]);
-			  gtk_signal_emit (GTK_OBJECT (client), 
-					   gsm_client_signals[ORDER], order); 
+			  g_signal_emit (client, gsm_client_signals [ORDER], 0, order); 
 			  client->order = order;
 			}
 		      else if (!strcmp (name, SmRestartStyleHint))
 			{
 			  guint style = r_styles[(int)GSM_PROP_INT (props[i])];
-			  gtk_signal_emit (GTK_OBJECT (client), 
-					   gsm_client_signals[STYLE], style); 
+			  g_signal_emit (client, gsm_client_signals [STYLE], 0, style); 
 			  client->style = style;
 			}
 		      else if (!strcmp (name, SmCloneCommand))
@@ -842,15 +860,12 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 
 		  if (tmp_command)
 		    {		      
-		      gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[COMMAND],
-				       tmp_command);
+		      g_signal_emit (client, gsm_client_signals [COMMAND], 0, tmp_command);
 		      if (! client->command && session->waiting)
 			{
 			  session->waiting--;
 			  if (!session->waiting)
-			    gtk_signal_emit (GTK_OBJECT (session),
-					     gsm_session_signals[INITIALIZED]);
+			    g_signal_emit (session, gsm_session_signals[INITIALIZED], 0);
 			}
 		      g_free (client->command);
 		      client->command = tmp_command;
@@ -877,9 +892,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		      list = g_slist_remove (list, list->data);
 		      confirm = strcmp (list->data, "0");
 		      list = g_slist_remove (list, list->data);
-		      gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[REASONS], 
-				       confirm, list);
+		      g_signal_emit (client, gsm_client_signals [REASONS], 0, confirm, list);
 		      command (protocol, 
 			       gsm_args_to_prop (GsmCommand, 
 						 GsmClearClientWarning, 
@@ -889,10 +902,9 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		    }
 		  else if (!strcmp (type, GsmRemove))
 		    {
-		      gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[REMOVE]);
+		      g_signal_emit (client, gsm_client_signals [REMOVE], 0);
 		      removes = g_slist_remove(removes, client);
-		      gtk_object_unref (GTK_OBJECT (client));
+		      g_object_unref (client);
 		    }
 		  else
 		    {
@@ -908,8 +920,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		      else if (! strcmp (type, GsmUnknown))
 			state = GSM_UNKNOWN;
 		      
-		      gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[STATE], state);
+		      g_signal_emit (client, gsm_client_signals [STATE], 0, state);
 		      client->state = state;
 
 		      if (session->waiting == -1)
@@ -937,8 +948,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	    {
 	      GsmSession* session = (GsmSession*) names->data;
 	      gchar* name = g_strdup (GSM_COMMAND_ARG1 (props[0]));
-	      gtk_signal_emit (GTK_OBJECT (session),
-			       gsm_session_signals[SESSION_NAME], name);
+	      g_signal_emit (session, gsm_session_signals [SESSION_NAME], 0, name);
 	      g_free (session->name);
 	      session->name = name;
 	      names = g_slist_remove (names, session);
@@ -952,8 +962,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	      for (i = 0; i < nprops; i++)
 		list = g_slist_append (list, GSM_COMMAND_ARG1 (props[i]));
 	      
-	      gtk_signal_emit (GTK_OBJECT (protocol), 
-			       gsm_protocol_signals[SAVED_SESSIONS], list);
+	      g_signal_emit (protocol, gsm_protocol_signals [SAVED_SESSIONS], 0, list);
 	      
 	      for (i = 0; i < nprops; i++)
 		prop_free (props[i]);
@@ -961,9 +970,9 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	    }
 	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmGetCurrentSession))
 	    {
-	      gtk_signal_emit (GTK_OBJECT (protocol), 
-			       gsm_protocol_signals[CURRENT_SESSION], 
-			       GSM_COMMAND_ARG1 (props[0]));
+	      g_signal_emit (protocol,
+			     gsm_protocol_signals [CURRENT_SESSION], 0, 
+			     GSM_COMMAND_ARG1 (props[0]));
 	    }
 	  else if (!strcmp (GSM_COMMAND_ARG0 (props[0]), GsmStartSession) && 
 		   reads)
@@ -990,8 +999,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 		  else if (! strcmp (type, GsmUnknown))
 		    state = GSM_UNKNOWN;
 
-		  gtk_signal_emit (GTK_OBJECT (client), 
-				       gsm_client_signals[STATE], state);
+		  g_signal_emit (client, gsm_client_signals [STATE], 0, state);
 		  client->state = state;
 		  if (session->waiting == -1)
 		    session->waiting = 1;
