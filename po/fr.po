@@ -3,13 +3,14 @@
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
 # maintainer: Christophe Merlet (RedFox) <christophe@merlet.net>, 2000-2002.
+# Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.21\n"
-"POT-Creation-Date: 2002-06-05 13:25+0200\n"
-"PO-Revision-Date: 2002-06-05 13:20+0200\n"
-"Last-Translator: Christophe Fergeau <teuf@users.sourceforge.net\n"
+"POT-Creation-Date: 2002-06-07 00:23+0200\n"
+"PO-Revision-Date: 2002-06-07 00:23+0200\n"
+"Last-Translator: Christophe Merlet (RedFox) <christophe@merlet.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "Démarrer avec les programmes par défaut"
 
 #: gnome-session/gnome-login-check.c:152
 msgid "Reset all user settings"
-msgstr "Remettre à zéro les paramètres utilisateurs"
+msgstr "Remettre à zéro tous les paramètres utilisateurs"
 
 #: gnome-session/gnome-login-check.c:163
 #, c-format
@@ -49,7 +50,7 @@ msgstr ""
 
 #: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
 msgid "Try again"
-msgstr "Essayer à nouveau"
+msgstr "Réessayer"
 
 #: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
 msgid "Continue"
@@ -63,7 +64,7 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Ne peut chercher l'adresse internet pour %s.\n"
+"Impossible de chercher l'adresse Internet pour %s.\n"
 "Cela empêchera GNOME de fonctionner correctement.\n"
 "Il est possible de corriger le problème en ajoutant\n"
 "%s au fichier /etc/hosts."
@@ -81,14 +82,15 @@ msgid ""
 "Your GNOME session will terminate after closing this dialog."
 msgstr ""
 "Votre version de libICE a une anomalie qui empêche gnome-session\n"
-"de fonctionner proprement.\n"
+"de fonctionner correctement.\n"
 "\n"
-"Si vous etes sur Solaris, vous devriez soit mettre à jour vers la rustine\n"
-"Solaris #108376-16 ou utiliser libICE.so.6 depuis le Solaris 7 original.\n"
+"Si vous êtes sur Solaris, vous devriez soit mettre à jour vers le correctif\n"
+"Solaris #108376-16 ou utiliser libICE.so.6 depuis le Solaris 7 d'origine.\n"
 "Copier le fichier dans /usr/openwin/lib.  (Merci à Andy Reitz\n"
 "pour l'information sur cette anomalie).\n"
 "\n"
-"Votre session GNOME se terminera après avoir fermer cette boîte de dialogue."
+"Votre session GNOME se terminera après la fermeture de cette boîte de "
+"dialogue."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -96,11 +98,11 @@ msgstr "_Ordre :"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr "L'ordre dans lequel sont démarrés les applications de la session."
+msgstr "L'ordre dans lequel les applications sont démarrés dans la session."
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr "Ce qui arrive à l'application quand elle se termine."
+msgstr "Ce qu'il advient de l'application quand elle se termine."
 
 #: gnome-session/gsm-client-editor.c:108
 msgid "_Style:"
@@ -132,11 +134,11 @@ msgstr "Attente du démarrage ou déjà fini."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "Lancement"
+msgstr "Lancement..."
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Démarré mais n'a pas encore reporté l'état."
+msgstr "Démarré mais état pas encore signalé."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
@@ -152,7 +154,7 @@ msgstr "Enregistrement"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "Sauvegarde des détails de session."
+msgstr "Enregistrement des détails de session."
 
 #: gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -160,7 +162,7 @@ msgstr "Inconnu"
 
 #: gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "État non reporté après ultimatum "
+msgstr "État non signalé dans le délai."
 
 #: gnome-session/gsm-client-row.c:50
 msgid "Normal"
@@ -168,7 +170,7 @@ msgstr "Normal"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Non affecté par les déconnexions mais peut mourir"
+msgstr "Non affecté par les déconnexions mais peut mourir."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Respawn"
@@ -176,11 +178,11 @@ msgstr "Re-créer"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "Jamais autorisé a mourir."
+msgstr "Jamais autorisé à mourir."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Poubelle"
+msgstr "Corbeille"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
@@ -218,56 +220,56 @@ msgstr "Éteindre"
 msgid "Reboot"
 msgstr "Redémarrer"
 
-#: gnome-session/main.c:71
+#: gnome-session/main.c:73
 msgid "Specify a session name to load"
 msgstr "Spécifie le nom de session à charger"
 
-#: gnome-session/main.c:72
+#: gnome-session/main.c:74
 msgid "Only read saved sessions from the default.session file"
 msgstr ""
 "Lit les sessions enregistrées seulement à partir du fichier default.session"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Temps en millisecondes passé à attendre pour l'enregistrement des clients "
 "(0=infini)"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Temps en millisecondes passé à attendre la réponse des clients (0=infini)"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Temps en millisecondes passé à attendre la fin des clients (0=infini)"
 
-#: gnome-session/manager.c:175
+#: gnome-session/manager.c:176
 msgid "Your session has been saved"
 msgstr "Votre session a été enregistrée"
 
-#: gnome-session/manager.c:456
+#: gnome-session/manager.c:457
 msgid "Wait abandoned due to conflict."
 msgstr "Attente abandonnée à la suite d'un conflit."
 
-#: gnome-session/manager.c:901
+#: gnome-session/manager.c:904
 #, c-format
 msgid "No response to the %s command."
 msgstr "Aucune réponse à la commande %s."
 
-#: gnome-session/manager.c:902
+#: gnome-session/manager.c:905
 msgid "The program may be slow, stopped or broken."
-msgstr "Le programme peut être lent, stoppé ou cassé."
+msgstr "Le programme peut être lent, stoppé ou endommagé."
 
-#: gnome-session/manager.c:903
+#: gnome-session/manager.c:906
 msgid "You may wait for it to respond or remove it."
 msgstr "Vous pouvez attendre sa réponse ou l'enlever."
 
-#: gnome-session/manager.c:1500
+#: gnome-session/manager.c:1507
 msgid "Respawn abandoned due to failures."
 msgstr "Réinitialisation abandonnée à la suite d'échecs."
 
-#: gnome-session/manager.c:1674
+#: gnome-session/manager.c:1683
 msgid "A session shutdown is in progress."
 msgstr "Une fermeture de session est en cours."
 
@@ -312,8 +314,8 @@ msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"Quelques changements n'ont pas été enregistrés.\n"
-"Êtes-vous toujours d'accord pour quitter ?"
+"Certaines modifications ne sont pas enregistrés.\n"
+"Voulez-vous vraiment quitter ?"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid "Session properties"
@@ -326,7 +328,7 @@ msgstr "Options"
 
 #: gnome-session/session-properties-capplet.c:209
 msgid "Show splash screen on login"
-msgstr "Afficher l'écran d'acceuil à la connexion"
+msgstr "Afficher l'écran d'accueil à la connexion"
 
 #: gnome-session/session-properties-capplet.c:220
 msgid "Prompt on logout"
@@ -393,7 +395,7 @@ msgstr "Session en cours"
 
 #: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
-msgstr "Supprime le client sélectionné de la session."
+msgstr "Supprimer le client sélectionné de la session."
 
 #: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
@@ -494,9 +496,9 @@ msgid ""
 "Programs with smaller values are started before programs with higher values. "
 "The default value should be OK"
 msgstr ""
-"Les programmes avec les valeurs les plus petites sont démarré avant les "
-"programmes avec les valeurs les plus élévées.  Les valeurs par défaut "
-"devraient être correctes."
+"Les programmes avec les valeurs les plus petites sont démarrés avant ceux "
+"avec les valeurs les plus élévées.  Les valeurs par défaut devraient être "
+"correctes."
 
 #: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
