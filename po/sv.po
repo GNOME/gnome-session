@@ -11,74 +11,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-23 11:50+0200\n"
-"PO-Revision-Date: 2002-06-23 11:51+0200\n"
+"POT-Creation-Date: 2002-07-04 00:59+0200\n"
+"PO-Revision-Date: 2002-07-04 00:59+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "GNOME-inloggning"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "Logga in"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "Starta med standardprogram"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "Återställ alla användarinställningar"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Vill du verkligen återställa alla GNOME-inställningar för %s?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "Nej"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "Återställ alla inställningar"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Katalogen /tmp/orbit-%s ägs inte av den\n"
-"aktuella användaren %s.\n"
-"Ändra ägare på katalogen."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "Logga in ändå"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "Försök igen"
-
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Kunde inte slå upp internetadressen för %s.\n"
-"Detta kommer att hindra GNOME från att fungera korrekt.\n"
-"Det är möjligt att det går att lösa genom att lägga\n"
-"till %s till filen /etc/hosts."
 
 # SUN CHANGED MESSAGE
 #: gnome-session/gsm-client-editor.c:96
@@ -248,48 +187,69 @@ msgid "The Settings Daemon restarted too many times."
 msgstr "Inställningsdemonen startade om för många gånger."
 
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Vill du verkligen logga ut?"
+msgid "Are you sure you want to log out?"
+msgstr "Är du säker på att du vill logga ut?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Spara nuvarande inställningar"
+msgid "_Save current setup"
+msgstr "_Spara nuvarande inställningar"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "Händelse"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Logga ut"
+msgid "_Log Out"
+msgstr "_Logga ut"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Stäng ner"
+msgid "Sh_ut Down"
+msgstr "St_äng ner"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Starta om"
+msgid "_Restart the computer"
+msgstr "_Starta om datorn"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Ange namn för session som ska läsas"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Läs bara sparade sessioner från filen default.session"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att registrera sig (0=oändlig)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att svara (0=oändlig)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tid i millisekunder som klienterna får att dö (0=oändlig)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Kunde inte slå upp internetadressen för %s.\n"
+"Detta kommer att hindra GNOME från att fungera korrekt.\n"
+"Det är möjligt att det går att lösa genom att lägga\n"
+"till %s till filen /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Logga in ändå"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Försök igen"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -549,6 +509,45 @@ msgstr "Lägg till startprogram"
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
 
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME-inloggning"
+
+#~ msgid "Log In"
+#~ msgstr "Logga in"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Starta med standardprogram"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Återställ alla användarinställningar"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Vill du verkligen återställa alla GNOME-inställningar för %s?"
+
+#~ msgid "No"
+#~ msgstr "Nej"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Återställ alla inställningar"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Katalogen /tmp/orbit-%s ägs inte av den\n"
+#~ "aktuella användaren %s.\n"
+#~ "Ändra ägare på katalogen."
+
+#~ msgid "Really log out?"
+#~ msgstr "Vill du verkligen logga ut?"
+
+#~ msgid "Logout"
+#~ msgstr "Logga ut"
+
+#~ msgid "Reboot"
+#~ msgstr "Starta om"
+
 #~ msgid "Session"
 #~ msgstr "Session"
 
@@ -588,9 +587,6 @@ msgstr "Redigera startprogram"
 
 #~ msgid "These changes take effect immediately"
 #~ msgstr "Dessa ändringar verkställs omedelbart"
-
-#~ msgid "_Log Out"
-#~ msgstr "_Logga ut"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Kunde inte ansluta till gnome-session"
@@ -3366,10 +3362,6 @@ msgstr "Redigera startprogram"
 
 #~ msgid "Delete empty submenu?"
 #~ msgstr "Ta bort tom undermeny?"
-
-#~ msgid "Are you sure you want to delete this submenu and all its contents?"
-#~ msgstr ""
-#~ "Vill du verkligen ta bort den här undermenyn och hela dess innehåll?"
 
 #~ msgid ""
 #~ "You can't add an entry to that submenu.\n"
