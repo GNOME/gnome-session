@@ -16,6 +16,10 @@ sysdir = $(datadir)/apps/Settings
 
 if SESSION
 noinst_DATA = session.desktop
+
+noinst_PROGRAMS = \
+	splash-test
+
 bin_PROGRAMS = \
 	gnome-session		\
 	save-session		\
@@ -25,6 +29,11 @@ bin_PROGRAMS = \
 
 #	session-properties-capplet
 endif
+
+splash_test_SOURCES = \
+	splash.c	\
+	splash.h	\
+	splash-test.c
 
 gnome_session_SOURCES = \
 	manager.c	\
