@@ -33,7 +33,7 @@
 #define XsmDiscardCommand SmDiscardCommand "[string]"
 
 /* Used to communicate runlevels for clients with gnome aware apps */
-#define GnomePriority "Priority"
+#define GnomePriority "_GSM_Priority"
 
 /* Name of the base session. This must be set before we load any
    clients (so that we can save them) and it must not be in use by
@@ -69,7 +69,7 @@ typedef struct
 static propsave properties[] =
 {
   { SmRestartStyleHint, NUMBER, 0, SmRestartStyleHint },
-  { GnomePriority,      NUMBER, 0, GnomePriority },
+  { GnomePriority,      NUMBER, 0, "Priority" },
   { SmProgram,          STRING, 0, SmProgram },
   { SmCurrentDirectory, STRING, 0, SmCurrentDirectory },
   { SmDiscardCommand,   STRING, 0, XsmDiscardCommand }, /* for legacy apps */
@@ -193,6 +193,16 @@ write_session (void)
       gnome_config_pop_prefix ();
     }
 
+  for (list = pending_list; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", session_name, i);
+      gnome_config_push_prefix (prefix);
+      i += (write_one_client (client));
+      gnome_config_pop_prefix ();
+    }
+
   g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients", session_name);
   gnome_config_set_int (prefix, i);
   gnome_config_sync ();
@@ -275,7 +285,7 @@ read_one_client (Client *client)
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
 
-	      if (properties[i].save_name == GnomePriority)
+	      if (properties[i].name == GnomePriority)
 		client->priority = number;
 	    }
 	  break;
