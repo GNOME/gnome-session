@@ -13,7 +13,7 @@
 #define SPLASH_SCREEN_KEY "SplashScreen"
 #define SPLASH_SCREEN_DEFAULT "TRUE"
 #define AUTOSAVE_MODE_KEY "AutoSave"
-#define AUTOSAVE_MODE_DEFAULT "TRUE"
+#define AUTOSAVE_MODE_DEFAULT "FALSE"
 
 GSList	*startup_list_read (gchar *name);
 

@@ -61,7 +61,7 @@
 #define AUTOSAVE_MODE_KEY "AutoSave"
 
 #ifndef AUTOSAVE_MODE_DEFAULT
-#define AUTOSAVE_MODE_DEFAULT "TRUE"
+#define AUTOSAVE_MODE_DEFAULT "FALSE"
 #endif
 
 /* Allow TCP connections to the session manager. */
