@@ -542,7 +542,10 @@ splash_start (void)
 		return;
 
 	global_splash = g_object_new (SPLASH_TYPE_WIDGET,
-				      "type", GTK_WINDOW_POPUP, NULL);
+                                      "type_hint",
+                                      GDK_WINDOW_TYPE_HINT_SPLASHSCREEN,
+                                      NULL);
+        gtk_window_set_decorated (GTK_WINDOW (global_splash), FALSE);
 	gtk_widget_show_now (GTK_WIDGET (global_splash));
 }
 
