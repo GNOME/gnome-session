@@ -424,7 +424,7 @@ purge (gpointer data)
   if (g_slist_find (pending_list, client))
     {
       REMOVE (pending_list, client);
-      if (client->match_rule == MATCH_PROP)
+      if (client->match_rule != MATCH_ID)
 	{
 	  APPEND (purge_retain_list, client);
 	  broadcast_restart_style (client, SmRestartAnyway);
