@@ -6,20 +6,22 @@
 #
 # Copyright (C) 1999,2002 Free Software Foundation, Inc.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999-2002
-# Lorint Hendschel <LorintHendschel@skynet.be>, 1999-2000
 # Lucyin Mahin, 2000
+# Lorint Hendschel <LorintHendschel@skynet.be>, 1999-2000.
+# Pablo Saratxaga <pablo@walon.org>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2002-12-29 14:59+0100\n"
-"Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
-"Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
+"POT-Creation-Date: 2005-04-01 20:45+0200\n"
+"PO-Revision-Date: 2005-04-02 00:50+0200\n"
+"Last-Translator: Pablo Saratxaga <pablo@walon.org>\n"
+"Language-Team: Walloon <linux-wa@walon.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -50,19 +52,15 @@ msgid ""
 "the logout dialog will have an option to save the session."
 msgstr ""
 "Si metou, gnome-session schaprè otomaticmint les sessions. Ôtrumint, li "
-"prunea di dmande di dislodjaedje a-st ene tchuze po schaper l' session."
+"purnea di dmande di dislodjaedje a-st ene tchuze po schaper l' session."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Prompt di dislodjaedje"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Preferêye imådje a-z eployî pol purnea di bénvnowe å moumint di s' elodjî "
-"dins l' sicribanne di GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Preferêye imådje a-z eployî pol purnea di bénvnowe"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -77,8 +75,15 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Mostrer li purnea di bénvnowe å moumint di l' elodjaedje"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Imådje pol purnea di bénvnowe"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Çouchal c' est ene valixhance k' est on tchmin relatif a pårti do ridant "
+"$datadir/pixmaps/ Les dzo-ridants eyet les nos d' fitchîs sont des "
+"valixhances valides. On candjmint del valixhance serè-st efectif a "
+"l' elodjaedje shuvant."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -203,7 +208,7 @@ msgstr ""
 "Åk n' a nén stî tot-z enondant li démon d' apontiaedjes di Gnome.\n"
 "\n"
 "Sacwantès sacwès, come les tinmes, les sons, ou l' apontiaedje do fond del "
-"waitroûle, porént n' nén roter comufåt."
+"waitroûle, pôrént n' nén roter comifåt."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -249,14 +254,12 @@ msgid "Action"
 msgstr "Accion"
 
 #: gnome-session/logout.c:410
-#, fuzzy
 msgid "_Log out"
-msgstr "C_witer li session"
+msgstr "Si _dislodjî"
 
 #: gnome-session/logout.c:416
-#, fuzzy
 msgid "Sh_ut down"
-msgstr "_Distinde l' éndjole"
+msgstr "Dis_tinde l' éndjole"
 
 #: gnome-session/logout.c:423
 msgid "_Restart the computer"
@@ -268,19 +271,19 @@ msgstr "Specifyî on no di session a tcherdjî"
 
 #: gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
-msgstr "Ni lere les schapêyès sessions ki foû do fitchî default.session"
+msgstr "Èn lére les schapêyès sessions ki foû do fitchî «default.session»"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Tins (e milisegondes) a ratinde po on cliyant s' eredjistrer (0=tofer)"
+msgstr "Tins (e milisegondes) a ratinde po on cliyint s' eredjistrer (0=tofer)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Tins (e milisegondes) a ratinde po on cliyant responde (0=tofer)"
+msgstr "Tins (e milisegondes) a ratinde po on cliyint responde (0=tofer)"
 
 #: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Tins (e milisegondes) a ratinde po on cliyant mori (0=tofer)"
+msgstr "Tins (e milisegondes) a ratinde po on cliyint mori (0=tofer)"
 
 #: gnome-session/main.c:265
 #, c-format
@@ -291,8 +294,8 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "Dji n' sai cweri l' adresse Internet po %s.\n"
-"Çoula va fé ki GNOME ni porè nén roter comufåt.\n"
-"Si sreut possibe di coridjî l' probleme e metant\n"
+"Çoula va fé ki GNOME ni pôrè nén roter comifåt.\n"
+"Si sreut possibe di coridjî l' problinme e metant\n"
 "%s el fitchî /etc/hosts."
 
 #: gnome-session/main.c:272
@@ -334,9 +337,8 @@ msgid "A session shutdown is in progress."
 msgstr "Li session est ki s' clôt pol moumint"
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Mete en ouve les candjmints pol session do moumint"
+msgstr "Definixh li session do moumint"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -388,9 +390,8 @@ msgid "Show splash screen on _login"
 msgstr "Mostrer li purnea di bénvnowe å moumint di l' e_lodjaedje"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "Dimander å moumint di s' dislodjî"
+msgstr "Di_mander å moumint di s' dislodjî"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -426,7 +427,7 @@ msgstr "Programes a l' enondaedje"
 
 #: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Oister del session li cliyant tchoezi pol moumint."
+msgstr "Oister del session li cliyint tchoezi pol moumint."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
@@ -466,7 +467,7 @@ msgstr "Li scriftôr"
 
 #: gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
-msgstr "Proxy pol manaedjeu di sessions"
+msgstr "Procsi pol manaedjeu di sessions"
 
 #: gnome-session/splash-widget.c:48
 msgid "Nautilus"
@@ -495,9 +496,3 @@ msgstr "Radjouter on programe d' enondaedje"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Candjî on programe d' enondaedje"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Schaper li session do moumint"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Schaper l' estat do moumint do scribanne"
