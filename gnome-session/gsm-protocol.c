@@ -674,24 +674,26 @@ gsm_protocol_set_autosave_mode (GsmProtocol *protocol,
 void
 gsm_protocol_set_session_name (GsmProtocol *protocol, gchar *name)
 {
-  SmProp prop;
-  SmPropValue vals[2];
+  if(name) {
+    SmProp prop;
+    SmPropValue vals[2];
 
-  g_return_if_fail(protocol != NULL);
-  g_return_if_fail(GSM_IS_PROTOCOL (protocol));
+    g_return_if_fail(protocol != NULL);
+    g_return_if_fail(GSM_IS_PROTOCOL (protocol));
 
-  vals[0].length = strlen (GsmSetSessionName);
-  vals[0].value = GsmSetSessionName;
+    vals[0].length = strlen (GsmSetSessionName);
+    vals[0].value = GsmSetSessionName;
 
-  vals[1].length = strlen (name);
-  vals[1].value = g_strdup (name);
+    vals[1].length = strlen (name);
+    vals[1].value = g_strdup (name);
 
-  prop.name = GsmCommand;
-  prop.type = SmLISTofARRAY8;
-  prop.num_vals = 2;
-  prop.vals = vals;
+    prop.name = GsmCommand;
+    prop.type = SmLISTofARRAY8;
+    prop.num_vals = 2;
+    prop.vals = vals;
 
-  command (protocol, &prop, NULL); 
+    command (protocol, &prop, NULL); 
+  }
 }  
 
 /* Public utilities */

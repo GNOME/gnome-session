@@ -363,6 +363,7 @@ set_session_name (const char *name)
 {
   if (name)
     {
+      session_name = g_strdup(name);
       gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
       gnome_config_set_string (CURRENT_SESSION_KEY, name);
       gnome_config_pop_prefix ();

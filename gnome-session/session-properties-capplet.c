@@ -263,7 +263,9 @@ capplet_build (void)
  
   vbox = gtk_vbox_new (FALSE, GNOME_PAD);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
-  
+ 
+  /* Frame for non-session managed startup programs */
+ 
   frame = gtk_frame_new (_("Non-session-managed Startup Programs"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
 
@@ -275,7 +277,6 @@ capplet_build (void)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
 				  GTK_POLICY_AUTOMATIC,
 				  GTK_POLICY_AUTOMATIC);
-        
    
   clist_start = gtk_clist_new (2);
 
@@ -349,7 +350,6 @@ write_state (void)
   gtk_clist_get_text (GTK_CLIST(clist_session), selected_row, 0, &current_session);
   
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  gnome_config_set_string (CURRENT_SESSION_KEY,current_session);
   gnome_config_set_bool (AUTOSAVE_MODE_KEY, autosave);
   gnome_config_set_bool (LOGOUT_SCREEN_KEY, logout_prompt);
   gnome_config_set_bool (LOGOUT_SCREEN_KEY, login_splash);
