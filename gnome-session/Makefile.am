@@ -8,13 +8,9 @@ INCLUDES = 			\
 	$(X_CFLAGS)
 
 LDADD = \
-	$(top_builddir)/libgnome/libgnome.la		\
-	$(top_builddir)/libgnomeui/libgnomeui.la 	\
-	$(GTK_LIBS)					\
-        $(X_LIBS) $(x_libs)				\
-        @XF86MISC_LIBS@					\
 	@LEXLIB@					\
-	$(INTLLIBS) $(DL_LIB)
+	$(GNOMEUI_LIBS)					\
+        @XF86MISC_LIBS@
 
 bin_PROGRAMS = gnome-session
 
