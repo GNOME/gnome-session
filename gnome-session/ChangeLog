@@ -1,3 +1,9 @@
+Mon Dec 18 00:10:13 2000  George Lebl <jirka@5z.com>
+
+	* logout.c:  Just before showing the dialog, focus the default widget
+	  otherwise Help might actually end up getting the default because
+	  it might end up getting the focus.
+
 Wed Dec 13 20:50:16 2000  George Lebl <jirka@5z.com>
 
 	* gnome-login-check.c, ice.c, manager.[ch], prop.c, remote.c, 

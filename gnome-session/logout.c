@@ -263,6 +263,15 @@ display_gui (void)
 		    NULL, NULL, GDK_CURRENT_TIME);
   gdk_keyboard_grab (invisible->window, FALSE, GDK_CURRENT_TIME);
 
+  /* Hmm, I suppose that it's a bug, or strange behaviour on gnome-dialog's
+   * part that even though the Yes is the default, Help somehow gets focus
+   * and thus temporairly grabs default as well.  I dunno if this should be
+   * changed in gnome-dialog, as grabbing the focus in _set_default would
+   * also be wrong.  Hmm, there should be a _set_focus as well I suppose,
+   * anyway, this will work */
+  if (GTK_WINDOW (box)->default_widget != NULL)
+	  gtk_widget_grab_focus (GTK_WINDOW (box)->default_widget);
+
   result = gnome_dialog_run (GNOME_DIALOG (box));
 
   refresh_screen ();
