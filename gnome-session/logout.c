@@ -55,137 +55,215 @@ static enum
 action = LOGOUT;
 
 typedef struct {
-	GdkScreen    *screen;
-	int           monitor;
-	GdkRectangle  iris_rect;
-	GdkWindow    *root_window;
-	int           iris_block;
-	GdkGC        *iris_gc;
-} IrisData;
+  GdkScreen    *screen;
+  int           monitor;
+  GdkRectangle  area;
+  int           rowstride;
+  GdkWindow    *root_window;
+  GdkWindow    *draw_window;
+  GdkPixbuf    *start_pb, *end_pb, *frame;
+  guchar       *start_p, *end_p, *frame_p;
+  GTimeVal      start_time;
+  GdkGC        *gc;
+} FadeoutData;
 
-static int num_iris_timeouts = 0;
+static GList *fadeout_windows = NULL;
 
-static gint
-iris_callback (IrisData *data)
+/* Go for five seconds */
+#define FADE_DURATION 1500.0
+
+static void
+get_current_frame (FadeoutData *fadeout,
+		   double    sat)
 {
-  gint i;
-  gint width_step;
-  gint height_step;
-  gint width;
-  gint height;
+  guchar *sp, *ep, *fp;
+  int i, j, width, offset;
 
-  width_step = MIN (data->iris_rect.width / 2, data->iris_block);
-  height_step = MIN (data->iris_rect.width / 2, data->iris_block);
-
-  for (i = 0; i < MIN (width_step, height_step); i++)
+  width = fadeout->area.width * 3;
+  offset = 0;
+  
+  for (i = 0; i < fadeout->area.height; i++)
     {
-      width  = (gint)data->iris_rect.width  - 2 * i;
-      height = (gint)data->iris_rect.height - 2 * i;
+      sp = fadeout->start_p + offset;
+      ep = fadeout->end_p   + offset;
+      fp = fadeout->frame_p + offset;
 
-      if (width < 0 || height < 0)
-        break;
+      for (j = 0; j < width; j += 3)
+	{
+	  guchar r = abs (*(sp++) - ep[0]);
+	  guchar g = abs (*(sp++) - ep[1]);
+	  guchar b = abs (*(sp++) - ep[2]);
 
-      gdk_draw_rectangle (data->root_window, data->iris_gc, FALSE,
-                          data->iris_rect.x + i,
-			  data->iris_rect.y + i,
-                          width, height);
+	  *(fp++) = *(ep++) + r * sat;
+	  *(fp++) = *(ep++) + g * sat;
+	  *(fp++) = *(ep++) + b * sat;
+	}
+
+      offset += fadeout->rowstride;
+    }
+}
+
+static void
+darken_pixbuf (GdkPixbuf *pb)
+{
+  int width, height, rowstride;
+  int i, j;
+  guchar *p, *pixels;
+  
+  width     = gdk_pixbuf_get_width (pb) * 3;
+  height    = gdk_pixbuf_get_height (pb);
+  rowstride = gdk_pixbuf_get_rowstride (pb);
+  pixels    = gdk_pixbuf_get_pixels (pb);
+  
+  for (i = 0; i < height; i++)
+    {
+      p = pixels + (i * rowstride);
+      for (j = 0; j < width; j++)
+	p [j] >>= 1;
+    }
+}
+
+static gboolean
+fadeout_callback (FadeoutData *fadeout)
+{
+  GTimeVal current_time;
+  double elapsed, percent;
+
+  g_get_current_time (&current_time);
+  elapsed = ((((double)current_time.tv_sec - fadeout->start_time.tv_sec) * G_USEC_PER_SEC +
+	      (current_time.tv_usec - fadeout->start_time.tv_usec))) / 1000.0;
+
+  if (elapsed < 0)
+    {
+      g_warning ("System clock seemed to go backwards?");
+      elapsed = G_MAXDOUBLE;
     }
 
-  gdk_flush ();
-
-  data->iris_rect.x += width_step;
-  data->iris_rect.y += height_step;
-  data->iris_rect.width -= MIN (data->iris_rect.width, data->iris_block * 2);
-  data->iris_rect.height -= MIN (data->iris_rect.height, data->iris_block * 2);
-
-  if (data->iris_rect.width == 0 || data->iris_rect.height == 0)
+  if (elapsed > FADE_DURATION)
     {
-      g_object_unref (data->iris_gc);
-      g_free (data);
+      gdk_draw_pixbuf (fadeout->draw_window,
+		       fadeout->gc,
+		       fadeout->end_pb,
+		       0, 0,
+		       fadeout->area.x,
+		       fadeout->area.y,
+		       fadeout->area.width,
+		       fadeout->area.height,
+		       GDK_RGB_DITHER_NONE,
+		       0, 0);
 
-      if (!--num_iris_timeouts)
-        gtk_main_quit ();
+      g_object_unref (fadeout->gc);
+      g_object_unref (fadeout->start_pb);
+      g_object_unref (fadeout->end_pb);
+      g_object_unref (fadeout->frame);
 
+      g_free (fadeout);
+    
       return FALSE;
     }
-  else
-    return TRUE;
-}
 
+  percent = elapsed / FADE_DURATION;
+
+  get_current_frame (fadeout, 1.0 - percent);
+  gdk_draw_pixbuf (fadeout->draw_window,
+		   fadeout->gc,
+		   fadeout->frame,
+		   0, 0,
+		   fadeout->area.x,
+		   fadeout->area.y,
+		   fadeout->area.width,
+		   fadeout->area.height,
+		   GDK_RGB_DITHER_NONE,
+		   0, 0);
+
+  gdk_flush ();
+  
+  return TRUE;
+}
+  
 static void
-iris_on_screen (GdkScreen *screen,
+fadeout_screen (GdkScreen *screen,
 		int        monitor)
 {
-  static char  dash_list [2] = {1, 1};
-  GdkGCValues  values;
-  IrisData    *data;
+  GdkWindowAttr attr;
+  int attr_mask;
+  GdkGCValues values;
+  FadeoutData *fadeout;
 
-  data = g_new (IrisData, 1);
+  fadeout = g_new (FadeoutData, 1);
 
-  data->screen = screen;
-  data->monitor = monitor;
+  fadeout->screen = screen;
+  fadeout->monitor = monitor;
 
-  data->iris_rect.x = gsm_screen_get_x (screen, monitor);
-  data->iris_rect.y = gsm_screen_get_y (screen, monitor);
-  data->iris_rect.width = gsm_screen_get_width (screen, monitor);
-  data->iris_rect.height = gsm_screen_get_height (screen, monitor);
+  fadeout->area.x = gsm_screen_get_x (screen, monitor);
+  fadeout->area.y = gsm_screen_get_y (screen, monitor);
+  fadeout->area.width = gsm_screen_get_width (screen, monitor);
+  fadeout->area.height = gsm_screen_get_height (screen, monitor);
 
-  data->root_window = gdk_screen_get_root_window (screen);
+  fadeout->root_window = gdk_screen_get_root_window (screen);
+  attr.window_type = GDK_WINDOW_CHILD;
+  attr.x = fadeout->area.x;
+  attr.y = fadeout->area.y;
+  attr.width = fadeout->area.width;
+  attr.height = fadeout->area.height;
+  attr.wclass = GDK_INPUT_OUTPUT;
+  attr.visual = gdk_screen_get_system_visual (fadeout->screen);
+  attr.colormap = gdk_screen_get_default_colormap (fadeout->screen);
+  attr.override_redirect = TRUE;
+  attr_mask = GDK_WA_X | GDK_WA_Y | GDK_WA_VISUAL | GDK_WA_COLORMAP | GDK_WA_NOREDIR;
 
-  values.line_style = GDK_LINE_ON_OFF_DASH;
+  fadeout->draw_window = gdk_window_new (NULL, &attr, attr_mask);
+  fadeout_windows = g_list_prepend (fadeout_windows, fadeout->draw_window);
+  
+  fadeout->start_pb = gdk_pixbuf_get_from_drawable (NULL,
+						    fadeout->root_window,
+						    NULL,
+						    fadeout->area.x,
+						    fadeout->area.y,
+						    0, 0,
+						    fadeout->area.width,
+						    fadeout->area.height);
+  
+  fadeout->end_pb = gdk_pixbuf_copy (fadeout->start_pb);
+  darken_pixbuf (fadeout->end_pb);
+  
+  fadeout->frame = gdk_pixbuf_copy (fadeout->start_pb);
+  fadeout->rowstride = gdk_pixbuf_get_rowstride (fadeout->start_pb);
+
+  fadeout->start_p = gdk_pixbuf_get_pixels (fadeout->start_pb);
+  fadeout->end_p   = gdk_pixbuf_get_pixels (fadeout->end_pb);
+  fadeout->frame_p = gdk_pixbuf_get_pixels (fadeout->frame);
+  
   values.subwindow_mode = GDK_INCLUDE_INFERIORS;
 
-  data->iris_gc = gdk_gc_new_with_values (data->root_window,
-					  &values,
-					  GDK_GC_LINE_STYLE | GDK_GC_SUBWINDOW);
-  gdk_gc_set_dashes (data->iris_gc, 0, dash_list, 2);
+  fadeout->gc = gdk_gc_new_with_values (fadeout->root_window, &values, GDK_GC_SUBWINDOW);
 
-  /* Plan for a time of 0.5 seconds for effect */
-  data->iris_block = data->iris_rect.height / (500 / 20);
-  if (data->iris_block < 8)
-    data->iris_block = 8;
-
-  g_timeout_add (20, (GSourceFunc) iris_callback, data);
-  num_iris_timeouts++;
+  gdk_window_show (fadeout->draw_window);
+  gdk_draw_pixbuf (fadeout->draw_window,
+		   fadeout->gc,
+		   fadeout->frame,
+		   0, 0,
+		   fadeout->area.x,
+		   fadeout->area.y,
+		   fadeout->area.width,
+		   fadeout->area.height,
+		   GDK_RGB_DITHER_NONE,
+		   0, 0);
+  
+  g_get_current_time (&fadeout->start_time);
+  g_idle_add ((GSourceFunc) fadeout_callback, fadeout);
 }
 
 static void
-iris (void)
+hide_fadeout_windows (void)
 {
-  num_iris_timeouts = 0;
+  GList *l;
 
-  gsm_foreach_screen (iris_on_screen);
-
-  gtk_main ();
-
-  g_assert (num_iris_timeouts == 0);
-}
-
-static void
-refresh_screen (GdkScreen *screen,
-		int        monitor)
-{
-  GdkWindowAttr attributes;
-  GdkWindow *window;
-  GdkWindow *parent;
-
-  attributes.x = 0;
-  attributes.y = 0;
-  attributes.width = gsm_screen_get_width (screen, monitor);
-  attributes.height = gsm_screen_get_height (screen, monitor);
-  attributes.window_type = GDK_WINDOW_TOPLEVEL;
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.override_redirect = TRUE;
-  attributes.event_mask = 0;
-
-  parent = gdk_screen_get_root_window (screen);
-
-  window = gdk_window_new (parent, &attributes,
-			   GDK_WA_X | GDK_WA_Y | GDK_WA_NOREDIR);
-
-  gdk_window_show (window);
-  gdk_flush ();
-  gdk_window_hide (window);
+  for (l = fadeout_windows; l; l = l->next)
+    {
+      gdk_window_hide (GDK_WINDOW (l->data));
+      g_object_unref (l->data);
+    }
 }
 
 /* FIXME:
@@ -212,6 +290,22 @@ force_pango_cache_init ()
 
 	pango_font_metrics_unref (metrics);
 	pango_font_description_free (font_desc);
+}
+
+static GtkWidget *
+make_title_label (const char *text)
+{
+  GtkWidget *label;
+  char *full;
+
+  full = g_strdup_printf ("<span weight=\"bold\">%s</span>", text);
+  label = gtk_label_new (full);
+  g_free (full);
+
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
+
+  return label;
 }
 
 static gboolean
@@ -269,7 +363,7 @@ display_gui (void)
 				GTK_MESSAGE_QUESTION,
 				GTK_BUTTONS_NONE,
 				_("Are you sure you want to log out?"));
-
+  
   a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (box));
 
   /* Grabbing the Xserver when accessibility is enabled will cause
@@ -278,7 +372,7 @@ display_gui (void)
   if (!a11y_enabled)
     {
       XGrabServer (GDK_DISPLAY ());
-      iris ();
+      gsm_foreach_screen (fadeout_screen);
     }
 
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
@@ -291,6 +385,7 @@ display_gui (void)
   gtk_window_set_screen (GTK_WINDOW (box), screen);
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
+  gtk_container_set_border_width (GTK_CONTAINER (box), 6);
   gtk_container_set_border_width (
 		GTK_CONTAINER (GTK_DIALOG (box)->vbox), GNOME_PAD);
 
@@ -312,18 +407,23 @@ display_gui (void)
   if (((geteuid () == 0) || g_file_exists (t) || g_file_exists(s)) &&
       access (halt_command[0], X_OK) == 0)
     {
-      GtkWidget *frame;
-      GtkWidget *action_vbox;
+      GtkWidget *title, *spacer;
+      GtkWidget *action_vbox, *hbox;
       GtkWidget *r;
-
-      frame = gtk_frame_new (_("Action"));
+      
+      title = make_title_label (_("Action"));
       gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
-			  frame,
-			  FALSE, TRUE, GNOME_PAD_SMALL);
+			  title, FALSE, FALSE, GNOME_PAD_SMALL);
+
+      hbox = gtk_hbox_new (FALSE, 6);
+      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox), hbox, TRUE, TRUE, 0);
+
+      spacer = gtk_label_new ("    ");
+      gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
 
       action_vbox = gtk_vbox_new (FALSE, 0);
-      gtk_container_add (GTK_CONTAINER (frame), action_vbox);
-
+      gtk_box_pack_start (GTK_BOX (hbox), action_vbox, TRUE, TRUE, 0);
+      
       r = gtk_radio_button_new_with_mnemonic (NULL, _("_Log Out"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 
@@ -364,7 +464,7 @@ display_gui (void)
 
   if (!a11y_enabled)
     {
-      gsm_foreach_screen (refresh_screen);
+      hide_fadeout_windows ();
       XUngrabServer (GDK_DISPLAY ());
     }
 
@@ -387,7 +487,7 @@ display_gui (void)
       break;
     default:
     case GTK_RESPONSE_CANCEL:
-      retval= FALSE;
+      retval = FALSE;
       break;
     case GTK_RESPONSE_HELP:
       egg_help_display_desktop_on_screen (NULL, "user-guide",
