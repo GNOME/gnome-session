@@ -367,7 +367,9 @@ display_gui (void)
 
   force_pango_cache_init ();
 
-  box = gtk_dialog_new ();
+  box = g_object_new (GTK_TYPE_DIALOG,
+		      "type", GTK_WINDOW_POPUP,
+		      NULL);
   gtk_dialog_set_has_separator (GTK_DIALOG (box), FALSE);
 
   vbox = gtk_vbox_new (FALSE, 12);
@@ -403,8 +405,6 @@ display_gui (void)
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
   gtk_dialog_add_button (GTK_DIALOG (box), GTK_STOCK_OK, GTK_RESPONSE_OK);
-
-  g_object_set (G_OBJECT (box), "type", GTK_WINDOW_POPUP, NULL);
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
   gtk_window_set_screen (GTK_WINDOW (box), screen);

@@ -1,3 +1,9 @@
+2004-01-14  Mark McLoughlin  <mark@skynet.ie>
+
+	* logout.c: (display_gui): specify the window type
+	at construction time so that logout doesn't lock
+	up with glib 2.3.1.
+
 2003-10-27  Mark McLoughlin  <mark@skynet.ie>
 
 	* splash.[ch]: kill - they got re-added accidently.
