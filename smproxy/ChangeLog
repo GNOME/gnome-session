@@ -1,5 +1,14 @@
 2002-07-10  Mark McLoughlin  <mark@skynet.ie>
 
+	* smproxy.c: loosen the constraint vaguely
+	specified in the ICCCM, that clients wishing to
+	participate in the session indicate so by
+	initialising the WM_COMMAND property, to also
+	include clients that are participating in the
+	WM_SAVE_YOURSELF protocol. #85933.
+
+2002-07-10  Mark McLoughlin  <mark@skynet.ie>
+
 	* save.c: (WriteProxyFile): don't use a world
 	writeable directory, #87102.
 
