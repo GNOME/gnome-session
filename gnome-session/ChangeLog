@@ -1,5 +1,8 @@
 Thu Feb 26 02:26:51 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* Makefile.am (bin_PROGRAMS): Only define if session support
+	available.
+
 	* Makefile.am (bin_PROGRAMS): Added save-session.
 	(save_session_SOURCES): New macro.
 	* save-session.c: New file.
