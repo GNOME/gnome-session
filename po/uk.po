@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-08-21 11:56+0300\n"
+"POT-Creation-Date: 2005-02-19 12:13+0200\n"
+"PO-Revision-Date: 2005-02-19 11:56+0300\n"
 "Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -51,11 +51,8 @@ msgid "Logout prompt"
 msgstr "Попередження про завершення сеансу"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Зображення, що використовується як заставка під час запуску середовища GNOME"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Зображення, що використовується як заставка входу у систему"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -70,8 +67,12 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Показувати заставку під час запуску сеансу"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Зображення заставки"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Цей ключ являє собою відносний шлях, відносно базового каталогу $datadir/pixmaps/. Допустимі значення - підкаталоги та назви файлів зображень. Зміна цього параметра вступить у силу при вході у наступний сеанс."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -374,9 +375,8 @@ msgid "Show splash screen on _login"
 msgstr "Показувати заставку під час _реєстрації"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
-msgstr "Переп_итувати перед завершенням сеансу"
+msgstr "П_ідтверджувати завершення сеансу"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -481,3 +481,6 @@ msgstr "Додати програму"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Зображення заставки"
