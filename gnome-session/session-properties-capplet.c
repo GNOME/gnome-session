@@ -77,7 +77,6 @@ static GtkWidget *session_command_dialog;
 void apply (void);
 static void help_cb (void);
 static void update_gui (void);
-static void dirty_cb (void);
 static void add_startup_cb (void);
 static void edit_startup_cb (void);
 static void delete_startup_cb (void);
@@ -181,20 +180,41 @@ spc_value_notify (GConfClient *client, guint id, GConfEntry *entry, gpointer tb)
 	}
 }
 
+static gboolean
+show_message_dialog ()
+{
+	GtkWidget *dlg;
+	gint response;
+
+	dlg = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK_CANCEL,
+				      _("Some changes are not saved.\nIs it still OK to exit?"));
+	response = gtk_dialog_run (GTK_DIALOG (dlg));
+	gtk_widget_destroy (dlg);
+	if (response != GTK_RESPONSE_OK) 
+		return TRUE;
+	else
+		return FALSE;
+}
+
+static gboolean
+spc_delete (void)
+{
+	gint ret = FALSE;
+	if (state_dirty)
+		ret = show_message_dialog ();
+
+	if (ret == TRUE) 
+		return TRUE;
+	else {
+		gtk_main_quit ();
+		return FALSE;
+	}
+}
+
 static void
 spc_close (void)
 {
-	if (state_dirty) {
-		GtkWidget *dlg;
-		gint response;
-		dlg = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK_CANCEL,
-					      _("Some changes are not saved.\nIs it still OK to exit?"));
-		response = gtk_dialog_run (GTK_DIALOG (dlg));
-		gtk_widget_destroy (dlg);
-		if (response == GTK_RESPONSE_CANCEL) return;
-	}
-
-	gtk_main_quit ();
+	spc_delete ();
 }
 
 static GtkWidget *
@@ -226,7 +246,7 @@ capplet_build (void)
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_CLOSE);
   g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
-  g_signal_connect (dlg, "delete-event", spc_close, NULL);
+  g_signal_connect (dlg, "delete-event", G_CALLBACK(spc_delete), NULL);
 
   /* FIXME: Get rid of global capplet variable, or use only it, not both (Lauris) */
   capplet = dlg;
@@ -359,7 +379,7 @@ capplet_build (void)
   startup_list = startup_list_read ("Default");
   startup_list_revert = startup_list_duplicate (startup_list);
 
-  vbox = session_properties_create_page (&dirty_cb);
+  vbox = session_properties_create_page (&mark_dirty);
 
   label = gtk_label_new (_("Current Session"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
@@ -503,8 +523,8 @@ update_gui (void)
 }
 
 /* This is called when an change is made in the client list.  */
-static void
-dirty_cb (void)
+void
+mark_dirty (void)
 {
   state_dirty = TRUE;
   gtk_widget_set_sensitive (apply_button, TRUE);
@@ -518,7 +538,6 @@ add_startup_cb (void)
    * this point so our dialog doesn't die if the user switches
    * away to a different capplet
    */
-  dirty_cb ();
   startup_list_add_dialog (&startup_list, &startup_command_dialog, capplet);
   update_gui ();
 }
@@ -531,7 +550,6 @@ edit_startup_cb (void)
    * this point so our dialog doesn't die if the user switches
    * away to a different capplet
    */
-  dirty_cb ();
   startup_list_edit_dialog (&startup_list, startup_store, startup_sel, &startup_command_dialog, capplet);
   update_gui ();
 }
@@ -540,7 +558,7 @@ edit_startup_cb (void)
 static void
 delete_startup_cb (void)
 {
-  dirty_cb ();
+  mark_dirty ();
   startup_list_delete (&startup_list, startup_store, startup_sel);
   update_gui ();
 }
@@ -595,7 +613,6 @@ add_session_cb(void)
    * this point so our dialog doesn't die if the user switches
    * away to a different capplet
    */
-  dirty_cb ();
   session_list_add_dialog (&session_list, &session_command_dialog, capplet);
   update_gui ();
 }
@@ -610,7 +627,6 @@ edit_session_cb (void)
    * this point so our dialog doesn't die if the user switches
    * away to a different capplet
    */
-  dirty_cb ();
   if (!gtk_tree_selection_get_selected (sessions_sel, NULL, &iter)) return;
   gtk_tree_model_get (sessions_store, &iter, 0, &str, -1);
   session_list_edit_dialog (&session_list, str, &hashed_sessions, &session_command_dialog, capplet);
@@ -623,7 +639,7 @@ delete_session_cb (void)
 {
   GtkTreeIter iter;
   gchar *str;
-  dirty_cb ();
+  mark_dirty ();
   if (!gtk_tree_selection_get_selected (sessions_sel, NULL, &iter)) return;
   gtk_tree_model_get (sessions_store, &iter, 0, &str, -1);
   session_list_delete (&session_list, str, &session_command_dialog);

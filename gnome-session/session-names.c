@@ -156,6 +156,7 @@ edit_session_name (gchar *title, gchar **editsession,
       gtk_widget_destroy (msgbox);
     }
     else {
+      mark_dirty ();
       gtk_widget_destroy (*dialog);
       *dialog = NULL;
       g_free (old_session_name);

@@ -351,6 +351,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 	    g_free (client->argv[i]);
 	  g_free (client->argv);
 	  
+	  mark_dirty ();
 	  gnome_config_make_vector (tmp, &client->argc, &client->argv);
 	  client->order = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (spinbutton));
 

@@ -1,3 +1,14 @@
+2004-02-05  Balamurali Viswanathan  <balamurali.viswanathan@wipro.com>
+
+	* session-properties-capplet.c: On pressing Esc. close only the
+	  dialog and not the whole capplet. Solves #126368
+
+	* session-names.c (edit_session_name):
+	* session-properties-capplet.c (add_startup_cb), (edit_startup_cb),
+	  (add_session_cb), (edit_session_cb):
+	* startup-programs.c (edit_client):
+	  Call mark_dirty () only when user does some changes. Solves #127603
+
 ==================== 2.5.4 ====================
 
 2004-02-04  Mark McLoughlin  <mark@skynet.ie>

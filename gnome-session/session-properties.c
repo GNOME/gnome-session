@@ -38,7 +38,7 @@ static DirtyCallbackFunc parent_dirty_cb;
 /* table widget callback prototypes */
 static void remove_cb (GtkWidget *widget);
 static void selection_changed (GtkTreeSelection *selection);
-static void dirty_cb (GtkWidget *widget);
+static void session_properties_dirty_cb (GtkWidget *widget);
 
 static GtkWidget*
 create_table (void)
@@ -64,7 +64,7 @@ create_table (void)
 		   "changed", G_CALLBACK (selection_changed),
 		   client_list);
   gtk_signal_connect(GTK_OBJECT(client_list), "dirty",
-		     GTK_SIGNAL_FUNC (dirty_cb), NULL);
+		     GTK_SIGNAL_FUNC (session_properties_dirty_cb), NULL);
 
   client_editor = gsm_client_list_get_editor (GSM_CLIENT_LIST (client_list));
 
@@ -145,7 +145,7 @@ selection_changed (GtkTreeSelection *selection)
 
 /* This is called when an change is made in the client list.  */
 static void
-dirty_cb (GtkWidget *widget)
+session_properties_dirty_cb (GtkWidget *widget)
 {
   parent_dirty_cb ();
 }
