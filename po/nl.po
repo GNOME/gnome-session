@@ -9,15 +9,16 @@
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
 # Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>, 2002.
 # Reinout van Schouwen <reinout@cs.vu.nl>, 2003
+# Tino Meinen <a.t.meinen@chello.nl> 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-07-28 00:55+0100\n"
-"Last-Translator: Reinout van Schouwen <reinout@cs.vu.nl>\n"
-"Language-Team: Dutch <vertaling@nl.linux.org>\n"
+"POT-Creation-Date: 2005-02-16 15:34+0100\n"
+"PO-Revision-Date: 2005-02-16 22:40+0100\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,13 +58,10 @@ msgstr ""
 msgid "Logout prompt"
 msgstr "Afmeldvenster"
 
+# vrij vertaald
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Afbeelding die weergegeven moet worden op het introvenster bij het aanmelden "
-"bij de GNOME Werkomgeving."
+msgid "Preferred Image to use for login splash screen"
+msgstr "De afbeelding die gebruikt wordt voor het introvenster na het aanmelden"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -77,9 +75,13 @@ msgstr "_Introvenster tonen"
 msgid "Show the splash screen when the session starts up"
 msgstr "_Introvenster tonen wanneer de sessie wordt geopend."
 
+# zijn ook geldig/mogen ook
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Afbeelding voor het introvenster"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Dit is een relatief pad uitgaande van de map \"$datadir/pixmaps/\". Submappen en namen van afbeeldingen zijn ook geldig. Het wijzigen heeft pas effect bij de volgende keer dat u zich aanmeldt."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -385,7 +387,6 @@ msgid "Show splash screen on _login"
 msgstr "_Introvenster tonen bij aanmelden"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "_Bevestigen bij afmelden"
 
@@ -492,6 +493,9 @@ msgstr "Te starten programma toevoegen"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Afbeelding voor het introvenster"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Huidige sessie opslaan"
