@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
-"PO-Revision-Date: 2002-02-08 10:59+0900\n"
+"POT-Creation-Date: 2002-04-30 00:04+0900\n"
+"PO-Revision-Date: 2002-04-30 00:08+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -95,22 +95,20 @@ msgstr ""
 "このダイアログを閉じると、GNOMEセッションは終了します。"
 
 #: gnome-session/gsm-client-editor.c:96
-#, fuzzy
 msgid "_Order:"
-msgstr "順番:"
+msgstr "順番(_O):"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "このセッションでアプリケーションが起動される順番"
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "終了した時にアプリケーションに何が起こるか"
 
 #: gnome-session/gsm-client-editor.c:108
-#, fuzzy
 msgid "_Style:"
-msgstr "スタイル:"
+msgstr "スタイル(_S):"
 
 #: gnome-session/gsm-client-list.c:150
 msgid "Order"
@@ -201,9 +199,8 @@ msgid "Always started on every login."
 msgstr "ログインのたびに常に開始されます。"
 
 #: gnome-session/logout.c:200
-#, fuzzy
 msgid "_Log Out"
-msgstr "ログアウト"
+msgstr "ログアウト(_L)"
 
 #: gnome-session/logout.c:258
 msgid "Really log out?"
@@ -299,9 +296,8 @@ msgid "Save Current Session"
 msgstr "現在のセッションを保存"
 
 #: gnome-session/save-session.desktop.in.h:2
-#, fuzzy
 msgid "Save current state of desktop"
-msgstr "スクリーンショットをデスクトップに保存(_D)"
+msgstr "現在のデスクトップの状態を保存"
 
 #: gnome-session/session-names.c:127
 msgid "The session name cannot be empty"
@@ -319,129 +315,122 @@ msgstr "新規セッションの追加"
 msgid "Edit session name"
 msgstr "セッション名の編集"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:165
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"変更が保存されていません。\n"
+"終了してもいいですか?"
 
-#: gnome-session/session-properties-capplet.c:189
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:190
 msgid "Session properties"
 msgstr "セッションのプロパティ"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:216
 msgid "Options"
 msgstr "オプション"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:226
 msgid "Show splash screen on login"
 msgstr "ログイン時にスプラッシュスクリーンを表示"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:242
 msgid "Prompt on logout"
 msgstr "ログアウト時に確認"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:258
 msgid "Automatically save changes to session"
 msgstr "自動的にセッションの変更点を保存"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:272
 msgid "Choose Current Session"
 msgstr "カレントセッションの選択"
 
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:289
 msgid "Session Name"
 msgstr "セッション名"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:298
+#: gnome-session/session-properties-capplet.c:370
 msgid "Add..."
 msgstr "追加..."
 
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:302
+#: gnome-session/session-properties-capplet.c:375
 msgid "Edit..."
 msgstr "編集..."
 
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:380
 msgid "Delete"
 msgstr "削除"
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:331
 msgid "Session Options"
 msgstr "セッションのオプション"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:342
 msgid "Non-session-managed Startup Programs"
-msgstr "セッションマネージメントにまつわる設定"
+msgstr "セッション管理でない自動起動プログラム"
 
-#: gnome-session/session-properties-capplet.c:358
+#: gnome-session/session-properties-capplet.c:359
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "優先順位"
 
-#: gnome-session/session-properties-capplet.c:360
-#, fuzzy
+#: gnome-session/session-properties-capplet.c:361
 msgid "Command"
-msgstr "コマンド:"
+msgstr "コマンド"
 
-#: gnome-session/session-properties-capplet.c:388
+#: gnome-session/session-properties-capplet.c:389
 msgid "Browse Currently Running Programs..."
 msgstr "現在動作中のプログラムを閲覧..."
 
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:398
 msgid "Startup Programs"
 msgstr "自動起動プログラム"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:403
+msgid "Current Session"
+msgstr "現在のセッション"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "選択されているクライアントをセッションから削除"
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "セッション中のプログラムの一覧"
 
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "セッションのプロパティ"
-
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
 msgstr "セッション"
 
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
 msgstr "セッション選択"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
 msgstr "セッション開始"
 
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "ログインをキャンセル"
 
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
 msgstr "セッションの設定を初期化"
 
 #: gnome-session/session-properties.desktop.in.h:1
-#, fuzzy
 msgid "Session Properties & Startup Programs"
-msgstr "セッション管理でない自動起動プログラム"
-
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "セッションマネージメントにまつわる設定"
+msgstr "セッションのプロパティと自動起動プログラム"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -456,9 +445,8 @@ msgid "Sawfish Window Manager"
 msgstr "Sawfish ウインドウマネージャ"
 
 #: gnome-session/splash.c:62
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "ウインドウマネージャ"
+msgstr "Metacity ウインドウマネージャ"
 
 #: gnome-session/splash.c:63
 msgid "Window Manager"
@@ -528,6 +516,12 @@ msgstr "自動起動プログラムの追加"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "自動起動プログラムの編集"
+
+#~ msgid "Session Properties"
+#~ msgstr "セッションのプロパティ"
+
+#~ msgid "Current session managed programs"
+#~ msgstr "セッションマネージメントにまつわる設定"
 
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Enlightenment ウインドウマネージャ"
