@@ -202,8 +202,6 @@ capplet_build (void)
     (_("Automatically save changes to session"));
   gtk_container_add (GTK_CONTAINER (alignment), autosave_button);
  
-  gtk_container_add (GTK_CONTAINER (frame), vbox); 
-  
   frame = gtk_frame_new (_("Choose Current Session"));
   gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
  
@@ -258,9 +256,6 @@ capplet_build (void)
  
   label = gtk_label_new (_("Session Options"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
-
-  gtk_container_add (GTK_CONTAINER (frame), vbox); 
-
 
   /* frame for manually started programs */
   startup_list = startup_list_read ("Default");
