@@ -55,33 +55,37 @@ splash_test_SOURCES = \
 	splash.h	\
 	splash-test.c
 
-gnome_session_SOURCES = \
-	manager.c	\
-	manager.h	\
-	ice.c		\
-	ice.h		\
-	main.c		\
-	prop.c		\
-	prop.h		\
-	save.c		\
-	save.h		\
-	command.c	\
-	command.h	\
-	session.h	\
-	remote.c	\
-	remote.h	\
-	logout.c	\
-	logout.h	\
-	splash.c	\
-	splash.h	\
-	gsm-protocol.c	\
-	gsm-protocol.h	\
+gnome_session_SOURCES =		\
+	manager.c		\
+	manager.h		\
+	ice.c			\
+	ice.h			\
+	main.c			\
+	prop.c			\
+	prop.h			\
+	save.c			\
+	save.h			\
+	command.c		\
+	command.h		\
+	session.h		\
+	remote.c		\
+	remote.h		\
+	logout.c		\
+	logout.h		\
+	splash.c		\
+	splash.h		\
+	gsm-protocol.c		\
+	gsm-protocol.h		\
+	gsm-typebuiltins.c	\
+	gsm-typebuiltins.h	\
 	headers.h
 
-save_session_SOURCES = \
-	save-session.c	\
-	gsm-protocol.c	\
-	gsm-protocol.h
+save_session_SOURCES =		\
+	save-session.c		\
+	gsm-protocol.c		\
+	gsm-protocol.h		\
+	gsm-typebuiltins.c	\
+	gsm-typebuiltins.h
 
 session_properties_SOURCES = \
 	session-properties.c	\
@@ -93,7 +97,9 @@ session_properties_SOURCES = \
 	gsm-client-row.h	\
 	gsm-protocol.c		\
 	gsm-protocol.h		\
-	session.h
+	session.h		\
+	gsm-typebuiltins.c	\
+	gsm-typebuiltins.h
 
 # session_properties_capplet_SOURCES = \
 # 	session-properties-capplet.c	\
@@ -156,11 +162,40 @@ EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
-	session.desktop.in		\
+	session.desktop.in	\
 	$(manuals)		\
 	$(pixmap_DATA)		\
 	gsm-marshal.list	\
 	session-properties.desktop.in
+
+gsm_enum_headers =					\
+	$(top_srcdir)/gnome-session/gsm-protocol.h
+
+gsm-typebuiltins.c: @REBUILD@ $(gsm_enum_headers)
+	glib-mkenums    --fhead "#include <glib-object.h>\n" \
+			--fhead "#include \"gsm-typebuiltins.h\"\n\n" \
+			--fprod "\n/* enumerations from \"@filename@\" */" \
+			--fprod "\n#include \"@filename@\"\n" \
+			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
+			--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
+			--vtail "  { 0, NULL, NULL }\n};\n\n" \
+			--vtail "GType\n@enum_name@_get_type (void)\n{\n" \
+			--vtail "  static GType type = 0;\n\n" \
+			--vtail "  if (!type)\n" \
+			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
+			--vtail "  return type;\n}\n\n" \
+		$(gsm_enum_headers) > $@
+
+gsm-typebuiltins.h: @REBUILD@ $(gsm_enum_headers)
+	glib-mkenums    --fhead "#ifndef __GSM_TYPEBUILTINS_H__\n" \
+			--fhead "#define __GSM_TYPEBUILTINS_H__ 1\n\n" \
+			--fhead "G_BEGIN_DECLS\n\n" \
+			--ftail "G_END_DECLS\n\n" \
+			--ftail "#endif /* __GSM_TYPEBUILTINS_H__ */\n" \
+			--fprod "\n/* --- @filename@ --- */" \
+			--eprod "#define GSM_TYPE_@ENUMNAME@ @enum_name@_get_type()\n" \
+			--eprod "GType @enum_name@_get_type (void);\n" \
+		$(gsm_enum_headers) >  $@
 
 marshal_sources = gsm-marshal.c gsm-marshal.h
 
@@ -171,8 +206,12 @@ gsm-marshal.h: gsm-marshal.list $(GLIB_GENMARSHAL)
 gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --body --prefix=gsm_marshal > $@
 
-BUILT_SOURCES = $(marshal_sources)
-CLEANFILES    = $(BUILT_SOURCES)
+BUILT_SOURCES =			\
+	$(marshal_sources)	\
+	gsm-typebuiltins.c	\
+	gsm-typebuiltins.h
+
+CLEANFILES = $(BUILT_SOURCES)
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)

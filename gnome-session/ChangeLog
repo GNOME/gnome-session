@@ -1,5 +1,13 @@
 2002-03-20  Mark McLoughlin  <mark@skynet.ie>
 
+	* Makefile.am: build enum GTypes using glib-mkenums
+	for GsmStyle and GsmState.
+
+	* gsm-protocol.c: (gsm_client_class_init): use these
+	when declaring the signal handlers.
+
+2002-03-20  Mark McLoughlin  <mark@skynet.ie>
+
 	* gsm-client-list.c: (gsm_client_list_live_session),
 	(gsm_client_list_saved_session) (register_change),
 	(gsm_client_list_discard_changes): GsmSession is not a GtkObject

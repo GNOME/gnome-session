@@ -28,6 +28,7 @@
 
 #include "session.h"
 #include "gsm-protocol.h"
+#include "gsm-typebuiltins.h"
 
 #include "gsm-marshal.h"
 #include "gsm-marshal.c"
@@ -377,8 +378,8 @@ gsm_client_class_init (GsmClientClass *klass)
 			G_SIGNAL_RUN_LAST,
 			G_STRUCT_OFFSET (GsmClientClass, state),
 			NULL, NULL,
-			g_cclosure_marshal_VOID__INT,
-			G_TYPE_NONE, 1, G_TYPE_INT);
+			g_cclosure_marshal_VOID__ENUM,
+			G_TYPE_NONE, 1, GSM_TYPE_GSM_STATE);
 
 	gsm_client_signals [STYLE] =
 		g_signal_new (
@@ -387,8 +388,8 @@ gsm_client_class_init (GsmClientClass *klass)
 			G_SIGNAL_RUN_LAST,
 			G_STRUCT_OFFSET (GsmClientClass, style),
 			NULL, NULL,
-			g_cclosure_marshal_VOID__INT,
-			G_TYPE_NONE, 1, G_TYPE_INT);
+			g_cclosure_marshal_VOID__ENUM,
+			G_TYPE_NONE, 1, GSM_TYPE_GSM_STYLE);
 
 	gsm_client_signals [ORDER] =
 		g_signal_new (
