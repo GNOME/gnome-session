@@ -5,12 +5,13 @@
 # Last Revision: Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
 # Last Revision: Ricardo Soares Guimarães <ricardo@conectiva.com.br>
 # Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
+# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-11-28 17:29+1300\n"
-"PO-Revision-Date: 2002-08-02 19:32-0300\n"
+"POT-Creation-Date: 2002-12-03 01:33-0200\n"
+"PO-Revision-Date: 2002-12-03 01:18-0300\n"
 "Last-Translator: Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
 "Language-Team: Gnome-BR <gnome-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Permitir conexões TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -28,44 +29,52 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
+"Por segurança, em plataformas que têm _IceTcpTransNoListen() (sistemas com "
+"XFree86), gnome-session não irá aceitar conexões em portas TCP. Esta opção "
+"irá permitir conexões de máquinas remotas (autorizadas). gnome-session deve "
+"ser reiniciado para a configuração fazer efeito."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Se habilitado, gnome-session pergunta ao usuário antes de terminar uma "
+"sessão. "
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
+"Se habilitado, gnome-session irá salvar a sessão automaticamente. Caso "
+"contrário, o diálogo Sair irá conter uma opção para salvar a sessão."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr ""
+msgstr "Tela de Saída"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
+"Imagem preferida para utilizar como tela inicial quando carregando o "
+"ambiente GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sessões"
+msgstr "Salvar sessões"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Exibir te_la inicial ao entrar"
+msgstr "Exibir tela inicial ao entrar"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Exibir tela inicial quando a sessão é iniciada"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Imagem para Tela Inicial"
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 msgid "_Order:"
@@ -457,9 +466,8 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "Configurações de teclado"
+msgstr "Preferências do Ambiente"
 
 #: gnome-session/startup-programs.c:287
 msgid "_Startup Command:"
