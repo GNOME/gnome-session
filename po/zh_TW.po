@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-09-28 11:02+1200\n"
+"POT-Creation-Date: 2002-10-02 10:59+1200\n"
 "PO-Revision-Date: 2002-06-22 22:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -389,47 +389,47 @@ msgstr "初始化作業階段設定"
 msgid "Configure your sessions"
 msgstr ""
 
-#: gnome-session/splash-widget.c:41
+#: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
 msgstr "音效設定"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Screensaver"
 msgstr "螢幕保護程式"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 視窗管理程式"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Metacity 視窗管理程式"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "視窗管理程式"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Background Settings"
 msgstr "背景圖案設定"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Mouse Settings"
 msgstr "滑鼠設定"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Keyboard Settings"
 msgstr "鍵盤設定"
 
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "作業階段管理程式代理"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "Nautilus"
 
@@ -453,6 +453,69 @@ msgstr "新增初始啟動程式"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "登出"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "作業階段"
+
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "登入時顯示啟動畫面"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid "false"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 #~ msgid "Priority"
 #~ msgstr "優先值"
@@ -507,9 +570,6 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "Really log out?"
 #~ msgstr "是否確定登出？"
-
-#~ msgid "Logout"
-#~ msgstr "登出"
 
 #~ msgid "Reboot"
 #~ msgstr "重新啟動電腦"

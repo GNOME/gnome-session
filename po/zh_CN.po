@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-09-28 11:02+1200\n"
+"POT-Creation-Date: 2002-10-02 10:59+1200\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -408,54 +408,54 @@ msgid "Configure your sessions"
 msgstr ""
 
 # gnome-terminal/gnome-terminal.c:1590
-#: gnome-session/splash-widget.c:41
+#: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
 msgstr "声音设置"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Screensaver"
 msgstr "屏幕保护程序"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 #, fuzzy
 msgid "Metacity Window Manager"
 msgstr "窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "窗口管理器"
 
 # gnome-terminal/gnome-terminal.c:1193
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Background Settings"
 msgstr "背景设置"
 
 # gnome-terminal/gnome-terminal.c:1590
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Mouse Settings"
 msgstr "鼠标设置"
 
 # gnome-terminal/gnome-terminal.c:1590
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Keyboard Settings"
 msgstr "键盘设置"
 
 # panel/menu.c:543
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "会话管理器代理"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "Nautilus"
 
@@ -482,6 +482,71 @@ msgstr "添加启动程序"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+# gsm/logout.c:248
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "注销"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+# gsm/session-properties.c:264
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "会话"
+
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "登录时显示图片展示"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid "false"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 #~ msgid "Priority"
 #~ msgstr "优先级"
@@ -565,10 +630,6 @@ msgstr "编辑启动程序"
 # gsm/logout.c:200
 #~ msgid "Really log out?"
 #~ msgstr "真的要注销？"
-
-# gsm/logout.c:248
-#~ msgid "Logout"
-#~ msgstr "注销"
 
 # gsm/logout.c:254
 #~ msgid "Reboot"

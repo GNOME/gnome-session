@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-09-28 11:02+1200\n"
+"POT-Creation-Date: 2002-10-02 10:59+1200\n"
 "PO-Revision-Date: 2002-01-27 02:54+0100\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: nynorsk <nn@li.org>\n"
@@ -441,58 +441,58 @@ msgid "Configure your sessions"
 msgstr ""
 
 # gsm/splash.c:55
-#: gnome-session/splash-widget.c:41
+#: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
 msgstr "Innstillingar for lyd"
 
 # gsm/splash.c:56 gsm/splash.c:57
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Screensaver"
 msgstr "Skjermsparar"
 
 # gsm/splash.c:58 gsm/splash.c:59
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish vindaugehandsamar"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 #, fuzzy
 msgid "Metacity Window Manager"
 msgstr "Vindaugshandsamar"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Vindaugshandsamar"
 
 # gsm/splash.c:61
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Background Settings"
 msgstr "Innstillingar for bakgrunn"
 
 # gsm/splash.c:63
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Mouse Settings"
 msgstr "Innstillingar for mus"
 
 # gsm/splash.c:64
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Keyboard Settings"
 msgstr "Innstillingar for tastatur"
 
 # gsm/splash.c:65
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "Panelet"
 
 # gsm/splash.c:66
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "Økthandsamar proxy"
 
 # gsm/splash.c:69
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "Nautilus"
 
@@ -521,6 +521,72 @@ msgstr "Legg til oppstartsprogram"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+# gsm/logout.c:247
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "Logg ut"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+# gsm/session-properties.c:272
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "Økt"
+
+# gsm/session-properties-capplet.c:192
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "Vis «splash»-skjerm ved pålogging"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid "false"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 # gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
 #~ msgid "Priority"
@@ -610,10 +676,6 @@ msgstr "Rediger oppstartsprogram"
 # gsm/logout.c:199
 #~ msgid "Really log out?"
 #~ msgstr "Verkeleg logge ut?"
-
-# gsm/logout.c:247
-#~ msgid "Logout"
-#~ msgstr "Logg ut"
 
 # gsm/logout.c:253
 #~ msgid "Reboot"

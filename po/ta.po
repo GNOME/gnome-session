@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome Translation v. 1.7\n"
-"POT-Creation-Date: 2002-09-28 11:02+1200\n"
+"POT-Creation-Date: 2002-10-02 10:59+1200\n"
 "PO-Revision-Date: 2001-10-10 00:04-0500\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinux@yahoogroups.com>\n"
@@ -439,58 +439,58 @@ msgid "Configure your sessions"
 msgstr ""
 
 # gsm/splash.c:55
-#: gnome-session/splash-widget.c:41
+#: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
 msgstr "´Ä¢ «¨ÁôÒ¸û"
 
 # gsm/splash.c:56 gsm/splash.c:57
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Screensaver"
 msgstr "¾¢¨Ãì¸¡ÅÄ÷"
 
 # gsm/splash.c:58 gsm/splash.c:59
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "§º¡À¢‰ º¡ÇÃ§ÁÄ¡Ç÷"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 #, fuzzy
 msgid "Metacity Window Manager"
 msgstr "º¡ÇÃ§ÁÄ¡Ç÷"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "º¡ÇÃ§ÁÄ¡Ç÷"
 
 # gsm/splash.c:61
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Background Settings"
 msgstr "À¢ýÉ½¢Â¢ý «¨ÁôÒ¸û"
 
 # gsm/splash.c:63
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Mouse Settings"
 msgstr "Íñ¦¼Ä¢ «¨ÁôÒ¸û"
 
 # gsm/splash.c:64
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Keyboard Settings"
 msgstr "Å¢¨ºôÀÄ¨¸ «¨ÁôÒ¸û"
 
 # gsm/splash.c:65
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "ÀÄ¨¸"
 
 # gsm/splash.c:66
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "Session Manager Proxy"
 
 # gsm/splash.c:69
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "¿¡ÊÄŠ"
 
@@ -519,6 +519,73 @@ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Äî §º÷"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+# gsm/logout.c:248
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "ÓÊò¾ø"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+# gsm/session-properties.c:272
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "«Á÷×"
+
+# gsm/session-properties-capplet.c:192
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "¦¾¡¼íÌõ §À¡Ð 'splash' ¸¡ðº¢¨Âì ¸¡ñÀ¢ì¸×õ"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+#, fuzzy
+msgid "false"
+msgstr "ãÎ"
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 # gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
 #~ msgid "Priority"
@@ -607,10 +674,6 @@ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
 # gsm/logout.c:199
 #~ msgid "Really log out?"
 #~ msgstr "¯ñ¨ÁÂ¡¸ ÓÊò¾ø?"
-
-# gsm/logout.c:248
-#~ msgid "Logout"
-#~ msgstr "ÓÊò¾ø"
 
 # gsm/logout.c:254
 #~ msgid "Reboot"
@@ -4961,9 +5024,6 @@ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
 #~ msgstr ""
 #~ "­ó¾ «¨ÁÒ¸ÙìÌ ¯¾Å¢ ­ø¨Ä/¿¢ÚÅôÀ¼Å¢ø¨Ä.\n"
 #~ "¸§É¡õ ÀÂÉ÷ ¯¾Å¢¨Â ¿¢ÚÅÀôÀÎò¾×õ."
-
-#~ msgid "Close"
-#~ msgstr "ãÎ"
 
 #~ msgid "App"
 #~ msgstr "¿¢Ãø"

@@ -22,6 +22,7 @@
 #include <string.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-macros.h>
+#include <gconf/gconf-client.h>
 
 #include "headers.h"
 #include "splash-widget.h"
@@ -308,39 +309,21 @@ read_background (SplashWidget *sw)
 {
 	char *filename;
 	GdkPixbuf *pb;
-	int maj, minor, pl;
+	GConfClient * client;
 
-	/* Find a splash screen by looking at "gnome-splash-major.minor.pl.png",
-	   "gnome-splash-major.minor.png" and "gnome-splash.png" */
-	if (sscanf (VERSION, "%d.%d.%d", &maj, &minor, &pl) != 3) {
-		pl = 0;
-		if (sscanf (VERSION, "%d.%d", &maj, &minor) != 2) {
-			maj = minor = pl = 0; /* sort of illegal version */
-		}
-	}
-	
-	filename = g_strdup_printf (
-		"%s/splash/gnome-splash-%d.%d.%d.png",
-		GNOME_ICONDIR, maj, minor, pl);
+	client = gconf_client_get_default ();
+
+	filename = gconf_client_get_string (client,
+					    "/apps/gnome-session/options/splash_image",
+					    NULL);
+	if (!filename)
+		filename = g_strdup (GNOME_ICONDIR "/splash/gnome-splash.png");
 
 	pb = gdk_pixbuf_new_from_file (filename, NULL);
 	g_free (filename);
-	if (!pb) {
-		filename = g_strdup_printf (
-			"%s/splash/gnome-splash-%d.%d.png",
-			GNOME_ICONDIR, maj, minor);
-
-		pb = gdk_pixbuf_new_from_file (filename, NULL);
-		g_free (filename);
-	}
-	
-	if (!pb)
-		pb = gdk_pixbuf_new_from_file (
-			GNOME_ICONDIR "/splash/gnome-splash.png", NULL);
 
 	sw->background = pb;
-
-	fprintf (stderr, "Loaded background '%p\n", pb);
+	g_object_unref (G_OBJECT (client));
 }
 
 static void

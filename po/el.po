@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.16\n"
-"POT-Creation-Date: 2002-09-28 11:02+1200\n"
+"POT-Creation-Date: 2002-10-02 10:59+1200\n"
 "PO-Revision-Date: 2002-04-20 18:12+0100\n"
 "Last-Translator: Simos Xenitellis <simos@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -393,47 +393,47 @@ msgstr "Αρχικοποίηση ρυθμίσεων συνεδρίας"
 msgid "Configure your sessions"
 msgstr ""
 
-#: gnome-session/splash-widget.c:41
+#: gnome-session/splash-widget.c:42
 msgid "Audio Settings"
 msgstr "Ρυθμίσεις Ήχου"
 
-#: gnome-session/splash-widget.c:42
+#: gnome-session/splash-widget.c:43
 msgid "Screensaver"
 msgstr "Προφύλαξη Οθόνης"
 
-#: gnome-session/splash-widget.c:43
+#: gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Διαχειριστής Παραθύρων Πριονόψαρο (sawfish)"
 
-#: gnome-session/splash-widget.c:44
+#: gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Διαχειριστής Παραθύρων Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Διαχειριστής Παραθύρων"
 
-#: gnome-session/splash-widget.c:46
+#: gnome-session/splash-widget.c:47
 msgid "Background Settings"
 msgstr "Ρυθμίσεις Παρασκηνίου"
 
-#: gnome-session/splash-widget.c:47
+#: gnome-session/splash-widget.c:48
 msgid "Mouse Settings"
 msgstr "Ρυθμίσεις Ποντικιού"
 
-#: gnome-session/splash-widget.c:48
+#: gnome-session/splash-widget.c:49
 msgid "Keyboard Settings"
 msgstr "Ρυθμίσεις Πληκτρολογίου"
 
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:50
 msgid "The Panel"
 msgstr "Το Ταμπλώ"
 
-#: gnome-session/splash-widget.c:50
+#: gnome-session/splash-widget.c:51
 msgid "Session Manager Proxy"
 msgstr "Διαμεσολαβητής Διαχειριστή Συνεδρίας"
 
-#: gnome-session/splash-widget.c:51
+#: gnome-session/splash-widget.c:52
 msgid "Nautilus"
 msgstr "Ναυτίλος"
 
@@ -457,6 +457,70 @@ msgstr "Προσθήκη Προγραμμάτων Εκκίνησης"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "Τερματισμός"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "Συνεδρία"
+
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "Εμφάνιση στατικής εικόνας κατά τη διάρκεια της σύνδεσης"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+#, fuzzy
+msgid "false"
+msgstr "Κλείσιμο"
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 #~ msgid "Priority"
 #~ msgstr "Προτεραιότητα"
@@ -531,9 +595,6 @@ msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 
 #~ msgid "Really log out?"
 #~ msgstr "Θέλετε πραγματικά να τερματίσετε τη συνεδρία;"
-
-#~ msgid "Logout"
-#~ msgstr "Τερματισμός"
 
 #~ msgid "Reboot"
 #~ msgstr "Επανεκκίνηση υπολογιστή"
@@ -3779,9 +3840,6 @@ msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 #~ "Παρακαλώ\n"
 #~ "επιβεβαιώστε ότι έχετε εγκατεστημένο τον Οδηγό Χρήστη GNOME στο σύστημά "
 #~ "σας."
-
-#~ msgid "Close"
-#~ msgstr "Κλείσιμο"
 
 #~ msgid "Cannot activate a panel object"
 #~ msgstr "Αδύνατη η ενεργοποίηση αντικειμένου ταμπλώ"
