@@ -1,3 +1,10 @@
+2002-05-29  Mark McLoughlin  <mark@skynet.ie>
+
+	* smproxy.c (main): set _DT_SAVE_MODE to "gnome" on
+	the RootWindow. Workaround for very broken apps that
+	don't respect the ICCCM and respond to WM_SAVE_YOURSELF
+	unless this is set. See #81343.
+
 2002-02-26  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: add WARN_CFLAGS.
