@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2002-06-05 01:07+1200\n"
-"PO-Revision-Date: 2002-05-16 21:30-0400\n"
+"POT-Creation-Date: 2002-05-30 05:19+0200\n"
+"PO-Revision-Date: 2002-05-30 16:41+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -87,22 +87,20 @@ msgstr ""
 "Session của bạn sẽ kết thúc sau khi đóng hộp thoại này."
 
 #: gnome-session/gsm-client-editor.c:96
-#, fuzzy
 msgid "_Order:"
-msgstr "Thứ tự: "
+msgstr "_Thứ tự:"
 
 #: gnome-session/gsm-client-editor.c:98
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "Thứ tự của ứng dụng được khởi động trong session."
 
 #: gnome-session/gsm-client-editor.c:105
 msgid "What happens to the application when it exits."
-msgstr ""
+msgstr "Cái gì xảy ra cho ứng dụng khi nó kết thúc."
 
 #: gnome-session/gsm-client-editor.c:108
-#, fuzzy
 msgid "_Style:"
-msgstr "Kiểu: "
+msgstr "_Kiểu:"
 
 #: gnome-session/gsm-client-list.c:150
 msgid "Order"
@@ -192,27 +190,27 @@ msgstr "Thông số"
 msgid "Always started on every login."
 msgstr "Luôn luôn được khởi động mỗi lần đăng nhập"
 
-#: gnome-session/logout.c:225
+#: gnome-session/logout.c:224
 msgid "Really log out?"
 msgstr "Thật sự muốn thoát (logout)?"
 
-#: gnome-session/logout.c:242
+#: gnome-session/logout.c:241
 msgid "Save current setup"
 msgstr "Lưu thiết lập hiện thời"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:261
 msgid "Action"
 msgstr "Hành động"
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:269
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: gnome-session/logout.c:273
+#: gnome-session/logout.c:272
 msgid "Shut Down"
 msgstr "Tắt máy"
 
-#: gnome-session/logout.c:276
+#: gnome-session/logout.c:275
 msgid "Reboot"
 msgstr "Khởi động lại máy"
 
@@ -236,32 +234,32 @@ msgstr "Khoảng thời gian chờ đợi cliet trả lời theo mili giây (0=l
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Khoảng thời gian chờ client kết thúc theo mili giây (0=luôn chờ)"
 
-#: gnome-session/manager.c:175
+#: gnome-session/manager.c:173
 msgid "Your session has been saved"
 msgstr "Session của bạn đã được lưu"
 
-#: gnome-session/manager.c:456
+#: gnome-session/manager.c:454
 msgid "Wait abandoned due to conflict."
 msgstr "Ngưng chờ vì bị xung đột."
 
-#: gnome-session/manager.c:901
+#: gnome-session/manager.c:896
 #, c-format
 msgid "No response to the %s command."
 msgstr "Không có hồi đáp từ lệnh %s."
 
-#: gnome-session/manager.c:902
+#: gnome-session/manager.c:897
 msgid "The program may be slow, stopped or broken."
 msgstr "Chương trình có thể sẽ chạy chậm, bị dừng hoặc đổ vỡ."
 
-#: gnome-session/manager.c:903
+#: gnome-session/manager.c:898
 msgid "You may wait for it to respond or remove it."
 msgstr "Bạn có thể chờ trả lời hoặc loại bỏ nó."
 
-#: gnome-session/manager.c:1500
+#: gnome-session/manager.c:1495
 msgid "Respawn abandoned due to failures."
 msgstr "Quá trình tái khởi động bị ngắt vì lỗi."
 
-#: gnome-session/manager.c:1674
+#: gnome-session/manager.c:1669
 msgid "A session shutdown is in progress."
 msgstr "Một session kết thúc khi đang chạy."
 
@@ -275,7 +273,7 @@ msgstr "Dùng hộp thoại"
 
 #: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
-msgstr "Không thể kết nối với trình quản lý session"
+msgstr "Không thể kết nối với bộ quản lý session"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -306,9 +304,10 @@ msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
+"Vài thay đổi vẫn chưa được lưu.\n"
+"Bạn vẫn đồng ý muốn thoát chứ?"
 
 #: gnome-session/session-properties-capplet.c:172
-#, fuzzy
 msgid "Session properties"
 msgstr "Thuộc tính session"
 
@@ -331,7 +330,7 @@ msgstr "Tự động lưu các thay đổi hiện thời của session"
 
 #: gnome-session/session-properties-capplet.c:241
 msgid "<i>These changes take effect immediately</i>"
-msgstr ""
+msgstr "<i>Những thay đổi này có tác động tức thì</i>"
 
 #. Session names list
 #: gnome-session/session-properties-capplet.c:245
@@ -381,17 +380,16 @@ msgid "Startup Programs"
 msgstr "Chương trình khởi động"
 
 #: gnome-session/session-properties-capplet.c:372
-#, fuzzy
 msgid "Current Session"
-msgstr "Lưu session hiện thời"
+msgstr "Session hiện thời"
 
 #: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
-msgstr ""
+msgstr "Loại bỏ client được chọn khỏi session."
 
 #: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "Danh sách chương trình trong session."
 
 #: gnome-session/session-properties.c:207
 msgid "Session"
@@ -431,13 +429,12 @@ msgid "Sawfish Window Manager"
 msgstr "Bộ quản lý cửa sổ Sawfish"
 
 #: gnome-session/splash.c:62
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "Trình quản lý cửa sổ"
+msgstr "Bộ quản lý cửa sổ Metacity"
 
 #: gnome-session/splash.c:63
 msgid "Window Manager"
-msgstr "Trình quản lý cửa sổ"
+msgstr "Bộ quản lý cửa sổ"
 
 #: gnome-session/splash.c:64
 msgid "Background Settings"
@@ -457,7 +454,7 @@ msgstr "Panel"
 
 #: gnome-session/splash.c:68
 msgid "Session Manager Proxy"
-msgstr "Proxy của trình quản lý session"
+msgstr "Proxy của bộ quản lý session"
 
 #: gnome-session/splash.c:69
 msgid "Nautilus"
