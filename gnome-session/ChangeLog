@@ -1,3 +1,12 @@
+1998-06-06  Carsten Schaar  <nhadcasc@fs-maphy.uni-hannover.de>
+
+	* save-session.c (main): Replaced 'gnome_client_new_default' with
+ 	'gnome_master_client'.
+
+	* main.c: Included 'libgnome/gnome-client.h'.
+	(main): Added call to 'gnome_client_disable_master_connection'
+ 	because otherwise 'gnome-session' tries to connect to itself.
+
 Sat May 16 00:47:11 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* Makefile.am (gnome_session_SOURCES): Removed exec.c.

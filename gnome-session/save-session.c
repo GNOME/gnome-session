@@ -72,9 +72,9 @@ main (int argc, char *argv[])
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  client = gnome_client_new_default ();
-
   gnome_init ("session", &parser, argc, argv, 0, NULL);
+
+  client = gnome_master_client ();
 
   if (! GNOME_CLIENT_CONNECTED (client))
     {

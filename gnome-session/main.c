@@ -24,6 +24,7 @@
 #include <signal.h>
 
 #include "libgnome/libgnome.h"
+#include "libgnomeui/gnome-client.h"
 #include "manager.h"
 
 /* The name of the session to load.  */
@@ -82,7 +83,7 @@ main (int argc, char *argv[])
   initialize_ice ();
   /* FIXME: this is debugging that can eventually be removed.  */
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
-
+  gnome_client_disable_master_connection ();
   gnome_init ("gnome-session", &parser, argc, argv, 0, NULL);
 
   ignore (SIGPIPE);
