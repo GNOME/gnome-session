@@ -196,7 +196,7 @@ setup ()
   del_button = gtk_button_new_with_label (_("Delete"));
   sw = gtk_scrolled_window_new (NULL, NULL);
   clist = gtk_clist_new (1);
-  gtk_container_add (GTK_CONTAINER (sw), cl);
+  gtk_container_add (GTK_CONTAINER (sw), clist);
   
   /* We allocate this but never free it.  It doesn't matter.  */
   info = (struct info *) malloc (sizeof (struct info));
