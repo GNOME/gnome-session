@@ -178,18 +178,22 @@ run_commands (const char *name, int number, const char *command)
     {
       int argc, j;
       gboolean def;
-      char **argv, prefix[1024];
+      char **argv, *dir, prefix[1024];
 
+      sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
+      dir = gnome_config_get_string (prefix);
       sprintf (prefix, "session/%s/%d,%s=", name, i, command);
       gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
       if (! def)
 	{
-	  execute_async (argc, argv);
+	  execute_async (dir, argc, argv);
 	  result = 1;
 	}
 
       free_vector (argc, argv);
+      if (dir)
+	free (dir);
     }
 
   return result;
@@ -206,10 +210,10 @@ run_default_session (void)
 
   argv[0] = "panel";
   argv[1] = NULL;
-  execute_async (1, argv);
+  execute_async (NULL, 1, argv);
 
   argv[0] = "gnome-help-browser";
-  execute_async (1, argv);
+  execute_async (NULL, 1, argv);
 
   /* Add more here.  We can't really do it until other pieces are
      written.  */

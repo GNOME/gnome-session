@@ -24,7 +24,7 @@ report_errno (int fd)
 }
 
 void
-execute_async (int argc, char *argv[])
+execute_async (const char *dir, int argc, char *argv[])
 {
   pid_t pid;
   int status, count;
@@ -51,6 +51,12 @@ execute_async (int argc, char *argv[])
 
       /* Child of the child.  */
       fcntl (p[1], F_SETFD, 1);
+
+      /* Try to go to the right directory.  If we fail, hopefully it
+	 will still be ok.  */
+      if (dir)
+	chdir (dir);
+
       execvp (argv[0], argv);
       report_errno (p[1]);
     }

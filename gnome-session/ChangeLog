@@ -1,3 +1,9 @@
+Tue Mar 10 21:40:28 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (run_commands): Pass saved directory information to
+	execute_async().
+	* exec.c (execute_async): Added `dir' argument.
+
 Sun Mar  8 18:36:38 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* save.c (run_commands): `def' now a gboolean.

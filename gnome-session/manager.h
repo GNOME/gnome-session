@@ -123,7 +123,9 @@ void free_vector (int argc, char **argv);
  * exec.c
  */
 
-/* Execute some command in the background and immediately return.  */
-void execute_async (int argc, char *argv[]);
+/* Execute some command in the background and immediately return.  DIR
+   is the directory in which the command should be run; NULL means
+   inherit the current directory from this process.  */
+void execute_async (const char *dir, int argc, char *argv[]);
 
 #endif /* MANAGER_H */
