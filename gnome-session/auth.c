@@ -1,7 +1,7 @@
 /* $XConsortium: auth.c,v 1.12 94/12/30 16:09:14 mor Exp $ */
 /******************************************************************************
 
-Copyright (c) 1993  X Consortium
+Copyright (c) 1993, 1998  X Consortium
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,10 @@ Except as contained in this notice, the name of the X Consortium shall not be
 used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from the X Consortium.
 ******************************************************************************/
+
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>

@@ -60,7 +60,7 @@ static int
 write_one_client (int number, const Client *client)
 {
   /* We over-allocate; it doesn't matter.  */
-  int i, j, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
+  int i, vec_count, string_count, argcs[NUM_PROPERTIES], failure;
   char **argvs[NUM_PROPERTIES];
   char *strings[NUM_PROPERTIES];
   const char *argv_names[NUM_PROPERTIES];
@@ -192,7 +192,7 @@ run_commands (const char *name, int number, const char *command)
   /* Run each command.  */
   for (i = 0; i < number; ++i)
     {
-      int argc, j;
+      int argc;
       gboolean def;
       char **argv, *dir, prefix[1024];
 
@@ -297,7 +297,7 @@ read_session (const char *name)
 void
 delete_session (const char *name)
 {
-  int i, number;
+  int number;
   gboolean def;
   char prefix[1024];
 

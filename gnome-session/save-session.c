@@ -24,7 +24,7 @@
 #include <gtk/gtk.h>
 
 #include "libgnome/libgnome.h"
-#include "libgnomeui/gnome-client.h"
+#include "libgnomeui/libgnomeui.h"
 
 /* Parsing function.  */
 static error_t parse_an_arg (int key, char *arg, struct argp_state *state);
@@ -63,7 +63,6 @@ parse_an_arg (int key, char *arg, struct argp_state *state)
 int
 main (int argc, char *argv[])
 {
-  int i;
   GnomeClient *client;
 
   argp_program_version = VERSION;

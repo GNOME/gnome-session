@@ -24,7 +24,7 @@
 #include <signal.h>
 
 #include "libgnome/libgnome.h"
-#include "libgnomeui/gnome-client.h"
+#include "libgnomeui/libgnomeui.h"
 #include "manager.h"
 
 /* The name of the session to load.  */

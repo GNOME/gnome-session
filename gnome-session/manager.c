@@ -18,6 +18,10 @@
    02111-1307, USA.  */
 
 #include <string.h>
+#include <stdlib.h>
+
+#include <libgnome/libgnome.h>
+#include <gtk/gtk.h>
 
 #include "manager.h"
 

@@ -19,9 +19,12 @@
 
 #include <config.h>
 
+#include <stdlib.h>
+
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>
 #include <gdk/gdk.h>
+#include <gtk/gtk.h>
 
 #include "libgnomeui/gnome-ice.h"
 
