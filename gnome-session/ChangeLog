@@ -1,5 +1,11 @@
 Thu Feb 26 02:26:51 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* Makefile.am (bin_PROGRAMS): Added save-session.
+	(save_session_SOURCES): New macro.
+	* save-session.c: New file.
+
+	* testbed.c (main): Don't call gtk_init.
+
 	* exec.c (execute_async): "pid" is a pid_t, not an int.  Close
 	read end of pipe in child; mark write end as close-on-exec.
 
