@@ -13,7 +13,7 @@ INCLUDES =						\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""
 
-LDADD = $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
+LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 
 sysdir = $(datadir)/applications
 
