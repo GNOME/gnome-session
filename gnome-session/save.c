@@ -146,7 +146,8 @@ write_session (const GSList *list1, const GSList *list2, int shutdown)
   /* This is somewhat losing.  But we really do want to make sure any
      existing session with this same name has been cleaned up before
      we write the new info.  */
-  delete_session (session_name);
+  /* Do not discard info for clients still in list1 or list2 */
+  delete_session (session_name, list1, list2);
 
   i = 0;
   step = 0;
@@ -192,7 +193,8 @@ set_session_name (const char *name)
 
 /* Run a set of commands from a session.  Return 1 if any were run.  */
 static int
-run_commands (const char *name, int number, const char *command)
+run_commands (const char *name, int number, const char *command, 
+	      const GSList* list1, const GSList* list2)
 {
   int i, result = 0;
 
@@ -200,8 +202,15 @@ run_commands (const char *name, int number, const char *command)
   for (i = 0; i < number; ++i)
     {
       int argc, envc;
-      gboolean def, envd;
+      gboolean def, envd, excluded;
       char **argv, *dir, prefix[1024], **envv, **envp;
+      char *id;
+
+      /* Ignore clients in list1 or list2 */
+      sprintf (prefix, "session/%s/%d,id=", name, i);
+      id = gnome_config_get_string (prefix);
+      if (find_client_by_id (list1, id) || find_client_by_id (list2, id))
+	continue;
 
       sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
       dir = gnome_config_get_string (prefix);
@@ -342,12 +351,12 @@ read_session (const char *name)
     }
 
   /* Run each restart command.  */
-  return run_commands (name, num_clients, SmRestartCommand);
+  return run_commands (name, num_clients, SmRestartCommand, NULL, NULL);
 }
 
 /* Delete a session.  */
 void
-delete_session (const char *name)
+delete_session (const char *name, const GSList* list1, const GSList* list2)
 {
   int number;
   gboolean def;
@@ -364,7 +373,7 @@ delete_session (const char *name)
       return;
     }
 
-  run_commands (name, number, SmDiscardCommand);
+  run_commands (name, number, SmDiscardCommand, list1, list2);
 
   sprintf (prefix, "session/%s", name);
   gnome_config_clean_section (prefix);

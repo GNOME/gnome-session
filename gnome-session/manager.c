@@ -89,7 +89,7 @@ send_message (GSList *list, message_func *message)
 
 
 
-static Client *
+Client *
 find_client_by_id (GSList *list, char *id)
 {
   for (; list; list = list->next)

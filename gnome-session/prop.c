@@ -67,7 +67,7 @@ find_string_property (const Client *client, const char *name,
 
   *result = malloc (prop->vals[0].length + 1);
   memcpy (*result, prop->vals[0].value, prop->vals[0].length);
-  result[prop->vals[0].length] = '\0';
+  (*result)[prop->vals[0].length] = '\0';
 
   return TRUE;
 }

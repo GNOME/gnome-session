@@ -89,8 +89,12 @@ int read_session (const char *name);
 
 /* Delete a session as saved on disk.  This has no effect on the
    currently running applications.  */
-void delete_session (const char *name);
+/* Does not discard info for clients in list1 or list2 */
+void delete_session (const char *name, 
+		     const GSList* list1, const GSList* list2);
 
+/* used in write_session */
+Client * find_client_by_id (GSList *list, char *id);
 
 /*
  * ice.c

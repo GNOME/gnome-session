@@ -1,3 +1,13 @@
+Sat Nov 28 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* prop.c (find_string_property): fixed problem that created need
+	for "static" patch reverted on Nov 25.
+	* save.c (delete_session): do not call discard command on clients 
+	that are still in the session.
+	* save.c (run_commands): do not call commands on clients in
+ 	either of two lists.
+	* manager.h, manager.c (find_client_by_id): now exported. 
+
 1998-11-27  Jay Painter <jpaint@serv.net>
 
 	* session-properties.c: big UI cleanup in preperation for
