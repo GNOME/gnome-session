@@ -852,7 +852,7 @@ interact_request (SmsConn connection, SmPointer data, int dialog_type)
 	    : SENDING_INTERACT_2;
 	  interact_ping_replied = TRUE;
 	  SmsInteract (connection);
-	  save_state = (save_sate == SENDING_INTERACT)
+	  save_state = (save_state == SENDING_INTERACT)
 	    ? SAVE_PHASE_1
 	    : SAVE_PHASE_2;
 	}
