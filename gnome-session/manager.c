@@ -93,9 +93,6 @@ static GSList *save_request_list = NULL;
 /* This is true if a shutdown is expected to follow the current save.  */
 static gboolean shutting_down = FALSE;
 
-/* This is true if we are starting a client to print warnings. */
-static gint starting_warner = 0;
-
 /* List of all clients waiting for the interaction token.  The head of
    the list actually has the token.  */
 static GSList *interact_list = NULL;
@@ -810,24 +807,6 @@ no_response_warning (gpointer data)
   gchar *message;
   gchar *reasons[3];
   Client* warner = get_warner ();
-
-  if (!warner)
-    {
-      if (!starting_warner)
-	{
-	  Session *session;
-	  session = read_session (WARNER_SESSION);
-	  warner = (Client*)session->client_list->data;
-	  start_client(warner);
-	  g_slist_free (session->client_list);
-	  session->client_list = NULL;
-	  free_session (session);
-	}
-      starting_warner++;
-      if (starting_warner < 5)
-	return 1;
-    }
-  starting_warner = 0;
 
   switch (save_state)
     {
@@ -1557,7 +1536,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 {
   Client *client;
 
-  if (shutting_down && !starting_warner)
+  if (shutting_down)
     {
       *reasons  = strdup (_("A session shutdown is in progress."));
       return 0;

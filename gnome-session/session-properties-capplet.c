@@ -627,15 +627,6 @@ browse_session_cb (void)
 }
 
 
-/* STARTUP CODE */
-
-static gboolean warner = FALSE;
-
-static struct poptOption options[] = {
-  {"warner", '\0', POPT_ARG_NONE, &warner, 0, N_("Only display warnings."), NULL},
-  {NULL, '\0', 0, NULL, 0}
-};
-
 int
 main (int argc, char *argv[])
 {
@@ -645,7 +636,7 @@ main (int argc, char *argv[])
   textdomain (PACKAGE);
 
   init_result = gnome_capplet_init("session-properties", VERSION, argc, argv,
-				   options, 0, NULL);
+				   NULL, 0, NULL);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
   gtk_signal_connect (GTK_OBJECT (gnome_master_client ()), "die",
 		      GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
@@ -678,7 +669,6 @@ main (int argc, char *argv[])
    * We ignore the resulting "current_session" signal.
    */
   gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
-  
   switch(init_result) 
     {
     case 0:
@@ -687,9 +677,6 @@ main (int argc, char *argv[])
       break;
 
     case 1:
-      if (warner)
-	gsm_session_live (gsm_client_new, NULL) ;
-      else
         gtk_main ();
       break;
     }

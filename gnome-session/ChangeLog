@@ -1,3 +1,19 @@
+2001-06-11  Glynn Foster  <glynn.foster@sun.com>
+
+	Right I've had enough of this stinking 'warner' thing
+	so I've removed about 99% of the references in it. Also
+	cleaned up the default.session to remove the Warner and
+	Chooser sessions - they are totally pointless now. This 
+	also [quite by accident I assure you :)] fixes a bug
+	#54843]  
+	Removed stuff from the following -
+	* command.c: (command)
+	* default.in
+	* headers.h
+	* manager.c: (no_response_warning), (new_client)
+	* session-properties-capplet.c: (main)
+	* session-properties.c: (main)
+
 2001-06-05  Christian Rose  <menthos@menthos.com>
 
 	* session-properties.desktop: Added Swedish translation.

@@ -352,11 +352,9 @@ create_dialog (void)
 }
 
 static gboolean init_settings = FALSE;
-static gboolean warner = FALSE;
 
 static const struct poptOption options[] = {
   {"init-session-settings", '\0', POPT_ARG_NONE, &init_settings, 0, N_("Initialize session settings"), NULL},
-  {"warner", '\0', POPT_ARG_NONE, &warner, 0, N_("Only display warnings."), NULL},
   {NULL, '\0', 0, NULL, 0}
 };
 
@@ -393,9 +391,7 @@ main (int argc, char *argv[])
       g_warning ("Could not connect to gnome-session.");
       exit (1);
     }
-  if (warner)
-    gsm_session_live (gsm_client_new, NULL);
-  else if (init_settings)
+  if (init_settings)
     create_dialog ();
   else
     create_app ();

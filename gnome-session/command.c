@@ -368,15 +368,12 @@ command (Client* client, int nprops, SmProp** props)
 
       while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	{ 
-	  if (g_strcasecmp (section, WARNER_SESSION))
-	    {
 	      SmProp* tmp_prop = make_command (GsmReadSession, section);
 	      
 	      if (!g_slist_find_custom (prop_list, tmp_prop, cmp_args))
 		prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
 	      else
 		SmFreeProperty (tmp_prop);
-	    }
 	}
       }
       send_properties (client, prop_list);      

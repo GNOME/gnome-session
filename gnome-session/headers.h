@@ -37,8 +37,6 @@
 
 #define FAILSAFE_SESSION "Failsafe"
 
-#define WARNER_SESSION "Warner"
-
 /* Config section used for gnome-session's own config details. */
 #define GSM_CONFIG_SECTION "__gsm__"
 
