@@ -6,13 +6,78 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-10-02 10:59+1200\n"
+"POT-Creation-Date: 2002-10-14 13:53+1300\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: gnome-session/gnome-session.schemas.in.h:1
+msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:2
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:3
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:5
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+
+# gsm/logout.c:248
+#: gnome-session/gnome-session.schemas.in.h:6
+#, fuzzy
+msgid "Logout prompt"
+msgstr "注销"
+
+#: gnome-session/gnome-session.schemas.in.h:7
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr ""
+
+# gsm/session-properties.c:264
+#: gnome-session/gnome-session.schemas.in.h:8
+#, fuzzy
+msgid "Save sessions"
+msgstr "会话"
+
+#: gnome-session/gnome-session.schemas.in.h:9
+#, fuzzy
+msgid "Show the splash screen"
+msgstr "登录时显示图片展示"
+
+#: gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid "Splash Screen Image"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid "false"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.h:13
+msgid "true"
+msgstr ""
 
 #: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
 #, fuzzy
@@ -482,71 +547,6 @@ msgstr "添加启动程序"
 #: gnome-session/startup-programs.c:397
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
-
-#: gnome-session/gnome-session.schemas.in.h:1
-msgid "/gnome/head/INSTALL/share/pixmaps/splash/gnome-splash.png"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:2
-msgid "Allow TCP connections"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:3
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:5
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-
-# gsm/logout.c:248
-#: gnome-session/gnome-session.schemas.in.h:6
-#, fuzzy
-msgid "Logout prompt"
-msgstr "注销"
-
-#: gnome-session/gnome-session.schemas.in.h:7
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-
-# gsm/session-properties.c:264
-#: gnome-session/gnome-session.schemas.in.h:8
-#, fuzzy
-msgid "Save sessions"
-msgstr "会话"
-
-#: gnome-session/gnome-session.schemas.in.h:9
-#, fuzzy
-msgid "Show the splash screen"
-msgstr "登录时显示图片展示"
-
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Show the splash screen when the session starts up"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:11
-msgid "Splash Screen Image"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:12
-msgid "false"
-msgstr ""
-
-#: gnome-session/gnome-session.schemas.in.h:13
-msgid "true"
-msgstr ""
 
 #~ msgid "Priority"
 #~ msgstr "优先级"
