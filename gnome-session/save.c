@@ -45,6 +45,7 @@ extern gboolean base_loaded;
 extern GSList* live_list;
 extern GSList* zombie_list;
 extern GSList* pending_list;
+extern GSList* purged_list;
 
 typedef enum
 {
@@ -203,6 +204,16 @@ write_session (void)
       gnome_config_pop_prefix ();
     }
 
+  for (list = purged_list; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      
+      g_snprintf (prefix, sizeof(prefix), "session/%s/%d,", session_name, i);
+      gnome_config_push_prefix (prefix);
+      i += (write_one_client (client));
+      gnome_config_pop_prefix ();
+    }
+
   g_snprintf (prefix, sizeof(prefix), "session/%s/num_clients", session_name);
   gnome_config_set_int (prefix, i);
   gnome_config_sync ();
@@ -244,10 +255,11 @@ read_one_client (Client *client)
 	      for (j = 0; j < argc; j++)
 		{
 		  prop->vals[j].length = strlen (vector[j]);
-		  prop->vals[j].value = vector[j];
+		  prop->vals[j].value = strdup(vector[j]);
+		  g_free (vector[j]);
 		}
 	      APPEND (client->properties, prop);      
-	      free (vector);
+	      g_free (vector);
 	    }
 	  break;
 
@@ -263,7 +275,8 @@ read_one_client (Client *client)
 	      prop->num_vals = 1;
 	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue));
 	      prop->vals[0].length = strlen (string);
-	      prop->vals[0].value = string;
+	      prop->vals[0].value = strdup(string);
+	      g_free (string);
 	      APPEND (client->properties, prop);      
 	    }
 	  break;
@@ -430,6 +443,8 @@ delete_session (const char *name)
       /* Or perhaps one that we are restarting ? */
       if (!cur_client) 
 	cur_client = find_client_by_id (pending_list, old_client->id);
+      if (!cur_client) 
+	cur_client = find_client_by_id (purged_list, old_client->id);
       
       if (find_vector_property (old_client, SmDiscardCommand, 
 				&old_argc, &old_argv))
