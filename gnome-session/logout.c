@@ -285,6 +285,10 @@ display_gui (void)
   gdk_pointer_grab (box->window, TRUE, 0,
 		    NULL, NULL, GDK_CURRENT_TIME);
   gdk_keyboard_grab (box->window, FALSE, GDK_CURRENT_TIME);
+  XSetInputFocus (GDK_DISPLAY (),
+		  GDK_WINDOW_XWINDOW (box->window),
+		  RevertToParent,
+		  CurrentTime);
 
   response = gtk_dialog_run (GTK_DIALOG (box));
 

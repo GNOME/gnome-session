@@ -1,3 +1,8 @@
+2002-07-08  jacob berkman  <jacob@ximian.com>
+
+	* logout.c (display_gui): call XSetInputFocus() on our window to
+	fix #77517 again (thanks, owen)
+
 2002-07-08  Mark McLoughlin  <mark@skynet.ie>
 
 	* Makefile.am: define RSH_COMMAND.
