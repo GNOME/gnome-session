@@ -34,10 +34,38 @@
 7,RestartCommand=panel --sm-client-id default7
 8,id=default8
 8,Priority=40
-8,RestartCommand=gmc --sm-client-id default8
-9,id=default8
-9,RestartCommand=gnome-help-browser --sm-client-id default8
-num_clients=10
+8,RestartCommand=gmc --nowindows --sm-client-id default8
+num_clients=9
+
+[Nautilus]
+0,id=default0
+0,Priority=0
+0,RestartCommand=gnome-smproxy --sm-client-id default0
+1,id=default1
+1,Priority=5
+1,RestartCommand=sound-properties --init-session-settings --sm-client-id default1
+2,id=default2
+2,Priority=10
+2,RestartCommand=gnome-wm --default-wm @WINDOW_MANAGER@ --sm-client-id default2
+3,id=default3
+3,Priority=20
+3,RestartCommand=background-properties-capplet --init-session-settings --sm-client-id default3
+4,id=default4
+4,Priority=20
+4,RestartCommand=mouse-properties-capplet --init-session-settings --sm-client-id default4
+5,id=default5
+5,Priority=20
+5,RestartCommand=screensaver-properties-capplet --init-session-settings --sm-client-id default5
+6,id=default6
+6,Priority=20
+6,RestartCommand=keyboard-properties --init-session-settings --sm-client-id default6
+7,id=default7
+7,Priority=40
+7,RestartCommand=panel --sm-client-id default7
+8,id=default8
+8,Priority=40
+8,RestartCommand=nautilus -n --sm-client-id default8
+num_clients=9
 
 [Chooser]
 0,id=chooser0
