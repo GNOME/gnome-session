@@ -29,47 +29,28 @@
 
 G_BEGIN_DECLS
 
-/* Destined for libgnome.
- */
-gboolean egg_help_display_uri_with_env         (const char    *help_uri,
-						char         **envp,
-						GError       **error);
-gboolean egg_help_display_with_doc_id_with_env (GnomeProgram  *program,
-						const char    *doc_id,
-						const char    *file_name,
-						const char    *link_id,
-						char         **envp,
-						GError       **error);
-gboolean egg_help_display_desktop_with_env     (GnomeProgram  *program,
-						const char    *doc_id,
-						const char    *file_name,
-						const char    *link_id,
-						char         **envp,
-						GError       **error);
-
 /* Destined for libgnomeui.
  */
-gboolean egg_screen_help_display             (GdkScreen     *screen,
-					      const char    *file_name,
-					      const char    *link_id,
-					      GError       **error);
-gboolean egg_screen_help_display_with_doc_id (GdkScreen     *screen,
-					      GnomeProgram  *program,
-					      const char    *doc_id,
-					      const char    *file_name,
-					      const char    *link_id,
-					      GError       **error);
-gboolean egg_screen_help_display_desktop     (GdkScreen     *screen,
-					      GnomeProgram  *program,
-					      const char    *doc_id,
-					      const char    *file_name,
-					      const char    *link_id,
-					      GError       **error);
-gboolean egg_screen_help_display_uri         (GdkScreen      *screen,
-					      const char    *help_uri,
-					      GError       **error);
+gboolean egg_help_display_on_screen             (const char    *file_name,
+						 const char    *link_id,
+						 GdkScreen     *screen,
+						 GError       **error);
+gboolean egg_help_display_with_doc_id_on_screen (GnomeProgram  *program,
+						 const char    *doc_id,
+						 const char    *file_name,
+						 const char    *link_id,
+						 GdkScreen     *screen,
+						 GError       **error);
+gboolean egg_help_display_desktop_on_screen     (GnomeProgram  *program,
+						 const char    *doc_id,
+						 const char    *file_name,
+						 const char    *link_id,
+						 GdkScreen     *screen,
+						 GError       **error);
+gboolean egg_help_display_uri_on_screen         (const char    *help_uri,
+						 GdkScreen     *screen,
+						 GError       **error);
 
- 
 G_END_DECLS
 
 #endif /* __EGG_SCREEN_HELP_H__ */

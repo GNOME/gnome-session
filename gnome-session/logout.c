@@ -25,14 +25,15 @@
 #include <gtk/gtkinvisible.h>
 #include <gdk/gdkx.h>
 
-#include "libgnome/libgnome.h"
-#include "libgnomeui/libgnomeui.h"
+#include <libgnome/libgnome.h>
+#include <libgnomeui/libgnomeui.h>
 
 #include "ice.h"
 #include "logout.h"
 #include "command.h"
 #include "util.h"
 #include "gsm-multiscreen.h"
+#include "egg-screen-help.h"
 
 static gchar *halt_command[] =
 {
@@ -389,9 +390,11 @@ display_gui (void)
       retval= FALSE;
       break;
     case GTK_RESPONSE_HELP:
-      egg_screen_help_display_desktop (screen, NULL, "user-guide",
-				       "wgosstartsession.xml",
-				       "gosgetstarted-73", &error);
+      egg_help_display_desktop_on_screen (NULL, "user-guide",
+					  "wgosstartsession.xml",
+					  "gosgetstarted-73",
+					  screen,
+					  &error);
 
       if (error) 
         {
