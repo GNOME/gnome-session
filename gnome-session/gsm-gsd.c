@@ -55,8 +55,7 @@ gsd_error_dialog (GnomeSettingsData *gsd, const char *error)
       gsd_set_error (gsd, NULL);
     }
 
-  g_string_append (msg, _("\n\nGNOME will still try to restart the Settings Daemon next time you log
-in."));
+  g_string_append (msg, _("\n\nGNOME will still try to restart the Settings Daemon next time you log in."));
 
   /* if there's one from last time destroy it */
   if (dialog)
