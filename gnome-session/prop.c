@@ -65,9 +65,9 @@ find_string_property (const Client *client, const char *name,
   if (! prop || strcmp (prop->type, SmARRAY8))
     return FALSE;
 
-  /* FIXME: trailing \0?  */
-  *result = malloc (prop->vals[0].length);
+  *result = malloc (prop->vals[0].length + 1);
   memcpy (*result, prop->vals[0].value, prop->vals[0].length);
+  result[prop->vals[0].length] = '\0';
 
   return TRUE;
 }
@@ -87,8 +87,9 @@ find_vector_property (const Client *client, const char *name,
   *argvp = (char **) malloc (*argcp * sizeof (char *));
   for (i = 0; i < *argcp; ++i)
     {
-      (*argvp)[i] = malloc (prop->vals[i].length);
+      (*argvp)[i] = malloc (prop->vals[i].length + 1);
       memcpy ((*argvp)[i], prop->vals[i].value, prop->vals[i].length);
+      (*argvp)[i][prop->vals[i].length] = '\0';
     }
 
   return TRUE;

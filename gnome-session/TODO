@@ -51,11 +51,13 @@ We'll provide a default profile so that first time users will see
 something sensible.  The current thinking for the default profile:
 
 * Whatever magic Gnome programs are required (i.e., CORBA daemons)
-* A window manager (not sure which one yet; it depends on what is
+X A window manager (not sure which one yet; it depends on what is
   available, easy-to-use, and Gnome-compliant)
+  [ we handle this by letting the package builder choose the default ]
 X The panel
 X The file manager opened to `~'
 X The help browser opened to an "About Gnome" page
+X smproxy
 
 ================================================================
 

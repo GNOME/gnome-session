@@ -239,8 +239,8 @@ run_default_session (void)
   execute_async (NULL, 1, argv);
 #endif
 
-  /* Add more here.  We can't really do it until other pieces are
-     written.  */
+  argv[0] = "smproxy";
+  execute_async (NULL, 1, argv);
 
   return 1;
 }
