@@ -47,7 +47,7 @@ GSList *pending_list = NULL;
 
 /* List of clients which have been purged from the pending list 
    since they have failed to register within our timeout. */
-static GSList *purged_list = NULL;
+GSList *purged_list = NULL;
 
 /* List of all live clients in the default state.  */
 GSList *live_list = NULL;
@@ -620,6 +620,9 @@ update_save_state ()
 
       CONCAT (live_list, save_finished_list);
 	  
+      if (shutting_down)
+	purged_list = NULL;
+
       write_session ();
 
       save_state = SENDING_MESSAGES;
