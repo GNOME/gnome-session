@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-03-18 13:44+0000\n"
+"POT-Creation-Date: 2002-03-25 10:18+0000\n"
 "PO-Revision-Date: 2000-08-17 17:25+0200\n"
 "Last-Translator: Quico Llach <quico@softcatala.org>\n"
 "Language-Team: Catalan <info@softcatala.org>\n"
@@ -176,55 +176,51 @@ msgstr "Propietats"
 msgid "Always started on every login."
 msgstr "Sempre iniciat en cada entrada."
 
-#: gnome-session/gsm-protocol.c:510
-msgid "Remove Program"
-msgstr "Elimina el programa"
-
-#: gnome-session/logout.c:199
+#: gnome-session/logout.c:231
 msgid "Really log out?"
 msgstr "Realment voleu sortir?"
 
-#: gnome-session/logout.c:220
+#: gnome-session/logout.c:246
 msgid "Save current setup"
 msgstr "Desa la configuració actual"
 
-#: gnome-session/logout.c:240
+#: gnome-session/logout.c:266
 msgid "Action"
 msgstr "Acció"
 
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:274
 msgid "Logout"
 msgstr "Surt"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:277
 msgid "Shut Down"
 msgstr ""
 
-#: gnome-session/logout.c:254
+#: gnome-session/logout.c:280
 msgid "Reboot"
 msgstr "Reinicia"
 
-#: gnome-session/main.c:65
+#: gnome-session/main.c:66
 #, fuzzy
 msgid "Specify a session name to load"
 msgstr "Especifica el nom de la font"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Only read saved sessions from the default.session file"
 msgstr "Llegeix només les sessions desades del fitxer default.session"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients s'enregistrin en milisegons "
 "(0=indefinidament)"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients responguin en milisegons (0=indefinidament)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients morin en milisegons (0=indefinidament)"
@@ -262,15 +258,15 @@ msgstr "Mata la sessió"
 msgid "Use dialog boxes"
 msgstr "Utilitza caixes de diàleg"
 
-#: gnome-session/save-session.c:94
+#: gnome-session/save-session.c:112
 msgid "Could not connect to the session manager"
 msgstr "No he pogut connectar amb el gestor de sessions"
 
-#: gnome-session/save-session.c:109
+#: gnome-session/save-session.c:120
 msgid "Could not connect to gnome-session"
 msgstr "No he pogut connectar amb la sessió gnome"
 
-#: gnome-session/save-session.c:153
+#: gnome-session/save-session.c:160
 msgid "Your session has been saved"
 msgstr "He desat la vostra sessió"
 
@@ -413,19 +409,19 @@ msgid "Session"
 msgstr "Sessió"
 
 #. app
-#: gnome-session/session-properties.c:329
+#: gnome-session/session-properties.c:331
 msgid "Session Chooser"
 msgstr "Selector de sessions"
 
-#: gnome-session/session-properties.c:332
+#: gnome-session/session-properties.c:334
 msgid "Start Session"
 msgstr "Inicia la sessió"
 
-#: gnome-session/session-properties.c:335
+#: gnome-session/session-properties.c:337
 msgid "Cancel Login"
 msgstr "Cancel·la l'entrada"
 
-#: gnome-session/session-properties.c:360
+#: gnome-session/session-properties.c:362
 msgid "Initialize session settings"
 msgstr "Inicialitza els paràmetres de la sessió."
 
@@ -438,81 +434,81 @@ msgstr "Propietats del menú"
 msgid "Current session managed programs"
 msgstr "Permet configurar les propietats del Gestor de Sessions de GNOME"
 
-#: gnome-session/splash.c:55
+#: gnome-session/splash.c:59
 #, fuzzy
 msgid "Audio Settings"
 msgstr "Configuració de ASClock"
 
-#: gnome-session/splash.c:56 gnome-session/splash.c:57
+#: gnome-session/splash.c:60 gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr ""
 
-#: gnome-session/splash.c:58 gnome-session/splash.c:59
+#: gnome-session/splash.c:62 gnome-session/splash.c:63
 msgid "Sawfish Window Manager"
 msgstr ""
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash.c:64
 msgid "Enlightenment Window Manager"
 msgstr ""
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash.c:65
 #, fuzzy
 msgid "Background Settings"
 msgstr "Tipus de fons"
 
-#: gnome-session/splash.c:62
-msgid "Keyboard Bell"
-msgstr ""
-
-#: gnome-session/splash.c:63
-#, fuzzy
-msgid "Mouse Settings"
-msgstr "Propietats de Diskusage"
-
-#: gnome-session/splash.c:64
-#, fuzzy
-msgid "Keyboard Settings"
-msgstr "Propietats de la càrrega de xarxa"
-
-#: gnome-session/splash.c:65
-#, fuzzy
-msgid "The Panel"
-msgstr "El quadre de GNOME"
-
 #: gnome-session/splash.c:66
-msgid "Session Manager Proxy"
+msgid "Keyboard Bell"
 msgstr ""
 
 #: gnome-session/splash.c:67
 #, fuzzy
+msgid "Mouse Settings"
+msgstr "Propietats de Diskusage"
+
+#: gnome-session/splash.c:68
+#, fuzzy
+msgid "Keyboard Settings"
+msgstr "Propietats de la càrrega de xarxa"
+
+#: gnome-session/splash.c:69
+#, fuzzy
+msgid "The Panel"
+msgstr "El quadre de GNOME"
+
+#: gnome-session/splash.c:70
+msgid "Session Manager Proxy"
+msgstr ""
+
+#: gnome-session/splash.c:71
+#, fuzzy
 msgid "Window Manager"
 msgstr "Propietats del gestor de finestres"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:72
 msgid "Desktop"
 msgstr "Escriptori"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:73
 #, fuzzy
 msgid "Nautilus"
 msgstr "No hi ha articles"
 
-#: gnome-session/splash.c:287
+#: gnome-session/splash.c:293
 #, fuzzy, c-format
 msgid "Starting GNOME: %s"
 msgstr "S'està iniciant GNOME... %s"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:295
 #, fuzzy
 msgid "Starting GNOME: done"
 msgstr "S'està iniciant GNOME... %s"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:439
 #, fuzzy
 msgid "GNOME"
 msgstr "Ajuda de GNOME"
 
-#: gnome-session/splash.c:459
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "S'està iniciant GNOME"
 
@@ -540,6 +536,9 @@ msgstr "Executa el programa"
 #, fuzzy
 msgid "Edit Startup Program"
 msgstr "Executa el programa"
+
+#~ msgid "Remove Program"
+#~ msgstr "Elimina el programa"
 
 #, fuzzy
 #~ msgid "No name"

@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-03-18 13:44+0000\n"
+"POT-Creation-Date: 2002-03-25 10:18+0000\n"
 "PO-Revision-Date: 2001-11-23 19:27+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional chinese <zh-l10n@linux.org.tw>\n"
@@ -185,51 +185,47 @@ msgstr "設定"
 msgid "Always started on every login."
 msgstr "每次登入時都會啟動。"
 
-#: gnome-session/gsm-protocol.c:510
-msgid "Remove Program"
-msgstr "移除程式"
-
-#: gnome-session/logout.c:199
+#: gnome-session/logout.c:231
 msgid "Really log out?"
 msgstr "是否確定登出？"
 
-#: gnome-session/logout.c:220
+#: gnome-session/logout.c:246
 msgid "Save current setup"
 msgstr "儲存目前設定"
 
-#: gnome-session/logout.c:240
+#: gnome-session/logout.c:266
 msgid "Action"
 msgstr "動作"
 
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:274
 msgid "Logout"
 msgstr "登出"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:277
 msgid "Shut Down"
 msgstr "關機"
 
-#: gnome-session/logout.c:254
+#: gnome-session/logout.c:280
 msgid "Reboot"
 msgstr "重新啟動主機"
 
-#: gnome-session/main.c:65
+#: gnome-session/main.c:66
 msgid "Specify a session name to load"
 msgstr "指定載入的工作階段名稱"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Only read saved sessions from the default.session file"
 msgstr "只從預設工作階段檔案中讀取已儲存的工作階段"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限 (ms) (0=永遠)"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限 (ms) (0=永遠)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限 (ms) (0=永遠)"
 
@@ -266,15 +262,15 @@ msgstr "強行終止工作階段"
 msgid "Use dialog boxes"
 msgstr "使用對話框"
 
-#: gnome-session/save-session.c:94
+#: gnome-session/save-session.c:112
 msgid "Could not connect to the session manager"
 msgstr "無法連接工作階段管理程式"
 
-#: gnome-session/save-session.c:109
+#: gnome-session/save-session.c:120
 msgid "Could not connect to gnome-session"
 msgstr "無法連接 gnome-session"
 
-#: gnome-session/save-session.c:153
+#: gnome-session/save-session.c:160
 msgid "Your session has been saved"
 msgstr "你的工作階段已經儲存"
 
@@ -403,19 +399,19 @@ msgid "Session"
 msgstr "工作階段"
 
 #. app
-#: gnome-session/session-properties.c:329
+#: gnome-session/session-properties.c:331
 msgid "Session Chooser"
 msgstr "工作階段選擇器"
 
-#: gnome-session/session-properties.c:332
+#: gnome-session/session-properties.c:334
 msgid "Start Session"
 msgstr "啟動工作階段"
 
-#: gnome-session/session-properties.c:335
+#: gnome-session/session-properties.c:337
 msgid "Cancel Login"
 msgstr "取消登入"
 
-#: gnome-session/session-properties.c:360
+#: gnome-session/session-properties.c:362
 msgid "Initialize session settings"
 msgstr "初始化工作階段設定"
 
@@ -427,72 +423,72 @@ msgstr "作業階段內容及啟動程式"
 msgid "Current session managed programs"
 msgstr "現時接受作業階段管理的程式"
 
-#: gnome-session/splash.c:55
+#: gnome-session/splash.c:59
 msgid "Audio Settings"
 msgstr "音效設定"
 
-#: gnome-session/splash.c:56 gnome-session/splash.c:57
+#: gnome-session/splash.c:60 gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr "螢幕保護器"
 
-#: gnome-session/splash.c:58 gnome-session/splash.c:59
+#: gnome-session/splash.c:62 gnome-session/splash.c:63
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 視窗管理程式"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash.c:64
 msgid "Enlightenment Window Manager"
 msgstr "Enlightenment 視窗管理程式"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash.c:65
 msgid "Background Settings"
 msgstr "背景圖案設定"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash.c:66
 msgid "Keyboard Bell"
 msgstr "鍵盤響鬧"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash.c:67
 msgid "Mouse Settings"
 msgstr "滑鼠設定"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash.c:68
 msgid "Keyboard Settings"
 msgstr "鍵盤設定"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:69
 msgid "The Panel"
 msgstr "面板"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash.c:70
 msgid "Session Manager Proxy"
 msgstr "工作階段管理程式代理"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:71
 msgid "Window Manager"
 msgstr "視窗管理程式"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:72
 msgid "Desktop"
 msgstr "桌面"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:73
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:287
+#: gnome-session/splash.c:293
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "啟動 GNOME：%s"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:295
 msgid "Starting GNOME: done"
 msgstr "啟動 GNOME：完成"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:439
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:459
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "正在啟動 GNOME"
 
@@ -520,6 +516,9 @@ msgstr "增加啟動程式"
 #: gnome-session/startup-programs.c:391
 msgid "Edit Startup Program"
 msgstr "編輯啟動程式"
+
+#~ msgid "Remove Program"
+#~ msgstr "移除程式"
 
 #, fuzzy
 #~ msgid "No name"

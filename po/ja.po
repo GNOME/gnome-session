@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-03-18 13:44+0000\n"
+"POT-Creation-Date: 2002-03-25 10:18+0000\n"
 "PO-Revision-Date: 2002-02-08 10:59+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
@@ -190,51 +190,47 @@ msgstr "設定"
 msgid "Always started on every login."
 msgstr "ログインのたびに常に開始されます。"
 
-#: gnome-session/gsm-protocol.c:510
-msgid "Remove Program"
-msgstr "プログラムの削除"
-
-#: gnome-session/logout.c:199
+#: gnome-session/logout.c:231
 msgid "Really log out?"
 msgstr "本当にログアウトしますか?"
 
-#: gnome-session/logout.c:220
+#: gnome-session/logout.c:246
 msgid "Save current setup"
 msgstr "現在の設定を保存"
 
-#: gnome-session/logout.c:240
+#: gnome-session/logout.c:266
 msgid "Action"
 msgstr "アクション"
 
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:274
 msgid "Logout"
 msgstr "ログアウト"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:277
 msgid "Shut Down"
 msgstr "シャットダウン"
 
-#: gnome-session/logout.c:254
+#: gnome-session/logout.c:280
 msgid "Reboot"
 msgstr "再起動"
 
-#: gnome-session/main.c:65
+#: gnome-session/main.c:66
 msgid "Specify a session name to load"
 msgstr "読みこむセッションの名前を指定"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session ファイルから保存されたセッションを読み込むのみ"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "クライアントを登録するまでに待つ時間 [100分の1秒単位] (0=ずっと待つ)"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "クライアントの反応を待つ時間 [100分の1秒単位] (0=ずっと待つ)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "クライアントの終了を待つ時間 [100分の1秒単位] (0=ずっと待つ)"
 
@@ -271,15 +267,15 @@ msgstr "セッションを強制終了"
 msgid "Use dialog boxes"
 msgstr "ダイアログボックスを使う"
 
-#: gnome-session/save-session.c:94
+#: gnome-session/save-session.c:112
 msgid "Could not connect to the session manager"
 msgstr "save-ssession: セッションマネージャに接続できませんでした。"
 
-#: gnome-session/save-session.c:109
+#: gnome-session/save-session.c:120
 msgid "Could not connect to gnome-session"
 msgstr "gnome-session に接続できません"
 
-#: gnome-session/save-session.c:153
+#: gnome-session/save-session.c:160
 msgid "Your session has been saved"
 msgstr "セッションは保存されました"
 
@@ -411,19 +407,19 @@ msgid "Session"
 msgstr "セッション"
 
 #. app
-#: gnome-session/session-properties.c:329
+#: gnome-session/session-properties.c:331
 msgid "Session Chooser"
 msgstr "セッション選択"
 
-#: gnome-session/session-properties.c:332
+#: gnome-session/session-properties.c:334
 msgid "Start Session"
 msgstr "セッション開始"
 
-#: gnome-session/session-properties.c:335
+#: gnome-session/session-properties.c:337
 msgid "Cancel Login"
 msgstr "ログインをキャンセル"
 
-#: gnome-session/session-properties.c:360
+#: gnome-session/session-properties.c:362
 msgid "Initialize session settings"
 msgstr "セッションの設定を初期化"
 
@@ -436,72 +432,72 @@ msgstr "セッション管理でない自動起動プログラム"
 msgid "Current session managed programs"
 msgstr "セッションマネージメントにまつわる設定"
 
-#: gnome-session/splash.c:55
+#: gnome-session/splash.c:59
 msgid "Audio Settings"
 msgstr "音設定"
 
-#: gnome-session/splash.c:56 gnome-session/splash.c:57
+#: gnome-session/splash.c:60 gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr "スクリーンセーバ"
 
-#: gnome-session/splash.c:58 gnome-session/splash.c:59
+#: gnome-session/splash.c:62 gnome-session/splash.c:63
 msgid "Sawfish Window Manager"
 msgstr "Sawfish ウインドウマネージャ"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash.c:64
 msgid "Enlightenment Window Manager"
 msgstr "Enlightenment ウインドウマネージャ"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash.c:65
 msgid "Background Settings"
 msgstr "背景の設定"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash.c:66
 msgid "Keyboard Bell"
 msgstr "キーボード音"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash.c:67
 msgid "Mouse Settings"
 msgstr "マウスの設定"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash.c:68
 msgid "Keyboard Settings"
 msgstr "キーボードの設定"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:69
 msgid "The Panel"
 msgstr "GNOME パネル"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash.c:70
 msgid "Session Manager Proxy"
 msgstr "セッションマネージャ・プロキシ"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:71
 msgid "Window Manager"
 msgstr "ウインドウマネージャ"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:72
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:73
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:287
+#: gnome-session/splash.c:293
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "GNOME 起動中: %s"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:295
 msgid "Starting GNOME: done"
 msgstr "GNOME 起動中: 完了"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:439
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:459
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "GNOME スタート"
 
@@ -528,6 +524,9 @@ msgstr "自動起動プログラムの追加"
 #: gnome-session/startup-programs.c:391
 msgid "Edit Startup Program"
 msgstr "自動起動プログラムの編集"
+
+#~ msgid "Remove Program"
+#~ msgstr "プログラムの削除"
 
 #~ msgid "No name"
 #~ msgstr "名無し"

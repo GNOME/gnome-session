@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-03-18 13:44+0000\n"
+"POT-Creation-Date: 2002-03-25 10:18+0000\n"
 "PO-Revision-Date: 2002-03-02 04:15+0200\n"
 "Last-Translator: Ilmar Kerm <ikerm@hot.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -186,52 +186,48 @@ msgstr "Häälestus"
 msgid "Always started on every login."
 msgstr "Käivitatakse alati igal sisselogimisel."
 
-#: gnome-session/gsm-protocol.c:510
-msgid "Remove Program"
-msgstr "Eemalda programm"
-
-#: gnome-session/logout.c:199
+#: gnome-session/logout.c:231
 msgid "Really log out?"
 msgstr "Kas tõesti välja logida?"
 
-#: gnome-session/logout.c:220
+#: gnome-session/logout.c:246
 msgid "Save current setup"
 msgstr "Salvesta praegune seisund"
 
-#: gnome-session/logout.c:240
+#: gnome-session/logout.c:266
 msgid "Action"
 msgstr "Tegevus"
 
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:274
 msgid "Logout"
 msgstr "Logi välja"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:277
 msgid "Shut Down"
 msgstr "Seiska"
 
-#: gnome-session/logout.c:254
+#: gnome-session/logout.c:280
 msgid "Reboot"
 msgstr "Alglaadimine"
 
-#: gnome-session/main.c:65
+#: gnome-session/main.c:66
 msgid "Specify a session name to load"
 msgstr "Määrab laetava sessiooni nimi"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud sessioone ainult default.session failist"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
 
@@ -268,15 +264,15 @@ msgstr "Tapa sessioon"
 msgid "Use dialog boxes"
 msgstr "Kasuta dialoogiaknaid"
 
-#: gnome-session/save-session.c:94
+#: gnome-session/save-session.c:112
 msgid "Could not connect to the session manager"
 msgstr "Ei suuda saada ühendust sessioonihalduriga"
 
-#: gnome-session/save-session.c:109
+#: gnome-session/save-session.c:120
 msgid "Could not connect to gnome-session"
 msgstr "Ei suuda saada ühendust gnome-sessioniga"
 
-#: gnome-session/save-session.c:153
+#: gnome-session/save-session.c:160
 msgid "Your session has been saved"
 msgstr "Teie sessioon sai salvestatud"
 
@@ -405,19 +401,19 @@ msgid "Session"
 msgstr "Sessioon"
 
 #. app
-#: gnome-session/session-properties.c:329
+#: gnome-session/session-properties.c:331
 msgid "Session Chooser"
 msgstr "Sessioonivalija"
 
-#: gnome-session/session-properties.c:332
+#: gnome-session/session-properties.c:334
 msgid "Start Session"
 msgstr "Käivita sessioon"
 
-#: gnome-session/session-properties.c:335
+#: gnome-session/session-properties.c:337
 msgid "Cancel Login"
 msgstr "Katkesta sisselogimine"
 
-#: gnome-session/session-properties.c:360
+#: gnome-session/session-properties.c:362
 msgid "Initialize session settings"
 msgstr "Algväärtusta sessioon"
 
@@ -429,72 +425,72 @@ msgstr "Sessiooni omadused & käivitusprogrammid"
 msgid "Current session managed programs"
 msgstr "Hetkel sessioonihaldatavad programmid"
 
-#: gnome-session/splash.c:55
+#: gnome-session/splash.c:59
 msgid "Audio Settings"
 msgstr "Heli sätted"
 
-#: gnome-session/splash.c:56 gnome-session/splash.c:57
+#: gnome-session/splash.c:60 gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr "Ekraanisäästja"
 
-#: gnome-session/splash.c:58 gnome-session/splash.c:59
+#: gnome-session/splash.c:62 gnome-session/splash.c:63
 msgid "Sawfish Window Manager"
 msgstr "Sawfish ekraanihaldur"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash.c:64
 msgid "Enlightenment Window Manager"
 msgstr "Enlightenment ekraanihaldur"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash.c:65
 msgid "Background Settings"
 msgstr "Tausta sätted"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash.c:66
 msgid "Keyboard Bell"
 msgstr "Klaviatuuri kõll"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash.c:67
 msgid "Mouse Settings"
 msgstr "Hiire sätted"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash.c:68
 msgid "Keyboard Settings"
 msgstr "Klaviatuuri sätted"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:69
 msgid "The Panel"
 msgstr "Paneel"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash.c:70
 msgid "Session Manager Proxy"
 msgstr "Sessioonihalduri proxy"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:71
 msgid "Window Manager"
 msgstr "Aknahaldur"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:72
 msgid "Desktop"
 msgstr "Töölaud"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:73
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:287
+#: gnome-session/splash.c:293
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Käivitan GNOME: %s"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:295
 msgid "Starting GNOME: done"
 msgstr "Käivitan GNOME: valmis"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:439
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:459
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "käivitan GNOME"
 
@@ -521,3 +517,6 @@ msgstr "Lisa käivitusprogramm"
 #: gnome-session/startup-programs.c:391
 msgid "Edit Startup Program"
 msgstr "Muuda käivitusprogrammi"
+
+#~ msgid "Remove Program"
+#~ msgstr "Eemalda programm"

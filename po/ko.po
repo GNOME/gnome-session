@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-03-18 13:44+0000\n"
+"POT-Creation-Date: 2002-03-25 10:18+0000\n"
 "PO-Revision-Date: 2002-03-12 02:54+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -187,51 +187,47 @@ msgstr "설정"
 msgid "Always started on every login."
 msgstr "매 로그인할 때마다 시작됨."
 
-#: gnome-session/gsm-protocol.c:510
-msgid "Remove Program"
-msgstr "프로그램 제거"
-
-#: gnome-session/logout.c:199
+#: gnome-session/logout.c:231
 msgid "Really log out?"
 msgstr "정말로 로그아웃할까요?"
 
-#: gnome-session/logout.c:220
+#: gnome-session/logout.c:246
 msgid "Save current setup"
 msgstr "현재 설정 저장"
 
-#: gnome-session/logout.c:240
+#: gnome-session/logout.c:266
 msgid "Action"
 msgstr "동작"
 
-#: gnome-session/logout.c:248
+#: gnome-session/logout.c:274
 msgid "Logout"
 msgstr "로그아웃"
 
-#: gnome-session/logout.c:251
+#: gnome-session/logout.c:277
 msgid "Shut Down"
 msgstr "컴퓨터 끄기"
 
-#: gnome-session/logout.c:254
+#: gnome-session/logout.c:280
 msgid "Reboot"
 msgstr "재시동"
 
-#: gnome-session/main.c:65
+#: gnome-session/main.c:66
 msgid "Specify a session name to load"
 msgstr "읽을 세션이름 지정"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Only read saved sessions from the default.session file"
 msgstr "기본세션(default) 파일에서만 저장된 세션을 읽어오기"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "클라이언트가 등록하기까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "클라이언트가 대답할 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "클라이언트가 끝날 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
 
@@ -268,15 +264,15 @@ msgstr "세션 없애기"
 msgid "Use dialog boxes"
 msgstr "대화 상자 사용"
 
-#: gnome-session/save-session.c:94
+#: gnome-session/save-session.c:112
 msgid "Could not connect to the session manager"
 msgstr "세션 관리자에 연결할수 없습니다"
 
-#: gnome-session/save-session.c:109
+#: gnome-session/save-session.c:120
 msgid "Could not connect to gnome-session"
 msgstr "그놈 세션에 연결할수 없습니다"
 
-#: gnome-session/save-session.c:153
+#: gnome-session/save-session.c:160
 msgid "Your session has been saved"
 msgstr "세션이 저장되었습니다"
 
@@ -405,19 +401,19 @@ msgid "Session"
 msgstr "세션"
 
 #. app
-#: gnome-session/session-properties.c:329
+#: gnome-session/session-properties.c:331
 msgid "Session Chooser"
 msgstr "세션 선택기"
 
-#: gnome-session/session-properties.c:332
+#: gnome-session/session-properties.c:334
 msgid "Start Session"
 msgstr "세션 시작"
 
-#: gnome-session/session-properties.c:335
+#: gnome-session/session-properties.c:337
 msgid "Cancel Login"
 msgstr "로그인 취소"
 
-#: gnome-session/session-properties.c:360
+#: gnome-session/session-properties.c:362
 msgid "Initialize session settings"
 msgstr "세션 설정 초기화"
 
@@ -429,72 +425,72 @@ msgstr "세션 등록정보 & 시작 프로그램"
 msgid "Current session managed programs"
 msgstr "세션 관리자 속성"
 
-#: gnome-session/splash.c:55
+#: gnome-session/splash.c:59
 msgid "Audio Settings"
 msgstr "오디오 설정"
 
-#: gnome-session/splash.c:56 gnome-session/splash.c:57
+#: gnome-session/splash.c:60 gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr "화면 보호기"
 
-#: gnome-session/splash.c:58 gnome-session/splash.c:59
+#: gnome-session/splash.c:62 gnome-session/splash.c:63
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 창 관리자"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash.c:64
 msgid "Enlightenment Window Manager"
 msgstr "인라이트먼트 창 관리자"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash.c:65
 msgid "Background Settings"
 msgstr "배경 설정"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash.c:66
 msgid "Keyboard Bell"
 msgstr "키보드 설정"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash.c:67
 msgid "Mouse Settings"
 msgstr "마우스 설정"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash.c:68
 msgid "Keyboard Settings"
 msgstr "키보드 설정"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:69
 msgid "The Panel"
 msgstr "패널"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash.c:70
 msgid "Session Manager Proxy"
 msgstr "세션 관리자 프록시"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:71
 msgid "Window Manager"
 msgstr "창 관리자"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:72
 msgid "Desktop"
 msgstr "바탕화면"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:73
 msgid "Nautilus"
 msgstr "노틸러스"
 
-#: gnome-session/splash.c:287
+#: gnome-session/splash.c:293
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "그놈 시작중: %s"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:295
 msgid "Starting GNOME: done"
 msgstr "그놈 시작중: 완료"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:439
 msgid "GNOME"
 msgstr "그놈"
 
-#: gnome-session/splash.c:459
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "그놈 시작중"
 
@@ -521,3 +517,6 @@ msgstr "시작 프로그램 추가"
 #: gnome-session/startup-programs.c:391
 msgid "Edit Startup Program"
 msgstr "시작 프로그램 편집"
+
+#~ msgid "Remove Program"
+#~ msgstr "프로그램 제거"
