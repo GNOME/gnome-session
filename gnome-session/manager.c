@@ -1042,9 +1042,10 @@ no_response_warning (gpointer data)
 
       if (interact_ping_replied)
 	{
+	  IceConn ice_conn;
 	  gsm_verbose ("have interact_list; sending ping with data to client %p\n", client);
 	  print_client (client);
-	  IceConn ice_conn = SmsGetIceConnection (client->connection);
+	  ice_conn = SmsGetIceConnection (client->connection);
 	  interact_ping_replied = FALSE;
 	  IcePing (ice_conn, interact_ping_reply, (IcePointer)client);
 	}
@@ -2012,8 +2013,9 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 
   retval = 1;
 
- out:
   gsm_verbose ("created client %p, connection %p\n", client, client->connection);
+
+ out:
   gsm_verbose_indent (FALSE);
   return retval;
 }
