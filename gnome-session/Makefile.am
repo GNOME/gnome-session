@@ -5,6 +5,7 @@ INCLUDES = 			\
 
 LDADD = \
 	@LEXLIB@					\
+	$(GNOME_LIBDIR)					\
 	$(GNOMEUI_LIBS)					\
 	$(DL_LIB)					\
         @XF86MISC_LIBS@
