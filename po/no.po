@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.5.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-12-28 11:35+0100\n"
+"POT-Creation-Date: 2005-01-28 17:00+0100\n"
+"PO-Revision-Date: 2005-01-28 17:01+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,8 @@ msgid "Logout prompt"
 msgstr "Spør ved avlogging"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging til "
-"GNOME skrivebordet"
+msgid "Preferred Image to use for login splash screen"
+msgstr "Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -68,8 +64,11 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Bilde for oppstartskjerm"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Dette er en relativ sti basert på katalogen $datadir/pixmaps. Underkataloger og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste innlogging."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -228,27 +227,27 @@ msgstr "Det oppsto en ukjent aktiveringsfeil."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Innstillingsdaemonen startet på nytt for mange ganger."
 
-#: gnome-session/logout.c:355
+#: gnome-session/logout.c:341
 msgid "Are you sure you want to log out?"
 msgstr "Er du sikker på at du vil logge ut?"
 
-#: gnome-session/logout.c:372
+#: gnome-session/logout.c:358
 msgid "_Save current setup"
 msgstr "L_agre nåværende oppsett"
 
-#: gnome-session/logout.c:393
+#: gnome-session/logout.c:379
 msgid "Action"
 msgstr "Handling"
 
-#: gnome-session/logout.c:410
+#: gnome-session/logout.c:396
 msgid "_Log out"
 msgstr "_Logg ut"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:402
 msgid "Sh_ut down"
 msgstr "Avsl_utt"
 
-#: gnome-session/logout.c:423
+#: gnome-session/logout.c:409
 msgid "_Restart the computer"
 msgstr "Sta_rt på nytt"
 
