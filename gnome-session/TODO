@@ -2,7 +2,15 @@ Gnome Session Manager
 
 This is still a work in progress.  Here's my plan of attack:
 
-* Write code that understands shutdown commands and resign commands
+* Put default session into a file that sysadmin can edit
+
+* Let user specify list of losing (non-SM) programs to run at startup
+
+* Write property configurator.  Things to tweak:
+  * List of losing programs to run at startup
+  * Whether or not smproxy should be run (if no, delete it from saved session)
+  * Name of session?  Whether session is saved per-display?  (Maybe
+    only for this display?)
 
 * Look at .xsm files - clean up?  move into gnome-conf?
 
@@ -11,6 +19,9 @@ This is still a work in progress.  Here's my plan of attack:
 
 * Implement RestartImmediately hint.
 
+* Write code that understands resign commands
+  (This doesn't seem very important in practice)
+
 * Write a user interface of some sort.
   Initially this will be very minimal.
   I'm tentatively planning to do the UI in Guile, so that different
@@ -18,12 +29,14 @@ This is still a work in progress.  Here's my plan of attack:
 
 * Write code to use timeouts in useful places.
   A session save shouldn't hang because of one losing client.
+  [ This is complicated if we have managers which are also clients.
+    We'd like the sub-manager to time out before the parent manager
+    does. ]
 
 * Export a CORBA interface exposing all interesting functionality
   (See Elliot's IDL in components/)
 
-* Update exec.c to report errors in some meaningful way
-  A dialog is simplest, but a post to the event manager is perhaps best.
+* Report exec errors in some useful way
 
 * Change session management code into library that can be used
   by embedder apps.  This probably requires merging with

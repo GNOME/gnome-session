@@ -189,7 +189,7 @@ run_commands (const char *name, int number, const char *command)
 {
   int i, result = 0;
 
-  /* Run each delete command.  */
+  /* Run each command.  */
   for (i = 0; i < number; ++i)
     {
       int argc, j;
@@ -255,7 +255,6 @@ int
 read_session (const char *name)
 {
   int i, num_clients;
-  gboolean def;
   char prefix[1024];
 
   if (! session_name)
@@ -263,11 +262,14 @@ read_session (const char *name)
   if (! name)
     name = DEFAULT_SESSION;
 
-  sprintf (prefix, "session/%s/num_clients=-1", name);
-  num_clients = gnome_config_get_int_with_default (prefix, &def);
+  sprintf (prefix, "session/%s/num_clients=0", name);
+  num_clients = gnome_config_get_int (prefix);
 
-  /* If default, then no client info exists.  */
-  if (def)
+  /* No clients means either this is the first time gnome-session has
+     been run, or the user exited everything the last time.  Either
+     way, we start the default session to make sure something
+     happens.  */
+  if (! num_clients)
     {
       if (! strcmp (name, DEFAULT_SESSION))
 	return run_default_session ();

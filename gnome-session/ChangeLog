@@ -1,3 +1,11 @@
+Sat Jun  6 02:09:49 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (read_session): If no clients in saved session, load
+	default session.
+
+	* manager.c (run_shutdown_commands): New function.
+	(check_session_end): Call it.
+
 1998-06-06  Carsten Schaar  <nhadcasc@fs-maphy.uni-hannover.de>
 
 	* save-session.c (main): Replaced 'gnome_client_new_default' with

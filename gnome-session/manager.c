@@ -258,6 +258,24 @@ save_yourself_p2_request (SmsConn connection, SmPointer data)
   APPEND (save_yourself_p2_list, client);
 }
 
+/* A helper function.  Finds and executes each shutdown command.  */
+static void
+run_shutdown_commands (const GSList *list)
+{
+  for (; list; list = list->next)
+    {
+      Client *client = (Client *) list->data;
+      char **argv;
+      int argc;
+
+      if (find_vector_property (client, SmShutdownCommand, &argc, &argv))
+	{
+	  gnome_execute_async (NULL, argc, argv);
+	  free_vector (argc, argv);
+	}
+    }
+}
+
 /* This is a helper function which is run when it might be time to
    actually save the session.  It is run when the save_yourself lists
    are modified.  */
@@ -280,8 +298,16 @@ check_session_end (int found)
 	  save_finished_list = NULL;
 	  if (shutting_down)
 	    {
+	      /* Run each shutdown command.  The manual doesn't make
+		 it clear whether this should be done for all clients
+		 or only those that have RestartAnyway set.  We run
+		 them all.  */
+	      run_shutdown_commands (anyway_list);
+	      run_shutdown_commands (live_list);
+
 	      /* Make sure that all client connections are closed.  */
 	      send_message (live_list, kill_client_connection);
+
 	      gtk_main_quit ();
 	    }
 	}
