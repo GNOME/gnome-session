@@ -6,33 +6,33 @@
 
 
 /* This is true if we are saving the session.  */
-static int saving;
+static int saving = 0;
 
 /* This is true if the current save is in response to a shutdown
    request.  */
-static int shutting_down;
+static int shutting_down = NULL;
 
 /* List of all zombie clients.  A zombie client is one that was
    running in the previous session but has not yet been restored to
    life.  */
-static GSList *zombie_list;
+static GSList *zombie_list = NULL;
 
 /* List of all live clients in the default state.  */
-static GSList *live_list;
+static GSList *live_list = NULL;
 
 /* List of all clients waiting for the interaction token.  The head of
    the list actually has the token.  */
-static GSList *interact_list;
+static GSList *interact_list = NULL;
 
 /* List of all clients to which a `save yourself' message has been
    sent.  */
-static GSList *save_yourself_list;
+static GSList *save_yourself_list = NULL;
 
 /* List of all clients which have requested a Phase 2 save.  */
-static GSList *save_yourself_p2_list;
+static GSList *save_yourself_p2_list = NULL;
 
 /* List of all clients which have been saved.  */
-static GSList *save_finished_list;
+static GSList *save_finished_list = NULL;
 
 
 
@@ -431,9 +431,9 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
 
 
 /* Some data for save_helper.  */
-static int x_save_type;
-static int x_interact_style;
-static int x_fast;
+static int x_save_type = 0;
+static int x_interact_style = 0;
+static int x_fast = 0;
 
 /* Helper for save_session.  Sends save yourself message to all
    clients.  */
@@ -448,7 +448,7 @@ save_helper (gpointer data, gpointer dummy)
 /* This function is exported to the rest of gsm.  It sets up and
    performs a session save, possibly followed by a shutdown.  */
 void
-save_session (int save_type, Bool shutdown, int interact_style, Bool fast)
+save_session (int save_type, gboolean shutdown, int interact_style, gboolean fast)
 {
   if (saving)
     return;

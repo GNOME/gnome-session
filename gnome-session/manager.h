@@ -31,8 +31,8 @@ typedef struct
 
 /* Call this to initiate a session save, and perhaps a shutdown.  This
    will do nothing if a save is already in progress.  */
-void save_session (int save_type, Bool shutdown, int interact_style,
-		   Bool fast);
+void save_session (int save_type, gboolean shutdown, int interact_style,
+		   gboolean fast);
 
 /* Returns true if shutdown in progress, false otherwise.  Note it is
    possible for this function to return true and then later return
