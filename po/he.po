@@ -8,14 +8,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
-"PO-Revision-Date: 2003-01-24 10:02+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2003-06-12 12:36+0200\n"
+"PO-Revision-Date: 2003-06-12 15:07+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.0\n"
+"X-Generator: KBabel 1.0.1\n"
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
@@ -28,7 +29,7 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"בגלל סיבות ביטחוניות, בפלטפורומות שיש בהן _IceTcpTransNoListen() (מערכות "
+"בגלל סיבות ביטחוניות, בפלטפורמות שיש בהן _IceTcpTransNoListen() (מערכות "
 "XFree86), תצורת ההפעלה של GNOME לא מקשיבה להתחברויות ביציאות TCP. אפשרות זו "
 "תאפשר התחברויות ממארחים מרוחקים (ומאושרים). תצורת ההפעלה של GNOME חייבת "
 "להתחיל מחדש כדי שאפשרות זו תפעל."
@@ -126,7 +127,7 @@ msgstr "פועל"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "מספר רגיל של תצורת ההפעלה."
+msgstr "חבר רגיל בתצורת ההפעלה."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
@@ -193,7 +194,7 @@ msgid ""
 msgstr ""
 "ארעה שגיאה בהפעלת תהליך השירות של הגדרות GNOME.\n"
 "\n"
-"כמה דברים, כמו הגדרות תימות, צלילים, או רקעים עלולים לא לפעול כראוי."
+"כמה דברים, כמו הגדרות ערכות נושא, צלילים, או רקעים עלולים לא לפעול כראוי."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -249,27 +250,27 @@ msgstr "_כיבוי"
 msgid "_Restart the computer"
 msgstr "הפעל _מחדש את המחשב"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "ציין שם תצורת הפעלה לטעינה"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "קרא רק תצורות הפעלה שמורות מקובץ תצורת ההפעלה ברירת המחדל"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "תקופת זמן במילי שניות לחכות שהלקוחות יירשמו (0=לנצח)"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "תקופת זמן במילי שניות לחכות שהלקוחות יגיבו (0=לנצח)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "תקופת זמן במילי שניות לחכות שהלקוחות ימותו (0=לנצח)"
 
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -282,11 +283,11 @@ msgstr ""
 "ייתכן וכל הנדרש לתיקון הבעיה הוא הוספת\n"
 "%s לקובץ /etc/hosts."
 
-#: gnome-session/main.c:224
-msgid "Log in Anyway"
-msgstr "התנתק בכל מקרה"
-
 #: gnome-session/main.c:225
+msgid "Log in Anyway"
+msgstr "התחבר בכל מקרה"
+
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "נסה שנית"
 
@@ -305,7 +306,7 @@ msgstr "אין תגובה לפקודה %s."
 
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
-msgstr "התוכנית עשוייה להיות איטית, מופסקת או שבורה."
+msgstr "התוכנית עשויה להיות אטית, מופסקת או שבורה."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
@@ -320,9 +321,8 @@ msgid "A session shutdown is in progress."
 msgstr "כיבוי ההפעלה בתהליכים."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "שמור שינויים לתצורת ההפעלה הנוכחית"
+msgstr "קבע את תצורת ההפעלה הנוכחית"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -387,7 +387,7 @@ msgstr "_התרע בהתנתקות"
 
 #: gnome-session/session-properties-capplet.c:251
 msgid "Automatically save chan_ges to session"
-msgstr "_שמור שינויים בתצורת ההפעלה אוטמטית"
+msgstr "_שמור שינויים בתצורת ההפעלה באופן אוטומטי"
 
 #: gnome-session/session-properties-capplet.c:262
 msgid "_Sessions:"
@@ -431,7 +431,7 @@ msgstr "רשימת תוכניות בתצורת ההפעלה."
 
 #: gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
-msgstr "התוכניות הרצות כרגע:"
+msgstr "ה_תוכניות הפועלות כרגע:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -463,7 +463,7 @@ msgstr "מתווך מנהל תצורת ההפעלה"
 
 #: gnome-session/splash-widget.c:47
 msgid "Nautilus"
-msgstr "Nautilus"
+msgstr "נאוטילוס"
 
 #: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
@@ -506,3 +506,4 @@ msgstr "ערוך תוכנית הפעלה"
 
 #~ msgid "_Priority:"
 #~ msgstr "_עדיפות:"
+
