@@ -1,5 +1,10 @@
 Sat Feb 14 01:45:26 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* exec.c (execute_once): Removed.
+	* manager.h (execute_once): Removed decl.
+	* save.c (properties): Removed GNOME_SM_INIT_COMMAND.
+	(read_session): Don't run initialization commands.
+
 	* Makefile.am (LDADD): Don't include LEXLIB or DL_LIB.  Do include
 	INTLLIBS.
 

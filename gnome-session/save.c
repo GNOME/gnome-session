@@ -29,8 +29,7 @@ static propsave properties[] =
 {
   { SmCurrentDirectory, 0, 0 },
   { SmDiscardCommand, 1, 0 },
-  { SmRestartCommand, 1, 1 },
-  { GNOME_SM_INIT_COMMAND, 1, 0 }
+  { SmRestartCommand, 1, 1 }
 };
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
@@ -214,9 +213,6 @@ read_session (const char *name)
       if (id)
 	add_zombie (id);
     }
-
-  /* Run each initialization command.  */
-  run_commands (name, num_clients, GNOME_SM_INIT_COMMAND, execute_once);
 
   /* Run each restart command.  */
   return run_commands (name, num_clients, SmRestartCommand, execute_async);

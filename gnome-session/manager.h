@@ -128,7 +128,4 @@ typedef void execute_func (int argc, char *argv[]);
 /* Execute some command in the background and immediately return.  */
 void execute_async (int argc, char *argv[]);
 
-/* Like execute_async, but run a given command exactly once.  */
-void execute_once (int argc, char *argv[]);
-
 #endif /* MANAGER_H */

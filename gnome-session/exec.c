@@ -27,14 +27,3 @@ execute_async (int argc, char *argv[])
       _exit (1);
     }
 }
-
-void
-execute_once (int argc, char *argv[])
-{
-  /* Dummy implementation.  */
-  int i;
-  printf ("execute_once:");
-  for (i = 0; i < argc; ++i)
-    printf (" %s", argv[i]);
-  printf ("\n");
-}
