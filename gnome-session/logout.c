@@ -42,9 +42,6 @@ gchar *reboot_command[] =
   "/usr/bin/shutdown", "-r", "now", NULL
 };
 
-/* True if we should save the current state */
-static int save = TRUE;
-
 /* What action to take upon shutdown */
 static enum
 {
@@ -287,10 +284,10 @@ display_gui (void)
     return FALSE;
   else
     {
+      /* This is only called when we are going to exit, so it is ok to
+	 change `trashing'.  */
       if (trashing)
-	save = GTK_TOGGLE_BUTTON (toggle_button)->active;
-      else
-	save = TRUE;
+	set_trash_mode (! GTK_TOGGLE_BUTTON (toggle_button)->active);
 
       if (halt)
 	{

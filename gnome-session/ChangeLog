@@ -1,5 +1,8 @@
 1999-08-01  Tom Tromey  <tromey@cygnus.com>
 
+	* logout.c (display_gui): Call set_trash_mode.
+	(save): Removed.
+
 	* logout.c: Reverted previous patch.  It turns out that saves can
 	happen at "random" times, so this change would have caused user
 	confusion and not much more.
