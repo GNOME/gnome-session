@@ -125,6 +125,41 @@ ice_set_clean_up_handler (IceConn connection,
     }
 }
 
+/* After an unclean shutdown clean_ice () may not have been called the last
+ * time so there may be stale records left in the file which we need to remove
+ * first.
+ */
+
+static void
+startup_clean_ice (void)
+{
+  guint i;
+  GSList* entries;
+
+  entries = read_authfile (authfile);
+
+  for (i = 0; i < num_sockets; i++)
+    {
+      char* network_id = IceGetListenConnectionString (sockets[i]);
+      GSList* list = entries;
+      
+      while (list)
+	{
+	  IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
+
+	  list = list->next;
+	  if (!strcmp (file_entry->network_id, network_id))
+	    {
+	      REMOVE (entries, file_entry);
+	      IceFreeAuthFileEntry (file_entry);
+	    }
+	}
+
+    }
+
+  write_authfile (authfile, entries);
+}
+
 /*
  * Host Based Authentication Callback.
  * Refuse all connections that fail MIT-MAGIC-COOKIE-1 authentication.
@@ -160,6 +195,8 @@ initialize_ice (void)
   input_id = g_new (gint, num_sockets);
 
   authfile = IceAuthFileName ();
+
+  startup_clean_ice ();
 
   entries = read_authfile (authfile);
 

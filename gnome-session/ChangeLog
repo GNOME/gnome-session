@@ -1,3 +1,10 @@
+1999-05-20  Martin Baulig  <martin@home-of-linux.org>
+
+	* ice.c (startup_clean_ice): New static function. After an unclean
+	shutdown clean_ice () may not have been called the last time so there
+	may be stale records left in the ICEauthority file which we need to
+	remove first.
+
 1999-04-14  Matthias Warkus  <mawa@iname.com>
 
 	* session.desktop: Added [de] translations; methinks this was a
