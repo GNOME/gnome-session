@@ -15,8 +15,6 @@ INCLUDES =						\
 
 LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS) $(LIBWRAP_LIBS)
 
-sysdir = $(datadir)/applications
-
 if SESSION
 noinst_in_files = session.desktop.in
 noinst_DATA = $(noinst_in_files:.desktop.in=.desktop)
