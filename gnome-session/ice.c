@@ -234,7 +234,7 @@ init_ice_connections (void)
 	int i;
 
 	for (i = 1; i < 256; i++){
-		sprintf (buffer, "-%d", i); 
+		g_snprintf (buffer, sizeof (buffer), "-%d", i); 
 		if (IceListenForWellKnownConnections (buffer, &num_sockets, &sockets, sizeof(error), error))
 			return TRUE;
 	}

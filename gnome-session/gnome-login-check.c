@@ -201,7 +201,7 @@ check_orbit_dir(void)
   char buf[PATH_MAX];
   struct stat sbuf;
 
-  sprintf(buf, "/tmp/orbit-%s", g_get_user_name());
+  g_snprintf(buf, sizeof(buf), "/tmp/orbit-%s", g_get_user_name());
   if(stat(buf, &sbuf))
     return TRUE; /* Doesn't exist - things are fine */
 

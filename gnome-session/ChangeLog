@@ -1,3 +1,14 @@
+Wed Dec 13 20:50:16 2000  George Lebl <jirka@5z.com>
+
+	* gnome-login-check.c, ice.c, manager.[ch], prop.c, remote.c, 
+	  save.c:  Fixup malloc/g_malloc confusion a bit.  Use glib's
+	  mem routines in more places where possible.  Also add a bunch
+	  of sanity "null after free" things all around, and use
+	  g_snprintf instead of sprintf out of paranoia (none of those
+	  actually resulted in real fixes though).  So this is not a high
+	  priority fix and doesn't need to go to stable, it just makes it
+	  all work with glib's mem checking stuff turned on.
+
 2000-11-15  Jacob "Ulysses" Berkman  <jacob@helixcode.com>
 
 	* gnome-login-check.c (main): change the error message to

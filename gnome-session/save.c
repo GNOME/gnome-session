@@ -163,9 +163,9 @@ write_one_client (const Client *client)
 
   /* Clean up.  */
   for (i = 0; i < vector_count; ++i)
-    free_vector (argcs[i], vectors[i]);
+    g_strfreev (vectors[i]);
   for (i = 0; i < string_count; ++i)
-    free (strings[i]);
+    g_free (strings[i]);
 
   return saved;
 }
@@ -271,8 +271,7 @@ read_one_client (Client *client)
   id = gnome_config_get_string ("id");
   if (id)
     {
-      client->id = strdup(id);
-      g_free (id);
+      client->id = id;
     }
   /* Read each property that we save.  */
   for (i = 0; i < NUM_PROPERTIES; ++i)
@@ -299,6 +298,7 @@ read_one_client (Client *client)
 		  prop->vals[j].length = vector[j] ? strlen (vector[j]) : 0;
 		  prop->vals[j].value  = vector[j] ? strdup (vector[j]) : NULL;
 		  g_free (vector[j]);
+		  vector[j] = NULL; /* sanity */
 		}
 	      APPEND (client->properties, prop);      
 	      g_free (vector);
@@ -317,7 +317,7 @@ read_one_client (Client *client)
 	      prop->num_vals = 1;
 	      prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue));
 	      prop->vals[0].length = strlen (string);
-	      prop->vals[0].value = strdup(string);
+	      prop->vals[0].value = strdup (string);
 	      g_free (string);
 	      APPEND (client->properties, prop);      
 	    }
@@ -330,7 +330,7 @@ read_one_client (Client *client)
 	  if (!def)
 	    {
 	      SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
-	      gchar* value = (gchar*) calloc (sizeof(gchar), 2);
+	      gchar* value = (gchar*) calloc (sizeof (gchar), 2);
 	      value[0] = (gchar) number;
 	      prop->name = strdup (properties[i].name);
 	      prop->type = strdup (SmCARD8);
@@ -368,7 +368,7 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
 
   for (i = 0; i < num_clients; ++i)
     {
-      Client *client = (Client*)calloc (1, sizeof(Client));
+      Client *client = (Client*)g_new0 (Client, 1);
 
       g_snprintf (prefix, sizeof(prefix), "%s%s/%d,", file, session, i);
 
@@ -389,7 +389,7 @@ unlock_session (void)
 {
   /* FIXME: release lock on the name */
 
-  free (session_name);
+  g_free (session_name);
   session_name = NULL;
 }
 
@@ -423,7 +423,7 @@ set_session_name (const char *name)
 	}
       if (session_name)
 	unlock_session ();
-      session_name = strdup (name);
+      session_name = g_strdup (name);
     }
   return session_name;
 }
@@ -547,7 +547,9 @@ free_session (Session* session)
       free_client (client1);		  
     }	      
   command_handle_free (session->handle);  
+  session->handle = NULL;  /* sanity */
   g_free (session->name);
+  session->name = NULL; /* sanity */
   g_free (session);
 }
 
@@ -576,7 +578,7 @@ delete_session (const char *name)
   for (i = 0; i < number; ++i)
     {
       Client* cur_client;
-      Client* old_client = (Client*)calloc (1, sizeof(Client));
+      Client* old_client = (Client*)g_new0 (Client, 1);
       
       int old_argc;
       char **old_argv;
@@ -630,13 +632,13 @@ delete_session (const char *name)
 			  break;
 			}
 		  
-		  free_vector (cur_argc, cur_argv);
+		  g_strfreev (cur_argv);
 		}
 	      
 	      if (! ignore) 
 		run_command (old_client, SmDiscardCommand);
 	      
-	      free_vector (old_argc, old_argv);
+	      g_strfreev (old_argv);
 	    }
 	  
 	  /* Now, repeat the whole process for apps with SmARRAY8 commands:
@@ -655,13 +657,13 @@ delete_session (const char *name)
 		{
 		  ignore = !strcmp (cur_system, old_system);
 		  
-		  free (cur_system);
+		  g_free (cur_system);
 		}	      
 	      
 	      if (! ignore)
 		system (old_system);
 	  
-	      free (old_system);
+	      g_free (old_system);
 	    }
 	}      
       free_client (old_client);

@@ -231,33 +231,42 @@ free_client (Client *client)
  if (! client)
     return;
 
-  if (client->id)
-    free (client->id);
+  if (client->id != NULL)
+    g_free (client->id);
+  client->id = NULL; /* sanity */
 
-  if (client->handle)
+  if (client->handle != NULL)
     command_handle_free (client->handle);
+  client->handle = NULL; /* sanity */
 
   for (list = client->properties; list; list = list->next)
     {
       SmProp *sp = (SmProp *) list->data;
+      list->data = NULL; /* sanity */
+
       SmFreeProperty (sp);
     }
   g_slist_free (client->properties);
+  client->properties = NULL; /* sanity */
 
   for (list = client->get_prop_replies; list; list = list->next)
     {
       GSList *prop_list = (GSList *) list->data, *list1;
+      list->data = NULL; /* sanity */
 	
       for (list1 = prop_list; list1; list1 = list1->next)
 	{
 	  SmProp *prop = (SmProp *) list1->data;
+	  list1->data = NULL; /* sanity */
+
 	  SmFreeProperty (prop);
 	}
       g_slist_free (prop_list);
     }
   g_slist_free (client->get_prop_replies);
+  client->get_prop_replies = NULL; /* sanity */
 
-  free (client);
+  g_free (client);
 }
 
 
@@ -281,7 +290,7 @@ run_command (Client* client, const gchar* command)
 	  int i;
 
 	  envpc = envc / 2;
-	  envp = (gchar**)calloc (sizeof(gchar*), envpc + 1);
+	  envp = g_new0 (char *, envpc + 1);
 	  
 	  for (i = 0; i < envpc; i++)
 	    envp[i] = g_strconcat (envv[2*i], "=", envv[2*i + 1], NULL);
@@ -297,7 +306,8 @@ run_command (Client* client, const gchar* command)
       /* We can't run this in the `if' because we might have allocated
 	 ENVV in find_vector_property but rejected it for other
 	 reasons.  */
-      free_vector (envc, envv);
+      g_strfreev (envv);
+      envv = NULL; /* sanity */
 
       update_splash (argv[0], (gfloat)client->priority);
 
@@ -305,7 +315,7 @@ run_command (Client* client, const gchar* command)
       find_string_property (client, GsmRestartService, &restart_info);
       pid = remote_start (restart_info, argc, argv, dir, envpc, envp);
       if (restart_info)
-	free (restart_info);
+	g_free (restart_info);
 
       if (errno)
 	{
@@ -320,11 +330,11 @@ run_command (Client* client, const gchar* command)
 	  errno = 0;
 	}
 
-      if (envp)
-	free_vector (envpc, envp);
-      if (dir)
-	free (dir);
-      free_vector (argc, argv);
+      if (envp != NULL)
+	      g_strfreev (envp);
+      if (dir != NULL)
+	      g_free (dir);
+      g_strfreev (argv);
     }
   return pid;
 }
@@ -686,12 +696,19 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	  return 0;
 	}
       client->match_rule = MATCH_DONE;
-      client->id = previous_id;
+      client->id = g_strdup (previous_id);
+      free (previous_id);
     }
   else
     {
-      client->id = SmsGenerateClientID (connection);
-      if (!client->id)
+      char *id = SmsGenerateClientID (connection);
+
+      if (id != NULL)
+	{
+	  client->id = g_strdup (id);
+	  free (id);
+	}
+      else
 	{
 	  static int sequence = 0;
 	  static char* address = NULL;
@@ -700,15 +717,15 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	    {
 	      g_warning ("Host name lookup failure on localhost.");
 	      
-	      address = malloc (10);
+	      address = g_new (char, 10);
 	      srand (time (NULL) + (getpid () <<16));
-	      sprintf (address, "0%.8x", rand());
+	      g_snprintf (address, 10, "0%.8x", rand());
 	    };
 
 	  /* The typecast there is for 64-bit machines */
-	  client->id = malloc (43);
-	  sprintf (client->id, "1%s%.13ld%.10d%.4d", address,
-		   (long) time(NULL), getpid (), sequence);
+	  client->id = g_malloc (43);
+	  g_snprintf (client->id, 43, "1%s%.13ld%.10d%.4d", address,
+		      (long) time(NULL), getpid (), sequence);
 	  sequence++;
 	  
 	  sequence %= 10000;
@@ -1039,7 +1056,7 @@ run_shutdown_commands (const GSList *list)
 /* This is a helper function which makes sure that the save_state
    variable is correctly set after a change to the save_yourself lists. */
 static void
-update_save_state ()
+update_save_state (void)
 {
   if (save_state == STARTING_SESSION)
     {
@@ -1511,13 +1528,13 @@ send_properties (Client* client, GSList *prop_list)
       int i, len;
       
       len = g_slist_length (prop_list);
-      props = (SmProp**)calloc (sizeof(SmProp *), len);
+      props = (SmProp**)g_new0 (SmProp *, len);
       
       for (i = 0, list = prop_list; list; i++, list = list->next)
 	props[i] = list->data;
       
       SmsReturnProperties (client->connection, len, props);
-      free (props);      
+      g_free (props);      
       
       client->get_prop_requests--;
     }
@@ -1540,7 +1557,7 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
       return 0;
     }
 
-  client = (Client*)calloc (1, sizeof(Client));
+  client = (Client*)g_new0 (Client, 1);
   client->priority = DEFAULT_PRIORITY;
   client->connection = connection;
   client->attempts = 1;

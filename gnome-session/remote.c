@@ -243,7 +243,7 @@ format_rstart_env (char *str)
 	    if (!isgraph (*temp) || *temp == '\\')
 	    {
 		char octal[3];
-		sprintf (octal, "%o", *temp);
+		g_snprintf (octal, sizeof (octal), "%o", *temp);
 		*(ptr++) = '\\';
 		for (i = 0; i < (3 - (int) strlen (octal)); i++)
 		    *(ptr++) = '0';
