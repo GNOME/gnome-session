@@ -498,9 +498,12 @@ command (Client* client, int nprops, SmProp** props)
 	  if (purged)
 	    {
 	      char value[2] = { SmRestartAnyway, '\0' };
-	      SmPropValue val = { 1, &value };
-	      SmProp hint = { SmRestartStyleHint, SmCARD8, 1, &val };
+	      SmPropValue val = { 1, NULL };
+	      SmProp hint = { SmRestartStyleHint, SmCARD8, 1, NULL };
 	      SmProp *prop = &hint;
+
+	      val.value = &value;
+	      hint.vals = &val;
 
 	      if (purge_drop)
 		value[0] = SmRestartNever;

@@ -495,7 +495,7 @@ client_reasons (GsmClient* client, gboolean confirm, GSList* reasons)
   
   /* Hmm, may need to be override redirect as well since WMs are quite
      likely to be the source of the errors... */
-  //dialog = gnome_warning_dialog (message);
+  /* dialog = gnome_warning_dialog (message); */
   dialog = gnome_message_box_new (message, GNOME_MESSAGE_BOX_WARNING, NULL);
   gnome_dialog_append_button_with_pixmap (GNOME_DIALOG (dialog),
 					  _("Remove Program"),
