@@ -59,7 +59,6 @@ remote_start (char *restart_info, int argc, char **argv,
     FILE *fp;
     int	 pipefd[2];
     char *machine;
-    extern char **environ;
     int  i;
     GSList *list;
     gint pid;

@@ -37,6 +37,10 @@
    any other gnome-session process when we set it */
 static char *session_name = NULL;
 
+/* Real name of the current session if we are in trash mode 
+ * (session name will be "Trash") */
+static char *saved_session_name = NULL;
+
 /* See manager.c */
 extern gboolean base_loaded;
 extern GSList* live_list;
@@ -396,9 +400,17 @@ set_session_name (const char *name)
       /* FIXME: establish lock on the name */
 
       if (trashing)
-	name = TRASH_SESSION;
+	{
+	  if (saved_session_name)
+	    g_free (saved_session_name);
+	  
+	  if (name)
+	    saved_session_name = g_strdup (name);
+	  
+	  name = TRASH_SESSION;
+	}
 
-      if (! choosing && !trashing)
+      if (!choosing && !trashing)
 	{
 	  gnome_config_push_prefix (GSM_CONFIG_PREFIX);
 	  gnome_config_set_string (CURRENT_SESSION_KEY, name);
@@ -410,6 +422,20 @@ set_session_name (const char *name)
       session_name = strdup (name);
     }
   return session_name;
+}
+
+/* Set the trashing state */
+void
+set_trash_mode (gboolean new_mode)
+{
+  if (trashing && !new_mode)
+    {
+      trashing = FALSE;
+      if (saved_session_name)
+	set_session_name (saved_session_name);
+    }
+  else if (!new_mode)
+    trashing = TRUE;
 }
 
 
@@ -430,7 +456,7 @@ get_last_session (void)
 Session*
 read_session (const char *name)
 {
-  GSList *list = NULL, *list1;
+  GSList *list = NULL;
   gboolean try_last, try_def;
   gchar* last = NULL;
   Session *session = g_new0 (Session, 1);
@@ -464,6 +490,14 @@ read_session (const char *name)
   g_free (last);
 
   session->client_list = list;
+
+  /* See if there is a list of clients that the user has manually
+   * created from the session-properties capplet
+   */
+  list = read_clients (MANUAL_CONFIG_PREFIX, name, MATCH_PROP);
+  if (list)
+	  session->client_list = g_slist_concat (session->client_list, list);
+
   return session;
 }
 

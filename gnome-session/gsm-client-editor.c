@@ -40,7 +40,6 @@ static void
 gsm_client_editor_class_init (GsmClientEditorClass *klass)
 {
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
-  GtkWidgetClass *widget_class = (GtkWidgetClass*) klass;
 
   gsm_client_editor_signals[CHANGED] =
     gtk_signal_new ("changed",
@@ -88,7 +87,6 @@ gsm_client_editor_new (void)
   GsmClientEditor* client_editor = gtk_type_new (gsm_client_editor_get_type());
   GtkHBox* hbox = (GtkHBox*) client_editor;
   GtkAdjustment *adjustment;
-  GsmStyle style;
   GnomeUIInfo* data = (GnomeUIInfo*)g_memdup (style_data, 
 					      (guint)sizeof (style_data));
   GtkWidget *menu = gnome_popup_menu_new (data);

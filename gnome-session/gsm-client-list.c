@@ -64,7 +64,6 @@ static void
 gsm_client_list_class_init (GsmClientListClass *klass)
 {
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
-  GtkCListClass *clist_class = (GtkCListClass*) klass;
 
   parent_class = gtk_type_class (gtk_clist_get_type ());
 
@@ -128,7 +127,6 @@ gsm_client_list_new (void)
   GsmClientList* client_list = gtk_type_new(gsm_client_list_get_type());
   GtkCList* clist = (GtkCList*) client_list;
   GdkFont*  font;
-  gint      i;
   gchar*    titles[4] = { _("Order"), _("Style"), _("State"), _("Program") };
 
   client_list->client_editor = gsm_client_editor_new ();

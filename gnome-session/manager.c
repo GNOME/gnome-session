@@ -158,18 +158,6 @@ find_client_by_id (const GSList *list, const char *id)
 }
 
 static Client *
-find_client_by_connection (GSList *list, IceConn ice_conn)
-{
-  for (; list; list = list->next)
-    {
-      Client *client = (Client *) list->data;
-      if (SmsGetIceConnection (client->connection) == ice_conn)
-	return client;
-    }
-  return NULL;
-}
-
-static Client *
 find_client_by_argv0 (const GSList *list, const char *argv0)
 {
   for (; list; list = list->next)
@@ -272,8 +260,7 @@ gint
 run_command (Client* client, const gchar* command)
 {
   int argc, envc, envpc, pid = -1;
-  gboolean def, envd;
-  char **argv, *dir, prefix[1024], **envv, **envp, *restart_info;
+  char **argv, *dir, **envv, **envp, *restart_info;
 
   if (find_vector_property (client, command, &argc, &argv))
     {
@@ -452,6 +439,23 @@ purge (gpointer data)
   return 0;
 }
 
+static void
+reincarnate_client (Client *old_client, Client *new_client)
+{
+  new_client->properties        = old_client->properties;
+  new_client->priority          = old_client->priority;
+  new_client->match_rule        = old_client->match_rule;
+  new_client->attempts          = old_client->attempts;
+  new_client->connect_time      = old_client->connect_time;
+  new_client->command_data      = old_client->command_data;
+  
+  old_client->properties = NULL;
+  if (old_client->handle)
+    new_client->handle = command_handle_reassign (old_client->handle, new_client);
+  old_client->handle = NULL;
+  free_client (old_client);	  
+}
+
 /* We use the SmRestartCommand to start up clients read from session
  * files even when sessions are being merged so that we can match
  * the saved SmProperties against the registering clients.
@@ -603,7 +607,7 @@ remove_client (Client* client)
       return 1;
     }
 
-  for (list = load_request_list; list; list == list->next)
+  for (list = load_request_list; list; list = list->next)
     {
       GSList* client_list = (GSList*)list->data;
       
@@ -661,17 +665,7 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
       else
 	REMOVE (pending_list, offspring);
 
-      client->properties        = offspring->properties;
-      client->priority          = offspring->priority;
-      client->match_rule        = offspring->match_rule;
-      client->attempts          = offspring->attempts;
-      client->connect_time      = offspring->connect_time;
-      client->command_data      = offspring->command_data;
-
-      offspring->properties = NULL;
-      client->handle = command_handle_reassign (offspring->handle, client);
-      offspring->handle = NULL;
-      free_client (offspring);
+      reincarnate_client (offspring, client);
 
       if (client->match_rule == MATCH_FAKE_ID ||
 	  find_client_by_id (live_list, previous_id) ||
@@ -933,14 +927,27 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
   if (global)
     {
       shutting_down = shutdown;
-      while (live_list) 
+      if (shutting_down
+	  && interact_style == SmInteractStyleAny
+	  && ! fast
+	  && ! maybe_display_gui ())
 	{
-	  Client *client = (Client *) live_list->data;
-	  client_event (client->handle, GsmSave);
-	  REMOVE (live_list, client);
-	  APPEND (save_yourself_list, client);
-	  SmsSaveYourself (client->connection, save_type, shutting_down,
-			   interact_style, fast);
+	  /* Just ignore the save.  */
+	  shutting_down = FALSE;
+	  if (client)
+	    SmsShutdownCancelled (client->connection);
+	}
+      else
+	{	
+	  while (live_list) 
+	    {
+	      Client *client = (Client *) live_list->data;
+	      client_event (client->handle, GsmSave);
+	      REMOVE (live_list, client);
+	      APPEND (save_yourself_list, client);
+	      SmsSaveYourself (client->connection, save_type, shutting_down,
+			       interact_style, fast);
+	    }
 	}
     }
   else
@@ -951,6 +958,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       SmsSaveYourself (client->connection, 
 		       save_type, 0, interact_style, fast);
     }
+
   if (shutting_down || save_yourself_list)
     { 
       /* Give apps extra time on first save as they may call SmcOpenConnection
@@ -1022,7 +1030,7 @@ update_save_state ()
 {
   if (save_state == STARTING_SESSION)
     {
-      int runlevel = 1000;
+      unsigned int runlevel = 1000;
       
       if (pending_list)
 	{
@@ -1243,18 +1251,8 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
 
       if (offspring)
 	{
-	  client->properties        = offspring->properties;
-	  client->priority          = offspring->priority;
-	  client->match_rule        = offspring->match_rule;
-	  client->attempts          = offspring->attempts;
-	  client->connect_time      = offspring->connect_time;
-	  client->command_data      = offspring->command_data;
-	  
-	  offspring->properties = NULL;
-	  client->handle = command_handle_reassign (offspring->handle, client);
+	  reincarnate_client (offspring, client);
 	  client->match_rule = MATCH_DONE;
-	  offspring->handle = NULL;
-	  free_client (offspring);	  
 	}
       else
 	client->handle = command_handle_new (client);

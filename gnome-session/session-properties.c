@@ -82,7 +82,7 @@ create_right (void)
 static GtkWidget*
 create_table (void)
 {
-  GtkWidget *table, *right;
+  GtkWidget *table, *vbox, *alignment;
 
   /* program entry box */
   entry = gtk_entry_new ();
@@ -121,32 +121,38 @@ create_table (void)
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
   /* table */
-  table = gtk_table_new (3, 5, FALSE);
-  gtk_table_attach (GTK_TABLE (table), gtk_label_new (_("Program:")),
-		    0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), gtk_hbox_new (FALSE, 0), 
-		    1, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), add_button, 
-		    2, 3, 0, 1, GTK_FILL, GTK_FILL, 0, 0); 
-  gtk_table_attach (GTK_TABLE (table), remove_button, 
-		    3, 4, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), entry, 
-		    0, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
+  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
+	  
+  table = gtk_table_new (1, 4, TRUE);
+/*    gtk_table_attach (GTK_TABLE (table), gtk_label_new (_("Program:")), */
+/*  		    0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0); */
+/*    gtk_table_attach (GTK_TABLE (table), gtk_hbox_new (FALSE, 0),  */
+/*  		    1, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0); */
+/*    gtk_table_attach (GTK_TABLE (table), add_button,  */
+/*  		    2, 3, 0, 1, GTK_FILL, GTK_FILL, 0, 0);  */
+/*    gtk_table_attach (GTK_TABLE (table), entry,  */
+/*  		    0, 4, 1, 2, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0); */
   gtk_table_attach (GTK_TABLE (table), client_editor, 
-		    0, 4, 2, 3, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
-  gtk_table_attach (GTK_TABLE (table), scrolled_window,
-		    0, 4, 3, 4, GTK_FILL|GTK_EXPAND, GTK_FILL|GTK_EXPAND,0, 0);
+		    0, 2, 0, 1, GTK_FILL|GTK_EXPAND, GTK_FILL, 0, 0);
   gtk_table_set_col_spacings (GTK_TABLE (table), GNOME_PAD);
-  gtk_table_set_row_spacings (GTK_TABLE (table), GNOME_PAD);
 
-  return table;
+  alignment = gtk_alignment_new (1.0, 0.5, 0.0, 0.0);
+  gtk_container_add (GTK_CONTAINER (alignment), remove_button);
+  
+  gtk_table_attach (GTK_TABLE (table), alignment, 
+		    3, 4, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
+
+  gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
+
+  return vbox;
 }
 
 static GtkWidget*
 create_buttons (GtkWidget * table)
 {
   GtkWidget* frame, *table2;
-  GtkWidget* bbox, *vbox;
+  GtkWidget* bbox;
 
   /* frame */
   frame = gtk_frame_new (NULL);
