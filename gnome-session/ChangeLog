@@ -1,3 +1,16 @@
+Thu Jul 23 21:50:33 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* session-properties.c (session_die): New function.
+	(session_save): New function.
+	(struct info): Added `argv0' element.
+	(setup): Initialize argv0 element of info.  Return info
+	structure.
+	(options): New structure.
+	(parse_an_arg): New function.
+	(geometry): New global.
+	(parser): New global.
+	(main): Handle session management and argument parsing.
+
 Wed Jul 22 23:11:47 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* session-properties.c (setup): Use GNOME_PAD and

@@ -30,6 +30,9 @@
 
 
 
+/* Geometry of main window.  */
+static char *geometry;
+
 /* This is used as the client data for some callbacks.  It just holds
    pointers to whatever we might need.  */
 struct info
@@ -38,6 +41,8 @@ struct info
   GnomePropertyBox *propertybox;
   /* The clist.  */
   GtkWidget *clist;
+  /* Name of this program.  */
+  char *argv0;
 };
 
 
@@ -168,7 +173,7 @@ fill_clist (GtkCList *list)
     }
 }
 
-static void
+static struct info *
 setup ()
 {
   GnomePropertyBox *propertybox;
@@ -195,6 +200,7 @@ setup ()
   info = (struct info *) malloc (sizeof (struct info));
   info->propertybox = propertybox;
   info->clist = clist;
+  info->argv0 = NULL;
 
   gtk_widget_set_sensitive (del_button, 0);
   gtk_signal_connect (GTK_OBJECT (del_button), "clicked",
@@ -232,20 +238,104 @@ setup ()
   gtk_window_set_title (GTK_WINDOW (propertybox),
 			_("Gnome Session Properties"));
   gtk_widget_show_all (GTK_WIDGET (propertybox));
+
+  return info;
 }
+
+
+
+/*
+ * Session management.
+ */
+
+static int
+session_save (GnomeClient *client, int phase, GnomeSaveStyle save_style,
+	      int is_shutdown, GnomeInteractStyle interact_style,
+	      int is_fast, gpointer client_data)
+{
+  struct info *info = (struct info *) client_data;
+  char *args[3], *geom;
+  int argc;
+
+  argc = 0;
+
+  args[argc++] = info->argv0;
+
+  /* Geometry of main window.  */
+  geom = gnome_geometry_string (GTK_WIDGET (info->propertybox)->window);
+  args[argc++] = "--geometry";
+  args[argc++] = geom;
+
+  /* FIXME: we could also save current editing state: contents of
+     clist, entry, maybe even selection (and thus state of Delete
+     button).  That's more ambitious.  */
+
+  gnome_client_set_restart_command (client, argc, args);
+  g_free (geom);
+
+  return TRUE;
+}
+
+static void
+session_die (GnomeClient *client, gpointer client_data)
+{
+  gtk_main_quit ();
+}
+
+
+
+static struct argp_option options[] =
+{
+  { "geometry", -1, "GEOMETRY", 0, N_("Geometry of window"), 0 },
+  { NULL, 0, NULL, 0, NULL, 0 }
+};
+
+static error_t
+parse_an_arg (int key, char *arg, struct argp_state *state)
+{
+  if (key != -1)
+    return ARGP_ERR_UNKNOWN;
+  geometry = arg;
+  return 0;
+}
+
+static struct argp parser =
+{
+  options,
+  parse_an_arg,
+  NULL,
+  NULL,
+  NULL,
+  NULL,
+  PACKAGE
+};
+
 
 int
 main (int argc, char *argv[])
 {
+  struct info *info;
+  GnomeClient *client;
+
   argp_program_version = VERSION;
 
   /* Initialize the i18n stuff */
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
 
-  gnome_init ("session-properties", NULL, argc, argv, 0, NULL);
+  gnome_init ("session-properties", &parser, argc, argv, 0, NULL);
 
-  setup ();
+  info = setup ();
+  info->argv0 = argv[0];
+
+  client = gnome_master_client ();
+  if (client)
+    {
+      gtk_signal_connect (GTK_OBJECT (client), "save_yourself",
+			  GTK_SIGNAL_FUNC (session_save), (gpointer) info);
+      gtk_signal_connect (GTK_OBJECT (client), "die",
+			  GTK_SIGNAL_FUNC (session_die), NULL);
+    }
 
   gtk_main ();
 
