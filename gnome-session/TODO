@@ -3,6 +3,9 @@ Gnome Session Manager
 This is still a work in progress.  Here's my plan of attack:
 
 * Test code that restores and deletes sessions
+  [ the gnome config functions need a going over before this will work ]
+
+* Write exec.c and do the first real test
 
 * Write code that understands restart hints, etc.
 
@@ -32,9 +35,7 @@ feel like it.  Please contact me if you do so.
 
 Some known bugs:
 
-- run gsm; connect with notepad; use debugging option to trigger a save
-  gsm will get an XSMP protocol error.  I don't know why.
-
+- None??  (Well, saving doesn't work, but that is gnome-config's fault)
 
 ================================================================
 
