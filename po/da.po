@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
-"PO-Revision-Date: 2002-04-26 17:28+0200\n"
+"POT-Creation-Date: 2002-05-11 12:44+0200\n"
+"PO-Revision-Date: 2002-05-11 12:44+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -203,98 +203,94 @@ msgstr "Indstillinger"
 msgid "Always started on every login."
 msgstr "Startes altid ved hvert logind"
 
-#: gnome-session/logout.c:200
+#: gnome-session/logout.c:188
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: gnome-session/logout.c:258
+#: gnome-session/logout.c:248
 msgid "Really log out?"
 msgstr "Vil du logge ud?"
 
-#: gnome-session/logout.c:275
+#: gnome-session/logout.c:265
 msgid "Save current setup"
 msgstr "Gem aktuel opsætning"
 
-#: gnome-session/logout.c:295
+#: gnome-session/logout.c:285
 msgid "Action"
 msgstr "Handling"
 
-#: gnome-session/logout.c:303
+#: gnome-session/logout.c:293
 msgid "Logout"
 msgstr "Log ud"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:296
 msgid "Shut Down"
 msgstr "Luk ned"
 
-#: gnome-session/logout.c:309
+#: gnome-session/logout.c:299
 msgid "Reboot"
 msgstr "Genstart"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:67
 msgid "Specify a session name to load"
 msgstr "Angiv session som skal indlæses"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:68
 msgid "Only read saved sessions from the default.session file"
 msgstr "Læs kun gemte sessioner fra default.session-filen"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:69
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter registrerer sig (0=for evigt)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:70
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter svarer (0=for evigt)"
 
-#: gnome-session/main.c:70
+#: gnome-session/main.c:71
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter dør (0=for evigt)"
 
-#: gnome-session/manager.c:400
+#: gnome-session/manager.c:173
+msgid "Your session has been saved"
+msgstr "Din session er blevet gemt"
+
+#: gnome-session/manager.c:436
 msgid "Wait abandoned due to conflict."
 msgstr "Ventning opgivet pga. konflikt."
 
-#: gnome-session/manager.c:834
+#: gnome-session/manager.c:874
 #, c-format
 msgid "No response to the %s command."
 msgstr "Ingen reaktion på %s-kommandoen."
 
-#: gnome-session/manager.c:835
+#: gnome-session/manager.c:875
 msgid "The program may be slow, stopped or broken."
 msgstr "Programmet er måske langsomt, gået i stå eller defekt."
 
-#: gnome-session/manager.c:836
+#: gnome-session/manager.c:876
 msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vente på at programmet svarer eller blot fjerne det."
 
-#: gnome-session/manager.c:1375
+#: gnome-session/manager.c:1433
 msgid "Respawn abandoned due to failures."
 msgstr "Gendannelse opgivet pga. fejl."
 
-#: gnome-session/manager.c:1541
+#: gnome-session/manager.c:1607
 msgid "A session shutdown is in progress."
 msgstr "En session er i færd med at lukke ned."
 
-#: gnome-session/save-session.c:43
+#: gnome-session/save-session.c:44
 msgid "Kill session"
 msgstr "Dræb session"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:45
 msgid "Use dialog boxes"
 msgstr "Benyt meddelelsesvinduer"
 
-#: gnome-session/save-session.c:112
+#: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke tilkoble til sessionshåndteringen"
-
-#: gnome-session/save-session.c:120
-msgid "Could not connect to gnome-session"
-msgstr "Kunne ikke tilkoble til gnome-session"
-
-#: gnome-session/save-session.c:160
-msgid "Your session has been saved"
-msgstr "Din session er blevet gemt"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -320,7 +316,7 @@ msgstr "Tilføj en ny session"
 msgid "Edit session name"
 msgstr "Ændr sessions navn"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:165
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -328,119 +324,114 @@ msgstr ""
 "Nogle ændringer er ikke gemt.\n"
 "Skal der alligevel afsluttes?"
 
-#: gnome-session/session-properties-capplet.c:189
+#: gnome-session/session-properties-capplet.c:190
 msgid "Session properties"
 msgstr "Sessionsegenskaber"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:216
 msgid "Options"
 msgstr "Indstillinger"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:226
 msgid "Show splash screen on login"
 msgstr "Vis opstartsskærm ved log-ind"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:242
 msgid "Prompt on logout"
 msgstr "Spørg ved log-ud"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:258
 msgid "Automatically save changes to session"
 msgstr "Gem automatisk ændringer i sessionen"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:272
 msgid "Choose Current Session"
 msgstr "Vælg session"
 
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:289
 msgid "Session Name"
 msgstr "Sessionsnavn"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:298
+#: gnome-session/session-properties-capplet.c:370
 msgid "Add..."
 msgstr "Tilføj..."
 
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:302
+#: gnome-session/session-properties-capplet.c:375
 msgid "Edit..."
 msgstr "Redigér..."
 
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:380
 msgid "Delete"
 msgstr "Slet"
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:331
 msgid "Session Options"
 msgstr "Sessionsegenskaber"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
+#: gnome-session/session-properties-capplet.c:342
 msgid "Non-session-managed Startup Programs"
 msgstr "Ikke-sessionshåndterede opstartsprogrammer"
 
-#: gnome-session/session-properties-capplet.c:358
+#: gnome-session/session-properties-capplet.c:359
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioritet"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:361
 msgid "Command"
 msgstr "Kommando"
 
-#: gnome-session/session-properties-capplet.c:388
+#: gnome-session/session-properties-capplet.c:389
 msgid "Browse Currently Running Programs..."
 msgstr "Gennemse aktuelt kørende programmer..."
 
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:398
 msgid "Startup Programs"
 msgstr "Opstartsprogrammer"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:403
+msgid "Current Session"
+msgstr "Aktuel session"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
 msgstr "Fjern den aktuelt valgte klient fra sessionen"
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
 msgstr "Listen af programmer i sessionen"
 
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Sessionsegenskaber"
-
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
 msgstr "Session"
 
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
 msgstr "Sessionsvælger"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
 msgstr "Start session"
 
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "Annullér logind"
 
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
 msgstr "Klargør sessionsopsætning"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "Sessionsegenskaber og opstartsprogrammer"
-
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "Aktuelt sessionshåndterede programmer"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -526,6 +517,15 @@ msgstr "Tilføj opstartsprogram"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Redigér opstartsprogram"
+
+#~ msgid "Could not connect to gnome-session"
+#~ msgstr "Kunne ikke tilkoble til gnome-session"
+
+#~ msgid "Session Properties"
+#~ msgstr "Sessionsegenskaber"
+
+#~ msgid "Current session managed programs"
+#~ msgstr "Aktuelt sessionshåndterede programmer"
 
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Vindueshåndteringen Enlightenment"
