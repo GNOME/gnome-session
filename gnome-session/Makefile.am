@@ -17,10 +17,11 @@ bin_PROGRAMS = gnome-session save-session gnome-login-check session-properties
 endif
 
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
-gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
-command.c session.h remote.c logout.c
+	command.c session.h remote.c logout.c
 
-save_session_SOURCES = save-session.c
+gnome_session_LDADD=$(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS) @LIBWRAP_LIBS@
+
+save_session_SOURCES = save-session.c gsm-protocol.c
 
 session_properties_SOURCES = session-properties.c \
 gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
@@ -33,6 +34,9 @@ bin_SCRIPTS = gnome-wm
 
 default_DATA = default.session default.wm
 
+desktopdir = $(datadir)/gnome/apps/Settings
+desktop_DATA = save-session.desktop session.desktop
+
 default.session: default.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
 		< $(srcdir)/default.in > default.tmp \
@@ -43,8 +47,9 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
-EXTRA_DIST =		\
-	session.desktop	\
-	default.in	\
-	default.wm.in	\
-	gnome-wm
+EXTRA_DIST =			\
+	default.in		\
+	default.wm.in		\
+	gnome-wm 		\
+	save-session.desktop 	\
+	session.desktop
