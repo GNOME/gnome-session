@@ -32,6 +32,7 @@ Author:  Ralph Mor, X Consortium
 
 #include "smproxy.h"
 #include <unistd.h>
+#include <sys/stat.h>
 
 typedef struct ProxyFileEntry
 {
@@ -358,6 +359,31 @@ int *pFd;
     return ptr;
 }
 
+
+static int
+safe_directory (path)
+char *path;
+
+{
+    struct stat sbuf;
+
+    if (stat (path, &sbuf) != 0)
+	return 0;
+
+    /* directory must be writeable */
+    if (!(sbuf.st_mode & S_IWUSR))
+	return 0;
+
+    /* if the directory is world writeable a denial
+     * of service attack is possible by using up all
+     * possible mkstemp() possibilities.
+     */
+    if (sbuf.st_mode & (S_IWGRP|S_IWOTH))
+	return 0;
+    
+    return 1;
+}
+
 
 
 char *
@@ -373,11 +399,16 @@ WriteProxyFile ()
 
     path = getenv ("SM_SAVE_DIR");
     if (!path)
+      path = gnome_util_home_file (NULL);
+    if (!path)
       path = g_get_home_dir ();
     if (!path)
       path = getenv ("HOME");
     if (!path)
       path = ".";
+
+    if (!safe_directory (path))
+	goto bad;
 
     if ((filename = unique_filename (path, ".gnome-smproxy-", &fd)) == NULL)
 	goto bad;
