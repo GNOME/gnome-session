@@ -1,0 +1,40 @@
+.\" 
+.\" gnome-wm manual page.
+.\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\"
+.TH GNOME 1 "GNOME 1.0"
+gnome-wm \- Launches the user selected window manager for the GNOME
+session
+.SH SYNOPSIS
+.PP
+.B gnome-wm [wm arguments]
+.SH DESCRIPTION
+The \fIgnome-wm\fP script invokes the user selected window manager.
+If the user has not chosen a window manager it will try to launch a
+GNOME compliang window manager.
+.PP
+The user can overwrite the selection of a window manager by setting
+the 
+.B WINDOW_MANAGER
+environment variable.
+.PP
+
+.SH ENVIRONMENT
+The \fIgnome-wm\fP program uses the value of the
+.B WINDOW_MANAGER 
+environment variable to let the user override the configured window
+manager. 
+.SH FILES
+The program stores the current selection of a window manager in the
+~/.gnome/default.wm file, this file has the following format:
+.nf
+[Default]
+WM=path-to-wm
+.fi
+.SH SEE ALSO
+.BR gnome-session(1), defaut.session(5)
+.SH BUGS
+If you find bugs in the \fIgnome-wm\fP program, please report
+these using the \fIgnome-bug\fP script included with the GNOME
+libraries distribution.
+

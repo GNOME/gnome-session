@@ -1,0 +1,78 @@
+.\" 
+.\" gnome-session manual page.
+.\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\"
+.TH GNOME 1 "GNOME 1.0"
+gnome-session \- Starts up the GNOME desktop environment
+.SH SYNOPSIS
+.B gnome-session [\-\-choosesession] [\-\-failsafe]
+[\-\-purge-delay=DELAY] [\-\-warn-delay=DELAY] [\-\-suicide-delay=DELAY]
+.SH DESCRIPTION
+The \fIgnome-session\fP program starts up the GNOME desktop
+environment.  This command is typically executed by your login manager
+(either gdm, xdm, or from your X startup scripts).  It will load
+either your last session, or it will provide a default session for the
+user as defined by the system administrator (or the default GNOME
+installation on your system).
+.PP
+\fIgnome-session\fP is an X11R6 session manager.  It can manage GNOME
+applications as well as any X11R6 SM compliant.
+.PP
+\fIgnome-session\fP uses the contents of the  ~/.gnome/session file
+for starting up.  Various default values are provided in case the file
+does not exist.
+.PP
+.SH The ~/.gnome/session configuration file
+Multiple sessions can be stored in the file, in the special section
+__GSM__ the key "Default Session" will point to the sesion to be
+loaded (this typically points to "Default").
+.PP
+If the session file does not exist, \fIgnome-session\fP will use the
+contents of the 
+.I @datadir@/gnome/default.session
+file.
+.SH OPTIONS
+The following options are supported:
+.TP
+.I "--choose-session"
+Starts the choosers and lets the user pick a session to start
+.TP
+.I "--failsafe"
+Fail safe operations mode: only reads saved sessions from the
+default.session file.
+.TP
+.I "--purge-delay"
+The number of millisecond that \fIgnome-session\fP will wait for
+clients to register, if you use 0 it will wait forever (default value:
+30,000 milliseconds).
+.TP
+.I "--warn-delay"
+The number of millisecond that \fIgnome-session\fP will wait for
+clients to respond, if you use 0 it will wait forever (default value:
+10,000 milliseconds).
+.TP
+.I "--suicide-delay"
+The number of millisecond that \fIgnome-session\fP will wait for
+clients to die, if you use 0 it will wait forever (default value:
+10,000 milliseconds).
+.SH ENVIRONMENT
+\fIgnome-session\fP sets a number of environment variables before it
+launches the session:
+.PP 
+.B SESSION_MANAGER
+.IP
+This variable is used by session-manager aware clients to contact
+gnome-session. 
+.PP
+.B DISPLAY
+.IP
+This variable is set to the actual DISPLAY settting being used by
+\fIgnome-session\fP (as it might be different from the environment
+variable, for example if you used the --display option).
+.SH SEE ALSO
+.BR default.session (5), gnome-login-check(1), save-session(1)
+.SH BUGS
+If you find bugs in the \fIgnome-wm\fP program, please report
+these using the \fIgnome-bug\fP script included with the GNOME
+libraries distribution.
+

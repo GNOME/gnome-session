@@ -47,9 +47,17 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
+man1_MANS = gnome-wm.1 save-session.1
+man5_MANS = default.session.5
+
+manuals = gnome-wm.1 default.session.5.in
+
 EXTRA_DIST =			\
 	default.in		\
 	default.wm.in		\
 	gnome-wm 		\
 	save-session.desktop 	\
-	session.desktop
+	session.desktop		\
+	$(manuals)
+
+

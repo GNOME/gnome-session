@@ -1,0 +1,23 @@
+.\" 
+.\" save-session manual page.
+.\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\"
+.TH GNOME 1 "GNOME 1.0"
+save-session \- Saves the current GNOME session (or terminates it)
+.SH SYNOPSIS
+.B save-session [\-\-kill]
+.SH DESCRIPTION
+\fIsave-session\fP can be used from a GNOME session to save a snapshot
+of the currently running applications.  This session will be later
+restored at your next GNOME startup session.
+.PP
+You can specify the 
+.B \-\-kill 
+argument to terminate the GNOME session.
+.SH SEE ALSO
+.BR gnome-session(1)
+.SH BUGS
+If you find bugs in the \fIgnome-wm\fP program, please report
+these using the \fIgnome-bug\fP script included with the GNOME
+libraries distribution.
+
