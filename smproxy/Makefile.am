@@ -12,6 +12,4 @@ endif
 
 gnome_smproxy_SOURCES = save.c smproxy.h smproxy.c
 
-man1_MANS = smproxy.man
-
 EXTRA_DIST = README.gnome
