@@ -209,9 +209,9 @@ display_gui (void)
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
   gboolean   retval = FALSE;
-  gboolean save_active;
-  gboolean halt_active;
-  gboolean reboot_active;
+  gboolean save_active = FALSE;
+  gboolean halt_active = FALSE;
+  gboolean reboot_active = FALSE;
 
   gsm_verbose ("display_gui: showing logout dialog\n");
 
@@ -314,9 +314,14 @@ display_gui (void)
 
   response = gtk_dialog_run (GTK_DIALOG (box));
 
-  halt_active = GTK_TOGGLE_BUTTON (halt)->active;
-  reboot_active = GTK_TOGGLE_BUTTON (reboot)->active;
-  save_active = GTK_TOGGLE_BUTTON (toggle_button)->active;
+  if (halt)
+    halt_active = GTK_TOGGLE_BUTTON (halt)->active;
+
+  if (reboot)
+    reboot_active = GTK_TOGGLE_BUTTON (reboot)->active;
+
+  if (toggle_button)
+    save_active = GTK_TOGGLE_BUTTON (toggle_button)->active;
 
   gtk_widget_destroy (box);
 
@@ -332,16 +337,12 @@ display_gui (void)
     case GTK_RESPONSE_OK:
       /* We want to know if we should trash changes (and lose forever)
        * or save them */
-      if(!autosave)
-	      save_selected = save_active;
-
-      if (halt)
-	{
-	  if (halt_active)
-	    action = HALT;
-	  else if (reboot_active)
-	    action = REBOOT;
-	}
+      if(save_active)
+	save_selected = save_active;
+      if (halt_active)
+	action = HALT;
+      else if (reboot_active)
+	action = REBOOT;
       retval = TRUE;
       break;
     default:
