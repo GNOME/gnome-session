@@ -379,7 +379,7 @@ WriteProxyFile ()
     if (!path)
       path = ".";
 
-    if ((filename = unique_filename (path, ".prx", &fd)) == NULL)
+    if ((filename = unique_filename (path, ".gnome-smproxy-", &fd)) == NULL)
 	goto bad;
 
     if (!(proxyFile = fdopen(fd, "wb"))) 

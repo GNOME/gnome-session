@@ -32,7 +32,7 @@ Author:  Ralph Mor, X Consortium
 /* This is probably nonportable.  But then so is the call to
    XmuClientWindow below.  */
 #include <X11/Xmu/WinUtil.h>
-
+#include <libgnome/libgnome.h>
 #include <unistd.h>
 
 XtAppContext appContext;
@@ -945,6 +945,7 @@ SmPointer clientData;
 
 {
     char *filename;
+    char *prefix, *ps;
     Bool success = True;
     SmProp prop1, prop2, prop3, *props[3];
     SmPropValue prop1val, prop2val, prop3val;
@@ -1010,7 +1011,9 @@ SmPointer clientData;
 
     for (i = 0; i < Argc; i++)
     {
-	if (strcmp (Argv[i], "-clientId") == 0 ||
+	if (strcmp (Argv[i], "--sm-client-id") == 0 ||
+	    strcmp (Argv[i], "--sm-config-prefix") == 0 ||
+	    strcmp (Argv[i], "-clientId") == 0 ||
 	    strcmp (Argv[i], "-restore") == 0)
 	{
 	    i++;
@@ -1022,17 +1025,21 @@ SmPointer clientData;
 	}
     }
 
-    prop1.vals[numVals].value = (SmPointer) "-clientId";
-    prop1.vals[numVals++].length = 9;
+    prop1.vals[numVals].value = (SmPointer) "--sm-config-prefix";
+    prop1.vals[numVals++].length = 19;
+
+    ps = strrchr (filename, '/');
+    prefix = (char*)malloc (strlen (ps)+2);
+    prefix = strcat (strcpy (prefix, ps), "/");
+
+    prop1.vals[numVals].value = (SmPointer) prefix;
+    prop1.vals[numVals++].length = strlen (prefix);
+
+    prop1.vals[numVals].value = (SmPointer) "--sm-client-id";
+    prop1.vals[numVals++].length = 14;
 
     prop1.vals[numVals].value = (SmPointer) proxy_clientId;
     prop1.vals[numVals++].length = strlen (proxy_clientId);
-
-    prop1.vals[numVals].value = (SmPointer) "-restore";
-    prop1.vals[numVals++].length = 8;
-
-    prop1.vals[numVals].value = (SmPointer) filename;
-    prop1.vals[numVals++].length = strlen (filename);
 
     prop1.num_vals = numVals;
 
@@ -1059,6 +1066,7 @@ SmPointer clientData;
 
     SmcSetProperties (smcConn, 2, props);
     free ((char *) prop1.vals);
+    free (prefix);
 
  finishUp:
 
@@ -1259,30 +1267,48 @@ char **argv;
 
     for (i = 1; i < argc; i++)
     {
-	if (argv[i][0] == '-')
+      if (!strcmp("--sm-client-id", argv[i]) ||
+	  !strcmp("-clientId", argv[i]))
 	{
-	    switch (argv[i][1])
-	    {
-	      case 'd':				/* -debug */
-		debug = 1;
-		continue;
-
-	      case 'c':				/* -clientId */
-		if (++i >= argc) goto usage;
-		client_id = argv[i];
-		continue;
-
-	      case 'r':				/* -restore */
-		if (++i >= argc) goto usage;
-		restore_filename = argv[i];
-		continue;
-	    }
+	  if (++i >= argc) goto usage;
+	  client_id = argv[i];
+	  continue;
 	}
+      else if (!strcmp("--sm-config-prefix", argv[i]))
+	{
+	  char* path;
+	  if (++i >= argc) goto usage;
 
+	  path = getenv ("SM_SAVE_DIR");
+	  if (!path)
+	    path = gnome_util_home_file (NULL);
+	  if (!path)
+	    path = getenv ("HOME");
+	  if (!path)
+	    path = ".";
+	  
+	  restore_filename = malloc (strlen(path)+strlen(argv[i])+2);
+	  restore_filename = 
+	    strcat (strcat (strcpy (restore_filename, path), "/"), argv[i]); 
+	  restore_filename[strlen (restore_filename)] ='\0';
+	  free (path);
+	  continue;
+	}
+      else if(!strcmp("-restore", argv[i]))
+	{
+	  if (++i >= argc) goto usage;
+	  restore_filename = argv[i];
+	  continue;
+	}
+      else if (!strcmp("--debug", argv[i]))
+	{
+	  debug = 1;
+	  continue;
+	}
+      
     usage:
 
-	fprintf (stderr,
-	    "usage:  %s [-clientId id] [-restore file] [-debug]\n", argv[0]);
+	fprintf (stderr, "usage:  %s [--sm-config-prefix prefix] [--sm-client-id id] [--debug]\n", argv[0]);
 	exit (1);
     }
 
