@@ -42,7 +42,6 @@ bin_PROGRAMS = \
 	gnome-session		\
 	gnome-session-save	\
 	gnome-login-check	\
-	gnome-libice-check	\
 	gnome-session-properties
 endif
 
@@ -105,8 +104,6 @@ gnome_session_properties_SOURCES = \
 # 	session.h			
 
 gnome_login_check_SOURCES = gnome-login-check.c
-
-gnome_libice_check_SOURCES = gnome-libice-check.c
 
 bin_SCRIPTS = gnome-wm
 
