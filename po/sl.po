@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"POT-Creation-Date: 2002-06-08 12:23+0200\n"
+"POT-Creation-Date: 2002-06-25 19:22+0200\n"
 "PO-Revision-Date: 2001-02-28 18:36+0200\n"
 "Last-Translator: Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -12,28 +12,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-login-check.c:121
+#: gnome-session/gnome-login-check.c:150
 msgid "GNOME Login"
 msgstr "GNOME prijava"
 
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Prijava"
+#: gnome-session/gnome-login-check.c:152
+msgid "Log In"
+msgstr "Prijavi se"
 
-#: gnome-session/gnome-login-check.c:148
+#: gnome-session/gnome-login-check.c:183
 msgid "Start with default programs"
 msgstr "Začni s privzetimi programi"
 
-#: gnome-session/gnome-login-check.c:152
+#: gnome-session/gnome-login-check.c:187
 msgid "Reset all user settings"
 msgstr "Ponastavi vse uporabniške nastavitve"
 
-#: gnome-session/gnome-login-check.c:163
+#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
 #, c-format
 msgid "Really reset all GNOME user settings for %s?"
 msgstr "Resnično ponastavi vse GNOME uporabniške nastavitve za %s?"
 
-#: gnome-session/gnome-login-check.c:195
+#: gnome-session/gnome-login-check.c:203
+msgid "No"
+msgstr "Ne"
+
+#: gnome-session/gnome-login-check.c:204
+msgid "Reset all Settings"
+msgstr "Ponastavi vse nastavitve"
+
+#: gnome-session/gnome-login-check.c:236
 #, c-format
 msgid ""
 "The directory /tmp/orbit-%s is not owned\n"
@@ -44,15 +52,15 @@ msgstr ""
 "trenutnega uporabnika, %s.\n"
 "Prosim popravi lastništvo imenika."
 
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
+#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
+msgid "Log in Anyway"
+msgstr "Vseeno se prijavi"
+
+#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
+msgid "Try Again"
 msgstr "Poskusi znova"
 
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Nadaljuj"
-
-#: gnome-session/gnome-login-check.c:219
+#: gnome-session/gnome-login-check.c:258
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -64,28 +72,6 @@ msgstr ""
 "To bo preprečilo GNOMEu, da bi deloval pravilno.\n"
 "Ta problem bi se mogoče odpravil, če se v datoteko\n"
 "datoteko /etc/hosts doda %s."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Vaša različica libICE ima hrošča, ki povzroči, da gnome-session\n"
-"ne deluje pravilno.\n"
-"\n"
-"Če uporabljate Solaris morate ali nadgraditi ga s popravkom #108376-16\n"
-" ali uporabiti libICE.so.6 iz izvirnega Solaris 7.  \n"
-"Skopirajte datoteko v /usr/openwin/lib.  (Zahvala gre Andy-u Reitz-u\n"
-"za podatke o tem hrošču).\n"
-"\n"
-"Vaša seja GNOME bo končana po zaprtju tega dialoga."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -191,6 +177,57 @@ msgstr "Nastavitve"
 msgid "Always started on every login."
 msgstr "Vedno se zažene pri vsaki prijavi."
 
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Ob zaganjanju daemona nastavitev GNOME se je zgodila napaka.\n"
+"\n"
+"Nekatere stvari, kot so teme, zvoki ali nastavitve ozadja ne bodo delovale pravilno."
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Zadnje sporočilo o napaki je bilo:\n"
+"\n"
+
+
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"Bo naslednji prijavi bo GNOME vseeno poskušal znova zagnati daemona nastavitev."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Zgodila se je neznana aktivacijska napaka."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Daemon nastavitev se je prevečkrat znova zagnal."
+
 #: gnome-session/logout.c:225
 msgid "Really log out?"
 msgstr "Resnična odjava?"
@@ -215,23 +252,23 @@ msgstr "Zaustavitev sistema"
 msgid "Reboot"
 msgstr "Ponovni zagon sistema"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:75
 msgid "Specify a session name to load"
 msgstr "Navedi ime seje, ki naj se naloži"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:76
 msgid "Only read saved sessions from the default.session file"
 msgstr "Preberi le shranjene seje iz default.session datoteke"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:77
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Koliko milisekund naj čakam na registriranje odjemalcev (0=večno)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Koliko milisekund naj čakam na odziv odjemalcev (0=večno)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Koliko milisekund naj čakam na smrt odjemalcev (0=večno)"
 
@@ -384,32 +421,15 @@ msgstr "Programi ob začetku"
 msgid "Current Session"
 msgstr "Trenutna seja"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties.c:47
 msgid "Remove the currently selected client from the session."
 msgstr "S seje odstrani trenutno izbranega odjemalca"
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:54
 msgid "The list of programs in the session."
 msgstr "Seznam programov v seji."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Seja"
-
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Izbirnik sej"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Začni sejo"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Prekliči prijavo"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:96
 msgid "Initialize session settings"
 msgstr "Inicializiraj nastavitve seje"
 
@@ -501,6 +521,42 @@ msgstr "Dodaj začetni program"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Uredi začetni program"
+
+#~ msgid "Continue"
+#~ msgstr "Nadaljuj"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Vaša različica libICE ima hrošča, ki povzroči, da gnome-session\n"
+#~ "ne deluje pravilno.\n"
+#~ "\n"
+#~ "Če uporabljate Solaris morate ali nadgraditi ga s popravkom #108376-16\n"
+#~ " ali uporabiti libICE.so.6 iz izvirnega Solaris 7.  \n"
+#~ "Skopirajte datoteko v /usr/openwin/lib.  (Zahvala gre Andy-u Reitz-u\n"
+#~ "za podatke o tem hrošču).\n"
+#~ "\n"
+#~ "Vaša seja GNOME bo končana po zaprtju tega dialoga."
+
+#~ msgid "Session"
+#~ msgstr "Seja"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Izbirnik sej"
+
+#~ msgid "Start Session"
+#~ msgstr "Začni sejo"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Prekliči prijavo"
 
 #~ msgid "_Log Out"
 #~ msgstr "_Odjava"
