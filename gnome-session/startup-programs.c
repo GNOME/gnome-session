@@ -23,7 +23,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <gnome.h>
-#include "capplet-widget.h"
 #include "session-properties-capplet.h"
 #include "gsm-protocol.h"
 
