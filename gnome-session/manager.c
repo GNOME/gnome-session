@@ -799,7 +799,7 @@ close_connection (SmsConn connection, SmPointer data, int count,
   SmFreeReasons (count, reasons);
 
   /* Even doing this results in segfaults under some cicumstances ! */
-  //SmsCleanUp(connection);
+  /* SmsCleanUp(connection); */
 
   update_save_state ();
 }
