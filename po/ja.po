@@ -7,13 +7,14 @@
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000
 # Shingo Akagaki <dora@kondara.org>, 2000
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2001
+# Ryoichi INAGAKI <ryo1@bc.wakwak.com>, 2002
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.0\n"
-"POT-Creation-Date: 2002-07-15 11:23+1200\n"
-"PO-Revision-Date: 2002-06-13 12:05+0900\n"
-"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
+"Project-Id-Version: gnome-session 2.0.2\n"
+"POT-Creation-Date: 2002-07-20 02:04+0900\n"
+"PO-Revision-Date: 2002-07-20 02:10+0900\n"
+"Last-Translator: Ryoichi INAGAKI <ryo1@bc.wakwak.com>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,9 +101,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "ログアウトに影響しませんが、殺せます。"
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "リストア"
+msgstr "再スタート"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -139,6 +139,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"GNOME設定デーモンの起動時にエラーが発生しました。\n"
+"\n"
+"テーマや音、背景設定などなんらかの設定が正しく動作しないかも知れません。"
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -147,6 +150,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"最新のエラーメッセージ :\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -154,24 +161,25 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"GNOME は次回のログインの時にも設定デーモンに再起動を試みます"
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "アクティベーション時に不明なエラーが発生しました"
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "設定デーモンは何度も再起動しました。"
 
 #: gnome-session/logout.c:234
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "本当にこのサブメニューとその内容を全て削除しますか?"
+msgstr "本当にログアウトしますか?"
 
 #: gnome-session/logout.c:251
-#, fuzzy
 msgid "_Save current setup"
-msgstr "現在の設定を保存"
+msgstr "現在の設定を保存(_S)"
 
 #: gnome-session/logout.c:271
 msgid "Action"
@@ -182,13 +190,12 @@ msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
 #: gnome-session/logout.c:282
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "シャットダウン"
+msgstr "シャットダウン(_u)"
 
 #: gnome-session/logout.c:285
 msgid "_Restart the computer"
-msgstr ""
+msgstr "コンピュータを再起動(_R)"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -225,10 +232,9 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "とにかくログイン"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
 msgstr "再試行"
 
@@ -254,7 +260,6 @@ msgid "You may wait for it to respond or remove it."
 msgstr "待つことも出来ますが、取り除くことも出来ます。"
 
 #: gnome-session/manager.c:1507
-#, fuzzy
 msgid "Restart abandoned due to failures."
 msgstr "失敗したものを再実行します。"
 
@@ -299,9 +304,8 @@ msgid "Edit session name"
 msgstr "セッション名の編集"
 
 #: gnome-session/session-properties-capplet.c:105
-#, fuzzy
 msgid "_Edit"
-msgstr "編集"
+msgstr "編集(_E)"
 
 #: gnome-session/session-properties-capplet.c:173
 msgid ""
@@ -313,24 +317,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:202
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
 msgstr "セッション"
 
 #: gnome-session/session-properties-capplet.c:230
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "ログイン時にスプラッシュスクリーンを表示"
+msgstr "ログイン時にスプラッシュスクリーンを表示(_l)"
 
 #: gnome-session/session-properties-capplet.c:241
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "ログアウト時に確認"
+msgstr "ログアウト時に確認(_P)"
 
 #: gnome-session/session-properties-capplet.c:252
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "自動的にセッションの変更点を保存"
+msgstr "自動的にセッションの変更点を保存(_g)"
 
 #: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
@@ -361,18 +361,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "現在選択しているクライアントをセッションから削除します。"
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "自動的にセッションの変更点を保存"
+msgstr "現在のセッションに変更を適用"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "セッション内のプログラムのリスト"
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "現在動作中のプログラムを閲覧..."
+msgstr "現在動作中のプログラムを閲覧(_p)..."
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -380,82 +378,63 @@ msgstr "セッションの設定を初期化"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "セッションの設定を行います"
 
-#: gnome-session/splash.c:59
+#: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
 msgstr "音設定"
 
-#: gnome-session/splash.c:60
+#: gnome-session/splash-widget.c:42
 msgid "Screensaver"
 msgstr "スクリーンセーバ"
 
-#: gnome-session/splash.c:61
+#: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish ウインドウマネージャ"
 
-#: gnome-session/splash.c:62
+#: gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Metacity ウインドウマネージャ"
 
-#: gnome-session/splash.c:63
+#: gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "ウインドウマネージャ"
 
-#: gnome-session/splash.c:64
+#: gnome-session/splash-widget.c:46
 msgid "Background Settings"
 msgstr "背景の設定"
 
-#: gnome-session/splash.c:65
+#: gnome-session/splash-widget.c:47
 msgid "Mouse Settings"
 msgstr "マウスの設定"
 
-#: gnome-session/splash.c:66
+#: gnome-session/splash-widget.c:48
 msgid "Keyboard Settings"
 msgstr "キーボードの設定"
 
-#: gnome-session/splash.c:67
+#: gnome-session/splash-widget.c:49
 msgid "The Panel"
 msgstr "GNOME パネル"
 
-#: gnome-session/splash.c:68
+#: gnome-session/splash-widget.c:50
 msgid "Session Manager Proxy"
 msgstr "セッションマネージャ・プロキシ"
 
-#: gnome-session/splash.c:69
+#: gnome-session/splash-widget.c:51
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:286
-#, c-format
-msgid "Starting GNOME: %s"
-msgstr "GNOME 起動中: %s"
-
-#: gnome-session/splash.c:288
-msgid "Starting GNOME: done"
-msgstr "GNOME 起動中: 完了"
-
-#: gnome-session/splash.c:430
-msgid "GNOME"
-msgstr "GNOME"
-
-#: gnome-session/splash.c:454
-msgid "Starting GNOME"
-msgstr "GNOME スタート"
-
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "自動起動コマンド"
+msgstr "自動起動コマンド(_S):"
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "自動起動コマンド"
 
 #: gnome-session/startup-programs.c:306
-#, fuzzy
 msgid "_Priority:"
-msgstr "優先順位"
+msgstr "優先順位(_P):"
 
 #: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
@@ -468,6 +447,18 @@ msgstr "自動起動プログラムの追加"
 #: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "自動起動プログラムの編集"
+
+#~ msgid "Starting GNOME: %s"
+#~ msgstr "GNOME 起動中: %s"
+
+#~ msgid "Starting GNOME: done"
+#~ msgstr "GNOME 起動中: 完了"
+
+#~ msgid "GNOME"
+#~ msgstr "GNOME"
+
+#~ msgid "Starting GNOME"
+#~ msgstr "GNOME スタート"
 
 #~ msgid "GNOME Login"
 #~ msgstr "GNOMEログイン"
