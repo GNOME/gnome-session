@@ -101,7 +101,7 @@ session_properties_SOURCES = 	\
 	gsm-typebuiltins.c		\
 	gsm-typebuiltins.h
 
-# 	session.h			\
+# 	session.h			
 
 gnome_login_check_SOURCES = gnome-login-check.c
 
