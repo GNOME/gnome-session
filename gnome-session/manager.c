@@ -74,6 +74,7 @@ static GSList *message_sent_list = NULL;
 
 
 typedef void message_func (SmsConn connection);
+static void check_session_end (int found);
 
 /* Send a message to every client on LIST.  */
 static void
@@ -283,7 +284,7 @@ save_yourself_request (SmsConn connection, SmPointer data, int save_type,
 
       saving = 1;
       shutting_down = 0;
-      g_assert (! save_yourself_list);
+      g_assert (!save_yourself_list);
       REMOVE (live_list, client);
       APPEND (save_yourself_list, client);
       /* We ignore `shutdown' when a single-client save requested.  */
@@ -592,14 +593,12 @@ void
 save_session (int save_type, gboolean shutdown, int interact_style,
 	      gboolean fast)
 {
-  GSList *list;
-
   if (saving)
     return;
 
   shutting_down = shutdown;
 
-  g_assert (! save_yourself_list);
+  g_assert (!save_yourself_list);
   /* Protect against io_errors by using static lists */
   while (live_list) 
     {
