@@ -373,7 +373,7 @@ command (Client* client, int nprops, SmProp** props)
 	  
 	  while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	    {
-	      if (strcasecmp (section, GSM_CONFIG_SECTION))
+	      if (g_strcasecmp (section, GSM_CONFIG_SECTION))
 		{
 		  SmProp* tmp_prop = make_command (GsmReadSession, section);
 		  
@@ -385,8 +385,8 @@ command (Client* client, int nprops, SmProp** props)
 
       while ((iter = gnome_config_iterator_next(iter, &section, NULL)))
 	{
-	  if (strcasecmp (section, CHOOSER_SESSION) &&
-	      strcasecmp (section, WARNER_SESSION))
+	  if (g_strcasecmp (section, CHOOSER_SESSION) &&
+	      g_strcasecmp (section, WARNER_SESSION))
 	    {
 	      SmProp* tmp_prop = make_command (GsmReadSession, section);
 	      
