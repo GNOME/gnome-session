@@ -1,3 +1,12 @@
+1999-02-12 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* save.c (write_session): write details of clients in the purged_list.
+	(delete_session): do not call discard commands on purged_list clients.
+	(read_one_client): reallocate g_malloc'd strings as malloc'd strings
+ 	to avoid potential seg faults when they are free'd.
+	* manager.c (update_save_state): clear the purged_list on shutdown so
+	that any remaining purged clients are discarded.
+
 1999-02-11 Felix Bellaby  <felix@pooh.u-net.com>
 	* save.c: Replace "Priority with "_GSM_Priority" throughout.
 	(write_session): write details of clients in the pending_list.
