@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.3.2\n"
-"POT-Creation-Date: 2002-07-02 15:50+0200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-07-02 15:51+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
@@ -94,8 +94,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Ikke påvirket av avlogging men kan dø."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Gjenoppstå"
+msgid "Restart"
+msgstr ""
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -169,52 +169,52 @@ msgstr "Det oppsto en ukjent aktiveringsfeil."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Innstillingsdaemonen startet på nytt for mange ganger."
 
-#: gnome-session/logout.c:225
+#: gnome-session/logout.c:234
 msgid "Are you sure you want to log out?"
 msgstr "Er du sikker på at du vil logge ut?"
 
-#: gnome-session/logout.c:242
+#: gnome-session/logout.c:251
 msgid "_Save current setup"
 msgstr "L_agre nåværende oppsett"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Handling"
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:279
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: gnome-session/logout.c:273
+#: gnome-session/logout.c:282
 msgid "Sh_ut Down"
 msgstr "S_lå av"
 
-#: gnome-session/logout.c:276
+#: gnome-session/logout.c:285
 msgid "_Restart the computer"
 msgstr "Sta_rt datamaskinen på nytt"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Spesifiserer et sesjonsnavn som skal startes"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Kun skrivebeskyttede sesjoner fra default.session filen"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal svare (0=uendelig)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal dø (0=uendelig)"
 
-#: gnome-session/main.c:211
+#: gnome-session/main.c:212
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -227,11 +227,11 @@ msgstr ""
 "Det er mulig å rette opp problemet ved å legge\n"
 "til %s i filen /etc/hosts."
 
-#: gnome-session/main.c:218
+#: gnome-session/main.c:219
 msgid "Log in Anyway"
 msgstr "Logg inn likevel"
 
-#: gnome-session/main.c:219
+#: gnome-session/main.c:220
 msgid "Try Again"
 msgstr "Prøv igjen"
 
@@ -257,7 +257,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vente på svar eller fjerne det."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Gjenoppstart programmer som er forlatt pga feil."
 
 #: gnome-session/manager.c:1683
@@ -300,7 +301,12 @@ msgstr "Legg til en ny sesjon"
 msgid "Edit session name"
 msgstr "Rediger sesjonens navn"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Rediger..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -308,97 +314,75 @@ msgstr ""
 "Noen endringer er ikke lagret.\n"
 "Er det likevel OK å avslutte?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Egenskaper for sesjon"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Navn på sesjon"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Alternativer"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Vis oppstartskjerm ved pålogging"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Spør ved avlogging"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Lagre endringer i sesjonen automatisk"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Disse endringene trer i kraft øyeblikkelig</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Velg aktiv sesjon"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Navn på sesjon"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Legg til..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Rediger..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Slett"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Alternativer for sesjon"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Oppstartsprogrammer som ikke håndteres av sesjonen"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritet"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Kommando"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Oppstartsprogrammer"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Aktiv sesjon"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Oppstartsprogrammer"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Fjern valgt klient fra sesjonen."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Lagre endringer i sesjonen automatisk"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Liste over programmer i sesjonen."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr ""
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Initialiser innstillinger for sesjon"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Egenskaper for sesjon og oppstartsprogrammer"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -461,26 +445,62 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Starter GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Oppstartskommando"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Oppstartskommando"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Programmer med små verdier startes før programmer med høyere verdier. "
-"Standardverdiene bør være OK"
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prioritet"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommandoen kan ikke være tom"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
+
+#~ msgid "Respawn"
+#~ msgstr "Gjenoppstå"
+
+#~ msgid "Session properties"
+#~ msgstr "Egenskaper for sesjon"
+
+#~ msgid "Options"
+#~ msgstr "Alternativer"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Disse endringene trer i kraft øyeblikkelig</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Velg aktiv sesjon"
+
+#~ msgid "Add..."
+#~ msgstr "Legg til..."
+
+#~ msgid "Delete"
+#~ msgstr "Slett"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Oppstartsprogrammer som ikke håndteres av sesjonen"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Egenskaper for sesjon og oppstartsprogrammer"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Programmer med små verdier startes før programmer med høyere verdier. "
+#~ "Standardverdiene bør være OK"

@@ -5,74 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-24 08:19+0200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-06-24 08:25+0200\n"
 "Last-Translator: Yanko Kaneti <yaneti@declera.com>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "GNOME Вход"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "Име"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "Започни с програмите по подразбиране"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "Нулирай всички потребителски настройки"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Наистина ли да нулирам всички настройки за потребител %s?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "Не"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "Нулирай всички потребителски настройки"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Директорията /tmp/orbit-%s не е притежание\n"
-"на текущия потребител, %s.\n"
-"Моля, поправете собствеността на директорията."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "Вход, въпреки всичко"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "Пробвай отново"
-
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Не мога да открия интернет адреса на %s.\n"
-"Това ще попречи на GNOME да работи нормално.\n"
-"Вероятно е проблема да се оправи чрез добавяне на\n"
-"%s във файла /etc/hosts."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -157,8 +96,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "Не се влияе от изходи, но може да умре"
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Прераждане"
+#, fuzzy
+msgid "Restart"
+msgstr "Възстанови"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -197,8 +137,8 @@ msgid ""
 msgstr ""
 "Има грешка при стартиране на Сървъра за Настройки на GNOME.\n"
 "\n"
-"Някои неща, като теми, звуци или настройки на фона на екрана "
-"може да не работят правилно."
+"Някои неща, като теми, звуци или настройки на фона на екрана може да не "
+"работят правилно."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -230,50 +170,75 @@ msgstr "Имаше незивестна грешка при активация."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Сървъра за Настройки е рестартиран повече от допустимото пъти."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Сигурни ли сте, че искате да излезете?"
+#: gnome-session/logout.c:234
+#, fuzzy
+msgid "Are you sure you want to log out?"
+msgstr ""
+"Сигурни ли сте, че искате да изтриете това подменю и цялото му съдържание?"
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Запази текущата обстановка"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Действие"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
 msgstr "Изход"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Спира системата"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Рестартиране"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Име на сесия"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Прочитай само запазените сесии от default.session файла"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Време за изчакване на клиентите да се регистрират (0=до безкрайност) [ms]"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Време за изчакване на клиентите да отговорят (0=до брезкрайност) [ms]"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Време за изчакване на клиентите да умрат (0=до брезкрайност) [ms]"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Не мога да открия интернет адреса на %s.\n"
+"Това ще попречи на GNOME да работи нормално.\n"
+"Вероятно е проблема да се оправи чрез добавяне на\n"
+"%s във файла /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Вход, въпреки всичко"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Пробвай отново"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -297,7 +262,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Може да почакате да отговори или да я премахнете"
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Повторното стартиране е прекратено поради грешки."
 
 #: gnome-session/manager.c:1683
@@ -340,7 +306,12 @@ msgstr "Добавя нова сесия"
 msgid "Edit session name"
 msgstr "Редактирай име на сесия"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Редактиране..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -348,97 +319,76 @@ msgstr ""
 "Някой промени не са записани.\n"
 "Все още ли желаете изход?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Настройки на сесията"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Сесия"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Опции"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Покажи прозореца със зареждането на сесията"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Пита при излизане от сесия"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Автоматично запазва промените в сесията"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Тези промени влизат в сила веднага</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Избор на текуща сесия"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Име на сесия"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Добавя..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Редактиране..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Изтрий"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Опции за сесия"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Програми без контрол на сесията"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Приоритет"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Команда"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Стартирани програми"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Текуща сесия"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Приоритет"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Команда"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Стартирани програми"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Премахване на текущо избрания клиент от сесията."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Автоматично запазва промените в сесията"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Списък с програми в сесията."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Преглед на програмите в изпълнение..."
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Инициализирай настройките на сесията"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Настройки на сесията и програми изпълнявани при стартиране"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -501,32 +451,104 @@ msgstr "ГНОМ"
 msgid "Starting GNOME"
 msgstr "Стартиране на GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Начална команда"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Начална команда"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Програмите с малка стойност се изпълняват преди тези с голяма. "
-"Подразбиращата се стойност е добра."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Приоритет"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Името на командата за стартиране не може да бъде празно"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Добави програма"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Редактиране на програма за стартиране"
 
-#~ msgid "Session"
-#~ msgstr "Сесия"
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Вход"
+
+#~ msgid "Log In"
+#~ msgstr "Име"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Започни с програмите по подразбиране"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Нулирай всички потребителски настройки"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Наистина ли да нулирам всички настройки за потребител %s?"
+
+#~ msgid "No"
+#~ msgstr "Не"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Нулирай всички потребителски настройки"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Директорията /tmp/orbit-%s не е притежание\n"
+#~ "на текущия потребител, %s.\n"
+#~ "Моля, поправете собствеността на директорията."
+
+#~ msgid "Respawn"
+#~ msgstr "Прераждане"
+
+#~ msgid "Really log out?"
+#~ msgstr "Сигурни ли сте, че искате да излезете?"
+
+#~ msgid "Logout"
+#~ msgstr "Изход"
+
+#~ msgid "Reboot"
+#~ msgstr "Рестартиране"
+
+#~ msgid "Session properties"
+#~ msgstr "Настройки на сесията"
+
+#~ msgid "Options"
+#~ msgstr "Опции"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Тези промени влизат в сила веднага</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Избор на текуща сесия"
+
+#~ msgid "Add..."
+#~ msgstr "Добавя..."
+
+#~ msgid "Delete"
+#~ msgstr "Изтрий"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Програми без контрол на сесията"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Настройки на сесията и програми изпълнявани при стартиране"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Програмите с малка стойност се изпълняват преди тези с голяма. "
+#~ "Подразбиращата се стойност е добра."
 
 #~ msgid "Session Chooser"
 #~ msgstr "Избор на сесия"
@@ -561,14 +583,8 @@ msgstr "Редактиране на програма за стартиране"
 #~ "\n"
 #~ "Вашата сесия с GNOME ще завърши след затваряне на този диалог."
 
-#~ msgid "_Log Out"
-#~ msgstr "Изход"
-
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Не мога да се свържа с gnome-session"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Преглед на програмите в изпълнение..."
 
 #~ msgid "Session Properties"
 #~ msgstr "Настройки на сесията"
@@ -2899,9 +2915,6 @@ msgstr "Редактиране на програма за стартиране"
 #~ "Внимание! Незапазените промени ще бъдат изгубени!\n"
 #~ "Да продължа ли?"
 
-#~ msgid "Restore"
-#~ msgstr "Възстанови"
-
 #~ msgid "Iconify"
 #~ msgstr "Скрий"
 
@@ -3161,10 +3174,6 @@ msgstr "Редактиране на програма за стартиране"
 
 #~ msgid "Delete empty submenu?"
 #~ msgstr "Да изтрия ли празното подменю?"
-
-#~ msgid "Are you sure you want to delete this submenu and all its contents?"
-#~ msgstr ""
-#~ "Сигурни ли сте, че искате да изтриете това подменю и цялото му съдържание?"
 
 #~ msgid ""
 #~ "You can't add an entry to that submenu.\n"

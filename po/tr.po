@@ -8,88 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.17nPOT-Creation-Date: 2002-04-14 20:04-"
 "0400\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-04-28 04:13+0200\n"
 "Last-Translator: Ömer Fadıl USTA <omer_fad@hotmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "GNOME Girişi"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Giriş"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Öntanımlı uygulamalarla başla"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Tüm kullanıcı ayarlarını sıfırla"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "%s için tüm kullanıcı ayarları gerçekten sıfırlansın mı ?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"/tmp/orbit-%s dizininin sahibi\n"
-"şu anki kullanıcı değildir, %s\n"
-"Lütfen bu dizinin sahibini değiştirin."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Tekrar dene"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Devam et"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"%s için internet adresi bulunamadı.\n"
-"Bu Gnome'un düzgün çalışmasını önleyecektir.\n"
-"Bu sorunu  %s adresini /etc/hosts dosyasına\n"
-"ekleyerek çözebilirsiniz."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"libICE sürümü gnome oturumunun düzgün çalışmamasına sebep olan\n"
-"bir hata içeriyor.\n"
-"\n"
-"Solaris kullanıyorsanız, ya #108376-16 yamasını güncelleyin\n"
-"ya da özgün Solaris 7 den libICE.so.6 dosyasını kullanın.\n"
-"Dosyayı /usr/openwin/lib dizinine kopyalayın. (bu hata\n"
-"hakkında bilgi veren Andy Reitz'e teşekkür edin.).\n"
-"\n"
-"GNOME oturumu bu diyalog kapatıldığında sonlandırılacaktır."
 
 #: gnome-session/gsm-client-editor.c:96
 #, fuzzy
@@ -174,8 +99,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Çıkıştan etkilenmedi, ama öldürülebilir."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Yeniden oluştur"
+msgid "Restart"
+msgstr ""
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -197,52 +122,116 @@ msgstr "Ayarlar"
 msgid "Always started on every login."
 msgstr "Her girişte başlat."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Gerçekten çıkmak istiyor musunuz?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Geçerli ayarları kaydet"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Eylem"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
+#: gnome-session/logout.c:279
+#, fuzzy
+msgid "_Log Out"
 msgstr "Çık"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Kapat"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Yeniden başlat"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Yüklenecek oturum ismini belirtin"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session dosyasından sadece kaydedilmiş oturumları oku"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "İstemcilerin kaydolması için milisaniye cinsinden bekleme zamanı (0=sınırsız)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "İstemcilerin yanıtı için milisaniye cinsinden bekleme zamanı (0=sınırsız)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "İstemcilerin çıkması için milisaniye cinsinden bekleme zamanı (0=sınırsız)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s için internet adresi bulunamadı.\n"
+"Bu Gnome'un düzgün çalışmasını önleyecektir.\n"
+"Bu sorunu  %s adresini /etc/hosts dosyasına\n"
+"ekleyerek çözebilirsiniz."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Tekrar dene"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -266,7 +255,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Yanıt vermesini bekleyebilir ya da kaldırabilirsiniz."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Hatalardan dolayı yeniden oluşturma durduruldu."
 
 #: gnome-session/manager.c:1683
@@ -309,7 +299,12 @@ msgstr "Yeni bir oturum ekle"
 msgid "Edit session name"
 msgstr "Oturum ismini düzenle"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Düzenle..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -318,115 +313,77 @@ msgstr ""
 "Yinede çıkmak istiyor musunuz ?\n"
 "(kayıt edilmeyen değişiklikler yok olacaktır)"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Oturum Özellikleri"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Oturum"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Seçenekler"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Girişte Logoyu göster"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Oturumu kapatırken onaylat"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Değişiklikleri oturuma otomatik olarak kaydet"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr ""
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Şu anki Oturumu Seçiniz"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Oturum İsmi"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Ekle..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Düzenle..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Sil"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Oturum Seçenekleri"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Oturumla Yönetilmeyen Başlangıç Uygulamaları"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Öncelik"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Komut"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Başlangıç Uygulamaları"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 #, fuzzy
 msgid "Current Session"
 msgstr "Oturumu kaydet"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Öncelik"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Komut"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Başlangıç Uygulamaları"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Değişiklikleri oturuma otomatik olarak kaydet"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Oturum"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Çalışan Uygulamaları Tara..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Oturum Seçici"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Oturumu Başlat"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Girişi İptal Et"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Oturum ayarlarını başlat"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Oturum Özellikleri & Başlangıç Programları"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -490,38 +447,130 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "GNOME Oturumunun Başlatılması"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Başlangıç Komutları"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Başlangıç Komutları"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Küçük değerli uygulamalar büyük değerli uygulamalardan önce başlatılır."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Öncelik"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Başlangıç komutu boş olmamalı"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Başlangıç Uygulaması Ekle"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Başlangıç Uygulaması Düzenle"
 
-#, fuzzy
-#~ msgid "_Log Out"
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Girişi"
+
+#~ msgid "Login"
+#~ msgstr "Giriş"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Öntanımlı uygulamalarla başla"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Tüm kullanıcı ayarlarını sıfırla"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "%s için tüm kullanıcı ayarları gerçekten sıfırlansın mı ?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "/tmp/orbit-%s dizininin sahibi\n"
+#~ "şu anki kullanıcı değildir, %s\n"
+#~ "Lütfen bu dizinin sahibini değiştirin."
+
+#~ msgid "Continue"
+#~ msgstr "Devam et"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "libICE sürümü gnome oturumunun düzgün çalışmamasına sebep olan\n"
+#~ "bir hata içeriyor.\n"
+#~ "\n"
+#~ "Solaris kullanıyorsanız, ya #108376-16 yamasını güncelleyin\n"
+#~ "ya da özgün Solaris 7 den libICE.so.6 dosyasını kullanın.\n"
+#~ "Dosyayı /usr/openwin/lib dizinine kopyalayın. (bu hata\n"
+#~ "hakkında bilgi veren Andy Reitz'e teşekkür edin.).\n"
+#~ "\n"
+#~ "GNOME oturumu bu diyalog kapatıldığında sonlandırılacaktır."
+
+#~ msgid "Respawn"
+#~ msgstr "Yeniden oluştur"
+
+#~ msgid "Really log out?"
+#~ msgstr "Gerçekten çıkmak istiyor musunuz?"
+
+#~ msgid "Logout"
 #~ msgstr "Çık"
+
+#~ msgid "Reboot"
+#~ msgstr "Yeniden başlat"
+
+#~ msgid "Session properties"
+#~ msgstr "Oturum Özellikleri"
+
+#~ msgid "Options"
+#~ msgstr "Seçenekler"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Şu anki Oturumu Seçiniz"
+
+#~ msgid "Add..."
+#~ msgstr "Ekle..."
+
+#~ msgid "Delete"
+#~ msgstr "Sil"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Oturumla Yönetilmeyen Başlangıç Uygulamaları"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Oturum Seçici"
+
+#~ msgid "Start Session"
+#~ msgstr "Oturumu Başlat"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Girişi İptal Et"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Oturum Özellikleri & Başlangıç Programları"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Küçük değerli uygulamalar büyük değerli uygulamalardan önce başlatılır."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "gnome oturumuna bağlanılamadı"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Çalışan Uygulamaları Tara..."
 
 #~ msgid "Session Properties"
 #~ msgstr "Oturum Özellikleri"

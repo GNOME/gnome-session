@@ -11,72 +11,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-06-23 17:33+0200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-05-31 02:33+02:00\n"
 "Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "GNOME Aanmelden"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "Aanmelden"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "Start met standaard programma's"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "Herstel alle gebruikersinstellingen"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Wilt u alle GNOME gebruikersinstellingen voor %s wissen?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "Nee"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "Herstel alle gebruikersinstellingen"
-
-#: gnome-session/gnome-login-check.c:236
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"De map /tmp/orbit-%s behoort niet toe\n"
-"aan de huidige gebruiker %s.\n"
-"Gelieve de eigenaar van deze map aan te passen."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "Log toch in"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "Probeer opnieuw"
-
-#: gnome-session/gnome-login-check.c:258
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Er kon geen internetadres gevonden worden voor %s.\n"
-"GNOME kan daardoor niet correct functioneren. Het \n"
-"probleem zou verholpen kunnen worden door %s toe te \n"
-"voegen aan het /etc/hosts bestand."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -159,8 +100,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Ongewijzigd bij afmelden maar kan stoppen."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Herstarten"
+msgid "Restart"
+msgstr ""
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -222,7 +163,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon proberen te starten."
+"GNOME zal de volgende keer dat je inlogt toch de Instellingen Deamon "
+"proberen te starten."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -232,49 +174,73 @@ msgstr "Er is een onbekende activerings-fout opgetreden."
 msgid "The Settings Daemon restarted too many times."
 msgstr "De Instellingen Daemon is te vaak herstart."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Weet u zeker dat u zich wilt afmelden?"
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Huidige instellingen opslaan"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Actie"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
+#: gnome-session/logout.c:279
+#, fuzzy
+msgid "_Log Out"
 msgstr "Afmelden"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Uitschakelen"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Herstarten"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Geef de naam van de sessie die geladen moet worden"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lees opgeslagen sessies alleen uit het default.session bestand"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Maximale wachttijd (ms) voor registratie cliënten (0=eeuwig)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Maximale wachttijd (ms) voor reactie van cliënten (0=eeuwig)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Maximale wachttijd (ms) voor afsterven van cliënten (0=eeuwig)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Er kon geen internetadres gevonden worden voor %s.\n"
+"GNOME kan daardoor niet correct functioneren. Het \n"
+"probleem zou verholpen kunnen worden door %s toe te \n"
+"voegen aan het /etc/hosts bestand."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Log toch in"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Probeer opnieuw"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -298,7 +264,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "U kunt wachten of afbreken"
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "'Herstarten' afgebroken wegens fouten"
 
 #: gnome-session/manager.c:1683
@@ -341,7 +308,12 @@ msgstr "Nieuwe sessie toevoegen"
 msgid "Edit session name"
 msgstr "Sessienaam bewerken"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Bewerken..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -349,97 +321,75 @@ msgstr ""
 "Sommige wijzigingen zijn niet opgeslagen. \n"
 "Wilt nu toch afsluiten?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Sessie eigenschappen"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Sessie"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Opties"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Introvenster tonen bij aanmelden"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Bevestigen bij afmelden"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Veranderingen aan sessie automatisch opslaan"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Deze aanpassingen hebben direkt effect</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Kies huidige sessie"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Sessienaam"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Toevoegen..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Bewerken..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Verwijderen"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Sessie-eigenschappen"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Niet-sessie-beheerde te starten programma's"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioriteit"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Opdracht"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Programma's starten"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Huidige Sessie"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioriteit"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Opdracht"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Programma's starten"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Verwijder de geselecteerde cliënt uit de sessie."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Veranderingen aan sessie automatisch opslaan"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Lijst van programma's in de sessie."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr ""
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Initialiseer sessie-instellingen"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Sessie Eigenschappen & Programma's Starten"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -502,29 +452,101 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "GNOME wordt gestart"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Te Starten Programma"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Te Starten Programma"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Programma's met kleinere waarden worden gestart voor programma's met "
-"grotere waarden. De standaardwaarde zou goed moeten zijn."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prioriteit"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "De opstartopdracht mag niet leeg zijn"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Te starten programma toevoegen"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
+
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Aanmelden"
+
+#~ msgid "Log In"
+#~ msgstr "Aanmelden"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Start met standaard programma's"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Herstel alle gebruikersinstellingen"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Wilt u alle GNOME gebruikersinstellingen voor %s wissen?"
+
+#~ msgid "No"
+#~ msgstr "Nee"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Herstel alle gebruikersinstellingen"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "De map /tmp/orbit-%s behoort niet toe\n"
+#~ "aan de huidige gebruiker %s.\n"
+#~ "Gelieve de eigenaar van deze map aan te passen."
+
+#~ msgid "Respawn"
+#~ msgstr "Herstarten"
+
+#~ msgid "Really log out?"
+#~ msgstr "Weet u zeker dat u zich wilt afmelden?"
+
+#~ msgid "Reboot"
+#~ msgstr "Herstarten"
+
+#~ msgid "Session properties"
+#~ msgstr "Sessie eigenschappen"
+
+#~ msgid "Options"
+#~ msgstr "Opties"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Deze aanpassingen hebben direkt effect</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Kies huidige sessie"
+
+#~ msgid "Add..."
+#~ msgstr "Toevoegen..."
+
+#~ msgid "Delete"
+#~ msgstr "Verwijderen"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Niet-sessie-beheerde te starten programma's"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Sessie Eigenschappen & Programma's Starten"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Programma's met kleinere waarden worden gestart voor programma's met "
+#~ "grotere waarden. De standaardwaarde zou goed moeten zijn."
 
 #~ msgid "Continue"
 #~ msgstr "Doorgaan"
@@ -551,9 +573,6 @@ msgstr "Te starten programma bewerken"
 #~ "Uw GNOME sessie zal afgesloten worden na het sluiten van dit "
 #~ "dialoogvenster."
 
-#~ msgid "Session"
-#~ msgstr "Sessie"
-
 #~ msgid "Session Chooser"
 #~ msgstr "Sessiekiezer"
 
@@ -562,4 +581,3 @@ msgstr "Te starten programma bewerken"
 
 #~ msgid "Cancel Login"
 #~ msgstr "Aanmelden afbreken"
-

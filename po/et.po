@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-07-02 11:57+0300\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-07-02 12:03+0300\n"
 "Last-Translator: Tõivo Leedjärv <toivo@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -96,8 +96,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Säilib väljalogimisel kuid võib surra."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Taaskäivita"
+msgid "Restart"
+msgstr ""
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -162,52 +162,52 @@ msgstr "Tekkis tundmatu aktiveerimise viga."
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:225
+#: gnome-session/logout.c:234
 msgid "Are you sure you want to log out?"
 msgstr "Kas tahad kindlasti välja logida?"
 
-#: gnome-session/logout.c:242
+#: gnome-session/logout.c:251
 msgid "_Save current setup"
 msgstr "_Salvesta praegune seisund"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Tegevus"
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:279
 msgid "_Log Out"
 msgstr "_Logi välja"
 
-#: gnome-session/logout.c:273
+#: gnome-session/logout.c:282
 msgid "Sh_ut Down"
 msgstr "_Seiska arvuti"
 
-#: gnome-session/logout.c:276
+#: gnome-session/logout.c:285
 msgid "_Restart the computer"
 msgstr "_Tee arvutile alglaadimine"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Määra laetava sessiooni nimi"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud sessioone ainult default.session failist"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
 
-#: gnome-session/main.c:211
+#: gnome-session/main.c:212
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -220,11 +220,11 @@ msgstr ""
 "Võimalik, et saate selest veast üle, lisades\n"
 "%s faili /etc/hosts."
 
-#: gnome-session/main.c:218
+#: gnome-session/main.c:219
 msgid "Log in Anyway"
 msgstr "Logi sellest hoolimata sisse"
 
-#: gnome-session/main.c:219
+#: gnome-session/main.c:220
 msgid "Try Again"
 msgstr "Proovi uuesti"
 
@@ -250,7 +250,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Te võite oodata, et ta vastaks, või kustutada ta."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Taaskäivitamine peatati ebaõnnestumiste tõttu."
 
 #: gnome-session/manager.c:1683
@@ -293,7 +294,12 @@ msgstr "Lisa uus sessioon"
 msgid "Edit session name"
 msgstr "Muuda sessiooni nime"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Muuda..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -301,97 +307,76 @@ msgstr ""
 "Kõiki muutusi ei salvestata.\n"
 "Kas võib ikkagi väljuda?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Sessiooni omadused"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Sessioon"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Häälestus"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Näita sisselogimisel tiitelkuva"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Küsi väljalogimisel kinnitust"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Salvesta sessiooni muutused automaatselt"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Need muudatused rakenduvad kohe</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Vali aktiivne sessioon"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Sessiooni nimi"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Lisa..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Muuda..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Kustuta"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Sessiooni häälestus"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Sessioonihaldusesse mittekuuluvad käivitusprogrammid"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioriteet"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Käsk"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Käivitusprogrammid"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Aktiivne sessioon"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioriteet"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Käsk"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Käivitusprogrammid"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Eemalda valitud klient sessioonist."
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Salvesta sessiooni muutused automaatselt"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Sessioonis olevate programmide nimekiri."
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Sirvi hetkel töötavaid programme..."
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Algväärtusta sessioon"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Sessiooni omadused & käivitusprogrammid"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -454,29 +439,65 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "GNOME käivitamine"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Käivituskäsk"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Käivituskäsk"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Väiksemate numbritega programmid käivitatakse enne suuremate numbritega "
-"programme. Vaikeväärutsed peaksid sobivad olema"
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prioriteet"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei saa jätta tühjaks"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Lisa käivitusprogramm"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Muuda käivitusprogrammi"
+
+#~ msgid "Respawn"
+#~ msgstr "Taaskäivita"
+
+#~ msgid "Session properties"
+#~ msgstr "Sessiooni omadused"
+
+#~ msgid "Options"
+#~ msgstr "Häälestus"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Need muudatused rakenduvad kohe</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Vali aktiivne sessioon"
+
+#~ msgid "Add..."
+#~ msgstr "Lisa..."
+
+#~ msgid "Delete"
+#~ msgstr "Kustuta"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Sessioonihaldusesse mittekuuluvad käivitusprogrammid"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Sessiooni omadused & käivitusprogrammid"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Väiksemate numbritega programmid käivitatakse enne suuremate numbritega "
+#~ "programme. Vaikeväärutsed peaksid sobivad olema"
 
 #~ msgid "GNOME Login"
 #~ msgstr "GNOME Login"
@@ -535,9 +556,6 @@ msgstr "Muuda käivitusprogrammi"
 #~ msgid "Reboot"
 #~ msgstr "Tee alglaadimine"
 
-#~ msgid "Session"
-#~ msgstr "Sessioon"
-
 #~ msgid "Session Chooser"
 #~ msgstr "Sessioonivalija"
 
@@ -549,9 +567,6 @@ msgstr "Muuda käivitusprogrammi"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Ei suuda saada ühendust gnome-sessioniga"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Sirvi hetkel töötavaid programme..."
 
 #~ msgid "Session Properties"
 #~ msgstr "Sessiooni omadused"

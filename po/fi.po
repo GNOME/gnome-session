@@ -9,88 +9,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-05-14 21:05+0300\n"
 "Last-Translator: Pauli Virtanen <pauli.virtanen@hut.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "Gnomeen sisäänkirjautuminen"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Sisäänkirjautuminen"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Käynnistä oletusohjelmineen"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Aseta kaikki käyttäjän asetukset oletuksiksi"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Haluatko palauttaa käyttäjän %s asetukset oletuksiksi?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Nykyinen käyttäjä ei omista hakemistoa\n"
-"/tmp/orbit-%s, %s.\n"
-"Korjaa tämän hakemiston omistajuus."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Yritä uudelleen"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Jatka"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Koneelle %s ei saatu Internet-osoitetta,\n"
-"mikä estää Gnomea toimimasta kunnolla.\n"
-"Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
-"%s tiedostoon /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"libICE-kirjaston versiossasi on virhe, joka estää Gnome-istuntoa\n"
-"(gnome-session) toimimasta kunnolla.\n"
-"\n"
-"Jos käytät Solarista, niin joko käytä Solariksen päivitystä #108376-16,\n"
-"tai alkuperäisen Solaris 7:n kirjastoa libICE.so.6. Sen kopiointi\n"
-"hakemistoon /usr/openwin/lib riittää. (Kiitokset Andy Reitzille\n"
-"tämän virheen tiedoista).\n"
-"\n"
-"Tämä Gnome-istunto loppuu, kun suljet tämän ikkunan."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -173,8 +98,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "Uloskirjautuminen ei vaikuta, mutta voi sulkeutua."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Uudelleen käynnistyvä"
+#, fuzzy
+msgid "Restart"
+msgstr "Käynnistä demoni uudelleen"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -196,50 +122,113 @@ msgstr "Asetukset"
 msgid "Always started on every login."
 msgstr "Käynnistyy sisäänkirjauduttaessa."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Haluatko kirjautua ulos?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Tallenna nykyinen tila"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Toiminto"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Kirjaudu ulos"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "Kirjaudu _ulos"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Sammuta"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Käynnistä uudelleen"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Valitse ladattavan istunnon nimi"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lue tallennetut istunnot vain oletusistuntotiedostosta"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Asiakasohjelmien rekisteröitymisen odotusaika millisekunneissa (0=ikuisesti)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Asiakasohjelmien vastauksen odotusaika millisekunneissa (0=ikuisesti)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Asiakasohjelmien sammumisen odotusaika millisekunneissa (0=ikuisesti)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Koneelle %s ei saatu Internet-osoitetta,\n"
+"mikä estää Gnomea toimimasta kunnolla.\n"
+"Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
+"%s tiedostoon /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Yritä uudelleen"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -263,7 +252,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Voit odottaa sen vastausta tai poistaa sen."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Ei käynnistetä uudelleen virheiden vuoksi."
 
 #: gnome-session/manager.c:1683
@@ -306,7 +296,12 @@ msgstr "Lisää uusi istunto"
 msgid "Edit session name"
 msgstr "Muokkaa istunnon nimeä"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Muokkaa..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -314,114 +309,76 @@ msgstr ""
 "Joitakin muutoksia ei ole tallennettu.\n"
 "Haluatko silti lopettaa?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Istunnon ominaisuudet"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Istunto"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Valinnat"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Näytä aloitusikkuna käynnistyessä"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Kysy poistuttaessa"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Tallenna istunnon muutokset itsestään"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Nämä muutokset tulevat voimaan heti</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Valitse nykyinen istunto"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Istunnon nimi"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Lisää..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Muokkaa..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Poista"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Istunnon asetukset"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Istunnonhallinnasta piittaamattomat käynnistyvät ohjelmat"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Tärkeys"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Komento"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Käynnistyvät ohjelmat"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Nykyinen istunto"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Tärkeys"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Komento"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Käynnistyvät ohjelmat"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Poista valittu asiakas istunnosta."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Tallenna istunnon muutokset itsestään"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Luettelo istunnon ohjelmista."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Istunto"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Selaa nyt käynnissä olevia ohjelmia..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Istunnonvalitsin"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Aloita istunto"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Peru sisäänkirjautuminen"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Alusta istuntoasetukset"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Istunnon ominaisuudet ja käynnistyvät ohjelmat"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -484,35 +441,131 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "GNOME käynnistyy"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Käynnistyskomento:"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Käynnistyskomento:"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Ohjelmat joiden arvo on pieni käynnistyvät ennen ohjelmia, joiden arvo on "
-"suuri. Oletuksen pitäisi olla useimmiten sopiva."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Tärkeys"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Aloituskomento ei voi olla tyhjä"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Lisää käynnistyvä ohjelma"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Muokkaa käynnistyvää ohjelmaa"
 
-#~ msgid "_Log Out"
-#~ msgstr "Kirjaudu _ulos"
+#~ msgid "GNOME Login"
+#~ msgstr "Gnomeen sisäänkirjautuminen"
 
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Selaa nyt käynnissä olevia ohjelmia..."
+#~ msgid "Login"
+#~ msgstr "Sisäänkirjautuminen"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Käynnistä oletusohjelmineen"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Aseta kaikki käyttäjän asetukset oletuksiksi"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Haluatko palauttaa käyttäjän %s asetukset oletuksiksi?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Nykyinen käyttäjä ei omista hakemistoa\n"
+#~ "/tmp/orbit-%s, %s.\n"
+#~ "Korjaa tämän hakemiston omistajuus."
+
+#~ msgid "Continue"
+#~ msgstr "Jatka"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "libICE-kirjaston versiossasi on virhe, joka estää Gnome-istuntoa\n"
+#~ "(gnome-session) toimimasta kunnolla.\n"
+#~ "\n"
+#~ "Jos käytät Solarista, niin joko käytä Solariksen päivitystä #108376-16,\n"
+#~ "tai alkuperäisen Solaris 7:n kirjastoa libICE.so.6. Sen kopiointi\n"
+#~ "hakemistoon /usr/openwin/lib riittää. (Kiitokset Andy Reitzille\n"
+#~ "tämän virheen tiedoista).\n"
+#~ "\n"
+#~ "Tämä Gnome-istunto loppuu, kun suljet tämän ikkunan."
+
+#~ msgid "Respawn"
+#~ msgstr "Uudelleen käynnistyvä"
+
+#~ msgid "Really log out?"
+#~ msgstr "Haluatko kirjautua ulos?"
+
+#~ msgid "Logout"
+#~ msgstr "Kirjaudu ulos"
+
+#~ msgid "Reboot"
+#~ msgstr "Käynnistä uudelleen"
+
+#~ msgid "Session properties"
+#~ msgstr "Istunnon ominaisuudet"
+
+#~ msgid "Options"
+#~ msgstr "Valinnat"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Nämä muutokset tulevat voimaan heti</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Valitse nykyinen istunto"
+
+#~ msgid "Add..."
+#~ msgstr "Lisää..."
+
+#~ msgid "Delete"
+#~ msgstr "Poista"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Istunnonhallinnasta piittaamattomat käynnistyvät ohjelmat"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Istunnonvalitsin"
+
+#~ msgid "Start Session"
+#~ msgstr "Aloita istunto"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Peru sisäänkirjautuminen"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Istunnon ominaisuudet ja käynnistyvät ohjelmat"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Ohjelmat joiden arvo on pieni käynnistyvät ennen ohjelmia, joiden arvo on "
+#~ "suuri. Oletuksen pitäisi olla useimmiten sopiva."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Gnome-istuntoon (gnome-session) ei saatu yhteyttä"
@@ -2019,9 +2072,6 @@ msgstr "Muokkaa käynnistyvää ohjelmaa"
 
 #~ msgid "Kill Daemon"
 #~ msgstr "Sulje demoni"
-
-#~ msgid "Restart Daemon"
-#~ msgstr "Käynnistä demoni uudelleen"
 
 #~ msgid "Preferences"
 #~ msgstr "Asetukset"

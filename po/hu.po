@@ -5,88 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core HEAD\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2001-05-04 11:14+0200\n"
 "Last-Translator: Szabolcs Ban <shooby@gnome.hu>\n"
 "Language-Team: Hungarian <hu@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "GNOME Login"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Bejelentkezés"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Indítsd az alapértelmezett programokat"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "A felhasználói beállítások újraállítása"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Tényleg szeretnél minden GNOME felhasználói beállítást törölni%s-nek?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"A /tmp/orbit-%s könyvtár nem az aktuális\n"
-"felhasználó (%s) tulajdona.\n"
-"Kérlek javítsd ki a tulajdonosi problémát."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Próbáld újra"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Folytatás"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Nem találom a %s internet címét.\n"
-"Emiatt nem biztos, hogy rendesen fog működni a GNOME.\n"
-"Lehet, hogy %s a /etc/hosts fájlhoz adásával\n"
-"ki lehet javítani a hibát."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"A gépedre feltelepített libICE hibás, ezért a gnome-session\n"
-"nem működik jól.\n"
-"\n"
-"Ha Solarist használsz, rakd fel a #108376-16 patch-et vagy használd a\n"
-"Solaris 7 eredeti libICE.so.6 programkönyvtárát. Egyszerűen másold a jó\n"
-"fájlt a /usr/openwin/lib könyvtárba. (Köszönet Andy Reitz-nek az "
-"információkért).\n"
-"\n"
-"A GNOME munkafolyamat véget ér, miután bezárod ezt a párbeszédablakot."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -171,8 +96,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "Kilépéssel nem felejtődik el, de ki lehet lőni."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Újraindul"
+#, fuzzy
+msgid "Restart"
+msgstr "Visszaállít"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -194,50 +120,114 @@ msgstr "Beállítások"
 msgid "Always started on every login."
 msgstr "Minden belépéskor elindul."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Tényleg kilépsz?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+#, fuzzy
+msgid "Are you sure you want to log out?"
+msgstr "Tényleg törölni akarod az almenüt minden tartalmával?"
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Beállítások mentése"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Akció"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Kilépés"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "_Kilépés"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Leállítás"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Újraindítás"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
 # gnome-terminal/gnome-terminal.c:2562
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Betöltendő kapcsolat nevének megadása"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "A mentett kapcsolatokat csak a default.session fájlból töltse"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Milliszekundumos idő amíg a kliensek regisztrálására vár (0=örökké)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Milliszekundumos idő amíg a kliensek reagálására vár (0=örökké)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Milliszekundumos idő amíg a kliensek megállására vár (0=örökké)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Nem találom a %s internet címét.\n"
+"Emiatt nem biztos, hogy rendesen fog működni a GNOME.\n"
+"Lehet, hogy %s a /etc/hosts fájlhoz adásával\n"
+"ki lehet javítani a hibát."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Próbáld újra"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -261,7 +251,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Várhatsz a válaszra vagy törölheted."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Az újrapróbálkozás megszüntetve a hibák miatt."
 
 #: gnome-session/manager.c:1683
@@ -304,7 +295,12 @@ msgstr "Új munkafolyamat hozzáadása"
 msgid "Edit session name"
 msgstr "Munkafolyamat nevének szerkesztése"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Szerkesztés"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -312,114 +308,76 @@ msgstr ""
 "Egyes változtatások nem lettek elmentve.\n"
 "Még mindig szeretnél kilépni?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Munkafolyamat beállításai"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Munkafolyamat"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Beállítások"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Indítási üzenet megjelenítése belépéskor"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Megerősítés kérése kilépés előtt"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Munkafolyamat változásainak automatikus mentése"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Ezek a változtatások azonnal érvénybe lépnek</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Munkafolyamat választása"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Munkafolyamat neve"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Hozzáadás..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Szerkesztés..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Törlés"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Munkafolyamat beállításai"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Nem-munkafolyamat-vezérelt elindítandó programok"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritás"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Parancs"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Automatikusan elinduló programok"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Aktuális munkafolyamat"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritás"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Parancs"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Automatikusan elinduló programok"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "A kiválasztott kliens törlése a munkafolyamatból."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Munkafolyamat változásainak automatikus mentése"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "A munkafolyamatban szereplő programok listája."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Munkafolyamat"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "A jelenleg futó programok listája..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Munkafolyamat-választó"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Munkafolyamat indítása"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Mégsem lépek be"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Munkafolyamat tulajdonságok beállítása"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Munkafolyamat beállítások és elindítandó programok"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -482,38 +440,138 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "A GNOME indul"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Elindítandó parancs"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Elindítandó parancs"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"A kisebb értékkel rendelkező programok a nagyobb értékkel rendelkezők előtt "
-"fognak elindulni. Az alapértemezett értékek valószínűleg helyesek."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prioritás"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Az elindítandó parancs nem lehet üres"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Elindítandó program hozzáadása"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Elindítandó program szerkesztése"
 
-#~ msgid "_Log Out"
-#~ msgstr "_Kilépés"
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME Login"
+
+#~ msgid "Login"
+#~ msgstr "Bejelentkezés"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Indítsd az alapértelmezett programokat"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "A felhasználói beállítások újraállítása"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr ""
+#~ "Tényleg szeretnél minden GNOME felhasználói beállítást törölni%s-nek?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "A /tmp/orbit-%s könyvtár nem az aktuális\n"
+#~ "felhasználó (%s) tulajdona.\n"
+#~ "Kérlek javítsd ki a tulajdonosi problémát."
+
+#~ msgid "Continue"
+#~ msgstr "Folytatás"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "A gépedre feltelepített libICE hibás, ezért a gnome-session\n"
+#~ "nem működik jól.\n"
+#~ "\n"
+#~ "Ha Solarist használsz, rakd fel a #108376-16 patch-et vagy használd a\n"
+#~ "Solaris 7 eredeti libICE.so.6 programkönyvtárát. Egyszerűen másold a jó\n"
+#~ "fájlt a /usr/openwin/lib könyvtárba. (Köszönet Andy Reitz-nek az "
+#~ "információkért).\n"
+#~ "\n"
+#~ "A GNOME munkafolyamat véget ér, miután bezárod ezt a párbeszédablakot."
+
+#~ msgid "Respawn"
+#~ msgstr "Újraindul"
+
+#~ msgid "Really log out?"
+#~ msgstr "Tényleg kilépsz?"
+
+#~ msgid "Logout"
+#~ msgstr "Kilépés"
+
+#~ msgid "Reboot"
+#~ msgstr "Újraindítás"
+
+#~ msgid "Session properties"
+#~ msgstr "Munkafolyamat beállításai"
+
+#~ msgid "Options"
+#~ msgstr "Beállítások"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Ezek a változtatások azonnal érvénybe lépnek</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Munkafolyamat választása"
+
+#~ msgid "Add..."
+#~ msgstr "Hozzáadás..."
+
+#~ msgid "Edit..."
+#~ msgstr "Szerkesztés..."
+
+#~ msgid "Delete"
+#~ msgstr "Törlés"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Nem-munkafolyamat-vezérelt elindítandó programok"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Munkafolyamat-választó"
+
+#~ msgid "Start Session"
+#~ msgstr "Munkafolyamat indítása"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Mégsem lépek be"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Munkafolyamat beállítások és elindítandó programok"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "A kisebb értékkel rendelkező programok a nagyobb értékkel rendelkezők "
+#~ "előtt fognak elindulni. Az alapértemezett értékek valószínűleg helyesek."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Nem tudok a gnome-session-höz kapcsolódni"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "A jelenleg futó programok listája..."
 
 #~ msgid "Session Properties"
 #~ msgstr "Munkafolyamat beállításai"
@@ -965,9 +1023,6 @@ msgstr "Elindítandó program szerkesztése"
 #, fuzzy
 #~ msgid "Copy _link location"
 #~ msgstr "Akció"
-
-#~ msgid "Edit"
-#~ msgstr "Szerkesztés"
 
 #~ msgid "File"
 #~ msgstr "Fájl"
@@ -3055,9 +3110,6 @@ msgstr "Elindítandó program szerkesztése"
 #~ "Figyelem! A mentetlen beállítások elvesznek!\n"
 #~ "Mégis?"
 
-#~ msgid "Restore"
-#~ msgstr "Visszaállít"
-
 #~ msgid "Iconify"
 #~ msgstr "Ikonizál"
 
@@ -3317,9 +3369,6 @@ msgstr "Elindítandó program szerkesztése"
 
 #~ msgid "Delete empty submenu?"
 #~ msgstr "Töröljem az üres menüt?"
-
-#~ msgid "Are you sure you want to delete this submenu and all its contents?"
-#~ msgstr "Tényleg törölni akarod az almenüt minden tartalmával?"
 
 #~ msgid ""
 #~ "You can't add an entry to that submenu.\n"

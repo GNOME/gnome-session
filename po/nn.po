@@ -7,98 +7,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-01-27 02:54+0100\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: nynorsk <nn@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-# gsm/gnome-login-check.c:246
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "GNOME-login"
-
-# gsm/gnome-login-check.c:246
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Login"
-
-# gsm/gnome-login-check.c:273
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Start med forvalde program"
-
-# gsm/gnome-login-check.c:277
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Nullstill alle brukarinstillingar"
-
-# gsm/gnome-login-check.c:288
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Verkeleg nullstilla alle GNOME-brukarinstillingar for %s?"
-
-# gsm/gnome-login-check.c:320
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Katalogen /tmp/orbit-%s er ikkje eigd av\n"
-"aktiv brukar, %s.\n"
-"Vennligst korriger eigarskapen på denne katalogen."
-
-# gsm/gnome-login-check.c:327 gsm/gnome-login-check.c:352
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Prøv igjen"
-
-# gsm/gnome-login-check.c:328 gsm/gnome-login-check.c:353
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Fortset"
-
-# gsm/gnome-login-check.c:344
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Kunne ikkje slå opp internett-adressa for %s.\n"
-"Dette vil hindre GNOME i å virka ordentleg.\n"
-"Det er mogleg å retta opp problemet ved å leggja\n"
-"til %s i fila /etc/hosts."
-
-# gsm/gnome-login-check.c:370
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Din versjon av libICE har ein feil som gjer at gnome-session\n"
-"ikkje fungerer som den skal.\n"
-"\n"
-"Dersom du nyttar Solaris, bør du anten oppgradere til Solaris patch\n"
-"#108376-16 eller nytte libICE.so.6 frå den originale Solaris 7. \n"
-"Kopiér fila til /usr/openwin/lib. (Takk til Andy Reitz\n"
-"for informasjon om denne feilen).\n"
-"\n"
-"Din GNOME-økt vil bli avslutte når denne dialogen vert lukka."
 
 # gsm/gsm-client-editor.c:97
 #: gnome-session/gsm-client-editor.c:96
@@ -200,10 +115,11 @@ msgstr "Vanleg"
 msgid "Unaffected by logouts but can die."
 msgstr "Ikkje påvirka av avlogging, men kan døy."
 
-# gsm/gsm-client-row.c:53
+# applets/tasklist/tasklist_menu.c:258
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Gjenoppstå"
+#, fuzzy
+msgid "Restart"
+msgstr "Gjenopprette"
 
 # gsm/gsm-client-row.c:54
 #: gnome-session/gsm-client-row.c:54
@@ -231,60 +147,126 @@ msgstr "Innstillingar"
 msgid "Always started on every login."
 msgstr "Startast ved kvar login."
 
-# gsm/logout.c:199
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Verkeleg logge ut?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+# gmenu/treedel.c:146
+#: gnome-session/logout.c:234
+#, fuzzy
+msgid "Are you sure you want to log out?"
+msgstr "Er du sikker på at du vil slette denne undermenyen med alt innhald?"
 
 # gsm/logout.c:220
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Lagre noverande oppsett"
 
 # gsm/logout.c:239
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Handling"
 
-# gsm/logout.c:247
-#: gnome-session/logout.c:270
-msgid "Logout"
+# panel/foobar-widget.c:372
+#: gnome-session/logout.c:279
+#, fuzzy
+msgid "_Log Out"
 msgstr "Logg ut"
 
 # gsm/logout.c:250
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Slå av"
 
-# gsm/logout.c:253
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Start om"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
 # gsm/main.c:64
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Spesifiserer eit øktnamn som skal startast"
 
 # gsm/main.c:65
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Berre les lagra økter frå default.session fila"
 
 # gsm/main.c:66
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Antal millisekund ventetid for registrering av klientar (0=uendeleg)"
 
 # gsm/main.c:67
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Antal millisekund ventetid for at klientar skal svare (0=uendeleg)"
 
 # gsm/main.c:68
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Antal millisekund ventetid for at klientar skal døy (0=uendeleg)"
+
+# gsm/gnome-login-check.c:344
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Kunne ikkje slå opp internett-adressa for %s.\n"
+"Dette vil hindre GNOME i å virka ordentleg.\n"
+"Det er mogleg å retta opp problemet ved å leggja\n"
+"til %s i fila /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+# gsm/gnome-login-check.c:327 gsm/gnome-login-check.c:352
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Prøv igjen"
 
 # gsm/save-session.c:151
 #: gnome-session/manager.c:176
@@ -314,7 +296,8 @@ msgstr "Du kan vente på svar, eller fjerne det."
 
 # gsm/manager.c:1375
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Gjenoppstart program som er forlatt pga feil."
 
 # gsm/manager.c:1541
@@ -365,144 +348,101 @@ msgstr "Legg til ny økt"
 msgid "Edit session name"
 msgstr "Rediger namnet på økta"
 
-#: gnome-session/session-properties-capplet.c:142
+# gnome-terminal/gnome-terminal.c:1591
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Rediger"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-# gsm/session-properties.c:217
-#: gnome-session/session-properties-capplet.c:172
+# gsm/session-properties.c:272
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
 #, fuzzy
-msgid "Session properties"
-msgstr "Eigenskapar for økt"
-
-# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Val"
+msgid "Sessions"
+msgstr "Økt"
 
 # gsm/session-properties-capplet.c:192
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Vis «splash»-skjerm ved pålogging"
 
 # gsm/session-properties-capplet.c:199
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Spør ved utlogging"
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Lagre endringar i økta automatisk"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr ""
-
-# gsm/session-properties-capplet.c:209
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Vel aktiv økt"
-
 # gsm/session-properties-capplet.c:226
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Øktnamn"
 
-# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Legg til ..."
-
-# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Rediger ..."
-
-# gmenu/main.c:106 gsm/session-properties-capplet.c:257
-# gsm/session-properties-capplet.c:311
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Slett"
-
 # gsm/session-properties-capplet.c:262
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Øktval"
 
-# gsm/session-properties-capplet.c:274
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
-
-# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritet"
-
-# gsm/session-properties-capplet.c:292
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Kommando"
-
-# gsm/session-properties-capplet.c:330
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Oppstartsprogram"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 #, fuzzy
 msgid "Current Session"
 msgstr "Lagra aktiv økt"
 
-#: gnome-session/session-properties.c:100
+# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritet"
+
+# gsm/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Kommando"
+
+# gsm/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Oppstartsprogram"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:107
+# gsm/session-properties-capplet.c:206
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Lagre endringar i økta automatisk"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr ""
 
-# gsm/session-properties.c:272
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Økt"
-
-# gsm/session-properties.c:326
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Øktveljar"
-
-# gsm/session-properties.c:329
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Start økt"
-
-# gsm/session-properties.c:332
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Avbryt innlogging"
+# gsm/session-properties-capplet.c:321
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Sjå gjennom køyrande program ..."
 
 # gsm/session-properties.c:357
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Initialiser innstillingar for økt"
 
-# gsm/session-properties-capplet.c:274
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Eigenskapar for økt og oppstartsprogram"
+msgid "Configure your sessions"
+msgstr ""
 
 # gsm/splash.c:55
 #: gnome-session/splash.c:59
@@ -582,46 +522,166 @@ msgid "Starting GNOME"
 msgstr "Startar GNOME"
 
 # gsm/startup-programs.c:283 gsm/startup-programs.c:290
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Oppstartskommando"
+
+# gsm/startup-programs.c:283 gsm/startup-programs.c:290
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Oppstartskommando"
 
-# gsm/startup-programs.c:314
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Program med lågare verdiar startast før program med høgare verdiar. "
-"Standardverdiane bør vera ok"
+# gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prioritet"
 
 # gsm/startup-programs.c:333
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommandoen kan ikkje vera tom"
 
 # gsm/startup-programs.c:373
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
 # gsm/startup-programs.c:391
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-# panel/foobar-widget.c:372
-#, fuzzy
-#~ msgid "_Log Out"
+# gsm/gnome-login-check.c:246
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME-login"
+
+# gsm/gnome-login-check.c:246
+#~ msgid "Login"
+#~ msgstr "Login"
+
+# gsm/gnome-login-check.c:273
+#~ msgid "Start with default programs"
+#~ msgstr "Start med forvalde program"
+
+# gsm/gnome-login-check.c:277
+#~ msgid "Reset all user settings"
+#~ msgstr "Nullstill alle brukarinstillingar"
+
+# gsm/gnome-login-check.c:288
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Verkeleg nullstilla alle GNOME-brukarinstillingar for %s?"
+
+# gsm/gnome-login-check.c:320
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Katalogen /tmp/orbit-%s er ikkje eigd av\n"
+#~ "aktiv brukar, %s.\n"
+#~ "Vennligst korriger eigarskapen på denne katalogen."
+
+# gsm/gnome-login-check.c:328 gsm/gnome-login-check.c:353
+#~ msgid "Continue"
+#~ msgstr "Fortset"
+
+# gsm/gnome-login-check.c:370
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Din versjon av libICE har ein feil som gjer at gnome-session\n"
+#~ "ikkje fungerer som den skal.\n"
+#~ "\n"
+#~ "Dersom du nyttar Solaris, bør du anten oppgradere til Solaris patch\n"
+#~ "#108376-16 eller nytte libICE.so.6 frå den originale Solaris 7. \n"
+#~ "Kopiér fila til /usr/openwin/lib. (Takk til Andy Reitz\n"
+#~ "for informasjon om denne feilen).\n"
+#~ "\n"
+#~ "Din GNOME-økt vil bli avslutte når denne dialogen vert lukka."
+
+# gsm/gsm-client-row.c:53
+#~ msgid "Respawn"
+#~ msgstr "Gjenoppstå"
+
+# gsm/logout.c:199
+#~ msgid "Really log out?"
+#~ msgstr "Verkeleg logge ut?"
+
+# gsm/logout.c:247
+#~ msgid "Logout"
 #~ msgstr "Logg ut"
+
+# gsm/logout.c:253
+#~ msgid "Reboot"
+#~ msgstr "Start om"
+
+# gsm/session-properties.c:217
+#, fuzzy
+#~ msgid "Session properties"
+#~ msgstr "Eigenskapar for økt"
+
+# gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
+#~ msgid "Options"
+#~ msgstr "Val"
+
+# gsm/session-properties-capplet.c:209
+#~ msgid "Choose Current Session"
+#~ msgstr "Vel aktiv økt"
+
+# gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
+#~ msgid "Add..."
+#~ msgstr "Legg til ..."
+
+# gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
+#~ msgid "Edit..."
+#~ msgstr "Rediger ..."
+
+# gmenu/main.c:106 gsm/session-properties-capplet.c:257
+# gsm/session-properties-capplet.c:311
+#~ msgid "Delete"
+#~ msgstr "Slett"
+
+# gsm/session-properties-capplet.c:274
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
+
+# gsm/session-properties.c:326
+#~ msgid "Session Chooser"
+#~ msgstr "Øktveljar"
+
+# gsm/session-properties.c:329
+#~ msgid "Start Session"
+#~ msgstr "Start økt"
+
+# gsm/session-properties.c:332
+#~ msgid "Cancel Login"
+#~ msgstr "Avbryt innlogging"
+
+# gsm/session-properties-capplet.c:274
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Eigenskapar for økt og oppstartsprogram"
+
+# gsm/startup-programs.c:314
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Program med lågare verdiar startast før program med høgare verdiar. "
+#~ "Standardverdiane bør vera ok"
 
 # gsm/save-session.c:107
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Kunne ikkje kople til gnome-session"
-
-# gsm/session-properties-capplet.c:321
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Sjå gjennom køyrande program ..."
 
 # gsm/session-properties.c:217
 #~ msgid "Session Properties"
@@ -1208,10 +1268,6 @@ msgstr "Rediger oppstartsprogram"
 # panel/launcher.c:499 panel/launcher.c:693 panel/menu.c:1715
 #~ msgid "Copy _link location"
 #~ msgstr "Kopier _lenkje"
-
-# gnome-terminal/gnome-terminal.c:1591
-#~ msgid "Edit"
-#~ msgstr "Rediger"
 
 # gnome-terminal/gnome-terminal.c:1586
 #~ msgid "File"
@@ -3540,10 +3596,6 @@ msgstr "Rediger oppstartsprogram"
 #~ "Halde fram?"
 
 # applets/tasklist/tasklist_menu.c:258
-#~ msgid "Restore"
-#~ msgstr "Gjenopprette"
-
-# applets/tasklist/tasklist_menu.c:258
 #~ msgid "Iconify"
 #~ msgstr "Gjer til ikon"
 
@@ -3885,10 +3937,6 @@ msgstr "Rediger oppstartsprogram"
 # gmenu/treedel.c:140
 #~ msgid "Delete empty submenu?"
 #~ msgstr "Slett tom undermeny?"
-
-# gmenu/treedel.c:146
-#~ msgid "Are you sure you want to delete this submenu and all its contents?"
-#~ msgstr "Er du sikker på at du vil slette denne undermenyen med alt innhald?"
 
 # gmenu/treenew.c:35 gmenu/treenew.c:110
 #~ msgid ""

@@ -12,88 +12,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.0\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-05-10 21:56MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "Login di GNOME"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Login"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Enonder avou les prémetous programes"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Mete a zero tos les apontiaedjes di l' uzeu"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "voloz-ve vormint mete a zero tos les apontiaedjes di l' uzeu po %s?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Li ridant /tmp/orbit-%s n' apårtént nén\n"
-"a l' uzeu do moumint, %s.\n"
-"Coridjîz les permissions do ridant s' i vs plait."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Sayîz co on côp"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Continuwer"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Dji n' sai cweri l' adresse Internet po %s.\n"
-"Çoula va fé ki GNOME ni porè nén roter comufåt.\n"
-"Si sreut possibe di coridjî l' probleme e metant\n"
-"%s el fitchî /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Li modêye di libICE ki vos avoz a on bug ki fwait ki gnome-session\n"
-"ni pout nén roter comufåt.\n"
-"\n"
-"Si vos estoz so Solaris, vos dvoz mete a djoû Solaris avou l' patch\n"
-"#108376-16 oudobén eployî libICE.so.6 del Solaris 7 oridjinå.\n"
-"Copyîz l' fitchî e /usr/openwin/lib.  (Gråces a Andy Reitz\n"
-"po les informåcions so ci bug chal).\n"
-"\n"
-"Vosse session GNOME va esse serêye dispoy ki vos åroz cloyou ci purnea chal."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -176,8 +101,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Nén afecté pal fén del session, mins i pout mori."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Raviké"
+msgid "Restart"
+msgstr ""
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -199,49 +124,112 @@ msgstr "Apontiaedjes"
 msgid "Always started on every login."
 msgstr "Tofer enondé po tchaeke session."
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Voloz vs vormint cwiter li session?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Schaper l' apontiaedje do moumint"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Accion"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Cwiter li session"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "C_witer li session"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Distinde l' éndjole"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Renonder l' éndjole"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Specifyî on no di session a tcherdjî"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Ni lere les schapêyès sessions ki foû do fitchî default.session"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tins (e milisegondes) a ratinde po on cliyant s' eredjistrer (0=tofer)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tins (e milisegondes) a ratinde po on cliyant responde (0=tofer)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tins (e milisegondes) a ratinde po on cliyant mori (0=tofer)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Dji n' sai cweri l' adresse Internet po %s.\n"
+"Çoula va fé ki GNOME ni porè nén roter comufåt.\n"
+"Si sreut possibe di coridjî l' probleme e metant\n"
+"%s el fitchî /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Sayîz co on côp"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -265,7 +253,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Vos poloz rawårder ene response - oudobén el oister!"
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Dji rnonce a fé raviker li programe cåze des arokes tot l' enondant."
 
 #: gnome-session/manager.c:1683
@@ -308,7 +297,12 @@ msgstr "Radjouter ene novele session"
 msgid "Edit session name"
 msgstr "Candjî l' no del session"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Candjî..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -316,114 +310,76 @@ msgstr ""
 "Sacwants candjmints n' ont nén stî schapés.\n"
 "Estoz todi d' acoird di moussî foû?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Prôpietés del session"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Session"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Tchuzes"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Mostrer li purnea di bénvnowe å cminçmint"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Dimander å moumint di cwiter"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Schaper otomaticmint les candjmints del session"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr ""
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Tchoezi li session do moumint"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "No del session"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Radjouter..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Candjî..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Disfacer"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Tchuzes del session"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Programes a l' enondaedje ki n' sont nén manaedjîs pal session"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prumiristé"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Comande"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Programes a l' enondaedje"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Session do moumint"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prumiristé"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Comande"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Programes a l' enondaedje"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Oister del session li cliyant tchoezi pol moumint."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Schaper otomaticmint les candjmints del session"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Li djivêye des programes del session."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Session"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Foyter etur les programes en alaedje pol moumint..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Po tchoezi li session"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Enonder li session"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Rinoncî a moussî dvins"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Dj' enonde l' apontiaedje del session"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Prôpietés del session & programes a l' enondaedje"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -486,32 +442,127 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Enondaedje di GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Comande d' enondaedje"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Comande d' enondaedje"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Les programes avou des pus ptites valixhances sont-st enondés divant les cis "
-"avou des pus grandes valixhances. Li prémetowe valixhance duvreut esse bone."
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Prumiristé"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Li cmande d' enondaedje ni pout nén esse vude"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Radjouter on programe d' enondaedje"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Candjî on programe d' enondaedje"
 
-#~ msgid "_Log Out"
-#~ msgstr "C_witer li session"
+#~ msgid "GNOME Login"
+#~ msgstr "Login di GNOME"
 
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Foyter etur les programes en alaedje pol moumint..."
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Enonder avou les prémetous programes"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Mete a zero tos les apontiaedjes di l' uzeu"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "voloz-ve vormint mete a zero tos les apontiaedjes di l' uzeu po %s?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Li ridant /tmp/orbit-%s n' apårtént nén\n"
+#~ "a l' uzeu do moumint, %s.\n"
+#~ "Coridjîz les permissions do ridant s' i vs plait."
+
+#~ msgid "Continue"
+#~ msgstr "Continuwer"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Li modêye di libICE ki vos avoz a on bug ki fwait ki gnome-session\n"
+#~ "ni pout nén roter comufåt.\n"
+#~ "\n"
+#~ "Si vos estoz so Solaris, vos dvoz mete a djoû Solaris avou l' patch\n"
+#~ "#108376-16 oudobén eployî libICE.so.6 del Solaris 7 oridjinå.\n"
+#~ "Copyîz l' fitchî e /usr/openwin/lib.  (Gråces a Andy Reitz\n"
+#~ "po les informåcions so ci bug chal).\n"
+#~ "\n"
+#~ "Vosse session GNOME va esse serêye dispoy ki vos åroz cloyou ci purnea "
+#~ "chal."
+
+#~ msgid "Respawn"
+#~ msgstr "Raviké"
+
+#~ msgid "Really log out?"
+#~ msgstr "Voloz vs vormint cwiter li session?"
+
+#~ msgid "Logout"
+#~ msgstr "Cwiter li session"
+
+#~ msgid "Reboot"
+#~ msgstr "Renonder l' éndjole"
+
+#~ msgid "Session properties"
+#~ msgstr "Prôpietés del session"
+
+#~ msgid "Options"
+#~ msgstr "Tchuzes"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Tchoezi li session do moumint"
+
+#~ msgid "Add..."
+#~ msgstr "Radjouter..."
+
+#~ msgid "Delete"
+#~ msgstr "Disfacer"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Programes a l' enondaedje ki n' sont nén manaedjîs pal session"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Po tchoezi li session"
+
+#~ msgid "Start Session"
+#~ msgstr "Enonder li session"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Rinoncî a moussî dvins"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Prôpietés del session & programes a l' enondaedje"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Les programes avou des pus ptites valixhances sont-st enondés divant les "
+#~ "cis avou des pus grandes valixhances. Li prémetowe valixhance duvreut "
+#~ "esse bone."

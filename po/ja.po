@@ -11,88 +11,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.0\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-06-13 12:05+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "GNOMEログイン"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "ログイン"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "標準プログラムとともに起動"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "ユーザ設定を全てリセットする"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "本当に%sの全GNOMEユーザ設定をリセットしますか?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"ディレクトリ /tmp/orbit-%s は、現在のユーザ\n"
-"%s のものではありません。\n"
-"このディレクトリの所有権を修正してください。"
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "再試行"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "続行"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"%sのアドレスが見つかりません。\n"
-"このためにGNOMEが正しく働かなくなるかも知れません。\n"
-"これは、/etc/hosts に %s を追加する事で解決できる\n"
-"場合もあります。"
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"インストールされている libICE はバグのあるバージョンなので\n"
-"gnome-session は正しく動作しません。\n"
-"\n"
-"Solaris を使っているのでしたら Solaris patch #108376-16 を当てる\n"
-"か、オリジナルの Solaris 7 の libICE.so.6 を使ってください。\n"
-"/usr/openwin/lib にコピーしてください (このバグについての情報を\n"
-"提供してくれた Andy Reitz に感謝)。\n"
-"\n"
-"このダイアログを閉じると、GNOMEセッションは終了します。"
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -175,8 +100,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "ログアウトに影響しませんが、殺せます。"
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "復活"
+#, fuzzy
+msgid "Restart"
+msgstr "リストア"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -198,49 +124,113 @@ msgstr "設定"
 msgid "Always started on every login."
 msgstr "ログインのたびに常に開始されます。"
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "本当にログアウトしますか?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+#, fuzzy
+msgid "Are you sure you want to log out?"
+msgstr "本当にこのサブメニューとその内容を全て削除しますか?"
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "現在の設定を保存"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "アクション"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "ログアウト"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "ログアウト(_L)"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "シャットダウン"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "再起動"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "読みこむセッションの名前を指定"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session ファイルから保存されたセッションを読み込むのみ"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "クライアントを登録するまでに待つ時間 [100分の1秒単位] (0=ずっと待つ)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "クライアントの反応を待つ時間 [100分の1秒単位] (0=ずっと待つ)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "クライアントの終了を待つ時間 [100分の1秒単位] (0=ずっと待つ)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%sのアドレスが見つかりません。\n"
+"このためにGNOMEが正しく働かなくなるかも知れません。\n"
+"これは、/etc/hosts に %s を追加する事で解決できる\n"
+"場合もあります。"
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "再試行"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -264,7 +254,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "待つことも出来ますが、取り除くことも出来ます。"
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "失敗したものを再実行します。"
 
 #: gnome-session/manager.c:1683
@@ -307,7 +298,12 @@ msgstr "新規セッションの追加"
 msgid "Edit session name"
 msgstr "セッション名の編集"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "編集"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -315,114 +311,76 @@ msgstr ""
 "保存されていない変更があります。\n"
 "終了しますか?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "セッションのプロパティ"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "セッション"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "オプション"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "ログイン時にスプラッシュスクリーンを表示"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "ログアウト時に確認"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "自動的にセッションの変更点を保存"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>変更点はすぐに反映されます</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "カレントセッションの選択"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "セッション名"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "追加..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "編集..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "削除"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "セッションのオプション"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "セッション管理でない自動起動プログラム"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "優先順位"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "コマンド"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "自動起動プログラム"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "現在のセッション"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "優先順位"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "コマンド"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "自動起動プログラム"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "現在選択しているクライアントをセッションから削除します。"
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "自動的にセッションの変更点を保存"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "セッション内のプログラムのリスト"
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "セッション"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "現在動作中のプログラムを閲覧..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "セッション選択"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "セッション開始"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "ログインをキャンセル"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "セッションの設定を初期化"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "セッションのプロパティと自動起動プログラム"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -485,38 +443,137 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "GNOME スタート"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "自動起動コマンド"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "自動起動コマンド"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"小さい値のプログラムは大きい値のプログラムよりも前に起動します。 デフォルトの"
-"値で OK なはずです。"
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "優先順位"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "起動時のコマンドは空にできません"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "自動起動プログラムの追加"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "自動起動プログラムの編集"
 
-#~ msgid "_Log Out"
-#~ msgstr "ログアウト(_L)"
+#~ msgid "GNOME Login"
+#~ msgstr "GNOMEログイン"
+
+#~ msgid "Login"
+#~ msgstr "ログイン"
+
+#~ msgid "Start with default programs"
+#~ msgstr "標準プログラムとともに起動"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "ユーザ設定を全てリセットする"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "本当に%sの全GNOMEユーザ設定をリセットしますか?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "ディレクトリ /tmp/orbit-%s は、現在のユーザ\n"
+#~ "%s のものではありません。\n"
+#~ "このディレクトリの所有権を修正してください。"
+
+#~ msgid "Continue"
+#~ msgstr "続行"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "インストールされている libICE はバグのあるバージョンなので\n"
+#~ "gnome-session は正しく動作しません。\n"
+#~ "\n"
+#~ "Solaris を使っているのでしたら Solaris patch #108376-16 を当てる\n"
+#~ "か、オリジナルの Solaris 7 の libICE.so.6 を使ってください。\n"
+#~ "/usr/openwin/lib にコピーしてください (このバグについての情報を\n"
+#~ "提供してくれた Andy Reitz に感謝)。\n"
+#~ "\n"
+#~ "このダイアログを閉じると、GNOMEセッションは終了します。"
+
+#~ msgid "Respawn"
+#~ msgstr "復活"
+
+#~ msgid "Really log out?"
+#~ msgstr "本当にログアウトしますか?"
+
+#~ msgid "Logout"
+#~ msgstr "ログアウト"
+
+#~ msgid "Reboot"
+#~ msgstr "再起動"
+
+#~ msgid "Session properties"
+#~ msgstr "セッションのプロパティ"
+
+#~ msgid "Options"
+#~ msgstr "オプション"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>変更点はすぐに反映されます</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "カレントセッションの選択"
+
+#~ msgid "Add..."
+#~ msgstr "追加..."
+
+#~ msgid "Edit..."
+#~ msgstr "編集..."
+
+#~ msgid "Delete"
+#~ msgstr "削除"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "セッション管理でない自動起動プログラム"
+
+#~ msgid "Session Chooser"
+#~ msgstr "セッション選択"
+
+#~ msgid "Start Session"
+#~ msgstr "セッション開始"
+
+#~ msgid "Cancel Login"
+#~ msgstr "ログインをキャンセル"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "セッションのプロパティと自動起動プログラム"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "小さい値のプログラムは大きい値のプログラムよりも前に起動します。 デフォル"
+#~ "トの値で OK なはずです。"
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "gnome-session に接続できません"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "現在動作中のプログラムを閲覧..."
 
 #~ msgid "Session Properties"
 #~ msgstr "セッションのプロパティ"
@@ -949,9 +1006,6 @@ msgstr "自動起動プログラムの編集"
 
 #~ msgid "Copy _link location"
 #~ msgstr "リンクの場所をコピー(_L)"
-
-#~ msgid "Edit"
-#~ msgstr "編集"
 
 #~ msgid "File"
 #~ msgstr "ファイル"
@@ -2798,9 +2852,6 @@ msgstr "自動起動プログラムの編集"
 #~ "警告! 保存していない情報は失われます!\n"
 #~ "続行しますか?"
 
-#~ msgid "Restore"
-#~ msgstr "リストア"
-
 #~ msgid "Iconify"
 #~ msgstr "アイコン化"
 
@@ -3060,9 +3111,6 @@ msgstr "自動起動プログラムの編集"
 
 #~ msgid "Delete empty submenu?"
 #~ msgstr "空のサブメニューを削除しますか?"
-
-#~ msgid "Are you sure you want to delete this submenu and all its contents?"
-#~ msgstr "本当にこのサブメニューとその内容を全て削除しますか?"
 
 #~ msgid ""
 #~ "You can't add an entry to that submenu.\n"

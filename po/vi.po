@@ -5,86 +5,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-05-30 16:41+0700\n"
 "Last-Translator: pclouds <pclouds@gmx.net>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "Đăng nhập GNOME"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Đăng nhập"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Khởi động bằng chương trình mặc định"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Đặt lại tất cả thông số người dùng"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Thật sự đặt lại tất cả thông số người dùng cho %s?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Người dùng hiện thời %2$s không sở hữu thư mục /tmp/orbit-%1$s,\n"
-"Vui lòng chỉnh lại quyền sở hữu của thư mục này."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Thử lại"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Tiếp tục"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Không thể tìm thấy địa chỉ internet của %s.\n"
-"Điều này sẽ làm cho GNOME hoạt động không trôi chảy.\n"
-"Có lẽ nên sửa lỗi này bằng cách thêm\n"
-"%s vào tập tin /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Phiên bản libICE có lỗi, có thể làm gnome-session hoạt động không đúng.\n"
-"\n"
-"Nếu bạn đang dùng Solaris, bạn nên cập nhật bản patch cho Solaris\n"
-"#108376-16 hoặc dùng libIce.so.6 trong bộ gốc Solaris 7.\n"
-"Chép tập tin này vào /usr/openwin/lib. (Xin cám ơn Andy Reitz\n"
-"đã cung cấp thông tin về lỗi này).\n"
-"\n"
-"Session của bạn sẽ kết thúc sau khi đóng hộp thoại này."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -167,8 +94,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "Không bị tác động bởi lệnh đăng xuất, như có thể kết thúc."
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Khởi động lại"
+#, fuzzy
+msgid "Restart"
+msgstr "Hoàn nguyên"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -190,49 +118,113 @@ msgstr "Thông số"
 msgid "Always started on every login."
 msgstr "Luôn luôn được khởi động mỗi lần đăng nhập"
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Thật sự muốn thoát (logout)?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr ""
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr ""
+
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "Lưu thiết lập hiện thời"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Hành động"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
+#: gnome-session/logout.c:279
+#, fuzzy
+msgid "_Log Out"
 msgstr "Đăng xuất"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "Tắt máy"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Khởi động lại máy"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Xác định tên session cần nạp"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Chỉ đọc các session được lưu trong tập tin default.session"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Khoảng thời gian chờ đợi client đăng ký theo mili giây (0=luôn chờ)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Khoảng thời gian chờ đợi cliet trả lời theo mili giây (0=luôn chờ)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Khoảng thời gian chờ client kết thúc theo mili giây (0=luôn chờ)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Không thể tìm thấy địa chỉ internet của %s.\n"
+"Điều này sẽ làm cho GNOME hoạt động không trôi chảy.\n"
+"Có lẽ nên sửa lỗi này bằng cách thêm\n"
+"%s vào tập tin /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr ""
+
+#: gnome-session/main.c:220
+#, fuzzy
+msgid "Try Again"
+msgstr "Thử lại"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -256,7 +248,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Bạn có thể chờ trả lời hoặc loại bỏ nó."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "Quá trình tái khởi động bị ngắt vì lỗi."
 
 #: gnome-session/manager.c:1683
@@ -299,7 +292,12 @@ msgstr "Thêm một session mới"
 msgid "Edit session name"
 msgstr "Sửa tên session"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "Sửa..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -307,114 +305,76 @@ msgstr ""
 "Vài thay đổi vẫn chưa được lưu.\n"
 "Bạn vẫn đồng ý muốn thoát chứ?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Thuộc tính session"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "Session"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Tùy chọn"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "Hiện Splash Screen khi đăng nhập"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "Hỏi trước khi đăng xuất"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "Tự động lưu các thay đổi hiện thời của session"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Những thay đổi này có tác động tức thì</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Chọn session hiện thời"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Tên session"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Thêm..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Sửa..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Xóa"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Tùy chọn session"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Chương trình khởi động không dùng session"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Độ ưu tiên"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Lệnh"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Chương trình khởi động"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Session hiện thời"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Độ ưu tiên"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Lệnh"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Chương trình khởi động"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Loại bỏ client được chọn khỏi session."
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "Tự động lưu các thay đổi hiện thời của session"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Danh sách chương trình trong session."
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Session"
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "Duyệt các chương trình đang chạy..."
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Bộ chọn session"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Khởi động session"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Bỏ qua đăng nhập"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Khởi động thông số session"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Thuộc tính session & chương trình khởi động"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -477,44 +437,135 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "Đang khởi động GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "Lệnh khởi động"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Lệnh khởi động"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Chương trình với giá trị nhỏ hơn được khởi động trước các chương trình có "
-"giá trị lớn hơn. Nên dùng giá trị mặc định"
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "Độ ưu tiên"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "Phải có lệnh khởi động"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Thêm chương trình khởi động"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình khởi động"
 
+#~ msgid "GNOME Login"
+#~ msgstr "Đăng nhập GNOME"
+
+#~ msgid "Login"
+#~ msgstr "Đăng nhập"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Khởi động bằng chương trình mặc định"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Đặt lại tất cả thông số người dùng"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Thật sự đặt lại tất cả thông số người dùng cho %s?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Người dùng hiện thời %2$s không sở hữu thư mục /tmp/orbit-%1$s,\n"
+#~ "Vui lòng chỉnh lại quyền sở hữu của thư mục này."
+
+#~ msgid "Continue"
+#~ msgstr "Tiếp tục"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Phiên bản libICE có lỗi, có thể làm gnome-session hoạt động không đúng.\n"
+#~ "\n"
+#~ "Nếu bạn đang dùng Solaris, bạn nên cập nhật bản patch cho Solaris\n"
+#~ "#108376-16 hoặc dùng libIce.so.6 trong bộ gốc Solaris 7.\n"
+#~ "Chép tập tin này vào /usr/openwin/lib. (Xin cám ơn Andy Reitz\n"
+#~ "đã cung cấp thông tin về lỗi này).\n"
+#~ "\n"
+#~ "Session của bạn sẽ kết thúc sau khi đóng hộp thoại này."
+
+#~ msgid "Respawn"
+#~ msgstr "Khởi động lại"
+
+#~ msgid "Really log out?"
+#~ msgstr "Thật sự muốn thoát (logout)?"
+
+#~ msgid "Reboot"
+#~ msgstr "Khởi động lại máy"
+
+#~ msgid "Session properties"
+#~ msgstr "Thuộc tính session"
+
+#~ msgid "Options"
+#~ msgstr "Tùy chọn"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Những thay đổi này có tác động tức thì</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Chọn session hiện thời"
+
+#~ msgid "Add..."
+#~ msgstr "Thêm..."
+
+#~ msgid "Delete"
+#~ msgstr "Xóa"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Chương trình khởi động không dùng session"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Bộ chọn session"
+
+#~ msgid "Start Session"
+#~ msgstr "Khởi động session"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Bỏ qua đăng nhập"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Thuộc tính session & chương trình khởi động"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Chương trình với giá trị nhỏ hơn được khởi động trước các chương trình có "
+#~ "giá trị lớn hơn. Nên dùng giá trị mặc định"
+
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Không thể kết nối với gnome-session"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Duyệt các chương trình đang chạy..."
 
 #~ msgid "Remove"
 #~ msgstr "Loại bỏ"
 
 #~ msgid "Try"
 #~ msgstr "Thử"
-
-#~ msgid "Revert"
-#~ msgstr "Hoàn nguyên"
 
 #~ msgid "OK"
 #~ msgstr "Đồng ý"

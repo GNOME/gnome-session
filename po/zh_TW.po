@@ -13,73 +13,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-06-22 18:37+0800\n"
+"POT-Creation-Date: 2002-07-15 11:23+1200\n"
 "PO-Revision-Date: 2002-06-22 22:35+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "GNOME 登入"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "登入"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "啟動預設程式"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "重設所有使用者設定"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "是否重設 %s 的所有 GNOME 使用者設定？"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "否"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "重設所有設定"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"目錄 /tmp/orbit-%s 不屬於目前的使用者 %s。\n"
-"請聯絡該目錄的擁有人。"
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "強迫登入"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "重試"
-
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"無法查詢 %s 的網絡位址。\n"
-"這會使 Gnome 無法正常運作。\n"
-"或許將 %s 加入 /etc/hosts\n"
-"可以避免此問題出現。"
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -162,8 +102,9 @@ msgid "Unaffected by logouts but can die."
 msgstr "不受登入影響但可以終止。"
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "自動再生"
+#, fuzzy
+msgid "Restart"
+msgstr "還原"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -234,49 +175,72 @@ msgstr "出現不明的啟動錯誤。"
 msgid "The Settings Daemon restarted too many times."
 msgstr "設定伺服程式重新啟動的次數太多。"
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "是否確定登出？"
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr ""
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
+#: gnome-session/logout.c:251
+#, fuzzy
+msgid "_Save current setup"
 msgstr "儲存目前的設定"
 
-#: gnome-session/logout.c:262
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "行動"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "登出"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "登出(_L)"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
+#: gnome-session/logout.c:282
+#, fuzzy
+msgid "Sh_ut Down"
 msgstr "關機"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "重新啟動電腦"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr ""
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "指定準備載入的作業階段名稱"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "只從預設作業階段檔案 (default.session) 中讀取已儲存的作業階段"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"無法查詢 %s 的網絡位址。\n"
+"這會使 Gnome 無法正常運作。\n"
+"或許將 %s 加入 /etc/hosts\n"
+"可以避免此問題出現。"
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "強迫登入"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "重試"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -300,7 +264,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "可以等待回應或移除該程式。"
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
+#, fuzzy
+msgid "Restart abandoned due to failures."
 msgstr "因為多次失敗所以放棄自動再生。"
 
 #: gnome-session/manager.c:1683
@@ -343,7 +308,12 @@ msgstr "新增作業階段"
 msgid "Edit session name"
 msgstr "修改作業階段名稱"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+#, fuzzy
+msgid "_Edit"
+msgstr "修改..."
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -351,97 +321,76 @@ msgstr ""
 "部份改變仍未儲存。\n"
 "是否仍然要離開？"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "作業階段偏好設定"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+#, fuzzy
+msgid "Sessions"
+msgstr "作業階段"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "選項"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
+#: gnome-session/session-properties-capplet.c:230
+#, fuzzy
+msgid "Show splash screen on _login"
 msgstr "登入時顯示啟動畫面"
 
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
+#: gnome-session/session-properties-capplet.c:241
+#, fuzzy
+msgid "_Prompt on logout"
 msgstr "登出前先提示"
 
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
+#: gnome-session/session-properties-capplet.c:252
+#, fuzzy
+msgid "Automatically save chan_ges to session"
 msgstr "自動儲存作業階段"
 
-#: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>更改的設定會即時生效</i>"
-
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "選取目前的作業階段"
-
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "作業階段名稱"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "新增..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "修改..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "刪除"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "作業階段選項"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "並非由作業階段管理的初始啟動程式"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "優先值"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "指令"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "初始啟動程式"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "目前的作業階段"
 
-#: gnome-session/session-properties.c:47
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "優先值"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "指令"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "初始啟動程式"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "在作業階段中移除已選取的程式。"
 
-#: gnome-session/session-properties.c:54
+#: gnome-session/session-properties.c:55
+#, fuzzy
+msgid "Apply changes to the current session"
+msgstr "自動儲存作業階段"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "目前作業階段中正在運行的程式的清單。"
 
-#: gnome-session/session-properties.c:96
+#: gnome-session/session-properties.c:90
+#, fuzzy
+msgid "Currently running _programs:"
+msgstr "瀏覽執行中的程式..."
+
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "初始化作業階段設定"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "作業階段屬性及初始啟動程式"
+msgid "Configure your sessions"
+msgstr ""
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -504,30 +453,104 @@ msgstr "GNOME"
 msgid "Starting GNOME"
 msgstr "開始啟動 GNOME"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+#, fuzzy
+msgid "_Startup Command:"
+msgstr "初始啟動指令"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "初始啟動指令"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"優先值較小的程式會比\n"
-"優先值較大的程式較先\n"
-"執行。使用預設值即可。"
+#: gnome-session/startup-programs.c:306
+#, fuzzy
+msgid "_Priority:"
+msgstr "優先值"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
 msgstr "初始啟動指令不可以留空"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "新增初始啟動程式"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
+
+#~ msgid "GNOME Login"
+#~ msgstr "GNOME 登入"
+
+#~ msgid "Log In"
+#~ msgstr "登入"
+
+#~ msgid "Start with default programs"
+#~ msgstr "啟動預設程式"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "重設所有使用者設定"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "是否重設 %s 的所有 GNOME 使用者設定？"
+
+#~ msgid "No"
+#~ msgstr "否"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "重設所有設定"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "目錄 /tmp/orbit-%s 不屬於目前的使用者 %s。\n"
+#~ "請聯絡該目錄的擁有人。"
+
+#~ msgid "Respawn"
+#~ msgstr "自動再生"
+
+#~ msgid "Really log out?"
+#~ msgstr "是否確定登出？"
+
+#~ msgid "Logout"
+#~ msgstr "登出"
+
+#~ msgid "Reboot"
+#~ msgstr "重新啟動電腦"
+
+#~ msgid "Session properties"
+#~ msgstr "作業階段偏好設定"
+
+#~ msgid "Options"
+#~ msgstr "選項"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>更改的設定會即時生效</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "選取目前的作業階段"
+
+#~ msgid "Add..."
+#~ msgstr "新增..."
+
+#~ msgid "Delete"
+#~ msgstr "刪除"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "並非由作業階段管理的初始啟動程式"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "作業階段屬性及初始啟動程式"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "優先值較小的程式會比\n"
+#~ "優先值較大的程式較先\n"
+#~ "執行。使用預設值即可。"
 
 #~ msgid "Continue"
 #~ msgstr "繼續"
@@ -552,9 +575,6 @@ msgstr "修改初始啟動程式"
 #~ "\n"
 #~ "GNOME 作業階段會在此對話窗關閉後終止。"
 
-#~ msgid "Session"
-#~ msgstr "作業階段"
-
 #~ msgid "Session Chooser"
 #~ msgstr "作業階段選擇程式"
 
@@ -563,12 +583,6 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "Cancel Login"
 #~ msgstr "取消登入"
-
-#~ msgid "_Log Out"
-#~ msgstr "登出(_L)"
-
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "瀏覽執行中的程式..."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "無法連接 gnome-session"
@@ -587,9 +601,6 @@ msgstr "修改初始啟動程式"
 
 #~ msgid "Try"
 #~ msgstr "嘗試"
-
-#~ msgid "Revert"
-#~ msgstr "還原"
 
 #~ msgid "OK"
 #~ msgstr "確定"
