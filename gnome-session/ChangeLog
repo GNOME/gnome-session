@@ -1,5 +1,9 @@
 Sun Jan 18 15:28:06 1998  Tom Tromey  <tromey@cygnus.com>
 
+	* manager.c (check_session_end): New function.
+	(save_yourself_done): Use it.
+	(close_connection): Likewise.
+
 	* manager.c: Include <string.h>.
 	* ice.c: Include <config.h>.
 

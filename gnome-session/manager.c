@@ -223,18 +223,12 @@ save_yourself_p2_request (SmsConn connection, SmPointer data)
   APPEND (save_yourself_p2_list, client);
 }
 
+/* This is a helper function which is run when it might be time to
+   actually save the session.  It is run when the save_yourself lists
+   are modified.  */
 static void
-save_yourself_done (SmsConn connection, SmPointer data, Bool success)
+check_session_end (int found)
 {
-  Client *client = (Client *) data;
-  GSList *found;
-
-  found = g_slist_find (save_yourself_list, client);
-
-  REMOVE (save_yourself_list, client);
-  REMOVE (save_yourself_p2_list, client);
-  APPEND (save_finished_list, client);
-
   if (! live_list && ! interact_list && ! save_yourself_list)
     {
       if (! save_yourself_p2_list)
@@ -257,6 +251,21 @@ save_yourself_done (SmsConn connection, SmPointer data, Bool success)
     }
 }
 
+static void
+save_yourself_done (SmsConn connection, SmPointer data, Bool success)
+{
+  Client *client = (Client *) data;
+  GSList *found;
+
+  found = g_slist_find (save_yourself_list, client);
+
+  REMOVE (save_yourself_list, client);
+  REMOVE (save_yourself_p2_list, client);
+  APPEND (save_finished_list, client);
+
+  check_session_end (found != NULL);
+}
+
 /* FIXME: Display REASONS to user, per spec.  */
 /* FIXME: must deal with restart styles: restart anyways means put
    this on a list of things to be saved; restart always means restart
@@ -267,6 +276,9 @@ close_connection (SmsConn connection, SmPointer data, int count,
 {
   Client *client = (Client *) data;
   int interact_next = 0;
+  GSList *found;
+
+  found = g_slist_find (save_yourself_list, client);
 
   /* Just try every list.  */
   REMOVE (zombie_list, client);
@@ -287,6 +299,9 @@ close_connection (SmsConn connection, SmPointer data, int count,
       client = (Client *) interact_list->data;
       SmsInteract (client->connection);
     }
+
+  if (saving)
+    check_session_end (found != NULL);
 
   SmFreeReasons (count, reasons);
 }
