@@ -268,7 +268,7 @@ run_commands (const char *name, int number, const char *command,
 	      int i;
 	      
 	      for (i = 0; i < envc / 2; ++i)
-		newenv[i] = g_copy_strings (envv[2 * i], "=", envv[2 * i + 1],
+		newenv[i] = g_strconcat (envv[2 * i], "=", envv[2 * i + 1],
 					    NULL);
 	      newenv[i] = NULL;
 	      free_vector (envc, envv);

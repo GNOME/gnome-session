@@ -87,7 +87,7 @@ main (int argc, char *argv[])
 
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */
-  ep = g_copy_strings ("DISPLAY=", gdk_get_display (), NULL);
+  ep = g_strconcat ("DISPLAY=", gdk_get_display (), NULL);
   putenv (ep);
 
   ignore (SIGPIPE);
