@@ -15,88 +15,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core\n"
-"POT-Creation-Date: 2002-06-10 17:54+1200\n"
-"PO-Revision-Date: 2002-05-21 22:32+0200\n"
+"POT-Creation-Date: 2002-07-13 15:03+0200\n"
+"PO-Revision-Date: 2002-07-13 15:02+0200\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "GNOME Login"
-msgstr "Gnome-logind"
-
-#: gnome-session/gnome-login-check.c:121
-msgid "Login"
-msgstr "Logind"
-
-#: gnome-session/gnome-login-check.c:148
-msgid "Start with default programs"
-msgstr "Start med standardprogrammer"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Reset all user settings"
-msgstr "Nulstil alle brugerindstillinger"
-
-#: gnome-session/gnome-login-check.c:163
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Gendan alle brugerindstillinger for Gnome for %s?"
-
-#: gnome-session/gnome-login-check.c:195
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"Mappen /tmp/orbit-%s ejes ikke\n"
-"af den aktuelle bruger, %s.\n"
-"Ret venligst ejerskabet af denne mappe."
-
-#: gnome-session/gnome-login-check.c:202 gnome-session/gnome-login-check.c:227
-msgid "Try again"
-msgstr "Prøv igen"
-
-#: gnome-session/gnome-login-check.c:203 gnome-session/gnome-login-check.c:228
-msgid "Continue"
-msgstr "Fortsæt"
-
-#: gnome-session/gnome-login-check.c:219
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Kunne ikke slå internetadressen for %s op.\n"
-"Dette vil forhindre Gnome i at fungere korrekt.\n"
-"Det kan muligvis lade sig gøre at løse problemet\n"
-"ved at tilføje %s til filen /etc/hosts."
-
-#: gnome-session/gnome-login-check.c:245
-msgid ""
-"Your version of libICE has a bug which causes gnome-session\n"
-"to not function correctly.\n"
-"\n"
-"If you are on Solaris, you should either upgrade to Solaris patch\n"
-"#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-"Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-"for information on this bug).\n"
-"\n"
-"Your GNOME session will terminate after closing this dialog."
-msgstr ""
-"Din version af libICE har en fejl som gør at gnome-session ikke\n"
-"fungerer korrekt.\n"
-"\n"
-"Hvis du kører Solaris, bør du enten opgradere til Solaris rettelse nr.\n"
-"108376-16 eller bruge libICE.so.6 fra den oprindeliger Solaris 7. Du\n"
-"kan blot kopiere filen til /usr/openwin/lib (tak til Andy Reitz for\n"
-"oplysninger om denne fejl).\n"
-"\n"
-"Din Gnome-session vil blive afsluttet efter lukning af dette vindue."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -180,8 +105,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Upåvirket af logud men kan dø"
 
 #: gnome-session/gsm-client-row.c:53
-msgid "Respawn"
-msgstr "Gendan"
+msgid "Restart"
+msgstr "Genstart"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -203,49 +128,121 @@ msgstr "Indstillinger"
 msgid "Always started on every login."
 msgstr "Startes altid ved hvert logind"
 
-#: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Vil du logge ud?"
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Der opstod en fejl under kørsel af indstillingsdæmonen til Gnome.\n"
+"\n"
+"Nogle ting, så som temaer, lyde eller baggrundsindstillinger virker muligvis "
+"ikke korrekt."
 
-#: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Gem aktuel opsætning"
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Den sidste fejlbesked var:\n"
+"\n"
 
-#: gnome-session/logout.c:262
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"Gnome vil stadig forsøge at starte indstillingsdæmonen næste gang du logger "
+"på."
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "Der opstod en ukendt aktiveringsfejl."
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "Indstillingsdæmonen er blevet genstartet for mange gange."
+
+#: gnome-session/logout.c:234
+msgid "Are you sure you want to log out?"
+msgstr "Er du sikker på at du vil logge ud?"
+
+#: gnome-session/logout.c:251
+msgid "_Save current setup"
+msgstr "_Gem aktuel opsætning"
+
+#: gnome-session/logout.c:271
 msgid "Action"
 msgstr "Handling"
 
-#: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Log ud"
+#: gnome-session/logout.c:279
+msgid "_Log Out"
+msgstr "_Log ud"
 
-#: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Luk ned"
+#: gnome-session/logout.c:282
+msgid "Sh_ut Down"
+msgstr "L_uk ned"
 
-#: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Genstart"
+#: gnome-session/logout.c:285
+msgid "_Restart the computer"
+msgstr "_Genstart maskinen"
 
-#: gnome-session/main.c:73
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Angiv session som skal indlæses"
 
-#: gnome-session/main.c:74
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Læs kun gemte sessioner fra default.session-filen"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter registrerer sig (0=for evigt)"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter svarer (0=for evigt)"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter dør (0=for evigt)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Kunne ikke slå internetadressen for %s op.\n"
+"Dette vil forhindre Gnome i at fungere korrekt.\n"
+"Det kan muligvis lade sig gøre at løse problemet\n"
+"ved at tilføje %s til filen /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Log på alligevel"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Prøv igen"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -269,8 +266,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vente på at programmet svarer eller blot fjerne det."
 
 #: gnome-session/manager.c:1507
-msgid "Respawn abandoned due to failures."
-msgstr "Gendannelse opgivet pga. fejl."
+msgid "Restart abandoned due to failures."
+msgstr "Genstart opgivet pga. fejl."
 
 #: gnome-session/manager.c:1683
 msgid "A session shutdown is in progress."
@@ -312,7 +309,11 @@ msgstr "Tilføj en ny session"
 msgid "Edit session name"
 msgstr "Ændr sessions navn"
 
-#: gnome-session/session-properties-capplet.c:142
+#: gnome-session/session-properties-capplet.c:105
+msgid "_Edit"
+msgstr "_Redigér"
+
+#: gnome-session/session-properties-capplet.c:173
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -320,114 +321,70 @@ msgstr ""
 "Nogle ændringer er ikke gemt.\n"
 "Skal der alligevel afsluttes?"
 
-#: gnome-session/session-properties-capplet.c:172
-msgid "Session properties"
-msgstr "Sessionsegenskaber"
+#: gnome-session/session-properties-capplet.c:202
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "Sessioner"
 
-#. Frame for options
-#: gnome-session/session-properties-capplet.c:199
-msgid "Options"
-msgstr "Indstillinger"
-
-#: gnome-session/session-properties-capplet.c:209
-msgid "Show splash screen on login"
-msgstr "Vis opstartsskærm ved log-ind"
-
-#: gnome-session/session-properties-capplet.c:220
-msgid "Prompt on logout"
-msgstr "Spørg ved log-ud"
-
-#: gnome-session/session-properties-capplet.c:231
-msgid "Automatically save changes to session"
-msgstr "Gem automatisk ændringer i sessionen"
+#: gnome-session/session-properties-capplet.c:230
+msgid "Show splash screen on _login"
+msgstr "Vis _startsskærm ved log-ind"
 
 #: gnome-session/session-properties-capplet.c:241
-msgid "<i>These changes take effect immediately</i>"
-msgstr "<i>Disse ændringer træder i kraft med det samme</i>"
+msgid "_Prompt on logout"
+msgstr "S_pørg ved log-ud"
 
-#. Session names list
-#: gnome-session/session-properties-capplet.c:245
-msgid "Choose Current Session"
-msgstr "Vælg session"
+#: gnome-session/session-properties-capplet.c:252
+msgid "Automatically save chan_ges to session"
+msgstr "Gem automatisk ændrin_ger i sessionen"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:280
 msgid "Session Name"
 msgstr "Sessionsnavn"
 
-#. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:271
-#: gnome-session/session-properties-capplet.c:348
-msgid "Add..."
-msgstr "Tilføj..."
-
-#: gnome-session/session-properties-capplet.c:275
-#: gnome-session/session-properties-capplet.c:353
-msgid "Edit..."
-msgstr "Redigér..."
-
-#: gnome-session/session-properties-capplet.c:279
-#: gnome-session/session-properties-capplet.c:358
-msgid "Delete"
-msgstr "Slet"
-
-#: gnome-session/session-properties-capplet.c:309
+#: gnome-session/session-properties-capplet.c:327
 msgid "Session Options"
 msgstr "Sessionsegenskaber"
 
-#. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:320
-msgid "Non-session-managed Startup Programs"
-msgstr "Ikke-sessionshåndterede opstartsprogrammer"
-
-#: gnome-session/session-properties-capplet.c:337
-#: gnome-session/startup-programs.c:299
-msgid "Priority"
-msgstr "Prioritet"
-
-#: gnome-session/session-properties-capplet.c:339
-msgid "Command"
-msgstr "Kommando"
-
-#: gnome-session/session-properties-capplet.c:367
-msgid "Startup Programs"
-msgstr "Opstartsprogrammer"
-
-#: gnome-session/session-properties-capplet.c:372
+#: gnome-session/session-properties-capplet.c:336
 msgid "Current Session"
 msgstr "Aktuel session"
 
-#: gnome-session/session-properties.c:100
+#: gnome-session/session-properties-capplet.c:363
+msgid "Priority"
+msgstr "Prioritet"
+
+#: gnome-session/session-properties-capplet.c:365
+msgid "Command"
+msgstr "Kommando"
+
+#: gnome-session/session-properties-capplet.c:393
+msgid "Startup Programs"
+msgstr "Opstartsprogrammer"
+
+#: gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Fjern den aktuelt valgte klient fra sessionen"
 
-#: gnome-session/session-properties.c:107
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "Anvend ændringer i den aktuelle session"
+
+#: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Listen af programmer i sessionen"
 
-#: gnome-session/session-properties.c:207
-msgid "Session"
-msgstr "Session"
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "Aktuelt kørende _programmer:"
 
-#. app
-#: gnome-session/session-properties.c:268
-msgid "Session Chooser"
-msgstr "Sessionsvælger"
-
-#: gnome-session/session-properties.c:271
-msgid "Start Session"
-msgstr "Start session"
-
-#: gnome-session/session-properties.c:274
-msgid "Cancel Login"
-msgstr "Annullér logind"
-
-#: gnome-session/session-properties.c:299
+#: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Klargør sessionsopsætning"
 
 #: gnome-session/session-properties.desktop.in.h:1
-msgid "Session Properties & Startup Programs"
-msgstr "Sessionsegenskaber og opstartsprogrammer"
+msgid "Configure your sessions"
+msgstr "Konfigurér dine sessioner"
 
 #: gnome-session/splash.c:59
 msgid "Audio Settings"
@@ -490,35 +447,129 @@ msgstr "Gnome"
 msgid "Starting GNOME"
 msgstr "Starter Gnome"
 
-#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
+#: gnome-session/startup-programs.c:286
+msgid "_Startup Command:"
+msgstr "Startkommando:"
+
+#: gnome-session/startup-programs.c:292
 msgid "Startup Command"
-msgstr "Opstartskommandoer"
+msgstr "Startkommando"
 
-#: gnome-session/startup-programs.c:314
-msgid ""
-"Programs with smaller values are started before programs with higher values. "
-"The default value should be OK"
-msgstr ""
-"Programmer med mindre værdier startes først. Standardværdien burde være i "
-"orden."
+#: gnome-session/startup-programs.c:306
+msgid "_Priority:"
+msgstr "_Prioritet"
 
-#: gnome-session/startup-programs.c:333
+#: gnome-session/startup-programs.c:334
 msgid "The startup command cannot be empty"
-msgstr "Opstartskommandoen kan ikke være tom"
+msgstr "Startkommandoen kan ikke være tom"
 
-#: gnome-session/startup-programs.c:373
+#: gnome-session/startup-programs.c:374
 msgid "Add Startup Program"
 msgstr "Tilføj opstartsprogram"
 
-#: gnome-session/startup-programs.c:393
+#: gnome-session/startup-programs.c:394
 msgid "Edit Startup Program"
 msgstr "Redigér opstartsprogram"
 
-#~ msgid "_Log Out"
-#~ msgstr "_Log ud"
+#~ msgid "GNOME Login"
+#~ msgstr "Gnome-logind"
 
-#~ msgid "Browse Currently Running Programs..."
-#~ msgstr "Gennemse aktuelt kørende programmer..."
+#~ msgid "Login"
+#~ msgstr "Logind"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Start med standardprogrammer"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Nulstil alle brugerindstillinger"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Gendan alle brugerindstillinger for Gnome for %s?"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "Mappen /tmp/orbit-%s ejes ikke\n"
+#~ "af den aktuelle bruger, %s.\n"
+#~ "Ret venligst ejerskabet af denne mappe."
+
+#~ msgid "Continue"
+#~ msgstr "Fortsæt"
+
+#~ msgid ""
+#~ "Your version of libICE has a bug which causes gnome-session\n"
+#~ "to not function correctly.\n"
+#~ "\n"
+#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
+#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
+#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+#~ "for information on this bug).\n"
+#~ "\n"
+#~ "Your GNOME session will terminate after closing this dialog."
+#~ msgstr ""
+#~ "Din version af libICE har en fejl som gør at gnome-session ikke\n"
+#~ "fungerer korrekt.\n"
+#~ "\n"
+#~ "Hvis du kører Solaris, bør du enten opgradere til Solaris rettelse nr.\n"
+#~ "108376-16 eller bruge libICE.so.6 fra den oprindeliger Solaris 7. Du\n"
+#~ "kan blot kopiere filen til /usr/openwin/lib (tak til Andy Reitz for\n"
+#~ "oplysninger om denne fejl).\n"
+#~ "\n"
+#~ "Din Gnome-session vil blive afsluttet efter lukning af dette vindue."
+
+#~ msgid "Respawn"
+#~ msgstr "Gendan"
+
+#~ msgid "Really log out?"
+#~ msgstr "Vil du logge ud?"
+
+#~ msgid "Logout"
+#~ msgstr "Log ud"
+
+#~ msgid "Reboot"
+#~ msgstr "Genstart"
+
+#~ msgid "Session properties"
+#~ msgstr "Sessionsegenskaber"
+
+#~ msgid "Options"
+#~ msgstr "Indstillinger"
+
+#~ msgid "<i>These changes take effect immediately</i>"
+#~ msgstr "<i>Disse ændringer træder i kraft med det samme</i>"
+
+#~ msgid "Choose Current Session"
+#~ msgstr "Vælg session"
+
+#~ msgid "Add..."
+#~ msgstr "Tilføj..."
+
+#~ msgid "Delete"
+#~ msgstr "Slet"
+
+#~ msgid "Non-session-managed Startup Programs"
+#~ msgstr "Ikke-sessionshåndterede opstartsprogrammer"
+
+#~ msgid "Session Chooser"
+#~ msgstr "Sessionsvælger"
+
+#~ msgid "Start Session"
+#~ msgstr "Start session"
+
+#~ msgid "Cancel Login"
+#~ msgstr "Annullér logind"
+
+#~ msgid "Session Properties & Startup Programs"
+#~ msgstr "Sessionsegenskaber og opstartsprogrammer"
+
+#~ msgid ""
+#~ "Programs with smaller values are started before programs with higher "
+#~ "values. The default value should be OK"
+#~ msgstr ""
+#~ "Programmer med mindre værdier startes først. Standardværdien burde være i "
+#~ "orden."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Kunne ikke tilkoble til gnome-session"
@@ -543,9 +594,6 @@ msgstr "Redigér opstartsprogram"
 
 #~ msgid "Try"
 #~ msgstr "Prøv"
-
-#~ msgid "Revert"
-#~ msgstr "Forkast"
 
 #~ msgid "OK"
 #~ msgstr "O.k."
