@@ -24,8 +24,7 @@ save_session_SOURCES = save-session.c
 
 session_properties_SOURCES = session-properties.c \
 gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
-gsm-client-row.c gsm-client-row.h gsm-column.c gsm-column.h \
-gsm-protocol.c gsm-protocol.h \
+gsm-client-row.c gsm-client-row.h gsm-protocol.c gsm-protocol.h \
 session.h 
 
 default_DATA = default.session default.wm
