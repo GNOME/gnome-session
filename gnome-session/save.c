@@ -231,6 +231,9 @@ run_default_session (void)
   argv[0] = "gnome-help-browser";
   execute_async (NULL, 1, argv);
 
+  argv[0] = "gmc";
+  execute_async (NULL, 1, argv);
+
   /* Add more here.  We can't really do it until other pieces are
      written.  */
 
