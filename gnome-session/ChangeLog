@@ -1,3 +1,11 @@
+2001-01-28  John Harper  <jsh@eazel.com>
+
+	* manager.c (interact_done): if the shutdown is cancelled, send
+	SmsShutdownCancelled message to clients in the
+	save_finished_list as well as those in the save_yourself_list
+	and the save_yourself_p2_list (otherwise these clients will
+	hang waiting for this or SaveComplete)
+
 Mon Feb 5 2001 Glynn Foster <glynn.foster@sun.com>
 	
 	* Some gsm loving - just a quick cleanup, added headers 

@@ -928,6 +928,7 @@ interact_done (SmsConn connection, SmPointer data, gboolean cancel)
 
       send_message (&save_yourself_list, SmsShutdownCancelled);
       send_message (&save_yourself_p2_list, SmsShutdownCancelled);
+      send_message (&save_finished_list, SmsShutdownCancelled);
     }
 
   if (interact_list)
