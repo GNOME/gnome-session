@@ -6,7 +6,11 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
 #include <errno.h>
+#ifndef errno
+extern int errno;
+#endif
 
 static void
 report_errno (int fd)
