@@ -89,7 +89,8 @@ remote_start (char *restart_info, int argc, char **argv,
     }
     else
     {
-	switch(pid = fork())
+      pid = fork();
+	switch(pid)
 	{
 	case -1:
 

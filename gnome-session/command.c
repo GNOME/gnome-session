@@ -230,7 +230,8 @@ client_property (const gchar* client_handle, int nprops, SmProp** props)
 gchar* 
 command_handle_new (gpointer object)
 {
-  gchar* new_handle = g_strdup_printf ("%d", handle++);  
+  gchar* new_handle = g_strdup_printf ("%d", handle);
+  handle++;
   if (!handle_table)
     handle_table = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -316,8 +317,7 @@ set_logout_command (char **command)
 	g_free (logout_command_argv[j]);
       g_free (logout_command_argv);
     }
-  for (j = 0; command[j]; ++j)
-    ;
+  for (j = 0; command[j]; ++j) /**/;
   logout_command_argv = g_new (gchar *, j + 1);
   for (j = 0; command[j]; ++j)
     logout_command_argv[j] = g_strdup (command[j]);
@@ -375,9 +375,9 @@ command (Client* client, int nprops, SmProp** props)
 	    {
 	      if (strcasecmp (section, GSM_CONFIG_SECTION))
 		{
-		  SmProp* prop = make_command (GsmReadSession, section);
+		  SmProp* tmp_prop = make_command (GsmReadSession, section);
 		  
-		  prop_list = g_slist_insert_sorted (prop_list, prop,cmp_args);
+		  prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
 		}
 	    }
 	}
@@ -388,12 +388,12 @@ command (Client* client, int nprops, SmProp** props)
 	  if (strcasecmp (section, CHOOSER_SESSION) &&
 	      strcasecmp (section, WARNER_SESSION))
 	    {
-	      SmProp* prop = make_command (GsmReadSession, section);
+	      SmProp* tmp_prop = make_command (GsmReadSession, section);
 	      
-	      if (!g_slist_find_custom (prop_list, prop, cmp_args))
-		prop_list = g_slist_insert_sorted (prop_list, prop, cmp_args);
+	      if (!g_slist_find_custom (prop_list, tmp_prop, cmp_args))
+		prop_list = g_slist_insert_sorted (prop_list, tmp_prop, cmp_args);
 	      else
-		SmFreeProperty (prop);
+		SmFreeProperty (tmp_prop);
 	    }
 	}
       send_properties (client, prop_list);      
@@ -520,10 +520,10 @@ command (Client* client, int nprops, SmProp** props)
 	  APPEND (prop_list, make_client_event (arg, GsmProperty));
 	  for (list = client1->properties; list; list = list->next)
 	    {
-	      SmProp* prop = (SmProp*)list->data;
+	      SmProp* tmp_prop = (SmProp*)list->data;
 
-	      if (! purged || strcmp (prop->name, SmRestartStyleHint))
-		APPEND (prop_list, prop_dup (prop));
+	      if (! purged || strcmp (tmp_prop->name, SmRestartStyleHint))
+		APPEND (prop_list, prop_dup (tmp_prop));
 	    }
 		
 	  if (purged)
@@ -531,7 +531,7 @@ command (Client* client, int nprops, SmProp** props)
 	      char value[2] = { SmRestartAnyway, '\0' };
 	      SmPropValue val = { 1, NULL };
 	      SmProp hint = { SmRestartStyleHint, SmCARD8, 1, NULL };
-	      SmProp *prop = &hint;
+	      SmProp *tmp_prop = &hint;
 
 	      val.value = &value;
 	      hint.vals = &val;
@@ -539,7 +539,7 @@ command (Client* client, int nprops, SmProp** props)
 	      if (purge_drop)
 		value[0] = SmRestartNever;
 
-	      APPEND (prop_list, prop_dup (prop));
+	      APPEND (prop_list, prop_dup (tmp_prop));
 	    }
 	  send_properties (client, prop_list);      
 	}

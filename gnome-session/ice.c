@@ -48,7 +48,7 @@
 #define ENVNAME "SESSION_MANAGER"
 
 /* Network ids.  */
-char* ids;
+static char* ids;
 
 /* List of all auth entries.  */
 GSList *auth_entries;

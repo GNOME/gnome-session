@@ -35,7 +35,7 @@
 static int zap = 0;
 
 /* True if the session manager is currently in trash mode */
-static int trashing = FALSE;
+static int save_trashing = FALSE;
 
 static const struct poptOption options[] = {
   {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"), NULL},
@@ -57,7 +57,7 @@ static void
 save_complete (GnomeClient* client, gpointer data)
 {
   /* Set this back if we aren't shutting down */
-  if (trashing && !zap)
+  if (save_trashing && !zap)
     gsm_protocol_set_trash_mode (protocol, TRUE);
 
   exit_status = (data != NULL);
@@ -105,12 +105,12 @@ main (int argc, char *argv[])
   gsm_protocol_get_last_session (GSM_PROTOCOL (protocol));
 	
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
-  trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
+  save_trashing = gnome_config_get_bool (TRASH_MODE_KEY "=" TRASH_MODE_DEFAULT);
   gnome_config_pop_prefix ();
 
   gnome_client_set_restart_style (client, GNOME_RESTART_NEVER);
 
-  if (trashing)
+  if (save_trashing)
     gsm_protocol_set_trash_mode (protocol, FALSE);
 
   /* We could expose more of the arguments to the user if we wanted

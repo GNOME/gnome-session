@@ -752,7 +752,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	  if (!strcmp (GSM_CLIENT_TYPE (props[0]), GsmProperty))
 	    {
 	      gint i;
-	      gchar *restart_command = NULL, *command = NULL;
+	      gchar *restart_command = NULL, *tmp_command = NULL;
 	      GsmClient* client = find_client (props[0], live_session);
 	      GsmSession* session = client->session;
 	      prop_free (props[0]);
@@ -779,24 +779,24 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 			}
 		      else if (!strcmp (name, SmCloneCommand))
 			{
-			  command = gsm_prop_to_sh (props[i]);
+			  tmp_command = gsm_prop_to_sh (props[i]);
 			}
 		      else if (!strcmp (name, SmRestartCommand))
 			{
 			  if (! command && ! client->command)
 			    {
 			      restart_command = gsm_prop_to_sh (props[i]);
-			      command = restart_command;
+			      tmp_command = restart_command;
 			    }
 			}
 		      prop_free (props[i]);
 		    }
 
-		  if (command)
+		  if (tmp_command)
 		    {		      
 		      gtk_signal_emit (GTK_OBJECT (client), 
 				       gsm_client_signals[COMMAND],
-				       command);
+				       tmp_command);
 		      if (! client->command && session->waiting)
 			{
 			  session->waiting--;
@@ -805,9 +805,9 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 					     gsm_session_signals[INITIALIZED]);
 			}
 		      g_free (client->command);
-		      client->command = command;
+		      client->command = tmp_command;
 		      
-		      if (restart_command != command)
+		      if (restart_command != tmp_command)
 			g_free (restart_command);
 		    }
 		}

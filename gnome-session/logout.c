@@ -32,12 +32,12 @@
 #include "session.h"
 #include "gsm-protocol.h"
 
-gchar *halt_command[] =
+static gchar *halt_command[] =
 {
   "/usr/bin/shutdown", "-h", "now", NULL
 };
 
-gchar *reboot_command[] =
+static gchar *reboot_command[] =
 {
   "/usr/bin/shutdown", "-r", "now", NULL
 };
@@ -297,8 +297,7 @@ display_gui (void)
 gboolean
 maybe_display_gui ()
 {
-  gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX
-						   "LogoutPrompt=true");
+  gboolean result, prompt = gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX "LogoutPrompt=true");
   if (! prompt)
     return TRUE;
 

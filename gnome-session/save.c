@@ -42,7 +42,6 @@ static char *session_name = NULL;
 static char *saved_session_name = NULL;
 
 /* See manager.c */
-extern gboolean base_loaded;
 extern GSList* live_list;
 extern GSList* zombie_list;
 extern GSList* pending_list;
@@ -131,11 +130,14 @@ write_one_client (const Client *client)
 				       &numbers[number_count]);
 	  if (found)
 	    {
-	      saved = !(properties[i].name == SmRestartStyleHint &&
+	      saved = !(!strcmp(properties[i].name, SmRestartStyleHint) &&
 			numbers[number_count] == SmRestartNever);
 	      
 	      number_names[number_count++] = (char*)properties[i].save_name;
 	    }
+	  break;
+	default:
+	  g_assert_not_reached();
 	  break;
 	}
       if (properties[i].required && !found)
@@ -338,15 +340,17 @@ read_one_client (Client *client)
 	      prop->vals[0].value = (SmPointer) value;
 	      APPEND (client->properties, prop);      
 
-	      if (properties[i].name == GsmPriority)
+	      if (!strcmp(properties[i].name, GsmPriority))
 		client->priority = number;
 	    }
+	  break;
+	default:
 	  break;
 	}
     }
 }
 
-
+
 
 /* Read the session clients recorded in a config file section */
 static GSList *

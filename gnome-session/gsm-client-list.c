@@ -26,22 +26,6 @@
 #include "gsm-client-row.h"
 #include "gsm-client-editor.h"
 
-static gchar *col_tip[] = { 
-  N_("This button sets the start order of the selected programs.\n"), 
-  N_("This button sets the restart style of the selected programs:\n"
-     "Normal programs are unaffected by logouts but can die;\n"
-     "Respawn programs are never allowed to die;\n"
-     "Trash programs are discarded on logout and can die;\n"
-     "Settings programs are always started on every login."), 
-  N_("This button produces a key to the program states below:\n"
-     "Inactive programs are waiting to start or have finished;\n"
-     "Starting programs are being given time to get running;\n"
-     "Running programs are normal members of the session;\n"
-     "Saving programs are saving their session details;\n"
-     "Programs which make no contact have Unknown states.\n"),
-  N_("This column gives the command used to start a program.") 
-};
-
 static void gsm_client_list_destroy  (GtkObject *o);
 static void initialized_cb (GsmClientList* client_list);
 static void unselect_cb (GsmClientList* client_list);
@@ -276,7 +260,9 @@ register_change (GsmClientList* client_list, GsmClientRow* client_row,
       break;
 
     case GSM_CLIENT_ROW_REMOVE:
+    default:
       /* impossible */
+      g_assert_not_reached();
       break;
     }
 }

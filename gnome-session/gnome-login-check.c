@@ -25,6 +25,9 @@
 #include <netinet/in.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <limits.h>
+#include <pwd.h>
+#include <sys/stat.h>
 
 GtkWidget *dns_dialog = NULL;
 GtkWidget *progress = NULL;
@@ -170,8 +173,8 @@ check_for_dns (void)
 			execlp ("dns-helper", "dns-helper", NULL);
 
 			/* Should never be reached */
-			exit (0);
-			
+			_exit (0);
+
 		} else if (pid > 0) { /* Parent */
 			write (in_fd[1], hostname, strlen(hostname));
 			close (in_fd[1]);
@@ -193,6 +196,22 @@ check_for_dns (void)
 	}
 }
 
+static gboolean
+check_orbit_dir(void)
+{
+  char buf[PATH_MAX];
+  struct stat sbuf;
+
+  sprintf(buf, "/tmp/orbit-%s", g_get_user_name());
+  if(stat(buf, &sbuf))
+    return TRUE; /* Doesn't exist - things are fine */
+
+  if(sbuf.st_uid != getuid()
+     && sbuf.st_uid != geteuid())
+    return FALSE;
+
+  return TRUE;
+}
 
 int
 main (int argc, char **argv)
@@ -212,7 +231,7 @@ main (int argc, char **argv)
 
 	gdk_window_get_pointer (GDK_ROOT_PARENT(), NULL, NULL, &state);
 
-	if ((state & GDK_CONTROL_MASK) && (state & GDK_SHIFT_MASK)) {
+	if ((state & (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) == (GDK_CONTROL_MASK|GDK_SHIFT_MASK)) {
 		dialog = gnome_dialog_new (_("GNOME Login"), _("Login"), NULL);
 		gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
 
@@ -283,27 +302,49 @@ main (int argc, char **argv)
 		}
 	}
 
+	if (!check_orbit_dir() ) {
+	  GtkWidget *tmp_msgbox;
+	  gchar *tmp_msg;
+	  tmp_msg = g_strdup_printf (
+				     _("The directory /tmp/orbit-%s is not owned\nby the current user, %s.\n"
+				       "Please correct the ownership of this directory."),
+				     g_get_user_name(), g_get_user_name());
+
+	  tmp_msgbox = gnome_message_box_new (tmp_msg,
+					      GNOME_MESSAGE_BOX_WARNING,
+					      _("Try again"),
+					      _("Continue"),
+					      NULL);
+	  
+	  gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
+	  gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
+
+	  while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
+		 !check_orbit_dir ())
+	    /* Nothing */;
+	}
+
 	if (!check_for_dns ()) {
-		GtkWidget *msgbox;
-		gchar *msg;
+		GtkWidget *tmp_msgbox;
+		gchar *tmp_msg;
 		
-		msg = g_strdup_printf (
+		tmp_msg = g_strdup_printf (
 		  _("Could not look up internet address for %s.\n"
 		    "This will prevent GNOME from operating correctly.\n"
 		    "It may be possible to correct the problem by adding\n"
 		    "%s to the file /etc/hosts."),
 		  get_hostname(TRUE), get_hostname(TRUE));
 		
-		msgbox = gnome_message_box_new (msg,
+		tmp_msgbox = gnome_message_box_new (tmp_msg,
 						GNOME_MESSAGE_BOX_WARNING,
 						_("Try again"),
 						_("Continue"),
 						NULL);
 
-		gtk_window_set_position (GTK_WINDOW (msgbox), GTK_WIN_POS_CENTER);
-		gnome_dialog_close_hides (GNOME_DIALOG (msgbox), TRUE);
+		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
+		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
 
-		while ((gnome_dialog_run (GNOME_DIALOG (msgbox)) == 0) &&
+		while ((gnome_dialog_run (GNOME_DIALOG (tmp_msgbox)) == 0) &&
 		       !check_for_dns ())
 			/* Nothing */;
 			

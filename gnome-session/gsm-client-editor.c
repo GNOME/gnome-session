@@ -158,10 +158,10 @@ change (GsmClientEditor* client_editor)
       GtkSpinButton *spin = (GtkSpinButton*)client_editor->spin_button;
       gint order = gtk_spin_button_get_value_as_int (spin);
       GtkOptionMenu *omenu = GTK_OPTION_MENU (client_editor->style_menu);
-      GList *list = GTK_MENU_SHELL (omenu->menu)->children;
+      GList *list;
       gint style;
       
-      for (style = 0; list; list = list->next, style++)
+      for (list = GTK_MENU_SHELL (omenu->menu)->children, style = 0; list; list = list->next, style++)
 	if (omenu->menu_item == list->data) 
 	  break;
 

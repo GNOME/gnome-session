@@ -19,6 +19,7 @@
 #include <config.h>
 #include <string.h>
 #include <stdlib.h>
+#include <glib.h>
 #include <gtk/gtk.h>
 #include <libgnome/libgnome.h>
 #include <unistd.h>
@@ -40,7 +41,6 @@ static enum {
   SAVE_PHASE_2,
   SAVE_CANCELLED,
   STARTING_SESSION,
-  STARTING_WARNER,
   SHUTDOWN
 } save_state;
 
@@ -63,10 +63,10 @@ GSList *purge_retain_list = NULL;
 GSList *live_list = NULL;
 
 /* Timeout for clients that are slow to respond to SmSaveYourselfRequest */
-gint warn_timeout_id = -1;
+static gint warn_timeout_id = -1;
 
 /* Used to monitor programs that claim to be interacting. */
-gboolean interact_ping_replied = TRUE;
+static gboolean interact_ping_replied = TRUE;
 
 /* A queued save yourself request */
 typedef struct _SaveRequest
@@ -122,7 +122,7 @@ gchar   *events[]       = { GsmInactive, GsmInactive,
 			    GsmConnected, NULL };
 
 /* Index used to identify clients uniquely over the gsm protocol extensions. */
-guint handle = 0;
+static guint handle = 0;
 
 static gint compare_interact_request (gconstpointer a, gconstpointer b);
 typedef void message_func (SmsConn connection);
@@ -359,9 +359,9 @@ process_load_request (GSList *client_list)
     {
       Client *client = (Client*)list->data;
       gboolean bad_match = FALSE;
-	
-      list = list->next;
 
+      list = list->next;
+	
       if (client->match_rule == MATCH_PROP)
 	{
 	  SmProp *prop = find_property_by_name (client, SmRestartCommand);
@@ -529,8 +529,9 @@ remove_client (Client* client)
   for (list = save_request_list; list;)
     {
       SaveRequest *request = (SaveRequest*)list->data;
-      
+
       list = list->next;
+
       if (request->client == client) {
 	g_free(request);
 	REMOVE (save_request_list, request);
@@ -702,7 +703,8 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 	  /* The typecast there is for 64-bit machines */
 	  client->id = malloc (43);
 	  sprintf (client->id, "1%s%.13ld%.10d%.4d", address,
-		   (long) time(NULL), getpid (), sequence++);
+		   (long) time(NULL), getpid (), sequence);
+	  sequence++;
 	  
 	  sequence %= 10000;
 	}
@@ -850,13 +852,15 @@ no_response_warning (gpointer data)
 	for (list = save_yourself_p2_list; list; )
 	  {
 	    Client* client = (Client *) list->data;
+
 	    list = list->next;
+
 	    client_reasons (client, TRUE, 3, reasons);
 	  }
 	/* fall through */
 	
       case SAVE_PHASE_1:
-	for (list = save_yourself_list; list; )
+	for (list = save_yourself_list; list;)
 	  {
 	    Client* client = (Client *) list->data;
 	    list = list->next;
@@ -865,7 +869,7 @@ no_response_warning (gpointer data)
 	break;
 	
       case SHUTDOWN:
-	for (list = live_list; list; )
+	for (list = live_list; list;)
 	  {
 	    Client* client = (Client *) list->data;
 	    list = list->next;
@@ -945,10 +949,10 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	{	
 	  while (live_list) 
 	    {
-	      Client *client = (Client *) live_list->data;
-	      client_event (client->handle, GsmSave);
-	      REMOVE (live_list, client);
-	      APPEND (save_yourself_list, client);
+	      Client *tmp_client = (Client *) live_list->data;
+	      client_event (tmp_client->handle, GsmSave);
+	      REMOVE (live_list, tmp_client);
+	      APPEND (save_yourself_list, tmp_client);
 	      SmsSaveYourself (client->connection, save_type, shutting_down,
 			       interact_style, fast);
 	    }
@@ -1330,8 +1334,8 @@ client_clean_up (Client* client)
   for (list = save_request_list; list;)
     {
       SaveRequest *request = (SaveRequest*)list->data;
-      
       list = list->next;
+      
       if (request->client == client) {
 	g_free(request);
 	REMOVE (save_request_list, request);

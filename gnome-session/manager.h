@@ -160,7 +160,7 @@ extern gint num_sockets;
 extern IceListenObj *sockets;
 
 /* List of auth entries.  */
-GSList *auth_entries;
+extern GSList *auth_entries;
 
 /*
  * logout.c
@@ -172,6 +172,15 @@ gboolean maybe_display_gui (void);
 /*
  * manager.c
  */
+
+extern GSList **client_lists[];
+/* List of clients which have been started but have yet to register */
+extern gchar *events[];
+
+/* Lists of clients which have been purged from the pending list: 
+   The first list contains clients we throw away at the session end,
+   the second contains clients the user wants us to keep. */
+extern GSList *purge_drop_list, *purge_retain_list, *live_list, *zombie_list, *pending_list;
 
 /* Start an individual client. */
 void start_client (Client* client);
@@ -249,7 +258,7 @@ void initialize_ice (void);
 
 /* Set a clean up callback for when the ice_conn is closed. */
 void ice_set_clean_up_handler (IceConn ice_conn, 
-			       GDestroyNotify, gpointer data);
+			       GDestroyNotify clean_up, gpointer data);
 
 /* Clean up ICE when exiting.  */
 void clean_ice (void);
@@ -289,6 +298,9 @@ void free_vector (int argc, char **argv);
 /*
  * command.c
  */
+
+extern gint logout_command_argc;
+extern gchar **logout_command_argv;
 
 /* Log change in the state of a client with the client event selectors. */
 void client_event (const gchar* handle, const gchar* event);
