@@ -265,7 +265,7 @@ free_client (Client *client)
 {
  GSList *list; 
 
- gsm_verbose ("free_client(): %p\n", client);
+ gsm_verbose ("free_client(): %p (%s)\n", client, client->id ? client->id : "(null)");
 
  if (! client)
     return;

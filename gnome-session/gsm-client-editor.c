@@ -115,6 +115,10 @@ gsm_client_editor_new (void)
   gtk_signal_connect_object (GTK_OBJECT (client_editor->spin_button), 
 			     "value-changed", GTK_SIGNAL_FUNC (change), 
 			     GTK_OBJECT (client_editor));
+  gtk_signal_connect_object (GTK_OBJECT (menu), 
+			     "deactivate",  GTK_SIGNAL_FUNC (change),
+			     GTK_OBJECT (client_editor));
+
 
   return GTK_WIDGET (client_editor);
 }
