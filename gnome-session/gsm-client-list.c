@@ -415,7 +415,12 @@ void
 gsm_client_list_remove_selection (GsmClientList* client_list)
 {
   GtkCList* clist = (GtkCList*)client_list;
-  gint row = GPOINTER_TO_INT (clist->selection->data);
+  gint row;
+
+  if (!clist->selection)
+	  return;
+
+  row = GPOINTER_TO_INT (clist->selection->data);
 
   g_return_if_fail(client_list != NULL);
   g_return_if_fail(GSM_IS_CLIENT_LIST(client_list));

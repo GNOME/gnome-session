@@ -1,3 +1,8 @@
+2002-03-29  Mark McLoughlin  <mark@skynet.ie>
+
+	* gsm-client-list.c: (gsm_client_list_remove_selection): don't
+	crash if we haven't selected anything. (76888)
+
 2002-03-28  Mark McLoughlin  <mark@skynet.ie>
 
 	* manager.c: (run_command): don't assume errno isn't set
