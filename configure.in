@@ -14,6 +14,12 @@ AM_PROG_LIBTOOL
 AC_PATH_PROGS(PATH_TO_XRDB, "xrdb")
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 
+dnl with higher autotools, we can set ACLOCAL_AMFLAGS instead, which is
+dnl the better solution; this does the trick for automake-1.4
+dnl gnome-autogen.sh sets ACLOCAL_FLAGS, which points to the cvs gnome
+dnl autoconf macros
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
 GNOME_COMPILE_WARNINGS(yes)
 
 dnl If you add a version number here, you *must* add an AC_SUBST line for
