@@ -44,6 +44,7 @@ typedef struct
   GSList *properties;
 
   /* Used to detect clients which are dying quickly */
+  guint  attempts;
   time_t connect_time;
 
   /* Used to determine order in which clients are started */
@@ -63,6 +64,9 @@ extern guint purge_delay;
 
 /* Start an individual client. */
 void start_client (Client* client);
+
+/* Free the memory used by a client. */
+void free_client (Client* client);
 
 /* Starts a list of clients in order of their priority. */
 void load_session (GSList* clients);

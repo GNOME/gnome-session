@@ -300,7 +300,7 @@ read_clients (const char* file, const char *session, gboolean fake_ids)
 
   for (i = 0; i < num_clients; ++i)
     {
-      Client *client = g_new0 (Client, 1);
+      Client *client = (Client*)malloc (sizeof(Client));
 
       g_snprintf (prefix, sizeof(prefix), "%s/%s/%d,", file, session, i);
 
@@ -399,7 +399,7 @@ delete_session (const char *name)
   for (i = 0; i < number; ++i)
     {
       Client* cur_client;
-      Client* old_client = g_new (Client, 1);
+      Client* old_client = (Client*)malloc (sizeof(Client));
       
       int old_argc;
       char **old_argv;
@@ -477,7 +477,7 @@ delete_session (const char *name)
 	  free (old_system);
 	}
 
-      free (old_client);
+      free_client (old_client);
       gnome_config_pop_prefix ();
     }
 

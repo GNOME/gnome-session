@@ -1,3 +1,10 @@
+1999-02-09 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* manager.c (close_connection): restart RestartImmediately clients
+	unless they have failed 10 times in last 2 minutes.
+	* save.c (delete_session): use free_client to free ALL client memory.
+	* manager.h: export free_client and expand Client struct.
+	
 1999-02-06  Changwoo Ryu  <cwryu@adam.kaist.ac.kr>
 
 	* gsm.desktop: Updated Korean translation.

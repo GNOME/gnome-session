@@ -134,7 +134,7 @@ find_client_by_connection (GSList *list, IceConn ice_conn)
   return NULL;
 }
 
-static void
+void
 free_client (Client *client)
 {
  GSList *list; 
@@ -175,7 +175,7 @@ run_command (const Client* client, const gchar* command)
 	  int i;
 
 	  envpc = envc / 2;
-	  envp = g_new0 (gchar*, envpc + 1);
+	  envp = (gchar**)calloc (sizeof(gchar*), envpc + 1);
 	  
 	  for (i = 0; i < envpc; i++)
 	    envp[i] = g_strconcat (envv[2*i], "=", envv[2*i + 1], NULL);
@@ -330,10 +330,8 @@ start_client (Client* client)
   fprintf (stderr, "Priority %02d : Starting    Id = %s\n", 
 	   client->priority, client->id);
 
-  client->connect_time = time (NULL);
-
   /* ghost clients are not session aware and must become zombies */
-  if (! g_strncasecmp ("ghost", client->id, 5))
+  if (! client->id)
     APPEND (zombie_list, client);
   else
     {
@@ -349,7 +347,6 @@ static Status
 register_client (SmsConn connection, SmPointer data, char *previous_id)
 {
   Client *client = (Client *) data;
-  int had_faked_id;
 
   if (previous_id)
     {
@@ -373,19 +370,21 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
 
       client->properties = offspring->properties;
       client->priority = offspring->priority;
+      client->faked_id = offspring->faked_id;
+      client->attempts = offspring->attempts;
+      client->connect_time = offspring->connect_time;
 
       offspring->properties = NULL;
 
-      had_faked_id = offspring->faked_id;
       free_client (offspring);
 
-      if (had_faked_id ||
+      if (client->faked_id ||
 	  find_client_by_id (live_list, previous_id) ||
 	  find_client_by_id (zombie_list, previous_id))
 	{
 	  fprintf (stderr, "Priority %02d : Cloning     Id = %s\n", 
 		   client->priority, previous_id);
-
+	  client->faked_id = TRUE;
 	  free (previous_id);
 	  return 0;
 	}
@@ -514,7 +513,10 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       SmsSaveYourself (client->connection, 
 		       save_type, 0, interact_style, fast);
     }
-  save_state = (save_yourself_list != NULL) ? SAVE_PHASE_1 : MANAGER_IDLE;
+  if (shutting_down || save_yourself_list) 
+    save_state = SAVE_PHASE_1; 
+  else
+    save_state = MANAGER_IDLE;
 
   update_save_state ();
 }
@@ -711,7 +713,7 @@ display_reasons (gint count, gchar** reasons)
       dialog = gnome_warning_dialog (message);
 
       if (count > 1)
-	free (message);
+	g_free (message);
     }
 }
 
@@ -758,19 +760,30 @@ close_connection (SmsConn connection, SmPointer data, int count,
   switch (style)
     {
     case SmRestartImmediately:
+      {
+	time_t now = time (NULL);
 
-      if (! shutting_down && 
-	  time(NULL) > client->connect_time + 60)
-	{
-	  run_command (client, SmRestartCommand);
-	  APPEND (pending_list, client);
-	}
-      else
-	free_client (client);
+	if (now > client->connect_time + 120)
+	  {
+	    client->attempts = 0;
+	    client->connect_time = now;
+	  }
+
+	if (! shutting_down && client->attempts++ < 10)
+	  {
+	    run_command (client, SmRestartCommand);
+	    APPEND (pending_list, client);
+	  }
+	else
+	  {
+	    free_client (client);
+	  }
+      }
       break;
 
     case SmRestartAnyway:
       
+      client->connection = NULL;
       APPEND (zombie_list, client);
       break;
 
@@ -854,7 +867,7 @@ get_properties (SmsConn connection, SmPointer data)
   int i, len;
 
   len = g_slist_length (client->properties);
-  props = g_new (SmProp *, len);
+  props = (SmProp**)calloc (sizeof(SmProp *), len);
 
   i = 0;
   for (list = client->properties; list; list = list->next)
@@ -880,11 +893,13 @@ new_client (SmsConn connection, SmPointer data, unsigned long *maskp,
       return 0;
     }
 
-  client = g_new (Client, 1);
+  client = (Client*)malloc (sizeof(Client));
   client->id = NULL;
   client->connection = connection;
   client->properties = NULL;
   client->priority = 50;
+  client->faked_id = FALSE;
+  client->attempts = 1;
   client->connect_time = time (NULL);
 
   *maskp = 0;
