@@ -145,8 +145,17 @@ main (int argc, char *argv[])
 
   gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
 		  GNOME_PARAM_POPT_TABLE, options,
-		  GNOME_CLIENT_PARAM_SM_CONNECT, FALSE,
 		  NULL);
+
+ /* FIXME: it would be nice to skip this check if we're debugging the
+ session manager. */
+
+  if (GNOME_CLIENT_CONNECTED (gnome_master_client ()))
+  {
+    fprintf (stderr, "gnome-session: you're already running a session manager\n");
+    exit (1);
+  }
+
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
