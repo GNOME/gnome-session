@@ -1,3 +1,36 @@
+Tue Jul 21 10:25:55 1998  Tom Tromey  <tromey@cygnus.com>
+
+	* save.c (run_default_session): Use run_preloads to run default
+	session.
+
+	* Makefile.am (EXTRA_DIST): Added default.in.
+	(data_DATA): New macro.
+	(default.session): New target.
+	(INCLUDES): Define DEFAULTDIR.
+	* default.in: New file.
+
+	* session-properties.c (apply_properties): Use PRELOAD_COUNT_KEY.
+	(fill_clist): Likewise.
+
+	* save.c (session_loaded): New global.
+	(run_preloads): New function.
+	(num_preloads): New function.
+	(read_session): Call run_preloads.
+
+	* save.c: Include "session.h".
+	* session-properties.c: Include "session.h".
+	* Makefile.am (gnome_session_SOURCES): Added session.h.
+	(session_properties_SOURCES): Likewise.
+	* session.h: New file.
+
+	* session-properties.c (setup): Set scrollbar policy on clist.
+	Left align label above clist.
+	(apply_properties): Synchronize config.
+	(PRELOAD_PREFIX): New define.
+	(apply_properties): Use it.
+	(fill_clist): New function.
+	(setup): Call it.
+
 Sun Jul 19 16:31:51 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* session.desktop: New file.

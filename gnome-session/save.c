@@ -25,6 +25,7 @@
 #include "libgnome/libgnome.h"
 #include "libgnomeui/gnome-client.h"
 #include "manager.h"
+#include "session.h"
 
 
 
@@ -33,6 +34,10 @@
 
 /* Name of current session.  A NULL value means the default.  */
 static char *session_name = NULL;
+
+/* This is true if we've ever started a session.  We use this to see
+   if we need to run the preloads again.  */
+static int session_loaded = 0;
 
 /* This is used to hold a table of all properties we care to save.  */
 typedef struct
@@ -238,34 +243,50 @@ run_commands (const char *name, int number, const char *command)
 
 
 
-/* Run the default session.  The default should probably be in a
-   config file somewhere, instead of hard-coded here.  */
+/* Return number of preloads.  */
+static int
+num_preloads (void)
+{
+  return gnome_config_get_int (PRELOAD_PREFIX PRELOAD_COUNT_KEY "=0");
+}
+
+/* Run all the preloads, if required.  */
+static void
+run_preloads (int count)
+{
+  int i;
+
+  /* Only run once.  */
+  if (session_loaded)
+    return;
+  session_loaded = 1;
+
+  if (count <= 0)
+    return;
+
+  for (i = 0; i < count; ++i)
+    {
+      char *text, buf[20];
+      gboolean def;
+
+      sprintf (buf, "%d", i);
+      text = gnome_config_get_string_with_default (buf, &def);
+      if (! def)
+	gnome_execute_shell (NULL, text);
+      g_free (text);
+    }
+}
+
+/* Run the default session.  */
 static int
 run_default_session (void)
 {
-  char *argv[5];
+  int count;
 
-  argv[0] = "panel";
-  argv[1] = NULL;
-  gnome_execute_async (NULL, 1, argv);
-
-  argv[0] = "gnome-help-browser";
-  gnome_execute_async (NULL, 1, argv);
-
-  argv[0] = "gmc";
-  gnome_execute_async (NULL, 1, argv);
-
-#ifdef WINDOW_MANAGER
-  argv[0] = WINDOW_MANAGER;
-#else
-  /* icewm is the default because it actually implements session
-     management.  */
-  argv[0] = "icewm";
-#endif
-  gnome_execute_async (NULL, 1, argv);
-
-  argv[0] = "gnome-smproxy";
-  gnome_execute_async (NULL, 1, argv);
+  gnome_config_push_prefix ("=" DEFAULTDIR "/default.session=/Default/");
+  count = gnome_config_get_int ("num_preloads");
+  run_preloads (count);
+  gnome_config_pop_prefix ();
 
   return 1;
 }
@@ -275,7 +296,7 @@ run_default_session (void)
 int
 read_session (const char *name)
 {
-  int i, num_clients;
+  int i, num_clients, preloads;
   char prefix[1024];
 
   if (! session_name)
@@ -286,16 +307,25 @@ read_session (const char *name)
   sprintf (prefix, "session/%s/num_clients=0", name);
   num_clients = gnome_config_get_int (prefix);
 
+  preloads = num_preloads ();
+
   /* No clients means either this is the first time gnome-session has
      been run, or the user exited everything the last time.  Either
-     way, we start the default session to make sure something
-     happens.  */
-  if (! num_clients)
+     way, we start the default session to make sure something happens.
+     We treat preloads as clients -- the user might legitimately exit
+     all the session-aware clients, but still have stuff start in his
+     session.  */
+  if (! num_clients && ! preloads)
     {
       if (! strcmp (name, DEFAULT_SESSION))
 	return run_default_session ();
       return 0;
     }
+
+  /* Start all the preloads.  */
+  gnome_config_push_prefix (PRELOAD_PREFIX);
+  run_preloads (preloads);
+  gnome_config_pop_prefix ();
 
   /* We must register each saved client as a `zombie' client.  Then
      when the client restarts it will get its new client id

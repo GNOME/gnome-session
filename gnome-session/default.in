@@ -1,0 +1,12 @@
+# This is the default session that is launched if the user doesn't
+# already have a session.  Each value is a command run by the user's
+# shell.  `num_preloads' holds the total number of commands; commands
+# go from 0 to NUM_PRELOADS-1.
+
+[Default]
+0=panel
+1=gnome-help-browser
+2=gmc
+3=@WINDOW_MANAGER@
+4=gnome-smproxy
+num_preloads=5

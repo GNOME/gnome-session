@@ -24,6 +24,8 @@
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
+#include "session.h"
+
 /* This is called when the dialog is dismissed.  */
 static void
 box_closed (GnomeDialog *dialog, gpointer client_data)
@@ -43,9 +45,8 @@ apply_properties (GnomePropertyBox *box, gint page, gpointer client_data)
 
   /* FIXME: this info should be per-session, not global to session
      manager.  */
-  /* FIXME: this info should be in a header file.  */
-  gnome_config_clean_section ("session/preload");
-  gnome_config_push_prefix ("session/preload");
+  gnome_config_clean_section (PRELOAD_PREFIX);
+  gnome_config_push_prefix (PRELOAD_PREFIX);
 
   /* This is quadratic in the number of list elements, because a
      linked list is used.  Hopefully the list is always short.  */
@@ -59,7 +60,9 @@ apply_properties (GnomePropertyBox *box, gint page, gpointer client_data)
       gnome_config_set_string (buf, text);
     }
 
-  gnome_config_set_int ("num_preloads", i);
+  gnome_config_set_int (PRELOAD_COUNT_KEY, i);
+  gnome_config_pop_prefix ();
+  gnome_config_sync ();
 }
 
 /* This is called when a row is selected.  */
@@ -86,11 +89,38 @@ entry_changed (GtkWidget *w, gpointer client_data)
   gnome_property_box_changed (GNOME_PROPERTY_BOX (client_data));
 }
 
+/* Fill in the clist with information from gnome_config.  */
+static void
+fill_clist (GtkCList *list)
+{
+  int i, count;
+  gboolean def;
+
+  gnome_config_push_prefix (PRELOAD_PREFIX);
+  count = gnome_config_get_int_with_default (PRELOAD_COUNT_KEY "=-1", &def);
+  if (def)
+    {
+      /* If we got the default value, then there are no preloads.  */
+      return;
+    }
+
+  for (i = 0; i < count; ++i)
+    {
+      char *text, buf[20];
+
+      sprintf (buf, "%d", i);
+      text = gnome_config_get_string_with_default (buf, &def);
+      if (! def)
+	gtk_clist_append (list, &text);
+      g_free (text);
+    }
+}
+
 static void
 setup ()
 {
   GnomePropertyBox *propertybox;
-  GtkWidget *w, *del_button, *bbox, *clist;
+  GtkWidget *w, *del_button, *bbox, *clist, *box;
   GtkBox *page;
 
   propertybox = GNOME_PROPERTY_BOX (gnome_property_box_new ());
@@ -101,17 +131,21 @@ setup ()
   gtk_notebook_append_page (GTK_NOTEBOOK (propertybox->notebook),
 			    GTK_WIDGET (page), gtk_label_new (_("Startup")));
 
-  /* FIXME: left align this label.  */
+  /* FIXME: don't use a constant.  */
+  box = gtk_hbox_new (FALSE, 4);
   w = gtk_label_new (_("Programs to invoke at session startup:"));
-  gtk_box_pack_start (page, w, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), w, FALSE, FALSE, 0);
+  gtk_box_pack_start (page, box, FALSE, FALSE, 0);
 
   del_button = gtk_button_new_with_label (_("Delete"));
 
-  clist = w = gtk_clist_new (1);
-  gtk_box_pack_start (page, w, FALSE, FALSE, 0);
-  gtk_signal_connect (GTK_OBJECT (w), "select_row",
+  clist = gtk_clist_new (1);
+  gtk_clist_set_policy (GTK_CLIST (clist), GTK_POLICY_AUTOMATIC,
+			GTK_POLICY_AUTOMATIC);
+  gtk_box_pack_start (page, clist, FALSE, FALSE, 0);
+  gtk_signal_connect (GTK_OBJECT (clist), "select_row",
 		      GTK_SIGNAL_FUNC (row_selected), (gpointer) del_button);
-  gtk_signal_connect (GTK_OBJECT (w), "unselect_row",
+  gtk_signal_connect (GTK_OBJECT (clist), "unselect_row",
 		      GTK_SIGNAL_FUNC (row_unselected), (gpointer) del_button);
 
   bbox = gtk_hbutton_box_new ();
@@ -127,7 +161,7 @@ setup ()
   /* FIXME: if user types Enter in entry, then should accept it and
      add to list.  */
 
-  /* FIXME: Fill in list here.  */
+  fill_clist (GTK_CLIST (clist));
 
   gtk_signal_connect (GTK_OBJECT (propertybox), "close",
 		      GTK_SIGNAL_FUNC (box_closed), NULL);
