@@ -538,6 +538,10 @@ WinInfo *winInfo;
 	    ProcessIceMsgProc,
 	    (XtPointer) ice_conn);
 
+    XChangeProperty(disp, winInfo->window,
+                   smClientIdAtom, XA_STRING, 8, PropModeReplace,
+                   winInfo->client_id, strlen(winInfo->client_id) + 1);
+
     if (debug)
     {
 	printf ("Connected to SM, window = 0x%x\n", (unsigned int) winInfo->window);
