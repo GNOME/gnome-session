@@ -214,7 +214,7 @@ run_commands (const char *name, int number, const char *command,
        * encourage the writing of broken clients. */
       if (!strcmp (command, SmDiscardCommand)) 
 	{
-	  int curargc;
+	  int curargc, j;
 	  char **curargv;
 	  char *id;
 	  Client *client;
@@ -228,12 +228,12 @@ run_commands (const char *name, int number, const char *command,
 	      if (find_vector_property (client, command, &curargc, &curargv) &&
 		  argc == curargc) 
 		{
-		  for (i = 0; i < argc; i++)
-		    if (strcmp (argv[i], curargv[i])) break;
+		  for (j = 0; j < argc; j++)
+		    if (strcmp (argv[j], curargv[j])) break;
 		  
 		  free_vector (curargc, curargv);
 
-		  if (i == argc) 
+		  if (j == argc) 
 		    continue;
 		}
 	    }
