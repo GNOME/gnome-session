@@ -322,6 +322,8 @@ main (int argc, char *argv[])
 			   update_boolean,
 			   &logout_prompt, NULL, NULL);
 
+  g_object_unref (gconf_client);
+
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
 
   /* If the session wasn't set on the command line, but we see a
