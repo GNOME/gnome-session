@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.tr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
+"POT-Creation-Date: 2005-03-09 01:25+0200\n"
 "PO-Revision-Date: 2004-02-26 13:13+0200\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -56,12 +56,8 @@ msgid "Logout prompt"
 msgstr "Çıkış istemi"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"GNOME Masaüstüne giriş yaparken açılış görüntüsü olarak kullanılması istenen "
-"resim."
+msgid "Preferred Image to use for login splash screen"
+msgstr "Giriş başlangıç ekranı için tercih edilen resim"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -76,8 +72,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Oturum başlatılırken açılış ekranını göster"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Açılış Ekranı Görüntüsü"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Bu $datadir/pixmaps/ dizinine göre bir yoldur. Alt dizinler ve resim "
+"isimleri geçerli değerlerdir. Bu değeri değiştirmek sonraki giriş oturumunu "
+"etkileyecektir."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -386,7 +388,6 @@ msgid "Show splash screen on _login"
 msgstr "Girişte açılış _ekranını göster"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "Çıkışta _onay sor"
 
@@ -493,3 +494,6 @@ msgstr "Başlangıç Programı Ekle"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Başlangıç Programı Düzenle"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Açılış Ekranı Görüntüsü"
