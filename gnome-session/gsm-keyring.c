@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
@@ -12,6 +13,7 @@
 #include "gsm-keyring.h"
 
 static pid_t gnome_keyring_daemon_pid = 0;
+static int keyring_lifetime_pipe[2];
 
 void
 gsm_keyring_daemon_stop (void)
@@ -24,6 +26,27 @@ gsm_keyring_daemon_stop (void)
   
 }
 
+static void
+child_setup (gpointer user_data)
+{
+  gint open_max;
+  gint fd;
+  char *fd_str;
+
+  open_max = sysconf (_SC_OPEN_MAX);
+  for (fd = 3; fd < open_max; fd++)
+    {
+      if (fd != keyring_lifetime_pipe[0])
+	fcntl (fd, F_SETFD, FD_CLOEXEC);
+    }
+
+  fd_str = g_strdup_printf ("%d", keyring_lifetime_pipe[0]);
+  g_setenv ("GNOME_KEYRING_LIFETIME_FD",
+	    fd_str,
+	    TRUE);
+}
+
+
 void
 gsm_keyring_daemon_start (void)
 {
@@ -34,15 +57,28 @@ gsm_keyring_daemon_start (void)
   long pid;
   char *pid_str, *end;
   const char *old_keyring;
+  char *argv[2];
 
   /* If there is already a working keyring, don't start a new daemon */
   old_keyring = g_getenv ("GNOME_KEYRING_SOCKET");
   if (old_keyring != NULL &&
       access (old_keyring, R_OK | W_OK) == 0)
     return;
+
+  /* Pipe to slave keyring lifetime to */
+  pipe (keyring_lifetime_pipe);
   
   err = NULL;
-  g_spawn_command_line_sync (GNOME_KEYRING_DAEMON, &standard_out, NULL, &status, &err);
+  argv[0] = GNOME_KEYRING_DAEMON;
+  argv[1] = NULL;
+  g_spawn_sync (NULL, argv, NULL, G_SPAWN_LEAVE_DESCRIPTORS_OPEN,
+		child_setup, NULL,
+		&standard_out, NULL, &status, &err);
+  
+  close (keyring_lifetime_pipe[0]);
+  /* We leave keyring_lifetime_pipe[1] open for the lifetime of the session,
+     in order to slave the keyring daemon lifecycle to the session. */
+  
   if (err != NULL)
     {
       g_printerr ("Failed to run gnome-keyring-daemon: %s\n",
