@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in.
 
+SUBDIRS = help
+
 defaultdir = $(datadir)/gnome
 
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
