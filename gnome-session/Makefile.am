@@ -28,7 +28,7 @@ gsm-client-row.c gsm-client-row.h gsm-column.c gsm-column.h \
 gsm-protocol.c gsm-protocol.h \
 session.h 
 
-data_DATA = default.session default.wm
+default_DATA = default.session default.wm
 
 default.session: default.in
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
