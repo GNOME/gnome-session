@@ -1,3 +1,8 @@
+2002-05-20  jacob berkman  <jacob@ximian.com>
+
+	* logout.c (display_gui): destroy the dialog before doing
+	refreshing and stuff.  somehow, this fixes #80202
+
 2002-05-17  jacob berkman  <jacob@ximian.com>
 
 	* gsm-client-editor.c (gsm_client_editor_new): use the right

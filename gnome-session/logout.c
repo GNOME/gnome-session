@@ -311,6 +311,8 @@ display_gui (void)
 
   response = gtk_dialog_run (GTK_DIALOG (box));
 
+  gtk_widget_destroy (box);
+
   refresh_screen ();
   XUngrabServer (GDK_DISPLAY ());
 
@@ -344,8 +346,6 @@ display_gui (void)
       retval = FALSE;
       break;
     }
-
-  gtk_widget_destroy (box);
 
   return retval;
 }
