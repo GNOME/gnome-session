@@ -87,6 +87,7 @@ session_properties_SOURCES = 	\
 	startup-programs.c		\
 	session-names.c			\
 	session-properties.c		\
+	session-properties.h		\
 	gsm-atk.c			\
 	gsm-atk.h			\
 	gsm-client-list.c		\
