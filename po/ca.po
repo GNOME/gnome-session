@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.1\n"
-"POT-Creation-Date: 2002-12-17 09:29+1300\n"
-"PO-Revision-Date: 2002-07-13 21:13+0200\n"
+"Project-Id-Version: gnome-session 2.1.5\n"
+"POT-Creation-Date: 2002-12-20 23:51+0100\n"
+"PO-Revision-Date: 2002-12-20 23:58+0100\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <gnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: gnome-session/gnome-session.schemas.in.in.h:1
 msgid "Allow TCP connections"
-msgstr ""
+msgstr "Permet connexions TCP"
 
 #: gnome-session/gnome-session.schemas.in.in.h:2
 msgid ""
@@ -25,47 +25,45 @@ msgid ""
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr ""
+msgstr "Per raons de seguretat, en les plataformes que tenen _IceTcpTransNoListen() (sistemes XFree86), gnome-session no escolta connexions en ports TCP. Aquesta opció permetrà connexions des de màquines remotes (autoritzades). S'ha de reiniciar gnome-session per a que açò tinga efecte."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "Si s'habilita, gnome-session preguntarà a l'usuari abans de finalitzar una sessió."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr ""
+msgstr "Si s'habilita, gnome-session desarà la sessió automàticament. D'altra manera, el diàleg d'eixida tindrà una opció per a desar la sessió."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
-msgstr ""
+msgstr "Indicatiu d'eixida"
 
 #: gnome-session/gnome-session.schemas.in.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
+msgstr "Imatge preferida per a usar en la pantalla de presentació quan s'està entrant en l'Escriptori GNOME"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
-#, fuzzy
 msgid "Save sessions"
-msgstr "Sessions"
+msgstr "Desa les sessions"
 
 #: gnome-session/gnome-session.schemas.in.in.h:8
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "Mostra la pantalla de presentació a l'en_trar"
+msgstr "Mostra la pantalla de presentació"
 
 #: gnome-session/gnome-session.schemas.in.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr ""
+msgstr "Mostra la pantalla de presentació quan s'inicia la sessió"
 
 #: gnome-session/gnome-session.schemas.in.in.h:10
 msgid "Splash Screen Image"
-msgstr ""
+msgstr "Imatge per a la pantalla de presentació"
 
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:308
+#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
 msgid "_Order:"
 msgstr "_Ordre:"
 
@@ -339,19 +337,19 @@ msgstr "Desa la sessió actual"
 msgid "Save current state of desktop"
 msgstr "Desa l'estat actual de l'escriptori"
 
-#: gnome-session/session-names.c:137
+#: gnome-session/session-names.c:139
 msgid "The session name cannot be empty"
 msgstr "El nom de la sessió no pot estar buit"
 
-#: gnome-session/session-names.c:147
+#: gnome-session/session-names.c:149
 msgid "The session name already exists"
 msgstr "El nom de la sessió ja existeix"
 
-#: gnome-session/session-names.c:183
+#: gnome-session/session-names.c:185
 msgid "Add a new session"
 msgstr "Afegeix una nova sessió"
 
-#: gnome-session/session-names.c:213
+#: gnome-session/session-names.c:215
 msgid "Edit session name"
 msgstr "Edita el nom de la sessió"
 
@@ -453,29 +451,31 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/splash-widget.c:48
-#, fuzzy
 msgid "Desktop Settings"
-msgstr "Reinicialitza tots els paràmetres"
+msgstr "Configuracions de l'escriptori"
 
-#: gnome-session/startup-programs.c:287
+#: gnome-session/startup-programs.c:289
 msgid "_Startup Command:"
 msgstr "Ordre d'_inici:"
 
-#: gnome-session/startup-programs.c:293
+#: gnome-session/startup-programs.c:295
 msgid "Startup Command"
 msgstr "Ordre d'inici"
 
-#: gnome-session/startup-programs.c:336
+#: gnome-session/startup-programs.c:338
 msgid "The startup command cannot be empty"
 msgstr "L'ordre d'inici no pot estar buida"
 
-#: gnome-session/startup-programs.c:376
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
 msgstr "Afegeix un programa d'inici"
 
-#: gnome-session/startup-programs.c:397
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Edita el programa d'inici"
+
+#~ msgid "Priority"
+#~ msgstr "Prioritat"
 
 #~ msgid "Audio Settings"
 #~ msgstr "Configuració del so"
@@ -491,9 +491,6 @@ msgstr "Edita el programa d'inici"
 
 #~ msgid "Keyboard Settings"
 #~ msgstr "Propietats del teclat"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritat"
 
 #~ msgid "_Priority:"
 #~ msgstr "_Prioritat:"
