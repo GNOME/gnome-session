@@ -352,7 +352,7 @@ write_state (void)
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
   gnome_config_set_bool (AUTOSAVE_MODE_KEY, autosave);
   gnome_config_set_bool (LOGOUT_SCREEN_KEY, logout_prompt);
-  gnome_config_set_bool (LOGOUT_SCREEN_KEY, login_splash);
+  gnome_config_set_bool (SPLASH_SCREEN_KEY, login_splash);
   gnome_config_pop_prefix ();
   gnome_config_sync ();
 

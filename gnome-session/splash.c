@@ -28,17 +28,46 @@
 typedef struct {
   GtkWidget *dialog;
   GnomeCanvasItem *label;
+  GSList *icon_items;
+  GSList *icon_pixbufs;
   GtkWidget *hbox;
-  GHashTable *hash;
   int count;
   gfloat max;
   gint timeout;
   gint icon_timeout;
   GSList *icons;
   double scalefactor;
+  int width;
   int height;
+  GHashTable *hash;
 } SplashData;
 static SplashData *sd = NULL;
+
+/* entry in a splash app table */
+typedef struct {
+	char *human_name;
+	char *exe;
+	char *icon;
+} SplashApp;
+
+static const SplashApp splash_map_table[] = {
+	{ N_("Audio Settings"),               "sound-properties",               "gnome-mixer.png" },
+	{ N_("Screensaver"),                  "screensaver-properties-capplet", "gnome-ccscreensaver.png" },
+	{ N_("Screensaver"),                  "xscreensaver-demo",              "gnome-ccscreensaver.png" },
+	{ N_("Sawfish Window Manager"),       "sawmill",                        "sawfish.png" },
+	{ N_("Sawfish Window Manager"),       "sawfish",                        "sawfish.png" },
+	{ N_("Enlightenment Window Manager"), "enlightenment",                  "gnome-ccwindowmanager.png" },
+	{ N_("Background Settings"),          "background-properties-capplet",  "gnome-ccbackground.png" },
+	{ N_("Keyboard Bell"),                "bell-properties-capplet",        "gnome-cckeyboard-bell.png" },
+	{ N_("Mouse Settings"),               "mouse-properties-capplet",       "gnome-mouse.png" },
+	{ N_("Keyboard Settings"),            "keyboard-properties",            "gnome-cckeyboard.png" },
+	{ N_("The Panel"),                    "panel",                          "gnome-panel.png" },
+	{ N_("Session Manager Proxy"),        "gnome-smproxy",                  "gnome-session.png" },
+	{ N_("Window Manager"),               "gnome-wm",                       "gnome-ccwindowmanager.png" },
+	{ N_("Desktop"),                      "gmc",                            "gnome-ccdesktop.png" },
+	{ N_("Nautilus"),                     "nautilus",                       "gnome-launch-icon.png" },
+	{ NULL }
+};
 
 #define SPLASHING (gnome_config_get_bool (GSM_OPTION_CONFIG_PREFIX SPLASH_SCREEN_KEY"="SPLASH_SCREEN_DEFAULT))
 #define HINTING (gnome_config_get_bool ("Gnome/Login/RunHints=true"))
@@ -47,6 +76,37 @@ static SplashData *sd = NULL;
 #define BASE_ICONSIZE 36
 
 #define ICONSIZE(sd) ((int)((sd)->scalefactor*BASE_ICONSIZE))
+
+static SplashApp *
+get_splash_app (const char *exe)
+{
+	SplashApp *app;
+
+	if (sd == NULL)
+		return NULL;
+
+	if (sd->hash == NULL) {
+		int i;
+		sd->hash = g_hash_table_new (g_str_hash, g_str_equal);
+		for (i = 0; splash_map_table[i].human_name != NULL; i++)
+			g_hash_table_insert (sd->hash,
+					     (gpointer)splash_map_table[i].exe,
+					     (gpointer)&splash_map_table[i]);
+	}
+	app = g_hash_table_lookup (sd->hash, exe);
+
+	return app;
+}
+
+static void
+cleanup_app_table (void)
+{
+	if (sd != NULL &&
+	    sd->hash != NULL) {
+		g_hash_table_destroy (sd->hash);
+		sd->hash = NULL;
+	}
+}
 
 static gboolean
 hide_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
@@ -66,12 +126,23 @@ hint (void)
 static gboolean
 splash_cleanup (GtkObject *o, gpointer data)
 {
-  g_hash_table_destroy (sd->hash);
-  sd->hash = NULL;
+  sd->dialog = NULL;
+
+  cleanup_app_table ();
 
   if (sd->timeout != 0)
+	  gtk_timeout_remove (sd->timeout);
+  sd->timeout = 0;
+  if (sd->icon_timeout != 0)
 	  gtk_timeout_remove (sd->icon_timeout);
   sd->icon_timeout = 0;
+
+  g_slist_foreach (sd->icon_pixbufs, (GFunc)gdk_pixbuf_unref, NULL);
+  g_slist_free (sd->icon_pixbufs);
+  sd->icon_pixbufs = NULL;
+
+  g_slist_free (sd->icon_items);
+  sd->icon_items = NULL;
 
   g_slist_foreach (sd->icons, (GFunc)g_free, NULL);
   g_slist_free (sd->icons);
@@ -88,10 +159,60 @@ splash_cleanup (GtkObject *o, gpointer data)
 static gboolean
 timeout_cb (gpointer data)
 {
-  if (sd && sd->dialog)
-    gtk_widget_destroy (sd->dialog);
+	if (sd != NULL) {
+		sd->timeout = 0;
 
-  return FALSE;
+		if (sd->dialog != NULL)
+			gtk_widget_destroy (sd->dialog);
+		/* Note: sd is probably dead here */
+	}
+
+	return FALSE;
+}
+
+/* check if another icon will fit, and if no, make room */
+static void
+check_icon_fit (void)
+{
+	int i;
+	GSList *ili, *pli;
+
+	if (sd == NULL ||
+	    (3 + 42 * (sd->count + 1) * sd->scalefactor) <= sd->width - 3)
+		return;
+
+	/* make everything fit into 80% of the splash */
+	sd->scalefactor =
+		(((double)sd->width - 6.0) / (42.0 * (sd->count + 1))) * 0.80;
+	/* for sanity, things could crash if this goes too low, this will
+	 * make 3 pixel icons, prolly if the splash screen is too tiny */
+	if (sd->scalefactor < 0.1)
+		sd->scalefactor = 0.1;
+	for (i = 0, ili = sd->icon_items, pli = sd->icon_pixbufs;
+	     ili != NULL && pli != NULL;
+	     i++, ili = ili->next, pli = pli->next) {
+		GdkPixbuf *pb = pli->data;
+		GdkPixbuf *pb2;
+		GnomeCanvasItem *item = ili->data;
+		ili->data = NULL;
+
+		gtk_object_destroy (GTK_OBJECT (item));
+
+		pb2 = gdk_pixbuf_scale_simple (pb,
+					       ICONSIZE (sd),
+					       ICONSIZE (sd),
+					       GDK_INTERP_BILINEAR);
+
+		item = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
+					      gnome_canvas_pixbuf_get_type (),
+					      "pixbuf", pb2,
+					      "x", (gdouble)(3.0 + 42.0 * i * sd->scalefactor),
+					      "y", (gdouble)(sd->height - 15.0 - 42.0 * sd->scalefactor),
+					      NULL);
+		gdk_pixbuf_unref (pb2);
+
+		ili->data = item;
+	}
 }
 
 static gboolean
@@ -99,26 +220,23 @@ icon_cb (gpointer data)
 {
   char *text, *msg;
 
-  if (!sd)
-    {
-      sd->icon_timeout = 0;
-      return FALSE;
-    }
-
-  if (!sd->icons)
-    return TRUE;
+  if (sd == NULL ||
+      sd->icons == NULL) {
+	  sd->icon_timeout = 0;
+	  return FALSE;
+  }
 
   text = sd->icons->data;
   sd->icons = g_slist_remove (sd->icons, text);
 
-  if (strcmp (text, "done")) {
-    char **item = g_hash_table_lookup (sd->hash, g_basename (text));
+  if (strcmp (text, "done") != 0) {
+    SplashApp *app = get_splash_app (g_basename (text));
     char *pix = NULL;
 
-    if (item) {
-      pix = g_strconcat (GNOME_ICONDIR"/", item[2], NULL);
+    if (app != NULL) {
+      pix = g_strconcat (GNOME_ICONDIR "/", app->icon, NULL);
       g_free (text);
-      text = g_strdup (_(item[0]));
+      text = g_strdup (_(app->human_name));
     }
 
     if (!pix || !g_file_exists (pix)) {
@@ -133,6 +251,9 @@ icon_cb (gpointer data)
       pb = gdk_pixbuf_new_from_file (pix);
       if (pb != NULL) {
         GdkPixbuf *pb2;
+
+	check_icon_fit ();
+
         pb2 = gdk_pixbuf_scale_simple (pb,
 				       ICONSIZE (sd),
 				       ICONSIZE (sd),
@@ -145,8 +266,9 @@ icon_cb (gpointer data)
 				      NULL);
         gdk_pixbuf_unref (pb2);
 	sd->count++;
+	sd->icon_items = g_slist_append (sd->icon_items, item);
+	sd->icon_pixbufs = g_slist_append (sd->icon_pixbufs, pb);
       }
-      gdk_pixbuf_unref (pb);
     }
 
     g_free (pix);
@@ -158,7 +280,21 @@ icon_cb (gpointer data)
   g_free (msg);
   g_free (text);
 
-  return TRUE;
+  if (sd->icons == NULL) {
+	  sd->icon_timeout = 0;
+	  return FALSE;
+  } else {
+	  return TRUE;
+  }
+}
+
+static void
+queue_icon_action (void)
+{
+	if (sd != NULL &&
+	    sd->icon_timeout == 0) {
+		sd->icon_timeout = gtk_timeout_add (100, icon_cb, sd);
+	}
 }
 
 void
@@ -180,34 +316,14 @@ void
 start_splash (gfloat max)
 {
   GtkWidget *frame;
-  int i;
-  static char *map[][3] = {
-    { N_("Audio Settings"),               "sound-properties",               "gnome-mixer.png" },
-    { N_("Screensaver"),                  "screensaver-properties-capplet", "gnome-ccscreensaver.png" },
-    { N_("Screensaver"),                  "xscreensaver-demo",              "gnome-ccscreensaver.png" },
-    { N_("Sawfish Window Manager"),       "sawmill",                        "sawfish.png" },
-    { N_("Sawfish Window Manager"),       "sawfish",                        "sawfish.png" },
-    { N_("Enlightenment Window Manager"), "enlightenment",                  "gnome-ccwindowmanager.png" },
-    { N_("Background Settings"),          "background-properties-capplet",  "gnome-ccbackground.png" },
-  /*{ N_("Keyboard Bell"),                "bell-properties-capplet",        "gnome-cckeyboard-bell.png" },*/
-    { N_("Mouse Settings"),               "mouse-properties-capplet",       "gnome-mouse.png" },
-    { N_("Keyboard Settings"),            "keyboard-properties",            "gnome-cckeyboard.png" },
-    { N_("The Panel"),                    "panel",                          "gnome-panel.png" },
-    { N_("Session Manager Proxy"),        "gnome-smproxy",                  "gnome-session.png" },
-    { N_("Window Manager"),               "gnome-wm",                       "gnome-ccwindowmanager.png" },
-    { N_("Desktop"),                      "gmc",                            "gnome-ccdesktop.png" },
-    { NULL }
-  };
 
   g_return_if_fail (sd == NULL);
 
-  sd = g_malloc0 (sizeof (SplashData));
+  sd = g_new0 (SplashData, 1);
+
+  sd->icon_items = NULL;
 
   sd->scalefactor = 1.0;
-
-  sd->hash = g_hash_table_new (g_str_hash, g_str_equal);
-  for (i=0; map[i][0]; i++)
-    g_hash_table_insert (sd->hash, map[i][1], map[i]);
 
   sd->max = max;
 
@@ -252,7 +368,7 @@ start_splash (gfloat max)
 
     if (pb == NULL) {
 	    height = 220;
-	    width = 480;
+	    width = BASE_WIDTH;
     } else {
 	    height = gdk_pixbuf_get_height (pb);
 	    width  = gdk_pixbuf_get_width  (pb);
@@ -260,6 +376,14 @@ start_splash (gfloat max)
 
     /* used for scaling icons and other stuff */
     sd->scalefactor = (double)width / (double)BASE_WIDTH;
+
+    /* some sanity into the madness */
+    if (sd->scalefactor > 1.0)
+	    sd->scalefactor = 1.0;
+    else if (sd->scalefactor < 0.5)
+	    sd->scalefactor = 0.5;
+
+    sd->width = width;
     sd->height = height;
 
     gtk_widget_set_usize (sd->hbox, width, height);
@@ -271,6 +395,16 @@ start_splash (gfloat max)
 				   GNOME_TYPE_CANVAS_PIXBUF, "pixbuf", pb, NULL);
 
 	    gdk_pixbuf_unref (pb);
+    } else {
+	    gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
+				   GNOME_TYPE_CANVAS_TEXT,
+				   "text", _("GNOME"),
+				   "fontset", _("-adobe-helvetica-bold-r-normal-*-*-240-*-*-p-*-*-*"),
+				   "x", (gdouble)(width / 2),
+				   "y", (gdouble)(height / 2),
+				   "anchor", GTK_ANCHOR_CENTER,
+				   "fill_color", "black",
+				   NULL);
     }
 
     sd->label = gnome_canvas_item_new (GNOME_CANVAS_GROUP (GNOME_CANVAS (sd->hbox)->root),
@@ -278,7 +412,7 @@ start_splash (gfloat max)
 				       "text", _("Starting GNOME"),
 				       "x", (gdouble)(width / 2),
 				       "y", (gdouble)(height - 7.5),
-				       "font", "-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*",
+				       "fontset", _("-adobe-helvetica-medium-r-normal-*-8-*-*-*-p-*-*-*"),
 				       "anchor", GTK_ANCHOR_CENTER,
 				       "fill_color", "white",
 				       NULL);
@@ -304,4 +438,5 @@ update_splash (const gchar *text, gfloat priority)
     return;
 
   sd->icons = g_slist_append (sd->icons, g_strdup (text));
+  queue_icon_action ();
 }
