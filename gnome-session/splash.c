@@ -32,7 +32,6 @@ static SplashData *sd = NULL;
 static gboolean
 destroy_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
 {
-  g_message ("destroy_dialog ()");
   gtk_widget_destroy (w);
   return TRUE;
 }
@@ -40,7 +39,6 @@ destroy_dialog (GtkWidget *w, GdkEventButton *event, gpointer data)
 static gboolean
 splash_cleanup (GtkObject *o, gpointer data)
 {
-  g_message ("cleanup!");
   g_free (sd);
   sd = NULL;
   return FALSE;
@@ -49,7 +47,6 @@ splash_cleanup (GtkObject *o, gpointer data)
 void
 stop_splash ()
 {
-  g_message ("stop_splash()");
   if (!sd)
     return;
   gtk_widget_destroy (sd->dialog);
