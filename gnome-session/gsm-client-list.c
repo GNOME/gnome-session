@@ -111,8 +111,15 @@ gsm_client_list_new (void)
   GsmClientList* client_list = gtk_type_new(gsm_client_list_get_type());
   GtkCList* clist = (GtkCList*) client_list;
   GdkFont*  font;
-  gchar*    titles[4] = { N_("Order"), N_("Style"), N_("State"), N_("Program") };
+  gchar*    titles[4];  
   int i;
+
+/* Changes to build on IRIX */
+  
+  titles[0] = N_("Order"); 
+  titles[1] = N_("Style"); 
+  titles[2] = N_("State");
+  titles[3] = N_("Program");
 
   for(i = 0; i < sizeof(titles)/sizeof(titles[0]); i++)
     titles[i] = gettext(titles[i]);
