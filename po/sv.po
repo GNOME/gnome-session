@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2002-02-24 17:48+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -94,12 +94,22 @@ msgstr ""
 "\n"
 "Din GNOME-session kommer att avslutas då du stänger denna dialogruta."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Ordningsföljd: "
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Stil: "
 
 #: gnome-session/gsm-client-list.c:150
@@ -190,27 +200,32 @@ msgstr "Inställningar"
 msgid "Always started on every login."
 msgstr "Startas alltid vid varje inloggning."
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Logga ut"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Vill du verkligen logga ut?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Spara nuvarande inställningar"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Händelse"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Logga ut"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Stäng ner"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Starta om"
 
@@ -303,108 +318,116 @@ msgstr "Lägg till en ny session"
 msgid "Edit session name"
 msgstr "Redigera sessionsnamn"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Sessionsegenskaper"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Alternativ"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Visa startbild vid inloggning"
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Fråga vid utloggning"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Spara ändringarna i sessionen automatiskt"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Välj nuvarande session"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Sessionsnamn"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Lägg till..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Redigera..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Ta bort"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Sessionsalternativ"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 msgid "Non-session-managed Startup Programs"
 msgstr "Startprogram som inte är sessionskontrollerade"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioritet"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Kommando"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Välj bland program som kör nu..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Startprogram"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Sessionsegenskaper"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Session"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Sessionsväljare"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Starta session"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Avbryt inloggning"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Initiera sessionsinställningar"
 
@@ -420,68 +443,61 @@ msgstr "Sessionshanterade program för tillfället"
 msgid "Audio Settings"
 msgstr "Ljudinställningar"
 
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "Skärmsläckare"
 
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Fönsterhanteraren Sawfish"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Fönsterhanteraren Enlightenment"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Fönsterhanterare"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Bakgrundsinställningar"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Tangentbordsljud"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Musinställningar"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Tangentbordsinställningar"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "Panelen"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr "Sessionshanterarproxy"
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Fönsterhanterare"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Skrivbord"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Bakgrundsinställningar"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Musinställningar"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Tangentbordsinställningar"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "Panelen"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr "Sessionshanterarproxy"
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Startar GNOME: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "Startar GNOME: klart"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "Startar GNOME"
 
@@ -508,6 +524,15 @@ msgstr "Lägg till startprogram"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
+
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Fönsterhanteraren Enlightenment"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Tangentbordsljud"
+
+#~ msgid "Desktop"
+#~ msgstr "Skrivbord"
 
 #~ msgid "Remove"
 #~ msgstr "Ta bort"
@@ -1631,9 +1656,6 @@ msgstr "Redigera startprogram"
 
 #~ msgid "Protect your computer from unauthorized use"
 #~ msgstr "Skydda din dator mot obehörig användning"
-
-#~ msgid "Log Out"
-#~ msgstr "Logga ut"
 
 #~ msgid "Quit from the GNOME desktop"
 #~ msgstr "Avsluta GNOME-skrivbordet"

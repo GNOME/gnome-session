@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.4.0.4\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2001-06-22 21:21+02:00\n"
 "Last-Translator: George Lebl <jirka@5z.com>\n"
 "Language-Team: czech <cs@li.org>\n"
@@ -90,12 +90,22 @@ msgstr ""
 "\n"
 "Po uzavøení tohoto dialogu bude va¹e GNOME sezení ukonèené."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Poøadí:"
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Styl: "
 
 #: gnome-session/gsm-client-list.c:150
@@ -186,27 +196,32 @@ msgstr "Nastavení"
 msgid "Always started on every login."
 msgstr "Spu¹tìno pøi ka¾dém pøihlá¹ení."
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Odhlásit"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Skuteènì odhlásit?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Ulo¾it aktuální nastavení"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Akce"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Odhlásit"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr ""
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Restart poèítaèe"
 
@@ -299,108 +314,116 @@ msgstr "Pøidat nové sezení"
 msgid "Edit session name"
 msgstr "Upravit jméno sezení"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Vlastnosti sezení"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Nastavení"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Povolit úvodní obrazovku pøi pøihlá¹ení"
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Výzva pøi odhlá¹ení"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Automaticky ukládat zmìny sezení"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Vyberte aktuální sezení"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Jméno sezení"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Pøidat..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Úpravy..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Smazat"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Vlastnosti sezení"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 msgid "Non-session-managed Startup Programs"
 msgstr "Programy nespravované sezením pøi pøihlá¹ení"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Priorita"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Pøíkaz"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Probírat aktuálnì bì¾ící programy..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Programy pøi pøihlá¹ení"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Vlastnosti sezení"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Sezení"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Výbìr sezení"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Zahájit sezení"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Zru¹it pøihlá¹ení"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Inicializace vlastností sezení"
 
@@ -416,68 +439,61 @@ msgstr "Programy spravované v aktuálním sezení"
 msgid "Audio Settings"
 msgstr "Vlastnosti zvuku"
 
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "©etøiè obrazovky"
 
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Správce oken Sawfish"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Správce oken Enlightenment"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Správce oken"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Nastavení pozadí"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Zvonek klávesnice"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Nastavení my¹i"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Nastavení klávesnice"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "Panel"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr "Proxy správce sezení"
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Správce oken"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Plocha"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Nastavení pozadí"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Nastavení my¹i"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Nastavení klávesnice"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "Panel"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr "Proxy správce sezení"
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Spou¹tí se GNOME: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "Spou¹tí se GNOME: hotovo"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "Spou¹tí se GNOME"
 
@@ -504,6 +520,15 @@ msgstr "Pøidat program pøi pøihlá¹ení"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Editovat program pøi pøihlá¹ení"
+
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Správce oken Enlightenment"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Zvonek klávesnice"
+
+#~ msgid "Desktop"
+#~ msgstr "Plocha"
 
 #~ msgid "Remove"
 #~ msgstr "Odstranit"
@@ -1506,9 +1531,6 @@ msgstr "Editovat program pøi pøihlá¹ení"
 #, fuzzy
 #~ msgid "Lock Display"
 #~ msgstr "Zobrazování"
-
-#~ msgid "Log Out"
-#~ msgstr "Odhlásit"
 
 #, fuzzy
 #~ msgid "Actions"

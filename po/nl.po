@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-04-14 20:04-0400\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2002-04-17 16:42+0100\n"
 "Last-Translator: Ronald Hummelink <ronald@hummelink.xs4all.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -50,13 +50,11 @@ msgstr ""
 "aan de huidige gebruiker %s.\n"
 "Gelieve de eigenaar van deze map aan te passen."
 
-#: gnome-session/gnome-login-check.c:211
-#: gnome-session/gnome-login-check.c:236
+#: gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
 msgid "Try again"
 msgstr "Probeer opnieuw"
 
-#: gnome-session/gnome-login-check.c:212
-#: gnome-session/gnome-login-check.c:237
+#: gnome-session/gnome-login-check.c:212 gnome-session/gnome-login-check.c:237
 msgid "Continue"
 msgstr "Doorgaan"
 
@@ -95,12 +93,22 @@ msgstr ""
 "\n"
 "Je GNOME sessie zal afgesloten worden na het sluiten van dit dialoogvenster."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Volgorde: "
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Stijl: "
 
 #: gnome-session/gsm-client-list.c:150
@@ -191,27 +199,32 @@ msgstr "Instellingen"
 msgid "Always started on every login."
 msgstr "Wordt opgestart bij elke login."
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Uitloggen"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Weet u zeker dat u wilt uitloggen?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Bewaar huidige instellingen"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Actie"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Uitloggen"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Uitschakelen"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Herstarten"
 
@@ -304,108 +317,117 @@ msgstr "Nieuwe sessie toevoegen"
 msgid "Edit session name"
 msgstr "Sessie naam bewerken"
 
-#: gnome-session/session-properties-capplet.c:166
-msgid "Some changes are not saved.\n"
+#: gnome-session/session-properties-capplet.c:164
+msgid ""
+"Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr "Zommige wijzigingen zijn niet opgeslagen. \n"
+msgstr ""
+"Zommige wijzigingen zijn niet opgeslagen. \n"
 "Is het nog steeds Okay om af te sluiten?"
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 msgid "Session properties"
 msgstr "Sessie eigenschappen"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Opties"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Splash venster tonen bij inloggen"
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Bevestigen bij uitloggen"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Veranderingen aan sessie automatisch opslaan"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Kies Huidige Sessie"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Sessie naam"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Toevoegen..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Bewerken..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Sessie eigenschappen"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 msgid "Non-session-managed Startup Programs"
 msgstr "Niet-sessie-beheerde te starten programma's"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioriteit"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Opdracht"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Blader door lijst met draaiende programma's..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Programma's starten"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206
-#: gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Sessie eigenschappen"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Sessie"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Sessiekiezer"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Start Sessie"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Inloggen afbreken"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Initialiseer sessie-instellingen"
 
@@ -422,80 +444,74 @@ msgid "Audio Settings"
 msgstr "Audio instellingen"
 
 #: gnome-session/splash.c:60
-#: gnome-session/splash.c:61
 msgid "Screensaver"
 msgstr "Schermbeveiling"
 
-#: gnome-session/splash.c:62
-#: gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Sawfish Windowmanager"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Enlightenment Windowmanager"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Window Manager"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Achtergrond instellingen"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Toetsenbord bel"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Muis instellingen"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Toetsenbord instellingen"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "Het Paneel"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr "Sessiebeheer proxy"
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Window Manager"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Bureaublad"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Achtergrond instellingen"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Muis instellingen"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Toetsenbord instellingen"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "Het Paneel"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr "Sessiebeheer proxy"
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "GNOME wordt gestart: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "GNOME wordt gestart: klaar"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "GNOME wordt gestart"
 
-#: gnome-session/startup-programs.c:282
-#: gnome-session/startup-programs.c:289
+#: gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 msgid "Startup Command"
 msgstr "Te starten programma"
 
 #: gnome-session/startup-programs.c:313
-msgid "Programs with smaller values are started before programs with higher values. The default value should be OK"
-msgstr "Programma's met kleinere waardes worden gestart voor programma's met grotere waardes. De standaardwaarde zou goed moeten zijn."
+msgid ""
+"Programs with smaller values are started before programs with higher values. "
+"The default value should be OK"
+msgstr ""
+"Programma's met kleinere waardes worden gestart voor programma's met grotere "
+"waardes. De standaardwaarde zou goed moeten zijn."
 
 #: gnome-session/startup-programs.c:332
 msgid "The startup command cannot be empty"
@@ -509,3 +525,11 @@ msgstr "Te starten programma toevoegen"
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
 
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Enlightenment Windowmanager"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Toetsenbord bel"
+
+#~ msgid "Desktop"
+#~ msgstr "Bureaublad"

@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 1999-03-18 23:11+0100\n"
 "Last-Translator: Pablo Saratxaga <srtxg@chanae.alphanet.ch>\n"
 "Language-Team: walon <linux-wa@chanae.alphanet.ch>\n"
@@ -92,12 +92,22 @@ msgstr ""
 "\n"
 "Vosse session GNOME va esse serêye dispôy ki vos åroz cloyou ci purnea chal."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Orde: "
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Stîle: "
 
 #: gnome-session/gsm-client-list.c:150
@@ -188,27 +198,32 @@ msgstr "Apontiaedjes"
 msgid "Always started on every login."
 msgstr ""
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Moussî foû"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Voloz-ve vormint moussî foû del session?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Schaper l' apontiaedje do moumint"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Accion"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Moussî foû del session"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Distinde l' éndjole"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Rinonder l' éndjole"
 
@@ -302,109 +317,117 @@ msgstr "Radjouter ene novele session"
 msgid "Edit session name"
 msgstr "Candjî l' no del session"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Prôpietés del session"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Tchûzes"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr ""
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Tchwezi li session do moumint"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "No del session"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Radjouter..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Candjî..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Disfacer"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Tchûzes del session"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 #, fuzzy
 msgid "Non-session-managed Startup Programs"
 msgstr "Po candjî les prôprietés èt apontyî li manaedje di sessions di Gnome"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prumîristé"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Comande"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Foyter etur les programes en alaedje pol moumint..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Programes a l' enondaedje"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Prôpietés del session"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Session"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Po tchwezi li session"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Enonder li Session"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Rinoncî a moussî dvins"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Dj' enonde l' apontiaedje del session"
 
@@ -421,68 +444,61 @@ msgstr "Po candjî les prôprietés èt apontyî li manaedje di sessions di Gnome"
 msgid "Audio Settings"
 msgstr "Apontiaedjes do son"
 
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "Sipårgneu di waitroûle"
 
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Manaedjeu di purneas Sawfish"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Manaedjeu di purneas Enlightenment"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Manaedjeu di purneas"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Apontiaedjes do fond do scribanne"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Xhuflet del taprece"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Apontiaedjes del sori"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Apontiaedjes del taprece"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "Li scriftôr"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr ""
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Manaedjeu di purneas"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Sicribanne"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Apontiaedjes do fond do scribanne"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Apontiaedjes del sori"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Apontiaedjes del taprece"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "Li scriftôr"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr ""
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Enondaedje di GNOME: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "Enondaedje di GNOME: fwait"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "Enondaedje di GNOME"
 
@@ -510,6 +526,15 @@ msgstr "Radjouter on programe d' enondaedje"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Candjî on programe d' enondaedje"
+
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Manaedjeu di purneas Enlightenment"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Xhuflet del taprece"
+
+#~ msgid "Desktop"
+#~ msgstr "Sicribanne"
 
 #~ msgid "Remove"
 #~ msgstr "Waester"
@@ -1417,9 +1442,6 @@ msgstr "Candjî on programe d' enondaedje"
 #, fuzzy
 #~ msgid "Lock Display"
 #~ msgstr "Håynaedje"
-
-#~ msgid "Log Out"
-#~ msgstr "Moussî foû"
 
 #, fuzzy
 #~ msgid "Actions"

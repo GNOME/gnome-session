@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2002-03-05 01:45+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Português <happyguy_pt@hotmail.com>\n"
@@ -89,12 +89,22 @@ msgstr ""
 "\n"
 "A sua sessão GNOME irá terminar após fechar esta janela."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Ordem: "
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Estilo: "
 
 #: gnome-session/gsm-client-list.c:150
@@ -185,27 +195,32 @@ msgstr "Propriedades"
 msgid "Always started on every login."
 msgstr "Iniciado em todos os inícios de sessão."
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Terminar Sessão"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Terminar mesmo sessão?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Gravar configuração actual"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Acção"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Terminar sessão"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Desligar Sistema"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Reiniciar Sistema"
 
@@ -298,108 +313,116 @@ msgstr "Adicionar nova sessão"
 msgid "Edit session name"
 msgstr "Editar nome de sessão"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Propriedades de Sessão"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Opções"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Mostrar imagem do GNOME no login"
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Perguntar no logout"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Gravar modificações à sessão automaticamente"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Seleccionar Sessão Actual"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Nome de Sessão"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Adicionar..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Editar..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Apagar"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Opções de Sessão"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 msgid "Non-session-managed Startup Programs"
 msgstr "Aplicações de Arranque Não-geridas-sessão"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioridade"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Comado"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Pesquisar Aplicações Actualmente em Execução..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Aplicações de Arranque"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Propriedades de Sessão"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Sessão"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Escolha de Sessão"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Iniciar Sessão"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Cancelar Login"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Inicializar definições de sessão"
 
@@ -415,68 +438,61 @@ msgstr "Propriedades do Gestor de Sessões"
 msgid "Audio Settings"
 msgstr "Definições Audio"
 
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "Protector de Ecrã"
 
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Gestor de Janelas Sawfish"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Gestor de Janelas Enlightenment"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Gestor de Janelas"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Definições de Fundo"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Som de Teclado"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Definições do Rato"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Definições do Teclado"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "O Painel"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr "Proxy do Gestor de Sessões"
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Gestor de Janelas"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Ambiente"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Definições de Fundo"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Definições do Rato"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Definições do Teclado"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "O Painel"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr "Proxy do Gestor de Sessões"
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "A iniciar GNOME: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "A iniciar GNOME: terminado"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "A iniciar GNOME"
 
@@ -503,6 +519,15 @@ msgstr "Adicionar Aplicação de Arranque"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Editar Aplicação de Arranque"
+
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Gestor de Janelas Enlightenment"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Som de Teclado"
+
+#~ msgid "Desktop"
+#~ msgstr "Ambiente"
 
 #~ msgid "Remove"
 #~ msgstr "Apagar"
@@ -1645,9 +1670,6 @@ msgstr "Editar Aplicação de Arranque"
 
 #~ msgid "Protect your computer from unauthorized use"
 #~ msgstr "Proteja o seu computador de utilizações não autorizadas"
-
-#~ msgid "Log Out"
-#~ msgstr "Terminar Sessão"
 
 #~ msgid "Quit from the GNOME desktop"
 #~ msgstr "Sair do ambiente de trabalho GNOME"

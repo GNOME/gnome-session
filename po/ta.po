@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil Gnome Translation v. 1.7\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2001-10-10 00:04-0500\n"
 "Last-Translator: Dinesh Nadarajah <n_dinesh@yahoo.com>\n"
 "Language-Team: Tamil <tamilinux@yahoogroups.com>\n"
@@ -97,13 +97,23 @@ msgstr ""
 "Your GNOME session will terminate after closing this dialog."
 
 # gsm/gsm-client-editor.c:94
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "¯ò¾Ã×:"
 
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
 # gsm/gsm-client-editor.c:104
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Å¨¸:"
 
 # gsm/gsm-client-list.c:112
@@ -216,33 +226,39 @@ msgstr "«¨Á×¸û"
 msgid "Always started on every login."
 msgstr "±ô§À¡ÖÐõ ´ùÅÚ ¦¾¡¼í¸Ä¢Öõ ¬ÈõÀ¢ìÌõ"
 
+# panel/foobar-widget.c:395
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "ÀÂÉ÷ ÓÊò¾ø"
+
 # gsm/logout.c:199
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "¯ñ¨ÁÂ¡¸ ÓÊò¾ø?"
 
 # gsm/logout.c:220
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "­ó¾ «¨Áô¨À §ºÁ¢"
 
 # gsm/logout.c:240
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "¦ºÂø"
 
 # gsm/logout.c:248
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "ÓÊò¾ø"
 
 # gsm/logout.c:251
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr ""
 
 # gsm/logout.c:254
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "ÁÚ ¦¾¡¼ì¸õ"
 
@@ -359,133 +375,141 @@ msgstr "Ò¾¢Â «Á÷× ´ý¨Èî §º÷"
 msgid "Edit session name"
 msgstr "«Á÷Å¢ý ¦ÀÂ¨Ã ¦¾¡Ì"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
 # gsm/session-properties.c:217
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "«Á÷Å¢ý ÀñÒ¸û"
 
 # gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Å¢¨Æ×¸û"
 
 # gsm/session-properties-capplet.c:192
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "¦¾¡¼íÌõ §À¡Ð 'splash' ¸¡ðº¢¨Âì ¸¡ñÀ¢ì¸×õ"
 
 # gsm/session-properties-capplet.c:199
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "¦ÅÇ¢§ÂÕÅ¾ðÌ Óý àñ¼×õ"
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "¾ýÉ¢Âì¸¾¡¸ Á¡üÈí¸¨Ç «Á÷×ìÌî §ºÁ¢"
 
 # gsm/session-properties-capplet.c:209
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 #, fuzzy
 msgid "Choose Current Session"
 msgstr "¾ü§À¡¨¾Â «Á÷¨Åò §¾÷¾ø ¦ºö"
 
 # gsm/session-properties-capplet.c:226
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "«Á÷Å¢ý ¦ÀÂ÷"
 
 # gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "§º÷¸×õ..."
 
 # gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "À¾¢ôÀ¢..."
 
 # gmenu/main.c:106 gsm/session-properties-capplet.c:257
 # gsm/session-properties-capplet.c:311
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "¿£ìÌ"
 
 # gsm/session-properties-capplet.c:262
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "«Á÷Å¢ý ÀñÒ¸û"
 
 # gsm/session-properties-capplet.c:274
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 #, fuzzy
 msgid "Non-session-managed Startup Programs"
 msgstr "Non-session-managed Startup Programs"
 
 # gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "ÓýÛÃ¢¨Á"
 
 # gsm/session-properties-capplet.c:292
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "¸ð¼¨Ç"
 
 # gsm/session-properties-capplet.c:321
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "¾ü§À¡Ð ­íÌõ ¿¢Ãø¸¨Ç §Á§Ä¡Î..."
 
 # gsm/session-properties-capplet.c:330
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "¦¾¡¼íÌõ §À¡Ð ­ÂìÌõ ¿¢Ãø¸û"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 # gsm/session-properties.c:217
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "«Á÷Å¢ý ÀñÒ¸û"
 
 # gsm/session-properties.c:272
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "«Á÷×"
 
 # gsm/session-properties.c:329
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "«Á÷× §¾÷¾ø"
 
 # gsm/session-properties.c:332
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "«Á÷¨Å ¦¾¡¼íÌ"
 
 # gsm/session-properties.c:335
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "¦¾¡¼í¸¨Ä ¿£ìÌ"
 
 # gsm/session-properties.c:360
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "«Á÷× «¨Á×¸¨Ç ¦¾¡¼ì¸ Á¾¢ôÀÇ¢"
 
@@ -507,83 +531,74 @@ msgid "Audio Settings"
 msgstr "´Ä¢ «¨ÁôÒ¸û"
 
 # gsm/splash.c:56 gsm/splash.c:57
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "¾¢¨Ãì¸¡ÅÄ÷"
 
 # gsm/splash.c:58 gsm/splash.c:59
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "§º¡À¢‰ º¡ÇÃ§ÁÄ¡Ç÷"
 
-# gsm/splash.c:60
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "±ý¨Ä¦¼ý¦Áýð º¡ÇÃ§ÁÄ¡Ç÷"
+# gsm/splash.c:67
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "º¡ÇÃ§ÁÄ¡Ç÷"
+
+# gsm/splash.c:67
+#: gnome-session/splash.c:63
+msgid "Window Manager"
+msgstr "º¡ÇÃ§ÁÄ¡Ç÷"
 
 # gsm/splash.c:61
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:64
 msgid "Background Settings"
 msgstr "À¢ýÉ½¢Â¢ý «¨ÁôÒ¸û"
 
-# gsm/splash.c:62
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Å¢¨ºôÀÄ¨¸ ´Ä¢"
-
 # gsm/splash.c:63
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:65
 msgid "Mouse Settings"
 msgstr "Íñ¦¼Ä¢ «¨ÁôÒ¸û"
 
 # gsm/splash.c:64
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:66
 msgid "Keyboard Settings"
 msgstr "Å¢¨ºôÀÄ¨¸ «¨ÁôÒ¸û"
 
 # gsm/splash.c:65
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:67
 msgid "The Panel"
 msgstr "ÀÄ¨¸"
 
 # gsm/splash.c:66
-#: gnome-session/splash.c:70
+#: gnome-session/splash.c:68
 msgid "Session Manager Proxy"
 msgstr "Session Manager Proxy"
 
-# gsm/splash.c:67
-#: gnome-session/splash.c:71
-msgid "Window Manager"
-msgstr "º¡ÇÃ§ÁÄ¡Ç÷"
-
-# gsm/splash.c:68 panel/menu.c:5225 panel/menu.c:5230 panel/menu.c:5598
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "¸É¢§Á¨º"
-
 # gsm/splash.c:69
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "¿¡ÊÄŠ"
 
 # gsm/splash.c:297
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "¸§É¡õ ¦¾¡¼í¸ôÀÎ¸¢ÈÐ: %s"
 
 # gsm/splash.c:299
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "¸§É¡õ ¦¾¡¼í¸ôÀÎ¸¢ÈÐ: ÓÊó¾Ð"
 
 # gsm/splash.c:450
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "¸§É¡õ"
 
 # gsm/splash.c:470
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "¸§É¡õ ¦¾¡¼íÌ¸¢ÈÐ"
 
@@ -615,6 +630,18 @@ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Äî §º÷"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
+
+# gsm/splash.c:60
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "±ý¨Ä¦¼ý¦Áýð º¡ÇÃ§ÁÄ¡Ç÷"
+
+# gsm/splash.c:62
+#~ msgid "Keyboard Bell"
+#~ msgstr "Å¢¨ºôÀÄ¨¸ ´Ä¢"
+
+# gsm/splash.c:68 panel/menu.c:5225 panel/menu.c:5230 panel/menu.c:5598
+#~ msgid "Desktop"
+#~ msgstr "¸É¢§Á¨º"
 
 # gsm/session-properties.c:101 help-browser/bookmarks.c:242
 #~ msgid "Remove"
@@ -1920,10 +1947,6 @@ msgstr "¦¾¡¼í¸ø ¿¢Ã¨Ä ¦¾¡Ì"
 #, fuzzy
 #~ msgid "Lock Display"
 #~ msgstr "¸¡ðº¢"
-
-# panel/foobar-widget.c:395
-#~ msgid "Log Out"
-#~ msgstr "ÀÂÉ÷ ÓÊò¾ø"
 
 # gsm/logout.c:240
 #, fuzzy

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.4.0.5\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2002-01-27 02:54+0100\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: nynorsk <nn@li.org>\n"
@@ -101,13 +101,23 @@ msgstr ""
 "Din GNOME-økt vil bli avslutte når denne dialogen vert lukka."
 
 # gsm/gsm-client-editor.c:97
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Rekkefølge: "
 
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
 # gsm/gsm-client-editor.c:107
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Stil: "
 
 # gsm/gsm-client-list.c:119
@@ -221,33 +231,39 @@ msgstr "Innstillingar"
 msgid "Always started on every login."
 msgstr "Startast ved kvar login."
 
+# panel/foobar-widget.c:372
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Logg ut"
+
 # gsm/logout.c:199
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Verkeleg logge ut?"
 
 # gsm/logout.c:220
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Lagre noverande oppsett"
 
 # gsm/logout.c:239
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Handling"
 
 # gsm/logout.c:247
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Logg ut"
 
 # gsm/logout.c:250
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Slå av"
 
 # gsm/logout.c:253
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Start om"
 
@@ -360,131 +376,139 @@ msgstr "Legg til ny økt"
 msgid "Edit session name"
 msgstr "Rediger namnet på økta"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
 # gsm/session-properties.c:217
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Eigenskapar for økt"
 
 # gsm/session-properties-capplet.c:181 panel/gnome-panel-screenshot.glade.h:9
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Val"
 
 # gsm/session-properties-capplet.c:192
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Vis «splash»-skjerm ved pålogging"
 
 # gsm/session-properties-capplet.c:199
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Spør ved utlogging"
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Lagre endringar i økta automatisk"
 
 # gsm/session-properties-capplet.c:209
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Vel aktiv økt"
 
 # gsm/session-properties-capplet.c:226
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Øktnamn"
 
 # gsm/session-properties-capplet.c:247 gsm/session-properties-capplet.c:301
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Legg til ..."
 
 # gsm/session-properties-capplet.c:252 gsm/session-properties-capplet.c:306
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Rediger ..."
 
 # gmenu/main.c:106 gsm/session-properties-capplet.c:257
 # gsm/session-properties-capplet.c:311
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Slett"
 
 # gsm/session-properties-capplet.c:262
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Øktval"
 
 # gsm/session-properties-capplet.c:274
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 msgid "Non-session-managed Startup Programs"
 msgstr "Oppstartsprogram som ikkje blir teke hand om av økta"
 
 # gsm/session-properties-capplet.c:291 gsm/startup-programs.c:299
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioritet"
 
 # gsm/session-properties-capplet.c:292
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Kommando"
 
 # gsm/session-properties-capplet.c:321
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Sjå gjennom køyrande program ..."
 
 # gsm/session-properties-capplet.c:330
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Oppstartsprogram"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 # gsm/session-properties.c:217
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Eigenskapar for økt"
 
 # gsm/session-properties.c:272
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Økt"
 
 # gsm/session-properties.c:326
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Øktveljar"
 
 # gsm/session-properties.c:329
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Start økt"
 
 # gsm/session-properties.c:332
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Avbryt innlogging"
 
 # gsm/session-properties.c:357
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Initialiser innstillingar for økt"
 
@@ -504,83 +528,74 @@ msgid "Audio Settings"
 msgstr "Innstillingar for lyd"
 
 # gsm/splash.c:56 gsm/splash.c:57
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "Skjermsparar"
 
 # gsm/splash.c:58 gsm/splash.c:59
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Sawfish vindaugehandsamar"
 
-# gsm/splash.c:60
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Enlightenment vindaugehandsamar"
+# gsm/splash.c:67
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Vindaugshandsamar"
+
+# gsm/splash.c:67
+#: gnome-session/splash.c:63
+msgid "Window Manager"
+msgstr "Vindaugshandsamar"
 
 # gsm/splash.c:61
-#: gnome-session/splash.c:65
+#: gnome-session/splash.c:64
 msgid "Background Settings"
 msgstr "Innstillingar for bakgrunn"
 
-# gsm/splash.c:62
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Tastaturklokke"
-
 # gsm/splash.c:63
-#: gnome-session/splash.c:67
+#: gnome-session/splash.c:65
 msgid "Mouse Settings"
 msgstr "Innstillingar for mus"
 
 # gsm/splash.c:64
-#: gnome-session/splash.c:68
+#: gnome-session/splash.c:66
 msgid "Keyboard Settings"
 msgstr "Innstillingar for tastatur"
 
 # gsm/splash.c:65
-#: gnome-session/splash.c:69
+#: gnome-session/splash.c:67
 msgid "The Panel"
 msgstr "Panelet"
 
 # gsm/splash.c:66
-#: gnome-session/splash.c:70
+#: gnome-session/splash.c:68
 msgid "Session Manager Proxy"
 msgstr "Økthandsamar proxy"
 
-# gsm/splash.c:67
-#: gnome-session/splash.c:71
-msgid "Window Manager"
-msgstr "Vindaugshandsamar"
-
-# gsm/splash.c:68 panel/menu.c:5224 panel/menu.c:5229 panel/menu.c:5599
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Skrivebord"
-
 # gsm/splash.c:69
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
 # gsm/splash.c:297
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Startar GNOME: %s"
 
 # gsm/splash.c:299
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "Startar GNOME: ferdig"
 
 # gsm/splash.c:450
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
 # gsm/splash.c:470
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "Startar GNOME"
 
@@ -612,6 +627,18 @@ msgstr "Legg til oppstartsprogram"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
+
+# gsm/splash.c:60
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Enlightenment vindaugehandsamar"
+
+# gsm/splash.c:62
+#~ msgid "Keyboard Bell"
+#~ msgstr "Tastaturklokke"
+
+# gsm/splash.c:68 panel/menu.c:5224 panel/menu.c:5229 panel/menu.c:5599
+#~ msgid "Desktop"
+#~ msgstr "Skrivebord"
 
 # help-browser/bookmarks.c:242
 #~ msgid "Remove"
@@ -2067,10 +2094,6 @@ msgstr "Rediger oppstartsprogram"
 
 #~ msgid "Protect your computer from unauthorized use"
 #~ msgstr "Vern om datamaskina di mot uatorisert bruk"
-
-# panel/foobar-widget.c:372
-#~ msgid "Log Out"
-#~ msgstr "Logg ut"
 
 #~ msgid "Quit from the GNOME desktop"
 #~ msgstr "Avslutt GNOME-skrivebordet"

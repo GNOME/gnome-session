@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.99\n"
-"POT-Creation-Date: 2002-04-15 16:10+0100\n"
+"POT-Creation-Date: 2002-04-22 10:45+0100\n"
 "PO-Revision-Date: 2002-01-23 17:16+0200\n"
 "Last-Translator: Marius Andreiana <mandreiana@yahoo.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -88,12 +88,22 @@ msgstr ""
 "\n"
 "Sesiunea dvs. GNOME se va termina după închiderea acestui dialog."
 
-#: gnome-session/gsm-client-editor.c:94
-msgid "Order: "
+#: gnome-session/gsm-client-editor.c:96
+#, fuzzy
+msgid "_Order:"
 msgstr "Ordine:"
 
-#: gnome-session/gsm-client-editor.c:104
-msgid "Style: "
+#: gnome-session/gsm-client-editor.c:98
+msgid "The order in which applications are started in the session."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:105
+msgid "What happens to the application when it exits."
+msgstr ""
+
+#: gnome-session/gsm-client-editor.c:108
+#, fuzzy
+msgid "_Style:"
 msgstr "Stil:"
 
 #: gnome-session/gsm-client-list.c:150
@@ -184,27 +194,32 @@ msgstr "Setări"
 msgid "Always started on every login."
 msgstr "Totdeauna pornite la fiecare login."
 
-#: gnome-session/logout.c:231
+#: gnome-session/logout.c:200
+#, fuzzy
+msgid "_Log Out"
+msgstr "Ieşire"
+
+#: gnome-session/logout.c:258
 msgid "Really log out?"
 msgstr "Chiar doriţi să ieşiţi?"
 
-#: gnome-session/logout.c:246
+#: gnome-session/logout.c:275
 msgid "Save current setup"
 msgstr "Salvează setările curente"
 
-#: gnome-session/logout.c:266
+#: gnome-session/logout.c:295
 msgid "Action"
 msgstr "Acţiune"
 
-#: gnome-session/logout.c:274
+#: gnome-session/logout.c:303
 msgid "Logout"
 msgstr "Ieşire"
 
-#: gnome-session/logout.c:277
+#: gnome-session/logout.c:306
 msgid "Shut Down"
 msgstr "Oprire"
 
-#: gnome-session/logout.c:280
+#: gnome-session/logout.c:309
 msgid "Reboot"
 msgstr "Repornire"
 
@@ -302,109 +317,117 @@ msgstr "Adaugă o nouă sesiune"
 msgid "Edit session name"
 msgstr "Editează numele sesiunii"
 
-#: gnome-session/session-properties-capplet.c:166
+#: gnome-session/session-properties-capplet.c:164
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:191
+#: gnome-session/session-properties-capplet.c:189
 #, fuzzy
 msgid "Session properties"
 msgstr "Proprietăţi sesiune"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:217
+#: gnome-session/session-properties-capplet.c:215
 msgid "Options"
 msgstr "Opţiuni"
 
-#: gnome-session/session-properties-capplet.c:227
+#: gnome-session/session-properties-capplet.c:225
 msgid "Show splash screen on login"
 msgstr "Arată ecranul de splash la pornire"
 
-#: gnome-session/session-properties-capplet.c:243
+#: gnome-session/session-properties-capplet.c:241
 msgid "Prompt on logout"
 msgstr "Promptează la ieşire"
 
-#: gnome-session/session-properties-capplet.c:259
+#: gnome-session/session-properties-capplet.c:257
 msgid "Automatically save changes to session"
 msgstr "Salvează schimbările la sesiune automat"
 
 #. Session names list
-#: gnome-session/session-properties-capplet.c:273
+#: gnome-session/session-properties-capplet.c:271
 msgid "Choose Current Session"
 msgstr "Alegeţi sesiunea curentă"
 
-#: gnome-session/session-properties-capplet.c:290
+#: gnome-session/session-properties-capplet.c:288
 msgid "Session Name"
 msgstr "Numele sesiunii"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:299
-#: gnome-session/session-properties-capplet.c:371
+#: gnome-session/session-properties-capplet.c:297
+#: gnome-session/session-properties-capplet.c:369
 msgid "Add..."
 msgstr "Adaugă..."
 
-#: gnome-session/session-properties-capplet.c:303
-#: gnome-session/session-properties-capplet.c:376
+#: gnome-session/session-properties-capplet.c:301
+#: gnome-session/session-properties-capplet.c:374
 msgid "Edit..."
 msgstr "Editează..."
 
-#: gnome-session/session-properties-capplet.c:307
-#: gnome-session/session-properties-capplet.c:381
+#: gnome-session/session-properties-capplet.c:305
+#: gnome-session/session-properties-capplet.c:379
 msgid "Delete"
 msgstr "Şterge"
 
-#: gnome-session/session-properties-capplet.c:332
+#: gnome-session/session-properties-capplet.c:330
 msgid "Session Options"
 msgstr "Opţiuni sesiune"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:343
+#: gnome-session/session-properties-capplet.c:341
 #, fuzzy
 msgid "Non-session-managed Startup Programs"
 msgstr "Programele curente setate prin sesiune"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:358
 #: gnome-session/startup-programs.c:298
 msgid "Priority"
 msgstr "Prioritate"
 
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:360
 msgid "Command"
 msgstr "Comandă"
 
-#: gnome-session/session-properties-capplet.c:390
+#: gnome-session/session-properties-capplet.c:388
 msgid "Browse Currently Running Programs..."
 msgstr "Răsfoieşte programele care rulează acum..."
 
-#: gnome-session/session-properties-capplet.c:399
+#: gnome-session/session-properties-capplet.c:397
 msgid "Startup Programs"
 msgstr "Programe de la pornire"
 
+#: gnome-session/session-properties.c:97
+msgid "Remove the currently selected client from the session."
+msgstr ""
+
+#: gnome-session/session-properties.c:104
+msgid "The list of programs in the session."
+msgstr ""
+
 #. app
-#: gnome-session/session-properties.c:206 gnome-session/session.desktop.in.h:2
+#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
 msgid "Session Properties"
 msgstr "Proprietăţi sesiune"
 
-#: gnome-session/session-properties.c:263
+#: gnome-session/session-properties.c:266
 msgid "Session"
 msgstr "Sesiune"
 
 #. app
-#: gnome-session/session-properties.c:324
+#: gnome-session/session-properties.c:327
 msgid "Session Chooser"
 msgstr "Selector sesiuni"
 
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:330
 msgid "Start Session"
 msgstr "Porneşte sesiunea"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:333
 msgid "Cancel Login"
 msgstr "Renunţă la login"
 
-#: gnome-session/session-properties.c:355
+#: gnome-session/session-properties.c:358
 msgid "Initialize session settings"
 msgstr "Iniţializează setările sesiunii"
 
@@ -421,68 +444,61 @@ msgstr "Programele curente setate prin sesiune"
 msgid "Audio Settings"
 msgstr "Setări audio"
 
-#: gnome-session/splash.c:60 gnome-session/splash.c:61
+#: gnome-session/splash.c:60
 msgid "Screensaver"
 msgstr "Screensaver"
 
-#: gnome-session/splash.c:62 gnome-session/splash.c:63
+#: gnome-session/splash.c:61
 msgid "Sawfish Window Manager"
 msgstr "Managerul de ferestre Sawfish"
 
-#: gnome-session/splash.c:64
-msgid "Enlightenment Window Manager"
-msgstr "Managerul de ferestre Enlightenment"
+#: gnome-session/splash.c:62
+#, fuzzy
+msgid "Metacity Window Manager"
+msgstr "Manager de ferestre"
 
-#: gnome-session/splash.c:65
-msgid "Background Settings"
-msgstr "Setări fundal"
-
-#: gnome-session/splash.c:66
-msgid "Keyboard Bell"
-msgstr "Sunet tastatură"
-
-#: gnome-session/splash.c:67
-msgid "Mouse Settings"
-msgstr "Setări mouse"
-
-#: gnome-session/splash.c:68
-msgid "Keyboard Settings"
-msgstr "Setări tastatură"
-
-#: gnome-session/splash.c:69
-msgid "The Panel"
-msgstr "Panoul"
-
-#: gnome-session/splash.c:70
-msgid "Session Manager Proxy"
-msgstr "Proxy-ul managerului de sesiuni"
-
-#: gnome-session/splash.c:71
+#: gnome-session/splash.c:63
 msgid "Window Manager"
 msgstr "Manager de ferestre"
 
-#: gnome-session/splash.c:72
-msgid "Desktop"
-msgstr "Desktop"
+#: gnome-session/splash.c:64
+msgid "Background Settings"
+msgstr "Setări fundal"
 
-#: gnome-session/splash.c:73
+#: gnome-session/splash.c:65
+msgid "Mouse Settings"
+msgstr "Setări mouse"
+
+#: gnome-session/splash.c:66
+msgid "Keyboard Settings"
+msgstr "Setări tastatură"
+
+#: gnome-session/splash.c:67
+msgid "The Panel"
+msgstr "Panoul"
+
+#: gnome-session/splash.c:68
+msgid "Session Manager Proxy"
+msgstr "Proxy-ul managerului de sesiuni"
+
+#: gnome-session/splash.c:69
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:293
+#: gnome-session/splash.c:289
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Pornesc GNOME: %s"
 
-#: gnome-session/splash.c:295
+#: gnome-session/splash.c:291
 msgid "Starting GNOME: done"
 msgstr "Pornesc GNOME: gata"
 
-#: gnome-session/splash.c:441
+#: gnome-session/splash.c:437
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:465
+#: gnome-session/splash.c:461
 msgid "Starting GNOME"
 msgstr "Pornesc GNOME"
 
@@ -509,6 +525,15 @@ msgstr "Adaugă programe de la pornire"
 #: gnome-session/startup-programs.c:392
 msgid "Edit Startup Program"
 msgstr "Editează programe de la pornire"
+
+#~ msgid "Enlightenment Window Manager"
+#~ msgstr "Managerul de ferestre Enlightenment"
+
+#~ msgid "Keyboard Bell"
+#~ msgstr "Sunet tastatură"
+
+#~ msgid "Desktop"
+#~ msgstr "Desktop"
 
 #~ msgid "Remove"
 #~ msgstr "Elimină"
@@ -1643,9 +1668,6 @@ msgstr "Editează programe de la pornire"
 
 #~ msgid "Protect your computer from unauthorized use"
 #~ msgstr "Protejaţi-vă calculatorul dvs. de utilizare neautorizată"
-
-#~ msgid "Log Out"
-#~ msgstr "Ieşire"
 
 #~ msgid "Quit from the GNOME desktop"
 #~ msgstr "Ieşi din desktop-ul GNOME"
