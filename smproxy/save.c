@@ -348,7 +348,7 @@ int *pFd;
     char tempFile[PATH_MAX];
     char *ptr;
 
-    sprintf (tempFile, "%s/%sXXXXXX", path, prefix);
+    snprintf (tempFile, PATH_MAX, "%s/%sXXXXXX", path, prefix);
     ptr = (char *)malloc(strlen(tempFile) + 1);
     if (ptr != NULL) 
     {
@@ -373,7 +373,7 @@ WriteProxyFile ()
 
     path = getenv ("SM_SAVE_DIR");
     if (!path)
-      path = gnome_util_home_file (NULL);
+      path = g_get_home_dir ();
     if (!path)
       path = getenv ("HOME");
     if (!path)

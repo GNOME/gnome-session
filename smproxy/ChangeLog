@@ -1,5 +1,15 @@
 2002-07-02  Mark McLoughlin  <mark@skynet.ie>
 
+	Results of Anju's security audit.
+
+	* save.c:
+	(unique_filename): use snprintf.
+	(WriteProxyFile): use g_get_home_dir ().
+
+	* smproxy.c: use NI_MAXHOST and snprintf.
+
+2002-07-02  Mark McLoughlin  <mark@skynet.ie>
+
 	* save.c, smproxy.[ch]: Use XGetWMName instead
 	of XFetchName and update for use of XTextProperty.
 	Reported by Brian Cameron.

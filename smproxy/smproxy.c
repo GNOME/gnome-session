@@ -34,6 +34,7 @@ Author:  Ralph Mor, X Consortium
 #include <X11/Xmu/WinUtil.h>
 #include <libgnome/libgnome.h>
 #include <unistd.h>
+#include <netdb.h>
 
 XtAppContext appContext;
 Display *disp;
@@ -200,10 +201,10 @@ int *newstring;
     }
     else
     {
-	char hostnamebuf[80];
+	char hostnamebuf [NI_MAXHOST];
 	char *firstDot;
 
-	gethostname (hostnamebuf, sizeof hostnamebuf);
+	gethostname (hostnamebuf, NI_MAXHOST);
 	firstDot = strchr (hostnamebuf, '.');
 
 	if (!firstDot)
@@ -217,7 +218,7 @@ int *newstring;
 	    char *newptr;
 
 	    newptr = (char *) malloc (bytes);
-	    sprintf (newptr, "%s.%s", name, firstDot + 1);
+	    snprintf (newptr, NI_MAXHOST, "%s.%s", name, firstDot + 1);
 
 	    *newstring = 1;
 	    return (newptr);
@@ -239,7 +240,7 @@ Bool has_WM_SAVEYOURSELF;
 
     if (!winInfo->got_first_save_yourself)
     {
-	char userId[20], restartService[80];
+	char userId[20], restartService [NI_MAXHOST + 10];
 	char *fullyQuantifiedName;
 	int newstring;
 
@@ -260,7 +261,7 @@ Bool has_WM_SAVEYOURSELF;
     
 	fullyQuantifiedName = CheckFullyQuantifiedName (
 	    (char *) winInfo->wm_client_machine.value, &newstring);
-	sprintf (restartService, "rstart-rsh/%s", fullyQuantifiedName);
+	snprintf (restartService, NI_MAXHOST + 10, "rstart-rsh/%s", fullyQuantifiedName);
 	if (newstring)
 	    free (fullyQuantifiedName);
 
