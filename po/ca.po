@@ -6,75 +6,14 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.0\n"
-"POT-Creation-Date: 2002-06-28 13:52+0200\n"
-"PO-Revision-Date: 2002-06-28 13:56+0200\n"
+"Project-Id-Version: gnome-session 2.0.1\n"
+"POT-Creation-Date: 2002-07-03 14:18+0200\n"
+"PO-Revision-Date: 2002-07-03 14:24+0200\n"
 "Last-Translator: Jordi Mallach <jordi@sindominio.net>\n"
 "Language-Team: Catalan <gnome@softcatala.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-login-check.c:150
-msgid "GNOME Login"
-msgstr "Entrada de GNOME"
-
-#: gnome-session/gnome-login-check.c:152
-msgid "Log In"
-msgstr "Entra"
-
-#: gnome-session/gnome-login-check.c:183
-msgid "Start with default programs"
-msgstr "Inicia amb els programes per defecte"
-
-#: gnome-session/gnome-login-check.c:187
-msgid "Reset all user settings"
-msgstr "Reinicialitza tots els paràmetres d'usuari"
-
-#: gnome-session/gnome-login-check.c:196 gnome-session/gnome-login-check.c:200
-#, c-format
-msgid "Really reset all GNOME user settings for %s?"
-msgstr "Voleu reinicialitzar realment tots els paràmetres d'usuari per %s?"
-
-#: gnome-session/gnome-login-check.c:203
-msgid "No"
-msgstr "No"
-
-#: gnome-session/gnome-login-check.c:204
-msgid "Reset all Settings"
-msgstr "Reinicialitza tots els paràmetres"
-
-#: gnome-session/gnome-login-check.c:236
-#, c-format
-msgid ""
-"The directory /tmp/orbit-%s is not owned\n"
-"by the current user, %s.\n"
-"Please correct the ownership of this directory."
-msgstr ""
-"El directori /tmp/orbit-%s no pertany\n"
-"a l'usuari actual, %s.\n"
-"Si us plau, corregiu la propietat d'aquest directori."
-
-#: gnome-session/gnome-login-check.c:241 gnome-session/gnome-login-check.c:265
-msgid "Log in Anyway"
-msgstr "Entra de totes maneres"
-
-#: gnome-session/gnome-login-check.c:242 gnome-session/gnome-login-check.c:266
-msgid "Try Again"
-msgstr "Torneu-ho a provar"
-
-#: gnome-session/gnome-login-check.c:258
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"No he pogut cercar l'adreça d'internet per %s.\n"
-"Això provocarà que GNOME no funcioni correctament.\n"
-"Podria ser possible corregir aquest problema afegint\n"
-"%s al fitxer /etc/hosts."
 
 #: gnome-session/gsm-client-editor.c:96
 msgid "_Order:"
@@ -197,7 +136,8 @@ msgid ""
 msgstr ""
 "S'ha produït un error a l'arrencar el GNOME Settings Daemon.\n"
 "\n"
-"Algunes coses, com els temes, só o la configuració del fons podrien no funcionar correctament."
+"Algunes coses, com els temes, só o la configuració del fons podrien no "
+"funcionar correctament."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -205,14 +145,22 @@ msgid ""
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr "\n\nL'últim missatge d'error va ser:\n\n"
+msgstr ""
+"\n"
+"\n"
+"L'últim missatge d'error va ser:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr "\n\nGNOME encara tractarà d'arrencar el dimoni de configuracions la pròxima vegada que entreu."
+msgstr ""
+"\n"
+"\n"
+"GNOME encara tractarà d'arrencar el dimoni de configuracions la pròxima "
+"vegada que entreu."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -223,52 +171,73 @@ msgid "The Settings Daemon restarted too many times."
 msgstr "El dimini de configuracions s'ha reinicialitzat massa vegades."
 
 #: gnome-session/logout.c:225
-msgid "Really log out?"
-msgstr "Realment voleu sortir?"
+msgid "Are you sure you want to log out?"
+msgstr "Esteu segur de voler sortir?"
 
 #: gnome-session/logout.c:242
-msgid "Save current setup"
-msgstr "Desa la configuració actual"
+msgid "_Save current setup"
+msgstr "_Desa la configuració actual"
 
 #: gnome-session/logout.c:262
 msgid "Action"
 msgstr "Acció"
 
 #: gnome-session/logout.c:270
-msgid "Logout"
-msgstr "Surt"
+msgid "_Log Out"
+msgstr "_Surt"
 
 #: gnome-session/logout.c:273
-msgid "Shut Down"
-msgstr "Tanca"
+msgid "Sh_ut Down"
+msgstr "_Tanca"
 
 #: gnome-session/logout.c:276
-msgid "Reboot"
-msgstr "Reinicia"
+msgid "_Restart the computer"
+msgstr "_Reinicia l'ordinador"
 
-#: gnome-session/main.c:75
+#: gnome-session/main.c:76
 msgid "Specify a session name to load"
 msgstr "Especifica el nom de la sessió a carregar"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:77
 msgid "Only read saved sessions from the default.session file"
 msgstr "Llegeix només les sessions desades del fitxer default.session"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients s'enregistrin en milisegons "
 "(0=indefinidament)"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients responguin en milisegons (0=indefinidament)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Temps d'espera perquè els clients morin en milisegons (0=indefinidament)"
+
+#: gnome-session/main.c:212
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"No he pogut cercar l'adreça d'internet per %s.\n"
+"Això provocarà que GNOME no funcioni correctament.\n"
+"Podria ser possible corregir aquest problema afegint\n"
+"%s al fitxer /etc/hosts."
+
+#: gnome-session/main.c:219
+msgid "Log in Anyway"
+msgstr "Entra de totes maneres"
+
+#: gnome-session/main.c:220
+msgid "Try Again"
+msgstr "Torneu-ho a provar"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -519,6 +488,42 @@ msgstr "Afegeix un programa d'inici"
 #: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Edita el programa d'inici"
+
+#~ msgid "GNOME Login"
+#~ msgstr "Entrada de GNOME"
+
+#~ msgid "Log In"
+#~ msgstr "Entra"
+
+#~ msgid "Start with default programs"
+#~ msgstr "Inicia amb els programes per defecte"
+
+#~ msgid "Reset all user settings"
+#~ msgstr "Reinicialitza tots els paràmetres d'usuari"
+
+#~ msgid "Really reset all GNOME user settings for %s?"
+#~ msgstr "Voleu reinicialitzar realment tots els paràmetres d'usuari per %s?"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Reset all Settings"
+#~ msgstr "Reinicialitza tots els paràmetres"
+
+#~ msgid ""
+#~ "The directory /tmp/orbit-%s is not owned\n"
+#~ "by the current user, %s.\n"
+#~ "Please correct the ownership of this directory."
+#~ msgstr ""
+#~ "El directori /tmp/orbit-%s no pertany\n"
+#~ "a l'usuari actual, %s.\n"
+#~ "Si us plau, corregiu la propietat d'aquest directori."
+
+#~ msgid "Really log out?"
+#~ msgstr "Realment voleu sortir?"
+
+#~ msgid "Reboot"
+#~ msgstr "Reinicia"
 
 #~ msgid "Continue"
 #~ msgstr "Continua"
