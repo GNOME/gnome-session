@@ -184,6 +184,15 @@ set_session_name (const char *name)
 
 
 
+/* Get current session name.  */
+char *
+get_session_name ()
+{
+  return (session_name);
+}
+
+
+
 /* Run a set of commands from a session.  Return 1 if any were run.  */
 static int
 run_commands (const char *name, int number, const char *command)

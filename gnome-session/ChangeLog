@@ -1,3 +1,16 @@
+mar jul  7 09:56:07 ART 1998  Horacio J. Peña <horape@compendium.com.ar>
+
+	* manager.c: added support for saving state
+of only one process and for restarting sessions. (it's ugly)
+		New global variables saving_ps & old_sess.
+		save_yourself_request: added a bunch of code to check for
+the "new" services.
+		check_session_end: removed !live_list check (Tom, is it ok?)
+		check_session_end: added support for saving_ps & old_sess.
+		New functions: save_ps & restart_session.
+	* manager.h: Added prototipe for get_session_name.
+	* save.c: Added get_session_name.
+
 Sun Jul  5 18:16:00 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* main.c (main): Set the DISPLAY environment variable.
