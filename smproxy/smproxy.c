@@ -55,7 +55,7 @@ WinInfo *win_head = NULL;
 int proxy_count = 0;
 int die_count = 0;
 
-Bool ok_to_die = 0;
+Bool shutting_down = 0;
 
 Bool caught_error = 0;
 
@@ -406,7 +406,7 @@ SmPointer clientData;
 
     die_count++;
 
-    if (die_count == proxy_count && ok_to_die)
+    if (die_count == proxy_count + 1)
     {
 	exit (0);
     }
@@ -794,7 +794,7 @@ XCreateWindowEvent *event;
      * Don't handle new connections.
      */
 
-    if (ok_to_die)
+    if (shutting_down)
 	return;
 
 
@@ -956,7 +956,7 @@ SmPointer clientData;
     if (first_time)
     {
 	char userId[20];
-	char hint = SmRestartIfRunning;
+	char hint = SmRestartImmediately;
 	char priority = (char)0;
 
 	prop1.name = SmProgram;
@@ -981,10 +981,10 @@ SmPointer clientData;
 	prop3val.value = (SmPointer) &hint;
 	prop3val.length = 1;
 	
-	prop4.name = "Priority";
+	prop4.name = "_GSM_Priority";
 	prop4.type = SmCARD8;
 	prop4.num_vals = 1;
-	prop4.vals = &prop3val;
+	prop4.vals = &prop4val;
 	prop4val.value = (SmPointer) &priority;
 	prop4val.length = 1;
 
@@ -1052,26 +1052,32 @@ SmPointer clientData;
 
     prop1.num_vals = numVals;
 
-    prop2.name = SmDiscardCommand;
+    prop2.name = SmCloneCommand;
     prop2.type = SmLISTofARRAY8;
-    prop2.vals = (SmPropValue *) malloc (2 * sizeof (SmPropValue));
+    prop2.vals = prop1.vals;
+    prop2.num_vals = prop1.num_vals - 2;
 
-    if (!prop2.vals)
+    prop3.name = SmDiscardCommand;
+    prop3.type = SmLISTofARRAY8;
+    prop3.vals = (SmPropValue *) malloc (2 * sizeof (SmPropValue));
+
+    if (!prop3.vals)
     {
 	success = False;
 	goto finishUp;
     }
 
-    prop2.vals[0].value = (SmPointer) "rm";
-    prop2.vals[0].length = 2;
+    prop3.vals[0].value = (SmPointer) "rm";
+    prop3.vals[0].length = 2;
 
-    prop2.vals[1].value = (SmPointer) filename;
-    prop2.vals[1].length = strlen (filename);
+    prop3.vals[1].value = (SmPointer) filename;
+    prop3.vals[1].length = strlen (filename);
 
-    prop2.num_vals = 2;
+    prop3.num_vals = 2;
 
     props[0] = &prop1;
     props[1] = &prop2;
+    props[2] = &prop3;
 
     SmcSetProperties (smcConn, 2, props);
     free ((char *) prop1.vals);
@@ -1106,6 +1112,8 @@ Bool fast;
      * interacted with the user).
      */
 
+    shutting_down = shutdown;
+
     if (!SmcRequestSaveYourselfPhase2 (smcConn,
 	ProxySaveYourselfPhase2CB, NULL))
     {
@@ -1128,10 +1136,10 @@ SmPointer clientData;
     SmcCloseConnection (proxy_smcConn, 0, NULL);
     XtRemoveInput (proxy_iceInputId);
 
-    if (die_count == proxy_count)
+    die_count++;
+
+    if (! shutting_down || die_count == proxy_count + 1)
 	exit (0);
-    else
-	ok_to_die = 1;
 }
 
 
@@ -1155,6 +1163,8 @@ SmcConn smcConn;
 SmPointer clientData;
 
 {
+    shutting_down = 0;
+
     if (!sent_save_done)
     {
 	SmcSaveYourselfDone (smcConn, False);
@@ -1258,7 +1268,6 @@ Window root;
     }
 }
 
-
 
 int
 main (argc, argv)
@@ -1270,6 +1279,12 @@ char **argv;
     char *restore_filename = NULL;
     char *client_id = NULL;
     int i, zero = 0;
+    Atom gnomeSmProxyAtom; 
+    Window gnomeSmProxyWindow;
+    Atom r_type;
+    int r_format;
+    unsigned long r_count, r_remaining;
+    unsigned char *r_prop, *r_prop2;
 
     Argc = argc;
     Argv = argv;
@@ -1332,16 +1347,77 @@ char **argv;
     if (!(disp = XtOpenDisplay (appContext, NULL, "SM-PROXY", "SM-PROXY",
 	NULL, 0, &zero, NULL)))
     {
-	fprintf (stderr, "smproxy: unable to open display\n");
+	fprintf (stderr, "%s: unable to open display %s\n", 
+		 argv[0], XDisplayName(NULL));
 	exit (1);
     }
+
+    gnomeSmProxyAtom = XInternAtom (disp, "GNOME_SM_PROXY", False);
+    gnomeSmProxyWindow = XCreateSimpleWindow (disp, RootWindow (disp, 0), 
+					      10, 10, 10, 10, 0, 0, 0);
+    XChangeProperty (disp, gnomeSmProxyWindow, gnomeSmProxyAtom, 
+		     XA_CARDINAL, 32, PropModeReplace, 
+		     (char*)&gnomeSmProxyWindow, 1); 
+    XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
+		     XA_CARDINAL, 32, PropModeAppend, 
+		     (char*)&gnomeSmProxyWindow, 1); 
+
+    while (XGetWindowProperty(disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
+			   0, 100, False, XA_CARDINAL, 
+			   &r_type, &r_format, &r_count, &r_remaining, 
+			   &r_prop) != Success ||
+	!r_prop || r_type != XA_CARDINAL || r_format != 32) 
+      {
+	/* Some joker has set the GNOME_SM_PROXY property to another format.
+	 * We grab it back for use by gnome-smproxy. */
+	XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
+			 XA_CARDINAL, 32, PropModeReplace, 
+			 (char*)&gnomeSmProxyWindow, 1); 
+      }
+
+    /* Avoid choking on X errors when testing stale locks */
+    XSetErrorHandler (MyErrorHandler);      
+    for (i = 0; i < r_count; i++)
+      {
+	Window lockWin = ((Window *)r_prop)[i];
+
+	/* Do we hold the lock ? */
+	if (gnomeSmProxyWindow == lockWin)
+	  break;
+
+    	/* Only exit when the lock is still current */
+	caught_error = 0;
+	if (XGetWindowProperty(disp, lockWin, gnomeSmProxyAtom, 
+			       0, 1, False, XA_CARDINAL, 
+			       &r_type, &r_format, &r_count, &r_remaining, 
+			       &r_prop2) == Success && ! caught_error &&
+	    r_prop2 && r_type == XA_CARDINAL && r_format == 32)
+	  {
+	    if(lockWin == *(Window *)r_prop2)
+	      {
+		fprintf (stderr, "%s: already running on display %s\n", 
+			 argv[0], DisplayString (disp));
+		exit(1);
+	      }
+	    XFree (r_prop2);
+	  }
+
+      }
+    XFree(r_prop);
+    XSetErrorHandler (NULL);
+
+    /* Clean up the lock property */
+    XChangeProperty (disp, RootWindow (disp, 0), gnomeSmProxyAtom, 
+		     XA_CARDINAL, 32, PropModeReplace, 
+		     (char*)&gnomeSmProxyWindow, 1);
 
     if (restore_filename)
 	ReadProxyFile (restore_filename);
 
     if (!ConnectProxyToSM (client_id))
     {
-	fprintf (stderr, "smproxy: unable to connect to session manager\n");
+	fprintf (stderr, "%s: unable to connect to session manager\n", 
+		 argv[0]);
 	exit (1);
     }
 

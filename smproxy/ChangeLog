@@ -1,3 +1,11 @@
+1999-03-23  Felix Bellaby  <felix@pooh.u-net.com>
+
+	* smproxy.c (ProxySaveYourselfPhase2CB): Set the "_GSM_Priority" to 0,
+	set SmRestartImmediately and define a SmCloneCommand [ D'oh! ].
+	(main.c): ensure at most one copy runs on each display.
+	(ProxySaveYourself, ProxyDie, HandleCreate): Only wait for proxy
+	clients to die when shutting down and cancel shutdowns properly.
+
 1999-03-10  robbe@orcus.priv.at
 
 	* smproxy.c (main): Do not free path which was obtained from
