@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.11\n"
-"POT-Creation-Date: 2002-03-25 10:18+0000\n"
+"POT-Creation-Date: 2002-04-01 19:16+0100\n"
 "PO-Revision-Date: 2002-03-03 17:58+0100\n"
 "Last-Translator: Christopher R. Gabriel <cgabriel@pluto.linux.it>\n"
 "Language-Team: Italiano <it@li.org>\n"
@@ -282,85 +282,98 @@ msgstr "Salva la sessione corrente"
 msgid "Save current state of desktop"
 msgstr "Salva la scrivania corrente"
 
-#: gnome-session/session-names.c:126
+#: gnome-session/session-names.c:128
 msgid "The session name cannot be empty"
 msgstr "Il nome della sessione non può essere vuoto"
 
-#: gnome-session/session-names.c:136
+#: gnome-session/session-names.c:138
 msgid "The session name already exists"
 msgstr "Il nome della sessione è già presente"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:171
 msgid "Add a new session"
 msgstr "Aggiungi nuova session"
 
-#: gnome-session/session-names.c:202
+#: gnome-session/session-names.c:199
 msgid "Edit session name"
 msgstr "Modifica nome sessione"
 
-#. frame for options
-#: gnome-session/session-properties-capplet.c:181
+#: gnome-session/session-properties-capplet.c:166
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:191
+#, fuzzy
+msgid "Session properties"
+msgstr "Proprietà sessione"
+
+#. Frame for options
+#: gnome-session/session-properties-capplet.c:217
 msgid "Options"
 msgstr "Opzioni"
 
-#: gnome-session/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:227
 msgid "Show splash screen on login"
 msgstr "Mostra schermata di avvio al login"
 
-#: gnome-session/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:243
 msgid "Prompt on logout"
 msgstr "Chiedi conferma all'uscita"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:259
 msgid "Automatically save changes to session"
 msgstr "Salva automaticamente le modifiche alla sessione"
 
-#: gnome-session/session-properties-capplet.c:209
+#. Session names list
+#: gnome-session/session-properties-capplet.c:273
 msgid "Choose Current Session"
 msgstr "Scegli sessione corrente"
 
-#: gnome-session/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:290
 msgid "Session Name"
 msgstr "Nome Sessione"
 
-#: gnome-session/session-properties-capplet.c:247
-#: gnome-session/session-properties-capplet.c:301
+#. Add/Edit/Delete buttons
+#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:371
 msgid "Add..."
 msgstr "Aggiungi..."
 
-#: gnome-session/session-properties-capplet.c:252
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:303
+#: gnome-session/session-properties-capplet.c:376
 msgid "Edit..."
 msgstr "Modifica..."
 
-#: gnome-session/session-properties-capplet.c:257
-#: gnome-session/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:307
+#: gnome-session/session-properties-capplet.c:381
 msgid "Delete"
 msgstr "Elimina"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:332
 msgid "Session Options"
 msgstr "Opzioni sessione"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:274
+#: gnome-session/session-properties-capplet.c:343
 msgid "Non-session-managed Startup Programs"
 msgstr "Programmi da avviare indipendenti dal gestore di sessione"
 
-#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/session-properties-capplet.c:360
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "Priorità"
 
-#: gnome-session/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:362
 msgid "Command"
 msgstr "Comando"
 
-#: gnome-session/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:390
 msgid "Browse Currently Running Programs..."
 msgstr "Elenca i programmi attualmente in esecuzione..."
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:399
 msgid "Startup Programs"
 msgstr "Programmi all'avvio"
 
@@ -512,7 +525,7 @@ msgstr "Il comando di avvio non può essere vuoto"
 msgid "Add Startup Program"
 msgstr "Aggiungi Programma all'avvio"
 
-#: gnome-session/startup-programs.c:391
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Modifica programmi di avvio"
 

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-03-25 10:18+0000\n"
+"POT-Creation-Date: 2002-04-01 19:16+0100\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -311,94 +311,108 @@ msgstr "保存当前会话"
 msgid "Save current state of desktop"
 msgstr "保存桌面的当前状态"
 
-#: gnome-session/session-names.c:126
+#: gnome-session/session-names.c:128
 msgid "The session name cannot be empty"
 msgstr "会话名字不能为空"
 
-#: gnome-session/session-names.c:136
+#: gnome-session/session-names.c:138
 msgid "The session name already exists"
 msgstr "会话名字已经存在"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:171
 msgid "Add a new session"
 msgstr "添加一个新的会话"
 
 # gsm/save-session.c:41
-#: gnome-session/session-names.c:202
+#: gnome-session/session-names.c:199
 msgid "Edit session name"
 msgstr "编辑会话名称"
 
+#: gnome-session/session-properties-capplet.c:166
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+
+# panel/menu.c:3509
+#: gnome-session/session-properties-capplet.c:191
+#, fuzzy
+msgid "Session properties"
+msgstr "会话属性"
+
 # gsm/logout.c:240
-#. frame for options
-#: gnome-session/session-properties-capplet.c:181
+#. Frame for options
+#: gnome-session/session-properties-capplet.c:217
 msgid "Options"
 msgstr "选项"
 
-#: gnome-session/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:227
 msgid "Show splash screen on login"
 msgstr "登录时显示图片展示"
 
-#: gnome-session/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:243
 msgid "Prompt on logout"
 msgstr "注销时提示"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:259
 msgid "Automatically save changes to session"
 msgstr "自动保存变动到会话中"
 
-#: gnome-session/session-properties-capplet.c:209
+#. Session names list
+#: gnome-session/session-properties-capplet.c:273
 msgid "Choose Current Session"
 msgstr "选择当前的会话"
 
 # gsm/session-properties.c:264
-#: gnome-session/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:290
 msgid "Session Name"
 msgstr "会话名称"
 
 # panel/menu.c:1148 panel/menu.c:1220
-#: gnome-session/session-properties-capplet.c:247
-#: gnome-session/session-properties-capplet.c:301
+#. Add/Edit/Delete buttons
+#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:371
 msgid "Add..."
 msgstr "添加..."
 
 # gnome-terminal/gnome-terminal.c:1585
-#: gnome-session/session-properties-capplet.c:252
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:303
+#: gnome-session/session-properties-capplet.c:376
 msgid "Edit..."
 msgstr "编辑..."
 
 # gmenu/main.c:106
-#: gnome-session/session-properties-capplet.c:257
-#: gnome-session/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:307
+#: gnome-session/session-properties-capplet.c:381
 msgid "Delete"
 msgstr "删除"
 
 # panel/menu.c:3509
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:332
 msgid "Session Options"
 msgstr "会话选项"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:274
+#: gnome-session/session-properties-capplet.c:343
 msgid "Non-session-managed Startup Programs"
 msgstr "非会话管理的启动程序"
 
-#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/session-properties-capplet.c:360
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "优先级"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:362
 msgid "Command"
 msgstr "命令"
 
-#: gnome-session/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:390
 msgid "Browse Currently Running Programs..."
 msgstr "浏览当前运行的程序..."
 
 # applets/gkb/gkb.c:262
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:399
 msgid "Startup Programs"
 msgstr "启动程序"
 
@@ -577,7 +591,7 @@ msgstr "启动命令不能为空"
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: gnome-session/startup-programs.c:391
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
 

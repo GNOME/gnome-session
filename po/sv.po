@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2002-03-25 10:18+0000\n"
+"POT-Creation-Date: 2002-04-01 19:16+0100\n"
 "PO-Revision-Date: 2002-02-24 17:48+0100\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -287,85 +287,98 @@ msgstr "Spara nuvarande session"
 msgid "Save current state of desktop"
 msgstr "Spara skrivbordets aktuella tillstånd"
 
-#: gnome-session/session-names.c:126
+#: gnome-session/session-names.c:128
 msgid "The session name cannot be empty"
 msgstr "Sessionsnamnet får inte vara tomt"
 
-#: gnome-session/session-names.c:136
+#: gnome-session/session-names.c:138
 msgid "The session name already exists"
 msgstr "Sessionen finns redan"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:171
 msgid "Add a new session"
 msgstr "Lägg till en ny session"
 
-#: gnome-session/session-names.c:202
+#: gnome-session/session-names.c:199
 msgid "Edit session name"
 msgstr "Redigera sessionsnamn"
 
-#. frame for options
-#: gnome-session/session-properties-capplet.c:181
+#: gnome-session/session-properties-capplet.c:166
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:191
+#, fuzzy
+msgid "Session properties"
+msgstr "Sessionsegenskaper"
+
+#. Frame for options
+#: gnome-session/session-properties-capplet.c:217
 msgid "Options"
 msgstr "Alternativ"
 
-#: gnome-session/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:227
 msgid "Show splash screen on login"
 msgstr "Visa startbild vid inloggning"
 
-#: gnome-session/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:243
 msgid "Prompt on logout"
 msgstr "Fråga vid utloggning"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:259
 msgid "Automatically save changes to session"
 msgstr "Spara ändringarna i sessionen automatiskt"
 
-#: gnome-session/session-properties-capplet.c:209
+#. Session names list
+#: gnome-session/session-properties-capplet.c:273
 msgid "Choose Current Session"
 msgstr "Välj nuvarande session"
 
-#: gnome-session/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:290
 msgid "Session Name"
 msgstr "Sessionsnamn"
 
-#: gnome-session/session-properties-capplet.c:247
-#: gnome-session/session-properties-capplet.c:301
+#. Add/Edit/Delete buttons
+#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:371
 msgid "Add..."
 msgstr "Lägg till..."
 
-#: gnome-session/session-properties-capplet.c:252
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:303
+#: gnome-session/session-properties-capplet.c:376
 msgid "Edit..."
 msgstr "Redigera..."
 
-#: gnome-session/session-properties-capplet.c:257
-#: gnome-session/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:307
+#: gnome-session/session-properties-capplet.c:381
 msgid "Delete"
 msgstr "Ta bort"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:332
 msgid "Session Options"
 msgstr "Sessionsalternativ"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:274
+#: gnome-session/session-properties-capplet.c:343
 msgid "Non-session-managed Startup Programs"
 msgstr "Startprogram som inte är sessionskontrollerade"
 
-#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/session-properties-capplet.c:360
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "Prioritet"
 
-#: gnome-session/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:362
 msgid "Command"
 msgstr "Kommando"
 
-#: gnome-session/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:390
 msgid "Browse Currently Running Programs..."
 msgstr "Välj bland program som kör nu..."
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:399
 msgid "Startup Programs"
 msgstr "Startprogram"
 
@@ -517,7 +530,7 @@ msgstr "Startkommandot får inte vara tomt"
 msgid "Add Startup Program"
 msgstr "Lägg till startprogram"
 
-#: gnome-session/startup-programs.c:391
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Redigera startprogram"
 

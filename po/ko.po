@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.7\n"
-"POT-Creation-Date: 2002-03-25 10:18+0000\n"
+"POT-Creation-Date: 2002-04-01 19:16+0100\n"
 "PO-Revision-Date: 2002-03-12 02:54+0900\n"
 "Last-Translator: Young-Ho Cha <ganadist@chollian.net>\n"
 "Language-Team: Korean <ko@li.org>\n"
@@ -284,85 +284,98 @@ msgstr "현재 세션 저장하기"
 msgid "Save current state of desktop"
 msgstr "데스크톱 현재 상태 저장"
 
-#: gnome-session/session-names.c:126
+#: gnome-session/session-names.c:128
 msgid "The session name cannot be empty"
 msgstr "세션 이름을 비워 둘 수 없습니다"
 
-#: gnome-session/session-names.c:136
+#: gnome-session/session-names.c:138
 msgid "The session name already exists"
 msgstr "세션 이름이 이미 존재합니다"
 
-#: gnome-session/session-names.c:170
+#: gnome-session/session-names.c:171
 msgid "Add a new session"
 msgstr "새 세션 추가"
 
-#: gnome-session/session-names.c:202
+#: gnome-session/session-names.c:199
 msgid "Edit session name"
 msgstr "세션 이름 편집"
 
-#. frame for options
-#: gnome-session/session-properties-capplet.c:181
+#: gnome-session/session-properties-capplet.c:166
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+
+#: gnome-session/session-properties-capplet.c:191
+#, fuzzy
+msgid "Session properties"
+msgstr "세션 속성"
+
+#. Frame for options
+#: gnome-session/session-properties-capplet.c:217
 msgid "Options"
 msgstr "옵션"
 
-#: gnome-session/session-properties-capplet.c:192
+#: gnome-session/session-properties-capplet.c:227
 msgid "Show splash screen on login"
 msgstr "로그인 시에 시작 화면 보이기"
 
-#: gnome-session/session-properties-capplet.c:199
+#: gnome-session/session-properties-capplet.c:243
 msgid "Prompt on logout"
 msgstr "로그아웃 시에 물어보기"
 
-#: gnome-session/session-properties-capplet.c:206
+#: gnome-session/session-properties-capplet.c:259
 msgid "Automatically save changes to session"
 msgstr "자동으로 변경된 사항을 세션에 저장"
 
-#: gnome-session/session-properties-capplet.c:209
+#. Session names list
+#: gnome-session/session-properties-capplet.c:273
 msgid "Choose Current Session"
 msgstr "현재 세션 선택"
 
-#: gnome-session/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:290
 msgid "Session Name"
 msgstr "세션 이름"
 
-#: gnome-session/session-properties-capplet.c:247
-#: gnome-session/session-properties-capplet.c:301
+#. Add/Edit/Delete buttons
+#: gnome-session/session-properties-capplet.c:299
+#: gnome-session/session-properties-capplet.c:371
 msgid "Add..."
 msgstr "추가..."
 
-#: gnome-session/session-properties-capplet.c:252
-#: gnome-session/session-properties-capplet.c:306
+#: gnome-session/session-properties-capplet.c:303
+#: gnome-session/session-properties-capplet.c:376
 msgid "Edit..."
 msgstr "편집..."
 
-#: gnome-session/session-properties-capplet.c:257
-#: gnome-session/session-properties-capplet.c:311
+#: gnome-session/session-properties-capplet.c:307
+#: gnome-session/session-properties-capplet.c:381
 msgid "Delete"
 msgstr "삭제"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:332
 msgid "Session Options"
 msgstr "세션 옵션"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:274
+#: gnome-session/session-properties-capplet.c:343
 msgid "Non-session-managed Startup Programs"
 msgstr "세션 관리되지 않는 시작 프로그램"
 
-#: gnome-session/session-properties-capplet.c:291
+#: gnome-session/session-properties-capplet.c:360
 #: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "우선 순위"
 
-#: gnome-session/session-properties-capplet.c:292
+#: gnome-session/session-properties-capplet.c:362
 msgid "Command"
 msgstr "명령"
 
-#: gnome-session/session-properties-capplet.c:321
+#: gnome-session/session-properties-capplet.c:390
 msgid "Browse Currently Running Programs..."
 msgstr "현재 실행 중인 프로그램 보기..."
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:399
 msgid "Startup Programs"
 msgstr "시작 프로그램"
 
@@ -514,7 +527,7 @@ msgstr "시작 프로그램을 비워 둘 수 없습니다"
 msgid "Add Startup Program"
 msgstr "시작 프로그램 추가"
 
-#: gnome-session/startup-programs.c:391
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "시작 프로그램 편집"
 
