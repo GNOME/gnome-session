@@ -953,7 +953,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
 	      client_event (tmp_client->handle, GsmSave);
 	      REMOVE (live_list, tmp_client);
 	      APPEND (save_yourself_list, tmp_client);
-	      SmsSaveYourself (client->connection, save_type, shutting_down,
+	      SmsSaveYourself (tmp_client->connection, save_type, shutting_down,
 			       interact_style, fast);
 	    }
 	}
