@@ -315,6 +315,10 @@ static gboolean
 display_gui (void)
 {
   GtkWidget *box;
+  GtkWidget *title;
+  GtkWidget *hbox;
+  GtkWidget *vbox;
+  GtkWidget *image;
   GtkWidget *toggle_button = NULL;
   gint response;
   gchar *s, *t;
@@ -362,10 +366,26 @@ display_gui (void)
 
   force_pango_cache_init ();
 
-  box = gtk_message_dialog_new (NULL, 0,
-				GTK_MESSAGE_QUESTION,
-				GTK_BUTTONS_NONE,
-				_("Are you sure you want to log out?"));
+  box = gtk_dialog_new ();
+  gtk_dialog_set_has_separator (GTK_DIALOG (box), FALSE);
+
+  vbox = gtk_vbox_new (FALSE, 12);
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox), vbox, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
+  gtk_widget_show (vbox);
+  
+  hbox = gtk_hbox_new (FALSE, 12);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+  gtk_widget_show (hbox);
+
+  image = gtk_image_new_from_stock ("gtk-dialog-question", GTK_ICON_SIZE_DIALOG);
+  gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, 0);
+  gtk_widget_show (image);
+	
+  title = make_title_label (_("Are you sure you want to log out?")); 
+  gtk_box_pack_start (GTK_BOX (hbox), title, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (title), 0, 0.5);
+  gtk_widget_show (title);
   
   a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (box));
 
@@ -388,15 +408,13 @@ display_gui (void)
   gtk_window_set_screen (GTK_WINDOW (box), screen);
   gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
 
-  gtk_container_set_border_width (GTK_CONTAINER (box), 6);
-  gtk_container_set_border_width (
-		GTK_CONTAINER (GTK_DIALOG (box)->vbox), GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (box), 5);
 
   if (!autosave)
     {
       toggle_button = gtk_check_button_new_with_mnemonic (_("_Save current setup"));
       gtk_widget_show (toggle_button);
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
+      gtk_box_pack_start (GTK_BOX (vbox),
 			  toggle_button,
 			  FALSE, TRUE, 0);
     }
@@ -412,29 +430,41 @@ display_gui (void)
     {
       GtkWidget *title, *spacer;
       GtkWidget *action_vbox, *hbox;
+      GtkWidget *category_vbox;
       GtkWidget *r;
       
+      category_vbox = gtk_vbox_new (FALSE, 6);
+      gtk_box_pack_start (GTK_BOX (vbox), category_vbox, TRUE, TRUE, 0);
+      gtk_widget_show (category_vbox);
+	
       title = make_title_label (_("Action"));
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox),
-			  title, FALSE, FALSE, GNOME_PAD_SMALL);
-
-      hbox = gtk_hbox_new (FALSE, 6);
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (box)->vbox), hbox, TRUE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (category_vbox),
+			  title, FALSE, FALSE, 0);
+      gtk_widget_show (title);
+  
+      hbox = gtk_hbox_new (FALSE, 0);
+      gtk_box_pack_start (GTK_BOX (category_vbox), hbox, TRUE, TRUE, 0);
+      gtk_widget_show (hbox);
 
       spacer = gtk_label_new ("    ");
       gtk_box_pack_start (GTK_BOX (hbox), spacer, FALSE, FALSE, 0);
+      gtk_widget_show (spacer);
 
-      action_vbox = gtk_vbox_new (FALSE, 0);
+      action_vbox = gtk_vbox_new (FALSE, 6);
       gtk_box_pack_start (GTK_BOX (hbox), action_vbox, TRUE, TRUE, 0);
+      gtk_widget_show (action_vbox);
       
-      r = gtk_radio_button_new_with_mnemonic (NULL, _("_Log Out"));
+      r = gtk_radio_button_new_with_mnemonic (NULL, _("_Log out"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
+      gtk_widget_show (r);
 
-      r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut Down"));
+      r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut down"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
+      gtk_widget_show (r);
 
       r = reboot = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("_Restart the computer"));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
+      gtk_widget_show (r);
     }
   g_free (s);
   g_free (t);
