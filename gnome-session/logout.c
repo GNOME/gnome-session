@@ -30,7 +30,6 @@
 
 #include "logout.h"
 #include "command.h"
-#include "gsm-protocol.h"
 
 static gchar *halt_command[] =
 {
@@ -169,18 +168,7 @@ display_gui (void)
   GtkWidget *halt = NULL;
   GtkWidget *reboot = NULL;
   GtkWidget *invisible;
-  GsmProtocol *protocol;
 
-
-  protocol = (GsmProtocol *)gsm_protocol_new (gnome_master_client());
-  if( !protocol) {
-    const gchar *string = _("Could not connect to the session manager");
-    g_printerr("%s\n", string);
-  }
-  
-  gsm_protocol_get_current_session (GSM_PROTOCOL (protocol));
-
-  
   /* It's really bad here if someone else has the pointer
    * grabbed, so we first grab the pointer and keyboard
    * to an offscreen window, and then once we have the
