@@ -1,22 +1,25 @@
+# translation of gnome-session.HEAD.tr.po to Turkish
 # Turkish translation of gnome-core.
-# Copyright (C) 2001-2003 Free Software Foundation, Inc.
+# Copyright (C) 2001-2003, 2004 Free Software Foundation, Inc.
 # Sinan İmamoğlu <sinan@myrealbox.com>, 2002-2003.
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
 # Fatih Demir <kabalak@kabalak.net>, 2000.
 # Görkem Cetin <gorkem@gelecek.com.tr>, 2001.
 # Arman Aksoy <armish@linux-sevenler.de>, 2003.
+# Baris Cicek <baris@teamforce.name.tr>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2004-02-16 10:51+0000\n"
-"PO-Revision-Date: 2003-02-10 15:31+0200\n"
-"Last-Translator: Arman Aksoy (Armish) <armish@linux-sevenler.de>\n"
+"Project-Id-Version: gnome-session.HEAD.tr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-02-26 03:58+0100\n"
+"PO-Revision-Date: 2004-02-26 13:13+0200\n"
+"Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
+"X-Generator: KBabel 1.0.2\n"
 
 #: gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -29,33 +32,34 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"gnome-session, güvenlik gerekçesiyle, _IceTcpTransNoListen() işlevine iye "
-"sistemlerde (XFree86 sistemleri) TCP kapılarındaki bağlantıları dinlemez. Bu "
-"seçenek yetkili uzak birimlerden gelecek bağlantılara izin verir. Etkili "
-"olabilmesi için gnome-session yeniden başlatılmalıdır."
+"Güvenlik gerekçesiyle, gnome-session, _IceTcpTransNoListen() olan platformlarda "
+"(XFree86 sistemleri) TCP portlarını dinlemez. Bu seçenek (tekilendirilmemiş) "
+"uzaktan bağlantılara izin verir. Etkin olabilmesi için gnome-session yeniden "
+"başlatılmalıdır."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Seçiliyse gnome-session oturum kapanmasını kullanıcıya onaylatır."
+msgstr "Eğer seçiliyse, gnome-session oturumu kapatmadan önce kullanıcı istemini sorar."
 
 #: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Seçiliyse gnome-session oturumu kendiliğinden kaydeder. Yoksa oturumu kapama "
+"Eğer seçiliyse, gnome-session oturumu kendiliğinden kaydeder. Seçili değilse, "
 "iletişim kutusunda oturumu kaydetme seçeneği bulunur."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Oturum kapama istemi"
+msgstr "Çıkış istemi"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"GNOME Masaüstüne oturum açılırken kullanılması yeğlenen açılış görüntüsü"
+"GNOME Masaüstüne giriş yaparken açılış görüntüsü olarak kullanılması istenen "
+"resim."
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -67,7 +71,7 @@ msgstr "Açılış ekranı göster"
 
 #: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Oturum açılırken açılış ekranını göster"
+msgstr "Oturum başlatılırken açılış ekranını göster"
 
 #: gnome-session/gnome-session.schemas.in.h:10
 msgid "Splash Screen Image"
@@ -83,11 +87,11 @@ msgstr "Oturumdaki uygulamaların başlatılma sırası."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "Kapanan uygulamanın başına gelecekler."
+msgstr "Uygulamadan çıkarken ne olacağı."
 
 #: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Biçem:"
+msgstr "_Stil:"
 
 #: gnome-session/gsm-client-list.c:150
 #: gnome-session/session-properties-capplet.c:412
@@ -96,7 +100,7 @@ msgstr "Sıra"
 
 #: gnome-session/gsm-client-list.c:155
 msgid "Style"
-msgstr "Biçem"
+msgstr "Stil"
 
 #: gnome-session/gsm-client-list.c:160
 msgid "State"
@@ -104,7 +108,7 @@ msgstr "Durum"
 
 #: gnome-session/gsm-client-list.c:165
 msgid "Program"
-msgstr "Uygulama"
+msgstr "Program"
 
 #: gnome-session/gsm-client-row.c:31
 msgid "Inactive"
@@ -112,7 +116,7 @@ msgstr "Etkin değil"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Başlatmak için bekleniyor ya da zaten bitmişti."
+msgstr "Başlatmak için bekleniyor veya zaten bitmiş."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -120,7 +124,7 @@ msgstr "Başlatılıyor"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Başlatıldı ama henüz durum rapor etmedi."
+msgstr "Başlatıldı ama henüz durum rapor edilmedi."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
@@ -152,7 +156,7 @@ msgstr "Olağan"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Oturum kapanmasından etkilenmez ama öldürülebilir."
+msgstr "Çıkıştan etkilenmez ama öldürülebilir."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -168,7 +172,7 @@ msgstr "Çöp"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Oturum kapanırken atılır, ayrıca öldürülebilir."
+msgstr "Çıkışta atılır ve öldürülebilir."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -176,7 +180,7 @@ msgstr "Ayarlar"
 
 #: gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Her girişte başlatılır."
+msgstr "Her zaman her girişte başlatılır."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -193,9 +197,9 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"GNOME Ayarları Sunucusunu başlatırken hata oluştu.\n"
+"GNOME Ayarları Servisi başlatırken hata oluştu.\n"
 "\n"
-"Bazı şeyler, örneğin temalar, sesler ya da artalan ayarları, doğru "
+"Bazı şeyler, örneğin temalar, sesler veya arkaplan ayarları, doğru "
 "çalışmayabilir."
 
 #: gnome-session/gsm-gsd.c:53
@@ -218,7 +222,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Yine de GNOME bir dahaki oturumda Ayarlar Sunucusunu yeniden başlatmayı "
+"Yine de GNOME bir sonraki girişte Ayarlar Servisini yeniden başlatmayı "
 "deneyecek."
 
 #: gnome-session/gsm-gsd.c:115
@@ -227,11 +231,11 @@ msgstr "Bilinmeyen bir etkinleştirme hatası oldu."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Ayarlar Sunucusu çok fazla kez yeniden başlatıldı."
+msgstr "Ayarlar Servisi çok fazla kez yeniden başlatıldı."
 
 #: gnome-session/logout.c:374
 msgid "Are you sure you want to log out?"
-msgstr "Oturumu kapamakta kararlı mısınız?"
+msgstr "Çıkmak istediğinizden emin misiniz?"
 
 #: gnome-session/logout.c:391
 msgid "_Save current setup"
@@ -242,12 +246,10 @@ msgid "Action"
 msgstr "Eylem"
 
 #: gnome-session/logout.c:433
-#, fuzzy
 msgid "_Log out"
-msgstr "Oturumu _Kapat"
+msgstr "Çı_kış"
 
 #: gnome-session/logout.c:437
-#, fuzzy
 msgid "Sh_ut down"
 msgstr "_Bilgisayarı Kapat"
 
@@ -261,22 +263,19 @@ msgstr "Yüklenecek oturum adını belirtin"
 
 #: gnome-session/main.c:81
 msgid "Only read saved sessions from the default.session file"
-msgstr "default.session dosyasından yalnızca kaydedilmiş oturumları oku"
+msgstr "Sadece default.session dosyasından kaydedilmiş oturumları oku"
 
 #: gnome-session/main.c:82
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"İstemcilerin kaydolması için milisaniye cinsinden bekleme süresi (0=sınırsız)"
+msgstr "İstemcilerin kaydolması için milisaniye cinsinden bekleme süresi (0=sınırsız)"
 
 #: gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr ""
-"İstemcilerin yanıtı için milisaniye cinsinden bekleme süresi (0=sonsuz)"
+msgstr "İstemcilerin yanıtı için milisaniye cinsinden bekleme süresi (0=sonsuz)"
 
 #: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"İstemcilerin ölmesi için milisaniye cinsinden bekleme süresi (0=sonsuz)"
+msgstr "İstemcilerin ölmesi için milisaniye cinsinden bekleme süresi (0=sonsuz)"
 
 #: gnome-session/main.c:264
 #, c-format
@@ -286,14 +285,14 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"%s 'nin internet adresi bulunamadı.\n"
-"Bu GNOME'un düzgün çalışmasını önleyecektir.\n"
+"%s'nin internet adresi bulunamadı.\n"
+"Bu GNOME'un düzgün çalışmasına engel olacaktır.\n"
 "Bu sorunu belki %s adresini /etc/hosts dosyasına\n"
 "ekleyerek çözebilirsiniz."
 
 #: gnome-session/main.c:271
 msgid "Log in Anyway"
-msgstr "Yine de Oturumu Aç"
+msgstr "Yine de Giriş Yap"
 
 #: gnome-session/main.c:272
 msgid "Try Again"
@@ -318,20 +317,19 @@ msgstr "Uygulama yavaş, durdurulmuş ya da bozuk olabilir."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
-msgstr "Yanıt vermesini bekleyebilir ya da yok edebilirsiniz."
+msgstr "Yanıt vermesini bekleyebilir ya da kaldırabilirsiniz."
 
 #: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
-msgstr "Aksaklıklardan dolayı yeniden başlama iptal edildi."
+msgstr "Hatalardan dolayı yeniden başlatma iptal edildi."
 
 #: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
 msgstr "Oturum kapatılması sürüyor."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Değişiklikleri geçerli oturuma kaydet"
+msgstr "Geçerli oturumu ayarla"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -339,7 +337,7 @@ msgstr "Oturumu öldür"
 
 #: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
-msgstr "İletişim kutuları kullan"
+msgstr "İletişim kutularını kullan"
 
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
@@ -371,8 +369,7 @@ msgid ""
 "Is it still OK to exit?"
 msgstr ""
 "Bazı değişiklikler kaydedilmemiş.\n"
-"Yine de çıkmak istiyor musunuz ?\n"
-"(kaydedilmeyen değişiklikler yitirilecek)"
+"Yine de çıkmak istiyor musunuz?"
 
 #: gnome-session/session-properties-capplet.c:240
 #: gnome-session/session-properties.desktop.in.h:2
@@ -381,11 +378,11 @@ msgstr "Oturumlar"
 
 #: gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "Oturum açılışında açılış _ekranını göster"
+msgstr "Girişte açılış _ekranını göster"
 
 #: gnome-session/session-properties-capplet.c:284
 msgid "_Prompt on logout"
-msgstr "Oturumu kapatılmasını _onaylat"
+msgstr "Çıkışta _onay sor"
 
 #: gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
@@ -425,23 +422,23 @@ msgstr "Seçili istemciyi oturumdan kaldır."
 
 #: gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "Değişiklikleri geçerli oturuma kaydet"
+msgstr "Değişiklikleri geçerli oturuma uygula"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr "Oturumdaki uygulamaların dökümü"
+msgstr "Oturumdaki programların listesi."
 
 #: gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "Şu _anda çalışan uygulamalar:"
+msgstr "Şu _anda çalışan programlar:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Oturum ayarlarını ilklendir"
+msgstr "Oturum ayarlarını başlat"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr "Oturumları yapılandır"
+msgstr "Oturumlarınızı yapılandırın"
 
 #: gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
@@ -485,14 +482,9 @@ msgstr "Başlangıç komutu boş bırakılamaz"
 
 #: gnome-session/startup-programs.c:379
 msgid "Add Startup Program"
-msgstr "Başlangıç Uygulaması Ekle"
+msgstr "Başlangıç Programı Ekle"
 
 #: gnome-session/startup-programs.c:400
 msgid "Edit Startup Program"
-msgstr "Başlangıç Uygulaması Düzenle"
+msgstr "Başlangıç Programı Düzenle"
 
-#~ msgid "Save Current Session"
-#~ msgstr "Geçerli Oturumu Kaydet"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Masaüstünün geçerli durumunu kaydet"
