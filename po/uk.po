@@ -1,14 +1,15 @@
 # Ukrainian translation of gnome-core module
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999-2002.
-# Maxim Dzumanenko <mvd@mylinux.com.ua>, 2002
+# Maxim Dziumanenko <mvd@mylinux.com.ua>, 2002-2004
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.0.8\n"
-"POT-Creation-Date: 2004-02-04 09:40+0000\n"
-"PO-Revision-Date: 2003-01-23 03:31--500\n"
-"Last-Translator: Yuriy Syrota <yuri@renome.rovno.ua>\n"
+"Project-Id-Version: gnome-session\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-01-14 13:28+0000\n"
+"PO-Revision-Date: 2004-02-04 19:34+0200\n"
+"Last-Translator: Maxim Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,32 +28,34 @@ msgid ""
 msgstr ""
 "З причин безпеки, на платформах, що мають _IceTcpTransNoListen() (системи "
 "XFree86), gnome-session не прослуховує TCP-з'єднання. Цей параметр дозволяє "
-"з'єднання з (авторизованих) віддалених хостів. gnome-session потрібно "
+"з'єднання з (авторизованих) віддалених вузлів. gnome-session потрібно "
 "перезапустити, щоб ця зміна мала ефект."
 
 #: gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Якщо увімкнено, то вимагатиметься підтвердження завершення сеансу."
+msgstr ""
+"Якщо увімкнено, то gnome-session буде попереджувати користувача перед "
+"завершенням сеансу."
 
 #: gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Якщо увімкнено, то сеанс зберігатиметься автоматично, інакше, діалог "
-"завершення роботи матиме відповідний параметр для збереження сеансу."
+"Якщо увімкнено, то сеанс зберігатиметься автоматично. У іншому випадку, у "
+"діалозі завершення сеансу буде відображатись відповідне поле для ввімкнення/"
+"вимкнення збереження сеансу."
 
 #: gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Запит на завершеня роботи"
+msgstr "Попередження про завершення сеансу"
 
 #: gnome-session/gnome-session.schemas.in.h:6
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
 msgstr ""
-"Зображення, що використовуватиметься під час входу у стільницю середовища "
-"GNOME"
+"Зображення, що використовується як заставка під час запуску середовища GNOME"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -80,7 +83,7 @@ msgstr "Порядок запуску додатків у сеансі."
 
 #: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "Що станеться з програмою, коли вона завершує роботу."
+msgstr "Що станеться з програмою, коли вона завершить роботу."
 
 #: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
@@ -109,19 +112,19 @@ msgstr "Неактивне"
 
 #: gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Очікування запуску чи вже завершено."
+msgstr "Очікує запуску чи вже завершено."
 
 #: gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "Запуск"
+msgstr "Запускається"
 
 #: gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Запущено, але ще не повідомлено стан."
+msgstr "Запущене, але ще не повідомило стан."
 
 #: gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "Виконання"
+msgstr "Виконується"
 
 #: gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
@@ -129,7 +132,7 @@ msgstr "Звичайний учасник сеансу."
 
 #: gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "Збереження"
+msgstr "Зберігається"
 
 #: gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
@@ -149,7 +152,7 @@ msgstr "Звичайна"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Зберігається при завершені роботи, але \"смертна\"."
+msgstr "Не залежить від виходу з сеансу, але \"смертна\"."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -157,15 +160,15 @@ msgstr "Перезапускати"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "\"Безсмертна\" програма"
+msgstr "\"Безсмертна\" програма."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Використана"
+msgstr "Видаляється"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Викидається при завершені роботи і \"смертна\"."
+msgstr "Викидається при завершені роботи та \"смертна\"."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -190,7 +193,7 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Сталася помилка при виконанні служби параметрів GNOME.\n"
+"Помилка при виконанні служби параметрів GNOME.\n"
 "\n"
 "Деякі речі, наприклад теми, звуки, тло можуть робити неправильно."
 
@@ -218,7 +221,7 @@ msgstr ""
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr "Сталася невідома помилка активації."
+msgstr "Невідома помилка активації."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
@@ -237,14 +240,12 @@ msgid "Action"
 msgstr "Дія"
 
 #: gnome-session/logout.c:432
-#, fuzzy
 msgid "_Log out"
-msgstr "_Завершити роботу"
+msgstr "_Завершити сеанс"
 
 #: gnome-session/logout.c:436
-#, fuzzy
 msgid "Sh_ut down"
-msgstr "Вим_кнути"
+msgstr "_Вимкнути комп'ютер"
 
 #: gnome-session/logout.c:440
 msgid "_Restart the computer"
@@ -305,7 +306,7 @@ msgstr "Немає відповіді на команду %s."
 
 #: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
-msgstr "Можливо що програму зупинено, зламано чи вона просто повільна"
+msgstr "Можливо що програму зупинено, зламано чи вона просто повільна."
 
 #: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
@@ -320,9 +321,8 @@ msgid "A session shutdown is in progress."
 msgstr "Відбувається завершення сеансу."
 
 #: gnome-session/save-session.c:46
-#, fuzzy
 msgid "Set the current session"
-msgstr "Застосувати зміни до поточного сеансу"
+msgstr "Встановити поточний сеанс"
 
 #: gnome-session/save-session.c:47
 msgid "Kill session"
@@ -335,6 +335,14 @@ msgstr "Використовувати діалогові вікна"
 #: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Не вдалося з'єднатися із менеджером сеансів"
+
+#: gnome-session/save-session.desktop.in.h:1
+msgid "Save Current Session"
+msgstr "Зберегти поточний сеанс"
+
+#: gnome-session/save-session.desktop.in.h:2
+msgid "Save current state of desktop"
+msgstr "Зберегти поточний стан стільниці"
 
 #: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -375,7 +383,7 @@ msgstr "Показувати заставку під час _реєстраці�
 
 #: gnome-session/session-properties-capplet.c:264
 msgid "_Prompt on logout"
-msgstr "Переп_итування перед завершенням сеансу"
+msgstr "Переп_итувати перед завершенням сеансу"
 
 #: gnome-session/session-properties-capplet.c:275
 msgid "Automatically save chan_ges to session"
@@ -399,7 +407,7 @@ msgstr "Поточний сеанс"
 
 #: gnome-session/session-properties-capplet.c:373
 msgid "Additional startup _programs:"
-msgstr "Додаткові _початкові запуску:"
+msgstr "Додаткові _початкові програми для запуску:"
 
 #: gnome-session/session-properties-capplet.c:394
 msgid "Command"
@@ -480,9 +488,3 @@ msgstr "Додати програму"
 #: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Зберегти поточний сеанс"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Зберегти поточний стан стільниці"
