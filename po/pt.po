@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
-"POT-Creation-Date: 2002-08-05 20:07+1200\n"
-"PO-Revision-Date: 2002-05-29 03:40+0000\n"
+"POT-Creation-Date: 2002-08-10 02:52+0100\n"
+"PO-Revision-Date: 2002-08-10 03:05+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Português <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -95,9 +95,8 @@ msgid "Unaffected by logouts but can die."
 msgstr "Não afectado por fim de sessão mas pode morrer."
 
 #: gnome-session/gsm-client-row.c:53
-#, fuzzy
 msgid "Restart"
-msgstr "Repor"
+msgstr "Reiniciar"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
@@ -134,6 +133,10 @@ msgid ""
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
+"Ocorreu um erro ao iniciar o Deamon de Configurações GNOME.\n"
+"\n"
+"Algumas coisas, tais como temas, sons ou configurações do fundo do ambiente "
+"poderão não funcionar correctamente."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -142,6 +145,10 @@ msgid ""
 "The last error message was:\n"
 "\n"
 msgstr ""
+"\n"
+"\n"
+"A última mensagem de erro foi:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
@@ -149,24 +156,25 @@ msgid ""
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
+"\n"
+"\n"
+"O GNOME tentará ainda assim reiniciar o Deamon de Configurações da próxima vez que iniciar sessão."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr ""
+msgstr "Ocorreu um erro de activação desconhecido."
 
 #: gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr ""
+msgstr "O Deamon de Configurações reinicio-se demasiadas vezes."
 
 #: gnome-session/logout.c:234
-#, fuzzy
 msgid "Are you sure you want to log out?"
-msgstr "Deseja efectuar a ligação?"
+msgstr "Tem a certeza de que deseja terminar a sessão?"
 
 #: gnome-session/logout.c:251
-#, fuzzy
 msgid "_Save current setup"
-msgstr "Gravar configuração actual"
+msgstr "_Gravar configuração actual"
 
 #: gnome-session/logout.c:271
 msgid "Action"
@@ -177,13 +185,12 @@ msgid "_Log Out"
 msgstr "_Terminar Sessão"
 
 #: gnome-session/logout.c:282
-#, fuzzy
 msgid "Sh_ut Down"
-msgstr "Desligar Sistema"
+msgstr "Desli_gar Sistema"
 
 #: gnome-session/logout.c:285
 msgid "_Restart the computer"
-msgstr ""
+msgstr "_Reiniciar o computador"
 
 #: gnome-session/main.c:76
 msgid "Specify a session name to load"
@@ -220,12 +227,11 @@ msgstr ""
 
 #: gnome-session/main.c:219
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Mesmo Assim Registar em Log"
 
 #: gnome-session/main.c:220
-#, fuzzy
 msgid "Try Again"
-msgstr "Tentar novamente"
+msgstr "Tentar Novamente"
 
 #: gnome-session/manager.c:176
 msgid "Your session has been saved"
@@ -249,9 +255,8 @@ msgid "You may wait for it to respond or remove it."
 msgstr "Pode aguardar que ele responda ou remove-lo."
 
 #: gnome-session/manager.c:1516
-#, fuzzy
 msgid "Restart abandoned due to failures."
-msgstr "Re-execução abandonada devido a falhas."
+msgstr "Reiníco abandonado devido a falhas."
 
 #: gnome-session/manager.c:1692
 msgid "A session shutdown is in progress."
@@ -294,9 +299,8 @@ msgid "Edit session name"
 msgstr "Editar nome de sessão"
 
 #: gnome-session/session-properties-capplet.c:104
-#, fuzzy
 msgid "_Edit"
-msgstr "Editar"
+msgstr "_Editar"
 
 #: gnome-session/session-properties-capplet.c:172
 msgid ""
@@ -308,24 +312,20 @@ msgstr ""
 
 #: gnome-session/session-properties-capplet.c:201
 #: gnome-session/session-properties.desktop.in.h:2
-#, fuzzy
 msgid "Sessions"
-msgstr "Sessão"
+msgstr "Sesssões"
 
 #: gnome-session/session-properties-capplet.c:229
-#, fuzzy
 msgid "Show splash screen on _login"
-msgstr "Mostrar imagem do GNOME no login"
+msgstr "Mostrar _logotipo do GNOME ao iniciar sessão"
 
 #: gnome-session/session-properties-capplet.c:240
-#, fuzzy
 msgid "_Prompt on logout"
-msgstr "Perguntar no logout"
+msgstr "_Perguntar ao terminar sessão"
 
 #: gnome-session/session-properties-capplet.c:251
-#, fuzzy
 msgid "Automatically save chan_ges to session"
-msgstr "Gravar modificações à sessão automaticamente"
+msgstr "_Gravar modificações à sessão automaticamente"
 
 #: gnome-session/session-properties-capplet.c:279
 msgid "Session Name"
@@ -356,18 +356,16 @@ msgid "Remove the currently selected client from the session."
 msgstr "Remover o cliente actualmente seleccionado da sessão."
 
 #: gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "Gravar modificações à sessão automaticamente"
+msgstr "Aplicar alterações à sessão actual"
 
 #: gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "A lista de aplicações na sessão."
 
 #: gnome-session/session-properties.c:90
-#, fuzzy
 msgid "Currently running _programs:"
-msgstr "Pesquisar Aplicações Actualmente em Execução..."
+msgstr "Aplicações actualmente em e_xecução:"
 
 #: gnome-session/session-properties.c:104
 msgid "Initialize session settings"
@@ -375,7 +373,7 @@ msgstr "Inicializar definições de sessão"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "Configurar as suas sessões"
 
 #: gnome-session/splash-widget.c:41
 msgid "Audio Settings"
@@ -422,18 +420,16 @@ msgid "Nautilus"
 msgstr "Nautilus"
 
 #: gnome-session/startup-programs.c:286
-#, fuzzy
 msgid "_Startup Command:"
-msgstr "Comados de Arranque"
+msgstr "Comado de _Arranque:"
 
 #: gnome-session/startup-programs.c:292
 msgid "Startup Command"
 msgstr "Comados de Arranque"
 
 #: gnome-session/startup-programs.c:307
-#, fuzzy
 msgid "_Priority:"
-msgstr "Prioridade"
+msgstr "_Prioridade:"
 
 #: gnome-session/startup-programs.c:335
 msgid "The startup command cannot be empty"
