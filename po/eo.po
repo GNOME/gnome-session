@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.3\n"
-"POT-Creation-Date: 2003-06-04 11:42+0200\n"
+"POT-Creation-Date: 2003-07-04 08:45+0100\n"
 "PO-Revision-Date: 2003-06-06 11:42+0200\n"
 "Last-Translator: Joël Brich <joel.brich@laposte.net>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
@@ -25,10 +25,10 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"Pro sekurecaj kialoj, en mastrumaj sistemoj kiuj havas _IceTcpTransNoListen() "
-"(XFree86 sistemoj), gnome-session ne aŭskultas konektojn ĉe TCP pordoj. "
-"Tiu opcio permesos konektojn el (rajtigitaj) foraj komputiloj."
-"gnome-session devas esti relanĉi por akcepti la ŝanĝojn."
+"Pro sekurecaj kialoj, en mastrumaj sistemoj kiuj havas _IceTcpTransNoListen"
+"() (XFree86 sistemoj), gnome-session ne aŭskultas konektojn ĉe TCP pordoj. "
+"Tiu opcio permesos konektojn el (rajtigitaj) foraj komputiloj.gnome-session "
+"devas esti relanĉi por akcepti la ŝanĝojn."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -39,8 +39,8 @@ msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Se enŝaltita, gnome-session aŭtomate konservos la sesion. Alie, "
-"la adiaŭdialogo havos opcion por konservi la sesion."
+"Se enŝaltita, gnome-session aŭtomate konservos la sesion. Alie, la "
+"adiaŭdialogo havos opcion por konservi la sesion."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -50,8 +50,7 @@ msgstr "Adiaŭa demando"
 msgid ""
 "Preferred Image to use for the splash screen when logging in to the GNOME "
 "Desktop"
-msgstr ""
-"Preferata bildo por la lanĉprogreso, kiam ŝargas la GNOME tabulo"
+msgstr "Preferata bildo por la lanĉprogreso, kiam ŝargas la GNOME tabulo"
 
 #: gnome-session/gnome-session.schemas.in.in.h:7
 msgid "Save sessions"
@@ -69,24 +68,24 @@ msgstr "Montru lanĉprogreson, kiam la sesio komencas"
 msgid "Splash Screen Image"
 msgstr "Lanĉprogresa bildo"
 
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:310
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "_Ordo :"
 
-#: gnome-session/gsm-client-editor.c:98
+#: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "La ordo en kiu la aplikaĵoj komencas en la sesio."
 
-#: gnome-session/gsm-client-editor.c:105
+#: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "Kio okazis al la aplikaĵo kiam ĝi ekzistas."
 
-#: gnome-session/gsm-client-editor.c:108
+#: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "_Stilo :"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:387
 msgid "Order"
 msgstr "Ordo"
 
@@ -223,51 +222,53 @@ msgstr "Estis nekonatan aktivatan eraron."
 msgid "The Settings Daemon restarted too many times."
 msgstr "La agorda demono relanĉita tro ofte."
 
-#: gnome-session/logout.c:270
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "Ĉu vi estas certa, ke vi volas adiaŭi?"
 
-#: gnome-session/logout.c:298
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "_Konservu aktualan agordon"
 
-#: gnome-session/logout.c:318
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "Ago"
 
-#: gnome-session/logout.c:326
-msgid "_Log Out"
+#: gnome-session/logout.c:458
+#, fuzzy
+msgid "_Log out"
 msgstr "_Adiaŭu el sesio"
 
-#: gnome-session/logout.c:329
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+#, fuzzy
+msgid "Sh_ut down"
 msgstr "_Haltu"
 
-#: gnome-session/logout.c:332
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "_Relanĉu la komputilon"
 
-#: gnome-session/main.c:76
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Indiku sesionomon por ŝargi"
 
-#: gnome-session/main.c:77
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Legu nur konservitajn sesiojn el la default.session dosiero"
 
-#: gnome-session/main.c:78
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Milisekunda periodo ĉe atendo de klientoj por registri (0=ĉiam)"
 
-#: gnome-session/main.c:79
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Milisekunda periodo ĉe atendo de klientoj por respondi (0=ĉiam)"
 
-#: gnome-session/main.c:80
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Milisekunda periodo ĉe atendo de klientoj por morti (0=ĉiam)"
 
-#: gnome-session/main.c:212
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -280,11 +281,11 @@ msgstr ""
 "Estas eble korekti la problemon ĉe aldono\n"
 "de %s en la dosiero /etc/hosts."
 
-#: gnome-session/main.c:219
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "Salutu tamen"
 
-#: gnome-session/main.c:220
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "Reprovu"
 
@@ -317,15 +318,20 @@ msgstr "Relanĉo forlasita pro eraroj."
 msgid "A session shutdown is in progress."
 msgstr "Unu sesia halto estas okazita"
 
-#: gnome-session/save-session.c:42
+#: gnome-session/save-session.c:46
+#, fuzzy
+msgid "Set the current session"
+msgstr "Apliku ŝanĝojn al la aktuala sesio"
+
+#: gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "Mortigu sesion"
 
-#: gnome-session/save-session.c:43
+#: gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Uzu dialogojn"
 
-#: gnome-session/save-session.c:156
+#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Ne povas konekti al la sesiadministrilo"
 
@@ -337,27 +343,27 @@ msgstr "Konservu aktualan sesion"
 msgid "Save current state of desktop"
 msgstr "Konservu aktualan staton de la tabulo"
 
-#: gnome-session/session-names.c:139
+#: gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "La sesionomo ne povas esti malplena"
 
-#: gnome-session/session-names.c:149
+#: gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "La sesionomo jam ekzistas"
 
-#: gnome-session/session-names.c:185
+#: gnome-session/session-names.c:187
 msgid "Add a new session"
 msgstr "Aldonu novan sesion"
 
-#: gnome-session/session-names.c:215
+#: gnome-session/session-names.c:217
 msgid "Edit session name"
 msgstr "Redaktu sesionomon"
 
-#: gnome-session/session-properties-capplet.c:104
+#: gnome-session/session-properties-capplet.c:123
 msgid "_Edit"
 msgstr "_Redakto"
 
-#: gnome-session/session-properties-capplet.c:172
+#: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -365,48 +371,48 @@ msgstr ""
 "Ŝanĝoj ne estas konservita.\n"
 "Ĉu vi volas eliri?"
 
-#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Sesioj"
 
-#: gnome-session/session-properties-capplet.c:229
+#: gnome-session/session-properties-capplet.c:248
 msgid "Show splash screen on _login"
 msgstr "Montru _lanĉprogreson ĉe saluto"
 
-#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties-capplet.c:259
 msgid "_Prompt on logout"
 msgstr "_Demandu ĉe adiaŭo"
 
-#: gnome-session/session-properties-capplet.c:251
+#: gnome-session/session-properties-capplet.c:270
 msgid "Automatically save chan_ges to session"
 msgstr "_Aŭtomate konservi ŝanĝoj al sesio"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:281
 msgid "_Sessions:"
 msgstr "_Sesioj"
 
-#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:299
 msgid "Session Name"
 msgstr "Sesionomo"
 
-#: gnome-session/session-properties-capplet.c:326
+#: gnome-session/session-properties-capplet.c:350
 msgid "Session Options"
 msgstr "Sesiopcioj"
 
-#: gnome-session/session-properties-capplet.c:335
+#: gnome-session/session-properties-capplet.c:359
 msgid "Current Session"
 msgstr "Aktuala sesio"
 
-#: gnome-session/session-properties-capplet.c:344
+#: gnome-session/session-properties-capplet.c:368
 msgid "Additional startup _programs:"
 msgstr "Aldonaj lanĉaj _programoj :"
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:389
 msgid "Command"
 msgstr "Komando"
 
-#: gnome-session/session-properties-capplet.c:392
+#: gnome-session/session-properties-capplet.c:421
 msgid "Startup Programs"
 msgstr "Lanĉaj programoj"
 
@@ -462,15 +468,15 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Laborkadra agordo"
 
-#: gnome-session/startup-programs.c:289
+#: gnome-session/startup-programs.c:288
 msgid "_Startup Command:"
 msgstr "_Lanĉa komando :"
 
-#: gnome-session/startup-programs.c:295
+#: gnome-session/startup-programs.c:294
 msgid "Startup Command"
 msgstr "Lanĉa komando"
 
-#: gnome-session/startup-programs.c:338
+#: gnome-session/startup-programs.c:342
 msgid "The startup command cannot be empty"
 msgstr "La lanĉa komando ne povas esti malplena"
 

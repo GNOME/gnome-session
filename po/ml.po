@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.2.x\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
+"POT-Creation-Date: 2003-07-04 08:45+0100\n"
 "PO-Revision-Date: 2003-03-05 10:29+0530\n"
 "Last-Translator: FSF-India <locale@gnu.org.in>\n"
 "Language-Team: Malayalam <locale@gnu.org.in>\n"
@@ -62,24 +62,24 @@ msgstr "അവസ്ഥ ആരംഭിക്കുമ്പോള് മിന�
 msgid "Splash Screen Image"
 msgstr "മിന്നല് തിരശ്ശീലാ ചിത്രം"
 
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:309
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "ക്രമം"
 
-#: gnome-session/gsm-client-editor.c:98
+#: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "അവസ്ഥയില് പ്രയോഗങ്ങള് തുടങ്ങുന്ന ക്രമം"
 
-#: gnome-session/gsm-client-editor.c:105
+#: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "പ്രയോഗം അവസാനിക്കുമ്പോള് അതിന‍് എന്ത് സംഭവിക്കുന്നു."
 
-#: gnome-session/gsm-client-editor.c:108
+#: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "രീതി:"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:387
 msgid "Order"
 msgstr "ക്രമം"
 
@@ -206,51 +206,53 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:368
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "താങ്കള്‌ക്ക് പുറത്ത് കടക്കണം എന്ന് ഉറപ്പുണ്ടോ?"
 
-#: gnome-session/logout.c:397
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "ഇപ്പോഴുള്ള സജ്ജീകരണങ്ങള് സംരക്ഷിക്കുക"
 
-#: gnome-session/logout.c:417
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "പ്ര‌വ‍ര്ത്തനം"
 
-#: gnome-session/logout.c:430
-msgid "_Log Out"
+#: gnome-session/logout.c:458
+#, fuzzy
+msgid "_Log out"
 msgstr "പുറത്ത് പോകുക"
 
-#: gnome-session/logout.c:433
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+#, fuzzy
+msgid "Sh_ut down"
 msgstr "അടച്ച് പൂട്ടുക"
 
-#: gnome-session/logout.c:436
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "കംപ്യൂട്ടര് വീണ്ടും തുടങ്ങുക"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "തുടങ്ങേണ്ട അവസ്ഥ ഏതെന്ന് വ്യക്തമാക്കുക"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session രചനയില് നിന്നും സംരക്ഷിച്ച അവസ്ഥകള് മാത്രം വായിക്കുക"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -259,11 +261,11 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 
-#: gnome-session/main.c:224
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "ഏങ്ങനെയെങ്കിലും അകത്ത് കടക്കുക"
 
-#: gnome-session/main.c:225
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "വീണ്ടും ശ്രമിക്കുക"
 
@@ -337,11 +339,11 @@ msgstr "പുതിയ അവസ്ഥ ചേര്ക്കുക"
 msgid "Edit session name"
 msgstr "അവസ്ഥയുടെ പേര‍് ചിട്ടപ്പെടുത്തുക"
 
-#: gnome-session/session-properties-capplet.c:104
+#: gnome-session/session-properties-capplet.c:123
 msgid "_Edit"
 msgstr "ചിട്ട"
 
-#: gnome-session/session-properties-capplet.c:172
+#: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -349,48 +351,48 @@ msgstr ""
 "കുറച്ച് മാറ്റങ്ങള് സംരക്ഷിച്ചിട്ടില്ല.\n"
 "പുറത്ത് കടക്കുന്നതിന‍് കുഴപ്പമില്ലല്ലോ?"
 
-#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "അവസ്ഥകള്"
 
-#: gnome-session/session-properties-capplet.c:229
+#: gnome-session/session-properties-capplet.c:248
 msgid "Show splash screen on _login"
 msgstr "അകത്തു കടക്കുമ്പോള് മിന്നല് തിരശ്ശീല കാണിക്കുക"
 
-#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties-capplet.c:259
 msgid "_Prompt on logout"
 msgstr "പുറത്ത് കടക്കുമ്പോള് സൂചിപ്പിക്കുക"
 
-#: gnome-session/session-properties-capplet.c:251
+#: gnome-session/session-properties-capplet.c:270
 msgid "Automatically save chan_ges to session"
 msgstr "അവസ്ഥാ മാറ്റങ്ങള് സ്വയമേവ സംരക്ഷിക്കുക"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:281
 msgid "_Sessions:"
 msgstr "അവസ്ഥകള്:"
 
-#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:299
 msgid "Session Name"
 msgstr "അവസ്ഥാ നാമം"
 
-#: gnome-session/session-properties-capplet.c:326
+#: gnome-session/session-properties-capplet.c:350
 msgid "Session Options"
 msgstr "അവസ്ഥ‌ ബദലുകള്‌"
 
-#: gnome-session/session-properties-capplet.c:335
+#: gnome-session/session-properties-capplet.c:359
 msgid "Current Session"
 msgstr "സജീവ അവസ്ഥ"
 
-#: gnome-session/session-properties-capplet.c:344
+#: gnome-session/session-properties-capplet.c:368
 msgid "Additional startup _programs:"
 msgstr "കൂടുതല് ആരംഭ പ്രയോഗങ്ങള്: "
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:389
 msgid "Command"
 msgstr "ആജ്ഞ:"
 
-#: gnome-session/session-properties-capplet.c:392
+#: gnome-session/session-properties-capplet.c:421
 msgid "Startup Programs"
 msgstr "നിര്‍ദ്ദേശം നടപ്പിലാക്കുക"
 
@@ -455,14 +457,14 @@ msgstr "ആരംഭ നിര്‍ദ്ദേശം:"
 msgid "Startup Command"
 msgstr "ആരംഭ നിര്‍ദ്ദേശം"
 
-#: gnome-session/startup-programs.c:341
+#: gnome-session/startup-programs.c:342
 msgid "The startup command cannot be empty"
 msgstr "ആരംഭ നിര്‍ദ്ദേശം"
 
-#: gnome-session/startup-programs.c:377
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
 msgstr "ആരംഭ നിര്‍ദ്ദേശം ചേര്ക്കുക"
 
-#: gnome-session/startup-programs.c:398
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "ആരംഭ നിര്‍ദ്ദേശം ചിട്ടപ്പെടുത്തുക"

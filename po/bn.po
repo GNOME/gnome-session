@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
+"POT-Creation-Date: 2003-07-04 08:45+0100\n"
 "PO-Revision-Date: 2003-03-08 02:25-0800\n"
 "Last-Translator: Taneem Ahmed <taneem@eyetap.org>\n"
 "Language-Team: Bangla <gnome-translation@bengalinux.org>\n"
@@ -65,24 +65,24 @@ msgstr "সেশনের শুরুতে প্রাথমিক স্ক
 msgid "Splash Screen Image"
 msgstr "প্রাথমিক স্ক্রিনের ছবি"
 
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:309
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "_ধারা:"
 
-#: gnome-session/gsm-client-editor.c:98
+#: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "যেই ধারা অনুযাই সেশনে অ্যাপ্লিকেসন শুরু হয়েছে।"
 
-#: gnome-session/gsm-client-editor.c:105
+#: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "অ্যাপ্লিকেসনটির কি হয় যখন সেটি শেষ হয়।"
 
-#: gnome-session/gsm-client-editor.c:108
+#: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "ধ_রন:"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:387
 msgid "Order"
 msgstr "ধারা"
 
@@ -220,51 +220,53 @@ msgstr "শুরু করার সময় একটি অজ্ঞাত ত�
 msgid "The Settings Daemon restarted too many times."
 msgstr "সেটিংস ডিমন অতিরিক্ত বার পুনরায় চালু করা হয়েছে।"
 
-#: gnome-session/logout.c:368
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "আপনি কি নিশ্চিত যে আপনি লগ আউট করতে চান?"
 
-#: gnome-session/logout.c:397
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "বর্তমান অবস্থা _সংরক্ষন করুন"
 
-#: gnome-session/logout.c:417
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "কাজ"
 
-#: gnome-session/logout.c:430
-msgid "_Log Out"
+#: gnome-session/logout.c:458
+#, fuzzy
+msgid "_Log out"
 msgstr "_লগ আউট"
 
-#: gnome-session/logout.c:433
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+#, fuzzy
+msgid "Sh_ut down"
 msgstr "বন্ধ _করুন"
 
-#: gnome-session/logout.c:436
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "কম্পিউটার পুনরায় _চালু করুন"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "চালু করার জন্য একটি সেশনের নাম দিন"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session ফাইল থেকে শুধু সংরক্ষিত সেশন সমুহ পড়ুন"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "ক্লায়েন্টটি রেজিস্টার হওয়ার জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "ক্লায়েন্টটির জবাবের জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "ক্লায়েন্টটি শেষ হওয়ার জন্য মিলিসেকেন্ড অপেক্ষা করা হয়েছে (0=forever)"
 
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -276,11 +278,11 @@ msgstr ""
 "এর ফলে গুহ্‍নোম ঠিকমত চলবে না।\n"
 "%s কে /etc/hosts ফাইলের মধ্যে যোগ করে এই সমস্যাটি হয়তো ঠিক করা যাবে।"
 
-#: gnome-session/main.c:224
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "তাও লগইন করুন"
 
-#: gnome-session/main.c:225
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "আবার চেস্টা করুন"
 
@@ -354,11 +356,11 @@ msgstr "নতুন সেশন যোগ করুন"
 msgid "Edit session name"
 msgstr "সেশনের নাম পরিবর্তন করুন"
 
-#: gnome-session/session-properties-capplet.c:104
+#: gnome-session/session-properties-capplet.c:123
 msgid "_Edit"
 msgstr "_পরিবর্তন"
 
-#: gnome-session/session-properties-capplet.c:172
+#: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -366,48 +368,48 @@ msgstr ""
 "কিছু কিছু পরিবর্তন সংরক্ষিত নয়।\n"
 "তাও কি বের হওয়া ঠিক আছে?"
 
-#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "সেশন সমুহ"
 
-#: gnome-session/session-properties-capplet.c:229
+#: gnome-session/session-properties-capplet.c:248
 msgid "Show splash screen on _login"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties-capplet.c:259
 msgid "_Prompt on logout"
 msgstr "লগআউটের _সময় জিজ্গাসা করুন"
 
-#: gnome-session/session-properties-capplet.c:251
+#: gnome-session/session-properties-capplet.c:270
 msgid "Automatically save chan_ges to session"
 msgstr "স্বয়ংক্রিয় সেশনের _পরিবর্তন সমুহ সংরক্ষন করুন"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:281
 msgid "_Sessions:"
 msgstr "সে_সন সমুহ:"
 
-#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:299
 msgid "Session Name"
 msgstr "সেশনের নাম"
 
-#: gnome-session/session-properties-capplet.c:326
+#: gnome-session/session-properties-capplet.c:350
 msgid "Session Options"
 msgstr "সেশনের অপ্সন সমুহ"
 
-#: gnome-session/session-properties-capplet.c:335
+#: gnome-session/session-properties-capplet.c:359
 msgid "Current Session"
 msgstr "বর্তমান সেশন"
 
-#: gnome-session/session-properties-capplet.c:344
+#: gnome-session/session-properties-capplet.c:368
 msgid "Additional startup _programs:"
 msgstr "বার্তি প্রথমে সুরু করার প্রোগ্রাম:"
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:389
 msgid "Command"
 msgstr "কমান্ড"
 
-#: gnome-session/session-properties-capplet.c:392
+#: gnome-session/session-properties-capplet.c:421
 msgid "Startup Programs"
 msgstr "প্রথমে সুরু করার প্রোগ্রাম"
 
@@ -471,14 +473,14 @@ msgstr "প্র_থমে সুরু করার কমান্ড:"
 msgid "Startup Command"
 msgstr "প্রথমে সুরু করার কমান্ড"
 
-#: gnome-session/startup-programs.c:341
+#: gnome-session/startup-programs.c:342
 msgid "The startup command cannot be empty"
 msgstr "প্রথমে সুরু করার কমান্ড খালি হতে পারে না"
 
-#: gnome-session/startup-programs.c:377
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
 msgstr "প্রথমে সুরু করার প্রোগ্রাম যোগ করুন"
 
-#: gnome-session/startup-programs.c:398
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "প্রথমে সুরু করার প্রোগ্রাম পরিবর্তন করুন"

@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.0.5\n"
-"POT-Creation-Date: 2003-06-06 15:21+0100\n"
+"POT-Creation-Date: 2003-07-04 08:45+0100\n"
 "PO-Revision-Date: 2003-01-26 12:29+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -95,24 +95,24 @@ msgstr "Προβολή της οθόνης έναρξης κατά την εκκ
 msgid "Splash Screen Image"
 msgstr "Εικόνα Οθόνης Έναρξης"
 
-#: gnome-session/gsm-client-editor.c:96 gnome-session/startup-programs.c:309
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
 msgid "_Order:"
 msgstr "_Σειρά:"
 
-#: gnome-session/gsm-client-editor.c:98
+#: gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "Η σειρά με την οποία οι εφαρμογές εκκινούνται στη συνεδρία."
 
-#: gnome-session/gsm-client-editor.c:105
+#: gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "Τι να συμβαίνει στην εφαρμογή όταν τερματίζεται."
 
-#: gnome-session/gsm-client-editor.c:108
+#: gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "_Στυλ:"
 
 #: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:362
+#: gnome-session/session-properties-capplet.c:387
 msgid "Order"
 msgstr "Σειρά"
 
@@ -250,51 +250,53 @@ msgstr "Υπήρξε ένα άγνωστο σφάλμα ενεργοποίηση
 msgid "The Settings Daemon restarted too many times."
 msgstr "Η Υπηρεσία Ρυθμίσεων επανεκκινήθηκε πάρα πολλές φορές."
 
-#: gnome-session/logout.c:368
+#: gnome-session/logout.c:386
 msgid "Are you sure you want to log out?"
 msgstr "Είστε βέβαιοι ότι θέλετε να αποσυνδεθείτε;"
 
-#: gnome-session/logout.c:397
+#: gnome-session/logout.c:416
 msgid "_Save current setup"
 msgstr "Απο_θήκευση τρεχόντων ρυθμίσεων"
 
-#: gnome-session/logout.c:417
+#: gnome-session/logout.c:441
 msgid "Action"
 msgstr "Κίνηση"
 
-#: gnome-session/logout.c:430
-msgid "_Log Out"
-msgstr "_Τερματισμός Συνεδρίας"
+#: gnome-session/logout.c:458
+#, fuzzy
+msgid "_Log out"
+msgstr "Τερματισμός"
 
-#: gnome-session/logout.c:433
-msgid "Sh_ut Down"
+#: gnome-session/logout.c:462
+#, fuzzy
+msgid "Sh_ut down"
 msgstr "Κ_λείσιμο Συστήματος"
 
-#: gnome-session/logout.c:436
+#: gnome-session/logout.c:466
 msgid "_Restart the computer"
 msgstr "_Επανεκκίνηση του υπολογιστή"
 
-#: gnome-session/main.c:81
+#: gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Καθορίζει ένα όνομα συνεδρίας προς φόρτωση"
 
-#: gnome-session/main.c:82
+#: gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Ανάγνωση αποθηκευμένων συνεδριών μόνο από το αρχείο default.session"
 
-#: gnome-session/main.c:83
+#: gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Χιλιοστά δευτερολέπτων αναμονής για δήλωση πελατών (0=για πάντα)"
 
-#: gnome-session/main.c:84
+#: gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Χιλιοστά δευτερολέπτων αναμονής για απόκριση από πελάτες (0=για πάντα)"
 
-#: gnome-session/main.c:85
+#: gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Χιλιοστά δευτερολέπτων αναμονής τερματισμού πελατών (0=για πάντα)"
 
-#: gnome-session/main.c:217
+#: gnome-session/main.c:218
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -307,11 +309,11 @@ msgstr ""
 "Το πρόβλημα είναι πιθανό να διορθωθεί με προσθήκη του\n"
 "%s στο αρχείο /etc/hosts."
 
-#: gnome-session/main.c:224
+#: gnome-session/main.c:225
 msgid "Log in Anyway"
 msgstr "Σύνδεση Ούτως ή Άλλως"
 
-#: gnome-session/main.c:225
+#: gnome-session/main.c:226
 msgid "Try Again"
 msgstr "Δοκιμάστε Ξανά"
 
@@ -385,11 +387,11 @@ msgstr "Προσθήκη νέας συνεδρίας"
 msgid "Edit session name"
 msgstr "Αλλαγή ονόματος συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:104
+#: gnome-session/session-properties-capplet.c:123
 msgid "_Edit"
 msgstr "Επεξεργα_σία"
 
-#: gnome-session/session-properties-capplet.c:172
+#: gnome-session/session-properties-capplet.c:191
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -397,48 +399,48 @@ msgstr ""
 "Μερικές αλλαγές δεν έχουν αποθηκευτεί.\n"
 "Είναι εντάξει να προχωρήσει ο τερματισμός;"
 
-#: gnome-session/session-properties-capplet.c:201
+#: gnome-session/session-properties-capplet.c:220
 #: gnome-session/session-properties.desktop.in.h:2
 msgid "Sessions"
 msgstr "Συνεδρίες"
 
-#: gnome-session/session-properties-capplet.c:229
+#: gnome-session/session-properties-capplet.c:248
 msgid "Show splash screen on _login"
 msgstr "Εμφάνιση αρχικής οθόνης στη διαδικα_σία της σύνδεσης"
 
-#: gnome-session/session-properties-capplet.c:240
+#: gnome-session/session-properties-capplet.c:259
 msgid "_Prompt on logout"
 msgstr "Επιβε_βαίωση για αποσύνδεση"
 
-#: gnome-session/session-properties-capplet.c:251
+#: gnome-session/session-properties-capplet.c:270
 msgid "Automatically save chan_ges to session"
 msgstr "Αυτόματη αποθήκευση αλλα_γών της συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:262
+#: gnome-session/session-properties-capplet.c:281
 msgid "_Sessions:"
 msgstr "_Συνεδρίες"
 
-#: gnome-session/session-properties-capplet.c:279
+#: gnome-session/session-properties-capplet.c:299
 msgid "Session Name"
 msgstr "Όνομα Συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:326
+#: gnome-session/session-properties-capplet.c:350
 msgid "Session Options"
 msgstr "Επιλογές Συνεδρίας"
 
-#: gnome-session/session-properties-capplet.c:335
+#: gnome-session/session-properties-capplet.c:359
 msgid "Current Session"
 msgstr "Τρέχουσα Συνεδρία"
 
-#: gnome-session/session-properties-capplet.c:344
+#: gnome-session/session-properties-capplet.c:368
 msgid "Additional startup _programs:"
 msgstr "Πρόσθετα _προγράμματα εκκίνησης"
 
-#: gnome-session/session-properties-capplet.c:364
+#: gnome-session/session-properties-capplet.c:389
 msgid "Command"
 msgstr "Εντολή"
 
-#: gnome-session/session-properties-capplet.c:392
+#: gnome-session/session-properties-capplet.c:421
 msgid "Startup Programs"
 msgstr "Εκκίνηση Προγραμμάτων"
 
@@ -502,17 +504,20 @@ msgstr "Εντολή Ε_κκίνησης:"
 msgid "Startup Command"
 msgstr "Εντολή Εκκίνησης"
 
-#: gnome-session/startup-programs.c:341
+#: gnome-session/startup-programs.c:342
 msgid "The startup command cannot be empty"
 msgstr "Η εντολή εκκίνησης δε μπορεί να είναι κενή"
 
-#: gnome-session/startup-programs.c:377
+#: gnome-session/startup-programs.c:378
 msgid "Add Startup Program"
 msgstr "Προσθήκη Προγραμμάτων Εκκίνησης"
 
-#: gnome-session/startup-programs.c:398
+#: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
+
+#~ msgid "_Log Out"
+#~ msgstr "_Τερματισμός Συνεδρίας"
 
 #~ msgid "Priority"
 #~ msgstr "Προτεραιότητα"
@@ -2007,9 +2012,6 @@ msgstr "Επεξεργασία Προγραμμάτων Εκκίνησης"
 
 #~ msgid "Create launcher applet"
 #~ msgstr "Δημιουργία εφαρμογιδίου εκκινητή"
-
-#~ msgid "Log out"
-#~ msgstr "Τερματισμός"
 
 #~ msgid "Log out of GNOME"
 #~ msgstr "Τερματισμός GNOME"
