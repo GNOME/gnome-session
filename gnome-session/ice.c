@@ -231,7 +231,8 @@ startup_clean_ice (void)
 	  IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
 
 	  list = list->next;
-	  if (!strcmp (file_entry->network_id, network_id))
+	  /* remove "bad" entries with no network_id */
+	  if (!file_entry->network_id || !strcmp (file_entry->network_id, network_id))
 	    {
 	      REMOVE (entries, file_entry);
 	      IceFreeAuthFileEntry (file_entry);
@@ -352,7 +353,8 @@ initialize_ice (void)
 	  IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
 
 	  list = list->next;
-	  if (!strcmp (file_entry->network_id, network_id))
+	  /* remove "bad" entries with no network_id */
+	  if (!file_entry->network_id || !strcmp (file_entry->network_id, network_id))
 	    {
 	      REMOVE (entries, file_entry);
 	      IceFreeAuthFileEntry (file_entry);
@@ -429,7 +431,8 @@ clean_ice (void)
 	  IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
 
 	  list = list->next;
-	  if (!strcmp (file_entry->network_id, network_id))
+	  /* remove "bad" entries with no network_id */
+	  if (!file_entry->network_id || !strcmp (file_entry->network_id, network_id))
 	    {
 	      REMOVE (entries, file_entry);
 	      IceFreeAuthFileEntry (file_entry);
