@@ -212,6 +212,13 @@ check_orbit_dir(void)
   return TRUE;
 }
 
+static gboolean
+check_for_libice_bug (void)
+{
+	int retval = system ("gnome-libice-check");
+	return retval == -1 || retval == 0 ||  retval == 127;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -225,7 +232,7 @@ main (int argc, char **argv)
 	GtkWidget *frame;
 	GtkWidget *pixmap = NULL;
 	gchar *msg, *s;
-  
+
 	gnome_init ("gnome-login-check", "0.1", argc, argv);
 
 	gdk_window_get_pointer (GDK_ROOT_PARENT(), NULL, NULL, &state);
@@ -349,6 +356,27 @@ main (int argc, char **argv)
 			/* Nothing */;
 			
 	}
+
+	if (!check_for_libice_bug ()) {
+		GtkWidget *tmp_msgbox;
+		
+		tmp_msgbox = gnome_message_box_new (
+			_("Your version of libICE has a bug which causes gnome-session\n"
+			  "to not function correctly.\n\n"
+			  "If you are on Solaris, you should either upgrade to Solaris 8\n"
+			  "or use the libICE.so.6 from the original Solaris 7.  You can\n"
+			  "just copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
+			  "for information on this bug).\n\n"
+			  "Your GNOME session will terminate after closing this dialog."),
+			GNOME_MESSAGE_BOX_ERROR,
+			GNOME_STOCK_BUTTON_OK,
+			NULL);
+		
+		gtk_window_set_position (GTK_WINDOW (tmp_msgbox), GTK_WIN_POS_CENTER);
+		gnome_dialog_close_hides (GNOME_DIALOG (tmp_msgbox), TRUE);
+
+		gnome_dialog_run (GNOME_DIALOG (tmp_msgbox));
+	}	
 
 	return 0;
 }
