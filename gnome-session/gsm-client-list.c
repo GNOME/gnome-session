@@ -414,13 +414,13 @@ void
 gsm_client_list_remove_selection (GsmClientList* client_list)
 {
   GtkCList* clist = (GtkCList*)client_list;
+  gint row = GPOINTER_TO_INT (clist->selection->data);
 
   g_return_if_fail(client_list != NULL);
   g_return_if_fail(GSM_IS_CLIENT_LIST(client_list));
 
   gtk_clist_freeze (clist);
   {
-    gint row = GPOINTER_TO_INT (clist->selection->data);
     gpointer data = gtk_clist_get_row_data (clist, row);
     GsmClientRow* client_row = GSM_CLIENT_ROW (data);
     
@@ -430,6 +430,7 @@ gsm_client_list_remove_selection (GsmClientList* client_list)
     }
   }
   gtk_clist_thaw (clist);
+  gtk_clist_select_row (clist, row - 1, 0);
 }
 
 static void
