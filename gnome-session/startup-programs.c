@@ -251,7 +251,7 @@ is_blank (const gchar *str)
  * is used to implement hiding the dialog when the user switches
  * away to another page of the control center */
 static gboolean
-edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
+edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   GtkWidget *entry;
   GtkWidget *spinbutton;
@@ -274,7 +274,9 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
   gnome_dialog_close_hides (GNOME_DIALOG (*dialog), TRUE);
   gtk_window_set_policy (GTK_WINDOW (*dialog), FALSE, TRUE, FALSE);
   gtk_window_set_default_size (GTK_WINDOW (*dialog), 400, -1);
-  
+ 
+  gtk_window_set_type_hint(GTK_WINDOW (*dialog),GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_window_set_transient_for (GTK_WINDOW (*dialog), GTK_WINDOW (parent_dlg));
   vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
   
@@ -366,14 +368,14 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog)
 
 /* Prompt the user with a dialog for adding a new client */
 void
-startup_list_add_dialog (GSList **sl, GtkWidget **dialog)
+startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   ManualClient *client = g_new (ManualClient, 1);
   client->order = 50;
   client->argc = 0;
   client->argv = NULL;
 
-  if (edit_client (_("Add Startup Program"), client, dialog))
+  if (edit_client (_("Add Startup Program"), client, dialog, parent_dlg))
     {
       *sl = g_slist_prepend (*sl, client);
       *sl = g_slist_sort (*sl, client_compare);
@@ -385,7 +387,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog)
 
 /* Prompt the user with a dialog for editing the currently selected client */
 void
-startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel, GtkWidget **dialog)
+startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   ManualClient *client;
   GtkTreeIter iter;
@@ -394,7 +396,7 @@ startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *se
 
   gtk_tree_model_get (model, &iter, 0, &client, -1);
 
-  if (edit_client (_("Edit Startup Program"), client, dialog)) {
+  if (edit_client (_("Edit Startup Program"), client, dialog, parent_dlg)) {
     *sl = g_slist_sort (*sl, client_compare);
     spc_write_state ();
   }

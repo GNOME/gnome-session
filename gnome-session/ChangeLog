@@ -1,3 +1,13 @@
+2002-12-17  Satyajit kanungo  <satyajit.kanungo@wipro.com>
+
+	* session-properties-capplet.h Changed the startup_list_add_dialog()
+	  startup_list_edit_dialog(), session_list_add_dialog(),
+	  session_list_edit_dialog to pass the parent dialog.
+
+	  session-names.c,startup-programs.c  Set GnomeDialog as a 
+	  transient dialog. So that the window manager can keep it always
+	  above the parent dialog.
+
 2002-12-10  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* save-session.desktop.in: add startup notification support

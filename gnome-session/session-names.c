@@ -51,7 +51,7 @@ struct _SessionObject {
 static gboolean checkduplication (gchar *sessionname, GSList **sess_list);
 static gboolean is_blank (gchar *str);
 static gboolean edit_session_name (gchar *title, gchar **editsession, 
-			GSList **sess_list, GtkWidget **dialog);
+			GSList **sess_list, GtkWidget **dialog, GtkWidget *parent);
 static gint session_compare (gconstpointer a, gconstpointer b);
 static gint sessionfile_compare (gconstpointer a, gconstpointer b);
 static void delete_sessions (GSList *sess_list); 
@@ -91,7 +91,7 @@ is_blank (gchar *str)
 
 static gboolean
 edit_session_name (gchar *title, gchar **editsession, 
-			GSList **sess_list, GtkWidget **dialog)
+			GSList **sess_list, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   GtkWidget *vbox;
   GtkWidget *entry;
@@ -108,6 +108,8 @@ edit_session_name (gchar *title, gchar **editsession,
   gtk_window_set_policy (GTK_WINDOW (*dialog), FALSE, TRUE, FALSE);
   gtk_window_set_default_size (GTK_WINDOW (*dialog), 400, -1);
 
+  gtk_window_set_type_hint(GTK_WINDOW (*dialog),GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_window_set_transient_for (GTK_WINDOW (*dialog), GTK_WINDOW (parent_dlg));
   vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
 
@@ -176,11 +178,11 @@ checkduplication (gchar *sessionname, GSList **sess_list)
   return FALSE;
 }
 void 
-session_list_add_dialog (GSList **sess_list, GtkWidget **dialog)
+session_list_add_dialog (GSList **sess_list, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   gchar *new_session_name = NULL;
     
-  if(edit_session_name (_("Add a new session"), &new_session_name, sess_list, dialog)) {
+  if(edit_session_name (_("Add a new session"), &new_session_name, sess_list, dialog, parent_dlg)) {
     *sess_list = g_slist_prepend (*sess_list,g_strdup(new_session_name));
     *sess_list = g_slist_sort (*sess_list, (GCompareFunc)session_compare);
     spc_write_state ();
@@ -205,13 +207,13 @@ session_list_delete (GSList **sess_list, const gchar *old_session_name,
 
 void
 session_list_edit_dialog (GSList **sess_list, const gchar *old_session_name,
-			  GHashTable **hash, GtkWidget **dialog)
+			  GHashTable **hash, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   GSList *temp = NULL;
   gchar *edited_session_name = NULL;
   edited_session_name = g_strdup(old_session_name);
   if(edit_session_name (_("Edit session name"), &edited_session_name, 
-                          sess_list, dialog)) {
+                          sess_list, dialog, parent_dlg)) {
     for(temp = *sess_list; temp; temp=temp->next) {
       if(!strcmp((gchar *)temp->data, old_session_name)) {
         temp->data = g_strdup(edited_session_name);

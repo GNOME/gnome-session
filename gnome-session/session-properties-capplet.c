@@ -485,7 +485,7 @@ add_startup_cb (void)
    * away to a different capplet
    */
   dirty_cb ();
-  startup_list_add_dialog (&startup_list, &startup_command_dialog);
+  startup_list_add_dialog (&startup_list, &startup_command_dialog, capplet);
   update_gui ();
 }
 
@@ -498,7 +498,7 @@ edit_startup_cb (void)
    * away to a different capplet
    */
   dirty_cb ();
-  startup_list_edit_dialog (&startup_list, startup_store, startup_sel, &startup_command_dialog);
+  startup_list_edit_dialog (&startup_list, startup_store, startup_sel, &startup_command_dialog, capplet);
   update_gui ();
 }
 
@@ -562,7 +562,7 @@ add_session_cb(void)
    * away to a different capplet
    */
   dirty_cb ();
-  session_list_add_dialog (&session_list, &session_command_dialog);
+  session_list_add_dialog (&session_list, &session_command_dialog, capplet);
   update_gui ();
 }
 
@@ -579,7 +579,7 @@ edit_session_cb (void)
   dirty_cb ();
   if (!gtk_tree_selection_get_selected (sessions_sel, NULL, &iter)) return;
   gtk_tree_model_get (sessions_store, &iter, 0, &str, -1);
-  session_list_edit_dialog (&session_list, str, &hashed_sessions, &session_command_dialog);
+  session_list_edit_dialog (&session_list, str, &hashed_sessions, &session_command_dialog, capplet);
   update_gui ();
 }
 
