@@ -475,7 +475,9 @@ delete_session (const char *name)
 	    system (old_system);
 	  
 	  free (old_system);
-	}	  
+	}
+
+      g_free(old_client.id);
       gnome_config_pop_prefix ();
     }
 

@@ -349,6 +349,7 @@ static Status
 register_client (SmsConn connection, SmPointer data, char *previous_id)
 {
   Client *client = (Client *) data;
+  int had_faked_id;
 
   if (previous_id)
     {
@@ -374,9 +375,11 @@ register_client (SmsConn connection, SmPointer data, char *previous_id)
       client->priority = offspring->priority;
 
       offspring->properties = NULL;
+
+      had_faked_id = offspring->faked_id;
       free_client (offspring);
 
-      if (offspring->faked_id ||
+      if (had_faked_id ||
 	  find_client_by_id (live_list, previous_id) ||
 	  find_client_by_id (zombie_list, previous_id))
 	{
@@ -737,8 +740,10 @@ close_connection (SmsConn connection, SmPointer data, int count,
       SaveRequest *request = (SaveRequest*)list->data;
 
       list = list->next;
-      if (request->client == client)
+      if (request->client == client) {
+	g_free(request);
 	REMOVE (save_request_list, request);
+      }
     }
 
   if (!find_card8_property (client, SmRestartStyleHint, &style))
@@ -1008,8 +1013,11 @@ io_error_handler (IceConn ice_conn)
   else
     reason = g_strdup(_("The Gnome Session Manager unexpectedly\n"
 	       "lost contact with an unnamed program."));
-	  
+
+#if 0
+  /* stupid annoying useless message */	  
   display_reasons (1, &reason);
+#endif
 
   free (reason);
   
