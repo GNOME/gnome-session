@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.2.0\n"
-"POT-Creation-Date: 2003-02-01 20:06+0100\n"
+"POT-Creation-Date: 2003-05-15 11:28+0100\n"
 "PO-Revision-Date: 2001-09-19 08:32GMT+1\n"
 "Last-Translator: Danilo Šegan <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <serbiangnome-lista@nongnu.org>\n"
@@ -27,17 +27,24 @@ msgid ""
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr "Iz sigurnosnih razloga, na platformama koje imaju _IceTcpTransNoListen() (XFree86 sistemi), gnome-session ne očekuje konekcije na TCP portovima. Ova opcija će omogućiti povezivanje sa (ovlašćenih) udaljenih računara. gnome-session se mora ponovo pokreniti kako bi ovo imalo uticaja."
+msgstr ""
+"Iz sigurnosnih razloga, na platformama koje imaju _IceTcpTransNoListen() "
+"(XFree86 sistemi), gnome-session ne očekuje konekcije na TCP portovima. Ova "
+"opcija će omogućiti povezivanje sa (ovlašćenih) udaljenih računara. gnome-"
+"session se mora ponovo pokreniti kako bi ovo imalo uticaja."
 
 #: gnome-session/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Ukoliko je omogućeno, gnome-session će pitati korisnika pre okončanja sesije."
+msgstr ""
+"Ukoliko je omogućeno, gnome-session će pitati korisnika pre okončanja sesije."
 
 #: gnome-session/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr "Ukoliko je omogućeno, gnome-session će snimati sesiju automatski. Inače, prozorče za odjavu će sadržati mogućnost snimanja sesije."
+msgstr ""
+"Ukoliko je omogućeno, gnome-session će snimati sesiju automatski. Inače, "
+"prozorče za odjavu će sadržati mogućnost snimanja sesije."
 
 #: gnome-session/gnome-session.schemas.in.in.h:5
 msgid "Logout prompt"
@@ -187,7 +194,8 @@ msgid ""
 msgstr ""
 "Došlo je do greške pri pokretanju đavla za GNOME podešenja.\n"
 "\n"
-"Neke stvari, kao što su teme, zvuci, ili podešenja pozadine možda neće raditi ispravno."
+"Neke stvari, kao što su teme, zvuci, ili podešenja pozadine možda neće "
+"raditi ispravno."
 
 #: gnome-session/gsm-gsd.c:53
 msgid ""
@@ -195,14 +203,22 @@ msgid ""
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr "\n\nPoslednje obaveštenje o grešci je bilo:\n\n"
+msgstr ""
+"\n"
+"\n"
+"Poslednje obaveštenje o grešci je bilo:\n"
+"\n"
 
 #: gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr "\n\nGNOME će i dalje pokušavati da pokrene đavla za podešenja pri sledećoj prijavi."
+msgstr ""
+"\n"
+"\n"
+"GNOME će i dalje pokušavati da pokrene đavla za podešenja pri sledećoj "
+"prijavi."
 
 #: gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -246,15 +262,18 @@ msgstr "Čitaj samo sesije snimljene u datoteci default.session"
 
 #: gnome-session/main.c:78
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Period u milisekundama utrošen čekajući da se klijenti prijave (0=zauvek)"
+msgstr ""
+"Period u milisekundama utrošen čekajući da se klijenti prijave (0=zauvek)"
 
 #: gnome-session/main.c:79
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Period u milisekundama utrošen čekajući da klijenti odgovore (0=zauvek)"
+msgstr ""
+"Period u milisekundama utrošen čekajući da klijenti odgovore (0=zauvek)"
 
 #: gnome-session/main.c:80
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Period u milisekundama utrošen čekajući na klijente da završe (0=zauvek)"
+msgstr ""
+"Period u milisekundama utrošen čekajući na klijente da završe (0=zauvek)"
 
 #: gnome-session/main.c:212
 #, c-format
@@ -277,32 +296,32 @@ msgstr "Prijavi se svakako"
 msgid "Try Again"
 msgstr "Pokušaj ponovo"
 
-#: gnome-session/manager.c:176
+#: gnome-session/manager.c:174
 msgid "Your session has been saved"
 msgstr "Vaša sesija je snimljena"
 
-#: gnome-session/manager.c:457
+#: gnome-session/manager.c:455
 msgid "Wait abandoned due to conflict."
 msgstr "Čekanje obustavljeno zbog nesuglasica."
 
-#: gnome-session/manager.c:904
+#: gnome-session/manager.c:894
 #, c-format
 msgid "No response to the %s command."
 msgstr "Nema odgovora na naredbu „%s“."
 
-#: gnome-session/manager.c:905
+#: gnome-session/manager.c:895
 msgid "The program may be slow, stopped or broken."
 msgstr "Program je možda spor, prekinut ili neispravan."
 
-#: gnome-session/manager.c:906
+#: gnome-session/manager.c:896
 msgid "You may wait for it to respond or remove it."
 msgstr "Možete sačekati njegov odgovor ili ga ukloniti."
 
-#: gnome-session/manager.c:1516
+#: gnome-session/manager.c:1506
 msgid "Restart abandoned due to failures."
 msgstr "Ponovno pokretanje obustavljeno zbog grešaka."
 
-#: gnome-session/manager.c:1692
+#: gnome-session/manager.c:1682
 msgid "A session shutdown is in progress."
 msgstr "Okončanje sesije u toku."
 
@@ -470,4 +489,3 @@ msgstr "Dodaj program pri učitavanju"
 #: gnome-session/startup-programs.c:399
 msgid "Edit Startup Program"
 msgstr "Uredi program pri učitavanju"
-
