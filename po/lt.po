@@ -1,15 +1,15 @@
 # Lithuanian translation of gnome-session
-# Copyright (C) 2000-2004 Free Software Foundation, Inc.
+# Copyright (C) 2000-2005 Free Software Foundation, Inc.
 # Gediminas Paulauskas <menesis@delfi.lt>, 2000-2003.
-# Žygimantas Beručka <uid0@akl.lt>, 2003-2004.
+# Žygimantas Beručka <uid0@akl.lt>, 2003-2005.
 # 
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-05-03 14:20+0300\n"
+"POT-Creation-Date: 2005-01-27 12:00+0200\n"
+"PO-Revision-Date: 2005-01-27 12:00+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -49,10 +49,8 @@ msgid "Logout prompt"
 msgstr "Atsijungiant paklausti patvirtinimo"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "Naudojamas paveikslėlis rodomas GNOME Darbastalio paleidimo metu."
+msgid "Preferred Image to use for login splash screen"
+msgstr "Paveikslėlis rodomas prisijungio metu"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -67,8 +65,14 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Sesijos paleidimo metu rodyti paveiksliuką"
 
 #: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Paveikliukas"
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Ši reikšmė yra santykinis kelias, kilęs iš $datadir/pixmaps/ aplanko. "
+"Paaplankiai ir paveikslėlių pavadinimai yra tinkamos reikšmės. Šios reikšmės "
+"pakeitimai įsigalios kitos sesijos prisijungimo metu."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -149,7 +153,7 @@ msgstr "Normali"
 
 #: gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Nepaveikiama atsijungimų bet gali mirti."
+msgstr "Nepaveikiama atsijungimų, bet gali nutraukti darbą."
 
 #: gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -157,7 +161,7 @@ msgstr "Perkrauti"
 
 #: gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "Niekada neleidžiama mirti."
+msgstr "Niekada neleidžiama nutraukti darbo."
 
 #: gnome-session/gsm-client-row.c:56
 msgid "Trash"
@@ -165,7 +169,7 @@ msgstr "Šiukšlės"
 
 #: gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Išjungiama atsijungiant ir gali mirti."
+msgstr "Išjungiama atsijungiant ir gali nutraukti darbą."
 
 #: gnome-session/gsm-client-row.c:59
 msgid "Settings"
@@ -227,7 +231,7 @@ msgstr "Nustatymų demonas buvo perkrautas perdaug kartų."
 
 #: gnome-session/logout.c:355
 msgid "Are you sure you want to log out?"
-msgstr "Ar tu tikrai nori atsijungti?"
+msgstr "Ar tikrai norite atsijungti?"
 
 #: gnome-session/logout.c:372
 msgid "_Save current setup"
@@ -251,7 +255,7 @@ msgstr "Pe_rkrauti kompiuterį"
 
 #: gnome-session/main.c:81
 msgid "Specify a session name to load"
-msgstr "Nurodykit įkeliamos sesijos pavadinimą"
+msgstr "Nurodykite įkeliamos sesijos pavadinimą"
 
 #: gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
@@ -277,8 +281,8 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Negalėjau ieškoti %s adreso Internete.\n"
-"Tai neleis GNOME veikti teisingai.\n"
+"Ieškoti adreso %s Internete nepavyko.\n"
+"Todėl GNOME greičiausiai neveiks taip kaip turėtų.\n"
 "Problemą įmanoma pataisyti, prirašius\n"
 "%s į bylą /etc/hosts."
 
@@ -353,7 +357,7 @@ msgstr "Pervadinti sesiją"
 
 #: gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "K_eisti"
+msgstr "_Keisti"
 
 #: gnome-session/session-properties-capplet.c:190
 msgid ""
@@ -373,7 +377,6 @@ msgid "Show splash screen on _login"
 msgstr "Rodyti paveiks_liuką prisijungimo metu"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "Atsijungiant _paklausti"
 
@@ -481,165 +484,5 @@ msgstr "Pridėti paleidžiamą programą"
 msgid "Edit Startup Program"
 msgstr "Keisti paleidžiamą programą"
 
-#~ msgid "Save Current Session"
-#~ msgstr "Išsaugoti esamą sesiją"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Išsaugoti esamą darbalaukio būseną"
-
-#~ msgid "Audio Settings"
-#~ msgstr "Garso nuostatos"
-
-#~ msgid "Screensaver"
-#~ msgstr "Užsklanda"
-
-#~ msgid "Background Settings"
-#~ msgstr "Fono nuostatos"
-
-#~ msgid "Mouse Settings"
-#~ msgstr "Pelės nuostatos"
-
-#~ msgid "Priority"
-#~ msgstr "Svarbumas"
-
-#, fuzzy
-#~ msgid "_Priority:"
-#~ msgstr "Svarbumas"
-
-#~ msgid "Starting GNOME: %s"
-#~ msgstr "Paleidžiama GNOME: %s"
-
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Paleidžiama GNOME: atlikta"
-
-#~ msgid "GNOME"
-#~ msgstr "GNOME"
-
-#~ msgid "Starting GNOME"
-#~ msgstr "Paleidžiama GNOME"
-
-#~ msgid "GNOME Login"
-#~ msgstr "GNOME prisijungimas"
-
-#~ msgid "Login"
-#~ msgstr "Vartotojas"
-
-#~ msgid "Start with default programs"
-#~ msgstr "Paleisti su standartinėmis programomis"
-
-#~ msgid "Reset all user settings"
-#~ msgstr "Atstatyti visas nuostatas į gamyklines"
-
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "Tikrai iš naujo nustatyti visą GNOME aplinką vartotojui %s?"
-
-#~ msgid ""
-#~ "The directory /tmp/orbit-%s is not owned\n"
-#~ "by the current user, %s.\n"
-#~ "Please correct the ownership of this directory."
-#~ msgstr ""
-#~ "Katalogas /tmp/orbit-%s nepriklauso\n"
-#~ "esamam vartotojui, %s.\n"
-#~ "Pataisyk šio katalogo priklausomybę."
-
-#~ msgid "Continue"
-#~ msgstr "Tęsti"
-
-#~ msgid ""
-#~ "Your version of libICE has a bug which causes gnome-session\n"
-#~ "to not function correctly.\n"
-#~ "\n"
-#~ "If you are on Solaris, you should either upgrade to Solaris patch\n"
-#~ "#108376-16 or use the libICE.so.6 from the original Solaris 7.\n"
-#~ "Copy the file into /usr/openwin/lib.  (Thanks go to Andy Reitz\n"
-#~ "for information on this bug).\n"
-#~ "\n"
-#~ "Your GNOME session will terminate after closing this dialog."
-#~ msgstr ""
-#~ "Tavo libICE versiją turi klaidą, dėl kurios gnome-session\n"
-#~ "veikia neteisingai.\n"
-#~ "\n"
-#~ "Jei naudoji Solaris, turėtum arba pritaikyti Solaris lopą\n"
-#~ "#108376-16, arba naudoti libICE.so.6 iš originalaus Solaris 7.\n"
-#~ "Nukopijuok tą bylą į /usr/openwin/lib.\n"
-#~ "\n"
-#~ "Tavo sesiją baigsis uždarius šį dialogą."
-
-#~ msgid "Respawn"
-#~ msgstr "Prisikelianti"
-
-#~ msgid "Really log out?"
-#~ msgstr "Tikrai atsijungti?"
-
-#~ msgid "Reboot"
-#~ msgstr "Perkrauti"
-
-#~ msgid "Session properties"
-#~ msgstr "Sesijos savybės"
-
-#~ msgid "Options"
-#~ msgstr "Nuostatos"
-
-#~ msgid "Choose Current Session"
-#~ msgstr "Pasirink esamą sesiją"
-
-#~ msgid "Add..."
-#~ msgstr "Pridėti..."
-
-#~ msgid "Delete"
-#~ msgstr "Ištrinti"
-
-#~ msgid "Non-session-managed Startup Programs"
-#~ msgstr "Sesijos nevaldomos, pradžioje paleidžiamos programos"
-
-#~ msgid "Session Chooser"
-#~ msgstr "Sesijos parinkiklis"
-
-#~ msgid "Start Session"
-#~ msgstr "Paleisti sesiją"
-
-#~ msgid "Cancel Login"
-#~ msgstr "Atšaukti prisijungimą"
-
-#~ msgid "Session Properties & Startup Programs"
-#~ msgstr "Sesijos savybės ir pradžioje paleidžiamos programos"
-
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programos su mažesnėmis reikšmėmis yra paleidžiamos prieš tas su "
-#~ "didesnėmis reikšmėmis. Įprastinė reikšmė turėtų būti gera."
-
-#~ msgid "Could not connect to gnome-session"
-#~ msgstr "Negaliu prisijungti prie gnome-session"
-
-#~ msgid "Session Properties"
-#~ msgstr "Sesijos savybės"
-
-#~ msgid "Current session managed programs"
-#~ msgstr "Esamos sesijos valdomos programos"
-
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Enlightenment langų tvarkyklė"
-
-#~ msgid "Keyboard Bell"
-#~ msgstr "Klaviatūros pypsėjimas"
-
-#~ msgid "Desktop"
-#~ msgstr "Darbalaukis"
-
-#~ msgid "Remove"
-#~ msgstr "Pašalinti"
-
-#~ msgid "Try"
-#~ msgstr "Bandyti"
-
-#~ msgid "OK"
-#~ msgstr "Gerai"
-
-#~ msgid "Cancel"
-#~ msgstr "Atšaukti"
-
-#~ msgid "Help"
-#~ msgstr "Pagalba"
+#~ msgid "Splash Screen Image"
+#~ msgstr "Paveikliukas"
