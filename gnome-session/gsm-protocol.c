@@ -648,6 +648,30 @@ gsm_protocol_get_last_session (GsmProtocol* protocol)
 			     GsmGetLastSession, NULL), NULL);  
 }
 
+void 
+gsm_protocol_set_trash_mode (GsmProtocol *protocol,
+			     gboolean     trash)
+{
+  SmProp prop;
+  SmPropValue vals[2];
+
+  g_return_if_fail(protocol != NULL);
+  g_return_if_fail(GSM_IS_PROTOCOL (protocol));
+
+  vals[0].length = strlen (GsmTrashMode);
+  vals[0].value = GsmTrashMode;
+
+  vals[1].length = 1;
+  vals[1].value = trash ? "1" : "0";
+
+  prop.name = GsmCommand;
+  prop.type = SmLISTofARRAY8;
+  prop.num_vals = 2;
+  prop.vals = vals;
+  
+  command (protocol, &prop, NULL);
+}
+
 /* Public utilities */
 gboolean   gsm_sh_quotes_balance (gchar* sh)
 {

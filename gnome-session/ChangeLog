@@ -1,3 +1,20 @@
+1999-09-21  Owen Taylor  <otaylor@redhat.com>
+
+	* gsm-protocol.[ch] command.c session.h: Add an extra
+	command to the extension protocol to set the trash
+	mode at run time.
+
+	* main.c (main): Make gnome-login-check run as the first
+	think in the startup.
+
+	* logout.c (display_gui): Remove ask button; it is considered
+	"bad UI" because the user can't toggle it back from
+	the same place they toggled it, and dangerous since
+	no programs will ask for confirmation on unsaved files.
+
+	* save-session.c: Temporarily turn off trash-mode while
+	executing a save-session.
+	
 1999-08-19  Owen Taylor  <otaylor@redhat.com>
 
 	* Makefile.am save-session.desktop: Install desktop files

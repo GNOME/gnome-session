@@ -615,6 +615,15 @@ command (Client* client, int nprops, SmProp** props)
 	  client_property (client1->handle, nprops - 1, &props[1]);
 	}
     }
+  else if (arg && !strcmp (prop->vals[0].value, GsmTrashMode))
+    {
+      if (prop->num_vals != 2)
+ 	g_warning ("%s command needs exactly one argument",
+ 		   GsmTrashMode);
+      else
+ 	set_trash_mode (atoi(prop->vals[0].value) != 0);
+    }
+ 
 
   SmFreeProperty (prop);
   free (props);

@@ -181,4 +181,9 @@
  * Sessions are also freed when GsmStartSession is called or when the client
  * which read the session disconnects or dies. */
 
+#define GsmTrashMode             "TrashMode"
+/* Set the trash mode of the session manager. Can be one of the
+ * following:
+ */
+   
 #endif /* SESSION_H */

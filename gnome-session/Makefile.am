@@ -18,7 +18,7 @@ endif
 gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
 command.c session.h remote.c logout.c
 
-save_session_SOURCES = save-session.c
+save_session_SOURCES = save-session.c gsm-protocol.c
 
 session_properties_SOURCES = session-properties.c \
 gsm-client-list.c gsm-client-list.h gsm-client-editor.c gsm-client-editor.h \
@@ -44,9 +44,9 @@ default.wm: default.wm.in ../config.status
 		< $(srcdir)/default.wm.in > default.wm.tmp \
 	  && mv default.wm.tmp default.wm
 
-EXTRA_DIST =		\
-	default.in	\
-	default.wm.in	\
-	gnome-wm \
-	save-session.desktop \
+EXTRA_DIST =			\
+	default.in		\
+	default.wm.in		\
+	gnome-wm 		\
+	save-session.desktop 	\
 	session.desktop
