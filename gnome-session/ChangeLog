@@ -1,3 +1,9 @@
+1999-0-21  Owen Taylor  <otaylor@redhat.com>
+
+	* save.c (set_trash_mode): Fix logic fix so that we
+	  set the trash mode variable before invoking
+	  set_session_name.
+
 1999-09-21 Owen Taylor  <otaylor@redhat.com>
 
 	* command.c (command): Fix other bit of longtime logic

@@ -404,8 +404,7 @@ set_session_name (const char *name)
 	  if (saved_session_name)
 	    g_free (saved_session_name);
 	  
-	  if (name)
-	    saved_session_name = g_strdup (name);
+	  saved_session_name = g_strdup (name);
 	  
 	  name = TRASH_SESSION;
 	}
@@ -430,10 +429,12 @@ set_trash_mode (gboolean new_mode)
 {
   if (!trashing != !new_mode)
     {
-      if (trashing && saved_session_name)
-	set_session_name (saved_session_name);
-
       trashing = new_mode;
+
+      if (trashing)
+	set_session_name (session_name);
+      else
+	set_session_name (saved_session_name);
     }
 }
 
