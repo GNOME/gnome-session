@@ -32,6 +32,9 @@
 /* Default session name.  */
 #define DEFAULT_SESSION "Default"
 
+/* Used to save xsm style string valued SmDiscardCommand properties. */
+#define XsmDiscardCommand SmDiscardCommand "[string]"
+
 /* Name of current session.  A NULL value means the default.  */
 static char *session_name = NULL;
 
@@ -42,18 +45,19 @@ static int session_loaded = 0;
 /* This is used to hold a table of all properties we care to save.  */
 typedef struct
 {
-  const char *name;		/* Name of property.  */
-  gboolean is_vector;		/* TRUE if vector.  */
-  gboolean required;		/* TRUE if required (by us, not by the
-				   spec).  */
+  const char *name;	      /* Name of property.  */
+  gboolean is_vector;	      /* TRUE if vector.  */
+  gboolean required;	      /* TRUE if required (by us, not by the spec). */
+  const char *save_name;      /* Name in save file. */
 } propsave;
 
 static propsave properties[] =
 {
-  { SmCurrentDirectory, 0, 0 },
-  { SmDiscardCommand, 1, 0 },
-  { SmRestartCommand, 1, 1 },
-  { SmEnvironment, 1, 0 }
+  { SmCurrentDirectory, 0, 0, SmCurrentDirectory },
+  { SmDiscardCommand,   1, 0, SmDiscardCommand },
+  { SmDiscardCommand,   0, 0, XsmDiscardCommand }, /* for legacy apps */
+  { SmRestartCommand,   1, 1, SmRestartCommand },
+  { SmEnvironment,      1, 0, SmEnvironment }
 };
 
 #define NUM_PROPERTIES (sizeof (properties) / sizeof (propsave))
@@ -95,7 +99,7 @@ write_one_client (int number, const Client *client)
 		}
 	    }
 	  else
-	    argv_names[vec_count++] = (char*) properties[i].name;
+	    argv_names[vec_count++] = (char*) properties[i].save_name;
 	}
       else
 	{
@@ -109,7 +113,7 @@ write_one_client (int number, const Client *client)
 		}
 	    }
 	  else
-	    string_names[string_count++] = (char*)properties[i].name;
+	    string_names[string_count++] = (char*)properties[i].save_name;
 	}
     }
 
@@ -208,69 +212,138 @@ run_commands (const char *name, int number, const char *command,
       sprintf (prefix, "session/%s/%d,%s=", name, i, command);
       gnome_config_get_vector_with_default (prefix, &argc, &argv, &def);
 
-      /* Do not call discard commands on clients which have just
-       * completed a save but have NOT changed their discard commands. 
-       * These clients are broken but, unfortunately, the gnome-libs 
-       * encourage the writing of broken clients. */
-      if (!strcmp (command, SmDiscardCommand)) 
+      if (! def)
 	{
-	  int curargc, j;
-	  char **curargv;
-	  char *id;
-	  Client *client;
-	  
-	  sprintf (prefix, "session/%s/%d,id=", name, i);
-	  id = gnome_config_get_string (prefix);
-	  
-	  if ((client = find_client_by_id (list1, id)) || 
-	      (client = find_client_by_id (list2, id))) 
+	  /* Do not call discard commands on clients which have just
+	   * completed a save but have NOT changed their discard commands. 
+	   * These clients are broken but, unfortunately, the gnome-libs 
+	   * encourage the writing of broken clients. */
+	  if (!strcmp (command, SmDiscardCommand))
 	    {
-	      if (find_vector_property (client, command, &curargc, &curargv) &&
-		  argc == curargc) 
+	      int curargc, j;
+	      char **curargv;
+	      char *id;
+	      Client *client;
+	      
+	      sprintf (prefix, "session/%s/%d,id=", name, i);
+	      id = gnome_config_get_string (prefix);
+	      
+	      if ((client = find_client_by_id (list1, id)) || 
+		  (client = find_client_by_id (list2, id))) 
 		{
-		  for (j = 0; j < argc; j++)
-		    if (strcmp (argv[j], curargv[j])) break;
-		  
-		  free_vector (curargc, curargv);
-
-		  if (j == argc) 
-		    continue;
+		  if (find_vector_property (client, command, 
+					    &curargc, &curargv))
+		    {
+		      gboolean ignore = (argc == curargc);
+		      
+		      if (ignore)
+			for (j = 0; j < argc; j++)
+			  if (strcmp (argv[j], curargv[j]))
+			    { 
+			      ignore = FALSE;
+			      break;
+			    }
+		      
+		      free_vector (curargc, curargv);
+		      
+		      if (ignore) 
+			{
+			  free_vector (argc, argv);
+			  continue;
+			}
+		    }
 		}
 	    }
-	}
 
-      sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
-      dir = gnome_config_get_string (prefix);
+	  sprintf (prefix, "session/%s/%d,%s=", name, i, SmCurrentDirectory);
+	  dir = gnome_config_get_string (prefix);
+	  
+	  sprintf (prefix, "session/%s/%d,%s=", name, i, SmEnvironment);
+	  gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
+	  if (envd)
+	    envp = NULL;
+	  else
+	    {
+	      char **newenv = (char **) malloc ((envc/2+2) * sizeof (char *));
+	      int i;
+	      
+	      for (i = 0; i < envc / 2; ++i)
+		newenv[i] = g_copy_strings (envv[2 * i], "=", envv[2 * i + 1],
+					    NULL);
+	      newenv[i] = NULL;
+	      free_vector (envc, envv);
+	      envc = i;
+	      envv = newenv;
+	      envp = newenv;
+	    }
 
-      sprintf (prefix, "session/%s/%d,%s=", name, i, SmEnvironment);
-      gnome_config_get_vector_with_default (prefix, &envc, &envv, &envd);
-      if (envd)
-	envp = NULL;
-      else
-	{
-	  char **newenv = (char **) malloc ((envc / 2 + 2) * sizeof (char *));
-	  int i;
+	  gnome_execute_async_with_env (dir, argc, argv, envc, envp);
+	  result = 1;
 
-	  for (i = 0; i < envc / 2; ++i)
-	    newenv[i] = g_copy_strings (envv[2 * i], "=", envv[2 * i + 1],
-					NULL);
-	  newenv[i] = NULL;
 	  free_vector (envc, envv);
-	  envc = i;
-	  envv = newenv;
-	  envp = newenv;
+	  if (dir)
+	    free (dir);
+	  
 	}
+      free_vector (argc, argv);
+    }
+
+  return result;
+}
+
+/* This for backwards compatibility with clients that set string
+ * discard commands for xsm and closely reproduces the xsm behavior */
+static int
+run_string_commands (const char *name, int number, const char *command, 
+		     const GSList* list1, const GSList* list2)
+{
+  int i, result = 0;
+
+  /* Run each command.  */
+  for (i = 0; i < number; ++i)
+    {
+      gboolean def;
+      char *old_command, prefix[1024];
+
+      sprintf (prefix, "session/%s/%d,%s=", name, i, command);
+      old_command = gnome_config_get_string_with_default (prefix, &def);
 
       if (! def)
 	{
-	  gnome_execute_async_with_env (dir, argc, argv, envc, envp);
+	  /* Do not call discard commands on clients which have just
+	   * completed a save but have NOT changed their discard commands. */
+	  if (!strcmp (command, XsmDiscardCommand))
+	    {
+	      char *cur_command;
+	      char *id;
+	      Client *client;
+	      
+	      sprintf (prefix, "session/%s/%d,id=", name, i);
+	      id = gnome_config_get_string (prefix);
+	      
+	      if ((client = find_client_by_id (list1, id)) || 
+		  (client = find_client_by_id (list2, id))) 
+		{
+		  if (find_string_property (client, command, &cur_command))
+		    {
+		      gboolean ignore = !strcmp (cur_command, old_command);
+		      
+		      free (cur_command);
+		      
+		      if (ignore)
+			{
+			  free (old_command);
+			  continue;
+			}
+		    }
+		}
+	    }
+	  
+	  system (old_command);
 	  result = 1;
 	}
 
-      free_vector (argc, argv);
-      free_vector (envc, envv);
-      if (dir)
-	free (dir);
+      free (old_command);
     }
 
   return result;
@@ -399,6 +472,7 @@ delete_session (const char *name, const GSList* list1, const GSList* list2)
     }
 
   run_commands (name, number, SmDiscardCommand, list1, list2);
+  run_string_commands (name, number, XsmDiscardCommand, list1, list2);
 
   sprintf (prefix, "session/%s", name);
   gnome_config_clean_section (prefix);
