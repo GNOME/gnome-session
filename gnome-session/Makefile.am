@@ -1,33 +1,32 @@
 ## Process this file with automake to produce Makefile.in.
 
+defaultdir = $(datadir)/gnome
+
 INCLUDES = -I$(includedir) $(GNOME_INCLUDEDIR) \
 	-I$(top_srcdir)/intl -I$(top_builddir)/intl	\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale\"" \
-	-DDEFAULTDIR="\"$(datadir)\""
+	-DDEFAULTDIR="\"$(defaultdir)\""
 
 LDADD = $(GNOME_LIBDIR) $(GNOMEUI_LIBS) $(INTLLIBS)
 
 sysdir = $(datadir)/apps/Settings
 
-#if HAVE_CONTROL_CENTER
-NONCC =
+if SESSION
 noinst_DATA = session.desktop
 noinst_PROGRAMS = session-properties
-#else
-#NONCC = session-properties
-#sys_DATA = session.desktop
-#endif
-
-if SESSION
-bin_PROGRAMS = gnome-session save-session $(NONCC)
+bin_PROGRAMS = gnome-session save-session
 endif
 
-gnome_session_SOURCES = manager.c manager.h ice.c auth.c auth.h	\
-main.c prop.c save.c session.h
+gnome_session_SOURCES = manager.c manager.h ice.c main.c prop.c save.c \
+command.c session.h
 
 save_session_SOURCES = save-session.c
 
-session_properties_SOURCES = session-properties.c session.h
+session_properties_SOURCES = session-properties.c \
+gsm-client-list.c gsm-client-list.h \
+gsm-client-row.c gsm-client-row.h gsm-column.c gsm-column.h \
+gsm-protocol.c gsm-protocol.h \
+session.h 
 
 data_DATA = default.session default.wm
 
