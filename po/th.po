@@ -1,0 +1,482 @@
+# Thai translation for gnome-session.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+#
+# Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
+# Paisa Seeluangsawat <paisa@users.sf.net>, 2003
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session\n"
+"POT-Creation-Date: 2003-08-17 12:08+0200\n"
+"PO-Revision-Date: 2003-09-06 12:15-0600\n"
+"Last-Translator: Paisa Seeluangsawat <paisa@users.sf.net>\n"
+"Language-Team: THAI <L10n@opentle.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gnome-session/gnome-session.schemas.in.in.h:1
+msgid "Allow TCP connections"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "เลือกแล้ว gnome-session จะถามผู้ใช้ก่อนจะออกจากการใช้งาน"
+
+#: gnome-session/gnome-session.schemas.in.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"เลือกแล้ว gnome-session จะบันทึกรายละเอียดวาระโดยอัตโนมัต  "
+"ไม่งั้นเลือกคุณจะถูกถามในหน้าต่างออกจากระบบว่าจะบันทึกวาระหรือไม่"
+
+#: gnome-session/gnome-session.schemas.in.in.h:5
+msgid "Logout prompt"
+msgstr ""
+
+#: gnome-session/gnome-session.schemas.in.in.h:6
+msgid ""
+"Preferred Image to use for the splash screen when logging in to the GNOME "
+"Desktop"
+msgstr "รูปที่จะใช้ใน splash screen เมื่อเข้าสู่ระบบ"
+
+#: gnome-session/gnome-session.schemas.in.in.h:7
+msgid "Save sessions"
+msgstr "รักษารายละเอียดวาระ"
+
+#: gnome-session/gnome-session.schemas.in.in.h:8
+msgid "Show the splash screen"
+msgstr "แสดง splash screen"
+
+#: gnome-session/gnome-session.schemas.in.in.h:9
+msgid "Show the splash screen when the session starts up"
+msgstr "แสดง splash screen ตอนเริ่มวาระใช้งาน"
+
+#: gnome-session/gnome-session.schemas.in.in.h:10
+msgid "Splash Screen Image"
+msgstr "รูปสำหรับ splash screen"
+
+#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:309
+msgid "_Order:"
+msgstr "_ลำดับ:"
+
+#: gnome-session/gsm-client-editor.c:99
+msgid "The order in which applications are started in the session."
+msgstr "ลำดับการเรียกใช้โปรแกรมเมื่อเริ่มวาระการใช้งาน"
+
+#: gnome-session/gsm-client-editor.c:106
+msgid "What happens to the application when it exits."
+msgstr "เกิดอะไรขึ้นกับโปรแกรมเมื่อมันทำงานเสร็จ"
+
+#: gnome-session/gsm-client-editor.c:109
+msgid "_Style:"
+msgstr "_แบบ:"
+
+#: gnome-session/gsm-client-list.c:150
+#: gnome-session/session-properties-capplet.c:392
+msgid "Order"
+msgstr "ลำดับ"
+
+#: gnome-session/gsm-client-list.c:155
+msgid "Style"
+msgstr "แบบ"
+
+#: gnome-session/gsm-client-list.c:160
+msgid "State"
+msgstr "สถานะ"
+
+#: gnome-session/gsm-client-list.c:165
+msgid "Program"
+msgstr "โปรแกรม"
+
+#: gnome-session/gsm-client-row.c:31
+msgid "Inactive"
+msgstr "ไม่ทำงานอยู่"
+
+#: gnome-session/gsm-client-row.c:32
+msgid "Waiting to start or already finished."
+msgstr "รอจะเริ่ม หรือ สำเร็จแล้ว"
+
+#: gnome-session/gsm-client-row.c:34
+msgid "Starting"
+msgstr "กำลังเริ่ม"
+
+#: gnome-session/gsm-client-row.c:35
+msgid "Started but has not yet reported state."
+msgstr "เริ่มแล้วแต่ยังไม่รายงานสถานะ"
+
+#: gnome-session/gsm-client-row.c:37
+msgid "Running"
+msgstr "ทำงานอยู่"
+
+#: gnome-session/gsm-client-row.c:38
+msgid "A normal member of the session."
+msgstr "สมาชิกปกติของวาระ"
+
+#: gnome-session/gsm-client-row.c:40
+msgid "Saving"
+msgstr "กำลังบันทึก"
+
+#: gnome-session/gsm-client-row.c:41
+msgid "Saving session details."
+msgstr "การบันทึกรายละเอียดวาระ"
+
+#: gnome-session/gsm-client-row.c:43
+msgid "Unknown"
+msgstr "ไม่ทราบ"
+
+#: gnome-session/gsm-client-row.c:44
+msgid "State not reported within timeout."
+msgstr "ไม่มีรายงานสถานะก่อนหมดเวลา"
+
+#: gnome-session/gsm-client-row.c:50
+msgid "Normal"
+msgstr "ปกติ"
+
+#: gnome-session/gsm-client-row.c:51
+msgid "Unaffected by logouts but can die."
+msgstr "ไม่ถูกกระทบตอนออกจากระบบ แต่หยุดทำงานได้"
+
+#: gnome-session/gsm-client-row.c:53
+msgid "Restart"
+msgstr "เริ่มใหม่"
+
+#: gnome-session/gsm-client-row.c:54
+msgid "Never allowed to die."
+msgstr "ไม่อนุญาตให้หยุดการทำงาน"
+
+#: gnome-session/gsm-client-row.c:56
+msgid "Trash"
+msgstr "ถังขยะ"
+
+#: gnome-session/gsm-client-row.c:57
+msgid "Discarded on logout and can die."
+msgstr "ละทิ้งตอนออกจากระบบ และสามารถหยุดการทำงานได้"
+
+#: gnome-session/gsm-client-row.c:59
+msgid "Settings"
+msgstr "ค่าตั้ง"
+
+#: gnome-session/gsm-client-row.c:60
+msgid "Always started on every login."
+msgstr "เริ่มการทำงานทุกครั้งที่เข้าสู่ระบบ"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: gnome-session/gsm-gsd.c:41
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"เกิดข้อผิดพลาดขณะเริ่มตัวจัดการค่าตั้งของ GNOME\n"
+"\n"
+"เช่นชุดตกแต่ง เสียง พื้นหลัง หรือ สิ่งอื่น ๆ อาจทำงานไม่ถูกต้อง"
+
+#: gnome-session/gsm-gsd.c:53
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"ข้อความผิดพลาดสุดท้ายคือ:\n"
+"\n"
+
+#: gnome-session/gsm-gsd.c:58
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"GNOME จะลองเรียกตัวจัดการค่าตั้งอีกครั้งเมื่อคุณเข้าระบบครั้งต่อไป"
+
+#: gnome-session/gsm-gsd.c:115
+msgid "There was an unknown activation error."
+msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักขณะเริ่มการทำงาน"
+
+#: gnome-session/gsm-gsd.c:157
+msgid "The Settings Daemon restarted too many times."
+msgstr "ตัวจัดการค่าตั้งถูกเริ่มทำงานใหม่หลายครั้งจนผิดปกติ"
+
+#: gnome-session/logout.c:387
+msgid "Are you sure you want to log out?"
+msgstr "จะออกจากระบบแน่ใหม ?"
+
+#: gnome-session/logout.c:417
+msgid "_Save current setup"
+msgstr "รักษารายละเอียดวาระปัจจุบัน (_S)"
+
+#: gnome-session/logout.c:442
+msgid "Action"
+msgstr "การกระทำ"
+
+#: gnome-session/logout.c:459
+msgid "_Log out"
+msgstr "ออกจากระบบ (_L)"
+
+#: gnome-session/logout.c:463
+msgid "Sh_ut down"
+msgstr "ปิดเครื่อง (_U)"
+
+#: gnome-session/logout.c:467
+msgid "_Restart the computer"
+msgstr "เริ่มการทำงานของเครื่องใหม่ (_R)"
+
+#: gnome-session/main.c:83
+msgid "Specify a session name to load"
+msgstr "ระบุชื่อวาระที่จะเรียกใช้"
+
+#: gnome-session/main.c:84
+msgid "Only read saved sessions from the default.session file"
+msgstr "อ่านวาระที่บันทึกไว้จากแฟ้ม default.session เท่านั้น"
+
+#: gnome-session/main.c:85
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "มิลลีวินาทีที่จะรอให้โปรแกรมลูกลงทะเบียน (0=ตลอดไป)"
+
+#: gnome-session/main.c:86
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "มิลลีวินาทีที่จะรอให้โปรแกรมลูกตอบกลับ (0=ตลอดไป)"
+
+#: gnome-session/main.c:87
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "มิลลีวินาทีที่จะรอให้โปรแกรมลูกหยุดทำงาน (0=ตลอดไป)"
+
+#: gnome-session/main.c:267
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"ไม่สามารถค้นหาที่อยู่อินเตอร์เน็ตสำหรับ %s \n"
+"นี่จะทำให้ GNOME ทำงานไม่ถูกต้อง\n"
+"อาจจะแก้ปัญหานี้ได้โดยการเพิ่ม %s ลงในแฟ้ม /etc/hosts"
+
+#: gnome-session/main.c:274
+msgid "Log in Anyway"
+msgstr "เข้าระบบต่อไป"
+
+#: gnome-session/main.c:275
+msgid "Try Again"
+msgstr "พยายามอีกครั้ง"
+
+#: gnome-session/manager.c:174
+msgid "Your session has been saved"
+msgstr "บันทึกวาระของคุณเรียบร้อย"
+
+#: gnome-session/manager.c:455
+msgid "Wait abandoned due to conflict."
+msgstr "เลิกลอเนื่องจากความขัดแย้งบางอย่าง"
+
+#: gnome-session/manager.c:894
+#, c-format
+msgid "No response to the %s command."
+msgstr "ไม่ได้รับการตอบสนองจากคำสั่ง %s"
+
+#: gnome-session/manager.c:895
+msgid "The program may be slow, stopped or broken."
+msgstr "โปรแกรมอาจจะช้า หยุดทำงาน หรือ เจ้ง"
+
+#: gnome-session/manager.c:896
+msgid "You may wait for it to respond or remove it."
+msgstr "คุณสามารถรอให้โปรแกรมตอบกลับมา หรือเลือกทิ้งมันไปก็ได้"
+
+#: gnome-session/manager.c:1506
+msgid "Restart abandoned due to failures."
+msgstr "ยกเลิกการเริ่มการทำงานใหม่เนื่องจากเกิดข้อผิดพลาด"
+
+#: gnome-session/manager.c:1682
+msgid "A session shutdown is in progress."
+msgstr "กำลังปิดวาระการทำงาน"
+
+#: gnome-session/save-session.c:46
+msgid "Set the current session"
+msgstr "เลือกวาระปัจจุบัน"
+
+#: gnome-session/save-session.c:47
+msgid "Kill session"
+msgstr "ฆ่าวาระ"
+
+#: gnome-session/save-session.c:48
+msgid "Use dialog boxes"
+msgstr "ใช้กล่องโต้ตอบ"
+
+#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+msgid "Could not connect to the session manager"
+msgstr "ติดต่อตัวจัดการวาระไม่สำเร็จ"
+
+#: gnome-session/save-session.desktop.in.h:1
+msgid "Save Current Session"
+msgstr "บันทึกวาระปัจจุบัน"
+
+#: gnome-session/save-session.desktop.in.h:2
+msgid "Save current state of desktop"
+msgstr "บันทึกสถานะปัจจุบันของพื้นที่ทำงาน"
+
+#: gnome-session/session-names.c:143
+msgid "The session name cannot be empty"
+msgstr "ชื่อวาระจะว่างไม่ได้"
+
+#: gnome-session/session-names.c:154
+msgid "The session name already exists"
+msgstr "มีวาระชื่อนี้อยู่แล้ว"
+
+#: gnome-session/session-names.c:187
+msgid "Add a new session"
+msgstr "เพิ่มวาระใหม่"
+
+#: gnome-session/session-names.c:217
+msgid "Edit session name"
+msgstr "แก้ชื่อวาระ"
+
+#: gnome-session/session-properties-capplet.c:123
+msgid "_Edit"
+msgstr "แก้ไข (_E)"
+
+#: gnome-session/session-properties-capplet.c:191
+msgid ""
+"Some changes are not saved.\n"
+"Is it still OK to exit?"
+msgstr ""
+"ความเปลี่ยนแปลงบางอย่างไม่ได้ถูกบันทึก \n"
+"คุณยังยืนยันจะจบการทำงานหรือไม่ ?"
+
+#: gnome-session/session-properties-capplet.c:220
+#: gnome-session/session-properties.desktop.in.h:2
+msgid "Sessions"
+msgstr "วาระ"
+
+#: gnome-session/session-properties-capplet.c:253
+msgid "Show splash screen on _login"
+msgstr "แสดง splash screen ตอนเข้าสู่ระบบ (_L)"
+
+#: gnome-session/session-properties-capplet.c:264
+msgid "_Prompt on logout"
+msgstr "ถามก่อนจะออกจากระบบ (_P)"
+
+#: gnome-session/session-properties-capplet.c:275
+msgid "Automatically save chan_ges to session"
+msgstr "บันทึกรายละเอียดวาระโดยอัตโนมัติ (_G)"
+
+#: gnome-session/session-properties-capplet.c:286
+msgid "_Sessions:"
+msgstr "วาระ (_S)"
+
+#: gnome-session/session-properties-capplet.c:304
+msgid "Session Name"
+msgstr "ชื่อวาระ"
+
+#: gnome-session/session-properties-capplet.c:355
+msgid "Session Options"
+msgstr "ตัวเลือกเกี่ยวกับวาระ"
+
+#: gnome-session/session-properties-capplet.c:364
+msgid "Current Session"
+msgstr "วาระปัจจุบัน"
+
+#: gnome-session/session-properties-capplet.c:373
+msgid "Additional startup _programs:"
+msgstr "โปรแกรมเริ่มการทำงานเพิ่มเติม (_P)"
+
+#: gnome-session/session-properties-capplet.c:394
+msgid "Command"
+msgstr "คำสั่ง"
+
+#: gnome-session/session-properties-capplet.c:426
+msgid "Startup Programs"
+msgstr "โปรแกรมเริ่มการทำงาน"
+
+#: gnome-session/session-properties.c:49
+msgid "Remove the currently selected client from the session."
+msgstr "ลบโปรแกรมลูกที่ถูกเลือกออกจากวาระ"
+
+#: gnome-session/session-properties.c:55
+msgid "Apply changes to the current session"
+msgstr "บังคับใช้ข้อเปลี่ยนแปลงที่เลือกลงในวาระปัจจุบัน"
+
+#: gnome-session/session-properties.c:61
+msgid "The list of programs in the session."
+msgstr "รายการของโปรแกรมที่อยู่ในวาระ"
+
+#: gnome-session/session-properties.c:90
+msgid "Currently running _programs:"
+msgstr "โปรแกรมที่กำลังทำงานอยู่ (_P):"
+
+#: gnome-session/session-properties.c:104
+msgid "Initialize session settings"
+msgstr ""
+
+#: gnome-session/session-properties.desktop.in.h:1
+msgid "Configure your sessions"
+msgstr "ตั้งค่าสำหรับวาระของคุณ"
+
+#: gnome-session/splash-widget.c:42
+msgid "Sawfish Window Manager"
+msgstr "ตัวจัดการหน้าต่าง Sawfish"
+
+#: gnome-session/splash-widget.c:43
+msgid "Metacity Window Manager"
+msgstr "ตัวจัดการหน้าต่าง Metacity"
+
+#: gnome-session/splash-widget.c:44
+msgid "Window Manager"
+msgstr "ตัวจัดการหน้าต่าง"
+
+#: gnome-session/splash-widget.c:45
+msgid "The Panel"
+msgstr "พาเนล"
+
+#: gnome-session/splash-widget.c:46
+msgid "Session Manager Proxy"
+msgstr ""
+
+#: gnome-session/splash-widget.c:47
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#: gnome-session/splash-widget.c:48
+msgid "Desktop Settings"
+msgstr "ค่าตั้งของพื้นโต้ะ"
+
+#: gnome-session/startup-programs.c:288
+msgid "_Startup Command:"
+msgstr "คำสั่งที่เรียกตอนเริ่มทำงาน (_S):"
+
+#: gnome-session/startup-programs.c:294
+msgid "Startup Command"
+msgstr "คำสั่งที่เรียกตอนเริ่มทำงาน"
+
+#: gnome-session/startup-programs.c:342
+msgid "The startup command cannot be empty"
+msgstr "คำสั่งที่เรียกตอนเริ่มทำงานจะว่างไม่ได้"
+
+#: gnome-session/startup-programs.c:378
+msgid "Add Startup Program"
+msgstr "เพิ่มโปรแกรมเริ่มการทำงาน"
+
+#: gnome-session/startup-programs.c:399
+msgid "Edit Startup Program"
+msgstr "แก้ไขโปรแกรมเริ่มการทำงาน"
