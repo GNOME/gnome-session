@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core-1.0.7\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
+"POT-Creation-Date: 2002-05-13 22:10+0100\n"
 "PO-Revision-Date: 2002-02-19 16:19+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -207,116 +207,112 @@ msgid "Always started on every login."
 msgstr "每次登录都运行。"
 
 # gsm/logout.c:248
-#: gnome-session/logout.c:200
+#: gnome-session/logout.c:188
 #, fuzzy
 msgid "_Log Out"
 msgstr "注销"
 
 # gsm/logout.c:200
-#: gnome-session/logout.c:258
+#: gnome-session/logout.c:248
 msgid "Really log out?"
 msgstr "真的要注销？"
 
 # gsm/logout.c:221
-#: gnome-session/logout.c:275
+#: gnome-session/logout.c:265
 msgid "Save current setup"
 msgstr "保存当前设置"
 
 # gsm/logout.c:240
-#: gnome-session/logout.c:295
+#: gnome-session/logout.c:285
 msgid "Action"
 msgstr "动作"
 
 # gsm/logout.c:248
-#: gnome-session/logout.c:303
+#: gnome-session/logout.c:293
 msgid "Logout"
 msgstr "注销"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:296
 msgid "Shut Down"
 msgstr "关机"
 
 # gsm/logout.c:254
-#: gnome-session/logout.c:309
+#: gnome-session/logout.c:299
 msgid "Reboot"
 msgstr "重新启动"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:71
 msgid "Specify a session name to load"
 msgstr "指定要载入的会话名"
 
 # gsm/main.c:57
-#: gnome-session/main.c:67
+#: gnome-session/main.c:72
 msgid "Only read saved sessions from the default.session file"
 msgstr "仅从默认的会话文件中读取保存的会话"
 
 # gsm/main.c:58
-#: gnome-session/main.c:68
+#: gnome-session/main.c:73
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客户注册的时间(毫秒，0=永远)"
 
 # gsm/main.c:59
-#: gnome-session/main.c:69
+#: gnome-session/main.c:74
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客户响应的时间(毫秒，0=永远)"
 
 # gsm/main.c:60
-#: gnome-session/main.c:70
+#: gnome-session/main.c:75
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客户消失的时间(毫秒，0=永远)"
 
+#: gnome-session/manager.c:173
+msgid "Your session has been saved"
+msgstr "您的会话现已保存"
+
 # gsm/manager.c:376
-#: gnome-session/manager.c:400
+#: gnome-session/manager.c:436
 msgid "Wait abandoned due to conflict."
 msgstr "由于冲突放弃等待。"
 
 # gsm/manager.c:826
-#: gnome-session/manager.c:834
+#: gnome-session/manager.c:874
 #, c-format
 msgid "No response to the %s command."
 msgstr "对 %s 命令没有响应。"
 
 # gsm/manager.c:827
-#: gnome-session/manager.c:835
+#: gnome-session/manager.c:875
 msgid "The program may be slow, stopped or broken."
 msgstr "这个程序可能太慢、停止或者崩溃了。"
 
 # gsm/manager.c:828
-#: gnome-session/manager.c:836
+#: gnome-session/manager.c:876
 msgid "You may wait for it to respond or remove it."
 msgstr "你可以等待它响应或者删除它。"
 
 # gsm/manager.c:1359
-#: gnome-session/manager.c:1375
+#: gnome-session/manager.c:1433
 msgid "Respawn abandoned due to failures."
 msgstr "由于失败导致放弃重新运行。"
 
 # gsm/manager.c:1527
-#: gnome-session/manager.c:1541
+#: gnome-session/manager.c:1607
 msgid "A session shutdown is in progress."
 msgstr "会话正在关闭。"
 
 # gsm/save-session.c:41
-#: gnome-session/save-session.c:43
+#: gnome-session/save-session.c:44
 msgid "Kill session"
 msgstr "杀死这个会话"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:45
 msgid "Use dialog boxes"
 msgstr "使用对话框"
 
 # gsm/save-session.c:86
-#: gnome-session/save-session.c:112
+#: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
-
-#: gnome-session/save-session.c:120
-msgid "Could not connect to gnome-session"
-msgstr "无法连接到 gnome-session"
-
-#: gnome-session/save-session.c:160
-msgid "Your session has been saved"
-msgstr "您的会话现已保存"
 
 #: gnome-session/save-session.desktop.in.h:1
 msgid "Save Current Session"
@@ -344,141 +340,136 @@ msgstr "添加一个新的会话"
 msgid "Edit session name"
 msgstr "编辑会话名称"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:141
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
 # panel/menu.c:3509
-#: gnome-session/session-properties-capplet.c:189
+#: gnome-session/session-properties-capplet.c:171
 #, fuzzy
 msgid "Session properties"
 msgstr "会话属性"
 
 # gsm/logout.c:240
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:196
 msgid "Options"
 msgstr "选项"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:206
 msgid "Show splash screen on login"
 msgstr "登录时显示图片展示"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:217
 msgid "Prompt on logout"
 msgstr "注销时提示"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:228
 msgid "Automatically save changes to session"
 msgstr "自动保存变动到会话中"
 
+#: gnome-session/session-properties-capplet.c:238
+msgid "<i>These changes take effect immediately</i>"
+msgstr ""
+
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:242
 msgid "Choose Current Session"
 msgstr "选择当前的会话"
 
 # gsm/session-properties.c:264
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:259
 msgid "Session Name"
 msgstr "会话名称"
 
 # panel/menu.c:1148 panel/menu.c:1220
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:268
+#: gnome-session/session-properties-capplet.c:340
 msgid "Add..."
 msgstr "添加..."
 
 # gnome-terminal/gnome-terminal.c:1585
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:272
+#: gnome-session/session-properties-capplet.c:345
 msgid "Edit..."
 msgstr "编辑..."
 
 # gmenu/main.c:106
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:276
+#: gnome-session/session-properties-capplet.c:350
 msgid "Delete"
 msgstr "删除"
 
 # panel/menu.c:3509
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:301
 msgid "Session Options"
 msgstr "会话选项"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
+#: gnome-session/session-properties-capplet.c:312
 msgid "Non-session-managed Startup Programs"
 msgstr "非会话管理的启动程序"
 
-#: gnome-session/session-properties-capplet.c:358
-#: gnome-session/startup-programs.c:298
+#: gnome-session/session-properties-capplet.c:329
+#: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "优先级"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:331
 msgid "Command"
 msgstr "命令"
 
-#: gnome-session/session-properties-capplet.c:388
-msgid "Browse Currently Running Programs..."
-msgstr "浏览当前运行的程序..."
-
 # applets/gkb/gkb.c:262
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:359
 msgid "Startup Programs"
 msgstr "启动程序"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:364
+#, fuzzy
+msgid "Current Session"
+msgstr "保存当前会话"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
 msgstr ""
 
-# panel/menu.c:3509
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "会话属性"
-
 # gsm/session-properties.c:264
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
 msgstr "会话"
 
 # gsm/session-properties.c:318
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
 msgstr "会话选择器"
 
 # gsm/session-properties.c:321
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
 msgstr "启动会话"
 
 # gsm/session-properties.c:324
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "取消登录"
 
 # gsm/session-properties.c:350
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
 msgstr "初始化会话设置"
 
 #: gnome-session/session-properties.desktop.in.h:1
 msgid "Session Properties & Startup Programs"
 msgstr "会话属性和启动程序"
-
-#: gnome-session/session.desktop.in.h:1
-msgid "Current session managed programs"
-msgstr "目前会话管理的程序"
 
 # gnome-terminal/gnome-terminal.c:1590
 #: gnome-session/splash.c:59
@@ -534,49 +525,62 @@ msgstr "Nautilus"
 
 # applets/mini-commander/src/command_line.c:116
 # applets/mini-commander/src/exec.c:63
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:286
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "正在启动GNOME：%s"
 
 # applets/mini-commander/src/command_line.c:116
 # applets/mini-commander/src/exec.c:63
-#: gnome-session/splash.c:291
+#: gnome-session/splash.c:288
 msgid "Starting GNOME: done"
 msgstr "正在启动GNOME：完毕"
 
 # help-browser/toc.c:159
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:430
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:454
 msgid "Starting GNOME"
 msgstr "正在启动GNOME"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
 msgid "Startup Command"
 msgstr "启动命令"
 
-#: gnome-session/startup-programs.c:313
+#: gnome-session/startup-programs.c:314
 msgid ""
 "Programs with smaller values are started before programs with higher values. "
 "The default value should be OK"
 msgstr "有较低值的程序将在较高值的程序前启动。默认的值是可用的。"
 
-#: gnome-session/startup-programs.c:332
+#: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
 # applets/gkb/gkb.c:262
-#: gnome-session/startup-programs.c:372
+#: gnome-session/startup-programs.c:373
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: gnome-session/startup-programs.c:392
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
+
+#~ msgid "Could not connect to gnome-session"
+#~ msgstr "无法连接到 gnome-session"
+
+#~ msgid "Browse Currently Running Programs..."
+#~ msgstr "浏览当前运行的程序..."
+
+# panel/menu.c:3509
+#~ msgid "Session Properties"
+#~ msgstr "会话属性"
+
+#~ msgid "Current session managed programs"
+#~ msgstr "目前会话管理的程序"
 
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Enlightenment窗口管理器"

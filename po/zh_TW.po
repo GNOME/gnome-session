@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 1.5.18\n"
-"POT-Creation-Date: 2002-05-09 18:51+0800\n"
+"POT-Creation-Date: 2002-05-13 22:10+0100\n"
 "PO-Revision-Date: 2002-05-09 19:02+0800\n"
 "Last-Translator: Abel Cheung <maddog@linux.org.hk>\n"
 "Language-Team: traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -226,23 +226,23 @@ msgstr "關機"
 msgid "Reboot"
 msgstr "重新啟動電腦"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:71
 msgid "Specify a session name to load"
 msgstr "指定載入的作業階段名稱"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:72
 msgid "Only read saved sessions from the default.session file"
 msgstr "只從預設作業階段檔案中讀取已儲存的作業階段"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:73
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:70
+#: gnome-session/main.c:74
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
 
-#: gnome-session/main.c:71
+#: gnome-session/main.c:75
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
 
@@ -311,7 +311,7 @@ msgstr "新增作業階段"
 msgid "Edit session name"
 msgstr "修改作業階段名稱"
 
-#: gnome-session/session-properties-capplet.c:165
+#: gnome-session/session-properties-capplet.c:141
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -319,79 +319,79 @@ msgstr ""
 "一部份改變仍未儲存。\n"
 "是否仍然要離開？"
 
-#: gnome-session/session-properties-capplet.c:190
+#: gnome-session/session-properties-capplet.c:171
 msgid "Session properties"
 msgstr "作業階段偏好設定"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:216
+#: gnome-session/session-properties-capplet.c:196
 msgid "Options"
 msgstr "選項"
 
-#: gnome-session/session-properties-capplet.c:226
+#: gnome-session/session-properties-capplet.c:206
 msgid "Show splash screen on login"
 msgstr "登入時顯示啟動畫面"
 
-#: gnome-session/session-properties-capplet.c:242
+#: gnome-session/session-properties-capplet.c:217
 msgid "Prompt on logout"
 msgstr "登出前先提示"
 
-#: gnome-session/session-properties-capplet.c:258
+#: gnome-session/session-properties-capplet.c:228
 msgid "Automatically save changes to session"
 msgstr "自動儲存作業階段"
 
+#: gnome-session/session-properties-capplet.c:238
+msgid "<i>These changes take effect immediately</i>"
+msgstr ""
+
 #. Session names list
-#: gnome-session/session-properties-capplet.c:272
+#: gnome-session/session-properties-capplet.c:242
 msgid "Choose Current Session"
 msgstr "選擇目前的作業階段"
 
-#: gnome-session/session-properties-capplet.c:289
+#: gnome-session/session-properties-capplet.c:259
 msgid "Session Name"
 msgstr "作業階段名稱"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:298
-#: gnome-session/session-properties-capplet.c:370
+#: gnome-session/session-properties-capplet.c:268
+#: gnome-session/session-properties-capplet.c:340
 msgid "Add..."
 msgstr "新增..."
 
-#: gnome-session/session-properties-capplet.c:302
-#: gnome-session/session-properties-capplet.c:375
+#: gnome-session/session-properties-capplet.c:272
+#: gnome-session/session-properties-capplet.c:345
 msgid "Edit..."
 msgstr "編輯..."
 
-#: gnome-session/session-properties-capplet.c:306
-#: gnome-session/session-properties-capplet.c:380
+#: gnome-session/session-properties-capplet.c:276
+#: gnome-session/session-properties-capplet.c:350
 msgid "Delete"
 msgstr "刪除"
 
-#: gnome-session/session-properties-capplet.c:331
+#: gnome-session/session-properties-capplet.c:301
 msgid "Session Options"
 msgstr "作業階段選項"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:342
+#: gnome-session/session-properties-capplet.c:312
 msgid "Non-session-managed Startup Programs"
 msgstr "並非由作業階段管理的啟動程式"
 
-#: gnome-session/session-properties-capplet.c:359
-#: gnome-session/startup-programs.c:298
+#: gnome-session/session-properties-capplet.c:329
+#: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "優先值"
 
-#: gnome-session/session-properties-capplet.c:361
+#: gnome-session/session-properties-capplet.c:331
 msgid "Command"
 msgstr "指令"
 
-#: gnome-session/session-properties-capplet.c:389
-msgid "Browse Currently Running Programs..."
-msgstr "瀏覽執行中的程式..."
-
-#: gnome-session/session-properties-capplet.c:398
+#: gnome-session/session-properties-capplet.c:359
 msgid "Startup Programs"
 msgstr "啟動程式"
 
-#: gnome-session/session-properties-capplet.c:403
+#: gnome-session/session-properties-capplet.c:364
 msgid "Current Session"
 msgstr "目前的作業階段"
 
@@ -472,28 +472,28 @@ msgstr "作業階段管理程式代理"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:286
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "啟動 GNOME：%s"
 
-#: gnome-session/splash.c:291
+#: gnome-session/splash.c:288
 msgid "Starting GNOME: done"
 msgstr "啟動 GNOME：完成"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:430
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:454
 msgid "Starting GNOME"
 msgstr "啟動 GNOME"
 
-#: gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
 msgid "Startup Command"
 msgstr "啟動指令"
 
-#: gnome-session/startup-programs.c:313
+#: gnome-session/startup-programs.c:314
 msgid ""
 "Programs with smaller values are started before programs with higher values. "
 "The default value should be OK"
@@ -502,17 +502,20 @@ msgstr ""
 "優先值較大的程式較先\n"
 "啟動。使用預設值即可。"
 
-#: gnome-session/startup-programs.c:332
+#: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
 msgstr "啟動指令不可以留空"
 
-#: gnome-session/startup-programs.c:372
+#: gnome-session/startup-programs.c:373
 msgid "Add Startup Program"
 msgstr "新增啟動程式"
 
-#: gnome-session/startup-programs.c:392
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "修改啟動程式"
+
+#~ msgid "Browse Currently Running Programs..."
+#~ msgstr "瀏覽執行中的程式..."
 
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "無法連接 gnome-session"

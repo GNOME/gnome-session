@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.5.0\n"
-"POT-Creation-Date: 2002-04-29 03:35+0100\n"
+"POT-Creation-Date: 2002-05-13 22:10+0100\n"
 "PO-Revision-Date: 2001-09-19 08:32GMT+1\n"
 "Last-Translator: Toma Jankovic_<tomaja@net.yu>\n"
 "Language-Team: SERBIAN <office@mandrake.co.yu>\n"
@@ -197,100 +197,96 @@ msgstr "Postavke"
 msgid "Always started on every login."
 msgstr "Uvek se pokreæe pri prijavi"
 
-#: gnome-session/logout.c:200
+#: gnome-session/logout.c:188
 #, fuzzy
 msgid "_Log Out"
 msgstr "Odjava"
 
-#: gnome-session/logout.c:258
+#: gnome-session/logout.c:248
 msgid "Really log out?"
 msgstr "Stvarno se odjavljujete ?"
 
-#: gnome-session/logout.c:275
+#: gnome-session/logout.c:265
 msgid "Save current setup"
 msgstr "Snimi tekuæe opcije "
 
-#: gnome-session/logout.c:295
+#: gnome-session/logout.c:285
 msgid "Action"
 msgstr "Akcija"
 
-#: gnome-session/logout.c:303
+#: gnome-session/logout.c:293
 msgid "Logout"
 msgstr "Odjava"
 
-#: gnome-session/logout.c:306
+#: gnome-session/logout.c:296
 msgid "Shut Down"
 msgstr "Ugasi"
 
-#: gnome-session/logout.c:309
+#: gnome-session/logout.c:299
 msgid "Reboot"
 msgstr "Restart"
 
-#: gnome-session/main.c:66
+#: gnome-session/main.c:71
 msgid "Specify a session name to load"
 msgstr "Specificirajte ime sesije pri uèitavanju"
 
-#: gnome-session/main.c:67
+#: gnome-session/main.c:72
 msgid "Only read saved sessions from the default.session file"
 msgstr "Samo proèitaj snimljenu sesiju iz default.session datoteke"
 
-#: gnome-session/main.c:68
+#: gnome-session/main.c:73
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Period od milisekunde utro¹en na èekanje registracije klijenta (0=zauvek)"
 
-#: gnome-session/main.c:69
+#: gnome-session/main.c:74
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Period od milisekunde utro¹en na èekanje odgovora klijenta(0=zauvek)"
 
-#: gnome-session/main.c:70
+#: gnome-session/main.c:75
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Period od milisekunde utro¹en na èekanje klijenta da rikne (0=zauvek)"
 
-#: gnome-session/manager.c:400
+#: gnome-session/manager.c:173
+msgid "Your session has been saved"
+msgstr "Va¹a sesija je upisana i snimljena"
+
+#: gnome-session/manager.c:436
 msgid "Wait abandoned due to conflict."
 msgstr "èekanje obustavljeno usled konflikta"
 
-#: gnome-session/manager.c:834
+#: gnome-session/manager.c:874
 #, c-format
 msgid "No response to the %s command."
 msgstr "Nema odgovora na komandu %s"
 
-#: gnome-session/manager.c:835
+#: gnome-session/manager.c:875
 msgid "The program may be slow, stopped or broken."
 msgstr "Program mo¾e biti spor,zaustavljen ili prekinut."
 
-#: gnome-session/manager.c:836
+#: gnome-session/manager.c:876
 msgid "You may wait for it to respond or remove it."
 msgstr "Mo¾ete èekati do njegovog odgovora ili ga ukloniti"
 
-#: gnome-session/manager.c:1375
+#: gnome-session/manager.c:1433
 msgid "Respawn abandoned due to failures."
 msgstr "Respawn obustavljen usled havarije "
 
-#: gnome-session/manager.c:1541
+#: gnome-session/manager.c:1607
 msgid "A session shutdown is in progress."
 msgstr "Ga¹enje sesije je u progresu"
 
-#: gnome-session/save-session.c:43
+#: gnome-session/save-session.c:44
 msgid "Kill session"
 msgstr "Ubij sesiju"
 
-#: gnome-session/save-session.c:44
+#: gnome-session/save-session.c:45
 msgid "Use dialog boxes"
 msgstr "Koristi dijalog boksove"
 
-#: gnome-session/save-session.c:112
+#: gnome-session/save-session.c:164
 msgid "Could not connect to the session manager"
 msgstr "Ne mogu se povezati sa menadzerom sesije"
-
-#: gnome-session/save-session.c:120
-msgid "Could not connect to gnome-session"
-msgstr "Ne mogu se povezati na gnome-sesiju"
-
-#: gnome-session/save-session.c:160
-msgid "Your session has been saved"
-msgstr "Va¹a sesija je upisana i snimljena"
 
 #: gnome-session/save-session.desktop.in.h:1
 #, fuzzy
@@ -318,130 +314,125 @@ msgstr "Dodaj novu sesiju"
 msgid "Edit session name"
 msgstr "Uredi ime sesije"
 
-#: gnome-session/session-properties-capplet.c:164
+#: gnome-session/session-properties-capplet.c:141
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
 
-#: gnome-session/session-properties-capplet.c:189
+#: gnome-session/session-properties-capplet.c:171
 #, fuzzy
 msgid "Session properties"
 msgstr "Postavke za Sesiju"
 
 #. Frame for options
-#: gnome-session/session-properties-capplet.c:215
+#: gnome-session/session-properties-capplet.c:196
 msgid "Options"
 msgstr "Postavke"
 
-#: gnome-session/session-properties-capplet.c:225
+#: gnome-session/session-properties-capplet.c:206
 msgid "Show splash screen on login"
 msgstr "Prika¾i pozdravni ekran pri prijavi"
 
-#: gnome-session/session-properties-capplet.c:241
+#: gnome-session/session-properties-capplet.c:217
 msgid "Prompt on logout"
 msgstr "Prompt na prijavi"
 
-#: gnome-session/session-properties-capplet.c:257
+#: gnome-session/session-properties-capplet.c:228
 msgid "Automatically save changes to session"
 msgstr "Automatski snimi promene u sesiji"
 
+#: gnome-session/session-properties-capplet.c:238
+msgid "<i>These changes take effect immediately</i>"
+msgstr ""
+
 #. Session names list
-#: gnome-session/session-properties-capplet.c:271
+#: gnome-session/session-properties-capplet.c:242
 #, fuzzy
 msgid "Choose Current Session"
 msgstr "Izaberi Aktivnu Sesiju"
 
-#: gnome-session/session-properties-capplet.c:288
+#: gnome-session/session-properties-capplet.c:259
 msgid "Session Name"
 msgstr "Ime Sesije"
 
 #. Add/Edit/Delete buttons
-#: gnome-session/session-properties-capplet.c:297
-#: gnome-session/session-properties-capplet.c:369
+#: gnome-session/session-properties-capplet.c:268
+#: gnome-session/session-properties-capplet.c:340
 msgid "Add..."
 msgstr "Dodaj..."
 
-#: gnome-session/session-properties-capplet.c:301
-#: gnome-session/session-properties-capplet.c:374
+#: gnome-session/session-properties-capplet.c:272
+#: gnome-session/session-properties-capplet.c:345
 #, fuzzy
 msgid "Edit..."
 msgstr "Uredi..."
 
-#: gnome-session/session-properties-capplet.c:305
-#: gnome-session/session-properties-capplet.c:379
+#: gnome-session/session-properties-capplet.c:276
+#: gnome-session/session-properties-capplet.c:350
 msgid "Delete"
 msgstr "Bri¹i"
 
-#: gnome-session/session-properties-capplet.c:330
+#: gnome-session/session-properties-capplet.c:301
 msgid "Session Options"
 msgstr "Postavke za Sesiju"
 
 #. Frame for non-session managed startup programs
-#: gnome-session/session-properties-capplet.c:341
+#: gnome-session/session-properties-capplet.c:312
 #, fuzzy
 msgid "Non-session-managed Startup Programs"
 msgstr "Startni Programi koji nisu ureðeni sesijom"
 
-#: gnome-session/session-properties-capplet.c:358
-#: gnome-session/startup-programs.c:298
+#: gnome-session/session-properties-capplet.c:329
+#: gnome-session/startup-programs.c:299
 msgid "Priority"
 msgstr "Prioritet"
 
-#: gnome-session/session-properties-capplet.c:360
+#: gnome-session/session-properties-capplet.c:331
 msgid "Command"
 msgstr "Komanda"
 
-#: gnome-session/session-properties-capplet.c:388
-msgid "Browse Currently Running Programs..."
-msgstr "Pretra¾i Trenutno pokrenute programe..."
-
-#: gnome-session/session-properties-capplet.c:397
+#: gnome-session/session-properties-capplet.c:359
 msgid "Startup Programs"
 msgstr "Startni Programi"
 
-#: gnome-session/session-properties.c:97
+#: gnome-session/session-properties-capplet.c:364
+#, fuzzy
+msgid "Current Session"
+msgstr "Izaberi Aktivnu Sesiju"
+
+#: gnome-session/session-properties.c:100
 msgid "Remove the currently selected client from the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:104
+#: gnome-session/session-properties.c:107
 msgid "The list of programs in the session."
 msgstr ""
 
-#. app
-#: gnome-session/session-properties.c:209 gnome-session/session.desktop.in.h:2
-msgid "Session Properties"
-msgstr "Postavke za Sesiju"
-
-#: gnome-session/session-properties.c:266
+#: gnome-session/session-properties.c:207
 msgid "Session"
 msgstr "Sesija"
 
 #. app
-#: gnome-session/session-properties.c:327
+#: gnome-session/session-properties.c:268
 msgid "Session Chooser"
 msgstr "Izbronik Sesije"
 
-#: gnome-session/session-properties.c:330
+#: gnome-session/session-properties.c:271
 msgid "Start Session"
 msgstr "Pokreni sesiju"
 
-#: gnome-session/session-properties.c:333
+#: gnome-session/session-properties.c:274
 msgid "Cancel Login"
 msgstr "Poni¹ti prijavu"
 
-#: gnome-session/session-properties.c:358
+#: gnome-session/session-properties.c:299
 msgid "Initialize session settings"
 msgstr "Iniciraj postavke sesije"
 
 #: gnome-session/session-properties.desktop.in.h:1
 #, fuzzy
 msgid "Session Properties & Startup Programs"
-msgstr "Startni Programi koji nisu ureðeni sesijom"
-
-#: gnome-session/session.desktop.in.h:1
-#, fuzzy
-msgid "Current session managed programs"
 msgstr "Startni Programi koji nisu ureðeni sesijom"
 
 #: gnome-session/splash.c:59
@@ -489,28 +480,28 @@ msgstr "Proxy Menadzera za Sesije"
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash.c:289
+#: gnome-session/splash.c:286
 #, c-format
 msgid "Starting GNOME: %s"
 msgstr "Pokreæem GNOME: %s"
 
-#: gnome-session/splash.c:291
+#: gnome-session/splash.c:288
 msgid "Starting GNOME: done"
 msgstr "Pokreæem GNOME: zavr¹eno"
 
-#: gnome-session/splash.c:437
+#: gnome-session/splash.c:430
 msgid "GNOME"
 msgstr "GNOME"
 
-#: gnome-session/splash.c:461
+#: gnome-session/splash.c:454
 msgid "Starting GNOME"
 msgstr "Pokreæem GNOME"
 
-#: gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
+#: gnome-session/startup-programs.c:283 gnome-session/startup-programs.c:290
 msgid "Startup Command"
 msgstr "Startna komanda"
 
-#: gnome-session/startup-programs.c:313
+#: gnome-session/startup-programs.c:314
 msgid ""
 "Programs with smaller values are started before programs with higher values. "
 "The default value should be OK"
@@ -518,17 +509,30 @@ msgstr ""
 "Programi sa manjim vrednostima se startaju pre programa sa veæim "
 "vrednostima. Poèetna vrednost bi trebala da bude u redu"
 
-#: gnome-session/startup-programs.c:332
+#: gnome-session/startup-programs.c:333
 msgid "The startup command cannot be empty"
 msgstr "Startna komanda ne mo¾e biti prazna"
 
-#: gnome-session/startup-programs.c:372
+#: gnome-session/startup-programs.c:373
 msgid "Add Startup Program"
 msgstr "Dodaj Startni program"
 
-#: gnome-session/startup-programs.c:392
+#: gnome-session/startup-programs.c:393
 msgid "Edit Startup Program"
 msgstr "Uredi Startni program"
+
+#~ msgid "Could not connect to gnome-session"
+#~ msgstr "Ne mogu se povezati na gnome-sesiju"
+
+#~ msgid "Browse Currently Running Programs..."
+#~ msgstr "Pretra¾i Trenutno pokrenute programe..."
+
+#~ msgid "Session Properties"
+#~ msgstr "Postavke za Sesiju"
+
+#, fuzzy
+#~ msgid "Current session managed programs"
+#~ msgstr "Startni Programi koji nisu ureðeni sesijom"
 
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Enlightenment Window Menadzer"
