@@ -44,6 +44,7 @@ static char *session_name = NULL;
 extern gboolean base_loaded;
 extern GSList* live_list;
 extern GSList* zombie_list;
+extern GSList* pending_list;
 
 typedef enum
 {
@@ -416,6 +417,9 @@ delete_session (const char *name)
       cur_client = find_client_by_id (zombie_list, old_client->id);
       if (!cur_client) 
 	cur_client = find_client_by_id (live_list, old_client->id);
+      /* Or perhaps one that we are restarting ? */
+      if (!cur_client) 
+	cur_client = find_client_by_id (pending_list, old_client->id);
       
       if (find_vector_property (old_client, SmDiscardCommand, 
 				&old_argc, &old_argv))

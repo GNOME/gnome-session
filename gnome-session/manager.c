@@ -43,7 +43,7 @@ static GSList *load_request_list = NULL;
 static GSList *start_list = NULL;
 
 /* List of clients which have been started but have yet to register */
-static GSList *pending_list = NULL;
+GSList *pending_list = NULL;
 
 /* List of clients which have been purged from the pending list 
    since they have failed to register within our timeout. */

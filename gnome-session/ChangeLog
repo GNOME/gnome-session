@@ -1,3 +1,9 @@
+1999-02-10 Felix Bellaby  <felix@pooh.u-net.com>
+
+	* save.c (delete_session): do not call discard commands on clients
+	in the pending_list.
+	* manager.c: export pending_list to save.c
+
 1999-02-09 Felix Bellaby  <felix@pooh.u-net.com>
 
 	* manager.c (close_connection): restart RestartImmediately clients
