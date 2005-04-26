@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 2 -*- */
 /* logout.c - Ask user useful logout questions.
 
    Written by Owen Taylor <otaylor@redhat.com>
@@ -25,6 +26,8 @@
 #include <gtk/gtkinvisible.h>
 #include <gdk/gdkx.h>
 
+#include <gconf/gconf-client.h>
+
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
 
@@ -35,6 +38,21 @@
 #include "gdm-logout-action.h"
 #include "gsm-multiscreen.h"
 #include "egg-screen-help.h"
+
+enum
+{
+  OPTION_LOGOUT,
+  OPTION_HALT,
+  OPTION_REBOOT
+};
+
+static GConfEnumStringPair logout_options_lookup_table[] =
+{
+  { OPTION_LOGOUT, "logout"   },
+  { OPTION_HALT,   "shutdown" },
+  { OPTION_REBOOT, "restart"  },
+  { 0, NULL }
+};
 
 typedef struct {
   GdkScreen    *screen;
@@ -265,6 +283,40 @@ make_title_label (const char *text)
   return label;
 }
 
+static int
+get_default_option (void)
+{
+  GConfClient *gconf_client;
+  char        *str;
+  int          option;
+
+  gconf_client = gconf_client_get_default ();
+  str = gconf_client_get_string (gconf_client, LOGOUT_OPTION_KEY, NULL);
+
+  if (str == NULL || !gconf_string_to_enum (logout_options_lookup_table, str, &option))
+    option = OPTION_LOGOUT;
+  
+  g_object_unref (gconf_client);
+  g_free (str);
+  return option;
+}
+
+static void
+set_default_option (int option)
+{
+  GConfClient *gconf_client;
+  const char  *str;
+
+  gconf_client = gconf_client_get_default ();
+
+  str = gconf_enum_to_string (logout_options_lookup_table, option);
+  g_assert (str != NULL);
+
+  gconf_client_set_string (gconf_client, LOGOUT_OPTION_KEY, str, NULL);
+
+  g_object_unref (gconf_client);
+}
+
 static gboolean
 display_gui (void)
 {
@@ -289,6 +341,7 @@ display_gui (void)
   GError *error = NULL;
   GdkScreen *screen;
   int monitor;
+  int selected_option;
 
   gsm_verbose ("display_gui: showing logout dialog\n");
 
@@ -385,6 +438,8 @@ display_gui (void)
       GtkWidget *action_vbox, *hbox;
       GtkWidget *category_vbox;
       GtkWidget *r;
+
+      selected_option = get_default_option ();
       
       category_vbox = gtk_vbox_new (FALSE, 6);
       gtk_box_pack_start (GTK_BOX (vbox), category_vbox, TRUE, TRUE, 0);
@@ -408,12 +463,14 @@ display_gui (void)
       gtk_widget_show (action_vbox);
       
       r = gtk_radio_button_new_with_mnemonic (NULL, _("_Log out"));
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (r), (selected_option == OPTION_LOGOUT));
       gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
       gtk_widget_show (r);
 
       if (halt_supported)
 	{
 	  r = halt = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("Sh_ut down"));
+	  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (r), (selected_option == OPTION_HALT));
 	  gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 	  gtk_widget_show (r);
 	}
@@ -421,6 +478,7 @@ display_gui (void)
       if (reboot_supported)
 	{
 	  r = reboot = gtk_radio_button_new_with_mnemonic_from_widget (GTK_RADIO_BUTTON (r), _("_Restart the computer"));
+	  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (r), (selected_option == OPTION_REBOOT));
 	  gtk_box_pack_start (GTK_BOX (action_vbox), r, FALSE, FALSE, 0);
 	  gtk_widget_show (r);
 	}
@@ -462,6 +520,13 @@ display_gui (void)
   if (toggle_button)
     save_active = GTK_TOGGLE_BUTTON (toggle_button)->active;
 
+  if (reboot_active)
+    selected_option = OPTION_REBOOT;
+  else if (halt_active)
+    selected_option = OPTION_HALT;
+  else
+    selected_option = OPTION_LOGOUT;
+
   gtk_widget_destroy (box);
   gtk_widget_destroy (invisible);
 
@@ -486,6 +551,7 @@ display_gui (void)
 	logout_action = GDM_LOGOUT_ACTION_SHUTDOWN;
       else if (reboot_active)
 	logout_action = GDM_LOGOUT_ACTION_REBOOT;
+      set_default_option (selected_option);
       retval = TRUE;
       break;
     default:
