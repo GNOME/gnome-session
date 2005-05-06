@@ -68,9 +68,6 @@
 /* Allow TCP connections to the session manager. */
 #define ALLOW_TCP_KEY              GSM_GCONF_CONFIG_PREFIX "/allow_tcp_connections"
 
-/* Default chosen option at logout dialog */
-#define LOGOUT_OPTION_KEY	   GSM_GCONF_CONFIG_PREFIX "/logout_option"
-
 /* Assistive Technology support is turned on */
 #define ACCESSIBILITY_KEY         "/desktop/gnome/interface/accessibility"
 
