@@ -1,42 +1,41 @@
-# Copyright (C) 2002 Free Software Foundation, Inc.
+# Vietnamese Translation for gnome-session.
+# Copyright © 2005 Gnome i18n Project for Vietnamese.
 # This file is distributed under the same license as the gnome-session package.
 # pclouds <pclouds@vnlinux.org>, 2002-2004.
-#
+# Clytie Siddall <clytie@riverland.net.au>, 2005.
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session for Gnome v.2.1.x\n"
+"Project-Id-Version: gnome-session for Gnome v.2.10\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-04-22 09:26+0700\n"
-"Last-Translator: pclouds <pclouds@vnlinux.org>\n"
-"Language-Team: Gnome-Vi <gnomevi-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2005-05-11 04:49+0000\n"
+"PO-Revision-Date: 2005-05-11 21:03+0930\n"
+"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#:../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Cho phép kết nối TCP"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#:../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"Vì lý do bảo mật, trên các platform có splash screen _IceTcpTransNoListen() "
-"(hệ thống XFree86), phiên làm việc Gnome không nghe các kết nối trên cổng "
-"TCP. Tùy chọn này sẽ cho phép các kết nối từ các máy chủ ở xa. Cần chạy lại "
-"phiên làm việc Gnome để tùy chọn này có tác dụng."
+"Vì lý do bảo mật, trên các hệ máy có _IceTcpTransNoListen() (hệ thống XFree86), phiên làm việc Gnome không lắng nghe các kết nối trên cổng TCP. Tùy chọn này sẽ cho phép các kết nối từ các máy chủ ở xa đã xác thức. Cần chạy lại phiên làm việc Gnome để tùy chọn này có tác dụng."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#:../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Nếu bật chạy, phiên làm việc gnome sẽ nhắc người dùng trước khi kết thúc "
+msgstr "Nếu bật chạy, phiên làm việc gnome sẽ nhắc người dùng trước khi kết thúc "
 "phiên làm việc."
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#:../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -44,158 +43,160 @@ msgstr ""
 "Nếu bật chạy, phiên làm việc gnome sẽ tự động lưu phiên làm việc. Nếu tắt, "
 "hộp thoại đăng xuất sẽ có tùy chọn để lưu phiên làm việc."
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#:../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Nhắc đăng xuất"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "Ảnh ưa thích dùng cho splash screen khi đăng nhập vào Gnome Desktop"
+#:../gnome-session/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
+msgstr "Ảnh ưa thích dùng cho màn hình giới thiệu đăng nhập"
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#:../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
-msgstr "Lưu phiên làm việc"
+msgstr "Lưu các phiên làm việc"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#:../gnome-session/gnome-session.schemas.in.h:8
 msgid "Show the splash screen"
-msgstr "Hiện Splash Screen"
+msgstr "Hiển thị màn hình giật gân"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#:../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen when the session starts up"
-msgstr "Hiện splash screen khi khởi chạy phiên làm việc"
+msgstr "Hiển thi màn hình giật gân khi khởi chạy phiên làm việc"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Ảnh Splash Screen"
+#:../gnome-session/gnome-session.schemas.in.h:10
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Đây là giá trị đường dẫn tương đối, đựa vào thư mục $datadir/pixmaps/. Các tên thư mục con và tên ảnh đều là giá trị hợp lệ. Thay đổi giá trị này thì sẽ tác động khi đăng nhập trong phiên làm việc sau."
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#:../gnome-session/gsm-client-editor.c:97
+#:../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Thứ tự:"
 
-#: gnome-session/gsm-client-editor.c:99
+#:../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "Thứ tự của ứng dụng được khởi động trong phiên làm việc."
 
-#: gnome-session/gsm-client-editor.c:106
+#:../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "Cái gì xảy ra cho ứng dụng khi nó kết thúc."
 
-#: gnome-session/gsm-client-editor.c:109
+#:../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "_Kiểu:"
 
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#:../gnome-session/gsm-client-list.c:150
+#:../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Thứ tự"
 
-#: gnome-session/gsm-client-list.c:155
+#:../gnome-session/gsm-client-list.c:155
 msgid "Style"
 msgstr "Kiểu"
 
-#: gnome-session/gsm-client-list.c:160
+#:../gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "Trạng thái"
 
-#: gnome-session/gsm-client-list.c:165
+#:../gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "Chương trình"
 
-#: gnome-session/gsm-client-row.c:31
+#:../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "Không hoạt động"
 
-#: gnome-session/gsm-client-row.c:32
+#:../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Đang đợi khởi động hoặc đã kết thúc."
+msgstr "Đang đợi khởi động hoặc đã kết thúc rồi."
 
-#: gnome-session/gsm-client-row.c:34
+#:../gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "Đang khởi động"
 
-#: gnome-session/gsm-client-row.c:35
+#:../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Đã khởi động nhưng không thấy báo cáo tình trạng."
+msgstr "Đã khởi động nhưng ch[a thấy báo cáo tình trạng."
 
-#: gnome-session/gsm-client-row.c:37
+#:../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "Đang chạy"
 
-#: gnome-session/gsm-client-row.c:38
+#:../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
 msgstr "Thành viên bình thường của phiên làm việc."
 
-#: gnome-session/gsm-client-row.c:40
+#:../gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "Đang lưu"
 
-#: gnome-session/gsm-client-row.c:41
+#:../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "Đang lưu thông tin phiên làm việc."
 
-#: gnome-session/gsm-client-row.c:43
+#:../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
-msgstr "Không rõ"
+msgstr "Không biết"
 
-#: gnome-session/gsm-client-row.c:44
+#:../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "Đã quá hạn mà vẫn chưa được báo cáo tình trạng."
 
-#: gnome-session/gsm-client-row.c:50
+#:../gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "Thường"
 
-#: gnome-session/gsm-client-row.c:51
+#:../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
 msgstr "Không bị tác động bởi lệnh đăng xuất, như có thể kết thúc."
 
-#: gnome-session/gsm-client-row.c:53
+#:../gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "Khởi động lại"
 
-#: gnome-session/gsm-client-row.c:54
+#:../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
 msgstr "Không bai giờ được phép kết thúc."
 
-#: gnome-session/gsm-client-row.c:56
+#:../gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "Sọt rác"
 
-#: gnome-session/gsm-client-row.c:57
+#:../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
 msgstr "Đã bị hủy khi đăng xuất và có thể kết thúc."
 
-#: gnome-session/gsm-client-row.c:59
+#:../gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "Thiết lập"
 
-#: gnome-session/gsm-client-row.c:60
+#:../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Luôn luôn được khởi động mỗi lần đăng nhập."
 
 #.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
+#.* it would be nice to have a dialog which either:
+#.*
+#.* 1.  lets you change the message on it
+#.* 2.  lets you append messages and has a "history"
+#.*
+#.* for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#:../gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Lỗi khởi động Daemon Thiết lập GNOME.\n"
+"Gặp lỗi khi khởi động trình nền thiết lập GNOME.\n"
 "\n"
-"Một vài thứ, như là thiết lập sắc thái, thiết lập âm thanh hoặc thiết lập "
+"Một vài thứ, như là thiết lập sắc thái, âm thanh hoặc thiết lập "
 "nền có thể sẽ không làm việc đúng."
 
-#: gnome-session/gsm-gsd.c:53
+#:../gnome-session/gsm-gsd.c:53
 msgid ""
 "\n"
 "\n"
@@ -207,7 +208,7 @@ msgstr ""
 "Thông báo lỗi cuối cùng là:\n"
 "\n"
 
-#: gnome-session/gsm-gsd.c:58
+#:../gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
@@ -215,271 +216,273 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME sẽ vẫn cố khởi động lại Daemon Thiết lập lần kế bạn đăng nhập."
+"GNOME sẽ vẫn cố khởi động lại trình nền thiết lập lần kế bạn đăng nhập."
 
-#: gnome-session/gsm-gsd.c:115
+#:../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr "Lỗi kích hoạt lạ."
+msgstr "Gặp lỗi kích hoạt lạ."
 
-#: gnome-session/gsm-gsd.c:157
+#:../gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Daemon Thiết lập được khởi động lại quá nhiều lần."
+msgstr "Trình nền thiết lập khởi động lại quá nhiều lần."
 
-#: gnome-session/logout.c:355
+#:../gnome-session/logout.c:355
 msgid "Are you sure you want to log out?"
 msgstr "Bạn có chắc muốn đăng xuất không?"
 
-#: gnome-session/logout.c:372
+#:../gnome-session/logout.c:372
 msgid "_Save current setup"
 msgstr "_Lưu thiết lập hiện thời"
 
-#: gnome-session/logout.c:393
+#:../gnome-session/logout.c:393
 msgid "Action"
 msgstr "Hành động"
 
-#: gnome-session/logout.c:410
+#:../gnome-session/logout.c:410
 msgid "_Log out"
 msgstr "Đăng _xuất"
 
-#: gnome-session/logout.c:416
+#:../gnome-session/logout.c:416
 msgid "Sh_ut down"
 msgstr "_Tắt máy"
 
-#: gnome-session/logout.c:423
+#:../gnome-session/logout.c:423
 msgid "_Restart the computer"
 msgstr "_Khởi động lại máy tính"
 
-#: gnome-session/main.c:81
+#:../gnome-session/main.c:81
 msgid "Specify a session name to load"
-msgstr "Xác định tên phiên làm việc để nạp"
+msgstr "Xác định tên phiên làm việc để tải"
 
-#: gnome-session/main.c:82
+#:../gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
-msgstr "Chỉ đọc các phiên làm việc được lưu trong tập tin default.session"
+msgstr "Chỉ đọc các phiên làm việc được lưu trong tập tin default.session (phiên làm việc mặc định)."
 
-#: gnome-session/main.c:83
+#:../gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Khoảng thời gian chờ đợi client đăng ký theo mili giây (0=luôn chờ)"
+msgstr "Khoảng thời gian chờ đợi trình/máy khách đăng ký theo mili giây (0=luôn chờ)"
 
-#: gnome-session/main.c:84
+#:../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Khoảng thời gian chờ đợi cliet trả lời theo mili giây (0=luôn chờ)"
+msgstr "Khoảng thời gian chờ đợi trình/máy khách trả lời theo mili giây (0=luôn chờ)"
 
-#: gnome-session/main.c:85
+#:../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Khoảng thời gian chờ client kết thúc theo mili giây (0=luôn chờ)"
+msgstr "Khoảng thời gian chờ trình/máy khách kết thúc theo mili giây (0=luôn chờ)"
 
-#: gnome-session/main.c:265
-#, c-format
+#:../gnome-session/main.c:265
+#,c-format
 msgid ""
 "Could not look up internet address for %s.\n"
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Không thể tìm thấy địa chỉ internet của %s.\n"
-"Điều này sẽ làm cho GNOME hoạt động không trôi chảy.\n"
+"Không thể tìm thấy địa chỉ Mạng của %s.\n"
+"Điều này sẽ ngăn cản GNOME hoạt động cho đúng.\n"
 "Có lẽ nên sửa lỗi này bằng cách thêm\n"
 "%s vào tập tin /etc/hosts."
 
-#: gnome-session/main.c:272
+#:../gnome-session/main.c:272
 msgid "Log in Anyway"
 msgstr "Đăng nhập bằng mọi giá"
 
-#: gnome-session/main.c:273
+#:../gnome-session/main.c:273
 msgid "Try Again"
 msgstr "Thử lại"
 
-#: gnome-session/manager.c:223
+#:../gnome-session/manager.c:223
 msgid "Your session has been saved"
-msgstr "Đã lưu phiên làm việc của bạn"
+msgstr "Đã lưu phiên làm việc của bạn rồi."
 
-#: gnome-session/manager.c:527
+#:../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
-msgstr "Ngưng chờ vì bị xung đột."
+msgstr "Việc chờ bị hủy bỏ vì bị xung đột."
 
-#: gnome-session/manager.c:1035
-#, c-format
+#:../gnome-session/manager.c:1035
+#,c-format
 msgid "No response to the %s command."
 msgstr "Không có hồi đáp từ lệnh %s."
 
-#: gnome-session/manager.c:1036
+#:../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
 msgstr "Chương trình có thể sẽ chạy chậm, bị dừng hoặc đổ vỡ."
 
-#: gnome-session/manager.c:1037
+#:../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
 msgstr "Bạn có thể chờ trả lời hoặc loại bỏ nó."
 
-#: gnome-session/manager.c:1760
+#:../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
 msgstr "Quá trình tái khởi động bị ngắt vì lỗi."
 
-#: gnome-session/manager.c:1956
+#:../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
 msgstr "Việc tắt một phiên làm việc đang chạy."
 
-#: gnome-session/save-session.c:46
+#:../gnome-session/save-session.c:46
 msgid "Set the current session"
 msgstr "Đặt phiên làm việc hiện thời"
 
-#: gnome-session/save-session.c:47
+#:../gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "Buộc chấm dứt phiên làm việc"
 
-#: gnome-session/save-session.c:48
+#:../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Dùng hộp thoại"
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#:../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với trình quản lý phiên làm việc"
 
-#: gnome-session/session-names.c:143
+#:../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "Tên phiên làm việc không được bỏ trống"
 
-#: gnome-session/session-names.c:154
+#:../gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr "Tên phiên làm việc đã tồn tại rồi"
+msgstr "Có tên phiên làm việc ấy rồi."
 
-#: gnome-session/session-names.c:188
+#:../gnome-session/session-names.c:188
 msgid "Add a new session"
 msgstr "Thêm phiên làm việc mới"
 
-#: gnome-session/session-names.c:218
+#:../gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "Biên soạn tên phiên làm việc"
+msgstr "Sửa đổi tên phiên làm việc"
 
-#: gnome-session/session-properties-capplet.c:122
+#:../gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "_Hiệu chỉnh"
+msgstr "_Sửa đổi"
 
-#: gnome-session/session-properties-capplet.c:190
+#:../gnome-session/session-properties-capplet.c:190
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"Vài thay đổi vẫn chưa được lưu.\n"
+"Chưa lưu một số thay đổi.\n"
 "Bạn vẫn đồng ý thoát chứ?"
 
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
+#:../gnome-session/session-properties-capplet.c:240
+#:../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Phiên làm việc"
 
-#: gnome-session/session-properties-capplet.c:273
+#:../gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "Hiện Splash Screen khi đăng _nhập"
+msgstr "Hiện màn hình giới thiệu khi đăng _nhập"
 
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
+#:../gnome-session/session-properties-capplet.c:284
 msgid "As_k on logout"
-msgstr "_Hỏi trước khi đăng xuất"
+msgstr "_Hỏi khi đăng xuất"
 
-#: gnome-session/session-properties-capplet.c:295
+#:../gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
 msgstr "Tự động _lưu các thay đổi của phiên làm việc"
 
-#: gnome-session/session-properties-capplet.c:306
+#:../gnome-session/session-properties-capplet.c:306
 msgid "_Sessions:"
 msgstr "_Phiên làm việc:"
 
-#: gnome-session/session-properties-capplet.c:324
+#:../gnome-session/session-properties-capplet.c:324
 msgid "Session Name"
 msgstr "Tên phiên làm việc"
 
-#: gnome-session/session-properties-capplet.c:375
+#:../gnome-session/session-properties-capplet.c:375
 msgid "Session Options"
-msgstr "Tùy chọn của phiên làm việc"
+msgstr "Tùy chọn phiên làm việc"
 
-#: gnome-session/session-properties-capplet.c:384
+#:../gnome-session/session-properties-capplet.c:384
 msgid "Current Session"
 msgstr "Phiên làm việc hiện thời"
 
-#: gnome-session/session-properties-capplet.c:393
+#:../gnome-session/session-properties-capplet.c:393
 msgid "Additional startup _programs:"
 msgstr "_Chương trình khởi động bổ sung:"
 
-#: gnome-session/session-properties-capplet.c:414
+#:../gnome-session/session-properties-capplet.c:414
 msgid "Command"
 msgstr "Lệnh"
 
-#: gnome-session/session-properties-capplet.c:446
+#:../gnome-session/session-properties-capplet.c:446
 msgid "Startup Programs"
 msgstr "Chương trình khởi động"
 
-#: gnome-session/session-properties.c:49
+#:../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Loại bỏ máy khách được chọn hiện thời khỏi phiên làm việc."
 
-#: gnome-session/session-properties.c:55
+#:../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "Áp dụng các thay đổi cho phiên làm việc hiện thời"
 
-#: gnome-session/session-properties.c:61
+#:../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Danh sách chương trình trong phiên làm việc."
 
-#: gnome-session/session-properties.c:88
+#:../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "Các chương trình đang chạy:"
+msgstr "Các chương trình đang _chạy:"
 
-#: gnome-session/session-properties.c:104
+#:../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Khởi tạo thiếp lập của phiên làm việc"
+msgstr "Khởi tạo thiết lập của phiên làm việc"
 
-#: gnome-session/session-properties.desktop.in.in.h:1
+#:../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Cấu hình các phiên làm việc của bạn"
 
-#: gnome-session/splash-widget.c:43
+#:../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Bộ quản lý cửa sổ Sawfish"
 
-#: gnome-session/splash-widget.c:44
+#:../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Bộ quản lý cửa sổ Metacity"
 
-#: gnome-session/splash-widget.c:45
+#:../gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Bộ quản lý cửa sổ"
 
-#: gnome-session/splash-widget.c:46
+#:../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Bảng điều khiển"
 
-#: gnome-session/splash-widget.c:47
+#:../gnome-session/splash-widget.c:47
 msgid "Session Manager Proxy"
-msgstr "Proxy của trình quản lý phiên làm việc"
+msgstr "Ủy nhiệm của trình quản lý phiên làm việc"
 
-#: gnome-session/splash-widget.c:48
+#:../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#:../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
-msgstr "Thiết lập Desktop"
+msgstr "Thiết lập màn hình nền"
 
-#: gnome-session/startup-programs.c:292
+#:../gnome-session/startup-programs.c:292
 msgid "_Startup Command:"
 msgstr "_Lệnh khởi động:"
 
-#: gnome-session/startup-programs.c:298
+#:../gnome-session/startup-programs.c:298
 msgid "Startup Command"
 msgstr "Lệnh khởi động"
 
-#: gnome-session/startup-programs.c:347
+#:../gnome-session/startup-programs.c:347
 msgid "The startup command cannot be empty"
-msgstr "Phải có lệnh khởi động"
+msgstr "Lệnh khởi động không được bỏ trống."
 
-#: gnome-session/startup-programs.c:384
+#:../gnome-session/startup-programs.c:384
 msgid "Add Startup Program"
 msgstr "Thêm chương trình khởi động"
 
-#: gnome-session/startup-programs.c:405
+#:../gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
-msgstr "Sửa chương trình khởi động"
+msgstr "Sửa đổi chương trình khởi động"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Ảnh Splash Screen"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Lưu phiên làm việc hiện thời"
