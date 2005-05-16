@@ -396,10 +396,13 @@ WriteProxyFile ()
     const char *path;
     WinInfo *winptr;
     Bool success = False;
+    Bool path_should_be_freed = False;
 
     path = getenv ("SM_SAVE_DIR");
-    if (!path)
+    if (!path) {
       path = gnome_util_home_file (NULL);
+      path_should_be_freed = True;
+    }
     if (!path)
       path = g_get_home_dir ();
     if (!path)
@@ -435,6 +438,9 @@ WriteProxyFile ()
     }
 
  bad:
+
+    if (path_should_be_freed == True)
+	g_free (path);
 
     if (proxyFile)
 	fclose (proxyFile);

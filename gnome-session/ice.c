@@ -240,7 +240,7 @@ ice_set_clean_up_handler (IceConn connection,
  * first.
  */
 
-static void
+static GSList *
 startup_clean_ice (void)
 {
   guint i;
@@ -269,7 +269,7 @@ startup_clean_ice (void)
       free (network_id);
     }
 
-  write_authfile (authfile, entries);
+  return entries;
 }
 
 /*
@@ -360,37 +360,12 @@ initialize_ice (void)
 
   authfile = IceAuthFileName ();
 
-  startup_clean_ice ();
-
-  entries = read_authfile (authfile);
+  entries = startup_clean_ice ();
 
   for (i = 0; i < num_sockets; i++)
     {
-      /* Clean up any stale cookies assigned to this socket:
-       * (ice_clean does this but only if we get the chance to call it)
-       * FIXME: clean up ALL the stale cookies - this means working out
-       * a way of identifying them. */ 
-
-      char* network_id = IceGetListenConnectionString (sockets[i]);
-      GSList* list = entries;
-      
-      while (list)
-	{
-	  IceAuthFileEntry *file_entry = (IceAuthFileEntry *)list->data;
-
-	  list = list->next;
-	  /* remove "bad" entries with no network_id */
-	  if (!file_entry->network_id || !strcmp (file_entry->network_id, network_id))
-	    {
-	      REMOVE (entries, file_entry);
-	      IceFreeAuthFileEntry (file_entry);
-	    }
-	}
-
-      free (network_id);
-
-      APPEND (entries, file_entry_new ("ICE", sockets[i]));
-      APPEND (entries, file_entry_new ("XSMP", sockets[i]));
+      PREPEND (entries, file_entry_new ("ICE", sockets[i]));
+      PREPEND (entries, file_entry_new ("XSMP", sockets[i]));
 
       input_id [i] = ice_add_listener (sockets [i]);
       
@@ -531,7 +506,7 @@ read_authfile(gchar* filename)
     IceAuthFileEntry *file_entry;
     
     while ((file_entry = IceReadAuthFileEntry (fp)) != NULL)
-      APPEND (entries, file_entry);
+      PREPEND (entries, file_entry);
 
     fclose (fp);
   } else {

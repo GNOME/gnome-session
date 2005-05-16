@@ -76,6 +76,7 @@
 
 /* Convenience macros: */
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
+#define PREPEND(List,Elt) ((List) = (g_slist_prepend ((List), (Elt))))
 #define REMOVE(List,Elt) ((List) = (g_slist_remove ((List), (Elt))))
 #define CONCAT(L1,L2) ((L1) = (g_slist_concat ((L1), (L2))))
 
