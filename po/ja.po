@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-03 18:21+0900\n"
-"PO-Revision-Date: 2005-03-03 18:20+0900\n"
+"POT-Creation-Date: 2005-05-19 01:07+0900\n"
+"PO-Revision-Date: 2005-05-19 01:06+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -65,14 +65,18 @@ msgid "Save sessions"
 msgstr "セッションの保存"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "ログアウト・ダイアログで選択したオプション"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "スプラッシュ・スクリーンの表示"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "セッションが開始されたスプラッシュ・スクリーンを表示します"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -81,6 +85,16 @@ msgstr ""
 "これはフォルダ $datadir/pixmaps/ からの相対パスで指定します。妥当なパス名と"
 "ファイル名を指定して下さい。この値を変更すると、次回ログインする際に適応され"
 "ます。"
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"これはログアウト・ダイアログで選択されたオプションです。利用可能な値:  "
+"\"logout\" (ログアウトする場合)、\"shutdown\" (システムを停止する場合)、"
+"\"restart\" (システムを再起動する場合)"
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -238,27 +252,27 @@ msgstr "不明な activation (活性化) エラーが発生しました。"
 msgid "The Settings Daemon restarted too many times."
 msgstr "設定デーモン (gconfd) が繰り返し再起動しました。"
 
-#: ../gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "本当にログアウトしてもよろしいですか？"
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "現在の設定を保存する(_S)"
 
-#: ../gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
 msgstr "アクション"
 
-#: ../gnome-session/logout.c:410
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "ログアウト(_L)"
 
-#: ../gnome-session/logout.c:416
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "シャットダウン(_U)"
 
-#: ../gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "コンピュータの再起動(_R)"
 
