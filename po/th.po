@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-26 20:36+0700\n"
-"PO-Revision-Date: 2005-02-23 10:13+0700\n"
+"POT-Creation-Date: 2005-06-06 08:45+0700\n"
+"PO-Revision-Date: 2005-06-06 08:47+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -58,20 +58,35 @@ msgid "Save sessions"
 msgstr "รักษารายละเอียดวาระ"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "ตัวเลือกที่เลือกในไดอะล็อกออกจากระบบ"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "แสดงรูปไตเติลเมื่อเริ่มระบบ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "แสดงรูปไตเติลขณะที่กำลังเข้าสู่ระบบ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
+"ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
+"โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"ตัวเลือกที่จะเลือกไว้เมื่อเปิดไดอะล็อกออกจากระบบ ค่าที่เป็นไปได้คือ \"logout\" "
+"สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
+"สำหรับการเริ่มการทำงานของเครื่องใหม่"
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -228,27 +243,27 @@ msgstr "เกิดข้อผิดพลาดที่ไม่รู้จ
 msgid "The Settings Daemon restarted too many times."
 msgstr "ตัวจัดการค่าตั้งถูกเริ่มทำงานใหม่หลายครั้งจนผิดปกติ"
 
-#: ../gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "จะออกจากระบบหรือไม่?"
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "_รักษารายละเอียดวาระปัจจุบัน"
 
-#: ../gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
 msgstr "การกระทำ"
 
-#: ../gnome-session/logout.c:410
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/logout.c:416
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "_ปิดเครื่อง"
 
-#: ../gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "เ_ริ่มการทำงานของเครื่องใหม่"
 
