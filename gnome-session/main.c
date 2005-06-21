@@ -324,6 +324,7 @@ main (int argc, char *argv[])
   gboolean a_t_support;
   GError *err;
   int status;
+  char *display_str;
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
@@ -392,7 +393,9 @@ main (int argc, char *argv[])
 
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */
-  ep = g_strconcat ("DISPLAY=", gdk_get_display (), NULL);
+  display_str = gdk_get_display ();
+  ep = g_strconcat ("DISPLAY=", display_str, NULL);
+  g_free (display_str);
   putenv (ep);
 
   ignore (SIGPIPE);
