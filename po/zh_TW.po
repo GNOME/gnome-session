@@ -4,9 +4,9 @@
 # Yuan-Chung Cheng <platin@linux.org.tw>, 1999.
 # Jing-Jong Shyue <shyue@sonoma.com.tw>, 2000.
 # Chih-Wei Huang <cwhuang@linux.org.tw>, 2000.
-# Abel Cheung <maddog@linux.org.hk>, 2001-2002.
+# Abel Cheung <abel@oaka.org>, 2001-2002.
 # gnome-session:
-# Abel Cheung <maddog@linux.org.hk>, 2002-2003.
+# Abel Cheung <abel@oaka.org>, 2002-2003.
 # Woodman Tuen <wmtuen@gmail.coim>, 2005.
 # 
 # 
@@ -14,10 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.9.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 13:41+0800\n"
+"POT-Creation-Date: 2005-06-23 21:54+0000\n"
 "PO-Revision-Date: 2005-03-06 03:39+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
-"Language-Team: Chinese/Traditional <zh-l10n@linux.org.tw>\n"
+"Language-Team: Chinese/Traditional <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,14 +62,18 @@ msgid "Save sessions"
 msgstr "儲存作業階段"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr ""
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "登入時顯示啟動畫面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "當啟動作業階段時顯示啟動畫面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -77,6 +81,13 @@ msgid ""
 msgstr ""
 "這是以目錄 $datadir/pixmaps/ 作為起始的相對路徑數值。子目錄及圖像名稱皆是有效"
 "數值。改變這些數值後會在下次登入時生效。"
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -233,27 +244,27 @@ msgstr "出現不明的啟動錯誤。"
 msgid "The Settings Daemon restarted too many times."
 msgstr "「設定伺服程式」重新啟動的次數太多。"
 
-#: ../gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "是否確定要登出？"
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "儲存目前的設定(_S)"
 
-#: ../gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
 msgstr "行動"
 
-#: ../gnome-session/logout.c:410
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "登出(_L)"
 
-#: ../gnome-session/logout.c:416
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "關機(_U)"
 
-#: ../gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "重新啟動電腦(_R)"
 
