@@ -1,3 +1,10 @@
+2005-07-03  Aivars Kalvans  <aivars.kalvans@inbox.lv>
+
+	* configure.in: smproxy requires glib-2.0, does not require libgnome
+	* smproxy/save.c: (WriteProxyFile):
+	* smproxy/smproxy.c: (ProxySaveYourselfPhase2CB), (main):
+	Fix memory leaks, remove libgnome dependency. Closes bug#308205.
+
 2005-06-01  Christian Rose  <menthos@menthos.com>
 
 	* configure.in: Added "hy" to ALL_LINGUAS.

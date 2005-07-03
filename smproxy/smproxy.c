@@ -33,7 +33,7 @@ Author:  Ralph Mor, X Consortium
 /* This is probably nonportable.  But then so is the call to
    XmuClientWindow below.  */
 #include <X11/Xmu/WinUtil.h>
-#include <libgnome/libgnome.h>
+#include <glib.h>
 #include <unistd.h>
 #include <netdb.h>
 #ifdef HAVE_SYS_PARAM_H
@@ -1100,6 +1100,7 @@ SmPointer clientData;
 
     SmcSetProperties (smcConn, 3, props);
     free ((char *) prop1.vals);
+    free ((char *) prop3.vals);
     free (prefix);
 
  finishUp:
@@ -1319,26 +1320,19 @@ char **argv;
 	}
       else if (!strcmp("--sm-config-prefix", argv[i]))
 	{
-	  char* path;
-	  int must_free_path = 0;
+	  char *path;
+	  char *freeme = NULL;
 	  
 	  if (++i >= argc) goto usage;
 
 	  path = getenv ("SM_SAVE_DIR");
-	  if (!path){
-	    path = gnome_util_home_file (NULL);
-	    must_free_path = 1;
-	  }
 	  if (!path)
-	    path = getenv ("HOME");
-	  if (!path)
-	    path = ".";
+	    path = freeme = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
 	  
 	  restore_filename = malloc (strlen(path)+strlen(argv[i])+1);
 	  restore_filename = strcat (strcpy (restore_filename, path),argv[i]); 
 	  restore_filename[strlen (restore_filename) - 1] ='\0';
-	  if (must_free_path)
-	    free (path);
+	  g_free (freeme);
 	  continue;
 	}
       else if(!strcmp("-restore", argv[i]))
