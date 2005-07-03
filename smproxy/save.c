@@ -28,7 +28,7 @@ Author:  Ralph Mor, X Consortium
 ******************************************************************************/
 /* $XFree86: xc/programs/smproxy/save.c,v 1.1.1.1.10.2 1997/05/13 11:31:35 hohndel Exp $ */
 
-#include <libgnome/libgnome.h>
+#include <glib.h>
 
 #include "smproxy.h"
 #include <unistd.h>
@@ -394,18 +394,13 @@ WriteProxyFile ()
     char *filename = NULL;
     int fd;
     const char *path;
+    char *freeme = NULL;
     WinInfo *winptr;
     Bool success = False;
 
     path = getenv ("SM_SAVE_DIR");
     if (!path)
-      path = gnome_util_home_file (NULL);
-    if (!path)
-      path = g_get_home_dir ();
-    if (!path)
-      path = getenv ("HOME");
-    if (!path)
-      path = ".";
+      path = freeme = g_build_filename (g_get_home_dir (), ".gnome2", NULL);
 
     if (!safe_directory (path))
 	goto bad;
@@ -438,6 +433,8 @@ WriteProxyFile ()
 
     if (proxyFile)
 	fclose (proxyFile);
+
+    g_free (freeme);
 
     if (success)
 	return (filename);
