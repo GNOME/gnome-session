@@ -88,9 +88,6 @@ if [ ! -z "$SMID" ] ; then
   esac
 fi
 
-# Store the selected WM so the wm-properties-capplet can find it
-gconftool-2 -t string -s "/desktop/gnome/applications/window_manager/default" $WINDOW_MANAGER
-
 exec $WINDOW_MANAGER $OPT1 $OPT2
 
 echo "ERROR: No window manager could run!"
