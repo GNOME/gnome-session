@@ -346,13 +346,6 @@ main (int argc, char *argv[])
   /* We need to do this as early as possible */
   gsm_set_display_properties ();
   
-  /* Make sure the splash screen has the SM_CLIENT_ID
-   * property set so smproxy doesn't try and session
-   * manage us.
-   * See http://bugzilla.gnome.org/show_bug.cgi?id=118063
-   */
-  gdk_set_sm_client_id ("gnome-session-dummy-id");
-
   gnome_login_check ();
 
   err = NULL;

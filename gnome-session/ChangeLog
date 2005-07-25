@@ -1,3 +1,16 @@
+2005-07-25  Mark McLoughlin  <mark@skynet.ie>
+
+	Remove smproxy. See:
+	  http://mail.gnome.org/archives/desktop-devel-list/2005-July/msg00527.html
+
+	* default.in: don't run gnome-smproxy.
+	
+	* main.c: (main): Remove hack where we set a dummy
+	SM_CLIENT_ID on the splash screen in order to fool
+	smproxy. Was fix for bug #118063
+	
+	* splash-widget.c: remove smproxy icon.
+
 2005-07-18  Mark McLoughlin  <mark@skynet.ie>
 
 	See http://mail.gnome.org/archives/desktop-devel-list/2005-July/msg00341.html

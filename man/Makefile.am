@@ -1,5 +1,4 @@
 man_MANS =			\
-	gnome-smproxy.1		\
 	gnome-session-save.1	\
 	session-properties.1	\
 	gnome-wm.1		\

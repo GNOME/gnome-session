@@ -1,7 +1,6 @@
 SUBDIRS =			\
 	po 			\
 	gnome-session		\
-	smproxy 		\
 	man
 
 EXTRA_DIST =			\

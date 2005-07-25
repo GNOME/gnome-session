@@ -44,7 +44,6 @@ static const SplashApp splash_map_table[] = {
 	{ N_("Metacity Window Manager"), "metacity",              "gnome-window-manager" },
 	{ N_("Window Manager"),          "gnome-wm",              "gnome-window-manager" },
 	{ N_("The Panel"),               "gnome-panel",           "gnome-panel" },
-	{ N_("Session Manager Proxy"),   "gnome-smproxy",         "gnome-session" },
 	{ N_("Nautilus"),                "nautilus",              "gnome-fs-desktop" },
 	{ N_("Desktop Settings"),        "gnome-settings-daemon", "gnome-settings" }
 };

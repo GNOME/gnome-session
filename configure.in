@@ -59,8 +59,6 @@ PKG_CHECK_MODULES(SOUND_TEST, $ESOUND_MODULE, [
 
 PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE)
 
-PKG_CHECK_MODULES(SMPROXY, glib-2.0)
-
 dnl gconf checks
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
@@ -376,7 +374,6 @@ gnome-session/Makefile
 man/default.session.5
 man/gnome-session.1
 po/Makefile.in
-smproxy/Makefile
 man/Makefile
 ])
 
