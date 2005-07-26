@@ -1,3 +1,12 @@
+2005-07-26  Mark McLoughlin  <mark@skynet.ie>
+
+	Patch from Jaap A. Haitsma <jaap@haitsma.org> 
+	in bug #310877.
+
+	* session-properties-capplet.c: (main): use
+	gtk_window_set_default_icon_name() to set the window
+	icon instead of	gnome_window_icon_set_default_from_file()
+
 2005-07-25  Mark McLoughlin  <mark@skynet.ie>
 
 	Remove smproxy. See:

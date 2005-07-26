@@ -661,7 +661,7 @@ main (int argc, char *argv[])
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR "/gnome-session.png");
+  gtk_window_set_default_icon_name ("gnome-session");
 
   client = gconf_client_get_default ();
   gconf_client_add_dir (client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
