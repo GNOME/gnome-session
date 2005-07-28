@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-25 11:45+0100\n"
+"POT-Creation-Date: 2005-07-28 15:59+0200\n"
 "PO-Revision-Date: 2003-06-27 01:39+0100\n"
 "Last-Translator: GNOME PL Team <translators@gnomepl.org>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -63,14 +63,18 @@ msgid "Save sessions"
 msgstr "Zapis sesji"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Wybrana opcja w oknie wylogowania"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Wyświetlanie ekranu powitalnego"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Wyświetlanie ekranu powitalnego przy rozpoczynaniu sesji"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -79,6 +83,16 @@ msgstr ""
 "Jest to względna ścieżka bazująca na katalogu $datadir/pixmaps/. "
 "Dopuszczalne są podkatalogi i nazwy obrazów. Zmiana tej wartości odniesie "
 "skutek przy następnym logowaniu."
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Opcja jaka będzie zaznaczona w oknie wylogowania, poprawnymi wartościami są "
+"\"logout\" dla wylogowania, \"shutdown\" dla zamknięcia systemu oraz \"restart\" "
+"dla ponownego uruchomienia systemu."
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -237,27 +251,27 @@ msgstr "Przy aktywacji wystąpił nieznany błąd."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Demon ustawień został uruchomiony ponownie zbyt wiele razy."
 
-#: ../gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "Czy na pewno chcesz zakończyć sesję?"
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "_Zapis bieżących ustawień"
 
-#: ../gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
 msgstr "Akcja"
 
-#: ../gnome-session/logout.c:410
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "_Wylogowanie"
 
-#: ../gnome-session/logout.c:416
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "_Wyłączenie systemu"
 
-#: ../gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "_Ponowne uruchomienie komputera"
 
@@ -466,14 +480,10 @@ msgid "The Panel"
 msgstr "Panel"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Pośrednik menedżera sesji"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Ustawienia środowiska"
 
@@ -496,6 +506,9 @@ msgstr "Nowy program startowy"
 #: ../gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Modyfikacja programu startowego"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Pośrednik menedżera sesji"
 
 #~ msgid "Splash Screen Image"
 #~ msgstr "Obraz z powitalnym logo"
