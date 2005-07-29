@@ -39,6 +39,7 @@ typedef struct  {
 	GdkPixmap   *bg_pixmap;
 	GList       *icons;
 	PangoLayout *layout;
+	PangoAttribute   *font_size_attr;
 
 	/* current placement offsets */
 	int          cur_x_offset;

@@ -385,8 +385,10 @@ splash_widget_instance_init (SplashWidget *sw)
 	pango_layout_set_alignment (sw->layout, PANGO_ALIGN_CENTER);
 
 	attrs = pango_attr_list_new ();
-	pango_attr_list_insert (attrs,
-				pango_attr_size_new (SPLASH_LABEL_FONT_SIZE));
+	sw->font_size_attr = pango_attr_size_new (PANGO_SCALE * SPLASH_LABEL_FONT_SIZE);
+	sw->font_size_attr->start_index = 0;
+	sw->font_size_attr->end_index = 0;
+	pango_attr_list_insert (attrs, sw->font_size_attr);
 	pango_layout_set_attributes (sw->layout, attrs);
 	pango_attr_list_unref (attrs);
 
@@ -528,6 +530,7 @@ splash_widget_add_icon (SplashWidget *sw,
 		SplashIcon   *si;
 		GdkRectangle  area;
 		char         *text;
+		int           length;
 
 		text = app && app->human_name ?  _(app->human_name) : basename;
 
@@ -537,7 +540,9 @@ splash_widget_add_icon (SplashWidget *sw,
 			sw->text_box.x, sw->text_box.y,
 			sw->text_box.width, sw->text_box.height);
 
-		pango_layout_set_text (sw->layout, text, -1);
+		length = strlen (text);
+		sw->font_size_attr->end_index = length;
+		pango_layout_set_text (sw->layout, text, length);
 		calc_text_box (sw);
 
 		/* re-draw the new text extents */

@@ -1,3 +1,16 @@
+2005-07-28  Ray Strode  <rstrode@redhat.com>
+
+	Make rendering of splash text render correctly with newer
+	pango.
+
+	* gnome-session/splash-widget.[ch]:
+	(splash_widget_instance_init): Pango size attributes
+	take inputs in pango units not point sizes--multiply point
+	size by PANGO_SCALE.  Keep font size attribute around
+	to update range when changing text.
+	(splash_widget_add_icon): update range of size attribute
+	when changing splash window text.
+
 2005-07-26  Mark McLoughlin  <mark@skynet.ie>
 
 	* configure.in: post-release bump to 2.11.91
