@@ -133,12 +133,15 @@ gsm_set_display_properties (void)
 
   client = gconf_client_get_default ();
   
-  keys[0] = "/desktop/gnome/screen/default";
+  i = 0;
   specific_path = NULL;
-  if (gethostname (hostname, sizeof (hostname)) != 0)
-    specific_path = g_strconcat ("/desktop/gnome/screen/", hostname,  NULL);
-  keys[1] = specific_path;
-  keys[2] = NULL;
+  if (gethostname (hostname, sizeof (hostname)) == 0)
+    {
+      specific_path = g_strconcat ("/desktop/gnome/screen/", hostname,  NULL);
+      keys[i++] = specific_path;
+    }
+  keys[i++] = "/desktop/gnome/screen/default";
+  keys[i++] = NULL;
   
   n_screens = gdk_display_get_n_screens (display);
   for (i = 0; i < n_screens; i++)
