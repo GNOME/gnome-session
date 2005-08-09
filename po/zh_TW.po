@@ -12,10 +12,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.9.92\n"
+"Project-Id-Version: gnome-session 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-23 21:54+0000\n"
-"PO-Revision-Date: 2005-03-06 03:39+0800\n"
+"POT-Creation-Date: 2005-08-09 06:43+0000\n"
+"PO-Revision-Date: 2005-08-03 12:36+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
 "Language-Team: Chinese/Traditional <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "可接受 TCP 連線"
+msgstr "允許 TCP 連線"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -34,19 +34,19 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "因安全理由，在支援 _IceTcpTransNoListen() 的平台中 (XFree86 系統)，gnome-"
-"session 不會接受 TCP 連線。使用本選項後即可接受 (獲授權的) 遠端主機連線。"
+"session 不會監聽在 TCP 埠的連接。本選項會允許 (獲授權的) 遠端主機的連線。"
 "gnome-session 必須重新啟動方可令本選項生效。"
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "如選用本選項，gnome-session 會在作業階段終止前先提示使用者。"
+msgstr "如啟用本選項，gnome-session 會在作業階段終止前先提示使用者。"
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"如選用本選項，gnome-session 會自動儲存作業階段，否則在登出時，對話方塊會提供"
+"如啟用本選項，gnome-session 會自動儲存作業階段，否則在登出時，對話方塊會提供"
 "選項，讓您選擇是否儲存作業階段。"
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
@@ -63,7 +63,7 @@ msgstr "儲存作業階段"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr ""
+msgstr "在登出對話方塊中已選的選項"
 
 #: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
@@ -88,6 +88,8 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
+"這是會在登出對話方塊中選擇的選項，有效的數值是：“logout”－登出，“shutdown”－"
+"關機，及“restart”－重新啟動。"
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -161,7 +163,7 @@ msgstr "不詳"
 
 #: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "未在時限內回報狀態"
+msgstr "未在時限內回報狀態。"
 
 #: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
@@ -212,7 +214,7 @@ msgid ""
 msgstr ""
 "啟動 GNOME 設定伺服程式時發生錯誤。\n"
 "\n"
-"一部份例如佈景主題、音效或背景圖案等的設定將無法正常運作。"
+"部份例如佈景主題、音效或背景圖案等的設定將無法正常運作。"
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -278,15 +280,15 @@ msgstr "只從預設的作業階段檔案 (default.session) 中讀取已儲存�
 
 #: ../gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "等待客戶端註冊的時限[亳秒] (0=沒有限制)"
+msgstr "等待客戶端註冊的時限[亳秒]（0=沒有限制）"
 
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "等待客戶端回應的時限[亳秒] (0=沒有限制)"
+msgstr "等待客戶端回應的時限[亳秒]（0=沒有限制）"
 
 #: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "等待客戶端終止的時限[亳秒] (0=沒有限制)"
+msgstr "等待客戶端終止的時限[亳秒]（0=沒有限制）"
 
 #: ../gnome-session/main.c:265
 #, c-format
@@ -320,7 +322,7 @@ msgstr "因為有衝突所以不會等待。"
 #: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
-msgstr "%s 指令沒有回應。"
+msgstr "指令 %s 沒有回應。"
 
 #: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
@@ -364,7 +366,7 @@ msgstr "該作業階段名稱已經存在"
 
 #: ../gnome-session/session-names.c:188
 msgid "Add a new session"
-msgstr "新增作業階段"
+msgstr "加入新的作業階段"
 
 #: ../gnome-session/session-names.c:218
 msgid "Edit session name"
@@ -445,7 +447,7 @@ msgstr "目前正在執行的程式(_P)："
 
 #: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "初始化作業階段設定"
+msgstr "作業階段設定初始化"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -453,29 +455,25 @@ msgstr "設定作業階段"
 
 #: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
-msgstr "Sawfish 視窗總管"
+msgstr "Sawfish 視窗管理員"
 
 #: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
-msgstr "Metacity 視窗總管"
+msgstr "Metacity 視窗管理員"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
-msgstr "視窗總管"
+msgstr "視窗管理員"
 
 #: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "面板"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "作業階段總管代理"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "桌面設定"
 
@@ -498,6 +496,9 @@ msgstr "新增初始啟動程式"
 #: ../gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "作業階段總管代理"
 
 #~ msgid "Splash Screen Image"
 #~ msgstr "作為啟動畫面的圖像"
