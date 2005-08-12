@@ -1,25 +1,25 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Indonesia translation of gnome-session.
+# Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Mohammad DAMT <mdamt@bisnisweb.com>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-02-06 10:27+0700\n"
+"POT-Creation-Date: 2005-08-12 23:46+0300\n"
+"PO-Revision-Date: 2005-08-13 00:02+0300\n"
 "Last-Translator: Mohammad DAMT <mdamt@bisnisweb.com>\n"
 "Language-Team: Indonesia <id@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Izinkan koneksi TCP"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -32,12 +32,12 @@ msgstr ""
 "dikenal dari host remote. gnome-session harus direstart agar ini bisa "
 "berlaku."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Bila diaktifkan, gnome-session akan menanyakan user sebelum mengakhiri sesi"
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -45,135 +45,151 @@ msgstr ""
 "Bila diaktifkan, gnome-session akan menyimpan data sesi secara otomatis. "
 "Bila tidak dialog logout akan ada pilihan untuk menyimpan data session."
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Prompt logout"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+#: ../gnome-session/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
 msgstr ""
-"Gambar yang hendak digunakan untuk layar pembuka saat login ke Desktop GNOME"
+"Gambar yang hendak digunakan untuk layar pembuka"
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Simpan sesi"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Pilihan aktif pada dialog keluar"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Tampilkan layar pembuka"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Tampilkan layar pembuka saat sesi dimulai"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Gambar Layar Pembuka"
+#: ../gnome-session/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr "Ini adalah path relatif dari direktori $datadir/pixmap. Isi dengan nama subdirektori atau"
+" nama berkas. Perubahan akan berlaku pada login berikutnya."
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr "Ini adalah pilihan yang akan dipilih pada dialog keluar. Isi dengan "
+"\"logout\" untuk keluar, \"shutdown\" untuk mematikan komputer dan "
+"\"restart\" untuk menghidupkan ulang komputer."
+
+#: ../gnome-session/gsm-client-editor.c:97
+#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Urutan:"
 
-#: gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "Urutan aplikasi yang dijalakan saat sesi dimulai"
 
-#: gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "Apa yang terjadi pada saat aplikasi keluar."
 
-#: gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Gaya:"
+msgstr "_Model:"
 
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#: ../gnome-session/gsm-client-list.c:150
+#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Urutan"
 
-#: gnome-session/gsm-client-list.c:155
+#: ../gnome-session/gsm-client-list.c:155
 msgid "Style"
-msgstr "Gaya"
+msgstr "Model"
 
-#: gnome-session/gsm-client-list.c:160
+#: ../gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "Kondisi"
 
-#: gnome-session/gsm-client-list.c:165
+#: ../gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "Program"
 
-#: gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "Tidak aktif"
 
-#: gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
 msgstr "Menunggu untuk dijalankan atau memang sudah selesai."
 
-#: gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "Menjalankan"
 
-#: gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
 msgstr "Sudah dijalankan tapi tidak ada laporan kondisi terakhir."
 
-#: gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "Sedang jalan"
 
-#: gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "Anggota sesi"
+msgstr "Anggota sesi."
 
-#: gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "Sedang menyimpan"
 
-#: gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "Sedang menyimpan detil sesi."
 
-#: gnome-session/gsm-client-row.c:43
+#: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#: gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "Kondisi belum dilaporkan hingga waktu timeout."
 
-#: gnome-session/gsm-client-row.c:50
+#: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "Normal"
 
-#: gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
 msgstr "Tidak berpengaruh bila logout, tapi bisa saja mati."
 
-#: gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr "Restart"
+msgstr "Jalankan Ulang"
 
-#: gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "Jangan biarkan mati"
+msgstr "Jangan pernah biarkan mati."
 
-#: gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
-msgstr "Keranjang Sampah"
+msgstr "Tong Sampah"
 
-#: gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Tinggalkan saat logout, dan biarkan mati"
+msgstr "Tinggalkan saat keluar, dan biarkan mati"
 
-#: gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Setting"
+msgstr "Pengaturan"
 
-#: gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Selalu jalankan tiap login."
 
@@ -185,19 +201,19 @@ msgstr "Selalu jalankan tiap login."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Ada error saat menjalankan daemon Setting GNOME.\n"
+"Ada error saat menjalankan daemon Pengaturan GNOME.\n"
 "\n"
-"Ada beberapa hal, misalnya tematik, suara, atau gambar belakang yang mungkin "
-"gagal berjalan dengan semestinya."
+"Ada beberapa hal, misalnya tema, suara, atau gambar latar yang mungkin "
+"tidak berjalan normal."
 
-#: gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:53
 msgid ""
 "\n"
 "\n"
@@ -209,7 +225,7 @@ msgstr ""
 "Pesan error terakhir adalah:\n"
 "\n"
 
-#: gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
@@ -217,65 +233,63 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME akan mencoba lagi untuk merestart daemon setting saat Anda login pada "
+"GNOME akan mencoba lagi untuk menjalankan ulang program daemon pengaturan saat Anda login pada "
 "waktu berikutnya."
 
-#: gnome-session/gsm-gsd.c:115
+#: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
 msgstr "Ada error aktifasi yang tidak dikenal."
 
-#: gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "Daemon setting terlalu banyak direstart"
+msgstr "Daemon pengaturan terlalu banyak direstart"
 
-#: gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
-msgstr "Apakah benar ingin log out?"
+msgstr "Apakah benar ingin keluar?"
 
-#: gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
-msgstr "_Simpan setup saat ini"
+msgstr "_Simpan kondisi layar saat ini"
 
-#: gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
-msgstr "Aksi yang dilakukan"
+msgstr "Aksi"
 
-#: gnome-session/logout.c:410
-#, fuzzy
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
-msgstr "_Log Out"
+msgstr "Ke_luar"
 
-#: gnome-session/logout.c:416
-#, fuzzy
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
-msgstr "_Matikan Komputer"
+msgstr "Matikan Komp_uter"
 
-#: gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
-msgstr "_Restart Komputer"
+msgstr "Hidupkan Ulang Kompute_r"
 
-#: gnome-session/main.c:81
+#: ../gnome-session/main.c:81
 msgid "Specify a session name to load"
-msgstr "Beritahu nama sesi yang hendak diload"
+msgstr "Beritahu nama sesi yang hendak dibuka"
 
-#: gnome-session/main.c:82
+#: ../gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
-msgstr "Saya hanya akan membaca data sesi dari file default.session"
+msgstr "Saya hanya akan membaca data sesi dari berkas default.session"
 
-#: gnome-session/main.c:83
+#: ../gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Lama waktu untuk menunggu klien saat register dalam milidetik (0=selamanya)"
 
-#: gnome-session/main.c:84
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Lama waktu untuk menunggu klien merespon dalam milidetik (0=selamanya)"
 
-#: gnome-session/main.c:85
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Lama waktu untuk menunggu klien mati dalam milidetik (0=selamanya)"
 
-#: gnome-session/main.c:265
+#: ../gnome-session/main.c:265
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -283,86 +297,85 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Saya tidak dapat mencari alamat internet %s.\n"
+"Saya tidak dapat menemukan alamat internet %s.\n"
 "Hal ini dapat menyebabkan GNOME tidak berjalan sebagaimana mestinya.\n"
-"Untuk memperbaiki hal ini, Anda bisa menambahkan\n"
+"Untuk mengatasinya, Anda bisa menambahkan\n"
 "%s ke dalam file /etc/hosts."
 
-#: gnome-session/main.c:272
+#: ../gnome-session/main.c:272
 msgid "Log in Anyway"
-msgstr "Log in saja"
+msgstr "Masuk Saja"
 
-#: gnome-session/main.c:273
+#: ../gnome-session/main.c:273
 msgid "Try Again"
-msgstr "Coba lagi"
+msgstr "Coba Lagi"
 
-#: gnome-session/manager.c:223
+#: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
 msgstr "Sesi Anda telah berhasil disimpan"
 
-#: gnome-session/manager.c:527
+#: ../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
 msgstr "Tidak menunggu lagi karena ada yang bentrok."
 
-#: gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
 msgstr "Tidak ada yang merespon perintah %s."
 
-#: gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
 msgstr "Programnya berjalan lambat, berhenti, atau memang rusak"
 
-#: gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
 msgstr "Anda bisa menunggunya untuk merespon atau menghapusnya dari daftar"
 
-#: gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
-msgstr "Restart dibatalkan karena ada kegagalan."
+msgstr "Tidak jadi menjalankan ulang karena ada kegagalan."
 
-#: gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
-msgstr "Sesi shutdown sedang berlangsung."
+msgstr "Sesi mematikan komputer sedang berlangsung."
 
-#: gnome-session/save-session.c:46
-#, fuzzy
+#: ../gnome-session/save-session.c:46
 msgid "Set the current session"
-msgstr "Lakukan perubahan pada sesi yang aktif saat ini"
+msgstr "Aktifkan sesi saat ini"
 
-#: gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "Matikan sesi"
 
-#: gnome-session/save-session.c:48
+#: ../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Gunakan kotak dialog"
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Tidak dapat berhubungan dengan manajer sesi"
 
-#: gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "Nama sesi tidak boleh dikosongkan"
 
-#: gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "Nama sesi sudah terpakai"
 
-#: gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:188
 msgid "Add a new session"
 msgstr "Buat sesi baru"
 
-#: gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "Edit nama sesi"
+msgstr "Ubah nama sesi"
 
-#: gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:122
 msgid "_Edit"
-msgstr "_Edit"
+msgstr "_Ubah"
 
-#: gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:190
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -370,123 +383,124 @@ msgstr ""
 "Perubahan yangs sudah dilakukan belum disimpan.\n"
 "Apakah hendak keluar juga?"
 
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sesi"
 
-#: gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "Tampilkan layar pembuka saat _login"
+msgstr "Tampilkan layar pembuka saat mu_lai masuk"
 
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "As_k on logout"
-msgstr "_Tanya saat logout"
+msgstr "_Tanya saat keluar"
 
-#: gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
 msgstr "Simpan perubaha_n sesi secara otomatis"
 
-#: gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:306
 msgid "_Sessions:"
 msgstr "_Sesi:"
 
-#: gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:324
 msgid "Session Name"
 msgstr "Nama sesi"
 
-#: gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:375
 msgid "Session Options"
-msgstr "Pilihan sesi"
+msgstr "Pilihan Sesi"
 
-#: gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:384
 msgid "Current Session"
-msgstr "Sesi saat ini"
+msgstr "Sesi Saat Ini"
 
-#: gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:393
 msgid "Additional startup _programs:"
 msgstr "_Program lain yang hendak dijalakan saat start:"
 
-#: gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:414
 msgid "Command"
 msgstr "Perintah"
 
-#: gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:446
 msgid "Startup Programs"
 msgstr "Program Startup"
 
-#: gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Hapus klien yang dipilih saat ini dari sesi"
 
-#: gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "Lakukan perubahan pada sesi yang aktif saat ini"
 
-#: gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Daftar program yang dijalankan dalam sesi."
 
-#: gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "_Program yang sedang berjalan:"
 
-#: gnome-session/session-properties.c:104
+#: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "Inisialisikan setting sesi"
+msgstr "Aktifkan pengaturan sesi"
 
-#: gnome-session/session-properties.desktop.in.in.h:1
+#: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Konfigurasikan sesi"
 
-#: gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
-msgstr "Window Manager Sawfish"
+msgstr "Pengatur Jendela Sawfish"
 
-#: gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
-msgstr "Window Manager Metacity"
+msgstr "Pengatur Jendela Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
-msgstr "Window Manager"
+msgstr "Pengatur Jendela"
 
-#: gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Panel"
 
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Proksi Manajer Sesi"
-
-#: gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
-msgstr "Setting Desktop"
+msgstr "Pengaturan Desktop"
 
-#: gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:292
 msgid "_Startup Command:"
 msgstr "Perintah _Startup:"
 
-#: gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:298
 msgid "Startup Command"
 msgstr "Perintah Startup"
 
-#: gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:347
 msgid "The startup command cannot be empty"
 msgstr "Perintah startup tidak boleh dikosongkan"
 
-#: gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:384
 msgid "Add Startup Program"
-msgstr "Tambah program Startup"
+msgstr "Tambah Program Startup"
 
-#: gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
-msgstr "Edit program startup"
+msgstr "Ubah Program Startup"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Gambar Layar Pembuka"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Proksi Manajer Sesi"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Simpan Sesi saat ini"
