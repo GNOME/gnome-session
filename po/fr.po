@@ -8,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.9.5\n"
+"Project-Id-Version: gnome-session 2.11.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-21 00:10+0100\n"
-"PO-Revision-Date: 2005-02-21 00:05+0100\n"
+"POT-Creation-Date: 2005-08-28 14:41+0200\n"
+"PO-Revision-Date: 2005-08-28 14:37+0200\n"
 "Last-Translator: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,14 +63,18 @@ msgid "Save sessions"
 msgstr "Enregistrer les sessions"
 
 #: gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Option sélectionnée dans le dialogue de déconnexion"
+
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Afficher l'écran d'accueil"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Affiche l'écran d'accueil au démarrage de la session"
 
-#: gnome-session/gnome-session.schemas.in.h:10
+#: gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -79,6 +83,16 @@ msgstr ""
 "C'est un chemin relatif basé sur le répertoire $datadir/pixmaps/. Les sous-"
 "répertoires et les noms d'images sont des valeur valides. Modifier cette "
 "valeur prendra effet lors de la prochaine ouverture de session."
+
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"C'est l'option qui sera sélectionnée dans le dialogue de déconnexion. Les "
+"valeurs valides sont « logout » pour se déconnecter, « shutdown » pour "
+"arrêter le système et « restart » pour redémarrer le système."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -235,27 +249,27 @@ msgstr "Il y a eu une erreur d'activation inconnue."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Le démon des préférences a redémarré trop de fois."
 
-#: gnome-session/logout.c:355
+#: gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "Voulez-vous vraiment fermer cette session ?"
 
-#: gnome-session/logout.c:372
+#: gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "_Enregistrer la configuration actuelle"
 
-#: gnome-session/logout.c:393
+#: gnome-session/logout.c:448
 msgid "Action"
 msgstr "Action"
 
-#: gnome-session/logout.c:410
+#: gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "_Clore la session"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "É_teindre"
 
-#: gnome-session/logout.c:423
+#: gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "_Redémarrer l'ordinateur"
 
@@ -463,14 +477,10 @@ msgid "The Panel"
 msgstr "Le tableau de bord"
 
 #: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Proxy de gestionnaire de sessions"
-
-#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Paramètres du bureau"
 
@@ -484,7 +494,7 @@ msgstr "Commande de démarrage"
 
 #: gnome-session/startup-programs.c:347
 msgid "The startup command cannot be empty"
-msgstr "La commande de démarrage ne peut être vide"
+msgstr "La commande de démarrage ne peut pas être vide"
 
 #: gnome-session/startup-programs.c:384
 msgid "Add Startup Program"
