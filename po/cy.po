@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-10-24 13:41+0100\n"
-"Last-Translator: Dafydd Harries <daf@parnassus.ath.cx>\n"
+"POT-Creation-Date: 2005-08-29 19:45+0100\n"
+"PO-Revision-Date: 2005-08-29 20:04+0100\n"
+"Last-Translator: Bryn Salisbury <bryn@randomlyevil.org.uk>\n"
 "Language-Team: Cymraeg <gnome-cy@pengwyn.linux.org.uk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,28 +50,45 @@ msgid "Logout prompt"
 msgstr "Annog allgofnodi"
 
 #: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+msgid "Preferred Image to use for login splash screen"
 msgstr ""
-"Y ddelwedd hoffech gael ei ddefnyddio yn y sgrîn gychwyn wrth fewngofnodi i "
-"Fwrdd Gwaith GNOME"
+"Y ddelwedd hoffech gael ei ddefnyddio yn y sgrîn gychwyn wrth fewngofnodi"
 
 #: gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Cadw sesiynau"
 
 #: gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Opsiwn dewisiedig yn y deialog allgofnodi"
+
+#: gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Dangos y sgrîn gychwyn"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Dangos y sgrîn gychwyn wrth gychwyn sesiwn"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Delwedd y Sgrîn Gychwyn"
+#: gnome-session/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Mae hwn yn gwerth perthynol wedi ei selio oddi ar y plygell $datadir/pixmaps/."
+"Bydd isffolderi a ac enwau delweddau yn gwerthoedd dilys. Bydd newid y "
+"gwerthoedd yma yn cymeryd effaith yn y sessiwn mewngofnodi nesaf."
+ 
+#: gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Hon fydd yr opsiwn a dewisir yn y deialog allgofnodi, gwerthoedd dilys yw "
+" \"logout\" ar gyfer allgofnodi, \"shutdown\" ar gyfer atal system ac "
+"\"restart\" i ail gychwyn y system."
 
 #: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
 msgid "_Order:"
@@ -230,27 +247,27 @@ msgstr "Roedd gwall cychwyn anhysbys."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Fe ailgychwynnodd Daemon Gosodiadau GNOME gormod o weithiau."
 
-#: gnome-session/logout.c:355
+#: gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "Ydych chi'n sicr eich bod eisiau allgofnodi?"
 
-#: gnome-session/logout.c:372
+#: gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "_Cadw'r cyflwr cyfredol"
 
-#: gnome-session/logout.c:393
+#: gnome-session/logout.c:448
 msgid "Action"
 msgstr "Gweithred"
 
-#: gnome-session/logout.c:410
+#: gnome-session/logout.c:465
 msgid "_Log out"
 msgstr "_Allgofnodi"
 
-#: gnome-session/logout.c:416
+#: gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "_Troi'r cyfrifiadur bant"
 
-#: gnome-session/logout.c:423
+#: gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "Ail_gychwyn y cyfrifiadur"
 
@@ -379,7 +396,6 @@ msgid "Show splash screen on _login"
 msgstr "Dangos sgrîn gychwyn wrth _fewngofnodi"
 
 #: gnome-session/session-properties-capplet.c:284
-#, fuzzy
 msgid "As_k on logout"
 msgstr "_Cadarnhau wrth allgofnodi"
 
@@ -456,14 +472,10 @@ msgid "The Panel"
 msgstr "Y Panel"
 
 #: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Dirprwy Rheolwr Sesiynau"
-
-#: gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Gosodiadau Penbwrdd"
 
@@ -486,6 +498,12 @@ msgstr "Ychwanegu Rhaglen Wrth Gychwyn"
 #: gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Golygu Rhaglen Wrth Gychwyn"
+
+#~ msgid "Splash Screen Image"
+#~ msgstr "Delwedd y Sgrîn Gychwyn"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Dirprwy Rheolwr Sesiynau"
 
 #~ msgid "Save Current Session"
 #~ msgstr "Cadw'r Sesiwn Gyfredol"
