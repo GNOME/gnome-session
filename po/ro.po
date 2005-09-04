@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-20 14:57+0000\n"
-"PO-Revision-Date: 2005-08-22 04:26+0300\n"
+"POT-Creation-Date: 2005-09-04 06:54+0000\n"
+"PO-Revision-Date: 2005-09-04 17:23+0300\n"
 "Last-Translator: Sebastian Ivan <sebastian.ivan@ubuntu.ro>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,16 +22,30 @@ msgid "Allow TCP connections"
 msgstr "Permite conexiuni TCP"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
-msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
-msgstr "Din motive de securitate, pe platformele ce suportă „_IceTcpTransNoListen()” (sistemele XFree86), gnome-session nu monitorizează porturile pentru conexiuni TCP. Această opţiune permite conexiuni de la gazde la distanţă (autorizate). Gnome-session trebuie restartat la schimbarea acestei opţiuni."
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Din motive de securitate, pe platformele ce suportă „_IceTcpTransNoListen"
+"()” (sistemele XFree86), gnome-session nu monitorizează porturile pentru "
+"conexiuni TCP. Această opţiune permite conexiuni de la gazde la distanţă "
+"(autorizate). Gnome-session trebuie restartat la schimbarea acestei opţiuni."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "La activare, gnome-session va întreba utilizatorul înainte de terminarea sesiunii."
+msgstr ""
+"La activare, gnome-session va întreba utilizatorul înainte de terminarea "
+"sesiunii."
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "La activare, gnome-session va salva sesiunea automat. Altfel, dialogul de ieşire va avea o opţiune pentru salvarea sesiunii."
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"La activare, gnome-session va salva sesiunea automat. Altfel, dialogul de "
+"ieşire va avea o opţiune pentru salvarea sesiunii."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
@@ -58,12 +72,24 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Arată imaginea de pornire la intrarea în sesiune"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
-msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
-msgstr "Aceasta este o cale relativă bazată pe directorul $datadir/pixmaps/. Nume de subdirectoare şi de imagini sunt valori valide. Modificând această valoare veţi afecta pornirea următoarei sesiuni."
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Aceasta este o cale relativă bazată pe directorul $datadir/pixmaps/. Nume de "
+"subdirectoare şi de imagini sunt valori valide. Modificând această valoare "
+"veţi afecta pornirea următoarei sesiuni."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
-msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
-msgstr "Aceasta este opţiunea care va fi selectată in dialogul de deautentificare, valorile valide sunt „deautentificare” pentru ieşire, „oprire” pentru oprirea sistemului şi „repornire” pentru repornirea sistemului."
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Aceasta este opţiunea care va fi selectată in dialogul de deautentificare, "
+"valorile valide sunt „deautentificare” pentru ieşire, „oprire” pentru "
+"oprirea sistemului şi „repornire” pentru repornirea sistemului."
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -171,18 +197,25 @@ msgstr "Setări"
 msgid "Always started on every login."
 msgstr "Totdeauna pornite la fiecare autentificare."
 
+#.
 #. * it would be nice to have a dialog which either:
-#. * 1.  lets you change the message on it
 #. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
 #: ../gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
 "S-a produs o eroare la pornirea demonului setărilor GNOME.\n"
 "\n"
-"Unele setări, precum cele privind temele, sunetele sau fundalul s-ar putea să nu funcţioneze corect."
+"Unele setări, precum cele privind temele, sunetele sau fundalul s-ar putea "
+"să nu funcţioneze corect."
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -216,7 +249,7 @@ msgstr "Demonul setărilor a fost repornit de prea multe ori."
 
 #: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
-msgstr "Sunteţi sigur(ă) că doriţi să ieşiţi?"
+msgstr "Sigur doriţi să ieşiţi?"
 
 #: ../gnome-session/logout.c:425
 msgid "_Save current setup"
@@ -248,15 +281,19 @@ msgstr "Citeşte numai sesiunile salvate în fişierul default.session"
 
 #: ../gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Timp în milisecunde petrecut aşteptând clienţii să se înregistreze (0 = nelimitat"
+msgstr ""
+"Timp în milisecunde petrecut aşteptând clienţii să se înregistreze (0 = "
+"nelimitat"
 
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Timp în milisecunde petrecut aşteptând clienţii să răspundă (0 = nelimitat)"
+msgstr ""
+"Timp în milisecunde petrecut aşteptând clienţii să răspundă (0 = nelimitat)"
 
 #: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Timp în milisecunde petrecut aşteptând clienţii să moară (0 = nelimitat)"
+msgstr ""
+"Timp în milisecunde petrecut aşteptând clienţii să moară (0 = nelimitat)"
 
 #: ../gnome-session/main.c:265
 #, c-format
@@ -320,8 +357,7 @@ msgstr "Închide forţat sesiunea"
 msgid "Use dialog boxes"
 msgstr "Utilizează ferestre de dialog"
 
-#: ../gnome-session/save-session.c:146
-#: ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Nu s-a putut conecta la administratorul sesiunilor"
 
@@ -465,4 +501,3 @@ msgstr "Adaugă un program de pornite"
 #: ../gnome-session/startup-programs.c:405
 msgid "Edit Startup Program"
 msgstr "Editare program de pornit"
-
