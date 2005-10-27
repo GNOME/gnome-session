@@ -328,7 +328,10 @@ main (int argc, char *argv[])
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
-  
+
+  if (is_odd (version.minor))
+    putenv ("G_DEBUG=fatal_warnings");
+      
   set_lang();
   set_gtk1_theme_rcfile ();
 
