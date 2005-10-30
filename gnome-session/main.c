@@ -329,7 +329,9 @@ main (int argc, char *argv[])
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
 
-  /* putenv ("G_DEBUG=fatal_warnings"); */
+  /* To use the below you need to patch glib with the patch found here: */
+  /* http://bugzilla.gnome.org/show_bug.cgi?id=320017 */
+  /* putenv ("G_DEBUG=fatal_criticals"); */
       
   set_lang();
   set_gtk1_theme_rcfile ();
