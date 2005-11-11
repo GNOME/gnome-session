@@ -28,6 +28,7 @@
 #include <sys/wait.h>
 #include <sys/socket.h>  /* For have_ipv6() */
 #include <netdb.h>
+#include <time.h>
 
 #include <gconf/gconf-client.h>
 
@@ -313,6 +314,18 @@ gsm_shutdown_gconfd (void)
   g_free (command);
 }
 
+static gboolean
+is_later_than_date_of_doom (void)
+{
+  time_t t;
+  struct tm *tm;
+
+  t = time (NULL);
+  tm = localtime (&t);
+
+  return (tm->tm_year >= 2006); /* We start on Jan 1 2006 */
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -325,13 +338,24 @@ main (int argc, char *argv[])
   GError *err;
   int status;
   char *display_str;
+  char **versions;
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
 
-  /* To use the below you need to patch glib with the patch found here: */
-  /* http://bugzilla.gnome.org/show_bug.cgi?id=320017 */
-  /* putenv ("G_DEBUG=fatal_criticals"); */
+  /* Help eradicate the critical warnings in unstable releases of GNOME */
+  versions = g_strsplit (VERSION, ".", 3);
+  if (versions && versions [0] && versions [1])
+    {
+      int major;
+      major = atoi (versions [1]);
+      if ((major % 2) != 0 && is_later_than_date_of_doom ())
+	{
+	  putenv ("G_DEBUG=fatal_criticals");
+	  g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
+	}
+    }
+  g_strfreev (versions);
       
   set_lang();
   set_gtk1_theme_rcfile ();
