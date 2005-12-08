@@ -1,3 +1,9 @@
+2005-12-08  Elijah Newren  <newren@gmail.com>
+
+	* main.c (is_later_than_date_of_doom): Year number is measured
+	since 1900 -- make sure the fatal_criticals thing is enabled next
+	month rather than in the year 3906.
+
 2005-11-11  Federico Mena Quintero  <federico@ximian.com>
 
 	* main.c (main): Automatically enable Vincent's code on Jan 1

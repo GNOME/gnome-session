@@ -323,7 +323,7 @@ is_later_than_date_of_doom (void)
   t = time (NULL);
   tm = localtime (&t);
 
-  return (tm->tm_year >= 2006); /* We start on Jan 1 2006 */
+  return (tm->tm_year >= 106); /* We start on Jan 1 2006 */
 }
 
 int
