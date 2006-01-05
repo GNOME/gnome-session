@@ -1,3 +1,10 @@
+2006-01-05  Rodrigo Moya <rodrigo@novell.com>
+
+	* gsm-gsd.c: more login speed improvements.
+	(gsm_gsd_start): use bonobo_activation_activate_from_id_async
+	instead of bonobo_get_object_async, which is not really async.
+	(activate_cb): adapted function signature.
+
 2005-10-30  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* main.c: (main): Add comment with pointer to the patch

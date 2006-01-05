@@ -89,9 +89,9 @@ broken_cb (ORBitConnection *cnx, GnomeSettingsData *gsd)
 }
 
 static void
-activate_cb (Bonobo_Unknown     object,
-	     CORBA_Environment *ev,
-	     gpointer           user_data)
+activate_cb (Bonobo_Unknown object,
+	     const char    *error_reason,
+	     gpointer       user_data)
 {
   GnomeSettingsData *gsd = user_data;
   
@@ -104,9 +104,9 @@ activate_cb (Bonobo_Unknown     object,
   gsd->activating = FALSE;
   gsd->gsd_object = object;
 
-  if (BONOBO_EX (ev))
+  if (error_reason)
     {
-      gsd_set_error (gsd, bonobo_exception_general_error_get (ev));
+      gsd_set_error (gsd, error_reason);
       gsm_gsd_start ();
       return;
     }
@@ -162,11 +162,11 @@ gsm_gsd_start (void)
 
   CORBA_exception_init (&ev);
 
-  bonobo_get_object_async ("OAFIID:GNOME_SettingsDaemon",
-			   "IDL:Bonobo/Unknown:1.0",
-			   &ev,
-			   activate_cb,
-			   &gsd);
+  bonobo_activation_activate_from_id_async ("OAFIID:GNOME_SettingsDaemon",
+					    0,
+					    activate_cb,
+					    &gsd,
+					    &ev);
 
   if (BONOBO_EX (&ev))
     {
