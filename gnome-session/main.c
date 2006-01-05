@@ -374,7 +374,8 @@ main (int argc, char *argv[])
   /* We need to do this as early as possible */
   gsm_set_display_properties ();
   
-  gnome_login_check ();
+  if (ORBit_proto_use ("IPv4") || ORBit_proto_use ("IPv6"))
+    gnome_login_check ();
 
   err = NULL;
   g_spawn_command_line_sync (GCONF_SANITY_CHECK, NULL, NULL, &status, &err);
