@@ -323,7 +323,7 @@ is_later_than_date_of_doom (void)
   t = time (NULL);
   tm = localtime (&t);
 
-  return (tm->tm_year >= 106); /* We start on Jan 1 2006 */
+  return (tm->tm_year >= 105); /* We start on Jan 1 2006 */
 }
 
 int
@@ -395,6 +395,14 @@ main (int argc, char *argv[])
         }
     }
   
+  /* Read the config option early, so that we know if a11y is set or not */ 
+  gconf_client = gconf_client_get_default ();
+  gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL); 
+  a_t_support = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
+
+  if (a_t_support)
+    gsm_at_set_gtk_modules ();
+
   gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
 		  GNOME_PARAM_POPT_TABLE, options,
 		  NULL);
@@ -425,10 +433,8 @@ main (int argc, char *argv[])
   /* Need DISPLAY set */
   gsm_keyring_daemon_start ();
   
-  /* Read in config options */  
-  gconf_client = gconf_client_get_default ();
+  /* Read the rest of config options */  
 
-  gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
   splashing      = gconf_client_get_bool (gconf_client, SPLASH_SCREEN_KEY, NULL);
   autosave       = gconf_client_get_bool (gconf_client, AUTOSAVE_MODE_KEY, NULL);
   logout_prompt  = gconf_client_get_bool (gconf_client, LOGOUT_PROMPT_KEY, NULL);
