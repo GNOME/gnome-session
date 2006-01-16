@@ -80,6 +80,7 @@ static void update_gui (void);
 static void add_startup_cb (void);
 static void edit_startup_cb (void);
 static void delete_startup_cb (void);
+static void enable_startup_cb (void);
 static void add_session_cb (void);
 static void edit_session_cb (void);
 static void delete_session_cb (void);
@@ -95,9 +96,11 @@ selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
   gboolean sel;
   GtkWidget *edit_button;
   GtkWidget *delete_button;
+  GtkWidget *enable_button;
 
   edit_button = g_object_get_data (G_OBJECT (view), "edit");
   delete_button = g_object_get_data (G_OBJECT (view), "delete");
+  enable_button = g_object_get_data (G_OBJECT (view), "enable");
 
   if (!edit_button || !delete_button)
 	return;
@@ -106,6 +109,26 @@ selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
 
   gtk_widget_set_sensitive (edit_button, sel);
   gtk_widget_set_sensitive (delete_button, sel);
+
+  if (sel)
+    {
+      if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
+        {
+  	  gtk_button_set_label (GTK_BUTTON (enable_button), _("Enable"));
+	  gtk_button_set_image (GTK_BUTTON (enable_button),
+				gtk_image_new_from_stock (GTK_STOCK_YES, GTK_ICON_SIZE_BUTTON));
+	}
+      else
+        {
+	  gtk_button_set_label (GTK_BUTTON (enable_button), _("Disable"));
+	  gtk_button_set_image (GTK_BUTTON (enable_button),
+				gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
+	}
+
+      gtk_widget_set_sensitive (enable_button, TRUE);
+    }
+  else
+    gtk_widget_set_sensitive (enable_button, FALSE);
 }
 
 static void
@@ -409,8 +432,6 @@ capplet_build (void)
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
   g_signal_connect (G_OBJECT (startup_sel), "changed", (GCallback) selection_changed_cb, startup_view);
   renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Order"), renderer, "text", 1, NULL);
-  gtk_tree_view_append_column (startup_view, column);
   column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", 2, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
@@ -438,6 +459,14 @@ capplet_build (void)
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "delete", button);
+
+  button = gtk_button_new ();
+  gtk_button_set_label (GTK_BUTTON (button), _("Disable"));
+  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
+  g_signal_connect (button, "clicked", G_CALLBACK (enable_startup_cb), NULL);
+  gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (startup_view), "enable", button);
 
   /* Button for running session-properties */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
@@ -561,6 +590,18 @@ delete_startup_cb (void)
   mark_dirty ();
   startup_list_delete (&startup_list, startup_store, startup_sel);
   update_gui ();
+}
+
+/* Enable/disable a startup program from the list */
+static void
+enable_startup_cb (void)
+{
+  if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
+    startup_list_enable (&startup_list, startup_store, startup_sel);
+  else
+    startup_list_disable (&startup_list, startup_store, startup_sel);
+
+  selection_changed_cb (startup_sel, startup_view);
 }
 
 static void 

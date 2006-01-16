@@ -19,12 +19,14 @@
 
 #include <config.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
 
 #include <gconf/gconf-client.h>
 
 #include <libgnome/libgnome.h>
+#include <libgnome/gnome-desktop-item.h>
 #include <libgnomeui/gnome-client.h>
 
 #include "save.h"
@@ -182,7 +184,7 @@ write_session (void)
   for (list = pending_list; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      
+
       g_snprintf (prefix, sizeof(prefix),
 		  CONFIG_PREFIX "%s/%d,", session_name, i);
 
@@ -194,7 +196,7 @@ write_session (void)
   for (list = purge_drop_list; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      
+
       g_snprintf (prefix, sizeof(prefix),
 		  CONFIG_PREFIX "%s/%d,", session_name, i);
       gnome_config_push_prefix (prefix);
@@ -205,7 +207,7 @@ write_session (void)
   for (list = purge_retain_list; list; list = list->next)
     {
       Client *client = (Client *) list->data;
-      
+
       g_snprintf (prefix, sizeof(prefix),
 		  CONFIG_PREFIX "%s/%d,", session_name, i);
       gnome_config_push_prefix (prefix);
@@ -355,6 +357,144 @@ read_clients (const char* file, const char *session, MatchRule match_rule)
   return list;
 }
 
+/* read .desktop files in a given directory */
+static void
+read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
+{
+  GDir *dir;
+  const gchar *name;
+
+  dir = g_dir_open (path, 0, NULL);
+  if (!dir)
+    return;
+
+  while ((name = g_dir_read_name (dir)))
+    {
+      Client *client = NULL;
+      SmProp *prop;
+      gchar *full_path;
+      GnomeDesktopItem *ditem;
+
+      if (!g_str_has_suffix (name, ".desktop"))
+        continue;
+
+      full_path = g_build_filename (path, name, NULL);
+      ditem = gnome_desktop_item_new_from_file (full_path, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
+      if (ditem != NULL)
+        {
+	  const gchar *exec_cmd;
+	  gchar **vector, *hash_key;
+	  Client *hash_client;
+	  gint argc, i;
+
+	  exec_cmd = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
+	  if (!g_shell_parse_argv (exec_cmd, &argc, &vector, NULL))
+	    {
+	      gnome_desktop_item_unref (ditem);
+	      g_free (full_path);
+	      continue;
+	    }
+
+	  client = g_new0 (Client, 1);
+	  client->magic = CLIENT_MAGIC;
+	  client->id = NULL;
+	  client->properties = NULL;
+	  client->priority = DEFAULT_PRIORITY;
+	  client->handle = command_handle_new ((gpointer) client);
+	  client->warning = FALSE;
+	  client->get_prop_replies = NULL;
+	  client->get_prop_requests = 0;
+	  client->command_data = NULL;
+	  client->match_rule = MATCH_PROP;
+
+	  prop = (SmProp *) g_new (SmProp, 1);
+	  prop->name = g_strdup (SmRestartCommand);
+	  prop->type = g_strdup (SmLISTofARRAY8);
+	  prop->num_vals = argc;
+	  prop->vals = (SmPropValue *) g_new (SmPropValue, argc);
+
+	  for (i = 0; i < argc; i++)
+	    {
+	      prop->vals[i].length = vector[i] ? strlen (vector[i]) : 0;
+	      prop->vals[i].value = vector[i] ? g_strdup (vector[i]) : NULL;
+	    }
+
+	  g_strfreev (vector);
+	  gnome_desktop_item_unref (ditem);
+
+	  APPEND (client->properties, prop);
+
+	  if (g_hash_table_lookup_extended (clients, name, &hash_key, &hash_client))
+	    {
+	      g_hash_table_remove (clients, name);
+	      g_free (hash_key);
+	      free_client (hash_client);
+	    }
+
+	  /* check the X-GNOME-Autostart-enabled field */
+	  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
+	    {
+	      if (gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled"))
+	        g_hash_table_insert (clients, g_strdup (name), client);
+	      else
+		free_client (client);
+	    }
+	  else
+	    g_hash_table_insert (clients, g_strdup (name), client);
+	}
+
+      g_free (full_path);
+    }
+
+  g_dir_close (dir);
+}
+
+static gboolean
+hash_table_remove_cb (gpointer key, gpointer value, gpointer user_data)
+{
+  GSList **list = (GSList **) user_data;
+
+  *list = g_slist_prepend (*list, value);
+  g_free (key);
+
+  return TRUE;
+}
+
+/* read the list of system-wide autostart apps */
+static GSList *
+read_autostart_dirs (void)
+{
+  gchar **data_dir_vector;
+  gint i;
+  GHashTable *clients;
+  GSList *list = NULL;
+
+  /* create the array of directories to look for .desktop files */
+  /* FIXME: use XDG_DATA_DIRS? */
+  data_dir_vector = g_malloc0 (sizeof (gchar *) * 3);
+  data_dir_vector[0] = g_build_filename (PREFIX, "share", NULL);
+  data_dir_vector[1] = g_build_filename (g_get_home_dir (), ".config", NULL);
+  data_dir_vector[2] = NULL;
+
+  clients = g_hash_table_new (g_str_hash, g_str_equal);
+
+  for (i = 0; data_dir_vector[i] != NULL; i++)
+    {
+      gchar *dir;
+
+      dir = g_build_filename (data_dir_vector[i], "autostart", NULL);
+      read_desktop_entries_in_dir (clients, dir);
+      g_free (dir);
+    }
+
+  /* convert the hash table into a GSList */
+  g_hash_table_foreach_remove (clients, (GHRFunc) hash_table_remove_cb, &list);
+  g_hash_table_destroy (clients);
+
+  g_strfreev (data_dir_vector);
+
+  return list;
+}
 
 /* frees lock on session at shutdown */
 void 
@@ -411,6 +551,74 @@ get_current_session(void)
   } 
 }
 
+static gboolean
+compare_restart_command (GSList *props1, GSList *props2)
+{
+  SmProp *p1, *p2;
+  GSList *node1, *node2;
+  gboolean found_both_restart_commands = FALSE;
+
+  for (node1 = props1; node1 != NULL; node1 = node1->next)
+    {
+      p1 = node1->data;
+      if (!strcmp (p1->name, SmRestartCommand))
+        {
+	  for (node2 = props2; node2 != NULL; node2 = node2->next)
+	    {
+	      gint i;
+
+	      p2 = node2->data;
+	      if (!strcmp (p2->name, SmRestartCommand))
+	        {
+		  if (p1->num_vals != p2->num_vals)
+		    return FALSE;
+
+		  for (i = 0; i < p1->num_vals; i++)
+		    {
+		      if (strcmp (p1->vals[i].value ? p1->vals[i].value : "",
+				  p2->vals[i].value ? p2->vals[i].value : ""))
+			return FALSE;
+		    }
+
+		  found_both_restart_commands = TRUE;
+		}
+	    }
+	  break;
+        }
+    }
+
+  return found_both_restart_commands;
+}
+
+static GSList *
+remove_duplicated_clients (GSList *clients)
+{
+  GSList *node;
+
+  for (node = clients; node != NULL; node = node->next)
+    {
+      GSList *sl;
+      Client *client = node->data;
+
+      for (sl = node->next; sl != NULL; sl = sl->next)
+        {
+	  Client *tmp_client = sl->data;
+	  GSList *props, *tmp_props;
+
+	  props = client->properties;
+	  tmp_props = tmp_client->properties;
+
+	  if (compare_restart_command (props, tmp_props))
+	    {
+	      REMOVE (clients, tmp_client);
+	      free_client (tmp_client);
+	      sl = node;
+	    }
+	}
+    }
+
+  return clients;
+}
 
 /* Load a session from the config file by name. */
 Session*
@@ -444,8 +652,65 @@ read_session (const char *name)
    * created from the session-properties capplet
    */
   list = read_clients (MANUAL_CONFIG_PREFIX, name, MATCH_PROP);
+  if (list) {
+    char *path;
+
+    /* migrate to newly desktop-based autostart system */
+    while (list) {
+      SmProp *prop;
+      Client *client = (Client *) list->data;
+    
+      prop = find_property_by_name (client, SmRestartCommand);
+      if (prop) {
+        GnomeDesktopItem *ditem;
+	int i;
+	char *basename, *orig_filename, *filename;
+	GString *args = g_string_new ((const char *) prop->vals[0].value);
+
+	for (i = 1; i < prop->num_vals; i++) {
+	  args = g_string_append_c (args, " ");
+	  args = g_string_append (args, (const char *) prop->vals[i].value);
+	}
+
+	ditem = gnome_desktop_item_new ();
+	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC, args->str);
+
+	basename = g_path_get_basename (prop->vals[0].value);
+	orig_filename = g_strdup_printf ("%s/.config/autostart/%s.desktop", g_get_home_dir (), basename);
+	filename = g_strdup (orig_filename);
+	i = 2;
+	while (g_file_exists (filename)) {
+	  char *tmp = g_strdup_printf ("%s-%d", orig_filename, i);
+
+	  g_free (filename);
+	  filename = tmp;
+	  i++;
+	}
+	
+	if (!gnome_desktop_item_save (ditem, filename, TRUE, NULL))
+  	  g_warning ("Could not save %s file\n", filename);
+
+	gnome_desktop_item_unref (ditem);
+	g_string_free (args, TRUE);
+	g_free (orig_filename);
+	g_free (filename);
+      }
+
+      REMOVE (list, client);
+      free_client (client);
+    }
+
+    path = g_build_filename (g_get_home_dir (), ".gnome2/session-manual", NULL);
+    g_remove ((const char *) path);
+    g_free (path);
+  }
+
+  /* Get applications to be autostarted */
+  list = read_autostart_dirs ();
   if (list)
-	  session->client_list = g_slist_concat (session->client_list, list);
+    session->client_list = g_slist_concat (session->client_list, list);
+
+  session->client_list = remove_duplicated_clients (session->client_list);
 
   return session;
 }
