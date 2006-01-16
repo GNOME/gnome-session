@@ -419,9 +419,6 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 	      prop->vals[i].value = vector[i] ? g_strdup (vector[i]) : NULL;
 	    }
 
-	  g_strfreev (vector);
-	  gnome_desktop_item_unref (ditem);
-
 	  APPEND (client->properties, prop);
 
 	  if (g_hash_table_lookup_extended (clients, name, &hash_key, &hash_client))
@@ -441,6 +438,9 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 	    }
 	  else
 	    g_hash_table_insert (clients, g_strdup (name), client);
+
+	  g_strfreev (vector);
+	  gnome_desktop_item_unref (ditem);
 	}
 
       g_free (full_path);
