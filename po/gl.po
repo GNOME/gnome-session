@@ -1,5 +1,4 @@
 # translation of gl.po to Galego
-# translation of gnome-session.gnome-2-10.po to Galego
 # Galician translation of gnome-session.
 # Copyright (C) 1999-2004 Jesús Bravo Álvarez
 #
@@ -7,22 +6,22 @@
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
 #
 # First Version: 2002-04-06 14:23+0200
-# Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
-# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005.
 #
+# Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-13 02:28+0200\n"
-"PO-Revision-Date: 2005-06-13 02:31+0200\n"
+"POT-Creation-Date: 2006-01-17 21:20+0100\n"
+"PO-Revision-Date: 2006-01-17 21:21+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: KBabel 1.11.1\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -99,7 +98,6 @@ msgstr ""
 "apagar o sistema e \"restart\" para reiniciar o sistema."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Orde:"
 
@@ -116,7 +114,6 @@ msgid "_Style:"
 msgstr "_Estilo:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Orde"
 
@@ -273,33 +270,33 @@ msgstr "_Terminar sesión"
 
 #: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
-msgstr "_Apagar"
+msgstr "A_pagar"
 
 #: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "_Reiniciar o computador"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Indica o nome de sesión para cargar"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Ler só as sesións gardadas no ficheiro default.session"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Milisegundos agardados para que os clientes se rexistren (0=infinito)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Milisegundos agardados para que os clientes respondan (0=infinito)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Milisegundos agardados para que os clientes morran (0=infinito)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -312,11 +309,11 @@ msgstr ""
 "Pode que o problema se resolva engadindo\n"
 "%s ao ficheiro /etc/hosts."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Entrar igualmente"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Probar de novo"
 
@@ -381,11 +378,20 @@ msgstr "Engadir unha nova sesión"
 msgid "Edit session name"
 msgstr "Editar o nome da sesión"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Activar"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Desactivar"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -393,48 +399,48 @@ msgstr ""
 "Algúns cambios non foron gardados.\n"
 "Saír igualmente?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sesións"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Mostrar pantalla de presentación ao _entrar"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Preguntar ao saír"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Gardar _automaticamente os cambios da sesión"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sesións:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Nome da sesión"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Opcións da sesión"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Sesión actual"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "_Outros programas de inicio:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Comando"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Programas de inicio"
 
@@ -479,33 +485,30 @@ msgid "The Panel"
 msgstr "O panel"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Proxy do xestor de sesións"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Configuración do escritorio"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:319
 msgid "_Startup Command:"
 msgstr "Comando de _inicio:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:325
 msgid "Startup Command"
 msgstr "Comando de inicio"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:354
 msgid "The startup command cannot be empty"
 msgstr "O comando inicial non pode estar baleiro"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:391
 msgid "Add Startup Program"
 msgstr "Engadir programa de inicio"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:429
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
+
