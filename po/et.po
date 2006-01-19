@@ -1,21 +1,21 @@
 # gnome-session eesti keele tõlge.
 # Estonian translation of gnome-session.
 #
-# Copyright (C) 1999-2005 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2001, 2002, 2004-2006 Free Software Foundation, Inc.
 # 
 # Lauris Kaplinski <lauris@ariman.ee>, 1999.
 # Ilmar Kerm <ikerm@hot.ee>, 2001, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002.
-# Priit Laes <amd@store20.com>, 2004-2005.
-# Ivar Smolin <okul@linux.ee>, 2005.
+# Priit Laes <amd@store20.com>, 2004, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-05 13:50+0000\n"
-"PO-Revision-Date: 2005-05-05 23:09+0300\n"
-"Last-Translator: Priit Laes <amd@store20.com>\n"
+"POT-Creation-Date: 2006-01-18 14:54+0100\n"
+"PO-Revision-Date: 2006-01-18 20:27+0200\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,16 +27,31 @@ msgid "Allow TCP connections"
 msgstr "TCP ühenduste lubamine"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
-msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
-msgstr "Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see seade tööle hakkaks."
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis "
+"omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP "
+"portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi "
+"välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see "
+"seade tööle hakkaks."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne seansi lõpetamist."
+msgstr ""
+"Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne seansi "
+"lõpetamist."
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "Kui määratud, siis gnome-session salvestab seansi automaatselt. Kui ei, siis väljalogimisdialoogil näidatakse seansi salvestamise valikut."
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Kui määratud, siis gnome-session salvestab seansi automaatselt. Kui ei, siis "
+"väljalogimisdialoogil näidatakse seansi salvestamise valikut."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
@@ -63,15 +78,26 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Näita sisselogimisel tiitelkuva"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
-msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
-msgstr "See on suhteline otsingutee väärtus, mis põhineb $datadir/pixmaps/ kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine rakendub järgmisel seansil peale sisselogimist."
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"See on suhteline otsingutee väärtus, mis põhineb $datadir/pixmaps/ "
+"kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
+"rakendub järgmisel seansil peale sisselogimist."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
-msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
-msgstr "See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on \"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart\" alglaadimise tegemiseks."
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on "
+"\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
+"\" alglaadimise tegemiseks."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Järjekord:"
 
@@ -88,7 +114,6 @@ msgid "_Style:"
 msgstr "_Stiil: "
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Järjekord"
 
@@ -188,11 +213,13 @@ msgstr "Käivitatakse alati igal sisselogimisel."
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
 "GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
 "\n"
-"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult töötada."
+"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult "
+"töötada."
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -214,7 +241,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, sätetedeemonit taaskäivitada."
+"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, "
+"sätetedeemonit taaskäivitada."
 
 #: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -248,27 +276,28 @@ msgstr "_Arvuti seiskamine"
 msgid "_Restart the computer"
 msgstr "Arvutile alglaadimise _tegemine"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Määra laetava seansi nimi"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud seansse ainult default.session failist"
 
-#: ../gnome-session/main.c:83
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
-
 #: ../gnome-session/main.c:84
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr ""
+"Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
+
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -281,11 +310,11 @@ msgstr ""
 "Võimalik, et saate selest veast üle, lisades\n"
 "%s faili /etc/hosts."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Logi sellest hoolimata sisse"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Proovi uuesti"
 
@@ -330,8 +359,7 @@ msgstr "Tapa seanss"
 msgid "Use dialog boxes"
 msgstr "Kasuta dialoogiaknaid"
 
-#: ../gnome-session/save-session.c:146
-#: ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Ei saa ühendust seansihalduriga"
 
@@ -351,11 +379,20 @@ msgstr "Uue seansi lisamine"
 msgid "Edit session name"
 msgstr "Muuda seansi nime"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Luba"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Keela"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Redigeeri"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -363,48 +400,48 @@ msgstr ""
 "Kõik muudatused ei ole salvestatud.\n"
 "Kas võib ikkagi väljuda?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Seansid"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "_Sisselogimisel näidatakse tiitelkuva"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Küsi väljalogimisel kinnitust"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "_Seansi muutused salvestatakse automaatselt"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Seansid:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Seansi nimi"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Seansi valikud"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Aktiivne seanss"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Täiendavad käivitus_programmid:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Käsk"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Käivitusprogrammid"
 
@@ -449,37 +486,35 @@ msgid "The Panel"
 msgstr "Paneel"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Seansihalduri proxy"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Töölaua sätted"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:319
 msgid "_Startup Command:"
 msgstr "_Käivituskäsk:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:325
 msgid "Startup Command"
 msgstr "Käivituskäsk"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:354
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei saa jätta tühjaks"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:391
 msgid "Add Startup Program"
 msgstr "Käivitusprogrammi lisamine"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:429
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
 
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Seansihalduri proxy"
+
 #~ msgid "Splash Screen Image"
 #~ msgstr "Tiitelkuva pilt"
-
