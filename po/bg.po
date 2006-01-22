@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session gnome\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 12:46+0300\n"
-"PO-Revision-Date: 2005-10-21 12:44+0300\n"
+"POT-Creation-Date: 2006-01-22 19:24+0200\n"
+"PO-Revision-Date: 2006-01-22 19:24+0200\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -97,7 +97,6 @@ msgstr ""
 "„restart“ за рестартиране на системата."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Ред:"
 
@@ -114,7 +113,6 @@ msgid "_Style:"
 msgstr "_Стил:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Ред"
 
@@ -140,7 +138,7 @@ msgstr "Чака за да започне или вече е приключил.
 
 #: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "Стартираща"
+msgstr "Стартира се"
 
 #: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
@@ -278,28 +276,28 @@ msgstr "С_пиране на компютъра"
 msgid "_Restart the computer"
 msgstr "_Рестартиране на компютъра"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Името на сесията, която да се зареди"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Прочитане само на запазените сесии от default.session файла"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Време за изчакване на клиентите да се регистрират (0=до безкрайност) [ms]"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Време за изчакване на клиентите да отговорят (0=до безкрайност) [ms]"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Време за изчакване на клиентите да умрат (0=до безкрайност) [ms]"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -312,11 +310,11 @@ msgstr ""
 "Проблемът може и да се оправи чрез добавяне на\n"
 "%s във файла /etc/hosts."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Влизане, въпреки всичко"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Отново"
 
@@ -381,11 +379,20 @@ msgstr "Добавяне на нова сесия"
 msgid "Edit session name"
 msgstr "Редактиране името на сесията"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Активиране"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Деактивиране"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Редактиране"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -393,48 +400,48 @@ msgstr ""
 "Някой промени не са записани.\n"
 "Да изляза ли от програмата?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Сесии"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Показване на прозоре_ца със зареждането по време на влизане"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Питане при излизане"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Автоматично запазва п_ромените в сесията"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Сесии:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Име на сесия"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Настройки на сесия"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Текуща сесия"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Допълнителни начални _програми:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Команда"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Начални програми"
 
@@ -486,34 +493,22 @@ msgstr "Файлов мениджър (Nautilus)"
 msgid "Desktop Settings"
 msgstr "Настройки на средата"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:319
 msgid "_Startup Command:"
 msgstr "_Начална команда:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:325
 msgid "Startup Command"
 msgstr "Начална команда"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:354
 msgid "The startup command cannot be empty"
 msgstr "Името на командата за стартиране не може да бъде празно"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:391
 msgid "Add Startup Program"
 msgstr "Добавяне на начална програма"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:429
 msgid "Edit Startup Program"
 msgstr "Редактиране на начална програма"
-
-#~ msgid "Session Manager Proxy"
-#~ msgstr "Сървър посредник за мениджъра на сесии"
-
-#~ msgid "Splash Screen Image"
-#~ msgstr "Изображението за прозореца при зареждане"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Записва текущата сесия"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Записва текущото състояние на работно пространство"
