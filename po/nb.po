@@ -1,14 +1,14 @@
 # Norwegian translation of gnome-session (bokmål dialect).
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2004.
+# Kjartan Maraas <kmaraas@gnome.org>, 1998-2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.5.4\n"
+"Project-Id-Version: gnome-session 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-17 15:31+0100\n"
-"PO-Revision-Date: 2006-01-17 15:33+0100\n"
-"Last-Translator: Øivind Hoel <oivind.hoel@gmail.com>\n"
+"POT-Creation-Date: 2006-01-22 21:24+0100\n"
+"PO-Revision-Date: 2006-01-22 21:25+0100\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,16 +19,29 @@ msgid "Allow TCP connections"
 msgstr "Tillat TCP-forbindelser"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
-msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
-msgstr "Av sikkerhetsårsaker lytter ikke gnome-session etter forbindelser på TCP-porter på plattformer som har _IceTcpTransNoListen(). Dette alternativet vil tillate autoriserte tilkoblinge fra eksterne verter. gnome-session må startes på nytt før dette trer i kraft."
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"Av sikkerhetsårsaker lytter ikke gnome-session etter forbindelser på TCP-"
+"porter på plattformer som har _IceTcpTransNoListen(). Dette alternativet vil "
+"tillate autoriserte tilkoblinge fra eksterne verter. gnome-session må "
+"startes på nytt før dette trer i kraft."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Aktiveres hvis brukeren ønsker en spørsmålsdialog før sesjonen avsluttes."
+msgstr ""
+"Aktiveres hvis brukeren ønsker en spørsmålsdialog før sesjonen avsluttes."
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
-msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "Hvis dette aktiveres vil gnome-session lagre sesjonen automatisk. Hvis ikke vil avloggingsdialogen ha et valg for å lagre sesjonen."
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Hvis dette aktiveres vil gnome-session lagre sesjonen automatisk. Hvis ikke "
+"vil avloggingsdialogen ha et valg for å lagre sesjonen."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
@@ -36,7 +49,8 @@ msgstr "Spør ved avlogging"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging"
+msgstr ""
+"Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -55,12 +69,24 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
-msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
-msgstr "Dette er en relativ sti basert på katalogen $datadir/pixmaps. Underkataloger og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste innlogging."
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Dette er en relativ sti basert på katalogen $datadir/pixmaps. Underkataloger "
+"og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
+"innlogging."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
-msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
-msgstr "Dette er alternativet som er valgt i «Logg ut»-dialogen. Gyldige verdier er «logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å starte systemet på nytt."
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Dette er alternativet som er valgt i «Logg ut»-dialogen. Gyldige verdier er "
+"«logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å "
+"starte systemet på nytt."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -178,11 +204,14 @@ msgstr "Startes ved hvert login."
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work correctly."
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
 msgstr ""
-"Det oppsto en feil under oppstart av programmet som styrer innstillinger for GNOME.\n"
+"Det oppsto en feil under oppstart av programmet som styrer innstillinger for "
+"GNOME.\n"
 "\n"
-"Enkelte ting, som tema, lyder eller innstillinger for bakgrunn vil kanskje ikke fungere riktig."
+"Enkelte ting, som tema, lyder eller innstillinger for bakgrunn vil kanskje "
+"ikke fungere riktig."
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -204,7 +233,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME vil likevel prøve å starte innstillingsdaemonen neste gang du logger inn."
+"GNOME vil likevel prøve å starte innstillingsdaemonen neste gang du logger "
+"inn."
 
 #: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -248,7 +278,8 @@ msgstr "Kun skrivebeskyttede sesjoner fra default.session filen"
 
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
+msgstr ""
+"Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
 
 #: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -320,8 +351,7 @@ msgstr "Drep sesjonen"
 msgid "Use dialog boxes"
 msgstr "Bruk dialogbokser"
 
-#: ../gnome-session/save-session.c:146
-#: ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonsbehandler"
 
@@ -342,15 +372,13 @@ msgid "Edit session name"
 msgstr "Rediger sesjonens navn"
 
 #: ../gnome-session/session-properties-capplet.c:117
-#, fuzzy
 msgid "Enable"
-msgstr "På"
+msgstr "Aktiver"
 
 #: ../gnome-session/session-properties-capplet.c:123
 #: ../gnome-session/session-properties-capplet.c:464
-#, fuzzy
 msgid "Disable"
-msgstr "Av"
+msgstr "Deaktiver"
 
 #: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
@@ -476,7 +504,3 @@ msgstr "Legg til oppstartsprogram"
 #: ../gnome-session/startup-programs.c:429
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
-
-#~ msgid "Session Manager Proxy"
-#~ msgstr "Proxy for sesjonshåndterer"
-
