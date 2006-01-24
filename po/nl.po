@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-04 12:54+0000\n"
-"PO-Revision-Date: 2005-02-16 22:40+0100\n"
+"POT-Creation-Date: 2006-01-23 23:23+0100\n"
+"PO-Revision-Date: 2006-01-24 05:35+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -97,12 +97,11 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Dit is de optie die geselecteerd zal zijn bij het afmelden. Geldige waarden zijn "
-"\"logout\" om af te melden, \"shutdown\" om de computer uit te zetten en "
-"\"restart\" om de computer te herstarten."
+"Dit is de optie die geselecteerd zal zijn bij het afmelden. Geldige waarden "
+"zijn \"logout\" om af te melden, \"shutdown\" om de computer uit te zetten "
+"en \"restart\" om de computer te herstarten."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "V_olgorde: "
 
@@ -119,7 +118,6 @@ msgid "_Style:"
 msgstr "_Stijl:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Volgorde"
 
@@ -282,27 +280,27 @@ msgstr "_Uitschakelen"
 msgid "_Restart the computer"
 msgstr "_De computer herstarten"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Geef de naam van de sessie die geladen moet worden"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lees opgeslagen sessies alleen uit het default.session bestand"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Maximale wachttijd (ms) voor registratie cliënten (0=eeuwig)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Maximale wachttijd (ms) voor reactie van cliënten (0=eeuwig)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Maximale wachttijd (ms) voor afsterven van cliënten (0=eeuwig)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -315,11 +313,11 @@ msgstr ""
 "probleem zou verholpen kunnen worden door %s toe te \n"
 "voegen aan het /etc/hosts bestand."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Toch aanmelden"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Opnieuw proberen"
 
@@ -384,11 +382,20 @@ msgstr "Nieuwe sessie toevoegen"
 msgid "Edit session name"
 msgstr "Sessienaam bewerken"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Aanzetten"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Uitzetten"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "Be_werken"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -396,48 +403,48 @@ msgstr ""
 "Sommige wijzigingen zijn niet opgeslagen. \n"
 "Wilt nu toch afsluiten?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sessies"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "_Introvenster tonen bij aanmelden"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Bevestigen bij afmelden"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "_Veranderingen aan sessie automatisch opslaan"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sessies:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Sessienaam"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Sessie-eigenschappen"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Huidige sessie"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Extra te starten _programma's:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Opdracht"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Programma's starten"
 
@@ -482,36 +489,35 @@ msgid "The Panel"
 msgstr "Het paneel"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Sessiebeheer-proxy"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Werkomgeving-instellingen"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:319
 msgid "_Startup Command:"
 msgstr "_Te starten programma"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:325
 msgid "Startup Command"
 msgstr "Te starten programma"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:354
 msgid "The startup command cannot be empty"
 msgstr "De opstartopdracht mag niet leeg zijn"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:391
 msgid "Add Startup Program"
 msgstr "Te starten programma toevoegen"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:429
 msgid "Edit Startup Program"
 msgstr "Te starten programma bewerken"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Sessiebeheer-proxy"
 
 #~ msgid "Splash Screen Image"
 #~ msgstr "Afbeelding voor het introvenster"
