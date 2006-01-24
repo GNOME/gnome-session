@@ -102,7 +102,7 @@ selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
   delete_button = g_object_get_data (G_OBJECT (view), "delete");
   enable_button = g_object_get_data (G_OBJECT (view), "enable");
 
-  if (!edit_button || !delete_button)
+  if (!edit_button || !delete_button || !enable_button)
 	return;
 
   sel = gtk_tree_selection_get_selected (selection, NULL, NULL);

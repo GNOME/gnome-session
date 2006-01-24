@@ -1,3 +1,30 @@
+2006-01-24  Ray Strode  <rstrode@redhat.com>
+
+	Fix crash on startup when /usr/share/autostart contains
+	desktop files without Exec lines.  Adjust autostart code
+	to conform to the spec.
+
+	* gnome-session/save.c
+	(read_desktop_entries_in_dir): check for Exec= line in
+	.desktop files.  Handle Hidden=, OnlyShowIn=,
+	NotShowIn=, and TryExec=.
+	(hash_table_remove_cb): use $XDG_CONFIG_DIRS/autostart
+	instead of /usr/share/autostart
+	(compare_restart_command): Only compare argv[0]'s of
+	restart commands when pruning duplicates (this might
+	catch false duplicates, but the other way wouldn't catch
+	a lot of duplicates)
+	(read_session): s/" "/' '/ to g_string_append_c, use
+	$XDG_CONFIG_DIRS
+
+	* gnome-session/session-properties-capplet.c
+	(selection_changed_cb): fix crash on startup
+	(search_desktop_entries_in_dir): same fixes as above in
+	read_desktop_entries_in_dir.
+	(startup_list_read),
+	(startup_list_write): use $XDG_CONFIG_DIRS. Plug
+	mem leak.
+
 ==================== 2.13.5 ====================
 
 2006-01-09  Muktha  <muktha.narayan@wipro.com>

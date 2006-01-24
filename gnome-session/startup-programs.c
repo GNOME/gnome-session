@@ -70,25 +70,115 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
     {
       char *desktop_file, *hash_key;
       GnomeDesktopItem *ditem;
-      Client *hash_client;
+      ManualClient *hash_client;
 
       if (!g_str_has_suffix (file, ".desktop"))
 	continue;
 
       desktop_file = g_build_filename (path, file, NULL);
       ditem = gnome_desktop_item_new_from_file (desktop_file, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
-      if (ditem)
+      if (ditem != NULL)
         {
+          const gchar *exec_string;
+          gchar **argv;
+          gint argc;
+
+          exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
+          
+          /* First filter out entries without Exec keys and hidden entries */
+	  if ((exec_string == NULL) || 
+              !g_shell_parse_argv (exec_string, &argc, &argv, NULL) ||
+              (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_HIDDEN) &&
+               gnome_desktop_item_get_boolean (ditem, GNOME_DESKTOP_ITEM_HIDDEN)))
+            {
+              gnome_desktop_item_unref (ditem);
+              g_free (desktop_file);
+              continue;
+            }
+
+          /* The filter out entries that are not for GNOME */
+          if (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_ONLY_SHOW_IN))
+              {
+                int i;
+                char **only_show_in_list;
+
+                only_show_in_list = 
+                    gnome_desktop_item_get_strings (ditem,
+                                                    GNOME_DESKTOP_ITEM_ONLY_SHOW_IN);
+
+                for (i = 0; only_show_in_list[i] != NULL; i++)
+                  {
+                    if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
+                      break;
+                  }
+
+                if (only_show_in_list[i] == NULL)
+                  {
+                    gnome_desktop_item_unref (ditem);
+                    g_free (desktop_file);
+                    g_strfreev (argv);
+                    g_strfreev (only_show_in_list);
+                    continue;
+                  }
+                g_strfreev (only_show_in_list);
+              }
+          if (gnome_desktop_item_attr_exists (ditem, "NotShowIn"))
+              {
+                int i;
+                char **not_show_in_list;
+
+                not_show_in_list = 
+                    gnome_desktop_item_get_strings (ditem, "NotShowIn");
+
+                for (i = 0; not_show_in_list[i] != NULL; i++)
+                  {
+                    if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
+                      break;
+                  }
+
+                if (not_show_in_list[i] != NULL)
+                  {
+                    gnome_desktop_item_unref (ditem);
+                    g_free (desktop_file);
+                    g_strfreev (argv);
+                    g_strfreev (not_show_in_list);
+                    continue;
+                  }
+                g_strfreev (not_show_in_list);
+              }
+
+          /* finally filter out entries that require a program that's not
+           * installed 
+           */
+          if (gnome_desktop_item_attr_exists (ditem,
+                                              GNOME_DESKTOP_ITEM_TRY_EXEC))
+            {
+              const char *program;
+              char *program_path;
+              program = gnome_desktop_item_get_string (ditem,
+                                                       GNOME_DESKTOP_ITEM_TRY_EXEC);
+              program_path = g_find_program_in_path (program);
+              if (!program_path)
+                {
+                  gnome_desktop_item_unref (ditem);
+                  g_free (desktop_file);
+                  g_strfreev (argv);
+                  continue;
+                }
+              g_free (program_path);
+            }
+
 	  current = g_new0 (ManualClient, 1);
 	  current->desktop_file = desktop_file;
+          current->argv = argv;
+          current->argc = argc;
 	  current->to_remove = FALSE;
-	  g_shell_parse_argv (gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC), &current->argc, &current->argv, NULL);
 	  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
 	    current->enabled = gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled");
 	  else
 	    current->enabled = TRUE;
 
-	  if (g_hash_table_lookup_extended (clients, file, &hash_key, &hash_client))
+	  if (g_hash_table_lookup_extended (clients, file, (gpointer *) &hash_key, (gpointer *) &hash_client))
 	    {
   	      g_hash_table_remove (clients, file);
 	      g_free (hash_key);
@@ -103,7 +193,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
     }
 
   g_dir_close (dir);
-
 }
 
 static gboolean
@@ -122,18 +211,24 @@ GSList *
 startup_list_read (gchar *name)
 {
   GHashTable *clients;
+  const char * const * system_config_dirs;
   char *path;
+  int i;
   GSList *result = NULL;
 
   /* create temporary hash table */
   clients = g_hash_table_new (g_str_hash, g_str_equal);
 
-  path = g_build_filename (PREFIX, "share", "autostart", NULL);
-  search_desktop_entries_in_dir (clients, path);
-  g_free (path);
-
   /* read directories */
-  path = g_build_filename (g_get_home_dir (), ".config", "autostart", NULL);
+  system_config_dirs = g_get_system_config_dirs ();
+  for (i = 0; system_config_dirs[i] != NULL; i++)
+    {
+      path = g_build_filename (system_config_dirs[i], "autostart", NULL);
+      search_desktop_entries_in_dir (clients, path);
+      g_free (path);
+    }
+
+  path = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
   search_desktop_entries_in_dir (clients, path);
   g_free (path);
 
@@ -152,7 +247,7 @@ startup_list_write (GSList *sl, const gchar *name)
   char *dir;
   
   /* create autostart directory if not existing */
-  dir = g_build_filename (g_get_home_dir (), ".config/autostart", NULL);
+  dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
   g_mkdir_with_parents (dir, S_IRWXU);
 
   /* write list of autostart clients */
@@ -190,6 +285,7 @@ startup_list_write (GSList *sl, const gchar *name)
 	  tmp_list = tmp_list->next;
 	}
     }
+  g_free (dir);
 }
 
 /* Duplicate a client list */

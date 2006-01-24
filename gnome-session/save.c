@@ -371,29 +371,105 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
   while ((name = g_dir_read_name (dir)))
     {
       Client *client = NULL;
+      Client *hash_client;
       SmProp *prop;
-      gchar *full_path;
+      gchar *desktop_file;
       GnomeDesktopItem *ditem;
 
       if (!g_str_has_suffix (name, ".desktop"))
         continue;
 
-      full_path = g_build_filename (path, name, NULL);
-      ditem = gnome_desktop_item_new_from_file (full_path, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
+      desktop_file = g_build_filename (path, name, NULL);
+      ditem = gnome_desktop_item_new_from_file (desktop_file, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
       if (ditem != NULL)
         {
-	  const gchar *exec_cmd;
-	  gchar **vector, *hash_key;
-	  Client *hash_client;
+	  const gchar *exec_string;
+	  gchar **argv, *hash_key;
 	  gint argc, i;
 
-	  exec_cmd = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
-	  if (!g_shell_parse_argv (exec_cmd, &argc, &vector, NULL))
-	    {
-	      gnome_desktop_item_unref (ditem);
-	      g_free (full_path);
-	      continue;
-	    }
+	  exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
+          /* First filter out entries without Exec keys and hidden entries */
+	  if ((exec_string == NULL) || 
+              !g_shell_parse_argv (exec_string, &argc, &argv, NULL) ||
+              (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_HIDDEN) &&
+               gnome_desktop_item_get_boolean (ditem, GNOME_DESKTOP_ITEM_HIDDEN)))
+            {
+              gnome_desktop_item_unref (ditem);
+              g_free (desktop_file);
+              continue;
+            }
+
+          /* The filter out entries that are not for GNOME */
+          if (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_ONLY_SHOW_IN))
+              {
+                int i;
+                char **only_show_in_list;
+
+                only_show_in_list = 
+                    gnome_desktop_item_get_strings (ditem,
+                                                    GNOME_DESKTOP_ITEM_ONLY_SHOW_IN);
+
+                for (i = 0; only_show_in_list[i] != NULL; i++)
+                  {
+                    if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
+                      break;
+                  }
+
+                if (only_show_in_list[i] == NULL)
+                  {
+                    gnome_desktop_item_unref (ditem);
+                    g_free (desktop_file);
+                    g_strfreev (argv);
+                    g_strfreev (only_show_in_list);
+                    continue;
+                  }
+                g_strfreev (only_show_in_list);
+              }
+          if (gnome_desktop_item_attr_exists (ditem, "NotShowIn"))
+              {
+                int i;
+                char **not_show_in_list;
+
+                not_show_in_list = 
+                    gnome_desktop_item_get_strings (ditem, "NotShowIn");
+
+                for (i = 0; not_show_in_list[i] != NULL; i++)
+                  {
+                    if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
+                      break;
+                  }
+
+                if (not_show_in_list[i] != NULL)
+                  {
+                    gnome_desktop_item_unref (ditem);
+                    g_free (desktop_file);
+                    g_strfreev (argv);
+                    g_strfreev (not_show_in_list);
+                    continue;
+                  }
+                g_strfreev (not_show_in_list);
+              }
+
+          /* finally filter out entries that require a program that's not
+           * installed 
+           */
+          if (gnome_desktop_item_attr_exists (ditem,
+                                              GNOME_DESKTOP_ITEM_TRY_EXEC))
+            {
+              const char *program;
+              char *program_path;
+              program = gnome_desktop_item_get_string (ditem,
+                                                       GNOME_DESKTOP_ITEM_TRY_EXEC);
+              program_path = g_find_program_in_path (program);
+              if (!program_path)
+                {
+                  gnome_desktop_item_unref (ditem);
+                  g_free (desktop_file);
+                  g_strfreev (argv);
+                  continue;
+                }
+              g_free (program_path);
+            }
 
 	  client = g_new0 (Client, 1);
 	  client->magic = CLIENT_MAGIC;
@@ -415,13 +491,13 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 
 	  for (i = 0; i < argc; i++)
 	    {
-	      prop->vals[i].length = vector[i] ? strlen (vector[i]) : 0;
-	      prop->vals[i].value = vector[i] ? g_strdup (vector[i]) : NULL;
+	      prop->vals[i].length = argv[i] ? strlen (argv[i]) : 0;
+	      prop->vals[i].value = argv[i] ? g_strdup (argv[i]) : NULL;
 	    }
 
 	  APPEND (client->properties, prop);
 
-	  if (g_hash_table_lookup_extended (clients, name, &hash_key, &hash_client))
+	  if (g_hash_table_lookup_extended (clients, name, (gpointer *) &hash_key, (gpointer *) &hash_client))
 	    {
 	      g_hash_table_remove (clients, name);
 	      g_free (hash_key);
@@ -439,11 +515,11 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 	  else
 	    g_hash_table_insert (clients, g_strdup (name), client);
 
-	  g_strfreev (vector);
+	  g_strfreev (argv);
 	  gnome_desktop_item_unref (ditem);
 	}
 
-      g_free (full_path);
+      g_free (desktop_file);
     }
 
   g_dir_close (dir);
@@ -464,34 +540,30 @@ hash_table_remove_cb (gpointer key, gpointer value, gpointer user_data)
 static GSList *
 read_autostart_dirs (void)
 {
-  gchar **data_dir_vector;
+  const char * const * system_config_dirs;
+  char *path;
   gint i;
   GHashTable *clients;
   GSList *list = NULL;
 
-  /* create the array of directories to look for .desktop files */
-  /* FIXME: use XDG_DATA_DIRS? */
-  data_dir_vector = g_malloc0 (sizeof (gchar *) * 3);
-  data_dir_vector[0] = g_build_filename (PREFIX, "share", NULL);
-  data_dir_vector[1] = g_build_filename (g_get_home_dir (), ".config", NULL);
-  data_dir_vector[2] = NULL;
-
   clients = g_hash_table_new (g_str_hash, g_str_equal);
 
-  for (i = 0; data_dir_vector[i] != NULL; i++)
+  /* read directories */
+  system_config_dirs = g_get_system_config_dirs ();
+  for (i = 0; system_config_dirs[i] != NULL; i++)
     {
-      gchar *dir;
-
-      dir = g_build_filename (data_dir_vector[i], "autostart", NULL);
-      read_desktop_entries_in_dir (clients, dir);
-      g_free (dir);
+      path = g_build_filename (system_config_dirs[i], "autostart", NULL);
+      read_desktop_entries_in_dir (clients, path);
+      g_free (path);
     }
+
+  path = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+  read_desktop_entries_in_dir (clients, path);
+  g_free (path);
 
   /* convert the hash table into a GSList */
   g_hash_table_foreach_remove (clients, (GHRFunc) hash_table_remove_cb, &list);
   g_hash_table_destroy (clients);
-
-  g_strfreev (data_dir_vector);
 
   return list;
 }
@@ -556,7 +628,6 @@ compare_restart_command (GSList *props1, GSList *props2)
 {
   SmProp *p1, *p2;
   GSList *node1, *node2;
-  gboolean found_both_restart_commands = FALSE;
 
   for (node1 = props1; node1 != NULL; node1 = node1->next)
     {
@@ -565,29 +636,20 @@ compare_restart_command (GSList *props1, GSList *props2)
         {
 	  for (node2 = props2; node2 != NULL; node2 = node2->next)
 	    {
-	      gint i;
-
 	      p2 = node2->data;
 	      if (!strcmp (p2->name, SmRestartCommand))
-	        {
-		  if (p1->num_vals != p2->num_vals)
-		    return FALSE;
-
-		  for (i = 0; i < p1->num_vals; i++)
-		    {
-		      if (strcmp (p1->vals[i].value ? p1->vals[i].value : "",
-				  p2->vals[i].value ? p2->vals[i].value : ""))
-			return FALSE;
-		    }
-
-		  found_both_restart_commands = TRUE;
-		}
+                {
+                  if ((p1->vals[0].value == NULL) || 
+                      (p2->vals[0].value == NULL))
+                    return FALSE;
+                  return strcmp (p1->vals[0].value, p2->vals[0].value) == 0;
+                }
 	    }
 	  break;
         }
     }
 
-  return found_both_restart_commands;
+  return FALSE;
 }
 
 static GSList *
@@ -668,7 +730,7 @@ read_session (const char *name)
 	GString *args = g_string_new ((const char *) prop->vals[0].value);
 
 	for (i = 1; i < prop->num_vals; i++) {
-	  args = g_string_append_c (args, " ");
+	  args = g_string_append_c (args, ' ');
 	  args = g_string_append (args, (const char *) prop->vals[i].value);
 	}
 
@@ -676,7 +738,7 @@ read_session (const char *name)
 	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC, args->str);
 
 	basename = g_path_get_basename (prop->vals[0].value);
-	orig_filename = g_strdup_printf ("%s/.config/autostart/%s.desktop", g_get_home_dir (), basename);
+	orig_filename = g_strdup_printf ("%s/autostart/%s.desktop", g_get_user_config_dir (), basename);
 	filename = g_strdup (orig_filename);
 	i = 2;
 	while (g_file_exists (filename)) {
