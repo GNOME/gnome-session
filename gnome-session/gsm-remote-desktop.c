@@ -111,10 +111,12 @@ remote_desktop_cnx_broken (ORBitConnection   *cnx,
 }
 
 static void
-remote_desktop_obj_activated (Bonobo_Unknown     object,
-			      CORBA_Environment *ev,
-			      RemoteDesktopData *data)
+remote_desktop_obj_activated (CORBA_Object   object, 
+			      const char    *error_reason, 
+			      gpointer       user_data)
 {
+  RemoteDesktopData *data = user_data;
+
   g_return_if_fail (data->obj == CORBA_OBJECT_NIL);
   g_return_if_fail (data->activating == TRUE);
 
@@ -123,11 +125,10 @@ remote_desktop_obj_activated (Bonobo_Unknown     object,
 
   if (object == CORBA_OBJECT_NIL)
     {
-      if (BONOBO_EX (ev))
+      if (error_reason)
 	{
 	  gsm_warning (G_STRLOC ": activation of %s failed: %s\n",
-		       REMOTE_DESKTOP_IID,
-		       bonobo_exception_general_error_get (ev));
+		       REMOTE_DESKTOP_IID, error_reason);
 	}
       else
 	{
@@ -213,11 +214,9 @@ remote_desktop_restart (RemoteDesktopData *data)
   
   setup_per_display_activation ();
 
-  bonobo_get_object_async (REMOTE_DESKTOP_IID,
-			   "IDL:Bonobo/Unknown:1.0",
-			   &ev,
-			   (BonoboMonikerAsyncFn) remote_desktop_obj_activated,
-			   data);
+  bonobo_activation_activate_from_id_async
+      ( REMOTE_DESKTOP_IID, 0,
+	&remote_desktop_obj_activated, data, &ev );
 
   if (BONOBO_EX (&ev))
     {

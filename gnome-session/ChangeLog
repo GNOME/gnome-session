@@ -1,3 +1,10 @@
+2006-02-03  Michael Meeks <mmeeks@novell.com>
+
+	* gsm-remote-desktop.c (remote_desktop_restart): use
+	bonobo_activation_activate_from_id_async instead of not-really-async
+	bonobo_get_object_async.
+	(remote_desktop_obj_activated): changed to correct signature.
+
 2006-01-05  Rodrigo Moya <rodrigo@novell.com>
 
 	* gsm-gsd.c: more login speed improvements.
