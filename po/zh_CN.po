@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-30 15:26+0000\n"
-"PO-Revision-Date: 2005-07-31 00:20+0800\n"
+"POT-Creation-Date: 2006-02-09 23:59+0100\n"
+"PO-Revision-Date: 2006-02-11 03:08+0800\n"
 "Last-Translator: Wang Jian <lark@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -84,12 +84,11 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"这是注销对话框中将被选中的选项。可供选择的值有：“logout”代表注销，“shutdown”"
-"代表关闭系统，“restart”代表重新启动。"
+"这是注销对话框中将被选中的选项。可供选择的值有：“logout”代表注"
+"销，“shutdown”代表关闭系统，“restart”代表重新启动。"
 
 # SUN CHANGED MESSAGE
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "顺序(_O)："
 
@@ -110,7 +109,6 @@ msgstr "样式(_S)："
 
 # applets/multiload/main.c:31
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "顺序"
 
@@ -283,31 +281,31 @@ msgstr "关闭系统(_U)"
 msgid "_Restart the computer"
 msgstr "重新启动(_R)"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "指定要载入的会话名"
 
 # gsm/main.c:57
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "仅从默认的会话文件中读取保存的会话"
 
 # gsm/main.c:58
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客户注册的时间(毫秒，0=永远)"
 
 # gsm/main.c:59
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客户响应的时间(毫秒，0=永远)"
 
 # gsm/main.c:60
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客户消失的时间(毫秒，0=永远)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -318,11 +316,11 @@ msgstr ""
 "无法查到 %s 的互联网地址，这将妨碍 GNOME 正常操作。\n"
 "把 %s 加到 /etc/hosts 文件中也许能解决这个问题。"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "继续登录"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "再试一次"
 
@@ -396,13 +394,22 @@ msgstr "添加一个新的会话"
 msgid "Edit session name"
 msgstr "编辑会话名称"
 
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "启用"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "禁用"
+
 # gnome-terminal/gnome-terminal.c:1585
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "编辑(_E)"
 
 # SUN NEW TRANSLATION
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -411,54 +418,54 @@ msgstr ""
 "是否依然要退出？"
 
 # gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "会话"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "登录时显示启动画面(_L)"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "注销时询问(_K)"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "自动将更改保存到会话(_G)"
 
 # gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "会话(_S)："
 
 # gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "会话名称"
 
 # panel/menu.c:3509
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "会话选项"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "当前会话"
 
 # applets/gkb/gkb.c:262
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "额外的启动程序(_P)："
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "命令"
 
 # applets/gkb/gkb.c:262
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "启动程序"
 
@@ -519,27 +526,25 @@ msgid "Desktop Settings"
 msgstr "桌面设置"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:415
 msgid "_Startup Command:"
 msgstr "启动命令(_S)："
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:421
 msgid "Startup Command"
 msgstr "启动命令"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
 # applets/gkb/gkb.c:262
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:487
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:525
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
 
-#~ msgid "Session Manager Proxy"
-#~ msgstr "会话管理器代理"
