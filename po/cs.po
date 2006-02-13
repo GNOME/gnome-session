@@ -1,18 +1,18 @@
 # translation of gnome-session to Czech
 # Copyright (C) 1999,2003 Free Software Foundation, Inc.
-# Copyright (C) 2004, 2005 Miloslav Trmac <mitr@volny.cz>
+# Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
 # GIS <gis@academy.cas.cz>, 1999.
 # David Šauer <davids@penguin.cz>, 1999.
 # George Lebl <jirka@5z.com>, 2000-2001.
 # Stanislav Brabec <utx@penguin.cz>, 2000-2001.
 # Michal Bukovjan <bukm@centrum.cz>, 2002,2003
-# Miloslav Trmac <mitr@volny.cz>, 2004, 2005.
+# Miloslav Trmac <mitr@volny.cz>, 2004 - 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-30 13:46+0000\n"
-"PO-Revision-Date: 2005-04-30 16:27+0200\n"
+"POT-Creation-Date: 2006-02-09 23:59+0100\n"
+"PO-Revision-Date: 2006-02-13 04:58+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -88,10 +88,12 @@ msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
-msgstr "Toto je možnost, která bude zvolena v dialogu odhlašování, platné hodnoty jsou \"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart\" pro restartování systému."
+msgstr ""
+"Toto je možnost, která bude zvolena v dialogu odhlašování, platné hodnoty "
+"jsou \"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart"
+"\" pro restartování systému."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Pořadí:"
 
@@ -108,7 +110,6 @@ msgid "_Style:"
 msgstr "_Styl: "
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Pořadí"
 
@@ -271,27 +272,27 @@ msgstr "_Vypnout počítač"
 msgid "_Restart the computer"
 msgstr "_Restartovat počítač"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Zadejte název sezení k načtení"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Pouze načíst uložená sezení ze souboru default.session"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Doba čekání na registraci klientů v ms (0=navždy)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Doba čekání na odpověď klientů v ms (0=navždy)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Doba čekání na ukončení klientů (0=navždy)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -304,11 +305,11 @@ msgstr ""
 "se tomu chcete vyhnout, přidejte %s\n"
 "do souboru /etc/hosts."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Přesto se přihlásit"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Zkusit znovu"
 
@@ -373,11 +374,20 @@ msgstr "Přidat nové sezení"
 msgid "Edit session name"
 msgstr "Upravit název sezení"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Povolit"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Zakázat"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -385,48 +395,48 @@ msgstr ""
 "Některé změny nejsou uloženy.\n"
 "Opravdu chcete skončit?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sezení"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Zobrazovat úvodní obrazovku při přih_lášení"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Ptát se při odhlášení"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Automaticky _ukládat změny sezení"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sezení:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Název sezení"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Vlastnosti sezení"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Aktuální sezení"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "_Další programy po spuštění:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Příkaz"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Programy při přihlášení"
 
@@ -471,36 +481,35 @@ msgid "The Panel"
 msgstr "Panel"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Proxy správce sezení"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Nastavení prostředí"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:415
 msgid "_Startup Command:"
 msgstr "Pří_kaz při přihlášení:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:421
 msgid "Startup Command"
 msgstr "Příkaz při přihlášení"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
 msgstr "Příkaz při přihlášení nesmí být prázdný"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:487
 msgid "Add Startup Program"
 msgstr "Přidat program při přihlášení"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:525
 msgid "Edit Startup Program"
 msgstr "Upravit program při přihlášení"
+
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Proxy správce sezení"
 
 #~ msgid "Splash Screen Image"
 #~ msgstr "Obrázek úvodní obrazovky"
