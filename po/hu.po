@@ -1,24 +1,25 @@
 # Hungarian translation of gnome-session.
-# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 # Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001, 2002.
 # Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 # Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005.
+# Mate ORY <orymate at gmail d0t com>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD.hu\n"
+"Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-14 06:36+0000\n"
-"PO-Revision-Date: 2005-08-14 12:03+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@gnome.hu>\n"
+"POT-Creation-Date: 2006-02-01 07:00+0100\n"
+"PO-Revision-Date: 2006-02-02 13:30+0100\n"
+"Last-Translator: Mate ORY <orymate at gmail d0t com>\n"
+"Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10\n"
+"X-Generator: KBabel 1.10.2\n"
 "Plural-Forms:  nplurals=1; plural=0;\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
@@ -93,11 +94,11 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Ez az opció lesz kiválasztva a kijelentkezési párbeszédablakban, az érvényes értékek: "
-"\"logout\" a kijelentkezéshez, \"shutdown\" a rendszer leállításához és \"restart\" a rendszer újraindításához."
+"Ez az opció lesz kiválasztva a kijelentkezési párbeszédablakban, az érvényes "
+"értékek: \"logout\" a kijelentkezéshez, \"shutdown\" a rendszer "
+"leállításához és \"restart\" a rendszer újraindításához."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "S_orrend:"
 
@@ -114,7 +115,6 @@ msgid "_Style:"
 msgstr "_Stílus:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Sorrend"
 
@@ -278,33 +278,33 @@ msgid "_Restart the computer"
 msgstr "Új_raindítás"
 
 # gnome-terminal/gnome-terminal.c:2562
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Betöltendő munkamenet nevének megadása"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "A mentett munkameneteket csak a default.session fájlból olvassa be"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Ezredmásodpercben megadott idő, amíg a kliensek regisztrálására vár "
 "(0=egyfolytában)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Ezredmásodpercben megadott idő, amíg a kliensek válaszára vár "
 "(0=egyfolytában)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Ezredmásodpercben megadott idő, amíg a kliensek leállására vár "
 "(0=egyfolytában)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -317,11 +317,11 @@ msgstr ""
 "Lehet, hogy %s az /etc/hosts fájlhoz adásával\n"
 "ki lehet javítani a hibát."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Bejelentkezés mindenképp"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Próbálja újra"
 
@@ -386,11 +386,20 @@ msgstr "Új munkamenet hozzáadása"
 msgid "Edit session name"
 msgstr "Munkamenet nevének szerkesztése"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Engedélyezés"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Tiltás"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -398,48 +407,48 @@ msgstr ""
 "Egyes változtatások nincsenek mentve.\n"
 "Biztosan ki szeretne jelentkezni?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Munkamenetek"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Indulókép megjelenítése _bejelentkezéskor"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "M_egerősítés kérése kilépés előtt"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Munkamenet _változásainak automatikus mentése"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Munkamenetek:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Munkamenet neve"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Munkamenet beállításai"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Jelenlegi munkamenet"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "További elindítandó _programok:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Parancs"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Automatikusan elinduló programok"
 
@@ -491,23 +500,23 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Munkaasztal beállításai"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:415
 msgid "_Startup Command:"
 msgstr "_Elindítandó parancs:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:421
 msgid "Startup Command"
 msgstr "Elindítandó parancs"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
 msgstr "Az elindítandó parancs nem lehet üres"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:487
 msgid "Add Startup Program"
 msgstr "Elindítandó program hozzáadása"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:525
 msgid "Edit Startup Program"
 msgstr "Elindítandó program szerkesztése"
 
