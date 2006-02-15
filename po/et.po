@@ -7,15 +7,15 @@
 # Ilmar Kerm <ikerm@hot.ee>, 2001, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002.
 # Priit Laes <amd@store20.com>, 2004-2005.
-# Ivar Smolin <okul@linux.ee>, 2005.
+# Ivar Smolin <okul@linux.ee>, 2005, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.12\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-05-05 13:50+0000\n"
-"PO-Revision-Date: 2005-05-05 23:09+0300\n"
-"Last-Translator: Priit Laes <amd@store20.com>\n"
+"PO-Revision-Date: 2006-02-14 20:23+0200\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,15 +28,24 @@ msgstr "TCP ühenduste lubamine"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
 msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
-msgstr "Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see seade tööle hakkaks."
+msgstr ""
+"Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis "
+"omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP "
+"portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi "
+"välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimisele, et see "
+"seade tööle hakkaks."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne seansi lõpetamist."
+msgstr ""
+"Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne seansi "
+"lõpetamist."
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
 msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "Kui määratud, siis gnome-session salvestab seansi automaatselt. Kui ei, siis väljalogimisdialoogil näidatakse seansi salvestamise valikut."
+msgstr ""
+"Kui määratud, siis gnome-session salvestab seansi automaatselt. Kui ei, siis "
+"väljalogimisdialoogil näidatakse seansi salvestamise valikut."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
@@ -64,11 +73,17 @@ msgstr "Näita sisselogimisel tiitelkuva"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
 msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
-msgstr "See on suhteline otsingutee väärtus, mis põhineb $datadir/pixmaps/ kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine rakendub järgmisel seansil peale sisselogimist."
+msgstr ""
+"See on suhteline otsingutee väärtus, mis põhineb $datadir/pixmaps/ "
+"kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
+"rakendub järgmisel seansil peale sisselogimist."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
 msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
-msgstr "See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on \"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart\" alglaadimise tegemiseks."
+msgstr ""
+"See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on "
+"\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
+"\" alglaadimise tegemiseks."
 
 #: ../gnome-session/gsm-client-editor.c:97
 #: ../gnome-session/startup-programs.c:314
@@ -85,7 +100,7 @@ msgstr "Mis juhtub rakendusega kui see lõpetab töö."
 
 #: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Stiil: "
+msgstr "_Laad: "
 
 #: ../gnome-session/gsm-client-list.c:150
 #: ../gnome-session/session-properties-capplet.c:412
@@ -192,7 +207,8 @@ msgid ""
 msgstr ""
 "GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
 "\n"
-"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult töötada."
+"Mõned asjad, näiteks teemad, helid, või tausta sätted ei pruugi korralikult "
+"töötada."
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -214,7 +230,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, sätetedeemonit taaskäivitada."
+"GNOME üritab sellegipoolest järgmisel korral, kui sa sisse logid, "
+"sätetedeemonit taaskäivitada."
 
 #: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
@@ -242,15 +259,15 @@ msgstr "_Väljalogimine"
 
 #: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
-msgstr "_Arvuti seiskamine"
+msgstr "A_rvuti seiskamine"
 
 #: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
-msgstr "Arvutile alglaadimise _tegemine"
+msgstr "Arvu_ti alglaadimine"
 
 #: ../gnome-session/main.c:81
 msgid "Specify a session name to load"
-msgstr "Määra laetava seansi nimi"
+msgstr "Määra laaditava seansi nimi"
 
 #: ../gnome-session/main.c:82
 msgid "Only read saved sessions from the default.session file"
@@ -258,7 +275,8 @@ msgstr "Loe salvestatud seansse ainult default.session failist"
 
 #: ../gnome-session/main.c:83
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
+msgstr ""
+"Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -370,19 +388,19 @@ msgstr "Seansid"
 
 #: ../gnome-session/session-properties-capplet.c:273
 msgid "Show splash screen on _login"
-msgstr "_Sisselogimisel näidatakse tiitelkuva"
+msgstr "Sisselogimisel näidatakse _tiitelkuva"
 
 #: ../gnome-session/session-properties-capplet.c:284
 msgid "As_k on logout"
-msgstr "_Küsi väljalogimisel kinnitust"
+msgstr "_Väljalogimisel küsitakse kinnitust"
 
 #: ../gnome-session/session-properties-capplet.c:295
 msgid "Automatically save chan_ges to session"
-msgstr "_Seansi muutused salvestatakse automaatselt"
+msgstr "Sea_nsi muutused salvestatakse automaatselt"
 
 #: ../gnome-session/session-properties-capplet.c:306
 msgid "_Sessions:"
-msgstr "_Seansid:"
+msgstr "S_eansid:"
 
 #: ../gnome-session/session-properties-capplet.c:324
 msgid "Session Name"
