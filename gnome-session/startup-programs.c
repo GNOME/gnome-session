@@ -260,7 +260,7 @@ startup_list_write (GSList *sl, const gchar *name)
 
       client = tmp_list->data;
 
-      if (client->to_remove)
+      if (client->to_remove && g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
         {
 	  g_remove (client->desktop_file);
 	}
