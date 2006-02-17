@@ -1,3 +1,8 @@
+2006-02-17  Rodrigo Moya <rodrigo@novell.com>
+
+	* startup-programs.c (startup_list_write): move to next node in list
+	when removing, avoiding an infinite loop!
+
 2006-02-16  Rodrigo Moya <rodrigo@novell.com>
 
 	* startup-programs.c (startup_list_write): only try to remove the

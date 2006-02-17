@@ -260,9 +260,10 @@ startup_list_write (GSList *sl, const gchar *name)
 
       client = tmp_list->data;
 
-      if (client->to_remove && g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
+      if (client->to_remove)
         {
-	  g_remove (client->desktop_file);
+	  if (g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
+	    g_remove (client->desktop_file);
 	}
       else
         {
@@ -281,9 +282,9 @@ startup_list_write (GSList *sl, const gchar *name)
 	    g_warning ("Could not save %s file\n", client->desktop_file);
 
 	  gnome_desktop_item_unref (ditem);
-
-	  tmp_list = tmp_list->next;
 	}
+
+      tmp_list = tmp_list->next;
     }
   g_free (dir);
 }
