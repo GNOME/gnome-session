@@ -432,6 +432,7 @@ main (int argc, char *argv[])
 
   /* Need DISPLAY set */
   gsm_keyring_daemon_start ();
+  gsm_gsd_start ();
   
   /* Read the rest of config options */  
 
@@ -483,8 +484,6 @@ main (int argc, char *argv[])
   the_session = read_session (session_name);
 
   gsm_sound_login ();
-
-  gsm_gsd_start ();
 
   gsm_remote_desktop_start ();
 
