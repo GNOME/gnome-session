@@ -1,21 +1,21 @@
 # translation of gnome-session.HEAD.po to basque
-# Copyright (C) 1999, 2004 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2004, 2006 Free Software Foundation, Inc.
 # Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga  Murgoitio <dooteo@euskalgnu.org>, 2005.
+# Iñaki Larrañaga  Murgoitio <dooteo@euskalgnu.org>, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD\n"
+"Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-07 20:22+0200\n"
-"PO-Revision-Date: 2004-03-08 12:21GMT\n"
-"Last-Translator: Iñaki Larrañaga  Murgoitio <dooteo@euskalgnu.org>\n"
-"Language-Team: basque <itzulpena@euskalgnu.org>\n"
+"POT-Creation-Date: 2006-02-22 16:40+0100\n"
+"PO-Revision-Date: 2006-02-22 16:40+0100\n"
+"Last-Translator: Iñaki Larrañaga <dooteo@euskalgnu.org>\n"
+"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3\n"
+"X-Generator: KBabel 1.10.2\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -78,8 +78,8 @@ msgid ""
 "effect the next session login."
 msgstr ""
 "Hau $datadir/pixmaps/ direktorioan oinarritutako bide-izen erlatiboa da. "
-"Azpidirektorioak eta irudien izenak balio baliagarriak dira. Balio hau aldatzeak "
-"hurrengo saio-hasiera eragingo du."
+"Azpidirektorioak eta irudien izenak balio baliagarriak dira. Balio hau "
+"aldatzeak hurrengo saio-hasiera eragingo du."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
 msgid ""
@@ -88,11 +88,11 @@ msgid ""
 "\"restart\" for restarting the system."
 msgstr ""
 "Hau saio-amaierako elkarrizketa-koadroan hautatu egingo den aukera da, "
-"honakoak dira balio baliagarriak: \"Amaitu saioa\" saioa amaitzeko, \"Itzali\" sistema "
-"itzaltzeko eta \"Berrabiarazi\" systema itzali eta berriro abiarazteko."
+"honakoak dira balio baliagarriak: \"Amaitu saioa\" saioa amaitzeko, \"Itzali"
+"\" sistema itzaltzeko eta \"Berrabiarazi\" systema itzali eta berriro "
+"abiarazteko."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Ordena:"
 
@@ -109,7 +109,6 @@ msgid "_Style:"
 msgstr "_Estiloa:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Ordena"
 
@@ -272,28 +271,27 @@ msgstr "I_tzali"
 msgid "_Restart the computer"
 msgstr "_Berrabiarazi ordenagailua"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Idatzi kargatu nahi duzun saioaren izena"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Gordetako saioak default.session fitxategitik bakarrik irakurri"
 
-#: ../gnome-session/main.c:83
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"Bezeroak erregistratu zain egoteko denbora milisegundotan (0=mugarik gabe)"
-
 #: ../gnome-session/main.c:84
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "Bezeroak erregistratu zain egoteko denbora milisegundotan (0=mugarik gabe)"
+
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Bezeroek erantzun zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Bezeroak hil zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -306,11 +304,11 @@ msgstr ""
 "Baliteke arazoa konpontzea %s gehituz\n"
 "/etc/hosts fitxategiari."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Sartu hala ere"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Saiatu berriro"
 
@@ -375,11 +373,20 @@ msgstr "Gehitu saio berria"
 msgid "Edit session name"
 msgstr "Editatu saioaren izena"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Gaitu"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Desgaitu"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -387,48 +394,48 @@ msgstr ""
 "Aldaketa batzuk ez dira gorde.\n"
 "Hala ere irten egin nahi duzu?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Saioak"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Erakutsi splash _pantaila saio-hasieran"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Galdetu saioa amaitzean"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Gorde saioko _aldaketak automatikoki"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Saioak:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Saio-izena"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Saio-aukerak"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Uneko saioa"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Abioko _programa osagarriak:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Komandoa"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Abioko programak"
 
@@ -480,23 +487,23 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Mahaigaineko ezarpenak"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:416
 msgid "_Startup Command:"
 msgstr "_Abioko komandoa:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:422
 msgid "Startup Command"
 msgstr "Abioko komandoa"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:451
 msgid "The startup command cannot be empty"
 msgstr "Abioko komandoa ezin da hutsik egon"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:488
 msgid "Add Startup Program"
 msgstr "Gehitu abioko programa"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:526
 msgid "Edit Startup Program"
 msgstr "Editatu abioko programa"
 
