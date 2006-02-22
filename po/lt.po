@@ -1,7 +1,7 @@
 # Lithuanian translation of gnome-session
-# Copyright (C) 2000-2005 Free Software Foundation, Inc.
+# Copyright (C) 2000-2006 Free Software Foundation, Inc.
 # Gediminas Paulauskas <menesis@delfi.lt>, 2000-2003.
-# Žygimantas Beručka <uid0@akl.lt>, 2003-2005.
+# Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # 
 # 
@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-21 02:30+0300\n"
-"PO-Revision-Date: 2005-08-21 02:33+0300\n"
-"Last-Translator: Žygimantas Beručka <uid0@akl.lt>\n"
+"POT-Creation-Date: 2006-02-23 00:44+0200\n"
+"PO-Revision-Date: 2006-02-23 00:45+0200\n"
+"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,7 +90,6 @@ msgstr ""
 "perkrauti sistemą."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Tvarka:"
 
@@ -107,7 +106,6 @@ msgid "_Style:"
 msgstr "_Stilius:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Tvarka"
 
@@ -269,27 +267,27 @@ msgstr "Išj_ungti"
 msgid "_Restart the computer"
 msgstr "Pe_rkrauti kompiuterį"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Nurodykite įkeliamos sesijos pavadinimą"
 
-#: ../gnome-session/main.c:82
-msgid "Only read saved sessions from the default.session file"
-msgstr "Tik perskaityti išsaugotas sesijas iš default.session bylos"
-
 #: ../gnome-session/main.c:83
+msgid "Only read saved sessions from the default.session file"
+msgstr "Tik perskaityti išsaugotas sesijas iš default.session rinkmenos"
+
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai prisiregistruos (0=amžinai)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=amžinai)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai „numirs“ (0=amžinai)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -299,14 +297,14 @@ msgid ""
 msgstr ""
 "Surasti adreso %s Internete nepavyko.\n"
 "GNOME greičiausiai neveiks taip, kaip turėtų.\n"
-"Problemą įmanoma išpręsti, byloje /etc/hosts\n"
+"Problemą įmanoma išpręsti, rinkmenoje /etc/hosts\n"
 "prirašius %s."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Prisijungti bet kokiu atveju"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Bandyti vėl"
 
@@ -371,11 +369,20 @@ msgstr "Pridėti naują sesiją"
 msgid "Edit session name"
 msgstr "Pervadinti sesiją"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Įjungti"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Išjungti"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -383,48 +390,48 @@ msgstr ""
 "Kai kurie pakeitimai nebuvo išsaugoti.\n"
 "Ar vis tiek išeiti?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sesijos"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Prisijungimo metu rodyti įkelties paveiks_liuką"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "Atsijungiant _paklausti"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Automatiškai išsaugoti sesijos pa_keitimus"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sesijos:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Sesijos pavadinimas"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Sesijos nustatymai"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Esama sesija"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Startuoti papildomas _programas:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Komanda"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Pradžioje paleidžiamos programos"
 
@@ -476,22 +483,22 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Darbastalio nustatymai"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:416
 msgid "_Startup Command:"
 msgstr "_Paleidimo komanda:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:422
 msgid "Startup Command"
 msgstr "Paleidžiama komanda"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:451
 msgid "The startup command cannot be empty"
 msgstr "Paleidimo komanda negali būti tuščia"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:488
 msgid "Add Startup Program"
 msgstr "Pridėti paleidžiamą programą"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:526
 msgid "Edit Startup Program"
 msgstr "Keisti paleidžiamą programą"
