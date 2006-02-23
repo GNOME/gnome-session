@@ -1,19 +1,19 @@
 # Përkthimi i mesazheve të gnome-session në shqip
-# Copyright (C) 2002, 2003, 2004, 2005 Free Software Foundation, Inc.
-# Deep_Dark <epidamus@netscape.net>, 2002.
-# Laurent Dhima <laurenti@alblinux.net>, 2003, 2004, 2005.
+# Copyright (C) 2006 Free Software Foundation, Inc.
 #
+# Deep_Dark <epidamus@netscape.net>, 2002.
+# Laurent Dhima <laurenti@alblinux.net>, 2003, 2004, 2005, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-12 14:29+0000\n"
-"PO-Revision-Date: 2005-06-12 19:36+0200\n"
+"POT-Creation-Date: 2006-02-23 08:12+0100\n"
+"PO-Revision-Date: 2006-02-23 11:59+0100\n"
 "Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -85,12 +85,11 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Kjo është mundësia që do të zgjidhet në dialogun e daljes, vlerat e vlefshme janë "
-"\"dil\" për të dalë jashtë, \"fik\" për të ndalur sistemin dhe \"rinis\" për të rinisur "
-"kompjuterin."
+"Kjo është mundësia që do të zgjidhet në dialogun e daljes, vlerat e vlefshme "
+"janë \"dil\" për të dalë jashtë, \"fik\" për të ndalur sistemin dhe \"rinis"
+"\" për të rinisur kompjuterin."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Renditja:"
 
@@ -107,7 +106,6 @@ msgid "_Style:"
 msgstr "_Stili:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Renditja"
 
@@ -269,32 +267,31 @@ msgstr "Sh_ut down (fike)"
 msgid "_Restart the computer"
 msgstr "_Rinis kompjuterin"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Specifiko emrin e seancës që duhet ngarkuar"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Vetëm lexo seancat e ruajtura nga file i seancës së hapur."
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Milisekonda të shpenzuara në pritje të një klienti për t'u rregjistruar "
 "(0=përgjithmonë)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Milisekonda të shpenzuara në pritje të klienteve për t'u përgjigjur "
 "(0=përgjithmonë)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"Milisekonda të shpenzuara në pritje që klienti të mbyllet (0=përgjithmonë)"
+msgstr "Milisekonda të shpenzuara në pritje që klienti të mbyllet (0=përgjithmonë)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -307,11 +304,11 @@ msgstr ""
 "Mund te jetë e mundur të korigjohet problemi duke shtuar\n"
 "%s tek file /etc/hosts."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Futu sidoqoftë"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Provo përsëri"
 
@@ -376,11 +373,20 @@ msgstr "Shto një seancë të re"
 msgid "Edit session name"
 msgstr "Ndrysho emrin e seancës"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Aktivo"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Ç'aktivo"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Ndrysho"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -388,48 +394,48 @@ msgstr ""
 "Disa ndryshime nuk janë ruajtur.\n"
 "Je dakort për të dalë?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Seanca"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Trego sfondin splash në _login"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Pyet në dalje"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Automatikisht ruaj ndryshimet e seancës"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Seancat:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Emri i seancës"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Opsionet e seancës"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Seanca aktuale"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "_Programe nisje shtesë:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Komanda"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Programet e Nisjes"
 
@@ -474,34 +480,30 @@ msgid "The Panel"
 msgstr "Paneli"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Proxy i organizuesit të seancës"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Rregullimet e Hapësirës së Punës"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:416
 msgid "_Startup Command:"
 msgstr "_Komanda e hapjes:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:422
 msgid "Startup Command"
 msgstr "Komanda e hapjes"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:451
 msgid "The startup command cannot be empty"
 msgstr "Komanda e hapjes nuk mund të jetë bosh"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:488
 msgid "Add Startup Program"
 msgstr "Shto një program hapës"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:526
 msgid "Edit Startup Program"
 msgstr "Ndrysho programin hapës"
 
