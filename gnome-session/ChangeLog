@@ -1,3 +1,12 @@
+2006-02-27  Rodrigo Moya <rodrigo@novell.com>
+
+	Fixes #330397
+
+	* save.c (read_autostart_dirs):
+	* startup-programs.c (startup_list_read): deviate a bit from the
+	spec and use, for now, $datadir/gnome/autostart, untill all
+	cross-desktop issues are solved.
+
 2006-02-22  Rodrigo Moya <rodrigo@novell.com>
 
 	* main.c (main): start gnome-settings-daemon as early as possible.

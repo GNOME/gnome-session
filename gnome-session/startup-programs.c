@@ -211,7 +211,7 @@ GSList *
 startup_list_read (gchar *name)
 {
   GHashTable *clients;
-  const char * const * system_config_dirs;
+  const char * const * system_data_dirs;
   char *path;
   int i;
   GSList *result = NULL;
@@ -220,10 +220,10 @@ startup_list_read (gchar *name)
   clients = g_hash_table_new (g_str_hash, g_str_equal);
 
   /* read directories */
-  system_config_dirs = g_get_system_config_dirs ();
-  for (i = 0; system_config_dirs[i] != NULL; i++)
+  system_data_dirs = g_get_system_data_dirs ();
+  for (i = 0; system_data_dirs[i] != NULL; i++)
     {
-      path = g_build_filename (system_config_dirs[i], "autostart", NULL);
+      path = g_build_filename (system_data_dirs[i], "gnome", "autostart", NULL);
       search_desktop_entries_in_dir (clients, path);
       g_free (path);
     }
