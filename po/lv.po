@@ -1,24 +1,28 @@
-# gnome-core in Latvian.
-# Copyright (C) 2000 Free Software Foundation, Inc.
+# Latvian translation for Gnome Session.
+# Copyright © 2006 Gnome i18n Project for Latvian.
 # P�eris Krij�is <peterisk@apollo.lv>, 2000.
 # Artis Trops <hornet@navigators.lv>, 2000.
+# Raivis Dejus <orvils@gmail.com>, 2006.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-core\n"
+"Project-Id-Version: gnome-session 2.13.92 HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-01-23 15:41+0200\n"
-"Last-Translator: Artis Trops <hornet@navigator.lv>\n"
-"Language-Team: Latvian <ll10nt@inbox.lv>\n"
+"POT-Creation-Date: 2006-02-23 08:12+0100\n"
+"PO-Revision-Date: 2006-02-24 20:44+0200\n"
+"Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
+"Language-Team: Latvian <locale@laka.lv>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"X-Generator: KBabel 1.10.2\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Atļaut TCP savienojumus"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -30,12 +34,11 @@ msgstr ""
 "atļaus savienojumus no (autorizētiem) attālinātiem hostdatoriem. gnome-"
 "session ir jāpārstartē, lai šīs izmaiņas stātos spēkā."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Ja aktivizēts, gnome-session pārvaicās lietotājam pirms sesijas beigšanas."
+msgstr "Ja aktivizēts, gnome-session pārvaicās lietotājam pirms sesijas beigšanas."
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -43,137 +46,153 @@ msgstr ""
 "Ja aktivizēts, gnome-session saglabās sesiju automātiski. Citā gadījumā, "
 "atteikšanās dialogā būs opcija saglabāt sesiju."
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Atteikšanās uzvedne"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Vēlamais Attēls, ko lietot brīža ekrānam, kad piesakās GNOME Dabravirsmā"
+#: ../gnome-session/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
+msgstr "Vēlamais Attēls, ko lietot pieslēgšanās ekrānam"
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Saglabāt Sesijas"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Iziešanas dialoglogā izvēlētā opcija"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Parādīt brīža ekrānu"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Parādīt brīža ekrānu, kad sāknējas sesija"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Brīža Ekrāna Attēls"
+#: ../gnome-session/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Šī ir relatīva ceļa vērtība, kas balstās uz $datadir/pixmaps/ direktoriju. "
+"Apakšdirektorijas un attēlu nosaukumi ir korektas vērtības. "
+"Šīs vērtības izmaiņas būs redzamas nākamo reizi pieslēdzoties."
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Šīs ir vērtības ko varēs izvēlēties darba beigšanas dialoglogā. Derīgas ir "
+"sekojošas vērtības: \"atslēgties\", lai atslēgtos, \"izslēgt\", lai apturētu "
+"sistēmu un \"pārlādēt\", lai pārlādētu sistēmu."
+
+#: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
 msgstr "_Secība:"
 
-#: gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "Secība kādā aplikācijas tiek startētas sesijā"
+msgstr "Secība kādā aplikācijas tiek startētas sesijā."
 
-#: gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "Kas notiek ar aplikāciju ja no tās iziet"
+msgstr "Kas notiek ar aplikāciju ja no tās iziet."
 
-#: gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_Stils: "
+msgstr "_Stils:"
 
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#: ../gnome-session/gsm-client-list.c:150
 msgid "Order"
 msgstr "Secība"
 
-#: gnome-session/gsm-client-list.c:155
+#: ../gnome-session/gsm-client-list.c:155
 msgid "Style"
 msgstr "Stils"
 
-#: gnome-session/gsm-client-list.c:160
+#: ../gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "Stāvoklis"
 
-#: gnome-session/gsm-client-list.c:165
+#: ../gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "Programma"
 
-#: gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "Neaktīvs"
 
-#: gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
 msgstr "Gaida sākumu vai ir jau beidzies."
 
-#: gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "Sākas"
 
-#: gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
 msgstr "Palaists, taču nav vēl ziņojis par stāvokli."
 
-#: gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "Strādā"
 
-#: gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
 msgstr "Normāls sesijas loceklis."
 
-#: gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "Glabāšana"
 
-#: gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "Glabā sesijas detaļas."
 
-#: gnome-session/gsm-client-row.c:43
+#: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "Statuss nav sagaidīts."
 
-#: gnome-session/gsm-client-row.c:50
+#: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "Normāls"
 
-#: gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Neietekmējas no iziešanām, bet var atmirt"
+msgstr "Neietekmējas no iziešanām, bet var atmirt."
 
-#: gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "Pārstartēt"
 
-#: gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "Nekad neļaut atmirt"
+msgstr "Nekad neļaut atmirt."
 
-#: gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "Izmest"
 
-#: gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
 msgstr "Aizvērta pie izejas un var atmirt."
 
-#: gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "Uzstādījumi"
 
-#: gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "Vienmēr palaista pie katras ieejas"
+msgstr "Vienmēr palaista pie katras ieejas."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -183,7 +202,7 @@ msgstr "Vienmēr palaista pie katras ieejas"
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -195,7 +214,7 @@ msgstr ""
 "Dažas lietas, kā tēmas, skaņas, vai fona uzstādijumi varētu nestrādāt "
 "pareizi."
 
-#: gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:53
 msgid ""
 "\n"
 "\n"
@@ -207,7 +226,7 @@ msgstr ""
 "Pēdējais kļūdas paziņojums bija:\n"
 "\n"
 
-#: gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
@@ -217,61 +236,59 @@ msgstr ""
 "\n"
 "GNOME mēģinās pārstartēt Uzstādījumu Dēmonu, kad nākošreiz tu pieteiksies."
 
-#: gnome-session/gsm-gsd.c:115
+#: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
 msgstr "Ir bijusi nezināma aktivizācijas kļūda."
 
-#: gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
 msgstr "Uzstādījumu Dēmons pārstartēts pārāk daudz reižu."
 
-#: gnome-session/logout.c:355
+#: ../gnome-session/logout.c:408
 msgid "Are you sure you want to log out?"
 msgstr "Vai jūs tiešām vēlaties iziet?"
 
-#: gnome-session/logout.c:372
+#: ../gnome-session/logout.c:425
 msgid "_Save current setup"
 msgstr "_Saglabāt pašreizējos uzstādijumus"
 
-#: gnome-session/logout.c:393
+#: ../gnome-session/logout.c:448
 msgid "Action"
 msgstr "Darbība"
 
-#: gnome-session/logout.c:410
-#, fuzzy
+#: ../gnome-session/logout.c:465
 msgid "_Log out"
-msgstr "_Iziet"
+msgstr "Ats_lēgties"
 
-#: gnome-session/logout.c:416
-#, fuzzy
+#: ../gnome-session/logout.c:472
 msgid "Sh_ut down"
 msgstr "I_zslēgt"
 
-#: gnome-session/logout.c:423
+#: ../gnome-session/logout.c:480
 msgid "_Restart the computer"
 msgstr "Pā_rstartēt datoru"
 
-#: gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Konkretizē sisijas nosaukumu, kuru ielādēt"
 
-#: gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Lasīt tikai saglabātās sesijas no default.session faila"
 
-#: gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Milisekundes periods pavadīts, gaidot klientu reģistrāciju (0=mūžība)"
 
-#: gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Milisekundes periods pavadīts, gaidot klientu atbildi (0=mūžība)"
 
-#: gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Milisekundes periods pavadīts, gaidot klientu nāvi (0=mūžība)"
 
-#: gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -284,81 +301,89 @@ msgstr ""
 "Šo problēmu varētu būt iespējams likvidēt, pievienojot\n"
 "%s failam /etc/hosts."
 
-#: gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Iziet Jebkurā Gadījumā"
 
-#: gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Mēģiniet Vēlreiz"
 
-#: gnome-session/manager.c:223
+#: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
 msgstr "Jūsu sesija ir saglabāta"
 
-#: gnome-session/manager.c:527
+#: ../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
 msgstr "Gaidīšana pārtraukta konflikta dēļ."
 
-#: gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
 msgstr "Nav atbildes no %s comandas."
 
-#: gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
 msgstr "Programma varētu būt lēna, apstājusies vai uzkārusies."
 
-#: gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
 msgstr "Jūs varat gaidīt pēc atbildes vai pātraukt to."
 
-#: gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
 msgstr "Pārstartēšana pātraukta sakarā ar kļūdām."
 
-#: gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
 msgstr "Notiek sesijas slēgšana."
 
-#: gnome-session/save-session.c:46
-#, fuzzy
+#: ../gnome-session/save-session.c:46
 msgid "Set the current session"
-msgstr "Attiecināt izmaiņas uz pašreizējo sesiju"
+msgstr "Uzstādīt pašreizējo sesiju"
 
-#: gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:47
 msgid "Kill session"
-msgstr "Iznīcināt sesiju"
+msgstr "Pārtraukt sesiju"
 
-#: gnome-session/save-session.c:48
+#: ../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Lietot dialogu logus"
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Nevar savienoties ar sesiju pārvaldnieku"
 
-#: gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "Sesijas nosaukums nevar būt tukšums"
 
-#: gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "Sesijas nosaukums jau eksistē"
 
-#: gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:188
 msgid "Add a new session"
 msgstr "Pievienot jaunu sesiju"
 
-#: gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:218
 msgid "Edit session name"
 msgstr "Rediģēt sesijas nosaukumu"
 
-#: gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Aktivizēt"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Deaktivizēt"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Rediģēt"
 
-#: gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -366,126 +391,115 @@ msgstr ""
 "Dažas izmaiņas nevar tikt saglabātas.\n"
 "Vai vēl arvien vēlaties iziet?"
 
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:263
+#: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sesijas"
 
-#: gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Parādīt brīža ekrānu pie _ieiešanas"
 
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
-msgstr "_Jautāt pie iziešanas"
+msgstr "Jautā_t pie iziešanas"
 
-#: gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Automātiski sa_glabāt sesijas izmaiņas"
 
-#: gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sesijas:"
 
-#: gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Sesijas Nosaukums"
 
-#: gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Sesijas Opcijas"
 
-#: gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Pašreizējā Sesija"
 
-#: gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Papildus sāknējamās _programmas:"
 
-#: gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Komanda"
 
-#: gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Ievada Programmas"
 
-#: gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "Izsviest izvēlēto klientu no sesijas."
 
-#: gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "Attiecināt izmaiņas uz pašreizējo sesiju"
 
-#: gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Sesijas programmu saraksts."
 
-#: gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "Pašreiz strādājošās _programmas:"
 
-#: gnome-session/session-properties.c:104
+#: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Uzstādīt sesijas uzstādījumus"
 
-#: gnome-session/session-properties.desktop.in.in.h:1
+#: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Konfigurē savas sesijas"
 
-#: gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish Logu Pārvaldnieks"
 
-#: gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Metacity Logu Pārvaldnieks"
 
-#: gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Logu Pārvaldnieks"
 
-#: gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Panelis"
 
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Sesijas Pārvaldnieka Proxy"
-
-#: gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Darbvirsmas Uzstādījumi"
 
-#: gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:416
 msgid "_Startup Command:"
 msgstr "_Ievada Komanda:"
 
-#: gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:422
 msgid "Startup Command"
 msgstr "Ievada Komanda"
 
-#: gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:451
 msgid "The startup command cannot be empty"
 msgstr "Ievada komanda nevar būt tukša"
 
-#: gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:488
 msgid "Add Startup Program"
 msgstr "Pievienot Ievada Programmu"
 
-#: gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:526
 msgid "Edit Startup Program"
 msgstr "Rediģēt Ievada Programmu"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Saglabāt Pašreizējo Sesiju"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Saglabāt darbvirsmas pašreizējo stāvokli"
