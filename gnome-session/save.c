@@ -540,7 +540,7 @@ hash_table_remove_cb (gpointer key, gpointer value, gpointer user_data)
 static GSList *
 read_autostart_dirs (void)
 {
-  const char * const * system_data_dirs;
+  const char * const * system_dirs;
   char *path;
   gint i;
   GHashTable *clients;
@@ -549,10 +549,19 @@ read_autostart_dirs (void)
   clients = g_hash_table_new (g_str_hash, g_str_equal);
 
   /* read directories */
-  system_data_dirs = g_get_system_data_dirs ();
-  for (i = 0; system_data_dirs[i] != NULL; i++)
+  system_dirs = g_get_system_data_dirs ();
+  for (i = 0; system_dirs[i] != NULL; i++)
     {
-      path = g_build_filename (system_data_dirs[i], "gnome", "autostart", NULL);
+      path = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
+      read_desktop_entries_in_dir (clients, path);
+      g_free (path);
+    }
+
+  /* support old place (/etc/xdg/autostart) */
+  system_dirs = g_get_system_config_dirs ();
+  for (i = 0; system_dirs[i] != NULL; i++)
+    {
+      path = g_build_filename (system_dirs[i], "autostart", NULL);
       read_desktop_entries_in_dir (clients, path);
       g_free (path);
     }
