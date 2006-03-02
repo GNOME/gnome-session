@@ -7,19 +7,19 @@
 # Benedikt Roth <Benedikt.Roth@gmx.net>, 2000, 2001.
 # Jörgen Scheibengruber <mfcn@gmx.de>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003, 2004.
-# Hendrik Richter <hendi@gnome-de.org>, 2005.
+# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-26 00:55+0200\n"
-"PO-Revision-Date: 2005-07-26 00:57+0200\n"
-"Last-Translator: Hendrik Richter <hendi@gnome-de.org>\n"
+"POT-Creation-Date: 2006-03-02 21:01+0100\n"
+"PO-Revision-Date: 2006-03-02 21:02+0100\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -90,12 +90,12 @@ msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
-msgstr "Dies ist die Option die automatisch im Abmeldedialog ausgewählt wird. "
-"Gültige Werte sind »logout« (Benutzer abmelden), »shutdown« (Rechner ausschalten) und "
-"»restart« (System neu starten)."
+msgstr ""
+"Dies ist die Option die automatisch im Abmeldedialog ausgewählt wird. "
+"Gültige Werte sind »logout« (Benutzer abmelden), »shutdown« (Rechner "
+"ausschalten) und »restart« (System neu starten)."
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
 msgstr "_Reihenfolge: "
 
@@ -112,7 +112,6 @@ msgid "_Style:"
 msgstr "_Stil: "
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
 msgstr "Reihenfolge"
 
@@ -275,28 +274,28 @@ msgstr "_Rechner ausschalten"
 msgid "_Restart the computer"
 msgstr "System _neu starten"
 
-#: ../gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Geben Sie einen zu ladenden Sitzungsnamen an"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Gespeicherte Sitzungen nur aus der Datei »default.session« einlesen"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Wie viele Millisekunden auf Registrieren der Clients warten (0=unbegrenzt)"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Wie viele Millisekunden auf Antwort der Clients warten (0=unbegrenzt)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Wie viele Millisekunden auf Tod der Clients warten (0=unbegrenzt)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:266
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -309,11 +308,11 @@ msgstr ""
 "Möglicherweise kann dieser Fehler durch das Hinzufügen\n"
 "von %s zur Datei »/etc/hosts« zu korrigieren."
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:273
 msgid "Log in Anyway"
 msgstr "Dennoch anmelden"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:274
 msgid "Try Again"
 msgstr "Erneut versuchen"
 
@@ -378,11 +377,20 @@ msgstr "Eine neue Sitzung hinzufügen"
 msgid "Edit session name"
 msgstr "Sitzungsname bearbeiten"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -390,48 +398,48 @@ msgstr ""
 "Einige Änderungen wurden nicht gespeichert.\n"
 "Dennoch beenden?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sitzungen"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Beim _Anmelden Begrüßungsbildschirm anzeigen"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "Beim Abmelden _nachfragen"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Ä_nderungen an der Sitzung automatisch speichern"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Sitzungen:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Sitzungsname"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Sitzungsoptionen"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Aktuelle Sitzung"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "_Zusätzliche Startprogramme:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Befehl"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Startprogramme"
 
@@ -483,23 +491,22 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Desktop-Einstellungen"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:425
 msgid "_Startup Command:"
 msgstr "_Startbefehl:"
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:431
 msgid "Startup Command"
 msgstr "Startbefehl"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:460
 msgid "The startup command cannot be empty"
 msgstr "Sie müssen einen Startbefehl eingeben"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:497
 msgid "Add Startup Program"
 msgstr "Startprogramm hinzufügen"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:535
 msgid "Edit Startup Program"
 msgstr "Startprogramm bearbeiten"
-
