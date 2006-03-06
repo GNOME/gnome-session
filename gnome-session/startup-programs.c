@@ -588,7 +588,7 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
        system_dirs = g_get_system_data_dirs ();
        for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
          {
-           path = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
+           path = g_build_filename (system_dirs[i], "gnome", "autostart", basename, NULL);
            if (g_file_test (path, G_FILE_TEST_EXISTS))
              client->to_remove = TRUE;
            g_free (path);
@@ -598,7 +598,7 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
        system_dirs = g_get_system_config_dirs ();
        for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
          {
-           path = g_build_filename (system_dirs[i], "autostart", NULL);
+           path = g_build_filename (system_dirs[i], "autostart", basename, NULL);
            if (g_file_test (path, G_FILE_TEST_EXISTS))
              client->to_remove = TRUE;
            g_free (path);
