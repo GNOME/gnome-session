@@ -112,7 +112,6 @@ static void
 set_lang (void)
 {
   const char *gdm_lang;
-  char       *env_string;
   char       *short_lang;
   char       *p;
 
@@ -124,14 +123,10 @@ set_lang (void)
       if (p)
 	*p = '\0';
 
-      env_string = g_strconcat ("LANG=", gdm_lang, NULL);
-      putenv (env_string);
+      g_setenv ("LANG", gdm_lang, TRUE);
 
-      /* env_string = g_strconcat ("LANGUAGE=", short_lang, NULL);
-      putenv (env_string); */
-
-      /* env_string = g_strconcat ("LC_ALL=", gdm_lang, NULL);
-      putenv (env_string); */
+      /* g_setenv ("LANGUAGE", short_lang, TRUE); */
+      /* g_setenv ("LC_ALL", gdm_lang, TRUE); */
 
       g_free (short_lang);
     }
