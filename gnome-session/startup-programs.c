@@ -500,11 +500,11 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
       int i = 2;
 
       basename = g_path_get_basename (client->argv[0]);
-      orig_filename = g_strdup_printf ("%s/.config/autostart/%s.desktop", g_get_home_dir (), basename);
-      filename = g_strdup (orig_filename);
+      orig_filename = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
+      filename = g_strdup_printf ("%s.desktop", orig_filename);
       while (g_file_exists (filename))
         {
-	  char *tmp = g_strdup_printf ("%s-%d", orig_filename, i);
+	  char *tmp = g_strdup_printf ("%s-%d.desktop", orig_filename, i);
 
 	  g_free (filename);
 	  filename = tmp;
@@ -577,22 +577,39 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   if (!client->enabled)
     {
      char *path, *basename;
+     const char * const * system_dirs;
+      int i;
 
      basename = g_path_get_basename (client->desktop_file);
 
       /* if the desktop file is in the user's home and there is one file with the same
 	 name in the system-wide dir, just remove it */
-     path = g_build_filename (PREFIX, "share", "autostart", basename, NULL);
-     if (g_str_has_prefix (client->desktop_file, g_get_home_dir ())
-	 && g_file_test (path, G_FILE_TEST_EXISTS))
-       client->to_remove = TRUE;
+     if (g_str_has_prefix (client->desktop_file, g_get_user_config_dir ())) {
+       system_dirs = g_get_system_data_dirs ();
+       for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
+         {
+           path = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
+           if (g_file_test (path, G_FILE_TEST_EXISTS))
+             client->to_remove = TRUE;
+           g_free (path);
+         }
+
+       /* support old place (/etc/xdg/autostart) */
+       system_dirs = g_get_system_config_dirs ();
+       for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
+         {
+           path = g_build_filename (system_dirs[i], "autostart", NULL);
+           if (g_file_test (path, G_FILE_TEST_EXISTS))
+             client->to_remove = TRUE;
+           g_free (path);
+         }
+     }
 
      client->enabled = TRUE;
 
      spc_write_state ();
 
      g_free (basename);
-     g_free (path);
     }
 }
 
@@ -608,17 +625,39 @@ startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   if (client->enabled)
     {
       char *path, *basename;
+      const char * const * system_dirs;
+      int i;
 
       basename = g_path_get_basename (client->desktop_file);
 
       /* if the desktop file is in the system-wide dir, create another one on
        the user's home */
-      if (g_str_has_prefix (client->desktop_file, PREFIX))
+      system_dirs = g_get_system_data_dirs ();
+      for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
         {
-          path = g_build_filename (g_get_home_dir (), ".config", "autostart", basename, NULL);
-	  g_free (client->desktop_file);
-	  client->desktop_file = path;
-	}
+          if (g_str_has_prefix (client->desktop_file, system_dirs[i]))
+            {
+              path = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
+              g_free (client->desktop_file);
+              client->desktop_file = path;
+
+	      break;
+            }
+        }
+
+      /* support old place (/etc/xdg/autostart) */
+      system_dirs = g_get_system_config_dirs ();
+      for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
+        {
+          if (g_str_has_prefix (client->desktop_file, system_dirs[i]))
+            {
+              path = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
+              g_free (client->desktop_file);
+              client->desktop_file = path;
+
+	      break;
+            }
+        }
 
       client->enabled = FALSE;
       spc_write_state ();

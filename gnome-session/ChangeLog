@@ -1,3 +1,13 @@
+2006-03-06  Vincent Untz  <vuntz@gnome.org>
+
+	* startup-programs.c: (startup_list_add_dialog): do not hard code the
+	user configuration directory, always put the .desktop extension at the
+	end of the filename
+	(startup_list_enable): look at all the relevant system-wide
+	directories for the .desktop file
+	(startup_list_disable): look if the .desktop file is in one of the
+	relevant system-wide directories
+
 2006-03-02  Rodrigo Moya <rodrigo@novell.com>
 
 	* main.c (set_lang): fixed leak.
