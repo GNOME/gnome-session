@@ -327,13 +327,13 @@ main (int argc, char *argv[])
   char *ep;
   char *session_name_env;
   Session *the_session;
-  GConfClient *gconf_client;
   gboolean splashing;
   gboolean a_t_support;
   GError *err;
   int status;
   char *display_str;
   char **versions;
+  GConfClient *gconf_client;
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
@@ -391,7 +391,7 @@ main (int argc, char *argv[])
     }
   
   /* Read the config option early, so that we know if a11y is set or not */ 
-  gconf_client = gconf_client_get_default ();
+  gconf_client = gsm_get_conf_client ();
   gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL); 
   a_t_support = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
 
@@ -446,8 +446,6 @@ main (int argc, char *argv[])
 			   update_boolean,
 			   &logout_prompt, NULL, NULL);
 
-  g_object_unref (gconf_client);
-
   gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
 
   /* If the session wasn't set on the command line, but we see a
@@ -497,7 +495,8 @@ main (int argc, char *argv[])
   gsm_sound_logout ();
 
   gsm_keyring_daemon_stop ();
-  
+
+  g_object_unref (gconf_client);
   gsm_shutdown_gconfd ();
 
   clean_ice ();

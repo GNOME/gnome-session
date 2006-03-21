@@ -1,3 +1,17 @@
+2006-03-21  Rodrigo Moya <rodrigo@novell.com>
+
+	* util.[ch] (gsm_get_conf_client): new function to share a
+	GConfClient in all modules.
+
+	* gsm-at-startup.c (gsm_assistive_technologies_start):
+	* gsm-remote-desktop.c (gsm_remote_desktop_start):
+	* gsm-sound.c (esd_enabled, sound_events_enabled):
+	* gsm-xrandr.c (gsm_set_display_properties):
+	* ice.c (initialize_ice):
+	* logout.c (get_default_option, set_default_option):
+	* main.c (main):
+	* save.c (set_autosave_mode): use the shared GConfClient.
+
 ==================== 2.14.0 ====================
 
 2006-03-09  Thomas Wood  <thos@gnome.org>

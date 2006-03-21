@@ -27,7 +27,7 @@ gsm_assistive_technologies_start (void)
   GConfClient *client;
   GSList *list;
 
-  client  = gconf_client_get_default ();
+  client  = gsm_get_conf_client ();
   list = gconf_client_get_list (client, AT_STARTUP_KEY, GCONF_VALUE_STRING, &error);
   if (error)
     {
@@ -45,7 +45,6 @@ gsm_assistive_technologies_start (void)
 	}
       g_slist_free (list);
     }
-  g_object_unref (client);
 }
 
 void

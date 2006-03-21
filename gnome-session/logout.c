@@ -290,13 +290,12 @@ get_default_option (void)
   char        *str;
   int          option;
 
-  gconf_client = gconf_client_get_default ();
+  gconf_client = gsm_get_conf_client ();
   str = gconf_client_get_string (gconf_client, LOGOUT_OPTION_KEY, NULL);
 
   if (str == NULL || !gconf_string_to_enum (logout_options_lookup_table, str, &option))
     option = OPTION_LOGOUT;
-  
-  g_object_unref (gconf_client);
+
   g_free (str);
   return option;
 }
@@ -307,14 +306,12 @@ set_default_option (int option)
   GConfClient *gconf_client;
   const char  *str;
 
-  gconf_client = gconf_client_get_default ();
+  gconf_client = gsm_get_conf_client ();
 
   str = gconf_enum_to_string (logout_options_lookup_table, option);
   g_assert (str != NULL);
 
   gconf_client_set_string (gconf_client, LOGOUT_OPTION_KEY, str, NULL);
-
-  g_object_unref (gconf_client);
 }
 
 static gboolean

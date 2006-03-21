@@ -598,7 +598,7 @@ set_sessionsave_mode (gboolean sessionsave)
 void 
 set_autosave_mode (gboolean auto_save_mode)
 {
-      gconf_client_set_bool (gconf_client_get_default (), AUTOSAVE_MODE_KEY, auto_save_mode, NULL);
+      gconf_client_set_bool (gsm_get_conf_client (), AUTOSAVE_MODE_KEY, auto_save_mode, NULL);
 }
 
 void

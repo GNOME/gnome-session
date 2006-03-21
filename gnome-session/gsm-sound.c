@@ -5,8 +5,8 @@
 #ifdef HAVE_ESD /* almost whole file */
 #include <unistd.h>
 #include <libgnome/libgnome.h>
-#include <gconf/gconf-client.h>
 #include <esd.h>
+#include "util.h"
 
 #define ENABLE_ESD_KEY    "/desktop/gnome/sound/enable_esd"
 #define ENABLE_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
@@ -18,7 +18,7 @@ esd_enabled (void)
   GError      *error = NULL;
   gboolean     retval;
 
-  client = gconf_client_get_default ();
+  client = gsm_get_conf_client ();
 
   retval = gconf_client_get_bool (client, ENABLE_ESD_KEY, &error);
   if (error)
@@ -27,8 +27,6 @@ esd_enabled (void)
       g_error_free (error);
       return FALSE;  /* Fallback value */
     }
-
-  g_object_unref (client);
 
   return retval;
 }
@@ -40,7 +38,7 @@ sound_events_enabled (void)
   GError      *error = NULL;
   gboolean     retval;
 
-  client = gconf_client_get_default ();
+  client = gsm_get_conf_client ();
 
   retval = gconf_client_get_bool (client, ENABLE_SOUNDS_KEY, &error);
   if (error)
@@ -50,8 +48,6 @@ sound_events_enabled (void)
       return FALSE;  /* Fallback value */
     }
 
-  g_object_unref (client);
-
   return retval;
 }
 
@@ -60,7 +56,7 @@ start_esd (void)
 {
   GError *err = NULL;
   time_t starttime;
-	
+
   if (!g_spawn_command_line_async (ESD_SERVER" -nobeeps", &err))
     {
       g_warning ("Could not start esd: %s\n", err->message);
@@ -72,13 +68,13 @@ start_esd (void)
   gnome_sound_init (NULL);
 
   while (gnome_sound_connection_get () < 0
-	 && ((time(NULL) - starttime) < 4)) 
+	 && ((time(NULL) - starttime) < 4))
     {
 #ifdef HAVE_USLEEP
       usleep(200);
 #endif
       gnome_sound_init(NULL);
-    }  
+    }
 }
 
 static gboolean

@@ -140,3 +140,14 @@ gsm_compare_commands (int argc1, char **argv1,
 
 	return TRUE;
 }
+
+GConfClient *
+gsm_get_conf_client (void)
+{
+	static GConfClient *client = NULL;
+
+	if (!client)
+		client = gconf_client_get_default ();
+
+	return client;
+}

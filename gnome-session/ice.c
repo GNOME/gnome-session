@@ -333,7 +333,7 @@ initialize_ice (void)
   saved_umask = umask (0);
   umask (saved_umask);
 
-  allow_tcp = gconf_client_get_bool (gconf_client_get_default (), ALLOW_TCP_KEY, NULL);
+  allow_tcp = gconf_client_get_bool (gsm_get_conf_client (), ALLOW_TCP_KEY, NULL);
  
   if (SmsInitialize (GsmVendor, VERSION, new_client, NULL,
 		     auth_proc, sizeof error, error)) 

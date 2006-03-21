@@ -131,7 +131,7 @@ gsm_set_display_properties (void)
       return;
     }
 
-  client = gconf_client_get_default ();
+  client = gsm_get_conf_client ();
   
   i = 0;
   specific_path = NULL;
@@ -195,8 +195,6 @@ gsm_set_display_properties (void)
 	    }
 	}
     }
-	  
-  g_object_unref (client);
   
   g_free (specific_path);
 

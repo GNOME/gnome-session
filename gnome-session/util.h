@@ -3,6 +3,7 @@
 
 #include <glib.h>
 #include <stdio.h>
+#include <gconf/gconf-client.h>
 
 void gsm_warning    (const char *format,
                      ...) G_GNUC_PRINTF (1, 2);
@@ -18,5 +19,7 @@ void gsm_set_verbose (gboolean setting);
 
 gboolean gsm_compare_commands (int argc1, char **argv1,
 			       int argc2, char **argv2);
+
+GConfClient *gsm_get_conf_client (void);
 
 #endif /* UTIL_H */

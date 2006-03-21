@@ -250,7 +250,7 @@ static RemoteDesktopData remote_desktop_data = { NULL, };
 void
 gsm_remote_desktop_start (void)
 {
-  remote_desktop_data.client = gconf_client_get_default ();
+  remote_desktop_data.client = gsm_get_conf_client ();
 
   remote_desktop_data.enabled = gconf_client_get_bool (remote_desktop_data.client,
 						       REMOTE_DESKTOP_KEY,
@@ -287,6 +287,5 @@ gsm_remote_desktop_cleanup (void)
   gconf_client_notify_remove (remote_desktop_data.client, remote_desktop_data.listener);
   remote_desktop_data.listener = 0;
 
-  g_object_unref (remote_desktop_data.client);
   remote_desktop_data.client = NULL;
 }
