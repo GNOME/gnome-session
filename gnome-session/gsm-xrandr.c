@@ -35,8 +35,12 @@ get_resolution (GConfClient *client, int screen, char *keys[], int *width, int *
   if (val == NULL)
     return FALSE;
 
-  if (sscanf (val, "%dx%d", &w, &h) != 2)
+  if (sscanf (val, "%dx%d", &w, &h) != 2) {
+    g_free (val);
     return FALSE;
+  }
+
+  g_free (val);
 
   *width = w;
   *height = h;
@@ -193,6 +197,8 @@ gsm_set_display_properties (void)
 						  rate,
 						  GDK_CURRENT_TIME);
 	    }
+
+	   XRRFreeScreenConfigInfo (config);
 	}
     }
   
