@@ -37,7 +37,6 @@
 #include "util.h"
 #include "gdm-logout-action.h"
 #include "gsm-multiscreen.h"
-#include "egg-screen-help.h"
 
 enum
 {
@@ -556,11 +555,11 @@ display_gui (void)
       retval = FALSE;
       break;
     case GTK_RESPONSE_HELP:
-      egg_help_display_desktop_on_screen (NULL, "user-guide",
-					  "user-guide.xml",
-					  "gosgetstarted-73",
-					  screen,
-					  &error);
+      gnome_help_display_desktop_on_screen (NULL, "user-guide",
+					    "user-guide.xml",
+					    "gosgetstarted-73",
+					    screen,
+					    &error);
 
       if (error) 
         {
