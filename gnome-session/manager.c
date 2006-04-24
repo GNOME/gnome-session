@@ -1164,10 +1164,10 @@ print_client (Client *client)
 {
   GSList *l;
 
-  printf ("  id: %s\n", client->id);
-  printf ("  handle: %s\n", client->handle);
-  printf ("  connection: %p\n", client->connection);
-  printf ("  properties:\n");
+  gsm_verbose ("  id: %s\n", client->id);
+  gsm_verbose ("  handle: %s\n", client->handle);
+  gsm_verbose ("  connection: %p\n", client->connection);
+  gsm_verbose ("  properties:\n");
 
   for (l = client->properties; l; l = l->next)
     {
@@ -1175,22 +1175,22 @@ print_client (Client *client)
       int v;
 
       p = l->data;
-      printf ("    ((name \"%s\") (type \"%s\")", p->name, p->type);
+      gsm_verbose ("    ((name \"%s\") (type \"%s\")", p->name, p->type);
       for (v = 0; v < p->num_vals; v++)
 	{
 	  int i;
 	  guchar *c;
 
-	  printf (" (value \"");
+	  gsm_verbose (" (value \"");
 	  c = (guchar *) p->vals[v].value;
 	  for (i = 0; i < p->vals[v].length; i++)
 	    if (c[i] < 0x80)
-	      printf ("%c", (int) c[i]);
+	      gsm_verbose ("%c", (int) c[i]);
 	    else
-	      printf ("\\x%02x", (int) c[i]);
+	      gsm_verbose ("\\x%02x", (int) c[i]);
 
-	  printf ("\")");
-	} printf (")\n");
+	  gsm_verbose ("\")");
+	} gsm_verbose (")\n");
     }
 }
 
