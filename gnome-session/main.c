@@ -224,7 +224,7 @@ check_for_dns (void)
       if (getaddrinfo (hostname, NULL, &hints, &result) != 0)
 	return FALSE;
 
-      if (g_ascii_strncasecmp (result->ai_canonname, hostname, 0) != 0)
+      if (!result->ai_canonname)
 	return FALSE;
     } 
   else
@@ -275,11 +275,11 @@ gnome_login_check (void)
       gtk_dialog_set_default_response (GTK_DIALOG (tmp_msgbox), RESPONSE_TRY_AGAIN);
 
       if (RESPONSE_TRY_AGAIN != gtk_dialog_run (GTK_DIALOG (tmp_msgbox)))
-	{
-	  gtk_widget_destroy (tmp_msgbox);
-  	  break;
-	}
+	break;
     }
+
+    if (tmp_msgbox)
+	gtk_widget_destroy (tmp_msgbox);
 }
 
 static void
