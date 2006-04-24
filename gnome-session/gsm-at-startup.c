@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "gsm-at-startup.h"
+#include "util.h"
 
 #include <gdk/gdk.h>
 #include <libgnome/libgnome.h>

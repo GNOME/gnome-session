@@ -3,6 +3,7 @@
 #include <gconf/gconf-client.h>
 
 #include "gsm-xrandr.h"
+#include "util.h"
 
 #ifdef HAVE_RANDR
 #include <stdio.h>
