@@ -1,82 +1,84 @@
+# translation of gnome-session-2.0.po to Georgian
 # Georgian translation for Gnome Session.
 # Copyright © 2006 Ubuntu Georgian Translators.
-# Vladimer Sichinava <alinux@siena.linux.it>, 2006.
 #
+# Vladimer Sichinava <alinux@siena.linux.it>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.13.91\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-02 23:26+0100\n"
-"PO-Revision-Date: 2006-01-28 23:44+0100\n"
-"Last-Translator: Vladimer Sichinava <alinux@siena.linux.it; "
-"vlsichinava@gmail.com>\n"
-"Language-Team: Georgian <Ubuntu-Georgian-Translators@googlegroups.com>\n"
+"Project-Id-Version: gnome-session-2.0\n"
+"Report-Msgid-Bugs-To:\n"
+"POT-Creation-Date: 2006-05-17 11:41+0000\n"
+"PO-Revision-Date: 2006-05-19 05:01+0200\n"
+"Last-Translator: Vladimer Sichinava <alinux@siena.linux.it>\n"
+"Language-Team: Georgian <geognome@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
-#, fuzzy
 msgid "Allow TCP connections"
-msgstr "ნების დართვა"
+msgstr "დაუშვი TCP კავშირები"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
-#, fuzzy
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr "-სკენ."
+msgstr ""
+"უსაფრთხოების გამო ყველა _IceTcpTransNoListen() (XFree86 systems)-იან "
+"პლატფორმაში, gnome-session-ი აღარ დაუშვებს TCP-ს პორტებზე კავშირს. "
+"მოცემული პარამეტრი იძლევა საშუალებას მხოლოდ ავტორიზებული(ნაცნობი) "
+"დაშორებული ჰოსტებიდან კავშირს. პარამეტრის დამტკიცებისთვის საჭიროა "
+"gnome-session-ის გადატვირთვა."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
-#, fuzzy
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "ჩართული a."
+msgstr "თუ ჩართულია,gnome-session შეეკითხება მომხმარებელს სესიის დასრულებამდე"
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
-#, fuzzy
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr "ჩართული -სკენ."
+msgstr ""
+"თუ ჩართულია,gnome-session შეინახავს სესიას ავტომატურად.თუ არა გასვლის "
+"დიალოგს ექნება სესიის შენახვის პარამეტრი."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
-#, fuzzy
 msgid "Logout prompt"
-msgstr "გამოსვლა"
+msgstr "დასტურის მოთხოვნის რეჟიმი"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
-#, fuzzy
 msgid "Preferred Image to use for login splash screen"
-msgstr "გამოსახულება -სკენ"
+msgstr "მისალმების ფანჯრისთვის პირადი გრაფიკული გამოსახულების შერჩევა"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
-msgstr "სესიების შენახვა"
+msgstr "სეანსების შენახვა"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr ""
+msgstr "ამორჩეული პარამეტრი სისტემიდან გასვლის დიალოგ ფანჯარაში"
 
 #: ../gnome-session/gnome-session.schemas.in.h:9
-#, fuzzy
 msgid "Show the splash screen"
-msgstr "ანახე"
+msgstr "ანახე მისალმების ფანჯარა"
 
 #: ../gnome-session/gnome-session.schemas.in.h:10
-#, fuzzy
 msgid "Show the splash screen when the session starts up"
-msgstr "ანახე"
+msgstr "ანახე მისალმების ფანჯარა სესიის დაწყების წინ"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
-#, fuzzy
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
-msgstr "a და."
+msgstr ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. ამ მნიშვნელობის შეცვლა "
+"დამტკიცდება გადატვირთვის მერე."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
 msgid ""
@@ -84,19 +86,22 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
+"მოცემული პარამეტრი ამორჩეულ იქნება გასვლის დიალოგ ფანჯარაში, "
+"მისაღები მნიშვნელობებია \"სეანსის დასრულება\", სეანსიდან გამოსვლისთვის, "
+"\"გამორთვა\" კომპიუტერის გამორთვისთვის და \"გადატვირთვა\" სისტემის "
+"ხელახლა დაწყებისთვის."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
-msgstr "_წესრიგი:"
+msgstr "_მიმდევრობა:"
 
 #: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr ""
+msgstr "რა მიმდევრობით უნდა ჩაირთონ პროგრამები სეანსის გაშვებისას."
 
 #: ../gnome-session/gsm-client-editor.c:106
-#, fuzzy
 msgid "What happens to the application when it exits."
-msgstr "-სკენ."
+msgstr "რა მოსდის პროგრამას როდესაც ის ითიშება."
 
 #: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
@@ -123,9 +128,8 @@ msgid "Inactive"
 msgstr "არააქტიური"
 
 #: ../gnome-session/gsm-client-row.c:32
-#, fuzzy
 msgid "Waiting to start or already finished."
-msgstr "დაელოდეთ -სკენ ან."
+msgstr "დაელოდები გაშვებას ან უკვე დასრულებულია."
 
 #: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -133,16 +137,15 @@ msgstr "ვრთავ"
 
 #: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr ""
+msgstr "გაშვებულია მაგრამ არავითარი ინფორმაცია მის მდგომარეობის შესახებ."
 
 #: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "გაშვებულია"
 
 #: ../gnome-session/gsm-client-row.c:38
-#, fuzzy
 msgid "A normal member of the session."
-msgstr "ჩ/გ."
+msgstr "სესიის ჩვეულებრივი წევრი."
 
 #: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
@@ -157,9 +160,8 @@ msgid "Unknown"
 msgstr "უცნობი"
 
 #: ../gnome-session/gsm-client-row.c:44
-#, fuzzy
 msgid "State not reported within timeout."
-msgstr "მდგომარეობა."
+msgstr "არავითარი გამონატანის ინფორმაცია მინიჭებულ დროში."
 
 #: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
@@ -167,34 +169,31 @@ msgstr "საშუალო"
 
 #: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr ""
+msgstr "არაფერი მოსდის გამოთიშვებით, მაგრამ შესაძლებელია რომ გამოირთოს."
 
 #: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "გადატვირთვა"
 
 #: ../gnome-session/gsm-client-row.c:54
-#, fuzzy
 msgid "Never allowed to die."
-msgstr "არასდროს -სკენ."
+msgstr "არასოდეს დაუშვა მისი გამოთიშვა."
 
 #: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "ნაგვის ყუთი"
 
 #: ../gnome-session/gsm-client-row.c:57
-#, fuzzy
 msgid "Discarded on logout and can die."
-msgstr "და."
+msgstr "გაუქმებულია გამოსვლის წინ ასე რომ შეიძლება გაითიშოს."
 
 #: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "პარამეტრები"
 
 #: ../gnome-session/gsm-client-row.c:60
-#, fuzzy
 msgid "Always started on every login."
-msgstr "ყოველთვის."
+msgstr "ირთვება ყოველი რეგისტრირებისას."
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -202,28 +201,33 @@ msgstr "ყოველთვის."
 #. * 1.  lets you change the message on it
 #. * 2.  lets you append messages and has a "history"
 #. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
 #: ../gnome-session/gsm-gsd.c:41
-#, fuzzy
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
-msgstr "შეცდომა GNOME პარამეტრები n ან."
+msgstr ""
+"დაიშვა შეცდომა გნომის პარამეტრების დემონის გაშვებისას.\" "
+"\n"
+"შესაძლებელია რომ გაფორმების თემამ, ხმამ ან ფონის სურათმა არ იმუშაოს."
 
 #: ../gnome-session/gsm-gsd.c:53
-#, fuzzy
 msgid ""
 "\n"
 "\n"
 "The last error message was:\n"
 "\n"
-msgstr "n შეცდომა n n"
+msgstr ""
+"\n"
+"\n"
+"↵\n"
+"↵\n"
+"ბოლო შეცდომის მაუწყებელი შეტყობინება იყო:↵\n"
+"↵\n"
+"\n"
 
 #: ../gnome-session/gsm-gsd.c:58
-#, fuzzy
 msgid ""
 "\n"
 "\n"
@@ -231,143 +235,189 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
+"გნომი მაინც შეეცდება მომავალი შემოსვლისთვის გადატვირთოს პარამეტრების დემონი."
 
 #: ../gnome-session/gsm-gsd.c:115
-#, fuzzy
 msgid "There was an unknown activation error."
-msgstr "უცნობი შეცდომა."
+msgstr "დაიშვა აქტივაციის უცნობი შეცდომა."
 
 #: ../gnome-session/gsm-gsd.c:157
-#, fuzzy
 msgid "The Settings Daemon restarted too many times."
-msgstr "პარამეტრები."
+msgstr "პარამეტრების დემონი ზედმეტად ბევრჯერ გაიშვა."
 
-#: ../gnome-session/logout.c:408
-msgid "Are you sure you want to log out?"
-msgstr "ნამდვილად გსურთ სისტემიდან გასვლა?"
+#: ../gnome-session/logout.c:343
+msgid "The screen can't be locked since no screensaver seems to be installed."
+msgstr "შეუძლებელია ეკრანმზოგის ჩაკეტვა, რადგანაც ის სისტემაში დაყენებული არ არის."
 
-#: ../gnome-session/logout.c:425
-msgid "_Save current setup"
-msgstr "მიმდინარე კონფიგურაციის შენახვა"
+#: ../gnome-session/logout.c:490
+msgid "Exit"
+msgstr "გამოსვლა"
 
-#: ../gnome-session/logout.c:448
-msgid "Action"
-msgstr "არჩევანი"
+#: ../gnome-session/logout.c:531
+msgid "_Log Out"
+msgstr "_სეანსის დასრულება"
 
-#: ../gnome-session/logout.c:465
-msgid "_Log out"
-msgstr "_სესიიდან გასვლა"
+#: ../gnome-session/logout.c:563
+msgid "L_ock Screen"
+msgstr "ეკრანის _ბლოკირება"
 
-#: ../gnome-session/logout.c:472
-msgid "Sh_ut down"
-msgstr "კომპიუტერის გამორთ_ვა"
+#: ../gnome-session/logout.c:595
+msgid "S_witch User"
+msgstr "_მომხმარებლის გადართვა"
 
-#: ../gnome-session/logout.c:480
-msgid "_Restart the computer"
-msgstr "კომპიუტერის გ_ადატვირთვა"
+#: ../gnome-session/logout.c:637
+msgid "Sus_pend"
+msgstr "შეჩე_რება"
+
+#: ../gnome-session/logout.c:670
+msgid "_Hibernate"
+msgstr "_მძინარე რეჟიმი"
+
+#: ../gnome-session/logout.c:703
+msgid "_Restart"
+msgstr "გა_დატვირთვა"
+
+#: ../gnome-session/logout.c:736
+msgid "_Shut Down"
+msgstr "გა_მორთვა"
+
+#: ../gnome-session/logout.c:771
+msgid "Close your session and return to the login screen."
+msgstr "სეანსის დასრულება და შემოსასვლელი ეკრანის რეჟიმში გადასვლა."
+
+#: ../gnome-session/logout.c:772
+msgid ""
+"Leave your session open and password protected, but let other users log in "
+"as well."
+msgstr ""
+"საკუთარი სეანსის აქტიურად, მაგრამ პაროლით დაცულ რეჟიმში დატოვება, ამავე დროს "
+"მომხმარებლებს შეუძლიათ საკუთარ ანგარიშებში რეგისტრაცია."
+
+#: ../gnome-session/logout.c:773
+msgid "Launch the screensaver and password protect your session."
+msgstr "ეკრამზოგის გაშვება და პაროლით საკუთარი სეანსის დაცვა."
+
+#: ../gnome-session/logout.c:774
+msgid "Restart the computer."
+msgstr "კომპიუტერის გადატვირთვა."
+
+#: ../gnome-session/logout.c:775
+msgid ""
+"Power saving mode. Depending on your computer, you can wake the computer up "
+"by pressing a key, the power button, or opening the laptop lid."
+msgstr ""
+"დენის დაზოგვის რეჟიმი. გააჩნია თქვენს კომპიუტერს, თქვენ შეგიძლიათ \"კვების\" "
+"ღილაკით \"გამოაღვიძოთ\" თქვენი კომპიუტერი, ან უბრალოდ გახსნათ ლაპტოპი."
+
+#: ../gnome-session/logout.c:776
+msgid ""
+"While hibernating, your computer won't need any power. When started again, "
+"all open applications will be restored."
+msgstr ""
+"მძინარე რეჟიმის დროს კომპიუტერს არ სჭირდება ელექტრო კვება. მომავალი "
+"ჩართვისას იგი დაუბრუნდება მძინარე რეჟიმამდე მყოფ სტადიას"
+
+#: ../gnome-session/logout.c:777
+msgid "Completely turn off the computer."
+msgstr "კომპიუტერის სრული გამორთვა."
 
 #: ../gnome-session/main.c:82
-#, fuzzy
 msgid "Specify a session name to load"
-msgstr "a -სკენ"
+msgstr "აღნიშნეთ თუ რომელი სეანსი ჩაიტვირთოს"
 
 #: ../gnome-session/main.c:83
-#, fuzzy
 msgid "Only read saved sessions from the default.session file"
-msgstr "ნაგულისხმევი ფაილი"
+msgstr "წაიკითხება default.session-ში დამახსოვრებული სეანსები"
 
 #: ../gnome-session/main.c:84
-#, fuzzy
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "-სკენ"
+msgstr "დრო რომელიც სჭირდებათ კლიენტებს რეგისტრაციისთვის. მილიწამებში. (0=forever)"
 
 #: ../gnome-session/main.c:85
-#, fuzzy
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "-სკენ"
+msgstr "დრო რომელიც სჭირდებათ კლიენტებს პასუხის გაცემისთვის. მილიწამებში. (0=forever)"
 
 #: ../gnome-session/main.c:86
-#, fuzzy
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "-სკენ"
+msgstr "დრო რომელიც სჭირდებათ კლიენტებს გათიშვისთვის. მილიწამებში. (0=forever)"
 
-#: ../gnome-session/main.c:266
-#, fuzzy, c-format
+#: ../gnome-session/main.c:261
+#, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
 "This will prevent GNOME from operating correctly.\n"
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
-msgstr "GNOME -სკენ n -სკენ ფაილი."
+msgstr ""
+"შეუძლებელია მისამართის ინტერნეტში პოვნა %s.\n"
+"ამის გამო გნომმა შეიძლება არასწორედ იმუშაოს.\n"
+"შესაძლებელია პრობლემის მოგვარება თუ ჩაამატებთ\n"
+"%s ფაილ /etc/hosts-ში"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
 msgstr "მაინც შესვლა"
 
-#: ../gnome-session/main.c:274
+#: ../gnome-session/main.c:269
 msgid "Try Again"
-msgstr "სცადეთ ხელახლა"
+msgstr "ხელახლი ცდა"
 
 #: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
 msgstr "თქვენი სესია დამახსოვრებულია"
 
 #: ../gnome-session/manager.c:527
-#, fuzzy
 msgid "Wait abandoned due to conflict."
-msgstr "-სკენ."
+msgstr "კონფლიქტების გამო მოლოდინის გათიშვა."
 
 #: ../gnome-session/manager.c:1035
-#, fuzzy, c-format
+#, c-format
 msgid "No response to the %s command."
-msgstr "არა -სკენ."
+msgstr "არავითარი პასუხი %s ბრანებაზე."
 
 #: ../gnome-session/manager.c:1036
-#, fuzzy
 msgid "The program may be slow, stopped or broken."
-msgstr "პროგრამა ან."
+msgstr "შესაძლებელია რომ პროგრამა გაფუჭდა, გაიჭედა ან უბრალოდ ნელი გახდა."
 
 #: ../gnome-session/manager.c:1037
-#, fuzzy
 msgid "You may wait for it to respond or remove it."
-msgstr "თქვენ -სკენ ან."
+msgstr "შესაძლებელია რომ გნებავდეთ პასუხი ან მისი მოშორება."
 
-#: ../gnome-session/manager.c:1760
-#, fuzzy
+#: ../gnome-session/manager.c:1761
 msgid "Restart abandoned due to failures."
-msgstr "გადატვირთვა -სკენ."
+msgstr "მიტოვებულის შემთხვევაში გადატვირთეთ."
 
-#: ../gnome-session/manager.c:1956
-#, fuzzy
+#: ../gnome-session/manager.c:1957
 msgid "A session shutdown is in progress."
-msgstr "ჩ/გ."
+msgstr "მიმდინარეობს სესიის დახურვა."
 
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session"
-msgstr ""
+msgstr "მიმდინარე სესიის დაყენება"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "სესიის მოკვლა"
 
-#: ../gnome-session/save-session.c:48
-#, fuzzy
+#: ../gnome-session/save-session.c:51
 msgid "Use dialog boxes"
-msgstr "გამოყენება"
+msgstr "დიალოგ ფანჯრების გამოყენება"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
-#, fuzzy
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "დამტკიცება არ არის საჭირო"
+
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:183
 msgid "Could not connect to the session manager"
-msgstr "-სკენ"
+msgstr "ვერ ვუკავშირდები სესიის მენეჯერს"
 
 #: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
-msgstr ""
+msgstr "შეუძლებელია რომ სესიის სახელი ცარიელი იყოს."
 
 #: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr ""
+msgstr "უკვე არსებული სესიის სახელი"
 
 #: ../gnome-session/session-names.c:188
 msgid "Add a new session"
@@ -377,107 +427,103 @@ msgstr "ახალი სესიის დამატება"
 msgid "Edit session name"
 msgstr "სესიის სახელწოდების რედაქტირება"
 
-#: ../gnome-session/session-properties-capplet.c:117
+#: ../gnome-session/session-properties-capplet.c:119
 msgid "Enable"
-msgstr ""
+msgstr "ჩართვა"
 
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
+#: ../gnome-session/session-properties-capplet.c:125
+#: ../gnome-session/session-properties-capplet.c:467
 msgid "Disable"
-msgstr ""
+msgstr "გამორთე"
 
-#: ../gnome-session/session-properties-capplet.c:145
+#: ../gnome-session/session-properties-capplet.c:148
 msgid "_Edit"
 msgstr "რ_ედაქტირება"
 
-#: ../gnome-session/session-properties-capplet.c:213
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:216
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
-msgstr "OK -სკენ?"
+msgstr ""
+"ზოგი ცვლილება ჯერ კიდევ დამახსოვრებული არ არის.\n"
+"დარწმუნებული ბრძანდებით რომ გნებავთ გამოსვლა?"
 
-#: ../gnome-session/session-properties-capplet.c:263
+#: ../gnome-session/session-properties-capplet.c:266
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "სესიები"
 
-#: ../gnome-session/session-properties-capplet.c:296
+#: ../gnome-session/session-properties-capplet.c:299
 msgid "Show splash screen on _login"
 msgstr "შე_მოსვლის წინ ნახატის ჩვენება"
 
-#: ../gnome-session/session-properties-capplet.c:307
+#: ../gnome-session/session-properties-capplet.c:310
 msgid "As_k on logout"
 msgstr "გასვლის წი_ნ შეკითხვის დასმა"
 
-#: ../gnome-session/session-properties-capplet.c:318
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:321
 msgid "Automatically save chan_ges to session"
-msgstr "ავტომატურად -სკენ"
+msgstr "სესიის ც_ვლილებების ავტომატურად დამახსოვრება"
 
-#: ../gnome-session/session-properties-capplet.c:329
+#: ../gnome-session/session-properties-capplet.c:332
 msgid "_Sessions:"
 msgstr "_სესიები:"
 
-#: ../gnome-session/session-properties-capplet.c:347
+#: ../gnome-session/session-properties-capplet.c:350
 msgid "Session Name"
 msgstr "სესიის სახელი"
 
-#: ../gnome-session/session-properties-capplet.c:398
+#: ../gnome-session/session-properties-capplet.c:401
 msgid "Session Options"
 msgstr "სესიის პარამეტრები"
 
-#: ../gnome-session/session-properties-capplet.c:407
+#: ../gnome-session/session-properties-capplet.c:410
 msgid "Current Session"
 msgstr "მიმდინარე სესია"
 
-#: ../gnome-session/session-properties-capplet.c:416
+#: ../gnome-session/session-properties-capplet.c:419
 msgid "Additional startup _programs:"
-msgstr ""
+msgstr "დამატებითი დაწყებითი ჩატვირთვის _პროგრამები:"
 
-#: ../gnome-session/session-properties-capplet.c:435
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Command"
 msgstr "ბრძანება"
 
-#: ../gnome-session/session-properties-capplet.c:475
+#: ../gnome-session/session-properties-capplet.c:478
 msgid "Startup Programs"
 msgstr "დაწყების პროგრამები"
 
 #: ../gnome-session/session-properties.c:49
-#, fuzzy
 msgid "Remove the currently selected client from the session."
-msgstr "წაშლა."
+msgstr "მიმდინარე მონიშნული კლიენტის ამოღება."
 
 #: ../gnome-session/session-properties.c:55
-#, fuzzy
 msgid "Apply changes to the current session"
-msgstr "გამოყენება -სკენ"
+msgstr "მიმდინარე სეანსის ცვლილებების დამტკიცება"
 
 #: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr ""
+msgstr "პროგრამების სია სესიაში."
 
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr ""
+msgstr "მიმდინარე ჩართული _პროგრამები:"
 
 #: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr ""
+msgstr "სესიის პარამეტრების ინიციალიზება"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "საკუთარი სესიის კონფიგურირება"
 
 #: ../gnome-session/splash-widget.c:43
-#, fuzzy
 msgid "Sawfish Window Manager"
-msgstr "ფანჯარა მმართველი"
+msgstr "\"Sawfish\" ფანჯრების მმართველი"
 
 #: ../gnome-session/splash-widget.c:44
-#, fuzzy
 msgid "Metacity Window Manager"
-msgstr "Metacity ფანჯარა მმართველი"
+msgstr "Metacity ფანჯრების მმართველი"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
@@ -495,27 +541,27 @@ msgstr "ნაუტილუსი"
 msgid "Desktop Settings"
 msgstr "სამუშაო მაგიდის პარამეტრები"
 
-#: ../gnome-session/startup-programs.c:415
+#: ../gnome-session/splash-widget.c:49
+msgid "Update Notifier"
+msgstr "განახლებების მაცნე"
+
+#: ../gnome-session/startup-programs.c:425
 msgid "_Startup Command:"
 msgstr "_ჩართვის ბრძანება:"
 
-#: ../gnome-session/startup-programs.c:421
+#: ../gnome-session/startup-programs.c:431
 msgid "Startup Command"
 msgstr "გაშვების ბრძანება"
 
-#: ../gnome-session/startup-programs.c:450
+#: ../gnome-session/startup-programs.c:460
 msgid "The startup command cannot be empty"
-msgstr ""
+msgstr "გაშვების ბრძანება არ უნდა იყოს ცარიელი"
 
-#: ../gnome-session/startup-programs.c:487
-#, fuzzy
+#: ../gnome-session/startup-programs.c:497
 msgid "Add Startup Program"
-msgstr "დამატება პროგრამა"
+msgstr "დაამატე სისტემის გაშვებისთანავე გასაშვები პროგრამა"
 
-#: ../gnome-session/startup-programs.c:525
-#, fuzzy
+#: ../gnome-session/startup-programs.c:535
 msgid "Edit Startup Program"
-msgstr "რედაქტირება პროგრამა"
+msgstr "დამწყები პროგრამის რედაქტირება"
 
-#~ msgid "_Hibernate the computer"
-#~ msgstr "კომპიუტერის _ჰიბერნეტიზირება"
