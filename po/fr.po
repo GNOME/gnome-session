@@ -9,9 +9,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.14.1\n"
+"Project-Id-Version: gnome-session 2.14.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-04 09:48+0200\n"
+"POT-Creation-Date: 2006-05-20 21:34+0200\n"
 "PO-Revision-Date: 2006-03-21 14:37+0200\n"
 "Last-Translator: Laurent Richard <laurent.richard@ael.be>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -57,7 +57,7 @@ msgstr "Invite de déconnexion"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "Image préférée à utiliser pour l'écran d'accueil"
+msgstr "Image à utiliser de préférence pour l'écran d'accueil"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -81,9 +81,10 @@ msgid ""
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"C'est un chemin relatif basé sur le répertoire $datadir/pixmaps/. Les sous-"
-"répertoires et les noms d'images sont des valeur valides. Modifier cette "
-"valeur prendra effet lors de la prochaine ouverture de session."
+"Il s'agit d'un chemin relatif basé sur le répertoire $datadir/pixmaps/. Les "
+"sous-répertoires et les noms d'images sont des valeurs valides. La "
+"modification de cette valeur prendra effet lors de la prochaine ouverture de "
+"session."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
 msgid ""
@@ -91,8 +92,8 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"C'est l'option qui sera sélectionnée dans le dialogue de déconnexion. Les "
-"valeurs valides sont « logout » pour se déconnecter, « shutdown » pour "
+"Il s'agit de l'option qui sera sélectionnée dans le dialogue de déconnexion. "
+"Les valeurs valides sont « logout » pour se déconnecter, « shutdown » pour "
 "arrêter le système et « restart » pour redémarrer le système."
 
 #: ../gnome-session/gsm-client-editor.c:97
@@ -101,7 +102,7 @@ msgstr "_Ordre :"
 
 #: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "L'ordre dans lequel les applications sont démarrés dans la session."
+msgstr "L'ordre dans lequel les applications sont démarrées dans la session."
 
 #: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
@@ -137,7 +138,7 @@ msgstr "Attente du démarrage ou déjà fini."
 
 #: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "Lancement..."
+msgstr "Démarrage"
 
 #: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
@@ -228,7 +229,8 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Le dernier message d'erreur était :\n"
+"Le dernier message d'erreur était :\n"
+"\n"
 
 #: ../gnome-session/gsm-gsd.c:58
 msgid ""
@@ -249,33 +251,33 @@ msgstr "Il y a eu une erreur d'activation inconnue."
 msgid "The Settings Daemon restarted too many times."
 msgstr "Le démon des préférences a redémarré trop de fois."
 
-#: ../gnome-session/logout.c:405
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
-msgstr "Voulez-vous vraiment fermer cette session ?"
+msgstr "Voulez-vous vraiment clôre cette session ?"
 
-#: ../gnome-session/logout.c:422
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_Enregistrer la configuration actuelle"
 
-#: ../gnome-session/logout.c:445
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Action"
 
-#: ../gnome-session/logout.c:462
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "_Clore la session"
 
-#: ../gnome-session/logout.c:469
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "É_teindre"
 
-#: ../gnome-session/logout.c:477
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "_Redémarrer l'ordinateur"
 
 #: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
-msgstr "Spécifie le nom de la session à charger"
+msgstr "Indique le nom de la session à charger"
 
 #: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
@@ -285,7 +287,7 @@ msgstr ""
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
-"Temps en millisecondes passé à attendre pour l'enregistrement des clients "
+"Temps en millisecondes passé à attendre l'enregistrement des clients "
 "(0=infini)"
 
 #: ../gnome-session/main.c:85
@@ -349,7 +351,7 @@ msgstr "Une fermeture de session est en cours."
 
 #: ../gnome-session/save-session.c:46
 msgid "Set the current session"
-msgstr "Définir la session courante"
+msgstr "Définir la session actuelle"
 
 #: ../gnome-session/save-session.c:47
 msgid "Kill session"
@@ -361,7 +363,7 @@ msgstr "Utiliser des boîtes de dialogue"
 
 #: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
-msgstr "Ne peut se connecter au gestionnaire de sessions"
+msgstr "Ne peut se connecter au gestionnaire de session"
 
 #: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -369,7 +371,7 @@ msgstr "Le nom de la session ne peut pas être vide"
 
 #: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr "Le nom de cette session existe déjà"
+msgstr "Une session portant ce nom existe déjà"
 
 #: ../gnome-session/session-names.c:188
 msgid "Add a new session"
@@ -390,7 +392,7 @@ msgstr "Désactiver"
 
 #: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
-msgstr "Édit_er"
+msgstr "É_diter"
 
 #: ../gnome-session/session-properties-capplet.c:213
 msgid ""
@@ -407,11 +409,11 @@ msgstr "Sessions"
 
 #: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
-msgstr "Afficher l'écran d'accueil à la _connexion"
+msgstr "_Afficher l'écran d'accueil à la connexion"
 
 #: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
-msgstr "_Demander à la déconnexion"
+msgstr "De_mander à la déconnexion"
 
 #: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
@@ -419,7 +421,7 @@ msgstr "_Enregistrer automatiquement les changements de la session"
 
 #: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
-msgstr "_Sessions :"
+msgstr "_Sessions :"
 
 #: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
@@ -447,11 +449,11 @@ msgstr "Programmes au démarrage"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Supprimer le client sélectionné de la session."
+msgstr "Enlever le client sélectionné de la session."
 
 #: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "Appliquer les changements à la session courante"
+msgstr "Appliquer les changements à la session actuelle"
 
 #: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
@@ -459,7 +461,7 @@ msgstr "La liste des programmes de la session."
 
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "_Programmes en cours de fonctionnement :"
+msgstr "_Programmes en cours de fonctionnement :"
 
 #: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
