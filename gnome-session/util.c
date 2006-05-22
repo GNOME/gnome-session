@@ -120,7 +120,7 @@ gsm_verbose_indent (gboolean indent)
 
   if (indent_level < 0)
     {
-      fprintf (stderr, "YOU FUCKED UP YOUR INDENTATION\n");
+      fprintf (stderr, "Indentation Error\n");
       indent_level = 0;
     }
 }
