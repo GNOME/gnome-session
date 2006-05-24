@@ -62,7 +62,7 @@ session_initialized (GsmSession *session,
 
       if (client->program != NULL)
         client_program = g_strdup (client->program);
-      else
+      else if (client->command != NULL)
         {
           char **argv = NULL;
           int argc;
