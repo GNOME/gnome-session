@@ -1,3 +1,10 @@
+2006-06-12  Ray Strode <rstrode@redhat.com>
+
+	* save.c (read_session): create autostart dir if it
+	doesn't already exist.  Give generated desktop filenames
+	.desktop extension when encountering naming conflicts.
+	(bug 334066)
+
 ==================== 2.14.2 ====================
 
 2006-04-15  Vincent Untz  <vuntz@gnome.org>
