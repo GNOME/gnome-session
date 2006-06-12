@@ -724,7 +724,11 @@ read_session (const char *name)
    */
   list = read_clients (MANUAL_CONFIG_PREFIX, name, MATCH_PROP);
   if (list) {
-    char *path;
+    char *path, *user_autostart_dir;
+
+    user_autostart_dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+    if (!g_file_test (user_autostart_dir, G_FILE_TEST_IS_DIR))
+        g_mkdir_with_parents (user_autostart_dir, S_IRWXU);
 
     /* migrate to newly desktop-based autostart system */
     while (list) {
@@ -747,16 +751,17 @@ read_session (const char *name)
 	gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC, args->str);
 
 	basename = g_path_get_basename (prop->vals[0].value);
-	orig_filename = g_strdup_printf ("%s/autostart/%s.desktop", g_get_user_config_dir (), basename);
+	orig_filename = g_strconcat (user_autostart_dir, G_DIR_SEPARATOR_S, basename, ".desktop", NULL);
 	filename = g_strdup (orig_filename);
 	i = 2;
 	while (g_file_exists (filename)) {
-	  char *tmp = g_strdup_printf ("%s-%d", orig_filename, i);
+	  char *tmp = g_strdup_printf ("%s" G_DIR_SEPARATOR_S "%s-%d.desktop", user_autostart_dir, basename, i);
 
 	  g_free (filename);
 	  filename = tmp;
 	  i++;
 	}
+	g_free (basename);
 	
 	if (!gnome_desktop_item_save (ditem, filename, TRUE, NULL))
   	  g_warning ("Could not save %s file\n", filename);
@@ -770,6 +775,8 @@ read_session (const char *name)
       REMOVE (list, client);
       free_client (client);
     }
+
+    g_free (user_autostart_dir);
 
     path = g_build_filename (g_get_home_dir (), ".gnome2/session-manual", NULL);
     g_remove ((const char *) path);

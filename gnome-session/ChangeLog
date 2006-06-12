@@ -1,3 +1,10 @@
+2006-06-12  Ray Strode <rstrode@redhat.com>
+
+	* save.c: (read_session): create autostart dir if it
+	doesn't already exist.  Give generated desktop filenames
+	.desktop extension when encountering naming conflicts.
+	(bug 334066)
+
 2006-05-23  Glynn Foster  <glynn.foster@sun.com>
 
 	* util.c: (gsm_verbose_indent): Update string to show
