@@ -57,7 +57,7 @@ PKG_CHECK_MODULES(SOUND_TEST, $ESOUND_MODULE, [
 	ESOUND_MODULE=""
 ])
 
-PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE gnome-desktop-2.0)
+PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE gnome-desktop-2.0 gnome-settings-daemon)
 
 dnl Check if libnotify is present
 

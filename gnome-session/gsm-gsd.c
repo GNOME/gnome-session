@@ -4,12 +4,16 @@
 #include "util.h"
 
 #include <time.h>
+#include <glib/gi18n.h>
+
+#include <dbus/dbus-glib-lowlevel.h>
 
 #include <gtk/gtkmessagedialog.h>
-#include <libbonobo.h>
+
+#include <gnome-settings-daemon/gnome-settings-client.h>
 
 typedef struct {
-  CORBA_Object gsd_object;
+  DBusGProxy       *dbus_proxy;
   gboolean     activating;
   time_t       start_time;
   guint        attempts;
@@ -75,83 +79,67 @@ gsd_error_dialog (GnomeSettingsData *gsd, const char *error)
 }
 
 static void
-broken_cb (ORBitConnection *cnx, GnomeSettingsData *gsd)
+name_owner_changed (DBusGProxy *proxy,
+                    const char *name,
+                    const char *prev_owner,
+                    const char *new_owner,
+                    GnomeSettingsData *gsd)
 {
-  g_return_if_fail (gsd != NULL);
-  g_return_if_fail (gsd->gsd_object != CORBA_OBJECT_NIL);
-  g_return_if_fail (gsd->activating == FALSE);
-
-  gsm_verbose ("broken_cb()\n");
-
-  gsd->gsd_object = CORBA_OBJECT_NIL;
-
-  gsm_gsd_start ();
-}
-
-static void
-activate_cb (Bonobo_Unknown object,
-	     const char    *error_reason,
-	     gpointer       user_data)
-{
-  GnomeSettingsData *gsd = user_data;
-  
-  gsm_verbose ("activate_cb(): object: %p\n", object);
-
-  g_return_if_fail (gsd != NULL);
-  g_return_if_fail (gsd->gsd_object == CORBA_OBJECT_NIL);
-  g_return_if_fail (gsd->activating == TRUE);
-
-  gsd->activating = FALSE;
-  gsd->gsd_object = object;
-
-  if (error_reason)
+  if (!g_strcasecmp (name, "org.gnome.SettingsDaemon"))
     {
-      gsd_set_error (gsd, error_reason);
-      gsm_gsd_start ();
-      return;
-    }
-  else if (object == CORBA_OBJECT_NIL)
-    {
-      gsd_set_error (gsd, _("There was an unknown activation error."));
-      gsm_gsd_start ();
-      return;
-    }
+      /* gsd terminated */
+      if (!g_strcasecmp ("", new_owner))
+        {
+	  if (!gsd->activating)
+            {
+              gsm_verbose ("gnome-settings-daemon terminated\n");
+              g_return_if_fail (gsd != NULL);
+	      /* Previous attempts failed */
+	      if (gsd->dbus_proxy == NULL)
+                return;
 
-  gsd_set_error (gsd, NULL);
-  ORBit_small_listen_for_broken (object, G_CALLBACK (broken_cb), gsd);
+              gsd->dbus_proxy = NULL;
+
+              gsm_gsd_start ();
+            }
+	}
+      else
+        {
+          gsm_verbose ("gnome-settings-daemon started\n");
+          gsd->activating = FALSE;
+	}
+    }
 }
 
 void
 gsm_gsd_start (void)
 {
-  static GnomeSettingsData gsd = { CORBA_OBJECT_NIL };
-  CORBA_Environment ev;
+  static GnomeSettingsData gsd = { NULL };
   time_t now;
+  DBusGConnection *connection;
+  GError *error = NULL;
 
   gsm_verbose ("gsm_gsd_start(): starting\n");
 
   if (gsd.activating)
     return;
-  
-  if (gsd.gsd_object)
+
+  if (gsd.dbus_proxy)
     {
-      /* this shouldn't happen */
-      if (ORBIT_CONNECTION_CONNECTED == 
-	  ORBit_small_get_connection_status (gsd.gsd_object))
-	return;
-      
       gsm_warning ("disconnected...\n");
-      gsd.gsd_object = CORBA_OBJECT_NIL;
+      gsd.dbus_proxy = NULL;
     }
 
   /* stolen from manager.c:client_clean_up() */
   now = time (NULL);
+  gsm_verbose ("%ld secs since last attempt\n", now - gsd.start_time);
   if (now > gsd.start_time + 120)
     {
       gsd.attempts = 0;
       gsd.start_time = now;
     }
 
+  gsm_verbose ("%d/10 attempts done\n", gsd.attempts);
   if (gsd.attempts++ > 10)
     {
       gsd_error_dialog (&gsd, _("The Settings Daemon restarted too many times."));
@@ -160,19 +148,57 @@ gsm_gsd_start (void)
 
   gsd.activating = TRUE;
 
-  CORBA_exception_init (&ev);
-
-  bonobo_activation_activate_from_id_async ("OAFIID:GNOME_SettingsDaemon",
-					    0,
-					    activate_cb,
-					    &gsd,
-					    &ev);
-
-  if (BONOBO_EX (&ev))
+  connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+  if (connection == NULL)
     {
-      gsd_set_error (&gsd, bonobo_exception_general_error_get (&ev));
+      gsd_set_error (&gsd, error->message);
       gsd_error_dialog (&gsd, NULL);
+      g_error_free (error);
     }
+  else
+    {
+      dbus_connection_setup_with_g_main (dbus_g_connection_get_connection(connection),
+                                         NULL);
+      gsd.dbus_proxy = dbus_g_proxy_new_for_name (connection,
+                                                  "org.gnome.SettingsDaemon",
+                                                  "/org/gnome/SettingsDaemon",
+                                                  "org.gnome.SettingsDaemon");
 
-  CORBA_exception_free (&ev);
+      if (gsd.dbus_proxy == NULL)
+        {
+          gsd_set_error (&gsd, "Could not obtain DBUS proxy");
+          gsd_error_dialog (&gsd, NULL);
+        } 
+      else
+        {
+          if (!org_gnome_SettingsDaemon_awake(gsd.dbus_proxy, &error))
+            {
+              /* Method failed, the GError is set, let's warn everyone */
+              gsd_set_error (&gsd, error->message);
+              gsd_error_dialog (&gsd, NULL);
+              g_error_free (error);
+            }
+          else
+            {
+              DBusGProxy *dbusService;
+              dbusService = dbus_g_proxy_new_for_name (connection,
+                                                       DBUS_SERVICE_DBUS,
+                                                       DBUS_PATH_DBUS,
+                                                       DBUS_INTERFACE_DBUS);
+
+              dbus_g_proxy_add_signal (dbusService,
+                                       "NameOwnerChanged",
+                                       G_TYPE_STRING,
+                                       G_TYPE_STRING,
+                                       G_TYPE_STRING,
+                                       G_TYPE_INVALID);
+
+              dbus_g_proxy_connect_signal (dbusService,
+                                           "NameOwnerChanged",
+                                           G_CALLBACK (name_owner_changed),
+                                           &gsd,
+                                           NULL);
+            }
+        }
+    }
 }
