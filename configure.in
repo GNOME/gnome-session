@@ -41,6 +41,7 @@ dnl it too, or it will never make it into the spec file!
 ESOUND_REQUIRED=0.2.26
 LIBGNOMEUI_REQUIRED=2.2.0
 GTK_REQUIRED=2.3.1
+DBUS_GLIB_REQUIRED=0.35
 
 AC_SUBST(ESOUND_REQUIRED)
 AC_SUBST(LIBGNOMEUI_REQUIRED)
@@ -57,7 +58,7 @@ PKG_CHECK_MODULES(SOUND_TEST, $ESOUND_MODULE, [
 	ESOUND_MODULE=""
 ])
 
-PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE gnome-desktop-2.0 gnome-settings-daemon)
+PKG_CHECK_MODULES(GNOME_SESSION, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE gnome-desktop-2.0 dbus-glib-1 >= $DBUS_GLIB_REQUIRED gnome-settings-daemon)
 
 dnl Check if libnotify is present
 
