@@ -98,13 +98,6 @@ create_table (void)
   return vbox;
 }
 
-static gboolean init_settings = FALSE;
-
-static const struct poptOption options[] = {
-  {"init-session-settings", '\0', POPT_ARG_NONE, &init_settings, 0, N_("Initialize session settings"), NULL},
-  {NULL, '\0', 0, NULL, 0}
-};
-
 GtkWidget *
 session_properties_create_page (DirtyCallbackFunc dcf)
 {

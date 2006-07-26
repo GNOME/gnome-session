@@ -668,7 +668,7 @@ start_client (Client* client)
   if (client->id || client->match_rule == MATCH_PROP)
     {
       APPEND (pending_list, client);
-      if (purge_delay)
+      if (purge_delay > 0)
 	{
 	  g_assert (client->purge_timeout_id == 0);
 	  client->purge_timeout_id = gtk_timeout_add (purge_delay, purge, client);
@@ -1274,7 +1274,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       gint delay = client->handle ? warn_delay : purge_delay;
       save_state = SAVE_PHASE_1;
       save_state_changed ();
-      if (delay)
+      if (delay > 0)
 	{
 	  g_assert (warn_timeout_id == -1);
 	  warn_timeout_id = gtk_timeout_add (delay, no_response_warning, NULL);
@@ -1405,7 +1405,7 @@ update_save_state (void)
 	      gtk_timeout_remove (warn_timeout_id);
 	      warn_timeout_id = -1;
 	    }
-	  if (warn_delay)
+	  if (warn_delay > 0)
 	    {
 	      g_assert (warn_timeout_id == -1);
 	      warn_timeout_id = gtk_timeout_add (warn_delay, 
@@ -1462,7 +1462,7 @@ update_save_state (void)
 	  run_shutdown_commands (zombie_list);
 	  run_shutdown_commands (live_list);
 
-	  if (suicide_delay)
+	  if (suicide_delay > 0)
 	    {
 	      g_assert (warn_timeout_id == -1);
 	      warn_timeout_id = gtk_timeout_add (suicide_delay, 

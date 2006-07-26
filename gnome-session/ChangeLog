@@ -1,5 +1,21 @@
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
+	Use GOption.
+	Patch by Michael Terry <mike@mterry.name>
+	Fix bug #336144
+
+	* headers.h: make some variables int
+	* main.c: ditto
+	(main): use goption
+	* manager.c: (start_client): check whether the delay is positive
+	(since it's an int and not an unsigned int anymore)
+	(process_save_request): ditto
+	(update_save_state): ditto
+	* save-session.c: (main): use goption
+	* session-properties.c: remove unused popt stuff
+
+2006-07-26  Vincent Untz  <vuntz@gnome.org>
+
 	Patch by Rodrigo Moya <rodrigo@novell.com>
 	Fix bug #335387
 

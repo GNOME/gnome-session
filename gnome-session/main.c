@@ -68,23 +68,23 @@ gboolean save_selected = FALSE;
 gboolean failsafe = FALSE;
 
 /* Wait period for clients to register. */
-guint purge_delay = 120000;
+gint purge_delay = 120000;
 
 /* Wait period for clients to save. */
-guint warn_delay = 120000;
+gint warn_delay = 120000;
 
 /* Wait period for clients to die during shutdown. */
-guint suicide_delay = 10000;
+gint suicide_delay = 10000;
 
 gchar *session_name = NULL;
 
-static const struct poptOption options[] = {
-  {"choose-session", '\0', POPT_ARG_STRING, &session_name, 0, N_("Specify a session name to load"), NULL},
-  {"failsafe", '\0', POPT_ARG_NONE, &failsafe, 0, N_("Only read saved sessions from the default.session file"), NULL},
-  {"purge-delay", '\0', POPT_ARG_INT, &purge_delay, 0, N_("Millisecond period spent waiting for clients to register (0=forever)"), NULL},
-  {"warn-delay", '\0', POPT_ARG_INT, &warn_delay, 0, N_("Millisecond period spent waiting for clients to respond (0=forever)"), NULL},
-  {"suicide-delay", '\0', POPT_ARG_INT, &suicide_delay, 0, N_("Millisecond period spent waiting for clients to die (0=forever)"), NULL},
-  {NULL, '\0', 0, NULL, 0}
+static const GOptionEntry options[] = {
+  {"choose-session", '\0', 0, G_OPTION_ARG_STRING, &session_name, N_("Specify a session name to load"), N_("NAME")},
+  {"failsafe", '\0', 0, G_OPTION_ARG_NONE, &failsafe, N_("Only read saved sessions from the default.session file"), NULL},
+  {"purge-delay", '\0', 0, G_OPTION_ARG_INT, &purge_delay, N_("Millisecond period spent waiting for clients to register (0=forever)"), N_("DELAY")},
+  {"warn-delay", '\0', 0, G_OPTION_ARG_INT, &warn_delay, N_("Millisecond period spent waiting for clients to respond (0=forever)"), N_("DELAY")},
+  {"suicide-delay", '\0', 0, G_OPTION_ARG_INT, &suicide_delay, N_("Millisecond period spent waiting for clients to die (0=forever)"), N_("DELAY")},
+  {NULL}
 };
 
 /* A separate function to ease the impending #if hell.  */
@@ -334,6 +334,7 @@ main (int argc, char *argv[])
   char *display_str;
   char **versions;
   GConfClient *gconf_client;
+  GOptionContext *goption_context;
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
@@ -398,8 +399,11 @@ main (int argc, char *argv[])
   if (a_t_support)
     gsm_at_set_gtk_modules ();
 
+  goption_context = g_option_context_new (_("- Manage the GNOME session"));
+  g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);
+
   gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
-		  GNOME_PARAM_POPT_TABLE, options,
+		  GNOME_PARAM_GOPTION_CONTEXT, goption_context,
 		  NULL);
 
  /* FIXME: it would be nice to skip this check if we're debugging the

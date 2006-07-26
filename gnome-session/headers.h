@@ -166,13 +166,13 @@ extern gchar *session_name;
 
 /* Milliseconds to wait for clients to register before assuming that
  * they have finished any initialisation needed by other clients. */
-extern guint purge_delay;
+extern gint purge_delay;
 
 /* Milliseconds to wait for clients to die before cutting our throat. */
-extern guint suicide_delay;
+extern gint suicide_delay;
 
 /* Milliseconds to wait for clients to complete save before reporting error. */
-extern guint warn_delay;
+extern gint warn_delay;
 
 /* Prompting for save session on logout. If true, session will automatically
  * save, if false, user will be prompted to have option of saving session on

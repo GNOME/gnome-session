@@ -42,11 +42,11 @@ static char *session_name = NULL;
 
 static IceConn ice_conn = NULL;
 
-static const struct poptOption options[] = {
-  {"session-name", 's', POPT_ARG_STRING, &session_name, 0, N_("Set the current session"), NULL},
-  {"kill", '\0', POPT_ARG_NONE, &zap, 0, N_("Kill session"),     NULL},
-  {"gui",  '\0', POPT_ARG_NONE, &gui, 0, N_("Use dialog boxes"), NULL},
-  {NULL,   '\0', 0, NULL, 0}
+static const GOptionEntry options[] = {
+  {"session-name", 's', 0, G_OPTION_ARG_STRING, &session_name, N_("Set the current session name"), N_("NAME")},
+  {"kill", '\0', 0, G_OPTION_ARG_NONE, &zap, N_("Kill session"),     NULL},
+  {"gui",  '\0', 0, G_OPTION_ARG_NONE, &gui, N_("Use dialog boxes"), NULL},
+  {NULL}
 };
 
 static int exit_status = 0;
@@ -156,6 +156,7 @@ int
 main (int argc, char *argv[])
 {
   GnomeClient *client;
+  GOptionContext *goption_context;
 
   /* Initialize the i18n stuff */
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
@@ -165,9 +166,12 @@ main (int argc, char *argv[])
 
   IceAddConnectionWatch (ice_connection_watch, NULL);
 
+  goption_context = g_option_context_new (_("- Save the current session"));
+  g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);
+
   gnome_program_init ("gnome-session-save", VERSION, LIBGNOMEUI_MODULE,
 		      argc, argv,
-		      GNOME_PARAM_POPT_TABLE, options,
+		      GNOME_PARAM_GOPTION_CONTEXT, goption_context,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
