@@ -469,8 +469,11 @@ main (int argc, char *argv[])
    
   gnome_config_pop_prefix ();
    
-  if(failsafe)
-	session_name = FAILSAFE_SESSION;
+  if (failsafe) {
+	  if (session_name)
+		  g_free (session_name);
+	  session_name = g_strdup (FAILSAFE_SESSION);
+  }
   
   session_name_env = g_strconcat ("GNOME_DESKTOP_SESSION_ID=", session_name, NULL);
   putenv (session_name_env);
@@ -500,6 +503,8 @@ main (int argc, char *argv[])
   gsm_shutdown_gconfd ();
 
   clean_ice ();
+
+  g_free (session_name);
 
   return 0;
 }
