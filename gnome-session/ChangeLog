@@ -1,5 +1,13 @@
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
+	* session-properties-capplet.c: (selection_changed_cb): fix
+	sensitivity of edit/delete buttons when there's no enable button. Make
+	edition of sessions possible again.
+	Based on patch by Don Scorgie <Don.Scorgie@Blueyonder.co.uk>
+	Fix bug #336820
+
+2006-07-26  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-keyring.c: (gsm_keyring_daemon_start): update keyring daemon
 	DISPLAY environment variable if it's already running
 	Patch by Jon Nettleton <jon.nettleton@gmail.com>

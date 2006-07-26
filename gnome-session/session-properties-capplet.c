@@ -102,33 +102,36 @@ selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
   delete_button = g_object_get_data (G_OBJECT (view), "delete");
   enable_button = g_object_get_data (G_OBJECT (view), "enable");
 
-  if (!edit_button || !delete_button || !enable_button)
-	return;
-
   sel = gtk_tree_selection_get_selected (selection, NULL, NULL);
 
-  gtk_widget_set_sensitive (edit_button, sel);
-  gtk_widget_set_sensitive (delete_button, sel);
+  if (edit_button)
+    gtk_widget_set_sensitive (edit_button, sel);
 
-  if (sel)
+  if (delete_button)
+    gtk_widget_set_sensitive (delete_button, sel);
+
+  if (enable_button)
     {
-      if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
+      if (sel)
         {
-  	  gtk_button_set_label (GTK_BUTTON (enable_button), _("Enable"));
-	  gtk_button_set_image (GTK_BUTTON (enable_button),
-				gtk_image_new_from_stock (GTK_STOCK_YES, GTK_ICON_SIZE_BUTTON));
-	}
+          if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
+            {
+              gtk_button_set_label (GTK_BUTTON (enable_button), _("Enable"));
+              gtk_button_set_image (GTK_BUTTON (enable_button),
+                                    gtk_image_new_from_stock (GTK_STOCK_YES, GTK_ICON_SIZE_BUTTON));
+            }
+          else
+            {
+              gtk_button_set_label (GTK_BUTTON (enable_button), _("Disable"));
+              gtk_button_set_image (GTK_BUTTON (enable_button),
+                                    gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
+            }
+          
+          gtk_widget_set_sensitive (enable_button, TRUE);
+        }
       else
-        {
-	  gtk_button_set_label (GTK_BUTTON (enable_button), _("Disable"));
-	  gtk_button_set_image (GTK_BUTTON (enable_button),
-				gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
-	}
-
-      gtk_widget_set_sensitive (enable_button, TRUE);
+        gtk_widget_set_sensitive (enable_button, FALSE);
     }
-  else
-    gtk_widget_set_sensitive (enable_button, FALSE);
 }
 
 static void
