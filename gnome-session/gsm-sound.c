@@ -78,7 +78,8 @@ start_esd (void)
 }
 
 static gboolean
-load_login_sample_from (const char *file)
+load_login_sample_from (const char *file,
+			gboolean   *isset)
 {
   char *key;
   char *sample_file;
@@ -90,6 +91,11 @@ load_login_sample_from (const char *file)
   key = g_strconcat ("=", file, "=login/file", NULL);
   sample_file = gnome_config_get_string (key);
   g_free (key);
+
+  if (sample_file && isset)
+    *isset = TRUE;
+  else if (isset)
+    *isset = FALSE;
 
   if (sample_file && *sample_file && *sample_file != '/')
     {
@@ -128,16 +134,17 @@ load_login_sample (void)
 {
   char *s;
   gboolean loaded;
+  gboolean isset;
 
   s = gnome_util_home_file (SOUND_EVENT_FILE);
-  loaded = load_login_sample_from (s);
+  loaded = load_login_sample_from (s, &isset);
   g_free (s);
 
-  if (loaded)
-    return TRUE;
+  if (isset)
+    return loaded;
 
   s = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_CONFIG, SOUND_EVENT_FILE, TRUE, NULL);
-  loaded = load_login_sample_from (s);
+  loaded = load_login_sample_from (s, NULL);
   g_free (s);
 
   return loaded;

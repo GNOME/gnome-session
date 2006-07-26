@@ -1,5 +1,14 @@
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
+	* gsm-sound.c: (load_login_sample_from): add an argument to know if
+	there's a value for the sound in the config
+	(load_login_sample): if there's a value in the user config, then
+	always return "loaded". It means the user can disable the login sound
+	:-)
+	Fix bug #91531
+
+2006-07-26  Vincent Untz  <vuntz@gnome.org>
+
 	Use GOption.
 	Patch by Michael Terry <mike@mterry.name>
 	Fix bug #336144
