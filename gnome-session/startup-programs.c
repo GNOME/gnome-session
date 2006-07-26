@@ -453,7 +453,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 	  
 	  gtk_widget_show (*dialog);
 	  
-	  msgbox = gtk_message_dialog_new (GTK_WINDOW (parent_dlg),
+	  msgbox = gtk_message_dialog_new (GTK_WINDOW (*dialog),
 					   GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_ERROR,
 					   GTK_BUTTONS_OK,

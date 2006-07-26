@@ -1,5 +1,11 @@
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
+	* startup-programs.c: (edit_client): correctly set the parent dialog
+	for the error dialog
+	Fix bug #331822
+
+2006-07-26  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-sound.c: (load_login_sample_from): add an argument to know if
 	there's a value for the sound in the config
 	(load_login_sample): if there's a value in the user config, then
