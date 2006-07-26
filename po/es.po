@@ -1,28 +1,28 @@
-# translation of gnome-session.HEAD.po to Spanish
+# translation of es.po to Spanish
 # gnome-session Spanish translation.
-# Copyright © 1998-2003 the Free Software Foundation, Inc.
-# Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx> 1998
+# Copyright © 1998-2003, 2006 the Free Software Foundation, Inc.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999-2000
 # Javier Gómez <jgomsi@apolo.umh.es> 2000
 # Juanjo Alvarez	2000
 # Ismael Olea <olea@hispafuentes.com> 2000
 # Manuel de Vega Barreiro <barreiro@arrakis.es> 2000
 # Juan Manuel García Molina <juanma_gm@wanadoo.es> 2001-2002.
-# Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
-# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005.
 #
+# Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx> 1998.
+# Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-control-center\n"
+"Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-21 19:31+0100\n"
-"PO-Revision-Date: 2006-01-21 19:31+0100\n"
+"POT-Creation-Date: 2006-07-26 15:47+0200\n"
+"PO-Revision-Date: 2006-07-26 15:49+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10.2\n"
+"X-Generator: KBabel 1.11.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
@@ -211,7 +211,7 @@ msgstr "Iniciar siempre en cada entrada sesión."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -219,12 +219,12 @@ msgid ""
 "correctly."
 msgstr ""
 "Ha ocurrido un un error al iniciar el demonio del Administrador de "
-"Preferencias de Gnome.\n"
+"Preferencias de GNOME.\n"
 "\n"
 "Algunas cosas como las configuraciones de temas, sonidos o fondo de pantalla "
 "puede que no funcionen correctamente."
 
-#: ../gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -236,7 +236,7 @@ msgstr ""
 "El último mensaje de error fue:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -244,44 +244,44 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Gnome seguirá intentando reiniciar el Demonio de Preferencias la próxima vez "
+"GNOME seguirá intentando reiniciar el Demonio de Preferencias la próxima vez "
 "que inicie una sesión."
 
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Ha ocurrido un error de activación desconocido."
-
-#: ../gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr "El Demonio de Preferencias se ha reiniciado demasiadas veces."
 
-#: ../gnome-session/logout.c:408
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "¿Seguro que desea terminar la sesión?"
 
-#: ../gnome-session/logout.c:425
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_Guardar la configuración actual"
 
-#: ../gnome-session/logout.c:448
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Acción"
 
-#: ../gnome-session/logout.c:465
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "_Terminar la sesión"
 
-#: ../gnome-session/logout.c:472
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "A_pagar"
 
-#: ../gnome-session/logout.c:480
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "_Reiniciar el equipo"
 
 #: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Especificar un nombre de sesión para cargar"
+
+#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+msgid "NAME"
+msgstr "NOMBRE"
 
 #: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
@@ -292,6 +292,11 @@ msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Período de espera, en milisegundos, para que los clientes se registren "
 "(0=infinito)"
+
+#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
+msgid "DELAY"
+msgstr "RETARDO"
 
 #: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
@@ -305,7 +310,7 @@ msgstr ""
 "Período de espera, en milisegundos. para que los clientes se mueran "
 "(0=infinito)"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:261
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -314,16 +319,20 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 "No se ha podido obtener la dirección de Internet de %s.\n"
-"Esto causará que el comportamiento de Gnome no sea adecuado. Puede ser\n"
+"Esto causará que el comportamiento de GNOME no sea adecuado. Puede ser\n"
 "posible corregir el problema añadiendo %s al archivo /etc/hosts."
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
 msgstr "Iniciar sesión de todas formas"
 
-#: ../gnome-session/main.c:274
+#: ../gnome-session/main.c:269
 msgid "Try Again"
 msgstr "Intentarlo de nuevo"
+
+#: ../gnome-session/main.c:402
+msgid "- Manage the GNOME session"
+msgstr "- Gestionar la sesión de GNOME"
 
 #: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
@@ -355,8 +364,8 @@ msgid "A session shutdown is in progress."
 msgstr "Un cierre de sesión está en curso."
 
 #: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Establecer la sesión actual"
+msgid "Set the current session name"
+msgstr "Establece el nombre de la sesión actual"
 
 #: ../gnome-session/save-session.c:47
 msgid "Kill session"
@@ -366,9 +375,13 @@ msgstr "Matar sesión"
 msgid "Use dialog boxes"
 msgstr "Usar cajas de diálogo"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
 msgid "Could not connect to the session manager"
 msgstr "No se puede conectar al administrador de sesión"
+
+#: ../gnome-session/save-session.c:169
+msgid "- Save the current session"
+msgstr "- Guardar la sesión actual"
 
 #: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -468,10 +481,6 @@ msgstr "La lista de programas de la sesión."
 msgid "Currently running _programs:"
 msgstr "_Programas actualmente en ejecución:"
 
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Inicializar las propiedades de la sesión"
-
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Configurar sus sesiones"
@@ -500,22 +509,23 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Preferencias del escritorio"
 
-#: ../gnome-session/startup-programs.c:319
+#: ../gnome-session/startup-programs.c:425
 msgid "_Startup Command:"
 msgstr "Comando de _inicio:"
 
-#: ../gnome-session/startup-programs.c:325
+#: ../gnome-session/startup-programs.c:431
 msgid "Startup Command"
 msgstr "Comando de inicio"
 
-#: ../gnome-session/startup-programs.c:354
+#: ../gnome-session/startup-programs.c:460
 msgid "The startup command cannot be empty"
 msgstr "El comando de inicio no puede estar vacío"
 
-#: ../gnome-session/startup-programs.c:391
+#: ../gnome-session/startup-programs.c:497
 msgid "Add Startup Program"
 msgstr "Añadir programa de inicio"
 
-#: ../gnome-session/startup-programs.c:429
+#: ../gnome-session/startup-programs.c:535
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
+
