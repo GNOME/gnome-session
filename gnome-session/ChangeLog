@@ -1,5 +1,12 @@
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
+	* gsm-keyring.c: (gsm_keyring_daemon_start): update keyring daemon
+	DISPLAY environment variable if it's already running
+	Patch by Jon Nettleton <jon.nettleton@gmail.com>
+	Fix bug #333901
+
+2006-07-26  Vincent Untz  <vuntz@gnome.org>
+
 	* startup-programs.c: (edit_client): correctly set the parent dialog
 	for the error dialog
 	Fix bug #331822

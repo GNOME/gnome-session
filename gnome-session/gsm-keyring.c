@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 
 #include <glib.h>
+#include <gnome-keyring.h>
 
 #include "gsm-keyring.h"
 
@@ -57,13 +58,20 @@ gsm_keyring_daemon_start (void)
   long pid;
   char *pid_str, *end;
   const char *old_keyring;
+  const char *display;
   char *argv[2];
 
   /* If there is already a working keyring, don't start a new daemon */
   old_keyring = g_getenv ("GNOME_KEYRING_SOCKET");
   if (old_keyring != NULL &&
       access (old_keyring, R_OK | W_OK) == 0)
-    return;
+    {
+      display = g_getenv ("DISPLAY");
+      if (display != NULL)
+        gnome_keyring_daemon_set_display_sync (display); 
+
+      return;
+    }  
 
   /* Pipe to slave keyring lifetime to */
   pipe (keyring_lifetime_pipe);
