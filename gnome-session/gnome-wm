@@ -72,11 +72,11 @@ if [ ! -z "$SMID" ] ; then
     sawfish|sawmill|metacity)
       OPT1=--sm-client-id=$SMID
       ;;
-    openbox)
+    openbox|enlightenment|e16)
       OPT1=--sm-client-id
       OPT2=$SMID
       ;;
-    enlightenment|twm)
+    twm)
       OPT1=-clientId
       OPT2=$SMID
       ;;
