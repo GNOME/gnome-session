@@ -34,24 +34,18 @@ typedef struct _ManualClient ManualClient;
 
 struct _ManualClient
 {
-  char    *desktop_file;
-  gboolean to_remove;
-  gboolean enabled;
-  int      argc;
-  char   **argv;
+  char     *desktop_file;
+  gboolean  to_remove;
+  gboolean  enabled;
+  char     *command;
 };
 
 /* Free client record */
 static void
 client_free (ManualClient *client)
 {
-  int i;
-  
-  for (i=0; i<client->argc; i++)
-    g_free (client->argv[i]);
-
   g_free (client->desktop_file);
-  g_free (client->argv);
+  g_free (client->command);
   g_free (client);
 }
 
@@ -80,14 +74,12 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
       if (ditem != NULL)
         {
           const gchar *exec_string;
-          gchar **argv;
-          gint argc;
 
           exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
           
           /* First filter out entries without Exec keys and hidden entries */
 	  if ((exec_string == NULL) || 
-              !g_shell_parse_argv (exec_string, &argc, &argv, NULL) ||
+              (exec_string[0] == 0) ||
               (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_HIDDEN) &&
                gnome_desktop_item_get_boolean (ditem, GNOME_DESKTOP_ITEM_HIDDEN)))
             {
@@ -116,7 +108,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
                   {
                     gnome_desktop_item_unref (ditem);
                     g_free (desktop_file);
-                    g_strfreev (argv);
                     g_strfreev (only_show_in_list);
                     continue;
                   }
@@ -140,7 +131,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
                   {
                     gnome_desktop_item_unref (ditem);
                     g_free (desktop_file);
-                    g_strfreev (argv);
                     g_strfreev (not_show_in_list);
                     continue;
                   }
@@ -162,7 +152,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
                 {
                   gnome_desktop_item_unref (ditem);
                   g_free (desktop_file);
-                  g_strfreev (argv);
                   continue;
                 }
               g_free (program_path);
@@ -170,8 +159,7 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
 
 	  current = g_new0 (ManualClient, 1);
 	  current->desktop_file = desktop_file;
-          current->argv = argv;
-          current->argc = argc;
+          current->command = g_strdup (exec_string);
 	  current->to_remove = FALSE;
 	  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
 	    current->enabled = gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled");
@@ -264,7 +252,6 @@ startup_list_write (GSList *sl, const gchar *name)
   while (tmp_list)
     {
       GnomeDesktopItem *ditem;
-      char *cmd_line;
       ManualClient *client;
 
       client = tmp_list->data;
@@ -278,9 +265,8 @@ startup_list_write (GSList *sl, const gchar *name)
         {
           ditem = gnome_desktop_item_new ();
 
-	  cmd_line = g_strjoinv (" ", client->argv);
-	  gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC, cmd_line);
-	  g_free (cmd_line);
+	  gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
+                                         client->command);
 
 	  if (client->enabled)
 	    gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", TRUE);
@@ -304,7 +290,6 @@ startup_list_duplicate (GSList *sl)
 {
   GSList *tmp_list;
   GSList *result = NULL;
-  int i;
 
   tmp_list = sl;
   while (tmp_list)
@@ -315,11 +300,7 @@ startup_list_duplicate (GSList *sl)
       new_client->desktop_file = g_strdup (client->desktop_file);
       new_client->to_remove = client->to_remove;
       new_client->enabled = client->enabled;
-      new_client->argc = client->argc;
-      new_client->argv = g_new (gchar *, client->argc);
-      
-      for (i=0; i<client->argc; i++)
-	new_client->argv[i] = g_strdup (client->argv[i]);
+      new_client->command = g_strdup (client->command);
 
       result = g_slist_prepend (result, new_client);
       
@@ -360,16 +341,15 @@ startup_list_update_gui (GSList *sl, GtkTreeModel *model, GtkTreeSelection *sel)
   while (tmp_list)
     {
       ManualClient *client = tmp_list->data;
-      char         *name;
 
       if (!client->to_remove)
         {
-          name = g_strjoinv (" ", client->argv);
-
 	  gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-	  gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, client, 1, "", 2, name, -1);
-
-	  g_free (name);
+	  gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                              0, client,
+                              1, "",
+                              2, client->command,
+                              -1);
 	}
 
       tmp_list = tmp_list->next;
@@ -400,8 +380,6 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   GtkWidget *vbox;
   GtkWidget *hbox;
   GtkWidget *gnome_entry;
-
-  gchar *tmp;
 
   *dialog = gtk_dialog_new_with_buttons (title,
 					 GTK_WINDOW (parent_dlg),
@@ -436,18 +414,20 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
 
-  tmp = gnome_config_assemble_vector (client->argc,
-				      (const char * const *)client->argv);
-  gtk_entry_set_text (GTK_ENTRY (entry), tmp);
-  g_free (tmp);
+  if (client->command)
+    gtk_entry_set_text (GTK_ENTRY (entry), client->command);
   
   gtk_widget_show_all (vbox);
 
   while (gtk_dialog_run (GTK_DIALOG (*dialog)) == GTK_RESPONSE_OK)
     {
-      const gchar *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
+      const gchar  *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
+      char        **argv;
+      int           argc;
+      GError       *error = NULL;
 
-      if (is_blank (tmp))
+      if (is_blank (tmp) ||
+          !g_shell_parse_argv (tmp, &argc, &argv, &error))
 	{
 	  GtkWidget *msgbox;
 	  
@@ -457,20 +437,24 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 					   GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_ERROR,
 					   GTK_BUTTONS_OK,
-					   _("The startup command cannot be empty"));
+					   error ? error->message :
+                                                   _("The startup command cannot be empty"));
+
+          if (error)
+            g_error_free (error);
+
 	  gtk_dialog_run (GTK_DIALOG (msgbox));
 	  gtk_widget_destroy (msgbox);
 	}
       else
 	{
-	  int i;
+          g_strfreev (argv);
 
-	  for (i = 0; i < client->argc; i++)
-	    g_free (client->argv[i]);
-	  g_free (client->argv);
-	  
+          if (client->command)
+            g_free (client->command);
+          client->command = g_strdup (tmp);
+
 	  mark_dirty ();
-	  g_shell_parse_argv (tmp, &client->argc, &client->argv, NULL);
 
 	  gtk_widget_destroy (*dialog);
 	  *dialog = NULL;
@@ -491,16 +475,21 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
   ManualClient *client = g_new0 (ManualClient, 1);
   client->to_remove = FALSE;
   client->enabled = TRUE;
-  client->argc = 0;
-  client->argv = NULL;
+  client->command = NULL;
 
   if (edit_client (_("Add Startup Program"), client, dialog, parent_dlg))
     {
-      char *basename, *orig_filename, *filename;
-      int i = 2;
+      char **argv;
+      int    argc;
+      char  *basename, *orig_filename, *filename;
+      int    i = 2;
 
-      basename = g_path_get_basename (client->argv[0]);
+      g_shell_parse_argv (client->command, &argc, &argv, NULL);
+      basename = g_path_get_basename (argv[0]);
       orig_filename = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
+      g_strfreev (argv);
+      g_free (basename);
+
       filename = g_strdup_printf ("%s.desktop", orig_filename);
       while (g_file_exists (filename))
         {

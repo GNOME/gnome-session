@@ -1,3 +1,17 @@
+2006-07-27  Vincent Untz  <vuntz@gnome.org>
+
+	* startup-programs.c: don't keep around argc and argv, but just the
+	command line since we don't need argv
+	(client_free): updated for this
+	(search_desktop_entries_in_dir): ditto
+	(startup_list_write): ditto
+	(startup_list_duplicate): ditto
+	(startup_list_update_gui): ditto
+	(edit_client): ditto, and check if the entered command is correct with
+	g_shell_parse_argv()
+	(startup_list_add_dialog): updated, and fix small leak
+	Side-effect: fix bug #343231
+
 2006-07-26  Vincent Untz  <vuntz@gnome.org>
 
 	* gnome-wm: add support for e16 window manager
