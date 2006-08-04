@@ -207,7 +207,7 @@ spc_value_notify (GConfClient *client, guint id, GConfEntry *entry, gpointer tb)
 }
 
 static gboolean
-show_message_dialog ()
+show_message_dialog (void)
 {
 	GtkWidget *dlg;
 	gint response;

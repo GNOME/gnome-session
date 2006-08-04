@@ -1,3 +1,11 @@
+2006-08-04  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* gdm-logout-action.c: Explicitly init all fields in the
+	  struct to get rid of a warning from sparse. Closes
+	  bug #349837.
+	* session-properties-capplet.c: (show_message_dialog):
+	ANSIfication of the function declaration.
+
 2006-07-27  Vincent Untz  <vuntz@gnome.org>
 
 	* startup-programs.c: don't keep around argc and argv, but just the

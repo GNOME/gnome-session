@@ -68,6 +68,7 @@ typedef struct {
 
 static GdmProtocolData gdm_protocol_data = {
         0,
+        NULL,
         GDM_LOGOUT_ACTION_NONE,
         GDM_LOGOUT_ACTION_NONE,
         0
