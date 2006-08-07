@@ -1,3 +1,12 @@
+2006-08-07  Vincent Untz  <vuntz@gnome.org>
+
+	* gsm-at-startup.c: (gsm_assistive_tech_exec): run orca if gnopernicus
+	is what was set in gconf (backwards compatibility), make the code
+	prettier.
+	Fix bug #348643
+	Based on patch by Bill Haneman <bill.haneman@sun.com> and
+	Willie Walker <william.walker@sun.com>
+
 2006-08-04  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* gdm-logout-action.c: Explicitly init all fields in the

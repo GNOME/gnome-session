@@ -13,11 +13,20 @@
 static void
 gsm_assistive_tech_exec (gchar *exec_string)
 {
-  GError *error = NULL;
-  gchar *s = g_find_program_in_path (exec_string);
+  gchar    *s;
+  gboolean  success;
+  
+  success = FALSE;
+  s = g_find_program_in_path (exec_string);
+
   if (s) {
-    g_spawn_command_line_async (exec_string, &error);
+    success = g_spawn_command_line_async (exec_string, NULL);
     g_free (s);
+  }
+  
+  if (!success && !strcmp (exec_string, "gnopernicus")) {
+    /* backwards compatibility for 2.14 */
+    gsm_assistive_tech_exec ("orca");
   }
 }
 
