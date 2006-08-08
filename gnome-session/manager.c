@@ -325,7 +325,7 @@ free_client (Client *client)
 {
   GSList *list; 
 
-  gsm_verbose ("free_client(): %p (%s)\n", client, client->id ? client->id : "(null)");
+  gsm_verbose ("free_client(): %p (%s)\n", client, client->id ? client->id : "(unknown)");
 
   if(client->magic != CLIENT_MAGIC)
     {
@@ -1164,7 +1164,7 @@ print_client (Client *client)
 {
   GSList *l;
 
-  gsm_verbose ("  id: %s\n", client->id);
+  gsm_verbose ("  id: %s\n", client->id ? client->id : "(unknown)");
   gsm_verbose ("  handle: %s\n", client->handle);
   gsm_verbose ("  connection: %p\n", client->connection);
   gsm_verbose ("  properties:\n");
