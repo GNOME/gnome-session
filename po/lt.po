@@ -1,21 +1,26 @@
+# translation of lt.po to Lithuanian
 # Lithuanian translation of gnome-session
 # Copyright (C) 2000-2006 Free Software Foundation, Inc.
+#
+#
 # Gediminas Paulauskas <menesis@delfi.lt>, 2000-2003.
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
-# 
-# 
+# Gintautas Miliauskas <gintas@akl.lt>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session HEAD\n"
+"Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-23 00:44+0200\n"
-"PO-Revision-Date: 2006-02-23 00:45+0200\n"
-"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
+"POT-Creation-Date: 2006-08-29 23:10+0300\n"
+"PO-Revision-Date: 2006-08-29 23:10+0300\n"
+"Last-Translator: Gintautas Miliauskas <gintas@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -201,7 +206,7 @@ msgstr "Paleidžiama kaskart prisijungus."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -213,7 +218,7 @@ msgstr ""
 "Kai kurie dalykai, tokie kaip temos, garsai ir fono nustatymai gali veikti "
 "neteisingai arba iš viso neveikti."
 
-#: ../gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -225,7 +230,7 @@ msgstr ""
 "Paskutinės klaidos pranešimas buvo:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -235,41 +240,41 @@ msgstr ""
 "\n"
 "GNOME vis dar bandys perkrauti Nustatymų Demoną kito tavo prisijungimo metu."
 
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Įvyko nežinoma aktyvavimo klaida."
-
-#: ../gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr "Nustatymų demonas buvo perkrautas per daug kartų."
 
-#: ../gnome-session/logout.c:408
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "Ar tikrai norite atsijungti?"
 
-#: ../gnome-session/logout.c:425
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_Išsaugoti dabartinius nustatymus"
 
-#: ../gnome-session/logout.c:448
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Veiksmas"
 
-#: ../gnome-session/logout.c:465
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/logout.c:472
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "Išj_ungti"
 
-#: ../gnome-session/logout.c:480
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "Pe_rkrauti kompiuterį"
 
 #: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Nurodykite įkeliamos sesijos pavadinimą"
+
+#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+msgid "NAME"
+msgstr "VARDAS"
 
 #: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
@@ -279,6 +284,11 @@ msgstr "Tik perskaityti išsaugotas sesijas iš default.session rinkmenos"
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai prisiregistruos (0=amžinai)"
 
+#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
+msgid "DELAY"
+msgstr "UŽDELSIMAS"
+
 #: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=amžinai)"
@@ -287,7 +297,7 @@ msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=amžinai)"
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Kiek milisekundžių laukti, kol klientai „numirs“ (0=amžinai)"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:261
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -300,13 +310,17 @@ msgstr ""
 "Problemą įmanoma išpręsti, rinkmenoje /etc/hosts\n"
 "prirašius %s."
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
 msgstr "Prisijungti bet kokiu atveju"
 
-#: ../gnome-session/main.c:274
+#: ../gnome-session/main.c:269
 msgid "Try Again"
 msgstr "Bandyti vėl"
+
+#: ../gnome-session/main.c:402
+msgid "- Manage the GNOME session"
+msgstr "- Valdyti GNOME sesiją"
 
 #: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
@@ -338,8 +352,8 @@ msgid "A session shutdown is in progress."
 msgstr "Sesija šiuo metu išjungiama."
 
 #: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Nustatyti dabartinę sesiją"
+msgid "Set the current session name"
+msgstr "Nustatyti esamos sesijos vardą"
 
 #: ../gnome-session/save-session.c:47
 msgid "Kill session"
@@ -349,9 +363,13 @@ msgstr "Nužudyti sesiją"
 msgid "Use dialog boxes"
 msgstr "Naudoti dialogus"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
 msgid "Could not connect to the session manager"
 msgstr "Negaliu prisijungti prie sesijos tvarkyklės"
+
+#: ../gnome-session/save-session.c:169
+msgid "- Save the current session"
+msgstr "- Išsaugoti esamą sesiją"
 
 #: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
@@ -369,20 +387,20 @@ msgstr "Pridėti naują sesiją"
 msgid "Edit session name"
 msgstr "Pervadinti sesiją"
 
-#: ../gnome-session/session-properties-capplet.c:117
+#: ../gnome-session/session-properties-capplet.c:119
 msgid "Enable"
 msgstr "Įjungti"
 
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
+#: ../gnome-session/session-properties-capplet.c:125
+#: ../gnome-session/session-properties-capplet.c:467
 msgid "Disable"
 msgstr "Išjungti"
 
-#: ../gnome-session/session-properties-capplet.c:145
+#: ../gnome-session/session-properties-capplet.c:148
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../gnome-session/session-properties-capplet.c:213
+#: ../gnome-session/session-properties-capplet.c:216
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -390,48 +408,48 @@ msgstr ""
 "Kai kurie pakeitimai nebuvo išsaugoti.\n"
 "Ar vis tiek išeiti?"
 
-#: ../gnome-session/session-properties-capplet.c:263
+#: ../gnome-session/session-properties-capplet.c:266
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Sesijos"
 
-#: ../gnome-session/session-properties-capplet.c:296
+#: ../gnome-session/session-properties-capplet.c:299
 msgid "Show splash screen on _login"
 msgstr "Prisijungimo metu rodyti įkelties paveiks_liuką"
 
-#: ../gnome-session/session-properties-capplet.c:307
+#: ../gnome-session/session-properties-capplet.c:310
 msgid "As_k on logout"
 msgstr "Atsijungiant _paklausti"
 
-#: ../gnome-session/session-properties-capplet.c:318
+#: ../gnome-session/session-properties-capplet.c:321
 msgid "Automatically save chan_ges to session"
 msgstr "Automatiškai išsaugoti sesijos pa_keitimus"
 
-#: ../gnome-session/session-properties-capplet.c:329
+#: ../gnome-session/session-properties-capplet.c:332
 msgid "_Sessions:"
 msgstr "_Sesijos:"
 
-#: ../gnome-session/session-properties-capplet.c:347
+#: ../gnome-session/session-properties-capplet.c:350
 msgid "Session Name"
 msgstr "Sesijos pavadinimas"
 
-#: ../gnome-session/session-properties-capplet.c:398
+#: ../gnome-session/session-properties-capplet.c:401
 msgid "Session Options"
 msgstr "Sesijos nustatymai"
 
-#: ../gnome-session/session-properties-capplet.c:407
+#: ../gnome-session/session-properties-capplet.c:410
 msgid "Current Session"
 msgstr "Esama sesija"
 
-#: ../gnome-session/session-properties-capplet.c:416
+#: ../gnome-session/session-properties-capplet.c:419
 msgid "Additional startup _programs:"
 msgstr "Startuoti papildomas _programas:"
 
-#: ../gnome-session/session-properties-capplet.c:435
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Command"
 msgstr "Komanda"
 
-#: ../gnome-session/session-properties-capplet.c:475
+#: ../gnome-session/session-properties-capplet.c:478
 msgid "Startup Programs"
 msgstr "Pradžioje paleidžiamos programos"
 
@@ -450,10 +468,6 @@ msgstr "Sesijoje esančių programų sąrašas."
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "Dabar veikiančios _programos:"
-
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Inicializuoti sesijos nustatymus"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -483,22 +497,22 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Darbastalio nustatymai"
 
-#: ../gnome-session/startup-programs.c:416
+#: ../gnome-session/startup-programs.c:403
 msgid "_Startup Command:"
 msgstr "_Paleidimo komanda:"
 
-#: ../gnome-session/startup-programs.c:422
+#: ../gnome-session/startup-programs.c:409
 msgid "Startup Command"
 msgstr "Paleidžiama komanda"
 
-#: ../gnome-session/startup-programs.c:451
+#: ../gnome-session/startup-programs.c:441
 msgid "The startup command cannot be empty"
 msgstr "Paleidimo komanda negali būti tuščia"
 
-#: ../gnome-session/startup-programs.c:488
+#: ../gnome-session/startup-programs.c:480
 msgid "Add Startup Program"
 msgstr "Pridėti paleidžiamą programą"
 
-#: ../gnome-session/startup-programs.c:526
+#: ../gnome-session/startup-programs.c:524
 msgid "Edit Startup Program"
 msgstr "Keisti paleidžiamą programą"
