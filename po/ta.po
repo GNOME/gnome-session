@@ -1,29 +1,31 @@
+# translation of gnome-session.HEAD.ta.po to Tamil
 # translation of ta.po to Tamil
 # Tamil translation of Gnome-Session messages.
-# Copyright (C) 2001, 2004 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2004, 2006 Free Software Foundation, Inc.
 # Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.
 # Jayaradha N <jaya@pune.redhat.com>, 2004.
+# Felix <ifelix@redhat.com>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: ta\n"
+"Project-Id-Version: gnome-session.HEAD.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2004-10-08 20:05+0530\n"
-"Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
-"Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
+"POT-Creation-Date: 2006-09-01 06:26+0200\n"
+"PO-Revision-Date: 2006-09-01 15:46+0530\n"
+"Last-Translator: Felix <ifelix@redhat.com>\n"
+"Language-Team: Tamil <ta@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.3.1\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 "\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "TCP இணைப்புகளை அனுமதிக்கவும்"
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -33,171 +35,188 @@ msgstr ""
 "பாதுகாப்பு காரணங்கள், ஜினோம் அமர்வுகளை  TCP  பாதையில் இணைக்கமுடியாது.தொலை முனையம் "
 "புரவனை மட்டும் இணைக்கும்,ஜினோம் அமர்வுகளை மீண்டும் புதுப்பிக்கவும்."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "செயல்படுத்தப்பட்ட,gnome அமர்வுகளை பயன்படுத்தி அமர்வுகளை முடி."
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr "செயல்படுத்தப்பட்ட,gnome அமர்வுகளை தானாகவே சேமித்துக்கொள்ள முடியும்."
 
 # gsm/logout.c:248
-#: gnome-session/gnome-session.schemas.in.h:5
+#: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "வெளிச்செல் ப்ராம்ட்"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr "விரும்பிய படங்களை உபயோகிப்படுத்தி GNOME திரைமேசையில் அமை."
+#: ../gnome-session/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
+msgstr "உள் அனுமதி திரையில் விரும்பிய படத்தை பயன்படுத்தவும்"
 
 # gsm/session-properties.c:272
-#: gnome-session/gnome-session.schemas.in.h:7
+#: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "அமர்வுகளை சேமிக்கவும்"
 
+#: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "வெளியேறும் உரையாடலில் தேர்ந்தெடுக்கப்பட்ட விருப்பம்"
+
 # gsm/session-properties-capplet.c:192
-#: gnome-session/gnome-session.schemas.in.h:8
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "தொடக்க ஓவியத்தைக் காண்பிக்கவும்"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "அமர்வு தொடங்கும்போது தொடக்க-ஓவியம் காண்பிக்கவும்"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "தொடங்க திரை ஓவியம்"
+#: ../gnome-session/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"$datadir/pixmaps/ அடைவுக்கு தொடர்புடைய பாதையாகும். துணை-"
+"அடைவுகள் மற்றும் பட பெயர்கள் ஆகியவை சரியான மதிப்புகளாகும். இந்த மதிப்புகளை மாற்றினால்"
+"அடுத்த அமர்வினை பாதிக்கும்."
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"இந்த விருப்பம் வெளியேறு உரையாடலில் தேர்ந்தெடுக்கப்படும், முறையான மதிப்புகள் "
+"\"logout\" வெளியேறுவதற்கு, \"shutdown\" பணி நிறுத்தத்திற்கு and "
+"\"restart\" கணினியை மீண்டும் தொடங்க."
 
 # gsm/gsm-client-editor.c:94
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
 msgstr "வரிசை:"
 
-#: gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "பயன்பாட்டின் அமர்வுகளைத்துவக்கு."
 
-#: gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "செயல்பாடு வெளியேறும்போது நடைபெறுவது என்ன."
 
 # gsm/gsm-client-editor.c:104
-#: gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "_பாணி:"
 
 # gsm/gsm-client-list.c:112
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#: ../gnome-session/gsm-client-list.c:150
 msgid "Order"
 msgstr "வரிசை"
 
 # gsm/gsm-client-list.c:112
-#: gnome-session/gsm-client-list.c:155
+#: ../gnome-session/gsm-client-list.c:155
 msgid "Style"
 msgstr "வகை"
 
 # gsm/gsm-client-list.c:112
-#: gnome-session/gsm-client-list.c:160
+#: ../gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "நிலை"
 
 # gsm/gsm-client-list.c:112
-#: gnome-session/gsm-client-list.c:165
+#: ../gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "நிரல்"
 
 # gsm/gsm-client-row.c:33
-#: gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "செயற்படா"
 
 # gsm/gsm-client-row.c:34
-#: gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
 msgstr "தொடக்குவதற்கு காத்திருக்கு அல்லது ஏற்கெனவே முடின்துவிட்டது"
 
 # gsm/gsm-client-row.c:36
-#: gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "தொடங்குகிறது"
 
 # gsm/gsm-client-row.c:37
-#: gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
 msgstr "தொடங்கிவிட்டது ஆனால் நிலமை அறிவிக்கபடவில்லை"
 
 # gsm/gsm-client-row.c:39
-#: gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "செயற்படுகிறது"
 
 # gsm/gsm-client-row.c:40
-#: gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
 msgstr "இந்த அமர்வின் சாதாரண உறுப்பினர்"
 
 # gsm/gsm-client-row.c:42
-#: gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "சேமிக்கிறது"
 
 # gsm/gsm-client-row.c:43
-#: gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "அமர்வின் விவரங்களை சேமிக்கிறது"
 
 # gsm/gsm-client-row.c:45
-#: gnome-session/gsm-client-row.c:43
+#: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
 msgstr "தெரியாத"
 
 # gsm/gsm-client-row.c:46
-#: gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "நிலமையை, வெளியேற்றும் நேரதிற்கு முன்பு அறிவிக்கவில்லை"
 
 # gsm/gsm-client-row.c:52 panel/menu.c:4755 panel/panel_config.c:1406
-#: gnome-session/gsm-client-row.c:50
+#: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "சாதாரணம்"
 
 # gsm/gsm-client-row.c:53
-#: gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
 msgstr "முடிந்ததால் பாதிக்கப்படவில்லை, ஆனால் நீக்கப்படலாம்"
 
 # applets/tasklist/tasklist_menu.c:258
-#: gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "மீட்டமை"
 
 # gsm/gsm-client-row.c:56
-#: gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
 msgstr "நீக்க விடவேண்டாம்"
 
 # gsm/gsm-client-row.c:58
-#: gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "குப்பை"
 
 # gsm/gsm-client-row.c:59
-#: gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
 msgstr "வெளியேறும்போது சிதைக்கப்பட்டது நீக்கப்படும்."
 
 # gsm/gsm-client-row.c:61 panel/foobar-widget.c:1097
-#: gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "அமைவுகள்"
 
 # gsm/gsm-client-row.c:62
-#: gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "ஒவ்வொருமுறை உள்நுழையும் போதும் துவங்கும்"
 
@@ -209,7 +228,7 @@ msgstr "ஒவ்வொருமுறை உள்நுழையும் ப�
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -220,7 +239,7 @@ msgstr ""
 "\n"
 "எதாவது,பொருள்கள்,ஒலி,"
 
-#: gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -232,7 +251,7 @@ msgstr ""
 "கடைசி பிழை தகவல்:\n"
 "\n"
 
-#: gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -242,69 +261,74 @@ msgstr ""
 "\n"
 "GNOME அப்படியே உள்ளது மீண்டும் துவக்கு மறைநிரல் அமைப்புகளை நுழை."
 
-#: gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "தெரியாத தொடக்க-பிழை."
-
-#: gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr "மறைநிரல் அமைப்புகளை அதிக நேரம் துவக்கு."
 
 # gmenu/treedel.c:146
-#: gnome-session/logout.c:355
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "இதனை விட்டு வெளியேற வேண்டுமா?"
 
 # gsm/logout.c:220
-#: gnome-session/logout.c:372
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_தற்போதைய அமைப்பை சேமிக்கவும்"
 
 # gsm/logout.c:240
-#: gnome-session/logout.c:393
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "செயல்"
 
 # panel/logout.c:73 panel/menu.c:5339
-#: gnome-session/logout.c:410
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "_விலகவும்"
 
-#: gnome-session/logout.c:416
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "பணி நிறுத்தம் செய்யவும்"
 
-#: gnome-session/logout.c:423
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "கணிணியை மீண்டும் துவக்கவும்"
 
 # gsm/main.c:65
-#: gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "ஏற்ற வேண்டிய அமர்வின் பெயரை குறிப்பிடு"
 
+#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+msgid "NAME"
+msgstr "NAME"
+
 # gsm/main.c:66
-#: gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "சேமித்த அமர்வுகளை மட்டும் default.session கோப்பிலிருந்து வாசி"
 
 # gsm/main.c:67
-#: gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Millisecond period spent waiting for clients to register (0=forever)"
 
+#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
+msgid "DELAY"
+msgstr "DELAY"
+
 # gsm/main.c:68
-#: gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Millisecond period spent waiting for clients to respond (0=forever)"
 
 # gsm/main.c:69
-#: gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Millisecond period spent waiting for clients to die (0=forever)"
 
 # gsm/gnome-login-check.c:344
-#: gnome-session/main.c:265
+#: ../gnome-session/main.c:261
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -316,96 +340,114 @@ msgstr ""
 "இதனால் கனோம் சரியாக செயல்படாது.\n"
 "இதை சரிபடுத்த %s என்னும் வரியை /etc/hosts-இல் போடவும்."
 
-#: gnome-session/main.c:272
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்"
 
 # gsm/gnome-login-check.c:327 gsm/gnome-login-check.c:352
-#: gnome-session/main.c:273
+#: ../gnome-session/main.c:269
 msgid "Try Again"
 msgstr "மீண்டும் முயற்சி செய்க"
 
+#: ../gnome-session/main.c:402
+msgid "- Manage the GNOME session"
+msgstr "- GNOME அமர்வினை மேலாண்மை செய்யவும்"
+
 # gsm/save-session.c:152
-#: gnome-session/manager.c:223
+#: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
 msgstr "உங்கள் அமர்வு சேமிக்கப்படவில்லை"
 
 # gsm/manager.c:400
-#: gnome-session/manager.c:527
+#: ../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
 msgstr "சிக்கலால் காத்திருத்தல் தடை செய்யப்பட்டது"
 
 # gsm/manager.c:834
-#: gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s கட்டளைக்கு மறுமொழி இல்லை"
 
 # gsm/manager.c:835
-#: gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
 msgstr "மெதுவான அல்லது நிறுத்தப்பட்ட அல்லது உடைந்த நிரல்"
 
 # gsm/manager.c:836
-#: gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
 msgstr "மறுமொழிக்கு காத்திரு அல்லது நீக்கு"
 
 # gsm/manager.c:1375
-#: gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
 msgstr "பிழைகளால் மீண்டும் தொடங்குவது நிறுத்தப்பட்டது"
 
 # gsm/manager.c:1541
-#: gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
 msgstr "அமர்வு பணிநிறுத்தம் செய்யப்படுகிறது."
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "தற்போதைய அமர்வை அமைக்கவும்"
+#: ../gnome-session/save-session.c:46
+msgid "Set the current session name"
+msgstr "நடப்பு அமர்வு பெயரை அமைக்கவும்"
 
 # gsm/save-session.c:43
-#: gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "அமர்வைக் கொல்"
 
 # gsm/save-session.c:44
-#: gnome-session/save-session.c:48
+#: ../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "உரையாடல்களை உபயோகி"
 
 # gsm/save-session.c:93
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
 msgid "Could not connect to the session manager"
 msgstr "அமர்வு மேலாளருடன் இணைக்க முடியவில்லை"
 
+# gsm/session-properties-capplet.c:206
+#: ../gnome-session/save-session.c:169
+msgid "- Save the current session"
+msgstr "- நடப்பு அமர்வினை சேமிக்கவும்"
+
 # gsm/session-names.c:126
-#: gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "அமர்வின் பெயர் காலியாக இருக்க முடியாது"
 
 # gsm/session-names.c:136
-#: gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "இந்த அமர்வுக்கு ஏற்கனவே பெயர் உண்டு"
 
 # gsm/session-names.c:170
-#: gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:188
 msgid "Add a new session"
 msgstr "புதிய அமர்வு ஒன்றைச் சேர்"
 
 # gsm/session-names.c:202
-#: gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:218
 msgid "Edit session name"
 msgstr "அமர்வின் பெயரை தொகு"
 
-#: gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:119
+msgid "Enable"
+msgstr "செயல்படுத்தவும்"
+
+#: ../gnome-session/session-properties-capplet.c:125
+#: ../gnome-session/session-properties-capplet.c:467
+msgid "Disable"
+msgstr "செயல்நீக்கவும்"
+
+#: ../gnome-session/session-properties-capplet.c:148
 msgid "_Edit"
 msgstr "_தொகு"
 
-#: gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:216
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -414,145 +456,135 @@ msgstr ""
 "தொடர்ந்து வெளியேற விருப்பமா?"
 
 # gsm/session-properties.c:272
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:266
+#: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "அமர்வுகள்"
 
 # gsm/session-properties-capplet.c:192
-#: gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:299
 msgid "Show splash screen on _login"
 msgstr "உள்நுழையும் போது தொடக்க _ஓவியத்தைக் காண்பிக்கவும்"
 
 # gsm/session-properties-capplet.c:199
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:310
 msgid "As_k on logout"
-msgstr "_வெளியேருவதற்கு முன் தூண்டவும்"
+msgstr "வெளியேறுவதற்கு கேட்கவும் (_k)"
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:321
 msgid "Automatically save chan_ges to session"
 msgstr "அமர்வின் மாற்றங்க_ளை தானாக சேமிக்கவும்"
 
 # gsm/session-properties.c:272
-#: gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:332
 msgid "_Sessions:"
 msgstr "_அமர்வுகள்:"
 
 # gsm/session-properties-capplet.c:226
-#: gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:350
 msgid "Session Name"
 msgstr "அமர்வின் பெயர்"
 
 # gsm/session-properties-capplet.c:262
-#: gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:401
 msgid "Session Options"
 msgstr "அமர்வின் பண்புகள்"
 
 # gsm/session-properties-capplet.c:209
-#: gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:410
 msgid "Current Session"
 msgstr "தற்போதைய அமர்வு"
 
 # gsm/startup-programs.c:373
-#: gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:419
 msgid "Additional startup _programs:"
 msgstr "மேலும்சில தொடங்க _நிரல்கள்:"
 
 # gsm/session-properties-capplet.c:292
-#: gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Command"
 msgstr "கட்டளை"
 
 # gsm/session-properties-capplet.c:330
-#: gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:478
 msgid "Startup Programs"
 msgstr "தொடங்கும் போது இயக்கும் நிரல்கள்"
 
-#: gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "அமர்விலிருந்து தற்போது தேர்வு செய்யப்பட்ட கிளையனை நீக்கவும்."
 
 # gsm/session-properties-capplet.c:206
-#: gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "தற்போதைய அமர்வின் மாற்றங்களை பயன்படுத்துக"
 
-#: gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "அமர்விலிருக்கும் நிரல்கள் பட்டியல்."
 
 # gsm/session-properties-capplet.c:321
-#: gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "தற்போது இயக்கப்படும் _நிரல்கள்:"
 
-# gsm/session-properties.c:360
-#: gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "அமர்பு அமைப்புகளை துவக்கு"
-
-#: gnome-session/session-properties.desktop.in.in.h:1
+#: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "உங்கள் அமர்வை வடிவமைக்கவும்"
 
 # gsm/splash.c:58 gsm/splash.c:59
-#: gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "சாவிஷ் சாளரமேலாளர்"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "மெட்டாசிட்டி சாளரமேலாளர்"
 
 # gsm/splash.c:67
-#: gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "சாளரமேலாளர்"
 
 # gsm/splash.c:65
-#: gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "பலகை"
 
-# gsm/splash.c:66
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "சாளர மேலாளர் ப்ராக்ஸி"
-
 # gsm/splash.c:69
-#: gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "நாடுலஸ்"
 
 # applets/desk-guide/deskguide_applet.c:1151
-#: gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "மேல் மேசை அமைப்புகள்"
 
 # gsm/startup-programs.c:283 gsm/startup-programs.c:290
-#: gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:403
 msgid "_Startup Command:"
 msgstr "துவக்க கட்டளை:"
 
 # gsm/startup-programs.c:283 gsm/startup-programs.c:290
-#: gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:409
 msgid "Startup Command"
 msgstr "துவக்க கட்டளை"
 
 # gsm/startup-programs.c:333
-#: gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:441
 msgid "The startup command cannot be empty"
 msgstr "துவக்க கட்டளை காலியாக இருக்க முடியாது"
 
 # gsm/startup-programs.c:373
-#: gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:480
 msgid "Add Startup Program"
 msgstr "துவக்க நிரலை சேர்"
 
 # gsm/startup-programs.c:391
-#: gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:524
 msgid "Edit Startup Program"
 msgstr "துவக்க நிரலை தொகு"
+
