@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session gnome\n"
+"Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-20 01:23+0300\n"
-"PO-Revision-Date: 2006-08-20 01:22+0300\n"
+"POT-Creation-Date: 2006-09-09 23:15+0300\n"
+"PO-Revision-Date: 2006-09-09 23:13+0300\n"
 "Last-Translator: Rostislav \"zbrox\" Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,9 +33,10 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "Поради причини свързани със сигурността, на платформи, които притежават "
-"функцията _IceTcpTransNoListen() (XFree86 системите), gnome-session не слуша "
-"за връзки на TCP портовете. Тази настройка позволява връзки от (оторизирани) "
-"отдалечени машини. gnome-session трябва да се рестартира, за да има ефект."
+"функцията _IceTcpTransNoListen() (системите с XFree86), gnome-session не "
+"слуша за връзки на портовете на TCP. Тази настройка позволява връзки от "
+"(упълномощени) отдалечени машини. gnome-session трябва да се рестартира, за "
+"да влезе тази настройка в сила."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -65,7 +66,7 @@ msgstr "Запазване на сесиите"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "Избраната опция в прозореца за изход"
+msgstr "Избраната настройка в прозореца за изход"
 
 #: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
@@ -91,7 +92,7 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Това ще е опцията, която ще бъде избрана в прозореца за изход. Валидни "
+"Това ще е настройката, която ще бъде избрана в прозореца за изход. Валидни "
 "стойности са „logout“ за изход, „shutdown“ за спиране на системата и "
 "„restart“ за рестартиране на системата."
 
@@ -281,7 +282,7 @@ msgstr "ИМЕ"
 
 #: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
-msgstr "Прочитане само на запазените сесии от default.session файла"
+msgstr "Прочитане само на запазените сесии от файла default.session"
 
 #: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
@@ -309,7 +310,7 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Адресът в Интернет на %s не може да бъде открит.\n"
+"Адресът на %s в Интернет не може да бъде открит.\n"
 "Това ще попречи на GNOME да работи нормално.\n"
 "Проблемът може и да се оправи чрез добавяне на\n"
 "%s във файла /etc/hosts."
@@ -353,7 +354,7 @@ msgstr "Рестартирането е прекратено поради гре
 
 #: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
-msgstr "В действие е край на сесия."
+msgstr "В момента тече край на сесия."
 
 #: ../gnome-session/save-session.c:46
 msgid "Set the current session name"
@@ -393,12 +394,12 @@ msgstr "Редактиране името на сесията"
 
 #: ../gnome-session/session-properties-capplet.c:119
 msgid "Enable"
-msgstr "Активиране"
+msgstr "_Активиране"
 
 #: ../gnome-session/session-properties-capplet.c:125
 #: ../gnome-session/session-properties-capplet.c:467
 msgid "Disable"
-msgstr "Деактивиране"
+msgstr "Деа_ктивиране"
 
 #: ../gnome-session/session-properties-capplet.c:148
 msgid "_Edit"
@@ -409,8 +410,8 @@ msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"Някой промени не са записани.\n"
-"Да изляза ли от програмата?"
+"Някои промени не са записани.\n"
+"Да се спре ли програмата?"
 
 #: ../gnome-session/session-properties-capplet.c:266
 #: ../gnome-session/session-properties.desktop.in.in.h:2
@@ -423,11 +424,11 @@ msgstr "Показване на прозоре_ца със зарежданет�
 
 #: ../gnome-session/session-properties-capplet.c:310
 msgid "As_k on logout"
-msgstr "_Питане при излизане"
+msgstr "Питане при из_лизане"
 
 #: ../gnome-session/session-properties-capplet.c:321
 msgid "Automatically save chan_ges to session"
-msgstr "Автоматично запазва п_ромените в сесията"
+msgstr "Авто_матично запазване на промените в сесията"
 
 #: ../gnome-session/session-properties-capplet.c:332
 msgid "_Sessions:"
@@ -447,7 +448,7 @@ msgstr "Текуща сесия"
 
 #: ../gnome-session/session-properties-capplet.c:419
 msgid "Additional startup _programs:"
-msgstr "Допълнителни начални _програми:"
+msgstr "Допълнителни _начални програми:"
 
 #: ../gnome-session/session-properties-capplet.c:438
 msgid "Command"
@@ -475,7 +476,7 @@ msgstr "Текущо работещи _програми:"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr "Конфигурация на сесиите"
+msgstr "Настройки на сесиите"
 
 #: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
