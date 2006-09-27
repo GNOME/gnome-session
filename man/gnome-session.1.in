@@ -3,6 +3,7 @@
 .\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
 .\"
 .TH GNOME 1 "GNOME 1.0"
+.SH NAME
 gnome-session \- Starts up the GNOME desktop environment
 .SH SYNOPSIS
 .B gnome-session [\-\-choosesession] [\-\-failsafe]
@@ -21,9 +22,9 @@ You can optionally specify a specific session name to restore.
 \fIgnome-session\fP is an X11R6 session manager.  It can manage GNOME
 applications as well as any X11R6 SM compliant.
 .PP
-\fIgnome-session\fP uses the contents of the  ~/.gnome/session file
-for starting up as specified by the "Current Sesssion" key in the
-~/.gnome/session-options file.  Various default values are 
+\fIgnome-session\fP uses the contents of the  ~/.gnome2/session file
+for starting up as specified by the "CurrentSession" key in the
+~/.gnome2/session-options file.  Various default values are 
 provided in case the file entry does not exist.
 .PP
 If the session file does not exist, \fIgnome-session\fP will use the
@@ -35,8 +36,8 @@ The following options are supported:
 .TP
 .I "--choose-session=ARG"
 User can specify a session to load, as opposed to the session 
-specified in the ~/.gnome/session-options file. If that entry
-does not exist in the ~/.gnome/session file (or if that file
+specified in the ~/.gnome2/session-options file. If that entry
+does not exist in the ~/.gnome2/session file (or if that file
 doesn't exist), it will use the default session and all saves
 to that session will be to the new session name.
 .TP
