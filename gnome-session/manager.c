@@ -207,28 +207,6 @@ maybe_write_session (void)
 
   save_selected = session_save = FALSE;
 
-  if (!shutting_down && global_save)
-    {
-      static GtkWidget *dialog = NULL;
-
-      if (dialog)
-	{
-	  gtk_window_present (GTK_WINDOW (dialog));
-	}
-      else
-	{
-	  dialog = gtk_message_dialog_new (NULL, 0, 
-					   GTK_MESSAGE_INFO,
-					   GTK_BUTTONS_OK, 
-					   _("Your session has been saved"));
-	  g_signal_connect (dialog, "response",
-			    G_CALLBACK (gtk_widget_destroy),
-			    NULL);
-	  g_object_add_weak_pointer (G_OBJECT (dialog), (gpointer *)&dialog);
-	  gtk_widget_show (dialog);
-	}
-    }
-
   gsm_verbose_indent (FALSE);
 }
 
