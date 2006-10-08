@@ -368,6 +368,12 @@ is_blank (const gchar *str)
         return TRUE;
 }
 
+static void
+entry_activate_callback (GtkEntry *entry, void *data)
+{
+  gtk_dialog_response (GTK_DIALOG (data), GTK_RESPONSE_OK);
+}
+
 /* Display a dialog for editing a client. The dialog parameter
  * is used to implement hiding the dialog when the user switches
  * away to another page of the control center */
@@ -410,6 +416,9 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   g_object_set (G_OBJECT (gnome_entry), "use_filechooser", TRUE, NULL);
   gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
   entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
+  g_signal_connect (entry, "activate", G_CALLBACK (entry_activate_callback),
+		    (void *) *dialog);
+
   gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));

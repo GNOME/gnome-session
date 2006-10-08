@@ -1,4 +1,13 @@
 2006-10-08  Vincent Untz  <vuntz@gnome.org>
+  
+ 	Bug #329361:
+ 	* session-names.c (entry_activate_callback): New function.
+ 	(edit_session_name): Connect to entry's activate signal.
+ 	* startup-programs.c (entry_activate_callback): New function.
+ 	(edit_client): Connect to entry's activate signal.
+	Patch by Tom Tromey <tromey@redhat.com>
+
+2006-10-08  Vincent Untz  <vuntz@gnome.org>
 
 	* manager.c (maybe_write_session): Don't pop up dialog.
 	Fix bug #316037 and help with bug #149447.

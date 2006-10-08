@@ -89,6 +89,12 @@ is_blank (gchar *str)
   return TRUE;
 }
 
+static void
+entry_activate_callback (GtkEntry *entry, void *data)
+{
+  gtk_dialog_response (GTK_DIALOG (data), GTK_RESPONSE_OK);
+}
+
 static gboolean
 edit_session_name (gchar *title, gchar **editsession, 
 			GSList **sess_list, GtkWidget **dialog, GtkWidget *parent_dlg)
@@ -119,6 +125,9 @@ edit_session_name (gchar *title, gchar **editsession,
   gtk_container_add (GTK_CONTAINER(vbox),frame);
   entry = gtk_entry_new();
   gtk_container_add (GTK_CONTAINER(frame),entry);
+
+  g_signal_connect (entry, "activate", G_CALLBACK (entry_activate_callback),
+		    (void *) *dialog);
 
   if(*editsession) {
     gtk_entry_set_text(GTK_ENTRY(entry),*editsession);
