@@ -155,6 +155,10 @@ if test $pango_omitted_x_deps = yes ; then
   fi
 fi
 
+AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
+             [AC_MSG_ERROR([
+*** Can't find the Xauth library. It is needed to compile gnome-session.]])
+
 AC_CHECK_LIB(Xrandr, XRRUpdateConfiguration,
   [AC_CHECK_HEADER(X11/extensions/Xrandr.h,
      X_LIBS="-lXrandr -lXrender $X_LIBS"
