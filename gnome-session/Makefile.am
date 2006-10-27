@@ -98,6 +98,8 @@ gnome_session_SOURCES =		\
 	gsm-multiscreen.h	\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h	\
+	gsm-proxy.h		\
+	gsm-proxy.c		\
 	gdm-logout-action.c	\
 	gdm-logout-action.h	\
 	headers.h		\

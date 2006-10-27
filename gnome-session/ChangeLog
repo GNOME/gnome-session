@@ -1,3 +1,17 @@
+2006-10-26  Ray Strode  <rstrode@redhat.com>
+
+	Set http_proxy environment variable based on GNOME settings
+	for legacy apps (bug 84315).
+
+	* Makefile.am: add gsm-proxy.c and gsm-proxy.h
+	* gsm-proxy.[ch] (gsm_set_up_legacy_proxy_environment):
+	new file to contain function for monitoring GNOME proxy 
+	settings.
+	* headers.h: add #defines for gconf keys to proxy
+	settings
+	(edit_session_name): Connect to entry's activate signal.
+	* main.c (main): call gsm_set_up_legacy_proxy_environment
+
 2006-10-08  Vincent Untz  <vuntz@gnome.org>
   
  	Bug #329361:
