@@ -1,5 +1,18 @@
 2006-11-06  Vincent Untz  <vuntz@gnome.org>
 
+	Bug #352633:
+	* gsm-remove-client.c (program_count, program_names,
+	remove_client): New globals.
+	(gsm_remove_opts): Likewise.
+	(client_removed): Reference count.
+	(find_program): New function.
+	(session_initialized): Changed arguments.  Update reference
+	count.  Handle removing multiple programs.
+	(main): Add command-line options.  Change --list handling.
+	Patch by Tom Tromey <tromey@redhat.com>
+
+2006-11-06  Vincent Untz  <vuntz@gnome.org>
+
 	* Makefile.am: define LIBEXECDIR
 	* gsm-at-startup.[ch]: (gsm_assistive_filter_watch):
 	(gsm_assistive_error_dialog):

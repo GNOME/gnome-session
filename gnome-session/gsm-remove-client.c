@@ -31,6 +31,24 @@
 static GSList   *clients;
 static gboolean  do_list;
 
+/* The number of names of programs we've seen.  */
+static int program_count;
+
+/* The names of the programs we're looking to remove.  */
+static char **program_names;
+
+/* A count of the number of client programs we are trying to
+   remove.  */
+static int remove_count;
+
+static const GOptionEntry gsm_remove_opts[] = {
+  { "list", 0, 0, G_OPTION_ARG_NONE, &do_list,
+    N_("List registered clients, then exit"), NULL },
+  { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY,
+    &program_names, NULL, N_("PROGRAM...") },
+  {NULL}
+};
+
 static GsmClient *
 client_factory (void)
 {
@@ -46,14 +64,28 @@ client_factory (void)
 static void
 client_removed (void)
 {
-  gtk_main_quit ();
+  if (--remove_count == 0)
+    gtk_main_quit ();
+}
+
+static int
+find_program (char *name)
+{
+  if (name != NULL)
+    {
+      int i;
+      for (i = 0; i < program_count; ++i)
+	if (program_names[i] && ! strcmp (name, program_names[i]))
+	  return i;
+    }
+  return -1;
 }
 
 static void
-session_initialized (GsmSession *session,
-		     const char *program)
+session_initialized (GsmSession *session, void *ignore)
 {
   GSList *l;
+  int should_stop = 1;
 
   for (l = clients; l; l = l->next)
     {
@@ -76,22 +108,32 @@ session_initialized (GsmSession *session,
             g_strfreev (argv);
         }
 
-      if (do_list && client_program &&
-          strcmp (client_program, "gnome-session-remove"))
-	g_print ("  %s\n", client_program);
-
-      if (program && client_program && !strcmp (client_program, program))
+      if (do_list)
 	{
-	  gsm_client_commit_remove (client);
-	  g_signal_connect (client, "remove",
-			    G_CALLBACK (client_removed), NULL);
+	  if (client_program
+	      && strcmp (client_program, "gnome-session-remove"))
+	    g_print ("  %s\n", client_program);
+	}
+      else
+	{
+	  int index = find_program (client_program);
+	  if (index > -1)
+	    {
+	      should_stop = 0;
+	      ++remove_count;
+	      program_names[index] = NULL;
+	      g_print ("Removing '%s' from the session\n", client_program);
+	      gsm_client_commit_remove (client);
+	      g_signal_connect (client, "remove",
+				G_CALLBACK (client_removed), NULL);
+	    }
 	}
 
       if (client_program)
         g_free (client_program);
     }
 
-  if (!program)
+  if (should_stop)
     gtk_main_quit ();
 }
 
@@ -101,41 +143,40 @@ main (int argc, char **argv)
   GnomeClient *client;
   GsmProtocol *protocol;
   GsmSession  *session;
-  char        *program_name = NULL;
+  GOptionContext *option_context;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  option_context = g_option_context_new ("");
+  g_option_context_add_main_entries (option_context, gsm_remove_opts,
+				     GETTEXT_PACKAGE);
+
   gnome_program_init ("gnome-session-remove",
 		      VERSION, LIBGNOMEUI_MODULE,
                       argc, argv,
+		      GNOME_PARAM_GOPTION_CONTEXT, option_context,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
-                      NULL);
+                      GNOME_PARAM_NONE);
 
-  if (argc != 2 && argc != 3)
+  if (program_names)
+    program_names = g_strdupv (program_names);
+  for (program_count = 0;
+       program_names && program_names[program_count];
+       ++program_count)
+    ;
+
+  if (!do_list && program_count < 1)
     {
-      fprintf (stderr, "usage: gnome-session-remove [--list] [<program>]\n");
+      g_printerr (_("You must specify at least one program to remove. You can list the programs with --list.\n"));
       return 1;
-    }
-
-  --argc;
-  ++argv;
-  while (argc > 0)
-    {
-      if (!strcmp (argv [0], "--list"))
-	do_list = TRUE;
-      else
-	program_name = g_strdup (argv [0]);
-      --argc;
-      ++argv;
     }
 
   client = gnome_master_client ();
   if (!GNOME_CLIENT_CONNECTED (client))
     {
-      fprintf (stderr, "Error: could not connect to the session manager\n");
-
+      g_printerr (_("Error: could not connect to the session manager\n"));
       return 1;
     }
 
@@ -146,17 +187,23 @@ main (int argc, char **argv)
 
   session = gsm_session_live ((GsmClientFactory) client_factory, NULL);
   g_signal_connect (session, "initialized",
-		    G_CALLBACK (session_initialized), program_name);
-
-  if (program_name)
-    g_print ("Removing '%s' from the session\n", program_name);
+		    G_CALLBACK (session_initialized), NULL);
 
   if (do_list)
-    g_print ("Currently registered clients: \n");
+    g_print (_("Currently registered clients:\n"));
 
   gtk_main ();
 
-  g_free (program_name);
+  if (! do_list)
+    {
+      int i;
+      for (i = 0; i < program_count; ++i)
+	{
+	  if (program_names[i])
+	    g_print (_("Couldn't find program %s in session\n"),
+		     program_names[i]);
+	}
+    }
 
   return 0;
 }
