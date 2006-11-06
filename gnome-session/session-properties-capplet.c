@@ -435,7 +435,7 @@ capplet_build (void)
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
   g_signal_connect (G_OBJECT (startup_sel), "changed", (GCallback) selection_changed_cb, startup_view);
   renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Command"), renderer, "text", 2, NULL);
+  column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer, "text", 2, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
