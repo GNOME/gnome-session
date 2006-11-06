@@ -4,11 +4,15 @@
 #include "gsm-at-startup.h"
 #include "util.h"
 
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <libgnome/libgnome.h>
+#include <gdk/gdkx.h>
 #include <gconf/gconf-client.h>
 
 #define AT_STARTUP_KEY    "/desktop/gnome/accessibility/startup/exec_ats"
+
+static Atom AT_SPI_IOR;
 
 static void
 gsm_assistive_tech_exec (gchar *exec_string)
@@ -30,6 +34,67 @@ gsm_assistive_tech_exec (gchar *exec_string)
   }
 }
 
+static GdkFilterReturn 
+gsm_assistive_filter_watch (GdkXEvent *xevent, GdkEvent *event, gpointer data){
+     XEvent *xev = (XEvent *)xevent;
+     gint tid = *(gint *)data;
+
+     if (xev->xany.type == PropertyNotify &&
+	 xev->xproperty.atom == AT_SPI_IOR)
+       {
+          g_source_remove (tid);
+          gtk_main_quit ();
+	  
+          return GDK_FILTER_REMOVE;
+       }
+
+     return GDK_FILTER_CONTINUE;
+}
+
+static void
+gsm_assistive_error_dialog (void)
+{
+     GtkWidget *dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_OK,
+						 _("Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."));
+     gtk_dialog_run (GTK_DIALOG (dialog));
+     gtk_widget_destroy (dialog);     
+}
+
+static gboolean
+gsm_assistive_filter_timeout (gpointer data)
+{
+  gsm_assistive_error_dialog ();
+
+  gtk_main_quit ();
+
+  return FALSE;
+}
+
+void
+gsm_assistive_registry_start (void)
+{
+     GdkWindow *w = gdk_get_default_root_window (); 
+     gchar *command;
+     guint tid;
+ 
+     if (!AT_SPI_IOR)
+       AT_SPI_IOR = XInternAtom (GDK_DISPLAY (), "AT_SPI_IOR", False); 
+
+     command = g_strdup (LIBEXECDIR "/at-spi-registryd");
+
+     gdk_window_set_events (w, GDK_PROPERTY_CHANGE_MASK);
+     gsm_assistive_tech_exec (command);
+     gdk_window_add_filter (w, gsm_assistive_filter_watch, &tid);
+     tid = g_timeout_add (2e3, gsm_assistive_filter_timeout, NULL);    
+
+     gtk_main ();
+
+     g_free (command);
+}
+ 
 void 
 gsm_assistive_technologies_start (void)
 {

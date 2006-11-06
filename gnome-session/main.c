@@ -398,7 +398,10 @@ main (int argc, char *argv[])
   a_t_support = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
 
   if (a_t_support)
-    gsm_at_set_gtk_modules ();
+    {
+      gsm_assistive_registry_start ();
+      gsm_at_set_gtk_modules ();
+    }
 
   goption_context = g_option_context_new (_("- Manage the GNOME session"));
   g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);

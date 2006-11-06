@@ -11,6 +11,7 @@ INCLUDES =						\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\"	    \
 	-DGNOME_KEYRING_DAEMON=\""$(GNOME_KEYRING_DAEMON)"\"	    \
 	-DGNOME_ICONDIR=\""$(datadir)/pixmaps\""	\
+	-DLIBEXECDIR=\""$(libexecdir)"\"                \
 	-DREBOOT_COMMAND=\""$(REBOOT_COMMAND)\""	\
 	-DHALT_COMMAND=\""$(HALT_COMMAND)\""		\
 	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\

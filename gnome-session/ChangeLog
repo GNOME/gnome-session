@@ -1,3 +1,15 @@
+2006-11-06  Vincent Untz  <vuntz@gnome.org>
+
+	* Makefile.am: define LIBEXECDIR
+	* gsm-at-startup.[ch]: (gsm_assistive_filter_watch):
+	(gsm_assistive_error_dialog):
+	(gsm_assistive_filter_timeout):
+	(gsm_assistive_registry_start): new
+	* main.c: call gsm_assistive_registry_start() if a11y is enabled
+	Launch at-spi-registryd for a11y
+	See bug #345428 for details
+	Based on patch by Ariel Rios <ariel@gnu.org>
+
 2006-10-26  Ray Strode  <rstrode@redhat.com>
 
 	Set http_proxy environment variable based on GNOME settings
