@@ -363,7 +363,7 @@ display_gui (void)
     {
       while (1)
 	{
-	  if (gdk_pointer_grab (invisible->window, FALSE, 0,
+	  if (gdk_pointer_grab (invisible->window, TRUE, 0,
 				NULL, NULL, GDK_CURRENT_TIME) == Success)
 	    {
 	      if (gdk_keyboard_grab (invisible->window, FALSE, GDK_CURRENT_TIME)
