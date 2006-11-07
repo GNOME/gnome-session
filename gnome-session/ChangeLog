@@ -1,3 +1,12 @@
+2006-11-07  Ray Strode  <rstrode@redhat.com>
+
+	Fix bug where clicking logout button doesn't work if
+	mouse pointer happens to be on top of the button when
+	the window is mapped (bug 52047)
+
+	* logout.c (display_gui): set owner_events to TRUE in
+	grab pointer call
+
 ==================== 2.17.2 ====================
 
 2006-11-06  Vincent Untz  <vuntz@gnome.org>
