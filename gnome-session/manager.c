@@ -370,8 +370,12 @@ run_command_prop (Client     *client,
 		  const char *command, 
 		  SmProp     *prop)
 {
-  int argc, envc, envpc, pid = -1;
+  int argc, envc, envpc;
+  gboolean ok;
   char **argv, *dir, **envv, **envp, *restart_info;
+  GPid child_pid;
+  GError *error = NULL;
+  int pid = -1;
 
   gsm_verbose ("run_command_prop(): client %p, connection %p, command %s\n", client, client->connection, command);
   gsm_verbose_indent (TRUE);
@@ -412,31 +416,34 @@ run_command_prop (Client     *client,
 
       restart_info = NULL;
       find_string_property (client, GsmRestartService, &restart_info);
-      pid = remote_start (restart_info, argc, argv, dir, envpc, envp);
+      ok = remote_start (restart_info, argv, dir, envp, &child_pid, &error);
       if (restart_info)
 	g_free (restart_info);
 
-      if (pid < 0)
+      if (ok)
+	pid = (int) child_pid;
+      else
 	{
 	  if (strcmp (command, SmRestartCommand) || client->connection)
 	    {
 	      gchar *message;
-	      message = g_strconcat (argv[0], " : Failed to execute : ", g_strerror(errno), NULL);
+	      message = g_strconcat (argv[0], " : Failed to execute : ",
+				     error->message, NULL);
 	      client_reasons (client, FALSE, 1, &message); 
 	      g_free (message);
 	    }
+	  g_error_free (error);
 	  pid = -1;
-	  errno = 0;
 	}
 
       if (envp != NULL)
-	      g_strfreev (envp);
+	g_strfreev (envp);
       if (dir != NULL)
-	      g_free (dir);
+	g_free (dir);
       g_strfreev (argv);
     }
   gsm_verbose_indent (FALSE);
-  
+
   return pid;
 }
 

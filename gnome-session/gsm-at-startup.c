@@ -24,7 +24,7 @@ gsm_assistive_tech_exec (gchar *exec_string)
   s = g_find_program_in_path (exec_string);
 
   if (s) {
-    success = g_spawn_command_line_async (exec_string, NULL);
+    success = gsm_exec_command_line_async (exec_string, NULL);
     g_free (s);
   }
   

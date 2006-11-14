@@ -35,7 +35,7 @@ in this Software without prior written authorization from the X Consortium.
 #define RSTART_RSH "rstart-rsh"
 
 /* Try to start a program remotely, if appropriate, else locally.  */
-gint remote_start (char *restart_info, int argc, char **argv,
-                   char *cwd, int envpc, char **envp);
+gboolean remote_start (char *restart_info, char **argv, char *cwd, char **envp,
+		       GPid *child_pid, GError **error);
 
 #endif /* REMOTE_H */

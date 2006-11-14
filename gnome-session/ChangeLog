@@ -1,3 +1,22 @@
+2006-11-14  Vincent Untz  <vuntz@gnome.org>
+
+	Try to get rid of "init as the parent of all GNOME processes"
+	Based on patch by Tom Tromey <tromey@redhat.com>
+	Bug #101351
+
+	* util.[ch]: (gsm_exec_command_line_async): New function.
+	(gsm_exec_async): New function
+	(gsm_exec_close_child): New function
+	* remote.c:
+	(remote_start): Use gsm_exec_async.  Changed API.
+	Use g_spawn_async.
+	(close_child): New function.
+	* manager.c (run_command_prop): Updated.
+	* remote.h (remote_start): Updated.
+	* gsm-at-startup.c (gsm_assistive_tech_exec): Use
+	gsm_exec_command_line_async.
+	* gsm-sound.c (start_esd): Use gsm_exec_command_line_async.
+
 2006-11-13  Vincent Untz  <vuntz@gnome.org>
 
 	* gsm-client-list.c: (gsm_client_list_new):

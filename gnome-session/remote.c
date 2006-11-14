@@ -38,168 +38,146 @@ in this Software without prior written authorization from the X Consortium.
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>
 
-#include <libgnome/libgnome.h>
-
 #include "remote.h"
+#include "util.h"
 
 static char *format_rstart_env (char *);
+static void close_child (GPid pid, gint status, gpointer ignore);
 
-gint
-remote_start (char *restart_info, int argc, char **argv,
-	      char *cwd, int envpc, char **envp)
+static void
+close_child (GPid pid, gint status, gpointer ignore)
+{
+  g_spawn_close_pid (pid);
+}
+
+gboolean
+remote_start (char *restart_info, char **argv,
+	      char *cwd, char **envp,
+	      GPid *child_pid, GError **error)
 {
     FILE *fp;
-    int	 pipefd[2];
+    gint pipefd;
     char *machine;
     int  i;
     GSList *list;
-    gint pid;
+    gchar *rargv[4];
 
     if (! restart_info)
     {
-    normal_exec:
-        return gnome_execute_async_with_env (cwd, argc, argv, envpc, envp);
+        return gsm_exec_async (cwd, argv, envp, child_pid, error);
     }
 
     if (strncmp (restart_info, RSTART_RSH, sizeof (RSTART_RSH))
 	|| restart_info[sizeof (RSTART_RSH)] != '/')
-      goto normal_exec;
+    {
+        return gsm_exec_async (cwd, argv, envp, child_pid, error);
+    }
 
     machine = restart_info + sizeof (RSTART_RSH) + 1;
     if (! *machine)
-      goto normal_exec;
-
+    {
+        return gsm_exec_async (cwd, argv, envp, child_pid, error);
+    }
 
     g_message ("Attempting to restart remote client on %s\n",
 	       machine);
 
-    if (pipe (pipefd) < 0)
-    {
-      g_error ("gnome-session: pipe() error during remote start of %s",
-	       argv[0]);
-      pid = -1;
-    }
-    else
-    {
-      pid = fork();
-	switch(pid)
-	{
-	case -1:
+    rargv[0] = RSH_COMMAND;
+    rargv[1] = machine;
+    rargv[2] = "rstartd";
+    rargv[3] = NULL;
 
-	    g_error ("gnome-session: fork() error during remote start of %s",
-		     argv[0]);
-	    break;
+    /* TODO: we would like to report whether rstartd failed to a log
+       window in the parent.  We could do this by checking all the
+       fprintf()s for error return.  */
+    if (! g_spawn_async_with_pipes (NULL, rargv, NULL,
+				    G_SPAWN_DO_NOT_REAP_CHILD,
+				    NULL, NULL, child_pid,
+				    &pipefd, NULL, NULL, error))
+      return 0;
+    g_child_watch_add (*child_pid, close_child, NULL);
 
-	case 0:		/* kid */
+    fp = (FILE *) fdopen (pipefd, "w");
 
-	    close (pipefd[1]);
-	    close (0);
-	    dup (pipefd[0]);
-	    close (pipefd[0]);
+    fprintf (fp, "CONTEXT X\n");
+    fprintf (fp, "DIR %s\n", cwd);
+    fprintf (fp, "DETACH\n");
 
-            if (access (RSH_COMMAND, X_OK) == 0)
-              execlp (RSH_COMMAND, machine, "rstartd", (char *) 0);
+    if (envp)
+      {
+	/*
+	 * The application saved its environment.
+	 */
 
-	    g_error ("gnome-session: execlp() of rstartd failed for remote start of %s",
-		     argv[0]);
+	for (i = 0; envp[i]; i++)
+	  {
 	    /*
-	     * TODO : We would like to send this log information to the
-	     * log window in the parent.  This would require using the
-	     * pipe between the parent and child.  The child would
-	     * set close-on-exec.  If the exec succeeds, the pipe will
-	     * be closed.  If it fails, the child can write a message
-	     * to the parent.
+	     * rstart requires that any spaces, backslashes, or
+	     * non-printable characters inside of a string be
+	     * represented by octal escape sequences.
 	     */
-	    _exit(127);
 
-	default:		/* parent */
+	    char *temp = format_rstart_env (envp[i]);
+	    fprintf (fp, "MISC X %s\n", temp);
+	    if (temp != envp[i])
+	      g_free (temp);
+	  }
+      }
+    else
+      {
+	/*
+	 * The application did not save its environment.
+	 * The default PATH set up by rstart may not contain
+	 * the program we want to restart.  We play it safe
+	 * and pass xsm's PATH.  This will most likely contain
+	 * the path we need.
+	 */
 
-	    close (pipefd[0]);
-	    fp = (FILE *) fdopen (pipefd[1], "w");
+	const char *path = g_getenv ("PATH");
 
-	    fprintf (fp, "CONTEXT X\n");
-	    fprintf (fp, "DIR %s\n", cwd);
-	    fprintf (fp, "DETACH\n");
-
-	    if (envp)
-	    {
-		/*
-		 * The application saved its environment.
-		 */
-
-		for (i = 0; envp[i]; i++)
-		{
-		    /*
-		     * rstart requires that any spaces, backslashes, or
-		     * non-printable characters inside of a string be
-		     * represented by octal escape sequences.
-		     */
-
-		    char *temp = format_rstart_env (envp[i]);
-		    fprintf (fp, "MISC X %s\n", temp);
-		    if (temp != envp[i])
-			g_free (temp);
-		}
-	    }
-	    else
-	    {
-		/*
-		 * The application did not save its environment.
-		 * The default PATH set up by rstart may not contain
-		 * the program we want to restart.  We play it safe
-		 * and pass xsm's PATH.  This will most likely contain
-		 * the path we need.
-		 */
-
-		char *path = (char *) getenv ("PATH");
-
-		if (path)
-		    fprintf (fp, "MISC X PATH=%s\n", path);
-	    }
+	if (path)
+	  fprintf (fp, "MISC X PATH=%s\n", path);
+      }
 
 #if 0
-	    /* FIXME: implement */
-	    fprintf (fp, "MISC X %s\n", non_local_display_env);
-	    fprintf (fp, "MISC X %s\n", non_local_session_env);
+    /* FIXME: implement */
+    fprintf (fp, "MISC X %s\n", non_local_display_env);
+    fprintf (fp, "MISC X %s\n", non_local_session_env);
 #endif
 
-	    /*
-	     * Pass the authentication data.
-	     * Each transport has auth data for ICE and XSMP.
-	     * Don't pass local auth data.
-	     */
+    /*
+     * Pass the authentication data.
+     * Each transport has auth data for ICE and XSMP.
+     * Don't pass local auth data.
+     */
+    for (list = auth_entries; list != NULL; list = list->next)
+      {
+	IceAuthFileEntry *entry = (IceAuthFileEntry *) list->data;
+	if (strstr (entry->network_id, "local/"))
+	  continue;
 
-	    for (list = auth_entries; list != NULL; list = list->next)
-	    {
-	        IceAuthFileEntry *entry = (IceAuthFileEntry *) list->data;
-		if (strstr (entry->network_id, "local/"))
-		    continue;
-
-		fprintf (fp, "AUTH ICE %s \"\" %s %s ",
-		    entry->protocol_name,
-		    entry->network_id,
-		    entry->auth_name);
+	fprintf (fp, "AUTH ICE %s \"\" %s %s ",
+		 entry->protocol_name,
+		 entry->network_id,
+		 entry->auth_name);
 		
-		for (i = 0; i < entry->auth_data_length; ++i)
-		  fprintf (fp, "%02x", entry->auth_data[i]);
+	for (i = 0; i < entry->auth_data_length; ++i)
+	  fprintf (fp, "%02x", entry->auth_data[i]);
 
-		fprintf (fp, "\n");
-	    }
+	fprintf (fp, "\n");
+      }
 
-	    /*
-	     * And execute the program
-	     */
+    /*
+     * And execute the program
+     */
 
-	    fprintf (fp, "EXEC %s %s", argv[0], argv[0]);
-	    for (i = 1; argv[i]; i++)
-		fprintf (fp, " %s", argv[i]);
-	    fprintf (fp, "\n\n");
-	    fclose (fp);
-	    break;
-	}
-    }
+    fprintf (fp, "EXEC %s %s", argv[0], argv[0]);
+    for (i = 1; argv[i]; i++)
+      fprintf (fp, " %s", argv[i]);
+    fprintf (fp, "\n\n");
+    fclose (fp);
 
-    return pid;
+    return 1;
 }
 
 
@@ -212,7 +190,7 @@ static char *
 format_rstart_env (char *str)
 {
     int escape_count = 0, i;
-    unsigned char *temp = str;
+    unsigned char *temp = (unsigned char *) str;
 
     while (*temp != '\0')
     {
@@ -229,7 +207,7 @@ format_rstart_env (char *str)
 	char *ret = (char *) g_malloc (len);
 	char *ptr = ret;
 
-	temp = str;
+	temp = (unsigned char *) str;
 	while (*temp != '\0')
 	{
 	    if (!isgraph (*temp) || *temp == '\\')

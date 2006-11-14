@@ -151,3 +151,45 @@ gsm_get_conf_client (void)
 
 	return client;
 }
+
+static void
+gsm_exec_close_child (GPid     pid,
+		      gint     status,
+		      gpointer ignore)
+{
+  g_spawn_close_pid (pid);
+}
+
+gboolean
+gsm_exec_async (char    *cwd,
+		char   **argv,
+		char   **envp,
+		GPid    *child_pid,
+		GError **error)
+{
+  gboolean result
+    = g_spawn_async (cwd, argv, envp,
+		     G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+		     NULL, NULL, child_pid, error);
+  if (result)
+    g_child_watch_add (*child_pid, gsm_exec_close_child, NULL);
+  return result;
+}
+
+gboolean
+gsm_exec_command_line_async (const gchar *cmd_line,
+			     GError      **error)
+{
+  gboolean result;
+  gint argc;
+  gchar **argv;
+  GPid child_pid;
+
+  if (! g_shell_parse_argv (cmd_line, &argc, &argv, error))
+    return FALSE;
+
+  result = gsm_exec_async (NULL, argv, NULL, &child_pid, error);
+
+  g_strfreev (argv);
+  return result;
+}
