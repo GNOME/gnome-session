@@ -1,5 +1,15 @@
 2006-11-14  Vincent Untz  <vuntz@gnome.org>
 
+	Cool fading effect for the icons in the splash!
+	Fix bug #149167
+	Patch by Daniel Godás <siro_san@hotmail.com>
+
+	* splash-widget.c: (splash_icon_destroy), (splash_widget_add_icon),
+	(update_trans_effect):
+	* splash-widget.h: Add fading effect for the icons.
+
+2006-11-14  Vincent Untz  <vuntz@gnome.org>
+
 	Try to get rid of "init as the parent of all GNOME processes"
 	Based on patch by Tom Tromey <tromey@redhat.com>
 	Bug #101351

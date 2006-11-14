@@ -30,6 +30,9 @@
 #define SPLASH_IS_WIDGET_CLASS(klass)       (GTK_CHECK_CLASS_TYPE ((klass), SPLASH_TYPE_WIDGET))
 #define SPLASH_WIDGET_GET_CLASS(obj)        (GTK_CHECK_GET_CLASS ((obj), SPLASH_TYPE_WIDGET, SplashWidgetClass))
 
+#define TRANS_TIMEOUT        50
+#define TRANS_TIMEOUT_PERIOD 30
+
 typedef struct  {
 	GtkWindow    window;
 

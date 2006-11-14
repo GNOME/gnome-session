@@ -33,6 +33,8 @@ GNOME_CLASS_BOILERPLATE (SplashWidget,
 			 GObject,
 			 GTK_TYPE_WINDOW);
 
+static gboolean update_trans_effect (gpointer);
+
 typedef struct {
 	char *human_name;
 	char *exe;
@@ -65,7 +67,21 @@ typedef struct {
 	GdkRectangle position;
 	GdkPixbuf   *unscaled;
 	GdkPixbuf   *scaled;
+	GdkPixbuf   *scaled_copy;
+	gint	     trans_count;
 } SplashIcon;
+
+typedef struct {
+	SplashWidget *sw;
+	SplashIcon   *si;
+	int width;
+	int height;
+	int n_channels;
+	int rowstride_trans;
+	int rowstride_orig;
+	guchar *pixels_trans;
+	guchar *pixels_orig;
+} TransParam;
 
 static gboolean
 re_scale (SplashWidget *sw)
@@ -267,7 +283,9 @@ splash_icon_destroy (SplashIcon *si)
 	g_object_unref (si->unscaled);
 	if (si->scaled)
 		g_object_unref (si->scaled);
-
+	if (si->scaled_copy)
+		g_object_unref (si->scaled_copy);
+	
 	g_free (si);
 }
 
@@ -498,7 +516,7 @@ re_laydown (SplashWidget *sw)
 		layout_icon (sw, l->data, NULL);
 	}
 }
- 
+
 void
 splash_widget_add_icon (SplashWidget *sw,
 			const char   *executable_name)
@@ -531,6 +549,7 @@ splash_widget_add_icon (SplashWidget *sw,
 		GdkRectangle  area;
 		char         *text;
 		int           length;
+		TransParam   *tp;
 
 		text = app && app->human_name ?  _(app->human_name) : basename;
 
@@ -557,17 +576,90 @@ splash_widget_add_icon (SplashWidget *sw,
 		sw->icons = g_list_append (sw->icons, si);
 
 		layout_icon (sw, si, &area);
-		
-		gtk_widget_queue_draw_area (
-			GTK_WIDGET (sw),
-			area.x, area.y,
-			area.width, area.height);
+	
+		/* prepare transparency effect */
+		if ((gdk_pixbuf_get_colorspace (si->scaled) == GDK_COLORSPACE_RGB) &&
+		    (gdk_pixbuf_get_bits_per_sample (si->scaled) == 8) &&
+		    (gdk_pixbuf_get_n_channels (si->scaled))) {
+			si->trans_count = 0;
+			if (!gdk_pixbuf_get_has_alpha (si->scaled)) {
+				si->scaled_copy = gdk_pixbuf_add_alpha (si->scaled, FALSE, 0, 0, 0);
+				g_object_unref (si->scaled);
+				si->scaled = gdk_pixbuf_copy (si->scaled_copy);
+			} else 
+				si->scaled_copy = gdk_pixbuf_copy (si->scaled);
+
+			tp = g_new0(TransParam, 1);
+			tp->si = si;
+			tp->sw = sw;
+			tp->width  = gdk_pixbuf_get_width  (tp->si->scaled);
+			tp->height = gdk_pixbuf_get_height (tp->si->scaled);
+			tp->rowstride_trans = gdk_pixbuf_get_rowstride (tp->si->scaled);
+			tp->rowstride_orig  = gdk_pixbuf_get_rowstride (tp->si->scaled_copy);
+			tp->pixels_trans = gdk_pixbuf_get_pixels (tp->si->scaled);
+			tp->pixels_orig  = gdk_pixbuf_get_pixels (tp->si->scaled_copy);
+			tp->n_channels = gdk_pixbuf_get_n_channels (tp->si->scaled);
+
+			gdk_pixbuf_fill (si->scaled, 0x00000000);
+			g_timeout_add (TRANS_TIMEOUT, update_trans_effect, tp);
+		} else {
+			gtk_widget_queue_draw_area (GTK_WIDGET (sw), area.x, area.y,
+						    area.width, area.height);
+		}
 	}
 
 	g_free (basename);
 }
 
 static SplashWidget *global_splash = NULL;
+
+static gboolean
+update_trans_effect (gpointer trans_param)
+{
+	guchar     *p_trans;
+	guchar     *p_orig;
+	gdouble    r_mul, g_mul, b_mul, a_mul;
+	gint       x = 0;
+	gint	   y = 0;
+
+	TransParam *tp = (TransParam *) trans_param;
+
+	if (!global_splash) {
+		g_free (tp);
+		return FALSE;
+	}
+	
+	if (tp->si->trans_count++ == TRANS_TIMEOUT_PERIOD) {
+		gtk_widget_queue_draw_area (GTK_WIDGET (tp->sw),
+					    tp->si->position.x, tp->si->position.y,
+					    tp->si->position.width, tp->si->position.height);
+		g_free (tp);
+		return FALSE;
+	}
+
+	a_mul = (gdouble) tp->si->trans_count / TRANS_TIMEOUT_PERIOD;
+	r_mul = 1;
+	g_mul = 1;
+	b_mul = 1;
+
+	for (y = 0; y < tp->height; y++) {
+		for (x = 0; x < tp->width; x++) {
+			p_trans = tp->pixels_trans + y * tp->rowstride_trans + x * tp->n_channels;
+			p_orig  = tp->pixels_orig  + y * tp->rowstride_orig  + x * tp->n_channels;
+
+			/* we can add more effects here apart from alpha fading */
+			p_trans[0] = r_mul * p_orig[0];
+			p_trans[1] = g_mul * p_orig[1];
+			p_trans[2] = b_mul * p_orig[2];
+			p_trans[3] = a_mul * p_orig[3];
+		}
+	}
+
+	gtk_widget_queue_draw_area (GTK_WIDGET (tp->sw),
+				    tp->si->position.x, tp->si->position.y,
+				    tp->si->position.width, tp->si->position.height);
+	return TRUE;
+}
 
 void
 splash_start (void)
