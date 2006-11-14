@@ -165,7 +165,9 @@ gsm_client_list_new (void)
 					       _("Program"), text_cell,
 					       "text", GSM_CLIENT_LIST_COL_COMMAND,
 					       NULL);
-					       
+
+  gtk_tree_view_set_search_column (view, GSM_CLIENT_LIST_COL_COMMAND);					      
+ 
   client_list->client_editor = gsm_client_editor_new ();
   client_list->session   = NULL;
   client_list->committed = FALSE;

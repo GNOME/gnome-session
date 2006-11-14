@@ -438,6 +438,8 @@ capplet_build (void)
   column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer, "text", 2, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
+  gtk_tree_view_set_search_column (startup_view, 2);
+
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
 
   util_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
