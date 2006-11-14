@@ -204,7 +204,7 @@ dnl | gnome-session |------------------------------------------
 dnl  ---------------
 dnl
 
-AC_MSG_CHECKING([Whether libgnomeui was built with session management])
+AC_MSG_CHECKING([whether libgnomeui was built with session management])
 case "$GNOME_SESSION_LIBS" in
 	*-lSM*)
 		GNOME_HAVE_SM=yes
@@ -226,9 +226,9 @@ dnl | Use TCP Wrappers? |--------------------------------------
 dnl  -------------------
 AC_ARG_ENABLE(tcp-wrappers,
               AC_HELP_STRING([--disable-tcp-wrappers],[disable tcp wrapper support]),,
-              [enable_tcp_wrappers=yes])
+              [enable_tcp_wrappers=auto])
 
-if test x$enable_tcp_wrappers = xyes ; then
+if test x$enable_tcp_wrappers = xyes -o x$enable_tcp_wrappers = xauto; then
    AC_MSG_CHECKING(for TCP wrappers)
    LIBWRAP_PATH=""
    for I in $LDFLAGS $LIBS -L/usr/lib -L/usr/local/lib; do
@@ -247,29 +247,35 @@ if test x$enable_tcp_wrappers = xyes ; then
    if test -n "$LIBWRAP_PATH"; then
       AC_MSG_RESULT(yes)
    else
-      AC_MSG_ERROR("libwrap not found!")
+      if test x$enable_tcp_wrappers = xyes; then
+         AC_MSG_ERROR("libwrap not found!")
+      else
+         AC_MSG_RESULT(no)
+      fi
    fi
 
-   nm $LIBWRAP_PATH/libwrap.* | grep 'T setenv' && LIBWRAP_PATH=""
-   if test -z "$LIBWRAP_PATH"; then
-      echo "*********************************************************"
-      echo " You have a broken TCP wrappers library (setenv included)"
-      echo " Please get the latest TCP wrappers package from your OS"
-      echo " vendor, or recompile TCP wrappers to not include a"
-      echo " setenv() implementation."
-      echo
-      echo "Not using TCP wrappers after all."
-      echo "*********************************************************"
-   fi
+   if test -n "$LIBWRAP_PATH"; then
+      nm $LIBWRAP_PATH/libwrap.* | grep 'T setenv' && LIBWRAP_PATH=""
+      if test -z "$LIBWRAP_PATH"; then
+         echo "*********************************************************"
+         echo " You have a broken TCP wrappers library (setenv included)"
+         echo " Please get the latest TCP wrappers package from your OS"
+         echo " vendor, or recompile TCP wrappers to not include a"
+         echo " setenv() implementation."
+         echo
+         echo "Not using TCP wrappers after all."
+         echo "*********************************************************"
+      fi
 
-   dnl We need the header files too!
-   if test "$ac_cv_header_syslog_h" != yes || test "$ac_cv_header_tcpd_h" != yes; then
-      echo "*********************************************************"
-      echo "Resetting $LIBWRAP_PATH because syslog is $ac_cv_header_syslog_h and tcpd is $ac_cv_header_tcpd_h" 1>&5
-      echo
-      echo "Not using TCP wrappers after all."
-      echo "*********************************************************"
-      LIBWRAP_PATH=""
+      dnl We need the header files too!
+      if test "$ac_cv_header_syslog_h" != yes || test "$ac_cv_header_tcpd_h" != yes; then
+         echo "*********************************************************"
+         echo "Resetting $LIBWRAP_PATH because syslog is $ac_cv_header_syslog_h and tcpd is $ac_cv_header_tcpd_h" 1>&5
+         echo
+         echo "Not using TCP wrappers after all."
+         echo "*********************************************************"
+         LIBWRAP_PATH=""
+      fi
    fi
 
    dnl find out if we need -lnsl or whatever
