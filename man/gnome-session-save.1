@@ -6,7 +6,7 @@
 .SH NAME
 gnome-session-save \- Saves the current GNOME session (or terminates it)
 .SH SYNOPSIS
-.B gnome-session-save [\-\-kill] [\-\-gui]
+.B gnome-session-save [\-\-kill] [\-\-gui] [\-\-silent]
 .SH DESCRIPTION
 \fIgnome-session-save\fP can be used from a GNOME session to save a snapshot
 of the currently running applications.  This session will be later
@@ -18,8 +18,11 @@ argument to terminate the GNOME session.
 
 The
 .B \-\-gui
-argument will show a dialog when the session is saved, and report errors
-in dialog boxes instead of printing to stderr.
+argument will report errors in dialog boxes instead of printing to stderr.
+
+The
+.B \-\-silent
+argument will perform the requested action without confirmation from the user.
 
 .SH SEE ALSO
 .BR gnome-session(1)
