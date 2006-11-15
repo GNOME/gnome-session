@@ -37,23 +37,23 @@ for n in "$@" ; do
   esac
 done
 
-# Create a list of window manager we can handle, trying to only use the
-# compositing ones when it makes sense
-
-xdpyinfo 2> /dev/null | grep -q "^ *Composite$" 2> /dev/null
-IS_X_COMPOSITED=$?
-
-KNOWN_WM="sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm"
-if [ $IS_X_COMPOSITED -eq 0 ] ; then
-  KNOWN_WM="compiz $KNOWN_WM"
-fi
-# metacity is still the default wm in GNOME
-KNOWN_WM="metacity $KNOWN_WM"
-
 # WINDOW_MANAGER overrides all
 
-OLDIFS=$IFS
 if [ -z "$WINDOW_MANAGER" ] ; then
+  # Create a list of window manager we can handle, trying to only use the
+  # compositing ones when it makes sense
+
+  xdpyinfo 2> /dev/null | grep -q "^ *Composite$" 2> /dev/null
+  IS_X_COMPOSITED=$?
+
+  KNOWN_WM="sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm"
+  if [ $IS_X_COMPOSITED -eq 0 ] ; then
+    KNOWN_WM="compiz $KNOWN_WM"
+  fi
+  # metacity is still the default wm in GNOME
+  KNOWN_WM="metacity $KNOWN_WM"
+
+  OLDIFS=$IFS
   if [ -z "$DEFWM" -o "x$DEFWM" = "xgnome-wm" ]; then
     for wm in $KNOWN_WM ; do
       IFS=":"
@@ -68,8 +68,8 @@ if [ -z "$WINDOW_MANAGER" ] ; then
   else
     WINDOW_MANAGER=$DEFWM
   fi
+  IFS=$OLDIFS
 fi
-IFS=$OLDIFS
 
 # If no window manager can be found, we default to xterm
 
