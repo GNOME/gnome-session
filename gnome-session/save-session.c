@@ -38,14 +38,18 @@ static gboolean zap = FALSE;
 /* True if we should use dialog boxes */
 static gboolean gui = FALSE; 
 
+/* True if we should do the requested action without confirmation */
+static gboolean silent = FALSE; 
+
 static char *session_name = NULL;
 
 static IceConn ice_conn = NULL;
 
 static const GOptionEntry options[] = {
   {"session-name", 's', 0, G_OPTION_ARG_STRING, &session_name, N_("Set the current session name"), N_("NAME")},
-  {"kill", '\0', 0, G_OPTION_ARG_NONE, &zap, N_("Kill session"),     NULL},
-  {"gui",  '\0', 0, G_OPTION_ARG_NONE, &gui, N_("Use dialog boxes"), NULL},
+  {"kill", '\0', 0, G_OPTION_ARG_NONE, &zap, N_("Kill session"), NULL},
+  {"gui",  '\0', 0, G_OPTION_ARG_NONE, &gui, N_("Use dialog boxes for errors"), NULL},
+  {"silent", '\0', 0, G_OPTION_ARG_NONE, &silent, N_("Do not require confirmation"), NULL},
   {NULL}
 };
 
@@ -76,8 +80,8 @@ save_complete (GnomeClient* client, gpointer data)
      to.  Some of them aren't particularly useful.  Interestingly,
      there is no way to request a shutdown without a save.  */
   gnome_client_request_save (client, GNOME_SAVE_BOTH, zap,
-			     GNOME_INTERACT_ANY, 0, 1);
-  
+			     silent ? GNOME_INTERACT_NONE : GNOME_INTERACT_ANY,
+			     0, 1);
   
   ice_ping ();
 }
@@ -98,7 +102,7 @@ cancelled_cb (GnomeClient *client, gpointer data)
 static void
 display_error (const char *message)
 {
-  if (gui) 
+  if (gui && !silent) 
     {
       GtkWidget *dialog;
       
