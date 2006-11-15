@@ -84,6 +84,10 @@ if [ ! -z "$SMID" ] ; then
       OPT1=-s
       OPT2=$SMID
       ;;
+    fvwm)
+      OPT1=-i
+      OPT2=$SMID
+       ;;
     #FIXME: add all other windowmanagers here with their proper options
   esac
 fi
