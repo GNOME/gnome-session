@@ -1,5 +1,15 @@
 2006-11-20  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-wm: add fvwm support.
+	Fix bug #110722
+	Thanks Ken Deeter <ktdeeter@alumni.princeton.edu>
+
+	* gnome-wm: add compiz support. It needed some rework to check if the
+	X session has the Composite extension.
+	Fix bug #350848
+
+2006-11-20  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-client-list.c: (gsm_client_list_new):
 	* session-properties-capplet.c: (capplet_build): make treeview
 	searching search the right column
