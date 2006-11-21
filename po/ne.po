@@ -1,27 +1,36 @@
+# translation of gnome-session.gnome-2-14.ne.po to Nepali
+# translation of gnome-session.gnome-2-10.ne.po to Nepali
+# translation of gnome-session.gnome-2-10.po to Nepali
 # translation of gnome-session.HEAD.po to Nepali
 # Nepali translation of gnome-session
 # This file is distributed under the same license as the gnome-session package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 # Pawan Chitrakar <pawan@nplinux.org>, 2004.
 # Shiva Prasad Pokharel <pokharelshiva@hotmail.com>, 2005.
+# Jyotshna Shrestha <jyotshna@mpp.org.np>, 2005.
+# Shiva  Pokharel <pokharelshiva@hotmail.com>, 2005.
+# Jaydeep Bhusal <zaydeep@hotmail.com>, 2005.
+# Kapil Timilsina <lipak21@gmail.com>, 2005.
+# Mahesh Subedi <submanesh@hotmail.com>, 2006.
+# Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD\n"
+"Project-Id-Version: gnome-session.gnome-2-14.ne\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-04-22 05:32+0000\n"
-"PO-Revision-Date: 2005-05-24 13:07+0545\n"
-"Last-Translator: Shiva Prasad Pokharel <pokharelshiva@hotmail.com>\n"
+"POT-Creation-Date: 2006-05-14 21:29+0200\n"
+"PO-Revision-Date: 2006-05-15 17:56+0545\n"
+"Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
-"Plural-Forms: Nplurals=2;plural=(n!=1)\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=2;plural=(n!=1)\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "टिसिपि सम्बन्ध स्थापनाको लागि अनुमति"
+msgstr "TCP जडानहरूलाई अनुमति दिनुहोस्"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -30,73 +39,87 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"शुरक्षाको कारणले प्लेटफर्ममा,_आई सि ई  टि सि पि ट्रान्स स्थापना हुन सकेन() "
-"(एक्स निशुल्क 86 प्रणाली),जिनोम-भागले टि सि पि केन्द्रमा सम्वन्धस्थापना हुन सकेन,यो विकल्पले टाढाका(मान्यता प्राप्त) होस्ट वाट सम्वन्ध स्थापनको लागि अनुमति दिनयो असर लिन जिनोम-भाग पुन: शुरु गर्नै पर्छछ. "
+"सुरक्षाको कारणले प्लेटफर्ममा,_IceTcpTransNoListen() (XFree86 systems) भएको "
+"प्लेटफर्ममा जिनोमले TCP का लागि श्रवण गरेन। यो विकल्पले टाढाका(मान्यता प्राप्त) होस्ट "
+"वाट जडानका लागि अनुमति दिन्छ। यसले प्रभाव लिनका लागि जिनोम-सत्र पुन: सुरु गर्नै पर्छ।"
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "यदि सक्षम भए प्रयोगकर्ताले अधिबेसन समाप्त हुनु अगाडि समयमानै जिनोम-अधिबेसन गर्नेछ"
+msgstr ""
+"यदि सक्षम पारिएको भए, जिनोम-सत्रले प्रयोगकर्तालाई एउटा सत्र समाप्त हुनु अगाडीनै "
+"प्रोत्साहित गर्नेछ।"
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"यदि सक्षम भए जिनोम-अधिबेसन आफै अधिबेसनमा बचत हुने छ।अन्यथा अधिबेशन बचतको बिकल्पसंगै "
-"सम्बाद बाहिर जाने छ "
+"यदि सक्षम पारिएको भए, जिनोम-सत्रले स्वत: तरिकाले सत्र बचत गर्ने छ। अन्यथा, लगआउट "
+"संवादमा बचत गर्नलाई एउटा विकल्प हुने छ।"
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "समयमै बाहिर जाउ"
+msgstr "लगआउटका लागि तैयार"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "आकर्षक पर्दाको प्रयोगको लागि छानियको तस्विर"
+msgstr "स्प्लास पर्दाको प्रयोगका लागि रुचाइएको छवि"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
-msgstr "अधिबेसनहरु बचत गर"
+msgstr "सत्रहरू बचत गर्नुहोस्"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
-msgid "Show the splash screen"
-msgstr "भिजेको पर्दा देखाउ"
+msgid "Selected option in the log out dialog"
+msgstr "लगआउट संवादमा चयन गरिएको विकल्पहरू"
 
 #: ../gnome-session/gnome-session.schemas.in.h:9
-msgid "Show the splash screen when the session starts up"
-msgstr "भिजेको पर्दा देखाउ जब अधिबेसन शुरु हुने छ"
+msgid "Show the splash screen"
+msgstr "स्प्लास पर्दा देखाउनुहोस्"
 
 #: ../gnome-session/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr "सत्र सुरुआत हुँदा स्प्लास पर्दा देखाउनुहोस्"
+
+#: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
-msgstr "$डाटा डिर/तस्विर नक्सा / डाईरेक्टोरि.को मान्यतामा आधारित यो सम्वन्धित वाटो हो,सहायक डाइरेक्टोरिहरु र तस्विरको नामहरु मान्यताप्राप्ता माप हुन् यो मापलाई परिवर्तन गरेमा अर्को भागलाईको लग ईनमा असर गर्नेछ"
+msgstr ""
+"यो $datadir/pixmaps/ directory मा आधारित सापेक्ष बाटो मान हो। सहायक "
+"डाइरेक्टोरिहरू र छवि नामहरू वैध मानहरू हुन। यो मानलाई परिवर्तन गर्दा अघिल्लो सत्र लगइनलाई असर पार्नेछ।"
+
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr "यो विकल्प यस्तो हो कि जसलाई लगआउट संवादमा चयन गरिनेछ, वैध मानहरू  \"logout\" लगआउट गर्नका लागि, \"shutdown\" प्रणाली बन्द गर्नका लागि र \"restart\" प्रणाली फेरी सुरु गर्नका लागि हुन्।"
 
 #: ../gnome-session/gsm-client-editor.c:97
-#: ../gnome-session/startup-programs.c:314
 msgid "_Order:"
-msgstr "_आदेश"
+msgstr "क्रम :"
 
 #: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "यो अधिबेसनमा कुन अनरोधपत्र मा आदेस सुरु हन्छ"
+msgstr "सत्रमा अनुप्रयोगहरू सुरु हुने क्रम।"
 
 #: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "यो अनुरोध पत्रहरुमा क भयो जब यो बाहिरियो"
+msgstr "यो निकास हुँदा अनुप्रयोगलाई के हुन्छ ?"
 
 #: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
-msgstr "_शैलि"
+msgstr "शैली:"
 
 #: ../gnome-session/gsm-client-list.c:150
-#: ../gnome-session/session-properties-capplet.c:412
 msgid "Order"
-msgstr "आदेश"
+msgstr "क्रम"
 
 #: ../gnome-session/gsm-client-list.c:155
 msgid "Style"
-msgstr "शैलि"
+msgstr "शैली"
 
 #: ../gnome-session/gsm-client-list.c:160
 msgid "State"
@@ -108,11 +131,11 @@ msgstr "कार्यक्रम"
 
 #: ../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
-msgstr "निस्क्रिय"
+msgstr "निष्क्रिय पार्नुहोस्"
 
 #: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "सुरु हुन पर्खिरहेको अथवा पहिले नै समाप्त भएको"
+msgstr "सुरु हुनलाई पर्खिरहेको अथवा पहिले नै समाप्त भईसकेको।"
 
 #: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
@@ -120,23 +143,23 @@ msgstr "सुरु भइरहेको"
 
 #: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "शुरु गरिएको तर अहिले सम्म प्रतिबेदन बर्णन गरिएको छैन"
+msgstr "सुरु गरिएको तर अहिले सम्म प्रतिबेदन नगरिएको स्थिति"
 
 #: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "दौडि रहेको"
+msgstr "चलिरहेको"
 
 #: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
-msgstr "अधिबेसनको समान्य सदस्य"
+msgstr "सत्रको एउटा समान्य सदस्य"
 
 #: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "बचत भईरहेको"
+msgstr "बचत गर्दै"
 
 #: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "अधिबेसन सबिस्तार बचत भईरहेको छ"
+msgstr "सत्र बिवरण बचत गर्दे।"
 
 #: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -144,23 +167,23 @@ msgstr "अज्ञात"
 
 #: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "समय सकिनु अगादि प्रतिबेदन बर्णन गरिएको छैन"
+msgstr "समय सकिनु अगाडी स्थिति प्रतवेबेदगरिएन।"
 
 #: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
-msgstr "साधारण"
+msgstr "सामान्य"
 
 #: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "बाहिरजानु बाट प्रभाबित भएन तर मर्न सक्छ"
+msgstr "लगआउटद्वारा अप्रभावित भयो तर मर्न सक्छ।"
 
 #: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
-msgstr "पुन:सुरु गर्नु"
+msgstr "पुन: सुरु गर्नुहोस्"
 
 #: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "मर्नलाई कहिले पानि अनुमति दिईएन"
+msgstr "मर्नलाई कहिले पानि अनुमति दिईदैन।"
 
 #: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
@@ -168,15 +191,15 @@ msgstr "व्यर्थकुरा"
 
 #: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "बाहिर जान फ्याकिदियो र मर्नसक्छ"
+msgstr "बाहिर जाँदा परित्याग गर्दछ र मर्न सक्छ।"
 
 #: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "मिलाउने काम"
+msgstr "सेटिङ"
 
 #: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
-msgstr "प्रत्येक भित्र छिर्नलाई संधै सुरु गरियो"
+msgstr "प्रत्येक पटक भित्र पस्दा सुरु हुन्छ।"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -195,8 +218,7 @@ msgid ""
 msgstr ""
 "जिनोम डेमन मिलाउदा त्याहा गल्ति थियो\n"
 "\n"
-"केही जस्तै विषयहरु,ध्वनिहरु,वा पृष्टभुमि जस्ता केहि चिजहरुले"
-"ठिकसंग काम नगर्न पनि सक्छन्ि सक्छन"
+"केही जस्तै विषयहरू,ध्वनिहरू,वा पृष्ठभूमि सेटिङले ठीकसँग काम नगर्न पनि सक्छन्।"
 
 #: ../gnome-session/gsm-gsd.c:53
 msgid ""
@@ -207,7 +229,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"अन्तिमको गलत खबर थियो:\n"
+"अन्तिम त्रुटि सन्देश:\n"
 "\n"
 
 #: ../gnome-session/gsm-gsd.c:58
@@ -218,62 +240,61 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"जिनोम अझै मिलानलाई पनि पुन:शुरु गर्न कोशिस गर्नेछ "
-"अर्को पटका भित्र छिर्दा डेमन गर्नुहोस्"
+"जिनोमले अझै पनि तपाईँले अर्को पटक भित्र पस्दा सेटिङ डेईमनहरू पुन: सुरु गर्ने छ।"
 
 #: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
-msgstr " त्यँहा एउटा अज्ञात शुरुवाति त्रुटि थियो "
+msgstr "त्यहाँ एउटा अज्ञात सक्रिय पार्ने त्रुटि थियो।"
 
 #: ../gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
-msgstr "मिलाइएको डेइमोनले धेरैपटक पुन: शुरु गरिसक्यो"
+msgstr "सेटिङ डेईमनहरू धेरै पटक फेरि सुरु गरियो।"
 
-#: ../gnome-session/logout.c:355
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
-msgstr "के तपाइ साँच्चैनै निकाश चाहनुहुन्छ?"
+msgstr "के तपाईँ साँच्चिकै लगआउट गर्न चाहनुहुन्छ?"
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
-msgstr "_तत्काल गरिएको उपकाण जडान बचत गर"
+msgstr "हालको सेटअप बचत गर्नुहोस्"
 
-#: ../gnome-session/logout.c:393
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "कार्य"
 
-#: ../gnome-session/logout.c:410
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
-msgstr "बाहिर जाउ"
+msgstr "लगआउट गर्नुहोस्"
 
-#: ../gnome-session/logout.c:416
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
-msgstr "बन्द गर"
+msgstr "बन्द गर्नुहोस्"
 
-#: ../gnome-session/logout.c:423
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
-msgstr "कम्प्युटर पुन:सुरु गर"
-
-#: ../gnome-session/main.c:81
-msgid "Specify a session name to load"
-msgstr " अधिवेसनको नाम लोड गर्नलाइ परिचित गर"
+msgstr "कम्प्युटर फेरि सुरु गर्नुहोस्"
 
 #: ../gnome-session/main.c:82
-msgid "Only read saved sessions from the default.session file"
-msgstr "पुर्वनिर्धारित अधिवेशन लेखपत्रबाट बचत गरिएको अधिवेशन मात्र पढ"
+msgid "Specify a session name to load"
+msgstr "लोड गर्नलाई एउटा सत्र नाम निर्दिष्ट गर्नुहोस्"
 
 #: ../gnome-session/main.c:83
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "(0=सधैभरी) क्लाईन्टलाई पर्खिदा मिलि सेकेण्ड समय खर्च भयो"
+msgid "Only read saved sessions from the default.session file"
+msgstr "पूर्वनिर्धारित.सत्र फाइल बाट मात्र बचत गरिएका सत्रहरू पढ्नुहोस्"
 
 #: ../gnome-session/main.c:84
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "(0=सधैभरी) क्लाईन्टलाई प्रतिक्रिया दिन पर्खिदा मिलि सेकेण्ड समय खर्च भयो"
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "ग्राहकलाई पर्खिदा मिलिसेकेण्ड समय खर्च भयो (0=सधैका लागि)"
 
 #: ../gnome-session/main.c:85
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "रोगिहरु मर्नलाइ पर्खदा मिलिसेकेण्ड समय बित्यो (0=संधै)"
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "ग्राहकलाई उत्तर दिन पर्खिदा मिलिसेकेण्ड समय खर्च भयो (0=सधैभरी)"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:86
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "ग्राहक नष्ट गर्नलाई  प्रतीक्षा गर्दा खर्च भएको मिलिसेकेण्ड समय (0=forever)"
+
+#: ../gnome-session/main.c:261
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -281,206 +302,211 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"%s. लागि ईन्टरनेट ठगाना हेर्न सकिएन। \n"
-" ठिकसंग संचालन बाट यसले जिनोम रोकथाम गर्नेछ। \n"
-" \n"
-"%s  /etc/hosts फाइलमा थपी मिलाऊ"
+"%s. का लागि इन्टरनेट ठेगाना हेर्न सकिएन। \n"
+"ठीकसँग सञ्चालन हुनबाट यसले जिनोमलाई रोक्नेछ। \n"
+"यो समस्यालाई ठीक पार्न \n"
+"%s लाई file /etc/hosts मा थप गरेर सम्भव हुन सक्दछ।"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
-msgstr "जसरि भए पानि प्रवेश गर "
+msgstr "जसरी भए पानि लगइन गर्नुहोस् वा भित्र पस्नुहोस्"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:269
 msgid "Try Again"
-msgstr "फरि कोशिष गर"
+msgstr "फेरी प्रयास गर्नुहोस्"
 
 #: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
-msgstr "तिम्रो बैठक बचत गरिएको छ"
+msgstr "तपाईँको सत्र बचत गरियो "
 
 #: ../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
-msgstr "उचित बिरोधहरु पर्खन गर्ने छाडियो"
+msgstr "द्वन्दको कारणले गर्दा प्रतीक्षा त्याग गरियो।"
 
 #: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
-msgstr "%s आदेशको जवाफ छैन"
+msgstr "%s आदेशलाई कुनै जवाफ छैन।"
 
 #: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
-msgstr "कार्यक्रम ढिलो हुन सक्छ, रोकियो वा भाँचियो"
+msgstr "कार्यक्रम ढिलो, रोकिएकोो वा भाँचएको हुनसक्छ।ो"
 
 #: ../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
-msgstr "यसको जावाफ दिन अथवा यसलाई हटाउन को लागि तिमिले केहि समय पर्खनै पर्छ"
+msgstr "तपाईँले यसलाई जवाफ दिन वा यसलाई हटाउनलाई प्रतीक्षा गर्न सक्नुहुन्छ।"
 
 #: ../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
-msgstr "उचित असफलताहरु पुन सुरु गर्ने छाडियो"
+msgstr "असफलताको कारणले पुन: सुरु परित्याग गरियो।"
 
 #: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
-msgstr "बैठक प्रगतिमा बन्द छ"
+msgstr "सत्रको बन्द प्रगतिको क्रममा छ।"
 
 #: ../gnome-session/save-session.c:46
 msgid "Set the current session"
-msgstr "तत्काल बैठक स्थापित गर"
+msgstr "हालको सत्र सेट गर्नुहोस् "
 
 #: ../gnome-session/save-session.c:47
 msgid "Kill session"
-msgstr "बैठक नास गर"
+msgstr "सत्र मार्नुहोस् "
 
 #: ../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
-msgstr "सम्बाद बाकसहरु प्रयोग गर"
+msgstr "संवाद बाकसहरू प्रयोग गर्नुहोस्"
 
 #: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
-msgstr "बैठक प्रबन्धक संग संबन्ध गर्न सकिएन"
+msgstr "सत्र व्यावस्थापक संगजडान गर्न सकेन "
 
 #: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
-msgstr "बैठकको नाम खालि हुन सक्दैन"
+msgstr "सत्रको नाम खाली हुन सक्दैन"
 
 #: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
-msgstr "बैठकको नाम अघिनै निस्किसकेको छ"
+msgstr "सत्रको नाम पहिले नै अवस्थित छ"
 
 #: ../gnome-session/session-names.c:188
 msgid "Add a new session"
-msgstr "एउटा नया बैठक जोड"
+msgstr "एउटा नयाँ सत्र थप गर्नुहोस्"
 
 #: ../gnome-session/session-names.c:218
 msgid "Edit session name"
-msgstr "बैठक नाम सम्पादन गर्नु "
+msgstr "सत्र नाम सम्पादन गर्नुहोस्"
 
-#: ../gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "सक्षम पार्नुहोस्"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "अक्षम पार्नुहोस्"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
-msgstr "_सम्पादन गर्नु"
+msgstr "सम्पादन"
 
-#: ../gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-" केहि परिवर्तनहरु बचत भएनन्। \n"
-"तैपनि बाहिर निस्कनु हुन्छ?"
+"केही परिवर्तनहरू बचत छैन। \n"
+"बाहिर निस्कन अहिले पनि ठीक छ ?"
 
-#: ../gnome-session/session-properties-capplet.c:240
+#: ../gnome-session/session-properties-capplet.c:263
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
-msgstr "बैठकहरु"
+msgstr "सत्रहरू"
 
-#: ../gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
-msgstr "भिजेको पर्दामा प्रबेशगरेर देखाउ"
+msgstr "लगइन गर्दा स्प्लास पर्दा देखाउनुहोस्"
 
-#: ../gnome-session/session-properties-capplet.c:284
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
-msgstr " बाहि _जाँद सोध्नु_होस्ाउ"
+msgstr "लगआउट गर्दा सोध्नुहोस्"
 
-#: ../gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
-msgstr "बैठकलाई आफै परिवर्तनहरु बचत गर"
+msgstr "परिवर्तनलाई स्वत: तरिकाले सत्रमा बचत गर्नुहोस्"
 
-#: ../gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
-msgstr "_बैठकहरु:"
+msgstr "सत्रहरू:"
 
-#: ../gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
-msgstr "बैठकको नाम"
+msgstr "सत्र नाम"
 
-#: ../gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
-msgstr "बैठकका विकल्पहरु"
+msgstr "सत्र विकल्पहरू"
 
-#: ../gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
-msgstr "तत्कालको बैठक"
+msgstr "हालको बैठक"
 
-#: ../gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
-msgstr "अतिरिक्त कार्यक्रमहरुको काम थाल"
+msgstr "अतिरिक्त सुरुआत कार्यक्रमहरू:"
 
-#: ../gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "आदेश"
 
-#: ../gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
-msgstr "कार्यक्रमहरुको काम थाल"
+msgstr "सुरुआत कार्यक्रमहरू"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "बैठक बाट तत्काल छानिएका ग्राहक हटाउ"
+msgstr "सत्रबाट हाल चयन गरिएका ग्राहक हटाउनुहोस्"
 
 #: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "तत्काल बैठक देखि परिवर्तन लागु गर"
+msgstr "हालको सत्रमा परिवर्तनहरू लागू गर्नुहोस्"
 
 #: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr "बैठकमा कार्यक्रमहरुको सुचि "
+msgstr "सत्रमा कार्यक्रमहरूको सूची "
 
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "तत्कालै चलिरहेको _ कार्यक्रम"
+msgstr "हालै चलिरहेका कार्यक्रमहरू:"
 
 #: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
-msgstr "बैठक स्थापितको शुरुआत"
+msgstr "सत्र सेटिङ प्रारम्भ गर्नुहोस्"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr "तपाइको बैठकहरु को ढाँचा"
+msgstr "तपाईँको सत्रहरू कन्फिगर गर्नुहोस्"
 
 #: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
-msgstr "सफिस द्वार प्रबन्धक"
+msgstr "सफिस सञ्झ्याल व्यावस्थापक"
 
 #: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
-msgstr "मेटासिटि द्वार प्रबन्धक "
+msgstr "मेटासिटि सञ्झ्याल व्यावस्थापक"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
-msgstr "द्वार प्रबन्धक"
+msgstr "सञ्झ्याल व्यावस्थापक"
 
 #: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
-msgstr "समुह / गठबन्धन"
+msgstr "प्यानेल"
 
 #: ../gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "अधिबेसन पर्तिनिधित्व प्रबन्धक"
-
-#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "नटलस"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
-msgstr "शिर्षप्रिष्ठ स्थापित"
+msgstr "डेस्कटप सेटिङ"
 
-#: ../gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:425
 msgid "_Startup Command:"
-msgstr "_काम थालिएको निर्देशन: "
+msgstr "सुरुआत आदेश: "
 
-#: ../gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:431
 msgid "Startup Command"
-msgstr "काम थालिएको निर्देशन "
+msgstr "सुरुआत आदेश"
 
-#: ../gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:460
 msgid "The startup command cannot be empty"
-msgstr "काम थालिएको निर्देशन खालि हुन सकेन"
+msgstr "सुरुआत आदेश खाली हुन सक्दैन"
 
-#: ../gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:497
 msgid "Add Startup Program"
-msgstr "काम थालिएको कार्यक्रम जोड्नु"
+msgstr "सुरुआत कार्यक्रम जोड्नुहोस्"
 
-#: ../gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:535
 msgid "Edit Startup Program"
-msgstr "काम थालिएको कार्यक्रम सम्पादन गर्नु"
+msgstr "सुरुआत कार्यक्रम सम्पादन गर्नुहोस्"
 
