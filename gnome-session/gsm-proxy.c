@@ -38,7 +38,7 @@ gsm_set_up_legacy_proxy_environment (void)
 {
   static gboolean run_before = FALSE;
   gboolean use_proxy, use_authentication;
-  char *host, *user_name, *password, *http_proxy;
+  char *host, *http_proxy;
   gint port;
   GConfClient *gconf_client;
 
@@ -62,52 +62,34 @@ gsm_set_up_legacy_proxy_environment (void)
       return;
     }
 
+  use_authentication = gconf_client_get_bool (gconf_client, HTTP_PROXY_AUTHENTICATION_KEY, NULL);
+
+  /* we don't bother if a username/password are set since keeping the password
+   * in an environment variable has security ramifications
+   */
+  if (use_authentication)
+    {
+      g_unsetenv ("http_proxy"); 
+      return;
+    }
+
   host = gconf_client_get_string (gconf_client, HTTP_PROXY_HOST_KEY, NULL);
 
   if (host == NULL || host[0] == '\0')
     {
+      g_free (host);
       g_unsetenv ("http_proxy");
       return;
     }
 
   port = gconf_client_get_int (gconf_client, HTTP_PROXY_PORT_KEY, NULL);
 
-  use_authentication = gconf_client_get_bool (gconf_client, HTTP_PROXY_AUTHENTICATION_KEY, NULL);
-
-  user_name = NULL;
-  password = NULL;
-  if (use_authentication)
-    {
-      user_name = gconf_client_get_string (gconf_client, HTTP_PROXY_USER_NAME_KEY, 
-                                           NULL);
-      if (user_name != NULL && user_name[0] == '\0')
-        {
-          g_free (user_name);
-          user_name = NULL;
-        }
-      else 
-        password = gconf_client_get_string (gconf_client, HTTP_PROXY_PASSWORD_KEY, 
-                                          NULL);
-    }
-
   if (port <= 0)
-    http_proxy = g_strdup_printf ("http://%s%s%s%s%s",
-                                  user_name != NULL? user_name : "",
-                                  user_name != NULL && password != NULL? ":" : "",
-                                  user_name != NULL && password != NULL? password : "",
-                                  user_name != NULL? "@" : "",
-                                  host); 
+    http_proxy = g_strdup_printf ("http://%s", host); 
   else
-    http_proxy = g_strdup_printf ("http://%s%s%s%s%s:%d",
-                                  user_name != NULL? user_name : "",
-                                  user_name != NULL && password != NULL? ":" : "",
-                                  user_name != NULL && password != NULL? password : "",
-                                  user_name != NULL? "@" : "",
-                                  host, port); 
+    http_proxy = g_strdup_printf ("http://%s:%d", host, port); 
   g_setenv ("http_proxy", http_proxy, TRUE);
 
   g_free (http_proxy);
-  g_free (password);
-  g_free (user_name);
   g_free (host);
 }

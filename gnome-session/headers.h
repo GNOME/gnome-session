@@ -78,8 +78,6 @@
 #define HTTP_PROXY_PREFIX             "/system/http_proxy"
 #define HTTP_PROXY_KEY                HTTP_PROXY_PREFIX "/use_http_proxy"
 #define HTTP_PROXY_AUTHENTICATION_KEY HTTP_PROXY_PREFIX "/use_authentication"
-#define HTTP_PROXY_USER_NAME_KEY      HTTP_PROXY_PREFIX "/authentication_user"
-#define HTTP_PROXY_PASSWORD_KEY       HTTP_PROXY_PREFIX "/authentication_password"
 #define HTTP_PROXY_HOST_KEY           HTTP_PROXY_PREFIX "/host"
 #define HTTP_PROXY_PORT_KEY           HTTP_PROXY_PREFIX "/port"
 

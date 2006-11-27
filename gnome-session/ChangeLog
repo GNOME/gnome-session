@@ -1,9 +1,19 @@
 2006-11-26  Ray Strode  <rstrode@redhat.com>
 
+	Don't set http_proxy at all if the proxy requires
+	authentication (bug 84315 again).
+
+	* headers.h: drop unused #defines
+	* gsm-proxy.c (gsm_set_up_legacy_proxy_environment):
+	don't set http_proxy if user's proxy configuration
+	requires authentication
+
+2006-11-26  Ray Strode  <rstrode@redhat.com>
+
 	Set http_proxy environment variable _correctly_
 	for legacy apps (bug 84315 again).
 
-	* gsm-proxy.[ch] (gsm_set_up_legacy_proxy_environment):
+	* gsm-proxy.c (gsm_set_up_legacy_proxy_environment):
 	swap the @ and : in the environment variable
 
 2006-11-16  Vincent Untz  <vuntz@gnome.org>
