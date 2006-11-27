@@ -1,3 +1,11 @@
+2006-11-26  Ray Strode  <rstrode@redhat.com>
+
+	Set http_proxy environment variable _correctly_
+	for legacy apps (bug 84315 again).
+
+	* gsm-proxy.[ch] (gsm_set_up_legacy_proxy_environment):
+	swap the @ and : in the environment variable
+
 2006-11-16  Vincent Untz  <vuntz@gnome.org>
 
 	* gnome-wm: improved a bit to do less stuff if $WINDOW_MANAGER is set

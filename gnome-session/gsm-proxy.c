@@ -93,16 +93,16 @@ gsm_set_up_legacy_proxy_environment (void)
   if (port <= 0)
     http_proxy = g_strdup_printf ("http://%s%s%s%s%s",
                                   user_name != NULL? user_name : "",
-                                  user_name != NULL && password != NULL? "@" : "",
+                                  user_name != NULL && password != NULL? ":" : "",
                                   user_name != NULL && password != NULL? password : "",
-                                  user_name != NULL? ":" : "",
+                                  user_name != NULL? "@" : "",
                                   host); 
   else
     http_proxy = g_strdup_printf ("http://%s%s%s%s%s:%d",
                                   user_name != NULL? user_name : "",
-                                  user_name != NULL && password != NULL? "@" : "",
+                                  user_name != NULL && password != NULL? ":" : "",
                                   user_name != NULL && password != NULL? password : "",
-                                  user_name != NULL? ":" : "",
+                                  user_name != NULL? "@" : "",
                                   host, port); 
   g_setenv ("http_proxy", http_proxy, TRUE);
 
