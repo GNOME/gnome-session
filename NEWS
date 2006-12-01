@@ -1,4 +1,38 @@
 ==============
+Version 2.17.3
+==============
+
+Misc
+
+	* Make it build on older distros (Vincent)
+	* Allow enabling/disabling tcpwrappers (Saleem Abdulrasool)
+	* Update man pages (Vincent)
+
+Session Manager
+
+	* Fix bug where clicking logout button doesn't work if
+          mouse pointer happens to be on top of the button when
+          the window is mapped (bug 52047) (Ray Strode)
+	* Make treview searching search the right column
+	  (Brent Smith)
+	* Get rid of init as the parent of all processes
+	  (Tom Tromey)
+	* Add fading effect for the splash screen icons
+	  (Daniel Godás)
+	* Add command line option to avoid confirmation dialog
+	  on kill (William McCann)
+	* Add fvwm support (Ken Deeter)
+	* Add support for compiz (Vincent)
+	* Do less work if $WINDOW_MANAGER is set (Vincent)
+	* Set http_proxy variable correctly (Ray Strode)
+	* Don't set http_proxy variable at all if the proxy
+	  requires authentication (Ray Strode)
+
+Translators
+
+	* Daniel Nylander (sv)
+
+==============
 Version 2.17.2
 ==============
 
