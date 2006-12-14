@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-28 16:47+0700\n"
-"PO-Revision-Date: 2006-07-28 16:50+0700\n"
+"POT-Creation-Date: 2006-12-14 18:42+0700\n"
+"PO-Revision-Date: 2006-12-14 18:52+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -88,6 +88,17 @@ msgstr ""
 "สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
 "สำหรับการเริ่มการทำงานของเครื่องใหม่"
 
+#: ../gnome-session/gsm-at-startup.c:61
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"มีการร้องขอการสนับสนุนเทคโนโลยีอำนวยความสะดวกในวาระนี้ "
+"แต่ไม่พบเรจิสตรีสำหรับระบบอำนวยความสะดวก กรุณาตรวจสอบให้แน่ใจ ว่าได้ติดตั้งแพกเกจ "
+"AT-SPI เรียบร้อย วาระนี้ของคุณจะเปิดโดยไม่มีการสนับสนุนเทคโนโลยีอำนวยความสะดวก"
+
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
 msgstr "_ลำดับ:"
@@ -117,6 +128,7 @@ msgid "State"
 msgstr "สถานะ"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Program"
 msgstr "โปรแกรม"
 
@@ -237,6 +249,35 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "ดีมอนจัดการค่าตั้งถูกเริ่มทำงานใหม่หลายครั้งจนผิดปกติ"
 
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "แสดงรายการไคลเอนต์ที่ลงทะเบียนไว้ แล้วออกจากโปรแกรม"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "PROGRAM..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"คุณต้องระบุโปรแกรมอย่างน้อยหนึ่งตัวที่จะเอาออก คุณสามารถแสดงรายการโปรแกรมได้ด้วยตัวเลือก "
+"--list\n"
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "ผิดพลาด: ไม่สามารถติดต่อโปรแกรมจัดการวาระ\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "ไคลเอนต์ที่ลงทะเบียนอยู่:\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "ไม่พบโปรแกรม %s ในวาระ\n"
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "จะออกจากระบบหรือไม่?"
@@ -261,36 +302,36 @@ msgstr "_ปิดเครื่อง"
 msgid "_Restart the computer"
 msgstr "เ_ริ่มเปิดเครื่องใหม่"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "ระบุชื่อวาระที่จะเรียกใช้"
 
-#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NAME"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "อ่านวาระที่บันทึกไว้จากแฟ้ม default.session เท่านั้น"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "จำนวนมิลลิวินาทีที่จะรอให้โปรแกรมลูกลงทะเบียน (0=ตลอดไป)"
 
-#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "DELAY"
 msgstr "DELAY"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "จำนวนมิลลิวินาทีที่จะรอให้โปรแกรมลูกตอบกลับ (0=ตลอดไป)"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "จำนวนมิลลิวินาทีที่จะรอให้โปรแกรมลูกหยุดทำงาน (0=ตลอดไป)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -302,80 +343,80 @@ msgstr ""
 "ซึ่งจะทำให้ GNOME ทำงานไม่ถูกต้อง\n"
 "อาจจะแก้ปัญหานี้ได้โดยการเพิ่ม %s ลงในแฟ้ม /etc/hosts"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:269
 msgid "Log in Anyway"
 msgstr "เข้าระบบต่อไป"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:270
 msgid "Try Again"
 msgstr "ลองอีกครั้ง"
 
-#: ../gnome-session/main.c:402
+#: ../gnome-session/main.c:406
 msgid "- Manage the GNOME session"
 msgstr "- จัดการวาระ GNOME"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "บันทึกวาระของคุณเรียบร้อย"
-
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "เลิกคอยเนื่องจากความขัดแย้งบางอย่าง"
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "ไม่ได้รับการตอบสนองจากคำสั่ง %s"
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "โปรแกรมอาจจะช้า หยุดทำงาน หรือ ตาย"
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "คุณสามารถรอให้โปรแกรมตอบกลับมา หรือเลือกทิ้งมันไปก็ได้"
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1745
 msgid "Restart abandoned due to failures."
 msgstr "ยกเลิกการเริ่มการทำงานใหม่เนื่องจากเกิดข้อผิดพลาด"
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1941
 msgid "A session shutdown is in progress."
 msgstr "กำลังปิดวาระการทำงาน"
 
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session name"
 msgstr "กำหนดชื่อวาระปัจจุบัน"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "ฆ่าวาระ"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "ใช้กล่องโต้ตอบ"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "ใช้กล่องโต้ตอบแสดงข้อผิดพลาด"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "ไม่ต้องถามการยืนยัน"
+
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "ติดต่อโปรแกรมจัดการวาระไม่สำเร็จ"
 
-#: ../gnome-session/save-session.c:169
+#: ../gnome-session/save-session.c:173
 msgid "- Save the current session"
 msgstr "- บันทึกวาระปัจจุบัน"
 
-#: ../gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:152
 msgid "The session name cannot be empty"
 msgstr "ชื่อวาระจะว่างไม่ได้"
 
-#: ../gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:163
 msgid "The session name already exists"
 msgstr "มีวาระชื่อนี้อยู่แล้ว"
 
-#: ../gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:197
 msgid "Add a new session"
 msgstr "เพิ่มวาระใหม่"
 
-#: ../gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:227
 msgid "Edit session name"
 msgstr "แก้ชื่อวาระ"
 
@@ -384,7 +425,7 @@ msgid "Enable"
 msgstr "เปิดใช้"
 
 #: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:467
+#: ../gnome-session/session-properties-capplet.c:469
 msgid "Disable"
 msgstr "ปิดใช้"
 
@@ -437,11 +478,7 @@ msgstr "วาระปัจจุบัน"
 msgid "Additional startup _programs:"
 msgstr "โ_ปรแกรมเริ่มวาระเพิ่มเติม"
 
-#: ../gnome-session/session-properties-capplet.c:438
-msgid "Command"
-msgstr "คำสั่ง"
-
-#: ../gnome-session/session-properties-capplet.c:478
+#: ../gnome-session/session-properties-capplet.c:480
 msgid "Startup Programs"
 msgstr "โปรแกรมเริ่มวาระ"
 
@@ -465,49 +502,55 @@ msgstr "โ_ปรแกรมที่กำลังทำงานอยู�
 msgid "Configure your sessions"
 msgstr "ตั้งค่าสำหรับวาระของคุณ"
 
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง Sawfish"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง Metacity"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "พาเนล"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "ค่าตั้งของพื้นโต๊ะ"
 
-#: ../gnome-session/startup-programs.c:403
+#: ../gnome-session/startup-programs.c:409
 msgid "_Startup Command:"
 msgstr "_คำสั่งเรียกเมื่อเริ่มวาระ:"
 
-#: ../gnome-session/startup-programs.c:409
+#: ../gnome-session/startup-programs.c:415
 msgid "Startup Command"
 msgstr "คำสั่งที่เรียกตอนเริ่มวาระ"
 
-#: ../gnome-session/startup-programs.c:441
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
 
-#: ../gnome-session/startup-programs.c:480
+#: ../gnome-session/startup-programs.c:489
 msgid "Add Startup Program"
 msgstr "เพิ่มโปรแกรมเริ่มวาระ"
 
-#: ../gnome-session/startup-programs.c:524
+#: ../gnome-session/startup-programs.c:533
 msgid "Edit Startup Program"
 msgstr "แก้ไขโปรแกรมเริ่มวาระ"
+
+#~ msgid "Your session has been saved"
+#~ msgstr "บันทึกวาระของคุณเรียบร้อย"
+
+#~ msgid "Command"
+#~ msgstr "คำสั่ง"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักขณะเริ่มการทำงาน"
