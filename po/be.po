@@ -1,22 +1,24 @@
 # translation of gnome-session.gnome-2-2.be.po to belarusian
 # Copyright (C) 2003 Free Software Foundation, Inc.
-# Vital Khilko <dojlid@mova.org>, 2003
+# Vital Khilko <dojlid@mova.org>, 2003.
+# Ales Nyakhaichyk <nab@mail.by>, 2006.
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.gnome-2-2.be\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-17 06:51+0100\n"
+"POT-Creation-Date: 2006-12-17 02:54+0100\n"
 "PO-Revision-Date: 2006-03-17 19:57+0200\n"
-"Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
+"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "Дазволіць TCP далучэньні"
+msgstr "Дазволіць злучэньні TCP"
 
 #: ../gnome-session/gnome-session.schemas.in.h:2
 msgid ""
@@ -25,47 +27,47 @@ msgid ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"З погляду бясьпекі, на плятформах дзе маецца _IceTcpTransNoListen() (XFree86 "
-"сыстэмы), gnome-session не праслухоўвае парты TCP для далучэньняў. Гэты "
-"парамэтар дазваляе далучэньні з (аўтарызаваных) аддаленух вузлоў. gnome-"
-"session павінна быць перазапушчана каб зьмены мелі эфект."
+"З пункту гледжаньня забесьпячэньня дастатковага ўзроўню бясьпекі, на плятформах, "
+"дзе ёсьць _IceTcpTransNoListen() (сыстэмы XFree86), gnome-session не праслухоўвае "
+"парты TCP для злучэньня. Гэты парамэтар дазваляе злучэньні з (аўтарызаванымі) аддаленымі "
+"вузламі. Каб зьмены пачалі працаваць, трэба перастартаваць gnome-session."
 
 #: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Калі уключана, gnome-session нагадае карыстальніку перад заканчэньнем сэанса."
+"Калі ўключана, gnome-session запытае пацьверджаньня завяршэньня сэанса."
 
 #: ../gnome-session/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"Калі ўключана, gnome-session захавае сэанс аўтаматычна. Інакш, дыялёг пад "
-"час выхаду будзе мець выбар захаваньня сэанса."
+"Калі ўключана, gnome-session аўтаматычна захавае сэанс. Інакш дыялёг выхаду "
+"дасьць магчымасьць захаваньня сэанса."
 
 #: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Нагад падчас выхаду"
+msgstr "Запыт выхаду"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "Відарыс, якому аддаецца перавага ў адлюстраваньні на запрашэньні ўвайсьці"
+msgstr "Малюнак запрашэньня на ўваход"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
-msgstr "Захаваць сэансы"
+msgstr "Захоўваць сэансы"
 
 #: ../gnome-session/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "Вылучаны парамэтар у дыялёгу выхаду"
+msgstr "Выбраная опцыя ў дыялёгу выхаду"
 
 #: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
-msgstr "Паказываць застаўку"
+msgstr "Паказваць застаўку"
 
 #: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
-msgstr "Адлюстроўваць застаўку пад час уваходу"
+msgstr "Паказваць застаўку ў часе ўваходу"
 
 #: ../gnome-session/gnome-session.schemas.in.h:11
 msgid ""
@@ -73,8 +75,8 @@ msgid ""
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"Гэта шлях адносна тэчкі $datadir/pixmaps/. Субтэчкі і назвы відарысаў - "
-"рэчаісныя значэньні. Зьмена гэтага ключа пачне дзейнічаць у наступным сэансе."
+"Гэта шлях адносна тэчкі $datadir/pixmaps/. Падтэчкі і назвы малюнкаў - "
+"рэальныя значэньні. Зьмена гэтага ключа будзе ўплываць на ўсе наступныя сэансы."
 
 #: ../gnome-session/gnome-session.schemas.in.h:12
 msgid ""
@@ -82,9 +84,20 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Гэта выбар, які будзе вылучаны ў дыялёзе выхаду. Рэчаісныя значэньні: "
-"\"logout\" для выхаду, \"shutdown\" для вылючэньня і \"restart\" для перазагрузкі "
-"сыстэмы."
+"Гэта опцыя, выбраная ў дыялёгу выйсьця. Магчымыя значэньні: "
+"\"logout\" для выйсьця, \"shutdown\" для адключэньня і \"restart\" для "
+"перазагрузкі сыстэмы."
+
+#: ../gnome-session/gsm-at-startup.c:61
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"Тэхналёгія даступнасьці патрабуецца гэтым сэансам, але рэгістар даступнасьці "
+"ня знойдзены. Праверце, ці ўсталяваны пакунак AT-SPI. Сэанс запушчаны без "
+"падтрымкі даступнасьці."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -92,11 +105,11 @@ msgstr "_Парадак:"
 
 #: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
-msgstr "Парадак, у якім запускаюцца прыкладаньні гэтага сэансу."
+msgstr "Парадак стартаваньня праграмаў гэтага сэанса."
 
 #: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
-msgstr "Што адбываецца з дастасаваньнем калі выйсьці."
+msgstr "Што адбываецца з праграмаю пры выйсьці."
 
 #: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
@@ -115,6 +128,7 @@ msgid "State"
 msgstr "Стан"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Program"
 msgstr "Праграма"
 
@@ -124,15 +138,15 @@ msgstr "Неактыўная"
 
 #: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
-msgstr "Чакае старту ці ўжо скончана."
+msgstr "Чакае старту ці ўжо скончыла работу."
 
 #: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
-msgstr "Старт"
+msgstr "Стартаваньне"
 
 #: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
-msgstr "Запусьцілася, але яшчэ не паведаміла стан"
+msgstr "Запушчаная, але яшчэ не паведаміла пра свой стан."
 
 #: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
@@ -144,11 +158,11 @@ msgstr "Звычайны ўдзельнік сэанса."
 
 #: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
-msgstr "Захаваньне"
+msgstr "Захоўваньне"
 
 #: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
-msgstr "Захаваньне падрабязнасьцяў сэанса."
+msgstr "Захоўваньне падрабязнасьцяў пра сэанс."
 
 #: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
@@ -156,15 +170,15 @@ msgstr "Невядома"
 
 #: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
-msgstr "За адведзены час стан не паведамлены."
+msgstr "За вызначаны тэрмін стан не паведамлены."
 
 #: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
-msgstr "Нармальна"
+msgstr "Звычайны"
 
 #: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
-msgstr "Захоўваецца пры заканчэньні працы, але \"сьмяротная\"."
+msgstr "На яго не ўплывае выйсьце, але ён можа памерці."
 
 #: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
@@ -172,7 +186,7 @@ msgstr "Перазапуск"
 
 #: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
-msgstr "\"Бессьмяротная\" праграма"
+msgstr "Сьмерць забаронена."
 
 #: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
@@ -180,11 +194,11 @@ msgstr "Сьметніца"
 
 #: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
-msgstr "Выкідаецца пры заканчэньні працы й \"сьмяротная\"."
+msgstr "Ігнаруецца пры выйсьці і можа памерці."
 
 #: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
-msgstr "Усталёўкі"
+msgstr "Настаўленьні"
 
 #: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
@@ -198,18 +212,18 @@ msgstr "Запускаецца ў пачатку кожнага сэанса."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Адбылася памылка пад час запуску дэмана усталёвак GNOME.\n"
+"Адбылася памылка стартаваньня дэмана настаўленьняў GNOME.\n"
 "\n"
-"Пэўныя рэчы, як наладкі тэмы, гуку ці тла могуць працаваць некарэктна."
+"Некаторыя аспэкты, напр., тэмы, гукі, фонавы малюнак стальца могуць не працаваць."
 
-#: ../gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -218,10 +232,10 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Апошняе паведамленьне пра памылку:\n"
+"Апошняя памылка:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -229,61 +243,95 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"GNOME паспрабуе перазапусьціць дэмана наладак пад час наступнага ўваходу."
+"GNOME паспрабуе перазапусьціць дэмана настаўленьняў пры наступным уваходзе."
 
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Гэта невядомая памылка актывацыі."
-
-#: ../gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
-msgstr "Дэман усталёвак перазапушчаны зашмат разоў."
+msgstr "Дэман настаўленьняў перазапушчаны надта шмат разоў."
 
-#: ../gnome-session/logout.c:408
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "Паказаць зарэгістраваных кліентаў, пасьля выйсьці"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "Праграма..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"Вы павінны вызначыць хаця б адну праграму для выдаленьня. Вы можаце праглядзець "
+"сьпіс праграмаў з опцыяй --list.\n"
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "Памылка: немагчыма злучыцца з кіраўніком сэансаў\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "Зарэгістраваня кліенты:\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Немагчыма знайсьці праграму %s для сэанса\n"
+
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
-msgstr "Вы ўпэўненыя, што жадаеце выйсьці?"
+msgstr "Вы сапраўды хочаце выйсьці?"
 
-#: ../gnome-session/logout.c:425
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
-msgstr "За_хаваць бягучыя ўсталёўкі"
+msgstr "За_хаваць бягучы стан"
 
-#: ../gnome-session/logout.c:448
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Дзеяньне"
 
-#: ../gnome-session/logout.c:465
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "Вы_йсьці"
 
-#: ../gnome-session/logout.c:472
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
-msgstr "Вы_ключыць"
+msgstr "Ад_ключыць"
 
-#: ../gnome-session/logout.c:480
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
-msgstr "Пера_запусьціць кампутар"
-
-#: ../gnome-session/main.c:82
-msgid "Specify a session name to load"
-msgstr "Увядзіце назву сэанса для загрузкі"
+msgstr "Пера_загрузіць кампутар"
 
 #: ../gnome-session/main.c:83
-msgid "Only read saved sessions from the default.session file"
-msgstr "Чытаць захаваныя сэансы толькі з файлу default.session"
+msgid "Specify a session name to load"
+msgstr "Вызначце назву сэанса для загрузкі"
+
+#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
+msgid "NAME"
+msgstr "Назва"
 
 #: ../gnome-session/main.c:84
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Пэрыяд чаканьня рэгістрацыі кліентаў, у мілісэкундах (0=заўсёды)"
+msgid "Only read saved sessions from the default.session file"
+msgstr "Толькі прачытаць захаваныя сэансы з файла default.session"
 
 #: ../gnome-session/main.c:85
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Пэрыяд чаканьня адказу кліентаў, у мілісэкундах (0=заўсёды)"
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "Тэрмін чаканьня рэгістрацыі кліентаў, у мілісэкундах (0=заўсёды)"
+
+#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
+msgid "DELAY"
+msgstr "Затрымка"
 
 #: ../gnome-session/main.c:86
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Пэрыяд чаканьня сьмерці кліентаў, у мілісэкундах (0=заўсёды)"
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "Тэрмін чаканьня адказу кліентаў, у мілісэкундах (0=заўсёды)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:87
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "Тэрмін чаканьня сьмерці кліентаў, у мілісэкундах (0=заўсёды)"
+
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -291,211 +339,210 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Не атрымалася знайсьці Інтарнэт адрэсу для %s.\n"
-"Гэта будзе перашкаджаць Gnome працаваць правільна.\n"
-"Вы можаце зьліквідаваць праблему, дадаўшы\n"
+"Немагчыма знайсьці Інтэрнэт-адрас для %s.\n"
+"Гэта будзе замінаць карэктнай працы Gnome.\n"
+"Вы можаце выправіць хібу, дадаўшы\n"
 "%s у файл /etc/hosts."
 
-#: ../gnome-session/main.c:268
-msgid "Log in Anyway"
-msgstr "Выйсьці ў любым выпадку"
-
 #: ../gnome-session/main.c:269
+msgid "Log in Anyway"
+msgstr "Усё роўна ўвайсьці"
+
+#: ../gnome-session/main.c:270
 msgid "Try Again"
-msgstr "Паспрабаваць нанова"
+msgstr "Паспрабаваць яшчэ"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Ваш сэанс захаваны"
+#: ../gnome-session/main.c:406
+msgid "- Manage the GNOME session"
+msgstr "- Кіраваньне сэансамі GNOME"
 
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
-msgstr "Чаканьне перарванае ў сувязі з канфліктам."
+msgstr "Чаканьне перарванае праз канфлікт."
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
-msgstr "Няма адказа на каманду %s."
+msgstr "Няма адказу на загад %s."
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
-msgstr "Мажліва праграма запаволена, спынена ці зламана."
+msgstr "Магчыма, праграма замарудзілася, спыніла працу альбо зламалася."
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
-msgstr "Вы можаце чакаць адказу ці выдаліць гэта."
+msgstr "Вы можаце пачакаць адказу ад гэтай праграмы альбо прыбраць яе."
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1745
 msgid "Restart abandoned due to failures."
-msgstr "Перазапуск ня зроблены з-за няўдачы."
+msgstr "Перазапуск перарваны праз памылку."
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1941
 msgid "A session shutdown is in progress."
-msgstr "Адбываецца заканчэньне сэанса працы."
+msgstr "Адбываецца завяршэньне сэанса."
 
-#: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Усталяваць бягучую сэсыю"
+#: ../gnome-session/save-session.c:49
+msgid "Set the current session name"
+msgstr "Вызначыць назву актыўнага сэанса"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "Забіць сэанс"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "Выкарыстоўваць вокны дыялёга"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "Ужыць дыялёгавыя вокны для паказу памылак"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "Не пытацца пацьверджаньня"
+
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
-msgstr "Немагчыма падключыцца да мэнаджара сэанса"
+msgstr "Немагчыма злучыцца з кіраўніком сэансаў"
 
-#: ../gnome-session/session-names.c:143
+#: ../gnome-session/save-session.c:173
+msgid "- Save the current session"
+msgstr "- Захаваць актыўны сэанс"
+
+#: ../gnome-session/session-names.c:152
 msgid "The session name cannot be empty"
-msgstr "Назва сэанса ня павінна быць пустой"
+msgstr "Назва сэанса ня можа быць пустой"
 
-#: ../gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:163
 msgid "The session name already exists"
-msgstr "Падобная назва сэанса ўжо йснуе"
+msgstr "Такі сэанс ужо існуе"
 
-#: ../gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:197
 msgid "Add a new session"
 msgstr "Дадаць новы сэанс"
 
-#: ../gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:227
 msgid "Edit session name"
-msgstr "Рэдагаваньне назвы сэанса"
+msgstr "Зьмяніць назву сэанса"
 
-#: ../gnome-session/session-properties-capplet.c:117
+#: ../gnome-session/session-properties-capplet.c:119
 msgid "Enable"
-msgstr "Улючыць"
+msgstr "Уключыць"
 
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
+#: ../gnome-session/session-properties-capplet.c:125
+#: ../gnome-session/session-properties-capplet.c:469
 msgid "Disable"
-msgstr "Выключыць"
+msgstr "Адключыць"
 
-#: ../gnome-session/session-properties-capplet.c:145
+#: ../gnome-session/session-properties-capplet.c:148
 msgid "_Edit"
-msgstr "_Рэдагаваньне"
+msgstr "_Рэдагаваць"
 
-#: ../gnome-session/session-properties-capplet.c:213
+#: ../gnome-session/session-properties-capplet.c:216
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
 msgstr ""
-"Пэўныя зьмены ня захаваныя.\n"
-"Вы сапраўды жадаеце выйсьці?"
+"Некаторыя зьмены не захаваліся.\n"
+"Вы сапраўды хочаце выйсьці?"
 
-#: ../gnome-session/session-properties-capplet.c:263
+#: ../gnome-session/session-properties-capplet.c:266
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Сэансы"
 
-#: ../gnome-session/session-properties-capplet.c:296
+#: ../gnome-session/session-properties-capplet.c:299
 msgid "Show splash screen on _login"
-msgstr "Паказываць застаўку пад час уваходу"
+msgstr "Паказваць застаўку ўваходу"
 
-#: ../gnome-session/session-properties-capplet.c:307
+#: ../gnome-session/session-properties-capplet.c:310
 msgid "As_k on logout"
-msgstr "С_пытаць перад выхадам"
+msgstr "С_пытаць перад выйсьцем"
 
-#: ../gnome-session/session-properties-capplet.c:318
+#: ../gnome-session/session-properties-capplet.c:321
 msgid "Automatically save chan_ges to session"
-msgstr "Аўтаматычна захоўваць зьмены сэанса"
+msgstr "_Аўтаматычна захоўваць зьмены сэанса"
 
-#: ../gnome-session/session-properties-capplet.c:329
+#: ../gnome-session/session-properties-capplet.c:332
 msgid "_Sessions:"
 msgstr "_Сэансы:"
 
-#: ../gnome-session/session-properties-capplet.c:347
+#: ../gnome-session/session-properties-capplet.c:350
 msgid "Session Name"
 msgstr "Назва сэанса"
 
-#: ../gnome-session/session-properties-capplet.c:398
+#: ../gnome-session/session-properties-capplet.c:401
 msgid "Session Options"
-msgstr "Парамэтры сэанса"
+msgstr "Настаўленьні сэанса"
 
-#: ../gnome-session/session-properties-capplet.c:407
+#: ../gnome-session/session-properties-capplet.c:410
 msgid "Current Session"
-msgstr "Бягучы сэанс"
+msgstr "Актыўны сэанс"
 
-#: ../gnome-session/session-properties-capplet.c:416
+#: ../gnome-session/session-properties-capplet.c:419
 msgid "Additional startup _programs:"
-msgstr "Дадатковыя _праграмы аўтазапуску:"
+msgstr "Дадатковыя _праграмы аўтастарту:"
 
-#: ../gnome-session/session-properties-capplet.c:435
-msgid "Command"
-msgstr "Каманда"
-
-#: ../gnome-session/session-properties-capplet.c:475
+#: ../gnome-session/session-properties-capplet.c:480
 msgid "Startup Programs"
-msgstr "Праграмы аўтазапуску"
+msgstr "Праграмы аўтастарту"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
-msgstr "Прыбраць выбранае з сэанса."
+msgstr "Прыбраць выбраны кліент з сэанса."
 
 #: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "Прыняць зьмены для бягучага сэанса"
+msgstr "Ужыць зьмены для актыўнага сэанса"
 
 #: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
-msgstr "Сьпіс праграмаў у сэансе."
+msgstr "Сьпіс праграмаў сэанса."
 
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
-msgstr "_Праграмы якія ўжо працуюць:"
-
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Ініцыялізацыя ўсталёвак сэанса"
+msgstr "_Праграмы, якія зараз працуюць:"
 
 #: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr "Наладка вашага сэанса"
-
-#: ../gnome-session/splash-widget.c:43
-msgid "Sawfish Window Manager"
-msgstr "Кіраўнік вокнаў - \"Рыба-меч\""
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Metacity Window Manager"
-msgstr "Кіраўнік вокнаў - Metacity"
+msgstr "Наладка сэансаў"
 
 #: ../gnome-session/splash-widget.c:45
+msgid "Sawfish Window Manager"
+msgstr "Кіраўнік вокнаў Sawfish"
+
+#: ../gnome-session/splash-widget.c:46
+msgid "Metacity Window Manager"
+msgstr "Кіраўнік вокнаў Metacity"
+
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "Кіраўнік вокнаў"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
-msgstr "Панэля"
+msgstr "Панэль"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Наўтылюс"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
-msgstr "Усталёўкі стальца"
+msgstr "Настаўленьні стальца"
 
-#: ../gnome-session/startup-programs.c:425
+#: ../gnome-session/startup-programs.c:409
 msgid "_Startup Command:"
-msgstr "Загад _запуску:"
+msgstr "Загад _стартаваньня:"
 
-#: ../gnome-session/startup-programs.c:431
+#: ../gnome-session/startup-programs.c:415
 msgid "Startup Command"
-msgstr "Загад запуску"
+msgstr "Загад стартаваньня"
 
-#: ../gnome-session/startup-programs.c:460
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
-msgstr "Каманда аўтазапуску ня можа быць пустой"
+msgstr "Загад стартаваньня ня можа быць пустой"
 
-#: ../gnome-session/startup-programs.c:497
+#: ../gnome-session/startup-programs.c:489
 msgid "Add Startup Program"
-msgstr "Даданьне праграмы аўтазапуску"
+msgstr "Дадаць праграму"
 
-#: ../gnome-session/startup-programs.c:535
+#: ../gnome-session/startup-programs.c:533
 msgid "Edit Startup Program"
-msgstr "Рэдагаваньне праграмы аўтазапуску"
-
+msgstr "Рэдагаваць праграму"
