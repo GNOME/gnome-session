@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-10 10:47+0100\n"
-"PO-Revision-Date: 2006-09-10 10:48-0000\n"
+"POT-Creation-Date: 2007-01-01 22:30+0000\n"
+"PO-Revision-Date: 2007-01-01 22:30-0000\n"
 "Last-Translator: David Lodge <dave@cirt.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -62,6 +62,10 @@ msgstr "This is a relative path value based off the $datadir/pixmaps/ directory.
 msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
 msgstr "This is the option that will be selected in the logout dialogue, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
 
+#: ../gnome-session/gsm-at-startup.c:61
+msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
+msgstr "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
+
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
 msgstr "_Order:"
@@ -91,6 +95,7 @@ msgid "State"
 msgstr "State"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:438
 msgid "Program"
 msgstr "Program"
 
@@ -210,6 +215,31 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "The Settings Daemon restarted too many times."
 
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "List registered clients, then exit"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "PROGRAM..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid "You must specify at least one program to remove. You can list the programs with --list.\n"
+msgstr "You must specify at least one program to remove. You can list the programs with --list.\n"
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "Error: could not connect to the session manager\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "Currently registered clients:\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Couldn't find program %s in session\n"
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "Are you sure you want to log out?"
@@ -234,38 +264,38 @@ msgstr "Sh_ut down"
 msgid "_Restart the computer"
 msgstr "_Restart the computer"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Specify a session name to load"
 
-#: ../gnome-session/main.c:82
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/main.c:83
+#: ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NAME"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "Only read saved sessions from the default.session file"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Millisecond period spent waiting for clients to register (0=forever)"
 
-#: ../gnome-session/main.c:84
 #: ../gnome-session/main.c:85
 #: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "DELAY"
 msgstr "DELAY"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Millisecond period spent waiting for clients to respond (0=forever)"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Millisecond period spent waiting for clients to die (0=forever)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -278,81 +308,81 @@ msgstr ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:269
 msgid "Log in Anyway"
 msgstr "Log in Anyway"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:270
 msgid "Try Again"
 msgstr "Try Again"
 
-#: ../gnome-session/main.c:402
+#: ../gnome-session/main.c:406
 msgid "- Manage the GNOME session"
 msgstr "- Manage the GNOME session"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Your session has been saved"
-
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "Wait abandoned due to conflict."
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "No response to the %s command."
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "The program may be slow, stopped or broken."
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "You may wait for it to respond or remove it."
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1745
 msgid "Restart abandoned due to failures."
 msgstr "Restart abandoned due to failures."
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1941
 msgid "A session shutdown is in progress."
 msgstr "A session shutdown is in progress."
 
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session name"
 msgstr "Set the current session name"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "Kill session"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "Use dialogue boxes"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "Use dialogue boxes for errors"
 
-#: ../gnome-session/save-session.c:146
-#: ../gnome-session/save-session.c:183
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "Do not require confirmation"
+
+#: ../gnome-session/save-session.c:150
+#: ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "Could not connect to the session manager"
 
-#: ../gnome-session/save-session.c:169
+#: ../gnome-session/save-session.c:173
 msgid "- Save the current session"
 msgstr "- Save the current session"
 
-#: ../gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:152
 msgid "The session name cannot be empty"
 msgstr "The session name cannot be empty"
 
-#: ../gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:163
 msgid "The session name already exists"
 msgstr "The session name already exists"
 
-#: ../gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:197
 msgid "Add a new session"
 msgstr "Add a new session"
 
-#: ../gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:227
 msgid "Edit session name"
 msgstr "Edit session name"
 
@@ -361,7 +391,7 @@ msgid "Enable"
 msgstr "Enable"
 
 #: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:467
+#: ../gnome-session/session-properties-capplet.c:469
 msgid "Disable"
 msgstr "Disable"
 
@@ -414,11 +444,7 @@ msgstr "Current Session"
 msgid "Additional startup _programs:"
 msgstr "Additional startup _programs:"
 
-#: ../gnome-session/session-properties-capplet.c:438
-msgid "Command"
-msgstr "Command"
-
-#: ../gnome-session/session-properties-capplet.c:478
+#: ../gnome-session/session-properties-capplet.c:480
 msgid "Startup Programs"
 msgstr "Startup Programs"
 
@@ -442,50 +468,54 @@ msgstr "Currently running _programs:"
 msgid "Configure your sessions"
 msgstr "Configure your sessions"
 
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "Sawfish Window Manager"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "Metacity Window Manager"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "Window Manager"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "The Panel"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "Desktop Settings"
 
-#: ../gnome-session/startup-programs.c:403
+#: ../gnome-session/startup-programs.c:409
 msgid "_Startup Command:"
 msgstr "_Startup Command:"
 
-#: ../gnome-session/startup-programs.c:409
+#: ../gnome-session/startup-programs.c:415
 msgid "Startup Command"
 msgstr "Startup Command"
 
-#: ../gnome-session/startup-programs.c:441
+#: ../gnome-session/startup-programs.c:450
 msgid "The startup command cannot be empty"
 msgstr "The startup command cannot be empty"
 
-#: ../gnome-session/startup-programs.c:480
+#: ../gnome-session/startup-programs.c:489
 msgid "Add Startup Program"
 msgstr "Add Startup Program"
 
-#: ../gnome-session/startup-programs.c:524
+#: ../gnome-session/startup-programs.c:533
 msgid "Edit Startup Program"
 msgstr "Edit Startup Program"
 
+#~ msgid "Your session has been saved"
+#~ msgstr "Your session has been saved"
+#~ msgid "Command"
+#~ msgstr "Command"
 #~ msgid "There was an unknown activation error."
 #~ msgstr "There was an unknown activation error."
 #~ msgid "Initialize session settings"
