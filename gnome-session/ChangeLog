@@ -1,5 +1,14 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* gsm-at-startup.[ch]: (gsm_assistive_tech_exec): kill
+	(gsm_assistive_registry_start): directly call
+	gsm_exec_command_line_async() instead of gsm_assistive_tech_exec()
+	(gsm_assistive_technologies_start): kill
+	* main.c: (main): don't call gsm_assistive_technologies_start()
+	Fix bug #386411, based on patch by Ariel Rios <ariel@gnu.org>
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-at-startup.c: (gsm_assistive_registry_start): remove the filter
 	once we don't need it anymore
 	Fix bug #390882, patch by Li Yuan <li.yuan@sun.com>

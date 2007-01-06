@@ -10,29 +10,7 @@
 #include <gdk/gdkx.h>
 #include <gconf/gconf-client.h>
 
-#define AT_STARTUP_KEY    "/desktop/gnome/accessibility/startup/exec_ats"
-
 static Atom AT_SPI_IOR;
-
-static void
-gsm_assistive_tech_exec (gchar *exec_string)
-{
-  gchar    *s;
-  gboolean  success;
-  
-  success = FALSE;
-  s = g_find_program_in_path (exec_string);
-
-  if (s) {
-    success = gsm_exec_command_line_async (exec_string, NULL);
-    g_free (s);
-  }
-  
-  if (!success && !strcmp (exec_string, "gnopernicus")) {
-    /* backwards compatibility for 2.14 */
-    gsm_assistive_tech_exec ("orca");
-  }
-}
 
 static GdkFilterReturn 
 gsm_assistive_filter_watch (GdkXEvent *xevent, GdkEvent *event, gpointer data){
@@ -86,7 +64,7 @@ gsm_assistive_registry_start (void)
      command = g_strdup (LIBEXECDIR "/at-spi-registryd");
 
      gdk_window_set_events (w, GDK_PROPERTY_CHANGE_MASK);
-     gsm_assistive_tech_exec (command);
+     gsm_exec_command_line_async (command, NULL);
      gdk_window_add_filter (w, gsm_assistive_filter_watch, &tid);
      tid = g_timeout_add (2e3, gsm_assistive_filter_timeout, NULL);    
 
@@ -95,33 +73,6 @@ gsm_assistive_registry_start (void)
      gdk_window_remove_filter (w, gsm_assistive_filter_watch, &tid);
 
      g_free (command);
-}
- 
-void 
-gsm_assistive_technologies_start (void)
-{
-  GError *error = NULL;
-  GConfClient *client;
-  GSList *list;
-
-  client  = gsm_get_conf_client ();
-  list = gconf_client_get_list (client, AT_STARTUP_KEY, GCONF_VALUE_STRING, &error);
-  if (error)
-    {
-      g_warning ("Error getting value of " AT_STARTUP_KEY ": %s", error->message);
-      g_error_free (error);
-    }
-  else
-    {
-      GSList *l;
-
-      for (l = list; l; l = l->next)
-	{
-	  gsm_assistive_tech_exec ((char *) l->data);
-	  g_free (l->data);
-	}
-      g_slist_free (list);
-    }
 }
 
 void
