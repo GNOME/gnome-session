@@ -1,5 +1,9 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* Makefile.am: define directory of at-spi-registryd
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-sound.c: (reset_esd_pid): new
 	(start_esd): use gsm_exec_async() to start esd so we get the pid,
 	watch this child to call reset_esd_pid() when it exits
