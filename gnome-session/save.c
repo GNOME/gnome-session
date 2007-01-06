@@ -374,17 +374,30 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
       Client *hash_client;
       SmProp *prop;
       gchar *desktop_file;
+      gchar *hash_key;
       GnomeDesktopItem *ditem;
 
       if (!g_str_has_suffix (name, ".desktop"))
         continue;
+
+      /* an entry with a filename cancels any previous entry with the same
+       * filename */
+      if (g_hash_table_lookup_extended (clients, name,
+                                        (gpointer *) &hash_key,
+                                        (gpointer *) &hash_client))
+      {
+        g_hash_table_remove (clients, name);
+        g_free (hash_key);
+	free_client (hash_client);
+      }
+
 
       desktop_file = g_build_filename (path, name, NULL);
       ditem = gnome_desktop_item_new_from_file (desktop_file, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
       if (ditem != NULL)
         {
 	  const gchar *exec_string;
-	  gchar **argv, *hash_key;
+	  gchar **argv;
 	  gint argc, i;
 
 	  exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
@@ -496,13 +509,6 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 	    }
 
 	  APPEND (client->properties, prop);
-
-	  if (g_hash_table_lookup_extended (clients, name, (gpointer *) &hash_key, (gpointer *) &hash_client))
-	    {
-	      g_hash_table_remove (clients, name);
-	      g_free (hash_key);
-	      free_client (hash_client);
-	    }
 
 	  /* check the X-GNOME-Autostart-enabled field */
 	  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))

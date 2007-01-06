@@ -1,5 +1,12 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* startup-programs.c: (search_desktop_entries_in_dir): an entry with a
+	filename cancels any previous entry with the same filename. Always.
+	* save.c: (read_desktop_entries_in_dir): ditto
+	This is part of bug #335145
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* Makefile.am: define directory of at-spi-registryd
 
 2007-01-06  Vincent Untz  <vuntz@gnome.org>

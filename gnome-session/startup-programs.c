@@ -69,6 +69,17 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
       if (!g_str_has_suffix (file, ".desktop"))
 	continue;
 
+      /* an entry with a filename cancels any previous entry with the same
+       * filename */
+      if (g_hash_table_lookup_extended (clients, file,
+                                        (gpointer *) &hash_key,
+                                        (gpointer *) &hash_client))
+      {
+        g_hash_table_remove (clients, file);
+        g_free (hash_key);
+        client_free (hash_client);
+      }
+
       desktop_file = g_build_filename (path, file, NULL);
       ditem = gnome_desktop_item_new_from_file (desktop_file, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
       if (ditem != NULL)
@@ -166,12 +177,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
 	  else
 	    current->enabled = TRUE;
 
-	  if (g_hash_table_lookup_extended (clients, file, (gpointer *) &hash_key, (gpointer *) &hash_client))
-	    {
-  	      g_hash_table_remove (clients, file);
-	      g_free (hash_key);
-	      client_free (hash_client);
-	    }
 	  g_hash_table_insert (clients, g_strdup (file), current);
 
 	  gnome_desktop_item_unref (ditem);
