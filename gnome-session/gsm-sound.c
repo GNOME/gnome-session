@@ -3,6 +3,7 @@
 #include "gsm-sound.h"
 
 #ifdef HAVE_ESD /* almost whole file */
+#include <signal.h>
 #include <unistd.h>
 #include <libgnome/libgnome.h>
 #include <esd.h>
@@ -10,6 +11,8 @@
 
 #define ENABLE_ESD_KEY    "/desktop/gnome/sound/enable_esd"
 #define ENABLE_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
+
+static GPid esd_pid = 0;
 
 static gboolean
 esd_enabled (void)
@@ -52,17 +55,29 @@ sound_events_enabled (void)
 }
 
 static void
+reset_esd_pid (GPid     pid,
+	       gint     status,
+	       gpointer ignore)
+{
+  if (pid == esd_pid)
+    esd_pid = 0;
+}
+
+static void
 start_esd (void) 
 {
+  gchar  *argv[] = {ESD_SERVER, "-nobeeps", NULL};
   GError *err = NULL;
-  time_t starttime;
+  time_t  starttime;
 
-  if (!gsm_exec_command_line_async (ESD_SERVER" -nobeeps", &err))
+  if (!gsm_exec_async ("/", argv, NULL, &esd_pid, &err))
     {
       g_warning ("Could not start esd: %s\n", err->message);
       g_error_free (err);
       return;
     }
+
+  g_child_watch_add (esd_pid, reset_esd_pid, NULL);
 
   starttime = time (NULL);
   gnome_sound_init (NULL);
@@ -196,5 +211,13 @@ gsm_sound_logout (void)
 #ifdef HAVE_ESD
   if (sound_events_enabled ())
     play_trigger ("logout");
+
+  if (esd_pid)
+    {
+      if (kill (esd_pid, SIGTERM) == -1)
+        g_printerr ("Failed to kill esd (pid %d)\n", esd_pid);
+      else
+        esd_pid = 0;
+    }
 #endif
 }

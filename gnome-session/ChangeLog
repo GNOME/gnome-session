@@ -1,5 +1,13 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* gsm-sound.c: (reset_esd_pid): new
+	(start_esd): use gsm_exec_async() to start esd so we get the pid,
+	watch this child to call reset_esd_pid() when it exits
+	(gsm_sound_logout): kill esd when possible
+	Fix bug #352260, based on patch by Loïc Minier <lool+gnome@via.ecp.fr>
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-at-startup.c: (gsm_assistive_registry_start): use correct
 	directory for at-spi-registryd
 	* Makefile.am: kill LIBEXECDIR
