@@ -1362,9 +1362,9 @@ update_save_state (void)
 		goto out;
 	      
 	      REMOVE (start_list, client);
-	      start_client (client);
 	      if (pending_list)
 		runlevel = client->priority;
+	      start_client (client);
 	    }
 	  if (pending_list)
 	    goto out;

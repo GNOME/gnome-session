@@ -1,3 +1,8 @@
+2007-01-06  Tom Tromey  <tromey@redhat.com>
+
+	* manager.c (update_save_state): Set runlevel before calling
+	start_client.  Bug #386901.
+
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
 	* startup-programs.c: (search_desktop_entries_in_dir): an entry with a
