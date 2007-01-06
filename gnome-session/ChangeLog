@@ -1,5 +1,10 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* startup-programs.c: (startup_list_write): don't write a new file
+	from scratch and reuse existing file if possible. It's better. Really.
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* session-properties-capplet.c : (main): use GOption
 
 2007-01-06  Tom Tromey  <tromey@redhat.com>

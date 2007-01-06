@@ -268,7 +268,10 @@ startup_list_write (GSList *sl, const gchar *name)
 	}
       else
         {
-          ditem = gnome_desktop_item_new ();
+          ditem = gnome_desktop_item_new_from_file (client->desktop_file,
+                                                    0, NULL);
+          if (ditem == NULL)
+            ditem = gnome_desktop_item_new ();
 
 	  gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
                                          client->command);
