@@ -92,6 +92,8 @@ gsm_assistive_registry_start (void)
 
      gtk_main ();
 
+     gdk_window_remove_filter (w, gsm_assistive_filter_watch, &tid);
+
      g_free (command);
 }
  
