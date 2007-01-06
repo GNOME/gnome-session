@@ -1,7 +1,6 @@
-
 /* ice.c - Handle session manager/ICE integration.
 
-   Copyright (C) 1998, 1999 Tom Tromey
+   Copyright (C) 1998, 1999, 2006 Tom Tromey
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -63,8 +62,10 @@ static gchar* authfile;
 
 static IceAuthFileEntry* file_entry_new (const gchar* protocol, 
 					 const IceListenObj socket);
-static GSList* read_authfile(gchar* filename);
-static void write_authfile(gchar* filename, GSList* entries);
+static GSList* read_authfile(gchar* filename, gboolean notify_user);
+static void fatal (gchar *format, gchar *argument);
+static void write_authfile(gchar* filename, GSList* entries,
+			   gboolean notify_user);
 
 static GSList* watch_list = NULL;
 
@@ -246,7 +247,7 @@ startup_clean_ice (void)
   guint i;
   GSList* entries;
 
-  entries = read_authfile (authfile);
+  entries = read_authfile (authfile, TRUE);
 
   for (i = 0; i < num_sockets; i++)
     {
@@ -350,8 +351,13 @@ initialize_ice (void)
 
   if (init_error)
     {
-      g_warning (error);
-      exit (1);
+      /* At least try to tell the user something.  */
+      fatal (_("The GNOME session manager cannot start properly.  "
+	       "Please report this as a GNOME bug. "
+	       "Please include this ICE failure message in the bug report:  "
+	       "'%s'.  "
+	       "Meanwhile you could try logging in using the failsafe session."),
+	     error);
     }
   /* See above.  */
   umask (saved_umask);
@@ -372,7 +378,7 @@ initialize_ice (void)
       IceSetHostBasedAuthProc (sockets[i], auth_proc);
     }
 
-  write_authfile (authfile, entries);
+  write_authfile (authfile, entries, TRUE);
   auth_entries = entries;
 
   ids = IceComposeNetworkIdList (num_sockets, sockets);
@@ -420,7 +426,9 @@ clean_ice (void)
   guint i;
   GSList* entries;
 
-  entries = read_authfile (authfile);
+  /* No point telling the user about a failure to read during
+     shutdown.  */
+  entries = read_authfile (authfile, FALSE);
 
   for (i = 0; i < num_sockets; i++)
     {
@@ -445,7 +453,8 @@ clean_ice (void)
       free (network_id);
     }
 
-  write_authfile (authfile, entries);
+  /* During shutdown we don't want to report errors via a dialog.  */
+  write_authfile (authfile, entries, FALSE);
 
   g_free (input_id);
   free (ids);
@@ -486,7 +495,7 @@ file_entry_new (const gchar* protocol, const IceListenObj socket)
 
 /* Reads a file containing ICE authority data */
 static GSList* 
-read_authfile(gchar* filename)
+read_authfile (gchar* filename, gboolean notify_user)
 {
   GSList* entries = NULL;
   FILE *fp;
@@ -495,8 +504,15 @@ read_authfile(gchar* filename)
 
   if (IceLockAuthFile (filename, 10, 2, 600) != IceAuthLockSuccess)
     {
-      g_warning ("Unable to lock ICE authority file: %s", filename);
       IceFreeListenObjs (num_sockets, sockets);
+
+      if (notify_user)
+	fatal (_("The GNOME session manager was unable to lock the file '%s'.  "
+		 "Please report this as a GNOME bug.  "
+		 "Sometimes this error may occur if the file's directory is unwritable, "
+		 "you could try logging in via the failsafe session and ensuring that it is."),
+	       filename);
+      g_warning ("Unable to lock ICE authority file: %s", filename);
       exit (1);
     }
 
@@ -514,18 +530,37 @@ read_authfile(gchar* filename)
 
     if (stat (filename, &st) == 0)
       {
-	g_warning ("Unable to read ICE authority file: %s", filename);
 	IceUnlockAuthFile (filename);
 	IceFreeListenObjs (num_sockets, sockets);
+
+	if (notify_user)
+	  fatal (_("The GNOME session manager was unable to read the file: '%s'.  "
+		   "If this file exists it must be readable by you for GNOME to work properly.  "
+		   "Try logging in with the failsafe session and removing this file."),
+		 filename);
+
+	g_warning ("Unable to read ICE authority file: %s", filename);
 	exit (1);
       }
   }
   return entries;
 }
 
+static void
+fatal (gchar *format, gchar *argument)
+{
+  GtkWidget *msgbox = gtk_message_dialog_new (NULL, 0,
+					      GTK_MESSAGE_ERROR,
+					      GTK_BUTTONS_OK,
+					      format, argument);
+  gtk_window_set_position (GTK_WINDOW (msgbox), GTK_WIN_POS_CENTER);
+  gtk_dialog_run (GTK_DIALOG (msgbox));
+  exit (1);
+}
+
 /* Writes a file of ICE authority data */
 static void 
-write_authfile (gchar* filename, GSList* entries)
+write_authfile (gchar* filename, GSList* entries, gboolean notify_user)
 {
   GSList *list = entries; 
   FILE *fp;
@@ -540,9 +575,17 @@ write_authfile (gchar* filename, GSList* entries)
       }
     fclose (fp);
   } else {
-    g_warning ("Unable to write to ICE authority file: %s", filename);
     IceUnlockAuthFile (filename);
     IceFreeListenObjs (num_sockets, sockets);
+
+    if (notify_user)
+      fatal (_("Could not write to file '%s'.  "
+	       "This file must be writable in order for GNOME to function properly.  "
+	       "Try logging in with the failsafe session and removing this file.  "
+	       "Also make sure that the file's directory is writable."),
+	     filename);
+
+    g_warning ("Unable to write to ICE authority file: %s", filename);
     exit (1);
   }
   IceUnlockAuthFile (filename);
