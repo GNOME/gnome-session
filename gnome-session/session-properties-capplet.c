@@ -696,6 +696,7 @@ int
 main (int argc, char *argv[])
 {
   GConfClient *client;
+  GOptionContext *context;
   GtkWidget *dlg;
   GnomeClient *master_client;
 
@@ -703,8 +704,11 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  context = g_option_context_new ("");
+
   gnome_program_init ("gnome-session-properties", VERSION, 
 		      LIBGNOMEUI_MODULE, argc, argv, 
+		      GNOME_PARAM_GOPTION_CONTEXT, context,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
