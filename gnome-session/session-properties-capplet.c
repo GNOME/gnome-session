@@ -697,6 +697,7 @@ main (int argc, char *argv[])
 {
   GConfClient *client;
   GtkWidget *dlg;
+  GnomeClient *master_client;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -712,10 +713,16 @@ main (int argc, char *argv[])
   client = gconf_client_get_default ();
   gconf_client_add_dir (client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
 
-  protocol = gsm_protocol_new (gnome_master_client());
+  master_client = gnome_master_client ();
+  if (! GNOME_CLIENT_CONNECTED (master_client)) {
+    g_printerr (_("could not connect to the session manager\n"));
+    exit (1);
+  }
+
+  protocol = gsm_protocol_new (master_client);
   if (!protocol) {
-	  g_warning ("Could not connect to gnome-session.");
-	  exit (1);
+    g_printerr (_("session manager does not support GNOME extensions\n"));
+    exit (1);
   }
 
   g_signal_connect (gnome_master_client (), "die", G_CALLBACK (gtk_main_quit), NULL);
