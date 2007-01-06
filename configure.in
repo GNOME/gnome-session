@@ -40,17 +40,11 @@ if test "x$enable_deprecations" = "xyes"; then
    AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-dnl If you add a version number here, you *must* add an AC_SUBST line for
-dnl it too, or it will never make it into the spec file!
-
 ESOUND_REQUIRED=0.2.26
 LIBGNOMEUI_REQUIRED=2.2.0
 GTK_REQUIRED=2.3.1
 DBUS_GLIB_REQUIRED=0.35
 GNOME_KEYRING_REQUIRED=0.5.1
-
-AC_SUBST(ESOUND_REQUIRED)
-AC_SUBST(LIBGNOMEUI_REQUIRED)
 
 dnl pkg-config dependency checks
 
@@ -427,7 +421,6 @@ AC_SUBST(RSH_COMMAND)
 
 AC_CONFIG_FILES([
 Makefile
-gnome-session.spec
 gnome-session/Makefile
 man/default.session.5
 man/gnome-session.1

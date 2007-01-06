@@ -4,8 +4,6 @@ SUBDIRS =			\
 	man
 
 EXTRA_DIST =			\
-	gnome-session.spec.in	\
-	gnome-session.spec	\
 	COPYING-DOCS		\
 	HACKING			\
 	intltool-extract.in	\
