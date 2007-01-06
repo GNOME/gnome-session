@@ -1,5 +1,12 @@
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
+	* main.c: (main): start/stop dbus-daemon if it's not running
+	* Makefile.am: add gsm-dbus.[ch]
+	* dbus-gsm.[ch]: new, to handle dbus-daemon start/stop
+	Fix bug #336237, patch by Julio M. Merino Vidal <jmmv@NetBSD.org>
+
+2007-01-06  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-at-startup.[ch]: (gsm_assistive_tech_exec): kill
 	(gsm_assistive_registry_start): directly call
 	gsm_exec_command_line_async() instead of gsm_assistive_tech_exec()

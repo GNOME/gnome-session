@@ -81,6 +81,8 @@ gnome_session_SOURCES =		\
 	logout.h		\
 	splash-widget.c		\
 	splash-widget.h		\
+	gsm-dbus.c		\
+	gsm-dbus.h		\
 	gsm-xrandr.c		\
 	gsm-xrandr.h		\
 	gsm-keyring.c		\

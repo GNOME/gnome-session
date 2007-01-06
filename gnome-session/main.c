@@ -43,6 +43,7 @@
 #include "command.h"
 #include "splash-widget.h"
 #include "util.h"
+#include "gsm-dbus.h"
 #include "gsm-sound.h"
 #include "gsm-gsd.h"
 #include "gsm-proxy.h"
@@ -336,6 +337,7 @@ main (int argc, char *argv[])
   char **versions;
   GConfClient *gconf_client;
   GOptionContext *goption_context;
+  gboolean dbus_daemon_owner;
   
   if (getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
@@ -437,6 +439,7 @@ main (int argc, char *argv[])
 
   /* Need DISPLAY set */
   gsm_keyring_daemon_start ();
+  dbus_daemon_owner = gsm_dbus_daemon_start ();
   gsm_gsd_start ();
   
   /* Read the rest of config options */  
@@ -505,6 +508,9 @@ main (int argc, char *argv[])
   gsm_sound_logout ();
 
   gsm_keyring_daemon_stop ();
+
+  if (dbus_daemon_owner)
+    gsm_dbus_daemon_stop ();
 
   g_object_unref (gconf_client);
   gsm_shutdown_gconfd ();
