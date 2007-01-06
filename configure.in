@@ -20,6 +20,15 @@ AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
 
 GNOME_COMPILE_WARNINGS(yes)
 
+AC_ARG_WITH(at-spi-registryd-directory,
+              [AC_HELP_STRING([--with-at-spi-registryd-directory],
+                              [Specify the directory of at-spi-registryd @<:@default=/usr/libexec@:>@])],,
+                              [with_at_spi_registryd_directory=/usr/libexec])
+
+AC_DEFINE_UNQUOTED(AT_SPI_REGISTRYD_DIR, "$with_at_spi_registryd_directory",
+                   [at-spi-registryd directory])
+AC_SUBST(AT_SPI_REGISTRYD_DIR)
+
 AC_ARG_ENABLE(deprecations,
               [AC_HELP_STRING([--enable-deprecations],
                               [warn about deprecated usages [default=no]])],,

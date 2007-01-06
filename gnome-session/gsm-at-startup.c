@@ -61,7 +61,7 @@ gsm_assistive_registry_start (void)
      if (!AT_SPI_IOR)
        AT_SPI_IOR = XInternAtom (GDK_DISPLAY (), "AT_SPI_IOR", False); 
 
-     command = g_strdup (LIBEXECDIR "/at-spi-registryd");
+     command = g_strdup (AT_SPI_REGISTRYD_DIR "/at-spi-registryd");
 
      gdk_window_set_events (w, GDK_PROPERTY_CHANGE_MASK);
      gsm_exec_command_line_async (command, NULL);
