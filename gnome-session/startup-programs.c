@@ -691,6 +691,8 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
   if (client->enabled)
     return;
 
+  client->enabled = TRUE;
+
   basename = g_path_get_basename (client->desktop_file);
 
   if (system_desktop_entry_exists (basename, &system_path))
@@ -700,28 +702,33 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
       system_client = create_client_from_desktop_entry (system_path);
       g_free (system_path);
 
-      if (system_client && !strcmp (system_client->command, client->command))
+      if (system_client
+          && !strcmp (system_client->command, client->command)
+          && system_client->enabled)
         {
           /* remove user entry and use system entry */
           if (g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
             g_remove (client->desktop_file);
-          *sl = g_slist_remove (*sl, client);
-          client_free (client);
 
-          *sl = g_slist_prepend (*sl, system_client);
+	  g_free (client->desktop_file);
+	  client->desktop_file = g_strdup (system_client->desktop_file);
+
+          client_free (system_client);
         }
       else
         {
-          /* user and system desktop files are not the same, so enable the
-           * user's one */
-          client_free (system_client);
-          client->enabled = TRUE;
+          /* else, the user and the system desktop files are not the same or
+           * the system one is disabled, so enable the user's one (ie,
+           * nothing special to do :-)) */
+
+          if (system_client)
+            client_free (system_client);
+
           startup_client_write (client);
         }
     }
   else
     {
-      client->enabled = TRUE;
       startup_client_write (client);
     }
 

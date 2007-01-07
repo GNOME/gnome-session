@@ -1,5 +1,13 @@
 2007-01-07  Vincent Untz  <vuntz@gnome.org>
 
+	* startup-programs.c: (startup_list_enable): keep the user entry if
+	the system and user entries are the same but the system one is
+	disabled, only change the path to the entry when changing from user to
+	system entry (helps keeping the selection in the treeview), small
+	other changes
+
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
 	Use a toggle button to enable/disable startup programs
 	Fix bug #329216, and maybe some other ones
 
