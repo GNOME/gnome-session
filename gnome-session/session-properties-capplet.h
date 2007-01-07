@@ -35,8 +35,8 @@ void	startup_list_delete (GSList **sl,
 			     GtkTreeModel *model, GtkTreeSelection *sel);
 
 gboolean startup_list_can_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel);
-void     startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel);
-void     startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel);
+void     startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter);
+void     startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter);
 
 void session_list_update_gui (GSList *sess_list,
 			      GtkTreeModel *model,

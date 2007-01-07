@@ -79,7 +79,6 @@ static void update_gui (void);
 static void add_startup_cb (void);
 static void edit_startup_cb (void);
 static void delete_startup_cb (void);
-static void enable_startup_cb (void);
 static void add_session_cb (void);
 static void edit_session_cb (void);
 static void delete_session_cb (void);
@@ -90,16 +89,38 @@ static void saved_sessions (GtkWidget *widget, GSList *session_names);
 #define SESSION_STOCK_EDIT "session-stock-edit"
 
 static void
+startup_enabled_toggled (GtkCellRendererToggle *cell_renderer,
+                         gchar                 *path,
+                         gpointer               userdata)
+{
+  gboolean    active;
+  GtkTreeIter iter;
+
+  if (!gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (startup_store),
+                                            &iter, path))
+      return;
+
+  active = gtk_cell_renderer_toggle_get_active (cell_renderer);
+  active = !active;
+  gtk_cell_renderer_toggle_set_active (cell_renderer, active);
+
+  if (active)
+    startup_list_enable (&startup_list, startup_store, &iter);
+  else
+    startup_list_disable (&startup_list, startup_store, &iter);
+
+  update_gui ();
+}
+
+static void
 selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
 {
   gboolean sel;
   GtkWidget *edit_button;
   GtkWidget *delete_button;
-  GtkWidget *enable_button;
 
   edit_button = g_object_get_data (G_OBJECT (view), "edit");
   delete_button = g_object_get_data (G_OBJECT (view), "delete");
-  enable_button = g_object_get_data (G_OBJECT (view), "enable");
 
   sel = gtk_tree_selection_get_selected (selection, NULL, NULL);
 
@@ -108,29 +129,6 @@ selection_changed_cb (GtkTreeSelection *selection, GtkTreeView *view)
 
   if (delete_button)
     gtk_widget_set_sensitive (delete_button, sel);
-
-  if (enable_button)
-    {
-      if (sel)
-        {
-          if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
-            {
-              gtk_button_set_label (GTK_BUTTON (enable_button), _("Enable"));
-              gtk_button_set_image (GTK_BUTTON (enable_button),
-                                    gtk_image_new_from_stock (GTK_STOCK_YES, GTK_ICON_SIZE_BUTTON));
-            }
-          else
-            {
-              gtk_button_set_label (GTK_BUTTON (enable_button), _("Disable"));
-              gtk_button_set_image (GTK_BUTTON (enable_button),
-                                    gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
-            }
-          
-          gtk_widget_set_sensitive (enable_button, TRUE);
-        }
-      else
-        gtk_widget_set_sensitive (enable_button, FALSE);
-    }
 }
 
 static void
@@ -425,20 +423,32 @@ capplet_build (void)
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw), GTK_SHADOW_IN);
   gtk_box_pack_start (GTK_BOX (hb), sw, TRUE, TRUE, 0);
   
-  startup_store = (GtkTreeModel *) gtk_list_store_new (2,
+  startup_store = (GtkTreeModel *) gtk_list_store_new (4,
                                                        G_TYPE_POINTER,
-                                                       G_TYPE_STRING);
+                                                       G_TYPE_BOOLEAN,
+                                                       G_TYPE_STRING,
+                                                       G_TYPE_BOOLEAN);
   startup_view = (GtkTreeView *) gtk_tree_view_new_with_model (startup_store);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label),
 		  		 GTK_WIDGET (startup_view));
   startup_sel = gtk_tree_view_get_selection (startup_view);
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
-  g_signal_connect (G_OBJECT (startup_sel), "changed", (GCallback) selection_changed_cb, startup_view);
+  g_signal_connect (G_OBJECT (startup_sel), "changed",
+                    (GCallback) selection_changed_cb, startup_view);
+  renderer = gtk_cell_renderer_toggle_new ();
+  column = gtk_tree_view_column_new_with_attributes (_("Enabled"), renderer,
+                                                     "active", 1,
+                                                     "activatable", 3,
+                                                     NULL);
+  gtk_tree_view_append_column (startup_view, column);
+  g_signal_connect (G_OBJECT (renderer), "toggled",
+                    (GCallback) startup_enabled_toggled, NULL);
   renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer, "text", 1, NULL);
+  column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer,
+                                                     "text", 2, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
-  gtk_tree_view_set_search_column (startup_view, 1);
+  gtk_tree_view_set_search_column (startup_view, 2);
 
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
 
@@ -464,14 +474,6 @@ capplet_build (void)
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "delete", button);
-
-  button = gtk_button_new ();
-  gtk_button_set_label (GTK_BUTTON (button), _("Disable"));
-  gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_NO, GTK_ICON_SIZE_BUTTON));
-  g_signal_connect (button, "clicked", G_CALLBACK (enable_startup_cb), NULL);
-  gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
-  gtk_widget_set_sensitive (button, FALSE);
-  g_object_set_data (G_OBJECT (startup_view), "enable", button);
 
   /* Button for running session-properties */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
@@ -593,20 +595,6 @@ delete_startup_cb (void)
 {
   startup_list_delete (&startup_list, startup_store, startup_sel);
   update_gui ();
-}
-
-/* Enable/disable a startup program from the list */
-static void
-enable_startup_cb (void)
-{
-  if (startup_list_can_enable (&startup_list, startup_store, startup_sel))
-    startup_list_enable (&startup_list, startup_store, startup_sel);
-  else
-    startup_list_disable (&startup_list, startup_store, startup_sel);
-
-  update_gui ();
-
-  selection_changed_cb (startup_sel, startup_view);
 }
 
 static void 

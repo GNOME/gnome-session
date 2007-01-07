@@ -1,5 +1,23 @@
 2007-01-07  Vincent Untz  <vuntz@gnome.org>
 
+	Use a toggle button to enable/disable startup programs
+	Fix bug #329216, and maybe some other ones
+
+	* startup-programs.c: (startup_list_update_gui): updated for
+	new columns
+	(startup_list_enable): updated for a parameter change
+	(startup_list_disable): ditto
+	* session-properties-capplet.c: (startup_enabled_toggled): new, to
+	handle toggle of the Enabled toggle button
+	(selection_changed_cb): remove useless stuff (old enable/disable
+	button)
+	(capplet_build): add an Enabled column, remove the enable/disable
+	button
+	(enable_startup_cb): kill
+	* session-properties-capplet.h: updated
+
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
 	Try to make editing the startup programs better (less bugs, more
 	compliance with the spec, things like that). This code is just ugly. I
 	probably should have rewritten everything, but I kept thinking it's

@@ -456,7 +456,9 @@ startup_list_update_gui (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                           0, client,
-                          1, client->command,
+                          1, client->enabled,
+                          2, client->command,
+                          3, TRUE, /* activatable */
                           -1);
 
       if (client == selected_client)
@@ -679,16 +681,13 @@ startup_list_can_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel
 }
 
 void
-startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
+startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
 {
   ManualClient *client;
-  GtkTreeIter iter;
   char *basename;
   char *system_path;
 
-  if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
-
-  gtk_tree_model_get (model, &iter, 0, &client, -1);
+  gtk_tree_model_get (model, iter, 0, &client, -1);
   if (client->enabled)
     return;
 
@@ -730,14 +729,11 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
 }
 
 void
-startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
+startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
 {
   ManualClient *client;
-  GtkTreeIter iter;
 
-  if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
-
-  gtk_tree_model_get (model, &iter, 0, &client, -1);
+  gtk_tree_model_get (model, iter, 0, &client, -1);
   if (!client->enabled)
     return;
 
