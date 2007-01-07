@@ -138,41 +138,62 @@ spc_value_notify (GConfClient *client, guint id, GConfEntry *entry, gpointer tb)
 	}
 }
 
+#define SESSION_RESPONSE_SAVE 1
+#define SESSION_RESPONSE_NOSAVE 3
 static gboolean
-show_message_dialog (void)
+show_message_dialog (GtkWidget *parent)
 {
 	GtkWidget *dlg;
 	gint response;
 
-	dlg = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_QUESTION, GTK_BUTTONS_OK_CANCEL,
-				      _("Some changes are not saved.\nIs it still OK to exit?"));
+	dlg = gtk_message_dialog_new (GTK_WINDOW (parent),
+			GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+			GTK_MESSAGE_WARNING,
+			GTK_BUTTONS_NONE,
+			_("Save changes to the current session before closing?"));
+	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg),
+                                                  _("If you don't save, changes will be discarded."));
+
+	gtk_dialog_add_buttons (GTK_DIALOG (dlg), 
+			_("_Close without Saving"), SESSION_RESPONSE_NOSAVE,
+			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+			GTK_STOCK_SAVE, SESSION_RESPONSE_SAVE,
+			NULL);
+	gtk_dialog_set_default_response (GTK_DIALOG (dlg), 1);
+	gtk_window_set_title (GTK_WINDOW (dlg), "");
+
 	response = gtk_dialog_run (GTK_DIALOG (dlg));
 	gtk_widget_destroy (dlg);
-	if (response != GTK_RESPONSE_OK) 
-		return TRUE;
-	else
-		return FALSE;
+
+        return response;
 }
 
 static gboolean
-spc_delete (void)
+spc_delete (GtkWidget *dialog)
 {
-	gint ret = FALSE;
-	if (state_dirty)
-		ret = show_message_dialog ();
+	gint ret = SESSION_RESPONSE_NOSAVE;
 
-	if (ret == TRUE) 
-		return TRUE;
-	else {
-		gtk_main_quit ();
-		return FALSE;
-	}
+	if (state_dirty)
+		ret = show_message_dialog (dialog);
+
+        switch (ret)
+          {
+            case SESSION_RESPONSE_SAVE:
+              apply ();
+              /* fall through */
+            case SESSION_RESPONSE_NOSAVE:
+              gtk_main_quit ();
+              return FALSE;
+            default:
+              return TRUE;
+          }
 }
 
 static void
-spc_close (void)
+spc_close (GtkWidget *widget,
+           GtkWidget *dialog)
 {
-	spc_delete ();
+	spc_delete (dialog);
 }
 
 static GtkWidget *
@@ -206,7 +227,7 @@ capplet_build (void)
   g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_CLOSE);
-  g_signal_connect (G_OBJECT (b), "clicked", spc_close, NULL);
+  g_signal_connect (G_OBJECT (b), "clicked", G_CALLBACK (spc_close), dlg);
   g_signal_connect (dlg, "delete-event", G_CALLBACK(spc_delete), NULL);
 
   /* Set up the notebook */

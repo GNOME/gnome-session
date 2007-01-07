@@ -1,5 +1,16 @@
 2007-01-07  Vincent Untz  <vuntz@gnome.org>
 
+	HIGify quit dialog.
+	Fix bug #95111, based on patch by Michael Terry <mike@mterry.name>
+
+	* session-properties-capplet.c: (show_message_dialog): higify the
+	dialog
+	(spc_delete): handle the three possible responses
+	(spc_close): updated
+	(capplet_build): we need to know the parent dialog in spc_close()
+
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
 	It's better with names. Now the startup program list uses the names of
 	the entries.
 
