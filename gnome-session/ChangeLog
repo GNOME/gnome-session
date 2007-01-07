@@ -1,5 +1,41 @@
 2007-01-07  Vincent Untz  <vuntz@gnome.org>
 
+	Work on the UI of the capplet.
+	This includes the patch from bug #347979, by Josselin Mouette
+	<joss@debian.org>
+	This also includes the removal of edition of the session names, of the
+	splash screen toggle key, and also a change in the order of the tabs
+	This fixes at least bugs #88839, #91313, #102740, #153172, #347979
+
+	* Makefile.am: remove session-names.c
+	* session-names.c: kill.
+	* startup-programs.c: (edit_client): remove useless parameter
+	(startup_list_add_dialog): ditto and update the title of the window
+	(startup_list_edit_dialog): remove useless parameter
+	* session-properties-capplet.c: remove lots of useless stuff
+	(register_stock_for_edit): kill, we have GTK_STOCK_EDIT
+	(left_aligned_stock_button): kill, this is bad (bug #91313)
+	(capplet_build): change order of the tabs, remove the code for session
+	names, add a new "Save session" button, remove splash screen and
+	logout prompt toggles, use GTK_STOCK_EDIT
+	(spc_write_state): kill
+	(update_gui): updated
+	(add_startup_cb): updated to have useful user data
+	(edit_startup_cb): ditto
+	(protocol_set_current_session): kill
+	(saved_sessions): kill
+	(add_session_cb): kill
+	(edit_session_cb): kill
+	(delete_session_cb): kill
+	(update_saved_session_label_cb): new, show feedback when session is
+	saved
+	(save_session_cb): new, save the session
+	(main): don't call register_stock_for_edit(), set the restart style of
+	this program to NEVER since we can save the session from this capplet
+	* session-properties-capplet.h: updated
+
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
 	* startup-programs.c: (startup_list_enable): keep the user entry if
 	the system and user entries are the same but the system one is
 	disabled, only change the path to the entry when changing from user to

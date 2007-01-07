@@ -125,7 +125,6 @@ gnome_session_properties_SOURCES = \
 	session-properties-capplet.c	\
 	session-properties-capplet.h	\
 	startup-programs.c		\
-	session-names.c			\
 	session-properties.c		\
 	session-properties.h		\
 	gsm-atk.c			\

@@ -496,8 +496,9 @@ entry_activate_callback (GtkEntry *entry, void *data)
  * is used to implement hiding the dialog when the user switches
  * away to another page of the control center */
 static gboolean
-edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *parent_dlg)
+edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 {
+  GtkWidget *dialog;
   GtkWidget *entry;
   GtkWidget *label;
   GtkWidget *a;
@@ -505,20 +506,20 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   GtkWidget *hbox;
   GtkWidget *gnome_entry;
 
-  *dialog = gtk_dialog_new_with_buttons (title,
-					 GTK_WINDOW (parent_dlg),
-					 GTK_DIALOG_MODAL,
-					 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					 GTK_STOCK_OK, GTK_RESPONSE_OK,
-					 NULL);
+  dialog = gtk_dialog_new_with_buttons (title,
+					GTK_WINDOW (parent_dlg),
+					GTK_DIALOG_MODAL,
+					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					GTK_STOCK_OK, GTK_RESPONSE_OK,
+					NULL);
 
-  gtk_window_set_default_size (GTK_WINDOW (*dialog), 400, -1);
+  gtk_window_set_default_size (GTK_WINDOW (dialog), 400, -1);
  
-  gtk_window_set_transient_for (GTK_WINDOW (*dialog), GTK_WINDOW (parent_dlg));
+  gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_dlg));
   vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
   
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (*dialog)->vbox), vbox,
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox,
 		      TRUE, TRUE, 0);
 
   hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
@@ -535,7 +536,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
   entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
   g_signal_connect (entry, "activate", G_CALLBACK (entry_activate_callback),
-		    (void *) *dialog);
+		    (void *) dialog);
 
   gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
 
@@ -546,7 +547,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
   
   gtk_widget_show_all (vbox);
 
-  while (gtk_dialog_run (GTK_DIALOG (*dialog)) == GTK_RESPONSE_OK)
+  while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
     {
       const gchar  *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
       char        **argv;
@@ -558,9 +559,9 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
 	{
 	  GtkWidget *msgbox;
 	  
-	  gtk_widget_show (*dialog);
+	  gtk_widget_show (dialog);
 	  
-	  msgbox = gtk_message_dialog_new (GTK_WINDOW (*dialog),
+	  msgbox = gtk_message_dialog_new (GTK_WINDOW (dialog),
 					   GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_ERROR,
 					   GTK_BUTTONS_OK,
@@ -581,27 +582,25 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
             g_free (client->command);
           client->command = g_strdup (tmp);
 
-	  gtk_widget_destroy (*dialog);
-	  *dialog = NULL;
+	  gtk_widget_destroy (dialog);
 	  return TRUE;
 	}
     }
 
-  gtk_widget_destroy (*dialog);
-  *dialog = NULL;
+  gtk_widget_destroy (dialog);
   
   return FALSE;
 }
 
 /* Prompt the user with a dialog for adding a new client */
 void
-startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
+startup_list_add_dialog (GSList **sl, GtkWidget *parent_dlg)
 {
   ManualClient *client = g_new0 (ManualClient, 1);
   client->enabled = TRUE;
   client->command = NULL;
 
-  if (edit_client (_("Add Startup Program"), client, dialog, parent_dlg))
+  if (edit_client (_("New Startup Program"), client, parent_dlg))
     {
       char **argv;
       int    argc;
@@ -636,7 +635,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
 
 /* Prompt the user with a dialog for editing the currently selected client */
 void
-startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel, GtkWidget **dialog, GtkWidget *parent_dlg)
+startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel, GtkWidget *parent_dlg)
 {
   ManualClient *client;
   GtkTreeIter iter;
@@ -645,7 +644,7 @@ startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *se
 
   gtk_tree_model_get (model, &iter, 0, &client, -1);
 
-  if (edit_client (_("Edit Startup Program"), client, dialog, parent_dlg))
+  if (edit_client (_("Edit Startup Program"), client, parent_dlg))
     startup_client_write (client);
 }
 
