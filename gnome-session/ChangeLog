@@ -1,5 +1,24 @@
 2007-01-07  Vincent Untz  <vuntz@gnome.org>
 
+	It's better with names. Now the startup program list uses the names of
+	the entries.
+
+	* startup-programs.c: (client_free): free the name
+	(create_client_from_desktop_entry): get the name (and load
+	translations)
+	(startup_client_write): write the name
+	(compare_clients): compare names if available
+	(startup_list_update_gui): use names when possible
+	(edit_client): improve the dialog a bit, and let the user edit name
+	(startup_list_add_dialog): init the name
+	(startup_list_can_enable): kill
+	(startup_list_enable): we need to compare the name of the user entry
+	with the name of the system entry too
+	* session-properties-capplet.c: (capplet_build): forgot a cast
+	* session-properties-capplet.h: updated
+
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
 	* session-properties-capplet.c: (capplet_build): get a better default
 	size for the capplet
 

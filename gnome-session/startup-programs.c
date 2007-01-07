@@ -37,6 +37,7 @@ struct _ManualClient
 {
   char     *desktop_file;
   gboolean  enabled;
+  char     *name;
   char     *command;
 };
 
@@ -45,6 +46,7 @@ static void
 client_free (ManualClient *client)
 {
   g_free (client->desktop_file);
+  g_free (client->name);
   g_free (client->command);
   g_free (client);
 }
@@ -101,10 +103,10 @@ create_client_from_desktop_entry (const char *path)
 {
   ManualClient     *client = NULL;
   GnomeDesktopItem *ditem;
+  const gchar      *name;
   const gchar      *exec_string;
 
-  ditem = gnome_desktop_item_new_from_file (path,
-                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
+  ditem = gnome_desktop_item_new_from_file (path, 0, NULL);
   if (ditem == NULL)
     return NULL;
 
@@ -187,8 +189,14 @@ create_client_from_desktop_entry (const char *path)
       g_free (program_path);
     }
 
+  name = gnome_desktop_item_get_localestring (ditem, GNOME_DESKTOP_ITEM_NAME);
+  if (name == NULL)
+    name = gnome_desktop_item_get_localestring (ditem,
+                                                GNOME_DESKTOP_ITEM_GENERIC_NAME);
+
   client = g_new0 (ManualClient, 1);
   client->desktop_file = g_strdup (path);
+  client->name = name ? g_strdup (name) : NULL;
   client->command = g_strdup (exec_string);
 
   if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
@@ -380,6 +388,7 @@ static void
 startup_client_write (ManualClient *client)
 {
   GnomeDesktopItem *ditem;
+  const char       *name;
 
   ensure_user_autostart_dir ();
 
@@ -406,6 +415,13 @@ startup_client_write (ManualClient *client)
       client->desktop_file = path;
     }
 
+  gnome_desktop_item_set_localestring (ditem, GNOME_DESKTOP_ITEM_NAME,
+                                       client->name);
+  name = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_NAME);
+  if (name == NULL || name[0] == '\0')
+    gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_NAME,
+                                   client->name);
+
   gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
                                  client->command);
 
@@ -424,7 +440,20 @@ static int
 compare_clients (ManualClient *a,
 		 ManualClient *b)
 {
-	return g_ascii_strcasecmp (a->command, b->command);
+  const char *acmp;
+  const char *bcmp;
+
+  if (a->name && a->name[0] != '\0')
+    acmp = a->name;
+  else
+    acmp = a->command;
+
+  if (b->name && b->name[0] != '\0')
+    bcmp = b->name;
+  else
+    bcmp = b->command;
+
+  return g_ascii_strcasecmp (acmp, bcmp);
 }
 
 /* Update the given clist to display the given client list */
@@ -457,7 +486,8 @@ startup_list_update_gui (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                           0, client,
                           1, client->enabled,
-                          2, client->command,
+                          2, client->name && client->name[0] != '\0' ?
+                                client->name : client->command,
                           3, TRUE, /* activatable */
                           -1);
 
@@ -499,12 +529,12 @@ static gboolean
 edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 {
   GtkWidget *dialog;
-  GtkWidget *entry;
+  GtkWidget *name_entry;
+  GtkWidget *cmd_entry;
   GtkWidget *label;
-  GtkWidget *a;
-  GtkWidget *vbox;
-  GtkWidget *hbox;
+  GtkWidget *table;
   GtkWidget *gnome_entry;
+  char      *text;
 
   dialog = gtk_dialog_new_with_buttons (title,
 					GTK_WINDOW (parent_dlg),
@@ -512,50 +542,80 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 					GTK_STOCK_OK, GTK_RESPONSE_OK,
 					NULL);
+  gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
 
   gtk_window_set_default_size (GTK_WINDOW (dialog), 400, -1);
  
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_dlg));
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD_SMALL);
+
+  table = gtk_table_new (2, 2, FALSE);
   
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), vbox,
+  gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), table,
 		      TRUE, TRUE, 0);
 
-  hbox = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
-  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
-  gtk_box_pack_start (GTK_BOX (hbox), a, FALSE, FALSE, 0);
-  label = gtk_label_new_with_mnemonic (_("_Startup Command:"));
-  gtk_container_add (GTK_CONTAINER (a), label);
+  label = gtk_label_new ("");
+  text = g_strdup_printf ("<b>%s</b>", _("_Name:"));
+  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
+  g_free (text);
+  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-  gtk_container_set_border_width (GTK_CONTAINER (hbox), GNOME_PAD_SMALL);
-  gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+  name_entry = gtk_entry_new ();
+  g_signal_connect (name_entry, "activate",
+                    G_CALLBACK (entry_activate_callback),
+		    (void *) dialog);
+  gtk_table_attach (GTK_TABLE (table), name_entry, 1, 2, 0, 1, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (name_entry));
+
+  if (client->name)
+    gtk_entry_set_text (GTK_ENTRY (name_entry), client->name);
+
+  label = gtk_label_new ("");
+  text = g_strdup_printf ("<b>%s</b>", _("_Command:"));
+  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
+  g_free (text);
+  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
   gnome_entry = gnome_file_entry_new ("startup-commands", _("Startup Command"));
   g_object_set (G_OBJECT (gnome_entry), "use_filechooser", TRUE, NULL);
   gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
-  entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
-  g_signal_connect (entry, "activate", G_CALLBACK (entry_activate_callback),
+  cmd_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
+  g_signal_connect (cmd_entry, "activate", G_CALLBACK (entry_activate_callback),
 		    (void *) dialog);
+  gtk_table_attach (GTK_TABLE (table), gnome_entry, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-  gtk_box_pack_start (GTK_BOX (hbox), gnome_entry, TRUE, TRUE, 0);
 
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (cmd_entry));
 
   if (client->command)
-    gtk_entry_set_text (GTK_ENTRY (entry), client->command);
+    gtk_entry_set_text (GTK_ENTRY (cmd_entry), client->command);
   
-  gtk_widget_show_all (vbox);
+  gtk_widget_show_all (table);
 
   while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
     {
-      const gchar  *tmp = gtk_entry_get_text (GTK_ENTRY (entry));
+      const gchar  *name = gtk_entry_get_text (GTK_ENTRY (name_entry));
+      const gchar  *tmp = gtk_entry_get_text (GTK_ENTRY (cmd_entry));
       char        **argv;
       int           argc;
       GError       *error = NULL;
+      const char   *error_msg = NULL;
 
-      if (is_blank (tmp) ||
-          !g_shell_parse_argv (tmp, &argc, &argv, &error))
+      if (is_blank (name))
+        error_msg = _("The name of the startup program cannot be empty");
+      if (is_blank (tmp))
+        error_msg = _("The startup command cannot be empty");
+      if (!g_shell_parse_argv (tmp, &argc, &argv, &error))
+        {
+          if (error)
+            error_msg = error->message;
+          else
+            error_msg = _("The startup command is not valid");
+        }
+
+      if (error_msg != NULL)
 	{
 	  GtkWidget *msgbox;
 	  
@@ -565,8 +625,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 					   GTK_DIALOG_MODAL,
 					   GTK_MESSAGE_ERROR,
 					   GTK_BUTTONS_OK,
-					   error ? error->message :
-                                                   _("The startup command cannot be empty"));
+                                           error_msg);
 
           if (error)
             g_error_free (error);
@@ -577,6 +636,10 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
       else
 	{
           g_strfreev (argv);
+
+          if (client->name)
+            g_free (client->name);
+          client->name = g_strdup (name);
 
           if (client->command)
             g_free (client->command);
@@ -598,6 +661,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget *parent_dlg)
 {
   ManualClient *client = g_new0 (ManualClient, 1);
   client->enabled = TRUE;
+  client->name = NULL;
   client->command = NULL;
 
   if (edit_client (_("New Startup Program"), client, parent_dlg))
@@ -666,19 +730,6 @@ startup_list_delete (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   client_free (client);
 }
 
-/* Check if the selected client can be enabled */
-gboolean
-startup_list_can_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
-{
-  ManualClient *client;
-  GtkTreeIter iter;
-
-  if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return FALSE;
-
-  gtk_tree_model_get (model, &iter, 0, &client, -1);
-  return !client->enabled;
-}
-
 void
 startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
 {
@@ -702,6 +753,7 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
       g_free (system_path);
 
       if (system_client
+          && !strcmp (system_client->name, client->name)
           && !strcmp (system_client->command, client->command)
           && system_client->enabled)
         {

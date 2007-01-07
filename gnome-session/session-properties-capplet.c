@@ -340,7 +340,7 @@ capplet_build (void)
 
   font_size = pango_font_description_get_size (dlg->style->font_desc);
   font_size = PANGO_PIXELS (font_size);
-  gtk_window_set_default_size (dlg, -1, font_size * 40);
+  gtk_window_set_default_size (GTK_WINDOW (dlg), -1, font_size * 40);
 
   gtk_widget_show_all (dlg);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (notebook), 0);
