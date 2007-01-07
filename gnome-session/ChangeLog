@@ -1,3 +1,55 @@
+2007-01-07  Vincent Untz  <vuntz@gnome.org>
+
+	Try to make editing the startup programs better (less bugs, more
+	compliance with the spec, things like that). This code is just ugly. I
+	probably should have rewritten everything, but I kept thinking it's
+	bad to rewrite the code :-)
+	Fix at least bugs #335145, #342031, #333670
+
+	* startup-programs.c: (system_desktop_entry_exists): new, to find if a
+	desktop file with a basename exists in a system directory
+	(create_client_from_desktop_entry): moved most of the code of
+	search_desktop_entries_in_dir() there
+	(search_desktop_entries_in_dir): simplified :-)
+	(startup_list_read): we don't need the argument, process the system
+	dirs in the right order (ie, start with lowest priority) because if
+	the same basename exists in multiple directories, we have to keep the
+	highest priority
+	(startup_list_write): kill, we'll write to disk everything when needed
+	(ensure_user_autostart_dir): new, make sure ~/.config/autostart exists
+	(startup_client_delete): delete an entry and be smart when doing so:
+	handle deleting system entries, but also entries that exist in both
+	the user config and the system, etc.
+	(startup_list_duplicate): kill
+	(startup_client_write): save an entry and be smart: save the entry in
+	the user config when we modified a system entry, for example
+	(compare_clients): new helper
+	(startup_list_update_gui): sort the startup programs list, and try to
+	keep the selection of the treeview
+	(edit_client): don't call mark_dirty()
+	(startup_list_add_dialog): updated to directly save the entry
+	(startup_list_edit_dialog): ditto
+	(startup_list_delete): updated to directly delete the entry and remove
+	the client from the list
+	(startup_list_enable): updated to directly enable the entry. And be
+	smart again :-) Enabling can mean deleting an entry in the user config
+	if it's also installed system-wide, but we must make sure both entries
+	are equivalent
+	(startup_list_disable): updated to directly disable the entry
+	* session-properties-capplet.c: (capplet_build): remove useless stuff
+	(capplet_build): remove useless stuff, updated, and made search work
+	in the treeview
+	(spc_write_state): we don't have to write the startup list here
+	anymore
+	(update_gui): updated
+	(delete_startup_cb): don't call mark_dirty()
+	(enable_startup_cb): update the GUI
+	(main): free the startup list
+	* session-properties-capplet.h: updated
+	* save.c: (read_autostart_dirs): process the system dirs in the right
+	order (ie, start with lowest priority) because if the same basename
+	exists in multiple directories, we have to keep the highest priority
+
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
 	* startup-programs.c: (startup_list_write): don't write a new file

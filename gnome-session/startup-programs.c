@@ -1,6 +1,7 @@
 /* startup-programs.c
 
    Copyright 1999 Free Software Foundation, Inc.
+   Copyright 2007 Vincent Untz
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,7 +36,6 @@ typedef struct _ManualClient ManualClient;
 struct _ManualClient
 {
   char     *desktop_file;
-  gboolean  to_remove;
   gboolean  enabled;
   char     *command;
 };
@@ -47,6 +47,158 @@ client_free (ManualClient *client)
   g_free (client->desktop_file);
   g_free (client->command);
   g_free (client);
+}
+
+static gboolean
+system_desktop_entry_exists (const char  *basename,
+                             char       **system_path)
+{
+  char *path;
+  const char * const * system_dirs;
+  int i;
+
+  system_dirs = g_get_system_data_dirs ();
+  for (i = 0; system_dirs[i] != NULL; i++)
+    {
+      path = g_build_filename (system_dirs[i], "gnome",
+                               "autostart", basename, NULL);
+      if (g_file_test (path, G_FILE_TEST_EXISTS))
+        {
+          if (system_path)
+            *system_path = path;
+          else
+            g_free (path);
+
+          return TRUE;
+        }
+
+      g_free (path);
+    }
+
+  /* support old place (/etc/xdg/autostart) */
+  system_dirs = g_get_system_config_dirs ();
+  for (i = 0; system_dirs[i] != NULL; i++)
+    {
+      path = g_build_filename (system_dirs[i], "autostart", basename, NULL);
+      if (g_file_test (path, G_FILE_TEST_EXISTS))
+        {
+          if (system_path)
+            *system_path = path;
+          else
+            g_free (path);
+
+          return TRUE;
+        }
+
+      g_free (path);
+    }
+
+  return FALSE;
+}
+
+static ManualClient *
+create_client_from_desktop_entry (const char *path)
+{
+  ManualClient     *client = NULL;
+  GnomeDesktopItem *ditem;
+  const gchar      *exec_string;
+
+  ditem = gnome_desktop_item_new_from_file (path,
+                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
+  if (ditem == NULL)
+    return NULL;
+
+  exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
+  
+  /* First filter out entries without Exec keys and hidden entries */
+  if ((exec_string == NULL) || 
+      (exec_string[0] == 0) ||
+      (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_HIDDEN) &&
+       gnome_desktop_item_get_boolean (ditem, GNOME_DESKTOP_ITEM_HIDDEN)))
+    {
+      gnome_desktop_item_unref (ditem);
+      return NULL;
+    }
+
+  /* The filter out entries that are not for GNOME */
+  if (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_ONLY_SHOW_IN))
+      {
+        int i;
+        char **only_show_in_list;
+
+        only_show_in_list = 
+            gnome_desktop_item_get_strings (ditem,
+                                            GNOME_DESKTOP_ITEM_ONLY_SHOW_IN);
+
+        for (i = 0; only_show_in_list[i] != NULL; i++)
+          {
+            if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
+              break;
+          }
+
+        if (only_show_in_list[i] == NULL)
+          {
+            gnome_desktop_item_unref (ditem);
+            g_strfreev (only_show_in_list);
+            return NULL;
+          }
+        g_strfreev (only_show_in_list);
+      }
+
+  if (gnome_desktop_item_attr_exists (ditem, "NotShowIn"))
+      {
+        int i;
+        char **not_show_in_list;
+
+        not_show_in_list = 
+            gnome_desktop_item_get_strings (ditem, "NotShowIn");
+
+        for (i = 0; not_show_in_list[i] != NULL; i++)
+          {
+            if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
+              break;
+          }
+
+        if (not_show_in_list[i] != NULL)
+          {
+            gnome_desktop_item_unref (ditem);
+            g_strfreev (not_show_in_list);
+            return NULL;
+          }
+        g_strfreev (not_show_in_list);
+      }
+
+  /* finally filter out entries that require a program that's not
+   * installed 
+   */
+  if (gnome_desktop_item_attr_exists (ditem,
+                                      GNOME_DESKTOP_ITEM_TRY_EXEC))
+    {
+      const char *program;
+      char *program_path;
+      program = gnome_desktop_item_get_string (ditem,
+                                               GNOME_DESKTOP_ITEM_TRY_EXEC);
+      program_path = g_find_program_in_path (program);
+      if (!program_path)
+        {
+          gnome_desktop_item_unref (ditem);
+          return NULL;
+        }
+      g_free (program_path);
+    }
+
+  client = g_new0 (ManualClient, 1);
+  client->desktop_file = g_strdup (path);
+  client->command = g_strdup (exec_string);
+
+  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
+    client->enabled = gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled");
+  else
+    client->enabled = TRUE;
+
+  gnome_desktop_item_unref (ditem);
+
+  return client;
 }
 
 static void
@@ -63,7 +215,6 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
   while ((file = g_dir_read_name (dir)))
     {
       char *desktop_file, *hash_key;
-      GnomeDesktopItem *ditem;
       ManualClient *hash_client;
 
       if (!g_str_has_suffix (file, ".desktop"))
@@ -74,115 +225,18 @@ search_desktop_entries_in_dir (GHashTable *clients, const char *path)
       if (g_hash_table_lookup_extended (clients, file,
                                         (gpointer *) &hash_key,
                                         (gpointer *) &hash_client))
-      {
-        g_hash_table_remove (clients, file);
-        g_free (hash_key);
-        client_free (hash_client);
-      }
+        {
+          g_hash_table_remove (clients, file);
+          g_free (hash_key);
+          client_free (hash_client);
+        }
 
       desktop_file = g_build_filename (path, file, NULL);
-      ditem = gnome_desktop_item_new_from_file (desktop_file, GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS, NULL);
-      if (ditem != NULL)
-        {
-          const gchar *exec_string;
+      current = create_client_from_desktop_entry (desktop_file);
+      g_free (desktop_file);
 
-          exec_string = gnome_desktop_item_get_string (ditem, GNOME_DESKTOP_ITEM_EXEC);
-          
-          /* First filter out entries without Exec keys and hidden entries */
-	  if ((exec_string == NULL) || 
-              (exec_string[0] == 0) ||
-              (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_HIDDEN) &&
-               gnome_desktop_item_get_boolean (ditem, GNOME_DESKTOP_ITEM_HIDDEN)))
-            {
-              gnome_desktop_item_unref (ditem);
-              g_free (desktop_file);
-              continue;
-            }
-
-          /* The filter out entries that are not for GNOME */
-          if (gnome_desktop_item_attr_exists (ditem, GNOME_DESKTOP_ITEM_ONLY_SHOW_IN))
-              {
-                int i;
-                char **only_show_in_list;
-
-                only_show_in_list = 
-                    gnome_desktop_item_get_strings (ditem,
-                                                    GNOME_DESKTOP_ITEM_ONLY_SHOW_IN);
-
-                for (i = 0; only_show_in_list[i] != NULL; i++)
-                  {
-                    if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
-                      break;
-                  }
-
-                if (only_show_in_list[i] == NULL)
-                  {
-                    gnome_desktop_item_unref (ditem);
-                    g_free (desktop_file);
-                    g_strfreev (only_show_in_list);
-                    continue;
-                  }
-                g_strfreev (only_show_in_list);
-              }
-          if (gnome_desktop_item_attr_exists (ditem, "NotShowIn"))
-              {
-                int i;
-                char **not_show_in_list;
-
-                not_show_in_list = 
-                    gnome_desktop_item_get_strings (ditem, "NotShowIn");
-
-                for (i = 0; not_show_in_list[i] != NULL; i++)
-                  {
-                    if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
-                      break;
-                  }
-
-                if (not_show_in_list[i] != NULL)
-                  {
-                    gnome_desktop_item_unref (ditem);
-                    g_free (desktop_file);
-                    g_strfreev (not_show_in_list);
-                    continue;
-                  }
-                g_strfreev (not_show_in_list);
-              }
-
-          /* finally filter out entries that require a program that's not
-           * installed 
-           */
-          if (gnome_desktop_item_attr_exists (ditem,
-                                              GNOME_DESKTOP_ITEM_TRY_EXEC))
-            {
-              const char *program;
-              char *program_path;
-              program = gnome_desktop_item_get_string (ditem,
-                                                       GNOME_DESKTOP_ITEM_TRY_EXEC);
-              program_path = g_find_program_in_path (program);
-              if (!program_path)
-                {
-                  gnome_desktop_item_unref (ditem);
-                  g_free (desktop_file);
-                  continue;
-                }
-              g_free (program_path);
-            }
-
-	  current = g_new0 (ManualClient, 1);
-	  current->desktop_file = desktop_file;
-          current->command = g_strdup (exec_string);
-	  current->to_remove = FALSE;
-	  if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
-	    current->enabled = gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled");
-	  else
-	    current->enabled = TRUE;
-
-	  g_hash_table_insert (clients, g_strdup (file), current);
-
-	  gnome_desktop_item_unref (ditem);
-	}
-      else
-        g_free (desktop_file);
+      if (current != NULL)
+        g_hash_table_insert (clients, g_strdup (file), current);
     }
 
   g_dir_close (dir);
@@ -197,125 +251,6 @@ hash_table_remove_cb (gpointer key, gpointer value, gpointer user_data)
   g_free (key);
 
   return TRUE;
-}
-
-/* Read in the client record for a given session */
-GSList *
-startup_list_read (gchar *name)
-{
-  GHashTable *clients;
-  const char * const * system_dirs;
-  char *path;
-  int i;
-  GSList *result = NULL;
-
-  /* create temporary hash table */
-  clients = g_hash_table_new (g_str_hash, g_str_equal);
-
-  /* read directories */
-  system_dirs = g_get_system_data_dirs ();
-  for (i = 0; system_dirs[i] != NULL; i++)
-    {
-      path = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
-      search_desktop_entries_in_dir (clients, path);
-      g_free (path);
-    }
-
-  /* support old place (/etc/xdg/autostart) */
-  system_dirs = g_get_system_config_dirs ();
-  for (i = 0; system_dirs[i] != NULL; i++)
-    {
-      path = g_build_filename (system_dirs[i], "autostart", NULL);
-      search_desktop_entries_in_dir (clients, path);
-      g_free (path);
-    }
-
-  path = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-  search_desktop_entries_in_dir (clients, path);
-  g_free (path);
-
-  /* convert the hash table into a GSList */
-  g_hash_table_foreach_remove (clients, (GHRFunc) hash_table_remove_cb, &result);
-  g_hash_table_destroy (clients);
-
-  return result;
-}
-
-/* Write out a client list for under a given name */
-void
-startup_list_write (GSList *sl, const gchar *name)
-{
-  GSList *tmp_list;
-  char *dir;
-  
-  /* create autostart directory if not existing */
-  dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-  g_mkdir_with_parents (dir, S_IRWXU);
-
-  /* write list of autostart clients */
-  tmp_list = sl;
-  while (tmp_list)
-    {
-      GnomeDesktopItem *ditem;
-      ManualClient *client;
-
-      client = tmp_list->data;
-
-      if (client->to_remove)
-        {
-	  if (g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
-	    g_remove (client->desktop_file);
-	}
-      else
-        {
-          ditem = gnome_desktop_item_new_from_file (client->desktop_file,
-                                                    0, NULL);
-          if (ditem == NULL)
-            ditem = gnome_desktop_item_new ();
-
-	  gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
-                                         client->command);
-
-	  if (client->enabled)
-	    gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", TRUE);
-	  else
-	    gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", FALSE);
-
-	  if (!gnome_desktop_item_save (ditem, client->desktop_file, TRUE, NULL))
-	    g_warning ("Could not save %s file\n", client->desktop_file);
-
-	  gnome_desktop_item_unref (ditem);
-	}
-
-      tmp_list = tmp_list->next;
-    }
-  g_free (dir);
-}
-
-/* Duplicate a client list */
-GSList *
-startup_list_duplicate (GSList *sl)
-{
-  GSList *tmp_list;
-  GSList *result = NULL;
-
-  tmp_list = sl;
-  while (tmp_list)
-    {
-      ManualClient *client = tmp_list->data;
-      ManualClient *new_client = g_new (ManualClient, 1);
-
-      new_client->desktop_file = g_strdup (client->desktop_file);
-      new_client->to_remove = client->to_remove;
-      new_client->enabled = client->enabled;
-      new_client->command = g_strdup (client->command);
-
-      result = g_slist_prepend (result, new_client);
-      
-      tmp_list = tmp_list->next;
-    }
-
-  return g_slist_reverse (result);
 }
 
 /* Free a client list */
@@ -336,32 +271,205 @@ startup_list_free  (GSList *sl)
   g_slist_free (sl);
 }
 
+/* Read in the client record for a given session */
+GSList *
+startup_list_read (void)
+{
+  GHashTable *clients;
+  const char * const * system_dirs;
+  char *path;
+  int i;
+  int len;
+  GSList *result = NULL;
+
+  /* create temporary hash table */
+  clients = g_hash_table_new (g_str_hash, g_str_equal);
+
+  /* support old place (/etc/xdg/autostart) */
+  system_dirs = g_get_system_config_dirs ();
+  for (len = 0; system_dirs[len] != NULL; len++);
+
+  for (i = len - 1; i >= 0; i--)
+    {
+      path = g_build_filename (system_dirs[i], "autostart", NULL);
+      search_desktop_entries_in_dir (clients, path);
+      g_free (path);
+    }
+
+  /* read directories */
+  system_dirs = g_get_system_data_dirs ();
+  for (len = 0; system_dirs[len] != NULL; len++);
+
+  for (i = len - 1; i >= 0; i--)
+    {
+      path = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
+      search_desktop_entries_in_dir (clients, path);
+      g_free (path);
+    }
+
+  path = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+  search_desktop_entries_in_dir (clients, path);
+  g_free (path);
+
+  /* convert the hash table into a GSList */
+  g_hash_table_foreach_remove (clients, (GHRFunc) hash_table_remove_cb, &result);
+  g_hash_table_destroy (clients);
+
+  return result;
+}
+
+static void
+ensure_user_autostart_dir (void)
+{
+  char *dir;
+  
+  /* create autostart directory if not existing */
+  dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+  g_mkdir_with_parents (dir, S_IRWXU);
+  g_free (dir);
+}
+
+static void
+startup_client_delete (ManualClient *client)
+{
+  char *basename;
+
+  basename = g_path_get_basename (client->desktop_file);
+
+  if (g_str_has_prefix (client->desktop_file,
+                        g_get_user_config_dir ())
+      && !system_desktop_entry_exists (basename, NULL))
+    {
+      if (g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
+        g_remove (client->desktop_file);
+    }
+  else
+    {
+      /* Two possible cases:
+       * a) We want to remove a system wide startup desktop file.
+       *    We can't do that, so we will create a user desktop file
+       *    with the hidden flag set.
+       * b) We want to remove a startup desktop file that is both
+       *    system and user. So we have to mark it as hidden.
+       */
+      char *path;
+      GnomeDesktopItem *ditem;
+
+      ensure_user_autostart_dir ();
+
+      path = g_build_filename (g_get_user_config_dir(),
+                               "autostart", basename, NULL);
+
+      ditem = gnome_desktop_item_new_from_file (path, 0, NULL);
+      if (ditem == NULL)
+        ditem = gnome_desktop_item_new ();
+
+      gnome_desktop_item_set_boolean (ditem,
+                                      GNOME_DESKTOP_ITEM_HIDDEN, TRUE);
+
+      if (!gnome_desktop_item_save (ditem, path, TRUE, NULL))
+        g_warning ("Could not save %s file\n", path);
+
+      g_free (path);
+    }
+
+  g_free (basename);
+}
+
+static void
+startup_client_write (ManualClient *client)
+{
+  GnomeDesktopItem *ditem;
+
+  ensure_user_autostart_dir ();
+
+  ditem = gnome_desktop_item_new_from_file (client->desktop_file,
+                                            0, NULL);
+
+  if (ditem == NULL)
+    ditem = gnome_desktop_item_new ();
+
+  if (!g_str_has_prefix (client->desktop_file,
+                         g_get_user_config_dir ()))
+    {
+      /* It's a system-wide file, save it to the user's home */
+
+      char *basename;
+      char *path;
+
+      basename = g_path_get_basename (client->desktop_file);
+      path = g_build_filename (g_get_user_config_dir (),
+                               "autostart", basename, NULL);
+      g_free (basename);
+
+      g_free (client->desktop_file);
+      client->desktop_file = path;
+    }
+
+  gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
+                                 client->command);
+
+  if (client->enabled)
+    gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", TRUE);
+  else
+    gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", FALSE);
+
+  if (!gnome_desktop_item_save (ditem, client->desktop_file, TRUE, NULL))
+    g_warning ("Could not save %s file\n", client->desktop_file);
+
+  gnome_desktop_item_unref (ditem);
+}
+
+static int
+compare_clients (ManualClient *a,
+		 ManualClient *b)
+{
+	return g_ascii_strcasecmp (a->command, b->command);
+}
+
 /* Update the given clist to display the given client list */
 void
-startup_list_update_gui (GSList *sl, GtkTreeModel *model, GtkTreeSelection *sel)
+startup_list_update_gui (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
 {
   GSList *tmp_list;
   GtkTreeIter iter;
+  GtkTreeIter sel_iter;
+  gboolean    selection_found;
+  ManualClient *selected_client;
+
+  if (gtk_tree_selection_get_selected (sel, NULL, &iter))
+    gtk_tree_model_get (model, &iter, 0, &selected_client, -1);
+  else
+    selected_client = NULL;
+
+  selection_found = FALSE;
 
   gtk_list_store_clear (GTK_LIST_STORE (model));
 
-  tmp_list = sl;
+  *sl = g_slist_sort (*sl, (GCompareFunc) compare_clients);
+
+  tmp_list = *sl;
   while (tmp_list)
     {
       ManualClient *client = tmp_list->data;
 
-      if (!client->to_remove)
+      gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+      gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                          0, client,
+                          1, client->command,
+                          -1);
+
+      if (client == selected_client)
         {
-	  gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-	  gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                              0, client,
-                              1, "",
-                              2, client->command,
-                              -1);
-	}
+          sel_iter = iter;
+          selection_found = TRUE;
+        }
 
       tmp_list = tmp_list->next;
     }
+
+  if (selection_found)
+    gtk_tree_selection_select_iter (sel, &sel_iter);
 }
 
 /* Util function - check if a string is blank */
@@ -471,8 +579,6 @@ edit_client (gchar *title, ManualClient *client, GtkWidget **dialog, GtkWidget *
             g_free (client->command);
           client->command = g_strdup (tmp);
 
-	  mark_dirty ();
-
 	  gtk_widget_destroy (*dialog);
 	  *dialog = NULL;
 	  return TRUE;
@@ -490,7 +596,6 @@ void
 startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
 {
   ManualClient *client = g_new0 (ManualClient, 1);
-  client->to_remove = FALSE;
   client->enabled = TRUE;
   client->command = NULL;
 
@@ -521,7 +626,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget **dialog, GtkWidget *parent_dlg)
       client->desktop_file = filename;
 
       *sl = g_slist_prepend (*sl, client);
-      spc_write_state ();
+      startup_client_write (client);
     }
   else
     client_free (client);
@@ -539,7 +644,7 @@ startup_list_edit_dialog (GSList **sl, GtkTreeModel *model, GtkTreeSelection *se
   gtk_tree_model_get (model, &iter, 0, &client, -1);
 
   if (edit_client (_("Edit Startup Program"), client, dialog, parent_dlg))
-    spc_write_state ();
+    startup_client_write (client);
 }
 
 /* Delete the currently selected client */
@@ -554,8 +659,10 @@ startup_list_delete (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   gtk_tree_model_get (model, &iter, 0, &client, -1);
   gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
 
-  client->to_remove = TRUE;
-  spc_write_state ();
+  startup_client_delete (client);
+
+  *sl = g_slist_remove (*sl, client);
+  client_free (client);
 }
 
 /* Check if the selected client can be enabled */
@@ -576,57 +683,50 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
 {
   ManualClient *client;
   GtkTreeIter iter;
+  char *basename;
+  char *system_path;
 
   if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
 
   gtk_tree_model_get (model, &iter, 0, &client, -1);
-  if (!client->enabled)
+  if (client->enabled)
+    return;
+
+  basename = g_path_get_basename (client->desktop_file);
+
+  if (system_desktop_entry_exists (basename, &system_path))
     {
-     char *path, *basename;
-     const char * const * system_dirs;
-      int i;
+      ManualClient *system_client;
 
-     basename = g_path_get_basename (client->desktop_file);
+      system_client = create_client_from_desktop_entry (system_path);
+      g_free (system_path);
 
-      /* if the desktop file is in the user's home and there is one file with the same
-	 name in the system-wide dir, just remove it */
-     if (g_str_has_prefix (client->desktop_file, g_get_user_config_dir ())) {
-       system_dirs = g_get_system_data_dirs ();
-       for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
-         {
-           path = g_build_filename (system_dirs[i], "gnome", "autostart", basename, NULL);
-           if (g_file_test (path, G_FILE_TEST_EXISTS))
-	     {
-               client->to_remove = TRUE;
-	       g_free (path);
-	       break;
-	     }
+      if (system_client && !strcmp (system_client->command, client->command))
+        {
+          /* remove user entry and use system entry */
+          if (g_file_test (client->desktop_file, G_FILE_TEST_EXISTS))
+            g_remove (client->desktop_file);
+          *sl = g_slist_remove (*sl, client);
+          client_free (client);
 
-           g_free (path);
-         }
-
-       /* support old place (/etc/xdg/autostart) */
-       system_dirs = g_get_system_config_dirs ();
-       for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
-         {
-           path = g_build_filename (system_dirs[i], "autostart", basename, NULL);
-           if (g_file_test (path, G_FILE_TEST_EXISTS))
-             {
-               client->to_remove = TRUE;
-	       g_free (path);
-	       break;
-	     }
-
-           g_free (path);
-         }
-     }
-
-     client->enabled = TRUE;
-
-     spc_write_state ();
-
-     g_free (basename);
+          *sl = g_slist_prepend (*sl, system_client);
+        }
+      else
+        {
+          /* user and system desktop files are not the same, so enable the
+           * user's one */
+          client_free (system_client);
+          client->enabled = TRUE;
+          startup_client_write (client);
+        }
     }
+  else
+    {
+      client->enabled = TRUE;
+      startup_client_write (client);
+    }
+
+  g_free (basename);
 }
 
 void
@@ -638,46 +738,9 @@ startup_list_disable (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel)
   if (!gtk_tree_selection_get_selected (sel, NULL, &iter)) return;
 
   gtk_tree_model_get (model, &iter, 0, &client, -1);
-  if (client->enabled)
-    {
-      char *path, *basename;
-      const char * const * system_dirs;
-      int i;
+  if (!client->enabled)
+    return;
 
-      basename = g_path_get_basename (client->desktop_file);
-
-      /* if the desktop file is in the system-wide dir, create another one on
-       the user's home */
-      system_dirs = g_get_system_data_dirs ();
-      for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
-        {
-          if (g_str_has_prefix (client->desktop_file, system_dirs[i]))
-            {
-              path = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
-              g_free (client->desktop_file);
-              client->desktop_file = path;
-
-	      break;
-            }
-        }
-
-      /* support old place (/etc/xdg/autostart) */
-      system_dirs = g_get_system_config_dirs ();
-      for (i = 0; system_dirs[i] != NULL && !client->to_remove; i++)
-        {
-          if (g_str_has_prefix (client->desktop_file, system_dirs[i]))
-            {
-              path = g_build_filename (g_get_user_config_dir (), "autostart", basename, NULL);
-              g_free (client->desktop_file);
-              client->desktop_file = path;
-
-	      break;
-            }
-        }
-
-      client->enabled = FALSE;
-      spc_write_state ();
-
-      g_free (basename);
-    }
+  client->enabled = FALSE;
+  startup_client_write (client);
 }

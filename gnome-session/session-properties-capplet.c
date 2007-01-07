@@ -58,7 +58,6 @@ static gchar* current_session;
 static gchar* current_session_revert;
 
 static GSList *startup_list;
-static GSList *startup_list_revert;
 
 static GHashTable *hashed_sessions;
 
@@ -402,8 +401,7 @@ capplet_build (void)
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
 
   /* Frame for manually started programs */
-  startup_list = startup_list_read ("Default");
-  startup_list_revert = startup_list_duplicate (startup_list);
+  startup_list = startup_list_read ();
 
   vbox = session_properties_create_page (&mark_dirty);
 
@@ -427,7 +425,9 @@ capplet_build (void)
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw), GTK_SHADOW_IN);
   gtk_box_pack_start (GTK_BOX (hb), sw, TRUE, TRUE, 0);
   
-  startup_store = (GtkTreeModel *) gtk_list_store_new (3, G_TYPE_POINTER, G_TYPE_STRING, G_TYPE_STRING);
+  startup_store = (GtkTreeModel *) gtk_list_store_new (2,
+                                                       G_TYPE_POINTER,
+                                                       G_TYPE_STRING);
   startup_view = (GtkTreeView *) gtk_tree_view_new_with_model (startup_store);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label),
 		  		 GTK_WIDGET (startup_view));
@@ -435,10 +435,10 @@ capplet_build (void)
   gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
   g_signal_connect (G_OBJECT (startup_sel), "changed", (GCallback) selection_changed_cb, startup_view);
   renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer, "text", 2, NULL);
+  column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer, "text", 1, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
-  gtk_tree_view_set_search_column (startup_view, 2);
+  gtk_tree_view_set_search_column (startup_view, 1);
 
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
 
@@ -542,7 +542,6 @@ spc_write_state (void)
   }
   
   session_list_write (session_list, session_list_revert, hashed_sessions);
-  startup_list_write (startup_list, current_session);
 
   state_dirty = FALSE;
 }
@@ -552,7 +551,7 @@ static void
 update_gui (void)
 { 
   /* We do not have to set checkbuttons here (Lauris) */
-  startup_list_update_gui (startup_list, startup_store, startup_sel);
+  startup_list_update_gui (&startup_list, startup_store, startup_sel);
   session_list_update_gui (session_list, sessions_store, sessions_sel, current_session);
 }
 
@@ -592,7 +591,6 @@ edit_startup_cb (void)
 static void
 delete_startup_cb (void)
 {
-  mark_dirty ();
   startup_list_delete (&startup_list, startup_store, startup_sel);
   update_gui ();
 }
@@ -605,6 +603,8 @@ enable_startup_cb (void)
     startup_list_enable (&startup_list, startup_store, startup_sel);
   else
     startup_list_disable (&startup_list, startup_store, startup_sel);
+
+  update_gui ();
 
   selection_changed_cb (startup_sel, startup_view);
 }
@@ -745,6 +745,8 @@ main (int argc, char *argv[])
   dlg = capplet_build ();
 
   gtk_main ();
+
+  startup_list_free (startup_list);
 
   return 0;
 }

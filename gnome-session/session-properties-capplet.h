@@ -2,7 +2,7 @@
 #define SESSIONPROPERTIESCAPPLET_H
 #include <gtk/gtk.h>
 
-GSList	*startup_list_read (gchar *name);
+GSList	*startup_list_read (void);
 
 void    mark_dirty (void);
 
@@ -19,7 +19,7 @@ GSList	*startup_list_duplicate (GSList *sl);
 
 void	startup_list_free (GSList *sl);
 
-void	startup_list_update_gui (GSList *sl, 
+void	startup_list_update_gui (GSList **sl, 
 				 GtkTreeModel *model, GtkTreeSelection *sel);
 
 void	startup_list_add_dialog (GSList **sl, 
