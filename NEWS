@@ -4,6 +4,65 @@ Version 2.17.3
 
 Misc
 
+	* Add a configure option to specify the directory of at-spi-registryd
+	  (Ariel Rios, Vincent)
+	* Build improvements (Vincent)
+	* Remove spec file (Vincent)
+
+Session Manager
+
+	* Warn the user about more fatal errors (Tom Tromey)
+	* Use gtk-window-decorator for compiz (Vincent)
+	* Fix crash when two at-spi-registryd are running (Li Yuan)
+	* Don't hardcode start of assistive technologies software (Ariel Rios,
+	  Vincent)
+	* Start the dbus daemon if it's not running (Julio M. Merino Vidal)
+	* Kill esd on exit (Loïc Minier)
+	* Fix priority order of autostart desktop files with the same name
+	  (Vincent)
+	* Fix invalid use of memory (Tom Tromey)
+	* Fix quoting of commands when migration to new autostart system
+	  (Tom Tromey)
+
+  Session Properties Dialog
+	* Fix priority order of autostart desktop files with the same name
+	  (Vincent)
+	* Report connection errors more gracefully (Tom Tromey)
+	* Use GOption (Vincent)
+	* Reuse existing desktop files instead of overwriting them (Vincent)
+	* Rework code of edition of startup programs so that it actually works
+	  well and comply with the freedesktop spec (Vincent)
+	* Use a toggle button to enable/disable startup programs (Vincent)
+	* Add a "Save current session" button (Josselin Mouette)
+	* Remove "ask to save" toggle button (Josselin Mouette)
+	* Remove edition of session names (Vincent)
+	* Remove splash screen toggle button (Vincent)
+	* Change order of the tabs (Vincent)
+	* Fix desktop file to use a correct icon (Vincent)
+	* Improve default size of the dialog (Vincent)
+	* Show names instead of commands for the startup programs (Vincent)
+	* HIGify quit dialog (Michael Terry, Vincent)
+
+Translators
+
+	* Khaled Hosny (ar)
+	* Ihar Hrachyshka (be)
+	* Adam Weinberger (en_CA)
+	* David Lodge (en_GB)
+	* Francisco Javier F. Serrador (es)
+	* Ivar Smolin (et)
+	* Raivis Dejus (lv)
+	* Kjartan Maraas (nb)
+	* Eddy Petrișor (ro)
+	* Theppitak Karoonboonyanan (th)
+	* Clytie Siddall (vi)
+
+==============
+Version 2.17.3
+==============
+
+Misc
+
 	* Make it build on older distros (Vincent)
 	* Allow enabling/disabling tcpwrappers (Saleem Abdulrasool)
 	* Update man pages (Vincent)
