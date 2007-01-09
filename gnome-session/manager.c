@@ -1430,6 +1430,9 @@ update_save_state (void)
 
 	  maybe_write_session ();
 
+	  save_finished_list
+	    = g_slist_reverse (g_slist_sort (save_finished_list,
+					     compare_priority));
 	  for (list = save_finished_list; list;)
 	    {
 	      Client *client = list->data;
