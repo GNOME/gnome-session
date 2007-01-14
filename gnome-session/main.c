@@ -311,18 +311,6 @@ gsm_shutdown_gconfd (void)
   g_free (command);
 }
 
-static gboolean
-is_later_than_date_of_doom (void)
-{
-  time_t t;
-  struct tm *tm;
-
-  t = time (NULL);
-  tm = localtime (&t);
-
-  return (tm->tm_year >= 105); /* We start on Jan 1 2006 */
-}
-
 int
 main (int argc, char *argv[])
 {
@@ -348,7 +336,7 @@ main (int argc, char *argv[])
     {
       int major;
       major = atoi (versions [1]);
-      if ((major % 2) != 0 && is_later_than_date_of_doom ())
+      if ((major % 2) != 0)
 	{
 	  putenv ("G_DEBUG=fatal_criticals");
 	  g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
