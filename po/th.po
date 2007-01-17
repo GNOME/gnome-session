@@ -1,17 +1,17 @@
 # Thai translation for gnome-session.
-# Copyright (C) 2003 Free Software Foundation, Inc.
+# Copyright (C) 2003-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2007
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-11 00:13+0700\n"
-"PO-Revision-Date: 2007-01-11 00:25+0700\n"
+"POT-Creation-Date: 2007-01-17 12:03+0700\n"
+"PO-Revision-Date: 2007-01-17 12:17+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -278,6 +278,51 @@ msgstr "ไคลเอนต์ที่ลงทะเบียนอยู่
 msgid "Couldn't find program %s in session\n"
 msgstr "ไม่พบโปรแกรม %s ในวาระ\n"
 
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+"โปรแกรมจัดการวาระ GNOME ไม่สามารถเริ่มทำงานได้ กรุณารายงานข้อผิดพลาดนี้ไปยัง GNOME "
+"โดยแนบข้อความข้อผิดพลาดจาก ICE ต่อไปนี้ไปด้วย: '%s' ในระหว่างนี้ คุณอาจลองเข้าระบบด้วยวาระ "
+"failsafe แทน"
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"โปรแกรมจัดการวาระ GNOME ไม่สามารถล็อคแฟ้ม '%s' ได้ กรุณารายงานข้อผิดพลาดนี้ไปยัง GNOME "
+"ในบางครั้ง ข้อผิดพลาดนี้ก็อาจเกิดขึ้นได้ ถ้าไดเรกทอรีที่เก็บแฟ้มไม่อนุญาตให้เขียน "
+"คุณอาจลองเข้าระบบด้วยวาระ failsafe แล้วตรวจสอบดู"
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+"โปรแกรมจัดการวาระ GNOME ไม่สามารถอ่านแฟ้ม: '%s' ถ้าแฟ้มนี้มีอยู่แล้ว คุณก็จะต้องมีสิทธิ์อ่านได้ด้วย "
+"GNOME จะได้ทำงานได้อย่างถูกต้อง ลองเข้าระบบด้วยวาระ failsafe แล้วลบแฟ้มนี้ดู"
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+"ไม่สามารถเขียนแฟ้ม '%s' ได้ คุณต้องมีสิทธิ์เขียนแฟ้มนี้เพื่อให้ GNOME ทำงานได้อย่างถูกต้อง "
+"ลองเข้าระบบด้วยวาระ failsafe แล้วลบแฟ้มนี้ดู "
+"กรุณาตรวจสอบให้แน่ใจด้วยว่าไดเรกทอรีที่เก็บแฟ้มนี้สามารถเขียนได้"
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "จะออกจากระบบหรือไม่?"
@@ -351,7 +396,7 @@ msgstr "เข้าระบบต่อไป"
 msgid "Try Again"
 msgstr "ลองอีกครั้ง"
 
-#: ../gnome-session/main.c:408
+#: ../gnome-session/main.c:396
 msgid "- Manage the GNOME session"
 msgstr "- จัดการวาระ GNOME"
 
