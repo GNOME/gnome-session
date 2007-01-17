@@ -1,4 +1,5 @@
 SUBDIRS =			\
+	data 			\
 	po 			\
 	gnome-session		\
 	man

@@ -19,7 +19,7 @@ AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
 AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
 
-GNOME_COMPILE_WARNINGS(yes)
+GNOME_COMPILE_WARNINGS(maximum)
 
 AC_ARG_WITH(at-spi-registryd-directory,
               [AC_HELP_STRING([--with-at-spi-registryd-directory],
@@ -420,6 +420,7 @@ AC_SUBST(RSH_COMMAND)
 
 AC_CONFIG_FILES([
 Makefile
+data/Makefile
 gnome-session/Makefile
 man/default.session.5
 man/gnome-session.1
@@ -428,5 +429,5 @@ man/Makefile
 ])
 
 AC_OUTPUT([
-gnome-session/session-properties.desktop.in
+data/session-properties.desktop.in
 ])

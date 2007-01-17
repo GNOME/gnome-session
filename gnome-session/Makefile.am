@@ -33,8 +33,6 @@ splash_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
 logout_test_LDADD = $(X_LIBS) $(GNOME_SESSION_LIBS)
 
 if SESSION
-@INTLTOOL_DESKTOP_RULE@
-
 noinst_PROGRAMS = \
 	splash-test \
 	logout-test
@@ -143,54 +141,9 @@ gnome_session_properties_SOURCES = \
 
 bin_SCRIPTS = gnome-wm
 
-default_DATA = default.session default.wm
-
-settingsdir = $(datadir)/applications
-
-if SESSION
-settings_in_files = session-properties.desktop.in
-settings_DATA = $(settings_in_files:.desktop.in=.desktop)
-endif
-
-default.session: default.in ../config.status
-	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
-		< $(srcdir)/default.in > default.tmp \
-	  && mv default.tmp default.session
-
-default.wm: default.wm.in ../config.status
-	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
-		< $(srcdir)/default.wm.in > default.wm.tmp \
-	  && mv default.wm.tmp default.wm
-
-pixmapdir = $(datadir)/pixmaps/splash/
-pixmap_DATA = gnome-splash.png
-
-schemasdir       = $(GCONF_SCHEMA_FILE_DIR)
-schemas_in_files = gnome-session.schemas.in
-schemas_DATA     = $(schemas_in_files:.schemas.in=.schemas)
-
-@INTLTOOL_SCHEMAS_RULE@
-
-if GCONF_SCHEMAS_INSTALL
-# don't do this if we are building in eg. rpm
-install-data-local:
-	if test -z "$(DESTDIR)" ; then \
-	  for p in $(schemas_DATA) ; do \
-	    GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/gnome-session/$$p ; \
-	  done \
-	fi
-else
-install-data-local:
-endif
-
 EXTRA_DIST =			\
-	default.in		\
-	default.wm.in		\
 	gnome-wm 		\
-	$(pixmap_DATA)		\
-	$(schemas_in_files)	\
-	gsm-marshal.list	\
-	session-properties.desktop.in
+	gsm-marshal.list
 
 gsm_enum_headers =					\
 	$(top_srcdir)/gnome-session/gsm-protocol.h
@@ -248,8 +201,7 @@ gsm-marshal.c: gsm-marshal.list $(GLIB_GENMARSHAL)
 
 MAINTAINERCLEANFILES = stamp-gsm-typebuiltins.h stamp-gsm-marshal.h \
   $(BUILT_SOURCES)
-CLEANFILES = xgen-gtc xgen-gth xgen-gmc xgen-gmh \
-  default.wm default.session gnome-session.schemas session-properties.desktop
+CLEANFILES = xgen-gtc xgen-gth xgen-gmc xgen-gmh
 
 # if srcdir!=builddir, clean out maintainer-clean files from builddir
 # this allows dist to pass.
