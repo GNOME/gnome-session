@@ -1,3 +1,5 @@
+SUBDIRS = icons
+
 defaultdir = $(datadir)/gnome
 
 default_DATA = default.session
