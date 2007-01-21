@@ -486,7 +486,7 @@ main (int argc, char *argv[])
   /* Don't restart the capplet, it's the place where the session is saved. */
   gnome_client_set_restart_style (gnome_master_client (), GNOME_RESTART_NEVER);
 
-  gtk_window_set_default_icon_name ("gnome-session");
+  gtk_window_set_default_icon_name ("session-properties");
 
   client = gconf_client_get_default ();
   gconf_client_add_dir (client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
