@@ -1,5 +1,34 @@
+===============
+Version 2.17.90
+===============
+
+Session Manager
+
+	* Kill the clients in reverse order of priority, which makes logging
+	  out a better experience (metacity is killed last) (Tom Tromey)
+	* Remove useless code (Claudio Saavedra)
+
+Session Properties Dialog
+
+	* Update categories in the .desktop file for the new control center
+	  (Vincent)
+	* Use new icon (Vincent)
+
+Misc
+
+	* Remove useless files and move some files in the module (Vincent)
+	* New session properties icon (Jakub Steiner)
+
+Translators
+
+	* Khaled Hosny (ar)
+	* Hendrik Richter (de)
+	* David Lodge (en_GB)
+	* Daniel Nylander (sv)
+	* Theppitak Karoonboonyanan (th)
+
 ==============
-Version 2.17.3
+Version 2.17.5
 ==============
 
 Misc
@@ -24,7 +53,8 @@ Session Manager
 	* Fix quoting of commands when migration to new autostart system
 	  (Tom Tromey)
 
-  Session Properties Dialog
+Session Properties Dialog
+
 	* Fix priority order of autostart desktop files with the same name
 	  (Vincent)
 	* Report connection errors more gracefully (Tom Tromey)
