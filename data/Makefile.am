@@ -2,7 +2,7 @@ SUBDIRS = icons
 
 defaultdir = $(datadir)/gnome
 
-default_DATA = default.session
+default_DATA = default.session.in
 
 default.session: default.session.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
