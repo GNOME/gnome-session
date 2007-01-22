@@ -2,7 +2,8 @@ SUBDIRS = icons
 
 defaultdir = $(datadir)/gnome
 
-default_DATA = default.session.in
+default_in_files = default.session.in
+default_DATA = $(default_in_files:.session.in=.session)
 
 default.session: default.session.in ../config.status
 	sed -e 's,\@WINDOW_MANAGER\@,$(WINDOW_MANAGER),g' \
@@ -40,7 +41,7 @@ install-data-local:
 endif
 
 EXTRA_DIST =			\
-	$(default_DATA)		\
+	$(default_in_files)	\
 	$(pixmap_DATA)		\
 	$(schemas_in_files)	\
 	session-properties.desktop.in
