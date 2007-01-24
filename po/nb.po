@@ -6,19 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-11 01:43+0100\n"
-"PO-Revision-Date: 2006-12-11 01:46+0100\n"
+"POT-Creation-Date: 2007-01-24 11:14+0100\n"
+"PO-Revision-Date: 2007-01-24 11:17+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Tillat TCP-forbindelser"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -30,12 +30,12 @@ msgstr ""
 "tillate autoriserte tilkoblinge fra eksterne verter. gnome-session må "
 "startes på nytt før dette trer i kraft."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Aktiveres hvis brukeren ønsker en spørsmålsdialog før sesjonen avsluttes."
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -43,32 +43,32 @@ msgstr ""
 "Hvis dette aktiveres vil gnome-session lagre sesjonen automatisk. Hvis ikke "
 "vil avloggingsdialogen ha et valg for å lagre sesjonen."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Spør ved avlogging"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Lagre sesjoner"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
 msgstr "Valgt alternativ i «Logg ut»-dialogen"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Vis oppstartskjerm"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -78,7 +78,7 @@ msgstr ""
 "og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
 "innlogging."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -88,13 +88,25 @@ msgstr ""
 "«logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å "
 "starte systemet på nytt."
 
-#: ../gnome-session/gsm-at-startup.c:61
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Konfigurer dine sesjoner"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "Sesjoner"
+
+#: ../gnome-session/gsm-at-startup.c:39
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
 "is installed. Your session has been started without assistive technology "
 "support."
-msgstr "Hjelpeteknologi for tilgjengelighet er forespurt for denne sesjonen, men registeret for denne funksjonen ble ikke funnet. Vennligst sjekk at AT-SPI er installert. Sesjonen er startet uten hjelpeteknologi for tilgjengelighet."
+msgstr ""
+"Hjelpeteknologi for tilgjengelighet er forespurt for denne sesjonen, men "
+"registeret for denne funksjonen ble ikke funnet. Vennligst sjekk at AT-SPI "
+"er installert. Sesjonen er startet uten hjelpeteknologi for tilgjengelighet."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -125,7 +137,7 @@ msgid "State"
 msgstr "Tilstand"
 
 #: ../gnome-session/gsm-client-list.c:165
-#: ../gnome-session/session-properties-capplet.c:438
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "Program"
 
@@ -261,7 +273,9 @@ msgstr "PROGRAM..."
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
-msgstr "Du må oppgi minst ett program som skal fjernes. Du kan vise programmene med --list.\n"
+msgstr ""
+"Du må oppgi minst ett program som skal fjernes. Du kan vise programmene med "
+"--list.\n"
 
 #: ../gnome-session/gsm-remove-client.c:179
 msgid "Error: could not connect to the session manager\n"
@@ -275,6 +289,40 @@ msgstr "Registrerte klienter:\n"
 #, c-format
 msgid "Couldn't find program %s in session\n"
 msgstr "Kunne ikke finne program %s i sesjonen\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
@@ -300,37 +348,37 @@ msgstr "Avsl_utt"
 msgid "_Restart the computer"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "Spesifiserer et sesjonsnavn som skal startes"
 
-#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NAVN"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Only read saved sessions from the default.session file"
 msgstr "Kun skrivebeskyttede sesjoner fra default.session filen"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
 
-#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
 msgid "DELAY"
 msgstr "PAUSE"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal svare (0=uendelig)"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal dø (0=uendelig)"
 
-#: ../gnome-session/main.c:262
+#: ../gnome-session/main.c:263
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -343,32 +391,32 @@ msgstr ""
 "Det er mulig å rette opp problemet ved å legge\n"
 "til %s i filen /etc/hosts."
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:270
 msgid "Log in Anyway"
 msgstr "Logg inn likevel"
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:271
 msgid "Try Again"
 msgstr "Prøv igjen"
 
-#: ../gnome-session/main.c:406
+#: ../gnome-session/main.c:397
 msgid "- Manage the GNOME session"
 msgstr "- Håndter GNOME sesjonen"
 
-#: ../gnome-session/manager.c:512
+#: ../gnome-session/manager.c:509
 msgid "Wait abandoned due to conflict."
 msgstr "Venting forlatt pga konflikt."
 
-#: ../gnome-session/manager.c:1020
+#: ../gnome-session/manager.c:1017
 #, c-format
 msgid "No response to the %s command."
 msgstr "Ingen svar på kommandoen %s."
 
-#: ../gnome-session/manager.c:1021
+#: ../gnome-session/manager.c:1018
 msgid "The program may be slow, stopped or broken."
 msgstr "Programmet kan være tregt, stopped eller ødelagt."
 
-#: ../gnome-session/manager.c:1022
+#: ../gnome-session/manager.c:1019
 msgid "You may wait for it to respond or remove it."
 msgstr "Du kan vente på svar eller fjerne det."
 
@@ -396,91 +444,65 @@ msgstr "Bruk dialogbokser for feil"
 msgid "Do not require confirmation"
 msgstr "Ikke krev bekreftelse"
 
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:188
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonsbehandler"
 
-#: ../gnome-session/save-session.c:173
+#: ../gnome-session/save-session.c:174
 msgid "- Save the current session"
 msgstr "- Lagre aktiv sesjon"
 
-#: ../gnome-session/session-names.c:152
-msgid "The session name cannot be empty"
-msgstr "Navnet på sesjonen kan ikke være tomt"
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "Lagre endringer i aktiv sesjon før programmet lukkes?"
 
-#: ../gnome-session/session-names.c:163
-msgid "The session name already exists"
-msgstr "En sesjon med dette navnet eksisterer allerede"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
+msgstr "Hvis du ikke lagrer vil endringene forkastes."
 
-#: ../gnome-session/session-names.c:197
-msgid "Add a new session"
-msgstr "Legg til en ny sesjon"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "_Lukk uten å lagre"
 
-#: ../gnome-session/session-names.c:227
-msgid "Edit session name"
-msgstr "Rediger sesjonens navn"
-
-#: ../gnome-session/session-properties-capplet.c:119
-msgid "Enable"
-msgstr "Aktiver"
-
-#: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:469
-msgid "Disable"
-msgstr "Deaktiver"
-
-#: ../gnome-session/session-properties-capplet.c:148
-msgid "_Edit"
-msgstr "R_ediger"
-
-#: ../gnome-session/session-properties-capplet.c:216
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"Noen endringer er ikke lagret.\n"
-"Er det likevel OK å avslutte?"
-
-#: ../gnome-session/session-properties-capplet.c:266
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sesjoner"
-
-#: ../gnome-session/session-properties-capplet.c:299
-msgid "Show splash screen on _login"
-msgstr "Vis oppstartskjerm ved inn_logging"
-
-#: ../gnome-session/session-properties-capplet.c:310
-msgid "As_k on logout"
-msgstr "S_pør når du logger ut"
-
-#: ../gnome-session/session-properties-capplet.c:321
-msgid "Automatically save chan_ges to session"
-msgstr "Lagre endrin_ger i sesjonen automatisk"
-
-#: ../gnome-session/session-properties-capplet.c:332
-msgid "_Sessions:"
-msgstr "_Sesjoner:"
-
-#: ../gnome-session/session-properties-capplet.c:350
-msgid "Session Name"
-msgstr "Navn på sesjon"
-
-#: ../gnome-session/session-properties-capplet.c:401
-msgid "Session Options"
-msgstr "Alternativer for sesjon"
-
-#: ../gnome-session/session-properties-capplet.c:410
-msgid "Current Session"
-msgstr "Aktiv sesjon"
-
-#: ../gnome-session/session-properties-capplet.c:419
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "Flere oppstarts_programmer:"
 
-#: ../gnome-session/session-properties-capplet.c:480
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "Aktivert"
+
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "Oppstartsprogrammer"
+
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "Aktiv sesjon"
+
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "Lagre endrin_ger i sesjonen automatisk"
+
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "Lagre aktiv sesjon"
+
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "Alternativer for sesjon"
+
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "Din sesjon er lagret."
+
+#: ../gnome-session/session-properties-capplet.c:497
+msgid "could not connect to the session manager\n"
+msgstr "kunne ikke koble til sesjonshåndtereren\n"
+
+#: ../gnome-session/session-properties-capplet.c:503
+msgid "session manager does not support GNOME extensions\n"
+msgstr "sesjonshåndtereren støtter ikke GNOME-utvidelser\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -497,10 +519,6 @@ msgstr "Liste over programmer i sesjonen."
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "_Programmer som kjører nå:"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Konfigurer dine sesjoner"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
@@ -526,22 +544,34 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Innstillinger for skrivebord"
 
-#: ../gnome-session/startup-programs.c:409
-msgid "_Startup Command:"
-msgstr "Opp_startskommando:"
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "_Navn:"
 
-#: ../gnome-session/startup-programs.c:415
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "_Kommando:"
+
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "Oppstartskommando"
 
-#: ../gnome-session/startup-programs.c:450
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "Oppstartskommandoen kan ikke være tom"
+
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommandoen kan ikke være tom"
 
-#: ../gnome-session/startup-programs.c:489
-msgid "Add Startup Program"
-msgstr "Legg til oppstartsprogram"
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "Oppstartskommandoen er ikke gyldig"
 
-#: ../gnome-session/startup-programs.c:533
+#: ../gnome-session/startup-programs.c:665
+msgid "New Startup Program"
+msgstr "Nytt oppstartsprogram"
+
+#: ../gnome-session/startup-programs.c:709
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
