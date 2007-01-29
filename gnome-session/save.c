@@ -743,8 +743,10 @@ read_session (const char *name)
 	GString *args = g_string_new ((const char *) prop->vals[0].value);
 
 	for (i = 1; i < prop->num_vals; i++) {
+	  gchar *quoted = g_shell_quote (prop->vals[i].value);
 	  args = g_string_append_c (args, ' ');
-	  args = g_string_append (args, (const char *) prop->vals[i].value);
+	  args = g_string_append (args, quoted);
+	  g_free (quoted);
 	}
 
 	ditem = gnome_desktop_item_new ();
