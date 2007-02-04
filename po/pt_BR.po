@@ -1,48 +1,45 @@
 # Brazilian Portuguese translation of gnome-session.
-# Copyright (C) 1999-2005 Free Software Foundation, Inc.
+# Copyright (C) 1999-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 # Initial Translation: Elvis Pfützenreuter <epx@netville.com.br>
 # Revision: Sandro Nunes Henrique <sandro@conectiva.com.br>
 # Last Revision: Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
 # Last Revision: Ricardo Soares Guimarães <ricardo@conectiva.com.br>
-# Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
+# Gustavo Maciel Dias Vieira <gustavo@sagui.org>, 2000-2001.
 # Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002-2005.
+# Og Maciel <ogmaciel@ubuntu.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-26 01:06-0200\n"
-"PO-Revision-Date: 2006-01-26 01:06-0300\n"
-"Last-Translator: Evandro Fernandes Giovanini <evandrofg@ig.com.br>\n"
+"POT-Creation-Date: 2007-02-03 18:50+0000\n"
+"PO-Revision-Date: 2007-02-04 11:53-0200\n"
+"Last-Translator: Og Maciel <ogmaciel@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Permitir conexões TCP"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
-msgstr ""
-"Por segurança, em plataformas que têm _IceTcpTransNoListen() (sistemas com "
-"XFree86), gnome-session não irá aceitar conexões em portas TCP. Esta opção "
-"irá permitir conexões de máquinas remotas (autorizadas). gnome-session deve "
-"ser reiniciado para a configuração fazer efeito."
+msgstr "Por motivos de segurança, em plataformas que têm _IceTcpTransNoListen() (sistemas com XFree86), o gnome-session não aceitará conexões em portas TCP. Esta opção permitirá conexões de máquinas remotas (autorizadas). O gnome-session deve ser reiniciado para a configuração fazer efeito."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Se habilitado, gnome-session pergunta ao usuário antes de terminar uma "
 "sessão. "
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -50,32 +47,32 @@ msgstr ""
 "Se habilitado, gnome-session irá salvar a sessão automaticamente. Caso "
 "contrário, o diálogo Sair irá conter uma opção para salvar a sessão."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Tela de Saída"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "Imagem preferida para utilizar como tela inicial ao carregar o ambiente"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Salvar sessões"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "Opção selecionada na caixa de diálogo Sair"
+msgstr "Opção selecionada na caixa de diálogo de saída"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Exibir tela inicial ao entrar"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Exibir tela inicial ao iniciar a sessão"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -85,7 +82,7 @@ msgstr ""
 "Sub-diretórios e nomes de imagens são valores válidos. Alterar esses valores "
 "vai afetar a próxima sessão."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -94,6 +91,27 @@ msgstr ""
 "Essa é a opção que será selecionada na caixa de diálogo Sair. Os valores "
 "válidos são \"logout\" para Sair, \"shutdown\" para Desligar o computador e "
 "\"restart\" para Reiniciar o computador."
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Configure suas sessões"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "Sessões"
+
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"O suporte para tecnologia de assistência foi requerido para esta sessão, mas "
+"o registro de assistência não foi encontrado. Por favor, certifique-se que o "
+"pacote AT-SPI está instalado. Sua sessão foi iniciada sem o suporte para "
+"tecnologia de assistência."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -124,6 +142,7 @@ msgid "State"
 msgstr "Estado"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "Programa"
 
@@ -145,7 +164,7 @@ msgstr "Iniciado mas ainda não reportou seu estado."
 
 #: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
-msgstr "Rodando"
+msgstr "Executando"
 
 #: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
@@ -207,7 +226,7 @@ msgstr "Sempre iniciado em cada entrada no sistema."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -219,7 +238,7 @@ msgstr ""
 "Algumas configurações, como tema, sons ou papel de fundo, podem não "
 "funcionar corretamente."
 
-#: ../gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -231,7 +250,7 @@ msgstr ""
 "A mensagem de erro foi:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -242,65 +261,137 @@ msgstr ""
 "O GNOME tentará iniciar o gerenciador de configurações na próxima vez que "
 "for iniciado."
 
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Ocorreu um erro de ativação desconhecido."
-
-#: ../gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr "O Gerenciador de Configurações foi reiniciado muitas vezes."
 
-#: ../gnome-session/logout.c:408
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "Listar os clientes registrados, e depois sair"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "PROGRAMA..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"Você deve especificar pelo menos um programa a ser removido. Você pode "
+"listar os programas com --list.\n"
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "Erro: não foi possível conectar ao gerenciador de sessão\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "Clientes atualmente registrados:\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Não foi possível encontrar o programa %s na sessão\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr "Não foi possível iniciar o gerenciador de sessão da forma apropriada. Por favor, reporte isso como um erro do GNOME e incluia esta mensagem de falha do ICE no relatório de erro: '%s'. Enquanto isso, você pode tentar fazer o login usando a sessão de segurança."
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"O gerenciador de sessão do GNOME não conseguiu travar o arquivo '%s'. Por "
+"favor, reporte isso como um erro do GNOME. Às vezes este erro pode acontecer "
+"se o diretório do arquivo não possuir permissão de escrita. Você pode tentar "
+"fazer o login usando a sessão de segurança e checar se este é o caso."
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr "O gerenciador de sessão do GNOME não conseguiu ler o arquivo '%s'. Se este arquivo existir, ele deve possuir permissão de leitura por você para que o GNOME funcione da forma apropriada. Tente fazer o login usando a sessão de segurança e removendo este arquivo."
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr "Não foi possível gravar no arquivo '%s'. Este arquivo deve possuir permissão de escrita para que o GNOME funcione da forma apropriada. Tente fazer o login usando a sessão de segurança e removendo este arquivo. Também certifique-se que o diretório possui permissão de escrita."
+
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "Você tem certeza de que deseja sair?"
 
-#: ../gnome-session/logout.c:425
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_Salvar a configuração atual"
 
-#: ../gnome-session/logout.c:448
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Ação"
 
-#: ../gnome-session/logout.c:465
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "S_air"
 
-#: ../gnome-session/logout.c:472
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "_Desligar"
 
-#: ../gnome-session/logout.c:480
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "_Reiniciar o computador"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "Especifica um nome de sessão a carregar"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
+msgid "NAME"
+msgstr "NOME"
+
+#: ../gnome-session/main.c:85
 msgid "Only read saved sessions from the default.session file"
 msgstr "Ler somente sessões salvas no arquivo padrão de sessões"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Período em milisegundos gastos na espera por registro de clientes (0=para "
 "sempre)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
+msgid "DELAY"
+msgstr "ATRASO"
+
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Período em milisegundos gastos na espera da resposta de clientes (0=para "
 "sempre)"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Período em milissegundos gastos na espera da finalização de clientes (0=para "
 "sempre)"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:263
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -313,140 +404,118 @@ msgstr ""
 "É possível corrigir isto adicionando a linha\n"
 "%s ao arquivo /etc/hosts."
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:270
 msgid "Log in Anyway"
 msgstr "Continuar"
 
-#: ../gnome-session/main.c:274
+#: ../gnome-session/main.c:271
 msgid "Try Again"
 msgstr "Tentar Novamente"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Sua sessão foi salva"
+#: ../gnome-session/main.c:396
+msgid "- Manage the GNOME session"
+msgstr "- Gerenciar a sessão do GNOME"
 
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "Espera encerrada devido a conflito"
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "Não houve resposta para o comando %s."
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "O programa pode estar lento, ter parado ou ter tido algum erro."
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "Pode-se esperar que ele responda ou removê-lo."
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1748
 msgid "Restart abandoned due to failures."
 msgstr "Reinício abandonada devido a erros."
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1944
 msgid "A session shutdown is in progress."
 msgstr "Finalização de sessão está em andamento."
 
-#: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Definir a sessão atual"
+#: ../gnome-session/save-session.c:49
+msgid "Set the current session name"
+msgstr "Definir o nome da sessão atual"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "Terminar sessão"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "Usar caixas de diálogo"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "Usar caixas de diálogo para erros"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "Não requerer confirmação"
+
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "Não foi possível conectar ao gerenciador de sessão"
 
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "O nome da sessão não pode estar vazio"
+#: ../gnome-session/save-session.c:173
+msgid "- Save the current session"
+msgstr "- Salvar a sessão atual"
 
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "O nome da sessão já existe"
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "Salvar alterações na sessão atual antes de fechar?"
 
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "Adicionar uma nova sessão"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
+msgstr "Se você não salvar, suas modificações serão descartadas."
 
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "Editar nome da sessão"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "_Fechar sem salvar"
 
-#: ../gnome-session/session-properties-capplet.c:117
-msgid "Enable"
-msgstr "Habilitar"
-
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
-msgid "Disable"
-msgstr "Desabilitar"
-
-#: ../gnome-session/session-properties-capplet.c:145
-msgid "_Edit"
-msgstr "_Editar"
-
-#: ../gnome-session/session-properties-capplet.c:213
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"Algumas alterações não estão salvas.\n"
-"Ainda deseja sair?"
-
-#: ../gnome-session/session-properties-capplet.c:263
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sessões"
-
-#: ../gnome-session/session-properties-capplet.c:296
-msgid "Show splash screen on _login"
-msgstr "Exibir te_la inicial ao entrar"
-
-#: ../gnome-session/session-properties-capplet.c:307
-msgid "As_k on logout"
-msgstr "_Perguntar ao sair"
-
-#: ../gnome-session/session-properties-capplet.c:318
-msgid "Automatically save chan_ges to session"
-msgstr "Sal_var alterações a sessão automaticamente"
-
-#: ../gnome-session/session-properties-capplet.c:329
-msgid "_Sessions:"
-msgstr "_Sessões:"
-
-#: ../gnome-session/session-properties-capplet.c:347
-msgid "Session Name"
-msgstr "Nome da sessão"
-
-#: ../gnome-session/session-properties-capplet.c:398
-msgid "Session Options"
-msgstr "Opções de sessão"
-
-#: ../gnome-session/session-properties-capplet.c:407
-msgid "Current Session"
-msgstr "Sessão atual"
-
-#: ../gnome-session/session-properties-capplet.c:416
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "_Programa iniciais adicionais:"
 
-#: ../gnome-session/session-properties-capplet.c:435
-msgid "Command"
-msgstr "Comando"
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "Habilitado"
 
-#: ../gnome-session/session-properties-capplet.c:475
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "Programas Iniciais"
+
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "Sessão atual"
+
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "Sal_var alterações a sessão automaticamente"
+
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "Salvar a sessão atual"
+
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "Opções de sessão"
+
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "Sua sessão foi salva."
+
+#: ../gnome-session/session-properties-capplet.c:496
+msgid "could not connect to the session manager\n"
+msgstr "Não foi possível conectar ao gerenciador de sessão\n"
+
+#: ../gnome-session/session-properties-capplet.c:502
+msgid "session manager does not support GNOME extensions\n"
+msgstr "o gerenciador de sessão não suporta extensões do GNOME\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -464,57 +533,110 @@ msgstr "A lista de programas da sessão."
 msgid "Currently running _programs:"
 msgstr "Programas em _execução:"
 
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Iniciar configurações de sessão"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Configure suas sessões"
-
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "Gerenciador de janelas Sawfish"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "Gerenciador de Janelas Metacity"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "Gerenciador de janelas"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "O Painel"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "Preferências do Ambiente"
 
-#: ../gnome-session/startup-programs.c:415
-msgid "_Startup Command:"
-msgstr "_Comando inicial:"
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "_Nome:"
 
-#: ../gnome-session/startup-programs.c:421
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "_Comando:"
+
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "Comando inicial"
 
-#: ../gnome-session/startup-programs.c:450
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "O nome do programa inicial não pode ser vazio"
+
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "O comando inicial não pode ser vazio"
 
-#: ../gnome-session/startup-programs.c:487
-msgid "Add Startup Program"
-msgstr "Adicionar programa inicial"
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "O comando inicial não é válido"
 
-#: ../gnome-session/startup-programs.c:525
+#: ../gnome-session/startup-programs.c:667
+msgid "New Startup Program"
+msgstr "Novo Programa Inicial"
+
+#: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "Editar programa inicial"
+
+#~ msgid "There was an unknown activation error."
+#~ msgstr "Ocorreu um erro de ativação desconhecido."
+
+#~ msgid "The session name cannot be empty"
+#~ msgstr "O nome da sessão não pode estar vazio"
+
+#~ msgid "The session name already exists"
+#~ msgstr "O nome da sessão já existe"
+
+#~ msgid "Add a new session"
+#~ msgstr "Adicionar uma nova sessão"
+
+#~ msgid "Edit session name"
+#~ msgstr "Editar nome da sessão"
+
+#~ msgid "Disable"
+#~ msgstr "Desabilitar"
+
+#~ msgid "_Edit"
+#~ msgstr "_Editar"
+
+#~ msgid ""
+#~ "Some changes are not saved.\n"
+#~ "Is it still OK to exit?"
+#~ msgstr ""
+#~ "Algumas alterações não estão salvas.\n"
+#~ "Ainda deseja sair?"
+
+#~ msgid "Show splash screen on _login"
+#~ msgstr "Exibir te_la inicial ao entrar"
+
+#~ msgid "As_k on logout"
+#~ msgstr "_Perguntar ao sair"
+
+#~ msgid "_Sessions:"
+#~ msgstr "_Sessões:"
+
+#~ msgid "Session Name"
+#~ msgstr "Nome da sessão"
+
+#~ msgid "Initialize session settings"
+#~ msgstr "Iniciar configurações de sessão"
+
+#~ msgid "_Startup Command:"
+#~ msgstr "_Comando inicial:"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Adicionar programa inicial"
 
 #~ msgid "Session Manager Proxy"
 #~ msgstr "Proxy do gerenciador de sessão"
