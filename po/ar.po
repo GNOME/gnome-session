@@ -10,15 +10,14 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-13 05:56+0000\n"
-"PO-Revision-Date: 2007-01-02 21:53+0200\n"
+"PO-Revision-Date: 2007-01-30 07:26+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <support@arabeyes.org>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && "
-"n<=10 ? 2 : 3\n"
+"Plural-Forms: Plural-Forms: nplurals=4; plural=n==1 ? 0 : n==2 ? 1 : n>=3 && n<=10 ? 2 : 3\n"
 
 #: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -53,8 +52,7 @@ msgstr "محث تسجيل الخروج"
 
 #: ../gnome-session/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr ""
-"الصورة المحبذة التي ستستخدم في شاشة الترحيب عند تسجيل الدخول في مكتب جنوم"
+msgstr "الصورة المحبذة التي ستستخدم في شاشة الترحيب عند تسجيل الدخول في مكتب جنوم"
 
 #: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
@@ -262,8 +260,7 @@ msgstr "PROGRAM..."
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
-msgstr ""
-"يجب أن تحدد برنامجا واحدا على الأقل لإزالته. يمكنك سرد البرامج بـ --list.\n"
+msgstr "يجب أن تحدد برنامجا واحدا على الأقل لإزالته. يمكنك سرد البرامج بـ --list.\n"
 
 #: ../gnome-session/gsm-remove-client.c:179
 msgid "Error: could not connect to the session manager\n"
@@ -285,7 +282,7 @@ msgid ""
 "The GNOME session manager cannot start properly.  Please report this as a "
 "GNOME bug. Please include this ICE failure message in the bug report:  '%"
 "s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
+msgstr "تعذّر على مدير جلسة جنوم أن يبدأ بشكل سليم. فضلا ارسل تقرير علّة بهذا إلى جنوم. فضلا اشمل رسالة فشل ICE هذه في تقرير العلّة: '%s'. في هذه الأثناء يمكنك محاولة الولوج مُستخدمة الجلسة الآمنة من الفشل."
 
 #: ../gnome-session/ice.c:510
 #, c-format
@@ -294,7 +291,7 @@ msgid ""
 "this as a GNOME bug.  Sometimes this error may occur if the file's directory "
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
-msgstr ""
+msgstr "تعذّر على مدير جلسة جنوم قفل الملف '%s'. فضلا ارسل تقرير علّة بهذا إلى جنوم. قد يحدث هذا أحيانا إذا كان مجلّد الملف غير قابل للقرائة، يمكنك محاولة الولوج عبر الجلسة الآمنة من الفضل لتتأكد من هذا."
 
 #: ../gnome-session/ice.c:537
 #, c-format
@@ -302,7 +299,7 @@ msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
-msgstr ""
+msgstr "تعذّر على مدير جلسة جنوم قرائة الملف '%s'. إذا كان هذا الملف موجودا فيجب أن يكون مقروءا لجنوم لتعمل بشكل صحيح. حاول الولوج عبر الجلسة الآمنة من الفشل وحذف هذا الملف."
 
 #: ../gnome-session/ice.c:582
 #, c-format
@@ -310,7 +307,7 @@ msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
 "to function properly.  Try logging in with the failsafe session and removing "
 "this file.  Also make sure that the file's directory is writable."
-msgstr ""
+msgstr "تعذّر الكتابة في الملف '%s'. يجب أن يكون هذا الملف قابلا للكتابة لتعمل جنوم بشكل صحيح. حاول الولوج عبر الجلسة الآمنة من الفشل وحذف هذا الملف. وتأكّد أيضا من أن مجلّد الملف قابل للكتابة."
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
@@ -439,17 +436,16 @@ msgid "- Save the current session"
 msgstr "- احفظ الجلسة الحالية"
 
 #: ../gnome-session/session-properties-capplet.c:153
-#, fuzzy
 msgid "Save changes to the current session before closing?"
-msgstr "طبّق التغييرات على الجلسة الحالية"
+msgstr "تطبيق التغييرات على الجلسة الحالية قبل الغلق؟"
 
 #: ../gnome-session/session-properties-capplet.c:155
 msgid "If you don't save, changes will be discarded."
-msgstr ""
+msgstr "إذا لم تحفظ ستُتجاهل التغييرات."
 
 #: ../gnome-session/session-properties-capplet.c:158
 msgid "_Close without Saving"
-msgstr ""
+msgstr "ا_غلق بدون حفظ"
 
 #: ../gnome-session/session-properties-capplet.c:222
 #: ../gnome-session/session-properties.desktop.in.in.h:2
@@ -461,9 +457,8 @@ msgid "Additional startup _programs:"
 msgstr "البرامج الإضافية عند _بدأ التشغيل:"
 
 #: ../gnome-session/session-properties-capplet.c:272
-#, fuzzy
 msgid "Enabled"
-msgstr "فعّل"
+msgstr "مُفعّل"
 
 #: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
@@ -478,9 +473,8 @@ msgid "Automatically save chan_ges to session"
 msgstr "احفظ ت_غييرات الجلسة تلقائياً"
 
 #: ../gnome-session/session-properties-capplet.c:349
-#, fuzzy
 msgid "Save the current session"
-msgstr "- احفظ الجلسة الحالية"
+msgstr "احفظ الجلسة الحالية"
 
 #: ../gnome-session/session-properties-capplet.c:357
 msgid "Session Options"
@@ -488,16 +482,15 @@ msgstr "خيارات الجلسة"
 
 #: ../gnome-session/session-properties-capplet.c:453
 msgid "Your session has been saved."
-msgstr ""
+msgstr "حُفِظت جلستُك."
 
 #: ../gnome-session/session-properties-capplet.c:496
-#, fuzzy
 msgid "could not connect to the session manager\n"
-msgstr "لم يمكن الاتصال بمدير الجلسات"
+msgstr "تعذّر الإتصال بمدير الجلسات\n"
 
 #: ../gnome-session/session-properties-capplet.c:502
 msgid "session manager does not support GNOME extensions\n"
-msgstr ""
+msgstr "لا يدعم مدير الجلسات امتدادات جنوم\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -545,76 +538,33 @@ msgstr "تعيينات سطح المكتب"
 
 #: ../gnome-session/startup-programs.c:557
 msgid "_Name:"
-msgstr ""
+msgstr "الإ_سم:"
 
 #: ../gnome-session/startup-programs.c:575
-#, fuzzy
 msgid "_Command:"
-msgstr "أمر _بدء التشغيل:"
+msgstr "الأ_مر:"
 
 #: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "أمر بدء التشغيل"
 
 #: ../gnome-session/startup-programs.c:607
-#, fuzzy
 msgid "The name of the startup program cannot be empty"
-msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغا"
+msgstr "لا يمكن أن يكون اسم برنامج بدء التشغيل فارغا"
 
 #: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغا"
 
 #: ../gnome-session/startup-programs.c:615
-#, fuzzy
 msgid "The startup command is not valid"
-msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغا"
+msgstr "أمر بدء التشغيل غير سليم"
 
 #: ../gnome-session/startup-programs.c:667
-#, fuzzy
 msgid "New Startup Program"
-msgstr "برامج بدء التشغيل"
+msgstr "برنامج بدء تشغيل جديد"
 
 #: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "حرّر برنامج بدء التشغيل"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "لا يمكن أن يكون اسم الجلسة فارغا"
-
-#~ msgid "The session name already exists"
-#~ msgstr "اسم الجلسة موجود مسبقا"
-
-#~ msgid "Add a new session"
-#~ msgstr "أضف جلسة جديدة"
-
-#~ msgid "Edit session name"
-#~ msgstr "حرّر اسم الجلسة"
-
-#~ msgid "Disable"
-#~ msgstr "عطّل"
-
-#~ msgid "_Edit"
-#~ msgstr "_حرّر"
-
-#~ msgid ""
-#~ "Some changes are not saved.\n"
-#~ "Is it still OK to exit?"
-#~ msgstr ""
-#~ "لن تُحفَظ بعض التغييرات.\n"
-#~ "هل تريد المتابعة في الخروج؟"
-
-#~ msgid "Show splash screen on _login"
-#~ msgstr "أظهر شاشة البدأ عند _تسجيل الدخول"
-
-#~ msgid "As_k on logout"
-#~ msgstr "إ_سأل عند تسجيل الخروج"
-
-#~ msgid "_Sessions:"
-#~ msgstr "ال_جلسات:"
-
-#~ msgid "Session Name"
-#~ msgstr "اسم الجلسة"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "أضف برنامج بدء تشغيل"
