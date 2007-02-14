@@ -5,14 +5,14 @@
 # Ville Hautamäki <villeh@cs.joensuu.fi>, 1998, 2000
 # Mikko Rauhala <mjr@iki.fi>, 1999
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005
-# Ilkka Tuohela <hile@iki.fi>, 2005-2006
+# Ilkka Tuohela <hile@iki.fi>, 2005-2007
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-12 20:33+0300\n"
-"PO-Revision-Date: 2007-02-12 20:37+0300\n"
+"POT-Creation-Date: 2007-02-14 07:16+0300\n"
+"PO-Revision-Date: 2007-02-14 07:21+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
 "sourceforge>\n"
@@ -110,6 +110,9 @@ msgid ""
 "is installed. Your session has been started without assistive technology "
 "support."
 msgstr ""
+"Esteettömyysohjelmien tukea pyydettiin avattavaksi tähän istuntoon, mutta "
+"esteettömyysrekisteriä ei löydy. Varmista, että paketti at-spi on asennettu. "
+"Istunto käynnistettiin ilman esteettömyystukea."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -276,6 +279,8 @@ msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
 msgstr ""
+"Ainakin yksi poistettava ohjelma täytyy antaa. Voit näyttää ohjelmat "
+"valitsimella --list.\n"
 
 #: ../gnome-session/gsm-remove-client.c:179
 msgid "Error: could not connect to the session manager\n"
@@ -298,6 +303,9 @@ msgid ""
 "GNOME bug. Please include this ICE failure message in the bug report:  '%"
 "s'.  Meanwhile you could try logging in using the failsafe session."
 msgstr ""
+"Gnomen istunnonhallintaa ei voida käynnistää. Raportoi tämä Gnomen vikana. "
+"Liitä seuraava ICE-virheviesti vikailmoitukseen: \"%s\". Voit tällä välin "
+"yrittää käynnistää vikasietoisen istunnon."
 
 #: ../gnome-session/ice.c:510
 #, c-format
@@ -307,6 +315,10 @@ msgid ""
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
 msgstr ""
+"Gnomen istunnonhallinta ei voinut lukita tiedostoa \"%s\". Raportoi tämä "
+"Gnomen vikana. Tämä virhe saattaa tapahtua, jos tiedoston kansio ei ole "
+"kirjoitettavissa. Voit yrittää kirjautua vikasietoiseen istuntoon ja "
+"tarkistaa, että kyseiseen kansioon voidaan kirjoittaa."
 
 #: ../gnome-session/ice.c:537
 #, c-format
@@ -315,6 +327,10 @@ msgid ""
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
 msgstr ""
+"Gnomen istunonnhallinta ei voinut lukea tiedostoa: \"%s\". Jos tämä "
+"tiedosto on olemassa, sinulla täytyy olla oikeudet lukea se, jotta "
+"Gnome toimii oikein. Yritä kirjautua vikasietoiseen istuntoon ja "
+"poistaa kyseisen tiedoston."
 
 #: ../gnome-session/ice.c:582
 #, c-format
@@ -323,6 +339,10 @@ msgid ""
 "to function properly.  Try logging in with the failsafe session and removing "
 "this file.  Also make sure that the file's directory is writable."
 msgstr ""
+"Tiedostoon \"%s\" ei voitu kirjoittaa. Tähän tiedostoon täytyy voida "
+"kirjoittaa, jotta Gnome toimii oikein. Yritä kirjautua vikasietoiseen "
+"istuntoon ja poistaa kyseisen tiedoston. Varmista myös että kyseinen "
+"kansio on kirjoitettavissa."
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
