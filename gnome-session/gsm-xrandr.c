@@ -14,7 +14,7 @@
 #endif
 
 #ifdef HAVE_RANDR
-static gboolean
+static int
 get_resolution (GConfClient *client, int screen, char *keys[], int *width, int *height)
 {
   int i;
@@ -34,11 +34,11 @@ get_resolution (GConfClient *client, int screen, char *keys[], int *width, int *
     }
   
   if (val == NULL)
-    return FALSE;
+    return -1;
 
   if (sscanf (val, "%dx%d", &w, &h) != 2) {
     g_free (val);
-    return FALSE;
+    return -1;
   }
 
   g_free (val);
@@ -46,30 +46,24 @@ get_resolution (GConfClient *client, int screen, char *keys[], int *width, int *
   *width = w;
   *height = h;
   
-  return TRUE;
+  return i;
 }
 
 static int
-get_rate (GConfClient *client, int screen, char *keys[])
+get_rate (GConfClient *client, char *display, int screen)
 {
-  int i;
   char *key;
   int val;
-  GError *error;
+  GError *error = NULL;
 
-  for (i = 0; keys[i] != NULL; i++)
-    {
-      key = g_strdup_printf ("%s/%d/rate", keys[i], screen);
-      error = NULL;
-      val = gconf_client_get_int (client, key, &error);
-      g_free (key);
+  key = g_strdup_printf ("%s/%d/rate", display, screen);
+  val = gconf_client_get_int (client, key, &error);
+  g_free (key);
 
-      if (error == NULL)
-	return val;
+  if (error == NULL)
+    return val;
 
-      g_error_free (error);
-    }
-  
+  g_error_free (error);
   return 0;
 }
 
@@ -120,7 +114,7 @@ gsm_set_display_properties (void)
 #endif
   char *specific_path;
   char *keys[3];
-  int i;
+  int i, residx;
 
   display = gdk_display_get_default ();
   xdisplay = gdk_x11_display_get_xdisplay (display);
@@ -153,8 +147,9 @@ gsm_set_display_properties (void)
     {
       screen = gdk_display_get_screen (display, i);
       root_window = gdk_screen_get_root_window (screen);
+      residx = get_resolution (client, i, keys, &width, &height);
 
-      if (get_resolution (client, i, keys, &width, &height))
+      if (residx != -1)
 	{
 	  XRRScreenSize *sizes;
 	  int nsizes, j;
@@ -169,7 +164,7 @@ gsm_set_display_properties (void)
 
 	  config = XRRGetScreenInfo (xdisplay, gdk_x11_drawable_get_xid (GDK_DRAWABLE (root_window)));
 
-	  rate = get_rate (client, i, keys);
+	  rate = get_rate (client, keys[residx], i);
 	  
 	  sizes = XRRConfigSizes (config, &nsizes);
 	  closest = find_closest_size (sizes, nsizes, width, height);
