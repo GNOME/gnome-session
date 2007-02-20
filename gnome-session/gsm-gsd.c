@@ -157,8 +157,9 @@ gsm_gsd_start (void)
     }
   else
     {
-      dbus_connection_setup_with_g_main (dbus_g_connection_get_connection(connection),
-                                         NULL);
+      dbus_connection_set_exit_on_disconnect (dbus_g_connection_get_connection (connection),
+                                              FALSE);
+
       gsd.dbus_proxy = dbus_g_proxy_new_for_name (connection,
                                                   "org.gnome.SettingsDaemon",
                                                   "/org/gnome/SettingsDaemon",

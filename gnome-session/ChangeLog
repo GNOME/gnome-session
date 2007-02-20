@@ -1,3 +1,11 @@
+2007-02-20  Vincent Untz  <vuntz@gnome.org>
+
+	* gsm-gsd.c: don't call dbus_connection_setup_with_g_main() since it's
+	already done by dbus_g_bus_get(), set dbus to not exit gnome-session
+	on disconnect
+	Patch by Jan de Groot <jan@jgc.homeip.net>
+	Fix bug #399934
+
 2007-02-17  Jens Granseuer  <jensgr@gmx.net>
 
 	* gsm-xrandr.c: (get_resolution), (get_rate),
