@@ -5,6 +5,7 @@ SUBDIRS =			\
 	man
 
 EXTRA_DIST =			\
+	MAINTAINERS		\
 	COPYING-DOCS		\
 	HACKING			\
 	intltool-extract.in	\
