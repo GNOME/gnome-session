@@ -10,14 +10,15 @@
 # Jeroen van der Vegt <A.J.vanderVegt@ITS.TUDelft.nl>, 2002.
 # Reinout van Schouwen <reinout@cs.vu.nl>, 2003
 # Tino Meinen <a.t.meinen@chello.nl> 2005, 2006.
+# Wouter Bolsterlee <wbolster@gnome.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-30 21:57+0100\n"
-"PO-Revision-Date: 2006-08-04 04:00+0200\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2007-02-21 13:56+0100\n"
+"PO-Revision-Date: 2007-02-21 13:56+0100 \n"
+"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +112,7 @@ msgstr "Configureer uw sessies"
 msgid "Sessions"
 msgstr "Sessies"
 
-#: ../gnome-session/gsm-at-startup.c:39
+#: ../gnome-session/gsm-at-startup.c:61
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -324,6 +325,9 @@ msgid ""
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
 msgstr ""
+"Het Gnome-sessiebeheer kon het bestand ‘%s’ niet vergrendelen. Dit kan komen "
+"door een onbeschrijfbare map. Het zou helpen als u een foutrapport indient. "
+"U kunt in de tussentijd gebruikmaken van de ‘failsafe’-sessie."
 
 #: ../gnome-session/ice.c:537
 #, c-format
@@ -332,6 +336,9 @@ msgid ""
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
 msgstr ""
+"Het Gnome-sessiebeheer kon het bestand ‘%s’ niet lezen. Als dit bestand "
+"bestaat, dan moet het leesbaar zijn door de huidige gebruiker. U kunt in de "
+"gebruik maken van de ‘failsafe’-sessie en dit bestand verwijderen."
 
 #: ../gnome-session/ice.c:582
 #, c-format
@@ -340,6 +347,10 @@ msgid ""
 "to function properly.  Try logging in with the failsafe session and removing "
 "this file.  Also make sure that the file's directory is writable."
 msgstr ""
+"Het Gnome-sessiebeheer kon het bestand ‘%s’ niet beschrijven. Als dit "
+"bestand bestaat, dan moet het schrijfbaar zijn door de huidige gebruiker. U "
+"kunt in de gebruik maken van de ‘failsafe’-sessie en dit bestand "
+"verwijderen. Controleer ook of de map de juiste schrijfrechten heeft."
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
