@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-18 07:57+0200\n"
-"PO-Revision-Date: 2006-08-18 21:17+0800\n"
-"Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
+"POT-Creation-Date: 2007-01-12 14:35+0000\n"
+"PO-Revision-Date: 2007-02-19 16:27+0800\n"
+"Last-Translator: Funda Wang <fundawang@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,6 +87,14 @@ msgstr ""
 "这是注销对话框中将被选中的选项。可供选择的值有：“logout”代表注"
 "销，“shutdown”代表关闭系统，“restart”代表重新启动。"
 
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+
 # SUN CHANGED MESSAGE
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -123,6 +131,7 @@ msgstr "状态"
 
 # applets/gkb/gkb.c:262
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "程序"
 
@@ -250,6 +259,69 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "设置守护进程重新启动的次数太多。"
 
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr ""
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr ""
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+
+# gsm/save-session.c:86
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "错误：无法连接到会话管理器\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr ""
+
+# SUN NEW TRANSLATION
+#: ../gnome-session/gsm-remove-client.c:203
+#, fuzzy, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "会话中的程序列表。"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "您确定要注销吗？"
@@ -277,40 +349,40 @@ msgstr "关闭系统(_U)"
 msgid "_Restart the computer"
 msgstr "重新启动(_R)"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "指定要载入的会话名"
 
-#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "名称"
 
 # gsm/main.c:57
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:85
 msgid "Only read saved sessions from the default.session file"
 msgstr "仅从默认的会话文件中读取保存的会话"
 
 # gsm/main.c:58
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客户注册的时间(毫秒，0=永远)"
 
-#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
 msgid "DELAY"
 msgstr "延迟"
 
 # gsm/main.c:59
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客户响应的时间(毫秒，0=永远)"
 
 # gsm/main.c:60
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客户消失的时间(毫秒，0=永远)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:263
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -321,166 +393,136 @@ msgstr ""
 "无法查到 %s 的互联网地址，这将妨碍 GNOME 正常操作。\n"
 "把 %s 加到 /etc/hosts 文件中也许能解决这个问题。"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:270
 msgid "Log in Anyway"
 msgstr "继续登录"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:271
 msgid "Try Again"
 msgstr "再试一次"
 
-#: ../gnome-session/main.c:402
+#: ../gnome-session/main.c:408
 msgid "- Manage the GNOME session"
 msgstr "- 管理 GNOME 会话"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "您的会话现已保存"
-
 # gsm/manager.c:376
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "由于冲突放弃等待。"
 
 # gsm/manager.c:826
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "对 %s 命令没有响应。"
 
 # gsm/manager.c:827
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "这个程序可能太慢、停止或者崩溃了。"
 
 # gsm/manager.c:828
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "你可以等待它响应或者删除它。"
 
 # gsm/manager.c:1359
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1748
 msgid "Restart abandoned due to failures."
 msgstr "由于失败导致放弃重新运行。"
 
 # gsm/manager.c:1527
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1944
 msgid "A session shutdown is in progress."
 msgstr "会话正在关闭。"
 
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session name"
 msgstr "设定当前会话的名称"
 
 # gsm/save-session.c:41
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "杀死会话"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "使用对话框"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "出错时使用对话框"
+
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "不请求确认"
 
 # gsm/save-session.c:86
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
 
-#: ../gnome-session/save-session.c:169
+#: ../gnome-session/save-session.c:173
 msgid "- Save the current session"
 msgstr "- 保存当前会话"
 
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "会话名字不能为空"
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "在关闭前将更改保存到当前会话吗？"
 
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "会话名字已经存在"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
+msgstr "如果您不保存的话，更改将被丢弃。"
 
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "添加一个新的会话"
-
-# gsm/save-session.c:41
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "编辑会话名称"
-
-#: ../gnome-session/session-properties-capplet.c:119
-msgid "Enable"
-msgstr "启用"
-
-#: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:467
-msgid "Disable"
-msgstr "禁用"
-
-# gnome-terminal/gnome-terminal.c:1585
-#: ../gnome-session/session-properties-capplet.c:148
-msgid "_Edit"
-msgstr "编辑(_E)"
-
-# SUN NEW TRANSLATION
-#: ../gnome-session/session-properties-capplet.c:216
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"有些更改没有保存。\n"
-"是否依然要退出？"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "关闭而不保存(_C)"
 
 # gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:266
+#: ../gnome-session/session-properties-capplet.c:222
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "会话"
 
-#: ../gnome-session/session-properties-capplet.c:299
-msgid "Show splash screen on _login"
-msgstr "登录时显示启动画面(_L)"
-
-#: ../gnome-session/session-properties-capplet.c:310
-msgid "As_k on logout"
-msgstr "注销时询问(_K)"
-
-#: ../gnome-session/session-properties-capplet.c:321
-msgid "Automatically save chan_ges to session"
-msgstr "自动将更改保存到会话(_G)"
-
-# gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:332
-msgid "_Sessions:"
-msgstr "会话(_S)："
-
-# gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:350
-msgid "Session Name"
-msgstr "会话名称"
-
-# panel/menu.c:3509
-#: ../gnome-session/session-properties-capplet.c:401
-msgid "Session Options"
-msgstr "会话选项"
-
-#: ../gnome-session/session-properties-capplet.c:410
-msgid "Current Session"
-msgstr "当前会话"
-
 # applets/gkb/gkb.c:262
-#: ../gnome-session/session-properties-capplet.c:419
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "额外的启动程序(_P)："
 
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/session-properties-capplet.c:438
-msgid "Command"
-msgstr "命令"
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "启用"
 
 # applets/gkb/gkb.c:262
-#: ../gnome-session/session-properties-capplet.c:478
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "启动程序"
+
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "当前会话"
+
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "自动将更改保存到会话(_G)"
+
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "保存当前会话"
+
+# panel/menu.c:3509
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "会话选项"
+
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "您的会话已保存。"
+
+# gsm/save-session.c:86
+#: ../gnome-session/session-properties-capplet.c:496
+msgid "could not connect to the session manager\n"
+msgstr "无法连接到会话管理器\n"
+
+#: ../gnome-session/session-properties-capplet.c:502
+msgid "session manager does not support GNOME extensions\n"
+msgstr "会话管理器不支持 GNOME 扩展\n"
 
 # SUN NEW TRANSLATION
 #: ../gnome-session/session-properties.c:49
@@ -489,7 +531,7 @@ msgstr "从会话删除当前选定的客户。"
 
 #: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
-msgstr "应用变动到会话中"
+msgstr "将更改应用到当前会话中"
 
 # SUN NEW TRANSLATION
 #: ../gnome-session/session-properties.c:61
@@ -504,55 +546,67 @@ msgstr "当前运行的程序(_P)："
 msgid "Configure your sessions"
 msgstr "配置对话"
 
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
 # SUN CHANGED MESSAGE
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "Metacity 窗口管理器"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "窗口管理器"
 
 # panel/menu.c:543
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "面板"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
 # gnome-terminal/gnome-terminal.c:1590
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "桌面设置"
 
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/startup-programs.c:403
-msgid "_Startup Command:"
-msgstr "启动命令(_S)："
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "名称(_N)："
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../gnome-session/startup-programs.c:409
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "命令(_C)："
+
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "启动命令"
 
-#: ../gnome-session/startup-programs.c:441
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "启动程序的名称不能为空"
+
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
-# applets/gkb/gkb.c:262
-#: ../gnome-session/startup-programs.c:480
-msgid "Add Startup Program"
-msgstr "添加启动程序"
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "启动命令无效"
 
-#: ../gnome-session/startup-programs.c:524
+# applets/gkb/gkb.c:262
+#: ../gnome-session/startup-programs.c:667
+msgid "New Startup Program"
+msgstr "新建启动程序"
+
+#: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
 
