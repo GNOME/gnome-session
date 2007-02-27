@@ -46,7 +46,6 @@
 #include "gsm-dbus.h"
 #include "gsm-sound.h"
 #include "gsm-gsd.h"
-#include "gsm-proxy.h"
 #include "gsm-keyring.h"
 #include "gsm-xrandr.h"
 #include "gsm-at-startup.h"
@@ -422,8 +421,6 @@ main (int argc, char *argv[])
   putenv (ep);
 
   ignore (SIGPIPE);
-
-  gsm_set_up_legacy_proxy_environment ();
 
   /* Need DISPLAY set */
   gsm_keyring_daemon_start ();

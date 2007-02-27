@@ -74,13 +74,6 @@
 /* Assistive Technology support is turned on */
 #define ACCESSIBILITY_KEY         "/desktop/gnome/interface/accessibility"
 
-/* Proxy information */
-#define HTTP_PROXY_PREFIX             "/system/http_proxy"
-#define HTTP_PROXY_KEY                HTTP_PROXY_PREFIX "/use_http_proxy"
-#define HTTP_PROXY_AUTHENTICATION_KEY HTTP_PROXY_PREFIX "/use_authentication"
-#define HTTP_PROXY_HOST_KEY           HTTP_PROXY_PREFIX "/host"
-#define HTTP_PROXY_PORT_KEY           HTTP_PROXY_PREFIX "/port"
-
 /* Convenience macros: */
 #define APPEND(List,Elt) ((List) = (g_slist_append ((List), (Elt))))
 #define PREPEND(List,Elt) ((List) = (g_slist_prepend ((List), (Elt))))
