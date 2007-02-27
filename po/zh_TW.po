@@ -12,21 +12,21 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.15.91\n"
+"Project-Id-Version: gnome-session 2.17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-02 07:07+0200\n"
-"PO-Revision-Date: 2006-02-20 10:36+0800\n"
+"POT-Creation-Date: 2007-02-26 03:33+0000\n"
+"PO-Revision-Date: 2007-02-26 22:52+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "允許 TCP 連線"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -37,11 +37,11 @@ msgstr ""
 "session 不會監聽在 TCP 埠的連接。本選項會允許 (獲授權的) 遠端主機的連線。"
 "gnome-session 必須重新啟動方可令本選項生效。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如啟用本選項，gnome-session 會在作業階段終止前先提示使用者。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -49,31 +49,31 @@ msgstr ""
 "如啟用本選項，gnome-session 會自動儲存作業階段，否則在登出時，對話方塊會提供"
 "選項，讓您選擇是否儲存作業階段。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "登出提示"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr "當登入 GNOME 桌面時，優先使用作為啟動畫面的圖像"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "儲存作業階段"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
 msgstr "在登出對話方塊中已選的選項"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "登入時顯示啟動畫面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "當啟動作業階段時顯示啟動畫面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -82,7 +82,7 @@ msgstr ""
 "這是以目錄 $datadir/pixmaps/ 作為起始的相對路徑數值。子目錄及圖像名稱皆是有效"
 "數值。改變這些數值後會在下次登入時生效。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -90,6 +90,25 @@ msgid ""
 msgstr ""
 "這是會在登出對話方塊中選擇的選項，有效的數值是：“logout”－登出，“shutdown”－"
 "關機，及“restart”－重新啟動。"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "設定作業階段"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "作業階段"
+
+#: ../gnome-session/gsm-at-startup.c:61
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"本作業階段要求使用無障礙環境。但是找不到無障礙環境註冊表。請確定 AT-SPI 套件"
+"已安裝正確。作業階段會以沒有無障礙環境的支援方式執行。"
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -120,6 +139,7 @@ msgid "State"
 msgstr "狀態"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "程式"
 
@@ -240,6 +260,75 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "「設定伺服程式」重新啟動的次數太多。"
 
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "列出目前已註冊的客戶端，然後離開"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "程式..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr "必須最少指定一個要移除的程式。可以 --list 將程式列出。\n"
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "錯誤：無法連接作業階段總管\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "目前已註冊的客戶端：\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "在作業階段中無法找到程式 %s\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+"GNOME 作業階段無法啟動。請向 GNOME 匯報錯誤。在匯報時請包含此 ICE 錯誤訊"
+"息：‘%s’同時可以嘗試以安全模式作業階段登入。"
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"GNOME 作業階段無法鎖定檔案‘%s’。請向 GNOME 匯報錯誤。有時這情況發生可能是資料"
+"夾無法可寫入。嘗試以安全模式作業階段登入，確定其為可寫。"
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+"GNOME 作業階段總管無法讀取檔案‘%s’。如果該檔案存在，其必須為可讀，GNOME 的功"
+"能才能正常地使用。嘗試以安全模式作業階段登入，然後將其移除。"
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+"無法寫入檔案‘%s’。該檔案必須為可寫，GNOME 的功能才能正常地使用。嘗試以安全模"
+"式作業階段登入，然後將其移除。同時亦請確定該資料夾為可寫。"
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "是否確定要登出？"
@@ -264,36 +353,36 @@ msgstr "關機(_U)"
 msgid "_Restart the computer"
 msgstr "重新啟動電腦(_R)"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "指定準備載入的作業階段名稱"
 
-#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "名稱"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:85
 msgid "Only read saved sessions from the default.session file"
 msgstr "只從預設的作業階段檔案 (default.session) 中讀取已儲存的作業階段"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客戶端註冊的時限[亳秒]（0=沒有限制）"
 
-#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
 msgid "DELAY"
 msgstr "延遲"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "等待客戶端回應的時限[亳秒]（0=沒有限制）"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "等待客戶端終止的時限[亳秒]（0=沒有限制）"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:263
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -306,148 +395,118 @@ msgstr ""
 "將 %s 加入 /etc/hosts\n"
 "可能可以避免此問題出現。"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:270
 msgid "Log in Anyway"
 msgstr "強迫登入"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:271
 msgid "Try Again"
 msgstr "重試"
 
-#: ../gnome-session/main.c:402
+#: ../gnome-session/main.c:396
 msgid "- Manage the GNOME session"
 msgstr "- 管理 GNOME 作業階段"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "已經儲存作業階段"
-
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "因為有衝突所以不會等待。"
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "指令 %s 沒有回應。"
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "程式可能很慢，已停止或中斷。"
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "可以等待回應或中止該程式。"
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1748
 msgid "Restart abandoned due to failures."
 msgstr "因為多次失敗所以放棄重新啟動。"
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1944
 msgid "A session shutdown is in progress."
 msgstr "己經正在關閉作業階段。"
 
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session name"
 msgstr "設定目前作業階段名稱"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "強行中止作業階段"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "使用對話方塊"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "使用對話視窗顯示錯誤"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "無需確定"
+
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "無法連接作業階段總管"
 
-#: ../gnome-session/save-session.c:169
+#: ../gnome-session/save-session.c:173
 msgid "- Save the current session"
 msgstr "- 儲存目前的作業階段"
 
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "作業階段名稱不能留空"
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "關閉前儲存目前的作業階段？"
 
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "該作業階段名稱已經存在"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
+msgstr "如不儲存，將會放棄全部所作的變更。"
 
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "加入新的作業階段"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "關閉但不儲存(_C)"
 
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "修改作業階段名稱"
-
-#: ../gnome-session/session-properties-capplet.c:119
-msgid "Enable"
-msgstr "啟用"
-
-#: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:467
-msgid "Disable"
-msgstr "停用"
-
-#: ../gnome-session/session-properties-capplet.c:148
-msgid "_Edit"
-msgstr "修改(_E)"
-
-#: ../gnome-session/session-properties-capplet.c:216
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"部份改變仍未儲存。\n"
-"是否仍然要離開？"
-
-#: ../gnome-session/session-properties-capplet.c:266
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "作業階段"
-
-#: ../gnome-session/session-properties-capplet.c:299
-msgid "Show splash screen on _login"
-msgstr "登入時顯示啟動畫面(_L)"
-
-#: ../gnome-session/session-properties-capplet.c:310
-msgid "As_k on logout"
-msgstr "登出前作出詢問(_K)"
-
-#: ../gnome-session/session-properties-capplet.c:321
-msgid "Automatically save chan_ges to session"
-msgstr "自動儲存作業階段(_G)"
-
-#: ../gnome-session/session-properties-capplet.c:332
-msgid "_Sessions:"
-msgstr "作業階段(_S)："
-
-#: ../gnome-session/session-properties-capplet.c:350
-msgid "Session Name"
-msgstr "作業階段名稱"
-
-#: ../gnome-session/session-properties-capplet.c:401
-msgid "Session Options"
-msgstr "作業階段選項"
-
-#: ../gnome-session/session-properties-capplet.c:410
-msgid "Current Session"
-msgstr "目前的作業階段"
-
-#: ../gnome-session/session-properties-capplet.c:419
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "啟動時額外執行以下的程式(_P)："
 
-#: ../gnome-session/session-properties-capplet.c:438
-msgid "Command"
-msgstr "指令"
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "已啟用"
 
-#: ../gnome-session/session-properties-capplet.c:478
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "初始啟動程式"
+
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "目前的作業階段"
+
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "自動儲存作業階段(_G)"
+
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "儲存目前的作業階段"
+
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "作業階段選項"
+
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "作業階段已經儲存。"
+
+#: ../gnome-session/session-properties-capplet.c:496
+msgid "could not connect to the session manager\n"
+msgstr "無法連接作業階段總管\n"
+
+#: ../gnome-session/session-properties-capplet.c:502
+msgid "session manager does not support GNOME extensions\n"
+msgstr "作業階段總管不支援 GNOME 伸延\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -465,50 +524,101 @@ msgstr "目前作業階段中正在運行的程式的清單。"
 msgid "Currently running _programs:"
 msgstr "目前正在執行的程式(_P)："
 
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "設定作業階段"
-
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "Sawfish 視窗管理員"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "Metacity 視窗管理員"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "視窗管理員"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "面板"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "桌面設定"
 
-#: ../gnome-session/startup-programs.c:403
-msgid "_Startup Command:"
-msgstr "初始啟動指令(_S)："
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "名稱(_N)："
 
-#: ../gnome-session/startup-programs.c:409
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "指令(_C)："
+
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "初始啟動指令"
 
-#: ../gnome-session/startup-programs.c:441
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "初始啟動程式不能留空"
+
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "初始啟動指令不可以留空"
 
-#: ../gnome-session/startup-programs.c:480
-msgid "Add Startup Program"
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "初始啟動指令無效"
+
+#: ../gnome-session/startup-programs.c:667
+msgid "New Startup Program"
 msgstr "新增初始啟動程式"
 
-#: ../gnome-session/startup-programs.c:524
+#: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "修改初始啟動程式"
+
+#~ msgid "The session name cannot be empty"
+#~ msgstr "作業階段名稱不能留空"
+
+#~ msgid "The session name already exists"
+#~ msgstr "該作業階段名稱已經存在"
+
+#~ msgid "Add a new session"
+#~ msgstr "加入新的作業階段"
+
+#~ msgid "Edit session name"
+#~ msgstr "修改作業階段名稱"
+
+#~ msgid "Disable"
+#~ msgstr "停用"
+
+#~ msgid "_Edit"
+#~ msgstr "修改(_E)"
+
+#~ msgid ""
+#~ "Some changes are not saved.\n"
+#~ "Is it still OK to exit?"
+#~ msgstr ""
+#~ "部份改變仍未儲存。\n"
+#~ "是否仍然要離開？"
+
+#~ msgid "Show splash screen on _login"
+#~ msgstr "登入時顯示啟動畫面(_L)"
+
+#~ msgid "As_k on logout"
+#~ msgstr "登出前作出詢問(_K)"
+
+#~ msgid "_Sessions:"
+#~ msgstr "作業階段(_S)："
+
+#~ msgid "Session Name"
+#~ msgstr "作業階段名稱"
+
+#~ msgid "_Startup Command:"
+#~ msgstr "初始啟動指令(_S)："
+
+#~ msgid "Add Startup Program"
+#~ msgstr "新增初始啟動程式"
