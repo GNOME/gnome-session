@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-02 22:45+0000\n"
-"PO-Revision-Date: 2007-03-04 17:36+0100\n"
+"POT-Creation-Date: 2007-03-04 17:42+0100\n"
+"PO-Revision-Date: 2007-03-04 17:47+0100\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: Kurdish <gnu-ku-wergerandin@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -17,53 +17,66 @@ msgstr ""
 "X-Generator: KBabel 1.10\n"
 "X-Rosetta-Export-Date: 2007-03-04 15:38+0000\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Destûrê bide peywendiyên TCP"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
 msgstr "Bi hinceta ewlekariyê gnome-session, li platformên  _IceTcpTransNoListen() (Pergalên XFree86) portên TCP ên  guhdar nake. Ev vebijêrk destûrê dide peywendiyên dûr (yên nehatine bi tenêkirin). Ji bo çalak bibe divê gnome-session ji nû ve were destpêkirin."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Heke hatibe hilbijartin, berî girtina danişînê gnome-session daxwaza bikarhêner dipirse."
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
 msgstr "Heke hilbijartî be, gnome-session danişînê bi xweber digire. Heke ne hilbijartî be, di qutiya peywendiyê de vebijêrka tomarkirinê heye."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Daxwaza derketinê"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr "Wêneyê jji bo dîmendera destpêkê hatiye hilbijartin"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Danişînan tomar bike"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
 msgstr "Vebijêrka hilbijartî ya paceya derketinê"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Dîmendera vebûnê nîşan bide"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Di vekirina danişînê de dîmendera vebûnê nîşan bide"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
 msgstr "Ev li gor peldanka $datadir/pixmaps/ riyek e. Bin peldank û navên wêneyan nirxên derbasdar in. Guhertina van nirxan dê danişîna têketinê ya pêş de jî binbandor bike."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
 msgstr "Ev, bijarteka ku di paceya derketinê de hatiye hilbijartin e, derketina ji nirxên derbasdar \"logout\", girtina pergalê \"shutdown\"  û nûdestpêkirina pergalê jî \"restart\" e."
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Danişînên xwe veava bike."
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "Danişîn"
+
+#: ../gnome-session/gsm-at-startup.c:61
+msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
+msgstr ""
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -94,6 +107,7 @@ msgid "State"
 msgstr "Rewş"
 
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "Bername"
 
@@ -175,6 +189,8 @@ msgstr "Her dem di her têketinê de tê destpêkirin."
 #. * 1.  lets you change the message on it
 #. * 2.  lets you append messages and has a "history"
 #. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
 #: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
@@ -208,98 +224,108 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "Servîsa Mîhengan gelek zêde ji nû ve hate vekirin."
 
-#: ../gnome-session/logout.c:476
-msgid "Exit"
-msgstr "Derkeve"
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr ""
 
-#: ../gnome-session/logout.c:521
-msgid "_Log Out"
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "BERNAME..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid "You must specify at least one program to remove. You can list the programs with --list.\n"
+msgstr ""
+
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "Çewtî: pêwendî bi rêveberê danişînê re pêk nehat\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr ""
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Di danişînê de bernameya %s nehat dîtin\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid "The GNOME session manager cannot start properly.  Please report this as a GNOME bug. Please include this ICE failure message in the bug report:  '%s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid "The GNOME session manager was unable to lock the file '%s'.  Please report this as a GNOME bug.  Sometimes this error may occur if the file's directory is unwritable, you could try logging in via the failsafe session and ensuring that it is."
+msgstr ""
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid "The GNOME session manager was unable to read the file: '%s'.  If this file exists it must be readable by you for GNOME to work properly.  Try logging in with the failsafe session and removing this file."
+msgstr ""
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid "Could not write to file '%s'.  This file must be writable in order for GNOME to function properly.  Try logging in with the failsafe session and removing this file.  Also make sure that the file's directory is writable."
+msgstr ""
+
+#: ../gnome-session/logout.c:404
+msgid "Are you sure you want to log out?"
+msgstr "Tu bi rastî dixwazî derkevî?"
+
+#: ../gnome-session/logout.c:421
+msgid "_Save current setup"
+msgstr "_Mîhengên heyî tomar bike"
+
+#: ../gnome-session/logout.c:444
+msgid "Action"
+msgstr "Çalakî"
+
+#: ../gnome-session/logout.c:461
+msgid "_Log out"
 msgstr "_Derkeve"
 
-#: ../gnome-session/logout.c:555
-msgid "L_ock Screen"
-msgstr "Ekranê _qifil bike"
+#: ../gnome-session/logout.c:468
+msgid "Sh_ut down"
+msgstr "Bi tevahî bi_gire"
 
-#: ../gnome-session/logout.c:588
-msgid "S_witch User"
-msgstr "_Bikarhêner biguherîne"
+#: ../gnome-session/logout.c:476
+msgid "_Restart the computer"
+msgstr "Komputerê ji nû ve bide _dest pê kirin"
 
-#: ../gnome-session/logout.c:630
-msgid "Sus_pend"
-msgstr "_Xew (suspend)"
-
-#: ../gnome-session/logout.c:663
-msgid "_Hibernate"
-msgstr "Xewa _kûr (hibernate)"
-
-#: ../gnome-session/logout.c:696
-msgid "_Restart"
-msgstr "_Nûdestpêkirin"
-
-#: ../gnome-session/logout.c:729
-msgid "_Shut Down"
-msgstr "Bi _tevahî bigire"
-
-#: ../gnome-session/logout.c:764
-msgid "Close your session and return to the login screen."
-msgstr "Danişînê bigire û vegere dîmendera têketinê."
-
-#: ../gnome-session/logout.c:765
-msgid "Leave your session open and password protected, but let other users log in as well."
-msgstr "Danişînê vekirî û bi parastina nasnavê bihêle, lê destûrê bide ku bikarhênerên din jî bikaribin danişînê vekin."
-
-#: ../gnome-session/logout.c:766
-msgid "Launch the screensaver and password protect your session."
-msgstr "Dîmenderparêzê bixebitîne û danişînê bi nasnavê biparêze."
-
-#: ../gnome-session/logout.c:767
-msgid "Restart the computer."
-msgstr "Nûdestpêka komputerê çêke."
-
-#: ../gnome-session/logout.c:768
-msgid "Power saving mode. Depending on your computer, you can wake the computer up by pressing a key, the power button, or opening the laptop lid."
-msgstr "Mod a parastina hêzê. Bi pêwendîdarî komputerê, bi pêlêkirina bişkojkekê, bi bişkojka hêzê an jî vekirina berga komputera destan tu dikarî hişyar bikî."
-
-#: ../gnome-session/logout.c:769
-msgid "While hibernating, your computer won't need any power. When started again, all open applications will be restored."
-msgstr "Di mod a razanê de dê pêdiviya hêzê bi komputera te çênebe. Dema ji nû ve hate destpêkirin, dê hemû sepanên vekirî paşde bên barkirin."
-
-#: ../gnome-session/logout.c:770
-msgid "Completely turn off the computer."
-msgstr "Komputerê bi tevahî bigire."
-
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Navê danişîna ku tê barkirin eşkere bike"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 #: ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NAV"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "Ji dosiya default.session bi tenê danişînên tomarkirî bixwîne"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Ji bo tomarbûna daxwazkeran maweya rawestînê ji cureyê mîlîçirkan (0=bêdawî)"
 
-#: ../gnome-session/main.c:84
 #: ../gnome-session/main.c:85
 #: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "DELAY"
 msgstr "DERENG"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Ji bo bersivdana daxwazkeran maweya rawestînê ji cureyê mîlîçirkan (0=bêdawî)"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Ji bo mirina daxwazkeran maweya rawestînê ji cureyê mîlîçirkan (0=bêdawî)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -312,44 +338,40 @@ msgstr ""
 "Heke tu navnîşana %s li dosyaya /etc/hosts zêde bike\n"
 "belkî tu karibe pirsgirêkê çareser bike."
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:269
 msgid "Log in Anyway"
 msgstr "Bilî vî Têkeve"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:270
 msgid "Try Again"
 msgstr "Carekî din biceribîne"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:395
 msgid "- Manage the GNOME session"
 msgstr "- Danişîna GNOME bi rêve bibe"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Danişîna te hat tomarkirin"
-
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "Ji ber lihevaliqînekê rawestandin serbest hate berdan."
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s bersiv ji fermanê re nîne."
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "Sepan hêdî ye, hatiye rawestandin an şikandin."
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "Dibe tu li hêviyê bimînî ta ku bersivê bide an jêbibe."
 
-#: ../gnome-session/manager.c:1761
+#: ../gnome-session/manager.c:1748
 msgid "Restart abandoned due to failures."
 msgstr "Ji ber çewtiyan vekirina ji nû ve hate betalkirin."
 
-#: ../gnome-session/manager.c:1957
+#: ../gnome-session/manager.c:1944
 msgid "A session shutdown is in progress."
 msgstr "Girtina danişînê didome."
 
@@ -362,8 +384,8 @@ msgid "Kill session"
 msgstr "Danişînê bikûje"
 
 #: ../gnome-session/save-session.c:51
-msgid "Use dialog boxes"
-msgstr "Qutiyên têkiliyê bi kar bîne"
+msgid "Use dialog boxes for errors"
+msgstr "Qutiyên têkiliyê ji bo çewtiyan bi kar bîne"
 
 #: ../gnome-session/save-session.c:52
 msgid "Do not require confirmation"
@@ -378,87 +400,57 @@ msgstr "Pêwendî bi rêveberê danişînê re pêk nehat"
 msgid "- Save the current session"
 msgstr "- Danişîna heyî tomar bike"
 
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "Navê danişînê nabe ku vala were hiştin"
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "Guhertinan di danişînê de tomar bike û bigire?"
 
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "Ev navê danişînê jixwe heye"
-
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "Danişîneke nû lê zêde bike"
-
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "Navê danişînê biguherîne"
-
-#: ../gnome-session/session-properties-capplet.c:145
-msgid "Enable"
-msgstr "Çalak bike"
-
-#: ../gnome-session/session-properties-capplet.c:151
-#: ../gnome-session/session-properties-capplet.c:492
-msgid "Disable"
-msgstr "Neçalak bike"
-
-#: ../gnome-session/session-properties-capplet.c:173
-msgid "_Edit"
-msgstr "_Biguherîne"
-
-#: ../gnome-session/session-properties-capplet.c:241
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
 msgstr ""
-"Hin guhartin nehatine tomarkirin.\n"
-"Dîsa jî tu dixwazî derkevî?"
 
-#: ../gnome-session/session-properties-capplet.c:291
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Danişîn"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "_Bigire lê Tomar neke"
 
-#: ../gnome-session/session-properties-capplet.c:324
-msgid "Show splash screen on _login"
-msgstr "Di têketinê de dîmena_vebûnê nîşan bide"
-
-#: ../gnome-session/session-properties-capplet.c:335
-msgid "As_k on logout"
-msgstr "Di derketinê de bi_pirse"
-
-#: ../gnome-session/session-properties-capplet.c:346
-msgid "Automatically save chan_ges to session"
-msgstr "Bixweber guhertinan di danişînê de tomar bike"
-
-#: ../gnome-session/session-properties-capplet.c:357
-msgid "_Sessions:"
-msgstr "_Danişîn:"
-
-#: ../gnome-session/session-properties-capplet.c:375
-msgid "Session Name"
-msgstr "Navê Danişînê"
-
-#: ../gnome-session/session-properties-capplet.c:426
-msgid "Session Options"
-msgstr "Vebijêrkên Danişînê"
-
-#: ../gnome-session/session-properties-capplet.c:435
-msgid "Current Session"
-msgstr "Rûniştina aniha"
-
-#: ../gnome-session/session-properties-capplet.c:444
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "_Bernameyên pêvek ên destpêkê:"
 
-#: ../gnome-session/session-properties-capplet.c:463
-msgid "Command"
-msgstr "Ferman"
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "Çalak"
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "Bernameyên destpêkê"
+
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "Rûniştina aniha"
+
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "Bixweber guhertinan di danişînê de tomar bike"
+
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "Danişîna heyî tomar bike"
+
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "Vebijêrkên Danişînê"
+
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "Danişîna te hat tomarkirin."
+
+#: ../gnome-session/session-properties-capplet.c:496
+msgid "could not connect to the session manager\n"
+msgstr "pêwendî bi rêveberê danişînê re pêk nehat\n"
+
+#: ../gnome-session/session-properties-capplet.c:502
+msgid "session manager does not support GNOME extensions\n"
+msgstr ""
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -476,68 +468,139 @@ msgstr "Lîsteya programên di danişînê de."
 msgid "Currently running _programs:"
 msgstr "Bernameyên ku niha di_meşin:"
 
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Danişînên xwe veava bike."
-
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "Gerinendeyê paceyan Sawfish"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "Gerinendeyê paceyan Metacity"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "Menajerê Paceyan"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "Panel"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "Mîhengên sermasê"
 
-#: ../gnome-session/splash-widget.c:49
-msgid "Update Notifier"
-msgstr "Agahdarkerê rojanekirinê"
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "_Nav:"
 
-#: ../gnome-session/startup-programs.c:404
-msgid "_Startup Command:"
-msgstr "_Fermana destpêkê:"
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "_Ferman:"
 
-#: ../gnome-session/startup-programs.c:410
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "Fermana despêke"
 
-#: ../gnome-session/startup-programs.c:442
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "Navê bernameya destpêke vala nabe"
+
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "Fermana destpêke vala nabe"
 
-#: ../gnome-session/startup-programs.c:481
-msgid "Add Startup Program"
-msgstr "Bernameya destpêkê zêde bike"
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "Fermana destpêke nederbasdar e"
 
-#: ../gnome-session/startup-programs.c:570
+#: ../gnome-session/startup-programs.c:667
+msgid "New Startup Program"
+msgstr "Bernameya Destpêkê ya Nû"
+
+#: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "Bernameya destpêkê biguherîne"
 
+#~ msgid "Exit"
+#~ msgstr "Derkeve"
+#~ msgid "_Log Out"
+#~ msgstr "_Derkeve"
+#~ msgid "L_ock Screen"
+#~ msgstr "Ekranê _qifil bike"
+#~ msgid "S_witch User"
+#~ msgstr "_Bikarhêner biguherîne"
+#~ msgid "Sus_pend"
+#~ msgstr "_Xew (suspend)"
+#~ msgid "_Hibernate"
+#~ msgstr "Xewa _kûr (hibernate)"
+#~ msgid "_Restart"
+#~ msgstr "_Nûdestpêkirin"
+#~ msgid "_Shut Down"
+#~ msgstr "Bi _tevahî bigire"
+#~ msgid "Close your session and return to the login screen."
+#~ msgstr "Danişînê bigire û vegere dîmendera têketinê."
+#~ msgid ""
+#~ "Leave your session open and password protected, but let other users log "
+#~ "in as well."
+#~ msgstr ""
+#~ "Danişînê vekirî û bi parastina nasnavê bihêle, lê destûrê bide ku "
+#~ "bikarhênerên din jî bikaribin danişînê vekin."
+#~ msgid "Launch the screensaver and password protect your session."
+#~ msgstr "Dîmenderparêzê bixebitîne û danişînê bi nasnavê biparêze."
+#~ msgid "Restart the computer."
+#~ msgstr "Nûdestpêka komputerê çêke."
+#~ msgid ""
+#~ "Power saving mode. Depending on your computer, you can wake the computer "
+#~ "up by pressing a key, the power button, or opening the laptop lid."
+#~ msgstr ""
+#~ "Mod a parastina hêzê. Bi pêwendîdarî komputerê, bi pêlêkirina bişkojkekê, "
+#~ "bi bişkojka hêzê an jî vekirina berga komputera destan tu dikarî hişyar "
+#~ "bikî."
+#~ msgid ""
+#~ "While hibernating, your computer won't need any power. When started "
+#~ "again, all open applications will be restored."
+#~ msgstr ""
+#~ "Di mod a razanê de dê pêdiviya hêzê bi komputera te çênebe. Dema ji nû ve "
+#~ "hate destpêkirin, dê hemû sepanên vekirî paşde bên barkirin."
+#~ msgid "Completely turn off the computer."
+#~ msgstr "Komputerê bi tevahî bigire."
+#~ msgid "The session name cannot be empty"
+#~ msgstr "Navê danişînê nabe ku vala were hiştin"
+#~ msgid "The session name already exists"
+#~ msgstr "Ev navê danişînê jixwe heye"
+#~ msgid "Add a new session"
+#~ msgstr "Danişîneke nû lê zêde bike"
+#~ msgid "Edit session name"
+#~ msgstr "Navê danişînê biguherîne"
+#~ msgid "Disable"
+#~ msgstr "Neçalak bike"
+#~ msgid "_Edit"
+#~ msgstr "_Biguherîne"
+#~ msgid ""
+#~ "Some changes are not saved.\n"
+#~ "Is it still OK to exit?"
+#~ msgstr ""
+#~ "Hin guhartin nehatine tomarkirin.\n"
+#~ "Dîsa jî tu dixwazî derkevî?"
+#~ msgid "Show splash screen on _login"
+#~ msgstr "Di têketinê de dîmena_vebûnê nîşan bide"
+#~ msgid "As_k on logout"
+#~ msgstr "Di derketinê de bi_pirse"
+#~ msgid "_Sessions:"
+#~ msgstr "_Danişîn:"
+#~ msgid "Session Name"
+#~ msgstr "Navê Danişînê"
+#~ msgid "Update Notifier"
+#~ msgstr "Agahdarkerê rojanekirinê"
+#~ msgid "_Startup Command:"
+#~ msgstr "_Fermana destpêkê:"
+#~ msgid "Add Startup Program"
+#~ msgstr "Bernameya destpêkê zêde bike"
 #~ msgid "There was an unknown activation error."
 #~ msgstr "Çewtiyeke çalakirinê ya nenas pêk hat."
-#~ msgid "Action"
-#~ msgstr "Çalakî"
-#~ msgid "_Log out"
-#~ msgstr "_Derkeve"
-#~ msgid "Sh_ut down"
-#~ msgstr "Bi tevahî bi_gire"
-#~ msgid "_Restart the computer"
-#~ msgstr "Komputerê ji nû ve bide _dest pê kirin"
 #~ msgid "Set the current session"
 #~ msgstr "Danişîna derbasdar bimîhengîne"
 #~ msgid "Initialize session settings"
