@@ -1,22 +1,23 @@
 # translation of gnome-session.HEAD.gu.po to Gujarati
-# Copyright (C) 2004, 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 # MagNet <magnet@magnet-i.com>, 2004.
-# Ankit Patel <ankit@redhat.com>, 2004, 2005.
+# Ankit Patel <ankit@redhat.com>, 2004, 2005, 2007.
 # Ankit Patel <ankit644@yahoo.com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-27 01:32+0200\n"
-"PO-Revision-Date: 2006-07-27 11:28+0530\n"
-"Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
-"Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2007-01-12 14:35+0000\n"
+"PO-Revision-Date: 2007-03-08 14:20+0530\n"
+"Last-Translator: Ankit Patel <ankit@redhat.com>\n"
+"Language-Team: Gujarati <fedora-trans-gu@redhat.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -97,6 +98,14 @@ msgstr ""
 "સિસ્ટમ બંધ કરવા માટે \"બંધ કરો\" અને સિસ્ટમ ફરીથી શરૂ કરવા માટે \"ફરી શરૂ કરો\" માન્ય "
 "વિકલ્પો છે."
 
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr "સહાયક ટેક્નોલોજી આધાર આ સત્ર માટે અરજી કરવામાં આવેલ છે, પરંતુ સુલભતા રજીસ્ટરી મળી નહિં. મહેરબાની કરીને ખાતરી કરો કે AT-SPI પેકેજ સ્થાપિત થયેલ છે. તમારો સત્ર સહાયક ટેક્નોલોજી આધાર વિના શરૂ થયેલ છે."
+
 # gnome-session/gsm-client-editor.c:94
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -132,6 +141,7 @@ msgstr "અવસ્થા"
 
 # gnome-session/gsm-client-list.c:111
 #: ../gnome-session/gsm-client-list.c:165
+#: ../gnome-session/session-properties-capplet.c:280
 msgid "Program"
 msgstr "કાર્યક્રમ"
 
@@ -271,6 +281,68 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "સુયોજનો ડીમન બહુજ વધારે વખત ફરીથી શરુ થયું છે."
 
+#: ../gnome-session/gsm-remove-client.c:46
+msgid "List registered clients, then exit"
+msgstr "રજીસ્ટર થયેલ ક્લાઈન્ટોની યાદી આપો, પછી બહાર નીકળો"
+
+#: ../gnome-session/gsm-remove-client.c:48
+msgid "PROGRAM..."
+msgstr "PROGRAM..."
+
+#: ../gnome-session/gsm-remove-client.c:172
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr "તમારે દૂર કરવા માટે ઓછામાં ઓછો એક કાર્યક્રમ સ્પષ્ટ કરવો જ પડશે. તમે --list વડે કાર્યક્રમોની યાદી આપી શકો છો.\n"
+
+# gnome-session/save-session.c:112
+#: ../gnome-session/gsm-remove-client.c:179
+msgid "Error: could not connect to the session manager\n"
+msgstr "ભૂલ: સત્ર વ્યવસ્થાપકમાં જોડી શક્યા નહિં\n"
+
+#: ../gnome-session/gsm-remove-client.c:193
+msgid "Currently registered clients:\n"
+msgstr "વર્તમાનમાં રજીસ્ટર થયેલ ક્લાઈન્ટો:\n"
+
+#: ../gnome-session/gsm-remove-client.c:203
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "સત્ર %s માં કાર્યક્રમ શોધી શક્યા નહિં\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr "જીનોમ સત્ર વ્યવસ્થાપક યોગ્ય રીતે શરૂ કરી શકતા નથી.  મહેરબાની કરીને આને જીનોમ ભૂલ તરીકે અહેવાલ આપો. મહેરબાની કરીને આ ICE નિષ્ફળતા સંદેશાને ભૂલના અહેવાલમાં સમાવો:  '%s'.  આ દરમ્યાન તમે failsafe સત્રની મદદથી પ્રવેશ કરવાનો પ્રયાસ કરી શક્યા હશો."
+
+#: ../gnome-session/ice.c:510
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr "જીનોમ સત્ર વ્યવસ્થાપક ફાઈલ %s ને તાળું મારવામાં અસમર્થ હતું.  મહેરબાની કરીને આને જીનોમ ભૂલ તરીકે અહેવાલ આપો.  અમુકવાર આ ભૂલ પેદા થશે જો ફાઈલની ડિરેક્ટરી લખી શકાય નહિં તેવી હોય, તમે failsafe સત્રની મદદથી પ્રવેશના પ્રયાસ કરી શક્યા હશો અને તેની ખાતરી કરી શકશો."
+
+#: ../gnome-session/ice.c:537
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr "જીનોમ સત્ર વ્યવસ્થાપક ફાઈલ વાંચવામાં અસમર્થ હતું: '%s'.  જો આ ફાઈલ અસ્તિત્વમાં હોય તો તે જીનોમને યોગ્ય રીતે કામ આપવા માટે તમારા દ્વારા વાંચી શકાય તેવી હોવી જ જોઈએ.  failsafe સત્ર મારફતે પ્રવેશવાનો અને આ ફાઈલ દૂર કરવાનો પ્રયાસ કરો."
+
+#: ../gnome-session/ice.c:582
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr "ફાઈલ '%s' માં લખી શક્યા નહિં.  આ ફાઈલ જીનોમ માટે યોગ્ય રીતે કામ આપવા માટે લખી શકાય તેવી હોવી જ જોઈએ.  failsafe સત્ર સાથે પ્રવેશ કરવાનો અને આ ફાઈલ દૂર કરવાનો પ્રયાસ કરો.  અને એ પણ ખાતરી કરો કે ફાઈલની ડિરેક્ટરી લખી શકાય તેવી છે."
+
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "શુ તમે ખરેખર બહાર નીકળવા માંગો છો?"
@@ -300,41 +372,41 @@ msgid "_Restart the computer"
 msgstr "કૅમ્પ્યુટર ફરીથી શરુ કરો (_R)"
 
 # gnome-session/main.c:66
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "લોડ કરવા સત્ર નામ સ્પષ્ટ કરો"
 
-#: ../gnome-session/main.c:82 ../gnome-session/save-session.c:46
+#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NAME"
 
 # gnome-session/main.c:67
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:85
 msgid "Only read saved sessions from the default.session file"
 msgstr "default.session ફાઇલમાંથી ફક્ત સંગ્રહ કરેલા સત્રો વાંચી શકાય"
 
 # gnome-session/main.c:68
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "ક્લાઈન્ટના નોંધણીની પ્રતિક્ષામાં મિલીસેકન્ડમાં સમય વ્યતીત થયો (0 = હંમેશ માટે)"
 
-#: ../gnome-session/main.c:84 ../gnome-session/main.c:85
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:88
 msgid "DELAY"
 msgstr "DELAY"
 
 # gnome-session/main.c:69
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "ક્લાઈન્ટના પ્રત્યુત્તરની પ્રતીક્ષામાં મિલીસેકન્ડમાં સમય વ્યતીત થયો (0=હંમેશ માટે)"
 
 # gnome-session/main.c:70
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "ક્લાઈન્ટના સમાપ્ત થવાની પ્રતીક્ષામાં મિલીસેકન્ડમાં સમય વ્યતીત થયો (0=હંમેશ માટે)"
 
 # gnome-session/gnome-login-check.c:228
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:263
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -347,179 +419,145 @@ msgstr ""
 "સંભવિત છે કે આ મુશ્કેલી /ect/hosts માં %s ફાઇલ ઉમેરવાથી\n"
 "દૂર થશે."
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:270
 msgid "Log in Anyway"
 msgstr "કોઈ પણ રીતે પ્રવેશ કરો"
 
 # gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:271
 msgid "Try Again"
 msgstr "ફરીથી પ્રયત્ન કરો"
 
-#: ../gnome-session/main.c:402
+#: ../gnome-session/main.c:408
 msgid "- Manage the GNOME session"
 msgstr "- જીનોમ સત્રની વ્યવસ્થા કરો"
 
-# gnome-session/save-session.c:160
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "તમારા સત્રનો સંગ્રહ થઈ ગયો છે"
-
 # gnome-session/manager.c:400
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
 msgstr "રાહ જુઓ, મતભેદના લીધે પ્રક્રિયા સમાપ્ત થઈ રહી છે."
 
 # gnome-session/manager.c:834
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1020
 #, c-format
 msgid "No response to the %s command."
 msgstr "%s આદેશનો કોઈ પ્રત્યુત્તર નથી."
 
 # gnome-session/manager.c:835
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1021
 msgid "The program may be slow, stopped or broken."
 msgstr "કાર્યક્રમ કદાચ ખુબ ધીમો થશે, બંધ થઈ જશે અથવા તુટી જશે."
 
 # gnome-session/manager.c:836
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1022
 msgid "You may wait for it to respond or remove it."
 msgstr "તેના પ્રત્યુત્તરની કદાચ તમારે રાહ જોવી પડે અથવા તેને દુર કરો."
 
 # gnome-session/manager.c:1375
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1748
 msgid "Restart abandoned due to failures."
 msgstr "નિષ્ફળતાના લિધે ફરીથી શરુ થઈ ના શક્યુ."
 
 # gnome-session/manager.c:1541
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1944
 msgid "A session shutdown is in progress."
 msgstr "સત્રને બંધ કરનૉવાની પ્રક્રિયા પ્રગતિમા છે."
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:49
 msgid "Set the current session name"
 msgstr "વર્તમાન સત્ર નામ સુયોજિત કરો"
 
 # gnome-session/save-session.c:43
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "સત્ર સમાપ્ત કરો"
 
 # gnome-session/save-session.c:44
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "સંવાદ પેટી વાપરો"
+#: ../gnome-session/save-session.c:51
+msgid "Use dialog boxes for errors"
+msgstr "ભૂલો માટે સંવાદ બોક્સો વાપરો"
+
+#: ../gnome-session/save-session.c:52
+msgid "Do not require confirmation"
+msgstr "ખાતરી જરૂરી નથી"
 
 # gnome-session/save-session.c:112
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:183
+#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "સત્ર સંચાલક સાથે સંપર્ક થઈ શક્યો નથી"
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/save-session.c:169
+#: ../gnome-session/save-session.c:173
 msgid "- Save the current session"
 msgstr "- વર્તમાન સત્ર સંગ્રહો"
 
-# gnome-session/session-names.c:127
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "સત્ર નામ ખાલી નથી હોતુ"
+# gnome-session/session-properties-capplet.c:259
+#: ../gnome-session/session-properties-capplet.c:153
+msgid "Save changes to the current session before closing?"
+msgstr "શું બંધ કરવા પહેલાં વર્તમાન સત્રના ફેરફારો સંગ્રહવા છે?"
 
-# gnome-session/session-names.c:137
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "સત્ર નામ પહેલાથી હાજર છે"
+#: ../gnome-session/session-properties-capplet.c:155
+msgid "If you don't save, changes will be discarded."
+msgstr "જો તમે સંગ્રહો નહિં, તો ફેરફારો અવગણવામાં આવશે."
 
-# gnome-session/session-names.c:170
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "નવું સત્ર ઉમેરો"
-
-# gnome-session/session-names.c:198
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "સત્રના નામમાં ફેરફાર કરો"
-
-#: ../gnome-session/session-properties-capplet.c:119
-msgid "Enable"
-msgstr "સક્રિય કરો"
-
-#: ../gnome-session/session-properties-capplet.c:125
-#: ../gnome-session/session-properties-capplet.c:467
-msgid "Disable"
-msgstr "નિષ્ક્રિય કરો"
-
-# gnome-session/session-properties-capplet.c:303
-# gnome-session/session-properties-capplet.c:376
-#: ../gnome-session/session-properties-capplet.c:148
-msgid "_Edit"
-msgstr "સંપાદન (_E)"
-
-# gnome-session/session-properties-capplet.c:166
-#: ../gnome-session/session-properties-capplet.c:216
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"અમુક ફેરફારો સંગ્રહાયા નથી.\n"
-"તેમ છતાં બહાર નીકળવું બરાબર છે?"
+#: ../gnome-session/session-properties-capplet.c:158
+msgid "_Close without Saving"
+msgstr "સંગ્રહ્યા વિના બંધ કરો (_C)"
 
 # gnome-session/session-properties.c:272
-#: ../gnome-session/session-properties-capplet.c:266
+#: ../gnome-session/session-properties-capplet.c:222
 #: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "સત્રો"
 
-# gnome-session/session-properties-capplet.c:227
-#: ../gnome-session/session-properties-capplet.c:299
-msgid "Show splash screen on _login"
-msgstr "પ્રવેશ પર ઝબૂક સ્ક્રીન દર્શાવો (_l)"
-
-# gnome-session/session-properties-capplet.c:243
-#: ../gnome-session/session-properties-capplet.c:310
-msgid "As_k on logout"
-msgstr "પ્રવેશ પર પૂછો (_k)"
-
-# gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/session-properties-capplet.c:321
-msgid "Automatically save chan_ges to session"
-msgstr "સત્રમાં ફેરફારોનો આપોઆપ સંગ્રહ કરો"
-
-# gnome-session/session-properties.c:272
-#: ../gnome-session/session-properties-capplet.c:332
-msgid "_Sessions:"
-msgstr "સત્રો (_S):"
-
-# gnome-session/session-properties-capplet.c:290
-#: ../gnome-session/session-properties-capplet.c:350
-msgid "Session Name"
-msgstr "સત્ર નામ"
-
-# gnome-session/session-properties-capplet.c:332
-#: ../gnome-session/session-properties-capplet.c:401
-msgid "Session Options"
-msgstr "સત્ર વિકલ્પો"
-
-# gnome-session/save-session.desktop.in.h:1
-#: ../gnome-session/session-properties-capplet.c:410
-msgid "Current Session"
-msgstr "વર્તમાન સત્ર"
-
 # gnome-session/startup-programs.c:372
-#: ../gnome-session/session-properties-capplet.c:419
+#: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "વધારાનો પ્રારંભીક કાર્યક્રમ (_p):"
 
-# gnome-session/session-properties-capplet.c:362
-#: ../gnome-session/session-properties-capplet.c:438
-msgid "Command"
-msgstr "આદેશ"
+#: ../gnome-session/session-properties-capplet.c:272
+msgid "Enabled"
+msgstr "સક્રિય કરેલ"
 
 # gnome-session/session-properties-capplet.c:399
-#: ../gnome-session/session-properties-capplet.c:478
+#: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
 msgstr "શુરુઆતી કાર્યક્રમો"
+
+# gnome-session/save-session.desktop.in.h:1
+#: ../gnome-session/session-properties-capplet.c:321
+msgid "Current Session"
+msgstr "વર્તમાન સત્ર"
+
+# gnome-session/session-properties-capplet.c:259
+#: ../gnome-session/session-properties-capplet.c:334
+msgid "Automatically save chan_ges to session"
+msgstr "સત્રમાં ફેરફારોનો આપોઆપ સંગ્રહ કરો"
+
+# gnome-session/session-properties-capplet.c:259
+#: ../gnome-session/session-properties-capplet.c:349
+msgid "Save the current session"
+msgstr "વર્તમાન સત્ર સંગ્રહો"
+
+# gnome-session/session-properties-capplet.c:332
+#: ../gnome-session/session-properties-capplet.c:357
+msgid "Session Options"
+msgstr "સત્ર વિકલ્પો"
+
+# gnome-session/save-session.c:160
+#: ../gnome-session/session-properties-capplet.c:453
+msgid "Your session has been saved."
+msgstr "તમારા સત્રનો સંગ્રહ થઈ ગયો છે."
+
+# gnome-session/save-session.c:112
+#: ../gnome-session/session-properties-capplet.c:496
+msgid "could not connect to the session manager\n"
+msgstr "સત્ર વ્યવસ્થાપક સાથતે સંપર્ક કરી શક્યા નહિં\n"
+
+#: ../gnome-session/session-properties-capplet.c:502
+msgid "session manager does not support GNOME extensions\n"
+msgstr "સત્ર વ્યવસ્થાપક જીનોમ એક્સટેન્સનોને આધાર આપતું નથી\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -544,57 +582,71 @@ msgid "Configure your sessions"
 msgstr "તમારા સત્રને રુપરેખાંકિત કરો"
 
 # gnome-session/splash.c:62 gnome-session/splash.c:63
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
 msgstr "સોફીશ વિન્ડો સંચાલક"
 
 # gnome-session/splash.c:71
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:46
 msgid "Metacity Window Manager"
 msgstr "મેટાસીટી વિન્ડો સંચાલક"
 
 # gnome-session/splash.c:71
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
 msgstr "વિન્ડો સંચાલક"
 
 # gnome-session/splash.c:69
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:48
 msgid "The Panel"
 msgstr "પેનલ"
 
 # gnome-session/splash.c:73
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:49
 msgid "Nautilus"
 msgstr "નોટીલસ"
 
 # gnome-session/splash.c:68
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:50
 msgid "Desktop Settings"
 msgstr "ડેસ્કટોપ સુયોજનો"
 
-# gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
-#: ../gnome-session/startup-programs.c:425
-msgid "_Startup Command:"
-msgstr "શુરુઆતનો આદેશ (_S):"
+#: ../gnome-session/startup-programs.c:557
+msgid "_Name:"
+msgstr "નામ (_N):"
+
+# gnome-session/session-properties-capplet.c:362
+#: ../gnome-session/startup-programs.c:575
+msgid "_Command:"
+msgstr "આદેશ (_C):"
 
 # gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
-#: ../gnome-session/startup-programs.c:431
+#: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
 msgstr "શુરુઆતનો આદેશ"
 
 # gnome-session/startup-programs.c:332
-#: ../gnome-session/startup-programs.c:460
+#: ../gnome-session/startup-programs.c:607
+msgid "The name of the startup program cannot be empty"
+msgstr "શરૂઆતી કાર્યક્રમોનું નામ ખાલી હોઈ શકે નહિં"
+
+# gnome-session/startup-programs.c:332
+#: ../gnome-session/startup-programs.c:609
 msgid "The startup command cannot be empty"
 msgstr "શરુઆતી આદેશ ખાલી હોઈ શકે નહિ"
 
-# gnome-session/startup-programs.c:372
-#: ../gnome-session/startup-programs.c:497
-msgid "Add Startup Program"
-msgstr "શરુઆતી કાર્યક્રમ ઉમેરો"
+# gnome-session/startup-programs.c:332
+#: ../gnome-session/startup-programs.c:615
+msgid "The startup command is not valid"
+msgstr "શરૂઆતી આદેશ માન્ય નથી"
+
+# gnome-session/session-properties-capplet.c:399
+#: ../gnome-session/startup-programs.c:667
+msgid "New Startup Program"
+msgstr "નવો શરૂઆતી કાર્યક્રમ"
 
 # gnome-session/startup-programs.c:392
-#: ../gnome-session/startup-programs.c:535
+#: ../gnome-session/startup-programs.c:711
 msgid "Edit Startup Program"
 msgstr "શરુઆતી કાર્યક્રમમાં ફેરફાર કરો"
 
