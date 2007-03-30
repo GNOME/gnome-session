@@ -1,5 +1,5 @@
 # Danish translation of gnome-session.
-# Copyright (C) 1998, 99, 2000, 01, 02, 03 Free Software Foundation, Inc.
+# Copyright (C) 1998-07 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
 # Birger Langkjer <birger.langkjer@image.dk>, 1999.
@@ -7,6 +7,7 @@
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
+# Peter Bach <bach.peter@gmail.com>, 2007.
 #
 # Konventioner:
 #
@@ -21,9 +22,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-09 21:39+0100\n"
-"PO-Revision-Date: 2007-02-09 21:34+0100\n"
-"Last-Translator: Lasse Bang Mikkelsen <lbm@fatalerror.dk>\n"
+"POT-Creation-Date: 2007-03-30 07:45+0200\n"
+"PO-Revision-Date: 2007-03-30 08:14+0100\n"
+"Last-Translator: Peter Bach <bach.peter@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,29 +36,16 @@ msgid "Allow TCP connections"
 msgstr "Tillad TCP-forbindelser"
 
 #: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Af sikkerhedshensyn til gnome-session ikke lytte efter forbindelser på TCP-"
-"porte på platforme som har _IceTcpTransNoListen() (XFree86-systemer). Dette "
-"vil tillade forbindelser fra (godkendte) fjernværter. gnome-session skal "
-"genstartes for at ændringen træder i kraft."
+msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
+msgstr "Af sikkerhedshensyn til gnome-session ikke lytte efter forbindelser på TCP-porte på platforme som har _IceTcpTransNoListen() (XFree86-systemer). Dette vil tillade forbindelser fra (godkendte) fjernværter. gnome-session skal genstartes for at ændringen træder i kraft."
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Hvis aktiveret vil gnome-session spørge brugeren før en session afsluttes."
+msgstr "Hvis aktiveret vil gnome-session spørge brugeren før en session afsluttes."
 
 #: ../data/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Hvis aktiveret vil gnome-session gemme sessionen automatisk. Ellers vil log "
-"ud-vinduet indeholde en valgmulighed for at gemme sessionen."
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "Hvis aktiveret vil gnome-session gemme sessionen automatisk. Ellers vil log ud-vinduet indeholde en valgmulighed for at gemme sessionen."
 
 #: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
@@ -84,24 +72,12 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Vis velkomstvinduet når sessionen starter"
 
 #: ../data/gnome-session.schemas.in.h:11
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Dette er en relativ stiværdi baseret på $datadir/pixmaps/-kataloget. Under-"
-"kataloger og billednavne er gyldige værdier. Ændring af denne værdi vil "
-"påvirke det næste sessionslogind."
+msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
+msgstr "Dette er en relativ stiværdi baseret på $datadir/pixmaps/-kataloget. Under-kataloger og billednavne er gyldige værdier. Ændring af denne værdi vil påvirke det næste sessionslogind."
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Dette er den forvalgte valgmulighed i \"Log ud\"-vinduet. Gyldige værdier er "
-"\"logout\" for at logge ud, \"shutdown\" for at stoppe systemet og \"restart"
-"\" for at genstarte systemet."
+msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
+msgstr "Dette er den forvalgte valgmulighed i \"Log ud\"-vinduet. Gyldige værdier er \"logout\" for at logge ud, \"shutdown\" for at stoppe systemet og \"restart\" for at genstarte systemet."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -113,12 +89,8 @@ msgid "Sessions"
 msgstr "Sessioner"
 
 #: ../gnome-session/gsm-at-startup.c:61
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
+msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
+msgstr "Assisterende teknologi understøttelse er blevet anmodet i denne session, men blev ikke fundet. Vær sikker på at AT-SPI-pakken er installeret. Din session er blevet startet uden brug af assisterende teknologi understøttelse."
 
 #: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
@@ -238,13 +210,11 @@ msgstr "Startes altid ved hvert logind"
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
 "Der opstod en fejl under kørsel af indstillingsserveren til Gnome.\n"
 "\n"
-"Nogle ting, så som temaer, lyde eller baggrundsindstillinger virker muligvis "
-"ikke korrekt."
+"Nogle ting, så som temaer, lyde eller baggrundsindstillinger virker muligvis ikke korrekt."
 
 #: ../gnome-session/gsm-gsd.c:57
 msgid ""
@@ -266,8 +236,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Gnome vil stadig forsøge at starte indstillingsserveren næste gang du logger "
-"på."
+"Gnome vil stadig forsøge at starte indstillingsserveren næste gang du logger på."
 
 #: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
@@ -275,65 +244,49 @@ msgstr "Indstillingsserveren er blevet genstartet for mange gange."
 
 #: ../gnome-session/gsm-remove-client.c:46
 msgid "List registered clients, then exit"
-msgstr ""
+msgstr "List registrede klienter, derefter afslut"
 
 #: ../gnome-session/gsm-remove-client.c:48
 msgid "PROGRAM..."
-msgstr ""
+msgstr "PROGRAM..."
 
 #: ../gnome-session/gsm-remove-client.c:172
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
+msgid "You must specify at least one program to remove. You can list the programs with --list.\n"
+msgstr "Du skal angive mindst et program til fjernelse. Du kan liste programmerne med --list.\n"
 
 #: ../gnome-session/gsm-remove-client.c:179
-#, fuzzy
 msgid "Error: could not connect to the session manager\n"
-msgstr "Kunne ikke tilkoble til sessionshåndteringen"
+msgstr "Fejl: Kunne ikke forbinde til sessionshåndteringen\n"
 
 #: ../gnome-session/gsm-remove-client.c:193
 msgid "Currently registered clients:\n"
-msgstr ""
+msgstr "Nuværende registrede klienter:\n"
 
 #: ../gnome-session/gsm-remove-client.c:203
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't find program %s in session\n"
-msgstr "Listen af programmer i sessionen"
+msgstr "Kunne ikke finde programmet %s i sessionen\n"
 
 #. At least try to tell the user something.
 #: ../gnome-session/ice.c:355
 #, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
+msgid "The GNOME session manager cannot start properly.  Please report this as a GNOME bug. Please include this ICE failure message in the bug report:  '%s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr "GNOME sessionshåndteringen kan ikke starte korrekt. Vær venligt at rapportere dette som en GNOME-fejl. Vær venlig at inkludere denne ICE-fejlbesked i fejlrapporten: \"%s\". Imens kan du forsøge at logge ind ved brug af den fejlsikrede session."
 
 #: ../gnome-session/ice.c:510
 #, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
+msgid "The GNOME session manager was unable to lock the file '%s'.  Please report this as a GNOME bug.  Sometimes this error may occur if the file's directory is unwritable, you could try logging in via the failsafe session and ensuring that it is."
+msgstr "GNOME sessionshåndteringen kunne ikke låse filen \"%s\". Vær venlig at rapportere dette som en GNOME-fejl. Nogle gange optræder denne fejl hvis filens mappe er skrivebeskyttet. Du kan forsøge at logge ind via den fejlsikrede session og undersøge om den er."
 
 #: ../gnome-session/ice.c:537
 #, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
+msgid "The GNOME session manager was unable to read the file: '%s'.  If this file exists it must be readable by you for GNOME to work properly.  Try logging in with the failsafe session and removing this file."
+msgstr "GNOME sessionshåndteringen kunne ikke læse filen: \"%s\". Hvis denne fil eksisterer skal den være læsbar af dig for at GNOME virker korrekt. Forsøg at logge ind med den fejlsikrede session og fjern denne fil."
 
 #: ../gnome-session/ice.c:582
 #, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
+msgid "Could not write to file '%s'.  This file must be writable in order for GNOME to function properly.  Try logging in with the failsafe session and removing this file.  Also make sure that the file's directory is writable."
+msgstr "Kunne ikke skrive til filen \"%s\". Denne fil skal være skrivebar for at GNOME virker korrekt. Forsøg at logge ind med den fejlsikrede session og fjern denne fil. Vær tilmed sikker på at filens mappe er skrivebar."
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
@@ -359,37 +312,38 @@ msgstr "_Sluk"
 msgid "_Restart the computer"
 msgstr "_Genstart maskinen"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Angiv session som skal indlæses"
 
-#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
-#, fuzzy
+#: ../gnome-session/main.c:83
+#: ../gnome-session/save-session.c:49
 msgid "NAME"
-msgstr "Gnome"
+msgstr "NAVN"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "Læs kun gemte sessioner fra default.session-filen"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter registrerer sig (0=for evigt)"
 
-#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
-#: ../gnome-session/main.c:88
-msgid "DELAY"
-msgstr ""
-
+#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 #: ../gnome-session/main.c:87
+msgid "DELAY"
+msgstr "FORSINKELSE"
+
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter svarer (0=for evigt)"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tidsrum (ms) at vente på at klienter dør (0=for evigt)"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -402,17 +356,17 @@ msgstr ""
 "Det kan muligvis lade sig gøre at løse problemet\n"
 "ved at tilføje %s til filen /etc/hosts."
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:269
 msgid "Log in Anyway"
 msgstr "Log på alligevel"
 
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:270
 msgid "Try Again"
 msgstr "Prøv igen"
 
-#: ../gnome-session/main.c:396
+#: ../gnome-session/main.c:395
 msgid "- Manage the GNOME session"
-msgstr ""
+msgstr "- Håndtér GNOME-sessionen"
 
 #: ../gnome-session/manager.c:512
 msgid "Wait abandoned due to conflict."
@@ -440,53 +394,49 @@ msgid "A session shutdown is in progress."
 msgstr "En session er i færd med at lukke ned."
 
 #: ../gnome-session/save-session.c:49
-#, fuzzy
 msgid "Set the current session name"
-msgstr "Anvend ændringer i den aktuelle session"
+msgstr "Sæt det nuværende sessionsnavn"
 
 #: ../gnome-session/save-session.c:50
 msgid "Kill session"
 msgstr "Afslut session"
 
 #: ../gnome-session/save-session.c:51
-#, fuzzy
 msgid "Use dialog boxes for errors"
-msgstr "Benyt meddelelsesvinduer"
+msgstr "Benyt vinduesbokse til fejl"
 
 #: ../gnome-session/save-session.c:52
 msgid "Do not require confirmation"
-msgstr ""
+msgstr "Opkræv ikke beskæftigelse"
 
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/save-session.c:150
+#: ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke tilkoble til sessionshåndteringen"
 
 #: ../gnome-session/save-session.c:173
-#, fuzzy
 msgid "- Save the current session"
-msgstr "Anvend ændringer i den aktuelle session"
+msgstr "- Gem den nuværende session"
 
 #: ../gnome-session/session-properties-capplet.c:153
-#, fuzzy
 msgid "Save changes to the current session before closing?"
-msgstr "Anvend ændringer i den aktuelle session"
+msgstr "Gem ændringer i den nuværende session før nedlukning?"
 
 #: ../gnome-session/session-properties-capplet.c:155
 msgid "If you don't save, changes will be discarded."
-msgstr ""
+msgstr "Hvis du ikke gemmer vil ændringerne være tabt."
 
 #: ../gnome-session/session-properties-capplet.c:158
 msgid "_Close without Saving"
-msgstr ""
+msgstr "_Luk uden at gemme"
 
 #: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "Yderligere opstarts_programmer:"
 
 #: ../gnome-session/session-properties-capplet.c:272
-#, fuzzy
 msgid "Enabled"
-msgstr "Aktivér"
+msgstr "Aktiveret"
 
 #: ../gnome-session/session-properties-capplet.c:315
 msgid "Startup Programs"
@@ -501,27 +451,24 @@ msgid "Automatically save chan_ges to session"
 msgstr "Gem automatisk ændrin_ger i sessionen"
 
 #: ../gnome-session/session-properties-capplet.c:349
-#, fuzzy
 msgid "Save the current session"
-msgstr "Anvend ændringer i den aktuelle session"
+msgstr "Gem den nuværende session"
 
 #: ../gnome-session/session-properties-capplet.c:357
 msgid "Session Options"
 msgstr "Sessionsegenskaber"
 
 #: ../gnome-session/session-properties-capplet.c:453
-#, fuzzy
 msgid "Your session has been saved."
-msgstr "Din session er blevet gemt"
+msgstr "Din session er blevet gemt."
 
 #: ../gnome-session/session-properties-capplet.c:496
-#, fuzzy
 msgid "could not connect to the session manager\n"
-msgstr "Kunne ikke tilkoble til sessionshåndteringen"
+msgstr "kunne ikke forbinde til sessionshåndteringen\n"
 
 #: ../gnome-session/session-properties-capplet.c:502
 msgid "session manager does not support GNOME extensions\n"
-msgstr ""
+msgstr "sessionshåndtering understøtter ikke GNOME-udvidelser\n"
 
 #: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
@@ -565,12 +512,11 @@ msgstr "Indstillinger for skrivebordet"
 
 #: ../gnome-session/startup-programs.c:557
 msgid "_Name:"
-msgstr ""
+msgstr "_Navn:"
 
 #: ../gnome-session/startup-programs.c:575
-#, fuzzy
 msgid "_Command:"
-msgstr "Kommando"
+msgstr "_Kommando:"
 
 #: ../gnome-session/startup-programs.c:581
 msgid "Startup Command"
@@ -598,149 +544,104 @@ msgstr "Redigér opstartsprogram"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "Der opstod en ukendt aktiveringsfejl."
-
 #~ msgid "The session name cannot be empty"
 #~ msgstr "Sessionsnavnet kan ikke være tomt"
-
 #~ msgid "The session name already exists"
 #~ msgstr "Sessionsnavnet eksisterer allerede"
-
 #~ msgid "Add a new session"
 #~ msgstr "Tilføj en ny session"
-
 #~ msgid "Edit session name"
 #~ msgstr "Ændr sessions navn"
-
 #~ msgid "Disable"
 #~ msgstr "Deaktivér"
-
 #~ msgid "_Edit"
 #~ msgstr "_Redigér"
-
 #~ msgid ""
 #~ "Some changes are not saved.\n"
 #~ "Is it still OK to exit?"
 #~ msgstr ""
 #~ "Nogle ændringer er ikke gemt.\n"
 #~ "Skal der alligevel afsluttes?"
-
 #~ msgid "Show splash screen on _login"
 #~ msgstr "Vis _velkomstsvindue ved logind"
-
 #~ msgid "As_k on logout"
 #~ msgstr "Sp_ørg ved logud"
-
 #~ msgid "_Sessions:"
 #~ msgstr "_Sessioner:"
-
 #~ msgid "Session Name"
 #~ msgstr "Sessionsnavn"
-
 #~ msgid "Initialize session settings"
 #~ msgstr "Klargør sessionsopsætning"
-
 #~ msgid "_Startup Command:"
 #~ msgstr "Startkommando:"
-
 #~ msgid "Add Startup Program"
 #~ msgstr "Tilføj startet program"
-
 #~ msgid "Session Manager Proxy"
 #~ msgstr "Sessionsmellemvært"
-
 #~ msgid "Splash Screen Image"
 #~ msgstr "Billede til velkomstvindue"
-
 #~ msgid "Save Current Session"
 #~ msgstr "Gem session"
-
 #~ msgid "Save current state of desktop"
 #~ msgstr "Gem skrivebordets aktuelle tilstand"
-
 #~ msgid "Starting GNOME: done"
 #~ msgstr "Starter Gnome: færdig"
-
 #~ msgid "Starting GNOME"
 #~ msgstr "Starter Gnome"
-
 #~ msgid "Really reset all GNOME user settings for %s?"
 #~ msgstr "Gendan alle brugerindstillinger for Gnome for %s?"
-
 #~ msgid "Respawn"
 #~ msgstr "Gendan"
-
 #~ msgid "Really log out?"
 #~ msgstr "Vil du logge ud?"
-
 #~ msgid "Reboot"
 #~ msgstr "Genstart"
-
 #~ msgid "Session properties"
 #~ msgstr "Sessionsegenskaber"
-
 #~ msgid "Options"
 #~ msgstr "Indstillinger"
-
 #~ msgid "<i>These changes take effect immediately</i>"
 #~ msgstr "<i>Disse ændringer træder i kraft med det samme</i>"
-
 #~ msgid "Choose Current Session"
 #~ msgstr "Vælg session"
-
 #~ msgid "Add..."
 #~ msgstr "Tilføj..."
-
 #~ msgid "Delete"
 #~ msgstr "Slet"
-
 #~ msgid "Session Chooser"
 #~ msgstr "Sessionsvælger"
-
 #~ msgid "Start Session"
 #~ msgstr "Start session"
-
 #~ msgid "Cancel Login"
 #~ msgstr "Annullér logind"
-
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
 #~ "values. The default value should be OK"
 #~ msgstr ""
 #~ "Programmer med mindre værdier startes først. Standardværdien burde være i "
 #~ "orden."
-
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Kunne ikke tilkoble til gnome-session"
-
 #~ msgid "Session Properties"
 #~ msgstr "Sessionsegenskaber"
-
 #~ msgid "Current session managed programs"
 #~ msgstr "Aktuelt sessionshåndterede programmer"
-
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Vindueshåndteringen Enlightenment"
-
 #~ msgid "Keyboard Bell"
 #~ msgstr "Tastaturklokke"
-
 #~ msgid "Desktop"
 #~ msgstr "Skrivebord"
-
 #~ msgid "Remove"
 #~ msgstr "Fjern"
-
 #~ msgid "Try"
 #~ msgstr "Prøv"
-
 #~ msgid "OK"
 #~ msgstr "O.k."
-
 #~ msgid "Cancel"
 #~ msgstr "Annullér"
-
 #~ msgid "Help"
 #~ msgstr "Hjælp"
-
 #~ msgid "Remove Program"
 #~ msgstr "Fjern program"
+
