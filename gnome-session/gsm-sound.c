@@ -86,9 +86,7 @@ start_esd (void)
   while (gnome_sound_connection_get () < 0
 	 && ((time(NULL) - starttime) < 4))
     {
-#ifdef HAVE_USLEEP
-      usleep(200);
-#endif
+      g_usleep(200);
       gnome_sound_init(NULL);
     }
 }

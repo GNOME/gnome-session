@@ -1,3 +1,8 @@
+2007-04-13  Bastien Nocera  <hadess@hadess.net>
+
+	* gsm-sound.c: (start_esd): Use g_usleep instead
+	of usleep (Closes: #429030)
+
 ==================== 2.18.0 ====================
 
 2007-02-27  Ray Strode  <rstrode@redhat.com>
@@ -274,7 +279,7 @@
 	(start_esd): use gsm_exec_async() to start esd so we get the pid,
 	watch this child to call reset_esd_pid() when it exits
 	(gsm_sound_logout): kill esd when possible
-	Fix bug #352260, based on patch by Loïc Minier <lool+gnome@via.ecp.fr>
+	Fix bug #352260, based on patch by Lo?c Minier <lool+gnome@via.ecp.fr>
 
 2007-01-06  Vincent Untz  <vuntz@gnome.org>
 
@@ -367,7 +372,7 @@
 
 	Cool fading effect for the icons in the splash!
 	Fix bug #149167
-	Patch by Daniel Godás <siro_san@hotmail.com>
+	Patch by Daniel God?s <siro_san@hotmail.com>
 
 	* splash-widget.c: (splash_icon_destroy), (splash_widget_add_icon),
 	(update_trans_effect):
@@ -610,7 +615,7 @@
 
 	* main.c: (check_for_dns): fix misuse of g_ascii_strncmp
 	(gnome_login_check): fix "try again" dialog never disappearing
-	Patch by Frédéric Crozat <fcrozat@mandriva.com>. Fix bug #167799
+	Patch by Fr?d?ric Crozat <fcrozat@mandriva.com>. Fix bug #167799
 
 2006-04-15  Vincent Untz  <vuntz@gnome.org>
 
@@ -1847,7 +1852,7 @@ Mon Jul 28 11:46:56 2003  Jonathan Blandford  <jrb@redhat.com>
 
 	* manager.c (maybe_run_discard_commands): don't run the current
 	discard command if we are autosaving (tracked down by Gustavo
-	Giráldez <gustavo.giraldez@gmx.net>)
+	Gir?ldez <gustavo.giraldez@gmx.net>)
 
 2002-06-03  jacob berkman  <jacob@ximian.com>
 
@@ -3139,7 +3144,7 @@ Mon Jan 03 22:19:47 2000  George Lebl <jirka@5z.com>
 
 	* manager.h: use a signed int for num_sockets.
 
-1999-10-20  Martin Norbäck  <norpan@bigfoot.com>
+1999-10-20  Martin Norb?ck  <norpan@bigfoot.com>
 
 	* session.desktop: Added Swedish entry
 
@@ -3710,7 +3715,7 @@ Thu Jul 16 18:10:26 1998  Tom Tromey  <tromey@cygnus.com>
 
 	* save.c (run_default_session): Run gnome-smproxy, not smproxy.
 
-mar jul  7 09:56:07 ART 1998  Horacio J. Peña <horape@compendium.com.ar>
+mar jul  7 09:56:07 ART 1998  Horacio J. Pe?a <horape@compendium.com.ar>
 
 	* manager.c: added support for saving state
 	of only one process and for restarting sessions. (it's ugly)
