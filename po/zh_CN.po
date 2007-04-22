@@ -8,92 +8,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 14:35+0000\n"
-"PO-Revision-Date: 2007-02-19 16:27+0800\n"
-"Last-Translator: Funda Wang <fundawang@gmail.com>\n"
+"POT-Creation-Date: 2007-02-22 04:11+0000\n"
+"PO-Revision-Date: 2007-04-22 10:23+0700\n"
+"Last-Translator: Yang Zhang <zyangmath@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "允许 TCP 连接"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"为安全起见，在有 _IceTcpTransNoListen()(XFree86 系统)的平台上，gnome-session "
-"不监听 TCP 端口的连接。此选项将允许来自信任的远程主机的连接。必须重新启动 "
-"gnome-session 才能让此设置生效。"
+#: ../data/gnome-session.schemas.in.h:2
+msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
+msgstr "为安全起见，在有 _IceTcpTransNoListen()(XFree86 系统)的平台上，gnome-session 不监听 TCP 端口的连接。此选项将允许来自信任的远程主机的连接。必须重新启动 gnome-session 才能让此设置生效。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如果启用，gnome-session 将在结束会话之前提示。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"如果启用，gnome-session 将自动保存会话。否则，注销对话框中将出现保存会话的选"
-"项。"
+#: ../data/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "如果启用，gnome-session 将自动保存会话。否则，注销对话框中将出现保存会话的选项。"
 
 # gsm/logout.c:248
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "注销提示"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr "登录启动画面的首选图像"
 
 # gsm/session-properties.c:264
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "保存会话"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
 msgstr "注销对话框中选中的选项"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "显示启动画面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "会话启动时显示启动画面"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"这是以 $datadir/pixmaps/ 目录出发的相对路径值。子目录及图像名称都是有效的值。"
-"对此值的更改将会在下次登录时生效。"
+#: ../data/gnome-session.schemas.in.h:11
+msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
+msgstr "这是以 $datadir/pixmaps/ 目录出发的相对路径值。子目录及图像名称都是有效的值。对此值的更改将会在下次登录时生效。"
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"这是注销对话框中将被选中的选项。可供选择的值有：“logout”代表注"
-"销，“shutdown”代表关闭系统，“restart”代表重新启动。"
+#: ../data/gnome-session.schemas.in.h:12
+msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
+msgstr "这是注销对话框中将被选中的选项。可供选择的值有：“logout”代表注销，“shutdown”代表关闭系统，“restart”代表重新启动。"
 
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "配置对话"
+
+# gsm/session-properties.c:264
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "会话"
+
+#: ../gnome-session/gsm-at-startup.c:61
+msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
+msgstr "此会话已请求辅助技术支持，但未找到辅助功能注册项。请确保您安装了 AT-SPI 包。您的会话已以不带辅助技术支持方式启动。"
 
 # SUN CHANGED MESSAGE
 #: ../gnome-session/gsm-client-editor.c:97
@@ -226,8 +211,7 @@ msgstr "每次登录都运行。"
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
 "启动 GNOME 设置守护进程时出错。\n"
 "\n"
@@ -261,17 +245,15 @@ msgstr "设置守护进程重新启动的次数太多。"
 
 #: ../gnome-session/gsm-remove-client.c:46
 msgid "List registered clients, then exit"
-msgstr ""
+msgstr "列出已注册客户端后退出"
 
 #: ../gnome-session/gsm-remove-client.c:48
 msgid "PROGRAM..."
-msgstr ""
+msgstr "程序..."
 
 #: ../gnome-session/gsm-remove-client.c:172
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
+msgid "You must specify at least one program to remove. You can list the programs with --list.\n"
+msgstr "您必须指定至少一个待移除的程序。您可以使用 --list 参数来列出可用程序。\n"
 
 # gsm/save-session.c:86
 #: ../gnome-session/gsm-remove-client.c:179
@@ -280,47 +262,34 @@ msgstr "错误：无法连接到会话管理器\n"
 
 #: ../gnome-session/gsm-remove-client.c:193
 msgid "Currently registered clients:\n"
-msgstr ""
+msgstr "当前已注册客户端：\n"
 
 # SUN NEW TRANSLATION
 #: ../gnome-session/gsm-remove-client.c:203
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn't find program %s in session\n"
-msgstr "会话中的程序列表。"
+msgstr "无法在会话中找到程序 %s \n"
 
 #. At least try to tell the user something.
 #: ../gnome-session/ice.c:355
 #, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
+msgid "The GNOME session manager cannot start properly.  Please report this as a GNOME bug. Please include this ICE failure message in the bug report:  '%s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr "GNOME 会话管理器不能正常启动。请将此报告为一个 GNOME 的 Bug，并将如下出错消息包含在 Bug 报告中：‘%s’。同时您可以尝试使用安全模式会话登录。"
 
 #: ../gnome-session/ice.c:510
 #, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
+msgid "The GNOME session manager was unable to lock the file '%s'.  Please report this as a GNOME bug.  Sometimes this error may occur if the file's directory is unwritable, you could try logging in via the failsafe session and ensuring that it is."
+msgstr "GNOME 会话管理器不能锁定文件 %s。请将此报告为一个 GNOME 的 Bug。有时当该文件所在目录不可写入时会发生此错误，您可以尝试使用安全模式会话登录以确认是否如此。"
 
 #: ../gnome-session/ice.c:537
 #, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
+msgid "The GNOME session manager was unable to read the file: '%s'.  If this file exists it must be readable by you for GNOME to work properly.  Try logging in with the failsafe session and removing this file."
+msgstr "GNOME 会话管理器无法读取文件：“%s”。如果该文件存在，它必须可由您读取才能让 GNOME 正常工作。请尝试使用安全模式会话登录并删除该文件。"
 
 #: ../gnome-session/ice.c:582
 #, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
+msgid "Could not write to file '%s'.  This file must be writable in order for GNOME to function properly.  Try logging in with the failsafe session and removing this file.  Also make sure that the file's directory is writable."
+msgstr "无法写入文件“%s”。为让 GNOME 正常工作，该文件必须可写。请尝试使用安全模式会话登录并删除该文件。同时确保该文件所在目录可写。"
 
 #: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
@@ -347,13 +316,14 @@ msgstr "关闭系统(_U)"
 
 #: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
-msgstr "重新启动(_R)"
+msgstr "重新启动计算机(_R)"
 
 #: ../gnome-session/main.c:84
 msgid "Specify a session name to load"
 msgstr "指定要载入的会话名"
 
-#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:84
+#: ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "名称"
 
@@ -367,7 +337,8 @@ msgstr "仅从默认的会话文件中读取保存的会话"
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "等待客户注册的时间(毫秒，0=永远)"
 
-#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 #: ../gnome-session/main.c:88
 msgid "DELAY"
 msgstr "延迟"
@@ -401,7 +372,7 @@ msgstr "继续登录"
 msgid "Try Again"
 msgstr "再试一次"
 
-#: ../gnome-session/main.c:408
+#: ../gnome-session/main.c:396
 msgid "- Manage the GNOME session"
 msgstr "- 管理 GNOME 会话"
 
@@ -454,7 +425,8 @@ msgid "Do not require confirmation"
 msgstr "不请求确认"
 
 # gsm/save-session.c:86
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/save-session.c:150
+#: ../gnome-session/save-session.c:187
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
 
@@ -473,12 +445,6 @@ msgstr "如果您不保存的话，更改将被丢弃。"
 #: ../gnome-session/session-properties-capplet.c:158
 msgid "_Close without Saving"
 msgstr "关闭而不保存(_C)"
-
-# gsm/session-properties.c:264
-#: ../gnome-session/session-properties-capplet.c:222
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "会话"
 
 # applets/gkb/gkb.c:262
 #: ../gnome-session/session-properties-capplet.c:248
@@ -541,10 +507,6 @@ msgstr "会话中的程序列表。"
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "当前运行的程序(_P)："
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "配置对话"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
