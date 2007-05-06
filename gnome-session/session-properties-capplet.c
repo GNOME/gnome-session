@@ -265,7 +265,7 @@ capplet_build (void)
   gtk_label_set_mnemonic_widget (GTK_LABEL (label),
 		  		 GTK_WIDGET (startup_view));
   startup_sel = gtk_tree_view_get_selection (startup_view);
-  gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_SINGLE);
+  gtk_tree_selection_set_mode (startup_sel, GTK_SELECTION_BROWSE);
   g_signal_connect (G_OBJECT (startup_sel), "changed",
                     (GCallback) selection_changed_cb, startup_view);
   renderer = gtk_cell_renderer_toggle_new ();
@@ -289,11 +289,18 @@ capplet_build (void)
   gtk_box_pack_start (GTK_BOX (hb), util_vbox, FALSE, FALSE, 0);
 
   /* Add/Edit/Delete buttons */
-  button = gtk_button_new_from_stock (GTK_STOCK_NEW);
+  button = gtk_button_new_from_stock (GTK_STOCK_ADD);
   g_signal_connect (button, "clicked",
 		    G_CALLBACK (add_startup_cb), dlg);
   gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
-  
+
+  button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
+  g_signal_connect (button, "clicked",
+		    G_CALLBACK (delete_startup_cb), NULL);
+  gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
+  gtk_widget_set_sensitive (button, FALSE);
+  g_object_set_data (G_OBJECT (startup_view), "delete", button);
+
   button = gtk_button_new_from_stock (GTK_STOCK_EDIT);
   g_signal_connect (button, "clicked",
 		    G_CALLBACK (edit_startup_cb), dlg);
@@ -301,13 +308,6 @@ capplet_build (void)
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "edit", button);
   
-  button = gtk_button_new_from_stock (GTK_STOCK_DELETE);
-  g_signal_connect (button, "clicked",
-		    G_CALLBACK (delete_startup_cb), NULL);
-  gtk_box_pack_start (GTK_BOX (util_vbox), button, FALSE, FALSE, 0);
-  gtk_widget_set_sensitive (button, FALSE);
-  g_object_set_data (G_OBJECT (startup_view), "delete", button);
-
   /* Button for running session-properties */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
