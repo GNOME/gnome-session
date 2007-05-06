@@ -5,9 +5,14 @@
 #ifdef HAVE_ESD /* almost whole file */
 #include <signal.h>
 #include <unistd.h>
-#include <libgnome/libgnome.h>
 #include <esd.h>
 #include "util.h"
+
+#include <libgnome/gnome-sound.h>
+#include <libgnome/gnome-util.h>
+#include <libgnome/gnome-triggers.h>
+
+#include <libgnome/gnome-config.h>
 
 #define ENABLE_ESD_KEY    "/desktop/gnome/sound/enable_esd"
 #define ENABLE_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"

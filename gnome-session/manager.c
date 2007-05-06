@@ -20,14 +20,16 @@
 #include <string.h>
 #include <stdlib.h>
 #include <glib.h>
-#include <gtk/gtk.h>
-#include <libgnome/libgnome.h>
+
 #include <unistd.h>
 #include <errno.h>
 #ifndef errno
 extern int errno;
 #endif
 
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+#include <libgnome/libgnome.h>
 
 #include "manager.h"
 #include "session.h"
@@ -69,7 +71,7 @@ GSList *purge_retain_list = NULL;
 GSList *live_list = NULL;
 
 /* Timeout for clients that are slow to respond to SmSaveYourselfRequest */
-static gint warn_timeout_id = -1;
+static guint warn_timeout_id = 0;
 
 /* Used to monitor programs that claim to be interacting. */
 static gboolean interact_ping_replied = TRUE;
@@ -357,7 +359,7 @@ free_client (Client *client)
 
   if (client->purge_timeout_id != 0)
     {
-      gtk_timeout_remove (client->purge_timeout_id);
+      g_source_remove (client->purge_timeout_id);
       client->purge_timeout_id = 0;
     }
 
@@ -656,7 +658,7 @@ start_client (Client* client)
       if (purge_delay > 0)
 	{
 	  g_assert (client->purge_timeout_id == 0);
-	  client->purge_timeout_id = gtk_timeout_add (purge_delay, purge, client);
+	  client->purge_timeout_id = g_timeout_add (purge_delay, purge, client);
 	}
     }
   else
@@ -1262,7 +1264,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       if (delay > 0)
 	{
 	  g_assert (warn_timeout_id == -1);
-	  warn_timeout_id = gtk_timeout_add (delay, no_response_warning, NULL);
+	  warn_timeout_id = g_timeout_add (delay, no_response_warning, NULL);
 	}
     }
   else
@@ -1385,16 +1387,16 @@ update_save_state (void)
 	  save_state_changed ();
 	  send_message (&save_yourself_p2_list, SmsSaveYourselfPhase2);
 
-	  if (warn_timeout_id > -1)
+	  if (warn_timeout_id != 0)
 	    {
-	      gtk_timeout_remove (warn_timeout_id);
-	      warn_timeout_id = -1;
+	      g_source_remove (warn_timeout_id);
+	      warn_timeout_id = 0;
 	    }
 	  if (warn_delay > 0)
 	    {
-	      g_assert (warn_timeout_id == -1);
-	      warn_timeout_id = gtk_timeout_add (warn_delay, 
-						 no_response_warning, NULL);
+	      g_assert (warn_timeout_id == 0);
+	      warn_timeout_id = g_timeout_add (warn_delay,
+				               no_response_warning, NULL);
 	    }
 	}
       save_state = SAVE_PHASE_2;
@@ -1406,10 +1408,10 @@ update_save_state (void)
       if (save_yourself_p2_list)
 	goto out;
 
-      if (warn_timeout_id > -1)
+      if (warn_timeout_id != 0)
 	{
-	  gtk_timeout_remove (warn_timeout_id);
-	  warn_timeout_id = -1;
+	  g_source_remove (warn_timeout_id);
+	  warn_timeout_id = 0;
 	}
 
       CONCAT (live_list, g_slist_copy (save_finished_list));
@@ -1452,9 +1454,9 @@ update_save_state (void)
 
 	  if (suicide_delay > 0)
 	    {
-	      g_assert (warn_timeout_id == -1);
-	      warn_timeout_id = gtk_timeout_add (suicide_delay, 
-						 no_response_warning, NULL);
+	      g_assert (warn_timeout_id == 0);
+	      warn_timeout_id = g_timeout_add (suicide_delay,
+					       no_response_warning, NULL);
 	    }
 	}
       else
@@ -1488,10 +1490,10 @@ update_save_state (void)
       if (save_yourself_list || save_yourself_p2_list)
 	goto out;
 
-      if (warn_timeout_id > -1)
+      if (warn_timeout_id != 0)
 	{
-	  gtk_timeout_remove (warn_timeout_id);
-	  warn_timeout_id = -1;
+	  g_source_remove (warn_timeout_id);
+	  warn_timeout_id = 0;
 	}
 
       CONCAT (live_list, save_finished_list);

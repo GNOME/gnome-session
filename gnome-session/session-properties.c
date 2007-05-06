@@ -21,6 +21,8 @@
 
 #include <config.h>
 
+#include <glib/gi18n.h>
+
 #include "gsm-client-list.h"
 #include "gsm-atk.h"
 

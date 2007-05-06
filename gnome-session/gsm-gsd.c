@@ -85,10 +85,10 @@ name_owner_changed (DBusGProxy *proxy,
                     const char *new_owner,
                     GnomeSettingsData *gsd)
 {
-  if (!g_strcasecmp (name, "org.gnome.SettingsDaemon"))
+  if (!g_ascii_strcasecmp (name, "org.gnome.SettingsDaemon"))
     {
       /* gsd terminated */
-      if (!g_strcasecmp ("", new_owner))
+      if (!g_ascii_strcasecmp ("", new_owner))
         {
 	  if (!gsd->activating)
             {

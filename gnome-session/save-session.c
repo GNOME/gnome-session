@@ -21,14 +21,14 @@
 
 #include <stdio.h>
 #include <string.h>
+
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "gsm-protocol.h"
 
 #include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
-
-#include <libgnomeui/gnome-window-icon.h>
 
 #include <X11/SM/SMlib.h>
 
@@ -179,7 +179,7 @@ main (int argc, char *argv[])
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/mc/i-floppy.png");
+  gtk_window_set_default_icon_from_file (GNOME_ICONDIR"/mc/i-floppy.png", NULL);
 
   client = gnome_master_client ();
   if (!GNOME_CLIENT_CONNECTED (client))

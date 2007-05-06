@@ -1,5 +1,49 @@
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
+	Less usage of deprecated functions.
+	Fix bug #410516 (and #349083).
+	Based on patch by Christian Persch <chpe@gnome.org>
+
+	* manager.c: update includes
+	(free_client):
+	(start_client):
+	(process_save_request):
+	(update_save_state): no deprecated stuff
+	* gsm-gsd.c: (name_owner_changed): ditto
+	* splash-widget.[ch]: (splash_widget_expose_event): ditto
+	(splash_widget_size_allocate): ditto
+	(splash_widget_realize): ditto
+	(splash_widget_finalize): remove useless stuff
+	(splash_widget_finalize): no deprecated stuff
+	(splash_widget_init): renamed from splash_widget_instance_init, and
+	remove useless stuff
+	(get_splash_icon): no deprecated stuff
+	* gsm-client-editor.c: update includes
+	* startup-programs.c: ditto
+	(create_client_from_desktop_entry): no deprecated stuff
+	* session-properties-capplet.c: update includes
+	* gsm-client-row.c: ditto, and use good icon names
+	* gsm-sound.c: something fun, like update includes
+	* session-properties.c: same thing again, are you reading this
+	ChangeLog?
+	* save-session.c: update includes
+	(main): no deprecated function
+	* gsm-remove-client.c: update includes
+	* save.c: ditto
+	(read_desktop_entries_in_dir): no deprecated function
+	(set_session_name): there's a reason we have g_setenv()
+	(read_session): no deprecated function
+	* ice.c: update includes
+	* logout.c: ditto
+	(display_gui): no deprecated function
+	* gsm-client-list.c: (update includes)
+	* command.c: ditto
+	* main.c: ditto
+	(main): g_setenv() and no deprecated functions and
+	g_option_context_set_translation_domain()
+
+2007-05-06  Vincent Untz  <vuntz@gnome.org>
+
 	* splash-widget.c: (splash_widget_add_icon): display the text even if
 	we don't find an icon
 

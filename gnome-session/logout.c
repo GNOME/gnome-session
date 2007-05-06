@@ -22,6 +22,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkinvisible.h>
 #include <gdk/gdkx.h>
@@ -412,7 +414,7 @@ display_gui (void)
 
   gtk_dialog_set_default_response (GTK_DIALOG (box), GTK_RESPONSE_OK);
   gtk_window_set_screen (GTK_WINDOW (box), screen);
-  gtk_window_set_policy (GTK_WINDOW (box), FALSE, FALSE, TRUE);
+  gtk_window_set_resizable (GTK_WINDOW (box), FALSE);
 
   gtk_container_set_border_width (GTK_CONTAINER (box), 5);
 

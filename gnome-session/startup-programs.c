@@ -24,8 +24,11 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <glib/gstdio.h>
-#include <gnome.h>
+#include <glib/gi18n.h>
+
 #include <libgnome/gnome-desktop-item.h>
+#include <libgnomeui/gnome-file-entry.h>
+
 #include "session-properties-capplet.h"
 #include "gsm-protocol.h"
 #include "headers.h"
@@ -134,7 +137,7 @@ create_client_from_desktop_entry (const char *path)
 
         for (i = 0; only_show_in_list[i] != NULL; i++)
           {
-            if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
+            if (g_ascii_strcasecmp (only_show_in_list[i], "GNOME") == 0)
               break;
           }
 
@@ -157,7 +160,7 @@ create_client_from_desktop_entry (const char *path)
 
         for (i = 0; not_show_in_list[i] != NULL; i++)
           {
-            if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
+            if (g_ascii_strcasecmp (not_show_in_list[i], "GNOME") == 0)
               break;
           }
 

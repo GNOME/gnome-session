@@ -18,16 +18,20 @@
    02111-1307, USA.  */
 
 #include <config.h>
+#include <string.h>
+#include <stdlib.h>
+
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <string.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include <gconf/gconf-client.h>
 
-#include <libgnome/libgnome.h>
 #include <libgnome/gnome-desktop-item.h>
 #include <libgnomeui/gnome-client.h>
+
+#include <libgnome/gnome-config.h>
 
 #include "save.h"
 #include "session.h"
@@ -424,7 +428,7 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 
                 for (i = 0; only_show_in_list[i] != NULL; i++)
                   {
-                    if (g_strcasecmp (only_show_in_list[i], "GNOME") == 0)
+                    if (g_ascii_strcasecmp (only_show_in_list[i], "GNOME") == 0)
                       break;
                   }
 
@@ -448,7 +452,7 @@ read_desktop_entries_in_dir (GHashTable *clients, const gchar *path)
 
                 for (i = 0; not_show_in_list[i] != NULL; i++)
                   {
-                    if (g_strcasecmp (not_show_in_list[i], "GNOME") == 0)
+                    if (g_ascii_strcasecmp (not_show_in_list[i], "GNOME") == 0)
                       break;
                   }
 
@@ -617,14 +621,12 @@ set_session_name (const char *name)
 {
   if (name)
     {
-      char *session_name_env;
       session_name = g_strdup(name);
       gnome_config_push_prefix (GSM_OPTION_CONFIG_PREFIX);
       gnome_config_set_string (CURRENT_SESSION_KEY, name);
       gnome_config_pop_prefix ();
       gnome_config_sync ();
-      session_name_env = g_strconcat ("GNOME_SESSION_NAME=", g_strdup (name), NULL);
-      putenv (session_name_env);
+      g_setenv ("GNOME_SESSION_NAME", name, TRUE);
     }
 }
 
@@ -767,7 +769,7 @@ read_session (const char *name)
 	orig_filename = g_strconcat (user_autostart_dir, G_DIR_SEPARATOR_S, basename, ".desktop", NULL);
 	filename = g_strdup (orig_filename);
 	i = 2;
-	while (g_file_exists (filename)) {
+	while (g_file_test (filename, G_FILE_TEST_EXISTS)) {
 	  char *tmp = g_strdup_printf ("%s" G_DIR_SEPARATOR_S "%s-%d.desktop", user_autostart_dir, basename, i);
 
 	  g_free (filename);

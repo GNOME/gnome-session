@@ -30,12 +30,14 @@
 #include <netdb.h>
 #include <time.h>
 
+#include <glib/gi18n.h>
+
+#include <orbit/orbit.h>
+
 #include <gconf/gconf-client.h>
 
-#include <libgnome/libgnome.h>
 #include <libgnomeui/libgnomeui.h>
-
-#include <libgnomeui/gnome-window-icon.h>
+#include <libgnome/gnome-config.h>
 
 #include "manager.h"
 #include "ice.h"
@@ -314,7 +316,6 @@ int
 main (int argc, char *argv[])
 {
   char *ep;
-  char *session_name_env;
   Session *the_session;
   gboolean splashing;
   gboolean a_t_support;
@@ -326,7 +327,7 @@ main (int argc, char *argv[])
   GOptionContext *goption_context;
   gboolean dbus_daemon_owner;
   
-  if (getenv ("GSM_VERBOSE_DEBUG"))
+  if (g_getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
 
   /* Help eradicate the critical warnings in unstable releases of GNOME */
@@ -392,7 +393,8 @@ main (int argc, char *argv[])
       gsm_at_set_gtk_modules ();
     }
 
-  goption_context = g_option_context_new (_("- Manage the GNOME session"));
+  goption_context = g_option_context_new (N_("- Manage the GNOME session"));
+  g_option_context_set_translation_domain (goption_context, GETTEXT_PACKAGE);
   g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);
 
   gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
@@ -410,7 +412,7 @@ main (int argc, char *argv[])
 
   initialize_ice ();
   fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
-  gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-session.png");
+  gtk_window_set_default_icon_from_file (GNOME_ICONDIR"/gnome-session.png", NULL);
 
 
   /* Make sure children see the right value for DISPLAY.  This is
@@ -472,9 +474,8 @@ main (int argc, char *argv[])
 		  g_free (session_name);
 	  session_name = g_strdup (FAILSAFE_SESSION);
   }
-  
-  session_name_env = g_strconcat ("GNOME_DESKTOP_SESSION_ID=", session_name, NULL);
-  putenv (session_name_env);
+
+  g_setenv ("GNOME_DESKTOP_SESSION_ID", session_name, TRUE);
   the_session = read_session (session_name);
 
   gsm_sound_login ();

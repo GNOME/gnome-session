@@ -21,7 +21,6 @@
 #define SPLASH_WIDGET_H
 
 #include <gtk/gtkwindow.h>
-#include <libgnomeui/gnome-icon-theme.h>
 
 #define SPLASH_TYPE_WIDGET                  (splash_widget_get_type ())
 #define SPLASH_WIDGET(obj)                  (GTK_CHECK_CAST ((obj), SPLASH_TYPE_WIDGET, SplashWidget))
@@ -36,8 +35,6 @@
 typedef struct  {
 	GtkWindow    window;
 
-        GnomeIconTheme *icon_theme;
-  
 	GdkPixbuf   *background;
 	GdkPixmap   *bg_pixmap;
 	GList       *icons;

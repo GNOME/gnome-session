@@ -23,6 +23,8 @@
 
 #include <X11/ICE/ICElib.h>
 #include <X11/ICE/ICEutil.h>
+
+#include <glib/gi18n.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 

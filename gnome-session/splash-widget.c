@@ -20,25 +20,24 @@
 #include "config.h"
 #include <stdio.h>
 #include <string.h>
-#include <libgnome/gnome-i18n.h>
-#include <libgnome/gnome-macros.h>
+#include <glib/gi18n.h>
+#include <gtk/gtkicontheme.h>
 #include <libgnome/gnome-program.h>
 #include <gconf/gconf-client.h>
 
 #include "headers.h"
 #include "splash-widget.h"
 
-GNOME_CLASS_BOILERPLATE (SplashWidget,
-			 splash_widget,
-			 GObject,
-			 GTK_TYPE_WINDOW);
+G_DEFINE_TYPE (SplashWidget,
+               splash_widget,
+               GTK_TYPE_WINDOW);
 
 static gboolean update_trans_effect (gpointer);
 
 typedef struct {
-	char *human_name;
-	char *exe;
-	char *icon;
+	const char *human_name;
+	const char *exe;
+	const char *icon;
 } SplashApp;
 
 static const SplashApp splash_map_table[] = {
@@ -155,9 +154,10 @@ splash_widget_expose_event (GtkWidget      *widget,
 		if (gdk_rectangle_intersect (&event->area,
 					     &si->position,
 					     &exposed))
-			gdk_pixbuf_render_to_drawable (
-				si->scaled, widget->window,
+			gdk_draw_pixbuf (
+			        widget->window,
 				widget->style->black_gc,
+				si->scaled,
 				exposed.x - si->position.x,
 				exposed.y - si->position.y,
 				exposed.x, exposed.y,
@@ -202,7 +202,7 @@ splash_widget_size_allocate (GtkWidget     *widget,
 
 	sw->image_bounds = *allocation;
 
-	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, size_allocate, (widget, allocation));
+	GTK_WIDGET_CLASS (splash_widget_parent_class)->size_allocate (widget, allocation);
 }
 
 static void
@@ -225,7 +225,7 @@ splash_widget_realize (GtkWidget *widget)
 {
 	SplashWidget *sw = (SplashWidget *) widget;
 
-	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, realize, (widget));
+	GTK_WIDGET_CLASS (splash_widget_parent_class)->realize (widget);
 
 	if (sw->background && widget->window) {
 		GdkPixmap *pixmap;
@@ -280,9 +280,6 @@ splash_widget_finalize (GObject *object)
 {
 	SplashWidget *sw = (SplashWidget *) object;
 
-	g_object_unref (sw->icon_theme);
-	sw->icon_theme = NULL;
-        
 	g_list_foreach (sw->icons, (GFunc) splash_icon_destroy, NULL);
 	g_list_free (sw->icons);
 
@@ -293,7 +290,7 @@ splash_widget_finalize (GObject *object)
 	g_object_unref (sw->layout);
 	sw->layout = NULL;
 
-	GNOME_CALL_PARENT (G_OBJECT_CLASS, finalize, (object));
+	G_OBJECT_CLASS (splash_widget_parent_class)->finalize (object);
 }
 
 static void
@@ -365,7 +362,7 @@ load_background (SplashWidget *sw)
 }
 
 static void
-splash_widget_instance_init (SplashWidget *sw)
+splash_widget_init (SplashWidget *sw)
 {
 	GtkWindow *window;
 	PangoAttrList *attrs;
@@ -395,18 +392,18 @@ splash_widget_instance_init (SplashWidget *sw)
 	pango_layout_set_attributes (sw->layout, attrs);
 	pango_attr_list_unref (attrs);
 
-	sw->icon_theme = gnome_icon_theme_new ();
-        
 	load_background (sw);
 }
 
 static GdkPixbuf *
 get_splash_icon (SplashWidget *sw, const char *icon_name)
 {
-	char *fname;
+	GdkScreen *screen;
+	GtkIconTheme *icon_theme;
 	GdkPixbuf *pb;
 	char *icon_no_extension;
 	char *p;
+	char *fname;
 
 	icon_no_extension = g_strdup (icon_name);
 	p = strrchr (icon_no_extension, '.');
@@ -417,26 +414,20 @@ get_splash_icon (SplashWidget *sw, const char *icon_name)
 		*p = 0;
 	}
 
-	fname = gnome_icon_theme_lookup_icon (sw->icon_theme,
-					      icon_no_extension,
-					      48, /* icon size */
-					      NULL, NULL);
-	
+        screen = gtk_widget_get_screen (GTK_WIDGET (sw));
+        icon_theme = gtk_icon_theme_get_for_screen (screen);
+
+        pb = gtk_icon_theme_load_icon (icon_theme,
+                                       icon_no_extension,
+                                       48, /* icon size */
+                                       0, NULL);
 	g_free (icon_no_extension);
 
-	if (fname != NULL)
-		pb = gdk_pixbuf_new_from_file (fname, NULL);
-	else
-		pb = NULL;
-	
 	if (pb == NULL) {
-		g_free (fname);
 		fname = g_build_filename (GNOME_ICONDIR, icon_name, NULL);
-
 		pb = gdk_pixbuf_new_from_file (fname, NULL);
+		g_free (fname);
 	}
-	
-	g_free (fname);
 	
 	return pb;
 }

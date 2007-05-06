@@ -20,7 +20,10 @@
    Authors: Felix Bellaby */
 
 #include <config.h>
-#include <gnome.h>
+
+#include <glib/gi18n.h>
+
+#include <gtk/gtkclist.h>
 
 #include "gsm-client-list.h"
 #include "gsm-client-row.h"

@@ -20,6 +20,8 @@
    Authors: Felix Bellaby */
 
 #include <config.h>
+
+#include <glib/gi18n.h>
 #include <gnome.h>
 
 #include <gtk/gtkimage.h>
@@ -30,35 +32,35 @@
 GnomeUIInfo state_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Inactive"), 
                          N_("Waiting to start or already finished."), 
-                         NULL, GNOME_STOCK_MENU_BLANK),
+                         NULL, GNOME_STOCK_BLANK),
   GNOMEUIINFO_ITEM_STOCK(N_("Starting"), 
                          N_("Started but has not yet reported state."), 
-                         NULL, GNOME_STOCK_MENU_TIMER),
+                         NULL, GNOME_STOCK_TIMER),
   GNOMEUIINFO_ITEM_STOCK(N_("Running"), 
                          N_("A normal member of the session."), 
-                         NULL, GNOME_STOCK_MENU_EXEC),
+                         NULL, GTK_STOCK_EXECUTE),
   GNOMEUIINFO_ITEM_STOCK(N_("Saving"), 
                          N_("Saving session details."), 
-                         NULL, GNOME_STOCK_MENU_SAVE),
+                         NULL, GTK_STOCK_SAVE),
   GNOMEUIINFO_ITEM_STOCK(N_("Unknown"), 
                          N_("State not reported within timeout."), 
-                         NULL, GNOME_STOCK_PIXMAP_HELP),
+                         NULL, GTK_STOCK_HELP),
   GNOMEUIINFO_END
 };
 
 GnomeUIInfo style_data[] = {
   GNOMEUIINFO_ITEM_STOCK(N_("Normal"), 
                          N_("Unaffected by logouts but can die."),
-                         NULL, GNOME_STOCK_MENU_BLANK),
+                         NULL, GNOME_STOCK_BLANK),
   GNOMEUIINFO_ITEM_STOCK(N_("Restart"), 
                          N_("Never allowed to die."),
-                         NULL, GNOME_STOCK_MENU_REFRESH),
+                         NULL, GTK_STOCK_REFRESH),
   GNOMEUIINFO_ITEM_STOCK(N_("Trash"), 
                          N_("Discarded on logout and can die."),
-                         NULL, GNOME_STOCK_MENU_TRASH),
+                         NULL, GNOME_STOCK_TRASH),
   GNOMEUIINFO_ITEM_STOCK(N_("Settings"), 
                          N_("Always started on every login."),
-                         NULL, GNOME_STOCK_MENU_PREF),
+                         NULL, GTK_STOCK_PREFERENCES),
   GNOMEUIINFO_END
 };
 

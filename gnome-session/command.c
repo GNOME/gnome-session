@@ -22,8 +22,9 @@
 #include <config.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-#include <libgnome/libgnome.h>
+#include <libgnome/gnome-config.h>
 
 #include "command.h"
 #include "session.h"
