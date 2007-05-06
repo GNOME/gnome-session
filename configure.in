@@ -23,7 +23,7 @@ GNOME_COMPILE_WARNINGS(maximum)
 AC_ARG_WITH(at-spi-registryd-directory,
               [AC_HELP_STRING([--with-at-spi-registryd-directory],
                               [Specify the directory of at-spi-registryd @<:@default=libexecdir@:>@])],,
-                              [with_at_spi_registryd_directory=$libexecdir])
+                              [with_at_spi_registryd_directory="\${libexecdir}"])
 
 AT_SPI_REGISTRYD_DIR=$with_at_spi_registryd_directory
 AC_SUBST(AT_SPI_REGISTRYD_DIR)
