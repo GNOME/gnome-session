@@ -52,6 +52,10 @@ main (int argc, char *argv[])
 			    LIBGNOMEUI_MODULE,
 			    argc, argv, NULL);
 
+	/* to test rtl layout, set RTL=1 in the environment */
+	if (g_getenv ("RTL"))
+		gtk_widget_set_default_direction (GTK_TEXT_DIR_RTL);
+
 	g_timeout_add (500, time_cb, NULL);
 
 	gtk_main ();

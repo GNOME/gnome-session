@@ -1,5 +1,14 @@
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/splash-widget.c: (layout_icon): correctly position the
+	icon in RTL environments
+	Fix bug #432079. Patch by Yair Hershkovitz <yairhr@yahoo.com>.
+	* gnome-session/splash-test.c: (main): make it easy to test the splash
+	widget in RTL environment by defaulting to RTL direction if the RTL
+	environment variable is set
+
+2007-05-06  Vincent Untz  <vuntz@gnome.org>
+
 	* gsm-at-startup.[ch]: (gsm_assistive_tech_exec): kill
 	(gsm_assistive_registry_start): directly call
 	gsm_exec_command_line_async() instead of gsm_assistive_tech_exec()
