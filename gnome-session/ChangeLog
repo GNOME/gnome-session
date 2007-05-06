@@ -1,5 +1,11 @@
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
+	* splash-widget.c: (splash_widget_expose_event):
+	(splash_widget_realize): use max dithering
+	Fix bug #399259. Patch from Fedora.
+
+2007-05-06  Vincent Untz  <vuntz@gnome.org>
+
 	* session-properties-capplet.c: (capplet_build): set selection mode to
 	browse instead of single, used Add/Remove instead of New/Delete and
 	reorder buttons.

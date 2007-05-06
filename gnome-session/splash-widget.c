@@ -172,7 +172,7 @@ splash_widget_expose_event (GtkWidget      *widget,
 				exposed.y - si->position.y,
 				exposed.x, exposed.y,
 				exposed.width, exposed.height,
-				GDK_RGB_DITHER_NORMAL,
+				GDK_RGB_DITHER_MAX,
 				exposed.x, exposed.y);
 	}
 
@@ -254,7 +254,7 @@ splash_widget_realize (GtkWidget *widget)
 				sw->background, GDK_DRAWABLE (pm),
 				widget->style->black_gc,
 				0, 0, 0, 0, width, height,
-				GDK_RGB_DITHER_NORMAL,
+				GDK_RGB_DITHER_MAX,
 				0, 0);
 			
 			gdk_window_set_back_pixmap (
