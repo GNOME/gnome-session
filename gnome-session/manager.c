@@ -1263,7 +1263,7 @@ process_save_request (Client* client, int save_type, gboolean shutdown,
       save_state_changed ();
       if (delay > 0)
 	{
-	  g_assert (warn_timeout_id == -1);
+	  g_assert (warn_timeout_id == 0);
 	  warn_timeout_id = g_timeout_add (delay, no_response_warning, NULL);
 	}
     }
