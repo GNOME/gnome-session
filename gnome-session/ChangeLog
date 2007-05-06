@@ -1,5 +1,25 @@
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
+	Make the sound part less dependend on esound.
+	Part of bug #398430.
+	Based on patch by Matthias Clasen <mclasen@redhat.com>
+
+	* gsm-sound.c: (sound_enabled): renamed from esd_enabled()
+	(sound_events_enabled): updated
+	(start_esd): beautify
+	(load_login_sample_from): kill
+	(load_login_sample): kill
+	(stop_esd): new, based on code from
+	(sound_init): updated to make more sense
+	(sound_shutdown): updated
+	(play_sound_event): renamed from play_trigger(), and use
+	gnome_triggers_do() which is simpler
+	(gsm_sound_login): don't reference esd there, and don't mix up sound
+	enabled with sound event enabled
+	(gsm_sound_logout): don't reference esd there
+
+2007-05-06  Vincent Untz  <vuntz@gnome.org>
+
 	* manager.c: (process_save_request): fix assertion after previous
 	commit
 

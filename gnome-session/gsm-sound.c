@@ -2,10 +2,11 @@
 
 #include "gsm-sound.h"
 
-#ifdef HAVE_ESD /* almost whole file */
 #include <signal.h>
 #include <unistd.h>
+#ifdef HAVE_ESD
 #include <esd.h>
+#endif
 #include "util.h"
 
 #include <libgnome/gnome-sound.h>
@@ -14,13 +15,11 @@
 
 #include <libgnome/gnome-config.h>
 
-#define ENABLE_ESD_KEY    "/desktop/gnome/sound/enable_esd"
-#define ENABLE_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
-
-static GPid esd_pid = 0;
+#define ENABLE_SOUND_KEY        "/desktop/gnome/sound/enable_esd"
+#define ENABLE_EVENT_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
 
 static gboolean
-esd_enabled (void)
+sound_enabled (void)
 {
   GConfClient *client;
   GError      *error = NULL;
@@ -28,10 +27,10 @@ esd_enabled (void)
 
   client = gsm_get_conf_client ();
 
-  retval = gconf_client_get_bool (client, ENABLE_ESD_KEY, &error);
+  retval = gconf_client_get_bool (client, ENABLE_SOUND_KEY, &error);
   if (error)
     {
-      g_warning ("Error getting value of " ENABLE_ESD_KEY ": %s", error->message);
+      g_warning ("Error getting value of " ENABLE_SOUND_KEY ": %s", error->message);
       g_error_free (error);
       return FALSE;  /* Fallback value */
     }
@@ -48,16 +47,19 @@ sound_events_enabled (void)
 
   client = gsm_get_conf_client ();
 
-  retval = gconf_client_get_bool (client, ENABLE_SOUNDS_KEY, &error);
+  retval = gconf_client_get_bool (client, ENABLE_EVENT_SOUNDS_KEY, &error);
   if (error)
     {
-      g_warning ("Error getting value of " ENABLE_SOUNDS_KEY ": %s", error->message);
+      g_warning ("Error getting value of " ENABLE_EVENT_SOUNDS_KEY ": %s", error->message);
       g_error_free (error);
       return FALSE;  /* Fallback value */
     }
 
   return retval;
 }
+
+#ifdef HAVE_ESD
+static GPid esd_pid = 0;
 
 static void
 reset_esd_pid (GPid     pid,
@@ -89,132 +91,17 @@ start_esd (void)
   gnome_sound_init (NULL);
 
   while (gnome_sound_connection_get () < 0
-	 && ((time(NULL) - starttime) < 4))
+	 && ((time (NULL) - starttime) < 4))
     {
-      g_usleep(200);
-      gnome_sound_init(NULL);
+      g_usleep (200);
+      gnome_sound_init (NULL);
     }
-}
-
-static gboolean
-load_login_sample_from (const char *file,
-			gboolean   *isset)
-{
-  char *key;
-  char *sample_file;
-  int sample_id;
-
-  if (!file)
-    return FALSE;
-
-  key = g_strconcat ("=", file, "=login/file", NULL);
-  sample_file = gnome_config_get_string (key);
-  g_free (key);
-
-  if (sample_file && isset)
-    *isset = TRUE;
-  else if (isset)
-    *isset = FALSE;
-
-  if (sample_file && *sample_file && *sample_file != '/')
-    {
-      char *tmp_sample_file;
-      tmp_sample_file = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_SOUND, sample_file, TRUE, NULL);
-      g_free (sample_file);
-      sample_file = tmp_sample_file;
-    }
-
-  if (!(sample_file && *sample_file))
-    {
-      g_free (sample_file);
-      return FALSE;
-    }
-
-  sample_id = esd_sample_getid (gnome_sound_connection_get (), "gnome-2/login");
-  if (sample_id >= 0)
-    esd_sample_free (gnome_sound_connection_get (), sample_id);
-
-  sample_id = gnome_sound_sample_load ("gnome-2/login", sample_file);
-
-  if (sample_id < 0)
-    {
-      g_warning ("Couldn't load sound file %s\n", sample_file);
-      return FALSE;
-    }
-
-  g_free (sample_file);
-
-  return TRUE;
-}
-
-#define SOUND_EVENT_FILE "sound/events/gnome-2.soundlist"
-static gboolean
-load_login_sample (void)
-{
-  char *s;
-  gboolean loaded;
-  gboolean isset;
-
-  s = gnome_util_home_file (SOUND_EVENT_FILE);
-  loaded = load_login_sample_from (s, &isset);
-  g_free (s);
-
-  if (isset)
-    return loaded;
-
-  s = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_CONFIG, SOUND_EVENT_FILE, TRUE, NULL);
-  loaded = load_login_sample_from (s, NULL);
-  g_free (s);
-
-  return loaded;
-}
-
-static gboolean
-sound_init (void)
-{
-
-  if (!esd_enabled ())
-    return FALSE;
-
-  if (gnome_sound_connection_get () < 0)
-    start_esd ();
-
-  if (gnome_sound_connection_get () < 0)
-    {
-      g_warning ("Esound failed to start.\n");
-      return FALSE;
-    }
-
-  if (!sound_events_enabled ())
-    return FALSE;
-
-  return load_login_sample ();
 }
 
 static void
-play_trigger (const char *trigger)
+stop_esd (void)
 {
-  const char *supinfo[3] = { "gnome-2" };
-  supinfo[1] = trigger;
-  gnome_triggers_vdo ("", NULL, supinfo);
-}
-#endif /* HAVE_ESD */
-
-void 
-gsm_sound_login (void)
-{
-#ifdef HAVE_ESD
-  if (sound_init ())
-    play_trigger ("login");
-#endif /* HAVE_ESD */
-}
-
-void 
-gsm_sound_logout (void)
-{
-#ifdef HAVE_ESD
-  if (sound_events_enabled ())
-    play_trigger ("logout");
+  gnome_sound_shutdown ();
 
   if (esd_pid)
     {
@@ -223,5 +110,59 @@ gsm_sound_logout (void)
       else
         esd_pid = 0;
     }
+}
+#endif /* HAVE_ESD */
+
+static gboolean
+sound_init (void)
+{
+
+  if (!sound_enabled ())
+    return FALSE;
+
+#ifdef HAVE_ESD
+  if (gnome_sound_connection_get () < 0)
+    start_esd ();
 #endif
+
+  if (gnome_sound_connection_get () < 0)
+    {
+      g_warning ("Failed to start sound.\n");
+      return FALSE;
+    }
+
+  return TRUE;
+}
+
+static void 
+sound_shutdown (void)
+{
+#ifdef HAVE_ESD
+  stop_esd ();
+#endif
+}
+
+static void
+play_sound_event (const char *name)
+{
+  gnome_triggers_do (NULL, NULL, "gnome-2", name, NULL);
+}
+
+void 
+gsm_sound_login (void)
+{
+  if (!sound_init ())
+    return;
+
+  if (sound_events_enabled ())
+    play_sound_event ("login");
+}
+
+void 
+gsm_sound_logout (void)
+{
+  if (sound_events_enabled ())
+    play_sound_event ("logout");
+
+  sound_shutdown ();
 }
