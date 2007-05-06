@@ -1,5 +1,17 @@
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
+	Make it possible to use a shaped window for the splash.
+	Fix bug #399262. Based on patch from Fedora.
+
+	* splash-widget.c: (splash_widget_expose_event): don't redraw on the
+	window of the splash
+	(splash_widget_realize): set the background image via the style of the
+	widget, and shape the splash window
+	(splash_widget_unrealize): kill
+	(splash_widget_class_init): there's no handler for unrealize anymore
+
+2007-05-06  Vincent Untz  <vuntz@gnome.org>
+
 	* splash-widget.c: (splash_widget_expose_event):
 	(splash_widget_realize): use max dithering
 	Fix bug #399259. Patch from Fedora.

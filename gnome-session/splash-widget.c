@@ -149,16 +149,6 @@ splash_widget_expose_event (GtkWidget      *widget,
 	if (!GTK_WIDGET_DRAWABLE (widget))
 		return FALSE;
 
-	if (gdk_rectangle_intersect (
-		&event->area, &sw->image_bounds, &exposed))
-		gdk_draw_drawable  (
-			GDK_DRAWABLE (widget->window),
-			widget->style->black_gc,
-			GDK_DRAWABLE (sw->bg_pixmap),
-			exposed.x, exposed.y,
-			exposed.x, exposed.y,
-			exposed.width, exposed.height);
-
 	for (l = sw->icons; l; l = l->next) {
 		SplashIcon *si = l->data;
 
@@ -233,48 +223,44 @@ splash_widget_size_request (GtkWidget      *widget,
 static void
 splash_widget_realize (GtkWidget *widget)
 {
-	GdkPixmap *pm;
 	SplashWidget *sw = (SplashWidget *) widget;
 
 	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, realize, (widget));
 
 	if (sw->background && widget->window) {
-		int width, height;
+		GdkPixmap *pixmap;
+		GdkBitmap *mask;
+		GdkColormap *colormap;
 
-		width = gdk_pixbuf_get_width  (sw->background);
-		height = gdk_pixbuf_get_height (sw->background);
+		pixmap = NULL;
+		mask = NULL;
 
-		pm = gdk_pixmap_new (
-			widget->window,
-			width, height,
-			gdk_drawable_get_visual (widget->window)->depth);
+		colormap = gtk_widget_get_colormap (widget);
+		gdk_pixbuf_render_pixmap_and_mask_for_colormap (sw->background,
+							 	colormap,
+								&pixmap, &mask,
+								125);
 
-		if (pm) {
-			gdk_pixbuf_render_to_drawable (
-				sw->background, GDK_DRAWABLE (pm),
-				widget->style->black_gc,
-				0, 0, 0, 0, width, height,
-				GDK_RGB_DITHER_MAX,
-				0, 0);
-			
-			gdk_window_set_back_pixmap (
-				widget->window, pm, FALSE);
-			sw->bg_pixmap = pm;
+		if (pixmap) {
+			GtkStyle *style;
+
+			style = gtk_style_copy (widget->style);
+			style->bg_pixmap[GTK_STATE_NORMAL] = pixmap;
+
+			gtk_widget_set_style (widget, style);
+			g_object_unref (style);
+
+			if (mask) {
+				gdk_window_shape_combine_mask (widget->window,
+							       mask, 0, 0);
+
+				g_object_unref (mask);
+			}
+
+			gtk_style_set_background (widget->style, widget->window,
+						  GTK_STATE_NORMAL);
 		}
 	}
-}
-
-static void
-splash_widget_unrealize (GtkWidget *widget)
-{
-	SplashWidget *sw = (SplashWidget *) widget; 
-
-	if (sw->bg_pixmap) {
-		g_object_unref (sw->bg_pixmap);
-		sw->bg_pixmap = NULL;
-	}
-
-	GNOME_CALL_PARENT (GTK_WIDGET_CLASS, unrealize, (widget));
 }
 
 static void
@@ -319,7 +305,6 @@ splash_widget_class_init (SplashWidgetClass *klass)
 	gobject_class->finalize = splash_widget_finalize;
 
 	widget_class->realize = splash_widget_realize;
-	widget_class->unrealize = splash_widget_unrealize;
 	widget_class->expose_event = splash_widget_expose_event;
 	widget_class->size_request = splash_widget_size_request;
 	widget_class->size_allocate = splash_widget_size_allocate;
