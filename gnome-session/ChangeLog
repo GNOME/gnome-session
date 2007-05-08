@@ -1,3 +1,12 @@
+2007-05-08  Vincent Untz  <vuntz@gnome.org>
+
+	* logout.c: (get_current_frame): make it faster
+	(darken_pixbuf): kill
+	(fadeout_callback): don't draw the last frame if we exceeded the
+	fadeout time
+	(fadeout_screen): remove useless stuff
+	Fix bug #140717. Patch by Christof Krüger <gnome@pop2wap.net>
+
 2007-05-06  Vincent Untz  <vuntz@gnome.org>
 
 	Make the sound part less dependend on esound.

@@ -62,8 +62,8 @@ typedef struct {
   int           rowstride;
   GdkWindow    *root_window;
   GdkWindow    *draw_window;
-  GdkPixbuf    *start_pb, *end_pb, *frame;
-  guchar       *start_p, *end_p, *frame_p;
+  GdkPixbuf    *start_pb, *frame;
+  guchar       *start_p, *frame_p;
   GTimeVal      start_time;
   GdkGC        *gc;
 } FadeoutData;
@@ -72,55 +72,37 @@ static GList *fadeout_windows = NULL;
 
 /* Go for five seconds */
 #define FADE_DURATION 1500.0
+#define SATURATION_TARGET 0.5
 
 static void
 get_current_frame (FadeoutData *fadeout,
 		   double    sat)
 {
-  guchar *sp, *ep, *fp;
+  guchar *sp, *fp;
   int i, j, width, offset;
+  unsigned char lut[256];
+  unsigned int value;
 
   width = fadeout->area.width * 3;
   offset = 0;
+
+  /* compute lookup table */
+  for (value = 0; value < sizeof (lut); value++)
+    {
+      lut[value] = SATURATION_TARGET * value * (1 + sat);
+    }
   
   for (i = 0; i < fadeout->area.height; i++)
     {
       sp = fadeout->start_p + offset;
-      ep = fadeout->end_p   + offset;
       fp = fadeout->frame_p + offset;
 
-      for (j = 0; j < width; j += 3)
+      for (j = 0; j < width; j++)
 	{
-	  guchar r = abs (*(sp++) - ep[0]);
-	  guchar g = abs (*(sp++) - ep[1]);
-	  guchar b = abs (*(sp++) - ep[2]);
-
-	  *(fp++) = *(ep++) + r * sat;
-	  *(fp++) = *(ep++) + g * sat;
-	  *(fp++) = *(ep++) + b * sat;
+	  *(fp++) = lut[*(sp++)];
 	}
 
       offset += fadeout->rowstride;
-    }
-}
-
-static void
-darken_pixbuf (GdkPixbuf *pb)
-{
-  int width, height, rowstride;
-  int i, j;
-  guchar *p, *pixels;
-  
-  width     = gdk_pixbuf_get_width (pb) * 3;
-  height    = gdk_pixbuf_get_height (pb);
-  rowstride = gdk_pixbuf_get_rowstride (pb);
-  pixels    = gdk_pixbuf_get_pixels (pb);
-  
-  for (i = 0; i < height; i++)
-    {
-      p = pixels + (i * rowstride);
-      for (j = 0; j < width; j++)
-	p [j] >>= 1;
     }
 }
 
@@ -142,19 +124,8 @@ fadeout_callback (FadeoutData *fadeout)
 
   if (elapsed > FADE_DURATION)
     {
-      gdk_draw_pixbuf (fadeout->draw_window,
-		       fadeout->gc,
-		       fadeout->end_pb,
-		       0, 0,
-		       0, 0,
-		       fadeout->area.width,
-		       fadeout->area.height,
-		       GDK_RGB_DITHER_NONE,
-		       0, 0);
-
       g_object_unref (fadeout->gc);
       g_object_unref (fadeout->start_pb);
-      g_object_unref (fadeout->end_pb);
       g_object_unref (fadeout->frame);
 
       g_free (fadeout);
@@ -223,14 +194,10 @@ fadeout_screen (GdkScreen *screen,
 						    fadeout->area.width,
 						    fadeout->area.height);
   
-  fadeout->end_pb = gdk_pixbuf_copy (fadeout->start_pb);
-  darken_pixbuf (fadeout->end_pb);
-  
   fadeout->frame = gdk_pixbuf_copy (fadeout->start_pb);
   fadeout->rowstride = gdk_pixbuf_get_rowstride (fadeout->start_pb);
 
   fadeout->start_p = gdk_pixbuf_get_pixels (fadeout->start_pb);
-  fadeout->end_p   = gdk_pixbuf_get_pixels (fadeout->end_pb);
   fadeout->frame_p = gdk_pixbuf_get_pixels (fadeout->frame);
   
   values.subwindow_mode = GDK_INCLUDE_INFERIORS;
