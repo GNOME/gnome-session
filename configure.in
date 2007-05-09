@@ -32,6 +32,15 @@ AC_ARG_WITH(at-spi-registryd-directory,
 AT_SPI_REGISTRYD_DIR=$with_at_spi_registryd_directory
 AC_SUBST(AT_SPI_REGISTRYD_DIR)
 
+# Let distributor specify which utility to use when changing the time
+AC_ARG_WITH(time-utility,
+              [AC_HELP_STRING([--with-time-utility],
+                              [Specify the utility to use when changing the time @<:@default=@:>@])],,
+                              [with_time_utility=""])
+
+TIME_UTILITY=$with_time_utility
+AC_SUBST(TIME_UTILITY)
+
 AC_ARG_ENABLE(deprecations,
               [AC_HELP_STRING([--enable-deprecations],
                               [warn about deprecated usages [default=no]])],,
