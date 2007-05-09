@@ -317,7 +317,6 @@ void
 initialize_ice (void)
 {
   char error[256];
-  char *p;
   guint i;
   GSList* entries;
   int saved_umask;
@@ -384,9 +383,8 @@ initialize_ice (void)
   auth_entries = entries;
 
   ids = IceComposeNetworkIdList (num_sockets, sockets);
-
-  p = g_strconcat (ENVNAME "=", ids, NULL);
-  putenv (p);
+  g_setenv (ENVNAME, ids, TRUE);
+  free (ids);
   
   ice_depth = 0;	/* We are live */
 }
@@ -458,9 +456,11 @@ clean_ice (void)
   /* During shutdown we don't want to report errors via a dialog.  */
   write_authfile (authfile, entries, FALSE);
 
+  g_slist_free (entries);
+
   g_free (input_id);
-  free (ids);
   IceFreeListenObjs (num_sockets, sockets);
+  g_slist_free (auth_entries);
   
   ice_depth = ~0;	/* We are very frozen, like totally off */
 }

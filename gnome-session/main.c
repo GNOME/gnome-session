@@ -143,9 +143,10 @@ set_gtk1_theme_rcfile (void)
 {
   char *env_string;
 
-  env_string = g_strdup_printf ("GTK_RC_FILES=" SYSCONFDIR "/gtk/gtkrc:%s/.gtkrc-1.2-gnome2", g_get_home_dir ());
-
-  putenv (env_string);
+  env_string = g_strdup_printf ("%s/gtk/gtkrc:%s/.gtkrc-1.2-gnome2",
+                                SYSCONFDIR, g_get_home_dir ());
+  g_setenv ("GTK_RC_FILES", env_string, TRUE);
+  g_free (env_string);
 }
 
 static void
@@ -315,7 +316,6 @@ gsm_shutdown_gconfd (void)
 int
 main (int argc, char *argv[])
 {
-  char *ep;
   Session *the_session;
   gboolean splashing;
   gboolean a_t_support;
@@ -338,7 +338,7 @@ main (int argc, char *argv[])
       major = atoi (versions [1]);
       if ((major % 2) != 0)
 	{
-	  putenv ("G_DEBUG=fatal_criticals");
+          g_setenv ("G_DEBUG", "fatal_criticals", FALSE);
 	  g_log_set_always_fatal (G_LOG_LEVEL_CRITICAL);
 	}
     }
@@ -418,9 +418,8 @@ main (int argc, char *argv[])
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */
   display_str = gdk_get_display ();
-  ep = g_strconcat ("DISPLAY=", display_str, NULL);
+  g_setenv ("DISPLAY", display_str, TRUE);
   g_free (display_str);
-  putenv (ep);
 
   ignore (SIGPIPE);
 

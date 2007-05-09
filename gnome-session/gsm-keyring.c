@@ -111,7 +111,8 @@ gsm_keyring_daemon_start (void)
 	      if (end != pid_str)
 		{
 		  gnome_keyring_daemon_pid = pid;
-		  putenv (g_strdup (lines[0]));
+		  g_setenv ("GNOME_KEYRING_SOCKET",
+			    lines[0] + strlen ("GNOME_KEYRING_SOCKET="), TRUE);
 		}
 	    }
 

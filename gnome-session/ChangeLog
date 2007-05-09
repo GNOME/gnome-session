@@ -1,5 +1,15 @@
 2007-05-08  Vincent Untz  <vuntz@gnome.org>
 
+	* ice.c: (initialize_ice): use g_setenv() to make valgrind happy
+	(clean_ice): no need to free ids so late, free some GSList
+	* gsm-keyring.c: (gsm_keyring_daemon_start): use g_setenv() to make
+	valgrind happy
+	* main.c: (set_gtk1_theme_rcfile): ditto
+	(main): ditto
+	Fix bug #403602
+
+2007-05-08  Vincent Untz  <vuntz@gnome.org>
+
 	* logout.c: (get_current_frame): make it faster
 	(darken_pixbuf): kill
 	(fadeout_callback): don't draw the last frame if we exceeded the
