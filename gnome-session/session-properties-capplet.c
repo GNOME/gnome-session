@@ -159,7 +159,8 @@ show_message_dialog (GtkWidget *parent)
 			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 			GTK_STOCK_SAVE, SESSION_RESPONSE_SAVE,
 			NULL);
-	gtk_dialog_set_default_response (GTK_DIALOG (dlg), 1);
+	gtk_dialog_set_default_response (GTK_DIALOG (dlg),
+					 SESSION_RESPONSE_SAVE);
 	gtk_window_set_title (GTK_WINDOW (dlg), "");
 
 	response = gtk_dialog_run (GTK_DIALOG (dlg));

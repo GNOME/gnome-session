@@ -149,6 +149,38 @@ set_gtk1_theme_rcfile (void)
   g_free (env_string);
 }
 
+#define ROOTSESSION_RESPONSE_CONTINUE 1
+#define ROOTSESSION_RESPONSE_QUIT 3
+static gboolean
+gsm_check_for_root (void)
+{
+  GtkWidget *dlg;
+  gint       response;
+
+  if (geteuid () != 0)
+    return FALSE;
+
+  dlg = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING,
+                                GTK_BUTTONS_NONE,
+                                _("This session is running as a privileged user"));
+  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg),
+                                            _("Running a session as a privileged user should be avoided for security reasons. If possible, you should log in as a normal user."));
+
+  /* FIXME: would be nice to have a icon for Continue */
+  gtk_dialog_add_buttons (GTK_DIALOG (dlg),
+                          _("_Continue"), ROOTSESSION_RESPONSE_CONTINUE,
+                          GTK_STOCK_QUIT, ROOTSESSION_RESPONSE_QUIT,
+                          NULL);
+  gtk_dialog_set_default_response (GTK_DIALOG (dlg),
+                                   ROOTSESSION_RESPONSE_QUIT);
+  gtk_window_set_title (GTK_WINDOW (dlg), "");
+
+  response = gtk_dialog_run (GTK_DIALOG (dlg));
+  gtk_widget_destroy (dlg);
+
+  return response == ROOTSESSION_RESPONSE_QUIT;
+}
+
 static void
 update_boolean (GConfClient *client,
 		guint cnxn_id,
@@ -358,6 +390,11 @@ main (int argc, char *argv[])
    */
   gtk_init (&argc, &argv);
 
+  gtk_window_set_default_icon_name ("session-properties");
+
+  if (gsm_check_for_root ())
+    return 0;
+
   /* We need to do this as early as possible */
   gsm_set_display_properties ();
   
@@ -411,9 +448,7 @@ main (int argc, char *argv[])
   }
 
   initialize_ice ();
-  fprintf (stderr, "SESSION_MANAGER=%s\n", getenv ("SESSION_MANAGER"));
-  gtk_window_set_default_icon_from_file (GNOME_ICONDIR"/gnome-session.png", NULL);
-
+  fprintf (stderr, "SESSION_MANAGER=%s\n", g_getenv ("SESSION_MANAGER"));
 
   /* Make sure children see the right value for DISPLAY.  This is
      useful if --display was specified on the command line.  */

@@ -1,5 +1,17 @@
 2007-05-08  Vincent Untz  <vuntz@gnome.org>
 
+	Add a warning when the user logs in as root.
+	Fix bug #162960
+
+	* main.c: (gsm_check_for_root): new, displays a dialog letting the
+	user choose to continue or to quit the session if he's root
+	(main): set the default window icon earlier, and check early if the
+	user is root, use g_getenv() instead of getenv()
+	* session-properties-capplet.c: (show_message_dialog): small change to
+	use a macro value
+
+2007-05-08  Vincent Untz  <vuntz@gnome.org>
+
 	Add the comment key in the treeview for the startup programs.
 	Fix bug #430602
 
