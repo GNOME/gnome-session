@@ -281,8 +281,8 @@ capplet_build (void)
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes (_("Program"), renderer,
                                                      "markup", 2,
-						     "ellipsize", PANGO_ELLIPSIZE_END,
 						     NULL);
+  g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
   gtk_tree_view_append_column (startup_view, column);
 
   gtk_tree_view_set_search_column (startup_view, 2);
