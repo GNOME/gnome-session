@@ -103,19 +103,23 @@ gnome_session_SOURCES =		\
 	gsm-typebuiltins.h	\
 	gdm-logout-action.c	\
 	gdm-logout-action.h	\
+	gsm-autostart.c		\
+	gsm-autostart.h		\
+	gsm-keyfile.c		\
+	gsm-keyfile.h		\
 	headers.h		\
 	util.c			\
 	util.h
 
 gnome_session_save_SOURCES =	\
-	save-session.c		\
+	gnome-session-save.c		\
 	gsm-typebuiltins.c	\
 	gsm-typebuiltins.h	\
 	gsm-protocol.c		\
 	gsm-protocol.h
 
 gnome_session_remove_SOURCES = \
-	gsm-remove-client.c \
+	gnome-session-remove.c \
 	gsm-typebuiltins.c \
 	gsm-typebuiltins.h \
 	gsm-protocol.c \
@@ -129,6 +133,10 @@ gnome_session_properties_SOURCES = \
 	session-properties.h		\
 	gsm-atk.c			\
 	gsm-atk.h			\
+	gsm-autostart.c			\
+	gsm-autostart.h			\
+	gsm-keyfile.c			\
+	gsm-keyfile.h			\
 	gsm-client-list.c		\
 	gsm-client-list.h		\
 	gsm-client-editor.c		\

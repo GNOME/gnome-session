@@ -1,5 +1,33 @@
 2007-05-09  Vincent Untz  <vuntz@gnome.org>
 
+	* Makefile.am: add new files, and rename files
+	* gsm-autostart.[ch]: new, to handle reading the autostart desktop
+	files
+	* gsm-keyfile.[ch]: new, helpers for GKeyFile
+	* gsm-remove-client.c: moved to gnome-session-remove.c
+	* save-session.c: moved to gnome-session-save.c
+	* save.c: move to GKeyFile instead of GnomeDesktopItem, and use the
+	gsm-autostart API
+	(read_desktop_entries_in_dir): kill
+	(create_client): simple helper to create the data we need for each
+	autostart desktop file
+	(hash_table_remove_cb): killed
+	(read_autostart_dirs): killed
+	(read_session): moved to GKeyFile and gsm-autostart API
+	* startup-programs.c: basically, the same thing than for save.c
+	(create_client_from_desktop_entry): simplify so that it's only a
+	helper now
+	(search_desktop_entries_in_dir): kill
+	(hash_table_remove_cb): kill
+	(startup_list_read): use gsm-autostart API
+	(startup_client_delete): move to GKeyFile
+	(startup_client_write): ditto
+	(startup_list_enable): ditto and use gsm-autostart API
+	(command_browse_button_clicked): make the uri we get valid for the
+	Exec key
+
+2007-05-09  Vincent Untz  <vuntz@gnome.org>
+
 	Less deprecated stuff again.
 
 	* gsm-marshal.list: we need NONE:INT,INT
