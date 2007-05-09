@@ -176,6 +176,7 @@ gsm_check_for_root (void)
   gtk_dialog_set_default_response (GTK_DIALOG (dlg),
                                    ROOTSESSION_RESPONSE_QUIT);
   gtk_window_set_title (GTK_WINDOW (dlg), "");
+  gtk_window_set_position (GTK_WINDOW (dlg), GTK_WIN_POS_CENTER);
 
   response = gtk_dialog_run (GTK_DIALOG (dlg));
   gtk_widget_destroy (dlg);
@@ -337,6 +338,7 @@ gsm_check_clock_response (GtkWidget          *dialog,
 					 _("Failed to launch time configuration tool: %s"),
 					 err->message);
 	g_error_free (err);
+	gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
 
         gtk_dialog_run (GTK_DIALOG (dialog));
 
@@ -384,6 +386,7 @@ gsm_check_clock (void)
     }
 
   gtk_window_set_title (GTK_WINDOW (check.dialog), "");
+  gtk_window_set_position (GTK_WINDOW (check.dialog), GTK_WIN_POS_CENTER);
 
   g_signal_connect (check.dialog, "response",
                     G_CALLBACK (gsm_check_clock_response), &check);

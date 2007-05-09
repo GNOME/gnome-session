@@ -1,3 +1,10 @@
+2007-05-09  Dan Winship  <danw@novell.com>
+
+	* main.c (gsm_check_for_root, gsm_check_clock_response)
+	(gsm_check_clock): set the dialog to GTK_WIN_POS_CENTER, which
+	will cause it to be centered even in the absence of a window
+	manager.
+
 2007-05-09  Vincent Untz  <vuntz@gnome.org>
 
 	* Makefile.am: add new files, and rename files
