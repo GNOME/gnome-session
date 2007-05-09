@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-client.h>
+#include <libgnomeui/gnome-ui-init.h>
 
 #include "gsm-protocol.h"
 

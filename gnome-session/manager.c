@@ -29,7 +29,6 @@ extern int errno;
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <libgnome/libgnome.h>
 
 #include "manager.h"
 #include "session.h"

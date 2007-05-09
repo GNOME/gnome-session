@@ -25,7 +25,8 @@
 #ifndef GSM_PROTOCOL_H
 #define GSM_PROTOCOL_H
 
-#include <gnome.h>
+#include <glib-object.h>
+#include <libgnomeui/gnome-client.h>
 
 typedef enum {
   GSM_INACTIVE,     /* unstarted or finished */

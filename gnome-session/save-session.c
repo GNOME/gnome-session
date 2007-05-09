@@ -27,8 +27,7 @@
 
 #include "gsm-protocol.h"
 
-#include <libgnome/libgnome.h>
-#include <libgnomeui/libgnomeui.h>
+#include <libgnomeui/gnome-ui-init.h>
 
 #include <X11/SM/SMlib.h>
 

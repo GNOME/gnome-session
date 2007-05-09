@@ -26,9 +26,12 @@
 
 #include "gsm-protocol.h"
 
-#define GSM_IS_CLIENT_LIST(obj)      GTK_CHECK_TYPE (obj, gsm_client_list_get_type ())
-#define GSM_CLIENT_LIST(obj)         GTK_CHECK_CAST (obj, gsm_client_list_get_type (), GsmClientList)
-#define GSM_CLIENT_LIST_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_list_get_type (), GsmClientListClass)
+#define GSM_TYPE_CLIENT_LIST         (gsm_client_list_get_type ())
+#define GSM_CLIENT_LIST(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_CLIENT_LIST, GsmClientList))
+#define GSM_CLIENT_LIST_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_CLIENT_LIST, GsmClientListClass))
+#define GSM_IS_CLIENT_LIST(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_CLIENT_LIST))
+#define GSM_IS_CLIENT_LIST_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_CLIENT_LIST))
+#define GSM_CLIENT_LIST_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_CLIENT_LIST, GsmClientListClass))
 
 typedef enum {
 	GSM_CLIENT_LIST_COL_ORDER,
@@ -95,5 +98,16 @@ void gsm_client_list_revert_changes (GsmClientList* client_list);
 
 /* Discards information about changes. */
 void gsm_client_list_discard_changes (GsmClientList* client_list);
+
+/* menu data */
+struct gsm_client_row_data {
+  const char *name;
+  const char *tooltip;
+  const char *image;
+  GdkPixbuf  *pixbuf;
+};
+
+extern struct gsm_client_row_data state_data[GSM_NSTATES + 1];
+extern struct gsm_client_row_data style_data[GSM_NSTYLES + 1];
 
 #endif /* GSM_CLIENT_LIST_H */

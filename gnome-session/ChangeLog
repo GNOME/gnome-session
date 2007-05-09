@@ -1,5 +1,52 @@
 2007-05-09  Vincent Untz  <vuntz@gnome.org>
 
+	Less deprecated stuff again.
+
+	* gsm-marshal.list: we need NONE:INT,INT
+	* gsm-client-editor.c: use G_DEFINE_TYPE
+	(gsm_client_editor_init): new
+	(gsm_client_editor_class_init): kill deprecated stuff
+	(gsm_client_editor_get_style_combo): new, to have a GtkComboBox
+	instead of the old GtkOptionMenu
+	(gsm_client_editor_new): use the combo box
+	(gsm_client_editor_destroy): updated
+	(gsm_client_editor_set_client): updated
+	(change): updated
+	* gsm-client-editor.h: updated
+	* gsm-client-list.c: (gsm_client_list_init): new
+	(gsm_client_list_class_init): kill deprecated usage
+	(create_stock_menu_pixmaps): new
+	(gsm_client_list_new): create the pixmaps
+	(gsm_client_list_destroy): updated
+	(register_change), (initialized_cb): kill deprecated stuff
+	* gsm-client-list.h: updated
+	* gsm-client-row.c: move some data to gsm-client-list.c
+	(gsm_client_row_new): ditto
+	(create_stock_menu_pixmaps): moved to gsm-client-list.c
+	(gsm_client_row_add): updated
+	(client_state), (gsm_client_row_set_style), (client_style): updated
+	* gsm-client-row.h: moved some data to gsm-client-list.h
+	* gsm-marshal.list:
+	* gsm-protocol.c: updated includes
+	(commandv), (dispatch_event): use g_malloc/g_free
+	(gsm_args_to_propv), (gsm_int_to_prop), (gsm_sh_to_prop):
+	* gsm-protocol.h: updated includes
+	* gsm-remove-client.c: updated includes
+	* gsm-sound.c: remove useless include
+	* ice.c: updated includes
+	* logout.c: updated includes
+	* main.c: updated includes
+	* manager.c: remove useless include
+	* save-session.c: updated includes
+	* session-properties-capplet.c: (capplet_build): updated
+	(main): s/exit/return
+	* session-properties.c: (create_table): updated
+	* startup-programs.c: (command_browse_button_clicked),
+	(edit_client): do not use GnomeFileEntry
+	(startup_list_add_dialog): kill deprecated usage
+
+2007-05-09  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-wm: add support for beryl
 	Fix bug #419219. Patch from Alex <nesl247@gmail.com>
 

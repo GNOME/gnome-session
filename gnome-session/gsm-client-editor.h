@@ -22,12 +22,15 @@
 #ifndef GSM_CLIENT_EDITOR_H
 #define GSM_CLIENT_EDITOR_H
 
-#include <gnome.h>
+#include <gtk/gtk.h>
 #include "gsm-protocol.h"
 
-#define GSM_IS_CLIENT_EDITOR(obj)      GTK_CHECK_TYPE (obj, gsm_client_editor_get_type ())
-#define GSM_CLIENT_EDITOR(obj)         GTK_CHECK_CAST (obj, gsm_client_editor_get_type (), GsmClientEditor)
-#define GSM_CLIENT_EDITOR_CLASS(klass) GTK_CHECK_CLASS_CAST (klass, gsm_client_editor_get_type (), GsmClientEditorClass)
+#define GSM_TYPE_CLIENT_EDITOR         (gsm_client_editor_get_type ())
+#define GSM_CLIENT_EDITOR(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_CLIENT_EDITOR, GsmClientEditor))
+#define GSM_CLIENT_EDITOR_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_CLIENT_EDITOR, GsmClientEditorClass))
+#define GSM_IS_CLIENT_EDITOR(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_CLIENT_EDITOR))
+#define GSM_IS_CLIENT_EDITOR_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_CLIENT_EDITOR))
+#define GSM_CLIENT_EDITOR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_CLIENT_EDITOR, GsmClientEditorClass))
 
 typedef struct _GsmClientEditor GsmClientEditor;
 typedef struct _GsmClientEditorClass GsmClientEditorClass;

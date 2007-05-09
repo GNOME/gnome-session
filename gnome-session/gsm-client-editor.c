@@ -25,11 +25,10 @@
 
 #include <gtk/gtk.h>
 
-#include <libgnomeui/gnome-popup-menu.h>
-
 #include "gsm-client-editor.h"
 #include "gsm-client-row.h"
 #include "gsm-atk.h"
+#include "gsm-marshal.h"
 
 enum {
   CHANGED,
@@ -37,10 +36,16 @@ enum {
 };
 
 static guint gsm_client_editor_signals[NSIGNALS];
-static GtkHBoxClass *parent_class = NULL;
+
+G_DEFINE_TYPE (GsmClientEditor, gsm_client_editor, GTK_TYPE_HBOX);
 
 static void gsm_client_editor_destroy  (GtkObject *o);
 static void change (GsmClientEditor* client_editor);
+
+static void
+gsm_client_editor_init (GsmClientEditor *editor)
+{
+}
 
 static void
 gsm_client_editor_class_init (GsmClientEditorClass *klass)
@@ -48,53 +53,69 @@ gsm_client_editor_class_init (GsmClientEditorClass *klass)
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
 
   gsm_client_editor_signals[CHANGED] =
-    gtk_signal_new ("changed",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientEditorClass, changed),
-		    gtk_marshal_NONE__INT_INT,
-		    GTK_TYPE_NONE, 2, GTK_TYPE_INT, GTK_TYPE_INT); 
-
-  parent_class = gtk_type_class (gtk_hbox_get_type ());
+    g_signal_new ("changed",
+		  G_TYPE_FROM_CLASS (object_class),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (GsmClientEditorClass, changed),
+		  NULL, NULL,
+		  gsm_marshal_VOID__INT_INT,
+		  G_TYPE_NONE, 2, G_TYPE_INT, G_TYPE_INT);
 
   klass->changed = NULL;
 
-  object_class->destroy    = gsm_client_editor_destroy;
+  object_class->destroy = gsm_client_editor_destroy;
 }
 
-GtkTypeInfo gsm_client_editor_info = 
-{
-  "GsmClientEditor",
-  sizeof (GsmClientEditor),
-  sizeof (GsmClientEditorClass),
-  (GtkClassInitFunc) gsm_client_editor_class_init,
-  (GtkObjectInitFunc) NULL,
-  NULL, NULL,
-  (GtkClassInitFunc) NULL
+enum {
+  STYLE_PIXBUF_COL,
+  STYLE_TEXT_COL
 };
 
-GtkType
-gsm_client_editor_get_type (void)
+static GtkWidget *
+gsm_client_editor_get_style_combo (void)
 {
-  static GtkType type = 0;
+  GtkTreeIter      iter;
+  GtkListStore    *store;
+  GtkWidget       *combo;
+  GtkCellRenderer *renderer;
+  gint i;
 
-  if (!type)
-    type = gtk_type_unique (gtk_hbox_get_type (), &gsm_client_editor_info);
-  return type;
+  store = gtk_list_store_new (2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+
+  for (i = 0; i < GSM_NSTYLES; i++)
+    {
+       gtk_list_store_append (store, &iter);
+       gtk_list_store_set (store, &iter,
+                           STYLE_PIXBUF_COL, style_data[i].pixbuf,
+                           STYLE_TEXT_COL, style_data[i].name,
+                           -1);
+    }
+
+  combo = gtk_combo_box_new_with_model (GTK_TREE_MODEL (store));
+
+  renderer = gtk_cell_renderer_pixbuf_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo), renderer, FALSE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo), renderer,
+                                  "pixbuf", STYLE_PIXBUF_COL,
+                                  NULL);
+
+  renderer = gtk_cell_renderer_text_new ();
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo), renderer, TRUE);
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (combo), renderer,
+                                  "text", STYLE_TEXT_COL,
+                                  NULL);
+
+  return combo;
 }
 
 GtkWidget* 
 gsm_client_editor_new (void)
 {
-  GsmClientEditor* client_editor = gtk_type_new (gsm_client_editor_get_type());
+  GsmClientEditor* client_editor = g_object_new (GSM_TYPE_CLIENT_EDITOR, NULL);
   GtkHBox* hbox = (GtkHBox*) client_editor;
   GtkAdjustment *adjustment;
   GtkWidget *label;
-  GnomeUIInfo* data = (GnomeUIInfo*)g_memdup (style_data, 
-					      (guint)sizeof (style_data));
-  GtkWidget *menu = gnome_popup_menu_new (data);
 
-  g_free (data);
   adjustment = GTK_ADJUSTMENT (gtk_adjustment_new (50.0, 0.0, 99.0, 
 						   1.0, 10.0, 0.0));
   client_editor->spin_button = gtk_spin_button_new (adjustment, 1.0, 0);
@@ -103,28 +124,26 @@ gsm_client_editor_new (void)
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_editor->spin_button);
   gsm_atk_set_description (client_editor->spin_button, _("The order in which applications are started in the session."));
   gtk_box_pack_start (GTK_BOX (hbox), label,
-		      FALSE, FALSE, GNOME_PAD_SMALL);
+		      FALSE, FALSE, 4);
   gtk_box_pack_start (GTK_BOX (hbox), client_editor->spin_button, 
-		      FALSE, FALSE, GNOME_PAD_SMALL);
+		      FALSE, FALSE, 4);
 
-  client_editor->style_menu = gtk_option_menu_new ();
+  client_editor->style_menu = gsm_client_editor_get_style_combo ();
+  gtk_combo_box_set_active (GTK_COMBO_BOX (client_editor->style_menu), 0);
   gsm_atk_set_description (client_editor->style_menu, _("What happens to the application when it exits."));
-  gtk_option_menu_set_menu (GTK_OPTION_MENU(client_editor->style_menu), menu);
-
   label = gtk_label_new_with_mnemonic (_("_Style:"));
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), client_editor->style_menu);
   gtk_box_pack_end (GTK_BOX (hbox), client_editor->style_menu, 
-		    FALSE, FALSE, GNOME_PAD_SMALL);
+		    FALSE, FALSE, 4);
   gtk_box_pack_end (GTK_BOX (hbox), label,
-		      FALSE, FALSE, GNOME_PAD_SMALL);
+		      FALSE, FALSE, 4);
 
   g_signal_connect_swapped (client_editor->spin_button, 
 			    "value-changed", G_CALLBACK (change), 
 			    client_editor);
-  g_signal_connect_swapped (menu, 
-			    "deactivate",  G_CALLBACK (change),
+  g_signal_connect_swapped (client_editor->style_menu,
+			    "changed",  G_CALLBACK (change),
 			    client_editor);
-
 
   return GTK_WIDGET (client_editor);
 }
@@ -137,7 +156,7 @@ gsm_client_editor_destroy (GtkObject *o)
   g_return_if_fail(client_editor != NULL);
   g_return_if_fail(GSM_IS_CLIENT_EDITOR(client_editor));
 
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+  (*(GTK_OBJECT_CLASS (gsm_client_editor_parent_class)->destroy))(o);
 }
 
 void
@@ -154,8 +173,8 @@ gsm_client_editor_set_client (GsmClientEditor* client_editor,
       g_return_if_fail (GSM_IS_CLIENT (client));
       gtk_spin_button_set_value (GTK_SPIN_BUTTON (client_editor->spin_button), 
 				 client->order);
-      gtk_option_menu_set_history (GTK_OPTION_MENU (client_editor->style_menu),
-				   client->style);
+      gtk_combo_box_set_active (GTK_COMBO_BOX (client_editor->style_menu),
+				client->style);
     }
 
   client_editor->client = client;
@@ -169,13 +188,12 @@ change (GsmClientEditor* client_editor)
     {
       GtkSpinButton *spin = (GtkSpinButton*)client_editor->spin_button;
       gint order = gtk_spin_button_get_value_as_int (spin);
-      GtkOptionMenu *omenu = GTK_OPTION_MENU (client_editor->style_menu);
       gint style;
 
-      style = gtk_option_menu_get_history (GTK_OPTION_MENU (omenu));
+      style = gtk_combo_box_get_active (GTK_COMBO_BOX (client_editor->style_menu));
 
-      gtk_signal_emit ((GtkObject*)client_editor, 
-		       gsm_client_editor_signals[CHANGED], order, style); 
+      g_signal_emit (client_editor,
+		     gsm_client_editor_signals[CHANGED], 0, order, style);
       client_editor->client->style = style;
       client_editor->client->order = order;
     }

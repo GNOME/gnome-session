@@ -29,6 +29,7 @@
 #include <sys/socket.h>  /* For have_ipv6() */
 #include <netdb.h>
 #include <time.h>
+#include <unistd.h>
 
 #include <glib/gi18n.h>
 
@@ -36,7 +37,8 @@
 
 #include <gconf/gconf-client.h>
 
-#include <libgnomeui/libgnomeui.h>
+#include <libgnomeui/gnome-client.h>
+#include <libgnomeui/gnome-ui-init.h>
 #include <libgnome/gnome-config.h>
 
 #include "manager.h"

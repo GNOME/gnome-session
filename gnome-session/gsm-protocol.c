@@ -22,8 +22,8 @@
 #include <config.h>
 #include <string.h>
 
-#include <libgnome/libgnome.h>
-#include <libgnomeui/libgnomeui.h>
+#include <gtk/gtk.h>
+#include <libgnomeui/gnome-client.h>
 #include <X11/SM/SMlib.h>
 
 #include "session.h"
@@ -777,7 +777,7 @@ commandv (GsmProtocol* protocol, va_list args)
 
   while (va_arg (args, gchar*)) nprops++;
 
-  props = (SmProp**) malloc (sizeof (SmProp*) * nprops);
+  props = (SmProp**) g_malloc (sizeof (SmProp*) * nprops);
 
   for (i = 0; i < nprops; i++)
     props[i] = (SmProp*)va_arg (args2, SmProp*);
@@ -785,7 +785,7 @@ commandv (GsmProtocol* protocol, va_list args)
   va_end (args2);
 
   SmcSetProperties (smc_conn, nprops, props);
-  free (props);
+  g_free (props);
 }
 
 static void
@@ -1034,7 +1034,7 @@ dispatch_event (SmcConn smc_conn, SmPointer data,
 	    }
 	  /* Dispatch other things ... */
 	}
-      free (props);
+      g_free (props);
     }
 
   g_idle_add (request_event, data);
@@ -1062,7 +1062,7 @@ prop_free (SmProp* prop)
 static SmProp*
 gsm_args_to_propv (gchar* name, va_list args)
 {
-  SmProp* prop = (SmProp*) malloc (sizeof (SmProp));
+  SmProp* prop = (SmProp*) g_malloc (sizeof (SmProp));
   gint i;
   va_list args2;
 
@@ -1074,7 +1074,7 @@ gsm_args_to_propv (gchar* name, va_list args)
 
   while (va_arg (args, gchar*)) prop->num_vals++;
 
-  prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
+  prop->vals = (SmPropValue*) g_malloc (sizeof (SmPropValue) * prop->num_vals);
 
   for (i = 0; i < prop->num_vals; i++)
     {
@@ -1114,13 +1114,13 @@ gsm_prop_to_list (SmProp* prop)
 static SmProp*
 gsm_int_to_prop (gchar* name, gint value)
 {
-  SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
+  SmProp *prop = (SmProp*) g_malloc (sizeof (SmProp));
 
   prop->name = strdup (name);
   prop->type = strdup (SmCARD8);
   prop->num_vals = 1;
 
-  prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
+  prop->vals = (SmPropValue*) g_malloc (sizeof (SmPropValue) * prop->num_vals);
 
   prop->vals[0].value = strdup ("X");
   prop->vals[0].length = strlen (prop->vals[0].value);
@@ -1137,7 +1137,7 @@ static SmProp*
 gsm_sh_to_prop (const char *name,
 		const char *sh)
 {
-  SmProp *prop = (SmProp*) malloc (sizeof (SmProp));
+  SmProp *prop = (SmProp*) g_malloc (sizeof (SmProp));
   gchar *dest, *src, *tmp;
   gint i;
   
@@ -1199,7 +1199,7 @@ gsm_sh_to_prop (const char *name,
 
   prop->name = strdup (name);
   prop->type = strdup (SmLISTofARRAY8);
-  prop->vals = (SmPropValue*) malloc (sizeof (SmPropValue) * prop->num_vals);
+  prop->vals = (SmPropValue*) g_malloc (sizeof (SmPropValue) * prop->num_vals);
 
   for (i = 0, src = tmp; i < prop->num_vals; i++)
     {
@@ -1208,13 +1208,13 @@ gsm_sh_to_prop (const char *name,
       src += prop->vals[i].length + 1;
     }
 
-  free (tmp);
+  g_free (tmp);
 
   return prop;
 
  error:
-  free (tmp);
-  free (prop);
+  g_free (tmp);
+  g_free (prop);
 
   return NULL;
 }

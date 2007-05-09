@@ -40,7 +40,6 @@
 #endif
 
 #include <libgnomeui/gnome-ice.h>
-#include <libgnome/libgnome.h>
 #include <gconf/gconf-client.h>
 
 #include "ice.h"

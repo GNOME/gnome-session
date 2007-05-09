@@ -23,8 +23,6 @@
 
 #include <glib/gi18n.h>
 
-#include <gtk/gtkclist.h>
-
 #include "gsm-client-list.h"
 #include "gsm-client-row.h"
 #include "gsm-client-editor.h"
@@ -42,69 +40,78 @@ enum {
   NSIGNALS
 };
 
+struct gsm_client_row_data state_data[] = {
+  { N_("Inactive"), N_("Waiting to start or already finished."),
+    GTK_STOCK_DISCONNECT, NULL },
+  { N_("Starting"), N_("Started but has not yet reported state."),
+    GTK_STOCK_CONNECT, NULL },
+  { N_("Running"), N_("A normal member of the session."),
+    GTK_STOCK_EXECUTE, NULL },
+  { N_("Saving"), N_("Saving session details."),
+    GTK_STOCK_SAVE, NULL },
+  //FIXME find better icon
+  { N_("Unknown"), N_("State not reported within timeout."),
+    GTK_STOCK_HELP, NULL },
+  { NULL }
+};
+
+struct gsm_client_row_data style_data[] = {
+  //FIXME find icon
+  { N_("Normal"), N_("Unaffected by logouts but can die."),
+    NULL, NULL },
+  { N_("Restart"), N_("Never allowed to die."),
+    GTK_STOCK_REFRESH, NULL },
+  { N_("Trash"), N_("Discarded on logout and can die."),
+    GTK_STOCK_DELETE, NULL },
+  { N_("Settings"), N_("Always started on every login."),
+    GTK_STOCK_PREFERENCES, NULL },
+  { NULL }
+};
+
 static guint gsm_client_list_signals[NSIGNALS];
-static GtkCListClass *parent_class = NULL;
+
+G_DEFINE_TYPE (GsmClientList, gsm_client_list, GTK_TYPE_TREE_VIEW);
+
+static void
+gsm_client_list_init (GsmClientList *list)
+{
+}
 
 static void
 gsm_client_list_class_init (GsmClientListClass *klass)
 {
   GtkObjectClass *object_class = (GtkObjectClass*) klass;
 
-  parent_class = gtk_type_class (GTK_TYPE_TREE_VIEW);
-
   gsm_client_list_signals[DIRTY] =
-    gtk_signal_new ("dirty",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientListClass, dirty),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
+    g_signal_new ("dirty",
+		  G_TYPE_FROM_CLASS (object_class),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (GsmClientListClass, dirty),
+		  NULL, NULL,
+		  g_cclosure_marshal_VOID__VOID,
+		  G_TYPE_NONE, 0);
   gsm_client_list_signals[STARTED] =
-    gtk_signal_new ("started",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientListClass, started),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
+    g_signal_new ("started",
+		  G_TYPE_FROM_CLASS (object_class),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (GsmClientListClass, started),
+		  NULL, NULL,
+		  g_cclosure_marshal_VOID__VOID,
+		  G_TYPE_NONE, 0);
   gsm_client_list_signals[INITIALIZED] =
-    gtk_signal_new ("initialized",
-		    GTK_RUN_LAST,
-		    GTK_CLASS_TYPE (object_class),
-		    GTK_SIGNAL_OFFSET (GsmClientListClass, initialized),
-		    gtk_signal_default_marshaller,
-		    GTK_TYPE_NONE, 0); 
+    g_signal_new ("initialized",
+		  G_TYPE_FROM_CLASS (object_class),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (GsmClientListClass, initialized),
+		  NULL, NULL,
+		  g_cclosure_marshal_VOID__VOID,
+		  G_TYPE_NONE, 0);
 
   klass->dirty       = dirty;
   klass->started     = NULL;
   klass->initialized = NULL;
 
   object_class->destroy = gsm_client_list_destroy;
-}
-
-GType
-gsm_client_list_get_type (void)
-{
-  static GType type = 0;
-
-  if (!type)
-    {
-      static GTypeInfo gsm_client_list_info = 
-	{
-	  sizeof (GsmClientListClass),
-	  (GBaseInitFunc)     NULL,
-	  (GBaseFinalizeFunc) NULL,
-	  (GClassInitFunc) gsm_client_list_class_init,
-	  NULL,
-	  NULL,
-	  sizeof (GsmClientList),
-	  0,
-	  (GInstanceInitFunc) NULL,
-	};
-
-      type = g_type_register_static (GTK_TYPE_TREE_VIEW, "GsmClientList", &gsm_client_list_info, 0);
-    }
-
-  return type;
 }
 
 static void
@@ -121,6 +128,33 @@ selection_changed (GtkTreeSelection *selection,
 			-1);
 
   gsm_client_editor_set_client (GSM_CLIENT_EDITOR (client_list->client_editor), client);
+}
+
+//FIXME: this is leaking memory since we never unref the pixbufs
+static void
+create_stock_menu_pixmaps (GsmClientList *client_list)
+{
+	gint i;
+
+	for (i = 0; i < GSM_NSTATES; i++) {
+	  if (state_data[i].image)
+	    state_data[i].pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
+						      state_data[i].image,
+						      GTK_ICON_SIZE_MENU,
+						      NULL);
+	  else
+	    state_data[i].pixbuf = NULL;
+	}
+
+	for (i = 0; i < GSM_NSTYLES; i++) {
+	  if (style_data[i].image)
+	    style_data[i].pixbuf = gtk_widget_render_icon (GTK_WIDGET (client_list),
+						      style_data[i].image,
+						      GTK_ICON_SIZE_MENU,
+						      NULL);
+	  else
+	    style_data[i].pixbuf = NULL;
+	}
 }
 
 GtkWidget* 
@@ -170,6 +204,9 @@ gsm_client_list_new (void)
 					       NULL);
 
   gtk_tree_view_set_search_column (view, GSM_CLIENT_LIST_COL_COMMAND);					      
+
+  if (!state_data[0].pixbuf)
+    create_stock_menu_pixmaps (client_list);
  
   client_list->client_editor = gsm_client_editor_new ();
   client_list->session   = NULL;
@@ -201,7 +238,7 @@ gsm_client_list_destroy (GtkObject *o)
   g_return_if_fail(client_list != NULL);
   g_return_if_fail(GSM_IS_CLIENT_LIST(client_list));
 
-  (*(GTK_OBJECT_CLASS (parent_class)->destroy))(o);
+  (*(GTK_OBJECT_CLASS (gsm_client_list_parent_class)->destroy))(o);
 }
 
 GtkWidget* 
@@ -270,7 +307,7 @@ register_change (GsmClientList* client_list, GsmClientRow* client_row,
 
   client = GSM_CLIENT (client_row);
     
-  gtk_signal_emit ((GtkObject*)client_list, gsm_client_list_signals[DIRTY]); 
+  g_signal_emit (client_list, gsm_client_list_signals[DIRTY], 0);
 
   switch (client_row->change)
     {
@@ -500,6 +537,6 @@ initialized_cb (GsmClientList* client_list)
   if (clist->rows > 0)
     select_cb (client_list, clist->rows - 1);
 #endif
-  gtk_signal_emit ((GtkObject*)client_list, 
-		   gsm_client_list_signals[INITIALIZED]);
+  g_signal_emit ((GtkObject*)client_list,
+		 gsm_client_list_signals[INITIALIZED], 0);
 }

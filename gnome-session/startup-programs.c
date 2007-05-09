@@ -23,11 +23,11 @@
 #include <config.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 #include <glib/gstdio.h>
 #include <glib/gi18n.h>
 
 #include <libgnome/gnome-desktop-item.h>
-#include <libgnomeui/gnome-file-entry.h>
 
 #include "session-properties-capplet.h"
 #include "gsm-protocol.h"
@@ -555,6 +555,47 @@ entry_activate_callback (GtkEntry *entry, void *data)
   gtk_dialog_response (GTK_DIALOG (data), GTK_RESPONSE_OK);
 }
 
+static void
+command_browse_button_clicked (GtkWidget *dialog)
+{
+  GtkWidget *chooser;
+  int        response;
+
+  chooser = gtk_file_chooser_dialog_new ("", GTK_WINDOW (dialog),
+                                         GTK_FILE_CHOOSER_ACTION_OPEN,
+                                         GTK_STOCK_CANCEL,
+                                         GTK_RESPONSE_CANCEL,
+                                         GTK_STOCK_OPEN,
+                                         GTK_RESPONSE_ACCEPT,
+                                         NULL);
+  gtk_window_set_transient_for (GTK_WINDOW (chooser),
+                                GTK_WINDOW (dialog));
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (chooser), TRUE);
+  gtk_widget_show (chooser);
+
+  response = gtk_dialog_run (GTK_DIALOG (chooser));
+
+  if (response == GTK_RESPONSE_ACCEPT)
+    {
+      GtkWidget *entry;
+      char      *text;
+      char      *uri;
+
+      text = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+      //FIXME uri = panel_util_make_exec_uri_for_desktop (text);
+      uri = g_strdup (text);
+      g_free (text);
+
+      entry = g_object_get_data (G_OBJECT (dialog), "CommandEntry");
+      g_assert (entry != NULL);
+      gtk_entry_set_text (GTK_ENTRY (entry), uri);
+
+      g_free (uri);
+    }
+
+  gtk_widget_destroy (chooser);
+}
+
 /* Display a dialog for editing a client. The dialog parameter
  * is used to implement hiding the dialog when the user switches
  * away to another page of the control center */
@@ -563,11 +604,12 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 {
   GtkWidget *dialog;
   GtkWidget *name_entry;
+  GtkWidget *cmd_hbox;
   GtkWidget *cmd_entry;
+  GtkWidget *cmd_button;
   GtkWidget *comment_entry;
   GtkWidget *label;
   GtkWidget *table;
-  GtkWidget *gnome_entry;
   char      *text;
 
   dialog = gtk_dialog_new_with_buttons (title,
@@ -592,13 +634,13 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   g_free (text);
   gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 4, 4);
 
   name_entry = gtk_entry_new ();
   g_signal_connect (name_entry, "activate",
                     G_CALLBACK (entry_activate_callback),
 		    (void *) dialog);
-  gtk_table_attach (GTK_TABLE (table), name_entry, 1, 2, 0, 1, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+  gtk_table_attach (GTK_TABLE (table), name_entry, 1, 2, 0, 1, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (name_entry));
 
@@ -610,15 +652,22 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   g_free (text);
   gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 4, 4);
 
-  gnome_entry = gnome_file_entry_new ("startup-commands", _("Startup Command"));
-  g_object_set (G_OBJECT (gnome_entry), "use_filechooser", TRUE, NULL);
-  gnome_file_entry_set_modal (GNOME_FILE_ENTRY (gnome_entry), TRUE);
-  cmd_entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY (gnome_entry));
+  cmd_hbox = gtk_hbox_new (FALSE, 12);
+  gtk_table_attach (GTK_TABLE (table), cmd_hbox, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
+
+  cmd_entry = gtk_entry_new ();
   g_signal_connect (cmd_entry, "activate", G_CALLBACK (entry_activate_callback),
-		    (void *) dialog);
-  gtk_table_attach (GTK_TABLE (table), gnome_entry, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+                    (void *) dialog);
+  gtk_box_pack_start (GTK_BOX (cmd_hbox), cmd_entry, TRUE, TRUE, 0);
+
+  cmd_button = gtk_button_new_with_mnemonic (_("_Browse..."));
+  g_signal_connect_swapped (cmd_button, "clicked",
+			    G_CALLBACK (command_browse_button_clicked),
+			    dialog);
+  g_object_set_data (G_OBJECT (dialog), "CommandEntry", cmd_entry);
+  gtk_box_pack_start (GTK_BOX (cmd_hbox), cmd_button, FALSE, FALSE, 0);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (cmd_entry));
 
@@ -630,13 +679,13 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
   g_free (text);
   gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3, GTK_FILL, GTK_FILL, 4, 4);
 
   comment_entry = gtk_entry_new ();
   g_signal_connect (comment_entry, "activate",
                     G_CALLBACK (entry_activate_callback),
 		    (void *) dialog);
-  gtk_table_attach (GTK_TABLE (table), comment_entry, 1, 2, 2, 3, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+  gtk_table_attach (GTK_TABLE (table), comment_entry, 1, 2, 2, 3, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (comment_entry));
 
@@ -735,7 +784,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget *parent_dlg)
       g_free (basename);
 
       filename = g_strdup_printf ("%s.desktop", orig_filename);
-      while (g_file_exists (filename))
+      while (g_file_test (filename, G_FILE_TEST_EXISTS))
         {
 	  char *tmp = g_strdup_printf ("%s-%d.desktop", orig_filename, i);
 

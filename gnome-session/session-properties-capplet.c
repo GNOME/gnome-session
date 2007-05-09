@@ -25,8 +25,9 @@
 
 #include <glib/gi18n.h>
 
-#include <gnome.h>
 #include <libgnomeui/gnome-client.h>
+#include <libgnomeui/gnome-help.h>
+#include <libgnomeui/gnome-ui-init.h>
 
 #include <gconf/gconf-client.h>
 #include "headers.h"
@@ -240,8 +241,8 @@ capplet_build (void)
   /* Frame for manually started programs */
   startup_list = startup_list_read ();
 
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+  vbox = gtk_vbox_new (FALSE, 8);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
  
   /*non-session managed startup programs */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
@@ -249,7 +250,7 @@ capplet_build (void)
   label = gtk_label_new_with_mnemonic (_("Additional startup _programs:"));
   gtk_container_add (GTK_CONTAINER (a), label);
 
-  hb = gtk_hbox_new (FALSE, GNOME_PAD);
+  hb = gtk_hbox_new (FALSE, 8);
   gtk_box_pack_start (GTK_BOX (vbox), hb, TRUE, TRUE,0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -289,7 +290,7 @@ capplet_build (void)
 
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
 
-  util_vbox = gtk_vbox_new (FALSE, GNOME_PAD_SMALL);
+  util_vbox = gtk_vbox_new (FALSE, 4);
   gtk_box_pack_start (GTK_BOX (hb), util_vbox, FALSE, FALSE, 0);
 
   /* Add/Edit/Delete buttons */
@@ -326,11 +327,11 @@ capplet_build (void)
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
  
   /* Options page - Autosave, Save session */
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
+  vbox = gtk_vbox_new (FALSE, 8);
   
   util_vbox = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), util_vbox, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox) , GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox) , 8);
 
   /* Autosave */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
@@ -498,13 +499,13 @@ main (int argc, char *argv[])
   master_client = gnome_master_client ();
   if (! GNOME_CLIENT_CONNECTED (master_client)) {
     g_printerr (_("could not connect to the session manager\n"));
-    exit (1);
+    return 1;
   }
 
   protocol = gsm_protocol_new (master_client);
   if (!protocol) {
     g_printerr (_("session manager does not support GNOME extensions\n"));
-    exit (1);
+    return 1;
   }
 
   g_signal_connect (gnome_master_client (), "die", G_CALLBACK (gtk_main_quit), NULL);

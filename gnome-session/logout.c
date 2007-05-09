@@ -30,8 +30,7 @@
 
 #include <gconf/gconf-client.h>
 
-#include <libgnome/libgnome.h>
-#include <libgnomeui/libgnomeui.h>
+#include <libgnomeui/gnome-help.h>
 
 #include "ice.h"
 #include "logout.h"

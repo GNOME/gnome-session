@@ -78,10 +78,10 @@ create_table (void)
 				       GTK_SHADOW_IN);
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+  vbox = gtk_vbox_new (FALSE, 8);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
 
-  hbox = gtk_hbox_new (FALSE, GNOME_PAD);
+  hbox = gtk_hbox_new (FALSE, 8);
   gtk_box_pack_start (GTK_BOX (hbox), client_editor, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), remove_button, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), apply_button, FALSE, FALSE, 0);
