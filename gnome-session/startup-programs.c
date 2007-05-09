@@ -498,23 +498,21 @@ startup_list_update_gui (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel
   while (tmp_list)
     {
       char         *text;
-      char         *name;
-      char         *description;
+      const char   *name;
+      const char   *description;
       ManualClient *client = tmp_list->data;
 
       if (client->name && client->name[0] != '\0')
-        name = g_markup_escape_text (client->name, -1);
+        name = client->name;
       else
-        name = g_markup_escape_text (client->command, -1);
+        name = client->command;
 
       if (client->comment && client->comment[0] != '\0')
-        description = g_markup_escape_text (client->comment, -1);
+        description = client->comment;
       else
-        description = g_strdup (_("No description"));
+        description = _("No description");
 
-      text = g_strdup_printf ("<b>%s</b>\n%s", name, description);
-      g_free (name);
-      g_free (description);
+      text = g_markup_printf_escaped ("<b>%s</b>\n%s", name, description);
 
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,

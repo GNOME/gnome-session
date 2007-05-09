@@ -178,7 +178,220 @@ gsm_check_for_root (void)
   response = gtk_dialog_run (GTK_DIALOG (dlg));
   gtk_widget_destroy (dlg);
 
-  return response == ROOTSESSION_RESPONSE_QUIT;
+  return !(response == ROOTSESSION_RESPONSE_CONTINUE);
+}
+
+#define FALLBACK_TIME_UTILITY "time-admin"
+#define CLOCKSESSION_RESPONSE_IGNORE 1
+#define CLOCKSESSION_RESPONSE_ADJUST 3
+
+struct check_clock {
+  GtkWidget  *dialog;
+  char      **argv_tool;
+  guint       timeout_id;
+  guint       child_id;
+};
+
+static gboolean
+gsm_check_time (void)
+{
+  time_t now;
+
+  now = time (NULL);
+  /* accept a one week error: no need to be too strict */
+  return (now > GNOME_COMPILE_TIME - 3600*24*7);
+}
+
+static void
+gsm_check_clock_set_label (GtkWidget *dialog)
+{
+  char       date[64];
+  char      *text;
+  time_t     now;
+  struct tm *tim;
+
+  now = time (NULL);
+  tim = localtime (&now);
+  strftime (date, sizeof (date), "%x", tim);
+
+  text = g_markup_printf_escaped (_("The session might encounter issues if the computer clock is not properly configured. Please consider adjusting it.\n\nCurrent date is <b>%s</b>."), date);
+  gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
+                                              text);
+  g_free (text);
+}
+
+static gboolean
+gsm_check_clock_config_tool_exists (struct check_clock *check,
+                                    const char         *config_tool)
+{
+  char **argv;
+  char  *path;
+
+  if (!config_tool || config_tool[0] == '\0')
+    return FALSE;
+
+  argv = NULL;
+  if (!g_shell_parse_argv (config_tool, NULL, &argv, NULL))
+    return FALSE;
+
+  if (!(path = g_find_program_in_path (argv [0]))) {
+    g_strfreev (argv);
+    return FALSE;
+  }
+
+  g_free (path);
+
+  check->argv_tool = argv;
+
+  return TRUE;
+}
+
+static void
+gsm_check_clock_main_quit (struct check_clock *check)
+{
+  if (check->dialog)
+    gtk_widget_destroy (check->dialog);
+  check->dialog = NULL;
+
+  if (check->argv_tool)
+    g_strfreev (check->argv_tool);
+  check->argv_tool = NULL;
+
+  if (check->timeout_id)
+    g_source_remove (check->timeout_id);
+  check->timeout_id = 0;
+
+  if (check->child_id)
+    g_source_remove (check->child_id);
+  check->child_id = 0;
+
+  gtk_main_quit ();
+}
+
+static gboolean
+gsm_check_clock_update (gpointer data)
+{
+  struct check_clock *check;
+
+  check = (struct check_clock *) data;
+
+  if (gsm_check_time ())
+    {
+      gsm_check_clock_main_quit (check);
+      return FALSE;
+    }
+
+  if (check->dialog)
+    gsm_check_clock_set_label (check->dialog);
+
+  return TRUE;
+}
+
+static void
+gsm_check_clock_tool_exited (GPid     pid,
+                             gint     status,
+                             gpointer data)
+{
+  gsm_check_clock_main_quit ((struct check_clock *) data);
+
+  g_spawn_close_pid (pid);
+}
+
+static void
+gsm_check_clock_response (GtkWidget          *dialog,
+                          int                 response,
+                          struct check_clock *check)
+{
+  gtk_widget_destroy (dialog);
+  check->dialog = NULL;
+
+  if (response == CLOCKSESSION_RESPONSE_ADJUST)
+    {
+      GtkWidget *dialog;
+      GPid       pid;
+      GError    *err;
+
+      err = NULL;
+
+      if (g_spawn_async (NULL,
+                         check->argv_tool,
+                         NULL,
+                         G_SPAWN_SEARCH_PATH|G_SPAWN_DO_NOT_REAP_CHILD,
+                         NULL,
+                         NULL,
+                         &pid,
+                         &err))
+        {
+          check->child_id = g_child_watch_add (pid,
+                                               gsm_check_clock_tool_exited,
+                                               check);
+          return;
+        }
+
+	dialog = gtk_message_dialog_new (NULL,
+                                         GTK_DIALOG_MODAL,
+					 GTK_MESSAGE_ERROR,
+					 GTK_BUTTONS_OK,
+					 _("Failed to launch time configuration tool: %s"),
+					 err->message);
+	g_error_free (err);
+
+        gtk_dialog_run (GTK_DIALOG (dialog));
+
+        gsm_check_clock_main_quit (check);
+    }
+  else
+    gsm_check_clock_main_quit (check);
+
+}
+
+static void
+gsm_check_clock (void)
+{
+  struct check_clock check;
+
+  if (gsm_check_time ())
+    return;
+
+  check.child_id = 0;
+
+  if (!gsm_check_clock_config_tool_exists (&check, TIME_UTILITY) &&
+      !gsm_check_clock_config_tool_exists (&check, FALLBACK_TIME_UTILITY))
+    check.argv_tool = NULL;
+
+  check.dialog = gtk_message_dialog_new (NULL,
+                                         GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING,
+                                         GTK_BUTTONS_NONE,
+                                         _("The computer clock appears to be wrong"));
+  gsm_check_clock_set_label (check.dialog);
+
+  if (check.argv_tool)
+    {
+      /* FIXME: would be nice to have a icons for the buttons */
+      gtk_dialog_add_buttons (GTK_DIALOG (check.dialog),
+                              _("_Ignore"), CLOCKSESSION_RESPONSE_IGNORE,
+                              _("_Adjust the Clock"), CLOCKSESSION_RESPONSE_ADJUST,
+                              NULL);
+      gtk_dialog_set_default_response (GTK_DIALOG (check.dialog),
+                                       CLOCKSESSION_RESPONSE_ADJUST);
+    }
+  else
+    {
+      gtk_dialog_add_button (GTK_DIALOG (check.dialog),
+                             GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+    }
+
+  gtk_window_set_title (GTK_WINDOW (check.dialog), "");
+
+  g_signal_connect (check.dialog, "response",
+                    G_CALLBACK (gsm_check_clock_response), &check);
+
+  gtk_widget_show (check.dialog);
+
+  check.timeout_id = g_timeout_add (1000 * 60,
+                                    gsm_check_clock_update, &check);
+
+  gtk_main ();
 }
 
 static void
@@ -462,6 +675,9 @@ main (int argc, char *argv[])
   gsm_keyring_daemon_start ();
   dbus_daemon_owner = gsm_dbus_daemon_start ();
   gsm_gsd_start ();
+
+  /* FIXME is it useful to do it so late? gsd migt not work, eg */
+  gsm_check_clock ();
   
   /* Read the rest of config options */  
 

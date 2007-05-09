@@ -1,3 +1,26 @@
+2007-05-09  Vincent Untz  <vuntz@gnome.org>
+
+	Add a warning when the computer clock looks misconfigured, since it
+	might break the whole desktop (bonobo, and other things) and make it
+	impossible to use it.
+	Fix bug #410025
+
+	* Makefile.am: new defines
+	* main.c: (gsm_check_for_root): fix behavior to quit by default, even
+	when the user just closes the dialog
+	(gsm_check_time): new
+	(gsm_check_clock_set_label): new
+	(gsm_check_clock_config_tool_exists): new
+	(gsm_check_clock_main_quit): new
+	(gsm_check_clock_update): new
+	(gsm_check_clock_tool_exited): new
+	(gsm_check_clock_response):
+	(gsm_check_clock): new (all those functions could arguably go in
+	another new file, but it's not that big)
+	(main): call gsm_check_clock()
+	* startup-programs.c: (startup_list_update_gui): use
+	g_markup_printf_escaped()
+
 2007-05-08  Vincent Untz  <vuntz@gnome.org>
 
 	Add a warning when the user logs in as root.
