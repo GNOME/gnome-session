@@ -12,8 +12,6 @@
 #include <libgnome/gnome-sound.h>
 #include <libgnome/gnome-triggers.h>
 
-#include <libgnome/gnome-config.h>
-
 #define ENABLE_SOUND_KEY        "/desktop/gnome/sound/enable_esd"
 #define ENABLE_EVENT_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
 

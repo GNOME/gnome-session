@@ -336,7 +336,7 @@ capplet_build (void)
   /* Autosave */
   a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
-  autosave_button = gtk_check_button_new_with_mnemonic (_("Automatically save chan_ges to session"));
+  autosave_button = gtk_check_button_new_with_mnemonic (_("_Automatically remember running applications when logging out"));
   gtk_container_add (GTK_CONTAINER (a), autosave_button);
   g_object_set_data (G_OBJECT (autosave_button), "key", AUTOSAVE_MODE_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
@@ -351,7 +351,7 @@ capplet_build (void)
   hbox = gtk_hbutton_box_new ();
   gtk_box_pack_start (GTK_BOX (util_vbox), hbox, FALSE, FALSE, 0);
 
-  button = gtk_button_new_with_label (_("Save the current session"));
+  button = gtk_button_new_with_mnemonic (_("_Remember currently running applications"));
   gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_SAVE, GTK_ICON_SIZE_BUTTON));
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (save_session_cb), NULL);

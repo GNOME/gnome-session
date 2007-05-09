@@ -386,7 +386,7 @@ display_gui (void)
 
   if (!autosave)
     {
-      toggle_button = gtk_check_button_new_with_mnemonic (_("_Save current setup"));
+      toggle_button = gtk_check_button_new_with_mnemonic (_("Remember running applications"));
       gtk_widget_show (toggle_button);
       gtk_box_pack_start (GTK_BOX (vbox),
 			  toggle_button,
