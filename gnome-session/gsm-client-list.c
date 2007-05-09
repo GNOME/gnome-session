@@ -164,6 +164,7 @@ gsm_client_list_new (void)
   GtkTreeView *view;
   GtkCellRenderer *text_cell, *pixbuf_cell;
   GtkTreeSelection *selection;
+  GtkTreeViewColumn *column;
 
   client_list = g_object_new (gsm_client_list_get_type(), NULL);
   view = GTK_TREE_VIEW (client_list);
@@ -172,7 +173,9 @@ gsm_client_list_new (void)
 
   client_list->model = gtk_list_store_new (GSM_CLIENT_LIST_COL_LAST,
 					   G_TYPE_STRING,
+					   G_TYPE_INT,
 					   GDK_TYPE_PIXBUF,
+					   G_TYPE_INT,
 					   GDK_TYPE_PIXBUF,
 					   G_TYPE_STRING,
 					   gsm_client_row_get_type ());
@@ -187,21 +190,29 @@ gsm_client_list_new (void)
 					       _("Order"), text_cell,
 					       "text", GSM_CLIENT_LIST_COL_ORDER,
 					       NULL);
+  column = gtk_tree_view_get_column (view, 0);
+  gtk_tree_view_column_set_sort_column_id (column, GSM_CLIENT_LIST_COL_ORDER);
 
   gtk_tree_view_insert_column_with_attributes (view, -1,
 					       _("Style"), pixbuf_cell,
-					       "pixbuf", GSM_CLIENT_LIST_COL_STYLE,
+					       "pixbuf", GSM_CLIENT_LIST_COL_STYLE_PB,
 					       NULL);
+  column = gtk_tree_view_get_column (view, 1);
+  gtk_tree_view_column_set_sort_column_id (column, GSM_CLIENT_LIST_COL_STYLE);
 
   gtk_tree_view_insert_column_with_attributes (view, -1,
 					       _("State"), pixbuf_cell,
-					       "pixbuf", GSM_CLIENT_LIST_COL_STATE,
+					       "pixbuf", GSM_CLIENT_LIST_COL_STATE_PB,
 					       NULL);
+  column = gtk_tree_view_get_column (view, 2);
+  gtk_tree_view_column_set_sort_column_id (column, GSM_CLIENT_LIST_COL_STATE);
 
   gtk_tree_view_insert_column_with_attributes (view, -1,
 					       _("Program"), text_cell,
 					       "text", GSM_CLIENT_LIST_COL_COMMAND,
 					       NULL);
+  column = gtk_tree_view_get_column (view, 3);
+  gtk_tree_view_column_set_sort_column_id (column, GSM_CLIENT_LIST_COL_COMMAND);
 
   gtk_tree_view_set_search_column (view, GSM_CLIENT_LIST_COL_COMMAND);					      
 

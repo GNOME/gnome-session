@@ -1,5 +1,20 @@
 2007-05-09  Vincent Untz  <vuntz@gnome.org>
 
+	* session-properties-capplet.c: (capplet_build): make it possible to
+	click on the column headers to sort the tree view
+	* gsm-client-row.c: (gsm_client_row_add): add the state and style as
+	integer too
+	(client_state): ditto when updating the state
+	(gsm_client_row_set_style): ditto for style
+	* gsm-client-list.[ch]: (gsm_client_list_new): add new columns in the
+	model for the integers and make it possible to click on the column
+	headers to sort the tree view
+	Fix bug #85123
+	* gnome-session-save.c: (main): use an existing icon name as default
+	window icon
+
+2007-05-09  Vincent Untz  <vuntz@gnome.org>
+
 	* session-properties-capplet.c: (capplet_build): fix ellipsizing of
 	the treeview. Thanks Behdad!
 

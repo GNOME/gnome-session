@@ -125,8 +125,10 @@ gsm_client_row_add (GsmClientRow* client_row)
 
   gtk_list_store_set (GTK_LIST_STORE (client_row->model), &client_row->iter,
 		      GSM_CLIENT_LIST_COL_ORDER, temp,
-		      GSM_CLIENT_LIST_COL_STYLE, style_data[client->style].pixbuf,
-		      GSM_CLIENT_LIST_COL_STATE, state_data[client->state].pixbuf,
+		      GSM_CLIENT_LIST_COL_STYLE, client->style,
+		      GSM_CLIENT_LIST_COL_STYLE_PB, style_data[client->style].pixbuf,
+		      GSM_CLIENT_LIST_COL_STATE, client->state,
+		      GSM_CLIENT_LIST_COL_STATE_PB, state_data[client->state].pixbuf,
 		      GSM_CLIENT_LIST_COL_COMMAND, client->command,
 		      GSM_CLIENT_LIST_COL_CLIENT_ROW, client_row,
 		      -1);
@@ -208,7 +210,8 @@ client_state (GsmClient* client, GsmState state)
   
   gtk_list_store_set (GTK_LIST_STORE (client_row->model),
 		      &client_row->iter,
-		      GSM_CLIENT_LIST_COL_STATE, state_data[state].pixbuf,
+		      GSM_CLIENT_LIST_COL_STATE, state,
+		      GSM_CLIENT_LIST_COL_STATE_PB, state_data[state].pixbuf,
 		      -1);
 }
 
@@ -261,7 +264,8 @@ gsm_client_row_set_style (GsmClientRow* client_row, GsmStyle style)
 
   gtk_list_store_set (GTK_LIST_STORE (client_row->model),
 		      &client_row->iter,
-		      GSM_CLIENT_LIST_COL_STYLE, style_data[style].pixbuf,
+		      GSM_CLIENT_LIST_COL_STYLE, style,
+		      GSM_CLIENT_LIST_COL_STYLE_PB, style_data[style].pixbuf,
 		      -1);
 }
 

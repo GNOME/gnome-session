@@ -275,6 +275,7 @@ capplet_build (void)
                                                      "active", 1,
                                                      "activatable", 3,
                                                      NULL);
+  gtk_tree_view_column_set_sort_column_id (column, 1);
   gtk_tree_view_append_column (startup_view, column);
   g_signal_connect (G_OBJECT (renderer), "toggled",
                     (GCallback) startup_enabled_toggled, NULL);
@@ -283,6 +284,7 @@ capplet_build (void)
                                                      "markup", 2,
 						     NULL);
   g_object_set (renderer, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+  gtk_tree_view_column_set_sort_column_id (column, 2);
   gtk_tree_view_append_column (startup_view, column);
 
   gtk_tree_view_set_search_column (startup_view, 2);

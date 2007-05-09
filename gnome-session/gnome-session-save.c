@@ -178,7 +178,7 @@ main (int argc, char *argv[])
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
-  gtk_window_set_default_icon_from_file (GNOME_ICONDIR"/mc/i-floppy.png", NULL);
+  gtk_window_set_default_icon_name (GTK_STOCK_SAVE);
 
   client = gnome_master_client ();
   if (!GNOME_CLIENT_CONNECTED (client))
