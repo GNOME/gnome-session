@@ -1,5 +1,23 @@
 2007-05-08  Vincent Untz  <vuntz@gnome.org>
 
+	Add the comment key in the treeview for the startup programs.
+	Fix bug #430602
+
+	* session-properties-capplet.c: (capplet_build): use markup and
+	ellipsize the text for the program in the startup program list, also
+	use the rules hint
+	* startup-programs.c: (create_client_from_desktop_entry): get the
+	comment from the desktop file
+	(startup_list_update_gui): use the comment to put a description in the
+	list, which makes it easier for the user to know what this is doing.
+	(client_free): free comment
+	(startup_client_write): write the comment
+	(edit_client): add widgets to edit the comment
+	(startup_list_add_dialog): preset comment to NULL
+	(startup_list_enable): compare the comments
+
+2007-05-08  Vincent Untz  <vuntz@gnome.org>
+
 	* ice.c: (initialize_ice): use g_setenv() to make valgrind happy
 	(clean_ice): no need to free ids so late, free some GSList
 	* gsm-keyring.c: (gsm_keyring_daemon_start): use g_setenv() to make

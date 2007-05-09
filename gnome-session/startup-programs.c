@@ -42,6 +42,7 @@ struct _ManualClient
   gboolean  enabled;
   char     *name;
   char     *command;
+  char     *comment;
 };
 
 /* Free client record */
@@ -51,6 +52,7 @@ client_free (ManualClient *client)
   g_free (client->desktop_file);
   g_free (client->name);
   g_free (client->command);
+  g_free (client->comment);
   g_free (client);
 }
 
@@ -107,6 +109,7 @@ create_client_from_desktop_entry (const char *path)
   ManualClient     *client = NULL;
   GnomeDesktopItem *ditem;
   const gchar      *name;
+  const gchar      *comment;
   const gchar      *exec_string;
 
   ditem = gnome_desktop_item_new_from_file (path, 0, NULL);
@@ -196,11 +199,14 @@ create_client_from_desktop_entry (const char *path)
   if (name == NULL)
     name = gnome_desktop_item_get_localestring (ditem,
                                                 GNOME_DESKTOP_ITEM_GENERIC_NAME);
+  comment = gnome_desktop_item_get_localestring (ditem,
+                                                 GNOME_DESKTOP_ITEM_COMMENT);
 
   client = g_new0 (ManualClient, 1);
   client->desktop_file = g_strdup (path);
   client->name = name ? g_strdup (name) : NULL;
   client->command = g_strdup (exec_string);
+  client->comment = comment ? g_strdup (comment) : NULL;
 
   if (gnome_desktop_item_attr_exists (ditem, "X-GNOME-Autostart-enabled"))
     client->enabled = gnome_desktop_item_get_boolean (ditem, "X-GNOME-Autostart-enabled");
@@ -428,6 +434,14 @@ startup_client_write (ManualClient *client)
   gnome_desktop_item_set_string (ditem, GNOME_DESKTOP_ITEM_EXEC,
                                  client->command);
 
+  if (client->comment && client->comment[0] != '\0')
+    gnome_desktop_item_set_localestring (ditem, GNOME_DESKTOP_ITEM_COMMENT,
+                                         client->comment);
+  else
+    /* same in GnomeDesktopItem */
+    gnome_desktop_item_set_localestring (ditem, GNOME_DESKTOP_ITEM_COMMENT,
+                                         NULL);
+
   if (client->enabled)
     gnome_desktop_item_set_boolean (ditem, "X-GNOME-Autostart-enabled", TRUE);
   else
@@ -483,16 +497,34 @@ startup_list_update_gui (GSList **sl, GtkTreeModel *model, GtkTreeSelection *sel
   tmp_list = *sl;
   while (tmp_list)
     {
+      char         *text;
+      char         *name;
+      char         *description;
       ManualClient *client = tmp_list->data;
+
+      if (client->name && client->name[0] != '\0')
+        name = g_markup_escape_text (client->name, -1);
+      else
+        name = g_markup_escape_text (client->command, -1);
+
+      if (client->comment && client->comment[0] != '\0')
+        description = g_markup_escape_text (client->comment, -1);
+      else
+        description = g_strdup (_("No description"));
+
+      text = g_strdup_printf ("<b>%s</b>\n%s", name, description);
+      g_free (name);
+      g_free (description);
 
       gtk_list_store_append (GTK_LIST_STORE (model), &iter);
       gtk_list_store_set (GTK_LIST_STORE (model), &iter,
                           0, client,
                           1, client->enabled,
-                          2, client->name && client->name[0] != '\0' ?
-                                client->name : client->command,
+                          2, text,
                           3, TRUE, /* activatable */
                           -1);
+
+      g_free (text);
 
       if (client == selected_client)
         {
@@ -534,6 +566,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   GtkWidget *dialog;
   GtkWidget *name_entry;
   GtkWidget *cmd_entry;
+  GtkWidget *comment_entry;
   GtkWidget *label;
   GtkWidget *table;
   GtkWidget *gnome_entry;
@@ -551,7 +584,7 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
  
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_dlg));
 
-  table = gtk_table_new (2, 2, FALSE);
+  table = gtk_table_new (3, 3, FALSE);
   
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), table,
 		      TRUE, TRUE, 0);
@@ -589,17 +622,35 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 		    (void *) dialog);
   gtk_table_attach (GTK_TABLE (table), gnome_entry, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
-
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (cmd_entry));
 
   if (client->command)
     gtk_entry_set_text (GTK_ENTRY (cmd_entry), client->command);
+
+  label = gtk_label_new ("");
+  text = g_strdup_printf ("<b>%s</b>", _("Co_mment:"));
+  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
+  g_free (text);
+  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3, GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+  comment_entry = gtk_entry_new ();
+  g_signal_connect (comment_entry, "activate",
+                    G_CALLBACK (entry_activate_callback),
+		    (void *) dialog);
+  gtk_table_attach (GTK_TABLE (table), comment_entry, 1, 2, 2, 3, GTK_EXPAND|GTK_FILL, GTK_FILL, GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (comment_entry));
+
+  if (client->comment)
+    gtk_entry_set_text (GTK_ENTRY (comment_entry), client->comment);
   
   gtk_widget_show_all (table);
 
   while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK)
     {
       const gchar  *name = gtk_entry_get_text (GTK_ENTRY (name_entry));
+      const gchar  *comment = gtk_entry_get_text (GTK_ENTRY (comment_entry));
       const gchar  *tmp = gtk_entry_get_text (GTK_ENTRY (cmd_entry));
       char        **argv;
       int           argc;
@@ -648,6 +699,10 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
             g_free (client->command);
           client->command = g_strdup (tmp);
 
+          if (client->comment)
+            g_free (client->comment);
+          client->comment = comment ? g_strdup (comment) : NULL;
+
 	  gtk_widget_destroy (dialog);
 	  return TRUE;
 	}
@@ -666,6 +721,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget *parent_dlg)
   client->enabled = TRUE;
   client->name = NULL;
   client->command = NULL;
+  client->comment = NULL;
 
   if (edit_client (_("New Startup Program"), client, parent_dlg))
     {
@@ -758,6 +814,7 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
       if (system_client
           && !strcmp (system_client->name, client->name)
           && !strcmp (system_client->command, client->command)
+          && !strcmp (system_client->comment, client->comment)
           && system_client->enabled)
         {
           /* remove user entry and use system entry */
