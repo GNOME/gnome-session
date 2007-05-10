@@ -74,8 +74,7 @@ start_esd (void)
   GError *err = NULL;
   time_t  starttime;
 
-  /* FIXME: once esd is fixed to chdir(), we should remove this, IMHO */
-  if (!gsm_exec_async ("/", argv, NULL, &esd_pid, &err))
+  if (!gsm_exec_async (NULL, argv, NULL, &esd_pid, &err))
     {
       g_warning ("Could not start esd: %s\n", err->message);
       g_error_free (err);
