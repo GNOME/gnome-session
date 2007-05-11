@@ -501,24 +501,35 @@ remove_duplicated_clients (GSList *clients)
 
   for (node = clients; node != NULL; node = node->next)
     {
-      GSList *sl;
       Client *client = node->data;
+      GSList *props = client->properties;
+      GSList *sl;
+      
+      /* Only trigger duplicate removal when the current client will
+       * be resumed through XSMP. We'll remove all autostarted clients matching
+       * the current client. See bug 341286 comment 12 for the whole rationale.
+       */
+      if (client->match_rule != MATCH_ID)
+        continue;
 
-      for (sl = node->next; sl != NULL; sl = sl->next)
+      /* Always start from the beginning, as there may be an autostarted
+       * client in the list before us */
+      sl = clients;
+      while (sl)
         {
-	  Client *tmp_client = sl->data;
-	  GSList *props, *tmp_props;
+          Client *tmp_client = sl->data;
+          GSList *tmp_props = tmp_client->properties;
 
-	  props = client->properties;
-	  tmp_props = tmp_client->properties;
+          sl = sl->next;
 
-	  if (compare_restart_command (props, tmp_props))
-	    {
-	      REMOVE (clients, tmp_client);
-	      free_client (tmp_client);
-	      sl = node;
-	    }
-	}
+          /* Remove any autostarted clients matching us */
+          if ((tmp_client->match_rule == MATCH_PROP) &&
+              compare_restart_command (props, tmp_props))
+            {
+              REMOVE (clients, tmp_client);
+              free_client (tmp_client);
+            }
+        }
     }
 
   return clients;
