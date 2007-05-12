@@ -228,6 +228,7 @@ startup_client_write (ManualClient *client)
   GKeyFile *keyfile;
   GError   *err;
   char     *name;
+  char     *comment;
 
   ensure_user_autostart_dir ();
 
@@ -267,11 +268,17 @@ startup_client_write (ManualClient *client)
     gsm_key_file_set_string (keyfile, "Name", client->name);
   g_free (name);
 
-  if (client->comment && client->comment[0] != '\0')
+  if (client->comment && client->comment[0] != '\0') {
     gsm_key_file_set_locale_string (keyfile, "Comment", client->comment);
-  else
+    comment = gsm_key_file_get_string (keyfile, "Comment");
+    if (comment == NULL || comment[0] == '\0')
+      gsm_key_file_set_string (keyfile, "Comment", client->comment);
+    g_free (comment);
+  } else {
       gsm_key_file_remove_locale_key (keyfile, "Comment");
-      //FIXME should we do this too?: gsm_key_file_remove_key (keyfile, "Comment"):
+      //FIXME: this should really be "gsm_key_file_remove_all_locale_key()"
+      gsm_key_file_remove_key (keyfile, "Comment");
+  }
 
   gsm_key_file_set_string (keyfile,
                             "Exec", client->command);

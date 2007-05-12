@@ -1,3 +1,9 @@
+2007-05-12  Vincent Untz  <vuntz@gnome.org>
+
+	* startup-programs.c: (startup_client_write): when saving the Comment
+	field, also create a non-localized key if necessary since the desktop
+	spec say we should have one.
+
 2007-05-11  Vincent Untz  <vuntz@gnome.org>
 
 	* save.c: (remove_duplicated_clients): be clever when removing
