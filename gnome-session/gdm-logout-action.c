@@ -43,7 +43,7 @@
 
 #define GDM_PROTOCOL_UPDATE_INTERVAL 1 /* seconds */
 
-#define GDM_PROTOCOL_SOCKET_PATH "/tmp/.gdm_socket"
+#define GDM_PROTOCOL_SOCKET_PATH "/var/run/gdm_socket"
 
 #define GDM_PROTOCOL_MSG_CLOSE        "CLOSE"
 #define GDM_PROTOCOL_MSG_VERSION      "VERSION"
@@ -240,9 +240,13 @@ gdm_init_protocol_connection (GdmProtocolData *data)
 		gdm_shutdown_protocol_connection (data);
                 return FALSE;
         }
-
-        strcpy (addr.sun_path, GDM_PROTOCOL_SOCKET_PATH);
-        addr.sun_family = AF_UNIX;
+	
+	if (g_file_test (GDM_PROTOCOL_SOCKET_PATH, G_FILE_TEST_EXISTS))
+	  strcpy (addr.sun_path, GDM_PROTOCOL_SOCKET_PATH);
+	else
+	  strcpy (addr.sun_path, "/tmp/.gdm_socket");
+        
+	addr.sun_family = AF_UNIX;
 
         if (connect (data->fd, (struct sockaddr *) &addr, sizeof (addr)) < 0) {
                 g_warning ("Failed to establish a connection with GDM: %s",
@@ -260,6 +264,7 @@ gdm_init_protocol_connection (GdmProtocolData *data)
 
                 return FALSE;
         }
+	g_free (response);
 
         if (!gdm_authenticate_connection (data)) {
                 g_warning ("Failed to authenticate with GDM");
