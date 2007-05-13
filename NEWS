@@ -1,4 +1,67 @@
 ===============
+Version 2.19.2
+===============
+
+Session Manager
+
+	* Use g_usleep() instead of usleep() (Bastien Nocera)
+	* Don't hardcode start of assistive technologies software (Ariel Rios,
+	  Vincent)
+	* Fix splash screen in RTL environments (Yair Hershkovitz)
+	* Improve splash screen on old displays (Fedora patch)
+	* Make it possible to use a shaped window for the splash screen
+	  (Fedora patch, Vincent)
+	* Display the name of the started application in splash screen even if
+	  there's no icon (Vincent)
+	* Don't use deprecated functions (Christian Persch, Vincent)
+	* Don't hardcode esound for the sound daemon (Matthias Clasen, Vincent)
+	* Make the fade on logout faster (Christof Krüger)
+	* Plug leaks (Vincent)
+	* Warn the user if he logs in as root (Vincent, Dan Winship)
+	* Warn the user if the clock is totally wrong and let him launch a
+	  config tool (Vincent, Dan Winship)
+	* Change strings about saving the session to be more user-friendly
+	  (Vincent)
+	* Remove workaround that chrooted esd to / (fixed in esd) (Vincent)
+	* Make it possible to save a session with multiple clients that are the
+	  same program (Hans de Goede, Dan Winship)
+	* Use the new socket path for GDM (Loïc Minier)
+
+Session Properties Dialog
+
+	* Use Add/Remove instead of New/Delete for handling startup programs
+	  (Luca Ferretti)
+	* Show the comments in the startup programs list (Vincent)
+	* Change strings about saving the session to be more user-friendly
+	  (Vincent)
+	* Make it possible to sort the program lists by clicking on the headers
+	  (Vincent)
+	* Create a non-localized version of the Comment field in .desktop files
+	  if necessary (Vincent)
+
+Misc
+
+	* Remove xrdb check (Andreas Hanke)
+	* Build fixes (Andreas Hanke, Christian Persch)
+	* Require glib 2.12.0 (Vincent)
+	* Add --with-time-utility configure flag to set the executable that is
+	  used to configure the time of the computer (Vincent)
+	* Don't require libgnome-desktop anymore (Vincent)
+	* Add support for beryl in gnome-wm (Alex)
+
+Translators
+
+	* Peter Bach (da)
+	* Jorge González (es)
+	* Ivar Smolin (et)
+	* Iñaki Larrañaga Murgoitio (eu)
+	* Ignacio Casal Quinteiro (gl)
+	* Yair Hershkovitz (he)
+	* Espen Stefansen (nb)
+	* Yannig MARCHEGAY (Kokoyaya) (oc)
+	* Yang Zhang (zh_CN)
+
+===============
 Version 2.18.0
 ===============
 
