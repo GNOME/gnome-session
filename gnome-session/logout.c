@@ -333,7 +333,7 @@ display_gui (void)
   gboolean halt_active = FALSE;
   gboolean reboot_active = FALSE;
   GdmLogoutAction logout_action = GDM_LOGOUT_ACTION_NONE;
-  gboolean a11y_enabled;
+  gboolean iris_effect_enabled;
   GError *error = NULL;
   GdkScreen *screen;
   int monitor;
@@ -356,10 +356,12 @@ display_gui (void)
 
   gtk_widget_show (invisible);
 
-  a11y_enabled = GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (invisible));
+  iris_effect_enabled = !GTK_IS_ACCESSIBLE (gtk_widget_get_accessible
+  (invisible)) && 
+	                !gtk_widget_is_composited (invisible);
 
-  /* Only create a managed window if a11y is enabled */
-  if (!a11y_enabled)
+  /* Only create a managed window if a11y/compositing manager is enabled */
+  if (!iris_effect_enabled)
     {
       while (1)
 	{
@@ -485,7 +487,7 @@ display_gui (void)
   /* Grabbing the Xserver when accessibility is enabled will cause
    * a hang. See #93103 for details.
    */
-  if (!a11y_enabled)
+  if (iris_effect_enabled)
     {
       XGrabServer (GDK_DISPLAY ());
       gsm_foreach_screen (fadeout_screen);
@@ -493,7 +495,7 @@ display_gui (void)
 
   gtk_widget_show_all (box);
 
-  if (!a11y_enabled)
+  if (!iris_effect_enabled)
     {
       /* Move the grabs to our message box */
       gdk_pointer_grab (box->window, TRUE, 0,
@@ -526,7 +528,7 @@ display_gui (void)
   gtk_widget_destroy (box);
   gtk_widget_destroy (invisible);
 
-  if (!a11y_enabled)
+  if (iris_effect_enabled)
     {
       hide_fadeout_windows ();
       XUngrabServer (GDK_DISPLAY ());
