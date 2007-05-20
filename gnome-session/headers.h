@@ -72,6 +72,7 @@
 #define LOGOUT_OPTION_KEY	   GSM_GCONF_CONFIG_PREFIX "/logout_option"
 
 /* Assistive Technology support is turned on */
+#define ACCESSIBILITY_ENV         "GNOME_ACCESSIBILITY"
 #define ACCESSIBILITY_KEY         "/desktop/gnome/interface/accessibility"
 
 /* Convenience macros: */

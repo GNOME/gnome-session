@@ -568,6 +568,7 @@ main (int argc, char *argv[])
 {
   Session *the_session;
   gboolean splashing;
+  const char *env_a_t_support;
   gboolean a_t_support;
   GError *err;
   int status;
@@ -640,7 +641,12 @@ main (int argc, char *argv[])
   /* Read the config option early, so that we know if a11y is set or not */ 
   gconf_client = gsm_get_conf_client ();
   gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL); 
-  a_t_support = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
+
+  env_a_t_support = g_getenv (ACCESSIBILITY_ENV);
+  if (env_a_t_support)
+    a_t_support = atoi (env_a_t_support);
+  else
+    a_t_support = gconf_client_get_bool (gconf_client, ACCESSIBILITY_KEY, NULL);
 
   if (a_t_support)
     {

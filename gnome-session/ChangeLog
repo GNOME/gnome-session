@@ -1,3 +1,11 @@
+2007-05-21  Vincent Untz  <vuntz@gnome.org>
+
+	* headers.h: define macro for GNOME_ACCESSIBILITY environment variable
+	* main.c: (main): check for GNOME_ACCESSIBILITY environment variable
+	to know if a11y should be enabled
+	Thanks to Wouter Bolsterlee <wbolster@gnome.org>
+	Refix bug #345428
+
 2007-05-15  Ray Strode  <rstrode@redhat.com>
 
 	* logout.c: (display_gui): Don't do animation if
