@@ -1,3 +1,10 @@
+2007-05-26  Vincent Untz  <vuntz@gnome.org>
+
+	* gsm-keyfile.[ch]: (gsm_key_file_remove_all_locale_key): new, to
+	remove all localized and non-locale versions of a key.
+	* startup-programs.c: (startup_client_write): use
+	gsm_key_file_remove_all_locale_key()
+
 2007-05-22  Bastien Nocera  <hadess@hadess.net>
 
 	* logout.c: (display_gui): Fix logic in Ray's patch, thanks Ray for

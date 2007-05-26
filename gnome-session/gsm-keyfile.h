@@ -54,6 +54,8 @@ void    gsm_key_file_set_locale_string (GKeyFile    *keyfile,
         g_key_file_remove_key (key_file, "Desktop Entry", key, NULL)
 void gsm_key_file_remove_locale_key (GKeyFile    *keyfile,
                                      const gchar *key);
+void gsm_key_file_remove_all_locale_key (GKeyFile    *keyfile,
+                                         const gchar *key);
 
 char *gsm_key_file_make_exec_uri (const char *exec);
 

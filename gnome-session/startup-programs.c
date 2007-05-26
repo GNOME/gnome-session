@@ -274,11 +274,8 @@ startup_client_write (ManualClient *client)
     if (comment == NULL || comment[0] == '\0')
       gsm_key_file_set_string (keyfile, "Comment", client->comment);
     g_free (comment);
-  } else {
-      gsm_key_file_remove_locale_key (keyfile, "Comment");
-      //FIXME: this should really be "gsm_key_file_remove_all_locale_key()"
-      gsm_key_file_remove_key (keyfile, "Comment");
-  }
+  } else
+      gsm_key_file_remove_all_locale_key (keyfile, "Comment");
 
   gsm_key_file_set_string (keyfile,
                             "Exec", client->command);
