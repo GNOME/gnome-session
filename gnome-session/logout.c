@@ -361,7 +361,7 @@ display_gui (void)
 	                !gtk_widget_is_composited (invisible);
 
   /* Only create a managed window if a11y/compositing manager is enabled */
-  if (!iris_effect_enabled)
+  if (iris_effect_enabled)
     {
       while (1)
 	{
@@ -495,7 +495,7 @@ display_gui (void)
 
   gtk_widget_show_all (box);
 
-  if (!iris_effect_enabled)
+  if (iris_effect_enabled)
     {
       /* Move the grabs to our message box */
       gdk_pointer_grab (box->window, TRUE, 0,
