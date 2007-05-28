@@ -2,6 +2,16 @@
 
 	Backport from HEAD.
 
+	* save.c: (remove_duplicated_clients): be clever when removing
+	duplicated clients, especially the interaction between saved clients
+	and autostarted clients.
+	Fix bug #341286. Patch by Hans de Goede <j.w.r.degoede@hhs.nl>, based
+	on a proposal from Dan Winship <danw@novell.com>.
+
+2007-05-28  Vincent Untz  <vuntz@gnome.org>
+
+	Backport from HEAD.
+
 	* gnome-wm: add support for beryl
 	Fix bug #419219. Patch from Alex <nesl247@gmail.com>
 
