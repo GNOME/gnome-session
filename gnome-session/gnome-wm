@@ -48,7 +48,7 @@ if [ -z "$WINDOW_MANAGER" ] ; then
 
   KNOWN_WM="sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm"
   if [ $IS_X_COMPOSITED -eq 0 ] ; then
-    KNOWN_WM="compiz $KNOWN_WM"
+    KNOWN_WM="compiz beryl $KNOWN_WM"
   fi
   # metacity is still the default wm in GNOME
   KNOWN_WM="metacity $KNOWN_WM"
@@ -107,6 +107,10 @@ if [ ! -z "$SMID" ] ; then
       OPT1=--sm-client-id
       OPT2=$SMID
       ;;
+    beryl)
+      OPT1=--sm-client-id
+      OPT2=$SMID
+      ;;
     #FIXME: add all other windowmanagers here with their proper options
   esac
 fi
@@ -115,6 +119,9 @@ case `basename $WINDOW_MANAGER` in
   compiz)
     gtk-window-decorator &
     OPT3=gconf
+    ;;
+  beryl)
+    emerald &
     ;;
 esac
 
