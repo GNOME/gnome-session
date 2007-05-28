@@ -469,6 +469,9 @@ layout_icon (SplashWidget *sw, SplashIcon *si, GdkRectangle *area)
 			  (sw->icon_size + sw->icon_spacing) * sw->cur_y_row);
 	si->position.width = si->position.height = sw->icon_size;
 
+	if (gtk_widget_get_direction (GTK_WIDGET (sw)) == GTK_TEXT_DIR_RTL)
+		si->position.x = GTK_WIDGET (sw)->allocation.width - si->position.x - si->position.width;
+
 	sw->cur_x_offset += sw->icon_size + sw->icon_spacing;
 
 	if (area)
