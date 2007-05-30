@@ -12,9 +12,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session HEAD\n"
+"Project-Id-Version: gnome-session 2.18\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 14:35+0000\n"
+"POT-Creation-Date: 2007-05-03 03:49+0100\n"
 "PO-Revision-Date: 2007-03-25 09:59+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -23,11 +23,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "TCP ühenduste lubamine"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -40,13 +40,13 @@ msgstr ""
 "välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimise, et see "
 "seade tööle hakkaks."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Kui määratud, siis gnome-session küsib kasutaja nõusolekut enne seansi "
 "lõpetamist."
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -54,31 +54,31 @@ msgstr ""
 "Kui määratud, siis gnome-session salvestab seansi automaatselt. Kui ei, siis "
 "väljalogimisdialoogil näidatakse seansi salvestamise valikut."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Väljalogimisviip"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr "Eelistatud pilt, mida kasutatakse sisselogimise tiitelkuval"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Salvesta seansid"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
 msgstr "Aktiivne valik väljalogimise dialoogil"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Näita tiitelkuva"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Näita sisselogimisel tiitelkuva"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -88,7 +88,7 @@ msgstr ""
 "kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
 "rakendub järgmisel seansil peale sisselogimist."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -98,7 +98,16 @@ msgstr ""
 "\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
 "\" alglaadimise tegemiseks."
 
-#: ../gnome-session/gsm-at-startup.c:39
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Seansside sätete määramine"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:222
+msgid "Sessions"
+msgstr "Seansid"
+
+#: ../gnome-session/gsm-at-startup.c:61
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -364,37 +373,37 @@ msgstr "A_rvuti seiskamine"
 msgid "_Restart the computer"
 msgstr "Arvu_ti alglaadimine"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:83
 msgid "Specify a session name to load"
 msgstr "Määra laaditava seansi nimi"
 
-#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
 msgid "NAME"
 msgstr "NIMI"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:84
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud seansse ainult default.session failist"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
-#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
+#: ../gnome-session/main.c:87
 msgid "DELAY"
 msgstr "VIIVITUS"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:262
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -407,15 +416,15 @@ msgstr ""
 "Võimalik, et saate selest veast üle, lisades\n"
 "%s faili /etc/hosts."
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:269
 msgid "Log in Anyway"
 msgstr "Logi sellest hoolimata sisse"
 
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:270
 msgid "Try Again"
 msgstr "Proovi uuesti"
 
-#: ../gnome-session/main.c:408
+#: ../gnome-session/main.c:395
 msgid "- Manage the GNOME session"
 msgstr "- GNOME'i seansi haldamine"
 
@@ -480,11 +489,6 @@ msgstr "Kui sa ei salvesta, siis lähevad muudatused kaotsi."
 msgid "_Close without Saving"
 msgstr "Sulge _ilma salvestamata"
 
-#: ../gnome-session/session-properties-capplet.c:222
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Seansid"
-
 #: ../gnome-session/session-properties-capplet.c:248
 msgid "Additional startup _programs:"
 msgstr "Täiendavad käivitus_programmid:"
@@ -540,10 +544,6 @@ msgstr "Seansis olevate programmide nimekiri."
 #: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "Hetkel töötavad _programmid:"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Seansside sätete määramine"
 
 #: ../gnome-session/splash-widget.c:45
 msgid "Sawfish Window Manager"
