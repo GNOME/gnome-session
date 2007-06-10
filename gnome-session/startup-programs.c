@@ -694,10 +694,13 @@ startup_list_enable (GSList **sl, GtkTreeModel *model, GtkTreeIter *iter)
                                                        FALSE);
       g_free (system_path);
 
+#define REALLY_IDENTICAL_STRING(a, b) \
+      ((a && b && !strcmp (a, b)) || (!a && !b))
+
       if (system_client
-          && !strcmp (system_client->name, client->name)
-          && !strcmp (system_client->command, client->command)
-          && !strcmp (system_client->comment, client->comment)
+          && REALLY_IDENTICAL_STRING (system_client->name, client->name)
+          && REALLY_IDENTICAL_STRING (system_client->command, client->command)
+          && REALLY_IDENTICAL_STRING (system_client->comment, client->comment)
           && system_client->enabled)
         {
           /* remove user entry and use system entry */
