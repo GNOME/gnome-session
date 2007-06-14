@@ -66,7 +66,7 @@ gsm_assistive_registry_start (void)
      gdk_window_set_events (w, GDK_PROPERTY_CHANGE_MASK);
      gsm_exec_command_line_async (command, NULL);
      gdk_window_add_filter (w, gsm_assistive_filter_watch, &tid);
-     tid = g_timeout_add (5e3, gsm_assistive_filter_timeout, NULL);    
+     tid = g_timeout_add_seconds (5, gsm_assistive_filter_timeout, NULL);    
 
      gtk_main ();
 

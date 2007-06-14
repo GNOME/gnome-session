@@ -295,7 +295,8 @@ gsm_check_clock_tool_exited (GPid     pid,
                              gint     status,
                              gpointer data)
 {
-  gsm_check_clock_main_quit ((struct check_clock *) data);
+  if (gsm_check_time ())
+    gsm_check_clock_main_quit ((struct check_clock *) data);
 
   g_spawn_close_pid (pid);
 }
@@ -393,8 +394,7 @@ gsm_check_clock (void)
 
   gtk_widget_show (check.dialog);
 
-  check.timeout_id = g_timeout_add (1000 * 60,
-                                    gsm_check_clock_update, &check);
+  check.timeout_id = g_timeout_add_seconds (30, gsm_check_clock_update, &check);
 
   gtk_main ();
 }

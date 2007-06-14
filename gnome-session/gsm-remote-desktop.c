@@ -81,9 +81,9 @@ remote_desktop_shutdown (RemoteDesktopData *data)
 
   gsm_verbose (G_STRLOC ": shutting down remote desktop server in 30 seconds\n");
 
-  data->shutdown_timeout = g_timeout_add (30 * 1000,
-					  (GSourceFunc) remote_desktop_shutdown_timeout,
-					  data);
+  data->shutdown_timeout = g_timeout_add_seconds (30,
+                                                  (GSourceFunc) remote_desktop_shutdown_timeout,
+                                                  data);
 }
 
 static void

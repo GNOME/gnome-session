@@ -1,3 +1,16 @@
+2007-06-14  Vincent Untz  <vuntz@gnome.org>
+
+	Use new glib API where it makes sense.
+
+	* gsm-at-startup.c: (gsm_assistive_registry_start): use
+	g_timeout_add_seconds()
+	* gsm-remote-desktop.c: (remote_desktop_shutdown): use
+	g_timeout_add_seconds()
+	* main.c: (gsm_check_clock_tool_exited): check that the time is
+	correct instead of always assuming it has been corrected
+	(gsm_check_clock): use g_timeout_add_seconds(), and check a bit more
+	often if the time is correct
+
 2007-06-10  Vincent Untz  <vuntz@gnome.org>
 
 	* startup-programs.c: (startup_list_enable): be safer when comparing
