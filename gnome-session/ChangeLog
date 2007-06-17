@@ -1,3 +1,19 @@
+2007-06-17  Vincent Untz  <vuntz@gnome.org>
+
+	Fix crash when icons on the splash screen needs to be relayout-ed bug
+	#446558.
+
+	* splash-widget.c: (splash_icon_destroy): free transformation data
+	(re_laydown): prepare the transformation effect again, since we need
+	we freed the icon pixbuf
+	(prepare_trans_effect): new, based on code from
+	splash_widget_add_icon(), and update the icon on the splash screen if
+	it was already displayed
+	(splash_widget_add_icon): updated
+	(update_icon_with_effect): new, based on code from
+	update_trans_effect()
+	(update_trans_effect): updated
+
 2007-06-14  Vincent Untz  <vuntz@gnome.org>
 
 	Use new glib API where it makes sense.

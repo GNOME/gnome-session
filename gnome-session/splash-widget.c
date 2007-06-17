@@ -62,17 +62,19 @@ get_splash_app (const char *exe)
 	return NULL;
 }
 
+typedef struct _TransParam TransParam;
+
 typedef struct {
 	GdkRectangle position;
 	GdkPixbuf   *unscaled;
 	GdkPixbuf   *scaled;
 	GdkPixbuf   *scaled_copy;
 	gint	     trans_count;
+	TransParam  *transformation;
 } SplashIcon;
 
-typedef struct {
+struct _TransParam {
 	SplashWidget *sw;
-	SplashIcon   *si;
 	int width;
 	int height;
 	int n_channels;
@@ -80,7 +82,10 @@ typedef struct {
 	int rowstride_orig;
 	guchar *pixels_trans;
 	guchar *pixels_orig;
-} TransParam;
+};
+
+static void prepare_trans_effect (SplashIcon *si);
+static void update_icon_with_effect (SplashIcon *si);
 
 static gboolean
 re_scale (SplashWidget *sw)
@@ -271,6 +276,8 @@ splash_icon_destroy (SplashIcon *si)
 		g_object_unref (si->scaled);
 	if (si->scaled_copy)
 		g_object_unref (si->scaled_copy);
+	if (si->transformation)
+		g_free (si->transformation);
 	
 	g_free (si);
 }
@@ -492,8 +499,46 @@ re_laydown (SplashWidget *sw)
 			g_object_unref (si->scaled);
 			si->scaled = NULL;
 		}
-		layout_icon (sw, l->data, NULL);
+
+		layout_icon (sw, si, NULL);
+
+		prepare_trans_effect (si);
 	}
+}
+
+static void
+prepare_trans_effect (SplashIcon *si)
+{
+	if (si->scaled_copy) {
+		g_object_unref (si->scaled_copy);
+		si->scaled_copy = NULL;
+	}
+
+	if ((si->trans_count < TRANS_TIMEOUT_PERIOD) &&
+	    (gdk_pixbuf_get_colorspace (si->scaled) == GDK_COLORSPACE_RGB) &&
+	    (gdk_pixbuf_get_bits_per_sample (si->scaled) == 8) &&
+	    (gdk_pixbuf_get_n_channels (si->scaled))) {
+		if (!gdk_pixbuf_get_has_alpha (si->scaled)) {
+			si->scaled_copy = gdk_pixbuf_add_alpha (si->scaled, FALSE, 0, 0, 0);
+			g_object_unref (si->scaled);
+			si->scaled = gdk_pixbuf_copy (si->scaled_copy);
+		} else 
+			si->scaled_copy = gdk_pixbuf_copy (si->scaled);
+
+		si->transformation->width  = gdk_pixbuf_get_width  (si->scaled);
+		si->transformation->height = gdk_pixbuf_get_height (si->scaled);
+		si->transformation->rowstride_trans = gdk_pixbuf_get_rowstride (si->scaled);
+		si->transformation->rowstride_orig  = gdk_pixbuf_get_rowstride (si->scaled_copy);
+		si->transformation->pixels_trans = gdk_pixbuf_get_pixels (si->scaled);
+		si->transformation->pixels_orig  = gdk_pixbuf_get_pixels (si->scaled_copy);
+		si->transformation->n_channels = gdk_pixbuf_get_n_channels (si->scaled);
+
+		if (si->trans_count < 0)
+			si->trans_count = 0;
+		else
+			update_icon_with_effect (si);
+	} else
+		si->trans_count = TRANS_TIMEOUT_PERIOD;
 }
 
 void
@@ -547,51 +592,42 @@ splash_widget_add_icon (SplashWidget *sw,
 	if (pb) {
 		SplashIcon   *si;
 		GdkRectangle  area;
-		TransParam   *tp;
 
 		si = g_new0 (SplashIcon, 1);
 		si->unscaled = pb;
+		si->transformation = g_new0(TransParam, 1);
+		si->transformation->sw = sw;
+		si->trans_count = -1;
 
 		sw->icons = g_list_append (sw->icons, si);
 
 		layout_icon (sw, si, &area);
-	
-		/* prepare transparency effect */
-		if ((gdk_pixbuf_get_colorspace (si->scaled) == GDK_COLORSPACE_RGB) &&
-		    (gdk_pixbuf_get_bits_per_sample (si->scaled) == 8) &&
-		    (gdk_pixbuf_get_n_channels (si->scaled))) {
-			si->trans_count = 0;
-			if (!gdk_pixbuf_get_has_alpha (si->scaled)) {
-				si->scaled_copy = gdk_pixbuf_add_alpha (si->scaled, FALSE, 0, 0, 0);
-				g_object_unref (si->scaled);
-				si->scaled = gdk_pixbuf_copy (si->scaled_copy);
-			} else 
-				si->scaled_copy = gdk_pixbuf_copy (si->scaled);
 
-			tp = g_new0(TransParam, 1);
-			tp->si = si;
-			tp->sw = sw;
-			tp->width  = gdk_pixbuf_get_width  (tp->si->scaled);
-			tp->height = gdk_pixbuf_get_height (tp->si->scaled);
-			tp->rowstride_trans = gdk_pixbuf_get_rowstride (tp->si->scaled);
-			tp->rowstride_orig  = gdk_pixbuf_get_rowstride (tp->si->scaled_copy);
-			tp->pixels_trans = gdk_pixbuf_get_pixels (tp->si->scaled);
-			tp->pixels_orig  = gdk_pixbuf_get_pixels (tp->si->scaled_copy);
-			tp->n_channels = gdk_pixbuf_get_n_channels (tp->si->scaled);
+		if (si->trans_count == -1)
+			prepare_trans_effect (si);
 
-			gdk_pixbuf_fill (si->scaled, 0x00000000);
-			g_timeout_add (TRANS_TIMEOUT, update_trans_effect, tp);
-		} else {
-			gtk_widget_queue_draw_area (GTK_WIDGET (sw), area.x, area.y,
+		/* don't do this in prepare_trans_effect(), because
+		 * prepare_trans_effect() might be called twice if re_laydown()
+		 * is called twice (in case we have to resize the icon twice).
+		 * And if this happens, then the copy of the scaled icon will
+		 * be empty too because of the second call to
+		 * prepare_trans_effect(), which will result in an
+		 * all-transparent icon */
+		gdk_pixbuf_fill (si->scaled, 0x00000000);
+
+		if (si->trans_count < TRANS_TIMEOUT_PERIOD)
+			g_timeout_add (TRANS_TIMEOUT, update_trans_effect, si);
+		else
+			gtk_widget_queue_draw_area (GTK_WIDGET (sw),
+						    area.x, area.y,
 						    area.width, area.height);
-		}
 	}
 }
 
 static SplashWidget *global_splash = NULL;
 
-static gboolean
-update_trans_effect (gpointer trans_param)
+static void
+update_icon_with_effect (SplashIcon *si)
 {
 	guchar     *p_trans;
 	guchar     *p_orig;
@@ -599,30 +635,15 @@ update_trans_effect (gpointer trans_param)
 	gint       x = 0;
 	gint	   y = 0;
 
-	TransParam *tp = (TransParam *) trans_param;
-
-	if (!global_splash) {
-		g_free (tp);
-		return FALSE;
-	}
-	
-	if (tp->si->trans_count++ == TRANS_TIMEOUT_PERIOD) {
-		gtk_widget_queue_draw_area (GTK_WIDGET (tp->sw),
-					    tp->si->position.x, tp->si->position.y,
-					    tp->si->position.width, tp->si->position.height);
-		g_free (tp);
-		return FALSE;
-	}
-
-	a_mul = (gdouble) tp->si->trans_count / TRANS_TIMEOUT_PERIOD;
+	a_mul = (gdouble) si->trans_count / TRANS_TIMEOUT_PERIOD;
 	r_mul = 1;
 	g_mul = 1;
 	b_mul = 1;
 
-	for (y = 0; y < tp->height; y++) {
-		for (x = 0; x < tp->width; x++) {
-			p_trans = tp->pixels_trans + y * tp->rowstride_trans + x * tp->n_channels;
-			p_orig  = tp->pixels_orig  + y * tp->rowstride_orig  + x * tp->n_channels;
+	for (y = 0; y < si->transformation->height; y++) {
+		for (x = 0; x < si->transformation->width; x++) {
+			p_trans = si->transformation->pixels_trans + y * si->transformation->rowstride_trans + x * si->transformation->n_channels;
+			p_orig  = si->transformation->pixels_orig  + y * si->transformation->rowstride_orig  + x * si->transformation->n_channels;
 
 			/* we can add more effects here apart from alpha fading */
 			p_trans[0] = r_mul * p_orig[0];
@@ -631,10 +652,28 @@ update_trans_effect (gpointer trans_param)
 			p_trans[3] = a_mul * p_orig[3];
 		}
 	}
+}
 
-	gtk_widget_queue_draw_area (GTK_WIDGET (tp->sw),
-				    tp->si->position.x, tp->si->position.y,
-				    tp->si->position.width, tp->si->position.height);
+static gboolean
+update_trans_effect (gpointer splash_icon)
+{
+	SplashIcon *si = (SplashIcon *) splash_icon;
+
+	if (!global_splash)
+		return FALSE;
+	
+	if (si->trans_count++ >= TRANS_TIMEOUT_PERIOD) {
+		gtk_widget_queue_draw_area (GTK_WIDGET (si->transformation->sw),
+					    si->position.x, si->position.y,
+					    si->position.width, si->position.height);
+		return FALSE;
+	}
+
+	update_icon_with_effect (si);
+
+	gtk_widget_queue_draw_area (GTK_WIDGET (si->transformation->sw),
+				    si->position.x, si->position.y,
+				    si->position.width, si->position.height);
 	return TRUE;
 }
 
