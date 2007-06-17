@@ -2,8 +2,6 @@ NULL =
 
 defaultdir = $(datadir)/gnome
 
-GNOME_COMPILE_TIME=$(shell date +%s)
-
 INCLUDES =						\
 	$(GNOME_SESSION_CFLAGS)				\
 	$(STANDARD_PROPERTIES_CFLAGS)			\
@@ -18,8 +16,7 @@ INCLUDES =						\
 	-DDEFAULTDIR="\"$(defaultdir)\""		\
 	-DESD_SERVER="\"$(ESD_SERVER)\""		\
 	-DAT_SPI_REGISTRYD_DIR="\"$(AT_SPI_REGISTRYD_DIR)\""	\
-	-DTIME_UTILITY="\"$(TIME_UTILITY)\""		\
-	-DGNOME_COMPILE_TIME="$(GNOME_COMPILE_TIME)"
+	-DTIME_UTILITY="\"$(TIME_UTILITY)\""
 
 # Used by the GNOME_PROGRAM_STANDARD_PROPERTIES macros
 STANDARD_PROPERTIES_CFLAGS =                                    \

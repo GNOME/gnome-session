@@ -428,6 +428,15 @@ AC_ARG_WITH(rsh-command,
 AC_SUBST(RSH_COMMAND)
 
 
+GNOME_SESSION_TARBALL=`date +%d`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_DAY, $GNOME_SESSION_TARBALL,
+                   [Define the day gnome-session tarball was generated])
+GNOME_SESSION_TARBALL=`date +%m`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_MONTH, $GNOME_SESSION_TARBALL,
+                   [Define the month gnome-session tarball was generated])
+GNOME_SESSION_TARBALL=`date +%Y`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_YEAR, $GNOME_SESSION_TARBALL,
+                   [Define the year gnome-session tarball was generated])
 
 AC_CONFIG_FILES([
 Makefile

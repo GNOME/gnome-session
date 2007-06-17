@@ -198,11 +198,25 @@ struct check_clock {
 static gboolean
 gsm_check_time (void)
 {
-  time_t now;
+  int    cmp;
+  GDate *now;
+  GDate *tarball;
 
-  now = time (NULL);
+  now = g_date_new ();
+  g_date_set_time_t (now, time(NULL));
+
+  tarball = g_date_new_dmy (GNOME_SESSION_TARBALL_DAY,
+                            GNOME_SESSION_TARBALL_MONTH,
+                            GNOME_SESSION_TARBALL_YEAR);
   /* accept a one week error: no need to be too strict */
-  return (now > GNOME_COMPILE_TIME - 3600*24*7);
+  g_date_subtract_days (tarball, 7);
+
+  cmp = g_date_compare (now, tarball);
+
+  g_date_free (now);
+  g_date_free (tarball);
+
+  return (cmp > 0);
 }
 
 static void
