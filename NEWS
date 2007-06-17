@@ -1,4 +1,30 @@
 ==============
+Version 2.19.4
+==============
+
+Session Manager
+
+	* Use g_timeout_add_seconds() when possible (Vincent)
+	* Improve a bit "wrong clock" check when the user has reconfigured his
+	  clock (Vincent)
+	* Fix crash when icons on the splash screen needs to be relayout-ed
+	  (Vincent)
+	* Fix compilation issue on Solaris (Vincent)
+
+Session Properties Dialog
+
+	* Fix a crash when the comment for a .desktop file is not defined and a
+	  startup program is disabled (Vincent)
+
+Misc
+
+	* Require glib 2.13.0
+
+Translators
+
+	* Tshewang Norbu (dz)
+
+==============
 Version 2.19.3
 ==============
 
