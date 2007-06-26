@@ -169,7 +169,8 @@ main (int argc, char *argv[])
 
   IceAddConnectionWatch (ice_connection_watch, NULL);
 
-  goption_context = g_option_context_new (_("- Save the current session"));
+  goption_context = g_option_context_new (N_("- Save the current session"));
+  g_option_context_set_translation_domain (goption_context, GETTEXT_PACKAGE);
   g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);
 
   gnome_program_init ("gnome-session-save", VERSION, LIBGNOMEUI_MODULE,
