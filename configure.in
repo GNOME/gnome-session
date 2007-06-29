@@ -1,0 +1,278 @@
+AC_INIT([gnome-session], [0.1],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
+AC_CONFIG_SRCDIR([gnome-session])
+AC_CONFIG_HEADERS([config.h])
+
+AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
+
+AM_MAINTAINER_MODE
+    
+GNOME_COMMON_INIT
+GNOME_DEBUG_CHECK
+
+IT_PROG_INTLTOOL([0.35.0])
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_STDC_HEADERS
+AM_PROG_LIBTOOL
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+
+dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
+AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
+
+GNOME_COMPILE_WARNINGS([maximum])
+GNOME_MAINTAINER_MODE_DEFINES
+
+AC_ARG_WITH(at-spi-registryd-directory,
+              [AC_HELP_STRING([--with-at-spi-registryd-directory],
+                              [Specify the directory of at-spi-registryd @<:@default=libexecdir@:>@])],,
+                              [with_at_spi_registryd_directory="\${libexecdir}"])
+
+AT_SPI_REGISTRYD_DIR=$with_at_spi_registryd_directory
+AC_SUBST(AT_SPI_REGISTRYD_DIR)
+
+# Let distributor specify which utility to use when changing the time
+AC_ARG_WITH(time-utility,
+              [AC_HELP_STRING([--with-time-utility],
+                              [Specify the utility to use when changing the time @<:@default=@:>@])],,
+                              [with_time_utility=""])
+
+TIME_UTILITY=$with_time_utility
+AC_SUBST(TIME_UTILITY)
+
+AC_ARG_ENABLE(deprecations,
+              [AC_HELP_STRING([--enable-deprecations],
+                              [warn about deprecated usages [default=no]])],,
+              [enable_deprecations=no])
+
+if test "x$enable_deprecations" = "xyes"; then
+   DISABLE_DEPRECATED_CFLAGS=$DISABLE_DEPRECATED
+   AC_SUBST([DISABLE_DEPRECATED_CFLAGS])
+fi
+
+# FIXME!
+GLIB_REQUIRED=2.8.0
+LIBGNOMEUI_REQUIRED=2.2.0
+GTK_REQUIRED=2.3.1
+DBUS_GLIB_REQUIRED=0.35
+GNOME_KEYRING_REQUIRED=0.4
+
+dnl pkg-config dependency checks
+
+PKG_PROG_PKG_CONFIG()
+
+PKG_CHECK_MODULES(GNOME_SESSION, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dbus-glib-1 >= $DBUS_GLIB_REQUIRED )
+
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_REQUIRED)
+PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
+PKG_CHECK_MODULES(GCONF, gconf-2.0)
+PKG_CHECK_MODULES(LIBGNOMEUI, libgnomeui-2.0)
+PKG_CHECK_MODULES(STARTUP_NOTIFICATION, libstartup-notification-1.0)
+
+PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-2.0)
+PKG_CHECK_MODULES(EGG_LIBGNOMEUI, libgnomeui-2.0)
+
+dnl Check if libnotify is present
+
+LIBNOTIFY_REQUIRED=0.2.1
+LIBNOTIFY_CFLAGS=
+LIBNOTIFY_LIBS=
+PKG_CHECK_MODULES(LIBNOTIFY, libnotify >= $LIBNOTIFY_REQUIRED,
+	          HAVE_LIBNOTIFY="yes", HAVE_LIBNOTIFY="no")
+
+if test "x$HAVE_LIBNOTIFY" = "xyes"; then
+        AC_DEFINE(HAVE_LIBNOTIFY, 1, [libnotify available])
+        AC_MSG_RESULT(available)
+else
+        AC_MSG_RESULT(no)
+fi
+
+AC_SUBST(LIBNOTIFY_CFLAGS)
+AC_SUBST(LIBNOTIFY_LIBS)
+
+dnl gconf checks
+AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+
+if test x"$GCONFTOOL" = xno; then
+  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+fi
+
+AM_GCONF_SOURCE_2
+
+# gconf-sanity-check
+GCONF_SERVERDIR=`$PKG_CONFIG --variable=gconf_serverdir gconf-2.0`
+old_path=$PATH
+if test x"$GCONF_SERVERDIR" != x; then
+   PATH=$GCONF_SERVERDIR:$PATH
+fi
+
+AC_PATH_PROG(GCONF_SANITY_CHECK, gconf-sanity-check-2, no)
+if test x"$GCONF_SANITY_CHECK" = xno; then
+  AC_MSG_ERROR([gconf-sanity-check-2 executable not found in your path - should be installed with GConf])
+fi
+
+AC_SUBST(GCONF_SANITY_CHECK)
+PATH=$old_path
+	
+AC_PATH_PROG(GNOME_KEYRING_DAEMON, gnome-keyring-daemon, no)
+if test x"$GNOME_KEYRING_DAEMON" = xno; then
+  AC_MSG_ERROR([gnome-keyring-daemon executable not found in your path - should be installed with gnome-keyring])
+fi
+AC_SUBST(GNOME_KEYRING_DAEMON)
+PKG_CHECK_MODULES(GNOME_KEYRING, gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
+
+dnl X development libraries check
+
+#
+# If Pango included the shared library dependencies from X11 in
+# the pkg-config output, then we use that (to avoid duplicates).
+# but if they were omitted to avoid binary compatibility problems
+# then we need to repeat the checks.
+#
+if $PKG_CONFIG --exists pangoxft ; then
+  PANGO_PACKAGES="pangox pangoxft"
+else
+  PANGO_PACKAGES="pangox"
+fi
+
+x_libs="`$PKG_CONFIG --libs $PANGO_PACKAGES`"
+case x_libs in
+  *-lX11*) pango_omitted_x_deps=no ;;
+  *)       pango_omitted_x_deps=yes ;;
+esac
+
+if test $pango_omitted_x_deps = yes ; then
+  AC_PATH_XTRA
+
+  if test x$no_x = xyes ; then
+    AC_MSG_ERROR([X development libraries not found])
+  else
+    X_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
+  fi
+fi
+
+AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
+             [AC_MSG_ERROR([
+*** Can't find the Xauth library. It is needed to compile gnome-session.])],
+	     $X_LIBS)
+
+AC_CHECK_LIB(Xrandr, XRRUpdateConfiguration,
+  [AC_CHECK_HEADER(X11/extensions/Xrandr.h,
+     X_LIBS="-lXrandr -lXrender $X_LIBS"
+     AC_DEFINE(HAVE_RANDR, 1, [Have the Xrandr extension library]),
+	  :, [#include <X11/Xlib.h>])], : ,
+       -lXrandr -lXrender $X_LIBS)
+
+AC_SUBST(X_LIBS)
+
+dnl -----------------------------------------------------------
+
+dnl  ------------------
+dnl | Language Support |---------------------------------------
+dnl  ------------------
+GETTEXT_PACKAGE=gnome-session-2.0
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
+                   [The gettext translation domain])
+AC_SUBST(GETTEXT_PACKAGE)
+
+AM_GLIB_GNU_GETTEXT
+dnl -----------------------------------------------------------
+
+dnl  -------------------------------
+dnl | Headers |--------------------------
+dnl  -------------------------------
+AC_HEADER_STDC
+AC_CHECK_HEADERS(syslog.h tcpd.h sys/param.h)
+dnl -----------------------------------------------------------
+
+dnl ====================================================================
+dnl Check for newish X interface
+dnl ====================================================================
+oCFLAGS="$CFLAGS"
+CFLAGS="$CFLAGS $X_CFLAGS"
+AC_CHECK_HEADERS(X11/Xtrans/Xtrans.h)
+CFLAGS="$oCFLAGS"
+dnl -----------------------------------------------------------
+
+dnl ====================================================================
+dnl Code for checking whether IPv6 is enabled on the system....
+dnl ====================================================================
+AC_MSG_CHECKING([whether to enable ipv6])
+AC_ARG_ENABLE(ipv6,
+              AC_HELP_STRING([--enable-ipv6], [enable IPv6 extensions]),,
+              [enable_ipv6=yes])
+if test $enable_ipv6 = yes; then
+
+  dnl ====================================================================
+  dnl Code for checking presence of AF_INET6 on the system....
+  dnl ====================================================================
+  AC_TRY_COMPILE([
+    #include <sys/types.h>
+    #include <sys/socket.h>], [
+    socket(AF_INET6, SOCK_STREAM, 0)
+    ],
+    have_ipv6=yes,
+    have_ipv6=no
+  )
+  AC_MSG_RESULT($have_ipv6)
+
+  dnl =================================================================
+  dnl Now we would check for specific function like getaddrinfo.
+  dnl =================================================================
+  have_getaddrinfo=no
+  if test $have_ipv6=yes; then
+    AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
+    if test $have_getaddrinfo != yes; then
+      # getaddrinfo is not in the default libraries.  See if it's in some other.
+      for lib in bsd socket inet; do
+        AC_CHECK_LIB($lib, getaddrinfo, [LIBS="$LIBS -l$lib";have_getaddrinfo=yes; break])
+      done
+    fi
+    if test $have_getaddrinfo=yes; then
+      AC_DEFINE(ENABLE_IPV6, 1, [Define if IPV6 is supported])
+    fi
+  fi
+fi
+dnl ==============================================================================
+dnl End of IPv6 checks
+dnl ==============================================================================
+
+dnl Don't use AC_PROG_AWK since we need the full pathname.
+AC_PATH_PROGS(AWK, mawk gawk nawk awk, )
+AC_PATH_PROGS(PERL, perl5 perl)
+
+dnl define a MAINT-like variable REBUILD which is set if Perl
+dnl  and awk are found, so autogenerated sources can be rebuilt
+AC_ARG_ENABLE(rebuilds,
+              AC_HELP_STRING([--disable-rebuilds],
+                             [disable all source autogeneration rules]),,
+              [enable_rebuilds=yes])
+REBUILD=\#
+if test "x$enable_rebuilds" = "xyes" && \
+     test -n "$PERL" && \
+     $PERL -e 'exit !($] >= 5.002)' > /dev/null 2>&1 && \
+     test -n "$AWK" ; then
+  REBUILD=
+fi
+AC_SUBST(REBUILD)
+
+GNOME_SESSION_TARBALL=`date +%d`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_DAY, $GNOME_SESSION_TARBALL,
+                   [Define the day gnome-session tarball was generated])
+GNOME_SESSION_TARBALL=`date +%m`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_MONTH, $GNOME_SESSION_TARBALL,
+                   [Define the month gnome-session tarball was generated])
+GNOME_SESSION_TARBALL=`date +%Y`
+AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_YEAR, $GNOME_SESSION_TARBALL,
+                   [Define the year gnome-session tarball was generated])
+
+AC_OUTPUT([
+Makefile
+compat/Makefile
+gnome-session/Makefile
+egg/Makefile
+splash/Makefile
+data/Makefile
+po/Makefile.in
+])

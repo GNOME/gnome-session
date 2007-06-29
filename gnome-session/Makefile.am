@@ -1,0 +1,54 @@
+INCLUDES =					\
+	$(WARN_CFLAGS)				\
+	$(DBUS_GLIB_CFLAGS)			\
+	$(GCONF_CFLAGS)				\
+	$(GTK_CFLAGS)				\
+	-I$(top_srcdir)/egg			\
+	-DDBUS_LAUNCH=\"dbus-launch\"		\
+	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\" \
+	-DGSM_DEFAULT_SESSION_DIR=\""$(default_sessiondir)"\"
+
+LDADD =						\
+	-lSM -lICE				\
+	$(top_builddir)/egg/libeggdesktopfile.la \
+	$(DBUS_GLIB_LIBS)			\
+	$(GCONF_LIBS)				\
+	$(GTK_LIBS)
+
+default_sessiondir = $(datadir)/gnome/default-session
+
+bin_PROGRAMS =					\
+	gnome-session
+
+gnome_session_SOURCES =				\
+	app-autostart.c				\
+	app-autostart.h				\
+	app.c					\
+	app.h					\
+	client-xsmp.c				\
+	client-xsmp.h				\
+	client.c				\
+	client.h				\
+	dbus.c					\
+	dbus.h					\
+	gconf.c					\
+	gconf.h					\
+	gsm.h					\
+	main.c					\
+	session.c				\
+	session.h				\
+	xsmp.c					\
+	xsmp.h
+
+dbus.o dbus.lo: dbus-glue.h
+
+dbus-glue.h: org.gnome.SessionManagement.xml
+	dbus-binding-tool --mode=glib-server --prefix=gsm_dbus_server $^ > $@
+
+CLEANFILES =					\
+	dbus-glue.h
+
+EXTRA_DIST =					\
+	README					\
+	org.gnome.SessionManagement.xml
