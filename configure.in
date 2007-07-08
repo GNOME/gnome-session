@@ -428,10 +428,10 @@ AC_ARG_WITH(rsh-command,
 AC_SUBST(RSH_COMMAND)
 
 
-GNOME_SESSION_TARBALL=`date +%d`
+GNOME_SESSION_TARBALL=`date +%e`
 AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_DAY, $GNOME_SESSION_TARBALL,
                    [Define the day gnome-session tarball was generated])
-GNOME_SESSION_TARBALL=`date +%m`
+GNOME_SESSION_TARBALL=`date +%m | sed 's/^0//'`
 AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_MONTH, $GNOME_SESSION_TARBALL,
                    [Define the month gnome-session tarball was generated])
 GNOME_SESSION_TARBALL=`date +%Y`

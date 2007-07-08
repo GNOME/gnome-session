@@ -1,3 +1,10 @@
+2007-07-08  Vincent Untz  <vuntz@gnome.org>
+
+	* configure.in: use %e (instead of %d) to get the day of the month
+	since there's no leading 0 there, and use sed to remove the leading 0
+	in date +%m.
+	Fix compilation breaking on some dates (bug #454797)
+
 2007-06-18  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in: post-release bump to 2.19.5
