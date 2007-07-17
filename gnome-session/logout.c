@@ -65,6 +65,7 @@ typedef struct {
   guchar       *start_p, *frame_p;
   GTimeVal      start_time;
   GdkGC        *gc;
+  gboolean      composited;
 } FadeoutData;
 
 static GList *fadeout_windows = NULL;
@@ -134,16 +135,23 @@ fadeout_callback (FadeoutData *fadeout)
 
   percent = elapsed / FADE_DURATION;
 
-  get_current_frame (fadeout, 1.0 - percent);
-  gdk_draw_pixbuf (fadeout->draw_window,
-		   fadeout->gc,
-		   fadeout->frame,
-		   0, 0,
-		   0, 0,
-		   fadeout->area.width,
-		   fadeout->area.height,
-		   GDK_RGB_DITHER_NONE,
-		   0, 0);
+  if (fadeout->composited)
+    {
+      gdk_window_set_opacity (fadeout->draw_window, percent / 2);
+    }
+  else
+    {
+      get_current_frame (fadeout, 1.0 - percent);
+      gdk_draw_pixbuf (fadeout->draw_window,
+		       fadeout->gc,
+		       fadeout->frame,
+		       0, 0,
+		       0, 0,
+		       fadeout->area.width,
+		       fadeout->area.height,
+		       GDK_RGB_DITHER_NONE,
+		       0, 0);
+    }
 
   gdk_flush ();
   
@@ -163,6 +171,7 @@ fadeout_screen (GdkScreen *screen,
 
   fadeout->screen = screen;
   fadeout->monitor = monitor;
+  fadeout->composited = gdk_screen_is_composited (screen);
 
   fadeout->area.x = gsm_screen_get_x (screen, monitor);
   fadeout->area.y = gsm_screen_get_y (screen, monitor);
@@ -170,7 +179,7 @@ fadeout_screen (GdkScreen *screen,
   fadeout->area.height = gsm_screen_get_height (screen, monitor);
 
   fadeout->root_window = gdk_screen_get_root_window (screen);
-  attr.window_type = GDK_WINDOW_CHILD;
+  attr.window_type = GDK_WINDOW_TOPLEVEL;
   attr.x = fadeout->area.x;
   attr.y = fadeout->area.y;
   attr.width = fadeout->area.width;
@@ -203,17 +212,25 @@ fadeout_screen (GdkScreen *screen,
 
   fadeout->gc = gdk_gc_new_with_values (fadeout->root_window, &values, GDK_GC_SUBWINDOW);
 
-  gdk_window_set_back_pixmap (fadeout->draw_window, NULL, FALSE);
+  if (fadeout->composited)
+    {
+      gdk_window_set_opacity (fadeout->draw_window, 0.0);
+    }
+  else
+    {
+      gdk_window_set_back_pixmap (fadeout->draw_window, NULL, FALSE);
+      gdk_draw_pixbuf (fadeout->draw_window,
+		       fadeout->gc,
+		       fadeout->frame,
+		       0, 0,
+		       0, 0,
+		       fadeout->area.width,
+		       fadeout->area.height,
+		       GDK_RGB_DITHER_NONE,
+		       0, 0);
+    }
+
   gdk_window_show (fadeout->draw_window);
-  gdk_draw_pixbuf (fadeout->draw_window,
-		   fadeout->gc,
-		   fadeout->frame,
-		   0, 0,
-		   0, 0,
-		   fadeout->area.width,
-		   fadeout->area.height,
-		   GDK_RGB_DITHER_NONE,
-		   0, 0);
   
   g_get_current_time (&fadeout->start_time);
   g_idle_add ((GSourceFunc) fadeout_callback, fadeout);
@@ -302,6 +319,7 @@ display_gui (void)
   gboolean reboot_active = FALSE;
   GdmLogoutAction logout_action = GDM_LOGOUT_ACTION_NONE;
   gboolean iris_effect_enabled;
+  gboolean grab_xserver;
   GError *error = NULL;
   GdkScreen *screen;
   int monitor;
@@ -324,11 +342,11 @@ display_gui (void)
 
   gtk_widget_show (invisible);
 
-  iris_effect_enabled = !GTK_IS_ACCESSIBLE (gtk_widget_get_accessible
-  (invisible)) && 
-	                !gtk_widget_is_composited (invisible);
+  iris_effect_enabled = gdk_screen_is_composited (screen) ||
+	                !GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (invisible));
+  grab_xserver = !gdk_screen_is_composited (screen);
 
-  /* Only create a managed window if a11y/compositing manager is enabled */
+  /* Only create a managed window if a11y is enabled */
   if (iris_effect_enabled)
     {
       while (1)
@@ -457,7 +475,10 @@ display_gui (void)
    */
   if (iris_effect_enabled)
     {
-      XGrabServer (GDK_DISPLAY ());
+      if (grab_xserver)
+        {
+          XGrabServer (GDK_DISPLAY ());
+        }
       gsm_foreach_screen (fadeout_screen);
     }
 
@@ -499,7 +520,11 @@ display_gui (void)
   if (iris_effect_enabled)
     {
       hide_fadeout_windows ();
-      XUngrabServer (GDK_DISPLAY ());
+
+      if (grab_xserver)
+        {
+          XUngrabServer (GDK_DISPLAY ());
+        }
 
       gdk_pointer_ungrab (GDK_CURRENT_TIME);
       gdk_keyboard_ungrab (GDK_CURRENT_TIME);

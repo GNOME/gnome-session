@@ -1,3 +1,16 @@
+2007-07-17  Vincent Untz  <vuntz@gnome.org>
+
+	Have a better/smoother fadeout animation for logout dialog when
+	there's a compositing manager.
+	Based on patch by Travis Watkins <alleykat@gmail.com>
+
+	* logout.c: (fadeout_callback): use gdk_window_set_opacity() when
+	there's a compositing manager on the screen
+	(fadeout_screen): ditto
+	(display_gui): don't grab the xserver grab when there's a compositing
+	manager, and enable the animation even when a11y is enabled if a
+	compositing manager is running.
+
 ==================== 2.19.5 ====================
 
 2007-06-26  Vincent Untz  <vuntz@gnome.org>
