@@ -1,15 +1,17 @@
 # Telugu translation of gnome-session.
-# Copyright (C) 2007 Swecha Telugu Localisation team.
+# Copyright (C) 2007 Swecha Telugu Localisation team <localisation@swecha.org>
 # This file is distributed under the same license as the gnome-session package.
-# Swecha Telugu Localisation Team <localisation@swecha.org>, 2007.
+# Pavan Kumar <pavanpreetam@gmail.com>, 2007
+# Y.Kiran Chandra <kiran@swecha.net>, 2007
+# J.Bharat Kumar <jonnalagaddabharat@gmail.com>, 2007
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-29 12:49+0530\n"
-"PO-Revision-Date: 2007-06-28 18:46+0530\n"
-"Last-Translator: Pavan Kumar <pavanpreetam@gmail.com>\n"
+"POT-Creation-Date: 2007-07-23 20:06+0530\n"
+"PO-Revision-Date: 2007-07-19 13:59+0530\n"
+"Last-Translator: Bharat Kumar <jonnalagaddabharat@gmail.com>\n"
 "Language-Team: Swecha Telugu Localisation Team <localisation@swecha.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +19,7 @@ msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "TCP  భాంధవ్యాలను అనుమతించుము"
+msgstr "TCP భాంధవ్యాలను అనుమతించుము"
 
 #: ../data/gnome-session.schemas.in.h:2
 msgid ""
@@ -72,6 +74,8 @@ msgid ""
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
+"$datadir/pixmaps/·వివరము ఆధారంగా సాపేక్షంగా తీసుకోబడిన దారి .ఉప వివరాలు మరియు ప్రతిరూపనామాలు "
+"చెల్లుబడి అయ్యే విలువలు.ఈ విలువ మార్పు భవిష్యత్ సమకూర్పుల ప్రవేశములో ప్రభావము చూపెను."
 
 #: ../data/gnome-session.schemas.in.h:12
 msgid ""
@@ -84,7 +88,7 @@ msgstr ""
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr ""
+msgstr "మీ సమకూర్పుల రూపకరణ చేయు"
 
 #: ../data/session-properties.desktop.in.in.h:2
 #: ../gnome-session/session-properties-capplet.c:224
@@ -181,7 +185,7 @@ msgstr "చెత్త"
 
 #: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
-msgstr ""
+msgstr "నిష్క్రమించినపుడు విసర్జించబడినది ఇది నిరుపయోగమువును"
 
 #: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
@@ -307,6 +311,8 @@ msgid ""
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
 msgstr ""
+"గ్నోము సమకూర్పు అభికర్త '%s' దస్త్రమున తాళం వేయుట విఫలంకు.దీన్ని గ్నోము దోషముగా నివేదించుము. "
+"దస్త్రము వివరమును రాయలేనప్పుడు కూడా ఈ దోషము రావచ్చు."
 
 #: ../gnome-session/ice.c:538
 #, c-format
@@ -315,9 +321,12 @@ msgid ""
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
 msgstr ""
+"·గ్నొము సమకూర్పు అభికర్త '%s' దస్త్రమును చదువుట విఫలం.ఈ దస్త్రము ఉంటే అది మీరు "
+"చదువగలిగేటట్లుంటేనే గ్నోము సరిగ్గా పనిచేస్తుంది. భద్రమైన సమకూర్పుతో ప్రవేశించి ఆ దస్త్రమును తొలగించి "
+"ప్రయత్నించండి."
 
 #: ../gnome-session/ice.c:583
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
 "to function properly.  Try logging in with the failsafe session and removing "
@@ -326,27 +335,27 @@ msgstr ""
 "'%s'దస్త్రమునకు   రాయలేదు. గ్నోమ్  సరిగా పనిచేయుటకు ఈ దస్త్రము వ్రాయబడాలి. విఫలమైనా భద్రంగా ఉన్న "
 "సమకూర్పు ద్వారా ప్రవేశించుటకు ప్రయత్నించి  ఈ దస్త్రమును తీసివేయుము."
 
-#: ../gnome-session/logout.c:374
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "నిష్క్రమించదలుచుకున్నారా?"
 
-#: ../gnome-session/logout.c:391
+#: ../gnome-session/logout.c:409
 msgid "Remember running applications"
 msgstr "నడుస్తున్న కార్యక్షేత్రాలను గుర్తుంచుకొనుము"
 
-#: ../gnome-session/logout.c:414
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "క్రియ"
 
-#: ../gnome-session/logout.c:431
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "_నిష్క్రమించుట"
 
-#: ../gnome-session/logout.c:438
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "మూయడం"
 
-#: ../gnome-session/logout.c:446
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_కంప్యూటర్ ని పున:ప్రారంభించు"
 
@@ -403,11 +412,14 @@ msgid ""
 "\n"
 "Current date is <b>%s</b>."
 msgstr ""
+"కంప్యూటరు గడియారము సరిగ్గా అమర్చకపోతే ఈ సమకూర్పు సమస్యలను ఎదుర్కొంటుంది.దయచేసి దానిని సరిచేయండి.\n"
+"\n"
+"ప్రస్తుత తేదీ <b>%s</b>."
 
 #: ../gnome-session/main.c:353
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
-msgstr ""
+msgstr "%s సమయ రూపకరణ పనిముట్టు ప్రయోగం విఫలం "
 
 #: ../gnome-session/main.c:384
 msgid "The computer clock appears to be wrong"
@@ -429,6 +441,9 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
+"·%sచిరునామా మాహాతలంలో దొరకలేదు.\n"
+"ఇది గ్నోము పనివిధానానికి ఆటంకమవుతుంది.\n"
+"%s·ను ·/etc/hosts దస్త్రమునకు జతచేస్తే అది సరిగ్గా పనిచేస్తుంది."
 
 #: ../gnome-session/main.c:536
 msgid "Log in Anyway"
@@ -461,7 +476,7 @@ msgstr "దాని స్పందన కొరకు నిరీక్షి
 
 #: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
-msgstr ""
+msgstr "విఫలమైనందున పున:ప్రారంభించలేదు "
 
 #: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
@@ -542,7 +557,7 @@ msgstr "సమకూర్పు నిర్వాహకి తో  బంధ�
 
 #: ../gnome-session/session-properties-capplet.c:509
 msgid "session manager does not support GNOME extensions\n"
-msgstr ""
+msgstr "GNOME పొడగింపులకు సమకూర్పుల నిర్వాహకి సహకరించదు\n"
 
 #: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
