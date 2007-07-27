@@ -184,6 +184,29 @@ gsm_check_for_root (void)
   return !(response == ROOTSESSION_RESPONSE_CONTINUE);
 }
 
+static void
+gsm_breakpad_set_gtk_modules (void)
+{
+  gchar *path;
+  const gchar *old_env;
+  gchar *new_env;
+
+  path = g_find_program_in_path ("bug-buddy");
+  if (!path)
+    return;
+
+  g_free (path);
+
+  old_env = g_getenv ("GTK_MODULES");
+  if (old_env)
+    new_env = g_strconcat (old_env, ":gnomebreakpad", NULL);
+  else
+    new_env = g_strdup ("gnomebreakpad");
+  
+  g_setenv ("GTK_MODULES", new_env, TRUE);
+  g_free (new_env);
+}
+
 #define FALLBACK_TIME_UTILITY "time-admin"
 #define CLOCKSESSION_RESPONSE_IGNORE 1
 #define CLOCKSESSION_RESPONSE_ADJUST 3
@@ -652,6 +675,8 @@ main (int argc, char *argv[])
         }
     }
   
+  gsm_breakpad_set_gtk_modules ();
+
   /* Read the config option early, so that we know if a11y is set or not */ 
   gconf_client = gsm_get_conf_client ();
   gconf_client_add_dir (gconf_client, GSM_GCONF_CONFIG_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL); 
