@@ -82,6 +82,7 @@ fi
 OPT1=
 OPT2=
 OPT3=
+OPT4=
 if [ ! -z "$SMID" ] ; then
   case `basename $WINDOW_MANAGER` in
     sawfish|sawmill|metacity)
@@ -117,14 +118,16 @@ fi
 
 case `basename $WINDOW_MANAGER` in
   compiz)
+    export LIBGL_ALWAYS_INDIRECT=1
     gtk-window-decorator &
-    OPT3=gconf
+    OPT3=glib
+    OPT4=gconf
     ;;
   beryl)
     emerald &
     ;;
 esac
 
-exec $WINDOW_MANAGER $OPT1 $OPT2 $OPT3
+exec $WINDOW_MANAGER $OPT1 $OPT2 $OPT3 $OPT4
 
 echo "ERROR: No window manager could run!"
