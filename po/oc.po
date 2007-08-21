@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.18.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-15 19:27+0200\n"
-"PO-Revision-Date: 2007-08-19 20:25+0200\n"
+"POT-Creation-Date: 2007-08-19 20:15+0100\n"
+"PO-Revision-Date: 2007-08-21 00:12+0200\n"
 "Last-Translator: Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay>\n"
 "Language-Team: Occitan (post 1500) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
@@ -93,11 +93,11 @@ msgid "Configure your sessions"
 msgstr "Configurar vòstras sesilhas"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:222
+#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sessions"
 
-#: ../gnome-session/gsm-at-startup.c:61
+#: ../gnome-session/gsm-at-startup.c:39
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -105,110 +105,112 @@ msgid ""
 "support."
 msgstr ""
 
-#: ../gnome-session/gsm-client-editor.c:97
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
 msgstr "_Òrdre :"
 
-#: ../gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
 msgstr "Òrdre d'aviada de las aplicacions de la sesilha."
 
-#: ../gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
 msgstr "Qu'arriba passa amb lo logicial quand se quita."
 
-#: ../gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
 msgstr "_Estil :"
 
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "Òrdre"
-
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "Estil"
-
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "Estat"
-
-#: ../gnome-session/gsm-client-list.c:165
-#: ../gnome-session/session-properties-capplet.c:280
-msgid "Program"
-msgstr "Programa"
-
-#: ../gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
 msgstr "Inactiu"
 
-#: ../gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr "En espera de se lançar o lançament ja acabat."
 
-#: ../gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
 msgstr "Aviada"
 
-#: ../gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr "Lançat mas pas encara de rapòrt de son estat."
 
-#: ../gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "En foncionament"
 
-#: ../gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
 msgstr "Un utilizaire normal de la sesilha."
 
-#: ../gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
 msgstr "A salvar"
 
-#: ../gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
 msgstr "A salvar los detalhs de la sesilha."
 
-#: ../gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
 msgstr "L'estat es pas estat reportat pendent lo relambi autorizat."
 
-#: ../gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
 msgstr "Normal"
 
-#: ../gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr "Las sortidas l'afectan pas mas pòt morir."
 
-#: ../gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
 msgstr "Tornar lançar"
 
-#: ../gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr "Permetre pas jamai que morisca"
 
-#: ../gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "Banasta"
 
-#: ../gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr "Escartat a la sortida, pòt morir."
 
-#: ../gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "Paramètres"
 
-#: ../gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr "Lançat a cada intrada de sesilha."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "Òrdre"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "Estil"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "Estat"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "Programa"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -258,29 +260,34 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "Lo programa de configuracion se tornèt lançar de tròp."
 
-#: ../gnome-session/gsm-remove-client.c:46
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr ""
+
+#: ../gnome-session/gnome-session-remove.c:50
 msgid "List registered clients, then exit"
 msgstr ""
 
-#: ../gnome-session/gsm-remove-client.c:48
+#: ../gnome-session/gnome-session-remove.c:52
 msgid "PROGRAM..."
 msgstr ""
 
-#: ../gnome-session/gsm-remove-client.c:172
+#: ../gnome-session/gnome-session-remove.c:176
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
 msgstr ""
 
-#: ../gnome-session/gsm-remove-client.c:179
+#: ../gnome-session/gnome-session-remove.c:183
 msgid "Error: could not connect to the session manager\n"
 msgstr ""
 
-#: ../gnome-session/gsm-remove-client.c:193
+#: ../gnome-session/gnome-session-remove.c:197
 msgid "Currently registered clients:\n"
 msgstr ""
 
-#: ../gnome-session/gsm-remove-client.c:203
+#: ../gnome-session/gnome-session-remove.c:207
 #, c-format
 msgid "Couldn't find program %s in session\n"
 msgstr ""
@@ -294,7 +301,7 @@ msgid ""
 "s'.  Meanwhile you could try logging in using the failsafe session."
 msgstr ""
 
-#: ../gnome-session/ice.c:510
+#: ../gnome-session/ice.c:511
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -303,7 +310,7 @@ msgid ""
 "ensuring that it is."
 msgstr ""
 
-#: ../gnome-session/ice.c:537
+#: ../gnome-session/ice.c:538
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -311,7 +318,7 @@ msgid ""
 "in with the failsafe session and removing this file."
 msgstr ""
 
-#: ../gnome-session/ice.c:582
+#: ../gnome-session/ice.c:583
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -319,66 +326,106 @@ msgid ""
 "this file.  Also make sure that the file's directory is writable."
 msgstr ""
 
-#: ../gnome-session/logout.c:404
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: ../gnome-session/logout.c:421
-msgid "_Save current setup"
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
 msgstr ""
 
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Accion"
 
-#: ../gnome-session/logout.c:461
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr ""
 
-#: ../gnome-session/logout.c:468
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr ""
 
-#: ../gnome-session/logout.c:476
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_Tornar aviar l'ordenador"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
 msgstr "Especifica lo nom de la sesilha de cargar"
 
-#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NOM"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
 msgstr "Legir sonque las sesilhas salvadas al fichièr default.session"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Relambi d'espèra, en millisegondas, per que los clients se registren "
 "(0=indefiniament)"
 
-#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
 msgid "DELAY"
 msgstr ""
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Relambi d'espèra, en millisegondas, per que los clients respondan "
 "(0=indefiniament)"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Relambi d'espèra, en millisegondas, per que los clients moriscan "
 "(0=indefiniament)"
 
-#: ../gnome-session/main.c:262
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr ""
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr "_Contunhar"
+
+#: ../gnome-session/main.c:257
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+
+#: ../gnome-session/main.c:376
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "Impossible d'executar l'esplech de configuracion de l'ora : %s"
+
+#: ../gnome-session/main.c:407
+msgid "The computer clock appears to be wrong"
+msgstr ""
+
+#: ../gnome-session/main.c:414
+msgid "_Ignore"
+msgstr "_Ignorar"
+
+#: ../gnome-session/main.c:415
+msgid "_Adjust the Clock"
+msgstr ""
+
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -391,188 +438,202 @@ msgstr ""
 "Se pòt benlèu adobar aqueste problèma en apondre\n"
 "%s al fichièr /etc/hosts."
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Se connectar ça que la"
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Tornar ensajar"
 
-#: ../gnome-session/main.c:395
+#: ../gnome-session/main.c:696
 msgid "- Manage the GNOME session"
 msgstr "- Gerir la sesilha GNOME"
 
-#: ../gnome-session/manager.c:512
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr "L'espera s'es arrestada per causa d'un conflicte."
 
-#: ../gnome-session/manager.c:1020
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr "Pas cap de responsa a la comanda %s."
 
-#: ../gnome-session/manager.c:1021
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
 msgstr "Se pòt que lo programa siá alentit, arrestat o degalhat."
 
-#: ../gnome-session/manager.c:1022
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
 msgstr "Podètz esperar sa responsa o lo suprimir."
 
-#: ../gnome-session/manager.c:1748
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
 msgstr "Se tornèt pas lançar pr'amor d'errors"
 
-#: ../gnome-session/manager.c:1944
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr "Sesilha a se tampar."
 
-#: ../gnome-session/save-session.c:49
+#: ../gnome-session/gnome-session-save.c:48
 msgid "Set the current session name"
 msgstr "Definir lo nom de la session activa"
 
-#: ../gnome-session/save-session.c:50
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
 msgstr "Tuar la sesilha"
 
-#: ../gnome-session/save-session.c:51
+#: ../gnome-session/gnome-session-save.c:50
 msgid "Use dialog boxes for errors"
 msgstr ""
 
-#: ../gnome-session/save-session.c:52
+#: ../gnome-session/gnome-session-save.c:51
 msgid "Do not require confirmation"
 msgstr "Demandar pas de confirmacion"
 
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
 msgstr "Impossible de se connectar al gestionari de sesilhas"
 
-#: ../gnome-session/save-session.c:173
+#: ../gnome-session/gnome-session-save.c:172
 msgid "- Save the current session"
 msgstr "- Enregistrar la session activa"
 
-#: ../gnome-session/session-properties-capplet.c:153
+#: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:155
+#: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:158
+#: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "_Barra sens enregistrar"
 
-#: ../gnome-session/session-properties-capplet.c:248
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Programas addicionals de lançament :"
 
-#: ../gnome-session/session-properties-capplet.c:272
+#: ../gnome-session/session-properties-capplet.c:274
 msgid "Enabled"
 msgstr "Activat"
 
-#: ../gnome-session/session-properties-capplet.c:315
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
 msgstr "Programas de lançament"
 
-#: ../gnome-session/session-properties-capplet.c:321
+#: ../gnome-session/session-properties-capplet.c:328
 msgid "Current Session"
 msgstr "Sesilha en cors"
 
-#: ../gnome-session/session-properties-capplet.c:334
-msgid "Automatically save chan_ges to session"
-msgstr "Salvar automaticament los cambiaments de la sesilha"
-
-#: ../gnome-session/session-properties-capplet.c:349
-msgid "Save the current session"
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:357
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember currently running applications"
+msgstr ""
+
+#: ../gnome-session/session-properties-capplet.c:364
 msgid "Session Options"
 msgstr "Opcions de la sesilha"
 
-#: ../gnome-session/session-properties-capplet.c:453
+#: ../gnome-session/session-properties-capplet.c:460
 msgid "Your session has been saved."
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:496
+#: ../gnome-session/session-properties-capplet.c:503
 msgid "could not connect to the session manager\n"
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:502
+#: ../gnome-session/session-properties-capplet.c:509
 msgid "session manager does not support GNOME extensions\n"
 msgstr ""
 
-#: ../gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
 msgstr "Suprimir lo client seleccionat de la sesilha."
 
-#: ../gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
 msgstr "Aplicar los cambis a la sesilha en cors"
 
-#: ../gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
 msgstr "La lista dels programas de la sesilha."
 
-#: ../gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
 msgstr "_Programas en cors d'execucion"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Gestionari de fenèstras Sawfish"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Gestionari de fenèstras Metacity"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Gestionari de fenèstras"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
 msgstr "Lo panèl"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:50
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Paramètres del burèu"
 
-#: ../gnome-session/startup-programs.c:557
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr ""
+
+#: ../gnome-session/startup-programs.c:467
 msgid "_Name:"
 msgstr "_Nom :"
 
-#: ../gnome-session/startup-programs.c:575
+#: ../gnome-session/startup-programs.c:485
 msgid "_Command:"
 msgstr "_Comanda :"
 
-#: ../gnome-session/startup-programs.c:581
-msgid "Startup Command"
-msgstr "Comanda de lançament"
+#: ../gnome-session/startup-programs.c:499
+msgid "_Browse..."
+msgstr "_Examinar..."
 
-#: ../gnome-session/startup-programs.c:607
+#: ../gnome-session/startup-programs.c:512
+msgid "Co_mment:"
+msgstr "Co_mentari :"
+
+#: ../gnome-session/startup-programs.c:542
 msgid "The name of the startup program cannot be empty"
 msgstr ""
 
-#: ../gnome-session/startup-programs.c:609
+#: ../gnome-session/startup-programs.c:544
 msgid "The startup command cannot be empty"
 msgstr "La comanda de lançament pòt pas èsser voida"
 
-#: ../gnome-session/startup-programs.c:615
+#: ../gnome-session/startup-programs.c:550
 msgid "The startup command is not valid"
 msgstr ""
 
-#: ../gnome-session/startup-programs.c:667
+#: ../gnome-session/startup-programs.c:607
 msgid "New Startup Program"
 msgstr ""
 
-#: ../gnome-session/startup-programs.c:711
+#: ../gnome-session/startup-programs.c:651
 msgid "Edit Startup Program"
 msgstr "Editar lo programa de lançament"
 
+#~ msgid "Automatically save chan_ges to session"
+#~ msgstr "Salvar automaticament los cambiaments de la sesilha"
+
+#~ msgid "Startup Command"
+#~ msgstr "Comanda de lançament"
