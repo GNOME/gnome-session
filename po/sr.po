@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-12 16:50+0100\n"
+"POT-Creation-Date: 2007-09-12 03:47+0200\n"
 "PO-Revision-Date: 2007-03-12 15:01+0100\n"
 "Last-Translator: Горан Ракић <grakic@devbase.net>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -97,11 +97,11 @@ msgid "Configure your sessions"
 msgstr "Подесите ваше сесије"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:222
+#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Сесије"
 
-#: ../gnome-session/gsm-at-startup.c:61
+#: ../gnome-session/gsm-at-startup.c:39
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -112,110 +112,112 @@ msgstr ""
 "пронађен. Провери да је AT-SPI пакет инсталиран. Сесиај је покренута без "
 "подршке за технологије за испомоћ."
 
-#: ../gnome-session/gsm-client-editor.c:97
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
 msgstr "_Редослед:"
 
-#: ../gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
 msgstr "Редослед по којем се покрећу програми у овој сесији."
 
-#: ../gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
 msgstr "Шта се дешава са програмом када се оконча."
 
-#: ../gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
 msgstr "_Стил:"
 
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "Редослед"
-
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "Стил"
-
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "Стање"
-
-#: ../gnome-session/gsm-client-list.c:165
-#: ../gnome-session/session-properties-capplet.c:280
-msgid "Program"
-msgstr "Програм"
-
-#: ../gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
 msgstr "Неактиван"
 
-#: ../gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr "Чека на извршавање, или је већ завршен"
 
-#: ../gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
 msgstr "Покреће"
 
-#: ../gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr "Покренут али није објавио стање"
 
-#: ../gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "Покренут"
 
-#: ../gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
 msgstr "Обичан члан сесије."
 
-#: ../gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
 msgstr "Чувам"
 
-#: ../gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
 msgstr "Чување детаља сесије."
 
-#: ../gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
 msgstr "Непознато"
 
-#: ../gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
 msgstr "Стање није објављено у предвиђеном року."
 
-#: ../gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
 msgstr "Обично"
 
-#: ../gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr "Одјаве не утичу, али може умрети."
 
-#: ../gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
 msgstr "Поврати"
 
-#: ../gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr "Није дозвољено да умре."
 
-#: ../gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "Смеће"
 
-#: ../gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr "Занемарује се при одјави, и може умрети."
 
-#: ../gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "Подешавања"
 
-#: ../gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr "Покреће се при свакој пријави."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "Редослед"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "Стил"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "Стање"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "Програм"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -264,15 +266,20 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "Услужни програм за подешавања је изнова покренут превише пута."
 
-#: ../gnome-session/gsm-remove-client.c:46
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "Без имена"
+
+#: ../gnome-session/gnome-session-remove.c:50
 msgid "List registered clients, then exit"
 msgstr "Прикажи пријављене клијенте, а затим изађи"
 
-#: ../gnome-session/gsm-remove-client.c:48
+#: ../gnome-session/gnome-session-remove.c:52
 msgid "PROGRAM..."
 msgstr "ПРОГРАМ..."
 
-#: ../gnome-session/gsm-remove-client.c:172
+#: ../gnome-session/gnome-session-remove.c:176
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -280,15 +287,15 @@ msgstr ""
 "Мораш навести макар један програм за уклањање. Можеш видети листу програма "
 "са опцијом --list.\n"
 
-#: ../gnome-session/gsm-remove-client.c:179
+#: ../gnome-session/gnome-session-remove.c:183
 msgid "Error: could not connect to the session manager\n"
 msgstr "Грепка: Не може се повезати са управљачем сесије\n"
 
-#: ../gnome-session/gsm-remove-client.c:193
+#: ../gnome-session/gnome-session-remove.c:197
 msgid "Currently registered clients:\n"
 msgstr "Тренутно пријављени клијенти:\n"
 
-#: ../gnome-session/gsm-remove-client.c:203
+#: ../gnome-session/gnome-session-remove.c:207
 #, c-format
 msgid "Couldn't find program %s in session\n"
 msgstr "Не може пронаћи програм %s у сесији\n"
@@ -305,7 +312,7 @@ msgstr ""
 "као грешку у Гному. Укључи и ову поруку о ICE грешци у извештају:  „%s“.У "
 "међувремену, можеш пробати да се пријавиш користећи сесију отпотну на грешке."
 
-#: ../gnome-session/ice.c:510
+#: ../gnome-session/ice.c:511
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -318,7 +325,7 @@ msgstr ""
 "фасциклу датотеке, можеш пробати да се пријавиш користећи сесију отпотну на "
 "грешке и провериш да ли је уписива."
 
-#: ../gnome-session/ice.c:537
+#: ../gnome-session/ice.c:538
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -329,7 +336,7 @@ msgstr ""
 "постоји Гном мора бити у могућности да је прочита да би исправно радио. "
 "Пробај да се пријавиш користећи сесију отпотну на грешке и уклониш датотеку."
 
-#: ../gnome-session/ice.c:582
+#: ../gnome-session/ice.c:583
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -341,63 +348,109 @@ msgstr ""
 "отпотну на грешке и уклониш датотеку. Такође, провери да ли јемогуће писати "
 "у фасциклу те датотеке."
 
-#: ../gnome-session/logout.c:404
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "Да ли сигурно желите да завршите?"
 
-#: ../gnome-session/logout.c:421
-msgid "_Save current setup"
-msgstr "_Сачувај текуће поставке"
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
+msgstr "Запамти покренуте програме"
 
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Радња"
 
-#: ../gnome-session/logout.c:461
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "О_дјави се"
 
-#: ../gnome-session/logout.c:468
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "У_гаси"
 
-#: ../gnome-session/logout.c:476
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_Поново покрени рачунар"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
 msgstr "Наведите име сесије коју желите да учитате"
 
-#: ../gnome-session/main.c:83 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "ИМЕ"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
 msgstr "Читај само сесије сачуване у датотеци default.session"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Период у милисекундама утрошен чекајући да се клијенти пријаве (0=заувек)"
 
-#: ../gnome-session/main.c:85 ../gnome-session/main.c:86
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
 msgid "DELAY"
 msgstr "ПЕРИОД"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Период у милисекундама утрошен чекајући да клијенти одговоре (0=заувек)"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Период у милисекундама утрошен чекајући на клијенте да заврше (0=заувек)"
 
-#: ../gnome-session/main.c:262
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr "Ова сесија је покренута под привилегованим корисником"
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+"Покретање сесије под привилегованим корисником треба избегавати "
+"зарадсигурности. Ако је могуће, ваљало би да се пријавиш као обичан корисник."
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr "_Настави"
+
+#: ../gnome-session/main.c:257
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+"Могу се појавити проблеми током сесије ако часовник рачунара није исправно "
+"подешен. Провери требаш ли га подесити.\n"
+"\n"
+"Тренутно време је <b>%s</b>."
+
+#: ../gnome-session/main.c:376
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "Покретање алата за поставку времена није успело: %s"
+
+#: ../gnome-session/main.c:407
+msgid "The computer clock appears to be wrong"
+msgstr "Часовник рачунара је изгледа погрешан"
+
+#: ../gnome-session/main.c:414
+msgid "_Ignore"
+msgstr "_Занемари"
+
+#: ../gnome-session/main.c:415
+msgid "_Adjust the Clock"
+msgstr "_Подеси часовник"
+
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -410,190 +463,211 @@ msgstr ""
 "Ову незгоду можете решити додавањем \n"
 "%s у датотеку /etc/hosts."
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Пријави се и поред тога"
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Покушај поново"
 
-#: ../gnome-session/main.c:395
+#: ../gnome-session/main.c:696
 msgid "- Manage the GNOME session"
 msgstr "- Управљање сесијом Гнома"
 
-#: ../gnome-session/manager.c:512
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr "Чекање обустављено због несугласица."
 
-#: ../gnome-session/manager.c:1020
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr "Нема одговора на наредбу „%s“."
 
-#: ../gnome-session/manager.c:1021
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
 msgstr "Програм је можда спор, прекинут или неисправан."
 
-#: ../gnome-session/manager.c:1022
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
 msgstr "Можете сачекати његов одговор или га уклонити."
 
-#: ../gnome-session/manager.c:1748
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
 msgstr "Поновно покретање обустављено због грешака."
 
-#: ../gnome-session/manager.c:1944
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr "Окончање сесије у току."
 
-#: ../gnome-session/save-session.c:49
+#: ../gnome-session/gnome-session-save.c:48
 msgid "Set the current session name"
 msgstr "Постави име текуће сесије"
 
-#: ../gnome-session/save-session.c:50
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
 msgstr "Окончај сесију"
 
-#: ../gnome-session/save-session.c:51
+#: ../gnome-session/gnome-session-save.c:50
 msgid "Use dialog boxes for errors"
 msgstr "Користи прозорчиће за приказ грешака"
 
-#: ../gnome-session/save-session.c:52
+#: ../gnome-session/gnome-session-save.c:51
 msgid "Do not require confirmation"
 msgstr "Не тражи потврду"
 
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
 msgstr "Не може се повезати са управљачем сесије"
 
-#: ../gnome-session/save-session.c:173
+#: ../gnome-session/gnome-session-save.c:172
 msgid "- Save the current session"
 msgstr "- Сачувај текућу сесију"
 
-#: ../gnome-session/session-properties-capplet.c:153
+#: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
 msgstr "Сачувај измене у тренутној сесији пре изласка?"
 
-#: ../gnome-session/session-properties-capplet.c:155
+#: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
 msgstr "Ако не сачуваш, измене ће бити изгубљене."
 
-#: ../gnome-session/session-properties-capplet.c:158
+#: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "_Затвори без чувања"
 
-#: ../gnome-session/session-properties-capplet.c:248
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Додатни програми при у_читавању:"
 
-#: ../gnome-session/session-properties-capplet.c:272
+#: ../gnome-session/session-properties-capplet.c:274
 msgid "Enabled"
 msgstr "Укључен"
 
-#: ../gnome-session/session-properties-capplet.c:315
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
 msgstr "Програми при учитавању"
 
-#: ../gnome-session/session-properties-capplet.c:321
+#: ../gnome-session/session-properties-capplet.c:328
 msgid "Current Session"
 msgstr "Текућа сесија"
 
-#: ../gnome-session/session-properties-capplet.c:334
-msgid "Automatically save chan_ges to session"
-msgstr "С_ам сачувај измене сесије"
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Аутоматски запамти покренуте програме када се одјавим"
 
-#: ../gnome-session/session-properties-capplet.c:349
-msgid "Save the current session"
-msgstr "Сачувај текућу сесију"
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember currently running applications"
+msgstr "_Аутоматски запамти покренуте програме"
 
-#: ../gnome-session/session-properties-capplet.c:357
+#: ../gnome-session/session-properties-capplet.c:364
 msgid "Session Options"
 msgstr "Поставке сесије"
 
-#: ../gnome-session/session-properties-capplet.c:453
+#: ../gnome-session/session-properties-capplet.c:460
 msgid "Your session has been saved."
 msgstr "Ваша сесија је сачувана."
 
-#: ../gnome-session/session-properties-capplet.c:496
+#: ../gnome-session/session-properties-capplet.c:503
 msgid "could not connect to the session manager\n"
 msgstr "не може се повезати са управљачем сесије\n"
 
-#: ../gnome-session/session-properties-capplet.c:502
+#: ../gnome-session/session-properties-capplet.c:509
 msgid "session manager does not support GNOME extensions\n"
 msgstr "управљач сесије не подржава проширења за Гном\n"
 
-#: ../gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
 msgstr "Уклони тренутно изабраног клијента из сесије"
 
-#: ../gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
 msgstr "Примени измене на тренутну сесију"
 
-#: ../gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
 msgstr "Списак програма у сесији"
 
-#: ../gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
 msgstr "Тренутно активни програми:"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Sawfish управник прозора"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Metacity управник прозора"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Управник прозора"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
 msgstr "Панел"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:50
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Подешавања радне површине"
 
-#: ../gnome-session/startup-programs.c:557
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr "Без описа"
+
+#: ../gnome-session/startup-programs.c:467
 msgid "_Name:"
 msgstr "_Име:"
 
-#: ../gnome-session/startup-programs.c:575
+#: ../gnome-session/startup-programs.c:485
 msgid "_Command:"
 msgstr "_Наредба:"
 
-#: ../gnome-session/startup-programs.c:581
-msgid "Startup Command"
-msgstr "Наредба при учитавању"
+#: ../gnome-session/startup-programs.c:499
+msgid "_Browse..."
+msgstr "_Разгледај..."
 
-#: ../gnome-session/startup-programs.c:607
+#: ../gnome-session/startup-programs.c:512
+msgid "Co_mment:"
+msgstr "Ко_ментар:"
+
+#: ../gnome-session/startup-programs.c:542
 msgid "The name of the startup program cannot be empty"
 msgstr "Име програма за покретање по пријави не може бити празно"
 
-#: ../gnome-session/startup-programs.c:609
+#: ../gnome-session/startup-programs.c:544
 msgid "The startup command cannot be empty"
 msgstr "Почетна наредба се мора унети"
 
-#: ../gnome-session/startup-programs.c:615
+#: ../gnome-session/startup-programs.c:550
 msgid "The startup command is not valid"
 msgstr "Наредба програма за покретање по пријави није исправна"
 
-#: ../gnome-session/startup-programs.c:667
+#: ../gnome-session/startup-programs.c:607
 msgid "New Startup Program"
 msgstr "Нови програм за покретање по пријави"
 
-#: ../gnome-session/startup-programs.c:711
+#: ../gnome-session/startup-programs.c:651
 msgid "Edit Startup Program"
 msgstr "Уреди програм при учитавању"
+
+#~ msgid "_Save current setup"
+#~ msgstr "_Сачувај текуће поставке"
+
+#~ msgid "Automatically save chan_ges to session"
+#~ msgstr "С_ам сачувај измене сесије"
+
+#~ msgid "Save the current session"
+#~ msgstr "Сачувај текућу сесију"
+
+#~ msgid "Startup Command"
+#~ msgstr "Наредба при учитавању"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "Дошло је до грешке при покретању."
@@ -631,9 +705,6 @@ msgstr "Уреди програм при учитавању"
 
 #~ msgid "_Sessions:"
 #~ msgstr "_Сесије:"
-
-#~ msgid "Session Name"
-#~ msgstr "Име сесије"
 
 #~ msgid "Initialize session settings"
 #~ msgstr "Учитавање подешавања сесије"
