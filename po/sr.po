@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-12 03:47+0200\n"
+"POT-Creation-Date: 2007-09-12 07:23+0200\n"
 "PO-Revision-Date: 2007-03-12 15:01+0100\n"
 "Last-Translator: Горан Ракић <grakic@devbase.net>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -280,6 +280,7 @@ msgid "PROGRAM..."
 msgstr "ПРОГРАМ..."
 
 #: ../gnome-session/gnome-session-remove.c:176
+#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -288,10 +289,12 @@ msgstr ""
 "са опцијом --list.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
+#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Грепка: Не може се повезати са управљачем сесије\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
+#, c-format
 msgid "Currently registered clients:\n"
 msgstr "Тренутно пријављени клијенти:\n"
 
@@ -406,15 +409,15 @@ msgstr ""
 
 #: ../gnome-session/main.c:167
 msgid "This session is running as a privileged user"
-msgstr "Ова сесија је покренута под привилегованим корисником"
+msgstr "Ова сесија је покренута под повлашћеним корисником"
 
 #: ../gnome-session/main.c:169
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
 msgstr ""
-"Покретање сесије под привилегованим корисником треба избегавати "
-"зарадсигурности. Ако је могуће, ваљало би да се пријавиш као обичан корисник."
+"Покретање сесије под повлашћеним корисником треба избегавати из безбедносних "
+"разлога. Ако је могуће, пријавите се као обичан корисник."
 
 #: ../gnome-session/main.c:173
 msgid "_Continue"
@@ -428,15 +431,15 @@ msgid ""
 "\n"
 "Current date is <b>%s</b>."
 msgstr ""
-"Могу се појавити проблеми током сесије ако часовник рачунара није исправно "
-"подешен. Провери требаш ли га подесити.\n"
+"Ова сесија може наићи на неприлике ако часовник рачунара није исправно "
+"подешен. Размотрите да га подесите.\n"
 "\n"
-"Тренутно време је <b>%s</b>."
+"Текући датум је <b>%s</b>."
 
 #: ../gnome-session/main.c:376
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
-msgstr "Покретање алата за поставку времена није успело: %s"
+msgstr "Неуспешно покретање алата за подешавање времена: %s"
 
 #: ../gnome-session/main.c:407
 msgid "The computer clock appears to be wrong"
@@ -448,7 +451,7 @@ msgstr "_Занемари"
 
 #: ../gnome-session/main.c:415
 msgid "_Adjust the Clock"
-msgstr "_Подеси часовник"
+msgstr "При_лагоди часовник"
 
 #: ../gnome-session/main.c:552
 #, c-format
@@ -555,11 +558,11 @@ msgstr "Текућа сесија"
 
 #: ../gnome-session/session-properties-capplet.c:341
 msgid "_Automatically remember running applications when logging out"
-msgstr "_Аутоматски запамти покренуте програме када се одјавим"
+msgstr "_Сам запамти покренуте програме при одјави"
 
 #: ../gnome-session/session-properties-capplet.c:356
 msgid "_Remember currently running applications"
-msgstr "_Аутоматски запамти покренуте програме"
+msgstr "_Запамти тренутно покренуте програме"
 
 #: ../gnome-session/session-properties-capplet.c:364
 msgid "Session Options"
@@ -570,10 +573,12 @@ msgid "Your session has been saved."
 msgstr "Ваша сесија је сачувана."
 
 #: ../gnome-session/session-properties-capplet.c:503
+#, c-format
 msgid "could not connect to the session manager\n"
 msgstr "не може се повезати са управљачем сесије\n"
 
 #: ../gnome-session/session-properties-capplet.c:509
+#, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr "управљач сесије не подржава проширења за Гном\n"
 
@@ -635,7 +640,7 @@ msgstr "_Разгледај..."
 
 #: ../gnome-session/startup-programs.c:512
 msgid "Co_mment:"
-msgstr "Ко_ментар:"
+msgstr "При_медба:"
 
 #: ../gnome-session/startup-programs.c:542
 msgid "The name of the startup program cannot be empty"
