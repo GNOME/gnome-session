@@ -6,25 +6,26 @@
 # Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005.
 # A S Alam <apbrar@gmail.com>, 2006.
 # A S Alam <aalam@users.sf.net>, 2007.
+# ASB <aalam@users.sf.net>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 14:35+0000\n"
-"PO-Revision-Date: 2007-02-25 17:40+0530\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"POT-Creation-Date: 2007-05-13 11:19+0100\n"
+"PO-Revision-Date: 2007-09-13 08:17+0530\n"
+"Last-Translator: ASB <aalam@users.sf.net>\n"
 "Language-Team: Punjabi <punjabi-l10n@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "TCP ਕੁਨੈਕਸ਼ਨ ਮਨਜ਼ੂਰ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -32,67 +33,75 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ , ਪਲੇਟਫਾਰਮ ਜੋ ਕਿ IceTcpTransNoListen() (XFree86 ਸਿਸਟਮ) ਹਨ, ਗਨੋਮ-"
-"ਸ਼ੈਸ਼ਨ TCP ਪੋਰਟ ਤੇ ਸਬੰਧ ਨਹੀ ਸੁਣਦਾ। ਇਸ ਚੋਣ ਰਿਮੋਟ ਮੇਜ਼ਬਾਨ ਤੋ ਸਬੰਧ ਦੀ ਇਜ਼ਾਜਤ (ਪ੍ਰਮਾਣਿਕ)ਦਿੰਦੀ "
-"ਹੈ। ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਇਸ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਮੁੜ ਚਾਲੂ ਹੋ ਰਿਹਾ ਹੈ।"
+"ਸ਼ੈਸ਼ਨ TCP ਪੋਰਟ ਤੇ ਸਬੰਧ ਨਹੀ ਸੁਣਦਾ। ਇਸ ਚੋਣ ਰਿਮੋਟ ਮੇਜ਼ਬਾਨ ਤੋ ਸਬੰਧ ਦੀ ਇਜ਼ਾਜਤ (ਪ੍ਰਮਾਣਿਕ)ਦਿੰਦੀ ਹੈ। "
+"ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਇਸ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਮੁੜ ਚਾਲੂ ਹੋ ਰਿਹਾ ਹੈ।"
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨ ਵੇਲੇ ਉਪਭੋਗੀ ਨੂੰ ਪੁੱਛੇ।"
+msgstr "ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰਨ ਵੇਲੇ ਯੂਜ਼ਰ ਨੂੰ ਪੁੱਛੇ।"
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"ਜੇ ਚਾਲੂ ਹੈ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਆਪੇ ਸ਼ੈਸ਼ਨ ਨੂੰ ਸੰਭਾਲੇਗਾ। ਨਹੀ ਤਾਂ, ਲਾਗਆਉਟ ਸਮੇਂ "
-"ਸ਼ੈਸ਼ਨ ਸੰਭਾਲਣ ਦੀ ਚੋਣ ਉਪਲਬਧ ਹੋਵੇਗੀ।"
+"ਜੇ ਚਾਲੂ ਹੈ, ਗਨੋਮ-ਸ਼ੈਸ਼ਨ ਆਪੇ ਸ਼ੈਸ਼ਨ ਨੂੰ ਸੰਭਾਲੇਗਾ। ਨਹੀ ਤਾਂ, ਲਾਗਆਉਟ ਸਮੇਂ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲਣ ਦੀ ਚੋਣ ਉਪਲਬਧ "
+"ਹੋਵੇਗੀ।"
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "ਲਾਗਆਉਟ ਪੁਸ਼ਟੀ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "ਸਵਾਗਤੀ ਝਲਕੀ ਲਈ ਪਸੰਦੀਦਾ ਚਿੱਤਰ"
+msgstr "ਲਾਗਇਨ ਸਵਾਗਤੀ ਸਕਰੀਨ ਲਈ ਪਸੰਦੀਦਾ ਚਿੱਤਰ"
 
 # gnome-session/session-properties.c:272
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "ਲਾਗਆਉਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਚੁਣੀ ਚੋਣ"
+msgstr "ਲਾਗਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਚੁਣੀ ਚੋਣ"
 
 # gnome-session/session-properties-capplet.c:227
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
-msgstr "ਸਵਾਗਤੀ ਝਲਕੀ ਵੇਖਾਓ"
+msgstr "ਸਵਾਗਤੀ ਸਕਰੀਨ ਵੇਖਾਓ"
 
 # gnome-session/session-properties-capplet.c:227
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
-msgstr "ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰਨ ਵੇਲੇ ਸਵਾਗਤੀ ਝਲਕੀ ਵੇਖਾਓ"
+msgstr "ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਕਰਨ ਵੇਲੇ ਸਵਾਗਤੀ ਸਕਰੀਨ ਵੇਖਾਓ"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"ਇਹ $datadir/pixmaps/ directory ਦੇ ਅਧਾਰ ਤੇ ਅਨੁਸਾਰੀ ਮਾਰਗ ਮੁੱਲ ਹੈ। "
-"ਸਬ-ਡਾਇਰੈਕਟਰੀਆਂ ਅਤੇ ਚਿੱਤਰ ਨਾਂ ਠੀਕ ਮੁੱਲ ਹਨ। ਇਹਨਾਂ ਵਿੱਚ ਤਬਦੀਲੀ "
-"ਸਿਰਫ਼ ਅਗਲੇ ਸ਼ੈਸ਼ਨ ਤੋਂ ਹੀ ਹੋ ਸਕੇਗੀ।"
+"ਇਹ $datadir/pixmaps/ directory ਦੇ ਅਧਾਰ ਤੇ ਅਨੁਸਾਰੀ ਮਾਰਗ ਮੁੱਲ ਹੈ। ਸਬ-ਡਾਇਰੈਕਟਰੀਆਂ ਅਤੇ "
+"ਚਿੱਤਰ ਨਾਂ ਠੀਕ ਮੁੱਲ ਹਨ। ਇਹਨਾਂ ਵਿੱਚ ਤਬਦੀਲੀ ਸਿਰਫ਼ ਅਗਲੇ ਸ਼ੈਸ਼ਨ ਤੋਂ ਹੀ ਹੋ ਸਕੇਗੀ।"
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"ਇਹ ਚੋਣ ਹੈ, ਜੋ ਕਿ ਲਾਗ-ਆਉਣ ਵਾਰਤਾਲਾਪ ਵਿੱਚ ਵੇਖਾਈ ਜਾਵੇਗੀ, ਠੀਕ ਮੁੱਲ "
-"ਲਾਗ-ਆਉਣ ਲਈ \"ਲਾਗ-ਆਉਟ\", ਸਿਸਟਮ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ \"ਬੰਦ ਕਰੋ\", "
-"ਅਤੇ ਮੁੜ-ਚਲਾਉਣ ਲਈ \"ਮੁੜ-ਚਲਾਓ\" ਹਨ।"
+"ਇਹ ਚੋਣ ਹੈ, ਜੋ ਕਿ ਲਾਗ-ਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਵੇਖਾਈ ਜਾਵੇਗੀ, ਠੀਕ ਮੁੱਲ ਲਾਗ-ਆਉਣ ਲਈ \"ਲਾਗ-ਆਉਟ"
+"\", ਸਿਸਟਮ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ \"ਬੰਦ ਕਰੋ\", ਅਤੇ ਮੁੜ-ਚਲਾਉਣ ਲਈ \"ਮੁੜ-ਚਲਾਓ\" ਹਨ।"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "ਆਪਣੇ ਸ਼ੈਸ਼ਨ ਦੀ ਸੰਰਚਨਾ ਕਰੋ"
+
+# gnome-session/session-properties.c:272
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions"
+msgstr "ਸ਼ੈਸ਼ਨ"
 
 #: ../gnome-session/gsm-at-startup.c:39
 msgid ""
@@ -101,138 +110,139 @@ msgid ""
 "is installed. Your session has been started without assistive technology "
 "support."
 msgstr ""
-"ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਸਹਿਯੋਗ ਸ਼ੈਸ਼ਨ ਲਈ ਮੰਗਿਆ ਗਿਆ ਹੈ, ਪਰ ਸਹਾਇਕ "
-"ਰਜਿਸਟਰੀ ਨਹੀਂ ਮਿਲੀ ਹੈ। ਜਾਂਚ ਕਰੋ ਕਿ AT-SPI ਪੈਕੇਜ ਇੰਸਟਾਲ ਹੈ। ਤੁਹਾਡਾ "
-"ਸ਼ੈਸ਼ਨ ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਤੋਂ ਬਿਨਾਂ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਵੇਗਾ।"
+"ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਸਹਿਯੋਗ ਸ਼ੈਸ਼ਨ ਲਈ ਮੰਗਿਆ ਗਿਆ ਹੈ, ਪਰ ਸਹਾਇਕ ਰਜਿਸਟਰੀ ਨਹੀਂ ਮਿਲੀ ਹੈ। ਜਾਂਚ ਕਰੋ "
+"ਕਿ AT-SPI ਪੈਕੇਜ ਇੰਸਟਾਲ ਹੈ। ਤੁਹਾਡਾ ਸ਼ੈਸ਼ਨ ਸਹਾਇਕ ਤਕਨਾਲੋਜੀ ਤੋਂ ਬਿਨਾਂ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 # gnome-session/gsm-client-editor.c:94
-#: ../gnome-session/gsm-client-editor.c:97
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
 msgstr "ਕ੍ਰਮ(_O):"
 
-#: ../gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
 msgstr "ਕਰਮ, ਜਿਸ ਅਨੁਸਾਰ ਸ਼ੈਸ਼ਨ ਵਿੱਚ ਕਾਰਜ ਸ਼ੁਰੂ ਹੋਣਗੇ।"
 
-#: ../gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
-msgstr "ਕਾਰਜ ਨੂੰ ਕੀ ਹੋ ਗਿਆ, ਜਦੋਂ ਇਸਨੂੰ ਬੰਦ ਕੀਤਾ ਗਿਆ।"
+msgstr "ਐਪਲੀਕਸ਼ਨ ਨੂੰ ਕੀ ਹੋ ਗਿਆ, ਜਦੋਂ ਇਸਨੂੰ ਬੰਦ ਕੀਤਾ ਗਿਆ।"
 
 # gnome-session/gsm-client-editor.c:104
-#: ../gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
-msgstr "ਸ਼ੈਲੀ(_S):"
-
-# gnome-session/gsm-client-list.c:111
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "ਕ੍ਰਮ"
-
-# gnome-session/gsm-client-list.c:111
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "ਸ਼ੈਲੀ"
-
-# gnome-session/gsm-client-list.c:111
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "ਹਾਲਤ"
-
-# gnome-session/gsm-client-list.c:111
-#: ../gnome-session/gsm-client-list.c:165
-#: ../gnome-session/session-properties-capplet.c:280
-msgid "Program"
-msgstr "ਪ੍ਰੋਗਰਾਮ"
+msgstr "ਸਟਾਇਲ(_S):"
 
 # gnome-session/gsm-client-row.c:31
-#: ../gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
-msgstr "ਬੇਅਸਰ"
+msgstr "ਇੰ-ਐਕਟਿਵ"
 
 # gnome-session/gsm-client-row.c:32
-#: ../gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr "ਸ਼ੁਰੂ ਹੋਣ ਲਈ ਇੰਤਜਾਰ ਜਾਂ ਹੁਣ ਤਕ ਖਤਮ ਹੋ ਚੁੱਕਾ ਹੈ।"
 
 # gnome-session/gsm-client-row.c:34
-#: ../gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
 msgstr "ਸ਼ੁਰੂ"
 
 # gnome-session/gsm-client-row.c:35
-#: ../gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr "ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਹੈ, ਪਰ ਹਾਲਤ ਬਾਰੇ ਜਾਣਕਾਰੀ ਨਹੀ ਹੈ।"
 
 # gnome-session/gsm-client-row.c:37
-#: ../gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "ਚੱਲ ਰਿਹਾ ਹੈ"
 
 # gnome-session/gsm-client-row.c:38
-#: ../gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
-msgstr "ਇਸ ਸ਼ੈਸ਼ਨ ਦੇ ਸਧਾਰਨ ਮੈਂਬਰ ਹਨ।"
+msgstr "ਇਸ ਸ਼ੈਸ਼ਨ ਦਾ ਸਧਾਰਨ ਮੈਂਬਰ ਹੈ।"
 
 # gnome-session/gsm-client-row.c:40
-#: ../gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
 msgstr "ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
 # gnome-session/gsm-client-row.c:41
-#: ../gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
 msgstr "ਸ਼ੈਸ਼ਨ ਵੇਰਵੇ ਸੰਭਾਲੇ ਜਾ ਰਹੇ ਹਨ।"
 
 # gnome-session/gsm-client-row.c:43
-#: ../gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
 # gnome-session/gsm-client-row.c:44
-#: ../gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
-msgstr "ਸਮਾਂ ਸੀਮਾ ਦੌਰਾਨ ਹਾਲਤ ਸਪਸ਼ਟ ਨਹੀ ਕੀਤੀ ਗਈ ਹੈ।"
+msgstr "ਟਾਇਮ-ਆਉਟ ਦੌਰਾਨ ਹਾਲਤ ਸਪਸ਼ਟ ਨਹੀ ਕੀਤੀ ਗਈ ਹੈ।"
 
 # gnome-session/gsm-client-row.c:50
-#: ../gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
 msgstr "ਸਧਾਰਨ"
 
 # gnome-session/gsm-client-row.c:51
-#: ../gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr "ਲਾਗਆਉਟ ਨਾਲ ਕੋਈ ਅਸਰ ਨਹੀਂ, ਪਰ ਖਤਮ ਹੋ ਸਕਦਾ ਹੈ।"
 
 # gnome-session/session-properties.c:173
-#: ../gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
-msgstr "ਮੁੜ ਚਾਲੂ"
+msgstr "ਰੀ-ਸਟਾਰਟ"
 
 # gnome-session/gsm-client-row.c:54
-#: ../gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr "ਕਦੇ ਖਤਮ ਨਹੀਂ ਹੋਣ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
 # gnome-session/gsm-client-row.c:56
-#: ../gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "ਰੱਦੀ"
 
 # gnome-session/gsm-client-row.c:57
-#: ../gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr "ਲਾਗਆਉਟ ਨਾਲ ਅਣਡਿੱਠਾ ਅਤੇ ਖਤਮ ਹੋ ਸਕਦਾ ਹੈ।"
 
 # gnome-session/gsm-client-row.c:59
-#: ../gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "ਸੈਟਿੰਗ"
 
 # gnome-session/gsm-client-row.c:60
-#: ../gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr "ਹਰੇਕ ਲਾਗਇਨ ਸਮੇਂ ਚਾਲੂ ਕਰੋ।"
+
+# gnome-session/gsm-client-list.c:111
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "ਕ੍ਰਮ"
+
+# gnome-session/gsm-client-list.c:111
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "ਸਟਾਇਲ"
+
+# gnome-session/gsm-client-list.c:111
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "ਹਾਲਤ"
+
+# gnome-session/gsm-client-list.c:111
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "ਪਰੋਗਰਾਮ"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -277,37 +287,42 @@ msgstr ""
 
 #: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
-msgstr "ਸੈਟਿੰਗ (ਸਥਾਪਨ) ਡੈਮਨ ਬਹੁਤ ਵਾਰ ਸ਼ੁਰੂ ਹੋ ਚੁੱਕੀ ਹੈ।"
+msgstr "ਸੈਟਿੰਗ ਡੈਮਨ ਬਹੁਤ ਵਾਰ ਸ਼ੁਰੂ ਹੋ ਚੁੱਕੀ ਹੈ।"
 
-#: ../gnome-session/gsm-remove-client.c:46
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "ਕੋਈ ਨਾਂ ਨਹੀਂ"
+
+#: ../gnome-session/gnome-session-remove.c:50
 msgid "List registered clients, then exit"
-msgstr "ਰਜਿਸਟਰ ਹੋਏ ਪ੍ਰੋਗਰਾਮ ਵੇਖਾਓ ਅਤੇ ਬੰਦ"
+msgstr "ਰਜਿਸਟਰ ਹੋਏ ਪਰੋਗਰਾਮ ਵੇਖਾਓ ਅਤੇ ਬੰਦ ਕਰੋ"
 
-#: ../gnome-session/gsm-remove-client.c:48
+#: ../gnome-session/gnome-session-remove.c:52
 msgid "PROGRAM..."
 msgstr "PROGRAM..."
 
-#: ../gnome-session/gsm-remove-client.c:172
+#: ../gnome-session/gnome-session-remove.c:176
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
 msgstr ""
-"ਤੁਹਾਨੂੰ ਹਟਾਉਣ ਵਾਸਤੇ ਇੱਕ ਪ੍ਰੋਗਰਾਮ ਦੇਣਾ ਪਵੇਗਾ। ਤੁਸੀਂ ਪ੍ਰੋਗਰਾਮਾਂ ਦੀ ਲਿਸਟ "
-"--list ਨਾਲ ਵੇਖ ਸਕਦੇ ਹੋ।\n"
+"ਤੁਹਾਨੂੰ ਹਟਾਉਣ ਵਾਸਤੇ ਇੱਕ ਪਰੋਗਰਾਮ ਦੇਣਾ ਪਵੇਗਾ। ਤੁਸੀਂ ਪਰੋਗਰਾਮਾਂ ਦੀ ਲਿਸਟ --list ਨਾਲ ਵੇਖ ਸਕਦੇ "
+"ਹੋ।\n"
 
 # gnome-session/save-session.c:112
-#: ../gnome-session/gsm-remove-client.c:179
+#: ../gnome-session/gnome-session-remove.c:183
 msgid "Error: could not connect to the session manager\n"
 msgstr "ਗਲਤੀ: ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ\n"
 
-#: ../gnome-session/gsm-remove-client.c:193
+#: ../gnome-session/gnome-session-remove.c:197
 msgid "Currently registered clients:\n"
-msgstr "ਇਸ ਸਮੇਂ ਰਜਿਸਟਰ ਕਲਾਂਇਟ:\n"
+msgstr "ਇਸ ਸਮੇਂ ਰਜਿਸਟਰ ਕਲਾਈਟ:\n"
 
-#: ../gnome-session/gsm-remove-client.c:203
+#: ../gnome-session/gnome-session-remove.c:207
 #, c-format
 msgid "Couldn't find program %s in session\n"
-msgstr "ਸ਼ੈਸ਼ਨ ਵਿੱਚ %s ਪ੍ਰੋਗਰਾਮ ਨਹੀਂ ਮਿਲਿਆ\n"
+msgstr "ਸ਼ੈਸ਼ਨ ਵਿੱਚ %s ਪਰੋਗਰਾਮ ਨਹੀਂ ਮਿਲਿਆ\n"
 
 #. At least try to tell the user something.
 #: ../gnome-session/ice.c:355
@@ -317,12 +332,11 @@ msgid ""
 "GNOME bug. Please include this ICE failure message in the bug report:  '%"
 "s'.  Meanwhile you could try logging in using the failsafe session."
 msgstr ""
-"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਠੀਕ ਤਰ੍ਹਾਂ ਚਾਲੂ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ।  ਇਹ ਗਨੋਮ ਨੂੰ ਬੱਗ "
-"ਵਾਂਗ ਭੇਜੋ। ਬੱਗ ਰਿਪੋਰਟ 'ਚ ਇਹ ICE ਫੇਲ੍ਹ ਸੁਨੇਹਾ ਵੀ ਸ਼ਾਮਿਲ ਕਰੋ ਜੀ:  '%s'। "
-"ਉਸ ਸਮੇਂ ਤੱਕ ਤੁਸੀਂ ਸੰਕਟਕਾਲੀਨ ਸ਼ੈਸ਼ਨ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਲਾਗਇਨ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ "
-"ਕਰ ਸਕਦੇ ਹੋ।"
+"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਠੀਕ ਤਰ੍ਹਾਂ ਚਾਲੂ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ।  ਇਹ ਗਨੋਮ ਨੂੰ ਬੱਗ ਵਾਂਗ ਭੇਜੋ। ਬੱਗ ਰਿਪੋਰਟ 'ਚ ਇਹ "
+"ICE ਫੇਲ੍ਹ ਸੁਨੇਹਾ ਵੀ ਸ਼ਾਮਿਲ ਕਰੋ ਜੀ:  '%s'। ਉਸ ਸਮੇਂ ਤੱਕ ਤੁਸੀਂ ਫੇਲ੍ਹ-ਸੇਫ਼ ਸ਼ੈਸ਼ਨ ਦੀ ਵਰਤੋਂ ਕਰਕੇ "
+"ਲਾਗਇਨ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਸਕਦੇ ਹੋ।"
 
-#: ../gnome-session/ice.c:510
+#: ../gnome-session/ice.c:511
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -330,99 +344,141 @@ msgid ""
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
 msgstr ""
-"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਫਾਇਲ '%s' ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਹੈ। "
-"ਇਹ ਗਨੋਮ ਨੂੰ ਬੱਗ ਵਾਂਗ ਰਿਪੋਰਟ ਕਰੋ।  ਕੁਝ ਸਮੇਂ ਇਹ ਗਲਤੀ ਆਉਦੀ ਹੈ ਜੇ "
-"ਫਾਇਲ ਦੀ ਡਾਇਰੈਕਟਰੀ ਲਿਖਣਯੋਗ ਨਾ ਹੋਵੇ, ਤੁਸੀਂ ਸੰਕਟਕਾਲੀਨ ਸ਼ੈਸ਼ਨ 'ਚ "
+"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਫਾਇਲ '%s' ਨੂੰ ਤਾਲਾਬੰਦ ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਹੈ। ਇਹ ਗਨੋਮ ਨੂੰ ਬੱਗ ਵਾਂਗ ਰਿਪੋਰਟ ਕਰੋ।  "
+"ਕੁਝ ਸਮੇਂ ਇਹ ਗਲਤੀ ਆਉਦੀ ਹੈ ਜੇ ਫਾਇਲ ਦੀ ਡਾਇਰੈਕਟਰੀ ਲਿਖਣਯੋਗ ਨਾ ਹੋਵੇ, ਤੁਸੀਂ ਫੇਲ੍ਹ-ਸੇਫ਼ ਸ਼ੈਸ਼ਨ 'ਚ "
 "ਲਾਗਇਨ ਕਰਕੇ ਇਹ ਪੁਸ਼ਟੀ ਕਰ ਸਕਦੇ ਹੋ।"
 
-#: ../gnome-session/ice.c:537
+#: ../gnome-session/ice.c:538
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
 msgstr ""
-"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਅਸਮਰੱਥ ਸੀ: '%s' "
-" ਜੇ ਇਹ ਫਾਇਲ ਮੈਨੇਜਰ ਹੈ ਤਾਂ ਇਹ ਤੁਹਾਡੇ ਵਲੋਂ ਲਿਖਣਯੋਗ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ ਤਾਂ "
-"ਕਿ ਗਨੋਮ ਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਕਰ ਸਕੇ। ਸੰਕਟਕਾਲੀਨ ਸ਼ੈਸ਼ਨ ਨਾਲ ਲਾਗਇਨ ਕਰਨ "
+"ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਫਾਇਲ ਪੜ੍ਹਨ ਲਈ ਅਸਮਰੱਥ ਸੀ: '%s'  ਜੇ ਇਹ ਫਾਇਲ ਮੈਨੇਜਰ ਹੈ ਤਾਂ ਇਹ ਤੁਹਾਡੇ ਵਲੋਂ "
+"ਲਿਖਣਯੋਗ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ ਤਾਂ ਕਿ ਗਨੋਮ ਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਕਰ ਸਕੇ। ਫੇਲ੍ਹ-ਸੇਫ਼ ਸ਼ੈਸ਼ਨ ਨਾਲ ਲਾਗਇਨ ਕਰਨ "
 "ਬਾਅਦ ਇਹ ਫਾਇਲ ਹਟਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-#: ../gnome-session/ice.c:582
+#: ../gnome-session/ice.c:583
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
 "to function properly.  Try logging in with the failsafe session and removing "
 "this file.  Also make sure that the file's directory is writable."
 msgstr ""
-"'%s' ਫਾਇਲ ਲਿਖੀ ਨਹੀਂ ਜਾ ਸਕਦੀ। ਇਹ ਗਨੋਮ ਦੇ ਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਕਰਨ ਵਾਸਤੇ "
-"ਲਿਖਣ-ਯੋਗ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।  ਸੰਕਟਕਾਲੀ ਸ਼ੈਸ਼ਨ 'ਚ ਲਾਗਇਨ ਕਰੋ ਅਤੇ ਇਹ ਫਾਇਲ "
-"ਹਟਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।  ਅਤੇ ਇਹ ਵੀ ਜਾਂਚ ਲਵੋ ਕਿ ਫਾਇਲ ਦੀ ਡਾਇਰੈਕਟਰੀ ਲਿਖਣ "
-"ਯੋਗ ਹੈ।"
+"'%s' ਫਾਇਲ ਲਿਖੀ ਨਹੀਂ ਜਾ ਸਕਦੀ। ਇਹ ਗਨੋਮ ਦੇ ਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਕਰਨ ਵਾਸਤੇ ਲਿਖਣ-ਯੋਗ ਹੋਣੀ ਚਾਹੀਦੀ "
+"ਹੈ।  ਸੰਕਟਕਾਲੀ ਸ਼ੈਸ਼ਨ 'ਚ ਲਾਗਇਨ ਕਰੋ ਅਤੇ ਇਹ ਫਾਇਲ ਹਟਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ।  ਅਤੇ ਇਹ ਵੀ ਜਾਂਚ ਲਵੋ ਕਿ "
+"ਫਾਇਲ ਦੀ ਡਾਇਰੈਕਟਰੀ ਲਿਖਣ ਯੋਗ ਹੈ।"
 
-#: ../gnome-session/logout.c:404
+#: ../gnome-session/logout.c:372
 msgid "Are you sure you want to log out?"
 msgstr "ਕੀ ਤੁਸੀਂ ਲਾਗ ਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-# gnome-session/logout.c:246
-#: ../gnome-session/logout.c:421
-msgid "_Save current setup"
-msgstr "ਮੌਜੂਦਾ ਸੈੱਟਅੱਪ ਸੰਭਾਲੋ(_S)"
+#: ../gnome-session/logout.c:389
+msgid "Remember running applications"
+msgstr "ਚੱਲਦੇ ਪਰੋਗਰਾਮ ਯਾਦ ਰੱਖੋ"
 
 # gnome-session/logout.c:266
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:412
 msgid "Action"
-msgstr "ਕਾਰਵਾਈ"
+msgstr "ਐਕਸ਼ਨ"
 
 # gnome-session/logout.c:274
-#: ../gnome-session/logout.c:461
+#: ../gnome-session/logout.c:429
 msgid "_Log out"
 msgstr "ਲਾਗ-ਆਉਟ(_L)"
 
 # gnome-session/logout.c:277
-#: ../gnome-session/logout.c:468
+#: ../gnome-session/logout.c:436
 msgid "Sh_ut down"
 msgstr "ਬੰਦ ਕਰੋ(_U)"
 
-#: ../gnome-session/logout.c:476
+#: ../gnome-session/logout.c:444
 msgid "_Restart the computer"
 msgstr "ਕੰਪਿਊਟਰ ਮੁੜ ਚਾਲੂ(_R)"
 
 # gnome-session/main.c:66
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
 msgstr "ਲੋਡ ਕਰਨ ਲਈ ਇੱਕ ਸ਼ੈਸ਼ਨ ਨਾਂ ਦਿਓ"
 
-#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "ਨਾਂ"
 
 # gnome-session/main.c:67
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
-msgstr "ਮੂਲ ਸ਼ੈਸ਼ਨ (default.session) ਫਾਇਲ ਵਿਚੋਂ ਸੰਭਾਲਿਆ ਸ਼ੈਸ਼ਨ ਸਿਰਫ਼ ਪੜ੍ਹੋ"
+msgstr "ਡਿਫਾਲਟ ਸ਼ੈਸ਼ਨ (default.session) ਫਾਇਲ ਵਿਚੋਂ ਸੰਭਾਲਿਆ ਸ਼ੈਸ਼ਨ ਸਿਰਫ਼ ਪੜ੍ਹੋ"
 
 # gnome-session/main.c:68
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਂਇਟ ਨੂੰ ਰਜਿਸਟਰ ਹੋਣ ਲਈ ਲੱਗਾ (0= ਹਮੇਸ਼ਾ)"
+msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਈਟ ਨੂੰ ਰਜਿਸਟਰ ਹੋਣ ਲਈ ਲੱਗਾ (0= ਹਮੇਸ਼ਾ)"
 
-#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
 msgid "DELAY"
 msgstr "ਅੰਤਰਾਲ"
 
 # gnome-session/main.c:69
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਂਇਟ ਨੂੰ ਸੰਕੇਤ ਦੇਣ ਲਈ ਲੱਗਾ (0=ਹਮੇਸ਼ਾ)"
+msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਈਟ ਨੂੰ ਸੰਕੇਤ ਦੇਣ ਲਈ ਲੱਗਾ (0=ਹਮੇਸ਼ਾ)"
 
 # gnome-session/main.c:70
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਂਇਟ ਨੂੰ ਖਤਮ ਕਰਨ ਲਈ ਲੱਗਾ (0=ਹਮੇਸ਼ਾ)"
+msgstr "ਮਿਲੀਸਕਿੰਟ ਵਿੱਚ ਸਮਾਂ, ਜੋ ਕਲਾਈਟ ਨੂੰ ਖਤਮ ਕਰਨ ਲਈ ਲੱਗਾ (0=ਹਮੇਸ਼ਾ)"
+
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr "ਇਹ ਸ਼ੈਸ਼ਨ ਇੱਕ ਖਾਸ ਅਧਿਕਾਰ ਯੂਜ਼ਰ ਵਾਂਗ ਚੱਲਦਾ ਹੈ"
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+"ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਇੱਕ ਵਿਸ਼ੇਸ਼ ਅਧਿਕਾਰ (privileged) ਯੂਜ਼ਰ ਦੇ ਤੌਰ ਉੱਤੇ ਸ਼ੈਸ਼ਨ "
+"ਚਲਾਉਣ ਤੋਂ ਬਚਣਾ ਚਾਹੀਦਾ ਹੈ। ਜੇ ਸੰਭਵ ਹੋਵੇ ਤਾਂ ਤੁਹਾਨੂੰ ਇੱਕ ਆਮ ਯੂਜ਼ਰ ਵਾਂਗ ਲਾਗਇਨ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr "ਜਾਰੀ ਰੱਖੋ(_C)"
+
+#: ../gnome-session/main.c:220
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+"ਸ਼ੈਸ਼ਨ ਵਿੱਚ ਸਮੱਸਿਆ ਆ ਸਕਦੀ ਹੈ, ਜੇ ਕੰਪਿਊਟਰ ਕਲਾਕ ਠੀਕ ਤਰ੍ਹਾਂ ਸੰਰਚਿਤ ਨਾ ਹੋਵੇ। "
+"ਇਸ ਨੂੰ ਠੀਕ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।\n"
+"\n"
+"ਮੌਜੂਦਾ ਮਿਤੀ ਹੈ <b>%s</b>"
+
+#: ../gnome-session/main.c:338
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "ਟਾਇਮ ਸੰਰਚਨਾ ਟੂਲ ਚਲਾਉਣ ਲਈ ਫੇਲ੍ਹ: %s"
+
+#: ../gnome-session/main.c:369
+msgid "The computer clock appears to be wrong"
+msgstr "ਕੰਪਿਊਟਰ ਕਲਾਕ ਗਲਤ ਜਾਪਦਾ ਹੈ"
+
+#: ../gnome-session/main.c:376
+msgid "_Ignore"
+msgstr "ਅਣਡਿੱਠਾ ਕਰੋ(_I)"
+
+#: ../gnome-session/main.c:377
+msgid "_Adjust the Clock"
+msgstr "ਕਲਾਕ ਅਡਜੱਸਟ ਕਰੋ(_A)"
 
 # gnome-session/gnome-login-check.c:228
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:515
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -435,234 +491,231 @@ msgstr ""
 "ਇਥੇ ਫਾਇਲ /ect/hosts ਵਿੱਚ %s ਲਿਖਣ ਨਾਲ\n"
 "ਮੁਸ਼ਕਿਲ ਠੀਕ ਹੋ ਸਕਦੀ ਹੈ।"
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:522
 msgid "Log in Anyway"
-msgstr "ਕਿਸੇ ਤਰਾਂ ਵੀ ਲਾਗ ਇਨ"
+msgstr "ਕਿਵੇਂ ਵੀ ਲਾਗ ਇਨ"
 
 # gnome-session/gnome-login-check.c:211 gnome-session/gnome-login-check.c:236
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:523
 msgid "Try Again"
-msgstr "ਮੁੜ ਕੋਸ਼ਿਸ"
+msgstr "ਫੇਰ ਟਰਾਈ ਕਰੋ"
 
-#: ../gnome-session/main.c:408
+#: ../gnome-session/main.c:651
 msgid "- Manage the GNOME session"
 msgstr "- ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਪਰਬੰਧ"
 
 # gnome-session/manager.c:400
-#: ../gnome-session/manager.c:512
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr "ਅਪਵਾਦ ਹੋਣ ਕਰਕੇ ਪੂਰਾ ਹੋਣ ਤੱਕ ਉਡੀਕੋ।"
 
 # gnome-session/manager.c:834
-#: ../gnome-session/manager.c:1020
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr "ਕਮਾਂਡ %s ਦਾ ਕੋਈ ਜਵਾਬ ਨਹੀਂ ਹੈ।"
 
 # gnome-session/manager.c:835
-#: ../gnome-session/manager.c:1021
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
-msgstr "ਪ੍ਰੋਗਰਾਮ ਜਾਂ ਤਾਂ ਹੌਲੀ ਹੋ ਗਿਆ ਹੈ, ਜਾਂ ਰੁੱਕ ਗਿਆ ਹੈ ਜਾਂ ਟੁੱਟ ਗਿਆ ਹੈ।"
+msgstr "ਪਰੋਗਰਾਮ ਜਾਂ ਤਾਂ ਹੌਲੀ ਹੋ ਗਿਆ ਹੈ, ਜਾਂ ਰੁੱਕ ਗਿਆ ਹੈ ਜਾਂ ਟੁੱਟ ਗਿਆ ਹੈ।"
 
 # gnome-session/manager.c:836
-#: ../gnome-session/manager.c:1022
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
 msgstr "ਤੁਸੀਂ ਇਸ ਦੇ ਜਵਾਬ ਦੇਣ ਦਾ ਇੰਤਜ਼ਾਰ ਕਰ ਸਕਦੇ ਹੋ ਜਾਂ ਹਟਾ ਸਕਦੇ ਹੋ।"
 
 # gnome-session/manager.c:1375
-#: ../gnome-session/manager.c:1748
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
-msgstr "ਅਸਫਲਤਾ ਕਰਕੇ ਮੁੜ ਆਰੰਭ ਕਰੋ।"
+msgstr "ਫੇਲ੍ਹ ਹੋਣ ਕਰਕੇ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।"
 
 # gnome-session/manager.c:1541
-#: ../gnome-session/manager.c:1944
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr "ਸ਼ੈਸ਼ਨ ਬੰਦ ਕਰਨ ਦੀ ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ।"
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/save-session.c:49
+#: ../gnome-session/gnome-session-save.c:48
 msgid "Set the current session name"
-msgstr "ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਨਾਂ ਦਿਓ"
+msgstr "ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਨਾਂ ਸੈੱਟ ਕਰੋ"
 
 # gnome-session/save-session.c:43
-#: ../gnome-session/save-session.c:50
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
 msgstr "ਸ਼ੈਸ਼ਨ ਖਤਮ ਕਰੋ"
 
 # gnome-session/save-session.c:44
-#: ../gnome-session/save-session.c:51
+#: ../gnome-session/gnome-session-save.c:50
 msgid "Use dialog boxes for errors"
-msgstr "ਗਲਤੀਆਂ ਲਈ ਵਾਰਤਾਲਾਪ ਬਕਸੇ ਵਰਤੋਂ"
+msgstr "ਗਲਤੀਆਂ ਲਈ ਡਾਈਲਾਗ ਬਕਸੇ ਵਰਤੋਂ"
 
-#: ../gnome-session/save-session.c:52
+#: ../gnome-session/gnome-session-save.c:51
 msgid "Do not require confirmation"
 msgstr "ਪੁਸ਼ਟੀ ਦੀ ਲੋੜ ਨਹੀਂ"
 
 # gnome-session/save-session.c:112
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:186
 msgid "Could not connect to the session manager"
 msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/save-session.c:173
+#: ../gnome-session/gnome-session-save.c:172
 msgid "- Save the current session"
 msgstr "- ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/session-properties-capplet.c:153
+#: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
 msgstr "ਕੀ ਬੰਦ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ 'ਚ ਬਦਲਾਅ ਸੰਭਾਲਣੇ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../gnome-session/session-properties-capplet.c:155
+#: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
 msgstr "ਜੇ ਤੁਸੀਂ ਨਾ ਸੰਭਾਲੇ ਤਾਂ ਬਦਲਾਅ ਰੱਦ ਕਰ ਦਿੱਤੇ ਜਾਣਗੇ।"
 
-#: ../gnome-session/session-properties-capplet.c:158
+#: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "ਬਿਨਾਂ ਸੰਭਾਲੇ ਬੰਦ ਕਰੋ(_C)"
 
-# gnome-session/session-properties.c:272
-#: ../gnome-session/session-properties-capplet.c:222
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "ਸ਼ੈਸ਼ਨ"
-
 # gnome-session/startup-programs.c:372
-#: ../gnome-session/session-properties-capplet.c:248
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
-msgstr "ਹੋਰ ਸ਼ੁਰੂਆਤੀ ਪ੍ਰੋਗਰਾਮ(_P):"
+msgstr "ਹੋਰ ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ(_P):"
 
-#: ../gnome-session/session-properties-capplet.c:272
+#: ../gnome-session/session-properties-capplet.c:274
 msgid "Enabled"
-msgstr "ਇੰ-ਬੈੱਡ"
+msgstr "ਯੋਗ"
 
 # gnome-session/session-properties-capplet.c:399
-#: ../gnome-session/session-properties-capplet.c:315
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਪ੍ਰੋਗਰਾਮ"
+msgstr "ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ"
 
 # gnome-session/save-session.desktop.in.h:1
-#: ../gnome-session/session-properties-capplet.c:321
+#: ../gnome-session/session-properties-capplet.c:328
 msgid "Current Session"
 msgstr "ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ"
 
-# gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/session-properties-capplet.c:334
-msgid "Automatically save chan_ges to session"
-msgstr "ਸ਼ੈਸ਼ਨ ਦੀਆਂ ਤਬਦੀਲੀਆਂ ਦੀ ਆਟੋਮੈਟਿਕ ਸੰਭਾਲ ਕਰੋ(_G)"
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
+msgstr "ਜਦੋਂ ਲਾਗ ਆਉਟ ਹੋਵੋ ਤਾਂ ਚੱਲਦੇ ਐਪਲੀਕੇਸ਼ਨ ਆਟੋਮੈਟਿਕ ਹੀ ਯਾਦ ਰੱਖੋ(_A)"
 
-# gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/session-properties-capplet.c:349
-msgid "Save the current session"
-msgstr "ਮੌਜੂਦਾ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲੋ"
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember currently running applications"
+msgstr "ਇਸ ਸਮੇਂ ਚੱਲਦੇ ਐਪਲੀਕੇਸ਼ਨ ਯਾਦ ਰੱਖੋ(_R)"
 
 # gnome-session/session-properties-capplet.c:332
-#: ../gnome-session/session-properties-capplet.c:357
+#: ../gnome-session/session-properties-capplet.c:364
 msgid "Session Options"
-msgstr "ਸ਼ੈਸ਼ਨ ਚੋਣ"
+msgstr "ਸ਼ੈਸ਼ਨ ਚੋਣਾਂ"
 
 # gnome-session/save-session.c:160
-#: ../gnome-session/session-properties-capplet.c:453
+#: ../gnome-session/session-properties-capplet.c:460
 msgid "Your session has been saved."
 msgstr "ਤੁਹਾਡਾ ਸ਼ੈਸ਼ਨ ਸੰਭਾਲਿਆ ਗਿਆ।"
 
 # gnome-session/save-session.c:112
-#: ../gnome-session/session-properties-capplet.c:496
+#: ../gnome-session/session-properties-capplet.c:503
 msgid "could not connect to the session manager\n"
 msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ\n"
 
-#: ../gnome-session/session-properties-capplet.c:502
+#: ../gnome-session/session-properties-capplet.c:509
 msgid "session manager does not support GNOME extensions\n"
 msgstr "ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ ਗਨੋਮ ਐਕਸ਼ਟੇਸ਼ਨ ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ\n"
 
-#: ../gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
-msgstr "ਹੁਣ ਚੁਣਿਆ ਕਲਾਂਈਟ ਇਸ ਸ਼ੈਸ਼ਨ ਵਿਚੋਂ ਹਟਾ ਦਿਓ।"
+msgstr "ਹੁਣ ਚੁਣਿਆ ਕਲਾਈਟ ਇਸ ਸ਼ੈਸ਼ਨ ਵਿਚੋਂ ਹਟਾ ਦਿਓ।"
 
 # gnome-session/session-properties-capplet.c:259
-#: ../gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
 msgstr "ਇਸ ਸ਼ੈਸ਼ਨ ਵਿੱਚ ਕੀਤੇ ਬਦਲਾਅ ਲਾਗੂ ਕਰੋ"
 
-#: ../gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
-msgstr "ਸ਼ੈਸ਼ਨ ਵਿਚ ਪ੍ਰੋਗਰਾਮਾਂ ਦੀ ਲਿਸਟ ਹੈ।"
+msgstr "ਸ਼ੈਸ਼ਨ ਵਿਚ ਪਰੋਗਰਾਮਾਂ ਦੀ ਲਿਸਟ ਹੈ।"
 
 # gnome-session/session-properties-capplet.c:390
-#: ../gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
-msgstr "ਇਸ ਵੇਲੇ ਚੱਲ ਰਹੇ ਪ੍ਰੋਗਰਾਮ(_P):"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "ਆਪਣੇ ਸ਼ੈਸ਼ਨ ਦੀ ਸੰਰਚਨਾ ਕਰੋ"
+msgstr "ਇਸ ਵੇਲੇ ਚੱਲ ਰਹੇ ਪਰੋਗਰਾਮ(_P):"
 
 # gnome-session/splash.c:62 gnome-session/splash.c:63
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
-msgstr "Sawfish ਝਰੋਖਾ ਮੈਨੇਜਰ"
+msgstr "Sawfish ਵਿੰਡੋ ਮੈਨੇਜਰ"
+
+# gnome-session/splash.c:71
+#: ../gnome-session/splash-widget.c:45
+msgid "Metacity Window Manager"
+msgstr "Metacity ਵਿੰਡੋ ਮੈਨੇਜਰ"
 
 # gnome-session/splash.c:71
 #: ../gnome-session/splash-widget.c:46
-msgid "Metacity Window Manager"
-msgstr "Metacity ਝਰੋਖਾ ਮੈਨੇਜਰ"
-
-# gnome-session/splash.c:71
-#: ../gnome-session/splash-widget.c:47
 msgid "Window Manager"
-msgstr "ਝਰੋਖਾ ਮੈਨੇਜਰ"
+msgstr "ਵਿੰਡੋ ਮੈਨੇਜਰ"
 
 # gnome-session/splash.c:69
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
 msgstr "ਪੈਨਲ"
 
 # gnome-session/splash.c:73
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "ਨਟੀਲਸ"
 
 # gnome-session/splash.c:68
-#: ../gnome-session/splash-widget.c:50
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "ਡੈਸਕਟਾਪ ਸੈਟਿੰਗ"
 
-#: ../gnome-session/startup-programs.c:557
+#: ../gnome-session/startup-programs.c:351
+msgid "No description"
+msgstr "ਕੋਈ ਵੇਰਵਾ ਨਹੀਂ"
+
+#: ../gnome-session/startup-programs.c:470
 msgid "_Name:"
 msgstr "ਨਾਂ(_N):"
 
 # gnome-session/session-properties-capplet.c:362
-#: ../gnome-session/startup-programs.c:575
+#: ../gnome-session/startup-programs.c:488
 msgid "_Command:"
 msgstr "ਕਮਾਂਡ(_C):"
 
-# gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
-#: ../gnome-session/startup-programs.c:581
-msgid "Startup Command"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਕਮਾਂਡ"
+#: ../gnome-session/startup-programs.c:502
+msgid "_Browse..."
+msgstr "ਬਰਾਊਜ਼ ਕਰੋ(_B)..."
+
+# gnome-session/session-properties-capplet.c:362
+#: ../gnome-session/startup-programs.c:515
+msgid "Co_mment:"
+msgstr "ਟਿੱਪਣੀ(_m):"
 
 # gnome-session/startup-programs.c:332
-#: ../gnome-session/startup-programs.c:607
+#: ../gnome-session/startup-programs.c:545
 msgid "The name of the startup program cannot be empty"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਪ੍ਰੋਗਰਾਮ ਦਾ ਨਾਂ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਪਰੋਗਰਾਮ ਦਾ ਨਾਂ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ ਹੈ"
 
 # gnome-session/startup-programs.c:332
-#: ../gnome-session/startup-programs.c:609
+#: ../gnome-session/startup-programs.c:547
 msgid "The startup command cannot be empty"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਕਮਾਂਡ ਖਾਲੀ ਨਹੀ ਹੋ ਸਕਦੀ ਹੈ"
 
 # gnome-session/startup-programs.c:332
-#: ../gnome-session/startup-programs.c:615
+#: ../gnome-session/startup-programs.c:553
 msgid "The startup command is not valid"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਕਮਾਂਡ ਠੀਕ ਨਹੀਂ ਹੈ"
 
 # gnome-session/session-properties-capplet.c:399
-#: ../gnome-session/startup-programs.c:667
+#: ../gnome-session/startup-programs.c:610
 msgid "New Startup Program"
-msgstr "ਨਵਾਂ ਸ਼ੁਰੂਆਤੀ ਪ੍ਰੋਗਰਾਮ"
+msgstr "ਨਵਾਂ ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ"
 
 # gnome-session/startup-programs.c:392
-#: ../gnome-session/startup-programs.c:711
+#: ../gnome-session/startup-programs.c:654
 msgid "Edit Startup Program"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਪ੍ਰੋਗਰਾਮ ਸੋਧ"
+msgstr "ਸਟਾਰਟਅੱਪ ਪਰੋਗਰਾਮ ਸੋਧ"
 
