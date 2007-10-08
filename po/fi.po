@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-12 12:19+0300\n"
+"POT-Creation-Date: 2007-10-08 11:14+0300\n"
 "PO-Revision-Date: 2007-02-14 07:21+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Gnome Finnish Translation Team <gnome-fi-laatu@lists."
@@ -282,6 +282,7 @@ msgid "PROGRAM..."
 msgstr "OHJELMA..."
 
 #: ../gnome-session/gnome-session-remove.c:176
+#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -290,10 +291,12 @@ msgstr ""
 "valitsimella --list.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
+#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Virhe: istunnonhallintaan ei saatu yhteyttä\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
+#, c-format
 msgid "Currently registered clients:\n"
 msgstr "Tällä hetkellä rekiströidyt asiakkaat:\n"
 
@@ -351,27 +354,27 @@ msgstr ""
 "istuntoon ja poistaa kyseisen tiedoston. Varmista myös että kyseinen kansio "
 "on kirjoitettavissa."
 
-#: ../gnome-session/logout.c:374
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "Oletko varma, että haluat kirjautua ulos?"
 
-#: ../gnome-session/logout.c:391
+#: ../gnome-session/logout.c:409
 msgid "Remember running applications"
 msgstr "Muista suoritettavat ohjelmat"
 
-#: ../gnome-session/logout.c:414
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Toiminto"
 
-#: ../gnome-session/logout.c:431
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "Kirjaudu _ulos"
 
-#: ../gnome-session/logout.c:438
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "_Sammuta"
 
-#: ../gnome-session/logout.c:446
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_Käynnistä tietokone uudelleen"
 
@@ -414,14 +417,14 @@ msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
 msgstr ""
-"Työpöytäympäristöjä ei tulisi turvallisuussyistä käyttää ylläpitäjänä. "
-"Jos mahdollista, kirjaudu sisään tavallisena käyttäjänä."
+"Työpöytäympäristöjä ei tulisi turvallisuussyistä käyttää ylläpitäjänä. Jos "
+"mahdollista, kirjaudu sisään tavallisena käyttäjänä."
 
 #: ../gnome-session/main.c:173
 msgid "_Continue"
 msgstr "_Jatka"
 
-#: ../gnome-session/main.c:234
+#: ../gnome-session/main.c:257
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -434,24 +437,24 @@ msgstr ""
 "\n"
 "Kello on nyt <b>%s</b>."
 
-#: ../gnome-session/main.c:353
+#: ../gnome-session/main.c:376
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Ajan asetustyökalua ei voitu käynnistää: %s"
 
-#: ../gnome-session/main.c:384
+#: ../gnome-session/main.c:407
 msgid "The computer clock appears to be wrong"
 msgstr "Tietokoneen kello näyttää olevan väärässä"
 
-#: ../gnome-session/main.c:391
+#: ../gnome-session/main.c:414
 msgid "_Ignore"
 msgstr "_Ohita"
 
-#: ../gnome-session/main.c:392
+#: ../gnome-session/main.c:415
 msgid "_Adjust the Clock"
 msgstr "_Säädä kelloa"
 
-#: ../gnome-session/main.c:529
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -464,15 +467,15 @@ msgstr ""
 "Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
 "%s tiedostoon /etc/hosts."
 
-#: ../gnome-session/main.c:536
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Kirjaudu sisään kaikesta huolimatta"
 
-#: ../gnome-session/main.c:537
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Yritä uudelleen"
 
-#: ../gnome-session/main.c:671
+#: ../gnome-session/main.c:696
 msgid "- Manage the GNOME session"
 msgstr "- Hallitse Gnomen istuntoja"
 
@@ -528,7 +531,7 @@ msgstr "- Tallenna nykyinen istunto"
 
 #: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
-msgstr "Tallennetaanko muutokset istuntoon enne sulkemista?"
+msgstr "Tallennetaanko muutokset istuntoon ennen sulkemista?"
 
 #: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
@@ -571,10 +574,12 @@ msgid "Your session has been saved."
 msgstr "Istunto on tallennettu."
 
 #: ../gnome-session/session-properties-capplet.c:503
+#, c-format
 msgid "could not connect to the session manager\n"
 msgstr "istunnonhallintaan ei saatu yhteyttä\n"
 
 #: ../gnome-session/session-properties-capplet.c:509
+#, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr "istunnonhallinta ei tue Gnome-laajennoksia\n"
 
@@ -636,7 +641,7 @@ msgstr "_Selaa..."
 
 #: ../gnome-session/startup-programs.c:512
 msgid "Co_mment:"
-msgstr "Ko_mento:"
+msgstr "Ko_mmentti:"
 
 #: ../gnome-session/startup-programs.c:542
 msgid "The name of the startup program cannot be empty"
