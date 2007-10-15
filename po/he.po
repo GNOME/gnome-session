@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-12 14:35+0000\n"
+"POT-Creation-Date: 2007-05-13 11:19+0100\n"
 "PO-Revision-Date: 2006-04-27 16:44+0300\n"
 "Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Allow TCP connections"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -34,11 +34,12 @@ msgstr ""
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"If enabled, gnome-session will prompt the user before ending a session."
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -46,31 +47,31 @@ msgstr ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Logout prompt"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr "Preferred Image to use for login splash screen"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Save sessions"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr"Selected option in the log out dialog"
+msgstr "Selected option in the log out dialog"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Show the splash screen"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Show the splash screen when the session starts up"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -80,7 +81,7 @@ msgstr ""
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -89,6 +90,15 @@ msgstr ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "הגדר את תצורות ההפעלה שלך"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions"
+msgstr "תצורות הפעלה"
 
 #: ../gnome-session/gsm-at-startup.c:39
 msgid ""
@@ -98,110 +108,112 @@ msgid ""
 "support."
 msgstr ""
 
-#: ../gnome-session/gsm-client-editor.c:97
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
 msgstr "_סדר:"
 
-#: ../gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
 msgstr "הסדר שבו יופעלו היישומים בזמן ההפעלה."
 
-#: ../gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
 msgstr "מה שקורה ליישום כשהוא נסגר."
 
-#: ../gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
 msgstr "_סגנון:"
 
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "סדר"
-
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "סגנון"
-
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "מצב"
-
-#: ../gnome-session/gsm-client-list.c:165
-#: ../gnome-session/session-properties-capplet.c:280
-msgid "Program"
-msgstr "תוכנית"
-
-#: ../gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
 msgstr "לא פעיל"
 
-#: ../gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr "מחכה להפעלה או כבר סיים."
 
-#: ../gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
 msgstr "מתחיל"
 
-#: ../gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr "התחיל אך טרם ציין מצב."
 
-#: ../gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "פועל"
 
-#: ../gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
 msgstr "חבר רגיל בתצורת ההפעלה."
 
-#: ../gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
 msgstr "שומר"
 
-#: ../gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
 msgstr "שומר פרטי מצב."
 
-#: ../gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
 msgstr "מצב לא צויין בזמן הנתון."
 
-#: ../gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
 msgstr "רגיל"
 
-#: ../gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr "לא מושפע על-ידי התנתקויות, אך יכול למות."
 
-#: ../gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
 msgstr "הפעלה מחדש"
 
-#: ../gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr "לעולם לא מורשה למות."
 
-#: ../gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "אשפה"
 
-#: ../gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr "מבוטל בהתנתקות ויכול למות."
 
-#: ../gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "הגדרות"
 
-#: ../gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr "תמיד מופעל בכל התחברות."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "סדר"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "סגנון"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "מצב"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "תוכנית"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -248,15 +260,20 @@ msgstr ""
 msgid "The Settings Daemon restarted too many times."
 msgstr "תהליך שירות ההגדרות הופעל מחדש יותר מידי פעמים."
 
-#: ../gnome-session/gsm-remove-client.c:46
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "ללא שם"
+
+#: ../gnome-session/gnome-session-remove.c:50
 msgid "List registered clients, then exit"
 msgstr "List registered clients, then exit"
 
-#: ../gnome-session/gsm-remove-client.c:48
+#: ../gnome-session/gnome-session-remove.c:52
 msgid "PROGRAM..."
 msgstr "PROGRAM..."
 
-#: ../gnome-session/gsm-remove-client.c:172
+#: ../gnome-session/gnome-session-remove.c:176
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -264,15 +281,15 @@ msgstr ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
 
-#: ../gnome-session/gsm-remove-client.c:179
+#: ../gnome-session/gnome-session-remove.c:183
 msgid "Error: could not connect to the session manager\n"
 msgstr "Error: could not connect to the session manager\n"
 
-#: ../gnome-session/gsm-remove-client.c:193
+#: ../gnome-session/gnome-session-remove.c:197
 msgid "Currently registered clients:\n"
 msgstr "Currently registered clients:\n"
 
-#: ../gnome-session/gsm-remove-client.c:203
+#: ../gnome-session/gnome-session-remove.c:207
 #, c-format
 msgid "Couldn't find program %s in session\n"
 msgstr "Couldn't find program %s in session\n"
@@ -286,7 +303,7 @@ msgid ""
 "s'.  Meanwhile you could try logging in using the failsafe session."
 msgstr ""
 
-#: ../gnome-session/ice.c:510
+#: ../gnome-session/ice.c:511
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -295,7 +312,7 @@ msgid ""
 "ensuring that it is."
 msgstr ""
 
-#: ../gnome-session/ice.c:537
+#: ../gnome-session/ice.c:538
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -303,7 +320,7 @@ msgid ""
 "in with the failsafe session and removing this file."
 msgstr ""
 
-#: ../gnome-session/ice.c:582
+#: ../gnome-session/ice.c:583
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -311,60 +328,100 @@ msgid ""
 "this file.  Also make sure that the file's directory is writable."
 msgstr ""
 
-#: ../gnome-session/logout.c:404
+#: ../gnome-session/logout.c:372
 msgid "Are you sure you want to log out?"
 msgstr "אתה בטוח שברצונך להתנתק?"
 
-#: ../gnome-session/logout.c:421
-msgid "_Save current setup"
-msgstr "_שמור תצורה נוכחית"
+#: ../gnome-session/logout.c:389
+msgid "Remember running applications"
+msgstr "זכור יישומים פעילים"
 
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:412
 msgid "Action"
 msgstr "פעולה"
 
-#: ../gnome-session/logout.c:461
+#: ../gnome-session/logout.c:429
 msgid "_Log out"
 msgstr "_התנתק"
 
-#: ../gnome-session/logout.c:468
+#: ../gnome-session/logout.c:436
 msgid "Sh_ut down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/logout.c:476
+#: ../gnome-session/logout.c:444
 msgid "_Restart the computer"
 msgstr "הפעל _מחדש את המחשב"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
 msgstr "Specify a session name to load"
 
-#: ../gnome-session/main.c:84 ../gnome-session/save-session.c:49
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NAME"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
 msgstr "Only read saved sessions from the default.session file"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Millisecond period spent waiting for clients to register (0=forever)"
 
-#: ../gnome-session/main.c:86 ../gnome-session/main.c:87
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
 msgid "DELAY"
 msgstr "DELAY"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "תקופת זמן במילי שניות לחכות שהלקוחות יגיבו (0=לנצח)"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Millisecond period spent waiting for clients to die (0=forever)"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr ""
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr ""
+
+#: ../gnome-session/main.c:220
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+
+#: ../gnome-session/main.c:338
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr ""
+
+#: ../gnome-session/main.c:369
+msgid "The computer clock appears to be wrong"
+msgstr ""
+
+#: ../gnome-session/main.c:376
+msgid "_Ignore"
+msgstr "ה_תעלם"
+
+#: ../gnome-session/main.c:377
+msgid "_Adjust the Clock"
+msgstr ""
+
+#: ../gnome-session/main.c:515
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -377,200 +434,211 @@ msgstr ""
 "ייתכן וכל הנדרש לתיקון הבעיה הוא הוספת\n"
 "%s לקובץ /etc/hosts."
 
-#: ../gnome-session/main.c:270
+#: ../gnome-session/main.c:522
 msgid "Log in Anyway"
 msgstr "התחבר בכל מקרה"
 
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:523
 msgid "Try Again"
 msgstr "נסה שנית"
 
-#: ../gnome-session/main.c:408
+#: ../gnome-session/main.c:651
 msgid "- Manage the GNOME session"
 msgstr "- Manage the GNOME session"
 
-#: ../gnome-session/manager.c:512
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr "ההמתנה הופסקה בגלל התנגשות."
 
-#: ../gnome-session/manager.c:1020
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr "אין תגובה לפקודה %s."
 
-#: ../gnome-session/manager.c:1021
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
 msgstr "התוכנית עשויה להיות אטית, מופסקת או שבורה."
 
-#: ../gnome-session/manager.c:1022
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
 msgstr "אתה יכול לחכות לתגובה ממנה או להסיר אותה."
 
-#: ../gnome-session/manager.c:1748
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
 msgstr "הפעלה מחדש הופסקה בגלל מספר כשלים."
 
-#: ../gnome-session/manager.c:1944
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr "כיבוי ההפעלה בתהליכים."
 
-#: ../gnome-session/save-session.c:49
+#: ../gnome-session/gnome-session-save.c:48
 msgid "Set the current session name"
 msgstr "קבע את שם תצורת ההפעלה הנוכחית"
 
-#: ../gnome-session/save-session.c:50
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
 msgstr "הרוג הפעלה נוכחית"
 
-#: ../gnome-session/save-session.c:51
+#: ../gnome-session/gnome-session-save.c:50
 msgid "Use dialog boxes for errors"
 msgstr "השתמש בתיבות דו-שיח עבור שגיאות"
 
-#: ../gnome-session/save-session.c:52
+#: ../gnome-session/gnome-session-save.c:51
 msgid "Do not require confirmation"
 msgstr ""
 
-#: ../gnome-session/save-session.c:150 ../gnome-session/save-session.c:187
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:186
 msgid "Could not connect to the session manager"
 msgstr "לא הצלחתי להתחבר למנהל תצורת ההפעלה"
 
-#: ../gnome-session/save-session.c:173
+#: ../gnome-session/gnome-session-save.c:172
 msgid "- Save the current session"
 msgstr "- Save the current session"
 
-#: ../gnome-session/session-properties-capplet.c:153
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
-msgstr "שמור שינויים לתצורת ההפעלה הנוכחית"
+msgstr "לשמור שינויים לתצורת ההפעלה הנוכחית לפני הסגירה?"
 
-#: ../gnome-session/session-properties-capplet.c:155
+#: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
 msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:158
+#: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "_סגור מבלי לשמור"
 
-#: ../gnome-session/session-properties-capplet.c:222
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "תצורות הפעלה"
-
-#: ../gnome-session/session-properties-capplet.c:248
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "_תוכניות הפעלה נוספות:"
 
-#: ../gnome-session/session-properties-capplet.c:272
+#: ../gnome-session/session-properties-capplet.c:274
 msgid "Enabled"
 msgstr "מאופשר"
 
-#: ../gnome-session/session-properties-capplet.c:315
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
 msgstr "תוכניות הפעלה"
 
-#: ../gnome-session/session-properties-capplet.c:321
+#: ../gnome-session/session-properties-capplet.c:328
 msgid "Current Session"
 msgstr "תצורת הפעלה נוכחית"
 
-#: ../gnome-session/session-properties-capplet.c:334
-msgid "Automatically save chan_ges to session"
-msgstr "_שמור שינויים בתצורת ההפעלה באופן אוטומטי"
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
+msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:349
-msgid "Save the current session"
-msgstr "קבע את תצורת ההפעלה הנוכחית"
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember currently running applications"
+msgstr ""
 
-#: ../gnome-session/session-properties-capplet.c:357
+#: ../gnome-session/session-properties-capplet.c:364
 msgid "Session Options"
 msgstr "אפשרויות תצורות ההפעלה"
 
-#: ../gnome-session/session-properties-capplet.c:453
+#: ../gnome-session/session-properties-capplet.c:460
 msgid "Your session has been saved."
 msgstr "תצורת ההפעלה שלך נשמרה."
 
-#: ../gnome-session/session-properties-capplet.c:496
+#: ../gnome-session/session-properties-capplet.c:503
 msgid "could not connect to the session manager\n"
 msgstr "לא ניתן להתחבר למנהל תצורת ההפעלה\n"
 
-#: ../gnome-session/session-properties-capplet.c:502
+#: ../gnome-session/session-properties-capplet.c:509
 msgid "session manager does not support GNOME extensions\n"
 msgstr ""
 
-#: ../gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
 msgstr "הסר את הלקוח הנבחר מתצורת ההפעלה."
 
-#: ../gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
 msgstr "שמור שינויים לתצורת ההפעלה הנוכחית"
 
-#: ../gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
 msgstr "רשימת תוכניות בתצורת ההפעלה."
 
-#: ../gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
 msgstr "ה_תוכניות הפועלות כרגע:"
 
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "הגדר את תצורות ההפעלה שלך"
-
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "מנהל החלונות Sawfish"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "מנהל החלונות Metacity"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "מנהל חלונות"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
 msgstr "הלוח"
 
-#: ../gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "נאוטילוס"
 
-#: ../gnome-session/splash-widget.c:50
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "הגדרות שולחן עבודה"
 
-#: ../gnome-session/startup-programs.c:557
+#: ../gnome-session/startup-programs.c:351
+msgid "No description"
+msgstr "ללא תיאור"
+
+#: ../gnome-session/startup-programs.c:470
 msgid "_Name:"
 msgstr "_שם:"
 
-#: ../gnome-session/startup-programs.c:575
+#: ../gnome-session/startup-programs.c:488
 msgid "_Command:"
 msgstr "_פקודה:"
 
-#: ../gnome-session/startup-programs.c:581
-msgid "Startup Command"
-msgstr "פקודת הפעלה"
+#: ../gnome-session/startup-programs.c:502
+msgid "_Browse..."
+msgstr "_דפדף..."
 
-#: ../gnome-session/startup-programs.c:607
+#: ../gnome-session/startup-programs.c:515
+msgid "Co_mment:"
+msgstr "הע_רה:"
+
+#: ../gnome-session/startup-programs.c:545
 msgid "The name of the startup program cannot be empty"
 msgstr "שם פקודת ההפעלה לא יכול להיות ריק"
 
-#: ../gnome-session/startup-programs.c:609
+#: ../gnome-session/startup-programs.c:547
 msgid "The startup command cannot be empty"
 msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 
-#: ../gnome-session/startup-programs.c:615
+#: ../gnome-session/startup-programs.c:553
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
-#: ../gnome-session/startup-programs.c:667
+#: ../gnome-session/startup-programs.c:610
 msgid "New Startup Program"
 msgstr "תוכנית הפעלה חדשה"
 
-#: ../gnome-session/startup-programs.c:711
+#: ../gnome-session/startup-programs.c:654
 msgid "Edit Startup Program"
 msgstr "ערוך תוכנית הפעלה"
+
+#~ msgid "_Save current setup"
+#~ msgstr "_שמור תצורה נוכחית"
+
+#~ msgid "Automatically save chan_ges to session"
+#~ msgstr "_שמור שינויים בתצורת ההפעלה באופן אוטומטי"
+
+#~ msgid "Save the current session"
+#~ msgstr "קבע את תצורת ההפעלה הנוכחית"
+
+#~ msgid "Startup Command"
+#~ msgstr "פקודת הפעלה"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "ארעה שגיאת הפעלה לא ידועה."
@@ -608,9 +676,6 @@ msgstr "ערוך תוכנית הפעלה"
 
 #~ msgid "_Sessions:"
 #~ msgstr "_תצורות הפעלה:"
-
-#~ msgid "Session Name"
-#~ msgstr "שם תצורת ההפעלה"
 
 #~ msgid "Initialize session settings"
 #~ msgstr "אתחל הגדרות תצורת הפעלה"
