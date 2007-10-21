@@ -81,7 +81,7 @@ unset_display_setup (gpointer user_data)
    * stderr instead of trying to show a dialog (since it doesn't
    * compensate for the fact that a window manager isn't running yet.)
    */
-  g_unsetenv ("DISPLAY");
+  /* g_unsetenv ("DISPLAY"); */
 }
 
 /**

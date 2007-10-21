@@ -1,5 +1,11 @@
 2007-10-21  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/gconf.c (unset_display_setup): do not unset DISPLAY
+	environment variable as gconf-sanity-check doesn't run if there's no
+	defined display.
+
+2007-10-21  Lucas Rocha  <lucasr@gnome.org>
+
 	* egg/eggsmclient.c (sm_client_post_parse_func): try to get session
 	client id from the DESKTOP_AUTOSTART_ID environment variable in case
 	no client id is given from command line option --sm-client-id. Unset
