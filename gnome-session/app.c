@@ -23,8 +23,17 @@
 
 #include <glib.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #include "app.h"
+
+enum {
+  EXITED,
+  REGISTERED,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
 
 enum {
 	PROP_0,
@@ -74,6 +83,26 @@ gsm_app_class_init (GsmAppClass *app_class)
 							"Session management client ID",
 							NULL,
 							G_PARAM_READWRITE));
+
+  signals[EXITED] =
+    g_signal_new ("exited",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GsmAppClass, exited),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
+  signals[REGISTERED] =
+    g_signal_new ("registered",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GsmAppClass, registered),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 }
 
 static void
@@ -253,6 +282,13 @@ gsm_app_provides (GsmApp *app, const char *service)
   return FALSE;
 }
 
+static void 
+app_exited (GPid pid, gint status, gpointer data)
+{
+  if (WIFEXITED (status))
+    g_signal_emit (GSM_APP (data), signals[EXITED], 0);
+}
+
 static pid_t
 launch (GsmApp  *app,
 	GError **err)
@@ -263,13 +299,14 @@ launch (GsmApp  *app,
   g_return_val_if_fail (app->desktop_file != NULL, (pid_t)-1);
 
   if (egg_desktop_file_get_boolean (app->desktop_file,
-				    "Autostart-Notify", NULL))
+				    "X-GNOME-Autostart-Notify", NULL) ||
+      egg_desktop_file_get_boolean (app->desktop_file,
+				    "AutostartNotify", NULL))
     env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", app->client_id);
 
 #if 0
-  printf ("launching %s with client_id %s\n",
-	  gsm_app_get_basename (app), app->client_id);
-  return 1;
+  g_debug ("launching %s with client_id %s\n",
+	    gsm_app_get_basename (app), app->client_id);
 #endif
 
   success =
@@ -283,9 +320,16 @@ launch (GsmApp  *app,
   g_free (env[0]);
 
   if (success)
-    return app->pid;
+    {
+      /* In case the app belongs to Initialization phase, we monitor
+       * if it exits to emit proper "exited" signal to session. */
+      if (app->phase == GSM_SESSION_PHASE_INITIALIZATION)
+        g_child_watch_add ((GPid) app->pid, app_exited, app);
+
+      return app->pid;
+    }
   else
-    return (pid_t)-1;
+    return (pid_t) -1;
 }
 
 /**
@@ -301,5 +345,19 @@ pid_t
 gsm_app_launch (GsmApp *app, GError **err)
 {
   return GSM_APP_GET_CLASS (app)->launch (app, err);
+}
+
+/**
+ * gsm_app_registered:
+ * @app: a %GsmApp
+ *
+ * Emits "registered" signal in @app
+ **/
+void
+gsm_app_registered (GsmApp *app)
+{
+  g_return_if_fail (GSM_IS_APP (app));
+
+  g_signal_emit (app, signals[REGISTERED], 0);
 }
 

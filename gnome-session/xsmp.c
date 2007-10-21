@@ -177,7 +177,7 @@ gsm_xsmp_init (void)
     }
 
   g_setenv ("SESSION_MANAGER", xsmp_network_id, TRUE);
-  printf ("SESSION_MANAGER=%s\n", xsmp_network_id);
+  g_debug ("SESSION_MANAGER=%s\n", xsmp_network_id);
 }
 
 /**

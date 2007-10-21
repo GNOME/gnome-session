@@ -1,5 +1,15 @@
 2007-10-21  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/app.[ch] 
+	(gsm_app_class_init): added new GsmApp signals "registered" and "exited".
+	(launch, app_exited): if case the application belongs to
+	Initialization phase, monitor program exit in order to emit "exited"
+	signal accordingly. 
+	(gsm_app_registered): new method for emitting "registered" signal on
+	an GsmApp object.
+
+2007-10-21  Lucas Rocha  <lucasr@gnome.org>
+
 	* gnome-session/gconf.c (unset_display_setup): do not unset DISPLAY
 	environment variable as gconf-sanity-check doesn't run if there's no
 	defined display.
