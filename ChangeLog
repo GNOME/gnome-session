@@ -1,5 +1,10 @@
 2007-10-21  Lucas Rocha  <lucasr@gnome.org>
 
+	* egg/eggdesktopfile.c (egg_desktop_file_launchv): fix leak and
+	invalid memory access on environment variables array.
+
+2007-10-21  Lucas Rocha  <lucasr@gnome.org>
+
 	* compat/gnome-keyring-daemon-wrapper.desktop.in,
 	compat/gnome-settings-daemon-helper.desktop.in,
 	data/gnome-panel.desktop, data/gnome-settings-daemon.desktop,
