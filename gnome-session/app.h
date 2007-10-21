@@ -62,6 +62,8 @@ pid_t            gsm_app_launch          (GsmApp     *app,
 void             gsm_app_set_client      (GsmApp     *app,
 					  GsmClient  *client);
 
+void             gsm_app_registered      (GsmApp     *app);     
+
 G_END_DECLS
 
 #endif /* __GSM_APP_H__ */
