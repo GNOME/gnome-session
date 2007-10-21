@@ -200,6 +200,20 @@ sm_client_post_parse_func (GOptionContext  *context,
 {
   EggSMClient *client = egg_sm_client_get ();
 
+  if (sm_client_id == NULL)
+    {
+      const gchar *desktop_autostart_id;
+
+      desktop_autostart_id = g_getenv ("DESKTOP_AUTOSTART_ID");
+
+      if (desktop_autostart_id != NULL)
+        sm_client_id = g_strdup (desktop_autostart_id);
+    }
+
+  /* Unset DESKTOP_AUTOSTART_ID in order to avoid child processes to
+   * use the same client id. */
+  g_unsetenv ("DESKTOP_AUTOSTART_ID");
+
   if (EGG_SM_CLIENT_GET_CLASS (client)->startup)
     EGG_SM_CLIENT_GET_CLASS (client)->startup (client, sm_client_id);
   return TRUE;
