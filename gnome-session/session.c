@@ -32,7 +32,10 @@
 
 static void append_autostart_apps     (GsmSession *session,
 				       const char *dir);
+#if 0
 static void append_saved_session_apps (GsmSession *session);
+#endif
+
 static void append_required_apps      (GsmSession *session);
 
 static void client_saved_state         (GsmClient *client,
@@ -166,7 +169,7 @@ append_autostart_apps (GsmSession *session, const char *path)
   GDir *dir;
   const char *name;
 
-  printf ("append_autostart_apps (%s)\n", path);
+  g_debug ("append_autostart_apps (%s)", path);
 
   dir = g_dir_open (path, 0, NULL);
   if (!dir)
@@ -185,11 +188,11 @@ append_autostart_apps (GsmSession *session, const char *path)
       app = gsm_app_autostart_new (desktop_file, client_id);
       if (app)
 	{
-	  printf ("read %s\n", desktop_file);
+	  g_debug ("read %s\n", desktop_file);
 	  append_app (session, app);
 	}
       else
-	printf ("could not read %s\n", desktop_file);
+	g_warning ("could not read %s\n", desktop_file);
 
       g_free (desktop_file);
       g_free (client_id);
@@ -355,6 +358,8 @@ end_phase (GsmSession *session)
   g_slist_free (session->pending_apps);
   session->pending_apps = NULL;
 
+  g_debug ("ending phase %d\n", session->phase);
+
   session->phase++;
   if (session->phase < GSM_SESSION_PHASE_RUNNING)
     start_phase (session);
@@ -367,6 +372,7 @@ app_registered (GsmApp *app, gpointer data)
 
   session->pending_apps = g_slist_remove (session->pending_apps, app);
   g_signal_handlers_disconnect_by_func (app, app_registered, session);
+
   if (!session->pending_apps)
     end_phase (session);
 }
@@ -399,7 +405,7 @@ start_phase (GsmSession *session)
   GSList *a;
   GError *err = NULL;
 
-  printf ("starting phase %d\n", session->phase);
+  g_debug ("starting phase %d\n", session->phase);
 
   g_slist_free (session->pending_apps);
   session->pending_apps = NULL;
@@ -413,9 +419,8 @@ start_phase (GsmSession *session)
       if (gsm_app_is_disabled (app))
 	continue;
 
-      if (gsm_app_launch (app, &err))
+      if (gsm_app_launch (app, &err) > 0)
 	{
-#if 0
 	  if (session->phase < GSM_SESSION_PHASE_APPLICATION)
 	    {
 	      g_signal_connect (app, "registered",
@@ -423,15 +428,17 @@ start_phase (GsmSession *session)
 	    }
 	  if (session->phase == GSM_SESSION_PHASE_INITIALIZATION)
 	    {
+              /* Applications from Initialization phase are considered 
+               * registered when they exit normally. This is because
+               * they are expected to just do "something" and exit */
 	      g_signal_connect (app, "exited",
 				G_CALLBACK (app_registered), session);
 	    }
-#endif
 
 	  session->pending_apps =
 	    g_slist_prepend (session->pending_apps, app);
 	}
-      else
+      else if (err != NULL)
 	{
 	  g_warning ("Could not launch application '%s': %s",
 		     gsm_app_get_basename (app), err->message);
@@ -456,6 +463,7 @@ void
 gsm_session_start (GsmSession *session)
 {
   session->phase = GSM_SESSION_PHASE_INITIALIZATION;
+
   start_phase (session);
 }
 
@@ -470,9 +478,10 @@ gsm_session_register_client (GsmSession *session,
 			     GsmClient  *client,
 			     const char *id)
 {
+  GSList *a;
   /* FIXME: what if we're in shutdown? */
 
-  g_debug ("Adding new client %p to session", client);
+  g_debug ("Adding new client %s to session", id);
 
   g_signal_connect (client, "saved_state",
 		    G_CALLBACK (client_saved_state), session);
@@ -488,6 +497,18 @@ gsm_session_register_client (GsmSession *session,
 		    G_CALLBACK (client_disconnected), session);
 
   session->clients = g_slist_prepend (session->clients, client);
+
+  for (a = session->pending_apps; a; a = a->next)
+    {
+      GsmApp *app = GSM_APP (a->data);
+
+      if (!strcmp (id, app->client_id))
+        {
+          gsm_app_registered (app);
+          return TRUE;
+        }
+        
+    }
 
   return FALSE;
 }

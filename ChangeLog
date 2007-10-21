@@ -1,5 +1,14 @@
 2007-10-21  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/session.c 
+	(start_phase): correctly check if application was successfully
+	launched. Fix crasher when printing out error message in case application 
+	failed to launch and returned no error.
+	(gsm_session_register_client): emit "registered" signal on application
+	with the registered session client id.
+
+2007-10-21  Lucas Rocha  <lucasr@gnome.org>
+
 	* gnome-session/app.[ch] 
 	(gsm_app_class_init): added new GsmApp signals "registered" and "exited".
 	(launch, app_exited): if case the application belongs to
