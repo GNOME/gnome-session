@@ -1,3 +1,9 @@
+2007-10-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gconf.c (unset_display_setup): revert change for
+	unsetting DISPLAY environment variable before running
+	gconf-sanity-check as now it can run without a display.
+
 2007-10-21  Lucas Rocha  <lucasr@gnome.org>
 
 	* gnome-session/session.c 
