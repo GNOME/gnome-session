@@ -110,6 +110,60 @@ gsm_client_class_init (GsmClientClass *klass)
 
 }
 
+const char *
+gsm_client_get_client_id (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_client_id (client);
+}
+
+pid_t
+gsm_client_get_pid (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), -1);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_pid (client);
+}
+
+char *
+gsm_client_get_desktop_file (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_desktop_file (client);
+}
+
+char *
+gsm_client_get_restart_command (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_restart_command (client);
+}
+
+char *
+gsm_client_get_discard_command (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_discard_command (client);
+}
+
+gboolean
+gsm_client_get_autorestart (GsmClient *client)
+{
+  g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+
+  return GSM_CLIENT_GET_CLASS (client)->get_autorestart (client);
+}
+
+void
+gsm_client_save_state (GsmClient *client)
+{
+  g_return_if_fail (GSM_IS_CLIENT (client));
+}
+
 void
 gsm_client_save_yourself (GsmClient *client,
 			  gboolean   save_state)
