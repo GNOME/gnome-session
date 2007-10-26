@@ -118,7 +118,7 @@ gsm_client_xsmp_new (IceConn ice_conn)
 static void
 xsmp_finalize (GObject *object)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)object;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) object;
 
   g_debug ("xsmp_finalize (%s)", xsmp->description);
 
@@ -382,7 +382,7 @@ interact_request_callback (SmsConn   conn,
 static void
 xsmp_interact (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)client;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
 
   g_debug ("xsmp_interact ('%s')", xsmp->description);
 
@@ -406,7 +406,7 @@ interact_done_callback (SmsConn   conn,
 static void
 xsmp_shutdown_cancelled (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)client;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
 
   g_debug ("xsmp_shutdown_cancelled ('%s')", xsmp->description);
 
@@ -416,7 +416,7 @@ xsmp_shutdown_cancelled (GsmClient *client)
 static void
 xsmp_die (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)client;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
 
   g_debug ("xsmp_die ('%s')", xsmp->description);
 
@@ -496,6 +496,7 @@ debug_print_property (SmProp *prop)
 	  g_string_append_printf (tmp, "'%.*s' ", prop->vals[i].length,
 				  (char *)prop->vals[i].value);
 	}
+      g_debug ("EH UM ARRAY...");
       g_debug ("  %s = %s", prop->name, tmp->str);
       g_string_free (tmp, TRUE);
       break;
@@ -562,6 +563,8 @@ set_properties_callback (SmsConn     conn,
       delete_property (client, props[i]->name);
       g_ptr_array_add (client->props, props[i]);
 
+      g_debug ("TAMANHO DO ARRAY: %d", client->props->len);
+
       debug_print_property (props[i]);
 
       if (!strcmp (props[i]->name, SmProgram))
@@ -608,7 +611,7 @@ get_properties_callback (SmsConn   conn,
 static const char *
 xsmp_get_client_id (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
 
   return xsmp->id;
 }
@@ -616,7 +619,7 @@ xsmp_get_client_id (GsmClient *client)
 static pid_t
 xsmp_get_pid (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
   SmProp *prop = find_property (xsmp, SmProcessID, NULL);
   char buf[32];
 
@@ -631,7 +634,7 @@ xsmp_get_pid (GsmClient *client)
 static char *
 xsmp_get_desktop_file (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
   SmProp *prop = find_property (xsmp, GsmDesktopFile, NULL);
 
   if (!prop || strcmp (prop->type, SmARRAY8) != 0)
@@ -691,7 +694,7 @@ prop_to_command (SmProp *prop)
 static char *
 xsmp_get_restart_command (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
   SmProp *prop = find_property (xsmp, SmRestartCommand, NULL);
 
   if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0)
@@ -703,7 +706,7 @@ xsmp_get_restart_command (GsmClient *client)
 static char *
 xsmp_get_discard_command (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
   SmProp *prop = find_property (xsmp, SmDiscardCommand, NULL);
 
   if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0)
@@ -715,7 +718,7 @@ xsmp_get_discard_command (GsmClient *client)
 static gboolean
 xsmp_get_autorestart (GsmClient *client)
 {
-  GsmClientXSMP *xsmp = (GsmClientXSMP *)xsmp;
+  GsmClientXSMP *xsmp = (GsmClientXSMP *) client;
   SmProp *prop = find_property (xsmp, SmRestartStyleHint, NULL);
 
   if (!prop || strcmp (prop->type, SmCARD8) != 0)

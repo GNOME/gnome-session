@@ -1,5 +1,11 @@
 2007-10-27  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/client-xsmp.c (xsmp_get_client_id, xsmp_get_pid,
+	xsmp_get_restart_command, xsmp_get_autorestart): cast correct variable
+	in order to make invalid memory accesses on wrong variable.
+
+2007-10-27  Lucas Rocha  <lucasr@gnome.org>
+
 	* gnome-session/client.c (gsm_client_get_client_id,
 	gsm_client_get_pid, gsm_client_get_desktop_file,
 	gsm_client_get_restart_command, gsm_client_get_discard_command,
