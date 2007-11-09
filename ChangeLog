@@ -1,3 +1,25 @@
+2007-11-10  Lucas Rocha  <lucasr@gnome.org>
+
+	Add support for client autorestart which can be activated by the
+	"X-GNOME-AutoRestart" .desktop file key or by setting the restart
+	style accordingly through the session client API (GnomeClient's 
+	gnome_client_set_restart_style()).
+
+	* gnome-session/client-xsmp.c 
+	(register_client_callback): do not generate new IDs itself, and have it just pass 
+	the previous_id directly to gsm_session_register_client(), and if it's NULL, then
+	gsm_session_register_client() can generate the new client ID using
+	gsm_xsmp_generate_client_id().
+	(gsm_client_xsmp_class_init, xsmp_restart): XSMP client implementation
+	of gsm_client_restart() method.
+	* gnome-session/client.[ch] (gsm_client_restart): new abstract method
+	for restarting a session client.
+	* gnome-session/session.c (gsm_session_register_client): change it to
+	generate a new client ID in case the provided ID is NULL and return the
+	generated ID in case the client is accepted. A client ID is accepted
+	by the session manager if it's not duplicated, belongs to one of the
+	autostarted apps or is NULL. 
+
 2007-11-07  Lucas Rocha  <lucasr@gnome.org>
 
 	* egg/eggdesktopfile.c (egg_desktop_file_launchv): fix build warning.

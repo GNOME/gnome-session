@@ -61,7 +61,6 @@ struct _GsmSession {
   GsmSessionPhase phase;
   guint timeout;
   GSList *pending_apps;
-  gboolean shutting_down;
 
   /* SM clients */
   GSList *clients;
@@ -473,13 +472,36 @@ gsm_session_get_phase (GsmSession *session)
   return session->phase;
 }
 
-gboolean
+char *
 gsm_session_register_client (GsmSession *session,
 			     GsmClient  *client,
 			     const char *id)
 {
   GSList *a;
-  /* FIXME: what if we're in shutdown? */
+  char *client_id = NULL; 
+
+  /* If we're shutting down, we don't accept any new session
+     clients. */
+  if (session->phase == GSM_SESSION_PHASE_SHUTDOWN)
+    return FALSE;
+
+  if (id == NULL)
+    client_id = gsm_xsmp_generate_client_id ();
+  else
+    {
+      for (a = session->clients; a; a = a->next)
+        {
+          GsmClient *client = GSM_CLIENT (a->data);
+
+          /* We can't have two clients with the same id. */
+          if (!strcmp (id, gsm_client_get_client_id (client)))
+            {
+              return NULL;
+            }
+        }
+      
+      client_id = g_strdup (id);
+    }
 
   g_debug ("Adding new client %s to session", id);
 
@@ -498,19 +520,32 @@ gsm_session_register_client (GsmSession *session,
 
   session->clients = g_slist_prepend (session->clients, client);
 
-  for (a = session->pending_apps; a; a = a->next)
+  /* If it's a brand new client id, we just accept the client*/
+  if (id == NULL)
+    return client_id;
+
+  /* If we're starting up the session, try to match the new client
+   * with one pending apps for the current phase. If not, try to match
+   * with any of the autostarted apps. */
+  if (session->phase < GSM_SESSION_PHASE_APPLICATION)
+    a = session->pending_apps;
+  else
+    a = session->apps;
+
+  for (; a; a = a->next)
     {
       GsmApp *app = GSM_APP (a->data);
 
-      if (!strcmp (id, app->client_id))
+      if (!strcmp (client_id, app->client_id))
         {
           gsm_app_registered (app);
-          return TRUE;
+          return client_id;
         }
-        
     }
 
-  return FALSE;
+  g_free (client_id);
+
+  return NULL;
 }
 
 static void
@@ -525,13 +560,13 @@ gsm_session_initiate_shutdown (GsmSession *session,
 {
   GSList *cl;
 
-  if (session->shutting_down)
+  if (session->phase == GSM_SESSION_PHASE_SHUTDOWN)
     {
-      /* already shutting down, nothing more to do */
+      /* Already shutting down, nothing more to do */
       return;
     }
 
-  session->shutting_down = TRUE;
+  session->phase = GSM_SESSION_PHASE_SHUTDOWN;
 
   for (cl = session->clients; cl; cl = cl->next)
     {
@@ -557,7 +592,7 @@ session_cancel_shutdown (GsmSession *session)
 {
   GSList *cl;
 
-  session->shutting_down = FALSE;
+  session->phase = GSM_SESSION_PHASE_RUNNING;
 
   g_slist_free (session->shutdown_clients);
   session->shutdown_clients = NULL;
@@ -643,7 +678,8 @@ client_save_yourself_done (GsmClient *client, gpointer data)
   session->phase2_clients =
     g_slist_remove (session->phase2_clients, client);
 
-  if (session->shutting_down && !session->shutdown_clients)
+  if (session->phase == GSM_SESSION_PHASE_SHUTDOWN && 
+      !session->shutdown_clients)
     {
       if (session->phase2_clients)
 	session_shutdown_phase2 (session);
@@ -666,8 +702,22 @@ client_disconnected (GsmClient *client, gpointer data)
   session->phase2_clients =
     g_slist_remove (session->phase2_clients, client);
 
+  if (session->phase != GSM_SESSION_PHASE_SHUTDOWN && 
+      gsm_client_get_autorestart (client))
+    {
+      GError *error = NULL;
+
+      gsm_client_restart (client, &error);
+
+      if (error)
+      {
+        g_warning ("Error on restarting session client: %s", error->message);
+        g_clear_error (&error);
+      }
+    }
+
   g_object_unref (client);
 
-  if (session->shutting_down && !session->clients)
+  if (session->phase == GSM_SESSION_PHASE_SHUTDOWN && !session->clients)
     gtk_main_quit ();
 }

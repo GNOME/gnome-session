@@ -63,7 +63,7 @@ GsmSessionPhase  gsm_session_get_phase         (GsmSession *session);
 void             gsm_session_initiate_shutdown (GsmSession *session,
 						gboolean    show_confirmation);
 
-gboolean         gsm_session_register_client   (GsmSession *session,
+char            *gsm_session_register_client   (GsmSession *session,
 						GsmClient  *client,
 						const char *previous_id);
 

@@ -66,6 +66,8 @@ struct _GsmClientClass
   char       * (*get_discard_command) (GsmClient *client);
   gboolean     (*get_autorestart)     (GsmClient *client);
 
+  void (*restart)              (GsmClient *client, 
+                                GError   **error);
   void (*save_yourself)        (GsmClient *client,
 				gboolean   save_state);
   void (*save_yourself_phase2) (GsmClient *client);
@@ -86,6 +88,8 @@ gboolean    gsm_client_get_autorestart      (GsmClient *client);
 
 void        gsm_client_save_state           (GsmClient *client);
 
+void        gsm_client_restart              (GsmClient *client,
+                                             GError   **error);
 void        gsm_client_save_yourself        (GsmClient *client,
 					     gboolean   save_state);
 void        gsm_client_save_yourself_phase2 (GsmClient *client);

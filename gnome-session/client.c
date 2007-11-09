@@ -165,6 +165,14 @@ gsm_client_save_state (GsmClient *client)
 }
 
 void
+gsm_client_restart (GsmClient *client, GError **error)
+{
+  g_return_if_fail (GSM_IS_CLIENT (client));
+
+  GSM_CLIENT_GET_CLASS (client)->restart (client, error);
+}
+
+void
 gsm_client_save_yourself (GsmClient *client,
 			  gboolean   save_state)
 {

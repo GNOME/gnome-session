@@ -48,6 +48,8 @@ static char       *xsmp_get_discard_command (GsmClient *client);
 static gboolean    xsmp_get_autorestart     (GsmClient *client);
 
 static void xsmp_finalize             (GObject   *object);
+static void xsmp_restart              (GsmClient *client,
+                                       GError   **error);
 static void xsmp_save_yourself        (GsmClient *client,
 				       gboolean   save_state);
 static void xsmp_save_yourself_phase2 (GsmClient *client);
@@ -78,6 +80,7 @@ gsm_client_xsmp_class_init (GsmClientXSMPClass *klass)
   client_class->get_discard_command  = xsmp_get_discard_command;
   client_class->get_autorestart      = xsmp_get_autorestart;
 
+  client_class->restart              = xsmp_restart;
   client_class->save_yourself        = xsmp_save_yourself;
   client_class->save_yourself_phase2 = xsmp_save_yourself_phase2;
   client_class->interact             = xsmp_interact;
@@ -122,7 +125,8 @@ xsmp_finalize (GObject *object)
 
   g_debug ("xsmp_finalize (%s)", xsmp->description);
 
-  g_source_remove (xsmp->watch_id);
+  if (xsmp->watch_id)
+    g_source_remove (xsmp->watch_id);
 
   if (xsmp->conn)
     SmsCleanUp (xsmp->conn);
@@ -188,54 +192,23 @@ register_client_callback (SmsConn    conn,
   GsmClientXSMP *xsmp = manager_data;
   char *id;
 
-  g_debug ("Client '%s' received RegisterClient(%s)", xsmp->description,
+  g_debug ("Client '%s' received RegisterClient(%s)", 
+           xsmp->description,
 	   previous_id ? previous_id : "NULL");
 
-  if (previous_id == NULL)
+  id = gsm_session_register_client (global_session, client, previous_id);
+
+  if (id == NULL)
     {
-      id = SmsGenerateClientID (conn);
-      if (id)
-	{
-	  xsmp->id = g_strdup (id);
-	  free (id);
-	}
-      else
-	{
-	  static int sequence = 0;
-	  static char *address = NULL;
-
-	  if (!address)
-	    {
-	      g_warning ("Host name lookup failure on localhost.");
-	      
-	      address = g_new (char, 10);
-	      srand (time (NULL) + (getpid () << 16));
-	      g_snprintf (address, 10, "0%.8x", rand ());
-	    };
-
-	  xsmp->id = g_strdup_printf ("1%s%.10d0001%.10d%.4d",
-				      address, (int) time (NULL),
-				      (int) getpid (), sequence);
-
-	  sequence = (sequence + 1) % 10000;
-	}
-
-      gsm_session_register_client (global_session, client, xsmp->id);
+      g_debug ("  rejected: invalid previous_id");
+      free (previous_id);
+      return FALSE;
     }
-  else
-    {
-      if (!gsm_session_register_client (global_session, client, previous_id))
-	{
-	  g_debug ("  rejected: invalid previous_id");
-	  free (previous_id);
-	  return FALSE;
-	}
 
-      xsmp->id = g_strdup (previous_id);
-      g_free (previous_id);
-    }
+  xsmp->id = id;
 
   set_description (xsmp);
+
   g_debug ("Sending RegisterClientReply to '%s'", xsmp->description);
 
   SmsRegisterClientReply (conn, xsmp->id);
@@ -246,6 +219,8 @@ register_client_callback (SmsConn    conn,
       g_debug ("Sending initial SaveYourself");
       SmsSaveYourself (conn, SmSaveLocal, False, SmInteractStyleNone, False);
       xsmp->current_save_yourself = SmSaveLocal;
+
+      free (previous_id);
     }
 
   return TRUE;
@@ -321,6 +296,16 @@ save_yourself_request_callback (SmsConn   conn,
     }
   else
     g_debug ("  ignoring");
+}
+
+static void 
+xsmp_restart (GsmClient *client, GError **error)
+{
+  char *restart_cmd = gsm_client_get_restart_command (client);
+
+  g_spawn_command_line_async (restart_cmd, error);
+
+  g_free (restart_cmd);
 }
 
 static void
