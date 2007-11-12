@@ -810,7 +810,7 @@ find_client (SmProp* prop, GsmSession *session)
 					    GSM_CLIENT_HANDLE(prop));
   if (!client)
     {
-      client = GSM_CLIENT (session->client_factory (session->data));
+      client = GSM_CLIENT (session->client_factory ());
       client->handle  = g_strdup (GSM_CLIENT_HANDLE (prop));
       g_hash_table_insert (handle_table, client->handle, client);
       command ((GsmProtocol*)the_protocol, 

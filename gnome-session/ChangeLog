@@ -1,5 +1,13 @@
 2007-11-13  Vincent Untz  <vuntz@gnome.org>
 
+	Patch by Kjartan Maraas <kmaraas@gnome.org>
+	Fix bug #480161
+
+	* gsm-protocol.c: (find_client): fix warning
+	* main.c: (main): plug leak
+
+2007-11-13  Vincent Untz  <vuntz@gnome.org>
+
 	Set screen orientation with randr too.
 	Patch by Luca Cavalli <luca.cavalli@gmail.com>
 	Fix bug #469218

@@ -614,7 +614,8 @@ main (int argc, char *argv[])
   GConfClient *gconf_client;
   GOptionContext *goption_context;
   gboolean dbus_daemon_owner;
-  
+  GnomeProgram *program;
+
   if (g_getenv ("GSM_VERBOSE_DEBUG"))
     gsm_set_verbose (TRUE);
 
@@ -697,9 +698,10 @@ main (int argc, char *argv[])
   g_option_context_set_translation_domain (goption_context, GETTEXT_PACKAGE);
   g_option_context_add_main_entries (goption_context, options, GETTEXT_PACKAGE);
 
-  gnome_program_init("gnome-session", VERSION, LIBGNOMEUI_MODULE, argc, argv, 
-		  GNOME_PARAM_GOPTION_CONTEXT, goption_context,
-		  NULL);
+  program = gnome_program_init ("gnome-session", VERSION, LIBGNOMEUI_MODULE,
+                                argc, argv,
+                                GNOME_PARAM_GOPTION_CONTEXT, goption_context,
+                                NULL);
 
  /* FIXME: it would be nice to skip this check if we're debugging the
  session manager. */
@@ -804,6 +806,8 @@ main (int argc, char *argv[])
   clean_ice ();
 
   g_free (session_name);
+
+  g_object_unref (program);
 
   return 0;
 }
