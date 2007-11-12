@@ -455,10 +455,13 @@ clean_ice (void)
   /* During shutdown we don't want to report errors via a dialog.  */
   write_authfile (authfile, entries, FALSE);
 
+  g_slist_foreach (entries, (GFunc)IceFreeAuthFileEntry, NULL);
   g_slist_free (entries);
 
   g_free (input_id);
   IceFreeListenObjs (num_sockets, sockets);
+
+  g_slist_foreach (auth_entries, (GFunc)IceFreeAuthFileEntry, NULL);
   g_slist_free (auth_entries);
   
   ice_depth = ~0;	/* We are very frozen, like totally off */
