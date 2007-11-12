@@ -10,11 +10,14 @@ default.session: default.session.in ../config.status
 		< $(srcdir)/default.session.in > default.session.tmp \
 	  && mv default.session.tmp default.session
 
-settingsdir = $(datadir)/applications
-
-if SESSION
 @INTLTOOL_DESKTOP_RULE@
 
+xsessiondir = $(datadir)/xsessions
+xsession_in_files = gnome.desktop.in
+xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
+
+settingsdir = $(datadir)/applications
+if SESSION
 settings_in_files = session-properties.desktop.in
 settings_DATA = $(settings_in_files:.desktop.in=.desktop)
 endif
@@ -44,6 +47,11 @@ EXTRA_DIST =			\
 	$(default_in_files)	\
 	$(pixmap_DATA)		\
 	$(schemas_in_files)	\
+	$(xsession_in_files)	\
 	session-properties.desktop.in
 
-CLEANFILES =  default.session gnome-session.schemas session-properties.desktop
+CLEANFILES =  				\
+	default.session 		\
+	gnome-session.schemas		\
+	gnome.desktop			\
+	session-properties.desktop
