@@ -68,6 +68,24 @@ get_rate (GConfClient *client, char *display, int screen)
 }
 
 static int
+get_rotation (GConfClient *client, char *display, int screen)
+{
+  char *key;
+  int val;
+  GError *error = NULL;
+
+  key = g_strdup_printf ("%s/%d/rotation", display, screen);
+  val = gconf_client_get_int (client, key, &error);
+  g_free (key);
+
+  if (error == NULL)
+    return val;
+
+  g_error_free (error);
+  return 0;
+}
+
+static int
 find_closest_size (XRRScreenSize *sizes, int nsizes, int width, int height)
 {
   int closest;
@@ -105,7 +123,7 @@ gsm_set_display_properties (void)
   int n_screens;
   GdkScreen *screen;
   GdkWindow *root_window;
-  int width, height, rate;
+  int width, height, rate, rotation;
   GConfClient *client;
 #ifdef HOST_NAME_MAX
   char hostname[HOST_NAME_MAX + 1];
@@ -165,7 +183,7 @@ gsm_set_display_properties (void)
 	  config = XRRGetScreenInfo (xdisplay, gdk_x11_drawable_get_xid (GDK_DRAWABLE (root_window)));
 
 	  rate = get_rate (client, keys[residx], i);
-	  
+
 	  sizes = XRRConfigSizes (config, &nsizes);
 	  closest = find_closest_size (sizes, nsizes, width, height);
 	  
@@ -179,17 +197,22 @@ gsm_set_display_properties (void)
 	  if (j == nrates)
 	    rate = 0;
 
+	  rotation = get_rotation (client, keys[residx], i);
+	  if (rotation == 0)
+	    rotation = RR_Rotate_0;
+
 	  current_size = XRRConfigCurrentConfiguration (config, &current_rotation);
 	  current_rate = XRRConfigCurrentRate (config);
 
 	  if (closest != current_size ||
-	      rate != current_rate)
+	      rate != current_rate ||
+	      rotation != current_rotation)
 	    {
 	      status = XRRSetScreenConfigAndRate (xdisplay, 
 						  config,
 						  gdk_x11_drawable_get_xid (GDK_DRAWABLE (root_window)),
 						  closest,
-						  current_rotation,
+						  (Rotation) rotation,
 						  rate,
 						  GDK_CURRENT_TIME);
 	    }
