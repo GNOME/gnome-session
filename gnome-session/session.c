@@ -360,6 +360,7 @@ end_phase (GsmSession *session)
   g_debug ("ending phase %d\n", session->phase);
 
   session->phase++;
+
   if (session->phase < GSM_SESSION_PHASE_RUNNING)
     start_phase (session);
 }
@@ -420,11 +421,6 @@ start_phase (GsmSession *session)
 
       if (gsm_app_launch (app, &err) > 0)
 	{
-	  if (session->phase < GSM_SESSION_PHASE_APPLICATION)
-	    {
-	      g_signal_connect (app, "registered",
-				G_CALLBACK (app_registered), session);
-	    }
 	  if (session->phase == GSM_SESSION_PHASE_INITIALIZATION)
 	    {
               /* Applications from Initialization phase are considered 
@@ -434,8 +430,15 @@ start_phase (GsmSession *session)
 				G_CALLBACK (app_registered), session);
 	    }
 
-	  session->pending_apps =
-	    g_slist_prepend (session->pending_apps, app);
+	  if (session->phase < GSM_SESSION_PHASE_APPLICATION)
+	    {
+
+	      g_signal_connect (app, "registered",
+				G_CALLBACK (app_registered), session);
+
+	      session->pending_apps =
+	   	    g_slist_prepend (session->pending_apps, app);
+	    }
 	}
       else if (err != NULL)
 	{

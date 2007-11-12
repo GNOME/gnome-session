@@ -1,3 +1,8 @@
+2007-11-12  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/session.c (start_phase): only add autostarted apps
+	to pending apps on phases before GSM_SESSION_PHASE_APPLICATION.
+
 2007-11-10  Lucas Rocha  <lucasr@gnome.org>
 
 	Add support for client autorestart which can be activated by the
