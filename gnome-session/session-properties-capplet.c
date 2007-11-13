@@ -353,7 +353,7 @@ capplet_build (void)
   hbox = gtk_hbutton_box_new ();
   gtk_box_pack_start (GTK_BOX (util_vbox), hbox, FALSE, FALSE, 0);
 
-  button = gtk_button_new_with_mnemonic (_("_Remember currently running applications"));
+  button = gtk_button_new_with_mnemonic (_("_Remember Currently Running Applications"));
   gtk_button_set_image (GTK_BUTTON (button), gtk_image_new_from_stock (GTK_STOCK_SAVE, GTK_ICON_SIZE_BUTTON));
   gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
   g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (save_session_cb), NULL);

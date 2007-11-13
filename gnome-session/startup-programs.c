@@ -406,6 +406,7 @@ command_browse_button_clicked (GtkWidget *dialog)
   gtk_window_set_transient_for (GTK_WINDOW (chooser),
                                 GTK_WINDOW (dialog));
   gtk_window_set_destroy_with_parent (GTK_WINDOW (chooser), TRUE);
+  gtk_window_set_title (GTK_WINDOW (chooser), _("Select Command"));
   gtk_widget_show (chooser);
 
   response = gtk_dialog_run (GTK_DIALOG (chooser));
@@ -444,7 +445,6 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   GtkWidget *comment_entry;
   GtkWidget *label;
   GtkWidget *table;
-  char      *text;
 
   dialog = gtk_dialog_new_with_buttons (title,
 					GTK_WINDOW (parent_dlg),
@@ -453,43 +453,42 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
 					GTK_STOCK_OK, GTK_RESPONSE_OK,
 					NULL);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
 
   gtk_window_set_default_size (GTK_WINDOW (dialog), 400, -1);
  
   gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent_dlg));
 
-  table = gtk_table_new (3, 3, FALSE);
-  
+  table = gtk_table_new (3, 2, FALSE);
+  gtk_container_set_border_width (GTK_CONTAINER (table), 5);
+  gtk_table_set_row_spacings (GTK_TABLE (table), 6);
+  gtk_table_set_col_spacings (GTK_TABLE (table), 12);
+   
   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->vbox), table,
 		      TRUE, TRUE, 0);
 
-  label = gtk_label_new ("");
-  text = g_strdup_printf ("<b>%s</b>", _("_Name:"));
-  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
-  g_free (text);
-  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 4, 4);
+  label = gtk_label_new_with_mnemonic (_("_Name:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 0, 1, GTK_FILL, GTK_FILL, 0, 0);
 
   name_entry = gtk_entry_new ();
   g_signal_connect (name_entry, "activate",
                     G_CALLBACK (entry_activate_callback),
 		    (void *) dialog);
-  gtk_table_attach (GTK_TABLE (table), name_entry, 1, 2, 0, 1, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
+  gtk_table_attach (GTK_TABLE (table), name_entry, 1, 2, 0, 1, GTK_EXPAND|GTK_FILL, GTK_FILL, 0, 0);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (name_entry));
 
   if (client->name)
     gtk_entry_set_text (GTK_ENTRY (name_entry), client->name);
 
-  label = gtk_label_new ("");
-  text = g_strdup_printf ("<b>%s</b>", _("_Command:"));
-  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
-  g_free (text);
-  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 4, 4);
+  label = gtk_label_new_with_mnemonic (_("Co_mmand:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 1, 2, GTK_FILL, GTK_FILL, 0, 0);
 
   cmd_hbox = gtk_hbox_new (FALSE, 12);
-  gtk_table_attach (GTK_TABLE (table), cmd_hbox, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
+  gtk_table_attach (GTK_TABLE (table), cmd_hbox, 1, 2, 1, 2, GTK_EXPAND|GTK_FILL, GTK_FILL, 0, 0);
 
   cmd_entry = gtk_entry_new ();
   g_signal_connect (cmd_entry, "activate", G_CALLBACK (entry_activate_callback),
@@ -508,18 +507,15 @@ edit_client (gchar *title, ManualClient *client, GtkWidget *parent_dlg)
   if (client->command)
     gtk_entry_set_text (GTK_ENTRY (cmd_entry), client->command);
 
-  label = gtk_label_new ("");
-  text = g_strdup_printf ("<b>%s</b>", _("Co_mment:"));
-  gtk_label_set_markup_with_mnemonic (GTK_LABEL (label), text);
-  g_free (text);
-  gtk_misc_set_alignment (GTK_MISC (label), 1.0, 0.5);
-  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3, GTK_FILL, GTK_FILL, 4, 4);
+  label = gtk_label_new_with_mnemonic (_("Comm_ent:"));
+  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
+  gtk_table_attach (GTK_TABLE (table), label, 0, 1, 2, 3, GTK_FILL, GTK_FILL, 0, 0);
 
   comment_entry = gtk_entry_new ();
   g_signal_connect (comment_entry, "activate",
                     G_CALLBACK (entry_activate_callback),
 		    (void *) dialog);
-  gtk_table_attach (GTK_TABLE (table), comment_entry, 1, 2, 2, 3, GTK_EXPAND|GTK_FILL, GTK_FILL, 4, 4);
+  gtk_table_attach (GTK_TABLE (table), comment_entry, 1, 2, 2, 3, GTK_EXPAND|GTK_FILL, GTK_FILL, 0, 0);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (comment_entry));
 
@@ -604,7 +600,7 @@ startup_list_add_dialog (GSList **sl, GtkWidget *parent_dlg)
   client->command = NULL;
   client->comment = NULL;
 
-  if (edit_client (_("New Startup Program"), client, parent_dlg))
+  if (edit_client (_("Add Startup Program"), client, parent_dlg))
     {
       char **argv;
       int    argc;
