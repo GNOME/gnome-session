@@ -1,5 +1,14 @@
 2007-11-13  Vincent Untz  <vuntz@gnome.org>
 
+	Revert part of the patch for bug #480161 that I committed earlier
+	today, and fix the correct way. I hope :-)
+
+	* gsm-protocol.c: (find_client): revert
+	* gsm-protocol.h: fix definition of GsmClientFactory
+	* gnome-session-remove.c: (client_factory): add a user_data parameter
+
+2007-11-13  Vincent Untz  <vuntz@gnome.org>
+
 	Patch by Dennis Cranston <dennis_cranston@yahoo.com>.
 	Fix bug #464926
 

@@ -45,7 +45,7 @@ typedef enum {
   GSM_NSTYLES
 } GsmStyle;
 
-typedef GObject *(*GsmClientFactory) ();
+typedef GObject *(*GsmClientFactory) (gpointer user_data);
 
 /* GSM_PROTOCOL object */
 

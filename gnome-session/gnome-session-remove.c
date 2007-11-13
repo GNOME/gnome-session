@@ -54,7 +54,7 @@ static const GOptionEntry gsm_remove_opts[] = {
 };
 
 static GsmClient *
-client_factory (void)
+client_factory (gpointer user_data)
 {
   GsmClient *client;
 
