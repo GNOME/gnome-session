@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-13 11:19+0100\n"
-"PO-Revision-Date: 2007-08-15 12:06+0300\n"
+"POT-Creation-Date: 2007-11-13 00:11+0000\n"
+"PO-Revision-Date: 2007-11-14 20:01+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,14 @@ msgstr ""
 "See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on "
 "\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
 "\" alglaadimise tegemiseks."
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Selle seansiga logitakse GNOME keskkonda"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -320,7 +328,7 @@ msgstr ""
 "ICE tõrketeade: '%s'. Pärast sead võid proovida sisselogimisel tõrkekindla "
 "seansi kasutamist."
 
-#: ../gnome-session/ice.c:511
+#: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -334,7 +342,7 @@ msgstr ""
 "juhul võid sa tõrkekindla seansi abil sisse logida ja olukorra üle "
 "kontrollida."
 
-#: ../gnome-session/ice.c:538
+#: ../gnome-session/ice.c:541
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -345,7 +353,7 @@ msgstr ""
 "GNOME korrektseks töötamiseks peab see olema loetav. Proovi tõrkekindla "
 "seansiga sisse logida ja see fail eemaldada."
 
-#: ../gnome-session/ice.c:583
+#: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -356,27 +364,27 @@ msgstr ""
 "fail olema kirjutatav. Proovi mõne tõrkekindla seansi abil sisse logida ja "
 "see fail eemaldada. Samuti veendu, et selle faili kataloog oleks kirjutatav."
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "Oled sa kindel, et soovid välja logida?"
 
-#: ../gnome-session/logout.c:389
+#: ../gnome-session/logout.c:409
 msgid "Remember running applications"
 msgstr "Töötavad rakenduse peetakse meeles"
 
-#: ../gnome-session/logout.c:412
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Tegevus"
 
-#: ../gnome-session/logout.c:429
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "_Väljalogimine"
 
-#: ../gnome-session/logout.c:436
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "A_rvuti seiskamine"
 
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "Arvu_ti alglaadimine"
 
@@ -426,7 +434,7 @@ msgstr ""
 msgid "_Continue"
 msgstr "_Jätka"
 
-#: ../gnome-session/main.c:220
+#: ../gnome-session/main.c:257
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -439,24 +447,24 @@ msgstr ""
 "\n"
 "Praegune kuupäev on <b>%s</b>."
 
-#: ../gnome-session/main.c:338
+#: ../gnome-session/main.c:376
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Tõrge seadistamisvahendi käivitamisel: %s"
 
-#: ../gnome-session/main.c:369
+#: ../gnome-session/main.c:407
 msgid "The computer clock appears to be wrong"
 msgstr "Arvuti kell paistab vale olevat"
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:414
 msgid "_Ignore"
 msgstr "_Eira"
 
-#: ../gnome-session/main.c:377
+#: ../gnome-session/main.c:415
 msgid "_Adjust the Clock"
 msgstr "_Säti kellaaega"
 
-#: ../gnome-session/main.c:515
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -469,15 +477,15 @@ msgstr ""
 "Võimalik, et saate selest veast üle, lisades\n"
 "%s faili /etc/hosts."
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Logi sellest hoolimata sisse"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Proovi uuesti"
 
-#: ../gnome-session/main.c:651
+#: ../gnome-session/main.c:697
 msgid "- Manage the GNOME session"
 msgstr "- GNOME'i seansi haldamine"
 
@@ -523,7 +531,7 @@ msgid "Do not require confirmation"
 msgstr "Kinnitust pole vaja küsida"
 
 #: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:186
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
 msgstr "Ei saa ühendust seansihalduriga"
 
@@ -564,7 +572,7 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "Väljalogimisel _peetakse töötavad rakendused automaatselt meeles"
 
 #: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
+msgid "_Remember Currently Running Applications"
 msgstr "_Jäta praegu töötavad rakendused meelde"
 
 #: ../gnome-session/session-properties-capplet.c:364
@@ -623,42 +631,49 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Töölaua sätted"
 
-#: ../gnome-session/startup-programs.c:351
+#: ../gnome-session/startup-programs.c:348
 msgid "No description"
 msgstr "Kirjeldus puudub"
 
-#: ../gnome-session/startup-programs.c:470
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Käsi valimine"
+
+#: ../gnome-session/startup-programs.c:471
 msgid "_Name:"
 msgstr "_Nimi:"
 
-#: ../gnome-session/startup-programs.c:488
-msgid "_Command:"
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
 msgstr "_Käsk:"
 
-#: ../gnome-session/startup-programs.c:502
+#: ../gnome-session/startup-programs.c:498
 msgid "_Browse..."
 msgstr "_Sirvi..."
 
-#: ../gnome-session/startup-programs.c:515
-msgid "Co_mment:"
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
 msgstr "Ko_mmentaar:"
 
-#: ../gnome-session/startup-programs.c:545
+#: ../gnome-session/startup-programs.c:538
 msgid "The name of the startup program cannot be empty"
 msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
 
-#: ../gnome-session/startup-programs.c:547
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei tohi tühjaks jätta"
 
-#: ../gnome-session/startup-programs.c:553
+#: ../gnome-session/startup-programs.c:546
 msgid "The startup command is not valid"
 msgstr "Käivituskäsk pole korrektne"
 
-#: ../gnome-session/startup-programs.c:610
-msgid "New Startup Program"
-msgstr "Uus käivitusprogramm"
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Käivitusprogrammi lisamine"
 
-#: ../gnome-session/startup-programs.c:654
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Uus käivitusprogramm"
