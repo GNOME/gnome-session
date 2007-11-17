@@ -147,6 +147,14 @@ gsm_app_resumed_new_from_session (GKeyFile *session_file, const char *group,
 						SmDiscardCommand, NULL);
   app->discard_on_resume = discard;
 
+  /* FIXME: if discard_on_resume is set, then the app needs to find
+   * out if it has been matched up with a GsmClient, so it can run its
+   * discard command later. (It can't actually run the discard command
+   * right away when the client connects, because the client might not
+   * have actually read in its old state at that point. So it's
+   * probably best to not run the discard command until after the
+   * client quits.
+   */
   return (GsmApp *)app;
 }
 
@@ -164,6 +172,14 @@ launch (GsmApp *app, GError **err)
 
   if (!g_shell_parse_argv (restart_command, &argc, &argv, err))
     return (pid_t)-1;
+
+  /* In theory, we should set up the environment according to
+   * SmEnvironment, and the current directory according to
+   * SmCurrentDirectory. However, ksmserver doesn't support either of
+   * those properties, so apps that want to be portable can't depend
+   * on them working anyway. Also, no one ever uses them. So we just
+   * ignore them.
+   */
 
   success = g_spawn_async (NULL, argv, NULL,
 			   G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,

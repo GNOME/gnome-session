@@ -101,13 +101,22 @@ gsm_xsmp_init (void)
   IceSetIOErrorHandler (ice_io_error_handler);
   SmsSetErrorHandler (sms_error_handler);
 
-  /* Initialize libSM */
+  /* Initialize libSM; we pass NULL for hostBasedAuthProc to disable
+   * host-based authentication.
+   */
   if (!SmsInitialize (PACKAGE, VERSION, accept_xsmp_connection,
 		      NULL, NULL, sizeof (error), error))
     gsm_initialization_error (TRUE, "Could not initialize libSM: %s", error);
 
 #ifdef HAVE_X11_XTRANS_XTRANS_H
-  /* Disable ICE over TCP. */
+  /* By default, IceListenForConnections will open one socket for each
+   * transport type known to X. We don't want connections from remote
+   * hosts, so for security reasons it would be best if ICE didn't
+   * even open any non-local sockets. So we use an internal ICElib
+   * method to disable them here. Unfortunately, there is no way to
+   * ask X what transport types it knows about, so we're forced to
+   * guess.
+   */
   _IceTransNoListen ("tcp");
 #endif
 
@@ -144,11 +153,11 @@ gsm_xsmp_init (void)
     xsmp_sockets = listeners;
   else
     {
-      /* Xtrans was compiled with support for some non-local transport
-       * besides TCP. We want to close those sockets. (There's no way
-       * we could have figured this out before calling
-       * IceListenForConnections.) There's no API for closing a subset
-       * of the returned connections, so we have to cheat...
+      /* Xtrans was apparently compiled with support for some
+       * non-local transport besides TCP (which we disabled above). We
+       * close those additional sockets here. (There's no API for
+       * closing a subset of the returned connections, so we have to
+       * cheat...)
        *
        * If the g_warning below is triggering for you and you want to
        * stop it, the fix is to add additional _IceTransNoListen()
@@ -269,8 +278,15 @@ gsm_xsmp_generate_client_id (void)
 			  sequence);
 }
 
-/* This is called (by glib via xsmp->ice_connection_watch) when
- * a connection is first received on the ICE listening socket.
+/* This is called (by glib via xsmp->ice_connection_watch) when a
+ * connection is first received on the ICE listening socket. (We
+ * expect that the client will then initiate XSMP on the connection;
+ * if it does not, GsmClientXSMP will eventually time out and close
+ * the connection.)
+ *
+ * FIXME: it would probably make more sense to not create a
+ * GsmClientXSMP object until accept_xsmp_connection, below (and to do
+ * the timing-out here in xsmp.c).
  */
 static gboolean
 accept_ice_connection (GIOChannel   *source,
