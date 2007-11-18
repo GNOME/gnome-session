@@ -1,3 +1,10 @@
+2007-11-18  Lucas Rocha  <lucasr@gnome.org>
+
+	* compat/gnome-settings-daemon-helper.c: remove screen resolution
+	settings code as this is now handled by gnome-settings-daemon
+	accordingly. See bug #434982. 
+	* configure.in: don't check XRandr bits anymore.
+
 2007-11-17  Dan Winship  <danw@gnome.org>
 
 	* gnome-session/xsmp.c: 

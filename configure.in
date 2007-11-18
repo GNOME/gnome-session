@@ -157,13 +157,6 @@ AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
 *** Can't find the Xauth library. It is needed to compile gnome-session.])],
 	     $X_LIBS)
 
-AC_CHECK_LIB(Xrandr, XRRUpdateConfiguration,
-  [AC_CHECK_HEADER(X11/extensions/Xrandr.h,
-     X_LIBS="-lXrandr -lXrender $X_LIBS"
-     AC_DEFINE(HAVE_RANDR, 1, [Have the Xrandr extension library]),
-	  :, [#include <X11/Xlib.h>])], : ,
-       -lXrandr -lXrender $X_LIBS)
-
 AC_SUBST(X_LIBS)
 
 dnl -----------------------------------------------------------
