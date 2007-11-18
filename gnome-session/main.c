@@ -652,9 +652,6 @@ main (int argc, char *argv[])
   if (gsm_check_for_root ())
     return 0;
 
-  /* We need to do this as early as possible */
-  gsm_set_display_properties ();
-  
   if (ORBit_proto_use ("IPv4") || ORBit_proto_use ("IPv6"))
     gnome_login_check ();
 

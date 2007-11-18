@@ -80,8 +80,6 @@ gnome_session_SOURCES =		\
 	splash-widget.h		\
 	gsm-dbus.c		\
 	gsm-dbus.h		\
-	gsm-xrandr.c		\
-	gsm-xrandr.h		\
 	gsm-keyring.c		\
 	gsm-keyring.h		\
 	gsm-gsd.c		\

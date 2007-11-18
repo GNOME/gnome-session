@@ -1,3 +1,10 @@
+2007-11-18  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/Makefile.am, gnome-session/gsm-xrandr.c, 
+	gnome-session/main.c: remove gsm_set_display_properties() call and 
+	xrandr related code as this is now handled by gnome-settings-daemon 
+	See bug #434982.
+
 2007-11-13  Vincent Untz  <vuntz@gnome.org>
 
 	Move session .desktop file from GDM to gnome-session.
