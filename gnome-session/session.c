@@ -374,7 +374,15 @@ app_registered (GsmApp *app, gpointer data)
   g_signal_handlers_disconnect_by_func (app, app_registered, session);
 
   if (!session->pending_apps)
-    end_phase (session);
+    {
+      if (session->timeout > 0)
+        {
+          g_source_remove (session->timeout);
+          session->timeout = 0;
+        }
+
+      end_phase (session);
+    }
 }
 
 static gboolean
