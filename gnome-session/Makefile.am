@@ -34,8 +34,14 @@ gnome_session_SOURCES =				\
 	dbus.h					\
 	gconf.c					\
 	gconf.h					\
+	gdm.h					\
+	gdm.c					\
 	gsm.h					\
+	logout-dialog.h				\
+	logout-dialog.c				\
 	main.c					\
+	power-manager.h				\
+	power-manager.c				\
 	session.c				\
 	session.h				\
 	xsmp.c					\

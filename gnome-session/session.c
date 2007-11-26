@@ -18,6 +18,7 @@
  */
 
 #include <gtk/gtkmain.h>
+#include <gtk/gtkdialog.h>
 
 #include <string.h>
 
@@ -25,6 +26,9 @@
 #if 0
 #include "app-resumed.h"
 #endif
+#include "logout-dialog.h"
+#include "power-manager.h"
+#include "gdm.h"
 #include "gconf.h"
 #include "gsm.h"
 #include "session.h"
@@ -37,6 +41,14 @@ static void append_saved_session_apps (GsmSession *session);
 #endif
 
 static void append_required_apps      (GsmSession *session);
+
+static void logout_dialog_response    (GsmLogoutDialog *logout_dialog,
+		                       guint            response_id,
+		                       gpointer         data);
+
+static void initiate_shutdown         (GsmSession *session);
+
+static void session_shutdown          (GsmSession *session);
 
 static void client_saved_state         (GsmClient *client,
 					gpointer   data);
@@ -78,6 +90,8 @@ struct _GsmSession {
   GSList *shutdown_clients;
   GSList *interact_clients;
   GSList *phase2_clients;
+
+  gint logout_response_id;
 };
 
 #define GSM_SESSION_PHASE_TIMEOUT 10 /* seconds */
@@ -100,6 +114,8 @@ gsm_session_new (gboolean failsafe)
   const char * const *system_data_dirs;
   char *dir;
   int i;
+
+  session->logout_response_id = GTK_RESPONSE_NONE;
 
   session->apps_by_name = g_hash_table_new (g_str_hash, g_str_equal);
 
@@ -566,10 +582,11 @@ client_saved_state (GsmClient *client, gpointer data)
 }
 
 void
-gsm_session_initiate_shutdown (GsmSession *session,
-			       gboolean    show_confirmation)
+gsm_session_initiate_shutdown (GsmSession           *session,
+			       gboolean              show_confirmation,
+                               GsmSessionLogoutType  logout_type)
 {
-  GSList *cl;
+  gboolean logout_prompt;
 
   if (session->phase == GSM_SESSION_PHASE_SHUTDOWN)
     {
@@ -577,16 +594,35 @@ gsm_session_initiate_shutdown (GsmSession *session,
       return;
     }
 
-  session->phase = GSM_SESSION_PHASE_SHUTDOWN;
+  logout_prompt = gconf_client_get_bool (gsm_gconf_get_client (),
+                                         "/apps/gnome-session/options/logout_prompt", 
+                                         NULL);
 
-  for (cl = session->clients; cl; cl = cl->next)
+  /* Global settings overides input parameter in order to disable confirmation 
+   * dialog accordingly. If we're shutting down, we always show the confirmation 
+   * dialog */
+  logout_prompt = (logout_prompt && show_confirmation) || 
+                  (logout_type == GSM_SESSION_LOGOUT_TYPE_SHUTDOWN);
+  
+  if (logout_prompt)
     {
-      GsmClient *client = cl->data;
+      GtkWidget *logout_dialog;
 
-      session->shutdown_clients =
-	g_slist_prepend (session->shutdown_clients, client);
-      gsm_client_save_yourself (client, FALSE);
-    }      
+      logout_dialog = gsm_get_logout_dialog (logout_type,
+                                             gdk_screen_get_default (),
+                                             gtk_get_current_event_time ());
+
+      g_signal_connect (G_OBJECT (logout_dialog), 
+                        "response",
+      		        G_CALLBACK (logout_dialog_response), 
+                        session);
+
+      gtk_widget_show (logout_dialog);
+
+      return;
+    }
+
+  initiate_shutdown (session);
 }
 
 static void
@@ -614,6 +650,83 @@ session_cancel_shutdown (GsmSession *session)
 
   for (cl = session->clients; cl; cl = cl->next)
     gsm_client_shutdown_cancelled (cl->data);
+
+  /* Restore initial logout response id */
+  session->logout_response_id = GTK_RESPONSE_NONE;
+}
+
+static void
+logout_dialog_response (GsmLogoutDialog *logout_dialog,
+		        guint            response_id,
+		        gpointer         data)
+{
+  GsmSession *session = (GsmSession *) data;
+  GsmPowerManager *power_manager;
+
+  gtk_widget_destroy (GTK_WIDGET (logout_dialog));
+
+  /* In case of dialog cancel, switch user, hibernate and suspend, we just
+   * perform the respective action and return, without shutting down the 
+   * session. */
+  switch (response_id) 
+    {
+    case GTK_RESPONSE_CANCEL:
+    case GTK_RESPONSE_NONE:
+    case GTK_RESPONSE_DELETE_EVENT:
+      return;
+
+    case GSM_LOGOUT_RESPONSE_SWITCH_USER:
+      gdm_new_login ();
+      return;
+
+    case GSM_LOGOUT_RESPONSE_STD:
+      power_manager = gsm_get_power_manager ();
+
+      if (gsm_power_manager_can_hibernate (power_manager))
+        gsm_power_manager_attempt_hibernate (power_manager);
+
+      g_object_unref (power_manager);
+
+      return;
+
+    case GSM_LOGOUT_RESPONSE_STR:
+      power_manager = gsm_get_power_manager ();
+
+      if (gsm_power_manager_can_suspend (power_manager))
+        gsm_power_manager_attempt_suspend (power_manager);
+
+      g_object_unref (power_manager);
+
+      return;
+ 
+    default:
+      break;
+    }
+
+  session->logout_response_id = response_id; 
+
+  initiate_shutdown (session);
+}
+
+static void
+initiate_shutdown (GsmSession *session)
+{
+  GSList *cl;
+
+  session->phase = GSM_SESSION_PHASE_SHUTDOWN;
+
+  if (session->clients == NULL)
+    session_shutdown (session);
+
+  for (cl = session->clients; cl; cl = cl->next)
+    {
+      GsmClient *client = cl->data;
+
+      session->shutdown_clients =
+	g_slist_prepend (session->shutdown_clients, client);
+
+      gsm_client_save_yourself (client, FALSE);
+    }
 }
 
 static void
@@ -625,7 +738,20 @@ session_shutdown (GsmSession *session)
   for (cl = session->clients; cl; cl = cl->next)
     gsm_client_die (cl->data);
 
-  /* FIXME: shutdown scripts */
+  switch (session->logout_response_id) 
+    {
+    case GSM_LOGOUT_RESPONSE_SHUTDOWN:
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+      break;
+
+    case GSM_LOGOUT_RESPONSE_REBOOT:
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+      break;
+
+    default:
+      gtk_main_quit ();
+      break;
+    }
 }
 
 static void

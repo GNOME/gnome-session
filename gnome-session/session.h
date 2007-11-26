@@ -29,30 +29,41 @@ typedef struct _GsmSession GsmSession;
 extern GsmSession *global_session;
 
 typedef enum {
-	/* gsm's own startup/initialization phase */
-	GSM_SESSION_PHASE_STARTUP,
-
-	/* xrandr setup, gnome-settings-daemon, etc */
-	GSM_SESSION_PHASE_INITIALIZATION,
-
-	/* window/compositing managers */
-	GSM_SESSION_PHASE_WINDOW_MANAGER,
-
-	/* apps that will create _NET_WM_WINDOW_TYPE_PANEL windows */
-	GSM_SESSION_PHASE_PANEL,
-
-	/* apps that will create _NET_WM_WINDOW_TYPE_DESKTOP windows */
-	GSM_SESSION_PHASE_DESKTOP,
-
-	/* everything else */
-	GSM_SESSION_PHASE_APPLICATION,
-
-	/* done launching */
-	GSM_SESSION_PHASE_RUNNING,
-
-	/* shutting down */
-	GSM_SESSION_PHASE_SHUTDOWN
+  /* gsm's own startup/initialization phase */
+  GSM_SESSION_PHASE_STARTUP,
+  
+  /* xrandr setup, gnome-settings-daemon, etc */
+  GSM_SESSION_PHASE_INITIALIZATION,
+  
+  /* window/compositing managers */
+  GSM_SESSION_PHASE_WINDOW_MANAGER,
+  
+  /* apps that will create _NET_WM_WINDOW_TYPE_PANEL windows */
+  GSM_SESSION_PHASE_PANEL,
+  
+  /* apps that will create _NET_WM_WINDOW_TYPE_DESKTOP windows */
+  GSM_SESSION_PHASE_DESKTOP,
+  
+  /* everything else */
+  GSM_SESSION_PHASE_APPLICATION,
+  
+  /* done launching */
+  GSM_SESSION_PHASE_RUNNING,
+  
+  /* shutting down */
+  GSM_SESSION_PHASE_SHUTDOWN
 } GsmSessionPhase;
+
+typedef enum {
+  GSM_SESSION_LOGOUT_TYPE_LOGOUT,
+  GSM_SESSION_LOGOUT_TYPE_SHUTDOWN
+} GsmSessionLogoutType;
+
+typedef enum {
+  GSM_SESSION_LOGOUT_MODE_NORMAL,
+  GSM_SESSION_LOGOUT_MODE_NO_CONFIRMATION,
+  GSM_SESSION_LOGOUT_MODE_FORCE
+} GsmSessionLogoutMode;
 
 GsmSession      *gsm_session_new               (gboolean    failsafe);
 
@@ -61,7 +72,8 @@ void             gsm_session_start             (GsmSession *session);
 GsmSessionPhase  gsm_session_get_phase         (GsmSession *session);
 
 void             gsm_session_initiate_shutdown (GsmSession *session,
-						gboolean    show_confirmation);
+						gboolean    show_confirmation,
+                                                GsmSessionLogoutType logout_type);
 
 char            *gsm_session_register_client   (GsmSession *session,
 						GsmClient  *client,

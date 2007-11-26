@@ -1,3 +1,31 @@
+2007-11-26  Lucas Rocha  <lucasr@gnome.org>
+
+	New D-Bus APIs for logging out (org.gnome.SessionManager.Logout) 
+	and shutting down the computer (org.gnome.SessionManager.Shutdown).
+
+	* gnome-session/Makefile.am: added gdm.[ch], power-manager.[ch] 
+	and logout-dialog.[ch] to the build.
+	* gnome-session/logout-dialog.[ch]: new logout dialog implementation 
+	for logout and shutdown operations. 
+	* gnome-session/power-manager.[ch]: new functions for powering down, 
+	restarting, and suspending the computer through GNOME Power Manager.
+	* gnome-session/gdm.[ch]: new functions for communication with GDM.
+	* gnome-session/client-xsmp.c: (save_yourself_request_callback): update
+	with new gnome_session_initiate_shutdown() API.
+	* gnome-session/dbus.c (gsm_dbus_server_logout,
+	gsm_dbus_server_shutdown), gnome-session/org.gnome.SessionManagement.xml: 
+	new D-Bus APIs for Logout and Shutdown.
+	* gnome-session/session.[ch]: 
+	(logout_dialog_response, gsm_session_initiate_shutdown): new parameter 
+	for determining which logout mode to use (normal logout or shutdown). Use 
+	new logout dialog when a confirmation is requested. 
+	(session_cancel_shutdown): reset the logout dialog response in case the
+	shutdown process is cancelled.
+	(initiate_shutdown): moved the code for initiating the session shutdown
+	to a separate function.
+	(session_shutdown): activate shutdown functions in case this is
+	requested in the logout dialog.  
+
 2007-11-20  Lucas Rocha  <lucasr@gnome.org>
 
 	* gnome-session/session.c (app_registered): remove timeout function

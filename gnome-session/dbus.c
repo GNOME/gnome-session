@@ -21,16 +21,19 @@
 #include "config.h"
 #endif
 
+#include <gtk/gtk.h>
 #include <glib.h>
 #include <stdlib.h>
+
+#include <gconf/gconf-client.h>
 
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#include "dbus.h"
 #include "gsm.h"
-
 #include "dbus.h"
 
 static DBusGConnection *connection = NULL;
@@ -144,6 +147,13 @@ static gboolean gsm_dbus_server_initialization_error (GsmDBusServer  *dbus,
 						      gboolean        fatal,
 						      GError        **error);
 
+static gboolean gsm_dbus_server_logout (GsmDBusServer  *dbus,
+                                        gint            mode,
+					GError        **error);
+
+static gboolean gsm_dbus_server_shutdown (GsmDBusServer  *dbus,
+					  GError        **error);
+
 #include "dbus-glue.h"
 
 G_DEFINE_TYPE (GsmDBusServer, gsm_dbus_server, G_TYPE_OBJECT)
@@ -173,6 +183,7 @@ gsm_dbus_error_quark (void)
 
 typedef enum {
   GSM_DBUS_ERROR_NOT_IN_INITIALIZATION,
+  GSM_DBUS_ERROR_NOT_IN_RUNNING,
 } GsmDBusError;
 
 static gboolean
@@ -208,6 +219,57 @@ gsm_dbus_server_initialization_error (GsmDBusServer  *dbus,
     }
 
   gsm_initialization_error (fatal, "%s", message);
+  return TRUE;
+}
+
+static gboolean
+gsm_dbus_server_logout (GsmDBusServer  *dbus,
+                        gint            logout_mode,
+			GError        **error)
+{
+  if (gsm_session_get_phase (global_session) != GSM_SESSION_PHASE_RUNNING)
+    {
+      g_set_error (error, GSM_DBUS_ERROR,
+		   GSM_DBUS_ERROR_NOT_IN_RUNNING,
+		   "Shutdown interface is only available during the Running phase");
+      return FALSE;
+    }
+
+  switch (logout_mode)
+    {
+    case GSM_SESSION_LOGOUT_MODE_NORMAL:
+      gsm_session_initiate_shutdown (global_session, TRUE, GSM_SESSION_LOGOUT_TYPE_LOGOUT);
+      break;
+
+    case GSM_SESSION_LOGOUT_MODE_NO_CONFIRMATION:
+      gsm_session_initiate_shutdown (global_session, FALSE, GSM_SESSION_LOGOUT_TYPE_LOGOUT);
+      break;
+
+    case GSM_SESSION_LOGOUT_MODE_FORCE:
+      /* FIXME: Implement when session state saving is ready */
+      break;
+
+    default:
+      g_assert_not_reached ();
+    }
+
+  return TRUE;
+}
+
+static gboolean
+gsm_dbus_server_shutdown (GsmDBusServer  *dbus,
+			  GError        **error)
+{
+  if (gsm_session_get_phase (global_session) != GSM_SESSION_PHASE_RUNNING)
+    {
+      g_set_error (error, GSM_DBUS_ERROR,
+		   GSM_DBUS_ERROR_NOT_IN_RUNNING,
+		   "Logout interface is only available during the Running phase");
+      return FALSE;
+    }
+
+  gsm_session_initiate_shutdown (global_session, TRUE, GSM_SESSION_LOGOUT_TYPE_SHUTDOWN);
+
   return TRUE;
 }
 

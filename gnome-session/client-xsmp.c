@@ -319,7 +319,9 @@ save_yourself_request_callback (SmsConn   conn,
   if (shutdown && global)
     {
       g_debug ("  initiating shutdown");
-      gsm_session_initiate_shutdown (global_session, !fast);
+      gsm_session_initiate_shutdown (global_session, 
+                                     !fast, 
+                                     GSM_SESSION_LOGOUT_TYPE_LOGOUT);
     }
   else if (!shutdown && !global)
     {
