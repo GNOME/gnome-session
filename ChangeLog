@@ -1,3 +1,9 @@
+2007-11-27  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/dbus.c (gsm_dbus_init): use G_SPAWN_SEARCH_PATH flag
+	and do not use '--sh-syntax' option on dbus-launch in order to have it
+	correctly running and setting the respective environment vars.
+
 2007-11-26  Lucas Rocha  <lucasr@gnome.org>
 
 	New D-Bus APIs for logging out (org.gnome.SessionManager.Logout) 

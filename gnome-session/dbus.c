@@ -48,7 +48,7 @@ static DBusGConnection *connection = NULL;
 void
 gsm_dbus_init (void)
 {
-  char *argv[4];
+  char *argv[3];
   char *output, **vars;
   int status, i;
   GError *error;
@@ -64,16 +64,15 @@ gsm_dbus_init (void)
     }
 
   argv[0] = DBUS_LAUNCH;
-  argv[1] = "--sh-syntax";
-  argv[2] = "--exit-with-session";
-  argv[3] = NULL;
+  argv[1] = "--exit-with-session";
+  argv[2] = NULL;
 
   /* dbus-launch exits pretty quickly, but if necessary, we could
    * make this async. (It's a little annoying since the main loop isn't
    * running yet...)
    */
   error = NULL;
-  g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL,
+  g_spawn_sync (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL,
 		&output, NULL, &status, &error);
   if (error)
     {
