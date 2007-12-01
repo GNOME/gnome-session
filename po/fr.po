@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-06 09:52+0200\n"
-"PO-Revision-Date: 2007-09-06 10:02+0200\n"
-"Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
+"POT-Creation-Date: 2007-12-01 06:12+0100\n"
+"PO-Revision-Date: 2007-11-30 02:33+0100\n"
+"Last-Translator: louiz <louizatakk@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -289,6 +289,7 @@ msgid "PROGRAM..."
 msgstr "PROGRAMME..."
 
 #: ../gnome-session/gnome-session-remove.c:176
+#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -297,10 +298,12 @@ msgstr ""
 "programmes avec --list.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
+#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Erreur : impossible de se connecter au gestionnaire de sessions\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
+#, c-format
 msgid "Currently registered clients:\n"
 msgstr "Clients actuellement enregistrés :\n"
 
@@ -417,13 +420,16 @@ msgstr "Temps en millisecondes à attendre l'arrêt des clients (0=infini)"
 
 #: ../gnome-session/main.c:167
 msgid "This session is running as a privileged user"
-msgstr "Cette session est exécutée en temps qu'utilisateur privilégié"
+msgstr "Cette session est exécutée en tant qu'utilisateur privilégié"
 
 #: ../gnome-session/main.c:169
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
-msgstr "Le lancement d'une session en temps qu'utilisateur privilégié devrait être évité pour des raisons de sécurité. Si possible vous devriez vous connecter en temps qu'utilisateur normal."
+msgstr ""
+"Le lancement d'une session en temps qu'utilisateur privilégié devrait être "
+"évité pour des raisons de sécurité. Si possible vous devriez vous connecter "
+"en temps qu'utilisateur normal."
 
 #: ../gnome-session/main.c:173
 msgid "_Continue"
@@ -437,7 +443,8 @@ msgid ""
 "\n"
 "Current date is <b>%s</b>."
 msgstr ""
-"La session en cours peut rencontrer des problèmes si l'horloge système n'est pas configurée correctement. Il est recommandé de l'ajuster.\n"
+"La session en cours peut rencontrer des problèmes si l'horloge système n'est "
+"pas configurée correctement. Il est recommandé de l'ajuster.\n"
 "\n"
 "La date actuelle est <b>%s</b>."
 
@@ -563,7 +570,9 @@ msgstr "Session actuelle"
 
 #: ../gnome-session/session-properties-capplet.c:341
 msgid "_Automatically remember running applications when logging out"
-msgstr "Se souvenir _automatiquement des applications en cours d'exécution lors de la déconnexion"
+msgstr ""
+"Se souvenir _automatiquement des applications en cours d'exécution lors de "
+"la déconnexion"
 
 #: ../gnome-session/session-properties-capplet.c:356
 msgid "_Remember currently running applications"
@@ -578,10 +587,12 @@ msgid "Your session has been saved."
 msgstr "Votre session a été enregistrée."
 
 #: ../gnome-session/session-properties-capplet.c:503
+#, c-format
 msgid "could not connect to the session manager\n"
 msgstr "impossible de se connecter au gestionnaire de sessions\n"
 
 #: ../gnome-session/session-properties-capplet.c:509
+#, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr ""
 "le gestionnaire de sessions ne prend pas en charge les extensions GNOME\n"
