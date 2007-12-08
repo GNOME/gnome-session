@@ -1,202 +1,236 @@
-# translation of gnome-session to Czech
-# Copyright (C) 1999,2003 Free Software Foundation, Inc.
-# Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
+# Translation of gnome-session to Czech.
+# Copyright (C) 1999, 2003 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
+# This file is distributed under the same license as the gnome-session package.
 # GIS <gis@academy.cas.cz>, 1999.
 # David Šauer <davids@penguin.cz>, 1999.
-# George Lebl <jirka@5z.com>, 2000-2001.
-# Stanislav Brabec <utx@penguin.cz>, 2000-2001.
-# Michal Bukovjan <bukm@centrum.cz>, 2002,2003
-# Miloslav Trmac <mitr@volny.cz>, 2004 - 2006.
+# George Lebl <jirka@5z.com>, 2000, 2001.
+# Stanislav Brabec <utx@penguin.cz>, 2000, 2001.
+# Michal Bukovjan <bukm@centrum.cz>, 2002, 2003.
+# Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
+# Petr Kovar <pknbe@volny.cz>, 2007.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session VERSION\n"
+"Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-11 06:37+0100\n"
-"PO-Revision-Date: 2006-02-13 04:58+0100\n"
-"Last-Translator: Petr Tomeš <ptomes@gmail.com>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"POT-Creation-Date: 2007-12-08 10:20+0100\n"
+"PO-Revision-Date: 2007-11-22 22:44+0100\n"
+"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
-msgstr "Povolit TCP připojení"
+msgstr "Povolit spojení TCP"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
 "ports. This option will allow connections from (authorized) remote hosts. "
 "gnome-session must be restarted for this to take effect."
 msgstr ""
-"Na platformách, které mají _IceTcpTransNoListen() (systémy XFree86), gnome-"
-"session nenaslouchá spojením na TCP portech. Tato volba umožňuje připojení z "
-"(ověřených) vzdálených počítačů. Aby se projevila změna v tomto nastavení, "
-"musí být gnome-session restartována."
+"Na platformách, které mají \"_IceTcpTransNoListen()\" (systémy XFree86), "
+"gnome-session z bezpečnostních důvodů nenaslouchá spojením na portech TCP. "
+"Tato volba umožňuje připojení z (ověřených) vzdálených počítačů. Aby se "
+"projevila změna v tomto nastavení, musí být gnome-session restartováno."
 
-#: ../gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Pokud je povoleno, gnome-session se před ukončením sezení zeptá uživatele."
+"Pokud je povoleno, gnome-session se před ukončením sezení dotáže uživatele."
 
-#: ../gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 "Pokud je povoleno, gnome-session uloží sezení automaticky. Jinak bude na "
-"odhlašovacím dialogu zobrazena volba pro uložení sezení."
+"odhlašovacím dialogu zobrazena volba uložení sezení."
 
-#: ../gnome-session/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Dotaz na odhlášení"
 
-#: ../gnome-session/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "Preferovaný obrázek, který používat na úvodní obrazovce při přihlašování"
 
-#: ../gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Ukládat sezení"
 
-#: ../gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "Zvolená možnost v dialogu odhlašování"
+msgstr "Zvolená možnost v odhlašovacím dialogu"
 
-#: ../gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Zobrazovat úvodní obrazovku"
 
-#: ../gnome-session/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Zobrazovat úvodní obrazovku při startu sezení"
 
-#: ../gnome-session/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"Toto je relativní cesta vůči adresáři $datadir/pixmaps/. Platné hodnoty jsou "
-"názvy podadresářů aobrázků. Změna této hodnoty se projeví při příštím "
-"příhlášení."
+"Relativní cesta vůči adresáři $datadir/pixmaps/. Platné hodnoty jsou názvy "
+"podadresářů a obrázků. Změna této hodnoty se projeví při příštím přihlášení."
 
-#: ../gnome-session/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:12
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Toto je možnost, která bude zvolena v dialogu odhlašování, platné hodnoty "
-"jsou \"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart"
-"\" pro restartování systému."
+"Možnost, která bude zvolena v odhlašovacím dialogu, platné hodnoty jsou "
+"\"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart\" "
+"pro restartování systému."
 
-#: ../gnome-session/gsm-client-editor.c:97
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Toto sezení vás přihlásí do GNOME"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Nastavení vašich sezení"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions"
+msgstr "Sezení"
+
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"U tohoto sezení bylo požádáno o podporu technologií usnadnění, ale registr "
+"technologií usnadnění nebyl nalezen. Přesvědčte se prosím, že je "
+"nainstalován balíček AT-SPI. Sezení bylo spuštěno bez podpory technologií "
+"usnadnění."
+
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
-msgstr "_Pořadí:"
+msgstr "Pořa_dí:"
 
-#: ../gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
-msgstr "Pořadí, ve kterém budou aplikace v sezení spouštěny"
+msgstr "Pořadí, ve kterém budou při sezení spouštěny aplikace."
 
-#: ../gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
-msgstr "Co se stane aplikaci, když skončí."
+msgstr "Co se stane s aplikací, když bude ukončena."
 
-#: ../gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
 msgstr "_Styl: "
 
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "Pořadí"
-
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "Styl"
-
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "Stav"
-
-#: ../gnome-session/gsm-client-list.c:165
-msgid "Program"
-msgstr "Program"
-
-#: ../gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
 msgstr "Neaktivní"
 
-#: ../gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr "Čekající na spuštění nebo již ukončený."
 
-#: ../gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
 msgstr "Spouští se"
 
-#: ../gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr "Spuštěn, ale ještě neoznámil stav."
 
-#: ../gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "Běžící"
 
-#: ../gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
-msgstr "Normální člen sezení."
+msgstr "Běžný člen sezení."
 
-#: ../gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
-msgstr "Ukládá se"
+msgstr "Ukládá"
 
-#: ../gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
-msgstr "Ukládá popis sezení."
+msgstr "Ukládají se podrobnosti k sezení."
 
-#: ../gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
-msgstr "Není známo"
+msgstr "Neznámé"
 
-#: ../gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
-msgstr "Během určité doby nebyl oznámen stav."
+msgstr "V časovém limitu nebyl oznámen stav."
 
-#: ../gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
-msgstr "Normální"
+msgstr "Běžné"
 
-#: ../gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr "Nepřerušené při odhlášení, ale lze je ukončit."
 
-#: ../gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
 msgstr "Restart"
 
-#: ../gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr "Nikdy nekončí."
 
-#: ../gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "Zahozené"
 
-#: ../gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr "Ukončeny při odhlášení a lze je ukončit."
 
-#: ../gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr "Spuštěno při každém přihlášení."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "Pořadí"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "Styl"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "Stav"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "Program"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -206,19 +240,19 @@ msgstr "Spuštěno při každém přihlášení."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Při spouštění démona pro Nastavení GNOME nastala chyba.\n"
+"Při spouštění démona nastavení GNOME nastala chyba.\n"
 "\n"
-"Některé věci, jako například motivy, zvuky, nebo nastavení pozadí, nemusí "
-"fungovat správně."
+"Některé součásti, jako například motivy, zvuky nebo nastavení pozadí nemusí "
+"pracovat správně."
 
-#: ../gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -230,7 +264,7 @@ msgstr ""
 "Poslední chybová zpráva byla:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
@@ -238,62 +272,197 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Prostředí GNOME se při vašem dalším přihlášení znovu pokusí démona pro "
-"nastavení spustit."
+"GNOME se při vašem dalším přihlášení znovu pokusí démona nastavení spustit."
 
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Při aktivaci nastala neznámá chyba."
-
-#: ../gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
-msgstr "Démon pro nastavení se restartoval příliš mnohokrát."
+msgstr "Došlo k příliš velkému počtu restartů démona nastavení."
 
-#: ../gnome-session/logout.c:408
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "Bez názvu"
+
+#: ../gnome-session/gnome-session-remove.c:50
+msgid "List registered clients, then exit"
+msgstr "Vypíše registrované klienty, poté skončí"
+
+#: ../gnome-session/gnome-session-remove.c:52
+msgid "PROGRAM..."
+msgstr "PROGRAM..."
+
+#: ../gnome-session/gnome-session-remove.c:176
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"Musí být určen alespoň jeden program, který má být odstraněn. Programy lze "
+"vypsat přepínačem \"--list\".\n"
+
+#: ../gnome-session/gnome-session-remove.c:183
+msgid "Error: could not connect to the session manager\n"
+msgstr "Chyba: Nelze se spojit se správcem sezení\n"
+
+#: ../gnome-session/gnome-session-remove.c:197
+msgid "Currently registered clients:\n"
+msgstr "Aktuálně zaregistrovaní klienti:\n"
+
+#: ../gnome-session/gnome-session-remove.c:207
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "V sezení se nezdařilo nalézt program %s\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+"Správce sezení GNOME nemohl být korektně spuštěn. Nahlaste prosím tuto "
+"skutečnost jako chybu GNOME. K hlášení o chybě prosím přiložte zprávu o "
+"selhání ICE:  \"%s\". Mezitím by bylo vhodné pokusit se přihlásit s použitím "
+"záchranného sezení."
+
+#: ../gnome-session/ice.c:514
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"Správci sezení GNOME se nezdařilo uzamknout soubor \"%s\". Nahlaste prosím "
+"tuto skutečnost jako chybu GNOME. Takováto chyba se někdy může vyskytnout, "
+"pokud není možné zapisovat do adresáře souboru. Bylo by vhodné přihlásit se "
+"s použitím záchranného sezení a ověřit, že adresář zapisovatelný je."
+
+#: ../gnome-session/ice.c:541
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+"Správci sezení GNOME se nezdařilo přečíst soubor: \"%s\". Pokud soubor "
+"existuje, musí vám být přístupný ke čtení, aby GNOME pracovalo správně. "
+"Pokuste se prosím přihlásit za použití záchranného sezení a odstranit tento "
+"soubor."
+
+#: ../gnome-session/ice.c:586
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+"Nezdařil se zápis do souboru \"%s\". Aby GNOME pracovalo správně, soubor "
+"musí být přístupný ke čtení. Pokuste se prosím přihlásit za použití "
+"záchranného sezení a odstranit tento soubor. Taktéž se prosím přesvědčte, že "
+"adresář souboru je přístupný ke čtení."
+
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "Skutečně se chcete odhlásit?"
 
-#: ../gnome-session/logout.c:425
-msgid "_Save current setup"
-msgstr "Uložit aktuální na_stavení"
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
+msgstr "Zapamatovat si běžící aplikace"
 
-#: ../gnome-session/logout.c:448
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Akce"
 
-#: ../gnome-session/logout.c:465
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "_Odhlásit se"
 
-#: ../gnome-session/logout.c:472
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "_Vypnout počítač"
 
-#: ../gnome-session/logout.c:480
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_Restartovat počítač"
 
-#: ../gnome-session/main.c:82
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
-msgstr "Zadejte název sezení k načtení"
+msgstr "Zadá název sezení k načtení"
 
-#: ../gnome-session/main.c:83
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+msgid "NAME"
+msgstr "NÁZEV"
+
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
-msgstr "Pouze načíst uložená sezení ze souboru default.session"
+msgstr "Pouze přečte uložená sezení ze souboru default.session"
 
-#: ../gnome-session/main.c:84
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Doba čekání na registraci klientů v ms (0=navždy)"
+msgstr "Doba čekání na registraci klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:85
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
+msgid "DELAY"
+msgstr "PRODLEVA"
+
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Doba čekání na odpověď klientů v ms (0=navždy)"
+msgstr "Doba čekání na odpověď klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:86
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Doba čekání na ukončení klientů (0=navždy)"
+msgstr "Doba čekání na ukončení klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr "Sezení je spuštěno s oprávněními superuživatele"
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+"Pracovat se sezením s oprávněními superuživatele nelze z bezpečnostních "
+"důvodů doporučit. Pokud je to možné, zkuste se prosím přihlásit jako běžný "
+"uživatel."
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr "P_okračovat"
+
+#: ../gnome-session/main.c:257
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+"Se sezením mohou být problémy v případě, že hodiny počítače nejsou správně "
+"nastaveny. Zvažte prosím jejich seřízení.\n"
+"\n"
+"Aktuální datum je <b>%s</b>."
+
+#: ../gnome-session/main.c:376
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "Nezdařilo se spustit nástroj na nastavení času: %s"
+
+#: ../gnome-session/main.c:407
+msgid "The computer clock appears to be wrong"
+msgstr "Zdá se, že hodiny počítače nejsou správně seřízeny."
+
+#: ../gnome-session/main.c:414
+msgid "_Ignore"
+msgstr "_Ignorovat"
+
+#: ../gnome-session/main.c:415
+msgid "_Adjust the Clock"
+msgstr "Seřídit _hodiny"
+
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -301,222 +470,208 @@ msgid ""
 "It may be possible to correct the problem by adding\n"
 "%s to the file /etc/hosts."
 msgstr ""
-"Nemohu najít internetovou adresu pro %s.\n"
-"Prostředí GNOME nemůže správně pokračovat. Pokud \n"
-"se tomu chcete vyhnout, přidejte %s\n"
+"Nelze najít internetovou adresu k %s.\n"
+"Prostředí GNOME nebude moci korektně pokračovat.\n"
+"Pokud se tomu chcete vyhnout, přidejte prosím %s\n"
 "do souboru /etc/hosts."
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Přesto se přihlásit"
 
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Zkusit znovu"
 
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Vaše sezení bylo uloženo"
+#: ../gnome-session/main.c:694
+msgid "- Manage the GNOME session"
+msgstr "- spravuje sezení GNOME"
 
-#: ../gnome-session/manager.c:527
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr "Vzhledem ke konfliktu bylo přerušeno čekání."
 
-#: ../gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr "Na příkaz %s není žádná odpověď."
 
-#: ../gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
 msgstr "Program mohl drasticky zpomalit, zastavit se nebo obsahuje chybu."
 
-#: ../gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
-msgstr "Můžete chvilku počkat nebo ho zrušit."
+msgstr "Je možné chvíli počkat nebo ho odstranit."
 
-#: ../gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
 msgstr "Restart aplikace byl vzhledem k chybám zrušen."
 
-#: ../gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr "Probíhá ukončení sezení."
 
-#: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Nastavit aktuální sezení"
+#: ../gnome-session/gnome-session-save.c:48
+msgid "Set the current session name"
+msgstr "Nastaví název aktuálního sezení"
 
-#: ../gnome-session/save-session.c:47
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
-msgstr "Ukončit sezení"
+msgstr "Ukončí sezení"
 
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "Užívat dialogy"
+#: ../gnome-session/gnome-session-save.c:50
+msgid "Use dialog boxes for errors"
+msgstr "U chyb použije dialogová okna"
 
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
+#: ../gnome-session/gnome-session-save.c:51
+msgid "Do not require confirmation"
+msgstr "Nebude vyžadovat potvrzení"
+
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
-msgstr "Nemohu kontaktovat správce sezení"
+msgstr "Nelze se spojit se správcem sezení"
 
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "Název sezení nemůže být prázdný"
+#: ../gnome-session/gnome-session-save.c:172
+msgid "- Save the current session"
+msgstr "- Ukládá aktuální sezení"
 
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "Název sezení již existuje"
+#: ../gnome-session/session-properties-capplet.c:154
+msgid "Save changes to the current session before closing?"
+msgstr "Uložit před zavřením změny aktuálního sezení?"
 
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "Přidat nové sezení"
+#: ../gnome-session/session-properties-capplet.c:156
+msgid "If you don't save, changes will be discarded."
+msgstr "Pokud změny nebudou uloženy, budou ztraceny."
 
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "Upravit název sezení"
+#: ../gnome-session/session-properties-capplet.c:159
+msgid "_Close without Saving"
+msgstr "Zavřít _bez uložení"
 
-#: ../gnome-session/session-properties-capplet.c:117
-msgid "Enable"
-msgstr "Povolit"
-
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
-msgid "Disable"
-msgstr "Zakázat"
-
-#: ../gnome-session/session-properties-capplet.c:145
-msgid "_Edit"
-msgstr "_Upravit"
-
-#: ../gnome-session/session-properties-capplet.c:213
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"Některé změny nejsou uloženy.\n"
-"Opravdu chcete skončit?"
-
-#: ../gnome-session/session-properties-capplet.c:263
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sezení"
-
-#: ../gnome-session/session-properties-capplet.c:296
-msgid "Show splash screen on _login"
-msgstr "Zobrazovat úvodní obrazovku při přih_lášení"
-
-#: ../gnome-session/session-properties-capplet.c:307
-msgid "As_k on logout"
-msgstr "_Ptát se při odhlášení"
-
-#: ../gnome-session/session-properties-capplet.c:318
-msgid "Automatically save chan_ges to session"
-msgstr "Automaticky _ukládat změny sezení"
-
-#: ../gnome-session/session-properties-capplet.c:329
-msgid "_Sessions:"
-msgstr "_Sezení:"
-
-#: ../gnome-session/session-properties-capplet.c:347
-msgid "Session Name"
-msgstr "Název sezení"
-
-#: ../gnome-session/session-properties-capplet.c:398
-msgid "Session Options"
-msgstr "Vlastnosti sezení"
-
-#: ../gnome-session/session-properties-capplet.c:407
-msgid "Current Session"
-msgstr "Aktuální sezení"
-
-#: ../gnome-session/session-properties-capplet.c:416
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
-msgstr "_Další programy po spuštění:"
+msgstr "_Další programy při přihlášení:"
 
-#: ../gnome-session/session-properties-capplet.c:435
-msgid "Command"
-msgstr "Příkaz"
+#: ../gnome-session/session-properties-capplet.c:274
+msgid "Enabled"
+msgstr "Povoleno"
 
-#: ../gnome-session/session-properties-capplet.c:475
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
 msgstr "Programy při přihlášení"
 
-#: ../gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties-capplet.c:328
+msgid "Current Session"
+msgstr "Aktuální sezení"
+
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
+msgstr "Při odhlašování si _automaticky pamatovat běžící aplikace"
+
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember Currently Running Applications"
+msgstr "Za_pamatovat si aktuálně běžící aplikace"
+
+#: ../gnome-session/session-properties-capplet.c:364
+msgid "Session Options"
+msgstr "Vlastnosti sezení"
+
+#: ../gnome-session/session-properties-capplet.c:460
+msgid "Your session has been saved."
+msgstr "Vaše sezení bylo uloženo."
+
+#: ../gnome-session/session-properties-capplet.c:503
+msgid "could not connect to the session manager\n"
+msgstr "nezdařilo se spojení se správcem sezení\n"
+
+#: ../gnome-session/session-properties-capplet.c:509
+msgid "session manager does not support GNOME extensions\n"
+msgstr "správce sezení nepodporuje rozšíření GNOME\n"
+
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
-msgstr "Odstranit právě vybraného klienta ze sezení."
+msgstr "Odstranit aktuálně vybraného klienta ze sezení."
 
-#: ../gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
-msgstr "Aplikovat změny na aktuální sezení"
+msgstr "Použít změny na aktuální sezení"
 
-#: ../gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
-msgstr "Seznam programů v tomto sezení."
+msgstr "Seznam programů při tomto sezení."
 
-#: ../gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
-msgstr "Právě běžící _programy:"
+msgstr "_Aktuálně běžící programy:"
 
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Inicializace vlastností sezení"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Nastavení vašich sezení"
-
-#: ../gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
 msgstr "Správce oken Sawfish"
 
-#: ../gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
 msgstr "Správce oken Metacity"
 
-#: ../gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:46
 msgid "Window Manager"
 msgstr "Správce oken"
 
-#: ../gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
 msgstr "Panel"
 
-#: ../gnome-session/splash-widget.c:47
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: ../gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
 msgstr "Nastavení prostředí"
 
-#: ../gnome-session/startup-programs.c:425
-msgid "_Startup Command:"
-msgstr "Pří_kaz při přihlášení:"
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr "Bez popisu"
 
-#: ../gnome-session/startup-programs.c:431
-msgid "Startup Command"
-msgstr "Příkaz při přihlášení"
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Vybrat příkaz"
 
-#: ../gnome-session/startup-programs.c:460
+#: ../gnome-session/startup-programs.c:471
+msgid "_Name:"
+msgstr "_Název:"
+
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "_Příkaz:"
+
+#: ../gnome-session/startup-programs.c:498
+msgid "_Browse..."
+msgstr "P_rocházet..."
+
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
+msgstr "_Komentář:"
+
+#: ../gnome-session/startup-programs.c:538
+msgid "The name of the startup program cannot be empty"
+msgstr "Název programu při přihlášení nesmí být prázdný"
+
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "Příkaz při přihlášení nesmí být prázdný"
 
-#: ../gnome-session/startup-programs.c:497
+#: ../gnome-session/startup-programs.c:546
+msgid "The startup command is not valid"
+msgstr "Příkaz při přihlášení není platný"
+
+#: ../gnome-session/startup-programs.c:603
 msgid "Add Startup Program"
 msgstr "Přidat program při přihlášení"
 
-#: ../gnome-session/startup-programs.c:535
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Upravit program při přihlášení"
 
-#~ msgid "Session Manager Proxy"
-#~ msgstr "Proxy správce sezení"
-
-#~ msgid "Splash Screen Image"
-#~ msgstr "Obrázek úvodní obrazovky"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Uložit aktuální sezení"
-
-#~ msgid "Save current state of desktop"
-#~ msgstr "Uložit aktuální stav pracovní plochy"
+#~ msgid "New Startup Program"
+#~ msgstr "Nový program při přihlášení"
