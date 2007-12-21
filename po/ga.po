@@ -1,24 +1,26 @@
-# Irish translations for gnome-session 
-# Copyright (C) 2000,2003 Free Software Foundation, Inc.
+# Irish translations for gnome-session package.
+# Copyright (C) 2000, 2003, 2007 Free Software Foundation, Inc.
 # Seán Ó Ceallaigh <s_oceallaigh@yahoo.com>, 2000.
-# Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003
+# Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003.
+# Seán de Búrca <leftmostcat@gmail.com>, 2007.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-05-26 18:30+0100\n"
-"Last-Translator:  Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003\n"
+"POT-Creation-Date: 2007-12-21 10:55-0700\n"
+"PO-Revision-Date: 2007-12-21 10:55-0700\n"
+"Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:2
 msgid ""
 "For security reasons, on platforms which have _IceTcpTransNoListen() "
 "(XFree86 systems), gnome-session does not listen for connections on TCP "
@@ -26,147 +28,185 @@ msgid ""
 "gnome-session must be restarted for this to take effect."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:5
-#, fuzzy
+#: ../data/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
-msgstr "Ealu as"
+msgstr "Leid logála amach"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+#: ../data/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
-msgstr "Sábháil na Seisiúnta"
+msgstr "Sábháil seisiúin"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
-msgstr ""
+msgstr "Taispeáin an splancscáileán"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
+msgstr "Taispeáin an splancscáileán nuair a thosaíonn an seisiún"
+
+#: ../data/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
 msgstr ""
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
+#: ../data/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
 msgstr ""
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Logáil an seisiún seo thú isteach i nGNOME"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Cumraigh do sheisiúin"
+
+#: ../data/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions"
+msgstr "Seisiúin"
+
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+
+#: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
-msgstr "_Órdu:"
+msgstr "_Ord:"
 
-#: gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:125
 msgid "The order in which applications are started in the session."
 msgstr ""
 
-#: gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:133
 msgid "What happens to the application when it exits."
 msgstr ""
 
-#: gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
 msgstr "_Stíl:"
 
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
-msgid "Order"
-msgstr "Órdu"
-
-#: gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "Stíl"
-
-#: gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "Stát"
-
-#: gnome-session/gsm-client-list.c:165
-msgid "Program"
-msgstr "Ríomhchlar"
-
-#: gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
 msgstr "Neamhghníomhach"
 
-#: gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-list.c:44
 msgid "Waiting to start or already finished."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Starting"
-msgstr "Ag Luchtú."
+msgstr "Á Thosú"
 
-#: gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-list.c:46
 msgid "Started but has not yet reported state."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-list.c:48
 msgid "Running"
 msgstr "Ag Rith"
 
-#: gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-list.c:48
 msgid "A normal member of the session."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving"
-msgstr "Ag Sábháil"
+msgstr "Á Shábháil"
 
-#: gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-list.c:50
 msgid "Saving session details."
-msgstr "Ag Sábháil na sónra i Seisiúna"
+msgstr "Sonraí seisiúin á shábháil."
 
-#: gnome-session/gsm-client-row.c:43
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
 msgid "Unknown"
-msgstr "Gan aithne"
+msgstr "Anaithnid"
 
-#: gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-list.c:53
 msgid "State not reported within timeout."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:50
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Normal"
-msgstr "Gnáth"
+msgstr "Gnách"
 
-#: gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
-msgstr "Thosnú aréis"
+msgstr "Atosaigh"
 
-#: gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "Bruscar"
 
-#: gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
 msgstr ""
 
-#: gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
-msgstr "Albachtaí"
+msgstr "Socruithe"
 
-#: gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
 msgstr ""
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "Ord"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "Stíl"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "Staid"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:283
+msgid "Program"
+msgstr "Ríomhchlár"
 
 #.
 #. * it would be nice to have a dialog which either:
@@ -176,7 +216,7 @@ msgstr ""
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:45
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -184,7 +224,7 @@ msgid ""
 "correctly."
 msgstr ""
 
-#: gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:57
 msgid ""
 "\n"
 "\n"
@@ -192,67 +232,177 @@ msgid ""
 "\n"
 msgstr ""
 
-#: gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
 msgstr ""
 
-#: gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr ""
-
-#: gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr ""
 
-#: gnome-session/logout.c:355
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "Gan Ainm"
+
+#: ../gnome-session/gnome-session-remove.c:50
+msgid "List registered clients, then exit"
+msgstr ""
+
+#: ../gnome-session/gnome-session-remove.c:52
+msgid "PROGRAM..."
+msgstr "RÍOMHCHLÁR..."
+
+#: ../gnome-session/gnome-session-remove.c:176
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+
+#: ../gnome-session/gnome-session-remove.c:183
+msgid "Error: could not connect to the session manager\n"
+msgstr ""
+
+#: ../gnome-session/gnome-session-remove.c:197
+msgid "Currently registered clients:\n"
+msgstr ""
+
+#: ../gnome-session/gnome-session-remove.c:207
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Níorbh fhéidir ríomhchlár %s a aimsiú sa seisiún\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+
+#: ../gnome-session/ice.c:514
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+
+#: ../gnome-session/ice.c:541
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+
+#: ../gnome-session/ice.c:586
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr ""
 
-#: gnome-session/logout.c:372
-#, fuzzy
-msgid "_Save current setup"
-msgstr "Tosaigh Seisiún"
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
+msgstr "Meabhraigh feidhmchláir á rith"
 
-#: gnome-session/logout.c:393
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Gníomh"
 
-#: gnome-session/logout.c:410
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
-msgstr "_Lógail amach"
+msgstr "_Lógáil amach"
 
-#: gnome-session/logout.c:416
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
-msgstr "_Dún síos an Riomhaire"
+msgstr "_Múch"
 
-#: gnome-session/logout.c:423
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
-msgstr "_Tosaigh an Riomhaire arís"
+msgstr "_Atosaigh an ríomhaire"
 
-#: gnome-session/main.c:81
+#: ../gnome-session/main.c:87
 msgid "Specify a session name to load"
 msgstr ""
 
-#: gnome-session/main.c:82
+#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+msgid "NAME"
+msgstr "AINM"
+
+#: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
 msgstr ""
 
-#: gnome-session/main.c:83
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:84
+#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
+#: ../gnome-session/main.c:91
+msgid "DELAY"
+msgstr "MOILL"
+
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:85
+#: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 
-#: gnome-session/main.c:265
+#: ../gnome-session/main.c:167
+msgid "This session is running as a privileged user"
+msgstr ""
+
+#: ../gnome-session/main.c:169
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+
+#: ../gnome-session/main.c:173
+msgid "_Continue"
+msgstr "_Ar Aghaidh"
+
+#: ../gnome-session/main.c:257
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+
+#: ../gnome-session/main.c:376
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr ""
+
+#: ../gnome-session/main.c:407
+msgid "The computer clock appears to be wrong"
+msgstr ""
+
+#: ../gnome-session/main.c:414
+msgid "_Ignore"
+msgstr "Tabhair _Neamhaird Air"
+
+#: ../gnome-session/main.c:415
+msgid "_Adjust the Clock"
+msgstr "C_oigeartaigh an Clog"
+
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -261,204 +411,200 @@ msgid ""
 "%s to the file /etc/hosts."
 msgstr ""
 
-#: gnome-session/main.c:272
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
-msgstr ""
+msgstr "Logáil Isteach Mar Sin Féin"
 
-#: gnome-session/main.c:273
+#: ../gnome-session/main.c:560
 msgid "Try Again"
-msgstr "Baint triail as arís"
+msgstr "Déan Iarracht Arís"
 
-#: gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr ""
+#: ../gnome-session/main.c:694
+msgid "- Manage the GNOME session"
+msgstr "- Bainistigh an seisiún GNOME"
 
-#: gnome-session/manager.c:527
+#: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
 msgstr ""
 
-#: gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
 msgstr ""
 
-#: gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
 msgstr ""
 
-#: gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1023
 msgid "You may wait for it to respond or remove it."
 msgstr ""
 
-#: gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1749
 msgid "Restart abandoned due to failures."
 msgstr ""
 
-#: gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1945
 msgid "A session shutdown is in progress."
 msgstr ""
 
-#: gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr ""
+#: ../gnome-session/gnome-session-save.c:48
+msgid "Set the current session name"
+msgstr "Socraigh ainm an tseisiúin reatha"
 
-#: gnome-session/save-session.c:47
+#: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
-msgstr "Maraigh an Seisiú"
+msgstr "Maraigh seisiún"
 
-#: gnome-session/save-session.c:48
-msgid "Use dialog boxes"
+#: ../gnome-session/gnome-session-save.c:50
+msgid "Use dialog boxes for errors"
 msgstr ""
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: ../gnome-session/gnome-session-save.c:51
+msgid "Do not require confirmation"
+msgstr ""
+
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
 msgstr ""
 
-#: gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
+#: ../gnome-session/gnome-session-save.c:172
+msgid "- Save the current session"
+msgstr "- Sábháil an seisiún reatha"
+
+#: ../gnome-session/session-properties-capplet.c:154
+msgid "Save changes to the current session before closing?"
 msgstr ""
 
-#: gnome-session/session-names.c:154
-msgid "The session name already exists"
+#: ../gnome-session/session-properties-capplet.c:156
+msgid "If you don't save, changes will be discarded."
 msgstr ""
 
-#: gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr ""
+#: ../gnome-session/session-properties-capplet.c:159
+msgid "_Close without Saving"
+msgstr "_Dún Gan Sábháil"
 
-#: gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "Eagar ainm an seisiún"
-
-#: gnome-session/session-properties-capplet.c:122
-msgid "_Edit"
-msgstr "_Eagar "
-
-#: gnome-session/session-properties-capplet.c:190
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Seisiún"
-
-#: gnome-session/session-properties-capplet.c:273
-msgid "Show splash screen on _login"
-msgstr ""
-
-#: gnome-session/session-properties-capplet.c:284
-msgid "As_k on logout"
-msgstr ""
-
-#: gnome-session/session-properties-capplet.c:295
-msgid "Automatically save chan_ges to session"
-msgstr ""
-
-#: gnome-session/session-properties-capplet.c:306
-msgid "_Sessions:"
-msgstr "_Seisiún:"
-
-#: gnome-session/session-properties-capplet.c:324
-msgid "Session Name"
-msgstr "Ainm an Seisiún"
-
-#: gnome-session/session-properties-capplet.c:375
-#, fuzzy
-msgid "Session Options"
-msgstr "Ábaltachtaí chláir"
-
-#: gnome-session/session-properties-capplet.c:384
-msgid "Current Session"
-msgstr "An Seisiún seo"
-
-#: gnome-session/session-properties-capplet.c:393
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
-msgstr "Ríomhchlar"
+msgstr "_Ríomhchláir tosaithe breise:"
 
-#: gnome-session/session-properties-capplet.c:414
-msgid "Command"
-msgstr "Ordaithe"
+#: ../gnome-session/session-properties-capplet.c:274
+msgid "Enabled"
+msgstr "Cumasaithe"
 
-#: gnome-session/session-properties-capplet.c:446
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:322
 msgid "Startup Programs"
-msgstr "Ríomhcláireanna"
+msgstr "Ríomhchláir Tosaithe"
 
-#: gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties-capplet.c:328
+msgid "Current Session"
+msgstr "Seisiún Reatha"
+
+#: ../gnome-session/session-properties-capplet.c:341
+msgid "_Automatically remember running applications when logging out"
+msgstr "Meabhraigh feidhmchláir á rith go huathoibríoch agus ag logáil amach"
+
+#: ../gnome-session/session-properties-capplet.c:356
+msgid "_Remember Currently Running Applications"
+msgstr "_Meabhraigh Feidhmchláir á Rith Faoi Láthair"
+
+#: ../gnome-session/session-properties-capplet.c:364
+msgid "Session Options"
+msgstr "Roghanna Seisiúin"
+
+#: ../gnome-session/session-properties-capplet.c:460
+msgid "Your session has been saved."
+msgstr ""
+
+#: ../gnome-session/session-properties-capplet.c:503
+msgid "could not connect to the session manager\n"
+msgstr ""
+
+#: ../gnome-session/session-properties-capplet.c:509
+msgid "session manager does not support GNOME extensions\n"
+msgstr ""
+
+#: ../gnome-session/session-properties.c:51
 msgid "Remove the currently selected client from the session."
 msgstr ""
 
-#: gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:57
 msgid "Apply changes to the current session"
 msgstr ""
 
-#: gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:63
 msgid "The list of programs in the session."
-msgstr "Liost na Cláranna saSeisiún  seo"
+msgstr "An liosta ríomhchlár sa seisiún."
 
-#: gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:90
 msgid "Currently running _programs:"
-msgstr "Ag an am seo ag rith Cláranna:"
+msgstr "Ríomhchláir á _rith faoi láthair:"
 
-#: gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr ""
-
-#: gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr ""
-
-#: gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
-msgstr "Sawfish - Bainsteoir na Fhuinneoga"
+msgstr "Bainisteoir Fuinneoga Sawfish"
 
-#: gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:45
 msgid "Metacity Window Manager"
-msgstr "Metacity - Bainisteoir na Fhuinneoga"
+msgstr "Bainisteoir Fuinneoga Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:46
 msgid "Window Manager"
-msgstr "Bainisteoir na Fhuinneoga"
+msgstr "Bainisteoir Fuinneoga"
 
-#: gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:47
 msgid "The Panel"
-msgstr "An Painél"
+msgstr "An Painéal"
 
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr ""
-
-#: gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:48
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:49
 msgid "Desktop Settings"
-msgstr "Cumraíocht Barr Deisce"
+msgstr "Socruithe an Deisce"
 
-#: gnome-session/startup-programs.c:292
-msgid "_Startup Command:"
-msgstr "Ordaithe ag an _Thosach"
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr "Gan cur síos"
 
-#: gnome-session/startup-programs.c:298
-msgid "Startup Command"
-msgstr "Ordaithe ag an Thosach"
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Roghnaigh Ordú"
 
-#: gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:471
+msgid "_Name:"
+msgstr "_Ainm:"
+
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "_Ordú:"
+
+#: ../gnome-session/startup-programs.c:498
+msgid "_Browse..."
+msgstr "_Brábhsáil..."
+
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
+msgstr "_Nóta:"
+
+#: ../gnome-session/startup-programs.c:538
+msgid "The name of the startup program cannot be empty"
+msgstr ""
+
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr ""
 
-#: gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:546
+msgid "The startup command is not valid"
+msgstr ""
+
+#: ../gnome-session/startup-programs.c:603
 msgid "Add Startup Program"
-msgstr ""
+msgstr "Cuir Ríomhchlár Tosaithe Leis"
 
-#: gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
-msgstr ""
-
-#~ msgid "Save Current Session"
-#~ msgstr "Sábháil an Seisiún seo"
+msgstr "Cuir Ríomhchlár Tosaithe in Eagar"
