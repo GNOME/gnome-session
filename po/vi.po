@@ -1,21 +1,21 @@
 # Vietnamese Translation for Gnome Session.
-# Copyright © 2007 Gnome i18n Project for Vietnamese.
+# Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # 
 msgid ""
 ""
-msgstr "Project-Id-Version: gnome-session 2.19.4\n"
+msgstr "Project-Id-Version: gnome-session 2.20.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-13 11:19+0100\n"
-"PO-Revision-Date: 2007-06-27 16:09+0930\n"
+"POT-Creation-Date: 2007-11-13 00:11+0000\n"
+"PO-Revision-Date: 2008-01-05 18:26+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6.4a5\n"
+"X-Generator: LocFactoryEditor 1.7b1\n"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -86,6 +86,14 @@ msgstr "Đây là tùy chọn sẽ được chọn trong hộp thoại đăng xu
 " • shutdown — ngừng hệ thống\n"
 " • restart — khởi động lại hệ thống"
 
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Phiên chạy này sẽ đăng nhập bạn vào GNOME"
+
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Cấu hình các phiên chạy của bạn"
@@ -154,8 +162,8 @@ msgstr "Đang lưu"
 msgid "Saving session details."
 msgstr "Đang lưu chi tiết phiên chạy."
 
+#.FIXME find better icon
 #: ../gnome-session/gsm-client-list.c:53
-#. FIXME find better icon
 msgid "Unknown"
 msgstr "Không rõ"
 
@@ -163,8 +171,8 @@ msgstr "Không rõ"
 msgid "State not reported within timeout."
 msgstr "Đã quá thời mà vẫn chưa được báo cáo tình trạng."
 
+#.FIXME find icon
 #: ../gnome-session/gsm-client-list.c:60
-#. FIXME find icon
 msgid "Normal"
 msgstr "Chuẩn"
 
@@ -213,16 +221,17 @@ msgstr "Tình trang"
 msgid "Program"
 msgstr "Chương trình"
 
+#.
+#.* it would be nice to have a dialog which either:
+#.*
+#.* 1.  lets you change the message on it
+#.* 2.  lets you append messages and has a "history"
+#.*
+#.* for now, we just kill the old dialog and pop up a new one.
+#.
 #: ../gnome-session/gsm-gsd.c:45
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-msgid "There was an error starting the GNOME Settings Daemon.\n"
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
@@ -255,8 +264,8 @@ msgstr "\n"
 msgid "The Settings Daemon restarted too many times."
 msgstr "Trình nền thiết lập đã khởi chạy lại quá nhiều lần."
 
+#.Name is mandatory and might not be set by the caller
 #: ../gnome-session/gsm-keyfile.c:43
-#. Name is mandatory and might not be set by the caller
 msgid "No Name"
 msgstr "Không tên"
 
@@ -288,9 +297,9 @@ msgstr "Ứng dụng khách hiện thời được đăng ký:\n"
 msgid "Couldn't find program %s in session\n"
 msgstr "Không tìm thấy chương trình %s trong phiên chạy\n"
 
+#.At least try to tell the user something.
 #: ../gnome-session/ice.c:355
 #, c-format
-#. At least try to tell the user something.
 msgid ""
 "The GNOME session manager cannot start properly.  Please report this as a "
 "GNOME bug. Please include this ICE failure message in the bug report:  '%"
@@ -299,7 +308,7 @@ msgstr "Trình quản lý phiên chạy GNOME không thể khởi động đư�
 "này cho GNOME. Xin đính kèm thông báo lỗi ICE trong thông báo lỗi: '%s'. "
 "Trong khi chờ đợi, vui lòng đăng nhập phiên chạy failsafe."
 
-#: ../gnome-session/ice.c:511
+#: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -310,7 +319,7 @@ msgstr "Trình quản lý phiên chạy GNOME không thể khoá tập tin '%s'.
 "này cho GNOME. Đôi khi lỗi này xảy ra nếu thư mục chứa tập tin không cho "
 "phép ghi, bạn có thể thử đăng nhập phiên chạy failsafe và kiểm tra lại."
 
-#: ../gnome-session/ice.c:538
+#: ../gnome-session/ice.c:541
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -320,7 +329,7 @@ msgstr "Trình quản lý phiên chạy GNOME không thể đọc tập tin: '%s
 "tồn tại, bạn phải gán quyền đọc cho nó để GNOME có thể hoạt động. Hãy thử "
 "đăng nhập phiên chạy failsafe và xoá tập tin này."
 
-#: ../gnome-session/ice.c:583
+#: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -330,27 +339,27 @@ msgstr "Không thể ghi vào tập tin '%s'. Tập tin này phải có thể gh
 "mới hoạt động. Hãy thử đăng nhập vào phiên chạy failsafe và xoá tập tin này. "
 "Ngoài ra cũng cần bảo đảm rằng thư mục chứ tập tin này có quyền ghi."
 
-#: ../gnome-session/logout.c:372
+#: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
 msgstr "Bạn có chắc muốn đăng xuất không?"
 
-#: ../gnome-session/logout.c:389
+#: ../gnome-session/logout.c:409
 msgid "Remember running applications"
 msgstr "Nhớ các ứng dụng đang chạy"
 
-#: ../gnome-session/logout.c:412
+#: ../gnome-session/logout.c:432
 msgid "Action"
 msgstr "Hành động"
 
-#: ../gnome-session/logout.c:429
+#: ../gnome-session/logout.c:449
 msgid "_Log out"
 msgstr "Đăng _xuất"
 
-#: ../gnome-session/logout.c:436
+#: ../gnome-session/logout.c:456
 msgid "Sh_ut down"
 msgstr "_Tắt máy"
 
-#: ../gnome-session/logout.c:444
+#: ../gnome-session/logout.c:464
 msgid "_Restart the computer"
 msgstr "_Khởi động lại máy tính"
 
@@ -394,41 +403,43 @@ msgstr "Phiên này đang chạy dưới người dùng có quyền đặc biệ
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
-msgstr "Trường hợp chạy một phiên dưới người dùng có quyền đặc biệt nên được tránh vì lý do bảo mật. Nếu có thể, bạn nên đăng nhập dưới người dùng chuẩn."
+msgstr "Trường hợp chạy một phiên dưới người dùng có quyền đặc biệt nên được tránh "
+"vì lý do bảo mật. Nếu có thể, bạn nên đăng nhập dưới người dùng chuẩn."
 
 #: ../gnome-session/main.c:173
 msgid "_Continue"
 msgstr "Tiếp tụ_c"
 
-#: ../gnome-session/main.c:220
+#: ../gnome-session/main.c:257
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
 "configured. Please consider adjusting it.\n"
 "\n"
 "Current date is <b>%s</b>."
-msgstr "Phiên chạy có thể gặp lỗi nếu đồng hồ máy tính không phải có cấu hình đúng. Hãy điều chỉnh.\n"
+msgstr "Phiên chạy có thể gặp lỗi nếu đồng hồ máy tính không phải có cấu hình đúng. "
+"Hãy điều chỉnh.\n"
 "\n"
 "Nó hiện thời hiển thị ngày <b>%s</b>."
 
-#: ../gnome-session/main.c:338
+#: ../gnome-session/main.c:376
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Lỗi khởi chạy công cụ cấu hình giờ : %s"
 
-#: ../gnome-session/main.c:369
+#: ../gnome-session/main.c:407
 msgid "The computer clock appears to be wrong"
 msgstr "Có vẻ là đồng hồ máy tính chạy sai"
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:414
 msgid "_Ignore"
 msgstr "_Bỏ qua"
 
-#: ../gnome-session/main.c:377
+#: ../gnome-session/main.c:415
 msgid "_Adjust the Clock"
 msgstr "_Chỉnh đồng hồ"
 
-#: ../gnome-session/main.c:515
+#: ../gnome-session/main.c:552
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -440,15 +451,15 @@ msgstr "Không thể tra tìm địa chỉ Mạng của « %s ».\n"
 "Có lẽ nên sửa lỗi này bằng cách thêm\n"
 "« %s » vào tập tin các máy đã biết « /etc/hosts »."
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:559
 msgid "Log in Anyway"
 msgstr "Vẫn đăng nhập"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:560
 msgid "Try Again"
 msgstr "Thử lại"
 
-#: ../gnome-session/main.c:651
+#: ../gnome-session/main.c:697
 msgid "- Manage the GNOME session"
 msgstr "• Quản lý phiên chạy GNOME"
 
@@ -494,7 +505,7 @@ msgid "Do not require confirmation"
 msgstr "Không yêu cầu xác nhận"
 
 #: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:186
+#: ../gnome-session/gnome-session-save.c:187
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với trình quản lý phiên chạy"
 
@@ -535,7 +546,7 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
 
 #: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
+msgid "_Remember Currently Running Applications"
 msgstr "_Nhớ các ứng dụng đang chạy"
 
 #: ../gnome-session/session-properties-capplet.c:364
@@ -594,45 +605,52 @@ msgstr "Nautilus"
 msgid "Desktop Settings"
 msgstr "Thiết lập màn hình nền"
 
-#: ../gnome-session/startup-programs.c:351
+#: ../gnome-session/startup-programs.c:348
 msgid "No description"
 msgstr "Không mô tả"
 
-#: ../gnome-session/startup-programs.c:470
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Chọn lệnh"
+
+#: ../gnome-session/startup-programs.c:471
 msgid "_Name:"
 msgstr "_Tên:"
 
-#: ../gnome-session/startup-programs.c:488
-msgid "_Command:"
-msgstr "_Lệnh:"
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "Lệ_nh:"
 
-#: ../gnome-session/startup-programs.c:502
+#: ../gnome-session/startup-programs.c:498
 msgid "_Browse..."
 msgstr "_Duyệt..."
 
-#: ../gnome-session/startup-programs.c:515
-msgid "Co_mment:"
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
 msgstr "C_hú thích:"
 
-#: ../gnome-session/startup-programs.c:545
+#: ../gnome-session/startup-programs.c:538
 msgid "The name of the startup program cannot be empty"
 msgstr "Tên của chương trình khởi động không thể là rỗng"
 
-#: ../gnome-session/startup-programs.c:547
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "Không cho phép tạo lệnh khởi động rỗng"
 
-#: ../gnome-session/startup-programs.c:553
+#: ../gnome-session/startup-programs.c:546
 msgid "The startup command is not valid"
 msgstr "Lệnh khởi động không hợp lệ"
 
-#: ../gnome-session/startup-programs.c:610
-msgid "New Startup Program"
-msgstr "Chương trình khởi động mới"
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Thêm chương trình khởi động"
 
-#: ../gnome-session/startup-programs.c:654
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình khởi động"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Chương trình khởi động mới"
 
 #~ msgid "_Save current setup"
 #~ msgstr "_Lưu thiết lập hiện có"
@@ -642,9 +660,6 @@ msgstr "Sửa chương trình khởi động"
 
 #~ msgid "Save the current session"
 #~ msgstr "Lưu phiên chạy hiện thời"
-
-#~ msgid "Startup Command"
-#~ msgstr "Lệnh khởi động"
 
 #~ msgid "The session name cannot be empty"
 #~ msgstr "Không cho phép tạo tên phiên chạy rỗng"
@@ -681,6 +696,3 @@ msgstr "Sửa chương trình khởi động"
 
 #~ msgid "_Startup Command:"
 #~ msgstr "_Lệnh khởi động:"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Thêm chương trình khởi động"
