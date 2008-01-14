@@ -51,7 +51,6 @@
 #include "gsm-sound.h"
 #include "gsm-gsd.h"
 #include "gsm-keyring.h"
-#include "gsm-xrandr.h"
 #include "gsm-at-startup.h"
 #include "gsm-remote-desktop.h"
 
