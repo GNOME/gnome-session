@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.21.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-21 13:41+0100\n"
-"PO-Revision-Date: 2008-01-21 13:54+0100\n"
+"POT-Creation-Date: 2008-01-21 22:07+0100\n"
+"PO-Revision-Date: 2008-01-21 22:08+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -103,7 +103,6 @@ msgid "Configure your sessions"
 msgstr "Configura le sessioni"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sessioni"
 
@@ -222,7 +221,7 @@ msgid "State"
 msgstr "Stato"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Programma"
 
@@ -569,47 +568,54 @@ msgstr "Se non si salva, le modifiche saranno scartate."
 msgid "_Close without Saving"
 msgstr "_Chiudi senza salvare"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Preferenze delle sessioni"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "_Programmi d'avvio aggiuntivi:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Abilitato"
 
 # NEW
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Programmi d'avvio"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Sessione corrente"
 
 # NdT: uso in uso invece che in esecuzione per rendere il messaggio più corto
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
-msgstr "Memorizzare _automaticamente le applicazioni in uso terminando la sessione"
+msgstr ""
+"Memorizzare _automaticamente le applicazioni in uso terminando la sessione"
 
 # è un pulsante
-#: ../gnome-session/session-properties-capplet.c:356
+#: ../gnome-session/session-properties-capplet.c:353
 msgid "_Remember Currently Running Applications"
 msgstr "_Memorizza applicazioni attualmente in esecuzione"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Opzioni sessione"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "La sessione è stata salvata"
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
 #, c-format
 msgid "could not connect to the session manager\n"
 msgstr "impossibile connettersi al gestore di sessione\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
 #, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr "il gestore di sessione non supporta le estensioni di GNOME\n"
@@ -626,9 +632,9 @@ msgstr "Applica modifiche alla sessione corrente"
 msgid "The list of programs in the session."
 msgstr "L'elenco dei programmi nella sessione."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
-msgstr "P_rogrammi attualmente in esecuzione:"
+msgstr "Pro_grammi attualmente in esecuzione:"
 
 #: ../gnome-session/splash-widget.c:44
 msgid "Sawfish Window Manager"
