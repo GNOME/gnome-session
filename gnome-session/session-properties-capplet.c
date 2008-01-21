@@ -221,7 +221,7 @@ capplet_build (void)
   /* Create toplevel dialog */
   dlg = gtk_dialog_new ();
   gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
-  gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions"));
+  gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions Preferences"));
   gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
   gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dlg)->vbox), 2);
