@@ -1,6 +1,6 @@
-# translation of es.po to Spanish
+# translation of gnome-session.HEAD.po to Español
 # gnome-session Spanish translation.
-# Copyright © 1998-2003, 2006, 2007 the Free Software Foundation, Inc.
+# Copyright © 1998-2003, 2006, 2007, 2008 the Free Software Foundation, Inc.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999-2000
 # Javier Gómez <jgomsi@apolo.umh.es> 2000
 # Juanjo Alvarez	2000
@@ -12,15 +12,15 @@
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 # Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2007.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD.es\n"
+"Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-13 00:11+0000\n"
-"PO-Revision-Date: 2007-11-13 09:45+0100\n"
+"POT-Creation-Date: 2008-01-21 14:38+0000\n"
+"PO-Revision-Date: 2008-01-21 17:40+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Spanish <traductores@es.gnome.org>\n"
+"Language-Team: Español <<gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -114,7 +114,6 @@ msgid "Configure your sessions"
 msgstr "Configurar sus sesiones"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sesiones"
 
@@ -393,46 +392,46 @@ msgstr "A_pagar"
 msgid "_Restart the computer"
 msgstr "_Reiniciar el equipo"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Especificar un nombre de sesión para cargar"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NOMBRE"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Leer únicamente las sesiones guardadas del archivo default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Período de espera, en milisegundos, para que los clientes se registren "
 "(0=infinito)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "RETARDO"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr ""
 "Período de espera, en milisegundos, para que los clientes respondan "
 "(0=infinito)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr ""
 "Período de espera, en milisegundos. para que los clientes se mueran "
 "(0=infinito)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Esta sesión se está ejecutando desde un usuario privilegiado"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -441,11 +440,11 @@ msgstr ""
 "razones de seguridad. Si es posible, debería iniciar sesión como un usuario "
 "normal."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Continuar"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -458,24 +457,24 @@ msgstr ""
 "\n"
 "La fecha actual es <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Falló al lanzar la herramienta de configuración de la hora: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "El reloj del equipo parece estar incorrecto"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignorar"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Ajustar el reloj"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -487,15 +486,15 @@ msgstr ""
 "Esto causará que el comportamiento de GNOME no sea adecuado. Puede ser\n"
 "posible corregir el problema añadiendo %s al archivo /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Iniciar sesión de todas formas"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Intentarlo de nuevo"
 
-#: ../gnome-session/main.c:697
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Gestionar la sesión de GNOME"
 
@@ -560,6 +559,10 @@ msgstr "Los cambios serán descartados si no elige guardar."
 #: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "_Cerrar sin guardar"
+
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Preferencias de sesión"
 
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
