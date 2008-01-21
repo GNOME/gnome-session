@@ -208,7 +208,7 @@ capplet_build (void)
   GtkWidget *notebook;
   GtkWidget *label;
 
-  GtkWidget *dlg, *b, *a, *hb, *sw, *help_button;
+  GtkWidget *dlg, *b, *hb, *sw, *help_button;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
 
@@ -223,8 +223,10 @@ capplet_build (void)
   gtk_window_set_resizable (GTK_WINDOW (dlg), TRUE);
   gtk_window_set_title (GTK_WINDOW (dlg), _("Sessions Preferences"));
   gtk_dialog_set_has_separator (GTK_DIALOG (dlg), FALSE);
+
   gtk_container_set_border_width (GTK_CONTAINER (dlg), 5);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dlg)->vbox), 2);
+
   help_button = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_HELP, GTK_RESPONSE_HELP);
   g_signal_connect (G_OBJECT (help_button), "clicked", help_cb, NULL);
   b = gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
@@ -241,16 +243,15 @@ capplet_build (void)
   /* Frame for manually started programs */
   startup_list = startup_list_read ();
 
-  vbox = gtk_vbox_new (FALSE, 8);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
+  vbox = gtk_vbox_new (FALSE, 6);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 12);
  
   /*non-session managed startup programs */
-  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
-  gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
   label = gtk_label_new_with_mnemonic (_("Additional startup _programs:"));
-  gtk_container_add (GTK_CONTAINER (a), label);
+  gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
 
-  hb = gtk_hbox_new (FALSE, 8);
+  hb = gtk_hbox_new (FALSE, 6);
   gtk_box_pack_start (GTK_BOX (vbox), hb, TRUE, TRUE,0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -292,7 +293,7 @@ capplet_build (void)
 
   gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (startup_view));
 
-  util_vbox = gtk_vbox_new (FALSE, 4);
+  util_vbox = gtk_vbox_new (FALSE, 6);
   gtk_box_pack_start (GTK_BOX (hb), util_vbox, FALSE, FALSE, 0);
 
   /* Add/Edit/Delete buttons */
@@ -315,31 +316,27 @@ capplet_build (void)
   gtk_widget_set_sensitive (button, FALSE);
   g_object_set_data (G_OBJECT (startup_view), "edit", button);
   
-  /* Button for running session-properties */
-  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
-  gtk_box_pack_start (GTK_BOX (vbox), a, FALSE, FALSE, 0);
-  
   label = gtk_label_new (_("Startup Programs"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
   
-
   vbox = session_properties_create_page (&mark_dirty);
+
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 12);
 
   label = gtk_label_new (_("Current Session"));
   gtk_notebook_append_page (GTK_NOTEBOOK (notebook), vbox, label);
- 
+
   /* Options page - Autosave, Save session */
-  vbox = gtk_vbox_new (FALSE, 8);
+  vbox = gtk_vbox_new (FALSE, 6);
   
   util_vbox = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), util_vbox, FALSE, FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox) , 8);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox) , 12);
 
   /* Autosave */
-  a = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
-  gtk_box_pack_start (GTK_BOX (util_vbox), a, FALSE, FALSE, 0);
   autosave_button = gtk_check_button_new_with_mnemonic (_("_Automatically remember running applications when logging out"));
-  gtk_container_add (GTK_CONTAINER (a), autosave_button);
+  gtk_box_pack_start (GTK_BOX (util_vbox), autosave_button, FALSE, FALSE, 0);
+
   g_object_set_data (G_OBJECT (autosave_button), "key", AUTOSAVE_MODE_KEY);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (autosave_button),
 				gconf_client_get_bool (client, AUTOSAVE_MODE_KEY, NULL));

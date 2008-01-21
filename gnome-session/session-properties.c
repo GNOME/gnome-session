@@ -45,7 +45,7 @@ static void session_properties_dirty_cb (GtkWidget *widget);
 static GtkWidget*
 create_table (void)
 {
-  GtkWidget *vbox, *hbox,  *alignment, *label;
+  GtkWidget *vbox, *hbox,  *label;
 
   remove_button = gtk_button_new_from_stock (GTK_STOCK_REMOVE);
   gsm_atk_set_description (remove_button, _("Remove the currently selected client from the session."));
@@ -78,18 +78,17 @@ create_table (void)
 				       GTK_SHADOW_IN);
   gtk_container_add (GTK_CONTAINER (scrolled_window), client_list);
 
-  vbox = gtk_vbox_new (FALSE, 8);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), 8);
+  vbox = gtk_vbox_new (FALSE, 6);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 12);
 
-  hbox = gtk_hbox_new (FALSE, 8);
+  hbox = gtk_hbox_new (FALSE, 6);
   gtk_box_pack_start (GTK_BOX (hbox), client_editor, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), remove_button, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (hbox), apply_button, FALSE, FALSE, 0);
   
-  alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
   label = gtk_label_new_with_mnemonic (_("Currently running _programs:"));
-  gtk_container_add (GTK_CONTAINER (alignment), label);
-  gtk_box_pack_start (GTK_BOX (vbox), alignment, FALSE, FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
   
   gtk_box_pack_start (GTK_BOX (vbox), scrolled_window, TRUE, TRUE, 0);
 
