@@ -1,13 +1,13 @@
 # Norwegian translation of gnome-session (bokmål dialect).
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2007.
+# Kjartan Maraas <kmaraas@gnome.org>, 1998-2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.13.x\n"
+"Project-Id-Version: gnome-session 2.21.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-06 20:36+0100\n"
-"PO-Revision-Date: 2007-12-06 20:37+0100\n"
+"POT-Creation-Date: 2008-01-21 21:41+0100\n"
+"PO-Revision-Date: 2008-01-21 21:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,6 @@ msgid "Configure your sessions"
 msgstr "Konfigurer dine sesjoner"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sesjoner"
 
@@ -379,41 +378,41 @@ msgstr "Avsl_utt"
 msgid "_Restart the computer"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Spesifiserer et sesjonsnavn som skal startes"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NAVN"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Kun skrivebeskyttede sesjoner fra default.session filen"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Antall millisekunder ventetid for registrering av klienter (0=uendelig)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "PAUSE"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal svare (0=uendelig)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Antall millisekunder ventetid for at klienter skal dø (0=uendelig)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Denne sesjonen kjøres som en priviligert bruker"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -421,11 +420,11 @@ msgstr ""
 "Du bør unngå å kjøre sesjoner med priviligerte brukere av sikkerhetshensyn. "
 "Logg inn som en ordinær bruker hvis mulig."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Fortsett"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -438,24 +437,24 @@ msgstr ""
 "\n"
 "Dagens dato er <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Klarte ikke å starte verktøy for å stille klokken: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Klokken på datamaskinen ser ut til å være feil"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignorer"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Juster klokken"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -468,15 +467,15 @@ msgstr ""
 "Det er mulig å rette opp problemet ved å legge\n"
 "til %s i filen /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Logg inn likevel"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Prøv igjen"
 
-#: ../gnome-session/main.c:694
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Håndter GNOME sesjonen"
 
@@ -541,6 +540,10 @@ msgstr "Hvis du ikke lagrer vil endringene forkastes."
 #: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "_Lukk uten å lagre"
+
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Brukervalg for sesjoner"
 
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
