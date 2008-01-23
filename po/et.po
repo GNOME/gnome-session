@@ -2,20 +2,20 @@
 # Estonian translation of gnome-session.
 #
 # Copyright (C) 1999, 2001, 2002, 2004-2006 Free Software Foundation, Inc.
-# Copyright (C) 2006, 2007 The GNOME Project.
+# Copyright (C) 2006-2008 The GNOME Project.
 #
 # Lauris Kaplinski <lauris@ariman.ee>, 1999.
 # Ilmar Kerm <ikerm@hot.ee>, 2001, 2002.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002.
 # Priit Laes <amd@store20.com>, 2004-2006.
-# Ivar Smolin <okul@linux.ee>, 2005-2007.
+# Ivar Smolin <okul@linux.ee>, 2005-2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-13 00:11+0000\n"
-"PO-Revision-Date: 2007-11-14 20:01+0200\n"
+"POT-Creation-Date: 2008-01-21 14:38+0000\n"
+"PO-Revision-Date: 2008-01-23 08:04+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -111,7 +111,6 @@ msgid "Configure your sessions"
 msgstr "Seansside sätete määramine"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Seansid"
 
@@ -388,41 +387,41 @@ msgstr "A_rvuti seiskamine"
 msgid "_Restart the computer"
 msgstr "Arvu_ti alglaadimine"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Määra laaditava seansi nimi"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NIMI"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Loe salvestatud seansse ainult default.session failist"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "VIIVITUS"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "See seanss töötab privilegeeritud kasutaja õigustes"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -430,11 +429,11 @@ msgstr ""
 "Turvakaalutlustel tuleks hoiduda seansi käivitamisest privilegeeritud "
 "kasutaja õigustes. Võimaluse korral võiksid Sa logida sisse lihtkasutajana."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Jätka"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -447,24 +446,24 @@ msgstr ""
 "\n"
 "Praegune kuupäev on <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Tõrge seadistamisvahendi käivitamisel: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Arvuti kell paistab vale olevat"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Eira"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Säti kellaaega"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -477,15 +476,15 @@ msgstr ""
 "Võimalik, et saate selest veast üle, lisades\n"
 "%s faili /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Logi sellest hoolimata sisse"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Proovi uuesti"
 
-#: ../gnome-session/main.c:697
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- GNOME'i seansi haldamine"
 
@@ -550,6 +549,10 @@ msgstr "Kui sa ei salvesta, siis lähevad muudatused kaotsi."
 #: ../gnome-session/session-properties-capplet.c:159
 msgid "_Close without Saving"
 msgstr "Sulge _ilma salvestamata"
+
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Seansi eelistused"
 
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
