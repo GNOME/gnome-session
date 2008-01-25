@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-09 17:48+0100\n"
-"PO-Revision-Date: 2008-01-09 16:19+0100\n"
+"POT-Creation-Date: 2008-01-25 17:40+0100\n"
+"PO-Revision-Date: 2008-01-22 19:37+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,6 @@ msgid "Configure your sessions"
 msgstr "Konfiguratu zure saioak"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Saioak"
 
@@ -226,7 +225,7 @@ msgid "State"
 msgstr "Egoera"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Programa"
 
@@ -385,41 +384,41 @@ msgstr "I_tzali"
 msgid "_Restart the computer"
 msgstr "_Berrabiarazi ordenagailua"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Idatzi kargatu nahi duzun saioaren izena"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "IZENA"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Gordetako saioak default.session fitxategitik bakarrik irakurri"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Bezeroak erregistratu zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "ATZERAPENA"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Bezeroek erantzun zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Bezeroak hil zain egoteko denbora milisegundotan (0=mugarik gabe)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Saio hau erabiltzaile pribilegiatu gisa exekutatzen ari da"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -428,11 +427,11 @@ msgstr ""
 "segurtasun arrazoiak direla eta. Aukeran erabiltzaile arrunt baten gisa hasi "
 "saioa."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Jarraitu"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -445,24 +444,24 @@ msgstr ""
 "\n"
 "Uneko data: <b>%s</b>"
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Huts egin du ordularia konfiguratzeko tresna abiaraztean: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Ordenagailuaren ordularia gaizki dagoela dirudi"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ez ikusi egin"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Doitu ordularia"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -475,15 +474,15 @@ msgstr ""
 "Baliteke arazoa konpontzea %s gehituz\n"
 "/etc/hosts fitxategiari."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Sartu hala ere"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Saiatu berriro"
 
-#: ../gnome-session/main.c:694
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Kudeatu GNOMEren saioa"
 
@@ -549,44 +548,50 @@ msgstr "Ez baduzu gordetzen, aldaketak baztertu egingo dira."
 msgid "_Close without Saving"
 msgstr "It_xi gorde gabe"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Saioen hobespenak"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Abioko _programa osagarriak:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Gaituta"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Abioko programak"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Uneko saioa"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
 "Gogoratu _automatikoki exekutatzen ari diren aplikazioak saioa amaitzean"
 
-#: ../gnome-session/session-properties-capplet.c:356
+#: ../gnome-session/session-properties-capplet.c:353
 msgid "_Remember Currently Running Applications"
 msgstr "_Gogoratu unean exekutatzen ari diren aplikazioak"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Saio-aukerak"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Zure saioa gorde da."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
 msgid "could not connect to the session manager\n"
 msgstr "ezin izan da saio-kudeatzailearekin konektatu\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
 msgid "session manager does not support GNOME extensions\n"
 msgstr "saio-kudeatzaileak ez du GNOMEren gehigarririk onartzen\n"
 
@@ -602,7 +607,7 @@ msgstr "Aplikatu aldaketak uneko saioari"
 msgid "The list of programs in the session."
 msgstr "Saioko programa-zerrenda."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "Unean exekutatzen ari diren _programak:"
 
