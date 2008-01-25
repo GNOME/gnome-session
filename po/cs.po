@@ -1,5 +1,5 @@
 # Translation of gnome-session to Czech.
-# Copyright (C) 1999, 2003 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2003, 2007, 2008 Free Software Foundation, Inc.
 # Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # This file is distributed under the same license as the gnome-session package.
 # GIS <gis@academy.cas.cz>, 1999.
@@ -9,19 +9,20 @@
 # Michal Bukovjan <bukm@centrum.cz>, 2002, 2003.
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
-# Petr Kovar <pknbe@volny.cz>, 2007.
+# Petr Kovar <pknbe@volny.cz>, 2007, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-08 10:20+0100\n"
-"PO-Revision-Date: 2007-11-22 22:44+0100\n"
+"POT-Creation-Date: 2008-01-25 21:02+0100\n"
+"PO-Revision-Date: 2008-01-25 17:51+0100\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -109,7 +110,6 @@ msgid "Configure your sessions"
 msgstr "Nastavení vašich sezení"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sezení"
 
@@ -139,7 +139,7 @@ msgstr "Co se stane s aplikací, když bude ukončena."
 
 #: ../gnome-session/gsm-client-editor.c:134
 msgid "_Style:"
-msgstr "_Styl: "
+msgstr "_Styl:"
 
 #: ../gnome-session/gsm-client-list.c:44
 msgid "Inactive"
@@ -228,7 +228,7 @@ msgid "State"
 msgstr "Stav"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Program"
 
@@ -386,40 +386,40 @@ msgstr "_Vypnout počítač"
 msgid "_Restart the computer"
 msgstr "_Restartovat počítač"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Zadá název sezení k načtení"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NÁZEV"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Pouze přečte uložená sezení ze souboru default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Doba čekání na registraci klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "PRODLEVA"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Doba čekání na odpověď klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Doba čekání na ukončení klientů v ms (0 = navždy)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Sezení je spuštěno s oprávněními superuživatele"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -428,11 +428,11 @@ msgstr ""
 "důvodů doporučit. Pokud je to možné, zkuste se prosím přihlásit jako běžný "
 "uživatel."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "P_okračovat"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -445,24 +445,24 @@ msgstr ""
 "\n"
 "Aktuální datum je <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Nezdařilo se spustit nástroj na nastavení času: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
-msgstr "Zdá se, že hodiny počítače nejsou správně seřízeny."
+msgstr "Zdá se, že hodiny počítače nejsou správně seřízeny"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignorovat"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "Seřídit _hodiny"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -475,15 +475,15 @@ msgstr ""
 "Pokud se tomu chcete vyhnout, přidejte prosím %s\n"
 "do souboru /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Přesto se přihlásit"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Zkusit znovu"
 
-#: ../gnome-session/main.c:694
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- spravuje sezení GNOME"
 
@@ -549,43 +549,49 @@ msgstr "Pokud změny nebudou uloženy, budou ztraceny."
 msgid "_Close without Saving"
 msgstr "Zavřít _bez uložení"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Nastavení sezení"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "_Další programy při přihlášení:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Povoleno"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Programy při přihlášení"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Aktuální sezení"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr "Při odhlašování si _automaticky pamatovat běžící aplikace"
 
-#: ../gnome-session/session-properties-capplet.c:356
+#: ../gnome-session/session-properties-capplet.c:353
 msgid "_Remember Currently Running Applications"
 msgstr "Za_pamatovat si aktuálně běžící aplikace"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Vlastnosti sezení"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Vaše sezení bylo uloženo."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
 msgid "could not connect to the session manager\n"
 msgstr "nezdařilo se spojení se správcem sezení\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
 msgid "session manager does not support GNOME extensions\n"
 msgstr "správce sezení nepodporuje rozšíření GNOME\n"
 
@@ -601,7 +607,7 @@ msgstr "Použít změny na aktuální sezení"
 msgid "The list of programs in the session."
 msgstr "Seznam programů při tomto sezení."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "_Aktuálně běžící programy:"
 
@@ -672,6 +678,3 @@ msgstr "Přidat program při přihlášení"
 #: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Upravit program při přihlášení"
-
-#~ msgid "New Startup Program"
-#~ msgstr "Nový program při přihlášení"
