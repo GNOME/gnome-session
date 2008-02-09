@@ -1,15 +1,15 @@
 # gnome-session's Portuguese translation
-# Copyright © 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007 gnome-session
+# Copyright © 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 gnome-session
 # Distributed under the same licence as the gnome-session package
 # Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.20\n"
+"Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-03 00:36+0100\n"
-"PO-Revision-Date: 2007-09-03 00:40+0000\n"
+"POT-Creation-Date: 2008-02-09 17:36+0000\n"
+"PO-Revision-Date: 2008-02-09 17:40+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Português <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -90,12 +90,19 @@ msgstr ""
 "valores válidos são \"logout\" para terminar a sessão, \"shutdown\" para "
 "desligar o sistema e \"restart\" para reiniciar o sistema."
 
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Esta é uma sessão no GNOME"
+
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Configurar as suas sessões"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sessões"
 
@@ -214,7 +221,7 @@ msgid "State"
 msgstr "Estado"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Aplicação"
 
@@ -312,7 +319,7 @@ msgstr ""
 "no relatório de erro:  '%s'.  Entretanto poderá tentar iniciar uma sessão "
 "utilizando a sessão de recurso."
 
-#: ../gnome-session/ice.c:511
+#: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -326,7 +333,7 @@ msgstr ""
 "iniciar uma sessão utilizando a sessão de recurso e certificar-se de que o "
 "directório possui permissões de escrita."
 
-#: ../gnome-session/ice.c:538
+#: ../gnome-session/ice.c:541
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -338,7 +345,7 @@ msgstr ""
 "funcione correctamente.  Tente iniciar uma sessão utilizando a sessão de "
 "recurso e remover este ficheiro."
 
-#: ../gnome-session/ice.c:583
+#: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -374,40 +381,40 @@ msgstr "Desli_gar o computador"
 msgid "_Restart the computer"
 msgstr "_Reiniciar o computador"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Especificar um nome de sessão a ler"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NOME"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Apenas ler sessões gravadas do ficheiro default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Milisegundos gastos à espera que os clientes se registem (0=infinito)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "ESPERA"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Milisegundos gastos à espera que os clientes respondam (0=infinito)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Milisegundos gastos à espera que os clientes morram (0=infinito)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Esta sessão está a correr como utilizador privilegiado"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -416,11 +423,11 @@ msgstr ""
 "motivos de segurança. Se possível, deverá iniciar uma sessão como utilizador "
 "normal."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Continuar"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -433,24 +440,24 @@ msgstr ""
 "\n"
 "A data actual é <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Falha ao iniciar a ferramenta de configuração de hora: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Parece que o relógio do computador está incorrecto"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignorar"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Ajustar o Relógio"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -463,15 +470,15 @@ msgstr ""
 "Poderá ser possível corrigir o problema adicionando\n"
 "%s ao ficheiro /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Ainda Assim Iniciar Sessão"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Tentar Novamente"
 
-#: ../gnome-session/main.c:696
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Gerir a sessão GNOME"
 
@@ -537,44 +544,50 @@ msgstr "Se não gravar, as alterações serão descartadas."
 msgid "_Close without Saving"
 msgstr "_Fechar sem Gravar"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Preferências de Sessão"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "A_plicações de arranque adicionais:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Activo"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Aplicações de Arranque"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Sessão Actual"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
 "Recordar _automaticamente as aplicações em execução ao terminar a sessão"
 
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
-msgstr "_Recordar as aplicações actualmente em execução"
+#: ../gnome-session/session-properties-capplet.c:353
+msgid "_Remember Currently Running Applications"
+msgstr "_Recordar as Aplicações Actualmente em Execução"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Opções de Sessão"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "A sua sessão foi gravada."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
 msgid "could not connect to the session manager\n"
 msgstr "Incapaz de se ligar ao gestor de sessões\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
 msgid "session manager does not support GNOME extensions\n"
 msgstr "o gestor de sessões não suporta extensões GNOME\n"
 
@@ -590,7 +603,7 @@ msgstr "Aplicar alterações à sessão actual"
 msgid "The list of programs in the session."
 msgstr "A lista de aplicações na sessão."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "Aplicações actualmente em e_xecução:"
 
@@ -622,41 +635,48 @@ msgstr "Definições do Ambiente"
 msgid "No description"
 msgstr "Sem descrição"
 
-#: ../gnome-session/startup-programs.c:467
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Seleccionar o Comando"
+
+#: ../gnome-session/startup-programs.c:471
 msgid "_Name:"
 msgstr "_Nome:"
 
-#: ../gnome-session/startup-programs.c:485
-msgid "_Command:"
-msgstr "_Comando:"
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "Co_mando:"
 
-#: ../gnome-session/startup-programs.c:499
+#: ../gnome-session/startup-programs.c:498
 msgid "_Browse..."
 msgstr "_Navegar..."
 
-#: ../gnome-session/startup-programs.c:512
-msgid "Co_mment:"
-msgstr "Co_mentário:"
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
+msgstr "Com_entário:"
 
-#: ../gnome-session/startup-programs.c:542
+#: ../gnome-session/startup-programs.c:538
 msgid "The name of the startup program cannot be empty"
 msgstr "O nome da aplicação de arranque não pode ser vazio"
 
-#: ../gnome-session/startup-programs.c:544
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "O comando de arranque não pode ser vazio"
 
-#: ../gnome-session/startup-programs.c:550
+#: ../gnome-session/startup-programs.c:546
 msgid "The startup command is not valid"
 msgstr "O comando de arranque não é válido"
 
-#: ../gnome-session/startup-programs.c:607
-msgid "New Startup Program"
-msgstr "Nova Aplicação de Arranque"
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Adicionar Aplicação de Arranque"
 
-#: ../gnome-session/startup-programs.c:651
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Editar Aplicação de Arranque"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Nova Aplicação de Arranque"
 
 #~ msgid "_Save current setup"
 #~ msgstr "_Gravar a configuração actual"
@@ -666,9 +686,6 @@ msgstr "Editar Aplicação de Arranque"
 
 #~ msgid "Save the current session"
 #~ msgstr "Gravar a sessão actual"
-
-#~ msgid "Startup Command"
-#~ msgstr "Comando de Arranque"
 
 #~ msgid "The session name cannot be empty"
 #~ msgstr "O nome de sessão não pode ser vazio"
@@ -706,9 +723,6 @@ msgstr "Editar Aplicação de Arranque"
 
 #~ msgid "_Startup Command:"
 #~ msgstr "Comando de _Arranque:"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Adicionar Aplicação de Arranque"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "Ocorreu um erro de activação desconhecido."
