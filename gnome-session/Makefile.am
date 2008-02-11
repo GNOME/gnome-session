@@ -16,12 +16,12 @@ INCLUDES =						\
 	-DDEFAULTDIR="\"$(defaultdir)\""		\
 	-DESD_SERVER="\"$(ESD_SERVER)\""		\
 	-DAT_SPI_REGISTRYD_DIR="\"$(AT_SPI_REGISTRYD_DIR)\""	\
-	-DTIME_UTILITY="\"$(TIME_UTILITY)\""
+	-DTIME_UTILITY="\"$(TIME_UTILITY)\""		\
+	-DSYSCONFDIR=\""$(sysconfdir)"\"
 
 # Used by the GNOME_PROGRAM_STANDARD_PROPERTIES macros
 STANDARD_PROPERTIES_CFLAGS =                                    \
 	-DPREFIX=\""$(prefix)"\"                                \
-	-DSYSCONFDIR=\""$(sysconfdir)"\"                        \
 	-DLIBDIR=\""$(libdir)"\"                                \
 	-DDATADIR=\""$(datadir)"\"                              \
 	$(NULL)

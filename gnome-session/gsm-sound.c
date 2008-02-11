@@ -9,8 +9,7 @@
 #endif
 #include "util.h"
 
-#include <libgnome/gnome-sound.h>
-#include <libgnome/gnome-triggers.h>
+#include <libgnome/libgnome.h>
 
 #define ENABLE_SOUND_KEY        "/desktop/gnome/sound/enable_esd"
 #define ENABLE_EVENT_SOUNDS_KEY "/desktop/gnome/sound/event_sounds"
@@ -138,10 +137,81 @@ sound_shutdown (void)
 #endif
 }
 
+static char *
+get_filename_from_string (const char *string)
+{
+  if (string[0] != '/')
+    {
+      return gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_SOUND, string,
+					TRUE, NULL);
+    }
+
+  return g_strdup (string);
+}
+
+static char *
+get_filename_for_sound_from_keyfile (const char *name, const char *soundlist_file)
+{
+  GKeyFile *keyfile;
+  char *sound;
+
+  keyfile = g_key_file_new ();
+
+  if (g_key_file_load_from_file (keyfile, soundlist_file, G_KEY_FILE_NONE, NULL) == FALSE)
+    {
+      g_key_file_free (keyfile);
+      return NULL;
+    }
+
+  sound = g_key_file_get_string (keyfile, name, "file", NULL);
+  g_key_file_free (keyfile);
+  if (sound != NULL)
+    {
+      char *res;
+
+      res = get_filename_from_string (sound);
+      if (res != NULL)
+        {
+          g_free (sound);
+	  return res;
+	}
+    }
+  g_free (sound);
+
+  return NULL;
+}
+
+static char *
+get_filename_for_sound (const char *name)
+{
+  char *soundlist, *sound;
+
+  /* Try to load the user configuration first */
+  soundlist = g_build_filename (g_get_home_dir(), ".gnome2", "sound",
+				"events", "gnome-2.soundlist", NULL);
+  sound = get_filename_for_sound_from_keyfile (name, soundlist);
+  g_free (soundlist);
+  if (sound != NULL)
+    return sound;
+
+  soundlist = g_build_filename (SYSCONFDIR, "sound", "events", "gnome-2.soundlist", NULL);
+  sound = get_filename_for_sound_from_keyfile (name, soundlist);
+  g_free (soundlist);
+
+  return sound;
+}
+
 static void
 play_sound_event (const char *name)
 {
-  gnome_triggers_do (NULL, NULL, "gnome-2", name, NULL);
+  char *sound;
+
+  sound = get_filename_for_sound (name);
+  if (sound != NULL)
+    {
+      gnome_sound_play (sound);
+      g_free (sound);
+    }
 }
 
 void 

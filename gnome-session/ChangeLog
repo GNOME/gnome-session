@@ -1,3 +1,15 @@
+2008-02-11  Bastien Nocera  <hadess@hadess.net>
+
+	reviewed by: Vincent Untz <vuntz@gnome.org>
+
+	* Makefile.am:
+	* gsm-sound.c: (get_filename_from_string),
+	(get_filename_for_sound_from_keyfile), (get_filename_for_sound),
+	(play_sound_event): Don't use libgnome's triggers to play the
+	login sound, as gnome-settings-daemon hasn't loaded the
+	samples in esound when we want to play that file, so referencing
+	it by sample name won't work (Helps: #466458)
+
 ==================== 2.21.90 ====================
 
 2008-01-21  Luca Ferretti  <elle.uca@libero.it>
