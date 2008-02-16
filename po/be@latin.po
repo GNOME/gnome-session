@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-08 11:01+0200\n"
-"PO-Revision-Date: 2007-12-08 11:02+0200\n"
+"POT-Creation-Date: 2008-02-17 00:32+0200\n"
+"PO-Revision-Date: 2008-02-17 00:32+0200\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <be-latin.open-tran.eu>\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,6 @@ msgid "Configure your sessions"
 msgstr "Kanfihuruj svaje sesii"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Sesii"
 
@@ -220,7 +219,7 @@ msgid "State"
 msgstr "Stan"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Prahrama"
 
@@ -285,7 +284,6 @@ msgid "PROGRAM..."
 msgstr "PRAHRAMA..."
 
 #: ../gnome-session/gnome-session-remove.c:176
-#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -294,12 +292,10 @@ msgstr ""
 "paahladzieć śpis prahramaŭ z dapamohaj --list.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
-#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Pamyłka: niemahčyma spałučycca z kiraŭnikom sesij\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
-#, c-format
 msgid "Currently registered clients:\n"
 msgstr "Dziejna zarehistravanyja klijenty:\n"
 
@@ -380,40 +376,40 @@ msgstr "Vy_kluč"
 msgid "_Restart the computer"
 msgstr "_Pieraŭruchom kamputar"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Akreśl nazvu sesii dla zahruzki"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "NAZVA"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Tolki čytaj zachavanyja sesii z fajłu default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Termin u milisekundach, kab čakać rehistracyi klijentaŭ, (0=zaŭsiody)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "ZATRYMKA"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Termin u milisekundach, kab čakać adkazu klijentaŭ (0=zaŭsiody)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Termin u milisekundach, kab čakać śmierci klijentaŭ (0=zaŭsiody)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Hetaja sesija ŭruchomlenaja pryvilejavanym karystalnikam"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -421,11 +417,11 @@ msgstr ""
 "Z pryčyn biaśpieki treba paźbiahać uruchamleńnia sesij pryvilejavanym "
 "karystalnikam. Kali mahčyma, ty pavinny ŭvachodzić zvyčajnym karystalnikam."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Praciahvaj"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -438,24 +434,24 @@ msgstr ""
 "\n"
 "Dziejnaja data <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Pamyłka ŭruchamleńnia pryłady kanfihuracyi času: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Hadzińnik kamputara niapravilna naładžany"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ihnaruj"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Papraŭ hadzińnik"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -468,15 +464,15 @@ msgstr ""
 "Mabyć, hetuju prablemu možna raźviazać, dadaŭšy\n"
 "%s da fajłu /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Uvajdzi ŭsio roŭna"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Pasprabuj znoŭ"
 
-#: ../gnome-session/main.c:694
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Kiruj sesijami GNOME"
 
@@ -542,45 +538,49 @@ msgstr "Kali ty nie zachavaješ, źmieny buduć zhublenyja."
 msgid "_Close without Saving"
 msgstr "_Začyni, nie zachavaŭšy"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Nałady sesijaŭ"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Dadatkovyja _prahramy aŭtaŭruchamleńnia:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Uklučanaja"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Prahramy aŭtaŭruchamleńnia"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Dziejnaja sesija"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr "_Aŭtamatyčna zapaminaj uruchomlenyja aplikacyi pry vychadzie"
 
-#: ../gnome-session/session-properties-capplet.c:356
+#: ../gnome-session/session-properties-capplet.c:353
 msgid "_Remember Currently Running Applications"
 msgstr "_Zapomni dziejna ŭruchomlenyja aplikacyi"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Opcyi sesii"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Tvaja sesija zachavanaja."
 
-#: ../gnome-session/session-properties-capplet.c:503
-#, c-format
+#: ../gnome-session/session-properties-capplet.c:500
 msgid "could not connect to the session manager\n"
 msgstr "niemahčyma spałučycca z kiraŭnikom sesij\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
-#, c-format
+#: ../gnome-session/session-properties-capplet.c:506
 msgid "session manager does not support GNOME extensions\n"
 msgstr "kiraŭnik sesij nie padtrymvaje pašyreńniaŭ GNOME\n"
 
@@ -596,7 +596,7 @@ msgstr "Užyj źmieny dla dziejnaj sesii"
 msgid "The list of programs in the session."
 msgstr "Śpis prahramaŭ u sesii."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "Dziejna ŭruchomlenyja _prahramy:"
 
