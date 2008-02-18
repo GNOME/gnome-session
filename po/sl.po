@@ -1,17 +1,15 @@
 # This file is distributed under the same license as the program package.
 #
-# Slovenian maintainer: Matej Urbančič <matej.urban@gmail.com>.
-#
 # Translators:
 # Andraz Tori <andraz.tori1@guest.arnes.si> 2000
-# Matej Urbančič <matej.urban@gmail.com>, 2007.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-17 04:30+0100\n"
-"PO-Revision-Date: 2007-11-19 15:34+0100\n"
+"PO-Revision-Date: 2008-02-17 21:51+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +81,6 @@ msgid "Configure your sessions"
 msgstr "Nastavite sejo"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Seje"
 
@@ -194,7 +191,7 @@ msgid "State"
 msgstr "Stanje"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Program"
 
@@ -317,50 +314,50 @@ msgstr "_Zaustavitev sistema"
 msgid "_Restart the computer"
 msgstr "_Znova zaženi računalnik"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
 msgstr "Navedite ime seje, ki naj se naloži"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 #: ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
 msgstr "IME"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Preberi le shranjene seje iz datoteke default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Koliko milisekund naj bo dolgo čakanje na registriranje odjemalcev (0=večno)"
 
+#: ../gnome-session/main.c:88
 #: ../gnome-session/main.c:89
 #: ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
 msgid "DELAY"
 msgstr "ZAKASNITEV"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Koliko milisekund naj bo dolgo čakanje na odziv odjemalcev (0=večno)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Koliko milisekund naj čakam na smrt odjemalcev (0=večno)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Seja je zagnana v skrbniškem načinu"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid "Running a session as a privileged user should be avoided for security reasons. If possible, you should log in as a normal user."
 msgstr "Seja je zagnana v skrbniškem načinu, kar ni najbolje iz varnostnih razlogov. Če je mogoče, morate biti vedno prijavljeni kot uporabnik."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Nadaljuj"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly configured. Please consider adjusting it.\n"
@@ -371,24 +368,24 @@ msgstr ""
 "\n"
 "Trenuten datum je <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Ni mogoče zagnati orodja za nastavitev časa: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Ura na računalniku ne pokaže pravilnega časa"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Prezri"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Ponastavi uro"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -401,15 +398,15 @@ msgstr ""
 "Ta problem bi se mogoče odpravil, če se v datoteko\n"
 "datoteko /etc/hosts doda %s."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Vseeno se prijavi"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Poskusi znova"
 
-#: ../gnome-session/main.c:694
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
 msgstr "- Upravljanje GNOME sej"
 
@@ -475,43 +472,49 @@ msgstr "Če ne shranite, bodo spremembe izgubljene"
 msgid "_Close without Saving"
 msgstr "_Zapri brez shranjevanja"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Nastavitve seje"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Dodatni programi ob _zagonu:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "omogoči"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Programi ob začetku"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Trenutna seja"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr "_Samodejno zaženi programe ob odjavi iz sistema"
 
-#: ../gnome-session/session-properties-capplet.c:356
+#: ../gnome-session/session-properties-capplet.c:353
 msgid "_Remember Currently Running Applications"
 msgstr "_Zapomni si trenutno zagnane programe"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Možnosti seje"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Seja je bila shranjena."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
 msgid "could not connect to the session manager\n"
 msgstr "ni se mogoče povezati z upravljavcem seje\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
 msgid "session manager does not support GNOME extensions\n"
 msgstr "upravljavec sej ne podpira GNOME razširitev\n"
 
@@ -527,7 +530,7 @@ msgstr "Uveljavi spremembe na trenutni seji"
 msgid "The list of programs in the session."
 msgstr "Seznam programov v seji."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "Trenutno zagnani _programi:"
 
