@@ -5,6 +5,12 @@ default_session_DATA =				\
 	metacity.desktop			\
 	nautilus.desktop
 
+@INTLTOOL_DESKTOP_RULE@
+
+xsessiondir = $(datadir)/xsessions
+xsession_in_files = gnome.desktop.in
+xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
+
 @INTLTOOL_SCHEMAS_RULE@
 
 schemas_in_files = gnome-session.schemas.in
