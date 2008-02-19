@@ -26,7 +26,7 @@ struct _GsmAppResumed
 	GsmApp parent;
 
 	char *program, *restart_command, *discard_command;
-	gboolean discard_after_resume;
+	gboolean discard_on_resume;
 };
 
 struct _GsmAppResumedClass
@@ -45,6 +45,7 @@ GType   gsm_app_resumed_get_type (void) G_GNUC_CONST;
 GsmApp *gsm_app_resumed_new_from_session        (GKeyFile   *session_file,
 						 const char *group,
 						 gboolean    discard);
+
 GsmApp *gsm_app_resumed_new_from_legacy_session (GKeyFile   *session_file,
 						 int         n);
 

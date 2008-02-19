@@ -1,5 +1,13 @@
 2008-02-19  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/Makefile.am: added app-resumed.[ch] to the build.
+	* gnome-session/app-resumed.[ch]: fix attribute name. 
+	* gnome-session/session.c (gsm_session_new, 
+	append_saved_session_apps): uncomment legacy saved session loading 
+	code.
+
+2008-02-19  Lucas Rocha  <lucasr@gnome.org>
+
 	* data/Makefile.am: added autotools bits for session .desktop file.
 	* data/gnome.desktop.in: added xsession .desktop file.
 

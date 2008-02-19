@@ -23,9 +23,7 @@
 #include <string.h>
 
 #include "app-autostart.h"
-#if 0
 #include "app-resumed.h"
-#endif
 #include "logout-dialog.h"
 #include "power-manager.h"
 #include "gdm.h"
@@ -36,9 +34,8 @@
 
 static void append_autostart_apps     (GsmSession *session,
 				       const char *dir);
-#if 0
+
 static void append_saved_session_apps (GsmSession *session);
-#endif
 
 static void append_required_apps      (GsmSession *session);
 
@@ -149,9 +146,7 @@ gsm_session_new (gboolean failsafe)
   append_autostart_apps (session, dir);
   g_free (dir);
 
-#if 0
   append_saved_session_apps (session);
-#endif
 
   /* We don't do this in the failsafe case, because the default
    * session should include all requirements anyway.
@@ -245,6 +240,7 @@ append_modern_session_apps (GsmSession *session,
 
   g_key_file_free (saved);
 }
+#endif
 
 /* FIXME: need to make sure this only happens once */
 static void
@@ -277,6 +273,7 @@ append_saved_session_apps (GsmSession *session)
 {
   char *session_filename;
 
+#if 0
   /* Try resuming last session first */
   session_filename = g_build_filename (g_get_home_dir (), ".gnome2",
 				       "session-state", "last", NULL);
@@ -298,6 +295,7 @@ append_saved_session_apps (GsmSession *session)
       return;
     }
   g_free (session_filename);
+#endif
 
   /* Finally, try resuming from the old gnome-session's files */
   session_filename = g_build_filename (g_get_home_dir (), ".gnome2",
@@ -310,7 +308,6 @@ append_saved_session_apps (GsmSession *session)
     }
   g_free (session_filename);
 }
-#endif
 
 static void
 append_required_apps (GsmSession *session)

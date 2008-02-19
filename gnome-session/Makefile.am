@@ -24,6 +24,8 @@ bin_PROGRAMS =					\
 gnome_session_SOURCES =				\
 	app-autostart.c				\
 	app-autostart.h				\
+	app-resumed.c				\
+	app-resumed.h				\
 	app.c					\
 	app.h					\
 	client-xsmp.c				\

@@ -80,12 +80,14 @@ gsm_app_resumed_new_from_legacy_session (GKeyFile *session_file, int n)
   key = g_strdup_printf ("%d," SmProgram, n);
   val = g_key_file_get_string (session_file, "Default", key, NULL);
   g_free (key);
+
   if (val)
     app->program = val;
 
   key = g_strdup_printf ("%d," SmRestartCommand, n);
   val = g_key_file_get_string (session_file, "Default", key, NULL);
   g_free (key);
+
   if (val)
     app->restart_command = val;
 
@@ -95,7 +97,7 @@ gsm_app_resumed_new_from_legacy_session (GKeyFile *session_file, int n)
    */
   app->discard_on_resume = FALSE;
 
-  return (GsmApp *)app;
+  return (GsmApp *) app;
 }
 
 /**
@@ -110,6 +112,7 @@ gsm_app_resumed_new_from_legacy_session (GKeyFile *session_file, int n)
  *
  * Return value: the new #GsmApp, or %NULL on error
  **/
+#if 0
 GsmApp *
 gsm_app_resumed_new_from_session (GKeyFile *session_file, const char *group,
 				  gboolean discard)
@@ -157,6 +160,7 @@ gsm_app_resumed_new_from_session (GKeyFile *session_file, const char *group,
    */
   return (GsmApp *)app;
 }
+#endif
 
 static pid_t
 launch (GsmApp *app, GError **err)
