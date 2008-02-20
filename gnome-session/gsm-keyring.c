@@ -53,10 +53,10 @@ gsm_keyring_daemon_start (void)
 {
   GError *err;
   char *standard_out;
-  char **lines;
+  char **lines, **l;
   int status;
   long pid;
-  char *pid_str, *end;
+  char *t, *end;
   const char *old_keyring;
   const char *display;
   char *argv[2];
@@ -66,10 +66,7 @@ gsm_keyring_daemon_start (void)
   if (old_keyring != NULL &&
       access (old_keyring, R_OK | W_OK) == 0)
     {
-      display = g_getenv ("DISPLAY");
-      if (display != NULL)
-        gnome_keyring_daemon_set_display_sync (display); 
-
+      gnome_keyring_daemon_prepare_environment_sync ();
       return;
     }  
 
@@ -100,23 +97,34 @@ gsm_keyring_daemon_start (void)
 	  WEXITSTATUS (status) == 0 &&
 	  standard_out != NULL)
         {
-	  lines = g_strsplit (standard_out, "\n", 3);
+	  lines = g_strsplit (standard_out, "\n", 0);
 
-	  if (lines[0] != NULL &&
-	      lines[1] != NULL &&
-	      g_str_has_prefix (lines[1], "GNOME_KEYRING_PID="))
+	  for (l = lines; *l; ++l)
 	    {
-	      pid_str = lines[1] + strlen ("GNOME_KEYRING_PID=");
-	      pid = strtol (pid_str, &end, 10);
-	      if (end != pid_str)
+	      /* split the line into name=value */
+	      t = strchr (*l, '=');
+	      if (!t)
+		continue;
+              /* make *l be the name and t the value */
+              *t = 0;
+              t++;
+
+	      /* everything that comes out should be an env var */
+	      if (g_str_equal (*l, "GNOME_KEYRING_SOCKET"))
+		g_setenv (*l, t, TRUE);
+
+	      /* track the daemon's PID */
+	      if (g_str_equal (*l, "GNOME_KEYRING_PID")) 
 		{
-		  gnome_keyring_daemon_pid = pid;
-		  g_setenv ("GNOME_KEYRING_SOCKET",
-			    lines[0] + strlen ("GNOME_KEYRING_SOCKET="), TRUE);
+		  pid = strtol (t, &end, 10);
+		  if (end != t)
+		      gnome_keyring_daemon_pid = pid;
 		}
 	    }
 
 	  g_strfreev (lines);
+
+	  gnome_keyring_daemon_prepare_environment_sync ();
         }
       else
 	{
