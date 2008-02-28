@@ -14,7 +14,6 @@ INCLUDES =						\
 	-DRSH_COMMAND=\""$(RSH_COMMAND)\""		\
 	-DGCONFTOOL_CMD=\""$(GCONFTOOL)\""		\
 	-DDEFAULTDIR="\"$(defaultdir)\""		\
-	-DESD_SERVER="\"$(ESD_SERVER)\""		\
 	-DAT_SPI_REGISTRYD_DIR="\"$(AT_SPI_REGISTRYD_DIR)\""	\
 	-DTIME_UTILITY="\"$(TIME_UTILITY)\""		\
 	-DSYSCONFDIR=\""$(sysconfdir)"\"

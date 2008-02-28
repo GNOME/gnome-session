@@ -51,7 +51,6 @@ if test "x$enable_deprecations" = "xyes"; then
    AC_SUBST([DISABLE_DEPRECATED_CFLAGS])
 fi
 
-ESOUND_REQUIRED=0.2.26
 GLIB_REQUIRED=2.13.0
 LIBGNOMEUI_REQUIRED=2.2.0
 GTK_REQUIRED=2.11.1
@@ -62,40 +61,7 @@ dnl pkg-config dependency checks
 
 PKG_PROG_PKG_CONFIG()
 
-dnl We first check for esound and audiofile (which has conditional
-dnl support built in)
-
-AC_MSG_CHECKING([whether ESounD support is requested])
-AC_ARG_ENABLE([esd],
-	AS_HELP_STRING([--enable-esd],[Enable ESounD (default=yes)]),
-	[enable_esd=$enableval],
-	[enable_esd=yes])
-AC_MSG_RESULT([$enable_esd])
-
-if test x$enable_esd = xyes; then
-	ESOUND_MODULE="esound >= $ESOUND_REQUIRED"
-	PKG_CHECK_MODULES(ESOUND, $ESOUND_MODULE)
-	AC_DEFINE(HAVE_ESD, 1, [Define if you have the ESound Daemon])
-
-	ESDSERVERDIR=`$PKG_CONFIG --variable=esd_serverdir esound`
-	old_path=$PATH
-	if test x"$ESDSERVERDIR" != x; then
-		PATH=$ESDSERVERDIR:$PATH
-	fi
-
-	AC_PATH_PROG(ESD_SERVER, esd, no)
-	if test x"$ESD_SERVER" = xno; then
-		AC_MSG_ERROR([esd executable not found in your path - should be installed with ESound])
-	fi
-
-	AC_SUBST(ESD_SERVER)
-	PATH=$old_path
-
-else
-	ESOUND_MODULE=""
-fi
-
-PKG_CHECK_MODULES(GNOME_SESSION, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED $ESOUND_MODULE dbus-glib-1 >= $DBUS_GLIB_REQUIRED gnome-settings-daemon gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
+PKG_CHECK_MODULES(GNOME_SESSION, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dbus-glib-1 >= $DBUS_GLIB_REQUIRED gnome-settings-daemon gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
 
 dnl Check if libnotify is present
 

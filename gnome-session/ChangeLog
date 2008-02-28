@@ -1,3 +1,17 @@
+2008-02-28  Bastien Nocera  <hadess@hadess.net>
+
+	* Makefile.am: Remove unneeded definition
+
+	* gsm-gsd.c (plugin_activated), (gsm_gsd_start): when the sound server
+	starts, play back the login sound if it's used
+
+	* gsm-sound.c (sound_init), (play_sound_event), (gsm_sound_logout):
+	* main.c (main): Let gnome-settings-daemon launch the sound server,
+	and as the sample are not loaded when we play back the login sound,
+	remove our own loading code and use libgnome sound APIs
+
+	(Closes: #466458)
+
 ==================== 2.21.91 ====================
 
 2008-02-11  Bastien Nocera  <hadess@hadess.net>

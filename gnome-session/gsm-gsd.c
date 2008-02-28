@@ -1,9 +1,11 @@
 #include <config.h>
 
 #include "gsm-gsd.h"
+#include "gsm-sound.h"
 #include "util.h"
 
 #include <time.h>
+#include <string.h>
 #include <glib/gi18n.h>
 
 #include <dbus/dbus-glib-lowlevel.h>
@@ -111,6 +113,21 @@ name_owner_changed (DBusGProxy *proxy,
     }
 }
 
+static void
+plugin_activated (DBusGProxy *proxy,
+		  const char *name,
+		  GnomeSettingsData *gsd)
+{
+  if (name == NULL || strcmp (name, "sound") != 0)
+    return;
+
+  /* Play the login sound when the session is activated */
+  gsm_sound_login ();
+
+  dbus_g_proxy_disconnect_signal(gsd->dbus_proxy, "PluginActivated",
+				 G_CALLBACK(plugin_activated), gsd);
+}
+
 void
 gsm_gsd_start (void)
 {
@@ -172,6 +189,20 @@ gsm_gsd_start (void)
         } 
       else
         {
+          /* Connect to the signal before we wake the settings daemon
+           * up, otherwise, it might have the sound system ready before
+           * we're actually listening */
+	  dbus_g_proxy_add_signal (gsd.dbus_proxy,
+				   "PluginActivated",
+				   G_TYPE_STRING,
+				   G_TYPE_INVALID);
+
+	  dbus_g_proxy_connect_signal (gsd.dbus_proxy,
+				       "PluginActivated",
+				       G_CALLBACK (plugin_activated),
+				       &gsd,
+				       NULL);
+
           if (!org_gnome_SettingsDaemon_awake(gsd.dbus_proxy, &error))
             {
               /* Method failed, the GError is set, let's warn everyone */
@@ -199,6 +230,7 @@ gsm_gsd_start (void)
                                            G_CALLBACK (name_owner_changed),
                                            &gsd,
                                            NULL);
+
             }
         }
     }

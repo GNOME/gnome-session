@@ -776,8 +776,6 @@ main (int argc, char *argv[])
   g_setenv ("GNOME_DESKTOP_SESSION_ID", session_name, TRUE);
   the_session = read_session (session_name);
 
-  gsm_sound_login ();
-
   gsm_remote_desktop_start ();
 
   if (splashing)
