@@ -1,14 +1,14 @@
-# Italian translation for gnome-desktop
+# Italian translation for gnome-session
 # Copyright (C) 1997-2007 Free Software Foundation, Inc.
 # Copyright (C) 1997-2002 Christopher R. Gabriel <cgabriel@pluto.linux.it>
-# Copyright (C) 2004-2007 Luca Ferretti <elle.uca@libero.it>
+# Copyright (C) 2004-2008 Luca Ferretti <elle.uca@libero.it>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.21.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-21 22:07+0100\n"
-"PO-Revision-Date: 2008-01-21 22:08+0100\n"
+"PO-Revision-Date: 2008-03-03 21:37+0100\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -50,17 +50,19 @@ msgstr ""
 msgid "Logout prompt"
 msgstr "Conferma fine sessione"
 
+# GNOME-2-22
 #: ../data/gnome-session.schemas.in.h:6
 msgid "Preferred Image to use for login splash screen"
-msgstr "Immagine preferita da utilizzare per schermata di avvio"
+msgstr "Immagine preferita da utilizzare come schermata di accesso"
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Salva sessioni"
 
+# GNOME-2-22
 #: ../data/gnome-session.schemas.in.h:8
 msgid "Selected option in the log out dialog"
-msgstr "Opzione selezionata nel dialogo di logout"
+msgstr "Opzione selezionata nel dialogo di termine sessione"
 
 #: ../data/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
@@ -70,15 +72,13 @@ msgstr "Mostra schermata di avvio"
 msgid "Show the splash screen when the session starts up"
 msgstr "Mostra la schermata di avvio quando viene avviata la sessione"
 
+# GNOME-2-22
 #: ../data/gnome-session.schemas.in.h:11
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
-msgstr ""
-"Questo è un valore di percorso relativo basato sulla directory $datadir/"
-"pixmaps/. Nomi di sottodirectory e immagini sono valori validi. La modifica "
-"di questo valore ha effetto al successivo login."
+msgstr "Questo è un valore di percorso relativo basato sulla directory $datadir/pixmaps/. Nomi di sottodirectory e immagini sono valori validi. La modifica di questo valore ha effetto al successivo accesso."
 
 #: ../data/gnome-session.schemas.in.h:12
 msgid ""
@@ -94,9 +94,10 @@ msgstr ""
 msgid "GNOME"
 msgstr "GNOME"
 
+# GNOME-2-22
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "Questa session esegui il login in GNOME"
+msgstr "Questa sessione esegue l'accesso in GNOME"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -180,33 +181,37 @@ msgstr "Stato non riportato in tempo utile."
 msgid "Normal"
 msgstr "Normale"
 
+# GNOME-2-22
 #: ../gnome-session/gsm-client-list.c:60
 msgid "Unaffected by logouts but can die."
-msgstr "Non affetto dal termine della sessione, ma può terminare."
+msgstr "Inalterabile dal termine della sessione, ma può terminare."
 
 #: ../gnome-session/gsm-client-list.c:62
 msgid "Restart"
 msgstr "Riavvia"
 
+# GNOME-2-22
 #: ../gnome-session/gsm-client-list.c:62
 msgid "Never allowed to die."
-msgstr "Non terminare mai"
+msgstr "Mai concesso di terminare."
 
 #: ../gnome-session/gsm-client-list.c:64
 msgid "Trash"
 msgstr "Cestino"
 
+# GNOME-2-22
 #: ../gnome-session/gsm-client-list.c:64
 msgid "Discarded on logout and can die."
-msgstr "Ignorato al termine della sessione e può terminare."
+msgstr "Abbandonato al termine della sessione e può terminare."
 
 #: ../gnome-session/gsm-client-list.c:66
 msgid "Settings"
 msgstr "Impostazioni"
 
+# GNOME-2-22
 #: ../gnome-session/gsm-client-list.c:66
 msgid "Always started on every login."
-msgstr "Avviato ad ogni login."
+msgstr "Avviato sempre a ogni accesso."
 
 #: ../gnome-session/gsm-client-list.c:190
 msgid "Order"
@@ -258,21 +263,18 @@ msgstr ""
 "L'ultimo messaggio di errore è stato:\n"
 "\n"
 
+# GNOME-2-22
 #: ../gnome-session/gsm-gsd.c:62
 msgid ""
 "\n"
 "\n"
 "GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME tenterà di riavviare il demone delle impostazioni al prossimo login."
+msgstr "\n\nGNOME tenterà di riavviare il demone delle impostazioni al prossimo accesso."
 
 #: ../gnome-session/gsm-gsd.c:145
 msgid "The Settings Daemon restarted too many times."
 msgstr "Il demone delle impostazioni è stato riavviato troppe volte."
 
-# NEW
 #. Name is mandatory and might not be set by the caller
 #: ../gnome-session/gsm-keyfile.c:43
 msgid "No Name"
@@ -310,6 +312,7 @@ msgstr "Client attualmente registrati:\n"
 msgid "Couldn't find program %s in session\n"
 msgstr "Impossibile trovare il programma «%s» nella sessione\n"
 
+# GNOME-2-22
 #. At least try to tell the user something.
 #: ../gnome-session/ice.c:355
 #, c-format
@@ -317,12 +320,9 @@ msgid ""
 "The GNOME session manager cannot start properly.  Please report this as a "
 "GNOME bug. Please include this ICE failure message in the bug report:  '%"
 "s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"Non è possibile avviare correttamente il gestore di sessione di GNOME. "
-"Possibilmente, segnalare tale evento come bug di GNOME. Includere nella "
-"segnalazione di bug il messaggio di fallimento di ICE: «%s». Nel frattempo è "
-"possibile provare a effettuare il login usando la sessione d'emergenza."
+msgstr "Non è possibile avviare correttamente il gestore di sessione di GNOME. Possibilmente, segnalare tale evento come bug di GNOME. Includere nella segnalazione di bug il messaggio di fallimento di ICE: «%s». Nel frattempo è possibile provare a effettuare l'accesso usando la sessione d'emergenza."
 
+# GNOME-2-22
 #: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
@@ -330,13 +330,9 @@ msgid ""
 "this as a GNOME bug.  Sometimes this error may occur if the file's directory "
 "is unwritable, you could try logging in via the failsafe session and "
 "ensuring that it is."
-msgstr ""
-"Il gestore di sessioni di GNOME non è stato in grado di bloccare il file «%"
-"s». Possibilmente, segnalare tale evento come bug di GNOME. Talvolta tale "
-"errore potrebbe verificarsi se la directory del file non è scrivibile; "
-"provare a effettuare il login con la sessione d'emergenza e verificare tale "
-"proprietà."
+msgstr "Il gestore di sessioni di GNOME non è stato in grado di bloccare il file «%s». Possibilmente, segnalare tale evento come bug di GNOME. Talvolta tale errore potrebbe verificarsi se la directory del file non è scrivibile; provare a effettuare l'accesso con la sessione d'emergenza e verificare tale proprietà."
 
+# GNOME-2-22
 # %s è il nome del file, tolgo i : che lo precedono nella traduzione
 #: ../gnome-session/ice.c:541
 #, c-format
@@ -344,23 +340,16 @@ msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
 "exists it must be readable by you for GNOME to work properly.  Try logging "
 "in with the failsafe session and removing this file."
-msgstr ""
-"Il gestore di sessione di GNOME non è stato in grado di leggere il file «%"
-"s». Se questo file esiste, deve essere leggibile per consentire a GNOME di "
-"operare correttamente. Provare a effettuare il login con la sessione "
-"d'emergenza e a rimuovere questo file."
+msgstr "Il gestore di sessione di GNOME non è stato in grado di leggere il file «%s». Se questo file esiste, deve essere leggibile per consentire a GNOME di operare correttamente. Provare a effettuare l'accesso con la sessione d'emergenza e a rimuovere questo file."
 
+# GNOME-2-22
 #: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
 "to function properly.  Try logging in with the failsafe session and removing "
 "this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"Impossibile scrivere sul file «%s». Questo file deve essere scrivibile "
-"affinché GNOME funzioni correttamente. Provare a effettuare il login con la "
-"sessione d'emergenza e a rimuovere questo file. Inoltre assicurarsi che la "
-"directory del file sia scrivibile."
+msgstr "Impossibile scrivere sul file «%s». Questo file deve essere scrivibile affinché GNOME funzioni correttamente. Provare a effettuare l'accesso con la sessione d'emergenza e a rimuovere questo file. Inoltre assicurarsi che la directory del file sia scrivibile."
 
 #: ../gnome-session/logout.c:392
 msgid "Are you sure you want to log out?"
@@ -419,29 +408,22 @@ msgstr ""
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Tempo speso in attesa della morte del client (in ms, 0 = infinito)"
 
-# NEW
-#
 # cambiata un po' la forma...
 #: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Si sta eseguendo questa sesssione come utente con privilegi"
 
-# NEW
+# GNOME-2-22
 #: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
-msgstr ""
-"Per ragioni di sicurezza, l'esecuzione di una sessione come utente con "
-"privilegi dovrebbe essere evitato. Se possibile, effettuare il login come "
-"utente normale."
+msgstr "Per ragioni di sicurezza, l'esecuzione di una sessione come utente con privilegi dovrebbe essere evitato. Se possibile, accedere come utente normale."
 
-# NEW
 #: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Continua"
 
-# NEW
 #: ../gnome-session/main.c:256
 #, c-format
 msgid ""
@@ -455,27 +437,21 @@ msgstr ""
 "\n"
 "La data attuale è <b>%s</b>."
 
-# NEW
 #: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Lancio dello strumento di configurazione dell'ora fallito: %s"
 
-# NEW
-#
 # un orogologio non è "sbagliato" tout-cour
 #: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "L'orologio del computer sembra non essere regolato"
 
-# NEW
 #: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignora"
 
-# NEW
-#
-# credo sia un pulsante, rimosso l'articolo
+# Credo sia un pulsante, rimosso l'articolo
 # per coerenza con il resto del desktop
 #: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
@@ -494,9 +470,10 @@ msgstr ""
 "È eventualmente possibile correggere l'errore aggiungendo\n"
 "%s al file /etc/hosts."
 
+# GNOME-2-22
 #: ../gnome-session/main.c:558
 msgid "Log in Anyway"
-msgstr "Entra comunque"
+msgstr "Accedi comunque"
 
 #: ../gnome-session/main.c:559
 msgid "Try Again"
@@ -581,7 +558,6 @@ msgstr "_Programmi d'avvio aggiuntivi:"
 msgid "Enabled"
 msgstr "Abilitato"
 
-# NEW
 #: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Programmi d'avvio"
@@ -594,8 +570,7 @@ msgstr "Sessione corrente"
 #. Autosave
 #: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"Memorizzare _automaticamente le applicazioni in uso terminando la sessione"
+msgstr "Memorizzare _automaticamente le applicazioni in esecuzione terminando la sessione"
 
 # è un pulsante
 #: ../gnome-session/session-properties-capplet.c:353
