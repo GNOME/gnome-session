@@ -27,6 +27,13 @@
 #include "app-autostart.h"
 #include "gconf.h"
 
+enum {
+  CONDITION_CHANGED,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
+
 static gboolean is_disabled (GsmApp *app);
 
 G_DEFINE_TYPE (GsmAppAutostart, gsm_app_autostart, GSM_TYPE_APP)
@@ -40,9 +47,21 @@ gsm_app_autostart_init (GsmAppAutostart *app)
 static void
 gsm_app_autostart_class_init (GsmAppAutostartClass *klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GsmAppClass *app_class = GSM_APP_CLASS (klass);
 
   app_class->is_disabled = is_disabled;
+
+  signals[CONDITION_CHANGED] =
+    g_signal_new ("condition-changed",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GsmAppAutostartClass, condition_changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__BOOLEAN,
+                  G_TYPE_NONE,
+                  1,
+                  G_TYPE_BOOLEAN);
 }
 
 GsmApp *
@@ -62,6 +81,25 @@ gsm_app_autostart_new (const char *desktop_file,
     }
 
   return app;
+}
+
+static void
+gconf_condition_cb (GConfClient *client,
+                    guint       cnxn_id,
+                    GConfEntry  *entry,
+                    gpointer    user_data)
+{
+  GsmApp *app;
+  gboolean condition = FALSE;
+
+  g_return_if_fail (GSM_IS_APP (user_data));
+
+  app = GSM_APP (user_data);
+
+  if (entry->value != NULL && entry->value->type == GCONF_VALUE_BOOL) 
+    condition = gconf_value_get_bool (entry->value);
+
+  g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
 }
 
 static gboolean
@@ -118,7 +156,7 @@ is_disabled (GsmApp *app)
 	  disabled = !g_file_test (file, G_FILE_TEST_EXISTS);
 	  g_free (file);
 	}
-      else if (!g_ascii_strncasecmp (condition, "unless-exists ", len) && key)
+      else if (!g_ascii_strncasecmp (condition, "unless-exists", len) && key)
 	{
 	  char *file = g_build_filename (g_get_user_config_dir (), key, NULL);
 	  disabled = g_file_test (file, G_FILE_TEST_EXISTS);
@@ -128,8 +166,30 @@ is_disabled (GsmApp *app)
 	{
 	  if (key)
 	    {
-	      disabled = !gconf_client_get_bool (gsm_gconf_get_client (),
-						 key, NULL);
+              GConfClient *client;
+              gchar *dir;
+
+              client = gsm_gconf_get_client ();
+
+              g_assert (GCONF_IS_CLIENT (client));
+
+	      disabled = !gconf_client_get_bool (client, key, NULL);
+
+              dir = g_path_get_dirname (key);
+
+              g_debug ("DIR: %s", dir);
+
+              /* Add key dir in order to be able to keep track
+               * of changed in the key later */
+              gconf_client_add_dir (client, dir,
+                                    GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+
+              g_free (dir);
+
+              gconf_client_notify_add (client,
+                                       key,
+                                       gconf_condition_cb,
+                                       app, NULL, NULL);
 	    }
 	  else
 	    disabled = FALSE;
@@ -138,6 +198,7 @@ is_disabled (GsmApp *app)
 	disabled = TRUE;
 
       g_free (condition);
+
       if (disabled)
 	{
 	  g_debug ("app %s is disabled by AutostartCondition",

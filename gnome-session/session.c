@@ -379,6 +379,51 @@ end_phase (GsmSession *session)
 }
 
 static void
+app_condition_changed (GsmApp *app, gboolean condition, gpointer data)
+{
+  GsmSession *session;
+
+  g_return_if_fail (data != NULL);
+
+  session = (GsmSession *) data;
+
+  if (condition)
+    {
+      GError *error = NULL;
+
+      /* FIXME: if this enough to check if app is running before launching it? */
+      if (app->pid <= 0)
+        gsm_app_launch (app, &error);
+
+      if (error != NULL)
+        {
+          g_warning ("Not able to launch autostart app from its condition: %s",
+                     error->message);
+
+          g_error_free (error);
+        }
+    }
+  else
+    {
+      GSList *cl = NULL;
+
+      for (cl = session->clients; cl; cl = cl->next)
+        {
+          GsmClient *client = GSM_CLIENT (cl->data);
+
+          if (!strcmp (app->client_id, 
+                       gsm_client_get_client_id (client)))
+            {
+              /* Kill client in case condition if false */
+              gsm_client_die (client);
+              app->pid = -1; 
+              break;
+            }
+        }
+    }
+}
+
+static void
 app_registered (GsmApp *app, gpointer data)
 {
   GsmSession *session = data;
@@ -434,8 +479,14 @@ start_phase (GsmSession *session)
   for (a = session->apps; a; a = a->next)
     {
       app = a->data;
+
       if (gsm_app_get_phase (app) != session->phase)
 	continue;
+
+      /* Keep track of app autostart condition in order to react
+       * accordingly in the future. */
+      g_signal_connect (app, "condition-changed",
+        		G_CALLBACK (app_condition_changed), session);
 
       if (gsm_app_is_disabled (app))
 	continue;
@@ -453,7 +504,6 @@ start_phase (GsmSession *session)
 
 	  if (session->phase < GSM_SESSION_PHASE_APPLICATION)
 	    {
-
 	      g_signal_connect (app, "registered",
 				G_CALLBACK (app_registered), session);
 
@@ -717,7 +767,7 @@ initiate_shutdown (GsmSession *session)
 
   for (cl = session->clients; cl; cl = cl->next)
     {
-      GsmClient *client = cl->data;
+      GsmClient *client = GSM_CLIENT (cl->data);
 
       session->shutdown_clients =
 	g_slist_prepend (session->shutdown_clients, client);

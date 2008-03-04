@@ -589,8 +589,6 @@ set_properties_callback (SmsConn     conn,
       delete_property (client, props[i]->name);
       g_ptr_array_add (client->props, props[i]);
 
-      g_debug ("TAMANHO DO ARRAY: %d", client->props->len);
-
       debug_print_property (props[i]);
 
       if (!strcmp (props[i]->name, SmProgram))

@@ -46,6 +46,8 @@ struct _GsmAppAutostartClass
 {
   GsmAppClass parent_class;
 
+  /* signals */
+  void     (*condition_changed)  (GsmApp *app, gboolean condition);
 };
 
 GType   gsm_app_autostart_get_type           (void) G_GNUC_CONST;

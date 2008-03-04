@@ -56,7 +56,7 @@ G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 static void
 gsm_app_init (GsmApp *app)
 {
-  ;
+  app->pid = -1;
 }
 
 static void
