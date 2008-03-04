@@ -1,5 +1,8 @@
 2008-04-04  Lucas Rocha  <lucasr@gnome.org>
 
+	Added support for stopping/starting autostart apps based on their
+	AutostartCondition key definition (GConf-only for now).
+
 	* gnome-session/app-autostart.[ch]: added condition-changed signal and
 	keep track of gconf key changes from the .desktop AutostartCondition
 	key.
