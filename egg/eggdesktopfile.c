@@ -1180,6 +1180,12 @@ egg_desktop_file_launchv (EggDesktopFile *desktop_file,
       startup_id = NULL;
 #endif /* HAVE_GDK_X11_DISPLAY_BROADCAST_STARTUP_MESSAGE */
 
+      if (env != NULL)
+        {
+          /* Add NULL item in the end of array  */
+          g_ptr_array_set_size (env, env->len + 1);
+        }
+
       current_success =
 	g_spawn_async_with_pipes (directory,
 				  argv,

@@ -1,5 +1,10 @@
 2008-04-05  Lucas Rocha  <lucasr@gnome.org>
 
+	* egg/eggdesktopfile.c (egg_desktop_file_launchv): add a NULL item to
+	the environment vars array in order to avoid invalid memory access.
+
+2008-04-05  Lucas Rocha  <lucasr@gnome.org>
+
 	* gnome-session/client-xsmp.c (debug_print_property): removed useless
 	debug message.
 
