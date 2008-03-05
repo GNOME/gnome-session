@@ -515,7 +515,6 @@ debug_print_property (SmProp *prop)
 	  g_string_append_printf (tmp, "'%.*s' ", prop->vals[i].length,
 				  (char *)prop->vals[i].value);
 	}
-      g_debug ("EH UM ARRAY...");
       g_debug ("  %s = %s", prop->name, tmp->str);
       g_string_free (tmp, TRUE);
       break;
