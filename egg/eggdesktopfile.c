@@ -1183,7 +1183,7 @@ egg_desktop_file_launchv (EggDesktopFile *desktop_file,
       if (env != NULL)
         {
           /* Add NULL item in the end of array  */
-          g_ptr_array_set_size (env, env->len + 1);
+          g_ptr_array_add (env, NULL);
         }
 
       current_success =
