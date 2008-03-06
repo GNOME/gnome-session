@@ -237,6 +237,8 @@ egg_desktop_file_new_from_key_file (GKeyFile    *key_file,
   else
     desktop_file->type = EGG_DESKTOP_FILE_TYPE_UNRECOGNIZED;
 
+  g_free (type);
+
   /* Check the Icon key */
   desktop_file->icon = g_key_file_get_string (key_file,
 					      EGG_DESKTOP_FILE_GROUP,

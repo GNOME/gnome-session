@@ -142,8 +142,11 @@ gsm_xsmp_init (void)
 	{
 	  local_listener = i;
 	  xsmp_network_id = g_strdup (id);
+          g_free (id);
 	  break;
 	}
+
+      g_free (id);
     }
 
   if (local_listener == -1)
