@@ -1,29 +1,23 @@
 # translation of sk.po to Slovak
 # Slovak translation of sk.po
-# Copyright (C) 2002, 2003, 2005, 2006, 2007 Free Software Foundation, Inc.
-#
-# $Id: sk.po,v 1.121 2006/01/27 09:04:42 marcel Exp $
-#
+# Copyright (C) 2002, 2003, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2002,2003.
 # Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002.
 # Stanislav Visnovsky <visnovsky@kde.org>, 2003.
-# Marcel Telka <marcel@telka.sk>, 2005, 2006.
 # Peter Tuharsky <tuharsky@misbb.sk>, 2007.
+# Marcel Telka <marcel@telka.sk>, 2005, 2006, 2008.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: sk\n"
+"Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-15 16:23+0200\n"
-"PO-Revision-Date: 2007-09-12 13:48+0100\n"
-"Last-Translator: Peter Tuhársky <tuharsky@misbb.sk>\n"
+"POT-Creation-Date: 2008-03-09 09:07+0100\n"
+"PO-Revision-Date: 2008-03-09 09:07+0100\n"
+"Last-Translator: Marcel Telka <marcel@telka.sk>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=3; plural= (n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Poedit-Language: Slovak\n"
-"X-Poedit-Country: SLOVENIA\n"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
@@ -98,12 +92,19 @@ msgstr ""
 "hodnoty sú \"logout\" pre odhlásenie, \"shutdown\" pre zastavenie systému a "
 "\"restart\" pre reštartovanie systému."
 
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Táto relácia vás prihlási do GNOME"
+
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Nastavenie vašich relácií"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Relácie"
 
@@ -114,9 +115,9 @@ msgid ""
 "is installed. Your session has been started without assistive technology "
 "support."
 msgstr ""
-"Pre túto reláciu bola vyžiadaná podpora technológií prístupnotsti, ale "
+"Pre túto reláciu bola vyžiadaná podpora asistenčnej technológie, ale "
 "register prístupnosti sa nenašiel. Prosím uistite sa, či je nainštalovaný "
-"balík AT-SPI. Vaša relácia sa spustí bez podpory prístupnosti."
+"balík AT-SPI. Vaša relácia bola spustená bez podpory asistenčnej technológie."
 
 #: ../gnome-session/gsm-client-editor.c:123
 msgid "_Order:"
@@ -221,7 +222,7 @@ msgid "State"
 msgstr "Stav"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Program"
 
@@ -233,19 +234,19 @@ msgstr "Program"
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:45
+#: ../gnome-session/gsm-gsd.c:47
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
 "Some things, such as themes, sounds, or background settings may not work "
 "correctly."
 msgstr ""
-"Pri spúšťaní daemona nastavenia GNOME nastala chyba.\n"
+"Pri spúšťaní démona nastavení GNOME nastala chyba.\n"
 "\n"
 "Niektoré veci, ako sú témy, zvuky alebo nastavenie pozadia, nemusia správne "
 "fungovať."
 
-#: ../gnome-session/gsm-gsd.c:57
+#: ../gnome-session/gsm-gsd.c:59
 msgid ""
 "\n"
 "\n"
@@ -257,7 +258,7 @@ msgstr ""
 "Posledná chybová správa bola:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:62
+#: ../gnome-session/gsm-gsd.c:64
 msgid ""
 "\n"
 "\n"
@@ -267,9 +268,9 @@ msgstr ""
 "\n"
 "GNOME sa aj tak pokúsi reštartovať daemona nastavenia pri budúcom prihlásení."
 
-#: ../gnome-session/gsm-gsd.c:145
+#: ../gnome-session/gsm-gsd.c:162
 msgid "The Settings Daemon restarted too many times."
-msgstr "Daemon pre nastavenia sa príliš často reštartoval."
+msgstr "Démon nastavené sa príliš často reštartoval."
 
 #. Name is mandatory and might not be set by the caller
 #: ../gnome-session/gsm-keyfile.c:43
@@ -285,6 +286,7 @@ msgid "PROGRAM..."
 msgstr "PROGRAM..."
 
 #: ../gnome-session/gnome-session-remove.c:176
+#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
@@ -293,10 +295,12 @@ msgstr ""
 "pomocou --list.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
+#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Chyba: nepodarilo sa spojiť so správcom relácií\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
+#, c-format
 msgid "Currently registered clients:\n"
 msgstr "V súčasnosti zaregistrovaní klienti:\n"
 
@@ -314,10 +318,10 @@ msgid ""
 "s'.  Meanwhile you could try logging in using the failsafe session."
 msgstr ""
 "Správca relácií GNOME sa nemohol správne spustiť. Prosím, ohláste to ako "
-"chybu GNOME. Prosím zahrňte do hlásenia o chybe aj túto ICE správu o "
+"chybu GNOME. Prosím, zahrňte do hlásenia o chybe aj túto ICE správu o "
 "zlyhaní: '%s'. Zatiaľ sa môžete skúsiť prihlásiť pomocou núdzovej relácie."
 
-#: ../gnome-session/ice.c:511
+#: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -326,11 +330,11 @@ msgid ""
 "ensuring that it is."
 msgstr ""
 "Správca relácií GNOME nemohol odomknúť súbor '%s'. Prosím, ohláste to ako "
-"chybu GNOME. Niekedy sa to môže stať keď je adresár súboru nezapisovateľný, "
-"môžete skúsiť prihlásenie pomocou núdzovej relácie a zistiť, či je naozaj "
-"zapisovateľný."
+"chybu GNOME. Niekedy môže táto chyba nastať, keď je priečinok súboru "
+"nezapisovateľný; môžete skúsiť prihlásenie pomocou núdzovej relácie a uistiť "
+"sa, či je naozaj zapisovateľný."
 
-#: ../gnome-session/ice.c:538
+#: ../gnome-session/ice.c:541
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -338,10 +342,10 @@ msgid ""
 "in with the failsafe session and removing this file."
 msgstr ""
 "Správca relácií GNOME nemohol čítať súbor '%s'. Ak tento súbor existuje, "
-"musí byť pre Vás čitateľný, ináč GNOME nefunguje správne. Skúste sa "
+"musí byť pre vás čitateľný, ináč GNOME nefunguje správne. Skúste sa "
 "prihlásiť pomocou núdzovej relácie a odstrániť tento súbor."
 
-#: ../gnome-session/ice.c:583
+#: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -350,7 +354,7 @@ msgid ""
 msgstr ""
 "Nepodarilo sa zapísať do súboru '%s'. Tento súbor musí byť zapisovateľný, "
 "ináč GNOME nefunguje správne. Skúste sa prihlásiť do núdzovej relácie a "
-"odstrániť tento súbor. Tiež si prosím overte, či je adresár tohto súboru "
+"odstrániť tento súbor. Tiež si overte, či je priečinok tohto súboru "
 "zapisovateľný."
 
 #: ../gnome-session/logout.c:392
@@ -377,41 +381,41 @@ msgstr "_Vypnúť počítač"
 msgid "_Restart the computer"
 msgstr "_Reštartovať počítač"
 
-#: ../gnome-session/main.c:87
+#: ../gnome-session/main.c:86
 msgid "Specify a session name to load"
-msgstr "Vyberte meno relácie, ktorú chcete načítať"
+msgstr "Zadajte názov relácie, ktorú chcete načítať"
 
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
 msgid "NAME"
-msgstr "MENO"
+msgstr "NÁZOV"
 
-#: ../gnome-session/main.c:88
+#: ../gnome-session/main.c:87
 msgid "Only read saved sessions from the default.session file"
 msgstr "Načítať iba uložené relácie zo súboru default.session"
 
-#: ../gnome-session/main.c:89
+#: ../gnome-session/main.c:88
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
 "Čas v milisekundách strávený čakaním na registráciu klientov (0=navždy)"
 
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
 msgid "DELAY"
 msgstr "ZDRŽANIE"
 
-#: ../gnome-session/main.c:90
+#: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Čas v milisekundách strávený čakaním na reakciu klientov (0=navždy)"
 
-#: ../gnome-session/main.c:91
+#: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Čas v milisekundách strávený čakaním na ukončenie klientov (0=navždy)"
 
-#: ../gnome-session/main.c:167
+#: ../gnome-session/main.c:166
 msgid "This session is running as a privileged user"
 msgstr "Táto relácia beží ako privilegovaný používateľ"
 
-#: ../gnome-session/main.c:169
+#: ../gnome-session/main.c:168
 msgid ""
 "Running a session as a privileged user should be avoided for security "
 "reasons. If possible, you should log in as a normal user."
@@ -419,11 +423,11 @@ msgstr ""
 "Spúšťanie relácie pod privilegovaným používateľom nie je žiadúce z "
 "bezpečnostných dôvodov. Ak je to možné, prihláste sa ako bežný používateľ."
 
-#: ../gnome-session/main.c:173
+#: ../gnome-session/main.c:172
 msgid "_Continue"
 msgstr "_Pokračovať"
 
-#: ../gnome-session/main.c:257
+#: ../gnome-session/main.c:256
 #, c-format
 msgid ""
 "The session might encounter issues if the computer clock is not properly "
@@ -436,24 +440,24 @@ msgstr ""
 "\n"
 "Aktuálny dátum je <b>%s</b>."
 
-#: ../gnome-session/main.c:376
+#: ../gnome-session/main.c:375
 #, c-format
 msgid "Failed to launch time configuration tool: %s"
 msgstr "Spustenie nástroja na konfiguráciu času zlyhalo: %s"
 
-#: ../gnome-session/main.c:407
+#: ../gnome-session/main.c:406
 msgid "The computer clock appears to be wrong"
 msgstr "Zdá sa, že hodiny počítača sa mýlia"
 
-#: ../gnome-session/main.c:414
+#: ../gnome-session/main.c:413
 msgid "_Ignore"
 msgstr "_Ignorovať"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:414
 msgid "_Adjust the Clock"
 msgstr "_Nastaviť hodiny"
 
-#: ../gnome-session/main.c:552
+#: ../gnome-session/main.c:551
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -465,17 +469,17 @@ msgstr ""
 "To môže spôsobiť problémy s GNOME.\n"
 "Možno by stačilo pridať %s do súboru /etc/hosts."
 
-#: ../gnome-session/main.c:559
+#: ../gnome-session/main.c:558
 msgid "Log in Anyway"
 msgstr "Prihlásiť aj tak"
 
-#: ../gnome-session/main.c:560
+#: ../gnome-session/main.c:559
 msgid "Try Again"
 msgstr "Skúsiť znovu"
 
-#: ../gnome-session/main.c:696
+#: ../gnome-session/main.c:693
 msgid "- Manage the GNOME session"
-msgstr "- Správa relácie GNOME"
+msgstr "- Spravovať reláciu GNOME"
 
 #: ../gnome-session/manager.c:513
 msgid "Wait abandoned due to conflict."
@@ -504,7 +508,7 @@ msgstr "Prebieha ukončenie relácie."
 
 #: ../gnome-session/gnome-session-save.c:48
 msgid "Set the current session name"
-msgstr "Uložiť názov tejto relácie"
+msgstr "Nastaviť názov tejto relácie"
 
 #: ../gnome-session/gnome-session-save.c:49
 msgid "Kill session"
@@ -516,7 +520,7 @@ msgstr "Pre chyby použiť dialógové okná"
 
 #: ../gnome-session/gnome-session-save.c:51
 msgid "Do not require confirmation"
-msgstr "Nevyžadovať potvrdenie"
+msgstr "Nevyžaduje potvrdenie"
 
 #: ../gnome-session/gnome-session-save.c:149
 #: ../gnome-session/gnome-session-save.c:187
@@ -529,7 +533,7 @@ msgstr "- Uložiť túto reláciu"
 
 #: ../gnome-session/session-properties-capplet.c:154
 msgid "Save changes to the current session before closing?"
-msgstr "Uložiť pred zavretím zmeny pre túto reláciu?"
+msgstr "Uložiť zmeny tejto relácie pred zavretím?"
 
 #: ../gnome-session/session-properties-capplet.c:156
 msgid "If you don't save, changes will be discarded."
@@ -539,43 +543,51 @@ msgstr "Ak neuložíte, zmeny sa stratia."
 msgid "_Close without Saving"
 msgstr "_Zatvoriť bez uloženia"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Predvoľby relácií"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Iné _programy pri štarte:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Povolené"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Programy pri štarte"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Aktuálna relácia"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr "_Automaticky zapamätať bežiace aplikácie pri odhlasovaní"
 
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
+#: ../gnome-session/session-properties-capplet.c:353
+msgid "_Remember Currently Running Applications"
 msgstr "_Zapamätať práve bežiace aplikácie"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Možnosti relácie"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Vaša relácia bola uložená."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
+#, c-format
 msgid "could not connect to the session manager\n"
 msgstr "Nepodarilo sa pripojiť na správcu relácií\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
+#, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr "správca relácií nepodporuje rozšírenia GNOME\n"
 
@@ -591,7 +603,7 @@ msgstr "Použiť zmeny pre túto reláciu"
 msgid "The list of programs in the session."
 msgstr "Zoznam programov v relácii."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "_Momentálne bežiace programy:"
 
@@ -623,38 +635,42 @@ msgstr "Nastavenia plochy"
 msgid "No description"
 msgstr "Bez popisu"
 
-#: ../gnome-session/startup-programs.c:467
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Vybrať príkaz"
+
+#: ../gnome-session/startup-programs.c:471
 msgid "_Name:"
 msgstr "_Názov:"
 
-#: ../gnome-session/startup-programs.c:485
-msgid "_Command:"
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
 msgstr "_Príkaz:"
 
-#: ../gnome-session/startup-programs.c:499
+#: ../gnome-session/startup-programs.c:498
 msgid "_Browse..."
 msgstr "_Prehliadať..."
 
-#: ../gnome-session/startup-programs.c:512
-msgid "Co_mment:"
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
 msgstr "P_oznámka:"
 
-#: ../gnome-session/startup-programs.c:542
+#: ../gnome-session/startup-programs.c:538
 msgid "The name of the startup program cannot be empty"
 msgstr "Názov programu pri štarte nemôže byť prázdny"
 
-#: ../gnome-session/startup-programs.c:544
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "Príkaz spustenia nemôže byť prázdny"
 
-#: ../gnome-session/startup-programs.c:550
+#: ../gnome-session/startup-programs.c:546
 msgid "The startup command is not valid"
 msgstr "Program pri štarte je neplatný"
 
-#: ../gnome-session/startup-programs.c:607
-msgid "New Startup Program"
-msgstr "Nový program pri štarte"
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Pridať program pri štarte"
 
-#: ../gnome-session/startup-programs.c:651
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Upraviť program pri štarte"
