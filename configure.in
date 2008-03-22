@@ -73,27 +73,8 @@ PKG_CHECK_MODULES(STARTUP_NOTIFICATION, libstartup-notification-1.0)
 PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-2.0)
 PKG_CHECK_MODULES(EGG_LIBGNOMEUI, libgnomeui-2.0)
 
-dnl Check if libnotify is present
-
-LIBNOTIFY_REQUIRED=0.2.1
-LIBNOTIFY_CFLAGS=
-LIBNOTIFY_LIBS=
-PKG_CHECK_MODULES(LIBNOTIFY, libnotify >= $LIBNOTIFY_REQUIRED,
-	          HAVE_LIBNOTIFY="yes", HAVE_LIBNOTIFY="no")
-
-if test "x$HAVE_LIBNOTIFY" = "xyes"; then
-        AC_DEFINE(HAVE_LIBNOTIFY, 1, [libnotify available])
-        AC_MSG_RESULT(available)
-else
-        AC_MSG_RESULT(no)
-fi
-
-AC_SUBST(LIBNOTIFY_CFLAGS)
-AC_SUBST(LIBNOTIFY_LIBS)
-
 dnl gconf checks
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-
 if test x"$GCONFTOOL" = xno; then
   AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
 fi
