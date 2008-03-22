@@ -1,24 +1,30 @@
-2008-04-06  Lucas Rocha  <lucasr@gnome.org>
+2008-03-22  Lucas Rocha  <lucasr@gnome.org>
+
+	* configure.in: update version to 2.23.1 for future release.
+	* po/POTFILES.in, data/Makefile.am: Several fixes in the build files 
+	in order to make it pass distcheck.
+
+2008-03-06  Lucas Rocha  <lucasr@gnome.org>
 
 	* egg/eggdesktopfile.c (egg_desktop_file_new_from_key_file),
 	gnome-session/xsmp.c (gsm_xsmp_init): fixed two memory leaks. 
 
-2008-04-05  Lucas Rocha  <lucasr@gnome.org>
+2008-03-05  Lucas Rocha  <lucasr@gnome.org>
 
 	* egg/eggdesktopfile.c (egg_desktop_file_launchv): use g_ptr_array_add
 	instead of g_ptr_array_set_size to add NULL item to env array.
 
-2008-04-05  Lucas Rocha  <lucasr@gnome.org>
+2008-03-05  Lucas Rocha  <lucasr@gnome.org>
 
 	* egg/eggdesktopfile.c (egg_desktop_file_launchv): add a NULL item to
 	the environment vars array in order to avoid invalid memory access.
 
-2008-04-05  Lucas Rocha  <lucasr@gnome.org>
+2008-03-05  Lucas Rocha  <lucasr@gnome.org>
 
 	* gnome-session/client-xsmp.c (debug_print_property): removed useless
 	debug message.
 
-2008-04-04  Lucas Rocha  <lucasr@gnome.org>
+2008-03-04  Lucas Rocha  <lucasr@gnome.org>
 
 	Added support for stopping/starting autostart apps based on their
 	AutostartCondition key definition (GConf-only for now).

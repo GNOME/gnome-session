@@ -28,5 +28,10 @@ endif
 
 EXTRA_DIST =					\
 	README					\
+	$(xsession_in_files)			\
 	$(schemas_in_files)			\
 	$(default_session_DATA)
+
+DISTCLEANFILES =				\
+	$(schemas_DATA)				\
+	$(xsession_DATA)
