@@ -1,3 +1,14 @@
+2008-03-23  Lucas Rocha  <lucasr@gnome.org>
+
+	Fix relation between apps set with X-GNOME-Autorestart and
+	AutostartCondition. 
+
+	* gnome-session/session.c 
+	(app_condition_changed, client_disconnected): don't restart apps if
+	their condition are set to false.
+	* gnome-session/app-autostart.c (is_disabled): don't keep track of
+	condition in case the app is not set with X-GNOME-Autorestart.
+
 2008-03-22  Lucas Rocha  <lucasr@gnome.org>
 
 	* configure.in: removed libnotify dependency and made some cleanups. 

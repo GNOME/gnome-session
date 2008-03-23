@@ -88,6 +88,10 @@ struct _GsmSession {
   GSList *interact_clients;
   GSList *phase2_clients;
 
+  /* List of clients which were disconnected due to disabled condition
+   * and shouldn't be automatically restarted */
+  GSList *condition_clients;
+
   gint logout_response_id;
 };
 
@@ -111,6 +115,9 @@ gsm_session_new (gboolean failsafe)
   const char * const *system_data_dirs;
   char *dir;
   int i;
+
+  session->clients = NULL;
+  session->condition_clients = NULL;
 
   session->logout_response_id = GTK_RESPONSE_NONE;
 
@@ -382,17 +389,27 @@ static void
 app_condition_changed (GsmApp *app, gboolean condition, gpointer data)
 {
   GsmSession *session;
+  GsmClient *client = NULL;
+  GSList *cl = NULL;
 
   g_return_if_fail (data != NULL);
 
   session = (GsmSession *) data;
 
+  /* Check for an existing session client for this app */
+  for (cl = session->clients; cl; cl = cl->next)
+    {
+      GsmClient *c = GSM_CLIENT (cl->data);
+
+      if (!strcmp (app->client_id, gsm_client_get_client_id (c)))
+        client = c;
+    }
+
   if (condition)
     {
       GError *error = NULL;
 
-      /* FIXME: if this enough to check if app is running before launching it? */
-      if (app->pid <= 0)
+      if (app->pid <= 0 && client == NULL)
         gsm_app_launch (app, &error);
 
       if (error != NULL)
@@ -405,21 +422,13 @@ app_condition_changed (GsmApp *app, gboolean condition, gpointer data)
     }
   else
     {
-      GSList *cl = NULL;
-
-      for (cl = session->clients; cl; cl = cl->next)
-        {
-          GsmClient *client = GSM_CLIENT (cl->data);
-
-          if (!strcmp (app->client_id, 
-                       gsm_client_get_client_id (client)))
-            {
-              /* Kill client in case condition if false */
-              gsm_client_die (client);
-              app->pid = -1; 
-              break;
-            }
-        }
+      /* Kill client in case condition if false and make sure it won't
+       * be automatically restarted by adding the client to 
+       * condition_clients */
+      session->condition_clients =
+            g_slist_prepend (session->condition_clients, client);
+      gsm_client_die (client);
+      app->pid = -1; 
     }
 }
 
@@ -876,6 +885,7 @@ static void
 client_disconnected (GsmClient *client, gpointer data)
 {
   GsmSession *session = data;
+  gboolean is_condition_client = FALSE;
 
   session->clients =
     g_slist_remove (session->clients, client);
@@ -886,8 +896,17 @@ client_disconnected (GsmClient *client, gpointer data)
   session->phase2_clients =
     g_slist_remove (session->phase2_clients, client);
 
+  if (g_slist_find (session->condition_clients, client))
+    {
+      session->condition_clients =
+        g_slist_remove (session->condition_clients, client);
+
+      is_condition_client = TRUE;
+    }
+
   if (session->phase != GSM_SESSION_PHASE_SHUTDOWN && 
-      gsm_client_get_autorestart (client))
+      gsm_client_get_autorestart (client) &&
+      !is_condition_client)
     {
       GError *error = NULL;
 

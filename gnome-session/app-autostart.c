@@ -106,12 +106,14 @@ static gboolean
 is_disabled (GsmApp *app)
 {
   char *condition;
+  gboolean autorestart = FALSE;
 
-  if (!egg_desktop_file_can_launch (app->desktop_file, "GNOME"))
+  if (egg_desktop_file_has_key (app->desktop_file,
+				"X-GNOME-AutoRestart", NULL))
     {
-      g_debug ("app %s is disabled by TryExec, OnlyShowIn, or NotShowIn",
-	       gsm_app_get_basename (app));
-      return TRUE;
+      autorestart = 
+         egg_desktop_file_get_boolean (app->desktop_file,
+                                       "X-GNOME-AutoRestart", NULL); 
     }
 
   /* X-GNOME-Autostart-enabled key, used by old gnome-session */
@@ -167,7 +169,6 @@ is_disabled (GsmApp *app)
 	  if (key)
 	    {
               GConfClient *client;
-              gchar *dir;
 
               client = gsm_gconf_get_client ();
 
@@ -175,21 +176,24 @@ is_disabled (GsmApp *app)
 
 	      disabled = !gconf_client_get_bool (client, key, NULL);
 
-              dir = g_path_get_dirname (key);
+              if (autorestart)
+                {
+                  gchar *dir;
 
-              g_debug ("DIR: %s", dir);
+                  dir = g_path_get_dirname (key);
 
-              /* Add key dir in order to be able to keep track
-               * of changed in the key later */
-              gconf_client_add_dir (client, dir,
-                                    GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+                  /* Add key dir in order to be able to keep track
+                   * of changed in the key later */
+                  gconf_client_add_dir (client, dir,
+                                        GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
 
-              g_free (dir);
+                  g_free (dir);
 
-              gconf_client_notify_add (client,
-                                       key,
-                                       gconf_condition_cb,
-                                       app, NULL, NULL);
+                  gconf_client_notify_add (client,
+                                           key,
+                                           gconf_condition_cb,
+                                           app, NULL, NULL);
+                }
 	    }
 	  else
 	    disabled = FALSE;
