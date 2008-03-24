@@ -1,18 +1,17 @@
 SUBDIRS =			\
-	data 			\
-	po 			\
+	egg			\
 	gnome-session		\
-	man
+	compat			\
+	splash			\
+	po			\
+	data
 
 EXTRA_DIST =			\
-	MAINTAINERS		\
-	COPYING-DOCS		\
-	HACKING			\
 	intltool-extract.in	\
 	intltool-merge.in	\
 	intltool-update.in
 
-DISTCLEANFILES = \
-  intltool-extract \
-  intltool-merge \
-  intltool-update
+DISTCLEANFILES =		\
+	intltool-extract	\
+	intltool-merge		\
+	intltool-update
