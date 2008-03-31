@@ -136,6 +136,14 @@ is_disabled (GsmApp *app)
       return TRUE;
     }
 
+  /* Check OnlyShowIn/NotShowIn/TryExec */
+  if (!egg_desktop_file_can_launch (app->desktop_file, "GNOME"))
+    {
+      g_debug ("app %s not installed or not for GNOME",
+	       gsm_app_get_basename (app));
+      return TRUE;
+    }
+
   /* Check AutostartCondition */
   condition = egg_desktop_file_get_string (app->desktop_file,
 					   "AutostartCondition",

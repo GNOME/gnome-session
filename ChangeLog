@@ -1,5 +1,11 @@
 2008-03-31  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/app-autostart.c (is_disabled): Call
+	egg_desktop_file_can_launch() to check OnlyShowIn/NotShowIn and
+	TryExec. #525184, Owen Taylor. Patch by Dan Winship.
+
+2008-03-31  Lucas Rocha  <lucasr@gnome.org>
+
 	* data/default-session.in: removed default-session.in as this is 
 	not necessary or used by gnome-session anymore.
 
