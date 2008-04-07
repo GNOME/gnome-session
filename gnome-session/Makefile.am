@@ -103,7 +103,9 @@ gnome_session_SOURCES =		\
 	gsm-keyfile.h		\
 	headers.h		\
 	util.c			\
-	util.h
+	util.h			\
+	migrate-trash.c		\
+	migrate-trash.h
 
 gnome_session_save_SOURCES =	\
 	gnome-session-save.c		\

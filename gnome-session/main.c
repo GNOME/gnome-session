@@ -53,6 +53,7 @@
 #include "gsm-keyring.h"
 #include "gsm-at-startup.h"
 #include "gsm-remote-desktop.h"
+#include "migrate-trash.h"
 
 /* Flag indicating autosave - user won't be prompted on logout to 
  * save the session */
@@ -782,6 +783,8 @@ main (int argc, char *argv[])
     splash_start ();
 
   start_session (the_session);
+
+  migrate_trash();
 
   gtk_main ();
 

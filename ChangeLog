@@ -1,3 +1,12 @@
+2008-04-08  Vincent Untz  <vuntz@gnome.org>
+
+	Add code to migrate the Trash to the new location.
+	Temporary fix for bug #517561, until we get a proper infrastructure.
+
+	* gnome-session/Makefile.am: add new files
+	* gnome-session/main.c: (main): call migrate_trash()
+	* gnome-session/migrate-trash.[ch]: new
+
 2008-03-10  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in: post-release bump to 2.22.1
