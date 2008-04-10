@@ -32,6 +32,9 @@
 #include "session.h"
 #include "xsmp.h"
 
+static void append_default_apps       (GsmSession *session,
+                                       char **autostart_dirs);
+
 static void append_autostart_apps     (GsmSession *session,
 				       const char *dir);
 
@@ -60,6 +63,9 @@ static void client_save_yourself_done  (GsmClient *client,
 					gpointer   data);
 static void client_disconnected        (GsmClient *client,
 					gpointer   data);
+
+static char **get_autostart_dirs       (void);
+static char **get_app_dirs             (void);
 
 struct _GsmSession {
   /* Startup/resumed apps */
@@ -111,9 +117,7 @@ GsmSession *
 gsm_session_new (gboolean failsafe)
 {
   GsmSession *session = g_new0 (GsmSession, 1);
-  const char * const *system_config_dirs;
-  const char * const *system_data_dirs;
-  char *dir;
+  char **autostart_dirs;
   int i;
 
   session->clients = NULL;
@@ -123,42 +127,26 @@ gsm_session_new (gboolean failsafe)
 
   session->apps_by_name = g_hash_table_new (g_str_hash, g_str_equal);
 
-  append_autostart_apps (session, GSM_DEFAULT_SESSION_DIR);
+  autostart_dirs = get_autostart_dirs ();
+
+  append_default_apps (session, autostart_dirs);
+
   if (failsafe)
-    return session;
+    goto out;
 
-  /* fdo autostart dirs */
-  system_config_dirs = g_get_system_config_dirs ();
-  for (i = 0; system_config_dirs[i]; i++)
+  for (i = 0; autostart_dirs[i]; i++)
     {
-      dir = g_build_filename (system_config_dirs[i], "autostart", NULL);
-      append_autostart_apps (session, dir);
-      g_free (dir);
+      append_autostart_apps (session, autostart_dirs[i]);
     }
-
-  /* legacy autostart dirs */
-  system_data_dirs = g_get_system_data_dirs ();
-  for (i = 0; system_data_dirs[i]; i++)
-    {
-      dir = g_build_filename (system_data_dirs[i], "gnome", "autostart", NULL);
-      append_autostart_apps (session, dir);
-      g_free (dir);
-
-      dir = g_build_filename (system_data_dirs[i], "autostart", NULL);
-      append_autostart_apps (session, dir);
-      g_free (dir);
-    }
-
-  dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-  append_autostart_apps (session, dir);
-  g_free (dir);
 
   append_saved_session_apps (session);
 
   /* We don't do this in the failsafe case, because the default
-   * session should include all requirements anyway.
-   */
+   * session should include all requirements anyway. */
   append_required_apps (session);
+
+out:
+  g_strfreev (autostart_dirs);
 
   return session;
 }
@@ -178,6 +166,146 @@ append_app (GsmSession *session, GsmApp *app)
 
   session->apps = g_slist_append (session->apps, app);
   g_hash_table_insert (session->apps_by_name, g_strdup (basename), app);
+}
+
+static char **
+get_autostart_dirs ()
+{
+  GPtrArray *dirs;
+  const char * const *system_config_dirs;
+  const char * const *system_data_dirs;
+  gint i;
+
+  dirs = g_ptr_array_new ();
+
+  system_data_dirs = g_get_system_data_dirs ();
+  for (i = 0; system_data_dirs[i]; i++)
+    {
+      g_ptr_array_add (dirs, 
+                       g_build_filename (system_data_dirs[i], 
+                                         "gnome", "autostart", NULL));
+
+      g_ptr_array_add (dirs, 
+                       g_build_filename (system_data_dirs[i], 
+                                         "autostart", NULL));
+    }
+
+  system_config_dirs = g_get_system_config_dirs ();
+  for (i = 0; system_config_dirs[i]; i++)
+    {
+      g_ptr_array_add (dirs, 
+                       g_build_filename (system_config_dirs[i], 
+                                         "autostart", NULL));
+    }
+
+  g_ptr_array_add (dirs, 
+                   g_build_filename (g_get_user_config_dir (), 
+                                     "autostart", NULL));
+
+  g_ptr_array_add (dirs, NULL);
+
+  return (char **) g_ptr_array_free (dirs, FALSE);
+}
+
+static char **
+get_app_dirs ()
+{
+  GPtrArray *dirs;
+  const char * const *system_data_dirs;
+  gint i;
+
+  dirs = g_ptr_array_new ();
+
+  system_data_dirs = g_get_system_data_dirs ();
+  for (i = 0; system_data_dirs[i]; i++)
+    {
+      g_ptr_array_add (dirs, 
+                       g_build_filename (system_data_dirs[i], "applications", 
+                                         NULL));
+
+      g_ptr_array_add (dirs, 
+                       g_build_filename (system_data_dirs[i], "gnome", "wm-properties", 
+                                         NULL));
+    }
+
+  g_ptr_array_add (dirs, NULL);
+
+  return (char **) g_ptr_array_free (dirs, FALSE);
+}
+
+static void
+append_default_apps (GsmSession *session, char **autostart_dirs)
+{
+  GSList *default_apps, *a;
+  char **app_dirs;
+
+  g_debug ("append_default_apps ()");
+
+  app_dirs = get_app_dirs (); 
+
+  default_apps = 
+    gconf_client_get_list (gsm_gconf_get_client (),
+			   GSM_GCONF_DEFAULT_SESSION_KEY, 
+                           GCONF_VALUE_STRING,
+			   NULL);
+
+  for (a = default_apps; a; a = a->next)
+    {
+      GKeyFile *key_file;
+      char *app_path = NULL;
+      char *desktop_file;
+
+      key_file = g_key_file_new ();
+
+      if (!a->data)
+        continue;
+
+      desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data); 
+
+      g_debug ("Look for: %s", desktop_file);
+
+      g_key_file_load_from_dirs (key_file, 
+                                 desktop_file, 
+                                 (const gchar**) app_dirs, 
+                                 &app_path, 
+                                 G_KEY_FILE_NONE, 
+                                 NULL);
+
+      if (!app_path)
+        g_key_file_load_from_dirs (key_file, 
+                                   desktop_file, 
+                                   (const gchar**) autostart_dirs, 
+                                   &app_path, 
+                                   G_KEY_FILE_NONE, 
+                                   NULL);
+
+      if (app_path)
+        {
+          GsmApp *app;
+	  char *client_id;
+
+          g_debug ("Found in: %s", app_path);
+
+	  client_id = gsm_xsmp_generate_client_id ();
+	  app = gsm_app_autostart_new (app_path, client_id);
+	  g_free (client_id);
+	  g_free (app_path);
+
+	  if (app)
+            {
+              g_debug ("read %s\n", desktop_file);
+              append_app (session, app);
+            }
+          else
+            g_warning ("could not read %s\n", desktop_file);
+        }
+
+      g_free (desktop_file);
+    }
+
+  g_slist_foreach (default_apps, (GFunc) g_free, NULL);
+  g_slist_free (default_apps);
+  g_strfreev (app_dirs);
 }
 
 static void
@@ -330,7 +458,7 @@ append_required_apps (GsmSession *session)
 
   for (r = required_components; r; r = r->next)
     {
-      entry = r->data;
+      entry = (GConfEntry *) r->data;
 
       service = strrchr (entry->key, '/');
       if (!service)

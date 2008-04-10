@@ -1,5 +1,29 @@
 2008-04-10  Lucas Rocha  <lucasr@gnome.org>
 
+	Re-implemented the way we define the default session. Instead of a
+	directory full of .desktop files, we now get the list of default apps
+	from a gconf key. Then session manager then looks for those apps in
+	the standard applications and autostart directories. This way we don't
+	require default apps to export their .desktop files in a special
+	directory. #525157, Rob Bradford.
+
+	* data/gnome-session.schemas.in: added a new gconf key
+	/desktop/gnome/session/default-session which stores the list of
+	default session apps.
+	* gnome-session/Makefile.am: no need to define default-session
+	directory anymore.
+	* gnome-session/gsm.h: added new constant called
+	GSM_GCONF_DEFAULT_SESSION_KEY refering to new gconf key.
+	* gnome-session/session.c 
+	(gsm_session_new, append_default_apps): new function to load default 
+	apps from gconf key. The gconf key only stores the application names 
+	and GsmSession looks for a respective .desktop file in some standard 
+	application and autostart directories.
+	(get_autostart_dirs, get_app_dirs): new utility functions which return
+	all autostart and applications directories respectively.
+
+2008-04-10  Lucas Rocha  <lucasr@gnome.org>
+
 	* gnome-session/README: fix small typo.
 
 2008-04-10  Lucas Rocha  <lucasr@gnome.org>

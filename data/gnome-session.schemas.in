@@ -58,6 +58,18 @@
       </schema>
 
       <schema>
+         <key>/schemas/desktop/gnome/session/default-session</key>
+         <applyto>/desktop/gnome/session/default-session</applyto>
+         <owner>gnome</owner>
+         <type>list</type>
+         <list_type>string</list_type>
+         <default>[gnome-settings-daemon,metacity,gnome-panel,nautilus]</default>
+         <locale name="C">
+            <short>Default session</short>
+            <long>List of applications that are part of the default session.</long>
+         </locale>
+      </schema>
+      <schema>
          <key>/schemas/desktop/gnome/session/required-components</key>
          <applyto>/desktop/gnome/session/required-components</applyto>
          <owner>gnome</owner>

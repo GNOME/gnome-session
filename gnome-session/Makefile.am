@@ -8,8 +8,7 @@ INCLUDES =					\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\" \
-	-DGSM_DEFAULT_SESSION_DIR=\""$(default_sessiondir)"\"
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\" 
 
 LDADD =						\
 	-lSM -lICE				\
@@ -18,8 +17,6 @@ LDADD =						\
 	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(GTK_LIBS)
-
-default_sessiondir = $(datadir)/gnome/default-session
 
 bin_PROGRAMS =					\
 	gnome-session
