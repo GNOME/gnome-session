@@ -1,5 +1,6 @@
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
+	$(GNOME_SESSION_CFLAGS)			\
 	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	$(GTK_CFLAGS)				\
@@ -13,6 +14,7 @@ INCLUDES =					\
 LDADD =						\
 	-lSM -lICE				\
 	$(top_builddir)/egg/libeggdesktopfile.la \
+	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(GTK_LIBS)
