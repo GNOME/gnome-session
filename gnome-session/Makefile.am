@@ -4,6 +4,7 @@ INCLUDES =					\
 	$(GCONF_CFLAGS)				\
 	$(GTK_CFLAGS)				\
 	-I$(top_srcdir)/egg			\
+	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\" \

@@ -93,11 +93,9 @@ main (int argc, char **argv)
   GError *err = NULL;
   char *display_str;
 
-#if 0
-  bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+  bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
-#endif
 
   sa.sa_handler = SIG_IGN;
   sa.sa_flags = 0;
