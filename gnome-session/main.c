@@ -104,7 +104,7 @@ main (int argc, char **argv)
 
   gtk_init_with_args (&argc, &argv,
 		      _(" - the GNOME session manager"),
-		      entries, /* FIXME GETTEXT_PACKAGE */ NULL,
+		      entries, GETTEXT_PACKAGE,
 		      &err);
   if (err)
     gsm_initialization_error (TRUE, "%s", err->message);
