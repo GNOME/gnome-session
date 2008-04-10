@@ -1,5 +1,11 @@
 2008-04-10  Lucas Rocha  <lucasr@gnome.org>
 
+	* data/gnome-panel.desktop, data/Makefile.am: don't install
+	gnome-panel.desktop anymore as gnome-panel has all needed keys
+	in its .desktop file now.
+
+2008-04-10  Lucas Rocha  <lucasr@gnome.org>
+
 	Re-implemented the way we define the default session. Instead of a
 	directory full of .desktop files, we now get the list of default apps
 	from a gconf key. Then session manager then looks for those apps in
