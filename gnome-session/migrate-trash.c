@@ -219,7 +219,7 @@ move_file (const char *old_trash_dir,
 
   /* We don't know the original dirname of the file, so we'll just assume it
    * was the desktop. This way, the file is easy to find again. */
-  original_name = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP), basename);
+  original_name = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP), basename, NULL);
   original_name_escaped = escape_trash_name (original_name);
   g_free (original_name);
 
