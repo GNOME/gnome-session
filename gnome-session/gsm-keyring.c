@@ -58,7 +58,6 @@ gsm_keyring_daemon_start (void)
   long pid;
   char *t, *end;
   const char *old_keyring;
-  const char *display;
   char *argv[2];
 
   /* If there is already a working keyring, don't start a new daemon */

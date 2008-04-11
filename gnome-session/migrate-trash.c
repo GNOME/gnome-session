@@ -33,6 +33,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -289,7 +290,7 @@ migrate_trash (void)
       return 1;
     }
 
-  while (file = g_dir_read_name (dir))
+  while ((file = g_dir_read_name (dir)) != NULL)
     {
       had_problem = !move_file (old_trash_dir, file, info_dir, files_dir)
                     || had_problem;
