@@ -51,7 +51,7 @@ if test "x$enable_deprecations" = "xyes"; then
    AC_SUBST([DISABLE_DEPRECATED_CFLAGS])
 fi
 
-GLIB_REQUIRED=2.13.0
+GLIB_REQUIRED=2.16.0
 LIBGNOMEUI_REQUIRED=2.2.0
 GTK_REQUIRED=2.11.1
 DBUS_GLIB_REQUIRED=0.35
@@ -62,7 +62,7 @@ dnl Dependency Checks
 dnl ====================================================================
 PKG_PROG_PKG_CONFIG()
 
-PKG_CHECK_MODULES(GNOME_SESSION, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dbus-glib-1 >= $DBUS_GLIB_REQUIRED gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
+PKG_CHECK_MODULES(GNOME_SESSION, glib-2.0 >= $GLIB_REQUIRED gio-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dbus-glib-1 >= $DBUS_GLIB_REQUIRED gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
 
 PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_REQUIRED)
 PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)

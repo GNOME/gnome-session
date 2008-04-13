@@ -1,3 +1,19 @@
+2008-04-13  Lucas Rocha  <lucasr@gnome.org>
+
+	Fully implement if-exists and unless-exists condition types.
+
+	* configure.in: bump glib dependency to 2.16.0 and add gio bits.
+	* gnome-session/app-autostart.c: added condition and condition_type
+	private attribute to keep track of codition changes in the app.
+	(gsm_app_autostart_class_init, gsm_app_autostart_dispose): added 
+	dispose to free internal resources.
+	(file_condition_cb): callback for file monitor used to keep track
+	of if-exists and unless-exists condition changes.
+	(gconf_condition_cb): only emit "condition-changed" if the condition
+	actually changed.
+	(is_disabled): added file monitors for if-exists and unless-exists
+	condition types.
+
 2008-04-10  Lucas Rocha  <lucasr@gnome.org>
 
 	* data/gnome-panel.desktop, data/Makefile.am: don't install

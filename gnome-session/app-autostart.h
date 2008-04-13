@@ -35,11 +35,13 @@ G_BEGIN_DECLS
 
 typedef struct _GsmAppAutostart        GsmAppAutostart;
 typedef struct _GsmAppAutostartClass   GsmAppAutostartClass;
+typedef struct _GsmAppAutostartPrivate GsmAppAutostartPrivate;
 
 struct _GsmAppAutostart
 {
   GsmApp parent;
 
+  GsmAppAutostartPrivate *priv;
 };
 
 struct _GsmAppAutostartClass
