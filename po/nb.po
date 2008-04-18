@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.21.x\n"
+"Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-27 00:47+0100\n"
-"PO-Revision-Date: 2008-03-27 01:08+0100\n"
+"POT-Creation-Date: 2008-04-18 20:37+0200\n"
+"PO-Revision-Date: 2008-04-18 20:39+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../compat/at-spi-registryd-wrapper.c:51
-#: ../gnome-session/gsm-at-startup.c:39
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -27,15 +26,19 @@ msgstr ""
 "er installert. Sesjonen er startet uten hjelpeteknologi for tilgjengelighet."
 
 #: ../data/gnome-session.schemas.in.h:1
+msgid "Default session"
+msgstr "Forvalgt sesjon"
+
+#: ../data/gnome-session.schemas.in.h:2
 msgid "File Manager"
 msgstr "Filhåndterer"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Aktiveres hvis brukeren ønsker en spørsmålsdialog før sesjonen avsluttes."
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -43,7 +46,11 @@ msgstr ""
 "Hvis dette aktiveres vil gnome-session lagre sesjonen automatisk. Hvis ikke "
 "vil avloggingsdialogen ha et valg for å lagre sesjonen."
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.h:5
+msgid "List of applications that are part of the default session."
+msgstr "Liste med programmer som er en del av forvalgt sesjon."
+
+#: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
@@ -52,58 +59,58 @@ msgid ""
 "required components back to the session if they do get removed."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "Spør ved avlogging"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:8
 msgid "Panel"
 msgstr "Panel"
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "Foretrukket bilde for bruk med oppstartskjermen som vises ved innlogging"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:10
 msgid "Required session components"
 msgstr "Nødvendige deler av sesjonen"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "Lagre sesjoner"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:12
 msgid "Selected option in the log out dialog"
 msgstr "Valgt alternativ i «Logg ut»-dialogen"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Vis oppstartskjerm"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:14
 msgid "Show the splash screen when the session starts up"
 msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -113,7 +120,7 @@ msgstr ""
 "og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
 "innlogging."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -123,7 +130,7 @@ msgstr ""
 "«logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å "
 "starte systemet på nytt."
 
-#: ../data/gnome-session.schemas.in.h:18 ../gnome-session/splash-widget.c:46
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Vindushåndterer"
 
@@ -187,36 +194,32 @@ msgid "GNOME GUI Library + EggSMClient"
 msgstr ""
 
 #: ../egg/eggsmclient.c:185
-#, fuzzy
 msgid "Disable connection to session manager"
-msgstr "Kunne ikke koble til sesjonsbehandler"
+msgstr "Deaktiver kobling til sesjonshåndterer"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "Oppgi fil med lagret konfigurasjon"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
 msgstr "FIL"
 
 #: ../egg/eggsmclient.c:191
-#, fuzzy
 msgid "Specify session management ID"
-msgstr "Spesifiserer et sesjonsnavn som skal startes"
+msgstr "Oppgi ID for sesjonshåndtering"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
 msgstr "ID"
 
 #: ../egg/eggsmclient.c:241
-#, fuzzy
 msgid "Session Management Options"
-msgstr "Alternativer for sesjon"
+msgstr "Alternativer for sesjonshåndtering"
 
 #: ../egg/eggsmclient.c:242
-#, fuzzy
 msgid "Show Session Management options"
-msgstr "Alternativer for sesjon"
+msgstr "Vis alternativer for sesjonshåndtering"
 
 #: ../gnome-session/gconf.c:109
 #, c-format
@@ -224,232 +227,6 @@ msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
-
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_Rekkefølge:"
-
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "Rekkefølgen som applikasjonene startes i ved oppstart av sesjonen."
-
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "Hva skjer med applikasjonen når den avslutter."
-
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_Stil:"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "Inaktiv"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "Venter på å få starte eller allerede fullført."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "Starter"
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "Startet men har ikke ennå rapportert tilstand."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "Kjører"
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "Et vanlig medlem av sesjonen."
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "Lagrer"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "Lagrer innstillinger for sesjon."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "Ukjent"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "Tilstand ikke rapportert innen tidsavbrudd."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "Normal"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "Ikke påvirket av avlogging men kan dø."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "Start på nytt"
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "Aldri la dø."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "Søppel"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "Forkastes ved avlogging og kan dø."
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "Innstillinger"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "Startes ved hvert login."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "Rekkefølge"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "Stil"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "Tilstand"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:284
-msgid "Program"
-msgstr "Program"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:47
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"Det oppsto en feil under oppstart av programmet som styrer innstillinger for "
-"GNOME.\n"
-"\n"
-"Enkelte ting, som tema, lyder eller innstillinger for bakgrunn vil kanskje "
-"ikke fungere riktig."
-
-#: ../gnome-session/gsm-gsd.c:59
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Den siste feilmeldingen var:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:64
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME vil likevel prøve å starte innstillingsdaemonen neste gang du logger "
-"inn."
-
-#: ../gnome-session/gsm-gsd.c:162
-msgid "The Settings Daemon restarted too many times."
-msgstr "Innstillingsdaemonen startet på nytt for mange ganger."
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"Sesjonshåndterer for GNOME kan ikke startes. Vennligst rapporter dette som "
-"en feil. Ta med denne feilmeldingen fra ICE i rapporten: «%s». I mellomtiden "
-"kan du logge inn med feilsikker sesjon."
-
-#: ../gnome-session/ice.c:514
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-"Sesjonshåndterer for GNOME klarte ikke å låse filen '%s'. Vennligst "
-"rapporter dette som en feili GNOME. Noen gang oppstår denne feilen når "
-"filens katalog ikke er skrivbar, du kan prøve å logge inn via en feilsikker "
-"sesjon for å forsikre deg om at den er skrivbar."
-
-#: ../gnome-session/ice.c:541
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-"Sesjonshåndterer for GNOME klarte ikke å lese filen '%s'. Hvis denne filen "
-"eksisterer, så må den være lesbar av deg, for at GNOME skal fungere "
-"ordentlig. Prøv og logg med en feilsikker sesjon og fjern denne filen."
-
-#: ../gnome-session/ice.c:586
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"Kan ikke skrive til '%s'. Denne filen må være skrivbar for at GNOME skal "
-"fungere ordentlig. Prøv og logg med en feilsikker sesjon og fjern denne "
-"filen. Sjekk også at filens katalog er skrivbar."
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr "Er du sikker på at du vil logge ut?"
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr "Husk kjørende programmer"
-
-#: ../gnome-session/logout.c:433
-msgid "Action"
-msgstr "Handling"
-
-#: ../gnome-session/logout.c:450
-msgid "_Log out"
-msgstr "_Logg ut"
-
-#: ../gnome-session/logout.c:457
-msgid "Sh_ut down"
-msgstr "Avsl_utt"
-
-#: ../gnome-session/logout.c:465
-msgid "_Restart the computer"
-msgstr "Sta_rt på nytt"
 
 #: ../gnome-session/logout-dialog.c:214
 #, c-format
@@ -475,7 +252,7 @@ msgstr[1] ""
 
 #: ../gnome-session/logout-dialog.c:302
 msgid "Log out of this system now?"
-msgstr ""
+msgstr "Logg ut av dette systemet nå?"
 
 #: ../gnome-session/logout-dialog.c:309
 msgid "_Switch User"
@@ -507,7 +284,7 @@ msgstr "_Steng ned"
 
 #: ../gnome-session/main.c:33
 msgid "Do not load user-specified applications"
-msgstr ""
+msgstr "Ikke last brukerdefinerte programmer"
 
 #. Oh well, no X for you!
 #: ../gnome-session/main.c:68
@@ -515,114 +292,9 @@ msgstr ""
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 
-#: ../gnome-session/main.c:108
+#: ../gnome-session/main.c:106
 msgid " - the GNOME session manager"
 msgstr "- GNOME sesjonshåndterer"
-
-#: ../gnome-session/manager.c:510
-msgid "Wait abandoned due to conflict."
-msgstr "Venting forlatt pga konflikt."
-
-#: ../gnome-session/manager.c:1018
-#, c-format
-msgid "No response to the %s command."
-msgstr "Ingen svar på kommandoen %s."
-
-#: ../gnome-session/manager.c:1019
-msgid "The program may be slow, stopped or broken."
-msgstr "Programmet kan være tregt, stopped eller ødelagt."
-
-#: ../gnome-session/manager.c:1020
-msgid "You may wait for it to respond or remove it."
-msgstr "Du kan vente på svar eller fjerne det."
-
-#: ../gnome-session/manager.c:1745
-msgid "Restart abandoned due to failures."
-msgstr "Omstart avbrutt pga feil."
-
-#: ../gnome-session/manager.c:1941
-msgid "A session shutdown is in progress."
-msgstr "Nedstenging av sesjonen er igang."
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr "Lagre endringer i aktiv sesjon før programmet lukkes?"
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr "Hvis du ikke lagrer vil endringene forkastes."
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "_Lukk uten å lagre"
-
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions Preferences"
-msgstr "Brukervalg for sesjoner"
-
-#. non-session managed startup programs
-#: ../gnome-session/session-properties-capplet.c:250
-msgid "Additional startup _programs:"
-msgstr "Flere oppstarts_programmer:"
-
-#: ../gnome-session/session-properties-capplet.c:275
-msgid "Enabled"
-msgstr "Aktivert"
-
-#: ../gnome-session/session-properties-capplet.c:319
-msgid "Startup Programs"
-msgstr "Oppstartsprogrammer"
-
-#: ../gnome-session/session-properties-capplet.c:326
-msgid "Current Session"
-msgstr "Aktiv sesjon"
-
-#. Autosave
-#: ../gnome-session/session-properties-capplet.c:337
-msgid "_Automatically remember running applications when logging out"
-msgstr "Husk kjørende programmer _automatisk ved utlogging"
-
-#: ../gnome-session/session-properties-capplet.c:353
-msgid "_Remember Currently Running Applications"
-msgstr "Husk programmer som kjø_rer nå"
-
-#: ../gnome-session/session-properties-capplet.c:361
-msgid "Session Options"
-msgstr "Alternativer for sesjon"
-
-#: ../gnome-session/session-properties-capplet.c:457
-msgid "Your session has been saved."
-msgstr "Din sesjon er lagret."
-
-#: ../gnome-session/session-properties-capplet.c:500
-#, c-format
-msgid "could not connect to the session manager\n"
-msgstr "kunne ikke koble til sesjonshåndtereren\n"
-
-#: ../gnome-session/session-properties-capplet.c:506
-#, c-format
-msgid "session manager does not support GNOME extensions\n"
-msgstr "sesjonshåndtereren støtter ikke GNOME-utvidelser\n"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "Sawfish vindushåndterer"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "Metacity vindushåndterer"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "Panelet"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Innstillinger for skrivebord"
 
 #: ../gnome-session/xsmp.c:132
 #, c-format
@@ -637,11 +309,11 @@ msgstr ""
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
-msgstr ""
+msgstr "Spill lyd når du logger ut i stedet for når du logger inn"
 
 #: ../splash/gnome-login-sound.c:148
 msgid "- GNOME login/logout sound"
-msgstr ""
+msgstr "- Lyd for inn-/utlogging i GNOME"
 
 #: ../splash/gnome-session-splash.c:204
 msgid "- GNOME Splash Screen"
