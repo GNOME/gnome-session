@@ -1,3 +1,9 @@
+2008-04-19  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/app-autostart (file_condition_cb, is_disabled):
+	Separate callbacks for if-exists and unless-exists condition
+	to not need a condition_type private attribute.
+
 2008-04-13  Lucas Rocha  <lucasr@gnome.org>
 
 	Fully implement if-exists and unless-exists condition types.

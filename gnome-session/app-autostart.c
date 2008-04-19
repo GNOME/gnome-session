@@ -28,12 +28,6 @@
 #include "app-autostart.h"
 #include "gconf.h"
 
-typedef enum {
-  GSM_APP_CONDITION_TYPE_IF_EXISTS,
-  GSM_APP_CONDITION_TYPE_UNLESS_EXISTS,
-  GSM_APP_CONDITION_TYPE_GNOME
-} GsmAppConditionType;
-
 enum {
   CONDITION_CHANGED,
   LAST_SIGNAL
@@ -41,7 +35,6 @@ enum {
 
 struct _GsmAppAutostartPrivate {
   GFileMonitor         *monitor;
-  GsmAppConditionType   condition_type;
   gboolean              condition;
 };
 
@@ -63,7 +56,6 @@ gsm_app_autostart_init (GsmAppAutostart *app)
 
   app->priv->monitor = NULL;
   app->priv->condition = FALSE;
-  app->priv->condition_type = -1;
 }
 
 static void
@@ -121,11 +113,41 @@ gsm_app_autostart_new (const char *desktop_file,
 }
 
 static void
-file_condition_cb (GFileMonitor *monitor,
-                   GFile *file,
-                   GFile *other_file,
-                   GFileMonitorEvent event,
-                   GsmApp *app)
+unless_exists_condition_cb (GFileMonitor *monitor,
+                            GFile *file,
+                            GFile *other_file,
+                            GFileMonitorEvent event,
+                            GsmApp *app)
+{
+  GsmAppAutostartPrivate *priv;
+  gboolean condition = FALSE;
+
+  priv = GSM_APP_AUTOSTART (app)->priv;
+
+  switch (event) {
+  case G_FILE_MONITOR_EVENT_DELETED:
+    condition = TRUE;
+    break;
+
+  default:
+    /* Ignore any other monitor event */
+    return;
+  }
+
+  /* Emit only if the condition actually changed */
+  if (condition != priv->condition)
+    { 
+      priv->condition = condition;
+      g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+    }
+}
+
+static void
+if_exists_condition_cb (GFileMonitor *monitor,
+                        GFile *file,
+                        GFile *other_file,
+                        GFileMonitorEvent event,
+                        GsmApp *app)
 {
   GsmAppAutostartPrivate *priv;
   gboolean condition = FALSE;
@@ -134,13 +156,7 @@ file_condition_cb (GFileMonitor *monitor,
 
   switch (event) {
   case G_FILE_MONITOR_EVENT_CREATED:
-    if (priv->condition_type == GSM_APP_CONDITION_TYPE_IF_EXISTS)
-      condition = TRUE;
-    break;
-
-  case G_FILE_MONITOR_EVENT_DELETED:
-    if (priv->condition_type == GSM_APP_CONDITION_TYPE_UNLESS_EXISTS)
-      condition = TRUE;
+    condition = TRUE;
     break;
 
   default:
@@ -249,8 +265,6 @@ is_disabled (GsmApp *app)
 	{
 	  char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
 
-          priv->condition_type = GSM_APP_CONDITION_TYPE_IF_EXISTS;
-
 	  disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
 
           if (autorestart)
@@ -260,7 +274,7 @@ is_disabled (GsmApp *app)
               priv->monitor = g_file_monitor_file (file, 0, NULL, NULL);
 
               g_signal_connect (priv->monitor, "changed",
-                                G_CALLBACK (file_condition_cb), 
+                                G_CALLBACK (if_exists_condition_cb), 
                                 app);
 
               g_object_unref (file);
@@ -272,8 +286,6 @@ is_disabled (GsmApp *app)
 	{
 	  char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
 
-          priv->condition_type = GSM_APP_CONDITION_TYPE_UNLESS_EXISTS;
-
 	  disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
 
           if (autorestart)
@@ -283,7 +295,7 @@ is_disabled (GsmApp *app)
               priv->monitor = g_file_monitor_file (file, 0, NULL, NULL);
 
               g_signal_connect (priv->monitor, "changed",
-                                G_CALLBACK (file_condition_cb), 
+                                G_CALLBACK (unless_exists_condition_cb), 
                                 app);
 
               g_object_unref (file);
@@ -293,8 +305,6 @@ is_disabled (GsmApp *app)
 	}
       else if (!g_ascii_strncasecmp (condition, "GNOME", len))
 	{
-          priv->condition_type = GSM_APP_CONDITION_TYPE_GNOME;
-
 	  if (key)
 	    {
               GConfClient *client;
