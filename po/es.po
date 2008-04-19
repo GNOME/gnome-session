@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-12 15:16+0100\n"
-"PO-Revision-Date: 2008-04-12 21:37+0200\n"
+"POT-Creation-Date: 2008-04-12 20:49+0100\n"
+"PO-Revision-Date: 2008-04-19 13:10+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,6 +73,11 @@ msgid ""
 "from the session, and the session manager will automatically add the "
 "required components back to the session if they do get removed."
 msgstr ""
+"Lista de componentes necesarios como partes de la sesión. (Cada elemento "
+"tiene una clave bajo  \"/desktop/gnome/session/required-components\".) Generalmente "
+"la miniaplicación de la sesión no permitirá que los usuarios eliminen componentes "
+"necesarios para la sesión, y el gestor de sesiones añadirá automáticamente los "
+"componentes necesarios a la sesión, si se eliminaron."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -111,18 +116,24 @@ msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
+"El gestor de archivos proporciona los iconos de escritorio y le permite interactuar con "
+"sus archivos guardados."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
+"El panel proporciona la barra en la parte superior y/o inferior de la pantalla y que "
+"contiene los menús, la lista de ventanas, los iconos de estado, el reloj, etc."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
+"El gestor de ventanas es el programa que dibuja las barras de título y los bordes "
+"alrededor de las ventanas, y le permite mover y redimensionar ventanas."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -192,7 +203,7 @@ msgstr "Opción de lanzamiento no reconocida: %d"
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
+msgstr "No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
 
 #: ../egg/eggdesktopfile.c:1354
 #, c-format
@@ -213,7 +224,7 @@ msgstr "Desactivar la conexión con el gestor de sesiones"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "Especifique el archivo que contiene la configuración guardada"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
@@ -221,7 +232,7 @@ msgstr "ARCHIVO"
 
 #: ../egg/eggsmclient.c:191
 msgid "Specify session management ID"
-msgstr ""
+msgstr "Especifique el ID de gestión de la sesión"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
@@ -241,6 +252,8 @@ msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
+"Hay un problema con la configuración del servidor.\n"
+"(%s salió con el estado %d)"
 
 #: ../gnome-session/logout-dialog.c:214
 #, c-format
@@ -251,7 +264,11 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "You will be automatically logged out in %d seconds."
 msgstr[0] ""
+"Actualmente está registrado en la sesión como «%s».\n"
+"Saldrá automáticamente de la sesión en %d segundo."
 msgstr[1] ""
+"Actualmente está registrado en la sesión como «%s».\n"
+"Saldrá automáticamente de la sesión en %d segundos."
 
 #: ../gnome-session/logout-dialog.c:226
 #, c-format
@@ -262,7 +279,11 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "This system will be automatically shut down in %d seconds."
 msgstr[0] ""
+"Actualmente está registrado en la sesión como «%s».\n"
+"El sistema se apagará automáticamente en %d segundo."
 msgstr[1] ""
+"Actualmente está registrado en la sesión como «%s».\n"
+"El sistema se apagará automáticamente en %d segundos."
 
 #: ../gnome-session/logout-dialog.c:302
 msgid "Log out of this system now?"
@@ -298,13 +319,13 @@ msgstr "A_pagar"
 
 #: ../gnome-session/main.c:33
 msgid "Do not load user-specified applications"
-msgstr ""
+msgstr "No cargar las aplicaciones especificadas por el usuario"
 
 #. Oh well, no X for you!
 #: ../gnome-session/main.c:68
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
-msgstr ""
+msgstr "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el servidor X)"
 
 #: ../gnome-session/main.c:106
 msgid " - the GNOME session manager"
@@ -313,17 +334,19 @@ msgstr " - El gestor de sesiones de GNOME"
 #: ../gnome-session/xsmp.c:132
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "No se pudo crear el socket de escucha ICE: %s"
 
 #: ../gnome-session/xsmp.c:335
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
+"Rechazando la conexión de un nuevo cliente porque actualmente se está cerrando "
+"la sesión\n"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
-msgstr ""
+msgstr "Reproducir el sonido de salida en lugar del de entrada"
 
 #: ../splash/gnome-login-sound.c:148
 msgid "- GNOME login/logout sound"
