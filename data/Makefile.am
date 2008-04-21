@@ -17,6 +17,10 @@ schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
 bin_SCRIPTS = gnome-wm
 
+settingsdir = $(datadir)/applications
+settings_in_files = session-properties.desktop.in
+settings_DATA = $(settings_in_files:.desktop.in=.desktop)
+
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
 	if test -z "$(DESTDIR)" ; then \
@@ -27,11 +31,13 @@ if GCONF_SCHEMAS_INSTALL
 endif
 
 EXTRA_DIST =					\
-	README					\
 	gnome-wm				\
+	session-properties.desktop.in		\
 	$(xsession_in_files)			\
-	$(schemas_in_files)
+	$(schemas_in_files)			\
+	$(pixmap_DATA)
 
 DISTCLEANFILES =				\
 	$(schemas_DATA)				\
-	$(xsession_DATA)
+	$(xsession_DATA)			\
+	$(settings_DATA)

@@ -4,7 +4,8 @@ SUBDIRS =			\
 	compat			\
 	splash			\
 	po			\
-	data
+	data			\
+	man
 
 EXTRA_DIST =			\
 	intltool-extract.in	\
