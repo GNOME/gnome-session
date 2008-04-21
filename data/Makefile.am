@@ -1,10 +1,5 @@
 SUBDIRS = icons
 
-default_sessiondir = $(datadir)/gnome/default-session
-default_session_DATA =				\
-	gnome-settings-daemon.desktop		\
-	nautilus.desktop
-
 @INTLTOOL_DESKTOP_RULE@
 
 xsessiondir = $(datadir)/xsessions
@@ -35,8 +30,7 @@ EXTRA_DIST =					\
 	README					\
 	gnome-wm				\
 	$(xsession_in_files)			\
-	$(schemas_in_files)			\
-	$(default_session_DATA)
+	$(schemas_in_files)
 
 DISTCLEANFILES =				\
 	$(schemas_DATA)				\

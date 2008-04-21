@@ -1,5 +1,12 @@
 2008-04-21  Lucas Rocha  <lucasr@gnome.org>
 
+	* data/Makefile.am, data/nautilus.desktop,
+	data/gnome-settings-daemon.desktop: don't install .desktop files for
+	nautilus and gnome-settings-daemon because gnome-session looks for
+	those in their origin paths now.
+
+2008-04-21  Lucas Rocha  <lucasr@gnome.org>
+
 	* data/gnome-wm: restore the gnome-wm script to keep backwards
 	compatibitility.
 
