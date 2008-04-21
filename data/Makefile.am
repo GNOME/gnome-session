@@ -20,6 +20,8 @@ schemas_in_files = gnome-session.schemas.in
 schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
+bin_SCRIPTS = gnome-wm
+
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
 	if test -z "$(DESTDIR)" ; then \
@@ -31,6 +33,7 @@ endif
 
 EXTRA_DIST =					\
 	README					\
+	gnome-wm				\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
 	$(default_session_DATA)
