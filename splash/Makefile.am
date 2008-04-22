@@ -16,7 +16,7 @@ shutdowndir = $(datadir)/gnome/shutdown
 shutdown_SCRIPTS =				\
 	gnome-logout-sound.sh
 
-default_sessiondir = $(datadir)/gnome/default-session
+default_sessiondir = $(datadir)/gnome/autostart
 default_session_DATA =				\
 	gnome-session-splash.desktop		\
 	gnome-login-sound.desktop

@@ -20,7 +20,7 @@ helper_PROGRAMS =				\
 	gnome-keyring-daemon-wrapper		\
 	gnome-settings-daemon-helper
 
-default_sessiondir = $(datadir)/gnome/default-session
+default_sessiondir = $(datadir)/gnome/autostart
 default_session_DATA =				\
 	at-spi-registryd-wrapper.desktop	\
 	gnome-keyring-daemon-wrapper.desktop	\
