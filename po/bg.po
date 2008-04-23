@@ -1,20 +1,21 @@
 # Bulgarian translation of gnome-session po-file.
-# Copyright (C) 2001, 2002, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Alexander Shopov <ash@contact.bg>, 2002, 2005, 2006, 2007.
 # Vladimir  Petkov <vpetkov@i-space.org>, 2004
 # Peter Slavov <pslavov@i-space.org>, 2004
 # Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2005.
+# Yavor Doganov <yavor@gnu.org>, 2008.
 #
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session trunk\n"
+"Project-Id-Version: gnome-session gnome-2-22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-17 23:08+0300\n"
-"PO-Revision-Date: 2007-09-17 23:05+0300\n"
-"Last-Translator: Alexander Shopov <ash@contact.bg>\n"
+"POT-Creation-Date: 2008-04-24 00:07+0300\n"
+"PO-Revision-Date: 2008-04-22 16:41+0300\n"
+"Last-Translator: Yavor Doganov <yavor@gnu.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,12 +97,19 @@ msgstr ""
 "стойности са „logout“ за изход, „shutdown“ за спиране на системата и "
 "„restart“ за рестартиране на системата."
 
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Влизане в GNOME"
+
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Настройки на сесиите"
 
 #: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
 msgid "Sessions"
 msgstr "Сесии"
 
@@ -221,7 +229,7 @@ msgid "State"
 msgstr "Състояние"
 
 #: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
+#: ../gnome-session/session-properties-capplet.c:284
 msgid "Program"
 msgstr "Програма"
 
@@ -233,7 +241,7 @@ msgstr "Програма"
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: ../gnome-session/gsm-gsd.c:45
+#: ../gnome-session/gsm-gsd.c:47
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
@@ -245,7 +253,7 @@ msgstr ""
 "Някои неща - теми, звуци или настройки на фона на екрана, може да не работят "
 "правилно."
 
-#: ../gnome-session/gsm-gsd.c:57
+#: ../gnome-session/gsm-gsd.c:59
 msgid ""
 "\n"
 "\n"
@@ -257,7 +265,7 @@ msgstr ""
 "Последното съобщение за грешка беше:\n"
 "\n"
 
-#: ../gnome-session/gsm-gsd.c:62
+#: ../gnome-session/gsm-gsd.c:64
 msgid ""
 "\n"
 "\n"
@@ -267,7 +275,7 @@ msgstr ""
 "\n"
 "GNOME ще опита да рестартира сървъра за настройки при следващото ви влизане."
 
-#: ../gnome-session/gsm-gsd.c:145
+#: ../gnome-session/gsm-gsd.c:162
 msgid "The Settings Daemon restarted too many times."
 msgstr "Сървърът за настройки е рестартиран твърде много пъти."
 
@@ -278,25 +286,30 @@ msgstr "Без име"
 
 #: ../gnome-session/gnome-session-remove.c:50
 msgid "List registered clients, then exit"
-msgstr "Списък с регистрираните клиенти и спиране на програмата"
+msgstr ""
+"Списък с регистрираните клиенти и спиране на\n"
+"                                    програмата"
 
 #: ../gnome-session/gnome-session-remove.c:52
 msgid "PROGRAM..."
-msgstr "ПРОГРАМА..."
+msgstr "ПРОГРАМА…"
 
 #: ../gnome-session/gnome-session-remove.c:176
+#, c-format
 msgid ""
 "You must specify at least one program to remove. You can list the programs "
 "with --list.\n"
 msgstr ""
-"Трябва да укажете поне една програма, която да премахнете. За получаване на "
+"Трябва да укажете поне една програма, която да премахнете. За получаване на\n"
 "списъка с програмите използвайте опцията „--list“.\n"
 
 #: ../gnome-session/gnome-session-remove.c:183
+#, c-format
 msgid "Error: could not connect to the session manager\n"
 msgstr "Грешка: свързването с мениджъра на сесии е неуспешно\n"
 
 #: ../gnome-session/gnome-session-remove.c:197
+#, c-format
 msgid "Currently registered clients:\n"
 msgstr "Текущо регистрирани клиенти:\n"
 
@@ -317,7 +330,7 @@ msgstr ""
 "системата за грешки на GNOME. Включете следното съобщение аз грешка от ICE: "
 "„%s“. Междувременно можете да се опитате да влезете в аварийната сесия."
 
-#: ../gnome-session/ice.c:511
+#: ../gnome-session/ice.c:514
 #, c-format
 msgid ""
 "The GNOME session manager was unable to lock the file '%s'.  Please report "
@@ -330,7 +343,7 @@ msgstr ""
 "грешка е, че нямата права за запис в папката, в която е файла. Можете да "
 "влезете с аварийна сесия и да проверите дали това не е така."
 
-#: ../gnome-session/ice.c:538
+#: ../gnome-session/ice.c:541
 #, c-format
 msgid ""
 "The GNOME session manager was unable to read the file: '%s'.  If this file "
@@ -341,7 +354,7 @@ msgstr ""
 "съществува, трябва да имате права за четене, за да може GNOME да работи "
 "правилно. Опитайте се да влезете в аварийна сесия и да изтриете файла."
 
-#: ../gnome-session/ice.c:583
+#: ../gnome-session/ice.c:586
 #, c-format
 msgid ""
 "Could not write to file '%s'.  This file must be writable in order for GNOME "
@@ -387,12 +400,15 @@ msgstr "ИМЕ"
 
 #: ../gnome-session/main.c:88
 msgid "Only read saved sessions from the default.session file"
-msgstr "Прочитане само на запазените сесии от файла default.session"
+msgstr ""
+"Прочитане само на запазените сесии от файла\n"
+"                                    default.session"
 
 #: ../gnome-session/main.c:89
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr ""
-"Време за изчакване на клиентите да се регистрират (0=до безкрайност) [ms]"
+"Време за изчакване на клиентите да се\n"
+"                                    регистрират (0=до безкрайност) [ms]"
 
 #: ../gnome-session/main.c:89 ../gnome-session/main.c:90
 #: ../gnome-session/main.c:91
@@ -401,11 +417,15 @@ msgstr "ЗАБАВЯНЕ"
 
 #: ../gnome-session/main.c:90
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Време за изчакване на клиентите да отговорят (0=до безкрайност) [ms]"
+msgstr ""
+"Време за изчакване на клиентите да отговорят\n"
+"                                    (0=до безкрайност) [ms]"
 
 #: ../gnome-session/main.c:91
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Време за изчакване на клиентите да умрат (0=до безкрайност) [ms]"
+msgstr ""
+"Време за изчакване на клиентите да умрат\n"
+"                                    (0=до безкрайност) [ms]"
 
 #: ../gnome-session/main.c:167
 msgid "This session is running as a privileged user"
@@ -475,7 +495,7 @@ msgstr "Влизане въпреки всичко"
 msgid "Try Again"
 msgstr "Отново"
 
-#: ../gnome-session/main.c:696
+#: ../gnome-session/main.c:694
 msgid "- Manage the GNOME session"
 msgstr "- управление на сесиите на GNOME"
 
@@ -486,7 +506,7 @@ msgstr "Чакането е преустановено поради конфли
 #: ../gnome-session/manager.c:1021
 #, c-format
 msgid "No response to the %s command."
-msgstr "Няма отговор на командата %s"
+msgstr "Няма отговор на командата %s."
 
 #: ../gnome-session/manager.c:1022
 msgid "The program may be slow, stopped or broken."
@@ -541,44 +561,52 @@ msgstr "Ако не запазите промените, те ще бъдат и
 msgid "_Close without Saving"
 msgstr "_Затваряне без запазване"
 
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Настройки на сесиите"
+
+#. non-session managed startup programs
 #: ../gnome-session/session-properties-capplet.c:250
 msgid "Additional startup _programs:"
 msgstr "Допълнителни _начални програми:"
 
-#: ../gnome-session/session-properties-capplet.c:274
+#: ../gnome-session/session-properties-capplet.c:275
 msgid "Enabled"
 msgstr "Включена"
 
-#: ../gnome-session/session-properties-capplet.c:322
+#: ../gnome-session/session-properties-capplet.c:319
 msgid "Startup Programs"
 msgstr "Начални програми"
 
-#: ../gnome-session/session-properties-capplet.c:328
+#: ../gnome-session/session-properties-capplet.c:326
 msgid "Current Session"
 msgstr "Текуща сесия"
 
-#: ../gnome-session/session-properties-capplet.c:341
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
 "_Автоматично запомняне на стартираните приложения при излизане от системата"
 
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
+#: ../gnome-session/session-properties-capplet.c:353
+msgid "_Remember Currently Running Applications"
 msgstr "_Запомняне на текущо стартираните приложения"
 
-#: ../gnome-session/session-properties-capplet.c:364
+#: ../gnome-session/session-properties-capplet.c:361
 msgid "Session Options"
 msgstr "Настройки на сесия"
 
-#: ../gnome-session/session-properties-capplet.c:460
+#: ../gnome-session/session-properties-capplet.c:457
 msgid "Your session has been saved."
 msgstr "Сесията ви е запазена."
 
-#: ../gnome-session/session-properties-capplet.c:503
+#: ../gnome-session/session-properties-capplet.c:500
+#, c-format
 msgid "could not connect to the session manager\n"
 msgstr "свързването с мениджъра на сесии е неуспешно\n"
 
-#: ../gnome-session/session-properties-capplet.c:509
+#: ../gnome-session/session-properties-capplet.c:506
+#, c-format
 msgid "session manager does not support GNOME extensions\n"
 msgstr "мениджърът на сесиите не поддържа разширенията на GNOME\n"
 
@@ -594,7 +622,7 @@ msgstr "Прилагане на промените в текущата сеси�
 msgid "The list of programs in the session."
 msgstr "Списък с програми в сесията."
 
-#: ../gnome-session/session-properties.c:90
+#: ../gnome-session/session-properties.c:89
 msgid "Currently running _programs:"
 msgstr "Текущо работещи _програми:"
 
@@ -626,38 +654,42 @@ msgstr "Настройки на средата"
 msgid "No description"
 msgstr "Без описание"
 
-#: ../gnome-session/startup-programs.c:467
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Избор на команда"
+
+#: ../gnome-session/startup-programs.c:471
 msgid "_Name:"
 msgstr "_Име:"
 
-#: ../gnome-session/startup-programs.c:485
-msgid "_Command:"
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
 msgstr "_Команда:"
 
-#: ../gnome-session/startup-programs.c:499
+#: ../gnome-session/startup-programs.c:498
 msgid "_Browse..."
-msgstr "_Разглеждане..."
+msgstr "_Разглеждане…"
 
-#: ../gnome-session/startup-programs.c:512
-msgid "Co_mment:"
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
 msgstr "Ко_ментар:"
 
-#: ../gnome-session/startup-programs.c:542
+#: ../gnome-session/startup-programs.c:538
 msgid "The name of the startup program cannot be empty"
 msgstr "Името на програмата за стартиране не може да бъде празно"
 
-#: ../gnome-session/startup-programs.c:544
+#: ../gnome-session/startup-programs.c:540
 msgid "The startup command cannot be empty"
 msgstr "Името на командата за стартиране не може да бъде празно"
 
-#: ../gnome-session/startup-programs.c:550
+#: ../gnome-session/startup-programs.c:546
 msgid "The startup command is not valid"
 msgstr "Името на командата за стартиране е неправилно"
 
-#: ../gnome-session/startup-programs.c:607
-msgid "New Startup Program"
-msgstr "Нови начални програми"
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Добавяне на начална програма"
 
-#: ../gnome-session/startup-programs.c:651
+#: ../gnome-session/startup-programs.c:647
 msgid "Edit Startup Program"
 msgstr "Редактиране на начална програма"
