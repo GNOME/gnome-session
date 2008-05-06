@@ -25,6 +25,7 @@ msgid ""
 "is installed. Your session has been started without assistive technology "
 "support."
 msgstr ""
+"תמיכה בטכנולוגיה מסייעת התבקשה עבור הפעלה זאת, אבל הגדרות הנגישות לא נמצאו. נא לוודא שהחבילה AT-SPI מותקנת. ההפעלה הותחלה ללא תמיכה בטכנולוגיה מסייעת."
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -248,7 +249,12 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "You will be automatically logged out in %d seconds."
 msgstr[0] ""
+"אתה כרגע מחובר כ-\"%s\".\n"
+"בעוד שנייה אחת תנותק אוטומטית."
 msgstr[1] ""
+""
+"אתה כרגע מחובר כ-\"%s\".\n"
+"בעוד %d שניות תנותק אוטומטית."
 
 #: ../gnome-session/logout-dialog.c:226
 #, c-format
@@ -259,7 +265,12 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "This system will be automatically shut down in %d seconds."
 msgstr[0] ""
+"אתה כרגע מחובר כ-\"%s\".\n"
+"בעוד שנייה אחת המערכת תכבה אוטומטית."
 msgstr[1] ""
+""
+"אתה כרגע מחובר כ-\"%s\".\n"
+"בעוד %d שניות המערכת תכבה אוטומטית."
 
 #: ../gnome-session/logout-dialog.c:302
 msgid "Log out of this system now?"
@@ -275,7 +286,7 @@ msgstr "_התנתק"
 
 #: ../gnome-session/logout-dialog.c:323
 msgid "Shut down this system now?"
-msgstr ""
+msgstr "לכבות את המערכת?"
 
 #: ../gnome-session/logout-dialog.c:329
 msgid "S_uspend"
