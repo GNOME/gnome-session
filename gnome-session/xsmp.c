@@ -34,6 +34,7 @@
 
 #include "client-xsmp.h"
 #include "gsm.h"
+#include "util.h"
 #include "xsmp.h"
 
 #include <X11/ICE/ICElib.h>

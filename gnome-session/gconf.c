@@ -30,6 +30,7 @@
 
 #include "gconf.h"
 #include "gsm.h"
+#include "util.h"
 
 static pid_t gsc_pid;
 static GConfClient *client = NULL;

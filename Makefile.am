@@ -1,6 +1,7 @@
 SUBDIRS =			\
 	egg			\
 	gnome-session		\
+	capplet			\
 	compat			\
 	splash			\
 	po			\

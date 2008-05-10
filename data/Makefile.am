@@ -1,5 +1,8 @@
 SUBDIRS = icons
 
+gladedir = $(datadir)/gnome-session
+glade_DATA = session-properties.glade 
+
 @INTLTOOL_DESKTOP_RULE@
 
 xsessiondir = $(datadir)/xsessions

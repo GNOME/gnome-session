@@ -1,3 +1,16 @@
+2008-05-10  Lucas Rocha  <lucasr@gnome.org>
+
+	Session properties capplet re-implemented for new code base.
+	#529601, Karsten Bräckelmann.
+
+	* capplet/main.c, capplet/ui.[ch], capplet/commands.[ch]: session
+	properties capplet code.
+	* gnome-session/util.[ch]: utility functions shared among session
+	manager and capplet.
+	* gnome-session/session.c (gsm_session_new): use gsm_util_* functions
+	instead of local ones.
+	* data/session-properties.glade: capplet Glade file.
+
 2008-04-22  Lucas Rocha  <lucasr@gnome.org>
 
 	* configure.in: post-release bump to 2.23.2

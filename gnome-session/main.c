@@ -22,6 +22,7 @@
 #include "gconf.h"
 #include "gsm.h"
 #include "session.h"
+#include "util.h"
 #include "xsmp.h"
 
 GsmSession *global_session;

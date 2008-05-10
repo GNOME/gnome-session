@@ -77,7 +77,7 @@ gsm_dbus_init (void)
   if (error)
     {
       gsm_initialization_error (TRUE, "Could not start dbus-daemon: %s",
-				error->message);
+	  			error->message);
       /* not reached */
     }
 
