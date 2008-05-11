@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-12 20:49+0100\n"
-"PO-Revision-Date: 2008-04-19 13:10+0200\n"
+"POT-Creation-Date: 2008-05-10 18:47+0000\n"
+"PO-Revision-Date: 2008-05-11 12:49+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type:  text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
@@ -74,10 +74,11 @@ msgid ""
 "required components back to the session if they do get removed."
 msgstr ""
 "Lista de componentes necesarios como partes de la sesión. (Cada elemento "
-"tiene una clave bajo  \"/desktop/gnome/session/required-components\".) Generalmente "
-"la miniaplicación de la sesión no permitirá que los usuarios eliminen componentes "
-"necesarios para la sesión, y el gestor de sesiones añadirá automáticamente los "
-"componentes necesarios a la sesión, si se eliminaron."
+"tiene una clave bajo  \"/desktop/gnome/session/required-components\".) "
+"Generalmente la miniaplicación de la sesión no permitirá que los usuarios "
+"eliminen componentes necesarios para la sesión, y el gestor de sesiones "
+"añadirá automáticamente los componentes necesarios a la sesión, si se "
+"eliminaron."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -116,24 +117,26 @@ msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
-"El gestor de archivos proporciona los iconos de escritorio y le permite interactuar con "
-"sus archivos guardados."
+"El gestor de archivos proporciona los iconos de escritorio y le permite "
+"interactuar con sus archivos guardados."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
-"El panel proporciona la barra en la parte superior y/o inferior de la pantalla y que "
-"contiene los menús, la lista de ventanas, los iconos de estado, el reloj, etc."
+"El panel proporciona la barra en la parte superior y/o inferior de la "
+"pantalla y que contiene los menús, la lista de ventanas, los iconos de "
+"estado, el reloj, etc."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
-"El gestor de ventanas es el programa que dibuja las barras de título y los bordes "
-"alrededor de las ventanas, y le permite mover y redimensionar ventanas."
+"El gestor de ventanas es el programa que dibuja las barras de título y los "
+"bordes alrededor de las ventanas, y le permite mover y redimensionar "
+"ventanas."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -175,6 +178,75 @@ msgstr "Configure sus sesiones"
 msgid "Sessions"
 msgstr "Sesiones"
 
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "_Programas adicionales para iniciar:"
+
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Examinar..."
+
+#: ../data/session-properties.glade.h:3
+msgid "Co_mmand:"
+msgstr "Co_mando:"
+
+#: ../data/session-properties.glade.h:4
+msgid "Comm_ent:"
+msgstr "Com_entario:"
+
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Opciones"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Preferencias de la sesión"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Programas al inicio"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr ""
+"Recordar _automáticamente las aplicaciones en ejecución al salir de la sesión"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Nombre:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Recordar las aplicaciones ejecutándose actualmente"
+
+#: ../data/session-properties.glade.h:11
+msgid "gtk-add"
+msgstr "gtk-add"
+
+#: ../data/session-properties.glade.h:12
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../data/session-properties.glade.h:13
+msgid "gtk-close"
+msgstr "gtk-close"
+
+#: ../data/session-properties.glade.h:14
+msgid "gtk-edit"
+msgstr "gtk-edit"
+
+#: ../data/session-properties.glade.h:15
+msgid "gtk-help"
+msgstr "gtk-help"
+
+#: ../data/session-properties.glade.h:16
+msgid "gtk-ok"
+msgstr "gtk-ok"
+
+#: ../data/session-properties.glade.h:17
+msgid "gtk-remove"
+msgstr "gtk-remove"
+
 #: ../egg/eggdesktopfile.c:130
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -203,7 +275,8 @@ msgstr "Opción de lanzamiento no reconocida: %d"
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
+msgstr ""
+"No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
 
 #: ../egg/eggdesktopfile.c:1354
 #, c-format
@@ -246,7 +319,7 @@ msgstr "Opciones de gestión de la sesión"
 msgid "Show Session Management options"
 msgstr "Mostrar opciones de gestión de la sesión"
 
-#: ../gnome-session/gconf.c:109
+#: ../gnome-session/gconf.c:110
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -317,32 +390,74 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "A_pagar"
 
-#: ../gnome-session/main.c:33
+#: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
 #. Oh well, no X for you!
-#: ../gnome-session/main.c:68
+#: ../gnome-session/main.c:69
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el servidor X)"
+msgstr ""
+"No se pudo iniciar el inicio de sesión (y fue imposible conectar con el "
+"servidor X)"
 
-#: ../gnome-session/main.c:106
+#: ../gnome-session/main.c:107
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
-#: ../gnome-session/xsmp.c:132
+#: ../gnome-session/xsmp.c:133
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No se pudo crear el socket de escucha ICE: %s"
 
-#: ../gnome-session/xsmp.c:335
+#: ../gnome-session/xsmp.c:336
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"Rechazando la conexión de un nuevo cliente porque actualmente se está cerrando "
-"la sesión\n"
+"Rechazando la conexión de un nuevo cliente porque actualmente se está "
+"cerrando la sesión\n"
+
+#: ../capplet/ui.c:85
+msgid "Select Command"
+msgstr "Seleccionar comando"
+
+#: ../capplet/ui.c:197
+msgid "The name of the startup program cannot be empty"
+msgstr "El nombre del programa de inicio no puede estar vacío"
+
+#: ../capplet/ui.c:200
+msgid "The startup command cannot be empty"
+msgstr "El comando de inicio no puede estar vacío"
+
+#: ../capplet/ui.c:207
+msgid "The startup command is not valid"
+msgstr "El comando de inicio no es válido"
+
+#: ../capplet/ui.c:335
+msgid "Enabled"
+msgstr "Activado"
+
+#: ../capplet/ui.c:349
+msgid "Icon"
+msgstr "Icono"
+
+#: ../capplet/ui.c:361
+msgid "Program"
+msgstr "Programa"
+
+#: ../capplet/ui.c:396
+msgid "Add Startup Program"
+msgstr "Añadir programa al inicio"
+
+#: ../capplet/ui.c:444
+msgid "Edit Startup Program"
+msgstr "Editar programa al inicio"
+
+#: ../capplet/commands.c:762
+msgid "No description"
+msgstr "Sin descripción"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -355,4 +470,3 @@ msgstr "- Sonido de inicio/final de sesión de GNOME"
 #: ../splash/gnome-session-splash.c:204
 msgid "- GNOME Splash Screen"
 msgstr " - Pantalla de bienvenida de GNOME"
-
