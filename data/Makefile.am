@@ -38,6 +38,7 @@ EXTRA_DIST =					\
 	session-properties.desktop.in		\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
+	$(glade_DATA)				\
 	$(pixmap_DATA)
 
 DISTCLEANFILES =				\
