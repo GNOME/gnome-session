@@ -42,7 +42,7 @@
 #define CAPPLET_REMEMBER_WIDGET_NAME      "session_properties_remember_toggle"
 #define CAPPLET_EDIT_DIALOG_WIDGET_NAME   "session_properties_edit_dialog"
 #define CAPPLET_NAME_ENTRY_WIDGET_NAME    "session_properties_name_entry"
-#define CAPPLET_COMMAND_ENTRY_WIDGET_NAME "spc_command_entry"
+#define CAPPLET_COMMAND_ENTRY_WIDGET_NAME "session_properties_command_entry"
 #define CAPPLET_COMMENT_ENTRY_WIDGET_NAME "session_properties_comment_entry"
 #define CAPPLET_BROWSE_WIDGET_NAME        "session_properties_browse_button"
 
