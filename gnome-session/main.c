@@ -104,7 +104,7 @@ main (int argc, char **argv)
   sigaction (SIGPIPE, &sa, 0);
 
   gtk_init_with_args (&argc, &argv,
-		      _(" - the GNOME session manager"),
+		      (char *) _(" - the GNOME session manager"),
 		      entries, GETTEXT_PACKAGE,
 		      &err);
   if (err)
