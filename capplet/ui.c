@@ -416,6 +416,8 @@ add_app_cb (GtkWidget *widget,
 
   if (edit_app_dialog (_("Add Startup Program"), GTK_LIST_STORE (model), &iter, parent))
     spc_command_add_app (GTK_LIST_STORE (model), &iter);  
+  else
+    gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
 }
 
 static void
