@@ -82,9 +82,7 @@ gsm_initialization_error (gboolean fatal, const char *format, ...)
 
   gtk_widget_destroy (dialog);
 
-  /* Blah blah blah etc FIXME */
-
-  /* FIXME: shutdown gconf, dbus, etc? */
+  gtk_main_quit ();
 }
 
 int
@@ -139,7 +137,10 @@ main (int argc, char **argv)
   gsm_session_start (global_session);
 
   gtk_main ();
-  //gsm_session_free (session);
+
+  gsm_xsmp_shutdown ();
+  gsm_gconf_shutdown ();
+  gsm_dbus_shutdown ();
 
   return 0;
 }

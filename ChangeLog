@@ -1,5 +1,13 @@
 2008-05-17  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/main.c 
+	(main): call gsm_dbus_shutdown, gsm_xsmp_shutdown, and
+	gsm_gconf_shutdown after main quit.
+	(gsm_initialization_error): call gtk_main_quit after showing error
+	dialog.
+
+2008-05-17  Lucas Rocha  <lucasr@gnome.org>
+
 	Port gnome-session-save tool to new code base.
 
 	* tools/gnome-session-save.c: tool source code.
