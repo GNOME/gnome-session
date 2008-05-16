@@ -66,6 +66,8 @@ static void client_disconnected        (GsmClient *client,
 					gpointer   data);
 
 struct _GsmSession {
+  char *name;
+
   /* Startup/resumed apps */
   GSList *apps;
   GHashTable *apps_by_name;
@@ -118,6 +120,8 @@ gsm_session_new (gboolean failsafe)
   char **autostart_dirs;
   int i;
 
+  session->name = NULL;
+
   session->clients = NULL;
   session->condition_clients = NULL;
 
@@ -147,6 +151,22 @@ out:
   g_strfreev (autostart_dirs);
 
   return session;
+}
+
+/**
+ * gsm_session_set_name:
+ * @session: session instance 
+ * @name: name of the session 
+ *
+ * Sets the name of a running session.
+ **/
+void
+gsm_session_set_name (GsmSession *session, const char *name)
+{
+  if (session->name)
+    g_free (session->name);
+
+  session->name = g_strdup (name);
 }
 
 static void

@@ -15,11 +15,17 @@
       <arg name="fatal" type="b" direction="in"/>
     </method>
 
+    <!-- Running phase interfaces -->
+
     <method name="Shutdown">
     </method>
 
     <method name="Logout">
       <arg name="mode" type="i" direction="in"/>
+    </method>
+
+    <method name="SetName">
+      <arg name="name" type="s" direction="in"/>
     </method>
 
   </interface>

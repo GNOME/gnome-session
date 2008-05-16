@@ -153,6 +153,10 @@ static gboolean gsm_dbus_server_logout (GsmDBusServer  *dbus,
 static gboolean gsm_dbus_server_shutdown (GsmDBusServer  *dbus,
 					  GError        **error);
 
+static gboolean gsm_dbus_server_set_name (GsmDBusServer  *dbus,
+                                          const char     *session_name,
+					  GError        **error);
+
 #include "dbus-glue.h"
 
 G_DEFINE_TYPE (GsmDBusServer, gsm_dbus_server, G_TYPE_OBJECT)
@@ -268,6 +272,24 @@ gsm_dbus_server_shutdown (GsmDBusServer  *dbus,
     }
 
   gsm_session_initiate_shutdown (global_session, TRUE, GSM_SESSION_LOGOUT_TYPE_SHUTDOWN);
+
+  return TRUE;
+}
+
+static gboolean
+gsm_dbus_server_set_name (GsmDBusServer  *dbus,
+                          const char     *session_name,
+			  GError        **error)
+{
+  if (gsm_session_get_phase (global_session) != GSM_SESSION_PHASE_RUNNING)
+    {
+      g_set_error (error, GSM_DBUS_ERROR,
+		   GSM_DBUS_ERROR_NOT_IN_RUNNING,
+		   "SetName interface is only available during the Running phase");
+      return FALSE;
+    }
+
+  gsm_session_set_name (global_session, session_name);
 
   return TRUE;
 }

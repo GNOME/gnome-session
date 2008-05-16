@@ -67,6 +67,9 @@ typedef enum {
 
 GsmSession      *gsm_session_new               (gboolean    failsafe);
 
+void             gsm_session_set_name          (GsmSession *session,
+                                                const char *name);
+
 void             gsm_session_start             (GsmSession *session);
 
 GsmSessionPhase  gsm_session_get_phase         (GsmSession *session);

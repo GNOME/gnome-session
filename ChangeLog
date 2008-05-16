@@ -1,3 +1,15 @@
+2008-05-17  Lucas Rocha  <lucasr@gnome.org>
+
+	Port gnome-session-save tool to new code base.
+
+	* tools/gnome-session-save.c: tool source code.
+	* configure.in, Makefile.am, tools/Makefile.am: add tools to build.
+	* gnome-session/org.gnome.SessionManagement.xml, 
+	gnome-session/dbus.c (gsm_dbus_server_set_name): new SetName D-Bus
+	method which should be used to set the name of current session.
+	* gnome-session/session.[ch] (gsm_session_set_name): new GsmSession
+	method for setting session name.
+
 2008-05-14  Lucas Rocha  <lucasr@gnome.org>
 
 	* configure.in: post-release bump to 2.23.3
