@@ -1,4 +1,4 @@
-# translation of gnome-session.HEAD.ar.po to Arabic
+# translation of gnome-session.HEAD.po to Arabic
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
 #
@@ -8,18 +8,17 @@
 # Anas Husseini <linux.anas@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD.ar\n"
+"Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-19 01:55+0100\n"
-"PO-Revision-Date: 2008-02-06 04:03+0200\n"
+"PO-Revision-Date: 2008-05-21 23:18+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../compat/at-spi-registryd-wrapper.c:51
 msgid ""
@@ -32,31 +31,28 @@ msgstr ""
 "حزمة AT-SPI مثبّتة من فضلك. بُدِأت جلستك بدون دعم التقنية المُعِينة."
 
 #: ../data/gnome-session.schemas.in.h:1
-#, fuzzy
 msgid "Default session"
-msgstr "اقتل الجلسة"
+msgstr "الجلسة المبدئية"
 
 #: ../data/gnome-session.schemas.in.h:2
-#, fuzzy
 msgid "File Manager"
-msgstr "مدير النوافذ"
+msgstr "مدير الملفات"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "اذا فعل فسيسأل جلسة-جنوم المستخدم قبل إنهاء جلسة."
+msgstr "إذا فُعِّل فستسأل gnome-session المستخدم قبل إنهاء جلسة."
 
 #: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
 msgstr ""
-"إذا فـُعّل فسيحفظ gnome-session الجلسة آليا. في بقية الحالات سيكون لحوار تسجيل "
+"إذا فـُعّل فستحفظ gnome-session الجلسة آليا. في بقية الحالات سيكون لحوار تسجيل "
 "الخروج خيارا لحفظ الجلسة."
 
 #: ../data/gnome-session.schemas.in.h:5
-#, fuzzy
 msgid "List of applications that are part of the default session."
-msgstr "ترتيب تشغيل التطبيقات في الجلسة."
+msgstr "قائمة بالتطبيقات الموجودة في الجلسة المبدئية"
 
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
@@ -65,25 +61,23 @@ msgid ""
 "session capplet will not normally allow users to remove a required component "
 "from the session, and the session manager will automatically add the "
 "required components back to the session if they do get removed."
-msgstr ""
+msgstr "قائمة بالتطبيقات المطلوبة كجزء من الجلسة. (كل عنصر يسمي مفتاحا تحت \"/desktop/gnome/session/required-components\".) عادة لن يسمح عنثر التحكم في الجلسات بحذف مكون مطلوب من الجلسة، وسيعيد مدير الجلسات أي عناصر مطلوبة تحذف."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
-msgstr "محث تسجيل الخروج"
+msgstr "محث الخروج"
 
 #: ../data/gnome-session.schemas.in.h:8
-#, fuzzy
 msgid "Panel"
 msgstr "الشريط"
 
 #: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
-msgstr ""
-"الصورة المحبذة التي ستستخدم في شاشة الترحيب عند تسجيل الدخول في مكتب جنوم"
+msgstr "الصورة المحبذة التي ستستخدم في شاشة الترحيب عند تسجيل الدخول في مكتب جنوم"
 
 #: ../data/gnome-session.schemas.in.h:10
 msgid "Required session components"
-msgstr ""
+msgstr "مكونات الجلسة المطلوبة"
 
 #: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
@@ -105,19 +99,19 @@ msgstr "أظهر شاشة البدأ عند بدأ الجلسة"
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
-msgstr ""
+msgstr "يوفر مدير الملفات أيقونات سطح المكتب ويمكنك من التفاعل مع الملفات المحفوظة."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
-msgstr ""
+msgstr "توفر اللوحة شريطا في قمة وقاع الشاشة تحتوي القوائم و قائمة التوافذ وأيقونات الحالة والساعة إلخ."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
-msgstr ""
+msgstr "مدير النوافذ هو لالبرنامج الذي يرسم شريط عنوان وحدود النوافذ، ويمكنك من نقل وتحجيم النوافذ."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -159,12 +153,11 @@ msgstr "الجلسات"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
-msgstr "البرامج الإضافية عند _بدأ التشغيل:"
+msgstr "برامج بدء الت_شغيل الإضافية:"
 
 #: ../data/session-properties.glade.h:2
-#, fuzzy
 msgid "Browse..."
-msgstr "است_عرض..."
+msgstr "تصفّح..."
 
 #: ../data/session-properties.glade.h:3
 msgid "Co_mmand:"
@@ -175,9 +168,8 @@ msgid "Comm_ent:"
 msgstr "ال_تعليق:"
 
 #: ../data/session-properties.glade.h:5
-#, fuzzy
 msgid "Options"
-msgstr "خيارات الجلسة"
+msgstr "الخيارات"
 
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
@@ -189,91 +181,86 @@ msgstr "برامج بدء التشغيل"
 
 #: ../data/session-properties.glade.h:8
 msgid "_Automatically remember running applications when logging out"
-msgstr "ت_ذكـّر التطبيقات المشغلة تلقائيًا عند تسجيل الخروج"
+msgstr "ت_ذكّر تلقائيا التطبيقات المشغلة عند تسجيل الخروج"
 
 #: ../data/session-properties.glade.h:9
 msgid "_Name:"
 msgstr "الا_سم:"
 
 #: ../data/session-properties.glade.h:10
-#, fuzzy
 msgid "_Remember Currently Running Application"
-msgstr "_تذكـّر التطبيقات المشغلة حاليًا"
+msgstr "_تذكّر التطبيقات المشغلة حاليًا"
 
 #: ../egg/eggdesktopfile.c:130
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr ""
+msgstr "ليس هذا ملف .desktop سليم"
 
 #: ../egg/eggdesktopfile.c:153
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
+msgstr "إصدارة ملف سطح مكتب غير معروفة: '%s'"
 
 #: ../egg/eggdesktopfile.c:926
-#, fuzzy, c-format
+#, c-format
 msgid "Starting %s"
-msgstr "جاري التشغيل"
+msgstr "يجري بدء %s"
 
 #: ../egg/eggdesktopfile.c:1060
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr ""
+msgstr "لا يقبل التطبيق مستندات في سطر الأوامر"
 
 #: ../egg/eggdesktopfile.c:1128
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr ""
+msgstr "خيار إطلاق غير معروف: %Id"
 
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
+msgstr "تعذّر تمرير مسارات الملفات إلى مدخلة سطح مكتب 'Type=Link'"
 
 #: ../egg/eggdesktopfile.c:1354
 #, c-format
 msgid "Not a launchable item"
-msgstr ""
+msgstr "ليس عنصرا يمكن إطلاقه"
 
 #: ../egg/eggsmclient-libgnomeui.c:102
 msgid "Session management"
-msgstr ""
+msgstr "إدارة الجلسات"
 
 #: ../egg/eggsmclient-libgnomeui.c:136
 msgid "GNOME GUI Library + EggSMClient"
-msgstr ""
+msgstr "مكتبة واجهة جنوم + EggSMClient"
 
 #: ../egg/eggsmclient.c:185
-#, fuzzy
 msgid "Disable connection to session manager"
-msgstr "لم يمكن الاتصال بمدير الجلسات"
+msgstr "عطّل الاتصال بمدير الجلسات"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr ""
+msgstr "حدد ملفا يحتوي الاعدادات المحفوظة"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
-msgstr ""
+msgstr "ملف"
 
 #: ../egg/eggsmclient.c:191
-#, fuzzy
 msgid "Specify session management ID"
-msgstr "حدد اسم جلسة لتحميلها"
+msgstr "حدد رقم معرّف إدارة الجلسات"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
-msgstr ""
+msgstr "معرّف"
 
 #: ../egg/eggsmclient.c:241
-#, fuzzy
 msgid "Session Management Options"
-msgstr "خيارات الجلسة"
+msgstr "خيارات إدارة الجلسات"
 
 #: ../egg/eggsmclient.c:242
-#, fuzzy
 msgid "Show Session Management options"
-msgstr "خيارات الجلسة"
+msgstr "اعرض خيارات إدارة الجلسات"
 
 #: ../gnome-session/gconf.c:110
 #, c-format
@@ -281,6 +268,8 @@ msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
+"هناك مشكلة مع خادوم الإعدادات.\n"
+"(%s خرج بالحالة %Id)"
 
 #: ../gnome-session/logout-dialog.c:214
 #, c-format
@@ -291,11 +280,23 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "You will be automatically logged out in %d seconds."
 msgstr[0] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك حالا."
 msgstr[1] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك خلال ثانية واحدة."
 msgstr[2] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك خلال ثانيتين."
 msgstr[3] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك خلال %Id ثوان."
 msgstr[4] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك خلال %Id ثانية."
 msgstr[5] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إخراجك خلال %Id ثانية."
 
 #: ../gnome-session/logout-dialog.c:226
 #, c-format
@@ -306,77 +307,85 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "This system will be automatically shut down in %d seconds."
 msgstr[0] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام حالا."
 msgstr[1] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام خلال ثانية واحدة."
 msgstr[2] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام خلال ثانيتين."
 msgstr[3] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام خلال %Id ثوان."
 msgstr[4] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام خلال %Id ثانية."
 msgstr[5] ""
+"حاليا أنت والج باسم \"%s\".\n"
+"سيتم إطفاء النظام خلال %Id ثوان."
 
 #: ../gnome-session/logout-dialog.c:302
 msgid "Log out of this system now?"
-msgstr ""
+msgstr "أأخرج من هذا النظام الآن؟"
 
 #: ../gnome-session/logout-dialog.c:309
 msgid "_Switch User"
-msgstr ""
+msgstr "ب_دّل المستخدم"
 
 #: ../gnome-session/logout-dialog.c:317
-#, fuzzy
 msgid "_Log Out"
-msgstr "_سجّل الخروج"
+msgstr "ا_لخوج"
 
 #: ../gnome-session/logout-dialog.c:323
 msgid "Shut down this system now?"
-msgstr ""
+msgstr "أأطفئ هذا النظام الآن؟"
 
 #: ../gnome-session/logout-dialog.c:329
 msgid "S_uspend"
-msgstr ""
+msgstr "_علّق"
 
 #: ../gnome-session/logout-dialog.c:334
 msgid "_Hibernate"
-msgstr ""
+msgstr "أ_سبِت"
 
 #: ../gnome-session/logout-dialog.c:339
-#, fuzzy
 msgid "_Restart"
-msgstr "أعِد التشغيل"
+msgstr "أعِد الت_شغيل"
 
 #: ../gnome-session/logout-dialog.c:348
-#, fuzzy
 msgid "_Shut Down"
-msgstr "ا_غلق"
+msgstr "أ_طفئ"
 
 #: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
-msgstr ""
+msgstr "لا تُحمّل التطبيقات التي حددها المستخدم"
 
 #. Oh well, no X for you!
 #: ../gnome-session/main.c:69
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
-msgstr ""
+msgstr "تعذّر بدء جلسة الولوج (وتعذّر الاتصال بالخادوم س)"
 
 #: ../gnome-session/main.c:105
-#, fuzzy
 msgid " - the GNOME session manager"
-msgstr "- أدِر جلسة جنوم"
+msgstr " - مدير جلسات جنوم"
 
 #: ../gnome-session/xsmp.c:133
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "تعذّر إنشاء مقبس استماع ICE: %s"
 
 #: ../gnome-session/xsmp.c:336
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr ""
+msgstr "يرفض العملاء الجدد لأن الجلسة يتم إطفاؤها حاليا\n"
 
 #: ../capplet/main.c:69
-#, fuzzy, c-format
+#, c-format
 msgid "Could not connect to the session manager\n"
-msgstr "لم يمكن الاتصال بمدير الجلسات"
+msgstr "تعذّر الاتصال بمدير الجلسات\n"
 
 #: ../capplet/ui.c:106
 msgid "Select Command"
@@ -399,9 +408,8 @@ msgid "Enabled"
 msgstr "مُفعّل"
 
 #: ../capplet/ui.c:370
-#, fuzzy
 msgid "Icon"
-msgstr "حدث"
+msgstr "أيقونة"
 
 #: ../capplet/ui.c:382
 msgid "Program"
@@ -425,7 +433,7 @@ msgstr "اضبط اسم الجلسة الحالية"
 
 #: ../tools/gnome-session-save.c:54
 msgid "NAME"
-msgstr "الإسم"
+msgstr "الاسم"
 
 #: ../tools/gnome-session-save.c:55
 msgid "Kill session"
@@ -442,339 +450,21 @@ msgstr "لا تطلب تأكيدا"
 #: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
 #: ../tools/gnome-session-save.c:261
 msgid "Could not connect to the session manager"
-msgstr "لم يمكن الاتصال بمدير الجلسات"
+msgstr "تعذّر الاتصال بمدير الجلسات"
 
 #: ../tools/gnome-session-save.c:246
-#, fuzzy
 msgid " - Save the current session"
-msgstr "- احفظ الجلسة الحالية"
+msgstr " - احفظ الجلسة الحالية"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
-msgstr ""
+msgstr "شغل صوت الخروج بدلا من الولوج"
 
 #: ../splash/gnome-login-sound.c:148
 msgid "- GNOME login/logout sound"
-msgstr ""
+msgstr " - صوت الولوج/الخروج من جنوم"
 
 #: ../splash/gnome-session-splash.c:204
-#, fuzzy
 msgid "- GNOME Splash Screen"
-msgstr "أظهر شاشة البدأ"
+msgstr " - شاشة بداية جنوم"
 
-#~ msgid "Allow TCP connections"
-#~ msgstr "اسمح باتصالات TCP"
-
-#~ msgid ""
-#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
-#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
-#~ "ports. This option will allow connections from (authorized) remote hosts. "
-#~ "gnome-session must be restarted for this to take effect."
-#~ msgstr ""
-#~ "لأسباب أمنية لا يستمع جلسة-جنوم للاتصالات على منافذTCP. و ذلك عند تثبيته "
-#~ "على _منصات لها IceTcpTransNoListen() (نظم XFree86). هذا الخيار سيسمح "
-#~ "بالاتصلات من مضيفين عن بعد (المخولين فقط). يجب إعادة تشغيل gnome-session "
-#~ "ليعمل هذا."
-
-#~ msgid "_Order:"
-#~ msgstr "ال_ترتيب:"
-
-#~ msgid "What happens to the application when it exits."
-#~ msgstr "ما يحدث للتطبيق عند خروجه."
-
-#~ msgid "_Style:"
-#~ msgstr "الأ_سلوب:"
-
-#~ msgid "Inactive"
-#~ msgstr "غير نشط"
-
-#~ msgid "Waiting to start or already finished."
-#~ msgstr "جاري الانتظار ليبدأ أو أنه انتهى مسبقا."
-
-#~ msgid "Started but has not yet reported state."
-#~ msgstr "شُغِّل و لكن لم يُبْلِغ عن حالته بعد."
-
-#~ msgid "Running"
-#~ msgstr "يعمل"
-
-#~ msgid "A normal member of the session."
-#~ msgstr "عضو عادي للجلسة."
-
-#~ msgid "Saving"
-#~ msgstr "جاري الحفظ"
-
-#~ msgid "Saving session details."
-#~ msgstr "جاري حفظ تفاصيل الجلسة."
-
-#~ msgid "Unknown"
-#~ msgstr "مجهول"
-
-#~ msgid "State not reported within timeout."
-#~ msgstr "لم تُبَلّغ الحالة خلال الوقت المستقطع."
-
-#~ msgid "Normal"
-#~ msgstr "عادي"
-
-#~ msgid "Unaffected by logouts but can die."
-#~ msgstr "غير متأثر بتسجيلات الخروج و لكن يمكن أن يموت."
-
-#~ msgid "Never allowed to die."
-#~ msgstr "غير مسموح بموته."
-
-#~ msgid "Trash"
-#~ msgstr "مهملات"
-
-#~ msgid "Discarded on logout and can die."
-#~ msgstr "تجاهل عند الخروج و يمكن أن يموت."
-
-#~ msgid "Settings"
-#~ msgstr "التعيينات"
-
-#~ msgid "Always started on every login."
-#~ msgstr "يشغل دائما كل تسجيل دخول."
-
-#~ msgid "Order"
-#~ msgstr "الترتيب"
-
-#~ msgid "Style"
-#~ msgstr "الأسلوب"
-
-#~ msgid "State"
-#~ msgstr "الحالة"
-
-#~ msgid ""
-#~ "There was an error starting the GNOME Settings Daemon.\n"
-#~ "\n"
-#~ "Some things, such as themes, sounds, or background settings may not work "
-#~ "correctly."
-#~ msgstr ""
-#~ "حدث خطأ أثناء تشغيل جني تعيينات جنوم.\n"
-#~ "\n"
-#~ "ربما لن تعمل بعض الأشياء مثل السِّمات أو الصوت أو تعيينات الخلفية باستقامة."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "The last error message was:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "كانت رسالة الخطأ الأخيرة:\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME will still try to restart the Settings Daemon next time you log in."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "سيحاول جنوم إعادة تشغيل عفريت التعيينات في المرة القادمة التي تسجل فيها "
-#~ "دخولك."
-
-#~ msgid "The Settings Daemon restarted too many times."
-#~ msgstr "جني التعيينات أعاد تشغل نفسه العديد من المرات."
-
-#~ msgid "No Name"
-#~ msgstr "بلا اسم"
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "اسرد العملاء المسجّلين، ثم اخرج"
-
-#~ msgid "PROGRAM..."
-#~ msgstr "PROGRAM..."
-
-#~ msgid ""
-#~ "You must specify at least one program to remove. You can list the "
-#~ "programs with --list.\n"
-#~ msgstr ""
-#~ "يجب أن تحدد برنامجا واحدا على الأقل لإزالته. يمكنك سرد البرامج بـ --"
-#~ "list.\n"
-
-#~ msgid "Error: could not connect to the session manager\n"
-#~ msgstr "خطأ: تعذّر الاتصال بمدير الجلسات.\n"
-
-#~ msgid "Currently registered clients:\n"
-#~ msgstr "العملاء المسجّلين حاليا:\n"
-
-#~ msgid "Couldn't find program %s in session\n"
-#~ msgstr "تعذّر العثورعلى البرنامج %s في الجلسة\n"
-
-#~ msgid ""
-#~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
-#~ msgstr ""
-#~ "تعذّر على مدير جلسة جنوم أن يبدأ بشكل سليم. فضلا ارسل تقرير علّة بهذا إلى "
-#~ "جنوم. فضلا اشمل رسالة فشل ICE هذه في تقرير العلّة: '%s'. في هذه الأثناء "
-#~ "يمكنك محاولة الولوج مُستخدمة الجلسة الآمنة من الفشل."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
-#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe "
-#~ "session and ensuring that it is."
-#~ msgstr ""
-#~ "تعذّر على مدير جلسة جنوم قفل الملف '%s'. فضلا ارسل تقرير علّة بهذا إلى "
-#~ "جنوم. قد يحدث هذا أحيانا إذا كان مجلّد الملف غير قابل للقرائة، يمكنك "
-#~ "محاولة الولوج عبر الجلسة الآمنة من الفضل لتتأكد من هذا."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
-#~ "file exists it must be readable by you for GNOME to work properly.  Try "
-#~ "logging in with the failsafe session and removing this file."
-#~ msgstr ""
-#~ "تعذّر على مدير جلسة جنوم قرائة الملف '%s'. إذا كان هذا الملف موجودا فيجب "
-#~ "أن يكون مقروءا لجنوم لتعمل بشكل صحيح. حاول الولوج عبر الجلسة الآمنة من "
-#~ "الفشل وحذف هذا الملف."
-
-#~ msgid ""
-#~ "Could not write to file '%s'.  This file must be writable in order for "
-#~ "GNOME to function properly.  Try logging in with the failsafe session and "
-#~ "removing this file.  Also make sure that the file's directory is writable."
-#~ msgstr ""
-#~ "تعذّر الكتابة في الملف '%s'. يجب أن يكون هذا الملف قابلا للكتابة لتعمل "
-#~ "جنوم بشكل صحيح. حاول الولوج عبر الجلسة الآمنة من الفشل وحذف هذا الملف. "
-#~ "وتأكّد أيضا من أن مجلّد الملف قابل للكتابة."
-
-#~ msgid "Are you sure you want to log out?"
-#~ msgstr "أمتأكد أنك تريد الخروج؟"
-
-#~ msgid "Remember running applications"
-#~ msgstr "تذكـّر التطبيقات المشغلة"
-
-#~ msgid "_Restart the computer"
-#~ msgstr "أ_عد تشغيل الحاسوب"
-
-#~ msgid "Only read saved sessions from the default.session file"
-#~ msgstr "اقرأ الجلسات المحفوظة في ملف default.session فقط"
-
-#~ msgid "Millisecond period spent waiting for clients to register (0=forever)"
-#~ msgstr ""
-#~ "الفترة بالملي ثانية التي يتم قضاؤها في انتظار تسجيل العملاء (0=للأبد)"
-
-#~ msgid "DELAY"
-#~ msgstr "التأخير"
-
-#~ msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-#~ msgstr "الفترة بالملي ثانية التي يتم قضاؤها في انتظار رد العملاء (0=للأبد)"
-
-#~ msgid "Millisecond period spent waiting for clients to die (0=forever)"
-#~ msgstr ""
-#~ "الفترة بالملي ثانية التي يتم قضاؤها في انتظار انتهاء العملاء (0=للأبد)"
-
-#~ msgid "This session is running as a privileged user"
-#~ msgstr "هذه الجلسة تعمل كمستخدم ذي امتيازات"
-
-#~ msgid ""
-#~ "Running a session as a privileged user should be avoided for security "
-#~ "reasons. If possible, you should log in as a normal user."
-#~ msgstr ""
-#~ "ينبغي تجنب تشغيل جلسة كمستخدم ذي امتيازات لأسباب أمنية. إن أمكن، عليك "
-#~ "تسجيل دخولك كمستخدم عادي."
-
-#~ msgid "_Continue"
-#~ msgstr "أكم_ل"
-
-#~ msgid ""
-#~ "The session might encounter issues if the computer clock is not properly "
-#~ "configured. Please consider adjusting it.\n"
-#~ "\n"
-#~ "Current date is <b>%s</b>."
-#~ msgstr ""
-#~ "هذه الجلسة قد تواجه مشكلات إن لم تكن ساعة الحاسوب مضبوطة جيدًا. رجاءً تحقق "
-#~ "من ضبط ساعتك.\n"
-#~ "\n"
-#~ "التاريخ الحالي هو <b>%s</b>."
-
-#~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "فشل بدء أداة إعداد الوقت: %s"
-
-#~ msgid "The computer clock appears to be wrong"
-#~ msgstr "ساعة الحاسوب تبدو غير مضبوطة"
-
-#~ msgid "_Ignore"
-#~ msgstr "تجا_هل"
-
-#~ msgid "_Adjust the Clock"
-#~ msgstr "اضب_ط الساعة"
-
-#~ msgid ""
-#~ "Could not look up internet address for %s.\n"
-#~ "This will prevent GNOME from operating correctly.\n"
-#~ "It may be possible to correct the problem by adding\n"
-#~ "%s to the file /etc/hosts."
-#~ msgstr ""
-#~ "لم يمكن البحث عن عنوان الانترنت لـ %s.\n"
-#~ "سيمنع هذا جنوم من العمل بسلامة.\n"
-#~ "يمكن تصحيح الخطأ بإضافة %s للملف /etc/hosts."
-
-#~ msgid "Log in Anyway"
-#~ msgstr "سجّل على أي حال"
-
-#~ msgid "Try Again"
-#~ msgstr "حاول مرة أخرى"
-
-#~ msgid "Wait abandoned due to conflict."
-#~ msgstr "تخليت عن الانتظار بسبب تضارب."
-
-#~ msgid "No response to the %s command."
-#~ msgstr "لا رد على الأمر %s."
-
-#~ msgid "The program may be slow, stopped or broken."
-#~ msgstr "قد يكون البرنامج بطيئا أو متوقفا أو معطوبا."
-
-#~ msgid "You may wait for it to respond or remove it."
-#~ msgstr "بإمكانك انتظار الرد منه أو حذفه."
-
-#~ msgid "Restart abandoned due to failures."
-#~ msgstr "تخليت عن أعادة التشغيل بسبب فشل متكرر."
-
-#~ msgid "A session shutdown is in progress."
-#~ msgstr "جاري غلق الجلسة."
-
-#~ msgid "Save changes to the current session before closing?"
-#~ msgstr "تطبيق التغييرات على الجلسة الحالية قبل الغلق؟"
-
-#~ msgid "If you don't save, changes will be discarded."
-#~ msgstr "إذا لم تحفظ ستُتجاهل التغييرات."
-
-#~ msgid "_Close without Saving"
-#~ msgstr "ا_غلق بدون حفظ"
-
-#~ msgid "Current Session"
-#~ msgstr "الجلسة الحالية"
-
-#~ msgid "Your session has been saved."
-#~ msgstr "حُفِظت جلستُك."
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "تعذّر الإتصال بمدير الجلسات\n"
-
-#~ msgid "session manager does not support GNOME extensions\n"
-#~ msgstr "لا يدعم مدير الجلسات امتدادات جنوم\n"
-
-#~ msgid "Remove the currently selected client from the session."
-#~ msgstr "احذف العميل المنتقى حاليًا من الجلسة."
-
-#~ msgid "Apply changes to the current session"
-#~ msgstr "طبّق التغييرات على الجلسة الحالية"
-
-#~ msgid "The list of programs in the session."
-#~ msgstr "قائمة البرامج في الجلسة."
-
-#~ msgid "Currently running _programs:"
-#~ msgstr "ال_برامج الشاغلة حاليا:"
-
-#~ msgid "Sawfish Window Manager"
-#~ msgstr "مدير النوافذ صوفش"
-
-#~ msgid "Metacity Window Manager"
-#~ msgstr "مدير النوافذ ميتاستي"
-
-#~ msgid "Nautilus"
-#~ msgstr "ناوتيلس"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "تعيينات سطح المكتب"
