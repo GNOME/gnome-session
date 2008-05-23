@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-10 18:47+0000\n"
-"PO-Revision-Date: 2008-05-11 12:49+0200\n"
+"POT-Creation-Date: 2008-05-16 21:52+0000\n"
+"PO-Revision-Date: 2008-05-23 23:28+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type:  text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
@@ -208,8 +208,7 @@ msgstr "Programas al inicio"
 
 #: ../data/session-properties.glade.h:8
 msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"Recordar _automáticamente las aplicaciones en ejecución al salir de la sesión"
+msgstr "Recordar _automáticamente las aplicaciones en ejecución al salir de la sesión"
 
 #: ../data/session-properties.glade.h:9
 msgid "_Name:"
@@ -218,34 +217,6 @@ msgstr "_Nombre:"
 #: ../data/session-properties.glade.h:10
 msgid "_Remember Currently Running Application"
 msgstr "_Recordar las aplicaciones ejecutándose actualmente"
-
-#: ../data/session-properties.glade.h:11
-msgid "gtk-add"
-msgstr "gtk-add"
-
-#: ../data/session-properties.glade.h:12
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
-
-#: ../data/session-properties.glade.h:13
-msgid "gtk-close"
-msgstr "gtk-close"
-
-#: ../data/session-properties.glade.h:14
-msgid "gtk-edit"
-msgstr "gtk-edit"
-
-#: ../data/session-properties.glade.h:15
-msgid "gtk-help"
-msgstr "gtk-help"
-
-#: ../data/session-properties.glade.h:16
-msgid "gtk-ok"
-msgstr "gtk-ok"
-
-#: ../data/session-properties.glade.h:17
-msgid "gtk-remove"
-msgstr "gtk-remove"
 
 #: ../egg/eggdesktopfile.c:130
 #, c-format
@@ -275,8 +246,7 @@ msgstr "Opción de lanzamiento no reconocida: %d"
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
+msgstr "No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
 
 #: ../egg/eggdesktopfile.c:1354
 #, c-format
@@ -419,45 +389,79 @@ msgstr ""
 "Rechazando la conexión de un nuevo cliente porque actualmente se está "
 "cerrando la sesión\n"
 
-#: ../capplet/ui.c:85
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "No se pudo conectar con el gestor de sesiones\n"
+
+#: ../capplet/ui.c:106
 msgid "Select Command"
 msgstr "Seleccionar comando"
 
-#: ../capplet/ui.c:197
+#: ../capplet/ui.c:218
 msgid "The name of the startup program cannot be empty"
 msgstr "El nombre del programa de inicio no puede estar vacío"
 
-#: ../capplet/ui.c:200
+#: ../capplet/ui.c:221
 msgid "The startup command cannot be empty"
 msgstr "El comando de inicio no puede estar vacío"
 
-#: ../capplet/ui.c:207
+#: ../capplet/ui.c:228
 msgid "The startup command is not valid"
 msgstr "El comando de inicio no es válido"
 
-#: ../capplet/ui.c:335
+#: ../capplet/ui.c:356
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../capplet/ui.c:349
+#: ../capplet/ui.c:370
 msgid "Icon"
 msgstr "Icono"
 
-#: ../capplet/ui.c:361
+#: ../capplet/ui.c:382
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/ui.c:396
+#: ../capplet/ui.c:417
 msgid "Add Startup Program"
 msgstr "Añadir programa al inicio"
 
-#: ../capplet/ui.c:444
+#: ../capplet/ui.c:467
 msgid "Edit Startup Program"
 msgstr "Editar programa al inicio"
 
-#: ../capplet/commands.c:762
+#: ../capplet/commands.c:783
 msgid "No description"
 msgstr "Sin descripción"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Establecer el nombre de la sesión actual"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NOMBRE"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Matar la sesión"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Usar cajas de diálogo para los errores"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "No requerir confirmación"
+
+#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "No se pudo conectar con el gestor de sesiones"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr " - Guardar la sesión actual"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -470,3 +474,4 @@ msgstr "- Sonido de inicio/final de sesión de GNOME"
 #: ../splash/gnome-session-splash.c:204
 msgid "- GNOME Splash Screen"
 msgstr " - Pantalla de bienvenida de GNOME"
+
