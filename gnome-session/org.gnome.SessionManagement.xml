@@ -2,7 +2,6 @@
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
 <node>
   <interface name="org.gnome.SessionManager">
-
     <!-- Initialization phase interfaces -->
 
     <method name="Setenv">
@@ -27,6 +26,9 @@
     <method name="SetName">
       <arg name="name" type="s" direction="in"/>
     </method>
+
+    <signal name="SessionOver">
+    </signal>
 
   </interface>
 </node>

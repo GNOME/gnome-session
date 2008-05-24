@@ -31,6 +31,7 @@
 #include "gsm.h"
 #include "session.h"
 #include "xsmp.h"
+#include "dbus.h"
 #include "util.h"
 
 static void append_default_apps       (GsmSession *session,
@@ -870,6 +871,9 @@ static void
 session_shutdown (GsmSession *session)
 {
   GSList *cl;
+
+  /* Emit session over signal */
+  gsm_dbus_session_over ();
 
   /* FIXME: do this in reverse phase order */
   for (cl = session->clients; cl; cl = cl->next)

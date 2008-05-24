@@ -36,6 +36,13 @@
 #include "gsm.h"
 #include "dbus.h"
 
+enum {
+  SESSION_OVER,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
+
 static DBusGConnection *connection = NULL;
 
 /**
@@ -131,7 +138,6 @@ typedef struct
 typedef struct
 {
   GObjectClass parent_class;
-
 } GsmDBusServerClass;
 
 static GType gsm_dbus_server_get_type (void) G_GNUC_CONST;
@@ -170,6 +176,18 @@ gsm_dbus_server_init (GsmDBusServer *server)
 static void
 gsm_dbus_server_class_init (GsmDBusServerClass *klass)
 {
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  signals[SESSION_OVER] =
+    g_signal_new ("session-over",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
+
   dbus_g_object_type_install_info (GSM_TYPE_DBUS_SERVER,
 				   &dbus_glib_gsm_dbus_server_object_info);
 }
@@ -325,6 +343,12 @@ gsm_dbus_run (void)
     }
 
   g_object_unref (bus_proxy);
+}
+
+void
+gsm_dbus_session_over ()
+{
+  g_signal_emit (global_dbus_server, signals[SESSION_OVER], 0);
 }
 
 void

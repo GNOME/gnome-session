@@ -1,3 +1,16 @@
+2008-05-24  Lucas Rocha  <lucasr@gnome.org>
+
+	Emit "SessionOver" D-Bus signal before ending the session.
+
+	* gnome-session/dbus.[ch]
+	(gsm_dbus_server_class_init): add "session-over" signal to 
+	GsmDBusServer class.
+	(gsm_dbus_session_over): new method for emitting the new signal.
+	* gnome-session/org.gnome.SessionManagement.xml: added "SessionOver"
+	signal.
+	* gnome-session/session.c (session_shutdown): added
+	gsm_dbus_session_over() call.
+
 2008-05-17  Lucas Rocha  <lucasr@gnome.org>
 
 	* gnome-session/logout-dialog.c: fixes small build warning.

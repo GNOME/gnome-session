@@ -22,10 +22,11 @@
 #ifndef __GSM_DBUS_H__
 #define __GSM_DBUS_H__
 
-void gsm_dbus_init     (void);
-void gsm_dbus_check    (void);
-void gsm_dbus_run      (void);
-void gsm_dbus_shutdown (void);
+void gsm_dbus_init          (void);
+void gsm_dbus_check         (void);
+void gsm_dbus_session_over  (void);
+void gsm_dbus_run           (void);
+void gsm_dbus_shutdown      (void);
 
 DBusGConnection *gsm_dbus_get_connection (void);
 
