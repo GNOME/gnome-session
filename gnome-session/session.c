@@ -465,6 +465,9 @@ end_phase (GsmSession *session)
 
   if (session->phase < GSM_SESSION_PHASE_RUNNING)
     start_phase (session);
+
+  if (session->phase == GSM_SESSION_PHASE_RUNNING)
+    gsm_dbus_emit_session_running ();
 }
 
 static void
@@ -873,7 +876,7 @@ session_shutdown (GsmSession *session)
   GSList *cl;
 
   /* Emit session over signal */
-  gsm_dbus_session_over ();
+  gsm_dbus_emit_session_over ();
 
   /* FIXME: do this in reverse phase order */
   for (cl = session->clients; cl; cl = cl->next)

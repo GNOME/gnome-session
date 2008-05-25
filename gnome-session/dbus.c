@@ -37,6 +37,7 @@
 #include "dbus.h"
 
 enum {
+  SESSION_RUNNING,
   SESSION_OVER,
   LAST_SIGNAL
 };
@@ -177,6 +178,16 @@ static void
 gsm_dbus_server_class_init (GsmDBusServerClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  signals[SESSION_RUNNING] =
+    g_signal_new ("session-running",
+                  G_OBJECT_CLASS_TYPE (object_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 
   signals[SESSION_OVER] =
     g_signal_new ("session-over",
@@ -346,7 +357,13 @@ gsm_dbus_run (void)
 }
 
 void
-gsm_dbus_session_over ()
+gsm_dbus_emit_session_running ()
+{
+  g_signal_emit (global_dbus_server, signals[SESSION_RUNNING], 0);
+}
+
+void
+gsm_dbus_emit_session_over ()
 {
   g_signal_emit (global_dbus_server, signals[SESSION_OVER], 0);
 }
