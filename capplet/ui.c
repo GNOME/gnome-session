@@ -20,6 +20,7 @@
 
 
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 
 #include <string.h>
 #include <gconf/gconf-client.h>
@@ -330,6 +331,111 @@ startup_enabled_toggled_cb (GtkCellRendererToggle *cell_renderer,
     }
 }
 
+
+static gboolean
+add_from_desktop_file (GtkTreeView *treeview, char *filename) 
+{
+  EggDesktopFile *desktop_file;
+  gboolean success = FALSE;
+
+  /* Assume that the file is local */
+  GFile *file = g_file_new_for_uri (filename);
+  gchar *path = g_file_get_path (file);
+
+  if (path != NULL)
+    {
+      desktop_file = egg_desktop_file_new (path, NULL);
+
+      if (desktop_file != NULL)
+        {
+          GtkTreeIter iter;
+          GtkTreeModel *model;
+          const char *name;
+          char *comment, *description, *command, *icon;
+
+          model = gtk_tree_view_get_model (treeview);
+
+          gtk_list_store_append (GTK_LIST_STORE (model), &iter);
+
+          name = egg_desktop_file_get_name (desktop_file);
+
+          comment = egg_desktop_file_get_locale_string (desktop_file, 
+                                                        EGG_DESKTOP_FILE_KEY_COMMENT,
+                                                        NULL, NULL);
+          if (comment == NULL)
+            comment = egg_desktop_file_get_string (desktop_file, 
+                                                   EGG_DESKTOP_FILE_KEY_COMMENT,
+                                                   NULL);
+
+          description = spc_command_get_app_description (name, comment);
+
+          command = egg_desktop_file_get_string (desktop_file,
+                                                 EGG_DESKTOP_FILE_KEY_EXEC,
+                                                 NULL);
+
+          icon = egg_desktop_file_get_string (desktop_file,
+                                              EGG_DESKTOP_FILE_KEY_ICON,
+                                              NULL);
+
+          if (name && comment && description && command)
+            {
+              gtk_list_store_set (GTK_LIST_STORE (model), &iter,
+                                  STORE_COL_DESCRIPTION, description,
+                                  STORE_COL_NAME, name,
+                                  STORE_COL_COMMAND, command,
+                                  STORE_COL_COMMENT, comment,
+                                  STORE_COL_ICON_NAME, icon,
+                                  STORE_COL_DESKTOP_FILE, desktop_file,
+                                  -1);
+
+              spc_command_add_app (GTK_LIST_STORE (model), &iter);
+              success = TRUE;
+            }
+
+          g_free (comment);
+          g_free (description);
+          g_free (command);
+          g_free (icon);
+          egg_desktop_file_free (desktop_file);
+        }
+    }
+
+  g_free (path);
+  return success;
+}
+
+static gboolean 
+drag_data_cb (GtkWidget        *widget,
+              GdkDragContext   *drag_context,
+              gint              x,
+              gint              y,
+              GtkSelectionData *data,
+              guint             info,
+              guint             time,
+              gpointer          user_data)
+{
+  gboolean dnd_success = FALSE;
+
+  if ((data != NULL) && (data->length >= 0))
+    {
+      gchar **filenames = g_strsplit ((gchar *)data->data, "\r\n", 0);
+      int i;
+
+      for (i = 0; filenames[i] && filenames[i][0]; i++)
+        {
+          /* Return success if at least one file succeeded */
+          gboolean file_success = 
+            add_from_desktop_file (GTK_TREE_VIEW (widget), filenames[i]);
+          dnd_success = dnd_success || file_success;
+        }
+
+      g_strfreev (filenames);
+    }
+
+  gtk_drag_finish (drag_context, dnd_success, FALSE, time);
+  return TRUE;
+}
+
 static void
 setup_treeview (GtkTreeView *treeview, GladeXML *xml)
 {
@@ -337,6 +443,8 @@ setup_treeview (GtkTreeView *treeview, GladeXML *xml)
   GtkCellRenderer *renderer;
   GtkTreeSelection *selection;
   GtkTreeViewColumn *column;
+
+  static const GtkTargetEntry drag_targets[] = { { "text/uri-list", 0, 0 } };
 
   store = spc_command_get_store ();
   gtk_tree_view_set_model (treeview, store);
@@ -392,6 +500,17 @@ setup_treeview (GtkTreeView *treeview, GladeXML *xml)
   gtk_tree_view_column_set_sort_column_id (column, STORE_COL_NAME);
   gtk_tree_view_set_search_column (treeview, STORE_COL_NAME);
   gtk_tree_view_set_rules_hint (treeview, TRUE);
+
+  gtk_drag_dest_set (GTK_WIDGET (treeview),
+                     GTK_DEST_DEFAULT_ALL,
+                     drag_targets,
+                     G_N_ELEMENTS (drag_targets),
+                     GDK_ACTION_COPY);
+
+  g_signal_connect (G_OBJECT (treeview),
+                    "drag-data-received",
+                    G_CALLBACK (drag_data_cb),
+                    NULL);
 }
 
 static void

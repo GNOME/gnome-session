@@ -674,7 +674,7 @@ spc_command_add_app (GtkListStore *store,
   GKeyFile *keyfile;
   char **argv;
   char *basename, *orig_filename, *filename;
-  char *name, *command, *comment, *description;
+  char *name, *command, *comment, *description, *icon;
   int argc;
   int i = 2;
 
@@ -682,6 +682,7 @@ spc_command_add_app (GtkListStore *store,
                       STORE_COL_NAME, &name,
                       STORE_COL_COMMAND, &command,
                       STORE_COL_COMMENT, &comment,
+                      STORE_COL_ICON_NAME, &icon,
                       -1);
 
   g_shell_parse_argv (command, &argc, &argv, NULL);
@@ -716,6 +717,14 @@ spc_command_add_app (GtkListStore *store,
   g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
                          "Exec", command);  
 
+  if (icon == NULL)
+    {
+      icon = g_strdup (STARTUP_APP_ICON);
+    }
+  
+  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                         "Icon", icon);
+
   if (comment)
     g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
                            "Comment", comment);  
@@ -737,7 +746,7 @@ spc_command_add_app (GtkListStore *store,
 
   gtk_list_store_set (store, iter,
                       STORE_COL_ENABLED, TRUE, 
-                      STORE_COL_ICON_NAME, STARTUP_APP_ICON, 
+                      STORE_COL_ICON_NAME, icon, 
                       STORE_COL_DESKTOP_FILE, desktop_file,
                       STORE_COL_ID, basename, 
                       STORE_COL_ACTIVATABLE, TRUE,
@@ -750,6 +759,7 @@ spc_command_add_app (GtkListStore *store,
   g_free (comment);
   g_free (description);
   g_free (basename);
+  g_free (icon);
 }
 
 void

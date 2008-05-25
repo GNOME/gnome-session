@@ -1,5 +1,17 @@
 2008-05-25  Lucas Rocha  <lucasr@gnome.org>
 
+	Add support for drag and drop of desktop files on Session Properties
+	capplet. #437206, Vincent Untz. Patch from Jared Moore <jaredm@gmx.com>
+
+	* capplet/commands.c (spc_command_add_app): check if icon is set
+	on iter before using default app icon.
+	* capplet/ui.c 
+	(setup_treeview, drag_data_cb, add_from_desktop_file): set drag and 
+	drop handlers. The treeview now can receive a list of desktop file uris 
+	from DnD. 
+
+2008-05-25  Lucas Rocha  <lucasr@gnome.org>
+
 	Fix gnome-keyring-wrapper program to correctly set SSH_AUTH_SOCK env
 	variable on session initialization phase. #534055, Dan Winship.
 
