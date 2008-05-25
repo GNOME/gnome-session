@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-29 14:18+0200\n"
-"PO-Revision-Date: 2008-04-29 14:32+0200\n"
+"POT-Creation-Date: 2008-05-25 16:40+0200\n"
+"PO-Revision-Date: 2008-05-25 16:41+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -174,6 +174,47 @@ msgstr "Configurar as súas sesións"
 msgid "Sessions"
 msgstr "Sesións"
 
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "_Programas de inicio adicionais:"
+
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Examinar..."
+
+#: ../data/session-properties.glade.h:3
+msgid "Co_mmand:"
+msgstr "Co_mando:"
+
+#: ../data/session-properties.glade.h:4
+msgid "Comm_ent:"
+msgstr "Com_entario:"
+
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Opcións"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Preferencias de sesión"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Programas de inicio"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr ""
+"Recordar _automaticamente as aplicacións en execución cando saia da sesión"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Nome:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Recordar as aplicacións que están actualmente en execución"
+
 #: ../egg/eggdesktopfile.c:130
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -246,7 +287,7 @@ msgstr "Opcións de xestión da sesión"
 msgid "Show Session Management options"
 msgstr "Mostrar opcións da xestión da sesión"
 
-#: ../gnome-session/gconf.c:109
+#: ../gnome-session/gconf.c:110
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -317,34 +358,108 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "A_pagar"
 
-#: ../gnome-session/main.c:33
+#: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
 msgstr "Non cargar as aplicacións especificadas polo usuario"
 
 #. Oh well, no X for you!
-#: ../gnome-session/main.c:68
+#: ../gnome-session/main.c:69
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 "Non se puido iniciar o inicio de sesión (e foi imposible conectar co "
 "servidor de X)"
 
-#: ../gnome-session/main.c:106
+#: ../gnome-session/main.c:105
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións de Gnome"
 
-#: ../gnome-session/xsmp.c:132
+#: ../gnome-session/xsmp.c:133
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Non se puido crear o socket de escoita ICE: %s"
 
-#: ../gnome-session/xsmp.c:335
+#: ../gnome-session/xsmp.c:336
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Rexeitando a conexión dun novo cliente porque actualmente estase pechando a "
 "sesión\n"
+
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "Non se puido conectar co xestor de sesión\n"
+
+#: ../capplet/ui.c:106
+msgid "Select Command"
+msgstr "Seleccionar comando"
+
+#: ../capplet/ui.c:218
+msgid "The name of the startup program cannot be empty"
+msgstr "O nome do programa de inicio non pode estar baleiro"
+
+#: ../capplet/ui.c:221
+msgid "The startup command cannot be empty"
+msgstr "O comando de inicio non pode estar baleiro"
+
+#: ../capplet/ui.c:228
+msgid "The startup command is not valid"
+msgstr "O comando de inicio non é válido"
+
+#: ../capplet/ui.c:356
+msgid "Enabled"
+msgstr "Activado"
+
+#: ../capplet/ui.c:370
+msgid "Icon"
+msgstr "Icona"
+
+#: ../capplet/ui.c:382
+msgid "Program"
+msgstr "Programa"
+
+#: ../capplet/ui.c:417
+msgid "Add Startup Program"
+msgstr "Engadir programa ao inicio"
+
+#: ../capplet/ui.c:467
+msgid "Edit Startup Program"
+msgstr "Editar programa de inicio"
+
+#: ../capplet/commands.c:783
+msgid "No description"
+msgstr "Sen descrición"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Definir o nome da sesión actual"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NOME"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Matar sesión"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Usar caixas de diálogo para erros"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Non solicitar confirmación"
+
+#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "Non se puido conectar co xestor de sesión"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr " - Gardar a sesión actual"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -437,9 +552,6 @@ msgstr "- Pantalla de benvida de Gnome"
 
 #~ msgid "State"
 #~ msgstr "Estado"
-
-#~ msgid "Program"
-#~ msgstr "Programa"
 
 #~ msgid ""
 #~ "There was an error starting the GNOME Settings Daemon.\n"
@@ -549,14 +661,8 @@ msgstr "- Pantalla de benvida de Gnome"
 #~ msgid "Remember running applications"
 #~ msgstr "Recordar as aplicacións que están en execución"
 
-#~ msgid "Action"
-#~ msgstr "Acción"
-
 #~ msgid "_Restart the computer"
 #~ msgstr "_Reiniciar o computador"
-
-#~ msgid "NAME"
-#~ msgstr "NOME"
 
 #~ msgid "Only read saved sessions from the default.session file"
 #~ msgstr "Ler só as sesións gardadas no ficheiro default.session"
@@ -651,18 +757,6 @@ msgstr "- Pantalla de benvida de Gnome"
 #~ msgid "A session shutdown is in progress."
 #~ msgstr "Está en progreso un fin de sesión."
 
-#~ msgid "Set the current session name"
-#~ msgstr "Definir o nome da sesión actual"
-
-#~ msgid "Use dialog boxes for errors"
-#~ msgstr "Usar caixas de diálogo para erros"
-
-#~ msgid "Do not require confirmation"
-#~ msgstr "Non solicitar confirmación"
-
-#~ msgid "- Save the current session"
-#~ msgstr "- Gardar a sesión actual"
-
 #~ msgid "Save changes to the current session before closing?"
 #~ msgstr "Quere gardar os cambios da sesión actual antes de pechar?"
 
@@ -672,33 +766,11 @@ msgstr "- Pantalla de benvida de Gnome"
 #~ msgid "_Close without Saving"
 #~ msgstr "_Pechar sen gardar"
 
-#~ msgid "Sessions Preferences"
-#~ msgstr "Preferencias de sesión"
-
-#~ msgid "Additional startup _programs:"
-#~ msgstr "_Programas de inicio adicionais:"
-
-#~ msgid "Enabled"
-#~ msgstr "Activado"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Programas de inicio"
-
 #~ msgid "Current Session"
 #~ msgstr "Sesión actual"
 
-#~ msgid "_Automatically remember running applications when logging out"
-#~ msgstr ""
-#~ "Recordar _automaticamente as aplicacións en execución cando saia da sesión"
-
-#~ msgid "_Remember Currently Running Applications"
-#~ msgstr "_Recordar as aplicacións que están actualmente en execución"
-
 #~ msgid "Your session has been saved."
 #~ msgstr "Gardouse a súa sesión."
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "non se puido conectar co xestor de sesión\n"
 
 #~ msgid "session manager does not support GNOME extensions\n"
 #~ msgstr "o xestor de sesión non soporta as extensións de Gnome\n"
@@ -726,36 +798,3 @@ msgstr "- Pantalla de benvida de Gnome"
 
 #~ msgid "Desktop Settings"
 #~ msgstr "Configuración do escritorio"
-
-#~ msgid "No description"
-#~ msgstr "Sen descrición"
-
-#~ msgid "Select Command"
-#~ msgstr "Seleccionar comando"
-
-#~ msgid "_Name:"
-#~ msgstr "_Nome:"
-
-#~ msgid "Co_mmand:"
-#~ msgstr "Co_mando:"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Examinar..."
-
-#~ msgid "Comm_ent:"
-#~ msgstr "Com_entario:"
-
-#~ msgid "The name of the startup program cannot be empty"
-#~ msgstr "O nome do programa de inicio non pode estar baleiro"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "O comando de inicio non pode estar baleiro"
-
-#~ msgid "The startup command is not valid"
-#~ msgstr "O comando de inicio non é válido"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Engadir programa ao inicio"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Editar programa de inicio"
