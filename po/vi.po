@@ -5,33 +5,37 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.20.1\n"
+"Project-Id-Version: gnome-session 2.23.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-21 14:38+0000\n"
-"PO-Revision-Date: 2008-03-23 16:41+0700\n"
+"POT-Creation-Date: 2008-05-16 21:52+0000\n"
+"PO-Revision-Date: 2008-05-25 23:50+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b1\n"
+"X-Generator: LocFactoryEditor 1.7b3\n"
+
+#: ../compat/at-spi-registryd-wrapper.c:51
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"Khả năng hỗ trợ công nghệ giúp đỡ đã được yêu cầu cho phiên chạy này, nhưng "
+"không tìm thấy bộ đăng ký khả năng truy cập. Hãy kiểm tra xem gói AT-SPI đã "
+"được cài đặt. Phiên chạy đã được khởi chạy mà không có khả năng hỗ trợ công "
+"nghệ giúp đỡ."
 
 #: ../data/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "Cho phép kết nối bằng TCP"
+msgid "Default session"
+msgstr "Phiên chạy mặc định"
 
 #: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Vì lý do bảo mật, trên các nền tảng có « _IceTcpTransNoListen() » (hệ thống "
-"XFree86), phiên chạy Gnome không lắng nghe các kết nối trên cổng TCP. Tùy "
-"chọn này sẽ cho phép kết nối từ các máy ở xa đã xác thực. Cần khởi chạy lại "
-"gnome-session để tùy chọn này có tác dụng."
+msgid "File Manager"
+msgstr "Bộ Quản lý Tập tin"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -47,30 +51,69 @@ msgstr ""
 "xuất sẽ hiển thị tùy chọn lưu phiên chạy."
 
 #: ../data/gnome-session.schemas.in.h:5
+msgid "List of applications that are part of the default session."
+msgstr "Danh sách các ứng dụng thuộc về phiên chạy mặc định."
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid ""
+"List of components that are required as part of the session. (Each element "
+"names a key under \"/desktop/gnome/session/required-components\".) The "
+"session capplet will not normally allow users to remove a required component "
+"from the session, and the session manager will automatically add the "
+"required components back to the session if they do get removed."
+msgstr "Danh sách các thành phần đòi hỏi làm phần của phiên chạy mặc định. (Mỗi thành phần đặt tên một khoá dưới « /desktop/gnome/session/required-components ».) Tiểu dụng thoại phiên chạy sẽ không bình thường cho phép người dùng gỡ bỏ một thành phần đòi hỏi khỏi phiên chạy, và bộ quản lý phiên chạy sẽ tự động phục hồi bất kỳ thành phần đòi hỏi đã bị gỡ bỏ."
+
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "Nhắc đăng xuất"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Panel"
+msgstr "Bảng"
+
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "Ảnh ưa thích dùng cho màn hình giật gân đăng nhập"
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Required session components"
+msgstr "Thành phần phiên chạy đòi hỏi"
+
+#: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "Lưu các phiên chạy"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:12
 msgid "Selected option in the log out dialog"
 msgstr "Tùy chọn đã chọn trong hộp thoại đăng xuất"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Hiển thị màn hình giật gân"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:14
 msgid "Show the splash screen when the session starts up"
 msgstr "Hiển thị màn hình giật gân khi khởi chạy phiên chạy"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:15
+msgid ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+msgstr "Bộ quản lý tập tin thì cung cấp các biểu tượng trên màn hình và cho phép bạn tương tác với các tập tin đã lưu của mình."
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
+msgstr "Bảng điều khiển cung cấp thanh ở đầu/cưới màn hình mà chứa các trình đơn, danh sách các cửa sổ, các biểu tượng trạng thái, đồng hồ v.v."
+
+#: ../data/gnome-session.schemas.in.h:17
+msgid ""
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
+msgstr "Bộ quản lý cửa sổ là chương trình mà vẽ thanh tựa đề và các viền chung quanh cửa sổ, và cho phép bạn di chuyển và co giãn cửa sổ."
+
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -80,7 +123,7 @@ msgstr ""
 "Các tên của thư mục con và các tên ảnh đều là giá trị hợp lệ. Thay đổi giá "
 "trị này sẽ có tác động khi đăng nhập trong phiên chạy kế tiếp."
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -90,6 +133,10 @@ msgstr ""
 " • logout — đang xuất\n"
 " • shutdown — ngừng hệ thống\n"
 " • restart — khởi động lại hệ thống"
+
+#: ../data/gnome-session.schemas.in.h:20
+msgid "Window Manager"
+msgstr "Bộ quản lý cửa sổ"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -107,612 +154,285 @@ msgstr "Cấu hình các phiên chạy của bạn"
 msgid "Sessions"
 msgstr "Phiên chạy"
 
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Khả năng hỗ trợ công nghệ giúp đỡ đã được yêu cầu cho phiên chạy này, nhưng "
-"không tìm thấy bộ đăng ký khả năng truy cập. Hãy kiểm tra xem gói AT-SPI đã "
-"được cài đặt. Phiên chạy đã được khởi chạy mà không có khả năng hỗ trợ công "
-"nghệ giúp đỡ."
-
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_Thứ tự :"
-
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "Thứ tự khởi chạy ứng dụng trong phiên chạy."
-
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "Cái gì xảy ra cho ứng dụng khi nó kết thúc."
-
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_Kiểu :"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "Không hoạt động"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "Đang đợi khởi chạy hoặc đã kết thúc."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "Đang khởi chạy"
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "Đã khởi chạy nhưng chưa thông báo tình trạng."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "Đang chạy"
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "Thành viên chuẩn của phiên chạy."
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "Đang lưu"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "Đang lưu chi tiết phiên chạy."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "Không rõ"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "Đã quá thời mà vẫn chưa được báo cáo tình trạng."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "Chuẩn"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "Không bị tác động bởi lệnh đăng xuất, vẫn còn có khả năng kết thúc."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "Khởi chạy lại"
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "Không bai giờ được phép kết thúc."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "Sọt rác"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "Bị hủy khi đăng xuất và có khả năng kết thúc."
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "Thiết lập"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "Luôn luôn được khởi chạy mỗi lần đăng nhập."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "Thứ tự"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "Kiểu"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "Tình trang"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
-msgid "Program"
-msgstr "Chương trình"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:45
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"Gặp lỗi khi khởi chạy trình nền thiết lập GNOME.\n"
-"\n"
-"Một vài thứ, như là thiết lập sắc thái, âm thanh hoặc thiết lập nền có thể "
-"sẽ không hoạt động đúng."
-
-#: ../gnome-session/gsm-gsd.c:57
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Thông báo lỗi cuối cùng là:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:62
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME sẽ vẫn thử khởi chạy lại trình nền thiết lập lần kế tiếp bạn đăng nhập."
-
-#: ../gnome-session/gsm-gsd.c:145
-msgid "The Settings Daemon restarted too many times."
-msgstr "Trình nền thiết lập đã khởi chạy lại quá nhiều lần."
-
-#. Name is mandatory and might not be set by the caller
-#: ../gnome-session/gsm-keyfile.c:43
-msgid "No Name"
-msgstr "Không tên"
-
-#: ../gnome-session/gnome-session-remove.c:50
-msgid "List registered clients, then exit"
-msgstr "Liệt các ứng dụng khách đã đăng ký, rồi thoát"
-
-#: ../gnome-session/gnome-session-remove.c:52
-msgid "PROGRAM..."
-msgstr "CHƯƠNG TRÌNH..."
-
-#: ../gnome-session/gnome-session-remove.c:176
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
-"Bạn cần phải xác định ít nhất một chương trình cần gỡ bỏ. Cũng có thể liệt "
-"kê các chương trình bằng lệnh « --list » (liệt kê).\n"
-
-#: ../gnome-session/gnome-session-remove.c:183
-msgid "Error: could not connect to the session manager\n"
-msgstr "Lỗi: không thể kết nối với bộ quản lý phiên chạy\n"
-
-#: ../gnome-session/gnome-session-remove.c:197
-msgid "Currently registered clients:\n"
-msgstr "Ứng dụng khách hiện thời được đăng ký:\n"
-
-#: ../gnome-session/gnome-session-remove.c:207
-#, c-format
-msgid "Couldn't find program %s in session\n"
-msgstr "Không tìm thấy chương trình %s trong phiên chạy\n"
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"Trình quản lý phiên chạy GNOME không thể khởi động được. Vui lòng báo lồi "
-"này cho GNOME. Xin đính kèm thông báo lỗi ICE trong thông báo lỗi: '%s'. "
-"Trong khi chờ đợi, vui lòng đăng nhập phiên chạy failsafe."
-
-#: ../gnome-session/ice.c:514
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-"Trình quản lý phiên chạy GNOME không thể khoá tập tin '%s'. Vui lòng báo lổi "
-"này cho GNOME. Đôi khi lỗi này xảy ra nếu thư mục chứa tập tin không cho "
-"phép ghi, bạn có thể thử đăng nhập phiên chạy failsafe và kiểm tra lại."
-
-#: ../gnome-session/ice.c:541
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-"Trình quản lý phiên chạy GNOME không thể đọc tập tin: '%s'. Nếu tập tin này "
-"tồn tại, bạn phải gán quyền đọc cho nó để GNOME có thể hoạt động. Hãy thử "
-"đăng nhập phiên chạy failsafe và xoá tập tin này."
-
-#: ../gnome-session/ice.c:586
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"Không thể ghi vào tập tin '%s'. Tập tin này phải có thể ghi được thì GNOME "
-"mới hoạt động. Hãy thử đăng nhập vào phiên chạy failsafe và xoá tập tin này. "
-"Ngoài ra cũng cần bảo đảm rằng thư mục chứ tập tin này có quyền ghi."
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr "Bạn có chắc muốn đăng xuất không?"
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr "Nhớ các ứng dụng đang chạy"
-
-#: ../gnome-session/logout.c:432
-msgid "Action"
-msgstr "Hành động"
-
-#: ../gnome-session/logout.c:449
-msgid "_Log out"
-msgstr "Đăng _xuất"
-
-#: ../gnome-session/logout.c:456
-msgid "Sh_ut down"
-msgstr "_Tắt máy"
-
-#: ../gnome-session/logout.c:464
-msgid "_Restart the computer"
-msgstr "_Khởi động lại máy tính"
-
-#: ../gnome-session/main.c:86
-msgid "Specify a session name to load"
-msgstr "Xác định tên phiên chạy cần tải"
-
-#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
-msgid "NAME"
-msgstr "TÊN"
-
-#: ../gnome-session/main.c:87
-msgid "Only read saved sessions from the default.session file"
-msgstr ""
-"Chỉ đọc các phiên chạy được lưu từ tập tin « default.session » (phiên chạy "
-"mặc định)"
-
-#: ../gnome-session/main.c:88
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Khoảng thời gian chờ đợi khách đăng ký theo mili giây (0 = luôn chờ)"
-
-#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
-#: ../gnome-session/main.c:90
-msgid "DELAY"
-msgstr "HOÃN"
-
-#: ../gnome-session/main.c:89
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Khoảng thời gian chờ đợi khách trả lời, theo mili giây (0 = luôn chờ)"
-
-#: ../gnome-session/main.c:90
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Khoảng thời gian chờ đợi khách kết thúc theo mili giây (0=luôn chờ)"
-
-#: ../gnome-session/main.c:166
-msgid "This session is running as a privileged user"
-msgstr "Phiên này đang chạy dưới người dùng có quyền đặc biệt"
-
-#: ../gnome-session/main.c:168
-msgid ""
-"Running a session as a privileged user should be avoided for security "
-"reasons. If possible, you should log in as a normal user."
-msgstr ""
-"Trường hợp chạy một phiên dưới người dùng có quyền đặc biệt nên được tránh "
-"vì lý do bảo mật. Nếu có thể, bạn nên đăng nhập dưới người dùng chuẩn."
-
-#: ../gnome-session/main.c:172
-msgid "_Continue"
-msgstr "Tiếp tụ_c"
-
-#: ../gnome-session/main.c:256
-#, c-format
-msgid ""
-"The session might encounter issues if the computer clock is not properly "
-"configured. Please consider adjusting it.\n"
-"\n"
-"Current date is <b>%s</b>."
-msgstr ""
-"Phiên chạy có thể gặp lỗi nếu đồng hồ máy tính không phải có cấu hình đúng. "
-"Hãy điều chỉnh.\n"
-"\n"
-"Nó hiện thời hiển thị ngày <b>%s</b>."
-
-#: ../gnome-session/main.c:375
-#, c-format
-msgid "Failed to launch time configuration tool: %s"
-msgstr "Lỗi khởi chạy công cụ cấu hình giờ : %s"
-
-#: ../gnome-session/main.c:406
-msgid "The computer clock appears to be wrong"
-msgstr "Có vẻ là đồng hồ máy tính chạy sai"
-
-#: ../gnome-session/main.c:413
-msgid "_Ignore"
-msgstr "_Bỏ qua"
-
-#: ../gnome-session/main.c:414
-msgid "_Adjust the Clock"
-msgstr "_Chỉnh đồng hồ"
-
-#: ../gnome-session/main.c:551
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Không thể tra tìm địa chỉ Mạng của « %s ».\n"
-"Điều này sẽ ngăn cản GNOME hoạt động cho đúng.\n"
-"Có lẽ nên sửa lỗi này bằng cách thêm\n"
-"« %s » vào tập tin các máy đã biết « /etc/hosts »."
-
-#: ../gnome-session/main.c:558
-msgid "Log in Anyway"
-msgstr "Vẫn đăng nhập"
-
-#: ../gnome-session/main.c:559
-msgid "Try Again"
-msgstr "Thử lại"
-
-#: ../gnome-session/main.c:693
-msgid "- Manage the GNOME session"
-msgstr "• Quản lý phiên chạy GNOME"
-
-#: ../gnome-session/manager.c:513
-msgid "Wait abandoned due to conflict."
-msgstr "Việc chờ bị hủy bỏ vì bị xung đột."
-
-#: ../gnome-session/manager.c:1021
-#, c-format
-msgid "No response to the %s command."
-msgstr "Không có hồi đáp từ lệnh %s."
-
-#: ../gnome-session/manager.c:1022
-msgid "The program may be slow, stopped or broken."
-msgstr "Chương trình có thể sẽ chạy chậm, bị dừng hoặc đổ vỡ."
-
-#: ../gnome-session/manager.c:1023
-msgid "You may wait for it to respond or remove it."
-msgstr "Bạn có thể chờ trả lời hoặc gỡ bỏ nó."
-
-#: ../gnome-session/manager.c:1749
-msgid "Restart abandoned due to failures."
-msgstr "Quá trình tái khởi động bị hủy bỏ vì lỗi."
-
-#: ../gnome-session/manager.c:1945
-msgid "A session shutdown is in progress."
-msgstr "Việc tắt một phiên chạy đang chạy."
-
-#: ../gnome-session/gnome-session-save.c:48
-msgid "Set the current session name"
-msgstr "Đặt tên của phiên chạy hiện thời"
-
-#: ../gnome-session/gnome-session-save.c:49
-msgid "Kill session"
-msgstr "Buộc kết thúc phiên chạy"
-
-#: ../gnome-session/gnome-session-save.c:50
-msgid "Use dialog boxes for errors"
-msgstr "Dùng hộp thoại cho lỗi"
-
-#: ../gnome-session/gnome-session-save.c:51
-msgid "Do not require confirmation"
-msgstr "Không yêu cầu xác nhận"
-
-#: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:187
-msgid "Could not connect to the session manager"
-msgstr "Không thể kết nối với trình quản lý phiên chạy"
-
-#: ../gnome-session/gnome-session-save.c:172
-msgid "- Save the current session"
-msgstr "• Lưu phiên chạy hiện thời"
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr "Áp dụng các thay đổi cho phiên chạy hiện thời trước khi đóng chứ?"
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr "Nếu bạn không lưu, các thay đổi sẽ bị mất."
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "Đón_g không lưu"
-
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions Preferences"
-msgstr "Tuỳ thích phiên làm việc"
-
-#: ../gnome-session/session-properties-capplet.c:250
+#: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
 msgstr "_Chương trình khởi động thêm:"
 
-#: ../gnome-session/session-properties-capplet.c:274
-msgid "Enabled"
-msgstr "Bật"
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Duyệt..."
 
-#: ../gnome-session/session-properties-capplet.c:322
-msgid "Startup Programs"
-msgstr "Chương trình khởi động"
-
-#: ../gnome-session/session-properties-capplet.c:328
-msgid "Current Session"
-msgstr "Phiên chạy hiện có"
-
-#: ../gnome-session/session-properties-capplet.c:341
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
-
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember Currently Running Applications"
-msgstr "_Nhớ các ứng dụng đang chạy"
-
-#: ../gnome-session/session-properties-capplet.c:364
-msgid "Session Options"
-msgstr "Tùy chọn phiên chạy"
-
-#: ../gnome-session/session-properties-capplet.c:460
-msgid "Your session has been saved."
-msgstr "Phiên chạy của bạn đã được lưu."
-
-#: ../gnome-session/session-properties-capplet.c:503
-msgid "could not connect to the session manager\n"
-msgstr "Không thể kết nối với trình quản lý phiên chạy\n"
-
-#: ../gnome-session/session-properties-capplet.c:509
-msgid "session manager does not support GNOME extensions\n"
-msgstr "trình quản lý phiên chạy không hỗ trợ phần mở rộng GNOME\n"
-
-#: ../gnome-session/session-properties.c:51
-msgid "Remove the currently selected client from the session."
-msgstr "Gỡ bỏ khách được chọn hiện thời khỏi phiên chạy."
-
-#: ../gnome-session/session-properties.c:57
-msgid "Apply changes to the current session"
-msgstr "Áp dụng các thay đổi cho phiên chạy hiện thời"
-
-#: ../gnome-session/session-properties.c:63
-msgid "The list of programs in the session."
-msgstr "Danh sách các chương trình trong phiên chạy."
-
-#: ../gnome-session/session-properties.c:90
-msgid "Currently running _programs:"
-msgstr "Các chương trình đang _chạy:"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "Bộ Quản Lý Cửa Sổ Sawfish"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "Bộ Quản Lý Cửa Sổ Metacity"
-
-#: ../gnome-session/splash-widget.c:46
-msgid "Window Manager"
-msgstr "Bộ quản lý cửa sổ"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "Bảng"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Thiết lập màn hình nền"
-
-#: ../gnome-session/startup-programs.c:348
-msgid "No description"
-msgstr "Không mô tả"
-
-#: ../gnome-session/startup-programs.c:409
-msgid "Select Command"
-msgstr "Chọn lệnh"
-
-#: ../gnome-session/startup-programs.c:471
-msgid "_Name:"
-msgstr "_Tên:"
-
-#: ../gnome-session/startup-programs.c:486
+#: ../data/session-properties.glade.h:3
 msgid "Co_mmand:"
 msgstr "Lệ_nh:"
 
-#: ../gnome-session/startup-programs.c:498
-msgid "_Browse..."
-msgstr "_Duyệt..."
-
-#: ../gnome-session/startup-programs.c:510
+#: ../data/session-properties.glade.h:4
 msgid "Comm_ent:"
 msgstr "C_hú thích:"
 
-#: ../gnome-session/startup-programs.c:538
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Tùy chọn"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Tuỳ thích phiên chạy"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Chương trình khởi động"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Tên:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Nhớ ứng dụng đang chạy"
+
+#: ../egg/eggdesktopfile.c:130
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Tập tin không phải là một tập tin .desktop hợp lệ"
+
+#: ../egg/eggdesktopfile.c:153
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Không nhận ra tập tin màn hình nền phiên bản « %s »"
+
+#: ../egg/eggdesktopfile.c:926
+#, c-format
+msgid "Starting %s"
+msgstr "Đang khởi chạy %s"
+
+#: ../egg/eggdesktopfile.c:1060
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Ứng dụng không chấp nhận tài liệu thông qua dòng lệnh"
+
+#: ../egg/eggdesktopfile.c:1128
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Không nhận ra tùy chọn khởi chạy: %d"
+
+#: ../egg/eggdesktopfile.c:1335
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Không thể gởi địa chỉ URI của tài liệu cho một mục nhập màn hình nền « Kiểu=Liên_kết »"
+
+#: ../egg/eggdesktopfile.c:1354
+#, c-format
+msgid "Not a launchable item"
+msgstr "Không phải một mục có thể khởi chạy"
+
+#: ../egg/eggsmclient-libgnomeui.c:102
+msgid "Session management"
+msgstr "Quản lý phiên chạy"
+
+#: ../egg/eggsmclient-libgnomeui.c:136
+msgid "GNOME GUI Library + EggSMClient"
+msgstr "Thư viện GUI GNOME + EggSMClient"
+
+#: ../egg/eggsmclient.c:185
+msgid "Disable connection to session manager"
+msgstr "Tắt kết nối với trình quản lý phiên chạy"
+
+#: ../egg/eggsmclient.c:188
+msgid "Specify file containing saved configuration"
+msgstr "Ghi rõ tập tin chứa cấu hình đã lưu"
+
+#: ../egg/eggsmclient.c:188
+msgid "FILE"
+msgstr "TẬP_TIN"
+
+#: ../egg/eggsmclient.c:191
+msgid "Specify session management ID"
+msgstr "Xác định mã số quản lý phiên chạy"
+
+#: ../egg/eggsmclient.c:191
+msgid "ID"
+msgstr "MÃ_SỐ"
+
+#: ../egg/eggsmclient.c:241
+msgid "Session Management Options"
+msgstr "Tùy chọn Quản lý Phiên chạy"
+
+#: ../egg/eggsmclient.c:242
+msgid "Show Session Management options"
+msgstr "Hiện các tùy chọn quản lý phiên chạy"
+
+#: ../gnome-session/gconf.c:110
+#, c-format
+msgid ""
+"There is a problem with the configuration server.\n"
+"(%s exited with status %d)"
+msgstr "Gặp vấn đề với trình phục vụ cấu hình.\n"
+"(%s đã thoát với trạng thái %d)"
+
+#: ../gnome-session/logout-dialog.c:214
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d second."
+msgid_plural "You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d seconds."
+msgstr[0] "Bạn hiện thời đăng nhập dưới « %s ».\n"
+"Bạn sẽ bị tự động đăng xuất trong vòng %d giây."
+
+#: ../gnome-session/logout-dialog.c:226
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d second."
+msgid_plural "You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d seconds."
+msgstr[0] "Bạn hiện thời đăng nhập dưới « %s ».\n"
+"Hệ thống này sẽ bị tự động tắt trong vòng %d giây."
+
+#: ../gnome-session/logout-dialog.c:302
+msgid "Log out of this system now?"
+msgstr "Đăng xuất ra hệ thống này ngay bây giờ ?"
+
+#: ../gnome-session/logout-dialog.c:309
+msgid "_Switch User"
+msgstr "Chu_yển đổi người dùng"
+
+#: ../gnome-session/logout-dialog.c:317
+msgid "_Log Out"
+msgstr "Đăng _xuất"
+
+#: ../gnome-session/logout-dialog.c:323
+msgid "Shut down this system now?"
+msgstr "Tắt hệ thống này ngày bây giờ ?"
+
+#: ../gnome-session/logout-dialog.c:329
+msgid "S_uspend"
+msgstr "N_gưng"
+
+#: ../gnome-session/logout-dialog.c:334
+msgid "_Hibernate"
+msgstr "_Ngủ đông"
+
+#: ../gnome-session/logout-dialog.c:339
+msgid "_Restart"
+msgstr "_Khởi chạy lại"
+
+#: ../gnome-session/logout-dialog.c:348
+msgid "_Shut Down"
+msgstr "_Tắt máy"
+
+#: ../gnome-session/main.c:34
+msgid "Do not load user-specified applications"
+msgstr "Đừng nạp ứng dụng do người dùng xác định"
+
+#: ../gnome-session/main.c:69
+#, c-format
+#. Oh well, no X for you!
+msgid "Unable to start login session (and unable connect to the X server)"
+msgstr "Không thể khởi chạy buổi hợp đăng nhập (và không thể kết nối đến trình phục vụ X)"
+
+#: ../gnome-session/main.c:107
+msgid " - the GNOME session manager"
+msgstr " — Bộ Quản lý Phiên chạy GNOME"
+
+#: ../gnome-session/xsmp.c:133
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
+
+#: ../gnome-session/xsmp.c:336
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr "Đang từ chối kết nối khách mới vì phiên chạy đang bị tắt\n"
+
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "Không thể kết nối với trình quản lý phiên chạy\n"
+
+#: ../capplet/ui.c:106
+msgid "Select Command"
+msgstr "Chọn câu lệnh"
+
+#: ../capplet/ui.c:218
 msgid "The name of the startup program cannot be empty"
 msgstr "Tên của chương trình khởi động không thể là rỗng"
 
-#: ../gnome-session/startup-programs.c:540
+#: ../capplet/ui.c:221
 msgid "The startup command cannot be empty"
 msgstr "Không cho phép tạo lệnh khởi động rỗng"
 
-#: ../gnome-session/startup-programs.c:546
+#: ../capplet/ui.c:228
 msgid "The startup command is not valid"
 msgstr "Lệnh khởi động không hợp lệ"
 
-#: ../gnome-session/startup-programs.c:603
+#: ../capplet/ui.c:356
+msgid "Enabled"
+msgstr "Bật"
+
+#: ../capplet/ui.c:370
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#: ../capplet/ui.c:382
+msgid "Program"
+msgstr "Chương trình"
+
+#: ../capplet/ui.c:417
 msgid "Add Startup Program"
 msgstr "Thêm chương trình khởi động"
 
-#: ../gnome-session/startup-programs.c:647
+#: ../capplet/ui.c:467
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình khởi động"
 
-#~ msgid "New Startup Program"
-#~ msgstr "Chương trình khởi động mới"
+#: ../capplet/commands.c:783
+msgid "No description"
+msgstr "Không mô tả"
 
-#~ msgid "_Save current setup"
-#~ msgstr "_Lưu thiết lập hiện có"
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Đặt tên của phiên chạy hiện thời"
 
-#~ msgid "Automatically save chan_ges to session"
-#~ msgstr "Lưu tự độn_g các thay đổi của phiên chạy"
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "TÊN"
 
-#~ msgid "Save the current session"
-#~ msgstr "Lưu phiên chạy hiện thời"
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Buộc kết thúc phiên chạy"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Không cho phép tạo tên phiên chạy rỗng"
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Dùng hộp thoại cho lỗi"
 
-#~ msgid "The session name already exists"
-#~ msgstr "Bạn đã nhập một tên phiên chạy đã có"
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Không yêu cầu xác nhận"
 
-#~ msgid "Add a new session"
-#~ msgstr "Thêm một phiên chạy mới"
+#: ../tools/gnome-session-save.c:192
+#: ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "Không thể kết nối với trình quản lý phiên chạy"
 
-#~ msgid "Edit session name"
-#~ msgstr "Sửa tên phiên chạy"
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr " —  Lưu phiên chạy hiện thời"
 
-#~ msgid "Disable"
-#~ msgstr "Tắt"
+#: ../splash/gnome-login-sound.c:136
+msgid "Play logout sound instead of login"
+msgstr "Phát âm thanh đăng xuất thay cho đăng nhập"
 
-#~ msgid "_Edit"
-#~ msgstr "_Sửa"
+#: ../splash/gnome-login-sound.c:148
+msgid "- GNOME login/logout sound"
+msgstr " — Âm thanh đăng nhập/xuất GNOME"
 
-#~ msgid ""
-#~ "Some changes are not saved.\n"
-#~ "Is it still OK to exit?"
-#~ msgstr ""
-#~ "Chưa lưu một vài thay đổi.\n"
-#~ "Bạn vẫn đồng ý thoát chứ?"
-
-#~ msgid "Show splash screen on _login"
-#~ msgstr "Hiện màn hình giật gân khi đăng _nhập"
-
-#~ msgid "As_k on logout"
-#~ msgstr "Hỏi _khi đăng xuất"
-
-#~ msgid "_Sessions:"
-#~ msgstr "_Phiên chạy:"
-
-#~ msgid "_Startup Command:"
-#~ msgstr "_Lệnh khởi động:"
+#: ../splash/gnome-session-splash.c:204
+msgid "- GNOME Splash Screen"
+msgstr " — Màn hình giật gân GNOME"
