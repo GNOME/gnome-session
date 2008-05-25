@@ -24,17 +24,96 @@
 #include <string.h>
 
 #include <gtk/gtkmain.h>
+
 #include <gdk/gdkx.h>
+
 #include <gconf/gconf-client.h>
+
+#include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
+
 #include <libgnome/gnome-program.h>
 #include <libgnomeui/gnome-ui-init.h>
+
 #include <glib/gi18n.h>
+
 #include "eggsmclient-libgnomeui.h"
 
 #define SN_API_NOT_YET_FROZEN
 #include <libsn/sn-monitor.h>
 
 #include "splash-window.h"
+
+#define GNOME_SESSION_DBUS_NAME      "org.gnome.SessionManager"
+#define GNOME_SESSION_DBUS_OBJECT    "/org/gnome/SessionManager"
+#define GNOME_SESSION_DBUS_INTERFACE "org.gnome.SessionManager"
+
+static DBusGConnection *
+get_session_bus (void)
+{
+  GError *error;
+  DBusGConnection *bus;
+  DBusConnection *connection;
+
+  error = NULL;
+  bus = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+  if (bus == NULL)
+    {
+      g_warning ("Couldn't connect to session bus: %s",
+                 error->message);
+      g_error_free (error);
+      goto out;
+    }
+
+  connection = dbus_g_connection_get_connection (bus);
+  dbus_connection_set_exit_on_disconnect (connection, TRUE);
+
+out:
+  return bus;
+}
+
+static void
+on_session_running (DBusGProxy *proxy, gpointer data)
+{
+  gtk_main_quit ();
+}
+
+static void
+set_session_running_handler ()
+{
+  DBusGConnection *bus;
+  DBusGProxy *session_proxy;
+
+  bus = get_session_bus ();
+  if (bus == NULL) 
+    {
+      g_warning ("Could not get a connection to the bus");
+      return;
+    }
+
+  session_proxy =
+           dbus_g_proxy_new_for_name (bus,
+                                      GNOME_SESSION_DBUS_NAME,
+                                      GNOME_SESSION_DBUS_OBJECT,
+                                      GNOME_SESSION_DBUS_INTERFACE);
+
+  dbus_g_object_register_marshaller (
+          g_cclosure_marshal_VOID__VOID,
+          G_TYPE_NONE,
+          G_TYPE_INVALID);
+
+  dbus_g_proxy_add_signal (session_proxy,
+                           "SessionRunning",
+                           G_TYPE_INVALID);
+
+  dbus_g_proxy_connect_signal (session_proxy,
+                               "SessionRunning",
+                               G_CALLBACK (on_session_running),
+                               NULL,
+                               NULL);
+
+  dbus_g_connection_unref (bus);
+}
 
 static void
 event_func (SnMonitorEvent *event, void *user_data)
@@ -211,6 +290,8 @@ main (int argc, char *argv[])
 
   g_signal_connect (egg_sm_client_get (), "quit",
 		    G_CALLBACK (quit), NULL);
+
+  set_session_running_handler ();
 
   setup_splash_window ();
   gtk_main ();

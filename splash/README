@@ -9,15 +9,6 @@ directly by gnome-session.
     then looking those binary names up in a hardcoded list in hopes of
     finding localized names and icons.
 
-    At the moment, there is no way for gnome-session to tell the
-    splash screen to go away. My original plan was for it to just use
-    Startup Notification again, and send a "remove: ID=splash" message
-    when it wanted the splash to disappear. It turns out that this
-    doesn't work though, because libstartup-notification filters out
-    the remove: message if it never saw a corresponding new: message.
-    I haven't yet gotten around to coming up with Plan B. At any rate,
-    it exits immediately if you click on it.
-
   * gnome-login-sound: This plays the login sound. If invoked with the
     "--logout" flag, it plays the logout sound instead.
 

@@ -1,5 +1,18 @@
 2008-05-25  Lucas Rocha  <lucasr@gnome.org>
 
+	Make splash listen to "SessionRunning" to know when to go away on 
+	session startup. #529602, Karsten Bräckelmann.
+
+	* splash/Makefile.am: add D-Bus bits on INCLUDES and LDADD.
+	* splash/README: remove obsolete note about gnome-session-splash.
+	* splash/gnome-session-splash.c (get_session_bus,
+	set_session_running_handler, on_session_running, main): listen to
+	"SessionRunning" D-Bus signal to know when go away.
+	* splash/gnome-session-splash.desktop.in: move splash to Panel phase
+	as it's the phase just after window manager is started.
+
+2008-05-25  Lucas Rocha  <lucasr@gnome.org>
+
 	Emit "SessionRunning" D-Bus signal when session is fully up and
 	running with all autostart apps present.
 

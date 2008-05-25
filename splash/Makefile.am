@@ -1,5 +1,6 @@
 INCLUDES =					\
 	-I$(top_srcdir)/egg			\
+	$(DBUS_GLIB_CFLAGS)			\
 	$(LIBGNOMEUI_CFLAGS)			\
 	$(STARTUP_NOTIFICATION_CFLAGS)
 
@@ -27,6 +28,7 @@ gnome_session_splash_SOURCES =			\
 	splash-window.h
 gnome_session_splash_LDADD =			\
 	$(STARTUP_NOTIFICATION_LIBS)		\
+	$(DBUS_GLIB_LIBS)			\
 	$(LDADD)
 
 gnome_login_sound_SOURCES =			\
