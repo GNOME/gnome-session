@@ -1,5 +1,14 @@
 2008-05-25  Lucas Rocha  <lucasr@gnome.org>
 
+	Fix gnome-keyring-wrapper program to correctly set SSH_AUTH_SOCK env
+	variable on session initialization phase. #534055, Dan Winship.
+
+	* compat/gnome-keyring-daemon-wrapper.c (keyring_daemon_start):
+	capture output from gnome-keyring-daemon and set SSH_AUTH_SOCK and
+	GNOME_KEYRING_PID env variables properly.  
+
+2008-05-25  Lucas Rocha  <lucasr@gnome.org>
+
 	Make splash listen to "SessionRunning" to know when to go away on 
 	session startup. #529602, Karsten Bräckelmann.
 

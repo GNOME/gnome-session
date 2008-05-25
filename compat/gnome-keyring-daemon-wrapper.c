@@ -54,13 +54,13 @@ child_setup (gpointer user_data)
   for (fd = 3; fd < open_max; fd++)
     {
       if (fd != keyring_lifetime_pipe[0])
-	fcntl (fd, F_SETFD, FD_CLOEXEC);
+        fcntl (fd, F_SETFD, FD_CLOEXEC);
     }
 
   fd_str = g_strdup_printf ("%d", keyring_lifetime_pipe[0]);
   g_setenv ("GNOME_KEYRING_LIFETIME_FD",
-	    fd_str,
-	    TRUE);
+            fd_str,
+            TRUE);
 }
 
 static void
@@ -95,8 +95,8 @@ keyring_daemon_start (DBusGProxy *gsm)
   argv[0] = GNOME_KEYRING_DAEMON;
   argv[1] = NULL;
   g_spawn_sync (NULL, argv, NULL, G_SPAWN_LEAVE_DESCRIPTORS_OPEN,
-		child_setup, NULL,
-		&standard_out, NULL, &status, &err);
+                child_setup, NULL,
+                &standard_out, NULL, &status, &err);
 
   close (keyring_lifetime_pipe[0]);
   /* We leave keyring_lifetime_pipe[1] open for the lifetime of the session,
@@ -112,44 +112,59 @@ keyring_daemon_start (DBusGProxy *gsm)
   else
     {
       if (WIFEXITED (status) &&
-	  WEXITSTATUS (status) == 0 &&
-	  standard_out != NULL)
+          WEXITSTATUS (status) == 0 &&
+          standard_out != NULL)
         {
-	  lines = g_strsplit (standard_out, "\n", 3);
+          lines = g_strsplit (standard_out, "\n", 3);
 
-	  if (lines[0] != NULL &&
-	      lines[1] != NULL &&
-	      g_str_has_prefix (lines[1], "GNOME_KEYRING_PID="))
-	    {
-	      pid_str = lines[1] + strlen ("GNOME_KEYRING_PID=");
-	      pid = strtol (pid_str, &end, 10);
-	      if (end != pid_str)
-		{
-		  gnome_keyring_daemon_pid = pid;
+          if (lines[0] != NULL &&
+              lines[1] != NULL &&
+              lines[2] != NULL &&
+              g_str_has_prefix (lines[1], "SSH_AUTH_SOCK=") &&
+              g_str_has_prefix (lines[2], "GNOME_KEYRING_PID="))
+            {
+              env = g_strsplit (lines[1], "=", 2);
+              if (!dbus_g_proxy_call (gsm, "Setenv", &err,
+                                      G_TYPE_STRING, env[0],
+                                      G_TYPE_STRING, env[1],
+                                      G_TYPE_INVALID,
+                                      G_TYPE_INVALID))
+                {
+                  g_warning ("Could not set %s: %s", env[0], err->message);
+                  g_error_free (err);
+                }
+              g_strfreev (env);
 
-		  env = g_strsplit (lines[0], "=", 2);
-		  if (!dbus_g_proxy_call (gsm, "Setenv", &err,
-					  G_TYPE_STRING, env[0],
-					  G_TYPE_STRING, env[1],
-					  G_TYPE_INVALID,
-					  G_TYPE_INVALID))
-		    {
-		      g_warning ("Could not set %s: %s", env[0], err->message);
-		      g_error_free (err);
-		    }
-		  g_strfreev (env);
-		}
-	    }
+              pid_str = lines[2] + strlen ("GNOME_KEYRING_PID=");
 
-	  g_strfreev (lines);
+              pid = strtol (pid_str, &end, 10);
+              if (end != pid_str)
+                {
+                  gnome_keyring_daemon_pid = pid;
+
+                  env = g_strsplit (lines[2], "=", 2);
+                  if (!dbus_g_proxy_call (gsm, "Setenv", &err,
+                                          G_TYPE_STRING, env[0],
+                                          G_TYPE_STRING, env[1],
+                                          G_TYPE_INVALID,
+                                          G_TYPE_INVALID))
+                    {
+                      g_warning ("Could not set %s: %s", env[0], err->message);
+                      g_error_free (err);
+                    }
+                  g_strfreev (env);
+                }
+            }
+
+          g_strfreev (lines);
         }
       else
-	{
-	  /* daemon failed for some reason */
-	  g_printerr ("gnome-keyring-daemon failed to start correctly, exit code: %d\n",
-		      WEXITSTATUS (status));
-	  exit (1);
-	}
+        {
+          /* daemon failed for some reason */
+          g_printerr ("gnome-keyring-daemon failed to start correctly, exit code: %d\n",
+                      WEXITSTATUS (status));
+          exit (1);
+        }
       g_free (standard_out);
     }
 }
@@ -185,9 +200,9 @@ main (int argc, char **argv)
   if (!connection)
     g_error ("couldn't get D-Bus connection: %s", err->message);
   gsm = dbus_g_proxy_new_for_name (connection,
-				   "org.gnome.SessionManager",
-				   "/org/gnome/SessionManager",
-				   "org.gnome.SessionManager");
+                                   "org.gnome.SessionManager",
+                                   "/org/gnome/SessionManager",
+                                   "org.gnome.SessionManager");
 
   egg_set_desktop_file (DEFAULT_SESSION_DIR "/gnome-keyring-daemon-wrapper.desktop");
 
