@@ -1,3 +1,20 @@
+2008-05-25  Lucas Rocha  <lucasr@gnome.org>
+
+	Emit "SessionRunning" D-Bus signal when session is fully up and
+	running with all autostart apps present.
+
+	* gnome-session/dbus.[ch]
+	(gsm_dbus_server_class_init): add "session-running" signal to 
+	GsmDBusServer class.
+	(gsm_dbus_emit_session_running): new method for emitting the new signal.
+	* gnome-session/org.gnome.SessionManagement.xml: added "SessionRunning"
+	signal.
+	(gsm_dbus_emit_session_over): rename gsm_dbus_session_over to
+	gsm_dbus_emit_session_over for consistency.
+	* gnome-session/session.c (end_phase): added
+	gsm_dbus_emit_session_emit() call when GSM_SESSION_PHASE_RUNNING is
+	reached.
+
 2008-05-24  Lucas Rocha  <lucasr@gnome.org>
 
 	Emit "SessionOver" D-Bus signal before ending the session.
