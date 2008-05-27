@@ -157,6 +157,10 @@ gsm_xsmp_init (void)
     xsmp_sockets = listeners;
   else
     {
+#ifdef HAVE_X11_XTRANS_XTRANS_H
+      char *network_id_list;
+#endif
+
       /* Xtrans was apparently compiled with support for some
        * non-local transport besides TCP (which we disabled above). We
        * close those additional sockets here. (There's no API for
@@ -171,9 +175,12 @@ gsm_xsmp_init (void)
 
       listeners[local_listener] = listeners[num_listeners - 1];
 #ifdef HAVE_X11_XTRANS_XTRANS_H
+      network_id_list = IceComposeNetworkIdList (num_listeners - 1, listeners);
+
       g_warning ("IceListenForConnections returned %d non-local listeners: %s",
-		 num_listeners - 1,
-		 IceComposeNetworkIdList (num_listeners - 1, listeners));
+		 num_listeners - 1, network_id_list);
+
+      g_free (network_id_list);
 #endif
       IceFreeListenObjs (num_listeners - 1, listeners);
 

@@ -48,6 +48,7 @@ static void set_property (GObject *object, guint prop_id,
 			  const GValue *value, GParamSpec *pspec);
 static void get_property (GObject *object, guint prop_id,
 			  GValue *value, GParamSpec *pspec);
+static void dispose      (GObject *object);
 
 static pid_t launch (GsmApp *app, GError **err);
 
@@ -66,6 +67,7 @@ gsm_app_class_init (GsmAppClass *app_class)
 
   object_class->set_property = set_property;
   object_class->get_property = get_property;
+  object_class->dispose = dispose;
 
   app_class->launch = launch;
 
@@ -187,6 +189,30 @@ get_property (GObject *object, guint prop_id,
 
     default:
       break;
+    }
+}
+
+static void
+dispose(GObject *object)
+{
+  GsmApp *app = GSM_APP (object);
+
+  if (app->desktop_file)
+    {
+      egg_desktop_file_free (app->desktop_file);
+      app->desktop_file = NULL;
+    }
+
+  if (app->startup_id)
+    {
+      g_free (app->startup_id);
+      app->startup_id = NULL;
+    }
+
+  if (app->client_id)
+    {
+      g_free (app->client_id);
+      app->client_id = NULL;
     }
 }
 

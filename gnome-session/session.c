@@ -255,6 +255,7 @@ append_default_apps (GsmSession *session, char **autostart_dirs)
         }
 
       g_free (desktop_file);
+      g_key_file_free (key_file);
     }
 
   g_slist_foreach (default_apps, (GFunc) g_free, NULL);
