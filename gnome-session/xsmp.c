@@ -52,11 +52,9 @@
 #endif /* HAVE_X11_XTRANS_XTRANS_H */
 
 static IceListenObj *xsmp_sockets;
-static char *xsmp_network_id;
-static guint ice_connection_watch;
+static int num_xsmp_sockets, num_local_xsmp_sockets;
 
-static gboolean update_iceauthority    (gboolean      adding,
-					const char   *our_network_id);
+static gboolean update_iceauthority    (gboolean        adding);
 
 static gboolean accept_ice_connection  (GIOChannel     *source,
 					GIOCondition    condition,
@@ -93,9 +91,8 @@ gsm_xsmp_init (void)
 {
   char error[256];
   mode_t saved_umask;
-  IceListenObj *listeners;
-  int num_listeners;
-  int i, local_listener;
+  char *network_id_list;
+  int i;
 
   /* Set up sane error handlers */
   IceSetErrorHandler (ice_error_handler);
@@ -128,76 +125,70 @@ gsm_xsmp_init (void)
    */
   saved_umask = umask (0);
   umask (saved_umask);
-  if (!IceListenForConnections (&num_listeners, &listeners,
+  if (!IceListenForConnections (&num_xsmp_sockets, &xsmp_sockets,
 				sizeof (error), error))
     gsm_initialization_error (TRUE, _("Could not create ICE listening socket: %s"), error);
   umask (saved_umask);
 
-  /* Find the local socket in the returned socket list. */
-  local_listener = -1;
-  for (i = 0; i < num_listeners; i++)
+  /* Find the local sockets in the returned socket list and move them
+   * to the start of the list.
+   */
+  for (i = num_local_xsmp_sockets = 0; i < num_xsmp_sockets; i++)
     {
-      char *id = IceGetListenConnectionString (listeners[i]);
+      char *id = IceGetListenConnectionString (xsmp_sockets[i]);
 
-      if (!strncmp (id, "local/", sizeof ("local/") - 1))
+      if (!strncmp (id, "local/", sizeof ("local/") - 1) ||
+	  !strncmp (id, "unix/", sizeof ("unix/") - 1))
 	{
-	  local_listener = i;
-	  xsmp_network_id = g_strdup (id);
-          g_free (id);
-	  break;
+	  if (i > num_local_xsmp_sockets)
+	    {
+	      IceListenObj tmp = xsmp_sockets[i];
+	      xsmp_sockets[i] = xsmp_sockets[num_local_xsmp_sockets];
+	      xsmp_sockets[num_local_xsmp_sockets] = tmp;
+	    }
+	  num_local_xsmp_sockets++;
 	}
-
-      g_free (id);
+      free (id);
     }
 
-  if (local_listener == -1)
+  if (num_local_xsmp_sockets == 0)
     gsm_initialization_error (TRUE, "IceListenForConnections did not return a local listener!");
 
-  if (num_listeners == 1)
-    xsmp_sockets = listeners;
-  else
-    {
 #ifdef HAVE_X11_XTRANS_XTRANS_H
-      char *network_id_list;
-#endif
-
+  if (num_local_xsmp_sockets != num_xsmp_sockets)
+    {
       /* Xtrans was apparently compiled with support for some
-       * non-local transport besides TCP (which we disabled above). We
-       * close those additional sockets here. (There's no API for
-       * closing a subset of the returned connections, so we have to
-       * cheat...)
+       * non-local transport besides TCP (which we disabled above); we
+       * won't create IO watches on those extra sockets, so
+       * connections to them will never be noticed, but they're still
+       * there, which is inelegant.
        *
        * If the g_warning below is triggering for you and you want to
        * stop it, the fix is to add additional _IceTransNoListen()
        * calls above.
        */
-      IceListenObj local_listener_socket = listeners[local_listener];
-
-      listeners[local_listener] = listeners[num_listeners - 1];
-#ifdef HAVE_X11_XTRANS_XTRANS_H
-      network_id_list = IceComposeNetworkIdList (num_listeners - 1, listeners);
-
+      network_id_list =
+	IceComposeNetworkIdList (num_xsmp_sockets - num_local_xsmp_sockets,
+				 xsmp_sockets + num_local_xsmp_sockets);
       g_warning ("IceListenForConnections returned %d non-local listeners: %s",
-		 num_listeners - 1, network_id_list);
-
-      g_free (network_id_list);
-#endif
-      IceFreeListenObjs (num_listeners - 1, listeners);
-
-      xsmp_sockets = malloc (sizeof (IceListenObj));
-      xsmp_sockets[0] = local_listener_socket;
+		 num_xsmp_sockets - num_local_xsmp_sockets, network_id_list);
+      free (network_id_list);
     }
+#endif
 
   /* Update .ICEauthority with new auth entries for our socket */
-  if (!update_iceauthority (TRUE, xsmp_network_id))
+  if (!update_iceauthority (TRUE))
     {
       /* FIXME: is this really fatal? Hm... */
       gsm_initialization_error (TRUE, "Could not update ICEauthority file %s",
 				IceAuthFileName ());
     }
 
-  g_setenv ("SESSION_MANAGER", xsmp_network_id, TRUE);
-  g_debug ("SESSION_MANAGER=%s\n", xsmp_network_id);
+  network_id_list = IceComposeNetworkIdList (num_local_xsmp_sockets,
+					     xsmp_sockets);
+  g_setenv ("SESSION_MANAGER", network_id_list, TRUE);
+  g_debug ("SESSION_MANAGER=%s\n", network_id_list);
+  free (network_id_list);
 }
 
 /**
@@ -209,12 +200,15 @@ void
 gsm_xsmp_run (void)
 {
   GIOChannel *channel;
+  int i;
 
-  channel = g_io_channel_unix_new (IceGetListenConnectionNumber (xsmp_sockets[0]));
-  ice_connection_watch =
-    g_io_add_watch (channel, G_IO_IN | G_IO_HUP | G_IO_ERR,
-		    accept_ice_connection, xsmp_sockets[0]);
-  g_io_channel_unref (channel);
+  for (i = 0; i < num_local_xsmp_sockets; i++)
+    {
+      channel = g_io_channel_unix_new (IceGetListenConnectionNumber (xsmp_sockets[i]));
+      g_io_add_watch (channel, G_IO_IN | G_IO_HUP | G_IO_ERR,
+		      accept_ice_connection, xsmp_sockets[i]);
+      g_io_channel_unref (channel);
+    }
 }
 
 /**
@@ -225,11 +219,9 @@ gsm_xsmp_run (void)
 void
 gsm_xsmp_shutdown (void)
 {
-  update_iceauthority (FALSE, xsmp_network_id);
-  g_free (xsmp_network_id);
-  xsmp_network_id = NULL;
+  update_iceauthority (FALSE);
 
-  IceFreeListenObjs (1, xsmp_sockets);
+  IceFreeListenObjs (num_xsmp_sockets, xsmp_sockets);
   xsmp_sockets = NULL;
 }
 
@@ -393,16 +385,23 @@ auth_entry_new (const char *protocol, const char *network_id)
 }
 
 static gboolean
-update_iceauthority (gboolean adding, const char *our_network_id)
+update_iceauthority (gboolean adding)
 {
   char *filename = IceAuthFileName ();
+  char **our_network_ids;
   FILE *fp;
   IceAuthFileEntry *auth_entry;
   GSList *entries, *e;
+  int i;
+  gboolean ok = FALSE;
 
   if (IceLockAuthFile (filename, GSM_ICE_AUTH_RETRIES, GSM_ICE_AUTH_INTERVAL,
 		       GSM_ICE_AUTH_LOCK_TIMEOUT) != IceAuthLockSuccess)
     return FALSE;
+
+  our_network_ids = g_malloc (num_local_xsmp_sockets * sizeof (char *));
+  for (i = 0; i < num_local_xsmp_sockets; i++)
+    our_network_ids[i] = IceGetListenConnectionString (xsmp_sockets[i]);
 
   entries = NULL;
 
@@ -417,11 +416,24 @@ update_iceauthority (gboolean adding, const char *our_network_id)
 	   * and if we're shutting down, it won't be valid in the
 	   * future, so either way we want to remove it from the list.
 	   */
-	  if (!auth_entry->network_id ||
-	      !strcmp (auth_entry->network_id, our_network_id))
-	    IceFreeAuthFileEntry (auth_entry);
-	  else
-	    entries = g_slist_prepend (entries, auth_entry);
+	  if (!auth_entry->network_id)
+	    {
+	      IceFreeAuthFileEntry (auth_entry);
+	      continue;
+	    }
+
+	  for (i = 0; i < num_local_xsmp_sockets; i++)
+	    {
+	      if (!strcmp (auth_entry->network_id, our_network_ids[i]))
+		{
+		  IceFreeAuthFileEntry (auth_entry);
+		  break;
+		}
+	    }
+	  if (i != num_local_xsmp_sockets)
+	    continue;
+
+	  entries = g_slist_prepend (entries, auth_entry);
 	}
 
       rewind (fp);
@@ -433,7 +445,7 @@ update_iceauthority (gboolean adding, const char *our_network_id)
       if (g_file_test (filename, G_FILE_TEST_EXISTS))
 	{
 	  g_warning ("Unable to read ICE authority file: %s", filename);
-	  return FALSE;
+	  goto cleanup;
 	}
 
       fd = open (filename, O_CREAT | O_WRONLY, 0600);
@@ -443,16 +455,19 @@ update_iceauthority (gboolean adding, const char *our_network_id)
 	  g_warning ("Unable to write to ICE authority file: %s", filename);
 	  if (fd != -1)
 	    close (fd);
-	  return FALSE;
+	  goto cleanup;
 	}
     }
 
   if (adding)
     {
-      entries = g_slist_append (entries,
-				auth_entry_new ("ICE", our_network_id));
-      entries = g_slist_prepend (entries,
-				 auth_entry_new ("XSMP", our_network_id));
+      for (i = 0; i < num_local_xsmp_sockets; i++)
+	{
+	  entries = g_slist_append (entries,
+				    auth_entry_new ("ICE", our_network_ids[i]));
+	  entries = g_slist_prepend (entries,
+				     auth_entry_new ("XSMP", our_network_ids[i]));
+	}
     }
 
   for (e = entries; e; e = e->next)
@@ -464,9 +479,15 @@ update_iceauthority (gboolean adding, const char *our_network_id)
   g_slist_free (entries);
 
   fclose (fp);
-  IceUnlockAuthFile (filename);
+  ok = TRUE;
 
-  return TRUE;
+ cleanup:
+  IceUnlockAuthFile (filename);
+  for (i = 0; i < num_local_xsmp_sockets; i++)
+    free (our_network_ids[i]);
+  g_free (our_network_ids);
+
+  return ok;
 }
 
 /* Error handlers */

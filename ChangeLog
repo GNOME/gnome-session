@@ -1,3 +1,10 @@
+2008-05-29  Dan Winship  <danw@gnome.org>
+
+	* gnome-session/xsmp.c: Deal with the possibility of multiple
+	local connections, and recognize "unix/" as a local connection
+	prefix as well as "local/". Fixes XSMP under Fedora Rawhide.
+	Problem noted by Kjartan Maraas.
+
 2008-05-27  Lucas Rocha  <lucasr@gnome.org>
 
 	* gnome-session/session.c, gnome-session/xsmp.c, gnome-session/app.c:
