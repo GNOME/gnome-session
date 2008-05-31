@@ -1,3 +1,18 @@
+2008-05-31  Lucas Rocha  <lucasr@gnome.org>
+
+	Fix crash when appending resumed apps from legacy session file.
+	#532075, Ed Catmur. Patch by Ed Catmur.
+
+	* gnome-session/app-resumed.c (get_basename): implement get_basename
+	by returning the program name for now. This will probably need to be
+	changed in the future with the new session saving implementation based
+	on desktop files.
+	* gnome-session/app.c (get_basename, gsm_app_get_basename,
+	gsm_app_class_init): turn gsm_app_get_basename into an overridable
+	method so that we can re-implement it on different types of apps.
+	* gnome-session/session.c (append_app): check if basename is NULL
+	before checking if app has been registered earlier.
+
 2008-05-29  Dan Winship  <danw@gnome.org>
 
 	* gnome-session/xsmp.c: Deal with the possibility of multiple

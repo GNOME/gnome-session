@@ -50,7 +50,8 @@ static void get_property (GObject *object, guint prop_id,
 			  GValue *value, GParamSpec *pspec);
 static void dispose      (GObject *object);
 
-static pid_t launch (GsmApp *app, GError **err);
+static const char *get_basename (GsmApp *app);
+static pid_t       launch       (GsmApp *app, GError **err);
 
 G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
@@ -69,6 +70,7 @@ gsm_app_class_init (GsmAppClass *app_class)
   object_class->get_property = get_property;
   object_class->dispose = dispose;
 
+  app_class->get_basename = get_basename;
   app_class->launch = launch;
 
   g_object_class_install_property (object_class,
@@ -220,16 +222,21 @@ dispose(GObject *object)
  * gsm_app_get_basename:
  * @app: a %GsmApp
  *
- * Returns the basename of the path to @app's desktop file (if any).
+ * Returns an identifying name for @app, e.g. the basename of the path to
+ * @app's desktop file (if any).
  *
- * Return value: the basename of the path to @app's desktop file.
+ * Return value: an identifying name for @app, or %NULL.
  **/
 const char *
 gsm_app_get_basename (GsmApp *app)
 {
-  const char *location, *slash;
+  return GSM_APP_GET_CLASS (app)->get_basename (app);
+}
 
-  g_return_val_if_fail (GSM_IS_APP (app), NULL);
+static const char *
+get_basename (GsmApp *app)
+{
+  const char *location, *slash;
 
   if (!app->desktop_file)
     return NULL;

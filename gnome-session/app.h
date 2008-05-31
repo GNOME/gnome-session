@@ -41,13 +41,14 @@ struct _GsmAppClass
   GObjectClass parent_class;
 
   /* signals */
-  void     (*exited)      (GsmApp *app, int status);
-  void     (*registered)  (GsmApp *app);
+  void        (*exited)       (GsmApp *app, int status);
+  void        (*registered)   (GsmApp *app);
 
   /* virtual methods */
-  gboolean (*is_disabled) (GsmApp *app);
-  pid_t    (*launch)      (GsmApp *app, GError **err);
-  void     (*set_client)  (GsmApp *app, GsmClient *client);
+  const char *(*get_basename) (GsmApp *app);
+  gboolean    (*is_disabled)  (GsmApp *app);
+  pid_t       (*launch)       (GsmApp *app, GError **err);
+  void        (*set_client)   (GsmApp *app, GsmClient *client);
 };
 
 GType            gsm_app_get_type        (void) G_GNUC_CONST;

@@ -25,7 +25,8 @@
 
 #include "app-resumed.h"
 
-static pid_t launch (GsmApp *app, GError **error);
+static const char *get_basename (GsmApp *app);
+static pid_t       launch       (GsmApp *app, GError **error);
 
 G_DEFINE_TYPE (GsmAppResumed, gsm_app_resumed, GSM_TYPE_APP)
 
@@ -40,6 +41,7 @@ gsm_app_resumed_class_init (GsmAppResumedClass *klass)
 {
   GsmAppClass *app_class = GSM_APP_CLASS (klass);
 
+  app_class->get_basename = get_basename;
   app_class->launch = launch;
 }
 
@@ -161,6 +163,12 @@ gsm_app_resumed_new_from_session (GKeyFile *session_file, const char *group,
   return (GsmApp *)app;
 }
 #endif
+
+static const char *
+get_basename (GsmApp *app)
+{
+  return GSM_APP_RESUMED (app)->program;
+}
 
 static pid_t
 launch (GsmApp *app, GError **err)

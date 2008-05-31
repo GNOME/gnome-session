@@ -173,9 +173,17 @@ gsm_session_set_name (GsmSession *session, const char *name)
 static void
 append_app (GsmSession *session, GsmApp *app)
 {
-  const char *basename = gsm_app_get_basename (app);
-  GsmApp *dup = g_hash_table_lookup (session->apps_by_name, basename);
+  const char *basename;
+  GsmApp *dup;
 
+  basename = gsm_app_get_basename (app);
+  if (basename == NULL)
+    {
+      g_object_unref (app);
+      return;
+    }
+
+  dup = g_hash_table_lookup (session->apps_by_name, basename);
   if (dup)
     {
       /* FIXME */
