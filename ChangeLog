@@ -1,5 +1,12 @@
 2008-05-31  Lucas Rocha  <lucasr@gnome.org>
 
+	* compat/at-spi-registryd-wrapper.c (show_error, registry_ior_watch,
+	registry_ior_watch_timeout, main): remove dialog shown after a timeout 
+	in at-spi wrapper program in order to avoid false-positive at-spi
+	errors. #524263, Li Yuan.
+
+2008-05-31  Lucas Rocha  <lucasr@gnome.org>
+
 	* configure.in: properly check for broadcast startup message function
 	on Gdk to have icons shown on session startup.
 

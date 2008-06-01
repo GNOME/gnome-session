@@ -28,12 +28,10 @@ static GdkFilterReturn
 registry_ior_watch (GdkXEvent *xevent, GdkEvent *event, gpointer data)
 {
   XEvent *xev = (XEvent *)xevent;
-  guint timeout = *(guint *)data;
 
   if (xev->xany.type == PropertyNotify &&
       xev->xproperty.atom == AT_SPI_IOR)
     {
-      g_source_remove (timeout);
       gtk_main_quit ();
 
       return GDK_FILTER_REMOVE;
@@ -43,9 +41,8 @@ registry_ior_watch (GdkXEvent *xevent, GdkEvent *event, gpointer data)
 }
 
 static gboolean
-registry_ior_watch_timeout (gpointer data)
+show_error (DBusGProxy *gsm)
 {
-  DBusGProxy *gsm = data;
   const char *message;
 
   message = _("Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support.");
@@ -122,7 +119,6 @@ main (int argc, char **argv)
 {
   GdkDisplay *display;
   GdkWindow *root;
-  guint timeout;
   GError *error = NULL;
   DBusGConnection *connection;
   DBusGProxy *gsm;
@@ -144,18 +140,17 @@ main (int argc, char **argv)
 			    "AT_SPI_IOR", False); 
 
   gdk_window_set_events (root, GDK_PROPERTY_CHANGE_MASK);
-  gdk_window_add_filter (root, registry_ior_watch, &timeout);
-  timeout = g_timeout_add (5000, registry_ior_watch_timeout, gsm);    
+  gdk_window_add_filter (root, registry_ior_watch, NULL);
 
   if (!g_spawn_command_line_async (AT_SPI_REGISTRYD_DIR "/at-spi-registryd", &error))
     {
-      registry_ior_watch_timeout (gsm);
+      show_error (gsm);
       /* not reached */
     }
 
   gtk_main ();
 
-  gdk_window_remove_filter (root, registry_ior_watch, &timeout);
+  gdk_window_remove_filter (root, registry_ior_watch, NULL);
 
   set_gtk_modules (gsm);
   g_object_unref (gsm);
