@@ -1,3 +1,43 @@
+==============
+Version 2.23.3
+==============
+
+General
+
+	* Port gnome-session-save tool to new code base (Lucas Rocha) 
+	* Misc memory leaks fixes (Lucas Rocha)
+
+Session Manager
+
+	* Shutdown D-Bus, XSMP and GConf when session is over (Lucas Rocha)
+	* Emit "SessionRunning" and "SessionOver" D-Bus signals when
+	  stating and ending a session respectively (Lucas Rocha)
+	* Splash screen goes away when session is fully running (Lucas Rocha)
+	* Fix gnome-keyring-wrapper program to correctly set SSH_AUTH_SOCK env
+	  variable on session initialization phase (Lucas Rocha)
+	* Fix crash when appending apps defined on legacy session file (Ed Catmur)
+	* Fix the support for custom application icons to be shown on splash screen 
+	  via startup notification (Lucas Rocha)
+	* Deal with the possibility of multiple local connections, and recognize 
+	  "unix/" as a local connection prefix as well as "local/". Fixes XSMP 
+	  under Fedora Rawhide (Dan Winship)
+	* Remove dialog shown after a timeout in at-spi wrapper program in order 
+	  to avoid false-positive at-spi errors (Lucas Rocha)
+
+Session Properties Capplet
+
+	* Add support for drag and drop of desktop files on Session Properties
+	  capplet (Jared Moore) 
+
+Translators
+
+	* Djihed Afifi (ar)
+	* Ihar Hrachyshka (be@latin)
+	* Jorge Gonzalez (es)
+	* Clytie Siddall (vi)
+	* Ignacio Casal Quinteiro (gl)
+	* Gabor Kelemen (hu) 
+
 ================
 Version 2.23.2.2
 ================
