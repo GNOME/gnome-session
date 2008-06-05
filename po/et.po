@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-21 14:38+0000\n"
-"PO-Revision-Date: 2008-01-23 08:04+0200\n"
+"POT-Creation-Date: 2008-05-16 21:52+0000\n"
+"PO-Revision-Date: 2008-06-04 10:56+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,22 +23,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../compat/at-spi-registryd-wrapper.c:51
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"Selle seansi jaoks on küsitud abistava tehnika tuge, paraku ei ole võimalik "
+"abistava tehnika registrit leida. Palun veendu, et AT-SPI pakk on "
+"paigaldatud. Sinu seanss käivitatakse ilma abistava tehnika toeta."
+
 #: ../data/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "TCP ühenduste lubamine"
+msgid "Default session"
+msgstr "Vaikimisi seanss"
 
 #: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis "
-"omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP "
-"portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi "
-"välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimise, et see "
-"seade tööle hakkaks."
+msgid "File Manager"
+msgstr "Failihaldur"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -55,30 +57,70 @@ msgstr ""
 "väljalogimisdialoogil näidatakse seansi salvestamise valikut."
 
 #: ../data/gnome-session.schemas.in.h:5
+#, fuzzy
+msgid "List of applications that are part of the default session."
+msgstr "Seansis olevate rakenduste käivitamise järjekord."
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid ""
+"List of components that are required as part of the session. (Each element "
+"names a key under \"/desktop/gnome/session/required-components\".) The "
+"session capplet will not normally allow users to remove a required component "
+"from the session, and the session manager will automatically add the "
+"required components back to the session if they do get removed."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "Väljalogimisviip"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Panel"
+msgstr "Paneel"
+
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "Eelistatud pilt, mida kasutatakse sisselogimise tiitelkuval"
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Required session components"
+msgstr "Vajalikut seansikomponendid"
+
+#: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "Salvesta seansid"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:12
 msgid "Selected option in the log out dialog"
 msgstr "Aktiivne valik väljalogimise dialoogil"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Näita tiitelkuva"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:14
 msgid "Show the splash screen when the session starts up"
 msgstr "Näita sisselogimisel tiitelkuva"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:15
+msgid ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:17
+msgid ""
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -88,7 +130,7 @@ msgstr ""
 "kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
 "rakendub järgmisel seansil pärast sisselogimist."
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -97,6 +139,10 @@ msgstr ""
 "See valik on eelvalitud väljalogimise dialoogil, võimalikud väärtused on "
 "\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
 "\" alglaadimise tegemiseks."
+
+#: ../data/gnome-session.schemas.in.h:20
+msgid "Window Manager"
+msgstr "Aknahaldur"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -114,569 +160,617 @@ msgstr "Seansside sätete määramine"
 msgid "Sessions"
 msgstr "Seansid"
 
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Selle seansi jaoks on küsitud abistava tehnika tuge, paraku ei ole võimalik "
-"abistava tehnika registrit leida. Palun veendu, et AT-SPI pakk on "
-"paigaldatud. Sinu seanss käivitatakse ilma abistava tehnika toeta."
-
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_Järjekord:"
-
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "Seansis olevate rakenduste käivitamise järjekord."
-
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "Mis juhtub rakendusega kui see lõpetab töö."
-
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_Laad: "
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "Mitteaktiivne"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "Ootab käivitamist või on juba lõpetanud."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "Käivitamine"
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "Käivitatud, kuid pole veel seisundist teada andnud."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "Töötab"
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "Seansi igati normaalne liige."
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "Salvestamine"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "Seansi info salvestamine."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "Teadmata"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "Ei teatanud olekut määratud aja jooksul."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "Tavaline"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "Säilib väljalogimisel kuid võib surra."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "Taaskäivita"
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "Kui sureb, käivitatakse uuesti."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "Tarbetu"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "Unustatakse väljalogimisel ja võib surra."
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "Sätted"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "Käivitatakse alati igal sisselogimisel."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "Järjekord"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "Stiil"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "Seisund"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
-msgid "Program"
-msgstr "Programm"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:45
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
-"\n"
-"Mõned asjad, näiteks teemad, helid või tausta sätted ei pruugi korralikult "
-"töötada."
-
-#: ../gnome-session/gsm-gsd.c:57
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Viimane veateade oli:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:62
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME üritab sellegipoolest Sinu järgmise sisselogimise ajal sätetedeemonit "
-"taaskäivitada."
-
-#: ../gnome-session/gsm-gsd.c:145
-msgid "The Settings Daemon restarted too many times."
-msgstr "Sätetedeemoni taaskäivitus toimus liiga palju kordi."
-
-#. Name is mandatory and might not be set by the caller
-#: ../gnome-session/gsm-keyfile.c:43
-msgid "No Name"
-msgstr "Nimi puudub"
-
-#: ../gnome-session/gnome-session-remove.c:50
-msgid "List registered clients, then exit"
-msgstr ""
-"Registreeritud klientide nimekirja kuvamine ja programmi töö lõpetamine"
-
-#: ../gnome-session/gnome-session-remove.c:52
-msgid "PROGRAM..."
-msgstr "PROGRAMM..."
-
-#: ../gnome-session/gnome-session-remove.c:176
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
-"Sa pead eemaldamiseks määrama vähemalt ühe programmi. Programmide nimekirja "
-"on võimalik kuvada --list võtme abil.\n"
-
-#: ../gnome-session/gnome-session-remove.c:183
-msgid "Error: could not connect to the session manager\n"
-msgstr "Viga: seansihalduriga pole võimalik ühenduda\n"
-
-#: ../gnome-session/gnome-session-remove.c:197
-msgid "Currently registered clients:\n"
-msgstr "Hetkel registreeritud kliendid:\n"
-
-#: ../gnome-session/gnome-session-remove.c:207
-#, c-format
-msgid "Couldn't find program %s in session\n"
-msgstr "Seansist pole võimalik programmi %s leida\n"
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"GNOME seansihalduril pole võimalik korrektselt käivituda. Palun saada selle "
-"kohta raport GNOME vigade haldamise süsteemi. Palun lisa sinna ka järgnev "
-"ICE tõrketeade: '%s'. Pärast sead võid proovida sisselogimisel tõrkekindla "
-"seansi kasutamist."
-
-#: ../gnome-session/ice.c:514
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-"GNOME seansihalduril pole võimalik lukustada faili '%s'. Palun saada selle "
-"kohta raport GNOME vigade haldamise süsteemi. Mõnikord juhtub see viga "
-"seetõttu, et selle faili kataloogi alla pole võimalik kirjutada. Sellisel "
-"juhul võid sa tõrkekindla seansi abil sisse logida ja olukorra üle "
-"kontrollida."
-
-#: ../gnome-session/ice.c:541
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-"GNOME seansihaldur ei saa faili lugeda: '%s'. Kui see fail on olemas, siis "
-"GNOME korrektseks töötamiseks peab see olema loetav. Proovi tõrkekindla "
-"seansiga sisse logida ja see fail eemaldada."
-
-#: ../gnome-session/ice.c:586
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"Faili '%s' pole võimalik kirjutada. GNOME korrektseks toimimiseks peab see "
-"fail olema kirjutatav. Proovi mõne tõrkekindla seansi abil sisse logida ja "
-"see fail eemaldada. Samuti veendu, et selle faili kataloog oleks kirjutatav."
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr "Oled sa kindel, et soovid välja logida?"
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr "Töötavad rakenduse peetakse meeles"
-
-#: ../gnome-session/logout.c:432
-msgid "Action"
-msgstr "Tegevus"
-
-#: ../gnome-session/logout.c:449
-msgid "_Log out"
-msgstr "_Väljalogimine"
-
-#: ../gnome-session/logout.c:456
-msgid "Sh_ut down"
-msgstr "A_rvuti seiskamine"
-
-#: ../gnome-session/logout.c:464
-msgid "_Restart the computer"
-msgstr "Arvu_ti alglaadimine"
-
-#: ../gnome-session/main.c:86
-msgid "Specify a session name to load"
-msgstr "Määra laaditava seansi nimi"
-
-#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
-msgid "NAME"
-msgstr "NIMI"
-
-#: ../gnome-session/main.c:87
-msgid "Only read saved sessions from the default.session file"
-msgstr "Loe salvestatud seansse ainult default.session failist"
-
-#: ../gnome-session/main.c:88
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
-
-#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
-#: ../gnome-session/main.c:90
-msgid "DELAY"
-msgstr "VIIVITUS"
-
-#: ../gnome-session/main.c:89
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
-
-#: ../gnome-session/main.c:90
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
-
-#: ../gnome-session/main.c:166
-msgid "This session is running as a privileged user"
-msgstr "See seanss töötab privilegeeritud kasutaja õigustes"
-
-#: ../gnome-session/main.c:168
-msgid ""
-"Running a session as a privileged user should be avoided for security "
-"reasons. If possible, you should log in as a normal user."
-msgstr ""
-"Turvakaalutlustel tuleks hoiduda seansi käivitamisest privilegeeritud "
-"kasutaja õigustes. Võimaluse korral võiksid Sa logida sisse lihtkasutajana."
-
-#: ../gnome-session/main.c:172
-msgid "_Continue"
-msgstr "_Jätka"
-
-#: ../gnome-session/main.c:256
-#, c-format
-msgid ""
-"The session might encounter issues if the computer clock is not properly "
-"configured. Please consider adjusting it.\n"
-"\n"
-"Current date is <b>%s</b>."
-msgstr ""
-"Kui arvuti kell pole õigesti seadistatud, siis võib seansis esineda "
-"kõrvalekaldeid. Palun säti kell õigeks.\n"
-"\n"
-"Praegune kuupäev on <b>%s</b>."
-
-#: ../gnome-session/main.c:375
-#, c-format
-msgid "Failed to launch time configuration tool: %s"
-msgstr "Tõrge seadistamisvahendi käivitamisel: %s"
-
-#: ../gnome-session/main.c:406
-msgid "The computer clock appears to be wrong"
-msgstr "Arvuti kell paistab vale olevat"
-
-#: ../gnome-session/main.c:413
-msgid "_Ignore"
-msgstr "_Eira"
-
-#: ../gnome-session/main.c:414
-msgid "_Adjust the Clock"
-msgstr "_Säti kellaaega"
-
-#: ../gnome-session/main.c:551
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"%s jaoks pole võimalik internetiaadressi leida.\n"
-"See ei võimalda GNOME-il normaalselt töötada.\n"
-"Võimalik, et saate selest veast üle, lisades\n"
-"%s faili /etc/hosts."
-
-#: ../gnome-session/main.c:558
-msgid "Log in Anyway"
-msgstr "Logi sellest hoolimata sisse"
-
-#: ../gnome-session/main.c:559
-msgid "Try Again"
-msgstr "Proovi uuesti"
-
-#: ../gnome-session/main.c:693
-msgid "- Manage the GNOME session"
-msgstr "- GNOME'i seansi haldamine"
-
-#: ../gnome-session/manager.c:513
-msgid "Wait abandoned due to conflict."
-msgstr "Ootamine katkes konflikti tõttu."
-
-#: ../gnome-session/manager.c:1021
-#, c-format
-msgid "No response to the %s command."
-msgstr "Käsule %s ei tulnud vastust."
-
-#: ../gnome-session/manager.c:1022
-msgid "The program may be slow, stopped or broken."
-msgstr "Programm võib olla aeglane, peatunud või vigane."
-
-#: ../gnome-session/manager.c:1023
-msgid "You may wait for it to respond or remove it."
-msgstr "Te võite oodata, et see vastaks, või selle kustutada."
-
-#: ../gnome-session/manager.c:1749
-msgid "Restart abandoned due to failures."
-msgstr "Taaskäivitamisest loobuti tõrgete tõttu."
-
-#: ../gnome-session/manager.c:1945
-msgid "A session shutdown is in progress."
-msgstr "Seansi sulgemine on parajasti käsil."
-
-#: ../gnome-session/gnome-session-save.c:48
-msgid "Set the current session name"
-msgstr "Määra aktiivse seansi nimi"
-
-#: ../gnome-session/gnome-session-save.c:49
-msgid "Kill session"
-msgstr "Kõrvalda seanss"
-
-#: ../gnome-session/gnome-session-save.c:50
-msgid "Use dialog boxes for errors"
-msgstr "Vigade jaoks dialoogiakna kasutamine"
-
-#: ../gnome-session/gnome-session-save.c:51
-msgid "Do not require confirmation"
-msgstr "Kinnitust pole vaja küsida"
-
-#: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:187
-msgid "Could not connect to the session manager"
-msgstr "Ei saa ühendust seansihalduriga"
-
-#: ../gnome-session/gnome-session-save.c:172
-msgid "- Save the current session"
-msgstr "- Aktiivse seansi salvestamine"
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr "Kas salvestada enne sulgemist käesoleva senasi muudatused?"
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr "Kui sa ei salvesta, siis lähevad muudatused kaotsi."
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "Sulge _ilma salvestamata"
-
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions Preferences"
-msgstr "Seansi eelistused"
-
-#: ../gnome-session/session-properties-capplet.c:250
+#: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
 msgstr "Täiendavad käivitus_programmid:"
 
-#: ../gnome-session/session-properties-capplet.c:274
-msgid "Enabled"
-msgstr "Lubatud"
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Sirvi..."
 
-#: ../gnome-session/session-properties-capplet.c:322
-msgid "Startup Programs"
-msgstr "Käivitusprogrammid"
-
-#: ../gnome-session/session-properties-capplet.c:328
-msgid "Current Session"
-msgstr "Aktiivne seanss"
-
-#: ../gnome-session/session-properties-capplet.c:341
-msgid "_Automatically remember running applications when logging out"
-msgstr "Väljalogimisel _peetakse töötavad rakendused automaatselt meeles"
-
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember Currently Running Applications"
-msgstr "_Jäta praegu töötavad rakendused meelde"
-
-#: ../gnome-session/session-properties-capplet.c:364
-msgid "Session Options"
-msgstr "Seansi valikud"
-
-#: ../gnome-session/session-properties-capplet.c:460
-msgid "Your session has been saved."
-msgstr "Sinu seanss salvestati."
-
-#: ../gnome-session/session-properties-capplet.c:503
-msgid "could not connect to the session manager\n"
-msgstr "seansihalduriga pole võimalik ühendust saada\n"
-
-#: ../gnome-session/session-properties-capplet.c:509
-msgid "session manager does not support GNOME extensions\n"
-msgstr "seansihaldur ei toeta GNOME-i laiendusi\n"
-
-#: ../gnome-session/session-properties.c:51
-msgid "Remove the currently selected client from the session."
-msgstr "Eemalda valitud klient seansist."
-
-#: ../gnome-session/session-properties.c:57
-msgid "Apply changes to the current session"
-msgstr "Rakenda aktiivse seansi muudatused"
-
-#: ../gnome-session/session-properties.c:63
-msgid "The list of programs in the session."
-msgstr "Seansis olevate programmide nimekiri."
-
-#: ../gnome-session/session-properties.c:90
-msgid "Currently running _programs:"
-msgstr "Hetkel töötavad _programmid:"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "Sawfish aknahaldur"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "Metacity aknahaldur"
-
-#: ../gnome-session/splash-widget.c:46
-msgid "Window Manager"
-msgstr "Aknahaldur"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "Paneel"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Töölaua sätted"
-
-#: ../gnome-session/startup-programs.c:348
-msgid "No description"
-msgstr "Kirjeldus puudub"
-
-#: ../gnome-session/startup-programs.c:409
-msgid "Select Command"
-msgstr "Käsi valimine"
-
-#: ../gnome-session/startup-programs.c:471
-msgid "_Name:"
-msgstr "_Nimi:"
-
-#: ../gnome-session/startup-programs.c:486
+#: ../data/session-properties.glade.h:3
 msgid "Co_mmand:"
 msgstr "_Käsk:"
 
-#: ../gnome-session/startup-programs.c:498
-msgid "_Browse..."
-msgstr "_Sirvi..."
-
-#: ../gnome-session/startup-programs.c:510
+#: ../data/session-properties.glade.h:4
 msgid "Comm_ent:"
 msgstr "Ko_mmentaar:"
 
-#: ../gnome-session/startup-programs.c:538
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Valikud"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Seansi eelistused"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Käivitusprogrammid"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "Väljalogimisel _peetakse töötavad rakendused automaatselt meeles"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Nimi:"
+
+#: ../data/session-properties.glade.h:10
+#, fuzzy
+msgid "_Remember Currently Running Application"
+msgstr "_Jäta praegu töötavad rakendused meelde"
+
+#: ../egg/eggdesktopfile.c:130
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Fail pole korrektne .desktop-fail"
+
+#: ../egg/eggdesktopfile.c:153
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr ""
+
+#: ../egg/eggdesktopfile.c:926
+#, c-format
+msgid "Starting %s"
+msgstr "Käivitamine: %s"
+
+#: ../egg/eggdesktopfile.c:1060
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr ""
+
+#: ../egg/eggdesktopfile.c:1128
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr ""
+
+#: ../egg/eggdesktopfile.c:1335
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr ""
+
+#: ../egg/eggdesktopfile.c:1354
+#, c-format
+msgid "Not a launchable item"
+msgstr ""
+
+#: ../egg/eggsmclient-libgnomeui.c:102
+msgid "Session management"
+msgstr "Seansihaldus"
+
+#: ../egg/eggsmclient-libgnomeui.c:136
+msgid "GNOME GUI Library + EggSMClient"
+msgstr "GNOME GUI-teek + EggSMClient"
+
+#: ../egg/eggsmclient.c:185
+msgid "Disable connection to session manager"
+msgstr "Seansihalduriga ühenduse võtmise keelamine"
+
+#: ../egg/eggsmclient.c:188
+msgid "Specify file containing saved configuration"
+msgstr "Salvestatud sätteid sisaldava faili määramine"
+
+#: ../egg/eggsmclient.c:188
+msgid "FILE"
+msgstr "FAIL"
+
+#: ../egg/eggsmclient.c:191
+msgid "Specify session management ID"
+msgstr "Seansihalduse ID määramine"
+
+#: ../egg/eggsmclient.c:191
+msgid "ID"
+msgstr "ID"
+
+#: ../egg/eggsmclient.c:241
+msgid "Session Management Options"
+msgstr "Seansihalduse valikud"
+
+#: ../egg/eggsmclient.c:242
+msgid "Show Session Management options"
+msgstr "Seansihalduse valikute näitamine"
+
+#: ../gnome-session/gconf.c:110
+#, c-format
+msgid ""
+"There is a problem with the configuration server.\n"
+"(%s exited with status %d)"
+msgstr ""
+
+#: ../gnome-session/logout-dialog.c:214
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d second."
+msgid_plural ""
+"You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gnome-session/logout-dialog.c:226
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d second."
+msgid_plural ""
+"You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gnome-session/logout-dialog.c:302
+msgid "Log out of this system now?"
+msgstr "Kas logida sellest süsteemist välja?"
+
+#: ../gnome-session/logout-dialog.c:309
+msgid "_Switch User"
+msgstr ""
+
+#: ../gnome-session/logout-dialog.c:317
+msgid "_Log Out"
+msgstr "Logi _välja"
+
+#: ../gnome-session/logout-dialog.c:323
+msgid "Shut down this system now?"
+msgstr ""
+
+#: ../gnome-session/logout-dialog.c:329
+msgid "S_uspend"
+msgstr ""
+
+#: ../gnome-session/logout-dialog.c:334
+msgid "_Hibernate"
+msgstr ""
+
+#: ../gnome-session/logout-dialog.c:339
+#, fuzzy
+msgid "_Restart"
+msgstr "Taaskäivita"
+
+#: ../gnome-session/logout-dialog.c:348
+#, fuzzy
+msgid "_Shut Down"
+msgstr "A_rvuti seiskamine"
+
+#: ../gnome-session/main.c:34
+msgid "Do not load user-specified applications"
+msgstr ""
+
+#. Oh well, no X for you!
+#: ../gnome-session/main.c:69
+#, c-format
+msgid "Unable to start login session (and unable connect to the X server)"
+msgstr ""
+
+#: ../gnome-session/main.c:107
+msgid " - the GNOME session manager"
+msgstr "- GNOME seansihaldud"
+
+#: ../gnome-session/xsmp.c:133
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr ""
+
+#: ../gnome-session/xsmp.c:336
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "Seansihalduriga pole võimalik ühenduda\n"
+
+#: ../capplet/ui.c:106
+msgid "Select Command"
+msgstr "Käsi valimine"
+
+#: ../capplet/ui.c:218
 msgid "The name of the startup program cannot be empty"
 msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
 
-#: ../gnome-session/startup-programs.c:540
+#: ../capplet/ui.c:221
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei tohi tühjaks jätta"
 
-#: ../gnome-session/startup-programs.c:546
+#: ../capplet/ui.c:228
 msgid "The startup command is not valid"
 msgstr "Käivituskäsk pole korrektne"
 
-#: ../gnome-session/startup-programs.c:603
+#: ../capplet/ui.c:356
+msgid "Enabled"
+msgstr "Lubatud"
+
+#: ../capplet/ui.c:370
+msgid "Icon"
+msgstr "Ikoon"
+
+#: ../capplet/ui.c:382
+msgid "Program"
+msgstr "Programm"
+
+#: ../capplet/ui.c:417
 msgid "Add Startup Program"
 msgstr "Käivitusprogrammi lisamine"
 
-#: ../gnome-session/startup-programs.c:647
+#: ../capplet/ui.c:467
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
+
+#: ../capplet/commands.c:783
+msgid "No description"
+msgstr "Kirjeldus puudub"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Määra aktiivse seansi nimi"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NIMI"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Kõrvalda seanss"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Vigade jaoks dialoogiakna kasutamine"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Kinnitust pole vaja küsida"
+
+#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "Ei saa ühendust seansihalduriga"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr "- Praeguse seansi salvestamine"
+
+#: ../splash/gnome-login-sound.c:136
+msgid "Play logout sound instead of login"
+msgstr ""
+
+#: ../splash/gnome-login-sound.c:148
+msgid "- GNOME login/logout sound"
+msgstr "- GNOME sisse- ja väljalogimise heli"
+
+#: ../splash/gnome-session-splash.c:204
+msgid "- GNOME Splash Screen"
+msgstr "- GNOME tiitelkuva"
+
+#~ msgid "Allow TCP connections"
+#~ msgstr "TCP ühenduste lubamine"
+
+#~ msgid ""
+#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
+#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
+#~ "ports. This option will allow connections from (authorized) remote hosts. "
+#~ "gnome-session must be restarted for this to take effect."
+#~ msgstr ""
+#~ "Turvalisuspõhjustel ei kuula gnome-session mõningatel platvormidel, mis "
+#~ "omavad _IceTcpTransNoListen() (XFree86 süsteemid) funktsiooni, TCP "
+#~ "portidesse tulevaid ühendusi.  See valik lubab (volitatud) ühendusi "
+#~ "välistelt hostidelt. Sa pead tegema gnome-session'ile alglaadimise, et "
+#~ "see seade tööle hakkaks."
+
+#~ msgid "_Order:"
+#~ msgstr "_Järjekord:"
+
+#~ msgid "What happens to the application when it exits."
+#~ msgstr "Mis juhtub rakendusega kui see lõpetab töö."
+
+#~ msgid "_Style:"
+#~ msgstr "_Laad: "
+
+#~ msgid "Inactive"
+#~ msgstr "Mitteaktiivne"
+
+#~ msgid "Waiting to start or already finished."
+#~ msgstr "Ootab käivitamist või on juba lõpetanud."
+
+#~ msgid "Started but has not yet reported state."
+#~ msgstr "Käivitatud, kuid pole veel seisundist teada andnud."
+
+#~ msgid "Running"
+#~ msgstr "Töötab"
+
+#~ msgid "A normal member of the session."
+#~ msgstr "Seansi igati normaalne liige."
+
+#~ msgid "Saving"
+#~ msgstr "Salvestamine"
+
+#~ msgid "Saving session details."
+#~ msgstr "Seansi info salvestamine."
+
+#~ msgid "Unknown"
+#~ msgstr "Teadmata"
+
+#~ msgid "State not reported within timeout."
+#~ msgstr "Ei teatanud olekut määratud aja jooksul."
+
+#~ msgid "Normal"
+#~ msgstr "Tavaline"
+
+#~ msgid "Unaffected by logouts but can die."
+#~ msgstr "Säilib väljalogimisel kuid võib surra."
+
+#~ msgid "Never allowed to die."
+#~ msgstr "Kui sureb, käivitatakse uuesti."
+
+#~ msgid "Trash"
+#~ msgstr "Tarbetu"
+
+#~ msgid "Discarded on logout and can die."
+#~ msgstr "Unustatakse väljalogimisel ja võib surra."
+
+#~ msgid "Settings"
+#~ msgstr "Sätted"
+
+#~ msgid "Always started on every login."
+#~ msgstr "Käivitatakse alati igal sisselogimisel."
+
+#~ msgid "Order"
+#~ msgstr "Järjekord"
+
+#~ msgid "Style"
+#~ msgstr "Stiil"
+
+#~ msgid "State"
+#~ msgstr "Seisund"
+
+#~ msgid ""
+#~ "There was an error starting the GNOME Settings Daemon.\n"
+#~ "\n"
+#~ "Some things, such as themes, sounds, or background settings may not work "
+#~ "correctly."
+#~ msgstr ""
+#~ "GNOME'i sätetedeemoni käivitamisel tekkis viga.\n"
+#~ "\n"
+#~ "Mõned asjad, näiteks teemad, helid või tausta sätted ei pruugi "
+#~ "korralikult töötada."
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "The last error message was:\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Viimane veateade oli:\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "GNOME will still try to restart the Settings Daemon next time you log in."
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "GNOME üritab sellegipoolest Sinu järgmise sisselogimise ajal "
+#~ "sätetedeemonit taaskäivitada."
+
+#~ msgid "The Settings Daemon restarted too many times."
+#~ msgstr "Sätetedeemoni taaskäivitus toimus liiga palju kordi."
+
+#~ msgid "No Name"
+#~ msgstr "Nimi puudub"
+
+#~ msgid "List registered clients, then exit"
+#~ msgstr ""
+#~ "Registreeritud klientide nimekirja kuvamine ja programmi töö lõpetamine"
+
+#~ msgid "PROGRAM..."
+#~ msgstr "PROGRAMM..."
+
+#~ msgid ""
+#~ "You must specify at least one program to remove. You can list the "
+#~ "programs with --list.\n"
+#~ msgstr ""
+#~ "Sa pead eemaldamiseks määrama vähemalt ühe programmi. Programmide "
+#~ "nimekirja on võimalik kuvada --list võtme abil.\n"
+
+#~ msgid "Error: could not connect to the session manager\n"
+#~ msgstr "Viga: seansihalduriga pole võimalik ühenduda\n"
+
+#~ msgid "Currently registered clients:\n"
+#~ msgstr "Hetkel registreeritud kliendid:\n"
+
+#~ msgid "Couldn't find program %s in session\n"
+#~ msgstr "Seansist pole võimalik programmi %s leida\n"
+
+#~ msgid ""
+#~ "The GNOME session manager cannot start properly.  Please report this as a "
+#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
+#~ "s'.  Meanwhile you could try logging in using the failsafe session."
+#~ msgstr ""
+#~ "GNOME seansihalduril pole võimalik korrektselt käivituda. Palun saada "
+#~ "selle kohta raport GNOME vigade haldamise süsteemi. Palun lisa sinna ka "
+#~ "järgnev ICE tõrketeade: '%s'. Pärast sead võid proovida sisselogimisel "
+#~ "tõrkekindla seansi kasutamist."
+
+#~ msgid ""
+#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
+#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
+#~ "directory is unwritable, you could try logging in via the failsafe "
+#~ "session and ensuring that it is."
+#~ msgstr ""
+#~ "GNOME seansihalduril pole võimalik lukustada faili '%s'. Palun saada "
+#~ "selle kohta raport GNOME vigade haldamise süsteemi. Mõnikord juhtub see "
+#~ "viga seetõttu, et selle faili kataloogi alla pole võimalik kirjutada. "
+#~ "Sellisel juhul võid sa tõrkekindla seansi abil sisse logida ja olukorra "
+#~ "üle kontrollida."
+
+#~ msgid ""
+#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
+#~ "file exists it must be readable by you for GNOME to work properly.  Try "
+#~ "logging in with the failsafe session and removing this file."
+#~ msgstr ""
+#~ "GNOME seansihaldur ei saa faili lugeda: '%s'. Kui see fail on olemas, "
+#~ "siis GNOME korrektseks töötamiseks peab see olema loetav. Proovi "
+#~ "tõrkekindla seansiga sisse logida ja see fail eemaldada."
+
+#~ msgid ""
+#~ "Could not write to file '%s'.  This file must be writable in order for "
+#~ "GNOME to function properly.  Try logging in with the failsafe session and "
+#~ "removing this file.  Also make sure that the file's directory is writable."
+#~ msgstr ""
+#~ "Faili '%s' pole võimalik kirjutada. GNOME korrektseks toimimiseks peab "
+#~ "see fail olema kirjutatav. Proovi mõne tõrkekindla seansi abil sisse "
+#~ "logida ja see fail eemaldada. Samuti veendu, et selle faili kataloog "
+#~ "oleks kirjutatav."
+
+#~ msgid "Are you sure you want to log out?"
+#~ msgstr "Oled sa kindel, et soovid välja logida?"
+
+#~ msgid "Remember running applications"
+#~ msgstr "Töötavad rakenduse peetakse meeles"
+
+#~ msgid "_Restart the computer"
+#~ msgstr "Arvu_ti alglaadimine"
+
+#~ msgid "Only read saved sessions from the default.session file"
+#~ msgstr "Loe salvestatud seansse ainult default.session failist"
+
+#~ msgid "Millisecond period spent waiting for clients to register (0=forever)"
+#~ msgstr ""
+#~ "Mitu millisekundit oodata, et kliendid end registreeriks (0 = igavesti)"
+
+#~ msgid "DELAY"
+#~ msgstr "VIIVITUS"
+
+#~ msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+#~ msgstr "Mitu millisekundit oodata, et kliendid vastaksid (0 = igavesti)"
+
+#~ msgid "Millisecond period spent waiting for clients to die (0=forever)"
+#~ msgstr ""
+#~ "Mitu millisekundit oodata, et kliendid töö lõpetaksid (0 = igavesti)"
+
+#~ msgid "This session is running as a privileged user"
+#~ msgstr "See seanss töötab privilegeeritud kasutaja õigustes"
+
+#~ msgid ""
+#~ "Running a session as a privileged user should be avoided for security "
+#~ "reasons. If possible, you should log in as a normal user."
+#~ msgstr ""
+#~ "Turvakaalutlustel tuleks hoiduda seansi käivitamisest privilegeeritud "
+#~ "kasutaja õigustes. Võimaluse korral võiksid Sa logida sisse "
+#~ "lihtkasutajana."
+
+#~ msgid "_Continue"
+#~ msgstr "_Jätka"
+
+#~ msgid ""
+#~ "The session might encounter issues if the computer clock is not properly "
+#~ "configured. Please consider adjusting it.\n"
+#~ "\n"
+#~ "Current date is <b>%s</b>."
+#~ msgstr ""
+#~ "Kui arvuti kell pole õigesti seadistatud, siis võib seansis esineda "
+#~ "kõrvalekaldeid. Palun säti kell õigeks.\n"
+#~ "\n"
+#~ "Praegune kuupäev on <b>%s</b>."
+
+#~ msgid "Failed to launch time configuration tool: %s"
+#~ msgstr "Tõrge seadistamisvahendi käivitamisel: %s"
+
+#~ msgid "The computer clock appears to be wrong"
+#~ msgstr "Arvuti kell paistab vale olevat"
+
+#~ msgid "_Ignore"
+#~ msgstr "_Eira"
+
+#~ msgid "_Adjust the Clock"
+#~ msgstr "_Säti kellaaega"
+
+#~ msgid ""
+#~ "Could not look up internet address for %s.\n"
+#~ "This will prevent GNOME from operating correctly.\n"
+#~ "It may be possible to correct the problem by adding\n"
+#~ "%s to the file /etc/hosts."
+#~ msgstr ""
+#~ "%s jaoks pole võimalik internetiaadressi leida.\n"
+#~ "See ei võimalda GNOME-il normaalselt töötada.\n"
+#~ "Võimalik, et saate selest veast üle, lisades\n"
+#~ "%s faili /etc/hosts."
+
+#~ msgid "Log in Anyway"
+#~ msgstr "Logi sellest hoolimata sisse"
+
+#~ msgid "Try Again"
+#~ msgstr "Proovi uuesti"
+
+#~ msgid "Wait abandoned due to conflict."
+#~ msgstr "Ootamine katkes konflikti tõttu."
+
+#~ msgid "No response to the %s command."
+#~ msgstr "Käsule %s ei tulnud vastust."
+
+#~ msgid "The program may be slow, stopped or broken."
+#~ msgstr "Programm võib olla aeglane, peatunud või vigane."
+
+#~ msgid "You may wait for it to respond or remove it."
+#~ msgstr "Te võite oodata, et see vastaks, või selle kustutada."
+
+#~ msgid "Restart abandoned due to failures."
+#~ msgstr "Taaskäivitamisest loobuti tõrgete tõttu."
+
+#~ msgid "A session shutdown is in progress."
+#~ msgstr "Seansi sulgemine on parajasti käsil."
+
+#~ msgid "Save changes to the current session before closing?"
+#~ msgstr "Kas salvestada enne sulgemist käesoleva senasi muudatused?"
+
+#~ msgid "If you don't save, changes will be discarded."
+#~ msgstr "Kui sa ei salvesta, siis lähevad muudatused kaotsi."
+
+#~ msgid "_Close without Saving"
+#~ msgstr "Sulge _ilma salvestamata"
+
+#~ msgid "Current Session"
+#~ msgstr "Aktiivne seanss"
+
+#~ msgid "Your session has been saved."
+#~ msgstr "Sinu seanss salvestati."
+
+#~ msgid "could not connect to the session manager\n"
+#~ msgstr "seansihalduriga pole võimalik ühendust saada\n"
+
+#~ msgid "session manager does not support GNOME extensions\n"
+#~ msgstr "seansihaldur ei toeta GNOME-i laiendusi\n"
+
+#~ msgid "Remove the currently selected client from the session."
+#~ msgstr "Eemalda valitud klient seansist."
+
+#~ msgid "Apply changes to the current session"
+#~ msgstr "Rakenda aktiivse seansi muudatused"
+
+#~ msgid "The list of programs in the session."
+#~ msgstr "Seansis olevate programmide nimekiri."
+
+#~ msgid "Currently running _programs:"
+#~ msgstr "Hetkel töötavad _programmid:"
+
+#~ msgid "Sawfish Window Manager"
+#~ msgstr "Sawfish aknahaldur"
+
+#~ msgid "Metacity Window Manager"
+#~ msgstr "Metacity aknahaldur"
+
+#~ msgid "Nautilus"
+#~ msgstr "Nautilus"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Töölaua sätted"
 
 #~ msgid "New Startup Program"
 #~ msgstr "Uus käivitusprogramm"
