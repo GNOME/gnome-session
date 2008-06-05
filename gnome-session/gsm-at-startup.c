@@ -15,12 +15,10 @@ static Atom AT_SPI_IOR;
 static GdkFilterReturn 
 gsm_assistive_filter_watch (GdkXEvent *xevent, GdkEvent *event, gpointer data){
      XEvent *xev = (XEvent *)xevent;
-     gint tid = *(gint *)data;
 
      if (xev->xany.type == PropertyNotify &&
 	 xev->xproperty.atom == AT_SPI_IOR)
        {
-          g_source_remove (tid);
           gtk_main_quit ();
 	  
           return GDK_FILTER_REMOVE;
@@ -41,22 +39,11 @@ gsm_assistive_error_dialog (void)
      gtk_widget_destroy (dialog);     
 }
 
-static gboolean
-gsm_assistive_filter_timeout (gpointer data)
-{
-  gsm_assistive_error_dialog ();
-
-  gtk_main_quit ();
-
-  return FALSE;
-}
-
 void
 gsm_assistive_registry_start (void)
 {
      GdkWindow *w = gdk_get_default_root_window (); 
      gchar *command;
-     guint tid;
  
      if (!AT_SPI_IOR)
        AT_SPI_IOR = XInternAtom (GDK_DISPLAY (), "AT_SPI_IOR", False); 
@@ -65,12 +52,11 @@ gsm_assistive_registry_start (void)
 
      gdk_window_set_events (w, GDK_PROPERTY_CHANGE_MASK);
      gsm_exec_command_line_async (command, NULL);
-     gdk_window_add_filter (w, gsm_assistive_filter_watch, &tid);
-     tid = g_timeout_add_seconds (5, gsm_assistive_filter_timeout, NULL);    
+     gdk_window_add_filter (w, gsm_assistive_filter_watch, NULL);
 
      gtk_main ();
 
-     gdk_window_remove_filter (w, gsm_assistive_filter_watch, &tid);
+     gdk_window_remove_filter (w, gsm_assistive_filter_watch, NULL);
 
      g_free (command);
 }
