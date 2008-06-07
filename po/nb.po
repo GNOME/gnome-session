@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-14 14:22+0200\n"
-"PO-Revision-Date: 2008-05-14 14:28+0200\n"
+"POT-Creation-Date: 2008-06-07 18:24+0200\n"
+"PO-Revision-Date: 2008-06-07 18:24+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../compat/at-spi-registryd-wrapper.c:48
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -57,7 +57,12 @@ msgid ""
 "session capplet will not normally allow users to remove a required component "
 "from the session, and the session manager will automatically add the "
 "required components back to the session if they do get removed."
-msgstr "Liste med komponenter som kreves i sesjonen. (Hvert element navngir en nøkkel under «/desktop/gnome/session/required-components».) Dialog for egenskaper for sesjon vil vanligvis la brukere fjerne en påkrevet komponent fra sesjonen. Sesjonshåndtereren vil automatisk legge inn igjen påkrevede komponenter i sesjonen hvis de fjernes."
+msgstr ""
+"Liste med komponenter som kreves i sesjonen. (Hvert element navngir en "
+"nøkkel under «/desktop/gnome/session/required-components».) Dialog for "
+"egenskaper for sesjon vil vanligvis la brukere fjerne en påkrevet komponent "
+"fra sesjonen. Sesjonshåndtereren vil automatisk legge inn igjen påkrevede "
+"komponenter i sesjonen hvis de fjernes."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -102,13 +107,17 @@ msgstr "Filhåndterer gir deg skrivebordsikoner og lar deg håndtere dine filer.
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
-msgstr "Panelet er linjen øverst eller nederst på skjermen som inneholder menyer, vinduliste, statusikoner, klokke, etc."
+msgstr ""
+"Panelet er linjen øverst eller nederst på skjermen som inneholder menyer, "
+"vinduliste, statusikoner, klokke, etc."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
-msgstr "Vindushåndterer er programmet som styrer tittellinje og kanter rundt vinduer i tillegg til å la deg flytte og endre størrelse på vinduene."
+msgstr ""
+"Vindushåndterer er programmet som styrer tittellinje og kanter rundt vinduer "
+"i tillegg til å la deg flytte og endre størrelse på vinduene."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -334,16 +343,16 @@ msgstr "Ikke last brukerdefinerte programmer"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
 
-#: ../gnome-session/main.c:107
+#: ../gnome-session/main.c:105
 msgid " - the GNOME session manager"
 msgstr "- GNOME sesjonshåndterer"
 
-#: ../gnome-session/xsmp.c:133
+#: ../gnome-session/xsmp.c:130
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 
-#: ../gnome-session/xsmp.c:336
+#: ../gnome-session/xsmp.c:335
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -354,45 +363,74 @@ msgstr "Nekter ny klient tilgang fordi sesjonen er i ferd med å avsluttes\n"
 msgid "Could not connect to the session manager\n"
 msgstr "Kunne ikke koble til sesjonshåndterer\n"
 
-#: ../capplet/ui.c:106
+#: ../capplet/ui.c:107
 msgid "Select Command"
 msgstr "Velg kommando"
 
-#: ../capplet/ui.c:218
+#: ../capplet/ui.c:219
 msgid "The name of the startup program cannot be empty"
 msgstr "Navn på oppstartsprogrammet kan ikke være tomt"
 
-#: ../capplet/ui.c:221
+#: ../capplet/ui.c:222
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommando kan ikke være tom"
 
-#: ../capplet/ui.c:228
+#: ../capplet/ui.c:229
 msgid "The startup command is not valid"
 msgstr "Oppstartskommandoen er ikke gyldig"
 
-#: ../capplet/ui.c:356
+#: ../capplet/ui.c:464
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: ../capplet/ui.c:370
+#: ../capplet/ui.c:478
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/ui.c:382
+#: ../capplet/ui.c:490
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/ui.c:417
+#: ../capplet/ui.c:536
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: ../capplet/ui.c:465
+#: ../capplet/ui.c:586
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/commands.c:783
+#: ../capplet/commands.c:793
 msgid "No description"
 msgstr "Ingen beskrivelse"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Gi navn til denne sesjonen"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NAVN"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Terminer sesjon"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Bruk dialoger for feil"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Ikke krev bekreftelse"
+
+#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "Kunne ikke koble til sesjonshåndterer"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr "- Lagre denne sesjonen"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -402,6 +440,6 @@ msgstr "Spill lyd når du logger ut i stedet for når du logger inn"
 msgid "- GNOME login/logout sound"
 msgstr "- Lyd for inn-/utlogging i GNOME"
 
-#: ../splash/gnome-session-splash.c:204
+#: ../splash/gnome-session-splash.c:283
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME oppstartskjerm"
