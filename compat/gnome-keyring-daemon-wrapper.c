@@ -131,7 +131,7 @@ keyring_daemon_start (DBusGProxy *gsm)
                                       G_TYPE_INVALID))
                 {
                   g_warning ("Could not set %s: %s", env[0], err->message);
-                  g_error_free (err);
+                  g_clear_error (&err);
                 }
               g_strfreev (env);
 
@@ -150,7 +150,7 @@ keyring_daemon_start (DBusGProxy *gsm)
                                           G_TYPE_INVALID))
                     {
                       g_warning ("Could not set %s: %s", env[0], err->message);
-                      g_error_free (err);
+                      g_clear_error (&err);
                     }
                   g_strfreev (env);
                 }
@@ -193,6 +193,7 @@ main (int argc, char **argv)
     {
       g_printerr ("Could not parse arguments: %s\n", err->message);
       g_error_free (err);
+      g_option_context_free (goption_context);
       return 1;
     }
 
@@ -212,6 +213,7 @@ main (int argc, char **argv)
   keyring_daemon_start (gsm);
   gtk_main ();
   keyring_daemon_stop ();
+  g_option_context_free (goption_context);
 
   return 0;
 }

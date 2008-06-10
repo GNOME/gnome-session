@@ -1,3 +1,9 @@
+2008-06-10  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* compat/gnome-keyring-daemon-wrapper.c: (keyring_daemon_start),
+	(main): Fix some invalid reads and a leak reported by valgrind. Closes
+	bug #537577.
+
 2008-06-05  Lucas Rocha  <lucasr@gnome.org>
 
 	* data/session-properties.glade: add bevel to list of startup apps on
