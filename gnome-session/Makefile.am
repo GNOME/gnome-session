@@ -13,7 +13,7 @@ INCLUDES =					\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\" 
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
 gnome_session_LDADD =				\
 	-lSM -lICE				\
@@ -24,32 +24,33 @@ gnome_session_LDADD =				\
 	$(GCONF_LIBS)
 
 gnome_session_SOURCES =				\
-	app-autostart.c				\
-	app-autostart.h				\
-	app-resumed.c				\
-	app-resumed.h				\
-	app.c					\
-	app.h					\
-	client-xsmp.c				\
-	client-xsmp.h				\
-	client.c				\
-	client.h				\
-	dbus.c					\
-	dbus.h					\
+	gsm-autostart-app.h			\
+	gsm-autostart-app.c			\
+	gsm-resumed-app.h			\
+	gsm-resumed-app.c			\
+	gsm-app.h				\
+	gsm-app.c				\
+	gsm-xsmp-client.h			\
+	gsm-xsmp-client.c			\
+	gsm-client.c				\
+	gsm-client.h				\
+	gsm-marshal.h				\
+	gsm-marshal.c				\
 	gconf.c					\
 	gconf.h					\
 	gdm.h					\
 	gdm.c					\
-	gsm.h					\
 	logout-dialog.h				\
 	logout-dialog.c				\
 	main.c					\
 	power-manager.h				\
 	power-manager.c				\
-	session.c				\
-	session.h				\
-	xsmp.c					\
-	xsmp.h
+	gsm-client-store.h			\
+	gsm-client-store.c			\
+	gsm-manager.c				\
+	gsm-manager.h				\
+	gsm-xsmp-server.c			\
+	gsm-xsmp-server.h
 
 libgsmutil_la_LIBADD = 				\
 	$(GNOME_SESSION_LIBS)
@@ -58,14 +59,25 @@ libgsmutil_la_SOURCES =				\
 	util.c					\
 	util.h
 
-dbus.o dbus.lo: dbus-glue.h
+gsm-marshal.c: gsm-marshal.list
+	echo "#include \"gsm-marshal.h\"" > $@ && \
+	@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --body >> $@
 
-dbus-glue.h: org.gnome.SessionManagement.xml
-	dbus-binding-tool --mode=glib-server --prefix=gsm_dbus_server $^ > $@
+gsm-marshal.h: gsm-marshal.list
+	@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --header > $@
+
+gsm-manager-glue.h: gsm-manager.xml Makefile.am
+	dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/gsm-manager.xml
+
+BUILT_SOURCES =			\
+	gsm-marshal.c           \
+	gsm-marshal.h           \
+	gsm-manager-glue.h
 
 CLEANFILES =					\
-	dbus-glue.h
+	$(BUILT_SOURCES)
 
 EXTRA_DIST =					\
 	README					\
-	org.gnome.SessionManagement.xml
+	gsm-marshal.list        		\
+	gsm-manager.xml

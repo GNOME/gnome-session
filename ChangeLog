@@ -1,3 +1,109 @@
+2008-06-11  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
+	* gnome-session/app-autostart.c:
+	* gnome-session/app-autostart.h:
+	* gnome-session/app-resumed.c:
+	* gnome-session/app-resumed.h:
+	* gnome-session/app.c:
+	* gnome-session/app.h:
+	* gnome-session/client-xsmp.c:
+	* gnome-session/client-xsmp.h:
+	* gnome-session/client.c:
+	* gnome-session/client.h:
+	* gnome-session/dbus.c:
+	* gnome-session/dbus.h:
+	* gnome-session/gconf.c (gsm_gconf_check):
+	* gnome-session/gsm-app.c (set_property), (get_property),
+	(dispose), (get_basename), (gsm_app_get_phase),
+	(gsm_app_is_disabled), (gsm_app_provides), (app_exited), (launch):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_init),
+	(gsm_autostart_app_class_init), (gsm_autostart_app_dispose),
+	(gsm_autostart_app_new), (unless_exists_condition_cb),
+	(if_exists_condition_cb), (gconf_condition_cb), (is_disabled):
+	* gnome-session/gsm-autostart-app.h:
+	* gnome-session/gsm-client-store.c (gsm_client_store_error_quark),
+	(gsm_client_store_clear), (remove_client),
+	(gsm_client_store_remove), (gsm_client_store_foreach),
+	(gsm_client_store_find), (gsm_client_store_foreach_remove),
+	(gsm_client_store_add), (gsm_client_store_class_init),
+	(client_unref), (gsm_client_store_init),
+	(gsm_client_store_finalize), (gsm_client_store_new):
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-client.c (get_next_client_serial),
+	(gsm_client_constructor), (gsm_client_init), (gsm_client_finalize),
+	(gsm_client_class_init), (gsm_client_get_id),
+	(gsm_client_register_client), (gsm_client_request_logout):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-manager.c (gsm_manager_error_quark),
+	(app_condition_changed), (end_phase), (app_registered),
+	(phase_timeout), (start_phase), (gsm_manager_start),
+	(remove_client_for_connection), (remove_clients_for_connection),
+	(bus_name_owner_changed), (register_manager),
+	(gsm_manager_set_failsafe), (gsm_manager_set_client_store),
+	(gsm_manager_set_property), (gsm_manager_get_property),
+	(append_app), (append_default_apps), (append_autostart_apps),
+	(append_legacy_session_apps), (append_saved_session_apps),
+	(append_required_apps), (load_apps), (gsm_manager_constructor),
+	(gsm_manager_class_init), (gsm_manager_init),
+	(gsm_manager_finalize), (gsm_manager_new), (gsm_manager_setenv),
+	(gsm_manager_initialization_error), (manager_shutdown),
+	(initiate_shutdown), (logout_dialog_response),
+	(gsm_manager_initiate_shutdown), (gsm_manager_shutdown),
+	(gsm_manager_logout), (manager_set_name), (gsm_manager_set_name):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-marshal.list:
+	* gnome-session/gsm-resumed-app.c (gsm_resumed_app_init),
+	(gsm_resumed_app_class_init),
+	(gsm_resumed_app_new_from_legacy_session),
+	(gsm_resumed_app_new_from_session), (get_basename), (launch):
+	* gnome-session/gsm-resumed-app.h:
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_init),
+	(gsm_xsmp_client_class_init), (gsm_xsmp_client_new),
+	(xsmp_finalize), (client_iochannel_watch),
+	(client_protocol_timeout), (register_client_callback),
+	(do_save_yourself), (save_yourself_request_callback),
+	(xsmp_save_yourself), (save_yourself_phase2_request_callback),
+	(xsmp_save_yourself_phase2), (interact_request_callback),
+	(xsmp_interact), (interact_done_callback),
+	(xsmp_shutdown_cancelled), (xsmp_die),
+	(save_yourself_done_callback), (close_connection_callback),
+	(debug_print_property), (find_property), (delete_property),
+	(set_properties_callback), (delete_properties_callback),
+	(get_properties_callback), (xsmp_get_client_id), (xsmp_get_pid),
+	(xsmp_get_desktop_file), (prop_to_command),
+	(xsmp_get_restart_command), (xsmp_get_discard_command),
+	(xsmp_get_autorestart), (set_description),
+	(gsm_xsmp_client_connect):
+	* gnome-session/gsm-xsmp-client.h:
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection),
+	(gsm_xsmp_server_start), (gsm_xsmp_server_set_client_store),
+	(gsm_xsmp_server_set_property), (gsm_xsmp_server_get_property),
+	(accept_xsmp_connection), (ice_error_handler),
+	(ice_io_error_handler), (sms_error_handler), (auth_entry_new),
+	(update_iceauthority), (setup_listener),
+	(gsm_xsmp_server_constructor), (gsm_xsmp_server_class_init),
+	(gsm_xsmp_server_init), (gsm_xsmp_server_finalize),
+	(gsm_xsmp_server_new):
+	* gnome-session/gsm-xsmp-server.h:
+	* gnome-session/gsm.h:
+	* gnome-session/logout-dialog.c (gsm_logout_dialog_timeout),
+	(gsm_get_logout_dialog):
+	* gnome-session/logout-dialog.h:
+	* gnome-session/main.c (gsm_dbus_init), (gsm_dbus_check), (main):
+	* gnome-session/org.gnome.SessionManagement.xml:
+	* gnome-session/session.c:
+	* gnome-session/session.h:
+	* gnome-session/util.c (gsm_util_init_error),
+	(gsm_util_generate_client_id):
+	* gnome-session/util.h:
+	* gnome-session/xsmp.c:
+	* gnome-session/xsmp.h:
+	First crack at new new gnome-session based around D-Bus.
+	XSMP still provided but more as a legacy feature.  Not quite
+	operational yet.  See bug #535829 for more info.
+
 2008-06-10  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* compat/gnome-keyring-daemon-wrapper.c: (keyring_daemon_start),

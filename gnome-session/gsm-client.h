@@ -1,4 +1,5 @@
-/* client.h
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ *
  * Copyright (C) 2007 Novell, Inc.
  *
  * This program is free software; you can redistribute it and/or
@@ -35,49 +36,58 @@ G_BEGIN_DECLS
 typedef struct _GsmClient        GsmClient;
 typedef struct _GsmClientClass   GsmClientClass;
 
+typedef struct GsmClientPrivate GsmClientPrivate;
+
 struct _GsmClient
 {
-  GObject parent;
-
+        GObject           parent;
+        GsmClientPrivate *priv;
 };
 
 struct _GsmClientClass
 {
-  GObjectClass parent_class;
+        GObjectClass parent_class;
 
-  /* signals */
-  void (*saved_state)          (GsmClient *client);
+        /* signals */
+        void (*register_client)      (GsmClient  *client,
+                                      const char *previous_id,
+                                      char      **id);
+        void (*request_logout)       (GsmClient  *client,
+                                      gboolean    prompt);
 
-  void (*request_phase2)       (GsmClient *client);
+        void (*saved_state)          (GsmClient *client);
 
-  void (*request_interaction)  (GsmClient *client);
-  void (*interaction_done)     (GsmClient *client,
-				gboolean   cancel_shutdown);
+        void (*request_phase2)       (GsmClient *client);
 
-  void (*save_yourself_done)   (GsmClient *client);
+        void (*request_interaction)  (GsmClient *client);
+        void (*interaction_done)     (GsmClient *client,
+                                      gboolean   cancel_shutdown);
 
-  void (*disconnected)         (GsmClient *client);
+        void (*save_yourself_done)   (GsmClient *client);
 
-  /* virtual methods */
-  const char * (*get_client_id)       (GsmClient *client);
-  pid_t        (*get_pid)             (GsmClient *client);
-  char       * (*get_desktop_file)    (GsmClient *client);
-  char       * (*get_restart_command) (GsmClient *client);
-  char       * (*get_discard_command) (GsmClient *client);
-  gboolean     (*get_autorestart)     (GsmClient *client);
+        void (*disconnected)         (GsmClient *client);
 
-  void (*restart)              (GsmClient *client, 
-                                GError   **error);
-  void (*save_yourself)        (GsmClient *client,
-				gboolean   save_state);
-  void (*save_yourself_phase2) (GsmClient *client);
-  void (*interact)             (GsmClient *client);
-  void (*shutdown_cancelled)   (GsmClient *client);
-  void (*die)                  (GsmClient *client);
+        /* virtual methods */
+        const char * (*get_client_id)       (GsmClient *client);
+        pid_t        (*get_pid)             (GsmClient *client);
+        char       * (*get_desktop_file)    (GsmClient *client);
+        char       * (*get_restart_command) (GsmClient *client);
+        char       * (*get_discard_command) (GsmClient *client);
+        gboolean     (*get_autorestart)     (GsmClient *client);
+
+        void (*restart)              (GsmClient *client,
+                                      GError   **error);
+        void (*save_yourself)        (GsmClient *client,
+                                      gboolean   save_state);
+        void (*save_yourself_phase2) (GsmClient *client);
+        void (*interact)             (GsmClient *client);
+        void (*shutdown_cancelled)   (GsmClient *client);
+        void (*die)                  (GsmClient *client);
 };
 
 GType       gsm_client_get_type             (void) G_GNUC_CONST;
 
+const char *gsm_client_get_id               (GsmClient *client);
 const char *gsm_client_get_client_id        (GsmClient *client);
 
 pid_t       gsm_client_get_pid              (GsmClient *client);
@@ -91,7 +101,7 @@ void        gsm_client_save_state           (GsmClient *client);
 void        gsm_client_restart              (GsmClient *client,
                                              GError   **error);
 void        gsm_client_save_yourself        (GsmClient *client,
-					     gboolean   save_state);
+                                             gboolean   save_state);
 void        gsm_client_save_yourself_phase2 (GsmClient *client);
 void        gsm_client_interact             (GsmClient *client);
 void        gsm_client_shutdown_cancelled   (GsmClient *client);
@@ -102,9 +112,15 @@ void        gsm_client_saved_state          (GsmClient *client);
 void        gsm_client_request_phase2       (GsmClient *client);
 void        gsm_client_request_interaction  (GsmClient *client);
 void        gsm_client_interaction_done     (GsmClient *client,
-					     gboolean   cancel_shutdown);
+                                             gboolean   cancel_shutdown);
 void        gsm_client_save_yourself_done   (GsmClient *client);
 void        gsm_client_disconnected         (GsmClient *client);
+
+void        gsm_client_register_client      (GsmClient  *client,
+                                             const char *previous_id,
+                                             char      **id);
+void        gsm_client_request_logout       (GsmClient  *client,
+                                             gboolean    prompt);
 
 G_END_DECLS
 

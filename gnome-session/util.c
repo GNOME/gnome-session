@@ -109,3 +109,108 @@ gsm_util_text_is_blank (const gchar *str)
 
   return TRUE;
 }
+
+/**
+ * gsm_util_init_error:
+ * @fatal: whether or not the error is fatal to the login session
+ * @format: printf-style error message format
+ * @...: error message args
+ *
+ * Displays the error message to the user. If @fatal is %TRUE, gsm
+ * will exit after displaying the message.
+ *
+ * This should be called for major errors that occur before the
+ * session is up and running. (Notably, it positions the dialog box
+ * itself, since no window manager will be running yet.)
+ **/
+void
+gsm_util_init_error (gboolean fatal, const char *format, ...)
+{
+  GtkWidget *dialog;
+  char *msg;
+  va_list args;
+
+  va_start (args, format);
+  msg = g_strdup_vprintf (format, args);
+  va_end (args);
+
+  /* If option parsing failed, Gtk won't have been initialized... */
+  if (!gdk_display_get_default ())
+    {
+      if (!gtk_init_check (NULL, NULL))
+	{
+	  /* Oh well, no X for you! */
+	  g_printerr (_("Unable to start login session (and unable connect to the X server)"));
+	  g_printerr (msg);
+	  exit (1);
+	}
+    }
+
+  dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
+				   GTK_BUTTONS_CLOSE, "%s", msg);
+
+  g_free (msg);
+  
+  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
+  gtk_dialog_run (GTK_DIALOG (dialog));
+
+  gtk_widget_destroy (dialog);
+
+  gtk_main_quit ();
+}
+
+/**
+ * gsm_util_generate_client_id:
+ *
+ * Generates a new SM client ID.
+ *
+ * Return value: an SM client ID.
+ **/
+char *
+gsm_util_generate_client_id (void)
+{
+  static int sequence = -1;
+  static guint rand1 = 0, rand2 = 0;
+  static pid_t pid = 0;
+  struct timeval tv;
+
+  /* The XSMP spec defines the ID as:
+   *
+   * Version: "1"
+   * Address type and address:
+   *   "1" + an IPv4 address as 8 hex digits
+   *   "2" + a DECNET address as 12 hex digits
+   *   "6" + an IPv6 address as 32 hex digits
+   * Time stamp: milliseconds since UNIX epoch as 13 decimal digits
+   * Process-ID type and process-ID:
+   *   "1" + POSIX PID as 10 decimal digits
+   * Sequence number as 4 decimal digits
+   *
+   * XSMP client IDs are supposed to be globally unique: if
+   * SmsGenerateClientID() is unable to determine a network
+   * address for the machine, it gives up and returns %NULL.
+   * GNOME and KDE have traditionally used a fourth address
+   * format in this case:
+   *   "0" + 16 random hex digits
+   *
+   * We don't even bother trying SmsGenerateClientID(), since the
+   * user's IP address is probably "192.168.1.*" anyway, so a random
+   * number is actually more likely to be globally unique.
+   */
+
+  if (!rand1)
+    {
+      rand1 = g_random_int ();
+      rand2 = g_random_int ();
+      pid = getpid ();
+    }
+
+  sequence = (sequence + 1) % 10000;
+  gettimeofday (&tv, NULL);
+  return g_strdup_printf ("10%.04x%.04x%.10lu%.3u%.10lu%.4d",
+			  rand1, rand2,
+			  (unsigned long) tv.tv_sec,
+			  (unsigned) tv.tv_usec,
+			  (unsigned long) pid,
+			  sequence);
+}

@@ -1,8 +1,21 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/*
- * main.c: gnome-session startup
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2006 Novell, Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -18,129 +31,155 @@
 #include <gtk/gtkmain.h>
 #include <gtk/gtkmessagedialog.h>
 
-#include "dbus.h"
+#include <dbus/dbus.h>
+#include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-bindings.h>
+#include <dbus/dbus-glib-lowlevel.h>
+
 #include "gconf.h"
-#include "gsm.h"
-#include "session.h"
 #include "util.h"
-#include "xsmp.h"
+#include "gsm-manager.h"
+#include "gsm-xsmp-server.h"
+#include "gsm-client-store.h"
 
-GsmSession *global_session;
-
-static gboolean failsafe;
+static DBusGConnection *connection = NULL;
+static gboolean         failsafe;
 
 static GOptionEntry entries[] = {
-  { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe,
-    N_("Do not load user-specified applications"),
-    NULL },
-  { NULL, 0, 0, 0, NULL, NULL, NULL }
+        { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe,
+          N_("Do not load user-specified applications"),
+          NULL },
+        { NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
-/**
- * gsm_initialization_error:
- * @fatal: whether or not the error is fatal to the login session
- * @format: printf-style error message format
- * @...: error message args
- *
- * Displays the error message to the user. If @fatal is %TRUE, gsm
- * will exit after displaying the message.
- *
- * This should be called for major errors that occur before the
- * session is up and running. (Notably, it positions the dialog box
- * itself, since no window manager will be running yet.)
- **/
-void
-gsm_initialization_error (gboolean fatal, const char *format, ...)
+static void
+gsm_dbus_init (void)
 {
-  GtkWidget *dialog;
-  char *msg;
-  va_list args;
+        char *argv[3];
+        char *output, **vars;
+        int status, i;
+        GError *error;
 
-  va_start (args, format);
-  msg = g_strdup_vprintf (format, args);
-  va_end (args);
+        /* Check whether there is a dbus-daemon session instance currently
+         * running (not spawned by us).
+         */
+        if (g_getenv ("DBUS_SESSION_BUS_ADDRESS")) {
+                g_warning ("dbus-daemon is already running: processes launched by "
+                           "D-Bus won't have access to $SESSION_MANAGER!");
+                return;
+        }
 
-  /* If option parsing failed, Gtk won't have been initialized... */
-  if (!gdk_display_get_default ())
-    {
-      if (!gtk_init_check (NULL, NULL))
-	{
-	  /* Oh well, no X for you! */
-	  g_printerr (_("Unable to start login session (and unable connect to the X server)"));
-	  g_printerr (msg);
-	  exit (1);
-	}
-    }
+        argv[0] = DBUS_LAUNCH;
+        argv[1] = "--exit-with-session";
+        argv[2] = NULL;
 
-  dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
-				   GTK_BUTTONS_CLOSE, "%s", msg);
+        /* dbus-launch exits pretty quickly, but if necessary, we could
+         * make this async. (It's a little annoying since the main loop isn't
+         * running yet...)
+         */
+        error = NULL;
+        g_spawn_sync (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL,
+                      &output, NULL, &status, &error);
+        if (error) {
+                gsm_util_init_error (TRUE, "Could not start dbus-daemon: %s",
+                                     error->message);
+                /* not reached */
+        }
 
-  g_free (msg);
-  
-  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
-  gtk_dialog_run (GTK_DIALOG (dialog));
+        vars = g_strsplit (output, "\n", 0);
+        for (i = 0; vars[i]; i++) {
+                putenv (vars[i]);
+        }
 
-  gtk_widget_destroy (dialog);
+        /* Can't free the putenv'ed strings */
+        g_free (vars);
+        g_free (output);
+}
 
-  gtk_main_quit ();
+static void
+gsm_dbus_check (void)
+{
+        GError *error = NULL;
+
+        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (!connection) {
+                gsm_util_init_error (TRUE, "Could not start D-Bus: %s",
+                                     error->message);
+                /* not reached */
+        }
+
+        dbus_connection_set_exit_on_disconnect (dbus_g_connection_get_connection (connection), FALSE);
 }
 
 int
 main (int argc, char **argv)
 {
-  struct sigaction sa;
-  GError *err = NULL;
-  char *display_str;
+        struct sigaction sa;
+        GError          *error;
+        char            *display_str;
+        GsmManager      *manager;
+        GsmClientStore  *store;
+        GsmXsmpServer   *xsmp_server;
 
-  bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain (GETTEXT_PACKAGE);
+        bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        textdomain (GETTEXT_PACKAGE);
 
-  sa.sa_handler = SIG_IGN;
-  sa.sa_flags = 0;
-  sigemptyset (&sa.sa_mask);
-  sigaction (SIGPIPE, &sa, 0);
+        sa.sa_handler = SIG_IGN;
+        sa.sa_flags = 0;
+        sigemptyset (&sa.sa_mask);
+        sigaction (SIGPIPE, &sa, 0);
 
-  gtk_init_with_args (&argc, &argv,
-		      (char *) _(" - the GNOME session manager"),
-		      entries, GETTEXT_PACKAGE,
-		      &err);
-  if (err)
-    gsm_initialization_error (TRUE, "%s", err->message);
+        error = NULL;
+        gtk_init_with_args (&argc, &argv,
+                            (char *) _(" - the GNOME session manager"),
+                            entries, GETTEXT_PACKAGE,
+                            &error);
+        if (error != NULL) {
+                gsm_util_init_error (TRUE, "%s", error->message);
+        }
 
-  /* Set DISPLAY explicitly for all our children, in case --display
-   * was specified on the command line.
-   */
-  display_str = gdk_get_display ();
-  g_setenv ("DISPLAY", display_str, TRUE);
-  g_free (display_str);
+        /* Set DISPLAY explicitly for all our children, in case --display
+         * was specified on the command line.
+         */
+        display_str = gdk_get_display ();
+        g_setenv ("DISPLAY", display_str, TRUE);
+        g_free (display_str);
 
-  /* Start up gconfd and dbus-daemon (in parallel) if they're not
-   * already running. This requires us to initialize XSMP too, because
-   * we want $SESSION_MANAGER to be set before launching dbus-daemon.
-   */
-  gsm_gconf_init ();
-  gsm_xsmp_init ();
-  gsm_dbus_init ();
+        store = gsm_client_store_new ();
 
-  /* Now make sure they succeeded. (They'll call
-   * gsm_initialization_error() if they failed.)
-   */
-  gsm_gconf_check ();
-  gsm_dbus_check ();
+        /* Start up gconfd and dbus-daemon (in parallel) if they're not
+         * already running. This requires us to initialize XSMP too, because
+         * we want $SESSION_MANAGER to be set before launching dbus-daemon.
+         */
+        gsm_gconf_init ();
 
-  global_session = gsm_session_new (failsafe);
+        xsmp_server = gsm_xsmp_server_new (store);
 
-  gsm_xsmp_run ();
-  gsm_dbus_run ();
+        gsm_dbus_init ();
 
-  gsm_session_start (global_session);
+        /* Now make sure they succeeded. (They'll call
+         * gsm_util_init_error() if they failed.)
+         */
+        gsm_gconf_check ();
+        gsm_dbus_check ();
 
-  gtk_main ();
+        manager = gsm_manager_new (store, failsafe);
 
-  gsm_xsmp_shutdown ();
-  gsm_gconf_shutdown ();
-  gsm_dbus_shutdown ();
+        gsm_xsmp_server_start (xsmp_server);
+        gsm_manager_start (manager);
 
-  return 0;
+        gtk_main ();
+
+        if (xsmp_server != NULL) {
+                g_object_unref (xsmp_server);
+        }
+
+        gsm_gconf_shutdown ();
+
+        if (manager != NULL) {
+                g_object_unref (manager);
+        }
+
+        return 0;
 }

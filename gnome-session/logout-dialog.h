@@ -60,11 +60,16 @@ struct _GsmLogoutDialogClass
   GtkMessageDialogClass  parent_class;
 };
 
-GType        gsm_logout_dialog_get_type   (void) G_GNUC_CONST;	
+typedef enum {
+        GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
+        GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN
+} GsmDialogLogoutType;
 
-GtkWidget   *gsm_get_logout_dialog        (GsmSessionLogoutType  type,
-		                           GdkScreen            *screen,
-		                           guint32               activate_time);
+GType        gsm_logout_dialog_get_type   (void) G_GNUC_CONST;
+
+GtkWidget   *gsm_get_logout_dialog        (GsmDialogLogoutType  type,
+		                           GdkScreen           *screen,
+		                           guint32              activate_time);
 
 G_END_DECLS
 

@@ -1,0 +1,128 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ *
+ * Copyright (C) 2008 William Jon McCann <jmccann@redhat.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ *
+ */
+
+
+#ifndef __GSM_MANAGER_H
+#define __GSM_MANAGER_H
+
+#include <glib-object.h>
+
+#include "gsm-client-store.h"
+
+G_BEGIN_DECLS
+
+#define GSM_TYPE_MANAGER         (gsm_manager_get_type ())
+#define GSM_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_MANAGER, GsmManager))
+#define GSM_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_MANAGER, GsmManagerClass))
+#define GSM_IS_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_MANAGER))
+#define GSM_IS_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_MANAGER))
+#define GSM_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_MANAGER, GsmManagerClass))
+
+typedef struct GsmManagerPrivate GsmManagerPrivate;
+
+typedef struct
+{
+        GObject            parent;
+        GsmManagerPrivate *priv;
+} GsmManager;
+
+typedef struct
+{
+        GObjectClass   parent_class;
+
+        void          (* session_running)  (GsmManager      *manager);
+        void          (* session_over)     (GsmManager      *manager);
+
+        void          (* phase_changed)    (GsmManager      *manager,
+                                            const char      *phase);
+
+        void          (* client_added)     (GsmManager      *manager,
+                                            const char      *id);
+        void          (* client_removed)   (GsmManager      *manager,
+                                            const char      *id);
+} GsmManagerClass;
+
+typedef enum {
+        /* gsm's own startup/initialization phase */
+        GSM_MANAGER_PHASE_STARTUP,
+        /* xrandr setup, gnome-settings-daemon, etc */
+        GSM_MANAGER_PHASE_INITIALIZATION,
+        /* window/compositing managers */
+        GSM_MANAGER_PHASE_WINDOW_MANAGER,
+        /* apps that will create _NET_WM_WINDOW_TYPE_PANEL windows */
+        GSM_MANAGER_PHASE_PANEL,
+        /* apps that will create _NET_WM_WINDOW_TYPE_DESKTOP windows */
+        GSM_MANAGER_PHASE_DESKTOP,
+        /* everything else */
+        GSM_MANAGER_PHASE_APPLICATION,
+        /* done launching */
+        GSM_MANAGER_PHASE_RUNNING,
+        /* shutting down */
+        GSM_MANAGER_PHASE_SHUTDOWN
+} GsmManagerPhase;
+
+typedef enum
+{
+        GSM_MANAGER_ERROR_GENERAL,
+        GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+        GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+} GsmManagerError;
+
+#define GSM_MANAGER_ERROR gsm_manager_error_quark ()
+
+typedef enum {
+        GSM_MANAGER_LOGOUT_TYPE_LOGOUT,
+        GSM_MANAGER_LOGOUT_TYPE_SHUTDOWN
+} GsmManagerLogoutType;
+
+typedef enum {
+        GSM_MANAGER_LOGOUT_MODE_NORMAL,
+        GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION,
+        GSM_MANAGER_LOGOUT_MODE_FORCE
+} GsmManagerLogoutMode;
+
+GQuark              gsm_manager_error_quark                    (void);
+GType               gsm_manager_get_type                       (void);
+
+GsmManager *        gsm_manager_new                            (GsmClientStore *store,
+                                                                gboolean        failsafe);
+
+void                gsm_manager_start                          (GsmManager     *manager);
+
+gboolean            gsm_manager_setenv                         (GsmManager     *manager,
+                                                                const char     *variable,
+                                                                const char     *value,
+                                                                GError        **error);
+gboolean            gsm_manager_initialization_error           (GsmManager     *manager,
+                                                                const char     *message,
+                                                                gboolean        fatal,
+                                                                GError        **error);
+gboolean            gsm_manager_shutdown                       (GsmManager     *manager,
+                                                                GError        **error);
+gboolean            gsm_manager_logout                         (GsmManager     *manager,
+                                                                int             logout_mode,
+                                                                GError        **error);
+gboolean            gsm_manager_set_name                       (GsmManager     *manager,
+                                                                const char     *session_name,
+                                                                GError        **error);
+
+G_END_DECLS
+
+#endif /* __GSM_MANAGER_H */

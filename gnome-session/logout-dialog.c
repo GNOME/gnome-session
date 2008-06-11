@@ -29,8 +29,6 @@
 #include <gtk/gtklabel.h>
 #include <gtk/gtkstock.h>
 
-#include "gsm.h"
-#include "session.h"
 #include "logout-dialog.h"
 #include "power-manager.h"
 #include "gdm.h"
@@ -45,7 +43,7 @@
 
 struct _GsmLogoutDialogPrivate 
 {
-  GsmSessionLogoutType type;
+  GsmDialogLogoutType  type;
   
   GsmPowerManager     *power_manager;
   
@@ -210,7 +208,7 @@ gsm_logout_dialog_timeout (gpointer data)
   
   switch (logout_dialog->priv->type) 
     {
-    case GSM_SESSION_LOGOUT_TYPE_LOGOUT:
+    case GSM_DIALOG_LOGOUT_TYPE_LOGOUT:
       secondary_text = ngettext ("You are currently logged in as "
       			         "\"%s\".\n"
       			         "You will be automatically logged "
@@ -222,7 +220,7 @@ gsm_logout_dialog_timeout (gpointer data)
       			         seconds_to_show);
       break;
 
-    case GSM_SESSION_LOGOUT_TYPE_SHUTDOWN:
+    case GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN:
       secondary_text = ngettext ("You are currently logged in as "
       			         "\"%s\".\n"
       			         "This system will be automatically "
@@ -271,7 +269,7 @@ gsm_logout_dialog_set_timeout (GsmLogoutDialog *logout_dialog)
 }
 
 GtkWidget *
-gsm_get_logout_dialog (GsmSessionLogoutType  type,
+gsm_get_logout_dialog (GsmDialogLogoutType   type,
 		       GdkScreen            *screen,
 		       guint32               activate_time)
 {
@@ -297,7 +295,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
   
   switch (type) 
     {
-    case GSM_SESSION_LOGOUT_TYPE_LOGOUT:
+    case GSM_DIALOG_LOGOUT_TYPE_LOGOUT:
       icon_name    = GSM_ICON_LOGOUT;
       primary_text = N_("Log out of this system now?");
 
@@ -318,7 +316,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
       		       GSM_LOGOUT_RESPONSE_LOGOUT);
 
       break;
-    case GSM_SESSION_LOGOUT_TYPE_SHUTDOWN:
+    case GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN:
       icon_name    = GSM_ICON_SHUTDOWN;
       primary_text = N_("Shut down this system now?");
  

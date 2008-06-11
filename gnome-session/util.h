@@ -17,7 +17,7 @@
  * 02111-1307, USA.
  */
 
-#ifndef __GSM_UTIL_H__ 
+#ifndef __GSM_UTIL_H__
 #define __GSM_UTIL_H__
 
 G_BEGIN_DECLS
@@ -27,6 +27,10 @@ gchar**   gsm_util_get_app_dirs         (void);
 gchar**   gsm_util_get_autostart_dirs   (void);
 
 gboolean  gsm_util_text_is_blank        (const char *str);
+
+void      gsm_util_init_error           (gboolean    fatal,
+                                         const char *format, ...);
+char *    gsm_util_generate_client_id   (void);
 
 G_END_DECLS
 

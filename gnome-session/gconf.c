@@ -29,7 +29,6 @@
 #include <sys/wait.h>
 
 #include "gconf.h"
-#include "gsm.h"
 #include "util.h"
 
 static pid_t gsc_pid;
@@ -106,10 +105,10 @@ gsm_gconf_check (void)
       if (!WIFEXITED (status) || WEXITSTATUS (status) != 0)
 	{
 	  /* FIXME: capture gconf-sanity-check's stderr */
-	  gsm_initialization_error (TRUE,
-				    _("There is a problem with the configuration server.\n"
-				      "(%s exited with status %d)"),
-				    GCONF_SANITY_CHECK, status);
+	  gsm_util_init_error (TRUE,
+                               _("There is a problem with the configuration server.\n"
+                                 "(%s exited with status %d)"),
+                               GCONF_SANITY_CHECK, status);
 	}
     }
 
