@@ -39,6 +39,8 @@ typedef enum {
   GDM_LOGOUT_ACTION_SUSPEND  = 1 << 2
 } GdmLogoutAction;
 
+gboolean         gdm_is_available            (void);
+
 void             gdm_new_login               (void);
 
 void             gdm_set_logout_action       (GdmLogoutAction action);

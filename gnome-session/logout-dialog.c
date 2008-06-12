@@ -357,11 +357,11 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
       primary_text = N_("Log out of this system now?");
 
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_LOGOUT;
-      
-      //FIXME is gdm running?
-      gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-                             _("_Switch User"),
-                             GSM_LOGOUT_RESPONSE_SWITCH_USER);
+
+      if (gdm_is_available ())
+        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                               _("_Switch User"),
+                               GSM_LOGOUT_RESPONSE_SWITCH_USER);
 
       gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                              GTK_STOCK_CANCEL,

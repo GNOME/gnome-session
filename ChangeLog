@@ -1,5 +1,19 @@
 2008-06-13  Lucas Rocha  <lucasr@gnome.org>
 
+	Avoid spamming the console with error messages when GDM is not
+	available. Check availability of GDM to know if we can add "Switch
+	User" button to logout dialog. #526199, Andrew Nelless. Patch by 
+	Andrew Nelless.
+
+	* gnome-session/gdm.[ch] (gdm_is_available,
+	gdm_init_protocol_connection): check existence of socket file before
+	trying to connect in order to avoid spamming console with error
+	messages when GDM is not available.
+	* gnome-session/logout-dialog.c (gsm_get_logout_dialog): check is GDM
+	is available before adding "Switch User" button to logout dialog.
+
+2008-06-13  Lucas Rocha  <lucasr@gnome.org>
+
 	Add support for ConsoleKit reboot and shutdown. #511881, William Jon
 	McCann. Patch by William Jon McCann and Matthias Clasen. 
 
