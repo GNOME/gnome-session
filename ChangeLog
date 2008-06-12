@@ -1,3 +1,20 @@
+2008-06-13  Lucas Rocha  <lucasr@gnome.org>
+
+	Add support for ConsoleKit reboot and shutdown. #511881, William Jon
+	McCann. Patch by William Jon McCann and Matthias Clasen. 
+
+	* configure.in: check for optional dependency on polkit-gnome.
+	* gnome-session/Makefile.am: use polkit-gnome flags and libs
+	on session manager build.
+	* gnome-session/consolekit.[ch]: interface to abstract the
+	communication with ConsoleKit and PolicyKit.
+	* gnome-session/logout-dialog.c (gsm_logout_supports_reboot,
+	gsm_logout_supports_shutdown): first check if ConsoleKit can
+	shutdown/restart system. If not, try GDM directly.
+	* gnome-session/session.c (do_request_reboot, do_request_shutdown,
+	session_shutdown): use ConsoleKit to shutdown/restart system after
+	logout. If not possible, use GDM directly.
+
 2008-06-10  Kjartan Maraas  <kmaraas@gnome.org>
 
 	* compat/gnome-keyring-daemon-wrapper.c: (keyring_daemon_start),

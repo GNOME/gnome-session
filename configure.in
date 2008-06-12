@@ -57,6 +57,7 @@ GTK_REQUIRED=2.11.1
 GLADE_REQUIRED=2.3.6
 DBUS_GLIB_REQUIRED=0.35
 GNOME_KEYRING_REQUIRED=2.21.92
+POLKIT_GNOME_REQUIRED=0.7
 
 dnl ====================================================================
 dnl Dependency Checks 
@@ -75,6 +76,12 @@ PKG_CHECK_MODULES(STARTUP_NOTIFICATION, libstartup-notification-1.0)
 
 PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-2.0)
 PKG_CHECK_MODULES(EGG_LIBGNOMEUI, libgnomeui-2.0)
+
+PKG_CHECK_MODULES(POLKIT_GNOME, polkit-gnome >= $POLKIT_GNOME_REQUIRED, have_polkit=yes, have_polkit=no)
+
+if test "$have_polkit" = "yes"; then
+  AC_DEFINE(HAVE_POLKIT_GNOME, [1], [whether PolKit GNOME was found])
+fi
 
 AC_CHECK_LIB(gdk-x11-2.0, gdk_x11_display_broadcast_startup_message, have_startup_message=yes, have_startup_message=no, "$GTK_LIBS")
 if test "x$have_startup_message" = "xyes"; then

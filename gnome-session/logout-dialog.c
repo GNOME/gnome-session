@@ -17,7 +17,7 @@
  * 02111-1307, USA.
  *
  * Authors:
- *	Vincent Untz <vuntz@gnome.org>
+ *      Vincent Untz <vuntz@gnome.org>
  */
 
 #ifdef HAVE_CONFIG_H
@@ -33,6 +33,7 @@
 #include "session.h"
 #include "logout-dialog.h"
 #include "power-manager.h"
+#include "consolekit.h"
 #include "gdm.h"
 
 #define GSM_LOGOUT_DIALOG_GET_PRIVATE(o) \
@@ -48,6 +49,7 @@ struct _GsmLogoutDialogPrivate
   GsmSessionLogoutType type;
   
   GsmPowerManager     *power_manager;
+  GsmConsolekit       *consolekit;
   
   int                  timeout;
   unsigned int         timeout_id;
@@ -60,10 +62,10 @@ static GsmLogoutDialog *current_dialog = NULL;
 static void gsm_logout_dialog_set_timeout  (GsmLogoutDialog *logout_dialog);
 
 static void gsm_logout_dialog_destroy  (GsmLogoutDialog *logout_dialog,
-				        gpointer         data);
+                                        gpointer         data);
 
 static void gsm_logout_dialog_show     (GsmLogoutDialog *logout_dialog,
-				        gpointer         data);
+                                        gpointer         data);
 
 enum {
   PROP_0,
@@ -74,9 +76,9 @@ G_DEFINE_TYPE (GsmLogoutDialog, gsm_logout_dialog, GTK_TYPE_MESSAGE_DIALOG);
 
 static void 
 gsm_logout_dialog_set_property (GObject      *object,
-			        guint         prop_id,
-			        const GValue *value,
-			        GParamSpec   *pspec)
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
   switch (prop_id) 
     {
@@ -90,9 +92,9 @@ gsm_logout_dialog_set_property (GObject      *object,
 
 static void 
 gsm_logout_dialog_get_property (GObject     *object,
-			        guint        prop_id,
-			        GValue      *value,
-			        GParamSpec  *pspec)
+                                guint        prop_id,
+                                GValue      *value,
+                                GParamSpec  *pspec)
 {
   switch (prop_id) 
     {
@@ -121,10 +123,21 @@ gsm_logout_dialog_class_init (GsmLogoutDialogClass *klass)
   gobject_class->get_property = gsm_logout_dialog_get_property;
   
   g_object_class_override_property (gobject_class,
-  				    PROP_MESSAGE_TYPE,
-  				    "message-type");
+                                    PROP_MESSAGE_TYPE,
+                                    "message-type");
   
   g_type_class_add_private (klass, sizeof (GsmLogoutDialogPrivate));
+}
+
+static void
+on_ck_request_completed (GsmConsolekit *gsm_consolekit,
+                         GError          *error)
+{
+  if (error == NULL) 
+    {
+      /* request was successful */
+      return;
+    }
 }
 
 static void
@@ -141,21 +154,28 @@ gsm_logout_dialog_init (GsmLogoutDialog *logout_dialog)
   gtk_window_stick (GTK_WINDOW (logout_dialog));
   
   logout_dialog->priv->power_manager = gsm_get_power_manager ();
+
+  logout_dialog->priv->consolekit = gsm_get_consolekit ();
+
+  g_signal_connect (logout_dialog->priv->consolekit,
+                    "request-completed",
+                    G_CALLBACK (on_ck_request_completed), 
+                    NULL);
   
   g_signal_connect (logout_dialog, 
                     "destroy",
-  		    G_CALLBACK (gsm_logout_dialog_destroy), 
+                    G_CALLBACK (gsm_logout_dialog_destroy), 
                     NULL);
 
   g_signal_connect (logout_dialog, 
                     "show",
-  		    G_CALLBACK (gsm_logout_dialog_show), 
+                      G_CALLBACK (gsm_logout_dialog_show), 
                     NULL);
 }
 
 static void
 gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
-		           gpointer         data)
+                           gpointer         data)
 {
   if (logout_dialog->priv->timeout_id != 0)
     {
@@ -169,7 +189,42 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
       logout_dialog->priv->power_manager = NULL;
     }  
 
+  if (logout_dialog->priv->consolekit)
+    {
+      g_object_unref (logout_dialog->priv->consolekit);
+      logout_dialog->priv->consolekit = NULL;
+    }  
+
   current_dialog = NULL;
+}
+
+static gboolean
+gsm_logout_supports_reboot (GsmLogoutDialog *logout_dialog)
+{
+  gboolean ret;
+
+  ret = gsm_consolekit_can_restart (logout_dialog->priv->consolekit);
+  if (!ret) 
+    {
+      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+    }
+
+  return ret;
+}
+
+static gboolean
+gsm_logout_supports_shutdown (GsmLogoutDialog *logout_dialog)
+{
+  gboolean ret;
+
+  ret = gsm_consolekit_can_stop (logout_dialog->priv->consolekit);
+
+  if (!ret) 
+    {
+      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+    }
+
+  return ret;
 }
 
 static void
@@ -191,7 +246,7 @@ gsm_logout_dialog_timeout (gpointer data)
   if (!logout_dialog->priv->timeout) 
   {
     gtk_dialog_response (GTK_DIALOG (logout_dialog),
-    		         logout_dialog->priv->default_response);
+                         logout_dialog->priv->default_response);
     
     return FALSE;
   }
@@ -212,26 +267,26 @@ gsm_logout_dialog_timeout (gpointer data)
     {
     case GSM_SESSION_LOGOUT_TYPE_LOGOUT:
       secondary_text = ngettext ("You are currently logged in as "
-      			         "\"%s\".\n"
-      			         "You will be automatically logged "
-      			         "out in %d second.",
-      			         "You are currently logged in as "
-      			         "\"%s\".\n"
-      			         "You will be automatically logged "
-      			         "out in %d seconds.",
-      			         seconds_to_show);
+                                 "\"%s\".\n"
+                                 "You will be automatically logged "
+                                 "out in %d second.",
+                                 "You are currently logged in as "
+                                 "\"%s\".\n"
+                                 "You will be automatically logged "
+                                 "out in %d seconds.",
+                                 seconds_to_show);
       break;
 
     case GSM_SESSION_LOGOUT_TYPE_SHUTDOWN:
       secondary_text = ngettext ("You are currently logged in as "
-      			         "\"%s\".\n"
-      			         "This system will be automatically "
-      			         "shut down in %d second.",
-      			         "You are currently logged in as "
-      			         "\"%s\".\n"
-      			         "This system will be automatically "
-      			         "shut down in %d seconds.",
-      			         seconds_to_show);
+                                 "\"%s\".\n"
+                                 "This system will be automatically "
+                                 "shut down in %d second.",
+                                 "You are currently logged in as "
+                                 "\"%s\".\n"
+                                 "This system will be automatically "
+                                 "shut down in %d seconds.",
+                                 seconds_to_show);
       break;
 
     default:
@@ -244,10 +299,10 @@ gsm_logout_dialog_timeout (gpointer data)
     name = g_get_user_name ();
   
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (logout_dialog),
-  					    secondary_text,
-  					    name,
-  					    seconds_to_show,
-  					    NULL);
+                                            secondary_text,
+                                            name,
+                                            seconds_to_show,
+                                            NULL);
   
   logout_dialog->priv->timeout--;
   
@@ -266,14 +321,14 @@ gsm_logout_dialog_set_timeout (GsmLogoutDialog *logout_dialog)
     g_source_remove (logout_dialog->priv->timeout_id);
   
   logout_dialog->priv->timeout_id = g_timeout_add (1000,
-  						   gsm_logout_dialog_timeout,
-  						   logout_dialog);
+                                                   gsm_logout_dialog_timeout,
+                                                   logout_dialog);
 }
 
 GtkWidget *
 gsm_get_logout_dialog (GsmSessionLogoutType  type,
-		       GdkScreen            *screen,
-		       guint32               activate_time)
+                       GdkScreen            *screen,
+                       guint32               activate_time)
 {
   GsmLogoutDialog *logout_dialog;
   char *icon_name;
@@ -301,21 +356,20 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
       icon_name    = GSM_ICON_LOGOUT;
       primary_text = N_("Log out of this system now?");
 
-      //FIXME need to verify that this response can be used
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_LOGOUT;
       
       //FIXME is gdm running?
       gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      		             _("_Switch User"),
-      		             GSM_LOGOUT_RESPONSE_SWITCH_USER);
+                             _("_Switch User"),
+                             GSM_LOGOUT_RESPONSE_SWITCH_USER);
 
       gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      		       GTK_STOCK_CANCEL,
-      		       GTK_RESPONSE_CANCEL);
+                             GTK_STOCK_CANCEL,
+                             GTK_RESPONSE_CANCEL);
 
       gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      		       _("_Log Out"),
-      		       GSM_LOGOUT_RESPONSE_LOGOUT);
+                             _("_Log Out"),
+                             GSM_LOGOUT_RESPONSE_LOGOUT);
 
       break;
     case GSM_SESSION_LOGOUT_TYPE_SHUTDOWN:
@@ -325,41 +379,41 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_SHUTDOWN;
 
       if (gsm_power_manager_can_suspend (logout_dialog->priv->power_manager))
-      	gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      			       _("S_uspend"),
-      			       GSM_LOGOUT_RESPONSE_STR);
+        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                               _("S_uspend"),
+                               GSM_LOGOUT_RESPONSE_STR);
  
       if (gsm_power_manager_can_hibernate (logout_dialog->priv->power_manager))
-      	gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      			       _("_Hibernate"),
-      			       GSM_LOGOUT_RESPONSE_STD);
+        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                               _("_Hibernate"),
+                               GSM_LOGOUT_RESPONSE_STD);
       
-      if (gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT))
-      	gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      			       _("_Restart"),
-      			       GSM_LOGOUT_RESPONSE_REBOOT);
+      if (gsm_logout_supports_reboot (logout_dialog))
+        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                               _("_Restart"),
+                               GSM_LOGOUT_RESPONSE_REBOOT);
       
       gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      		             GTK_STOCK_CANCEL,
-      		             GTK_RESPONSE_CANCEL);
+                             GTK_STOCK_CANCEL,
+                             GTK_RESPONSE_CANCEL);
   
-      if (gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN))
-      	gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
-      			       _("_Shut Down"),
-      			       GSM_LOGOUT_RESPONSE_SHUTDOWN);
+      if (gsm_logout_supports_shutdown (logout_dialog))
+        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                               _("_Shut Down"),
+                               GSM_LOGOUT_RESPONSE_SHUTDOWN);
       break;
     default:
       g_assert_not_reached ();
     }
   
   gtk_image_set_from_icon_name (GTK_IMAGE (GTK_MESSAGE_DIALOG (logout_dialog)->image),
-  			        icon_name, GTK_ICON_SIZE_DIALOG);
+                                icon_name, GTK_ICON_SIZE_DIALOG);
   
   gtk_label_set_text (GTK_LABEL (GTK_MESSAGE_DIALOG (logout_dialog)->label),
-  		      primary_text);
+                      primary_text);
   
   gtk_dialog_set_default_response (GTK_DIALOG (logout_dialog),
-  				   logout_dialog->priv->default_response);
+                                   logout_dialog->priv->default_response);
   
   gtk_window_set_screen (GTK_WINDOW (logout_dialog), screen);
 

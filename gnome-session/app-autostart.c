@@ -33,7 +33,8 @@ enum {
   LAST_SIGNAL
 };
 
-struct _GsmAppAutostartPrivate {
+struct _GsmAppAutostartPrivate 
+{
   GFileMonitor         *monitor;
   gboolean              condition;
 };

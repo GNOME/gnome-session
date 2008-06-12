@@ -25,6 +25,7 @@
 #include "app-autostart.h"
 #include "app-resumed.h"
 #include "logout-dialog.h"
+#include "consolekit.h"
 #include "power-manager.h"
 #include "gdm.h"
 #include "gconf.h"
@@ -880,8 +881,37 @@ initiate_shutdown (GsmSession *session)
 }
 
 static void
+do_request_reboot (GsmConsolekit *consolekit)
+{
+  if (gsm_consolekit_can_restart (consolekit)) 
+    {
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+      gsm_consolekit_attempt_restart (consolekit);
+    } 
+  else 
+    {
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+    }
+}
+
+static void
+do_request_shutdown (GsmConsolekit *consolekit)
+{
+  if (gsm_consolekit_can_stop (consolekit)) 
+    {
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+      gsm_consolekit_attempt_stop (consolekit);
+    } 
+  else 
+    {
+      gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+    }
+}
+
+static void
 session_shutdown (GsmSession *session)
 {
+  GsmConsolekit *consolekit;
   GSList *cl;
 
   /* Emit session over signal */
@@ -894,11 +924,19 @@ session_shutdown (GsmSession *session)
   switch (session->logout_response_id) 
     {
     case GSM_LOGOUT_RESPONSE_SHUTDOWN:
-      gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+      consolekit = gsm_get_consolekit ();
+
+      do_request_shutdown (consolekit);
+
+      g_object_unref (consolekit);
       break;
 
     case GSM_LOGOUT_RESPONSE_REBOOT:
-      gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+      consolekit = gsm_get_consolekit ();
+
+      do_request_reboot (consolekit);
+
+      g_object_unref (consolekit);
       break;
 
     default:
