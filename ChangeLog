@@ -1,3 +1,45 @@
+2008-06-12  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-client-store.c (gsm_client_store_size),
+	(gsm_client_store_lookup), (_has_client_id),
+	(gsm_client_store_add), (gsm_client_store_set_locked),
+	(gsm_client_store_set_property), (gsm_client_store_get_property),
+	(gsm_client_store_class_init):
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-client.c (gsm_client_set_status),
+	(gsm_client_set_client_id), (gsm_client_set_property),
+	(gsm_client_get_property), (_boolean_handled_accumulator),
+	(gsm_client_class_init), (gsm_client_get_client_id),
+	(gsm_client_stop), (gsm_client_manage_request),
+	(gsm_client_logout_request):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-manager.c (_find_by_client_id),
+	(app_condition_changed), (on_store_client_added),
+	(gsm_manager_set_client_store), (_stop_client), (manager_shutdown),
+	(_shutdown_client), (initiate_shutdown):
+	* gnome-session/gsm-marshal.list:
+	* gnome-session/gsm-xsmp-client.c (client_iochannel_watch),
+	(client_protocol_timeout), (find_property), (set_description),
+	(setup_connection), (gsm_xsmp_client_constructor),
+	(gsm_xsmp_client_init), (delete_property), (debug_print_property),
+	(set_properties_callback), (delete_properties_callback),
+	(get_properties_callback), (prop_to_command),
+	(xsmp_get_restart_command), (xsmp_get_discard_command),
+	(xsmp_get_autorestart), (xsmp_restart), (do_save_yourself),
+	(xsmp_save_yourself), (xsmp_save_yourself_phase2), (xsmp_interact),
+	(xsmp_shutdown_cancelled), (xsmp_stop),
+	(gsm_client_set_ice_connection), (gsm_xsmp_client_set_property),
+	(gsm_xsmp_client_get_property), (gsm_xsmp_client_finalize),
+	(gsm_xsmp_client_class_init), (gsm_xsmp_client_new),
+	(register_client_callback), (save_yourself_request_callback),
+	(save_yourself_phase2_request_callback),
+	(interact_request_callback), (interact_done_callback),
+	(save_yourself_done_callback), (close_connection_callback),
+	(gsm_xsmp_client_connect):
+	* gnome-session/gsm-xsmp-client.h:
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection):
+	Give the code another whacking.
+
 2008-06-11  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/Makefile.am:

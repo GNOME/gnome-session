@@ -32,17 +32,27 @@ static guint32 client_serial = 1;
 struct GsmClientPrivate
 {
         char *id;
+        char *client_id;
+        int   status;
 };
 
 enum {
+        PROP_0,
+        PROP_ID,
+        PROP_CLIENT_ID,
+        PROP_STATUS,
+};
+
+enum {
+        MANAGE_REQUEST,
+        LOGOUT_REQUEST,
+
         SAVED_STATE,
         REQUEST_PHASE2,
         REQUEST_INTERACTION,
         INTERACTION_DONE,
         SAVE_YOURSELF_DONE,
         DISCONNECTED,
-        REGISTER_CLIENT,
-        REQUEST_LOGOUT,
         LAST_SIGNAL
 };
 
@@ -108,13 +118,121 @@ gsm_client_finalize (GObject *object)
         g_free (client->priv->id);
 }
 
+void
+gsm_client_set_status (GsmClient *client,
+                       int        status)
+{
+        g_return_if_fail (GSM_IS_CLIENT (client));
+        if (client->priv->status != status) {
+                client->priv->status = status;
+                g_object_notify (G_OBJECT (client), "status");
+        }
+}
+
+static void
+gsm_client_set_client_id (GsmClient  *client,
+                          const char *client_id)
+{
+        g_return_if_fail (GSM_IS_CLIENT (client));
+
+        g_free (client->priv->client_id);
+
+        client->priv->client_id = g_strdup (client_id);
+        g_object_notify (G_OBJECT (client), "client-id");
+}
+
+static void
+gsm_client_set_property (GObject       *object,
+                         guint          prop_id,
+                         const GValue  *value,
+                         GParamSpec    *pspec)
+{
+        GsmClient *self;
+
+        self = GSM_CLIENT (object);
+
+        switch (prop_id) {
+        case PROP_CLIENT_ID:
+                gsm_client_set_client_id (self, g_value_get_string (value));
+                break;
+        case PROP_STATUS:
+                gsm_client_set_status (self, g_value_get_int (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gsm_client_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
+                         GParamSpec *pspec)
+{
+        GsmClient *self;
+
+        self = GSM_CLIENT (object);
+
+        switch (prop_id) {
+        case PROP_CLIENT_ID:
+                g_value_set_string (value, self->priv->client_id);
+                break;
+        case PROP_STATUS:
+                g_value_set_int (value, self->priv->status);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static gboolean
+_boolean_handled_accumulator (GSignalInvocationHint *ihint,
+                              GValue                *return_accu,
+                              const GValue          *handler_return,
+                              gpointer               dummy)
+{
+        gboolean    continue_emission;
+        gboolean    signal_handled;
+
+        signal_handled = g_value_get_boolean (handler_return);
+        g_value_set_boolean (return_accu, signal_handled);
+        continue_emission = !signal_handled;
+
+        return continue_emission;
+}
+
 static void
 gsm_client_class_init (GsmClientClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->get_property = gsm_client_get_property;
+        object_class->set_property = gsm_client_set_property;
         object_class->constructor = gsm_client_constructor;
         object_class->finalize = gsm_client_finalize;
+
+        signals[MANAGE_REQUEST] =
+                g_signal_new ("manage-request",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmClientClass, manage_request),
+                              _boolean_handled_accumulator,
+                              NULL,
+                              gsm_marshal_BOOLEAN__POINTER,
+                              G_TYPE_BOOLEAN,
+                              1, G_TYPE_POINTER);
+        signals[LOGOUT_REQUEST] =
+                g_signal_new ("logout-request",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmClientClass, logout_request),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOOLEAN,
+                              G_TYPE_NONE,
+                              1, G_TYPE_BOOLEAN);
 
         signals[SAVED_STATE] =
                 g_signal_new ("saved_state",
@@ -175,24 +293,23 @@ gsm_client_class_init (GsmClientClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-        signals[REGISTER_CLIENT] =
-                g_signal_new ("register-client",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmClientClass, register_client),
-                              NULL, NULL,
-                              gsm_marshal_STRING__STRING,
-                              G_TYPE_STRING,
-                              1, G_TYPE_STRING);
-        signals[REQUEST_LOGOUT] =
-                g_signal_new ("request-logout",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmClientClass, request_logout),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
-                              0);
+
+        g_object_class_install_property (object_class,
+                                         PROP_CLIENT_ID,
+                                         g_param_spec_string ("client-id",
+                                                              "client-id",
+                                                              "client-id",
+                                                              NULL,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_STATUS,
+                                         g_param_spec_uint ("status",
+                                                            "status",
+                                                            "status",
+                                                            0,
+                                                            G_MAXINT,
+                                                            0,
+                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientPrivate));
 }
@@ -211,23 +328,7 @@ gsm_client_get_client_id (GsmClient *client)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
-        return GSM_CLIENT_GET_CLASS (client)->get_client_id (client);
-}
-
-pid_t
-gsm_client_get_pid (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), -1);
-
-        return GSM_CLIENT_GET_CLASS (client)->get_pid (client);
-}
-
-char *
-gsm_client_get_desktop_file (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
-
-        return GSM_CLIENT_GET_CLASS (client)->get_desktop_file (client);
+        return client->priv->client_id;
 }
 
 char *
@@ -302,11 +403,11 @@ gsm_client_shutdown_cancelled (GsmClient *client)
 }
 
 void
-gsm_client_die (GsmClient *client)
+gsm_client_stop (GsmClient *client)
 {
         g_return_if_fail (GSM_IS_CLIENT (client));
 
-        GSM_CLIENT_GET_CLASS (client)->die (client);
+        GSM_CLIENT_GET_CLASS (client)->stop (client);
 }
 
 void
@@ -345,17 +446,22 @@ gsm_client_disconnected (GsmClient *client)
         g_signal_emit (client, signals[DISCONNECTED], 0);
 }
 
-void
-gsm_client_register_client (GsmClient  *client,
-                            const char *previous_id,
-                            char      **id)
+
+gboolean
+gsm_client_manage_request (GsmClient *client,
+                           char     **client_idp)
 {
-        g_signal_emit (client, signals[REGISTER_CLIENT], 0, previous_id, id);
+        gboolean res;
+
+        res = FALSE;
+        g_signal_emit (client, signals[MANAGE_REQUEST], 0, client_idp, &res);
+
+        return res;
 }
 
 void
-gsm_client_request_logout (GsmClient  *client,
-                           gboolean    prompt)
+gsm_client_logout_request (GsmClient *client,
+                           gboolean   prompt)
 {
-        g_signal_emit (client, signals[REQUEST_LOGOUT], 0, prompt);
+        g_signal_emit (client, signals[LOGOUT_REQUEST], 0, prompt);
 }

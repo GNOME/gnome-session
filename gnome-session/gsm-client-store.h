@@ -49,7 +49,7 @@ typedef struct
         void          (* client_added)    (GsmClientStore *client_store,
                                            const char      *id);
         void          (* client_removed)  (GsmClientStore *client_store,
-                                            const char      *id);
+                                           const char      *id);
 } GsmClientStoreClass;
 
 typedef enum
@@ -68,7 +68,8 @@ GType               gsm_client_store_get_type                 (void);
 
 GsmClientStore *    gsm_client_store_new                      (void);
 
-void                gsm_client_store_add                      (GsmClientStore    *store,
+guint               gsm_client_store_size                     (GsmClientStore    *store);
+gboolean            gsm_client_store_add                      (GsmClientStore    *store,
                                                                GsmClient         *client);
 void                gsm_client_store_clear                    (GsmClientStore    *store);
 gboolean            gsm_client_store_remove                   (GsmClientStore    *store,
@@ -82,6 +83,8 @@ guint               gsm_client_store_foreach_remove           (GsmClientStore   
 GsmClient *         gsm_client_store_find                     (GsmClientStore    *store,
                                                                GsmClientStoreFunc predicate,
                                                                gpointer           user_data);
+GsmClient *         gsm_client_store_lookup                   (GsmClientStore    *store,
+                                                               const char        *id);
 
 
 G_END_DECLS

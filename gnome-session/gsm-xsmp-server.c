@@ -105,7 +105,7 @@ accept_ice_connection (GIOChannel           *source,
         IceListenObj    listener;
         IceConn         ice_conn;
         IceAcceptStatus status;
-        GsmXSMPClient  *client;
+        GsmClient      *client;
         GsmXsmpServer  *server;
 
         listener = data->listener;
@@ -121,6 +121,8 @@ accept_ice_connection (GIOChannel           *source,
 
         client = gsm_xsmp_client_new (ice_conn);
         ice_conn->context = client;
+
+        gsm_client_store_add (server->priv->client_store, client);
 
         return TRUE;
 }

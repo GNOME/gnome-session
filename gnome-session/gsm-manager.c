@@ -78,8 +78,6 @@ struct GsmManagerPrivate
         guint                   timeout_id;
         GSList                 *pending_apps;
 
-        /* SM clients */
-        GSList                 *clients;
 
         /* When shutdown starts, all clients are put into shutdown_clients.
          * If they request phase2, they are moved from shutdown_clients to
@@ -141,24 +139,31 @@ gsm_manager_error_quark (void)
         return ret;
 }
 
+static gboolean
+_find_by_client_id (const char *id,
+                    GsmClient  *client,
+                    const char *client_id_a)
+{
+        const char *client_id_b;
+
+        client_id_b = gsm_client_get_client_id (client);
+        if (client_id_b == NULL) {
+                return FALSE;
+        }
+
+        return (strcmp (client_id_a, client_id_b) == 0);
+}
+
 static void
 app_condition_changed (GsmApp     *app,
                        gboolean    condition,
                        GsmManager *manager)
 {
-        GsmClient  *client;
-        GSList     *cl;
+        GsmClient *client;
 
-        client = NULL;
-
-        /* Check for an existing session client for this app */
-        for (cl = manager->priv->clients; cl; cl = cl->next) {
-                GsmClient *c = GSM_CLIENT (cl->data);
-
-                if (!strcmp (app->client_id, gsm_client_get_id (c))) {
-                        client = c;
-                }
-        }
+        client = gsm_client_store_find (manager->priv->store,
+                                        (GsmClientStoreFunc)_find_by_client_id,
+                                        app->client_id);
 
         if (condition) {
                 GError *error = NULL;
@@ -178,7 +183,11 @@ app_condition_changed (GsmApp     *app,
                  * be automatically restarted by adding the client to
                  * condition_clients */
                 manager->priv->condition_clients = g_slist_prepend (manager->priv->condition_clients, client);
-                gsm_client_die (client);
+
+                /* FIXME: this should probably do gsm_app_stop
+                 */
+
+                gsm_client_stop (client);
                 app->pid = -1;
         }
 }
@@ -412,6 +421,14 @@ gsm_manager_set_failsafe (GsmManager *manager,
 }
 
 static void
+on_store_client_added (GsmClientStore *store,
+                       const char     *id,
+                       GsmManager     *manager)
+{
+        g_debug ("GsmManager: Client added: %s", id);
+}
+
+static void
 gsm_manager_set_client_store (GsmManager     *manager,
                               GsmClientStore *store)
 {
@@ -422,10 +439,21 @@ gsm_manager_set_client_store (GsmManager     *manager,
         }
 
         if (manager->priv->store != NULL) {
+                g_signal_handlers_disconnect_by_func (manager->priv->store,
+                                                      on_store_client_added,
+                                                      manager);
+
                 g_object_unref (manager->priv->store);
         }
 
         manager->priv->store = store;
+
+        if (manager->priv->store != NULL) {
+                g_signal_connect (manager->priv->store,
+                                  "client-added",
+                                  G_CALLBACK (on_store_client_added),
+                                  manager);
+        }
 }
 
 static void
@@ -945,18 +973,26 @@ gsm_manager_initialization_error (GsmManager  *manager,
         return TRUE;
 }
 
+static gboolean
+_stop_client (const char *id,
+              GsmClient  *client,
+              gpointer    data)
+{
+        gsm_client_stop (client);
+
+        return FALSE;
+}
+
 static void
 manager_shutdown (GsmManager *manager)
 {
-        GSList *cl;
-
         /* Emit session over signal */
         g_signal_emit (manager, signals[SESSION_OVER], 0);
 
         /* FIXME: do this in reverse phase order */
-        for (cl = manager->priv->clients; cl; cl = cl->next) {
-                gsm_client_die (cl->data);
-        }
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_stop_client,
+                                  NULL);
 
         switch (manager->priv->logout_response_id) {
         case GSM_LOGOUT_RESPONSE_SHUTDOWN:
@@ -971,24 +1007,30 @@ manager_shutdown (GsmManager *manager)
         }
 }
 
+static gboolean
+_shutdown_client (const char *id,
+                  GsmClient  *client,
+                  GsmManager *manager)
+{
+        manager->priv->shutdown_clients = g_slist_prepend (manager->priv->shutdown_clients, client);
+
+        gsm_client_save_yourself (client, FALSE);
+
+        return FALSE;
+}
+
 static void
 initiate_shutdown (GsmManager *manager)
 {
-        GSList *cl;
-
         manager->priv->phase = GSM_MANAGER_PHASE_SHUTDOWN;
 
-        if (manager->priv->clients == NULL) {
+        if (gsm_client_store_size (manager->priv->store) == 0) {
                 manager_shutdown (manager);
         }
 
-        for (cl = manager->priv->clients; cl; cl = cl->next) {
-                GsmClient *client = GSM_CLIENT (cl->data);
-
-                manager->priv->shutdown_clients = g_slist_prepend (manager->priv->shutdown_clients, client);
-
-                gsm_client_save_yourself (client, FALSE);
-        }
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_shutdown_client,
+                                  NULL);
 }
 
 static void

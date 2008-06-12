@@ -37,32 +37,22 @@ G_BEGIN_DECLS
 typedef struct _GsmXSMPClient        GsmXSMPClient;
 typedef struct _GsmXSMPClientClass   GsmXSMPClientClass;
 
+typedef struct GsmXSMPClientPrivate  GsmXSMPClientPrivate;
+
 struct _GsmXSMPClient
 {
-        GsmClient  parent;
-
-        SmsConn    conn;
-        IceConn    ice_conn;
-
-        guint      watch_id;
-        guint      protocol_timeout;
-
-        int        current_save_yourself;
-        int        next_save_yourself;
-        char      *id;
-        char      *description;
-        GPtrArray *props;
+        GsmClient             parent;
+        GsmXSMPClientPrivate *priv;
 };
 
 struct _GsmXSMPClientClass
 {
         GsmClientClass parent_class;
-
 };
 
 GType          gsm_xsmp_client_get_type           (void) G_GNUC_CONST;
 
-GsmXSMPClient *gsm_xsmp_client_new                (IceConn ice_conn);
+GsmClient     *gsm_xsmp_client_new                (IceConn ice_conn);
 
 void           gsm_xsmp_client_connect            (GsmXSMPClient *client,
                                                    SmsConn        conn,

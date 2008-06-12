@@ -35,134 +35,49 @@
 /* FIXME */
 #define GsmDesktopFile "_Gsm_DesktopFile"
 
-static gboolean client_iochannel_watch  (GIOChannel   *channel,
-                                         GIOCondition  condition,
-                                         gpointer      data);
-static gboolean client_protocol_timeout (gpointer      data);
+#define GSM_XSMP_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_XSMP_CLIENT, GsmXSMPClientPrivate))
 
-static void set_description (GsmXSMPClient *xsmp);
+struct GsmXSMPClientPrivate
+{
 
-static const char *xsmp_get_client_id       (GsmClient *client);
-static pid_t       xsmp_get_pid             (GsmClient *client);
-static char       *xsmp_get_desktop_file    (GsmClient *client);
-static char       *xsmp_get_restart_command (GsmClient *client);
-static char       *xsmp_get_discard_command (GsmClient *client);
-static gboolean    xsmp_get_autorestart     (GsmClient *client);
+        SmsConn    conn;
+        IceConn    ice_connection;
 
-static void xsmp_finalize             (GObject   *object);
-static void xsmp_restart              (GsmClient *client,
-                                       GError   **error);
-static void xsmp_save_yourself        (GsmClient *client,
-                                       gboolean   save_state);
-static void xsmp_save_yourself_phase2 (GsmClient *client);
-static void xsmp_interact             (GsmClient *client);
-static void xsmp_shutdown_cancelled   (GsmClient *client);
-static void xsmp_die                  (GsmClient *client);
+        guint      watch_id;
+        guint      protocol_timeout;
+
+        int        current_save_yourself;
+        int        next_save_yourself;
+        char      *id;
+        char      *description;
+        GPtrArray *props;
+};
+
+enum {
+        PROP_0,
+        PROP_ICE_CONNECTION,
+};
 
 G_DEFINE_TYPE (GsmXSMPClient, gsm_xsmp_client, GSM_TYPE_CLIENT)
 
-static void
-gsm_xsmp_client_init (GsmXSMPClient *xsmp)
-{
-        ;
-}
-
-static void
-gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
-{
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-        GsmClientClass *client_class = GSM_CLIENT_CLASS (klass);
-
-        object_class->finalize             = xsmp_finalize;
-
-        client_class->get_client_id        = xsmp_get_client_id;
-        client_class->get_pid              = xsmp_get_pid;
-        client_class->get_desktop_file     = xsmp_get_desktop_file;
-        client_class->get_restart_command  = xsmp_get_restart_command;
-        client_class->get_discard_command  = xsmp_get_discard_command;
-        client_class->get_autorestart      = xsmp_get_autorestart;
-
-        client_class->restart              = xsmp_restart;
-        client_class->save_yourself        = xsmp_save_yourself;
-        client_class->save_yourself_phase2 = xsmp_save_yourself_phase2;
-        client_class->interact             = xsmp_interact;
-        client_class->shutdown_cancelled   = xsmp_shutdown_cancelled;
-        client_class->die                  = xsmp_die;
-}
-
-GsmXSMPClient *
-gsm_xsmp_client_new (IceConn ice_conn)
-{
-        GsmXSMPClient *xsmp;
-        GIOChannel *channel;
-        int fd;
-
-        xsmp = g_object_new (GSM_TYPE_XSMP_CLIENT, NULL);
-        xsmp->props = g_ptr_array_new ();
-
-        xsmp->ice_conn = ice_conn;
-        xsmp->current_save_yourself = -1;
-        xsmp->next_save_yourself = -1;
-
-        fd = IceConnectionNumber (ice_conn);
-        fcntl (fd, F_SETFD, fcntl (fd, F_GETFD, 0) | FD_CLOEXEC);
-
-        channel = g_io_channel_unix_new (fd);
-        xsmp->watch_id = g_io_add_watch (channel, G_IO_IN | G_IO_ERR,
-                                         client_iochannel_watch, xsmp);
-        g_io_channel_unref (channel);
-
-        xsmp->protocol_timeout = g_timeout_add (5000, client_protocol_timeout, xsmp);
-
-        set_description (xsmp);
-        g_debug ("New client '%s'", xsmp->description);
-
-        return xsmp;
-}
-
-static void
-xsmp_finalize (GObject *object)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) object;
-
-        g_debug ("xsmp_finalize (%s)", xsmp->description);
-
-        if (xsmp->watch_id) {
-                g_source_remove (xsmp->watch_id);
-        }
-
-        if (xsmp->conn) {
-                SmsCleanUp (xsmp->conn);
-        } else {
-                IceCloseConnection (xsmp->ice_conn);
-        }
-
-        if (xsmp->protocol_timeout)
-                g_source_remove (xsmp->protocol_timeout);
-
-        G_OBJECT_CLASS (gsm_xsmp_client_parent_class)->finalize (object);
-}
-
 static gboolean
-client_iochannel_watch (GIOChannel   *channel,
-                        GIOCondition  condition,
-                        gpointer      data)
+client_iochannel_watch (GIOChannel    *channel,
+                        GIOCondition   condition,
+                        GsmXSMPClient *client)
 {
-        GsmClient *client = data;
-        GsmXSMPClient *xsmp = data;
 
-        switch (IceProcessMessages (xsmp->ice_conn, NULL, NULL)) {
+        switch (IceProcessMessages (client->priv->ice_connection, NULL, NULL)) {
         case IceProcessMessagesSuccess:
                 return TRUE;
 
         case IceProcessMessagesIOError:
-                g_debug ("IceProcessMessagesIOError on '%s'", xsmp->description);
-                gsm_client_disconnected (client);
+                g_debug ("IceProcessMessagesIOError on '%s'", client->priv->description);
+                gsm_client_disconnected (GSM_CLIENT (client));
                 return FALSE;
 
         case IceProcessMessagesConnectionClosed:
                 g_debug ("IceProcessMessagesConnectionClosed on '%s'",
-                         xsmp->description);
+                         client->priv->description);
                 return FALSE;
 
         default:
@@ -174,16 +89,536 @@ client_iochannel_watch (GIOChannel   *channel,
  * the XSMP protocol setup.
  */
 static gboolean
-client_protocol_timeout (gpointer data)
+client_protocol_timeout (GsmXSMPClient *client)
 {
-        GsmClient *client = data;
-        GsmXSMPClient *xsmp = data;
-
         g_debug ("client_protocol_timeout for client '%s' in ICE status %d",
-                 xsmp->description, IceConnectionStatus (xsmp->ice_conn));
-        gsm_client_disconnected (client);
+                 client->priv->description,
+                 IceConnectionStatus (client->priv->ice_connection));
+
+        gsm_client_disconnected (GSM_CLIENT (client));
 
         return FALSE;
+}
+
+static SmProp *
+find_property (GsmXSMPClient *client,
+               const char    *name,
+               int           *index)
+{
+        SmProp *prop;
+        int i;
+
+        for (i = 0; i < client->priv->props->len; i++) {
+                prop = client->priv->props->pdata[i];
+
+                if (!strcmp (prop->name, name)) {
+                        if (index) {
+                                *index = i;
+                        }
+                        return prop;
+                }
+        }
+
+        return NULL;
+}
+
+static void
+set_description (GsmXSMPClient *client)
+{
+        SmProp     *prop;
+        const char *id;
+
+        prop = find_property (client, SmProgram, NULL);
+        id = gsm_client_get_client_id (GSM_CLIENT (client));
+
+        g_free (client->priv->description);
+        if (prop) {
+                client->priv->description = g_strdup_printf ("%p [%.*s %s]",
+                                                             client,
+                                                             prop->vals[0].length,
+                                                             (char *)prop->vals[0].value,
+                                                             id);
+        } else if (id != NULL) {
+                client->priv->description = g_strdup_printf ("%p [%s]", client, id);
+        } else {
+                client->priv->description = g_strdup_printf ("%p", client);
+        }
+}
+
+static void
+setup_connection (GsmXSMPClient *client)
+{
+        GIOChannel    *channel;
+        int            fd;
+
+        fd = IceConnectionNumber (client->priv->ice_connection);
+        fcntl (fd, F_SETFD, fcntl (fd, F_GETFD, 0) | FD_CLOEXEC);
+        channel = g_io_channel_unix_new (fd);
+        client->priv->watch_id = g_io_add_watch (channel,
+                                                 G_IO_IN | G_IO_ERR,
+                                                 (GIOFunc)client_iochannel_watch,
+                                                 client);
+        g_io_channel_unref (channel);
+
+        client->priv->protocol_timeout = g_timeout_add (5000,
+                                                        (GSourceFunc)client_protocol_timeout,
+                                                        client);
+
+        set_description (client);
+        g_debug ("New client '%s'", client->priv->description);
+}
+
+static GObject *
+gsm_xsmp_client_constructor (GType                  type,
+                             guint                  n_construct_properties,
+                             GObjectConstructParam *construct_properties)
+{
+        GsmXSMPClient *client;
+
+        client = GSM_XSMP_CLIENT (G_OBJECT_CLASS (gsm_xsmp_client_parent_class)->constructor (type,
+                                                                                              n_construct_properties,
+                                                                                              construct_properties));
+        setup_connection (client);
+
+        return G_OBJECT (client);
+}
+
+static void
+gsm_xsmp_client_init (GsmXSMPClient *client)
+{
+        client->priv = GSM_XSMP_CLIENT_GET_PRIVATE (client);
+
+        client->priv->props = g_ptr_array_new ();
+        client->priv->current_save_yourself = -1;
+        client->priv->next_save_yourself = -1;
+}
+
+
+static void
+delete_property (GsmXSMPClient *client,
+                 const char    *name)
+{
+        int     index;
+        SmProp *prop;
+
+        prop = find_property (client, name, &index);
+        if (!prop) {
+                return;
+        }
+
+#if 0
+        /* This is wrong anyway; we can't unconditionally run the current
+         * discard command; if this client corresponds to a GsmAppResumed,
+         * and the current discard command is identical to the app's
+         * discard_command, then we don't run the discard command now,
+         * because that would delete a saved state we may want to resume
+         * again later.
+         */
+        if (!strcmp (name, SmDiscardCommand)) {
+                gsm_client_run_discard (GSM_CLIENT (client));
+        }
+#endif
+
+        g_ptr_array_remove_index_fast (client->priv->props, index);
+        SmFreeProperty (prop);
+}
+
+
+static void
+debug_print_property (SmProp *prop)
+{
+        GString *tmp;
+        int      i;
+
+        switch (prop->type[0]) {
+        case 'C': /* CARD8 */
+                g_debug ("  %s = %d", prop->name, *(unsigned char *)prop->vals[0].value);
+                break;
+
+        case 'A': /* ARRAY8 */
+                g_debug ("  %s = '%s'", prop->name, (char *)prop->vals[0].value);
+                break;
+
+        case 'L': /* LISTofARRAY8 */
+                tmp = g_string_new (NULL);
+                for (i = 0; i < prop->num_vals; i++) {
+                        g_string_append_printf (tmp, "'%.*s' ", prop->vals[i].length,
+                                                (char *)prop->vals[i].value);
+                }
+                g_debug ("  %s = %s", prop->name, tmp->str);
+                g_string_free (tmp, TRUE);
+                break;
+
+        default:
+                g_debug ("  %s = ??? (%s)", prop->name, prop->type);
+                break;
+        }
+}
+
+
+static void
+set_properties_callback (SmsConn     conn,
+                         SmPointer   manager_data,
+                         int         num_props,
+                         SmProp    **props)
+{
+        GsmXSMPClient *client = manager_data;
+        int            i;
+
+        g_debug ("Set properties from client '%s'", client->priv->description);
+
+        for (i = 0; i < num_props; i++) {
+                delete_property (client, props[i]->name);
+                g_ptr_array_add (client->priv->props, props[i]);
+
+                debug_print_property (props[i]);
+
+                if (!strcmp (props[i]->name, SmProgram))
+                        set_description (client);
+        }
+
+        free (props);
+
+}
+
+static void
+delete_properties_callback (SmsConn     conn,
+                            SmPointer   manager_data,
+                            int         num_props,
+                            char      **prop_names)
+{
+        GsmXSMPClient *client = manager_data;
+        int i;
+
+        g_debug ("Delete properties from '%s'", client->priv->description);
+
+        for (i = 0; i < num_props; i++) {
+                delete_property (client, prop_names[i]);
+
+                g_debug ("  %s", prop_names[i]);
+        }
+
+        free (prop_names);
+}
+
+static void
+get_properties_callback (SmsConn   conn,
+                         SmPointer manager_data)
+{
+        GsmXSMPClient *client = manager_data;
+
+        g_debug ("Get properties request from '%s'", client->priv->description);
+
+        SmsReturnProperties (conn,
+                             client->priv->props->len,
+                             (SmProp **)client->priv->props->pdata);
+}
+
+static char *
+prop_to_command (SmProp *prop)
+{
+        GString *str;
+        int i, j;
+        gboolean need_quotes;
+
+        str = g_string_new (NULL);
+        for (i = 0; i < prop->num_vals; i++) {
+                char *val = prop->vals[i].value;
+
+                need_quotes = FALSE;
+                for (j = 0; j < prop->vals[i].length; j++) {
+                        if (!g_ascii_isalnum (val[j]) && !strchr ("-_=:./", val[j])) {
+                                need_quotes = TRUE;
+                                break;
+                        }
+                }
+
+                if (i > 0) {
+                        g_string_append_c (str, ' ');
+                }
+
+                if (!need_quotes) {
+                        g_string_append_printf (str,
+                                                "%.*s",
+                                                prop->vals[i].length,
+                                                (char *)prop->vals[i].value);
+                } else {
+                        g_string_append_c (str, '\'');
+                        while (val < (char *)prop->vals[i].value + prop->vals[i].length) {
+                                if (*val == '\'') {
+                                        g_string_append (str, "'\''");
+                                } else {
+                                        g_string_append_c (str, *val);
+                                }
+                                val++;
+                        }
+                        g_string_append_c (str, '\'');
+                }
+        }
+
+        return g_string_free (str, FALSE);
+}
+
+static char *
+xsmp_get_restart_command (GsmClient *client)
+{
+        SmProp *prop;
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmRestartCommand, NULL);
+
+        if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0) {
+                return NULL;
+        }
+
+        return prop_to_command (prop);
+}
+
+static char *
+xsmp_get_discard_command (GsmClient *client)
+{
+        SmProp *prop;
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmDiscardCommand, NULL);
+
+        if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0) {
+                return NULL;
+        }
+
+        return prop_to_command (prop);
+}
+
+static gboolean
+xsmp_get_autorestart (GsmClient *client)
+{
+        SmProp *prop;
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmRestartStyleHint, NULL);
+
+        if (!prop || strcmp (prop->type, SmCARD8) != 0) {
+                return FALSE;
+        }
+
+        return ((unsigned char *)prop->vals[0].value)[0] == SmRestartImmediately;
+}
+
+static void
+xsmp_restart (GsmClient *client,
+              GError   **error)
+{
+        char *restart_cmd;
+
+        restart_cmd = gsm_client_get_restart_command (client);
+
+        g_spawn_command_line_async (restart_cmd, error);
+
+        g_free (restart_cmd);
+}
+
+static void
+do_save_yourself (GsmXSMPClient *client,
+                  int            save_type)
+{
+        if (client->priv->next_save_yourself != -1) {
+                /* Either we're currently doing a shutdown and there's a checkpoint
+                 * queued after it, or vice versa. Either way, the new SaveYourself
+                 * is redundant.
+                 */
+                g_debug ("  skipping redundant SaveYourself for '%s'",
+                         client->priv->description);
+        } else if (client->priv->current_save_yourself != -1) {
+                g_debug ("  queuing new SaveYourself for '%s'",
+                         client->priv->description);
+                client->priv->next_save_yourself = save_type;
+        } else {
+                client->priv->current_save_yourself = save_type;
+
+                switch (save_type) {
+                case SmSaveLocal:
+                        /* Save state */
+                        SmsSaveYourself (client->priv->conn,
+                                         SmSaveLocal,
+                                         FALSE,
+                                         SmInteractStyleNone,
+                                         FALSE);
+                        break;
+
+                default:
+                        /* Logout */
+                        SmsSaveYourself (client->priv->conn,
+                                         save_type,
+                                         TRUE,
+                                         SmInteractStyleAny,
+                                         FALSE);
+                        break;
+                }
+        }
+}
+
+static void
+xsmp_save_yourself (GsmClient *client,
+                    gboolean   save_state)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("xsmp_save_yourself ('%s', %s)",
+                 xsmp->priv->description,
+                 save_state ? "True" : "False");
+
+        do_save_yourself (xsmp, save_state ? SmSaveBoth : SmSaveGlobal);
+}
+
+static void
+xsmp_save_yourself_phase2 (GsmClient *client)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("xsmp_save_yourself_phase2 ('%s')", xsmp->priv->description);
+
+        SmsSaveYourselfPhase2 (xsmp->priv->conn);
+}
+
+static void
+xsmp_interact (GsmClient *client)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("xsmp_interact ('%s')", xsmp->priv->description);
+
+        SmsInteract (xsmp->priv->conn);
+}
+
+
+static void
+xsmp_shutdown_cancelled (GsmClient *client)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("xsmp_shutdown_cancelled ('%s')", xsmp->priv->description);
+
+        SmsShutdownCancelled (xsmp->priv->conn);
+}
+
+static void
+xsmp_stop (GsmClient *client)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("xsmp_die ('%s')", xsmp->priv->description);
+
+        SmsDie (xsmp->priv->conn);
+}
+
+static void
+gsm_client_set_ice_connection (GsmXSMPClient *client,
+                               gpointer       conn)
+{
+        client->priv->ice_connection = conn;
+}
+
+static void
+gsm_xsmp_client_set_property (GObject       *object,
+                              guint          prop_id,
+                              const GValue  *value,
+                              GParamSpec    *pspec)
+{
+        GsmXSMPClient *self;
+
+        self = GSM_XSMP_CLIENT (object);
+
+        switch (prop_id) {
+        case PROP_ICE_CONNECTION:
+                gsm_client_set_ice_connection (self, g_value_get_pointer (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gsm_xsmp_client_get_property (GObject    *object,
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
+{
+        GsmXSMPClient *self;
+
+        self = GSM_XSMP_CLIENT (object);
+
+        switch (prop_id) {
+        case PROP_ICE_CONNECTION:
+                g_value_set_pointer (value, self->priv->ice_connection);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gsm_xsmp_client_finalize (GObject *object)
+{
+        GsmXSMPClient *client = (GsmXSMPClient *) object;
+
+        g_debug ("xsmp_finalize (%s)", client->priv->description);
+
+        if (client->priv->watch_id) {
+                g_source_remove (client->priv->watch_id);
+        }
+
+        if (client->priv->conn) {
+                SmsCleanUp (client->priv->conn);
+        } else {
+                IceCloseConnection (client->priv->ice_connection);
+        }
+
+        if (client->priv->protocol_timeout) {
+                g_source_remove (client->priv->protocol_timeout);
+        }
+
+        G_OBJECT_CLASS (gsm_xsmp_client_parent_class)->finalize (object);
+}
+
+static void
+gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
+{
+        GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+        GsmClientClass *client_class = GSM_CLIENT_CLASS (klass);
+
+        object_class->finalize             = gsm_xsmp_client_finalize;
+        object_class->constructor          = gsm_xsmp_client_constructor;
+        object_class->get_property         = gsm_xsmp_client_get_property;
+        object_class->set_property         = gsm_xsmp_client_set_property;
+
+        g_object_class_install_property (object_class,
+                                         PROP_ICE_CONNECTION,
+                                         g_param_spec_pointer ("ice-connection",
+                                                               "ice-connection",
+                                                               "ice-connection",
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+        client_class->get_restart_command  = xsmp_get_restart_command;
+        client_class->get_discard_command  = xsmp_get_discard_command;
+        client_class->get_autorestart      = xsmp_get_autorestart;
+
+        client_class->stop                 = xsmp_stop;
+        client_class->restart              = xsmp_restart;
+        client_class->save_yourself        = xsmp_save_yourself;
+        client_class->save_yourself_phase2 = xsmp_save_yourself_phase2;
+        client_class->interact             = xsmp_interact;
+        client_class->shutdown_cancelled   = xsmp_shutdown_cancelled;
+}
+
+GsmClient *
+gsm_xsmp_client_new (IceConn ice_conn)
+{
+        GsmXSMPClient *xsmp;
+
+        xsmp = g_object_new (GSM_TYPE_XSMP_CLIENT,
+                             "ice-connection", ice_conn,
+                             NULL);
+
+        return GSM_CLIENT (xsmp);
 }
 
 static Status
@@ -191,16 +626,28 @@ register_client_callback (SmsConn    conn,
                           SmPointer  manager_data,
                           char      *previous_id)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
-        char *id;
+        GsmXSMPClient *client = manager_data;
+        gboolean       handled;
+        char          *id;
 
         g_debug ("Client '%s' received RegisterClient(%s)",
-                 xsmp->description,
+                 client->priv->description,
                  previous_id ? previous_id : "NULL");
 
-        id = NULL;
-        gsm_client_register_client (client, previous_id, &id);
+
+        /* There are three cases:
+         * 1. id is NULL - we'll use a new one
+         * 2. id is known - we'll use known one
+         * 3. id is unknown - this is an error
+         */
+        id = g_strdup (previous_id);
+        handled = gsm_client_manage_request (GSM_CLIENT (client), &id);
+        if (! handled) {
+                g_debug (" RegisterClient not handled!");
+                g_free (id);
+                free (previous_id);
+                return FALSE;
+        }
 
         if (id == NULL) {
                 g_debug ("  rejected: invalid previous_id");
@@ -208,59 +655,28 @@ register_client_callback (SmsConn    conn,
                 return FALSE;
         }
 
-        xsmp->id = id;
+        g_object_set (client, "client-id", id, NULL);
 
-        set_description (xsmp);
+        set_description (client);
 
-        g_debug ("Sending RegisterClientReply to '%s'", xsmp->description);
+        g_debug ("Sending RegisterClientReply to '%s'", client->priv->description);
 
-        SmsRegisterClientReply (conn, xsmp->id);
+        SmsRegisterClientReply (conn, id);
 
-        if (!previous_id) {
+        if (previous_id == NULL) {
                 /* Send the initial SaveYourself. */
                 g_debug ("Sending initial SaveYourself");
                 SmsSaveYourself (conn, SmSaveLocal, False, SmInteractStyleNone, False);
-                xsmp->current_save_yourself = SmSaveLocal;
+                client->priv->current_save_yourself = SmSaveLocal;
 
                 free (previous_id);
         }
 
+        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_MANAGED);
+
         return TRUE;
 }
 
-static void
-do_save_yourself (GsmXSMPClient *xsmp, int save_type)
-{
-        if (xsmp->next_save_yourself != -1) {
-                /* Either we're currently doing a shutdown and there's a checkpoint
-                 * queued after it, or vice versa. Either way, the new SaveYourself
-                 * is redundant.
-                 */
-                g_debug ("  skipping redundant SaveYourself for '%s'",
-                         xsmp->description);
-        }
-        else if (xsmp->current_save_yourself != -1) {
-                g_debug ("  queuing new SaveYourself for '%s'",
-                         xsmp->description);
-                xsmp->next_save_yourself = save_type;
-        } else {
-                xsmp->current_save_yourself = save_type;
-
-                switch (save_type) {
-                case SmSaveLocal:
-                        /* Save state */
-                        SmsSaveYourself (xsmp->conn, SmSaveLocal, FALSE,
-                                         SmInteractStyleNone, FALSE);
-                        break;
-
-                default:
-                        /* Logout */
-                        SmsSaveYourself (xsmp->conn, save_type, TRUE,
-                                         SmInteractStyleAny, FALSE);
-                        break;
-                }
-        }
-}
 
 static void
 save_yourself_request_callback (SmsConn   conn,
@@ -271,10 +687,10 @@ save_yourself_request_callback (SmsConn   conn,
                                 Bool      fast,
                                 Bool      global)
 {
-        GsmXSMPClient *xsmp = manager_data;
+        GsmXSMPClient *client = manager_data;
 
         g_debug ("Client '%s' received SaveYourselfRequest(%s, %s, %s, %s, %s)",
-                 xsmp->description,
+                 client->priv->description,
                  save_type == SmSaveLocal ? "SmSaveLocal" :
                  save_type == SmSaveGlobal ? "SmSaveGlobal" : "SmSaveBoth",
                  shutdown ? "Shutdown" : "!Shutdown",
@@ -315,66 +731,33 @@ save_yourself_request_callback (SmsConn   conn,
 
         if (shutdown && global) {
                 g_debug ("  initiating shutdown");
-                gsm_client_request_logout (GSM_CLIENT (xsmp),
+                gsm_client_logout_request (GSM_CLIENT (client),
                                            !fast);
         } else if (!shutdown && !global) {
                 g_debug ("  initiating checkpoint");
-                do_save_yourself (xsmp, SmSaveLocal);
+                do_save_yourself (client, SmSaveLocal);
         } else {
                 g_debug ("  ignoring");
         }
 }
 
 static void
-xsmp_restart (GsmClient *client, GError **error)
-{
-        char *restart_cmd = gsm_client_get_restart_command (client);
-
-        g_spawn_command_line_async (restart_cmd, error);
-
-        g_free (restart_cmd);
-}
-
-static void
-xsmp_save_yourself (GsmClient *client, gboolean save_state)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *)client;
-
-        g_debug ("xsmp_save_yourself ('%s', %s)", xsmp->description,
-                 save_state ? "True" : "False");
-
-        do_save_yourself (xsmp, save_state ? SmSaveBoth : SmSaveGlobal);
-}
-
-static void
 save_yourself_phase2_request_callback (SmsConn   conn,
                                        SmPointer manager_data)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
+        GsmXSMPClient *client = manager_data;
 
         g_debug ("Client '%s' received SaveYourselfPhase2Request",
-                 xsmp->description);
+                 client->priv->description);
 
-        if (xsmp->current_save_yourself == SmSaveLocal)
-                {
-                        /* WTF? Anyway, if it's checkpointing, it doesn't have to wait
-                         * for anyone else.
-                         */
-                        SmsSaveYourselfPhase2 (xsmp->conn);
-                }
-        else
-                gsm_client_request_phase2 (client);
-}
-
-static void
-xsmp_save_yourself_phase2 (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *)client;
-
-        g_debug ("xsmp_save_yourself_phase2 ('%s')", xsmp->description);
-
-        SmsSaveYourselfPhase2 (xsmp->conn);
+        if (client->priv->current_save_yourself == SmSaveLocal) {
+                /* WTF? Anyway, if it's checkpointing, it doesn't have to wait
+                 * for anyone else.
+                 */
+                SmsSaveYourselfPhase2 (client->priv->conn);
+        } else {
+                gsm_client_request_phase2 (GSM_CLIENT (client));
+        }
 }
 
 static void
@@ -382,23 +765,13 @@ interact_request_callback (SmsConn   conn,
                            SmPointer manager_data,
                            int       dialog_type)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
+        GsmXSMPClient *client = manager_data;
 
-        g_debug ("Client '%s' received InteractRequest(%s)", xsmp->description,
+        g_debug ("Client '%s' received InteractRequest(%s)",
+                 client->priv->description,
                  dialog_type == SmInteractStyleAny ? "Any" : "Errors");
 
-        gsm_client_request_interaction (client);
-}
-
-static void
-xsmp_interact (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        g_debug ("xsmp_interact ('%s')", xsmp->description);
-
-        SmsInteract (xsmp->conn);
+        gsm_client_request_interaction (GSM_CLIENT (client));
 }
 
 static void
@@ -406,33 +779,13 @@ interact_done_callback (SmsConn   conn,
                         SmPointer manager_data,
                         Bool      cancel_shutdown)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
+        GsmXSMPClient *client = manager_data;
 
         g_debug ("Client '%s' received InteractDone(cancel_shutdown = %s)",
-                 xsmp->description, cancel_shutdown ? "True" : "False");
+                 client->priv->description,
+                 cancel_shutdown ? "True" : "False");
 
-        gsm_client_interaction_done (client, cancel_shutdown);
-}
-
-static void
-xsmp_shutdown_cancelled (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        g_debug ("xsmp_shutdown_cancelled ('%s')", xsmp->description);
-
-        SmsShutdownCancelled (xsmp->conn);
-}
-
-static void
-xsmp_die (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        g_debug ("xsmp_die ('%s')", xsmp->description);
-
-        SmsDie (xsmp->conn);
+        gsm_client_interaction_done (GSM_CLIENT (client), cancel_shutdown);
 }
 
 static void
@@ -440,26 +793,26 @@ save_yourself_done_callback (SmsConn   conn,
                              SmPointer manager_data,
                              Bool      success)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
+        GsmXSMPClient *client = manager_data;
 
         g_debug ("Client '%s' received SaveYourselfDone(success = %s)",
-                 xsmp->description, success ? "True" : "False");
+                 client->priv->description,
+                 success ? "True" : "False");
 
-        if (xsmp->current_save_yourself == SmSaveLocal) {
-                xsmp->current_save_yourself = -1;
-                SmsSaveComplete (xsmp->conn);
-                gsm_client_saved_state (client);
+        if (client->priv->current_save_yourself == SmSaveLocal) {
+                client->priv->current_save_yourself = -1;
+                SmsSaveComplete (client->priv->conn);
+                gsm_client_saved_state (GSM_CLIENT (client));
         } else {
-                xsmp->current_save_yourself = -1;
-                gsm_client_save_yourself_done (client);
+                client->priv->current_save_yourself = -1;
+                gsm_client_save_yourself_done (GSM_CLIENT (client));
         }
 
-        if (xsmp->next_save_yourself) {
-                int save_type = xsmp->next_save_yourself;
+        if (client->priv->next_save_yourself) {
+                int save_type = client->priv->next_save_yourself;
 
-                xsmp->next_save_yourself = -1;
-                do_save_yourself (xsmp, save_type);
+                client->priv->next_save_yourself = -1;
+                do_save_yourself (client, save_type);
         }
 }
 
@@ -469,290 +822,16 @@ close_connection_callback (SmsConn     conn,
                            int         count,
                            char      **reason_msgs)
 {
-        GsmClient *client = manager_data;
-        GsmXSMPClient *xsmp = manager_data;
-        int i;
+        GsmXSMPClient *client = manager_data;
+        int            i;
 
-        g_debug ("Client '%s' received CloseConnection", xsmp->description);
+        g_debug ("Client '%s' received CloseConnection", client->priv->description);
         for (i = 0; i < count; i++) {
                 g_debug (" close reason: '%s'", reason_msgs[i]);
         }
         SmFreeReasons (count, reason_msgs);
 
-        gsm_client_disconnected (client);
-}
-
-static void
-debug_print_property (SmProp *prop)
-{
-        GString *tmp;
-        int i;
-
-        switch (prop->type[0]) {
-        case 'C': /* CARD8 */
-                g_debug ("  %s = %d", prop->name, *(unsigned char *)prop->vals[0].value);
-                break;
-
-        case 'A': /* ARRAY8 */
-                g_debug ("  %s = '%s'", prop->name, (char *)prop->vals[0].value);
-                break;
-
-        case 'L': /* LISTofARRAY8 */
-                tmp = g_string_new (NULL);
-                for (i = 0; i < prop->num_vals; i++) {
-                        g_string_append_printf (tmp, "'%.*s' ", prop->vals[i].length,
-                                                (char *)prop->vals[i].value);
-                }
-                g_debug ("  %s = %s", prop->name, tmp->str);
-                g_string_free (tmp, TRUE);
-                break;
-
-        default:
-                g_debug ("  %s = ??? (%s)", prop->name, prop->type);
-                break;
-        }
-}
-
-static SmProp *
-find_property (GsmXSMPClient *client, const char *name, int *index)
-{
-        SmProp *prop;
-        int i;
-
-        for (i = 0; i < client->props->len; i++) {
-                prop = client->props->pdata[i];
-
-                if (!strcmp (prop->name, name)) {
-                        if (index) {
-                                *index = i;
-                        }
-                        return prop;
-                }
-        }
-
-        return NULL;
-}
-
-static void
-delete_property (GsmXSMPClient *client, const char *name)
-{
-        int index;
-        SmProp *prop;
-
-        prop = find_property (client, name, &index);
-        if (!prop) {
-                return;
-        }
-
-#if 0
-        /* This is wrong anyway; we can't unconditionally run the current
-         * discard command; if this client corresponds to a GsmAppResumed,
-         * and the current discard command is identical to the app's
-         * discard_command, then we don't run the discard command now,
-         * because that would delete a saved state we may want to resume
-         * again later.
-         */
-        if (!strcmp (name, SmDiscardCommand)) {
-                gsm_client_run_discard (client);
-        }
-#endif
-
-        g_ptr_array_remove_index_fast (client->props, index);
-        SmFreeProperty (prop);
-}
-
-static void
-set_properties_callback (SmsConn     conn,
-                         SmPointer   manager_data,
-                         int         num_props,
-                         SmProp    **props)
-{
-        GsmXSMPClient *client = manager_data;
-        int i;
-
-        g_debug ("Set properties from client '%s'", client->description);
-
-        for (i = 0; i < num_props; i++) {
-                delete_property (client, props[i]->name);
-                g_ptr_array_add (client->props, props[i]);
-
-                debug_print_property (props[i]);
-
-                if (!strcmp (props[i]->name, SmProgram))
-                        set_description (client);
-        }
-
-        free (props);
-
-}
-
-static void
-delete_properties_callback (SmsConn     conn,
-                            SmPointer   manager_data,
-                            int         num_props,
-                            char      **prop_names)
-{
-        GsmXSMPClient *client = manager_data;
-        int i;
-
-        g_debug ("Delete properties from '%s'", client->description);
-
-        for (i = 0; i < num_props; i++) {
-                delete_property (client, prop_names[i]);
-
-                g_debug ("  %s", prop_names[i]);
-        }
-
-        free (prop_names);
-}
-
-static void
-get_properties_callback (SmsConn   conn,
-                         SmPointer manager_data)
-{
-        GsmXSMPClient *client = manager_data;
-
-        g_debug ("Get properties request from '%s'", client->description);
-
-        SmsReturnProperties (conn, client->props->len,
-                             (SmProp **)client->props->pdata);
-}
-
-static const char *
-xsmp_get_client_id (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        return xsmp->id;
-}
-
-static pid_t
-xsmp_get_pid (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-        SmProp *prop = find_property (xsmp, SmProcessID, NULL);
-        char buf[32];
-
-        if (!prop || strcmp (prop->type, SmARRAY8) != 0) {
-                return (pid_t)-1;
-        }
-
-        /* prop->vals[0].value might not be '\0'-terminated... */
-        g_strlcpy (buf, prop->vals[0].value, MIN (prop->vals[0].length, sizeof (buf)));
-        return (pid_t)strtoul (buf, NULL, 10);
-}
-
-static char *
-xsmp_get_desktop_file (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-        SmProp *prop = find_property (xsmp, GsmDesktopFile, NULL);
-
-        if (!prop || strcmp (prop->type, SmARRAY8) != 0) {
-                return NULL;
-        }
-
-        return g_strndup (prop->vals[0].value, prop->vals[0].length);
-}
-
-static char *
-prop_to_command (SmProp *prop)
-{
-        GString *str;
-        int i, j;
-        gboolean need_quotes;
-
-        str = g_string_new (NULL);
-        for (i = 0; i < prop->num_vals; i++) {
-                char *val = prop->vals[i].value;
-
-                need_quotes = FALSE;
-                for (j = 0; j < prop->vals[i].length; j++) {
-                        if (!g_ascii_isalnum (val[j]) && !strchr ("-_=:./", val[j])) {
-                                need_quotes = TRUE;
-                                break;
-                        }
-                }
-
-                if (i > 0) {
-                        g_string_append_c (str, ' ');
-                }
-
-                if (!need_quotes) {
-                        g_string_append_printf (str, "%.*s", prop->vals[i].length,
-                                                (char *)prop->vals[i].value);
-                } else {
-                        g_string_append_c (str, '\'');
-                        while (val < (char *)prop->vals[i].value + prop->vals[i].length) {
-                                if (*val == '\'') {
-                                        g_string_append (str, "'\''");
-                                } else {
-                                        g_string_append_c (str, *val);
-                                }
-                                val++;
-                        }
-                        g_string_append_c (str, '\'');
-                }
-        }
-
-        return g_string_free (str, FALSE);
-}
-
-static char *
-xsmp_get_restart_command (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-        SmProp *prop = find_property (xsmp, SmRestartCommand, NULL);
-
-        if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0) {
-                return NULL;
-        }
-
-        return prop_to_command (prop);
-}
-
-static char *
-xsmp_get_discard_command (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-        SmProp *prop = find_property (xsmp, SmDiscardCommand, NULL);
-
-        if (!prop || strcmp (prop->type, SmLISTofARRAY8) != 0) {
-                return NULL;
-        }
-
-        return prop_to_command (prop);
-}
-
-static gboolean
-xsmp_get_autorestart (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-        SmProp *prop = find_property (xsmp, SmRestartStyleHint, NULL);
-
-        if (!prop || strcmp (prop->type, SmCARD8) != 0) {
-                return FALSE;
-        }
-
-        return ((unsigned char *)prop->vals[0].value)[0] == SmRestartImmediately;
-}
-
-static void
-set_description (GsmXSMPClient *client)
-{
-        SmProp *prop = find_property (client, SmProgram, NULL);
-
-        g_free (client->description);
-        if (prop) {
-                client->description = g_strdup_printf ("%p [%.*s %s]", client,
-                                                       prop->vals[0].length,
-                                                       (char *)prop->vals[0].value,
-                                                       client->id);
-        } else if (client->id) {
-                client->description = g_strdup_printf ("%p [%s]", client, client->id);
-        } else {
-                client->description = g_strdup_printf ("%p", client);
-        }
+        gsm_client_disconnected (GSM_CLIENT (client));
 }
 
 void
@@ -761,14 +840,14 @@ gsm_xsmp_client_connect (GsmXSMPClient *client,
                          unsigned long *mask_ret,
                          SmsCallbacks  *callbacks_ret)
 {
-        client->conn = conn;
+        client->priv->conn = conn;
 
-        if (client->protocol_timeout) {
-                g_source_remove (client->protocol_timeout);
-                client->protocol_timeout = 0;
+        if (client->priv->protocol_timeout) {
+                g_source_remove (client->priv->protocol_timeout);
+                client->priv->protocol_timeout = 0;
         }
 
-        g_debug ("Initializing client %s", client->description);
+        g_debug ("Initializing client %s", client->priv->description);
 
         *mask_ret = 0;
 

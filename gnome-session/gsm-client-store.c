@@ -38,6 +38,7 @@
 struct GsmClientStorePrivate
 {
         GHashTable *clients;
+        gboolean    locked;
 };
 
 enum {
@@ -46,11 +47,16 @@ enum {
         LAST_SIGNAL
 };
 
+enum {
+        PROP_0,
+        PROP_LOCKED,
+};
+
 static guint signals [LAST_SIGNAL] = { 0, };
 
 static void     gsm_client_store_class_init    (GsmClientStoreClass *klass);
 static void     gsm_client_store_init          (GsmClientStore      *client_store);
-static void     gsm_client_store_finalize      (GObject              *object);
+static void     gsm_client_store_finalize      (GObject             *object);
 
 G_DEFINE_TYPE (GsmClientStore, gsm_client_store, G_TYPE_OBJECT)
 
@@ -63,6 +69,12 @@ gsm_client_store_error_quark (void)
         }
 
         return ret;
+}
+
+guint
+gsm_client_store_size (GsmClientStore    *store)
+{
+        return g_hash_table_size (store->priv->clients);
 }
 
 void
@@ -125,6 +137,21 @@ gsm_client_store_find (GsmClientStore    *store,
         return client;
 }
 
+GsmClient *
+gsm_client_store_lookup (GsmClientStore    *store,
+                         const char        *id)
+{
+        GsmClient *client;
+
+        g_return_val_if_fail (store != NULL, NULL);
+        g_return_val_if_fail (id != NULL, NULL);
+
+        client = g_hash_table_lookup (store->priv->clients,
+                                      id);
+
+        return client;
+}
+
 guint
 gsm_client_store_foreach_remove (GsmClientStore    *store,
                                  GsmClientStoreFunc func,
@@ -142,22 +169,95 @@ gsm_client_store_foreach_remove (GsmClientStore    *store,
         return ret;
 }
 
-void
+static gboolean
+_has_client_id (const char *id,
+                GsmClient  *client,
+                gpointer    user_data)
+{
+        const char *sm_id_a;
+        const char *sm_id_b;
+
+        sm_id_a = user_data;
+        sm_id_b = gsm_client_get_client_id (client);
+        if (sm_id_b == NULL) {
+                return FALSE;
+        }
+        return (strcmp (sm_id_a, sm_id_b) == 0);
+}
+
+gboolean
 gsm_client_store_add (GsmClientStore *store,
                       GsmClient      *client)
 {
-        char *id;
+        const char *id;
 
-        g_return_if_fail (store != NULL);
-        g_return_if_fail (client != NULL);
+        g_return_val_if_fail (store != NULL, FALSE);
+        g_return_val_if_fail (client != NULL, FALSE);
 
         id = gsm_client_get_id (client);
+
+        /* If we're shutting down, we don't accept any new session
+           clients. */
+        if (store->priv->locked) {
+                return FALSE;
+        }
 
         g_debug ("GsmClientStore: Adding client %s to store", id);
 
         g_hash_table_insert (store->priv->clients,
-                             id,
+                             g_strdup (id),
                              g_object_ref (client));
+
+        return TRUE;
+}
+
+static void
+gsm_client_store_set_locked (GsmClientStore *store,
+                             gboolean        locked)
+{
+        g_return_if_fail (GSM_IS_CLIENT_STORE (store));
+
+        store->priv->locked = locked;
+}
+
+static void
+gsm_client_store_set_property (GObject      *object,
+                               guint         prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+        GsmClientStore *self;
+
+        self = GSM_CLIENT_STORE (object);
+
+        switch (prop_id) {
+        case PROP_LOCKED:
+                gsm_client_store_set_locked (self, g_value_get_boolean (value));
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gsm_client_store_get_property (GObject    *object,
+                               guint       prop_id,
+                               GValue     *value,
+                               GParamSpec *pspec)
+{
+        GsmClientStore *self;
+
+        self = GSM_CLIENT_STORE (object);
+
+        switch (prop_id) {
+        case PROP_LOCKED:
+                g_value_set_boolean (value, self->priv->locked);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
 }
 
 static void
@@ -165,6 +265,8 @@ gsm_client_store_class_init (GsmClientStoreClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
+        object_class->get_property = gsm_client_store_get_property;
+        object_class->set_property = gsm_client_store_set_property;
         object_class->finalize = gsm_client_store_finalize;
 
         signals [CLIENT_ADDED] =
@@ -187,6 +289,13 @@ gsm_client_store_class_init (GsmClientStoreClass *klass)
                               g_cclosure_marshal_VOID__STRING,
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
+        g_object_class_install_property (object_class,
+                                         PROP_LOCKED,
+                                         g_param_spec_boolean ("locked",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientStorePrivate));
 }
