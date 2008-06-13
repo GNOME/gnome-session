@@ -1,5 +1,13 @@
 2008-06-13  Lucas Rocha  <lucasr@gnome.org>
 
+	Don't use "capplet" anywhere as this term shouldn't used anymore.
+	#537310, Frederic Peters.
+
+	* data/gnome-session.schemas.in: replaced "capplet" with "Session
+	Preferences".
+
+2008-06-13  Lucas Rocha  <lucasr@gnome.org>
+
 	Avoid spamming the console with error messages when GDM is not
 	available. Check availability of GDM to know if we can add "Switch
 	User" button to logout dialog. #526199, Andrew Nelless. Patch by 
