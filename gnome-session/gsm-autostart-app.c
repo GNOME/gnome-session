@@ -35,6 +35,7 @@ struct _GsmAutostartAppPrivate {
         gboolean              condition;
         EggDesktopFile       *desktop_file;
         GPid                  pid;
+        guint                 child_watch_id;
         char                 *startup_id;
 };
 
@@ -429,12 +430,29 @@ is_disabled (GsmApp *app)
 }
 
 static void
-app_exited (GPid    pid,
-            int     status,
-            GsmApp *app)
+app_exited (GPid             pid,
+            int              status,
+            GsmAutostartApp *app)
 {
+        g_debug ("GsmAutostartApp: (pid:%d) done (%s:%d)",
+                 (int) pid,
+                 WIFEXITED (status) ? "status"
+                 : WIFSIGNALED (status) ? "signal"
+                 : "unknown",
+                 WIFEXITED (status) ? WEXITSTATUS (status)
+                 : WIFSIGNALED (status) ? WTERMSIG (status)
+                 : -1);
+
+        g_spawn_close_pid (app->priv->pid);
+        app->priv->pid = -1;
+        app->priv->child_watch_id = 0;
+
         if (WIFEXITED (status)) {
-                gsm_app_exited (app);
+                int code = WEXITSTATUS (status);
+                gsm_app_exited (GSM_APP (app));
+        } else if (WIFSIGNALED (status)) {
+                int num = WTERMSIG (status);
+                gsm_app_died (GSM_APP (app));
         }
 }
 
@@ -470,13 +488,10 @@ launch (GsmApp  *app,
         g_free (env[0]);
 
         if (success) {
-                /* In case the app belongs to Initialization phase, we monitor
-                 * if it exits to emit proper "exited" signal to session. */
-                if (gsm_app_get_phase (app) == GSM_MANAGER_PHASE_INITIALIZATION) {
-                        g_child_watch_add ((GPid) aapp->priv->pid,
-                                           (GChildWatchFunc)app_exited,
-                                           app);
-                }
+                g_debug ("GsmAutostartApp: started pid:%d", aapp->priv->pid);
+                aapp->priv->child_watch_id = g_child_watch_add ((GPid) aapp->priv->pid,
+                                                                (GChildWatchFunc)app_exited,
+                                                                app);
 
                 return TRUE;
         } else {

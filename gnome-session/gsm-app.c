@@ -39,6 +39,7 @@ struct _GsmAppPrivate
 
 enum {
         EXITED,
+        DIED,
         REGISTERED,
         LAST_SIGNAL
 };
@@ -176,6 +177,15 @@ gsm_app_class_init (GsmAppClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals[DIED] =
+                g_signal_new ("died",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmAppClass, died),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
 
         signals[REGISTERED] =
                 g_signal_new ("registered",
@@ -289,4 +299,12 @@ gsm_app_exited (GsmApp *app)
         g_return_if_fail (GSM_IS_APP (app));
 
         g_signal_emit (app, signals[EXITED], 0);
+}
+
+void
+gsm_app_died (GsmApp *app)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        g_signal_emit (app, signals[DIED], 0);
 }
