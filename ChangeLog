@@ -1,5 +1,13 @@
 2008-06-13  Lucas Rocha  <lucasr@gnome.org>
 
+	Properly mark logout/shutdown dialog primary text for translation.
+	#537763, Frederic Peters. Patch by Frederic Peters.
+
+	* gnome-session/logout-dialog.c (gsm_get_logout_dialog): mark dialog's
+	primary text for translation with _().
+
+2008-06-13  Lucas Rocha  <lucasr@gnome.org>
+
 	Don't use "capplet" anywhere as this term shouldn't used anymore.
 	#537310, Frederic Peters.
 

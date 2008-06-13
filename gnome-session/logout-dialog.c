@@ -331,8 +331,8 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
                        guint32               activate_time)
 {
   GsmLogoutDialog *logout_dialog;
-  char *icon_name;
-  char *primary_text;
+  const char *primary_text;
+  const char *icon_name;
   
   if (current_dialog != NULL) 
     {
@@ -354,7 +354,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
     {
     case GSM_SESSION_LOGOUT_TYPE_LOGOUT:
       icon_name    = GSM_ICON_LOGOUT;
-      primary_text = N_("Log out of this system now?");
+      primary_text = _("Log out of this system now?");
 
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_LOGOUT;
 
@@ -374,7 +374,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
       break;
     case GSM_SESSION_LOGOUT_TYPE_SHUTDOWN:
       icon_name    = GSM_ICON_SHUTDOWN;
-      primary_text = N_("Shut down this system now?");
+      primary_text = _("Shut down this system now?");
  
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_SHUTDOWN;
 
