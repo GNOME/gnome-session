@@ -26,6 +26,8 @@
 
 #include "gsm-resumed-app.h"
 
+#define GSM_RESUMED_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_RESUMED_APP, GsmResumedAppPrivate))
+
 struct _GsmResumedAppPrivate
 {
         char    *program;
@@ -39,7 +41,7 @@ G_DEFINE_TYPE (GsmResumedApp, gsm_resumed_app, GSM_TYPE_APP)
 static void
 gsm_resumed_app_init (GsmResumedApp *app)
 {
-        ;
+        app->priv = GSM_RESUMED_APP_GET_PRIVATE (app);
 }
 
 static gboolean
@@ -98,6 +100,8 @@ gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 
         app_class->get_basename = get_basename;
         app_class->start = launch;
+
+        g_type_class_add_private (klass, sizeof (GsmResumedAppPrivate));
 }
 
 /**

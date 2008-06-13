@@ -111,11 +111,11 @@ accept_ice_connection (GIOChannel           *source,
         listener = data->listener;
         server = data->server;
 
-        g_debug ("accept_ice_connection()");
+        g_debug ("GsmXsmpServer: accept_ice_connection()");
 
         ice_conn = IceAcceptConnection (listener, &status);
         if (status != IceAcceptSuccess) {
-                g_debug ("IceAcceptConnection returned %d", status);
+                g_debug ("GsmXsmpServer: IceAcceptConnection returned %d", status);
                 return TRUE;
         }
 
@@ -223,7 +223,7 @@ accept_xsmp_connection (SmsConn        sms_conn,
 
         /* FIXME: what about during shutdown but before gsm_xsmp_shutdown? */
         if (server->priv->xsmp_sockets == NULL) {
-                g_debug ("In shutdown, rejecting new client");
+                g_debug ("GsmXsmpServer: In shutdown, rejecting new client");
 
                 *failure_reason_ret = strdup (_("Refusing new client connection because the session is currently being shut down\n"));
                 return FALSE;
@@ -248,7 +248,7 @@ ice_error_handler (IceConn       conn,
                    int           severity,
                    IcePointer    values)
 {
-        g_debug ("ice_error_handler (%p, %s, %d, %lx, %d, %d)",
+        g_debug ("GsmXsmpServer: ice_error_handler (%p, %s, %d, %lx, %d, %d)",
                  conn, swap ? "TRUE" : "FALSE", offending_minor_opcode,
                  offending_sequence, error_class, severity);
 
@@ -267,7 +267,7 @@ ice_error_handler (IceConn       conn,
 static void
 ice_io_error_handler (IceConn conn)
 {
-        g_debug ("ice_io_error_handler (%p)", conn);
+        g_debug ("GsmXsmpServer: ice_io_error_handler (%p)", conn);
 
         /* We don't need to do anything here; the next call to
          * IceProcessMessages() for this connection will receive
@@ -284,7 +284,7 @@ sms_error_handler (SmsConn       conn,
                    int           severity,
                    IcePointer    values)
 {
-        g_debug ("sms_error_handler (%p, %s, %d, %lx, %d, %d)",
+        g_debug ("GsmXsmpServer: sms_error_handler (%p, %s, %d, %lx, %d, %d)",
                  conn, swap ? "TRUE" : "FALSE", offending_minor_opcode,
                  offending_sequence_num, error_class, severity);
 
@@ -541,7 +541,7 @@ setup_listener (GsmXsmpServer *server)
                                                    server->priv->xsmp_sockets);
 
         g_setenv ("SESSION_MANAGER", network_id_list, TRUE);
-        g_debug ("SESSION_MANAGER=%s\n", network_id_list);
+        g_debug ("GsmXsmpServer: SESSION_MANAGER=%s\n", network_id_list);
         free (network_id_list);
 }
 

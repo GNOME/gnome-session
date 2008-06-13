@@ -199,7 +199,7 @@ end_phase (GsmManager *manager)
         g_slist_free (manager->priv->pending_apps);
         manager->priv->pending_apps = NULL;
 
-        g_debug ("ending phase %d\n", manager->priv->phase);
+        g_debug ("GsmManager: ending phase %d\n", manager->priv->phase);
 
         manager->priv->phase++;
 
@@ -267,6 +267,7 @@ _start_app (const char *id,
                           manager);
 
         if (gsm_app_is_disabled (app)) {
+                g_debug ("GsmManager: Skipping disabled app: %s", id);
                 return;
         }
 
@@ -306,7 +307,7 @@ static void
 start_phase (GsmManager *manager)
 {
 
-        g_debug ("starting phase %d\n", manager->priv->phase);
+        g_debug ("GsmManager: starting phase %d\n", manager->priv->phase);
 
         g_slist_free (manager->priv->pending_apps);
         manager->priv->pending_apps = NULL;
@@ -429,12 +430,143 @@ gsm_manager_set_failsafe (GsmManager *manager,
         manager->priv->failsafe = enabled;
 }
 
+static gboolean
+_client_has_client_id (const char *id,
+                       GsmClient  *client,
+                       const char *client_id_a)
+{
+        const char *client_id_b;
+
+        client_id_b = gsm_client_get_client_id (client);
+
+        if (client_id_b == NULL) {
+                return FALSE;
+        }
+
+        return (strcmp (client_id_a, client_id_b) == 0);
+}
+
+static gboolean
+_app_has_client_id (const char *id,
+                    GsmApp     *app,
+                    const char *client_id_a)
+{
+        const char *client_id_b;
+
+        client_id_b = gsm_app_get_client_id (app);
+
+        if (client_id_b == NULL) {
+                return FALSE;
+        }
+
+        return (strcmp (client_id_a, client_id_b) == 0);
+}
+
+static gboolean
+on_manage_request (GsmClient  *client,
+                   char      **id,
+                   GsmManager *manager)
+{
+        gboolean handled;
+        char    *new_id;
+        GSList  *a;
+
+        handled = TRUE;
+        new_id = NULL;
+
+        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+                goto out;
+        }
+
+        if (*id == NULL) {
+                new_id = gsm_util_generate_client_id ();
+        } else {
+                GsmClient *client;
+
+                client = gsm_client_store_find (manager->priv->store,
+                                                (GsmClientStoreFunc)_client_has_client_id,
+                                                *id);
+                /* We can't have two clients with the same id. */
+                if (client != NULL) {
+                        goto out;
+                }
+
+                new_id = g_strdup (*id);
+        }
+
+        g_debug ("GsmManager: Adding new client %s to session", new_id);
+
+#if 0
+        g_signal_connect (client, "saved_state",
+                          G_CALLBACK (client_saved_state), session);
+        g_signal_connect (client, "request_phase2",
+                          G_CALLBACK (client_request_phase2), session);
+        g_signal_connect (client, "request_interaction",
+                          G_CALLBACK (client_request_interaction), session);
+        g_signal_connect (client, "interaction_done",
+                          G_CALLBACK (client_interaction_done), session);
+        g_signal_connect (client, "save_yourself_done",
+                          G_CALLBACK (client_save_yourself_done), session);
+        g_signal_connect (client, "disconnected",
+                          G_CALLBACK (client_disconnected), session);
+#endif
+
+        /* If it's a brand new client id, we just accept the client*/
+        if (*id == NULL) {
+                goto out;
+        }
+
+        /* If we're starting up the session, try to match the new client
+         * with one pending apps for the current phase. If not, try to match
+         * with any of the autostarted apps. */
+        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
+                        GsmApp *app = GSM_APP (a->data);
+
+                        if (strcmp (new_id, gsm_app_get_client_id (app)) == 0) {
+                                gsm_app_registered (app);
+                                goto out;
+                        }
+                }
+        } else {
+                GsmApp *app;
+
+                app = g_hash_table_find (manager->priv->apps_by_id,
+                                         (GHRFunc)_app_has_client_id,
+                                         new_id);
+                if (app != NULL) {
+                        gsm_app_registered (app);
+                        goto out;
+                }
+        }
+
+        /* app not found */
+        g_free (new_id);
+        new_id = NULL;
+
+ out:
+        g_free (*id);
+        *id = new_id;
+
+        return handled;
+}
+
 static void
 on_store_client_added (GsmClientStore *store,
                        const char     *id,
                        GsmManager     *manager)
 {
+        GsmClient *client;
+
         g_debug ("GsmManager: Client added: %s", id);
+
+        client = gsm_client_store_lookup (store, id);
+
+        g_signal_connect (client,
+                          "manage-request",
+                          G_CALLBACK (on_manage_request),
+                          manager);
+        /* FIXME: disconnect signal */
 }
 
 static void
@@ -454,6 +586,9 @@ gsm_manager_set_client_store (GsmManager     *manager,
 
                 g_object_unref (manager->priv->store);
         }
+
+
+        g_debug ("GsmManager: setting store %p", store);
 
         manager->priv->store = store;
 
@@ -520,18 +655,17 @@ append_app (GsmManager *manager,
 
         id = gsm_app_get_id (app);
         if (id == NULL) {
-                g_object_unref (app);
+                g_debug ("GsmManager: not adding app: no ID");
                 return;
         }
 
         dup = g_hash_table_lookup (manager->priv->apps_by_id, id);
         if (dup != NULL) {
-                /* FIXME */
-                g_object_unref (app);
+                g_debug ("GsmManager: not adding app: already added");
                 return;
         }
 
-        g_hash_table_insert (manager->priv->apps_by_id, g_strdup (id), app);
+        g_hash_table_insert (manager->priv->apps_by_id, g_strdup (id), g_object_ref (app));
 }
 
 static void
@@ -543,7 +677,7 @@ append_default_apps (GsmManager *manager,
         char       **app_dirs;
         GConfClient *client;
 
-        g_debug ("append_default_apps ()");
+        g_debug ("GsmManager: append_default_apps ()");
 
         app_dirs = gsm_util_get_app_dirs ();
 
@@ -567,7 +701,7 @@ append_default_apps (GsmManager *manager,
 
                 desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data);
 
-                g_debug ("Look for: %s", desktop_file);
+                g_debug ("GsmManager: Looking for: %s", desktop_file);
 
                 g_key_file_load_from_dirs (key_file,
                                            desktop_file,
@@ -589,7 +723,7 @@ append_default_apps (GsmManager *manager,
                         GsmApp *app;
                         char   *client_id;
 
-                        g_debug ("Found in: %s", app_path);
+                        g_debug ("GsmManager: Found in: %s", app_path);
 
                         client_id = gsm_util_generate_client_id ();
                         app = gsm_autostart_app_new (app_path, client_id);
@@ -597,8 +731,9 @@ append_default_apps (GsmManager *manager,
                         g_free (app_path);
 
                         if (app != NULL) {
-                                g_debug ("read %s\n", desktop_file);
+                                g_debug ("GsmManager: read %s\n", desktop_file);
                                 append_app (manager, app);
+                                g_object_unref (app);
                         } else {
                                 g_warning ("could not read %s\n", desktop_file);
                         }
@@ -620,7 +755,7 @@ append_autostart_apps (GsmManager *manager,
         GDir       *dir;
         const char *name;
 
-        g_debug ("append_autostart_apps (%s)", path);
+        g_debug ("GsmManager: append_autostart_apps (%s)", path);
 
         dir = g_dir_open (path, 0, NULL);
         if (dir == NULL) {
@@ -641,8 +776,9 @@ append_autostart_apps (GsmManager *manager,
                 client_id = gsm_util_generate_client_id ();
                 app = gsm_autostart_app_new (desktop_file, client_id);
                 if (app != NULL) {
-                        g_debug ("read %s\n", desktop_file);
+                        g_debug ("GsmManager: read %s\n", desktop_file);
                         append_app (manager, app);
+                        g_object_unref (app);
                 } else {
                         g_warning ("could not read %s\n", desktop_file);
                 }
@@ -669,11 +805,15 @@ append_legacy_session_apps (GsmManager *manager,
                 return;
         }
 
-        num_clients = g_key_file_get_integer (saved, "Default", "num_clients", NULL);
+        num_clients = g_key_file_get_integer (saved,
+                                              "Default",
+                                              "num_clients",
+                                              NULL);
         for (i = 0; i < num_clients; i++) {
                 GsmApp *app = gsm_resumed_app_new_from_legacy_session (saved, i);
                 if (app != NULL) {
                         append_app (manager, app);
+                        g_object_unref (app);
                 }
         }
 
@@ -750,6 +890,7 @@ append_required_apps (GsmManager *manager)
                         g_free (client_id);
                         if (app != NULL) {
                                 append_app (manager, app);
+                                g_object_unref (app);
                         }
                         /* FIXME: else error */
                 }
@@ -874,7 +1015,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
-                                         PROP_FAILSAFE,
+                                         PROP_CLIENT_STORE,
                                          g_param_spec_object ("client-store",
                                                               NULL,
                                                               NULL,

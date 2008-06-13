@@ -192,6 +192,8 @@ gsm_client_store_add (GsmClientStore *store,
                              g_strdup (id),
                              g_object_ref (client));
 
+        g_signal_emit (store, signals [CLIENT_ADDED], 0, id);
+
         return TRUE;
 }
 

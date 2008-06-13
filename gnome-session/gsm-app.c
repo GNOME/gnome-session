@@ -31,10 +31,9 @@
 
 struct _GsmAppPrivate
 {
-        char           *id;
-
-        GsmManagerPhase phase;
-        char           *client_id;
+        char   *id;
+        int     phase;
+        char   *client_id;
 };
 
 
@@ -59,6 +58,16 @@ G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 static void
 gsm_app_init (GsmApp *app)
 {
+        app->priv = GSM_APP_GET_PRIVATE (app);
+}
+
+static void
+gsm_app_set_phase (GsmApp *app,
+                   int     phase)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        app->priv->phase = phase;
 }
 
 static void
@@ -79,7 +88,7 @@ set_property (GObject      *object,
                 app->priv->id = g_value_dup_string (value);
                 break;
         case PROP_PHASE:
-                app->priv->phase = g_value_get_int (value);
+                gsm_app_set_phase (app, g_value_get_int (value));
                 break;
         default:
                 break;
@@ -121,18 +130,18 @@ dispose (GObject *object)
 }
 
 static void
-gsm_app_class_init (GsmAppClass *app_class)
+gsm_app_class_init (GsmAppClass *klass)
 {
-        GObjectClass *object_class = G_OBJECT_CLASS (app_class);
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
         object_class->set_property = set_property;
         object_class->get_property = get_property;
         object_class->dispose = dispose;
 
-        app_class->get_basename = NULL;
-        app_class->start = NULL;
-        app_class->provides = NULL;
-        app_class->is_running = NULL;
+        klass->get_basename = NULL;
+        klass->start = NULL;
+        klass->provides = NULL;
+        klass->is_running = NULL;
 
         g_object_class_install_property (object_class,
                                          PROP_PHASE,
@@ -142,9 +151,9 @@ gsm_app_class_init (GsmAppClass *app_class)
                                                            -1,
                                                            G_MAXINT,
                                                            -1,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                           G_PARAM_READWRITE));
         g_object_class_install_property (object_class,
-                                         PROP_CLIENT_ID,
+                                         PROP_ID,
                                          g_param_spec_string ("id",
                                                               "ID",
                                                               "ID",
@@ -177,6 +186,8 @@ gsm_app_class_init (GsmAppClass *app_class)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+
+        g_type_class_add_private (klass, sizeof (GsmAppPrivate));
 }
 
 const char *
@@ -252,6 +263,8 @@ gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {
+        g_debug ("Starting app: %s", app->priv->id);
+
         return GSM_APP_GET_CLASS (app)->start (app, error);
 }
 

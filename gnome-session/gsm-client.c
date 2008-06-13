@@ -304,13 +304,13 @@ gsm_client_class_init (GsmClientClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_STATUS,
-                                         g_param_spec_uint ("status",
-                                                            "status",
-                                                            "status",
-                                                            0,
-                                                            G_MAXINT,
-                                                            0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                         g_param_spec_int ("status",
+                                                           "status",
+                                                           "status",
+                                                           -1,
+                                                           G_MAXINT,
+                                                           -1,
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientPrivate));
 }

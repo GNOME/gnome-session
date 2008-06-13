@@ -1,3 +1,36 @@
+2008-06-13  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-app.c (gsm_app_init), (gsm_app_set_phase),
+	(set_property), (gsm_app_class_init), (gsm_app_start):
+	* gnome-session/gsm-autostart-app.c (get_basename),
+	(gsm_autostart_app_constructor), (gsm_autostart_app_class_init),
+	(gsm_autostart_app_new):
+	* gnome-session/gsm-client-store.c (gsm_client_store_add):
+	* gnome-session/gsm-client.c (gsm_client_class_init):
+	* gnome-session/gsm-manager.c (end_phase), (_start_app),
+	(start_phase), (_client_has_client_id), (_app_has_client_id),
+	(on_manage_request), (on_store_client_added),
+	(gsm_manager_set_client_store), (append_app),
+	(append_default_apps), (append_autostart_apps),
+	(append_legacy_session_apps), (append_required_apps),
+	(gsm_manager_class_init):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-resumed-app.c (gsm_resumed_app_init),
+	(gsm_resumed_app_class_init):
+	* gnome-session/gsm-xsmp-client.c (client_iochannel_watch),
+	(client_protocol_timeout), (setup_connection),
+	(debug_print_property), (set_properties_callback),
+	(delete_properties_callback), (get_properties_callback),
+	(do_save_yourself), (xsmp_save_yourself),
+	(xsmp_save_yourself_phase2), (xsmp_interact),
+	(xsmp_shutdown_cancelled), (xsmp_stop), (gsm_xsmp_client_finalize),
+	(gsm_xsmp_client_class_init), (register_client_callback),
+	(save_yourself_request_callback):
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection),
+	(accept_xsmp_connection), (ice_error_handler),
+	(ice_io_error_handler), (sms_error_handler), (setup_listener):
+	Actually register clients.
+
 2008-06-12  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-app.c (gsm_app_init), (set_property),

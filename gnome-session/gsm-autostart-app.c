@@ -484,26 +484,6 @@ launch (GsmApp  *app,
         }
 }
 
-
-static const char *
-get_basename (GsmApp *app)
-{
-        const char *location, *slash;
-
-        if (GSM_AUTOSTART_APP (app)->priv->desktop_file == NULL) {
-                return NULL;
-        }
-
-        location = egg_desktop_file_get_source (GSM_AUTOSTART_APP (app)->priv->desktop_file);
-
-        slash = strrchr (location, '/');
-        if (slash != NULL) {
-                return slash + 1;
-        } else {
-                return location;
-        }
-}
-
 static gboolean
 gsm_autostart_app_provides (GsmApp     *app,
                             const char *service)
@@ -539,6 +519,45 @@ gsm_autostart_app_provides (GsmApp     *app,
         return FALSE;
 }
 
+static const char *
+get_basename (GsmApp *app)
+{
+        const char *location;
+        const char *slash;
+
+        if (GSM_AUTOSTART_APP (app)->priv->desktop_file == NULL) {
+                return NULL;
+        }
+
+        location = egg_desktop_file_get_source (GSM_AUTOSTART_APP (app)->priv->desktop_file);
+
+        slash = strrchr (location, '/');
+        if (slash != NULL) {
+                return slash + 1;
+        } else {
+                return location;
+        }
+}
+
+static GObject *
+gsm_autostart_app_constructor (GType                  type,
+                               guint                  n_construct_properties,
+                               GObjectConstructParam *construct_properties)
+{
+        GsmAutostartApp *app;
+        const char      *id;
+
+        app = GSM_AUTOSTART_APP (G_OBJECT_CLASS (gsm_autostart_app_parent_class)->constructor (type,
+                                                                                               n_construct_properties,
+                                                                                               construct_properties));
+
+        id = get_basename (GSM_APP (app));
+
+        g_object_set (app, "id", id, NULL);
+
+        return G_OBJECT (app);
+}
+
 static void
 gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
 {
@@ -548,6 +567,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->set_property = gsm_autostart_app_set_property;
         object_class->get_property = gsm_autostart_app_get_property;
         object_class->dispose = gsm_autostart_app_dispose;
+        object_class->constructor = gsm_autostart_app_constructor;
 
         app_class->is_disabled = is_disabled;
         app_class->is_running = is_running;
@@ -586,6 +606,7 @@ gsm_autostart_app_new (const char *desktop_file,
                             "desktop-file", desktop_file,
                             "client-id", client_id,
                             NULL);
+
         if (app->priv->desktop_file == NULL) {
                 g_object_unref (app);
                 app = NULL;
