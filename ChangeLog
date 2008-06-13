@@ -1,5 +1,11 @@
 2008-06-13  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (on_app_exited), (_start_app),
+	(on_client_disconnected), (on_manage_request):
+	Add restart support back.
+
+2008-06-13  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.c (gsm_app_class_init), (gsm_app_died):
 	* gnome-session/gsm-app.h:
 	* gnome-session/gsm-autostart-app.c (app_exited), (launch):

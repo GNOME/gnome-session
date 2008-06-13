@@ -248,6 +248,18 @@ phase_timeout (GsmManager *manager)
 }
 
 static void
+on_app_exited (GsmApp     *app,
+               GsmManager *manager)
+{
+        if (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
+                /* Applications from Initialization phase are considered
+                 * registered when they exit normally. This is because
+                 * they are expected to just do "something" and exit */
+                app_registered (app, manager);
+        }
+}
+
+static void
 _start_app (const char *id,
             GsmApp     *app,
             GsmManager *manager)
@@ -284,15 +296,10 @@ _start_app (const char *id,
                 return;
         }
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
-                /* Applications from Initialization phase are considered
-                 * registered when they exit normally. This is because
-                 * they are expected to just do "something" and exit */
-                g_signal_connect (app,
-                                  "exited",
-                                  G_CALLBACK (app_registered),
-                                  manager);
-        }
+        g_signal_connect (app,
+                          "exited",
+                          G_CALLBACK (on_app_exited),
+                          manager);
 
         if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
                 g_signal_connect (app,
@@ -462,6 +469,53 @@ _app_has_client_id (const char *id,
         return (strcmp (client_id_a, client_id_b) == 0);
 }
 
+static void
+on_client_disconnected (GsmClient  *client,
+                        GsmManager *manager)
+{
+        gboolean is_condition_client = FALSE;
+
+        g_debug ("GsmManager: client disconnected");
+
+        /* take a ref so it doesn't get finalized */
+        g_object_ref (client);
+
+        gsm_client_store_remove (manager->priv->store, client);
+
+        manager->priv->shutdown_clients = g_slist_remove (manager->priv->shutdown_clients, client);
+        manager->priv->interact_clients = g_slist_remove (manager->priv->interact_clients, client);
+        manager->priv->phase2_clients = g_slist_remove (manager->priv->phase2_clients, client);
+
+        if (g_slist_find (manager->priv->condition_clients, client)) {
+                manager->priv->condition_clients = g_slist_remove (manager->priv->condition_clients, client);
+
+                is_condition_client = TRUE;
+        }
+
+        if (manager->priv->phase != GSM_MANAGER_PHASE_SHUTDOWN
+            && gsm_client_get_autorestart (client)
+            && !is_condition_client) {
+                GError *error = NULL;
+
+                g_debug ("GsmManager: restarting client");
+
+                /* FIXME: need to link to app here too */
+                gsm_client_restart (client, &error);
+
+                if (error != NULL) {
+                        g_warning ("Error on restarting session client: %s", error->message);
+                        g_clear_error (&error);
+                }
+        }
+
+        g_object_unref (client);
+
+        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN
+            && gsm_client_store_size (manager->priv->store) == 0) {
+                gtk_main_quit ();
+        }
+}
+
 static gboolean
 on_manage_request (GsmClient  *client,
                    char      **id,
@@ -507,9 +561,11 @@ on_manage_request (GsmClient  *client,
                           G_CALLBACK (client_interaction_done), session);
         g_signal_connect (client, "save_yourself_done",
                           G_CALLBACK (client_save_yourself_done), session);
-        g_signal_connect (client, "disconnected",
-                          G_CALLBACK (client_disconnected), session);
 #endif
+        g_signal_connect (client,
+                          "disconnected",
+                          G_CALLBACK (on_client_disconnected),
+                          manager);
 
         /* If it's a brand new client id, we just accept the client*/
         if (*id == NULL) {
