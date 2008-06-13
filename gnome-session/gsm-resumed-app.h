@@ -38,12 +38,8 @@ typedef struct _GsmResumedAppPrivate GsmResumedAppPrivate;
 
 struct _GsmResumedApp
 {
-        GsmApp   parent;
-
-        char    *program;
-        char    *restart_command;
-        char    *discard_command;
-        gboolean discard_on_resume;
+        GsmApp                parent;
+        GsmResumedAppPrivate *priv;
 };
 
 struct _GsmResumedAppClass

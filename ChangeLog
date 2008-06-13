@@ -1,5 +1,35 @@
 2008-06-12  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-app.c (gsm_app_init), (set_property),
+	(get_property), (dispose), (gsm_app_class_init), (gsm_app_get_id),
+	(gsm_app_get_client_id), (gsm_app_get_phase), (gsm_app_is_running),
+	(gsm_app_provides), (gsm_app_start), (gsm_app_stop),
+	(gsm_app_exited):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_init),
+	(gsm_autostart_app_set_desktop_file),
+	(gsm_autostart_app_set_property), (gsm_autostart_app_get_property),
+	(gsm_autostart_app_dispose), (if_exists_condition_cb),
+	(unless_exists_condition_cb), (is_running), (is_disabled),
+	(app_exited), (launch), (get_basename),
+	(gsm_autostart_app_provides), (gsm_autostart_app_class_init),
+	(gsm_autostart_app_new):
+	* gnome-session/gsm-client-store.c:
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-client.c (gsm_client_finalize):
+	* gnome-session/gsm-manager.c (app_condition_changed),
+	(_start_app), (start_phase), (append_app), (_find_app_provides),
+	(append_required_apps), (gsm_manager_init), (gsm_manager_finalize),
+	(initiate_shutdown):
+	* gnome-session/gsm-resumed-app.c (launch), (get_basename),
+	(gsm_resumed_app_class_init),
+	(gsm_resumed_app_new_from_legacy_session):
+	* gnome-session/gsm-resumed-app.h:
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_finalize):
+	A bit more refactoring.
+
+2008-06-12  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client-store.c (gsm_client_store_size),
 	(gsm_client_store_lookup), (_has_client_id),
 	(gsm_client_store_add), (gsm_client_store_set_locked),

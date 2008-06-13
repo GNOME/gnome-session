@@ -169,22 +169,6 @@ gsm_client_store_foreach_remove (GsmClientStore    *store,
         return ret;
 }
 
-static gboolean
-_has_client_id (const char *id,
-                GsmClient  *client,
-                gpointer    user_data)
-{
-        const char *sm_id_a;
-        const char *sm_id_b;
-
-        sm_id_a = user_data;
-        sm_id_b = gsm_client_get_client_id (client);
-        if (sm_id_b == NULL) {
-                return FALSE;
-        }
-        return (strcmp (sm_id_a, sm_id_b) == 0);
-}
-
 gboolean
 gsm_client_store_add (GsmClientStore *store,
                       GsmClient      *client)
@@ -211,7 +195,7 @@ gsm_client_store_add (GsmClientStore *store,
         return TRUE;
 }
 
-static void
+void
 gsm_client_store_set_locked (GsmClientStore *store,
                              gboolean        locked)
 {

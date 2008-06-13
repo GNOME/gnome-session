@@ -24,9 +24,19 @@
 
 #include <glib.h>
 #include <string.h>
-#include <sys/wait.h>
 
 #include "gsm-app.h"
+
+#define GSM_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_APP, GsmAppPrivate))
+
+struct _GsmAppPrivate
+{
+        char           *id;
+
+        GsmManagerPhase phase;
+        char           *client_id;
+};
+
 
 enum {
         EXITED,
@@ -38,26 +48,76 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 enum {
         PROP_0,
-        PROP_DESKTOP_FILE,
+        PROP_ID,
         PROP_CLIENT_ID,
+        PROP_PHASE,
         LAST_PROP
 };
-
-static void set_property (GObject *object, guint prop_id,
-                          const GValue *value, GParamSpec *pspec);
-static void get_property (GObject *object, guint prop_id,
-                          GValue *value, GParamSpec *pspec);
-static void dispose      (GObject *object);
-
-static const char *get_basename (GsmApp *app);
-static pid_t       launch       (GsmApp *app, GError **err);
 
 G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
 static void
 gsm_app_init (GsmApp *app)
 {
-        app->pid = -1;
+}
+
+static void
+set_property (GObject      *object,
+              guint         prop_id,
+              const GValue *value,
+              GParamSpec   *pspec)
+{
+        GsmApp *app = GSM_APP (object);
+
+        switch (prop_id) {
+        case PROP_CLIENT_ID:
+                g_free (app->priv->client_id);
+                app->priv->client_id = g_value_dup_string (value);
+                break;
+        case PROP_ID:
+                g_free (app->priv->id);
+                app->priv->id = g_value_dup_string (value);
+                break;
+        case PROP_PHASE:
+                app->priv->phase = g_value_get_int (value);
+                break;
+        default:
+                break;
+        }
+}
+
+static void
+get_property (GObject    *object,
+              guint       prop_id,
+              GValue     *value,
+              GParamSpec *pspec)
+{
+        GsmApp *app = GSM_APP (object);
+
+        switch (prop_id) {
+        case PROP_CLIENT_ID:
+                g_value_set_string (value, app->priv->client_id);
+                break;
+        case PROP_ID:
+                g_value_set_string (value, app->priv->id);
+                break;
+        case PROP_PHASE:
+                g_value_set_int (value, app->priv->phase);
+                break;
+        default:
+                break;
+        }
+}
+
+static void
+dispose (GObject *object)
+{
+        GsmApp *app = GSM_APP (object);
+
+        if (app->priv->client_id) {
+                g_free (app->priv->client_id);
+                app->priv->client_id = NULL;
+        }
 }
 
 static void
@@ -69,23 +129,34 @@ gsm_app_class_init (GsmAppClass *app_class)
         object_class->get_property = get_property;
         object_class->dispose = dispose;
 
-        app_class->get_basename = get_basename;
-        app_class->launch = launch;
+        app_class->get_basename = NULL;
+        app_class->start = NULL;
+        app_class->provides = NULL;
+        app_class->is_running = NULL;
 
         g_object_class_install_property (object_class,
-                                         PROP_DESKTOP_FILE,
-                                         g_param_spec_string ("desktop-file",
-                                                              "Desktop file",
-                                                              "Freedesktop .desktop file",
+                                         PROP_PHASE,
+                                         g_param_spec_int ("phase",
+                                                           "Phase",
+                                                           "Phase",
+                                                           -1,
+                                                           G_MAXINT,
+                                                           -1,
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+        g_object_class_install_property (object_class,
+                                         PROP_CLIENT_ID,
+                                         g_param_spec_string ("id",
+                                                              "ID",
+                                                              "ID",
                                                               NULL,
-                                                              G_PARAM_READWRITE));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_ID,
                                          g_param_spec_string ("client-id",
                                                               "Client ID",
                                                               "Session management client ID",
                                                               NULL,
-                                                              G_PARAM_READWRITE));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         signals[EXITED] =
                 g_signal_new ("exited",
@@ -108,145 +179,22 @@ gsm_app_class_init (GsmAppClass *app_class)
                               0);
 }
 
-static void
-set_property (GObject      *object,
-              guint         prop_id,
-              const GValue *value,
-              GParamSpec   *pspec)
-{
-        GsmApp *app = GSM_APP (object);
-        const char *desktop_file;
-        char *phase;
-        GError *error = NULL;
-
-        switch (prop_id) {
-        case PROP_DESKTOP_FILE:
-                if (app->desktop_file) {
-                        egg_desktop_file_free (app->desktop_file);
-                }
-                desktop_file = g_value_get_string (value);
-                if (!desktop_file) {
-                        app->desktop_file = NULL;
-                        break;
-                }
-
-                app->desktop_file = egg_desktop_file_new (desktop_file, &error);
-                if (!app->desktop_file) {
-                        g_warning ("Could not parse desktop file %s: %s",
-                                   desktop_file, error->message);
-                        g_error_free (error);
-                        break;
-                }
-
-                phase = egg_desktop_file_get_string (app->desktop_file,
-                                                     "X-GNOME-Autostart-Phase", NULL);
-                if (phase) {
-                        if (!strcmp (phase, "Initialization")) {
-                                app->phase = GSM_MANAGER_PHASE_INITIALIZATION;
-                        } else if (!strcmp (phase, "WindowManager")) {
-                                app->phase = GSM_MANAGER_PHASE_WINDOW_MANAGER;
-                        } else if (!strcmp (phase, "Panel")) {
-                                app->phase = GSM_MANAGER_PHASE_PANEL;
-                        } else if (!strcmp (phase, "Desktop")) {
-                                app->phase = GSM_MANAGER_PHASE_DESKTOP;
-                        } else {
-                                app->phase = GSM_MANAGER_PHASE_APPLICATION;
-                        }
-
-                        g_free (phase);
-                } else {
-                        app->phase = GSM_MANAGER_PHASE_APPLICATION;
-                }
-                break;
-
-        case PROP_CLIENT_ID:
-                g_free (app->client_id);
-                app->client_id = g_value_dup_string (value);
-                break;
-
-        default:
-                break;
-        }
-}
-
-static void
-get_property (GObject    *object,
-              guint       prop_id,
-              GValue     *value,
-              GParamSpec *pspec)
-{
-        GsmApp *app = GSM_APP (object);
-
-        switch (prop_id) {
-        case PROP_DESKTOP_FILE:
-                if (app->desktop_file) {
-                        g_value_set_string (value, egg_desktop_file_get_source (app->desktop_file));
-                } else {
-                        g_value_set_string (value, NULL);
-                }
-                break;
-
-        case PROP_CLIENT_ID:
-                g_value_set_string (value, app->client_id);
-                break;
-
-        default:
-                break;
-        }
-}
-
-static void
-dispose(GObject *object)
-{
-        GsmApp *app = GSM_APP (object);
-
-        if (app->desktop_file) {
-                egg_desktop_file_free (app->desktop_file);
-                app->desktop_file = NULL;
-        }
-
-        if (app->startup_id) {
-                g_free (app->startup_id);
-                app->startup_id = NULL;
-        }
-
-        if (app->client_id) {
-                g_free (app->client_id);
-                app->client_id = NULL;
-        }
-}
-
-/**
- * gsm_app_get_basename:
- * @app: a %GsmApp
- *
- * Returns an identifying name for @app, e.g. the basename of the path to
- * @app's desktop file (if any).
- *
- * Return value: an identifying name for @app, or %NULL.
- **/
 const char *
 gsm_app_get_basename (GsmApp *app)
 {
         return GSM_APP_GET_CLASS (app)->get_basename (app);
 }
 
-static const char *
-get_basename (GsmApp *app)
+const char *
+gsm_app_get_id (GsmApp *app)
 {
-        const char *location, *slash;
+        return app->priv->id;
+}
 
-        if (!app->desktop_file)
-                return NULL;
-
-        location = egg_desktop_file_get_source (app->desktop_file);
-
-        slash = strrchr (location, '/');
-        if (slash) {
-                return slash + 1;
-        } else {
-                return location;
-        }
+const char *
+gsm_app_get_client_id (GsmApp *app)
+{
+        return app->priv->client_id;
 }
 
 /**
@@ -262,17 +210,9 @@ gsm_app_get_phase (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), GSM_MANAGER_PHASE_APPLICATION);
 
-        return app->phase;
+        return app->priv->phase;
 }
 
-/**
- * gsm_app_is_disabled:
- * @app: a %GsmApp
- *
- * Tests if @app is disabled
- *
- * Return value: whether or not @app is disabled
- **/
 gboolean
 gsm_app_is_disabled (GsmApp *app)
 {
@@ -286,108 +226,42 @@ gsm_app_is_disabled (GsmApp *app)
 }
 
 gboolean
-gsm_app_provides (GsmApp *app, const char *service)
+gsm_app_is_running (GsmApp *app)
 {
-        char **provides;
-        gsize len, i;
-
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        if (!app->desktop_file) {
-                return FALSE;
-        }
-
-        provides = egg_desktop_file_get_string_list (app->desktop_file,
-                                                     "X-GNOME-Provides",
-                                                     &len, NULL);
-        if (!provides) {
-                return FALSE;
-        }
-
-        for (i = 0; i < len; i++) {
-                if (!strcmp (provides[i], service)) {
-                        g_strfreev (provides);
-                        return TRUE;
-                }
-        }
-
-        g_strfreev (provides);
-        return FALSE;
-}
-
-static void
-app_exited (GPid pid, gint status, gpointer data)
-{
-        if (WIFEXITED (status)) {
-                g_signal_emit (GSM_APP (data), signals[EXITED], 0);
-        }
-}
-
-static pid_t
-launch (GsmApp  *app,
-        GError **err)
-{
-        char *env[2] = { NULL, NULL };
-        gboolean success;
-
-        g_return_val_if_fail (app->desktop_file != NULL, (pid_t)-1);
-
-        if (egg_desktop_file_get_boolean (app->desktop_file,
-                                          "X-GNOME-Autostart-Notify", NULL) ||
-            egg_desktop_file_get_boolean (app->desktop_file,
-                                          "AutostartNotify", NULL)) {
-                env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", app->client_id);
-        }
-
-#if 0
-        g_debug ("launching %s with client_id %s\n",
-                 gsm_app_get_basename (app), app->client_id);
-#endif
-
-        success =
-                egg_desktop_file_launch (app->desktop_file, NULL, err,
-                                         EGG_DESKTOP_FILE_LAUNCH_PUTENV, env,
-                                         EGG_DESKTOP_FILE_LAUNCH_FLAGS, G_SPAWN_DO_NOT_REAP_CHILD,
-                                         EGG_DESKTOP_FILE_LAUNCH_RETURN_PID, &app->pid,
-                                         EGG_DESKTOP_FILE_LAUNCH_RETURN_STARTUP_ID, &app->startup_id,
-                                         NULL);
-
-        g_free (env[0]);
-
-        if (success) {
-                /* In case the app belongs to Initialization phase, we monitor
-                 * if it exits to emit proper "exited" signal to session. */
-                if (app->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
-                        g_child_watch_add ((GPid) app->pid, app_exited, app);
-                }
-
-                return app->pid;
+        if (GSM_APP_GET_CLASS (app)->is_running) {
+                return GSM_APP_GET_CLASS (app)->is_running (app);
         } else {
-                return (pid_t) -1;
+                return FALSE;
         }
 }
 
-/**
- * gsm_app_launch:
- * @app: a %GsmApp
- * @err: an error pointer
- *
- * Launches @app
- *
- * Return value: the pid of the new process, or -1 on error
- **/
-pid_t
-gsm_app_launch (GsmApp *app, GError **err)
+gboolean
+gsm_app_provides (GsmApp *app, const char *service)
 {
-        return GSM_APP_GET_CLASS (app)->launch (app, err);
+
+        if (GSM_APP_GET_CLASS (app)->provides) {
+                return GSM_APP_GET_CLASS (app)->provides (app, service);
+        } else {
+                return FALSE;
+        }
 }
 
-/**
- * gsm_app_registered:
- * @app: a %GsmApp
- *
- * Emits "registered" signal in @app
- **/
+gboolean
+gsm_app_start (GsmApp  *app,
+               GError **error)
+{
+        return GSM_APP_GET_CLASS (app)->start (app, error);
+}
+
+gboolean
+gsm_app_stop (GsmApp  *app,
+              GError **error)
+{
+        return GSM_APP_GET_CLASS (app)->stop (app, error);
+}
+
 void
 gsm_app_registered (GsmApp *app)
 {
@@ -396,3 +270,10 @@ gsm_app_registered (GsmApp *app)
         g_signal_emit (app, signals[REGISTERED], 0);
 }
 
+void
+gsm_app_exited (GsmApp *app)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        g_signal_emit (app, signals[EXITED], 0);
+}

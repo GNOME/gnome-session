@@ -44,14 +44,8 @@ typedef struct _GsmAppPrivate GsmAppPrivate;
 
 struct _GsmApp
 {
-        GObject         parent;
-
-        EggDesktopFile *desktop_file;
-        GsmManagerPhase phase;
-
-        pid_t           pid;
-        char           *startup_id;
-        char           *client_id;
+        GObject        parent;
+        GsmAppPrivate *priv;
 };
 
 struct _GsmAppClass
@@ -59,25 +53,43 @@ struct _GsmAppClass
         GObjectClass parent_class;
 
         /* signals */
-        void        (*exited)       (GsmApp *app, int status);
+        void        (*exited)       (GsmApp *app,
+                                     int     status);
         void        (*registered)   (GsmApp *app);
 
         /* virtual methods */
+        gboolean    (*start)         (GsmApp     *app,
+                                      GError    **error);
+        gboolean    (*stop)          (GsmApp     *app,
+                                      GError    **error);
+        gboolean    (*provides)      (GsmApp     *app,
+                                      const char *service);
+        gboolean    (*is_running)    (GsmApp     *app);
+
         const char *(*get_basename) (GsmApp *app);
         gboolean    (*is_disabled)  (GsmApp *app);
-        pid_t       (*launch)       (GsmApp *app, GError **err);
-        void        (*set_client)   (GsmApp *app, GsmClient *client);
+        void        (*set_client)   (GsmApp    *app,
+                                     GsmClient *client);
 };
 
 GType            gsm_app_get_type        (void) G_GNUC_CONST;
 
-const char      *gsm_app_get_basename    (GsmApp     *app);
+gboolean         gsm_app_start           (GsmApp     *app,
+                                          GError    **error);
+gboolean         gsm_app_stop            (GsmApp     *app,
+                                          GError    **error);
+const char      *gsm_app_get_id          (GsmApp     *app);
+const char      *gsm_app_get_client_id   (GsmApp     *app);
 GsmManagerPhase  gsm_app_get_phase       (GsmApp     *app);
+gboolean         gsm_app_is_running      (GsmApp     *app);
+
+void             gsm_app_exited          (GsmApp     *app);
+
+
+const char      *gsm_app_get_basename    (GsmApp     *app);
 gboolean         gsm_app_provides        (GsmApp     *app,
                                           const char *service);
 gboolean         gsm_app_is_disabled     (GsmApp     *app);
-pid_t            gsm_app_launch          (GsmApp     *app,
-                                          GError    **err);
 void             gsm_app_set_client      (GsmApp     *app,
                                           GsmClient  *client);
 

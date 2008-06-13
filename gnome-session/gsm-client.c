@@ -116,6 +116,7 @@ gsm_client_finalize (GObject *object)
         g_return_if_fail (client->priv != NULL);
 
         g_free (client->priv->id);
+        g_free (client->priv->client_id);
 }
 
 void

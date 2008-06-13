@@ -48,7 +48,6 @@ struct GsmXSMPClientPrivate
 
         int        current_save_yourself;
         int        next_save_yourself;
-        char      *id;
         char      *description;
         GPtrArray *props;
 };
@@ -562,19 +561,21 @@ gsm_xsmp_client_finalize (GObject *object)
 
         g_debug ("xsmp_finalize (%s)", client->priv->description);
 
-        if (client->priv->watch_id) {
+        if (client->priv->watch_id > 0) {
                 g_source_remove (client->priv->watch_id);
         }
 
-        if (client->priv->conn) {
+        if (client->priv->conn != NULL) {
                 SmsCleanUp (client->priv->conn);
         } else {
                 IceCloseConnection (client->priv->ice_connection);
         }
 
-        if (client->priv->protocol_timeout) {
+        if (client->priv->protocol_timeout > 0) {
                 g_source_remove (client->priv->protocol_timeout);
         }
+
+        g_free (client->priv->description);
 
         G_OBJECT_CLASS (gsm_xsmp_client_parent_class)->finalize (object);
 }

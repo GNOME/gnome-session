@@ -69,8 +69,7 @@ struct GsmManagerPrivate
         GsmClientStore         *store;
 
         /* Startup/resumed apps */
-        GSList                 *apps;
-        GHashTable             *apps_by_name;
+        GHashTable             *apps_by_id;
 
         /* Current status */
         char                   *name;
@@ -163,13 +162,13 @@ app_condition_changed (GsmApp     *app,
 
         client = gsm_client_store_find (manager->priv->store,
                                         (GsmClientStoreFunc)_find_by_client_id,
-                                        app->client_id);
+                                        (char *)gsm_app_get_client_id (app));
 
         if (condition) {
                 GError *error = NULL;
 
-                if (app->pid <= 0 && client == NULL) {
-                        gsm_app_launch (app, &error);
+                if (!gsm_app_is_running (app) && client == NULL) {
+                        gsm_app_start (app, &error);
                 }
 
                 if (error != NULL) {
@@ -188,7 +187,7 @@ app_condition_changed (GsmApp     *app,
                  */
 
                 gsm_client_stop (client);
-                app->pid = -1;
+                gsm_app_stop (app, NULL);
         }
 }
 
@@ -249,62 +248,72 @@ phase_timeout (GsmManager *manager)
 }
 
 static void
+_start_app (const char *id,
+            GsmApp     *app,
+            GsmManager *manager)
+{
+        GError  *error;
+        gboolean res;
+
+        if (gsm_app_get_phase (app) != manager->priv->phase) {
+                return;
+        }
+
+        /* Keep track of app autostart condition in order to react
+         * accordingly in the future. */
+        g_signal_connect (app,
+                          "condition-changed",
+                          G_CALLBACK (app_condition_changed),
+                          manager);
+
+        if (gsm_app_is_disabled (app)) {
+                return;
+        }
+
+        error = NULL;
+        res = gsm_app_start (app, &error);
+        if (!res) {
+                if (error != NULL) {
+                        g_warning ("Could not launch application '%s': %s",
+                                   gsm_app_get_basename (app),
+                                   error->message);
+                        g_error_free (error);
+                        error = NULL;
+                }
+                return;
+        }
+
+        if (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
+                /* Applications from Initialization phase are considered
+                 * registered when they exit normally. This is because
+                 * they are expected to just do "something" and exit */
+                g_signal_connect (app,
+                                  "exited",
+                                  G_CALLBACK (app_registered),
+                                  manager);
+        }
+
+        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                g_signal_connect (app,
+                                  "registered",
+                                  G_CALLBACK (app_registered),
+                                  manager);
+                manager->priv->pending_apps = g_slist_prepend (manager->priv->pending_apps, app);
+        }
+}
+
+static void
 start_phase (GsmManager *manager)
 {
-        GsmApp *app;
-        GSList *a;
-        GError *err = NULL;
 
         g_debug ("starting phase %d\n", manager->priv->phase);
 
         g_slist_free (manager->priv->pending_apps);
         manager->priv->pending_apps = NULL;
 
-        for (a = manager->priv->apps; a; a = a->next) {
-                app = a->data;
-
-                if (gsm_app_get_phase (app) != manager->priv->phase) {
-                        continue;
-                }
-
-                /* Keep track of app autostart condition in order to react
-                 * accordingly in the future. */
-                g_signal_connect (app,
-                                  "condition-changed",
-                                  G_CALLBACK (app_condition_changed),
-                                  manager);
-
-                if (gsm_app_is_disabled (app)) {
-                        continue;
-                }
-
-                if (gsm_app_launch (app, &err) > 0) {
-                        if (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
-                                /* Applications from Initialization phase are considered
-                                 * registered when they exit normally. This is because
-                                 * they are expected to just do "something" and exit */
-                                g_signal_connect (app,
-                                                  "exited",
-                                                  G_CALLBACK (app_registered),
-                                                  manager);
-                        }
-
-                        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                                g_signal_connect (app,
-                                                  "registered",
-                                                  G_CALLBACK (app_registered),
-                                                  manager);
-
-                                manager->priv->pending_apps = g_slist_prepend (manager->priv->pending_apps, app);
-                        }
-                } else if (err != NULL) {
-                        g_warning ("Could not launch application '%s': %s",
-                                   gsm_app_get_basename (app),
-                                   err->message);
-                        g_error_free (err);
-                        err = NULL;
-                }
-        }
+        g_hash_table_foreach (manager->priv->apps_by_id,
+                              (GHFunc)_start_app,
+                              manager);
 
         if (manager->priv->pending_apps != NULL) {
                 if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
@@ -506,24 +515,23 @@ static void
 append_app (GsmManager *manager,
             GsmApp     *app)
 {
-        const char *basename;
+        const char *id;
         GsmApp     *dup;
 
-        basename = gsm_app_get_basename (app);
-        if (basename == NULL) {
+        id = gsm_app_get_id (app);
+        if (id == NULL) {
                 g_object_unref (app);
                 return;
         }
 
-        dup = g_hash_table_lookup (manager->priv->apps_by_name, basename);
+        dup = g_hash_table_lookup (manager->priv->apps_by_id, id);
         if (dup != NULL) {
                 /* FIXME */
                 g_object_unref (app);
                 return;
         }
 
-        manager->priv->apps = g_slist_append (manager->priv->apps, app);
-        g_hash_table_insert (manager->priv->apps_by_name, g_strdup (basename), app);
+        g_hash_table_insert (manager->priv->apps_by_id, g_strdup (id), app);
 }
 
 static void
@@ -691,13 +699,20 @@ append_saved_session_apps (GsmManager *manager)
         g_free (session_filename);
 }
 
+static gboolean
+_find_app_provides (const char *id,
+                    GsmApp     *app,
+                    const char *service)
+{
+        return gsm_app_provides (app, service);
+}
+
 static void
 append_required_apps (GsmManager *manager)
 {
         GSList      *required_components;
         GSList      *r;
         GsmApp      *app;
-        gboolean     found;
         GConfClient *client;
 
         client = gconf_client_get_default ();
@@ -707,7 +722,6 @@ append_required_apps (GsmManager *manager)
         g_object_unref (client);
 
         for (r = required_components; r; r = r->next) {
-                GSList     *a;
                 GConfEntry *entry;
                 const char *default_provider;
                 const char *service;
@@ -725,23 +739,18 @@ append_required_apps (GsmManager *manager)
                         continue;
                 }
 
-                for (a = manager->priv->apps, found = FALSE; a; a = a->next) {
-                        app = a->data;
-
-                        if (gsm_app_provides (app, service)) {
-                                found = TRUE;
-                                break;
-                        }
-                }
-
-                if (!found) {
+                app = g_hash_table_find (manager->priv->apps_by_id,
+                                         (GHRFunc)_find_app_provides,
+                                         (char *)service);
+                if (app == NULL) {
                         char *client_id;
 
                         client_id = gsm_util_generate_client_id ();
                         app = gsm_autostart_app_new (default_provider, client_id);
                         g_free (client_id);
-                        if (app)
+                        if (app != NULL) {
                                 append_app (manager, app);
+                        }
                         /* FIXME: else error */
                 }
 
@@ -883,7 +892,10 @@ gsm_manager_init (GsmManager *manager)
 
         manager->priv = GSM_MANAGER_GET_PRIVATE (manager);
 
-        manager->priv->apps_by_name = g_hash_table_new (g_str_hash, g_str_equal);
+        manager->priv->apps_by_id = g_hash_table_new_full (g_str_hash,
+                                                           g_str_equal,
+                                                           g_free,
+                                                           g_object_unref);
 
         manager->priv->logout_response_id = GTK_RESPONSE_NONE;
 }
@@ -903,6 +915,8 @@ gsm_manager_finalize (GObject *object)
         if (manager->priv->store != NULL) {
                 g_object_unref (manager->priv->store);
         }
+
+        g_free (manager->priv->name);
 
         /* FIXME */
 
@@ -1023,6 +1037,9 @@ static void
 initiate_shutdown (GsmManager *manager)
 {
         manager->priv->phase = GSM_MANAGER_PHASE_SHUTDOWN;
+
+        /* lock the client store so no clients may be added */
+        gsm_client_store_set_locked (manager->priv->store, TRUE);
 
         if (gsm_client_store_size (manager->priv->store) == 0) {
                 manager_shutdown (manager);

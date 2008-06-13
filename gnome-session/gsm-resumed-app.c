@@ -26,8 +26,13 @@
 
 #include "gsm-resumed-app.h"
 
-static const char *get_basename (GsmApp *app);
-static pid_t       launch       (GsmApp *app, GError **error);
+struct _GsmResumedAppPrivate
+{
+        char    *program;
+        char    *restart_command;
+        char    *discard_command;
+        gboolean discard_on_resume;
+};
 
 G_DEFINE_TYPE (GsmResumedApp, gsm_resumed_app, GSM_TYPE_APP)
 
@@ -37,13 +42,62 @@ gsm_resumed_app_init (GsmResumedApp *app)
         ;
 }
 
+static gboolean
+launch (GsmApp  *app,
+        GError **err)
+{
+        const char *restart_command;
+        int         argc;
+        char      **argv;
+        gboolean    success;
+        gboolean    res;
+        pid_t       pid;
+
+        restart_command = GSM_RESUMED_APP (app)->priv->restart_command;
+
+        if (restart_command == NULL) {
+                return FALSE;
+        }
+
+        res = g_shell_parse_argv (restart_command, &argc, &argv, err);
+        if (!res) {
+                return FALSE;
+        }
+
+        /* In theory, we should set up the environment according to
+         * SmEnvironment, and the current directory according to
+         * SmCurrentDirectory. However, ksmserver doesn't support either of
+         * those properties, so apps that want to be portable can't depend
+         * on them working anyway. Also, no one ever uses them. So we just
+         * ignore them.
+         */
+
+        success = g_spawn_async (NULL,
+                                 argv,
+                                 NULL,
+                                 G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
+                                 NULL,
+                                 NULL,
+                                 &pid,
+                                 err);
+        g_strfreev (argv);
+
+        return success;
+}
+
+static const char *
+get_basename (GsmApp *app)
+{
+        return GSM_RESUMED_APP (app)->priv->program;
+}
+
 static void
 gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 {
         GsmAppClass *app_class = GSM_APP_CLASS (klass);
 
         app_class->get_basename = get_basename;
-        app_class->launch = launch;
+        app_class->start = launch;
 }
 
 /**
@@ -59,10 +113,13 @@ gsm_resumed_app_class_init (GsmResumedAppClass *klass)
  * @session_file is not actually a saved XSMP client.
  **/
 GsmApp *
-gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file, int n)
+gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file,
+                                         int       n)
 {
         GsmResumedApp *app;
-        char *key, *id, *val;
+        char          *key;
+        char          *id;
+        char          *val;
 
         key = g_strdup_printf ("%d,id", n);
         id = g_key_file_get_string (session_file, "Default", key, NULL);
@@ -84,7 +141,7 @@ gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file, int n)
         g_free (key);
 
         if (val) {
-                app->program = val;
+                app->priv->program = val;
         }
 
         key = g_strdup_printf ("%d," SmRestartCommand, n);
@@ -92,114 +149,14 @@ gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file, int n)
         g_free (key);
 
         if (val) {
-                app->restart_command = val;
+                app->priv->restart_command = val;
         }
 
         /* We ignore the discard_command on apps resumed from the legacy
          * session, so that the legacy session will still work if the user
          * reverts back to the old gnome-session.
          */
-        app->discard_on_resume = FALSE;
+        app->priv->discard_on_resume = FALSE;
 
         return (GsmApp *) app;
-}
-
-/**
- * gsm_resumed_app_new_from_session:
- * @session_file: a session file
- * @group: the group containing the client to read
- * @discard: whether or not the app's state should be discarded after
- * it resumes.
- *
- * Creates a new #GsmApp corresponding to the indicated client in a
- * session file.
- *
- * Return value: the new #GsmApp, or %NULL on error
- **/
-#if 0
-GsmApp *
-gsm_resumed_app_new_from_session (GKeyFile *session_file, const char *group,
-                                  gboolean discard)
-{
-        GsmResumedApp *app;
-        char *desktop_file, *client_id, *val;
-
-        desktop_file = g_key_file_get_string (session_file, group,
-                                              "_GSM_DesktopFile", NULL);
-        client_id = g_key_file_get_string (session_file, group, "id", NULL);
-
-        app = g_object_new (GSM_TYPE_RESUMED_APP,
-                            "desktop-file", desktop_file,
-                            "client-id", client_id,
-                            NULL);
-        g_free (desktop_file);
-        g_free (client_id);
-
-        /* Replace Exec key with RestartCommand */
-        val = g_key_file_get_string (session_file, group,
-                                     SmRestartCommand, NULL);
-        gsm_app_set_exec (app, val);
-        g_free (val);
-
-        /* Use Program for the name if there's no localized name */
-        if (!gsm_app_get_name (app)) {
-                val = g_key_file_get_string (session_file, group,
-                                             SmProgram, NULL);
-                gsm_app_set_name (app, val);
-                g_free (val);
-        }
-
-        app->discard_command = g_key_file_get_string (session_file, group,
-                                                      SmDiscardCommand, NULL);
-        app->discard_on_resume = discard;
-
-        /* FIXME: if discard_on_resume is set, then the app needs to find
-         * out if it has been matched up with a GsmClient, so it can run its
-         * discard command later. (It can't actually run the discard command
-         * right away when the client connects, because the client might not
-         * have actually read in its old state at that point. So it's
-         * probably best to not run the discard command until after the
-         * client quits.
-         */
-        return (GsmApp *)app;
-}
-#endif
-
-static const char *
-get_basename (GsmApp *app)
-{
-        return GSM_RESUMED_APP (app)->program;
-}
-
-static pid_t
-launch (GsmApp *app, GError **err)
-{
-        const char *restart_command = GSM_RESUMED_APP (app)->restart_command;
-        int argc;
-        char **argv;
-        gboolean success;
-        pid_t pid;
-
-        if (!restart_command) {
-                return (pid_t)-1;
-        }
-
-        if (!g_shell_parse_argv (restart_command, &argc, &argv, err)) {
-                return (pid_t)-1;
-        }
-
-        /* In theory, we should set up the environment according to
-         * SmEnvironment, and the current directory according to
-         * SmCurrentDirectory. However, ksmserver doesn't support either of
-         * those properties, so apps that want to be portable can't depend
-         * on them working anyway. Also, no one ever uses them. So we just
-         * ignore them.
-         */
-
-        success = g_spawn_async (NULL, argv, NULL,
-                                 G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD,
-                                 NULL, NULL, &pid, err);
-        g_strfreev (argv);
-
-        return success ? pid : (pid_t)-1;
 }
