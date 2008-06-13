@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-16 21:52+0000\n"
-"PO-Revision-Date: 2008-06-04 10:56+0300\n"
+"PO-Revision-Date: 2008-06-10 14:18+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -57,9 +57,8 @@ msgstr ""
 "väljalogimisdialoogil näidatakse seansi salvestamise valikut."
 
 #: ../data/gnome-session.schemas.in.h:5
-#, fuzzy
 msgid "List of applications that are part of the default session."
-msgstr "Seansis olevate rakenduste käivitamise järjekord."
+msgstr "Vaikimisi seansi osaks olevate rakenduste nimekiri."
 
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
@@ -197,9 +196,8 @@ msgid "_Name:"
 msgstr "_Nimi:"
 
 #: ../data/session-properties.glade.h:10
-#, fuzzy
 msgid "_Remember Currently Running Application"
-msgstr "_Jäta praegu töötavad rakendused meelde"
+msgstr "_Jäta praegu töötav rakendus meelde"
 
 #: ../egg/eggdesktopfile.c:130
 #, c-format
@@ -209,7 +207,7 @@ msgstr "Fail pole korrektne .desktop-fail"
 #: ../egg/eggdesktopfile.c:153
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
+msgstr "Töölauafaili tundmatu versioon '%s'"
 
 #: ../egg/eggdesktopfile.c:926
 #, c-format
@@ -219,12 +217,12 @@ msgstr "Käivitamine: %s"
 #: ../egg/eggdesktopfile.c:1060
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr ""
+msgstr "Rakendus ei toeta käsurealt määratavaid dokumente"
 
 #: ../egg/eggdesktopfile.c:1128
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr ""
+msgstr "Tundmatu käivitusvalik: %d"
 
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
@@ -307,7 +305,7 @@ msgstr "Kas logida sellest süsteemist välja?"
 
 #: ../gnome-session/logout-dialog.c:309
 msgid "_Switch User"
-msgstr ""
+msgstr "_Vaheta kasutajat"
 
 #: ../gnome-session/logout-dialog.c:317
 msgid "_Log Out"
@@ -315,25 +313,23 @@ msgstr "Logi _välja"
 
 #: ../gnome-session/logout-dialog.c:323
 msgid "Shut down this system now?"
-msgstr ""
+msgstr "Kas jätta süsteem seisma?"
 
 #: ../gnome-session/logout-dialog.c:329
 msgid "S_uspend"
-msgstr ""
+msgstr "_Peata"
 
 #: ../gnome-session/logout-dialog.c:334
 msgid "_Hibernate"
-msgstr ""
+msgstr "_Hiberneeri"
 
 #: ../gnome-session/logout-dialog.c:339
-#, fuzzy
 msgid "_Restart"
-msgstr "Taaskäivita"
+msgstr "_Taaskäivita"
 
 #: ../gnome-session/logout-dialog.c:348
-#, fuzzy
 msgid "_Shut Down"
-msgstr "A_rvuti seiskamine"
+msgstr "_Seiska"
 
 #: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
@@ -344,6 +340,8 @@ msgstr ""
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
+"Sisselogimise seanssi pole võimalik käivitada (ja X-serveriga pole võimalik "
+"ühendust saada)"
 
 #: ../gnome-session/main.c:107
 msgid " - the GNOME session manager"
@@ -352,7 +350,7 @@ msgstr "- GNOME seansihaldud"
 #: ../gnome-session/xsmp.c:133
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "ICE kuulamissoklit pole võimalik luua: %s"
 
 #: ../gnome-session/xsmp.c:336
 msgid ""
@@ -436,7 +434,7 @@ msgstr "- Praeguse seansi salvestamine"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
-msgstr ""
+msgstr "Sisselogimise asemel väljalogimise heli esitamine"
 
 #: ../splash/gnome-login-sound.c:148
 msgid "- GNOME login/logout sound"
