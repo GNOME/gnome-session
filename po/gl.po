@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-25 16:40+0200\n"
-"PO-Revision-Date: 2008-05-25 16:41+0200\n"
+"POT-Creation-Date: 2008-06-14 19:00+0200\n"
+"PO-Revision-Date: 2008-06-14 19:01+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../compat/at-spi-registryd-wrapper.c:48
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -67,15 +67,15 @@ msgstr "Lista de aplicacións que son parte da sesión predeterminada."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
 "Lista de compoñentes necesarios como partes da sesión. (Cada elemento ten "
-"unha chave baixo \"/desktop/gnome/session/required-components\".) A applet "
-"da sesión non permitirá que os usuarios eliminen compoñentes necesarias para "
-"a sesión, e o xestor de sesións engadirá automaticamente as compoñentes "
-"necesarias á sesión, se se eliminaron."
+"unha chave baixo \"/desktop/gnome/session/required-components\".) As "
+"preferencias da sesión non permitirá que os usuarios eliminen compoñentes "
+"necesarias para a sesión, e o xestor de sesións engadirá automaticamente as "
+"compoñentes necesarias á sesión, se se eliminaron."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -296,7 +296,7 @@ msgstr ""
 "Hai un problema coa configuración do servidor.\n"
 "(%s saíu co estado %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/logout-dialog.c:269
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -311,7 +311,7 @@ msgstr[1] ""
 "Actualmente está rexistrado na sesión como \"%s\".\n"
 "Sairá automaticamente da sesión en %d segundos."
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/logout-dialog.c:281
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -326,35 +326,35 @@ msgstr[1] ""
 "Actualmente está rexistrado na sesión como \"%s\".\n"
 "O sistema apagarase automaticamente en %d segundos."
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/logout-dialog.c:357
 msgid "Log out of this system now?"
 msgstr "Quere terminar agora a sesión neste sistema?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/logout-dialog.c:363
 msgid "_Switch User"
 msgstr "Cambiar de u_suario"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/logout-dialog.c:371
 msgid "_Log Out"
 msgstr "_Terminar a sesión"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/logout-dialog.c:377
 msgid "Shut down this system now?"
 msgstr "Quere apagar agora este sistema?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/logout-dialog.c:383
 msgid "S_uspend"
 msgstr "S_uspender"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/logout-dialog.c:388
 msgid "_Hibernate"
 msgstr "_Hibernar"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/logout-dialog.c:393
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/logout-dialog.c:402
 msgid "_Shut Down"
 msgstr "A_pagar"
 
@@ -374,12 +374,12 @@ msgstr ""
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións de Gnome"
 
-#: ../gnome-session/xsmp.c:133
+#: ../gnome-session/xsmp.c:130
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Non se puido crear o socket de escoita ICE: %s"
 
-#: ../gnome-session/xsmp.c:336
+#: ../gnome-session/xsmp.c:335
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -392,43 +392,43 @@ msgstr ""
 msgid "Could not connect to the session manager\n"
 msgstr "Non se puido conectar co xestor de sesión\n"
 
-#: ../capplet/ui.c:106
+#: ../capplet/ui.c:107
 msgid "Select Command"
 msgstr "Seleccionar comando"
 
-#: ../capplet/ui.c:218
+#: ../capplet/ui.c:219
 msgid "The name of the startup program cannot be empty"
 msgstr "O nome do programa de inicio non pode estar baleiro"
 
-#: ../capplet/ui.c:221
+#: ../capplet/ui.c:222
 msgid "The startup command cannot be empty"
 msgstr "O comando de inicio non pode estar baleiro"
 
-#: ../capplet/ui.c:228
+#: ../capplet/ui.c:229
 msgid "The startup command is not valid"
 msgstr "O comando de inicio non é válido"
 
-#: ../capplet/ui.c:356
+#: ../capplet/ui.c:464
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../capplet/ui.c:370
+#: ../capplet/ui.c:478
 msgid "Icon"
 msgstr "Icona"
 
-#: ../capplet/ui.c:382
+#: ../capplet/ui.c:490
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/ui.c:417
+#: ../capplet/ui.c:536
 msgid "Add Startup Program"
 msgstr "Engadir programa ao inicio"
 
-#: ../capplet/ui.c:467
+#: ../capplet/ui.c:586
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
 
-#: ../capplet/commands.c:783
+#: ../capplet/commands.c:793
 msgid "No description"
 msgstr "Sen descrición"
 
@@ -469,7 +469,7 @@ msgstr "Reproducir o son de saída no lugar do de entrada"
 msgid "- GNOME login/logout sound"
 msgstr "- Son de inicio/saída de sesión de Gnome"
 
-#: ../splash/gnome-session-splash.c:204
+#: ../splash/gnome-session-splash.c:283
 msgid "- GNOME Splash Screen"
 msgstr "- Pantalla de benvida de Gnome"
 
