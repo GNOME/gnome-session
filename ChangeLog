@@ -1,3 +1,30 @@
+2008-06-15  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.in:
+	* gnome-session/Makefile.am:
+	* gnome-session/gdm.c (gdm_init_protocol_connection),
+	(gdm_is_available):
+	* gnome-session/gdm.h:
+	* gnome-session/gsm-consolekit.c (gsm_consolekit_get_property),
+	(gsm_consolekit_class_init), (gsm_consolekit_ensure_ck_connection),
+	(gsm_consolekit_on_name_owner_changed), (gsm_consolekit_init),
+	(gsm_consolekit_finalize), (gsm_consolekit_error_quark),
+	(gsm_consolekit_new), (try_system_stop), (try_system_restart),
+	(emit_restart_complete), (emit_stop_complete),
+	(system_restart_auth_cb), (system_stop_auth_cb),
+	(get_action_from_error), (request_restart_priv),
+	(request_stop_priv), (gsm_consolekit_attempt_restart),
+	(gsm_consolekit_attempt_stop), (gsm_consolekit_can_restart),
+	(gsm_consolekit_can_stop), (gsm_get_consolekit):
+	* gnome-session/gsm-consolekit.h:
+	* gnome-session/gsm-manager.c (do_request_reboot),
+	(do_request_shutdown), (manager_shutdown):
+	* gnome-session/logout-dialog.c (on_ck_request_completed),
+	(gsm_logout_dialog_init), (gsm_logout_dialog_destroy),
+	(gsm_logout_supports_reboot), (gsm_logout_supports_shutdown),
+	(gsm_get_logout_dialog):
+	Add CK shutdown support.  Merged from trunk.
+
 2008-06-13  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-manager.c (on_app_exited), (_start_app),

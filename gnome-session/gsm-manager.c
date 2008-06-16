@@ -49,6 +49,7 @@
 #include "util.h"
 #include "gdm.h"
 #include "logout-dialog.h"
+#include "gsm-consolekit.h"
 #include "power-manager.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
@@ -1184,6 +1185,28 @@ gsm_manager_initialization_error (GsmManager  *manager,
         return TRUE;
 }
 
+static void
+do_request_reboot (GsmConsolekit *consolekit)
+{
+        if (gsm_consolekit_can_restart (consolekit)) {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+                gsm_consolekit_attempt_restart (consolekit);
+        } else {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+        }
+}
+
+static void
+do_request_shutdown (GsmConsolekit *consolekit)
+{
+        if (gsm_consolekit_can_stop (consolekit)) {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+                gsm_consolekit_attempt_stop (consolekit);
+        } else {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+        }
+}
+
 static gboolean
 _stop_client (const char *id,
               GsmClient  *client,
@@ -1197,6 +1220,8 @@ _stop_client (const char *id,
 static void
 manager_shutdown (GsmManager *manager)
 {
+        GsmConsolekit *consolekit;
+
         /* Emit session over signal */
         g_signal_emit (manager, signals[SESSION_OVER], 0);
 
@@ -1207,10 +1232,14 @@ manager_shutdown (GsmManager *manager)
 
         switch (manager->priv->logout_response_id) {
         case GSM_LOGOUT_RESPONSE_SHUTDOWN:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+                consolekit = gsm_get_consolekit ();
+                do_request_shutdown (consolekit);
+                g_object_unref (consolekit);
                 break;
         case GSM_LOGOUT_RESPONSE_REBOOT:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+                consolekit = gsm_get_consolekit ();
+                do_request_reboot (consolekit);
+                g_object_unref (consolekit);
                 break;
         default:
                 gtk_main_quit ();

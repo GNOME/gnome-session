@@ -8,6 +8,7 @@ INCLUDES =					\
 	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	$(GTK_CFLAGS)				\
+	$(POLKIT_GNOME_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
@@ -21,7 +22,8 @@ gnome_session_LDADD =				\
 	$(top_builddir)/egg/libeggdesktopfile.la \
 	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
-	$(GCONF_LIBS)
+	$(GCONF_LIBS)				\
+	$(POLKIT_GNOME_LIBS)
 
 gnome_session_SOURCES =				\
 	gsm-autostart-app.h			\
@@ -36,6 +38,8 @@ gnome_session_SOURCES =				\
 	gsm-client.h				\
 	gsm-marshal.h				\
 	gsm-marshal.c				\
+	gsm-consolekit.c			\
+	gsm-consolekit.h			\
 	gconf.c					\
 	gconf.h					\
 	gdm.h					\

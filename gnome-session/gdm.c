@@ -250,6 +250,13 @@ gdm_init_protocol_connection (GdmProtocolData *data)
 
   g_assert (data->fd <= 0);
 
+  if (g_file_test (GDM_PROTOCOL_SOCKET_PATH, G_FILE_TEST_EXISTS))
+    strcpy (addr.sun_path, GDM_PROTOCOL_SOCKET_PATH);
+  else if (g_file_test ("/tmp/.gdm_socket", G_FILE_TEST_EXISTS))
+    strcpy (addr.sun_path, "/tmp/.gdm_socket");
+  else
+    return FALSE;
+
   data->fd = socket (AF_UNIX, SOCK_STREAM, 0);
 
   if (data->fd < 0) 
@@ -261,11 +268,6 @@ gdm_init_protocol_connection (GdmProtocolData *data)
 
       return FALSE;
     }
-  
-  if (g_file_test (GDM_PROTOCOL_SOCKET_PATH, G_FILE_TEST_EXISTS))
-    strcpy (addr.sun_path, GDM_PROTOCOL_SOCKET_PATH);
-  else
-    strcpy (addr.sun_path, "/tmp/.gdm_socket");
   
   addr.sun_family = AF_UNIX;
 
@@ -377,6 +379,17 @@ gdm_update_logout_actions (GdmProtocolData *data)
     }
   
   gdm_shutdown_protocol_connection (data);
+}
+
+gboolean
+gdm_is_available (void)
+{
+  if (!gdm_init_protocol_connection (&gdm_protocol_data))
+    return FALSE;
+
+  gdm_shutdown_protocol_connection (&gdm_protocol_data);
+
+  return TRUE;
 }
 
 gboolean
