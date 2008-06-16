@@ -41,6 +41,11 @@
 #define GSM_ICON_LOGOUT   "gnome-logout"
 #define GSM_ICON_SHUTDOWN "gnome-shutdown"
 
+typedef enum {
+        GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
+        GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN
+} GsmDialogLogoutType;
+
 struct _GsmLogoutDialogPrivate
 {
         GsmDialogLogoutType  type;
@@ -312,10 +317,10 @@ gsm_logout_dialog_set_timeout (GsmLogoutDialog *logout_dialog)
                                                          logout_dialog);
 }
 
-GtkWidget *
-gsm_get_logout_dialog (GsmDialogLogoutType   type,
-                       GdkScreen            *screen,
-                       guint32               activate_time)
+static GtkWidget *
+gsm_get_dialog (GsmDialogLogoutType type,
+                GdkScreen          *screen,
+                guint32             activate_time)
 {
         GsmLogoutDialog *logout_dialog;
         const char      *primary_text;
@@ -408,4 +413,22 @@ gsm_get_logout_dialog (GsmDialogLogoutType   type,
         gtk_window_set_screen (GTK_WINDOW (logout_dialog), screen);
 
         return GTK_WIDGET (logout_dialog);
+}
+
+GtkWidget *
+gsm_get_shutdown_dialog (GdkScreen *screen,
+                         guint32    activate_time)
+{
+        return gsm_get_dialog (GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN,
+                               screen,
+                               activate_time);
+}
+
+GtkWidget *
+gsm_get_logout_dialog (GdkScreen *screen,
+                       guint32    activate_time)
+{
+        return gsm_get_dialog (GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
+                               screen,
+                               activate_time);
 }

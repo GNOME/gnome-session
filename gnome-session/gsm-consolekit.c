@@ -466,17 +466,27 @@ static PolKitAction *
 get_action_from_error (GError *error)
 {
         PolKitAction *action;
-        const char   *paction;
+        char         *paction;
 
         action = polkit_action_new ();
 
         paction = NULL;
-
         if (g_str_has_prefix (error->message, "Not privileged for action: ")) {
-                paction = error->message + strlen ("Not privileged for action: ");
+                paction = g_strdup (error->message + strlen ("Not privileged for action: "));
+                if (paction != NULL) {
+                        char *p;
+
+                        /* after 0.2.10 the error also includes the PK results */
+                        p = strchr (paction, ' ');
+                        if (p != NULL) {
+                                *p = '\0';
+                        }
+                }
         }
 
         polkit_action_set_action_id (action, paction);
+
+        g_free (paction);
 
         return action;
 }

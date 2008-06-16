@@ -1,3 +1,18 @@
+2008-06-16  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-consolekit.c (get_action_from_error):
+	* gnome-session/gsm-logout-dialog.c (gsm_get_dialog),
+	(gsm_get_shutdown_dialog), (gsm_get_logout_dialog):
+	* gnome-session/gsm-logout-dialog.h:
+	* gnome-session/gsm-manager.c (on_client_disconnected),
+	(gsm_manager_init), (manager_request_reboot),
+	(manager_request_shutdown), (_shutdown_client), (manager_logout),
+	(manager_request_hibernate), (manager_request_sleep),
+	(logout_dialog_response), (show_shutdown_dialog),
+	(show_logout_dialog), (initiate_logout), (gsm_manager_shutdown),
+	(gsm_manager_logout):
+	Fix and simplify shutdown handling.
+
 2008-06-15  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/Makefile.am:
