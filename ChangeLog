@@ -1,5 +1,18 @@
 2008-06-15  William Jon McCann  <jmccann@redhat.com>
 
+	* configure.in:
+	* gnome-session/gsm-manager.c (initiate_shutdown),
+	(logout_dialog_response), (gsm_manager_logout):
+	* gnome-session/logout-dialog.c (gsm_logout_dialog_set_property),
+	(gsm_logout_dialog_get_property), (on_ck_request_completed),
+	(gsm_logout_dialog_destroy), (gsm_logout_supports_reboot),
+	(gsm_logout_supports_shutdown), (gsm_logout_dialog_timeout),
+	(gsm_logout_dialog_set_timeout), (gsm_get_logout_dialog):
+	* gnome-session/logout-dialog.h:
+	Add config summary.  Add some debug spew.
+
+2008-06-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (register_manager),
 	(gsm_manager_shutdown), (gsm_manager_logout):
 	* gnome-session/gsm-manager.h:

@@ -6,7 +6,7 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
 
 AM_MAINTAINER_MODE
-    
+
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
 
@@ -60,7 +60,7 @@ GNOME_KEYRING_REQUIRED=2.21.92
 POLKIT_GNOME_REQUIRED=0.7
 
 dnl ====================================================================
-dnl Dependency Checks 
+dnl Dependency Checks
 dnl ====================================================================
 PKG_PROG_PKG_CONFIG()
 
@@ -89,7 +89,7 @@ if test "x$have_startup_message" = "xyes"; then
 fi
 
 dnl ====================================================================
-dnl GConf Checks 
+dnl GConf Checks
 dnl ====================================================================
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 if test x"$GCONFTOOL" = xno; then
@@ -111,9 +111,9 @@ fi
 
 AC_SUBST(GCONF_SANITY_CHECK)
 PATH=$old_path
-	
+
 dnl ====================================================================
-dnl GNOME Keyring Checks 
+dnl GNOME Keyring Checks
 dnl ====================================================================
 AC_PATH_PROG(GNOME_KEYRING_DAEMON, gnome-keyring-daemon, no)
 if test x"$GNOME_KEYRING_DAEMON" = xno; then
@@ -161,7 +161,7 @@ AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
 AC_SUBST(X_LIBS)
 
 dnl ====================================================================
-dnl Language Support 
+dnl Language Support
 dnl ====================================================================
 GETTEXT_PACKAGE=gnome-session-2.0
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
@@ -171,7 +171,7 @@ AC_SUBST(GETTEXT_PACKAGE)
 AM_GLIB_GNU_GETTEXT
 
 dnl ====================================================================
-dnl Headers 
+dnl Headers
 dnl ====================================================================
 AC_HEADER_STDC
 AC_CHECK_HEADERS(syslog.h tcpd.h sys/param.h)
@@ -277,3 +277,27 @@ data/icons/32x32/Makefile
 data/icons/scalable/Makefile
 po/Makefile.in
 ])
+
+dnl ---------------------------------------------------------------------------
+dnl - Show summary
+dnl ---------------------------------------------------------------------------
+
+echo "
+              gnome-session $VERSION
+              =====================
+
+        prefix:                   ${prefix}
+        exec_prefix:              ${exec_prefix}
+        libdir:                   ${libdir}
+        bindir:                   ${bindir}
+        sbindir:                  ${sbindir}
+        sysconfdir:               ${sysconfdir}
+        localstatedir:            ${localstatedir}
+        datadir:                  ${datadir}
+        source code location:     ${srcdir}
+        compiler:	          ${CC}
+        cflags:	                  ${CFLAGS}
+        Maintainer mode:          ${USE_MAINTAINER_MODE}
+
+        PolicyKit support :       ${have_polkit}
+"

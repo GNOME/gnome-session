@@ -1264,6 +1264,8 @@ initiate_shutdown (GsmManager *manager)
 {
         manager->priv->phase = GSM_MANAGER_PHASE_SHUTDOWN;
 
+        g_debug ("GsmManager: initiating shutdown");
+
         /* lock the client store so no clients may be added */
         gsm_client_store_set_locked (manager->priv->store, TRUE);
 
@@ -1282,6 +1284,8 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                         GsmManager      *manager)
 {
         GsmPowerManager *power_manager;
+
+        g_debug ("GsmManager: Logout dialog response: %d", response_id);
 
         gtk_widget_destroy (GTK_WIDGET (logout_dialog));
 
@@ -1407,7 +1411,7 @@ gsm_manager_logout (GsmManager *manager,
                     gint        logout_mode,
                     GError    **error)
 {
-        g_debug ("GsmManager: Shutdown called");
+        g_debug ("GsmManager: Logout called");
 
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,

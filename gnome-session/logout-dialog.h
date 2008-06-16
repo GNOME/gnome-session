@@ -1,4 +1,5 @@
-/* logout-dialog.h:
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ *
  * Copyright (C) 2006 Vincent Untz
  *
  * This program is free software; you can redistribute it and/or
@@ -27,14 +28,14 @@
 
 G_BEGIN_DECLS
 
-enum 
+enum
 {
-  GSM_LOGOUT_RESPONSE_LOGOUT,
-  GSM_LOGOUT_RESPONSE_SWITCH_USER,
-  GSM_LOGOUT_RESPONSE_SHUTDOWN,
-  GSM_LOGOUT_RESPONSE_REBOOT,
-  GSM_LOGOUT_RESPONSE_STD,
-  GSM_LOGOUT_RESPONSE_STR
+        GSM_LOGOUT_RESPONSE_LOGOUT,
+        GSM_LOGOUT_RESPONSE_SWITCH_USER,
+        GSM_LOGOUT_RESPONSE_SHUTDOWN,
+        GSM_LOGOUT_RESPONSE_REBOOT,
+        GSM_LOGOUT_RESPONSE_STD,
+        GSM_LOGOUT_RESPONSE_STR
 };
 
 #define GSM_TYPE_LOGOUT_DIALOG         (gsm_logout_dialog_get_type ())
@@ -48,16 +49,16 @@ typedef struct _GsmLogoutDialog         GsmLogoutDialog;
 typedef struct _GsmLogoutDialogClass    GsmLogoutDialogClass;
 typedef struct _GsmLogoutDialogPrivate  GsmLogoutDialogPrivate;
 
-struct _GsmLogoutDialog 
+struct _GsmLogoutDialog
 {
-  GtkMessageDialog parent;
-  
-  GsmLogoutDialogPrivate *priv;
+        GtkMessageDialog        parent;
+
+        GsmLogoutDialogPrivate *priv;
 };
 
-struct _GsmLogoutDialogClass 
+struct _GsmLogoutDialogClass
 {
-  GtkMessageDialogClass  parent_class;
+        GtkMessageDialogClass  parent_class;
 };
 
 typedef enum {
@@ -68,8 +69,8 @@ typedef enum {
 GType        gsm_logout_dialog_get_type   (void) G_GNUC_CONST;
 
 GtkWidget   *gsm_get_logout_dialog        (GsmDialogLogoutType  type,
-		                           GdkScreen           *screen,
-		                           guint32              activate_time);
+                                           GdkScreen           *screen,
+                                           guint32              activate_time);
 
 G_END_DECLS
 
