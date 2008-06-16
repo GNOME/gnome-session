@@ -42,22 +42,24 @@
 #include "gsm-xsmp-server.h"
 #include "gsm-client-store.h"
 
-static DBusGConnection *connection = NULL;
-static gboolean         failsafe;
+#define GSM_DBUS_NAME "org.gnome.SessionManager"
+
+static gboolean failsafe;
 
 static GOptionEntry entries[] = {
         { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe,
-          N_("Do not load user-specified applications"),
-          NULL },
+          N_("Do not load user-specified applications"), NULL },
         { NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
 static void
-gsm_dbus_init (void)
+maybe_start_session_bus (void)
 {
-        char *argv[3];
-        char *output, **vars;
-        int status, i;
+        char   *argv[3];
+        char   *output;
+        char  **vars;
+        int     status;
+        int     i;
         GError *error;
 
         /* Check whether there is a dbus-daemon session instance currently
@@ -78,10 +80,19 @@ gsm_dbus_init (void)
          * running yet...)
          */
         error = NULL;
-        g_spawn_sync (NULL, argv, NULL, G_SPAWN_SEARCH_PATH, NULL, NULL,
-                      &output, NULL, &status, &error);
-        if (error) {
-                gsm_util_init_error (TRUE, "Could not start dbus-daemon: %s",
+        g_spawn_sync (NULL,
+                      argv,
+                      NULL,
+                      G_SPAWN_SEARCH_PATH,
+                      NULL,
+                      NULL,
+                      &output,
+                      NULL,
+                      &status,
+                      &error);
+        if (error != NULL) {
+                gsm_util_init_error (TRUE,
+                                     "Could not start dbus-daemon: %s",
                                      error->message);
                 /* not reached */
         }
@@ -96,19 +107,89 @@ gsm_dbus_init (void)
         g_free (output);
 }
 
-static void
-gsm_dbus_check (void)
+static gboolean
+acquire_name_on_proxy (DBusGProxy *bus_proxy,
+                       const char *name)
 {
-        GError *error = NULL;
+        GError     *error;
+        guint       result;
+        gboolean    res;
+        gboolean    ret;
 
+        ret = FALSE;
+
+        if (bus_proxy == NULL) {
+                goto out;
+        }
+
+        error = NULL;
+        res = dbus_g_proxy_call (bus_proxy,
+                                 "RequestName",
+                                 &error,
+                                 G_TYPE_STRING, name,
+                                 G_TYPE_UINT, 0,
+                                 G_TYPE_INVALID,
+                                 G_TYPE_UINT, &result,
+                                 G_TYPE_INVALID);
+        if (! res) {
+                if (error != NULL) {
+                        g_warning ("Failed to acquire %s: %s", name, error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Failed to acquire %s", name);
+                }
+                goto out;
+        }
+
+        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
+                if (error != NULL) {
+                        g_warning ("Failed to acquire %s: %s", name, error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Failed to acquire %s", name);
+                }
+                goto out;
+        }
+
+        ret = TRUE;
+
+ out:
+        return ret;
+}
+
+static gboolean
+acquire_name (void)
+{
+        DBusGProxy      *bus_proxy;
+        GError          *error;
+        DBusGConnection *connection;
+
+        error = NULL;
         connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (!connection) {
-                gsm_util_init_error (TRUE, "Could not start D-Bus: %s",
+        if (connection == NULL) {
+                gsm_util_init_error (TRUE,
+                                     "Could not start D-Bus: %s",
                                      error->message);
                 /* not reached */
         }
 
         dbus_connection_set_exit_on_disconnect (dbus_g_connection_get_connection (connection), FALSE);
+
+        bus_proxy = dbus_g_proxy_new_for_name (connection,
+                                               DBUS_SERVICE_DBUS,
+                                               DBUS_PATH_DBUS,
+                                               DBUS_INTERFACE_DBUS);
+
+        if (! acquire_name_on_proxy (bus_proxy, GSM_DBUS_NAME) ) {
+                gsm_util_init_error (TRUE,
+                                     "Could not start D-Bus: %s",
+                                     error->message);
+                /* not reached */
+        }
+
+        g_object_unref (bus_proxy);
+
+        return TRUE;
 }
 
 int
@@ -156,13 +237,13 @@ main (int argc, char **argv)
 
         xsmp_server = gsm_xsmp_server_new (store);
 
-        gsm_dbus_init ();
+        maybe_start_session_bus ();
 
         /* Now make sure they succeeded. (They'll call
          * gsm_util_init_error() if they failed.)
          */
         gsm_gconf_check ();
-        gsm_dbus_check ();
+        acquire_name ();
 
         manager = gsm_manager_new (store, failsafe);
 
