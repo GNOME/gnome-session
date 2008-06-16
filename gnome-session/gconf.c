@@ -162,4 +162,3 @@ gsm_gconf_shutdown (void)
 
   g_free (command);
 }
-

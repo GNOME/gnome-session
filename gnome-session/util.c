@@ -38,27 +38,27 @@ gsm_util_get_autostart_dirs ()
 
   dirs = g_ptr_array_new ();
 
-  g_ptr_array_add (dirs, 
-                   g_build_filename (g_get_user_config_dir (), 
+  g_ptr_array_add (dirs,
+                   g_build_filename (g_get_user_config_dir (),
                                      "autostart", NULL));
 
   system_data_dirs = g_get_system_data_dirs ();
   for (i = 0; system_data_dirs[i]; i++)
     {
-      g_ptr_array_add (dirs, 
-                       g_build_filename (system_data_dirs[i], 
+      g_ptr_array_add (dirs,
+                       g_build_filename (system_data_dirs[i],
                                          "gnome", "autostart", NULL));
 
-      g_ptr_array_add (dirs, 
-                       g_build_filename (system_data_dirs[i], 
+      g_ptr_array_add (dirs,
+                       g_build_filename (system_data_dirs[i],
                                          "autostart", NULL));
     }
 
   system_config_dirs = g_get_system_config_dirs ();
   for (i = 0; system_config_dirs[i]; i++)
     {
-      g_ptr_array_add (dirs, 
-                       g_build_filename (system_config_dirs[i], 
+      g_ptr_array_add (dirs,
+                       g_build_filename (system_config_dirs[i],
                                          "autostart", NULL));
     }
 
@@ -79,12 +79,12 @@ gsm_util_get_app_dirs ()
   system_data_dirs = g_get_system_data_dirs ();
   for (i = 0; system_data_dirs[i]; i++)
     {
-      g_ptr_array_add (dirs, 
-                       g_build_filename (system_data_dirs[i], "applications", 
+      g_ptr_array_add (dirs,
+                       g_build_filename (system_data_dirs[i], "applications",
                                          NULL));
 
-      g_ptr_array_add (dirs, 
-                       g_build_filename (system_data_dirs[i], "gnome", "wm-properties", 
+      g_ptr_array_add (dirs,
+                       g_build_filename (system_data_dirs[i], "gnome", "wm-properties",
                                          NULL));
     }
 
@@ -99,7 +99,7 @@ gsm_util_text_is_blank (const gchar *str)
   if (str == NULL)
     return TRUE;
 
-  while (*str) 
+  while (*str)
     {
       if (!isspace(*str))
         return FALSE;
@@ -150,7 +150,7 @@ gsm_util_init_error (gboolean fatal, const char *format, ...)
 				   GTK_BUTTONS_CLOSE, "%s", msg);
 
   g_free (msg);
-  
+
   gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
   gtk_dialog_run (GTK_DIALOG (dialog));
 

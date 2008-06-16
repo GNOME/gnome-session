@@ -40,15 +40,15 @@ gnome_session_SOURCES =				\
 	gsm-marshal.c				\
 	gsm-consolekit.c			\
 	gsm-consolekit.h			\
+	gsm-logout-dialog.h			\
+	gsm-logout-dialog.c			\
+	gsm-power-manager.h			\
+	gsm-power-manager.c			\
 	gconf.c					\
 	gconf.h					\
 	gdm.h					\
 	gdm.c					\
-	logout-dialog.h				\
-	logout-dialog.c				\
 	main.c					\
-	power-manager.h				\
-	power-manager.c				\
 	gsm-client-store.h			\
 	gsm-client-store.c			\
 	gsm-manager.c				\

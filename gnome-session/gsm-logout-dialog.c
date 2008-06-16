@@ -26,12 +26,10 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <gtk/gtkimage.h>
-#include <gtk/gtklabel.h>
-#include <gtk/gtkstock.h>
+#include <gtk/gtk.h>
 
-#include "logout-dialog.h"
-#include "power-manager.h"
+#include "gsm-logout-dialog.h"
+#include "gsm-power-manager.h"
 #include "gsm-consolekit.h"
 #include "gdm.h"
 

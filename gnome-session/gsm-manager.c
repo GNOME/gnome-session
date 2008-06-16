@@ -48,9 +48,9 @@
 #include "gsm-resumed-app.h"
 #include "util.h"
 #include "gdm.h"
-#include "logout-dialog.h"
+#include "gsm-logout-dialog.h"
 #include "gsm-consolekit.h"
-#include "power-manager.h"
+#include "gsm-power-manager.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
 

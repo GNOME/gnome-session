@@ -1,5 +1,29 @@
 2008-06-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gconf.c (gsm_gconf_shutdown):
+	* gnome-session/gdm.c (gdm_send_protocol_msg),
+	(get_display_number), (gdm_authenticate_connection),
+	(gdm_shutdown_protocol_connection), (gdm_init_protocol_connection),
+	(gdm_parse_query_response), (gdm_update_logout_actions),
+	(gdm_is_available), (gdm_set_logout_action), (gdm_new_login):
+	* gnome-session/gsm-logout-dialog.c:
+	* gnome-session/gsm-manager.c:
+	* gnome-session/gsm-power-manager.c (on_name_owner_changed),
+	(ensure_gpm_connection), (gsm_power_manager_init),
+	(gsm_power_manager_finalize), (gsm_power_manager_get_property),
+	(gsm_power_manager_can_suspend), (gsm_power_manager_can_hibernate),
+	(gsm_power_manager_attempt_suspend),
+	(gsm_power_manager_attempt_hibernate), (gsm_get_power_manager):
+	* gnome-session/gsm-power-manager.h:
+	* gnome-session/logout-dialog.c:
+	* gnome-session/logout-dialog.h:
+	* gnome-session/power-manager.c:
+	* gnome-session/power-manager.h:
+	Strip trailing whitespace.  Make pretty.
+
+2008-06-15  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.in:
 	* gnome-session/gsm-manager.c (initiate_shutdown),
 	(logout_dialog_response), (gsm_manager_logout):
