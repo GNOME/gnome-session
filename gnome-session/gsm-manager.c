@@ -399,7 +399,7 @@ register_manager (GsmManager *manager)
         GError *error = NULL;
 
         error = NULL;
-        manager->priv->connection = dbus_g_bus_get (DBUS_BUS_SYSTEM, &error);
+        manager->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (manager->priv->connection == NULL) {
                 if (error != NULL) {
                         g_critical ("error getting system bus: %s", error->message);
@@ -1374,10 +1374,19 @@ gsm_manager_initiate_shutdown (GsmManager           *manager,
         initiate_shutdown (manager);
 }
 
+/*
+  dbus-send --session --type=method_call --print-reply
+      --dest=org.gnome.SessionManager
+      /org/gnome/SessionManager
+      org.freedesktop.DBus.Introspectable.Introspect
+*/
+
 gboolean
 gsm_manager_shutdown (GsmManager *manager,
                       GError    **error)
 {
+        g_debug ("GsmManager: Shutdown called");
+
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
@@ -1398,6 +1407,8 @@ gsm_manager_logout (GsmManager *manager,
                     gint        logout_mode,
                     GError    **error)
 {
+        g_debug ("GsmManager: Shutdown called");
+
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,

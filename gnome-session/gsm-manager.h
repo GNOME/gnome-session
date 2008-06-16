@@ -98,30 +98,33 @@ typedef enum {
         GSM_MANAGER_LOGOUT_MODE_FORCE
 } GsmManagerLogoutMode;
 
-GQuark              gsm_manager_error_quark                    (void);
-GType               gsm_manager_get_type                       (void);
+GQuark              gsm_manager_error_quark          (void);
+GType               gsm_manager_get_type             (void);
 
-GsmManager *        gsm_manager_new                            (GsmClientStore *store,
-                                                                gboolean        failsafe);
+GsmManager *        gsm_manager_new                  (GsmClientStore *store,
+                                                      gboolean        failsafe);
 
-void                gsm_manager_start                          (GsmManager     *manager);
+void                gsm_manager_start                (GsmManager     *manager);
 
-gboolean            gsm_manager_setenv                         (GsmManager     *manager,
-                                                                const char     *variable,
-                                                                const char     *value,
-                                                                GError        **error);
-gboolean            gsm_manager_initialization_error           (GsmManager     *manager,
-                                                                const char     *message,
-                                                                gboolean        fatal,
-                                                                GError        **error);
-gboolean            gsm_manager_shutdown                       (GsmManager     *manager,
-                                                                GError        **error);
-gboolean            gsm_manager_logout                         (GsmManager     *manager,
-                                                                int             logout_mode,
-                                                                GError        **error);
-gboolean            gsm_manager_set_name                       (GsmManager     *manager,
-                                                                const char     *session_name,
-                                                                GError        **error);
+
+/* exported methods */
+
+gboolean            gsm_manager_setenv               (GsmManager     *manager,
+                                                      const char     *variable,
+                                                      const char     *value,
+                                                      GError        **error);
+gboolean            gsm_manager_initialization_error (GsmManager     *manager,
+                                                      const char     *message,
+                                                      gboolean        fatal,
+                                                      GError        **error);
+gboolean            gsm_manager_shutdown             (GsmManager     *manager,
+                                                      GError        **error);
+gboolean            gsm_manager_logout               (GsmManager     *manager,
+                                                      int             logout_mode,
+                                                      GError        **error);
+gboolean            gsm_manager_set_name             (GsmManager     *manager,
+                                                      const char     *session_name,
+                                                      GError        **error);
 
 G_END_DECLS
 

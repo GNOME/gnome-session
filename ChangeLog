@@ -1,5 +1,12 @@
 2008-06-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (register_manager),
+	(gsm_manager_shutdown), (gsm_manager_logout):
+	* gnome-session/gsm-manager.h:
+	Register to the session bus.
+
+2008-06-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/main.c (maybe_start_session_bus),
 	(acquire_name_on_proxy), (acquire_name), (main):
 	Acquire a name on the bus.
