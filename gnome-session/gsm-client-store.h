@@ -68,6 +68,7 @@ GType               gsm_client_store_get_type                 (void);
 
 GsmClientStore *    gsm_client_store_new                      (void);
 
+gboolean            gsm_client_store_get_locked               (GsmClientStore    *store);
 void                gsm_client_store_set_locked               (GsmClientStore    *store,
                                                                gboolean           locked);
 

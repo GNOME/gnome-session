@@ -66,7 +66,7 @@ struct _GsmAppClass
                                       const char *service);
         gboolean    (*is_running)    (GsmApp     *app);
 
-        const char *(*get_basename) (GsmApp *app);
+        const char *(*get_id)       (GsmApp *app);
         gboolean    (*is_disabled)  (GsmApp *app);
         void        (*set_client)   (GsmApp    *app,
                                      GsmClient *client);
@@ -86,8 +86,6 @@ gboolean         gsm_app_is_running      (GsmApp     *app);
 void             gsm_app_exited          (GsmApp     *app);
 void             gsm_app_died            (GsmApp     *app);
 
-
-const char      *gsm_app_get_basename    (GsmApp     *app);
 gboolean         gsm_app_provides        (GsmApp     *app,
                                           const char *service);
 gboolean         gsm_app_is_disabled     (GsmApp     *app);

@@ -88,7 +88,7 @@ launch (GsmApp  *app,
 }
 
 static const char *
-get_basename (GsmApp *app)
+gsm_resumed_app_get_id (GsmApp *app)
 {
         return GSM_RESUMED_APP (app)->priv->program;
 }
@@ -98,7 +98,7 @@ gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 {
         GsmAppClass *app_class = GSM_APP_CLASS (klass);
 
-        app_class->get_basename = get_basename;
+        app_class->get_id = gsm_resumed_app_get_id;
         app_class->start = launch;
 
         g_type_class_add_private (klass, sizeof (GsmResumedAppPrivate));

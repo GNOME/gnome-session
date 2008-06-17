@@ -206,6 +206,14 @@ gsm_client_store_set_locked (GsmClientStore *store,
         store->priv->locked = locked;
 }
 
+gboolean
+gsm_client_store_get_locked (GsmClientStore *store)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT_STORE (store), FALSE);
+
+        return store->priv->locked;
+}
+
 static void
 gsm_client_store_set_property (GObject      *object,
                                guint         prop_id,

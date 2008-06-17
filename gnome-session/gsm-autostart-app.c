@@ -31,6 +31,7 @@
 #include "gconf.h"
 
 struct _GsmAutostartAppPrivate {
+        char                 *desktop_id;
         GFileMonitor         *monitor;
         gboolean              condition;
         EggDesktopFile       *desktop_file;
@@ -67,7 +68,7 @@ gsm_autostart_app_init (GsmAutostartApp *app)
 
 static void
 gsm_autostart_app_set_desktop_file (GsmAutostartApp *app,
-                                    const char      *desktop_file)
+                                    const char      *desktop_filename)
 {
         GError *error;
         char   *phase_str;
@@ -76,24 +77,27 @@ gsm_autostart_app_set_desktop_file (GsmAutostartApp *app,
         if (app->priv->desktop_file != NULL) {
                 egg_desktop_file_free (app->priv->desktop_file);
                 app->priv->desktop_file = NULL;
+                g_free (app->priv->desktop_id);
         }
 
-        if (desktop_file == NULL) {
+        if (desktop_filename == NULL) {
                 return;
         }
 
-        app->priv->desktop_file = egg_desktop_file_new (desktop_file, &error);
+        app->priv->desktop_id = g_path_get_basename (desktop_filename);
+
+        app->priv->desktop_file = egg_desktop_file_new (desktop_filename, &error);
         if (app->priv->desktop_file == NULL) {
                 g_warning ("Could not parse desktop file %s: %s",
-                           desktop_file,
+                           desktop_filename,
                            error->message);
                 g_error_free (error);
                 return;
         }
 
         phase_str = egg_desktop_file_get_string (app->priv->desktop_file,
-                                             "X-GNOME-Autostart-Phase",
-                                             NULL);
+                                                 "X-GNOME-Autostart-Phase",
+                                                 NULL);
         if (phase_str != NULL) {
                 if (strcmp (phase_str, "Initialization") == 0) {
                         phase = GSM_MANAGER_PHASE_INITIALIZATION;
@@ -118,8 +122,8 @@ gsm_autostart_app_set_desktop_file (GsmAutostartApp *app,
 static void
 gsm_autostart_app_set_property (GObject      *object,
                                 guint         prop_id,
-                                const GValue  *value,
-                                GParamSpec    *pspec)
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
         GsmAutostartApp *self;
 
@@ -176,6 +180,11 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->desktop_file = NULL;
         }
 
+        if (priv->desktop_id) {
+                g_free (priv->desktop_id);
+                priv->desktop_id = NULL;
+        }
+
         if (priv->monitor) {
                 g_file_monitor_cancel (priv->monitor);
         }
@@ -183,14 +192,14 @@ gsm_autostart_app_dispose (GObject *object)
 
 
 static void
-if_exists_condition_cb (GFileMonitor *monitor,
-                        GFile *file,
-                        GFile *other_file,
+if_exists_condition_cb (GFileMonitor     *monitor,
+                        GFile            *file,
+                        GFile            *other_file,
                         GFileMonitorEvent event,
-                        GsmApp *app)
+                        GsmApp           *app)
 {
         GsmAutostartAppPrivate *priv;
-        gboolean condition = FALSE;
+        gboolean                condition = FALSE;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
 
@@ -212,14 +221,14 @@ if_exists_condition_cb (GFileMonitor *monitor,
 }
 
 static void
-unless_exists_condition_cb (GFileMonitor *monitor,
-                            GFile *file,
-                            GFile *other_file,
+unless_exists_condition_cb (GFileMonitor     *monitor,
+                            GFile            *file,
+                            GFile            *other_file,
                             GFileMonitorEvent event,
-                            GsmApp *app)
+                            GsmApp           *app)
 {
         GsmAutostartAppPrivate *priv;
-        gboolean condition = FALSE;
+        gboolean                condition = FALSE;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
 
@@ -246,9 +255,9 @@ gconf_condition_cb (GConfClient *client,
                     GConfEntry  *entry,
                     gpointer    user_data)
 {
-        GsmApp *app;
+        GsmApp                 *app;
         GsmAutostartAppPrivate *priv;
-        gboolean condition = FALSE;
+        gboolean                condition = FALSE;
 
         g_return_if_fail (GSM_IS_APP (user_data));
 
@@ -306,7 +315,7 @@ is_disabled (GsmApp *app)
             !egg_desktop_file_get_boolean (priv->desktop_file,
                                            "X-GNOME-Autostart-enabled", NULL)) {
                 g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
-                         gsm_app_get_basename (app));
+                         gsm_app_get_id (app));
                 return TRUE;
         }
 
@@ -314,14 +323,14 @@ is_disabled (GsmApp *app)
         if (egg_desktop_file_get_boolean (priv->desktop_file,
                                           EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
                 g_debug ("app %s is disabled by Hidden",
-                         gsm_app_get_basename (app));
+                         gsm_app_get_id (app));
                 return TRUE;
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
         if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
                 g_debug ("app %s not installed or not for GNOME",
-                         gsm_app_get_basename (app));
+                         gsm_app_get_id (app));
                 return TRUE;
         }
 
@@ -419,7 +428,7 @@ is_disabled (GsmApp *app)
 
                 if (disabled) {
                         g_debug ("app %s is disabled by AutostartCondition",
-                                 gsm_app_get_basename (app));
+                                 gsm_app_get_id (app));
                         return TRUE;
                 }
         }
@@ -448,10 +457,8 @@ app_exited (GPid             pid,
         app->priv->child_watch_id = 0;
 
         if (WIFEXITED (status)) {
-                int code = WEXITSTATUS (status);
                 gsm_app_exited (GSM_APP (app));
         } else if (WIFSIGNALED (status)) {
-                int num = WTERMSIG (status);
                 gsm_app_died (GSM_APP (app));
         }
 }
@@ -535,7 +542,7 @@ gsm_autostart_app_provides (GsmApp     *app,
 }
 
 static const char *
-get_basename (GsmApp *app)
+gsm_autostart_app_get_id (GsmApp *app)
 {
         const char *location;
         const char *slash;
@@ -566,7 +573,7 @@ gsm_autostart_app_constructor (GType                  type,
                                                                                                n_construct_properties,
                                                                                                construct_properties));
 
-        id = get_basename (GSM_APP (app));
+        id = gsm_autostart_app_get_id (GSM_APP (app));
 
         g_object_set (app, "id", id, NULL);
 
@@ -588,7 +595,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->is_running = is_running;
         app_class->start = launch;
         app_class->provides = gsm_autostart_app_provides;
-        app_class->get_basename = get_basename;
+        app_class->get_id = gsm_autostart_app_get_id;
 
         g_object_class_install_property (object_class,
                                          PROP_DESKTOP_FILE,

@@ -26,16 +26,22 @@ gnome_session_LDADD =				\
 	$(POLKIT_GNOME_LIBS)
 
 gnome_session_SOURCES =				\
+	gsm-app.h				\
+	gsm-app.c				\
 	gsm-autostart-app.h			\
 	gsm-autostart-app.c			\
 	gsm-resumed-app.h			\
 	gsm-resumed-app.c			\
-	gsm-app.h				\
-	gsm-app.c				\
-	gsm-xsmp-client.h			\
-	gsm-xsmp-client.c			\
 	gsm-client.c				\
 	gsm-client.h				\
+	gsm-xsmp-client.h			\
+	gsm-xsmp-client.c			\
+	gsm-dbus-client.h			\
+	gsm-dbus-client.c			\
+	gsm-method-client.h			\
+	gsm-method-client.c			\
+	gsm-service-client.h			\
+	gsm-service-client.c			\
 	gsm-marshal.h				\
 	gsm-marshal.c				\
 	gsm-consolekit.c			\

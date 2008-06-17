@@ -56,84 +56,38 @@ struct _GsmClientClass
         GObjectClass parent_class;
 
         /* signals */
-        gboolean (*manage_request)   (GsmClient *client,
-                                      char     **client_id);
-        gboolean (*logout_request)   (GsmClient *client,
-                                      gboolean   prompt);
-
-
-        void (*saved_state)          (GsmClient *client);
-
-        void (*request_phase2)       (GsmClient *client);
-
-        void (*request_interaction)  (GsmClient *client);
-        void (*interaction_done)     (GsmClient *client,
-                                      gboolean   cancel_shutdown);
-
-        void (*save_yourself_done)   (GsmClient *client);
-
-        void (*disconnected)         (GsmClient *client);
+        void     (*disconnected)            (GsmClient *client);
 
         /* virtual methods */
-        void (*stop)                 (GsmClient *client);
-
-
-        char       * (*get_restart_command) (GsmClient *client);
-        char       * (*get_discard_command) (GsmClient *client);
+        void         (*notify_session_over) (GsmClient *client);
+        gboolean     (*stop)                (GsmClient *client,
+                                             GError   **error);
+        gboolean     (*restart)             (GsmClient *client,
+                                             GError   **error);
         gboolean     (*get_autorestart)     (GsmClient *client);
-
-        void (*restart)              (GsmClient *client,
-                                      GError   **error);
-        void (*save_yourself)        (GsmClient *client,
-                                      gboolean   save_state);
-        void (*save_yourself_phase2) (GsmClient *client);
-        void (*interact)             (GsmClient *client);
-        void (*shutdown_cancelled)   (GsmClient *client);
 };
 
 GType       gsm_client_get_type             (void) G_GNUC_CONST;
 
 const char *gsm_client_get_id               (GsmClient  *client);
 const char *gsm_client_get_client_id        (GsmClient  *client);
+const char *gsm_client_get_app_id           (GsmClient  *client);
+void        gsm_client_set_app_id           (GsmClient  *client,
+                                             const char *app_id);
 int         gsm_client_get_status           (GsmClient  *client);
 void        gsm_client_set_status           (GsmClient  *client,
                                              int         status);
 
-gboolean    gsm_client_manage               (GsmClient  *client,
-                                             const char *client_id);
-void        gsm_client_stop                 (GsmClient  *client);
+void        gsm_client_notify_session_over  (GsmClient  *client);
 
-
-
-char       *gsm_client_get_restart_command  (GsmClient  *client);
-char       *gsm_client_get_discard_command  (GsmClient  *client);
+gboolean    gsm_client_stop                 (GsmClient  *client,
+                                             GError    **error);
+gboolean    gsm_client_restart              (GsmClient  *client,
+                                             GError    **error);
 gboolean    gsm_client_get_autorestart      (GsmClient  *client);
 
-void        gsm_client_save_state           (GsmClient  *client);
 
-void        gsm_client_restart              (GsmClient  *client,
-                                             GError    **error);
-void        gsm_client_save_yourself        (GsmClient  *client,
-                                             gboolean    save_state);
-void        gsm_client_save_yourself_phase2 (GsmClient  *client);
-void        gsm_client_interact             (GsmClient  *client);
-void        gsm_client_shutdown_cancelled   (GsmClient  *client);
-
-/* protected */
-gboolean    gsm_client_manage_request       (GsmClient  *client,
-                                             char      **id);
-void        gsm_client_logout_request       (GsmClient  *client,
-                                             gboolean    prompt);
-
-
-void        gsm_client_saved_state          (GsmClient  *client);
-void        gsm_client_request_phase2       (GsmClient  *client);
-void        gsm_client_request_interaction  (GsmClient  *client);
-void        gsm_client_interaction_done     (GsmClient  *client,
-                                             gboolean    cancel_shutdown);
-void        gsm_client_save_yourself_done   (GsmClient  *client);
 void        gsm_client_disconnected         (GsmClient  *client);
-
 
 G_END_DECLS
 

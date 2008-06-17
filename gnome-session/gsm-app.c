@@ -139,7 +139,7 @@ gsm_app_class_init (GsmAppClass *klass)
         object_class->get_property = get_property;
         object_class->dispose = dispose;
 
-        klass->get_basename = NULL;
+        klass->get_id = NULL;
         klass->start = NULL;
         klass->provides = NULL;
         klass->is_running = NULL;
@@ -201,15 +201,9 @@ gsm_app_class_init (GsmAppClass *klass)
 }
 
 const char *
-gsm_app_get_basename (GsmApp *app)
-{
-        return GSM_APP_GET_CLASS (app)->get_basename (app);
-}
-
-const char *
 gsm_app_get_id (GsmApp *app)
 {
-        return app->priv->id;
+        return GSM_APP_GET_CLASS (app)->get_id (app);
 }
 
 const char *

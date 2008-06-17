@@ -1,3 +1,61 @@
+2008-06-17  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-app.c (gsm_app_class_init), (gsm_app_get_id):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c
+	(gsm_autostart_app_set_desktop_file), (gsm_autostart_app_dispose),
+	(is_disabled), (app_exited), (gsm_autostart_app_get_id),
+	(gsm_autostart_app_constructor), (gsm_autostart_app_class_init):
+	* gnome-session/gsm-client-store.c (gsm_client_store_get_locked):
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-client.c (gsm_client_finalize),
+	(gsm_client_set_app_id), (gsm_client_set_property),
+	(gsm_client_get_property), (gsm_client_class_init),
+	(gsm_client_get_app_id), (gsm_client_notify_session_over),
+	(gsm_client_restart), (gsm_client_stop), (gsm_client_disconnected):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_constructor),
+	(gsm_dbus_client_init), (gsm_dbus_client_set_property),
+	(gsm_dbus_client_get_property), (gsm_dbus_client_finalize),
+	(gsm_dbus_client_class_init):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-manager.c (gsm_manager_error_get_type),
+	(app_condition_changed), (phase_timeout), (_start_app),
+	(find_app_for_client_id), (find_app_for_app_id),
+	(on_xsmp_client_register_request), (on_store_client_added),
+	(gsm_manager_class_init), (_shutdown_client), (get_caller_info),
+	(gsm_manager_register_client), (gsm_manager_unregister_client),
+	(gsm_manager_inhibit), (gsm_manager_uninhibit):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-manager.xml:
+	* gnome-session/gsm-method-client.c
+	(gsm_method_client_constructor), (gsm_method_client_init),
+	(gsm_method_client_set_property), (gsm_method_client_get_property),
+	(gsm_method_client_finalize), (gsm_method_client_stop),
+	(gsm_method_client_restart), (gsm_method_client_class_init),
+	(gsm_method_client_new):
+	* gnome-session/gsm-method-client.h:
+	* gnome-session/gsm-resumed-app.c (gsm_resumed_app_get_id),
+	(gsm_resumed_app_class_init):
+	* gnome-session/gsm-service-client.c
+	(gsm_service_client_constructor), (gsm_service_client_init),
+	(gsm_service_client_set_property),
+	(gsm_service_client_get_property), (gsm_service_client_finalize),
+	(gsm_service_client_stop), (gsm_service_client_restart),
+	(gsm_service_client_class_init), (gsm_service_client_new):
+	* gnome-session/gsm-service-client.h:
+	* gnome-session/gsm-xsmp-client.c (xsmp_restart), (xsmp_stop),
+	(_boolean_handled_accumulator), (gsm_xsmp_client_class_init),
+	(register_client_callback), (save_yourself_request_callback),
+	(save_yourself_phase2_request_callback),
+	(interact_request_callback), (interact_done_callback),
+	(save_yourself_done_callback), (gsm_xsmp_client_register_request),
+	(gsm_xsmp_client_save_state):
+	* gnome-session/gsm-xsmp-client.h:
+	Stub out some dbus based client classes.  Make the GsmClient
+	class more generic.
+
 2008-06-16  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-consolekit.c (get_action_from_error):

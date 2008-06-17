@@ -23,6 +23,7 @@
 #define __GSM_MANAGER_H
 
 #include <glib-object.h>
+#include <dbus/dbus-glib.h>
 
 #include "gsm-client-store.h"
 
@@ -47,16 +48,17 @@ typedef struct
 {
         GObjectClass   parent_class;
 
-        void          (* session_running)  (GsmManager      *manager);
-        void          (* session_over)     (GsmManager      *manager);
+        void          (* session_running)     (GsmManager      *manager);
+        void          (* session_over)        (GsmManager      *manager);
+        void          (* session_over_notice) (GsmManager      *manager);
 
-        void          (* phase_changed)    (GsmManager      *manager,
-                                            const char      *phase);
+        void          (* phase_changed)       (GsmManager      *manager,
+                                               const char      *phase);
 
-        void          (* client_added)     (GsmManager      *manager,
-                                            const char      *id);
-        void          (* client_removed)   (GsmManager      *manager,
-                                            const char      *id);
+        void          (* client_added)        (GsmManager      *manager,
+                                               const char      *id);
+        void          (* client_removed)      (GsmManager      *manager,
+                                               const char      *id);
 } GsmManagerClass;
 
 typedef enum {
@@ -80,23 +82,23 @@ typedef enum {
 
 typedef enum
 {
-        GSM_MANAGER_ERROR_GENERAL,
+        GSM_MANAGER_ERROR_GENERAL = 0,
         GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
         GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+        GSM_MANAGER_ERROR_ALREADY_REGISTERED,
+        GSM_MANAGER_NUM_ERRORS
 } GsmManagerError;
 
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
-
-typedef enum {
-        GSM_MANAGER_LOGOUT_TYPE_LOGOUT,
-        GSM_MANAGER_LOGOUT_TYPE_SHUTDOWN
-} GsmManagerLogoutType;
 
 typedef enum {
         GSM_MANAGER_LOGOUT_MODE_NORMAL,
         GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION,
         GSM_MANAGER_LOGOUT_MODE_FORCE
 } GsmManagerLogoutMode;
+
+GType               gsm_manager_error_get_type       (void);
+#define GSM_MANAGER_TYPE_ERROR (gsm_manager_error_get_type ())
 
 GQuark              gsm_manager_error_quark          (void);
 GType               gsm_manager_get_type             (void);
@@ -109,6 +111,29 @@ void                gsm_manager_start                (GsmManager     *manager);
 
 /* exported methods */
 
+gboolean            gsm_manager_register_client      (GsmManager            *manager,
+                                                      const char            *client_startup_id,
+                                                      const char            *program_id,
+                                                      DBusGMethodInvocation *context);
+gboolean            gsm_manager_unregister_client    (GsmManager            *manager,
+                                                      const char            *session_client_id,
+                                                      DBusGMethodInvocation *context);
+
+gboolean            gsm_manager_inhibit              (GsmManager            *manager,
+                                                      guint                  toplevel_xid,
+                                                      const char            *application,
+                                                      const char            *reason,
+                                                      DBusGMethodInvocation *context);
+gboolean            gsm_manager_uninhibit            (GsmManager            *manager,
+                                                      const char            *inhibit_cookie,
+                                                      DBusGMethodInvocation *context);
+
+gboolean            gsm_manager_shutdown             (GsmManager     *manager,
+                                                      GError        **error);
+gboolean            gsm_manager_logout               (GsmManager     *manager,
+                                                      int             logout_mode,
+                                                      GError        **error);
+
 gboolean            gsm_manager_setenv               (GsmManager     *manager,
                                                       const char     *variable,
                                                       const char     *value,
@@ -116,11 +141,6 @@ gboolean            gsm_manager_setenv               (GsmManager     *manager,
 gboolean            gsm_manager_initialization_error (GsmManager     *manager,
                                                       const char     *message,
                                                       gboolean        fatal,
-                                                      GError        **error);
-gboolean            gsm_manager_shutdown             (GsmManager     *manager,
-                                                      GError        **error);
-gboolean            gsm_manager_logout               (GsmManager     *manager,
-                                                      int             logout_mode,
                                                       GError        **error);
 gboolean            gsm_manager_set_name             (GsmManager     *manager,
                                                       const char     *session_name,
