@@ -9,10 +9,7 @@ SUBDIRS =			\
 	data			\
 	man
 
-EXTRA_DIST =			\
-	intltool-extract.in	\
-	intltool-merge.in	\
-	intltool-update.in
+EXTRA_DIST =
 
 DISTCLEANFILES =		\
 	intltool-extract	\

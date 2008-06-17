@@ -1,4 +1,43 @@
 ==============
+Version 2.23.4
+==============
+
+General
+
+	* Don't use "capplet" anywhere as this term shouldn't used anymore 
+	  (Lucas Rocha)
+
+Session Manager
+
+	* Properly mark logout/shutdown dialog primary text for translation
+	  (Frederic Peters)
+	* Fix some invalid reads and a leak reported by valgrind 
+	  (Kjartan Maraas)
+	* Add support for ConsoleKit reboot and shutdown (William Jon McCann,
+	  Matthias Clasen) 
+	* Avoid spamming the console with error messages when GDM is not
+	  available (Andrew Nelless) 
+	* Check availability of GDM to know if we can add "Switch User" 
+	  button to logout dialog (Andre Nelless)
+
+Session Properties Capplet
+
+	* Add bevel to list of startup apps on session properties capplet 
+	  (Lucas Rocha).
+
+Translators
+
+	* Priit Laes (et)
+	* Tino Meinen (nl)
+	* Kjartan Maraas (nb)
+	* Claude Paroz (fr)
+	* Djihed Afifi (ar)
+	* Theppitak Karoonboonyanan (th)
+	* Jorge Gonzalez (es)
+	* Ignacio Casal Quinteiro (gl)
+	* Nickolay V. Shmyrev (ru)  
+
+==============
 Version 2.23.3
 ==============
 
