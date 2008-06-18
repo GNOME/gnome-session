@@ -1,6 +1,12 @@
+NULL =
+
 bin_PROGRAMS = gnome-session
 
 noinst_LTLIBRARIES = libgsmutil.la
+
+noinst_PROGRAMS = 		\
+	test-client-method	\
+	$(NULL)
 
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
@@ -15,6 +21,14 @@ INCLUDES =					\
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
+
+test_client_method_SOURCES = 	\
+	test-client-method.c	\
+	$(NULL)
+
+test_client_method_LDADD =			\
+	$(DBUS_GLIB_LIBS)			\
+	$(NULL)
 
 gnome_session_LDADD =				\
 	-lSM -lICE				\

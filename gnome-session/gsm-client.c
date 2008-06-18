@@ -242,7 +242,7 @@ gsm_client_class_init (GsmClientClass *klass)
                                                            "status",
                                                            -1,
                                                            G_MAXINT,
-                                                           -1,
+                                                           GSM_CLIENT_UNREGISTERED,
                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientPrivate));
@@ -273,30 +273,12 @@ gsm_client_get_app_id (GsmClient *client)
         return client->priv->app_id;
 }
 
-gboolean
-gsm_client_get_autorestart (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
-
-        return GSM_CLIENT_GET_CLASS (client)->get_autorestart (client);
-}
-
 void
 gsm_client_notify_session_over (GsmClient *client)
 {
         g_return_if_fail (GSM_IS_CLIENT (client));
 
         GSM_CLIENT_GET_CLASS (client)->notify_session_over (client);
-}
-
-
-gboolean
-gsm_client_restart (GsmClient *client,
-                    GError   **error)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
-
-        return GSM_CLIENT_GET_CLASS (client)->restart (client, error);
 }
 
 gboolean

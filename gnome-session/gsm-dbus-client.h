@@ -51,6 +51,8 @@ struct _GsmDBusClientClass
 
 GType          gsm_dbus_client_get_type           (void) G_GNUC_CONST;
 
+const char *   gsm_dbus_client_get_bus_name       (GsmDBusClient  *client);
+
 G_END_DECLS
 
 #endif /* __GSM_DBUS_CLIENT_H__ */

@@ -114,13 +114,6 @@ gsm_service_client_stop (GsmClient *client,
         return FALSE;
 }
 
-static gboolean
-gsm_service_client_restart (GsmClient *client,
-                            GError   **error)
-{
-        return FALSE;
-}
-
 static void
 gsm_service_client_class_init (GsmServiceClientClass *klass)
 {
@@ -133,7 +126,6 @@ gsm_service_client_class_init (GsmServiceClientClass *klass)
         object_class->set_property         = gsm_service_client_set_property;
 
         client_class->stop                 = gsm_service_client_stop;
-        client_class->restart              = gsm_service_client_restart;
 
         g_type_class_add_private (klass, sizeof (GsmServiceClientPrivate));
 }

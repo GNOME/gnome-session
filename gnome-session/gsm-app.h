@@ -59,26 +59,33 @@ struct _GsmAppClass
         void        (*registered)   (GsmApp *app);
 
         /* virtual methods */
-        gboolean    (*start)         (GsmApp     *app,
-                                      GError    **error);
-        gboolean    (*stop)          (GsmApp     *app,
-                                      GError    **error);
-        gboolean    (*provides)      (GsmApp     *app,
-                                      const char *service);
-        gboolean    (*is_running)    (GsmApp     *app);
+        gboolean    (*start)           (GsmApp     *app,
+                                        GError    **error);
+        gboolean    (*restart)         (GsmApp     *app,
+                                        GError    **error);
+        gboolean    (*stop)            (GsmApp     *app,
+                                        GError    **error);
+        gboolean    (*provides)        (GsmApp     *app,
+                                        const char *service);
+        gboolean    (*is_running)      (GsmApp     *app);
 
-        const char *(*get_id)       (GsmApp *app);
-        gboolean    (*is_disabled)  (GsmApp *app);
-        void        (*set_client)   (GsmApp    *app,
-                                     GsmClient *client);
+        gboolean    (*get_autorestart) (GsmApp     *app);
+        const char *(*get_id)          (GsmApp     *app);
+        gboolean    (*is_disabled)     (GsmApp     *app);
+        void        (*set_client)      (GsmApp     *app,
+                                        GsmClient  *client);
 };
 
 GType            gsm_app_get_type        (void) G_GNUC_CONST;
 
 gboolean         gsm_app_start           (GsmApp     *app,
                                           GError    **error);
+gboolean         gsm_app_restart         (GsmApp     *app,
+                                          GError    **error);
 gboolean         gsm_app_stop            (GsmApp     *app,
                                           GError    **error);
+gboolean         gsm_app_get_autorestart (GsmApp     *app);
+
 const char      *gsm_app_get_id          (GsmApp     *app);
 const char      *gsm_app_get_client_id   (GsmApp     *app);
 GsmManagerPhase  gsm_app_get_phase       (GsmApp     *app);

@@ -70,6 +70,26 @@ gsm_dbus_client_init (GsmDBusClient *client)
 }
 
 static void
+gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
+                              const char     *bus_name)
+{
+        g_return_if_fail (GSM_IS_DBUS_CLIENT (client));
+
+        g_free (client->priv->bus_name);
+
+        client->priv->bus_name = g_strdup (bus_name);
+        g_object_notify (G_OBJECT (client), "bus-name");
+}
+
+const char *
+gsm_dbus_client_get_bus_name (GsmDBusClient  *client)
+{
+        g_return_val_if_fail (GSM_IS_DBUS_CLIENT (client), NULL);
+
+        return client->priv->bus_name;
+}
+
+static void
 gsm_dbus_client_set_property (GObject       *object,
                               guint          prop_id,
                               const GValue  *value,
@@ -80,6 +100,9 @@ gsm_dbus_client_set_property (GObject       *object,
         self = GSM_DBUS_CLIENT (object);
 
         switch (prop_id) {
+        case PROP_BUS_NAME:
+                gsm_dbus_client_set_bus_name (self, g_value_get_string (value));
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -97,6 +120,9 @@ gsm_dbus_client_get_property (GObject    *object,
         self = GSM_DBUS_CLIENT (object);
 
         switch (prop_id) {
+        case PROP_BUS_NAME:
+                g_value_set_string (value, self->priv->bus_name);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -123,6 +149,14 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->constructor          = gsm_dbus_client_constructor;
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
+
+        g_object_class_install_property (object_class,
+                                         PROP_BUS_NAME,
+                                         g_param_spec_string ("bus-name",
+                                                              "bus-name",
+                                                              "bus-name",
+                                                              NULL,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmDBusClientPrivate));
 }

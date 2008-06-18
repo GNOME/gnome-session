@@ -23,6 +23,7 @@
       <arg type="s" name="session_client_id" direction="out"/>
     </method>
     <method name="UnregisterClient">
+      <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
       <arg type="s" name="session_client_id" direction="in"/>
     </method>
 
@@ -33,6 +34,7 @@
       <arg type="u" name="inhibit_cookie" direction="out"/>
     </method>
     <method name="Uninhibit">
+      <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
       <arg type="u" name="inhibit_cookie" direction="in"/>
     </method>
 

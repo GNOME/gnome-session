@@ -26,6 +26,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <glib.h>
 #include <gio/gio.h>
 
 #include "gsm-autostart-app.h"
@@ -33,12 +34,12 @@
 
 struct _GsmAutostartAppPrivate {
         char                 *desktop_id;
+        char                 *startup_id;
         GFileMonitor         *monitor;
         gboolean              condition;
         EggDesktopFile       *desktop_file;
         GPid                  pid;
         guint                 child_watch_id;
-        char                 *startup_id;
 };
 
 enum {
@@ -184,6 +185,11 @@ gsm_autostart_app_dispose (GObject *object)
         if (priv->desktop_id) {
                 g_free (priv->desktop_id);
                 priv->desktop_id = NULL;
+        }
+
+        if (priv->child_watch_id > 0) {
+                g_source_remove (priv->child_watch_id);
+                priv->child_watch_id = 0;
         }
 
         if (priv->monitor) {
@@ -465,11 +471,22 @@ app_exited (GPid             pid,
 }
 
 static gboolean
-launch (GsmApp  *app,
-        GError **error)
+gsm_autostart_app_stop (GsmApp  *app,
+                        GError **error)
 {
-        char    *env[2] = { NULL, NULL };
-        gboolean success;
+        /* FIXME: */
+        /* first try to stop client */
+
+        /* then try to stop pid */
+        return TRUE;
+}
+
+static gboolean
+gsm_autostart_app_start (GsmApp  *app,
+                         GError **error)
+{
+        char            *env[2] = { NULL, NULL };
+        gboolean         success;
         GsmAutostartApp *aapp;
 
         aapp = GSM_AUTOSTART_APP (app);
@@ -497,7 +514,7 @@ launch (GsmApp  *app,
 
         if (success) {
                 g_debug ("GsmAutostartApp: started pid:%d", aapp->priv->pid);
-                aapp->priv->child_watch_id = g_child_watch_add ((GPid) aapp->priv->pid,
+                aapp->priv->child_watch_id = g_child_watch_add (aapp->priv->pid,
                                                                 (GChildWatchFunc)app_exited,
                                                                 app);
 
@@ -505,6 +522,29 @@ launch (GsmApp  *app,
         } else {
                 return FALSE;
         }
+}
+
+static gboolean
+gsm_autostart_app_restart (GsmApp  *app,
+                           GError **error)
+{
+        GError  *local_error;
+        gboolean res;
+
+        local_error = NULL;
+        res = gsm_app_stop (app, &local_error);
+        if (! res) {
+                g_propagate_error (error, local_error);
+                return FALSE;
+        }
+
+        res = gsm_app_start (app, &local_error);
+        if (! res) {
+                g_propagate_error (error, local_error);
+                return FALSE;
+        }
+
+        return TRUE;
 }
 
 static gboolean
@@ -540,6 +580,30 @@ gsm_autostart_app_provides (GsmApp     *app,
 
         g_strfreev (provides);
         return FALSE;
+}
+
+static gboolean
+gsm_autostart_app_get_autorestart (GsmApp *app)
+{
+        gboolean res;
+        gboolean autorestart;
+
+        if (GSM_AUTOSTART_APP (app)->priv->desktop_file == NULL) {
+                return FALSE;
+        }
+
+        autorestart = FALSE;
+
+        res = egg_desktop_file_has_key (GSM_AUTOSTART_APP (app)->priv->desktop_file,
+                                        "X-GNOME-AutoRestart",
+                                        NULL);
+        if (res) {
+                autorestart = egg_desktop_file_get_boolean (GSM_AUTOSTART_APP (app)->priv->desktop_file,
+                                                            "X-GNOME-AutoRestart",
+                                                            NULL);
+        }
+
+        return autorestart;
 }
 
 static const char *
@@ -594,9 +658,12 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
 
         app_class->is_disabled = is_disabled;
         app_class->is_running = is_running;
-        app_class->start = launch;
+        app_class->start = gsm_autostart_app_start;
+        app_class->restart = gsm_autostart_app_restart;
+        app_class->stop = gsm_autostart_app_stop;
         app_class->provides = gsm_autostart_app_provides;
         app_class->get_id = gsm_autostart_app_get_id;
+        app_class->get_autorestart = gsm_autostart_app_get_autorestart;
 
         g_object_class_install_property (object_class,
                                          PROP_DESKTOP_FILE,

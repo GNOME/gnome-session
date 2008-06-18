@@ -632,9 +632,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
-        client_class->get_autorestart      = xsmp_get_autorestart;
         client_class->stop                 = xsmp_stop;
-        client_class->restart              = xsmp_restart;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
@@ -783,7 +781,7 @@ register_client_callback (SmsConn    conn,
                 free (previous_id);
         }
 
-        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_MANAGED);
+        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_REGISTERED);
 
         return TRUE;
 }

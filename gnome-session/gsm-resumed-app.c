@@ -23,6 +23,9 @@
 #include <config.h>
 #endif
 
+#include <sys/wait.h>
+#include <glib.h>
+
 #include <X11/SM/SMlib.h>
 
 #include "gsm-resumed-app.h"
@@ -35,6 +38,8 @@ struct _GsmResumedAppPrivate
         char    *restart_command;
         char    *discard_command;
         gboolean discard_on_resume;
+        GPid     pid;
+        guint    child_watch_id;
 };
 
 G_DEFINE_TYPE (GsmResumedApp, gsm_resumed_app, GSM_TYPE_APP)
@@ -45,9 +50,34 @@ gsm_resumed_app_init (GsmResumedApp *app)
         app->priv = GSM_RESUMED_APP_GET_PRIVATE (app);
 }
 
+static void
+app_exited (GPid           pid,
+            int            status,
+            GsmResumedApp *app)
+{
+        g_debug ("GsmResumedApp: (pid:%d) done (%s:%d)",
+                 (int) pid,
+                 WIFEXITED (status) ? "status"
+                 : WIFSIGNALED (status) ? "signal"
+                 : "unknown",
+                 WIFEXITED (status) ? WEXITSTATUS (status)
+                 : WIFSIGNALED (status) ? WTERMSIG (status)
+                 : -1);
+
+        g_spawn_close_pid (app->priv->pid);
+        app->priv->pid = -1;
+        app->priv->child_watch_id = 0;
+
+        if (WIFEXITED (status)) {
+                gsm_app_exited (GSM_APP (app));
+        } else if (WIFSIGNALED (status)) {
+                gsm_app_died (GSM_APP (app));
+        }
+}
+
 static gboolean
-launch (GsmApp  *app,
-        GError **err)
+gsm_resumed_app_start (GsmApp  *app,
+                       GError **error)
 {
         const char *restart_command;
         int         argc;
@@ -55,14 +85,17 @@ launch (GsmApp  *app,
         gboolean    success;
         gboolean    res;
         pid_t       pid;
+        GsmResumedApp *rapp;
 
-        restart_command = GSM_RESUMED_APP (app)->priv->restart_command;
+        rapp = GSM_RESUMED_APP (app);
+
+        restart_command = rapp->priv->restart_command;
 
         if (restart_command == NULL) {
                 return FALSE;
         }
 
-        res = g_shell_parse_argv (restart_command, &argc, &argv, err);
+        res = g_shell_parse_argv (restart_command, &argc, &argv, error);
         if (!res) {
                 return FALSE;
         }
@@ -82,10 +115,41 @@ launch (GsmApp  *app,
                                  NULL,
                                  NULL,
                                  &pid,
-                                 err);
+                                 error);
         g_strfreev (argv);
 
+        if (success) {
+                g_debug ("GsmResumedApp: started pid:%d",
+                         rapp->priv->pid);
+                rapp->priv->child_watch_id = g_child_watch_add (rapp->priv->pid,
+                                                                (GChildWatchFunc)app_exited,
+                                                                app);
+        }
+
         return success;
+}
+
+static gboolean
+gsm_resumed_app_restart (GsmApp  *app,
+                         GError **error)
+{
+        GError  *local_error;
+        gboolean res;
+
+        local_error = NULL;
+        res = gsm_app_stop (app, &local_error);
+        if (! res) {
+                g_propagate_error (error, local_error);
+                return FALSE;
+        }
+
+        res = gsm_app_start (app, &local_error);
+        if (! res) {
+                g_propagate_error (error, local_error);
+                return FALSE;
+        }
+
+        return TRUE;
 }
 
 static const char *
@@ -95,12 +159,36 @@ gsm_resumed_app_get_id (GsmApp *app)
 }
 
 static void
+gsm_resumed_app_dispose (GObject *object)
+{
+        GsmResumedAppPrivate *priv;
+
+        priv = GSM_RESUMED_APP (object)->priv;
+
+        g_free (priv->program);
+        priv->program = NULL;
+        g_free (priv->restart_command);
+        priv->restart_command = NULL;
+        g_free (priv->discard_command);
+        priv->discard_command = NULL;
+
+        if (priv->child_watch_id > 0) {
+                g_source_remove (priv->child_watch_id);
+                priv->child_watch_id = 0;
+        }
+}
+
+static void
 gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 {
-        GsmAppClass *app_class = GSM_APP_CLASS (klass);
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+        GsmAppClass  *app_class = GSM_APP_CLASS (klass);
+
+        object_class->dispose = gsm_resumed_app_dispose;
 
         app_class->get_id = gsm_resumed_app_get_id;
-        app_class->start = launch;
+        app_class->start = gsm_resumed_app_start;
+        app_class->restart = gsm_resumed_app_restart;
 
         g_type_class_add_private (klass, sizeof (GsmResumedAppPrivate));
 }

@@ -1,5 +1,42 @@
 2008-06-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-app.c (gsm_app_class_init),
+	(gsm_app_get_autorestart), (gsm_app_restart):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_dispose),
+	(gsm_autostart_app_stop), (gsm_autostart_app_start),
+	(gsm_autostart_app_restart), (gsm_autostart_app_get_autorestart),
+	(gsm_autostart_app_class_init):
+	* gnome-session/gsm-client.c (gsm_client_class_init):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_set_bus_name),
+	(gsm_dbus_client_get_bus_name), (gsm_dbus_client_set_property),
+	(gsm_dbus_client_get_property), (gsm_dbus_client_class_init):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-manager.c (gsm_manager_error_get_type),
+	(find_app_for_app_id), (disconnect_client),
+	(_disconnect_dbus_client), (remove_clients_for_connection),
+	(on_client_disconnected), (on_xsmp_client_register_request),
+	(gsm_manager_register_client), (gsm_manager_unregister_client):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-manager.xml:
+	* gnome-session/gsm-method-client.c (gsm_method_client_class_init):
+	* gnome-session/gsm-resumed-app.c (app_exited),
+	(gsm_resumed_app_start), (gsm_resumed_app_restart),
+	(gsm_resumed_app_dispose), (gsm_resumed_app_class_init):
+	* gnome-session/gsm-service-client.c
+	(gsm_service_client_class_init):
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_class_init),
+	(register_client_callback):
+	* gnome-session/test-client-method.c (session_manager_connect),
+	(register_client), (session_manager_disconnect),
+	(unregister_client), (main):
+	Add dbus method client support.  Add test client.  Fix up
+	restart handling.
+
+2008-06-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.c:
 	* gnome-session/gsm-app.h:
 	* gnome-session/gsm-autostart-app.c:

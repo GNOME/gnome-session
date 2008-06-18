@@ -40,8 +40,8 @@ typedef struct _GsmClientClass   GsmClientClass;
 typedef struct GsmClientPrivate GsmClientPrivate;
 
 typedef enum {
-        GSM_CLIENT_UNMANAGED = 0,
-        GSM_CLIENT_MANAGED,
+        GSM_CLIENT_UNREGISTERED = 0,
+        GSM_CLIENT_REGISTERED,
         GSM_CLIENT_FINISHED,
         GSM_CLIENT_FAILED,
 } GsmClientStatus;
@@ -63,9 +63,6 @@ struct _GsmClientClass
         void         (*notify_session_over) (GsmClient *client);
         gboolean     (*stop)                (GsmClient *client,
                                              GError   **error);
-        gboolean     (*restart)             (GsmClient *client,
-                                             GError   **error);
-        gboolean     (*get_autorestart)     (GsmClient *client);
 };
 
 GType       gsm_client_get_type             (void) G_GNUC_CONST;
@@ -83,10 +80,6 @@ void        gsm_client_notify_session_over  (GsmClient  *client);
 
 gboolean    gsm_client_stop                 (GsmClient  *client,
                                              GError    **error);
-gboolean    gsm_client_restart              (GsmClient  *client,
-                                             GError    **error);
-gboolean    gsm_client_get_autorestart      (GsmClient  *client);
-
 
 void        gsm_client_disconnected         (GsmClient  *client);
 
