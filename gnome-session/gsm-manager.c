@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2007 Novell, Inc.
+ * Copyright (C) 2008 Red Hat, Inc.
  * Copyright (C) 2008 William Jon McCann <jmccann@redhat.com>
  *
  * This program is free software; you can redistribute it and/or modify
