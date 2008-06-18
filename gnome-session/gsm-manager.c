@@ -76,7 +76,6 @@ struct GsmManagerPrivate
         GHashTable             *apps_by_id;
 
         /* Current status */
-        char                   *name;
         GsmManagerPhase         phase;
         guint                   timeout_id;
         GSList                 *pending_apps;
@@ -492,7 +491,11 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         GsmManager  *manager)
 {
         if (strlen (new_service_name) == 0) {
+                /* service removed */
                 remove_clients_for_connection (manager, old_service_name);
+        } else if (strlen (old_service_name) == 0) {
+                /* service added */
+                
         }
 }
 
@@ -675,7 +678,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 
         app = find_app_for_client_id (manager, new_id);
         if (app != NULL) {
-                gsm_client_set_app_id (client, gsm_app_get_id (app));
+                gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_get_id (app));
                 gsm_app_registered (app);
                 goto out;
         }
@@ -1210,10 +1213,6 @@ gsm_manager_finalize (GObject *object)
                 g_object_unref (manager->priv->store);
         }
 
-        g_free (manager->priv->name);
-
-        /* FIXME */
-
         G_OBJECT_CLASS (gsm_manager_parent_class)->finalize (object);
 }
 
@@ -1540,32 +1539,6 @@ gsm_manager_logout (GsmManager *manager,
         default:
                 g_assert_not_reached ();
         }
-
-        return TRUE;
-}
-
-static void
-manager_set_name (GsmManager *manager,
-                  const char *name)
-{
-        g_free (manager->priv->name);
-        manager->priv->name = g_strdup (name);
-}
-
-gboolean
-gsm_manager_set_name (GsmManager *manager,
-                      const char *session_name,
-                      GError    **error)
-{
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "SetName interface is only available during the Running phase");
-                return FALSE;
-        }
-
-        manager_set_name (manager, session_name);
 
         return TRUE;
 }

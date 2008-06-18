@@ -1,5 +1,12 @@
 2008-06-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (bus_name_owner_changed),
+	(on_xsmp_client_register_request), (gsm_manager_finalize):
+	* gnome-session/gsm-manager.xml:
+	Drop set_name.
+
+2008-06-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-app.c (gsm_app_class_init),
 	(gsm_app_get_autorestart), (gsm_app_restart):
