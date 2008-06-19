@@ -1,5 +1,28 @@
 2008-06-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-app.c (gsm_app_error_quark), (gsm_app_set_id),
+	(gsm_app_set_client_id), (gsm_app_set_property),
+	(gsm_app_get_property), (gsm_app_dispose), (gsm_app_class_init):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (load_desktop_file),
+	(gsm_autostart_app_set_desktop_filename),
+	(gsm_autostart_app_set_property), (gsm_autostart_app_get_property),
+	(gsm_autostart_app_dispose), (is_disabled),
+	(autostart_app_stop_spawn), (autostart_app_stop_activate),
+	(gsm_autostart_app_stop), (autostart_app_start_spawn),
+	(start_notify), (autostart_app_start_activate),
+	(gsm_autostart_app_start), (gsm_autostart_app_constructor),
+	(gsm_autostart_app_class_init), (gsm_autostart_app_new):
+	* gnome-session/gsm-autostart-app.h:
+	* gnome-session/gsm-manager.c (_app_has_client_id),
+	(find_app_for_client_id), (register_client_for_name),
+	(bus_name_owner_changed), (register_manager),
+	(append_default_apps), (append_autostart_apps),
+	(append_required_apps):
+	Add preliminary support for service clients.
+
+2008-06-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (bus_name_owner_changed),
 	(on_xsmp_client_register_request), (gsm_manager_finalize):
 	* gnome-session/gsm-manager.xml:

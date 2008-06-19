@@ -57,6 +57,17 @@ enum {
 
 G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
+GQuark
+gsm_app_error_quark (void)
+{
+        static GQuark ret = 0;
+        if (ret == 0) {
+                ret = g_quark_from_static_string ("gsm_app_error");
+        }
+
+        return ret;
+}
+
 static void
 gsm_app_init (GsmApp *app)
 {
@@ -73,21 +84,44 @@ gsm_app_set_phase (GsmApp *app,
 }
 
 static void
-set_property (GObject      *object,
-              guint         prop_id,
-              const GValue *value,
-              GParamSpec   *pspec)
+gsm_app_set_id (GsmApp     *app,
+                const char *id)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        g_free (app->priv->id);
+
+        app->priv->id = g_strdup (id);
+        g_object_notify (G_OBJECT (app), "id");
+
+}
+static void
+gsm_app_set_client_id (GsmApp     *app,
+                       const char *client_id)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        g_free (app->priv->client_id);
+
+        app->priv->client_id = g_strdup (client_id);
+        g_object_notify (G_OBJECT (app), "client-id");
+
+}
+
+static void
+gsm_app_set_property (GObject      *object,
+                      guint         prop_id,
+                      const GValue *value,
+                      GParamSpec   *pspec)
 {
         GsmApp *app = GSM_APP (object);
 
         switch (prop_id) {
         case PROP_CLIENT_ID:
-                g_free (app->priv->client_id);
-                app->priv->client_id = g_value_dup_string (value);
+                gsm_app_set_client_id (app, g_value_get_string (value));
                 break;
         case PROP_ID:
-                g_free (app->priv->id);
-                app->priv->id = g_value_dup_string (value);
+                gsm_app_set_id (app, g_value_get_string (value));
                 break;
         case PROP_PHASE:
                 gsm_app_set_phase (app, g_value_get_int (value));
@@ -98,10 +132,10 @@ set_property (GObject      *object,
 }
 
 static void
-get_property (GObject    *object,
-              guint       prop_id,
-              GValue     *value,
-              GParamSpec *pspec)
+gsm_app_get_property (GObject    *object,
+                      guint       prop_id,
+                      GValue     *value,
+                      GParamSpec *pspec)
 {
         GsmApp *app = GSM_APP (object);
 
@@ -121,7 +155,7 @@ get_property (GObject    *object,
 }
 
 static void
-dispose (GObject *object)
+gsm_app_dispose (GObject *object)
 {
         GsmApp *app = GSM_APP (object);
 
@@ -136,9 +170,9 @@ gsm_app_class_init (GsmAppClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->set_property = set_property;
-        object_class->get_property = get_property;
-        object_class->dispose = dispose;
+        object_class->set_property = gsm_app_set_property;
+        object_class->get_property = gsm_app_get_property;
+        object_class->dispose = gsm_app_dispose;
 
         klass->get_id = NULL;
         klass->start = NULL;

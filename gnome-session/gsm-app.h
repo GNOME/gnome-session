@@ -76,6 +76,16 @@ struct _GsmAppClass
                                         GsmClient  *client);
 };
 
+typedef enum
+{
+        GSM_APP_ERROR_GENERAL = 0,
+        GSM_APP_ERROR_START,
+        GSM_APP_NUM_ERRORS
+} GsmAppError;
+
+#define GSM_APP_ERROR gsm_app_error_quark ()
+
+GQuark           gsm_app_error_quark     (void);
 GType            gsm_app_get_type        (void) G_GNUC_CONST;
 
 gboolean         gsm_app_start           (GsmApp     *app,
@@ -97,9 +107,6 @@ void             gsm_app_died            (GsmApp     *app);
 gboolean         gsm_app_provides        (GsmApp     *app,
                                           const char *service);
 gboolean         gsm_app_is_disabled     (GsmApp     *app);
-void             gsm_app_set_client      (GsmApp     *app,
-                                          GsmClient  *client);
-
 void             gsm_app_registered      (GsmApp     *app);
 
 G_END_DECLS

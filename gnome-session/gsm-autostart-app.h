@@ -57,8 +57,7 @@ struct _GsmAutostartAppClass
 
 GType   gsm_autostart_app_get_type           (void) G_GNUC_CONST;
 
-GsmApp *gsm_autostart_app_new                (const char *desktop_file,
-                                              const char *client_id);
+GsmApp *gsm_autostart_app_new                (const char *desktop_file);
 
 G_END_DECLS
 

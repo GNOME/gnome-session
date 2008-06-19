@@ -46,6 +46,7 @@
 
 #include "gsm-xsmp-client.h"
 #include "gsm-method-client.h"
+#include "gsm-service-client.h"
 
 #include "gsm-autostart-app.h"
 #include "gsm-resumed-app.h"
@@ -483,6 +484,84 @@ remove_clients_for_connection (GsmManager *manager,
                                   &data);
 }
 
+static gboolean
+_app_has_client_id (const char *id,
+                    GsmApp     *app,
+                    const char *client_id_a)
+{
+        const char *client_id_b;
+
+        client_id_b = gsm_app_get_client_id (app);
+
+        if (client_id_b == NULL) {
+                return FALSE;
+        }
+
+        return (strcmp (client_id_a, client_id_b) == 0);
+}
+
+static GsmApp *
+find_app_for_client_id (GsmManager *manager,
+                        const char *client_id)
+{
+        GsmApp *found_app;
+        GSList *a;
+
+        found_app = NULL;
+
+        /* If we're starting up the session, try to match the new client
+         * with one pending apps for the current phase. If not, try to match
+         * with any of the autostarted apps. */
+        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
+                        GsmApp *app = GSM_APP (a->data);
+
+                        if (strcmp (client_id, gsm_app_get_client_id (app)) == 0) {
+                                found_app = app;
+                                goto out;
+                        }
+                }
+        } else {
+                GsmApp *app;
+
+                app = g_hash_table_find (manager->priv->apps_by_id,
+                                         (GHRFunc)_app_has_client_id,
+                                         (char *)client_id);
+                if (app != NULL) {
+                        found_app = app;
+                        goto out;
+                }
+        }
+ out:
+        return found_app;
+}
+
+static void
+register_client_for_name (GsmManager *manager,
+                          const char *dbus_name)
+{
+        GsmApp    *app;
+        GsmClient *client;
+
+        app = find_app_for_client_id (manager, dbus_name);
+        if (app == NULL) {
+                return;
+        }
+
+        client = gsm_service_client_new (dbus_name);
+        if (client == NULL) {
+                g_warning ("GsmManager: Unable to create client for name '%s'", dbus_name);
+                return;
+        }
+
+        gsm_client_store_add (manager->priv->store, client);
+
+        gsm_client_set_app_id (client, gsm_app_get_id (app));
+        gsm_app_registered (app);
+
+        gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
+}
+
 static void
 bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         const char  *service_name,
@@ -490,12 +569,16 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         const char  *new_service_name,
                         GsmManager  *manager)
 {
-        if (strlen (new_service_name) == 0) {
+        if (strlen (new_service_name) == 0
+            && strlen (old_service_name) > 0) {
                 /* service removed */
                 remove_clients_for_connection (manager, old_service_name);
-        } else if (strlen (old_service_name) == 0) {
+        } else if (strlen (old_service_name) == 0
+                   && strlen (new_service_name) > 0) {
                 /* service added */
-                
+                if (new_service_name[0] == '/') {
+                        register_client_for_name (manager, new_service_name);
+                }
         }
 }
 
@@ -508,7 +591,7 @@ register_manager (GsmManager *manager)
         manager->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (manager->priv->connection == NULL) {
                 if (error != NULL) {
-                        g_critical ("error getting system bus: %s", error->message);
+                        g_critical ("error getting session bus: %s", error->message);
                         g_error_free (error);
                 }
                 exit (1);
@@ -560,64 +643,12 @@ _client_has_client_id (const char *id,
         return (strcmp (client_id_a, client_id_b) == 0);
 }
 
-static gboolean
-_app_has_client_id (const char *id,
-                    GsmApp     *app,
-                    const char *client_id_a)
-{
-        const char *client_id_b;
-
-        client_id_b = gsm_app_get_client_id (app);
-
-        if (client_id_b == NULL) {
-                return FALSE;
-        }
-
-        return (strcmp (client_id_a, client_id_b) == 0);
-}
-
 static void
 on_client_disconnected (GsmClient  *client,
                         GsmManager *manager)
 {
         g_debug ("GsmManager: disconnect client");
         disconnect_client (manager, client);
-}
-
-static GsmApp *
-find_app_for_client_id (GsmManager *manager,
-                        const char *client_id)
-{
-        GsmApp *found_app;
-        GSList *a;
-
-        found_app = NULL;
-
-        /* If we're starting up the session, try to match the new client
-         * with one pending apps for the current phase. If not, try to match
-         * with any of the autostarted apps. */
-        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
-                        GsmApp *app = GSM_APP (a->data);
-
-                        if (strcmp (client_id, gsm_app_get_client_id (app)) == 0) {
-                                found_app = app;
-                                goto out;
-                        }
-                }
-        } else {
-                GsmApp *app;
-
-                app = g_hash_table_find (manager->priv->apps_by_id,
-                                         (GHRFunc)_app_has_client_id,
-                                         (char *)client_id);
-                if (app != NULL) {
-                        found_app = app;
-                        goto out;
-                }
-        }
- out:
-        return found_app;
 }
 
 static gboolean
@@ -868,13 +899,10 @@ append_default_apps (GsmManager *manager,
 
                 if (app_path != NULL) {
                         GsmApp *app;
-                        char   *client_id;
 
                         g_debug ("GsmManager: Found in: %s", app_path);
 
-                        client_id = gsm_util_generate_client_id ();
-                        app = gsm_autostart_app_new (app_path, client_id);
-                        g_free (client_id);
+                        app = gsm_autostart_app_new (app_path);
                         g_free (app_path);
 
                         if (app != NULL) {
@@ -912,7 +940,6 @@ append_autostart_apps (GsmManager *manager,
         while ((name = g_dir_read_name (dir))) {
                 GsmApp *app;
                 char   *desktop_file;
-                char   *client_id;
 
                 if (!g_str_has_suffix (name, ".desktop")) {
                         continue;
@@ -920,8 +947,7 @@ append_autostart_apps (GsmManager *manager,
 
                 desktop_file = g_build_filename (path, name, NULL);
 
-                client_id = gsm_util_generate_client_id ();
-                app = gsm_autostart_app_new (desktop_file, client_id);
+                app = gsm_autostart_app_new (desktop_file);
                 if (app != NULL) {
                         g_debug ("GsmManager: read %s\n", desktop_file);
                         append_app (manager, app);
@@ -931,7 +957,6 @@ append_autostart_apps (GsmManager *manager,
                 }
 
                 g_free (desktop_file);
-                g_free (client_id);
         }
 
         g_dir_close (dir);
@@ -1030,11 +1055,7 @@ append_required_apps (GsmManager *manager)
                                          (GHRFunc)_find_app_provides,
                                          (char *)service);
                 if (app == NULL) {
-                        char *client_id;
-
-                        client_id = gsm_util_generate_client_id ();
-                        app = gsm_autostart_app_new (default_provider, client_id);
-                        g_free (client_id);
+                        app = gsm_autostart_app_new (default_provider);
                         if (app != NULL) {
                                 append_app (manager, app);
                                 g_object_unref (app);
