@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-07 18:24+0200\n"
-"PO-Revision-Date: 2008-06-07 18:24+0200\n"
+"POT-Creation-Date: 2008-06-25 01:44+0200\n"
+"PO-Revision-Date: 2008-06-25 01:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -54,9 +54,9 @@ msgstr "Liste med programmer som er en del av forvalgt sesjon."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
 "Liste med komponenter som kreves i sesjonen. (Hvert element navngir en "
 "nøkkel under «/desktop/gnome/session/required-components».) Dialog for "
@@ -279,7 +279,7 @@ msgstr ""
 "Det er problemer med konfigurasjonstjeneren.\n"
 "(%s avsluttet med status %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/logout-dialog.c:269
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -288,9 +288,13 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "You will be automatically logged out in %d seconds."
 msgstr[0] ""
+"Du er logget inn som «%s».\n"
+"Du vil bli logget ut automatisk om %d sekund."
 msgstr[1] ""
+"Du er logget inn som «%s».\n"
+"Du vil bli logget ut automatisk %d sekunder."
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/logout-dialog.c:281
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -301,35 +305,35 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/logout-dialog.c:357
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/logout-dialog.c:363
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/logout-dialog.c:371
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/logout-dialog.c:377
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/logout-dialog.c:383
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/logout-dialog.c:388
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/logout-dialog.c:393
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/logout-dialog.c:402
 msgid "_Shut Down"
 msgstr "_Steng ned"
 
@@ -399,7 +403,7 @@ msgstr "Legg til oppstartsprogram"
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/commands.c:793
+#: ../capplet/commands.c:797
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
@@ -440,6 +444,6 @@ msgstr "Spill lyd når du logger ut i stedet for når du logger inn"
 msgid "- GNOME login/logout sound"
 msgstr "- Lyd for inn-/utlogging i GNOME"
 
-#: ../splash/gnome-session-splash.c:283
+#: ../splash/gnome-session-splash.c:284
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME oppstartskjerm"
