@@ -35,7 +35,7 @@
 
 static DBusGConnection *bus_connection = NULL;
 static DBusGProxy      *sm_proxy = NULL;
-static char            *client_id = NULL;
+static guint            cookie = 0;
 
 static gboolean
 session_manager_connect (void)
@@ -62,32 +62,40 @@ session_manager_connect (void)
 }
 
 static gboolean
-register_client (void)
+do_inhibit (void)
 {
         GError     *error;
         gboolean    res;
         const char *startup_id;
         const char *app_id;
+        const char *reason;
+        guint       toplevel_xid;
+        guint       flags;
 
         startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-        app_id = "test-client-method";
+        app_id = "nautilus-cd-burner";
+        reason = "A CD burn is in progress.";
+        toplevel_xid = 0;
+        flags = 0;
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,
-                                 "RegisterClient",
+                                 "Inhibit",
                                  &error,
-                                 G_TYPE_STRING, startup_id,
                                  G_TYPE_STRING, app_id,
+                                 G_TYPE_UINT, cookie,
+                                 G_TYPE_STRING, reason,
+                                 G_TYPE_UINT, flags,
                                  G_TYPE_INVALID,
-                                 G_TYPE_STRING, &client_id,
+                                 G_TYPE_UINT, &cookie,
                                  G_TYPE_INVALID);
         if (! res) {
-                g_warning ("Failed to register client: %s", error->message);
+                g_warning ("Failed to inhibit: %s", error->message);
                 g_error_free (error);
                 return FALSE;
         }
 
-        g_debug ("Client registered with session manager: %s", client_id);
+        g_debug ("Inhibiting session manager: %u", cookie);
 
         return TRUE;
 }
@@ -103,26 +111,25 @@ session_manager_disconnect (void)
 }
 
 static gboolean
-unregister_client (void)
+do_uninhibit (void)
 {
         GError  *error;
         gboolean res;
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,
-                                 "UnregisterClient",
+                                 "Uninhibit",
                                  &error,
-                                 G_TYPE_STRING, client_id,
+                                 G_TYPE_UINT, cookie,
                                  G_TYPE_INVALID,
                                  G_TYPE_INVALID);
         if (! res) {
-                g_warning ("Failed to unregister client: %s", error->message);
+                g_warning ("Failed to uninhibit: %s", error->message);
                 g_error_free (error);
                 return FALSE;
         }
 
-        g_free (client_id);
-        client_id = NULL;
+        cookie = 0;
 
         return TRUE;
 }
@@ -143,14 +150,14 @@ main (int   argc,
                 exit (1);
         }
 
-        res = register_client ();
+        res = do_inhibit ();
         if (! res) {
                 g_warning ("Unable to register client with session manager");
         }
 
         sleep (30);
 
-        unregister_client ();
+        do_uninhibit ();
         session_manager_disconnect ();
 
         return 0;

@@ -98,6 +98,14 @@ typedef enum {
         GSM_MANAGER_LOGOUT_MODE_FORCE
 } GsmManagerLogoutMode;
 
+typedef enum {
+        GSM_MANAGER_INHIBIT_FLAG_NONE              = 1 << 0,
+        GSM_MANAGER_INHIBIT_FLAG_ALLOW_USER_SWITCH = 1 << 1,
+        GSM_MANAGER_INHIBIT_FLAG_ALLOW_SUSPEND     = 1 << 2,
+        GSM_MANAGER_INHIBIT_FLAG_ALLOW_LOG_OUT     = 1 << 3,
+        GSM_MANAGER_INHIBIT_FLAG_ALLOW_SHUTDOWN    = 1 << 4,
+} GsmManagerInhibitFlag;
+
 GType               gsm_manager_error_get_type       (void);
 #define GSM_MANAGER_TYPE_ERROR (gsm_manager_error_get_type ())
 
@@ -114,19 +122,20 @@ void                gsm_manager_start                (GsmManager     *manager);
 
 gboolean            gsm_manager_register_client      (GsmManager            *manager,
                                                       const char            *client_startup_id,
-                                                      const char            *program_id,
+                                                      const char            *app_id,
                                                       DBusGMethodInvocation *context);
 gboolean            gsm_manager_unregister_client    (GsmManager            *manager,
                                                       const char            *session_client_id,
                                                       DBusGMethodInvocation *context);
 
 gboolean            gsm_manager_inhibit              (GsmManager            *manager,
+                                                      const char            *app_id,
                                                       guint                  toplevel_xid,
-                                                      const char            *application,
                                                       const char            *reason,
+                                                      guint                  flags,
                                                       DBusGMethodInvocation *context);
 gboolean            gsm_manager_uninhibit            (GsmManager            *manager,
-                                                      const char            *inhibit_cookie,
+                                                      guint                  inhibit_cookie,
                                                       DBusGMethodInvocation *context);
 
 gboolean            gsm_manager_shutdown             (GsmManager     *manager,

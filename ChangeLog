@@ -1,3 +1,20 @@
+2008-06-23  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-manager.c (gsm_inhibitor_free),
+	(inhibitor_has_bus_name), (inhibit_changed_check),
+	(remove_inhibitors_for_connection), (bus_name_owner_changed),
+	(gsm_manager_init), (gsm_manager_finalize), (generate_cookie),
+	(_generate_unique_cookie), (gsm_manager_inhibit),
+	(gsm_manager_uninhibit):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-manager.xml:
+	* gnome-session/test-client-method.c (register_client):
+	* gnome-session/test-inhibit.c (session_manager_connect),
+	(do_inhibit), (session_manager_disconnect), (do_uninhibit), (main):
+	Implement inhibit registration.  Doesn't actually use it for
+	anything yet.
+
 2008-06-18  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-app.c (gsm_app_error_quark), (gsm_app_set_id),

@@ -67,6 +67,16 @@
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
 
+typedef struct
+{
+        char    *app_id;
+        guint32  toplevel_xid;
+        char    *reason;
+        guint32  flags;
+        char    *bus_name;
+        guint32  cookie;
+        GTimeVal since;
+} GsmInhibitor;
 
 struct GsmManagerPrivate
 {
@@ -75,11 +85,12 @@ struct GsmManagerPrivate
 
         /* Startup/resumed apps */
         GHashTable             *apps_by_id;
-
         /* Current status */
         GsmManagerPhase         phase;
         guint                   timeout_id;
         GSList                 *pending_apps;
+
+        GHashTable             *inhibitors;
 
         /* List of clients which were disconnected due to disabled condition
          * and shouldn't be automatically restarted */
@@ -149,6 +160,15 @@ gsm_manager_error_get_type (void)
         }
 
         return etype;
+}
+
+static void
+gsm_inhibitor_free (GsmInhibitor *inhibitor)
+{
+        g_free (inhibitor->bus_name);
+        g_free (inhibitor->app_id);
+        g_free (inhibitor->reason);
+        g_free (inhibitor);
 }
 
 static gboolean
@@ -485,6 +505,51 @@ remove_clients_for_connection (GsmManager *manager,
 }
 
 static gboolean
+inhibitor_has_bus_name (gpointer      key,
+                        GsmInhibitor *inhibitor,
+                        const char   *bus_name)
+{
+        gboolean matches;
+
+        matches = FALSE;
+        if (bus_name != NULL && inhibitor->bus_name != NULL) {
+                matches = (strcmp (bus_name, inhibitor->bus_name) == 0);
+                if (matches) {
+                        g_debug ("removing inhibitor from %s for reason '%s' on connection %s",
+                                 inhibitor->app_id,
+                                 inhibitor->reason,
+                                 inhibitor->bus_name);
+                }
+        }
+
+        return matches;
+}
+
+static void
+inhibit_changed_check (GsmManager *manager)
+{
+        gboolean inhibited;
+
+        inhibited = g_hash_table_size (manager->priv->inhibitors) > 0;
+
+        /* FIXME: do stuff */
+}
+
+static void
+remove_inhibitors_for_connection (GsmManager *manager,
+                                  const char *service_name)
+{
+        guint n_removed;
+
+        n_removed = g_hash_table_foreach_remove (manager->priv->inhibitors,
+                                                 (GHRFunc)inhibitor_has_bus_name,
+                                                 (gpointer)service_name);
+        if (n_removed > 0) {
+                inhibit_changed_check (manager);
+        }
+}
+
+static gboolean
 _app_has_client_id (const char *id,
                     GsmApp     *app,
                     const char *client_id_a)
@@ -573,6 +638,7 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
             && strlen (old_service_name) > 0) {
                 /* service removed */
                 remove_clients_for_connection (manager, old_service_name);
+                remove_inhibitors_for_connection (manager, old_service_name);
         } else if (strlen (old_service_name) == 0
                    && strlen (new_service_name) > 0) {
                 /* service added */
@@ -1216,6 +1282,11 @@ gsm_manager_init (GsmManager *manager)
                                                            g_str_equal,
                                                            g_free,
                                                            g_object_unref);
+
+        manager->priv->inhibitors = g_hash_table_new_full (g_int_hash,
+                                                           g_int_equal,
+                                                           NULL,
+                                                           (GDestroyNotify)gsm_inhibitor_free);
 }
 
 static void
@@ -1232,6 +1303,14 @@ gsm_manager_finalize (GObject *object)
 
         if (manager->priv->store != NULL) {
                 g_object_unref (manager->priv->store);
+        }
+
+        if (manager->priv->apps_by_id != NULL) {
+                g_hash_table_destroy (manager->priv->apps_by_id);
+        }
+
+        if (manager->priv->inhibitors != NULL) {
+                g_hash_table_destroy (manager->priv->inhibitors);
         }
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->finalize (object);
@@ -1756,51 +1835,119 @@ gsm_manager_unregister_client (GsmManager            *manager,
         return TRUE;
 }
 
+static guint32
+generate_cookie (void)
+{
+        guint32 cookie;
+
+        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
+
+        return cookie;
+}
+
+static guint32
+_generate_unique_cookie (GsmManager *manager)
+{
+        guint32 cookie;
+
+        do {
+                cookie = generate_cookie ();
+        } while (g_hash_table_lookup (manager->priv->inhibitors, &cookie) != NULL);
+
+        return cookie;
+}
+
 gboolean
 gsm_manager_inhibit (GsmManager            *manager,
+                     const char            *app_id,
                      guint                  toplevel_xid,
-                     const char            *application,
                      const char            *reason,
+                     guint                  flags,
                      DBusGMethodInvocation *context)
 {
-        g_debug ("GsmManager: Inhibit xid=%u application=%s reason=%s",
+        GsmInhibitor *inhibitor;
+
+        g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
                  toplevel_xid,
-                 application,
-                 reason);
+                 app_id,
+                 reason,
+                 flags);
 
-        if (1) {
+        if (app_id == NULL || app_id[0] == '\0') {
                 GError *new_error;
-
-                g_debug ("Unable to inhibit");
 
                 new_error = g_error_new (GSM_MANAGER_ERROR,
                                          GSM_MANAGER_ERROR_GENERAL,
-                                         "Unable to inhibit");
+                                         "Application ID not specified");
+                g_debug ("Unable to inhibit: %s", new_error->message);
                 dbus_g_method_return_error (context, new_error);
                 g_error_free (new_error);
+                return FALSE;
         }
 
-        return FALSE;
+        if (reason == NULL || reason[0] == '\0') {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Reason not specified");
+                g_debug ("Unable to inhibit: %s", new_error->message);
+                dbus_g_method_return_error (context, new_error);
+                g_error_free (new_error);
+                return FALSE;
+        }
+
+        inhibitor = g_new0 (GsmInhibitor, 1);
+        inhibitor->app_id = g_strdup (app_id);
+        inhibitor->toplevel_xid = toplevel_xid;
+        inhibitor->reason = g_strdup (reason);
+        inhibitor->flags = flags;
+        inhibitor->bus_name = dbus_g_method_get_sender (context);
+        inhibitor->cookie = _generate_unique_cookie (manager);
+
+        g_hash_table_insert (manager->priv->inhibitors, &inhibitor->cookie, inhibitor);
+
+        dbus_g_method_return (context, inhibitor->cookie);
+
+        return TRUE;
 }
 
 gboolean
 gsm_manager_uninhibit (GsmManager            *manager,
-                       const char            *inhibit_cookie,
+                       guint                  cookie,
                        DBusGMethodInvocation *context)
 {
-        g_debug ("GsmManager: Uninhibit %s", inhibit_cookie);
+        GsmInhibitor *inhibitor;
+        gboolean      removed;
 
-        if (1) {
+        g_debug ("GsmManager: Uninhibit %u", cookie);
+
+        inhibitor = g_hash_table_lookup (manager->priv->inhibitors, &cookie);
+        if (inhibitor == NULL) {
                 GError *new_error;
-
-                g_debug ("Unable to uninhibit");
 
                 new_error = g_error_new (GSM_MANAGER_ERROR,
                                          GSM_MANAGER_ERROR_GENERAL,
-                                         "Unable to uninhibit");
+                                         "Unable to uninhibit: Invalid cookie");
                 dbus_g_method_return_error (context, new_error);
+                g_debug ("Unable to uninhibit: %s", new_error->message);
                 g_error_free (new_error);
+                return FALSE;
         }
 
-        return FALSE;
+        g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
+                 inhibitor->app_id,
+                 inhibitor->toplevel_xid,
+                 inhibitor->reason,
+                 inhibitor->flags,
+                 inhibitor->bus_name);
+
+        removed = g_hash_table_remove (manager->priv->inhibitors, &cookie);
+        if (removed) {
+                inhibit_changed_check (manager);
+        }
+
+        dbus_g_method_return (context);
+
+        return TRUE;
 }

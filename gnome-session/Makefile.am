@@ -6,6 +6,8 @@ noinst_LTLIBRARIES = libgsmutil.la
 
 noinst_PROGRAMS = 		\
 	test-client-method	\
+	test-client-service	\
+	test-inhibit		\
 	$(NULL)
 
 INCLUDES =					\
@@ -22,11 +24,27 @@ INCLUDES =					\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
+test_inhibit_SOURCES = 	\
+	test-inhibit.c	\
+	$(NULL)
+
+test_inhibit_LDADD =				\
+	$(DBUS_GLIB_LIBS)			\
+	$(NULL)
+
 test_client_method_SOURCES = 	\
 	test-client-method.c	\
 	$(NULL)
 
 test_client_method_LDADD =			\
+	$(DBUS_GLIB_LIBS)			\
+	$(NULL)
+
+test_client_service_SOURCES = 	\
+	test-client-service.c	\
+	$(NULL)
+
+test_client_service_LDADD =			\
 	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
