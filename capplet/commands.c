@@ -558,6 +558,10 @@ spc_command_get_store ()
   g_list_foreach (removed_apps, (GFunc) g_free, NULL);
   g_list_free (removed_apps);
 
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
+                                        STORE_COL_NAME,
+                                        GTK_SORT_ASCENDING);
+
   return GTK_TREE_MODEL (store);
 }
 
