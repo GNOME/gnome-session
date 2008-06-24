@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-19 14:13+0200\n"
-"PO-Revision-Date: 2008-04-19 14:28+0100\n"
+"POT-Creation-Date: 2008-06-24 10:54+0200\n"
+"PO-Revision-Date: 2008-06-24 11:00+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\\n\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../compat/at-spi-registryd-wrapper.c:48
 msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
 msgstr "Stöd för hjälpmedelsteknik har begärts för den här sessionen, men tillgänglighetsregistret hittades inte. Kontrollera att AT-SPI-paketet är installerat. Din session har startats utan stöd för hjälpmedelsteknik."
 
@@ -50,8 +50,8 @@ msgid "List of applications that are part of the default session."
 msgstr "Lista över program som är en del av standardsessionen."
 
 #: ../data/gnome-session.schemas.in.h:6
-msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required-components\".) The session capplet will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed."
-msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Sessionens capplet låter oftast inte användare att ta bort en nödvändig komponent från sessionen och sessionshanteraren kommer automatiskt att lägga tillbaks de nödvändiga komponenterna till sessionen om de blir borttagna."
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required-components\".) The Session Preferences will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed."
+msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Inställningar för sessioner låter oftast inte användare att ta bort en nödvändig komponent från sessionen och sessionshanteraren kommer automatiskt att lägga tillbaks de nödvändiga komponenterna till sessionen om de blir borttagna."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -125,6 +125,46 @@ msgstr "Konfigurera dina sessioner"
 msgid "Sessions"
 msgstr "Sessioner"
 
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "Ytterligare start_program:"
+
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Bläddra..."
+
+#: ../data/session-properties.glade.h:3
+msgid "Co_mmand:"
+msgstr "Ko_mmando:"
+
+#: ../data/session-properties.glade.h:4
+msgid "Comm_ent:"
+msgstr "Komm_entar:"
+
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Alternativ"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Inställningar för sessioner"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Startprogram"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "Kom _automatiskt ihåg körande program vid utloggning"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Namn:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Kom ihåg för närvarande körande program"
+
 #: ../egg/eggdesktopfile.c:130
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -196,7 +236,7 @@ msgstr "Alternativ för sessionshantering"
 msgid "Show Session Management options"
 msgstr "Visa alternativ för sessionshantering"
 
-#: ../gnome-session/gconf.c:109
+#: ../gnome-session/gconf.c:110
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -205,7 +245,7 @@ msgstr ""
 "Det finns ett problem med konfigurationsservern.\n"
 "(%s avslutades med status %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/logout-dialog.c:269
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -220,7 +260,7 @@ msgstr[1] ""
 "Du är för närvarande inloggad som \"%s\".\n"
 "Du kommer automatiskt att loggas ut om %d sekunder."
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/logout-dialog.c:281
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -235,53 +275,53 @@ msgstr[1] ""
 "Du är för närvarande inloggad som \"%s\".\n"
 "Systemet kommer automatiskt att stängas av om %d sekunder."
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/logout-dialog.c:357
 msgid "Log out of this system now?"
 msgstr "Logga ut ur detta system nu?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/logout-dialog.c:363
 msgid "_Switch User"
 msgstr "_Växla användare"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/logout-dialog.c:371
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/logout-dialog.c:377
 msgid "Shut down this system now?"
 msgstr "Stäng av detta system nu?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/logout-dialog.c:383
 msgid "S_uspend"
 msgstr "V_änteläge"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/logout-dialog.c:388
 msgid "_Hibernate"
 msgstr "Vilolä_ge"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/logout-dialog.c:393
 msgid "_Restart"
 msgstr "Starta _om"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/logout-dialog.c:402
 msgid "_Shut Down"
 msgstr "Stäng _av"
 
-#: ../gnome-session/main.c:33
+#: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
 #. Oh well, no X for you!
-#: ../gnome-session/main.c:68
+#: ../gnome-session/main.c:69
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
-#: ../gnome-session/main.c:106
+#: ../gnome-session/main.c:105
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
 
-#: ../gnome-session/xsmp.c:132
+#: ../gnome-session/xsmp.c:130
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
@@ -289,6 +329,81 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 #: ../gnome-session/xsmp.c:335
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas av\n"
+
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "Kunde inte ansluta till sessionshanteraren\n"
+
+#: ../capplet/ui.c:107
+msgid "Select Command"
+msgstr "Välj kommando"
+
+#: ../capplet/ui.c:219
+msgid "The name of the startup program cannot be empty"
+msgstr "Namnet för startprogrammet får inte vara tomt"
+
+#: ../capplet/ui.c:222
+msgid "The startup command cannot be empty"
+msgstr "Startkommandot får inte vara tomt"
+
+#: ../capplet/ui.c:229
+msgid "The startup command is not valid"
+msgstr "Startkommandot är inte giltigt"
+
+#: ../capplet/ui.c:464
+msgid "Enabled"
+msgstr "Aktiverad"
+
+#: ../capplet/ui.c:478
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../capplet/ui.c:490
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/ui.c:536
+msgid "Add Startup Program"
+msgstr "Lägg till startprogram"
+
+#: ../capplet/ui.c:586
+msgid "Edit Startup Program"
+msgstr "Redigera startprogram"
+
+#: ../capplet/commands.c:793
+msgid "No description"
+msgstr "Ingen beskrivning"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Ställ in det aktuella sessionsnamnet"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NAMN"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Döda session"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Använd dialogrutor för fel"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Kräv inte bekräftelse"
+
+#: ../tools/gnome-session-save.c:192
+#: ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "Kunde inte ansluta till sessionshanteraren"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr " - Spara aktuell session"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -298,7 +413,7 @@ msgstr "Spela upp utloggningsljud istället för inloggning"
 msgid "- GNOME login/logout sound"
 msgstr "- GNOME inloggning-/utloggningsljud"
 
-#: ../splash/gnome-session-splash.c:204
+#: ../splash/gnome-session-splash.c:283
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME-startbild"
 
