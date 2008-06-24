@@ -24,6 +24,8 @@
 #include <glib-object.h>
 #include <gtk/gtkdialog.h>
 
+#include "gsm-inhibitor-store.h"
+
 G_BEGIN_DECLS
 
 #define GSM_TYPE_LOGOUT_INHIBIT_DIALOG         (gsm_logout_inhibit_dialog_get_type ())
@@ -58,7 +60,8 @@ typedef struct
 
 GType                  gsm_logout_inhibit_dialog_get_type           (void);
 
-GtkWidget            * gsm_logout_inhibit_dialog_new                (int                     action);
+GtkWidget            * gsm_logout_inhibit_dialog_new                (GsmInhibitorStore      *inhibitors,
+                                                                     int                     action);
 GtkTreeModel         * gsm_logout_inhibit_dialog_get_model          (GsmLogoutInhibitDialog *dialog);
 
 G_END_DECLS

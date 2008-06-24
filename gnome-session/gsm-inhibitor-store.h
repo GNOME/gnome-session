@@ -84,7 +84,7 @@ GsmInhibitor *      gsm_inhibitor_store_find                     (GsmInhibitorSt
                                                                   GsmInhibitorStoreFunc predicate,
                                                                   gpointer              user_data);
 GsmInhibitor *      gsm_inhibitor_store_lookup                   (GsmInhibitorStore    *store,
-                                                                  guint                *cookie);
+                                                                  guint                 cookie);
 
 G_END_DECLS
 

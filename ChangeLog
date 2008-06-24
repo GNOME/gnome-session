@@ -1,5 +1,30 @@
 2008-06-24  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibitor-store.c (gsm_inhibitor_store_lookup),
+	(foreach_remove_wrapper), (gsm_inhibitor_store_foreach_remove),
+	(gsm_inhibitor_store_add), (gsm_inhibitor_store_init):
+	* gnome-session/gsm-inhibitor-store.h:
+	* gnome-session/gsm-logout-inhibit-dialog.c (find_inhibitor),
+	(_util_icon_remove_extension), (_find_icon), (_load_icon),
+	(add_inhibitor), (on_store_inhibitor_added),
+	(on_store_inhibitor_removed),
+	(gsm_logout_inhibit_dialog_set_inhibitor_store),
+	(gsm_logout_inhibit_dialog_set_property),
+	(gsm_logout_inhibit_dialog_get_property), (name_cell_data_func),
+	(add_to_model), (populate_model), (setup_dialog),
+	(gsm_logout_inhibit_dialog_class_init),
+	(gsm_logout_inhibit_dialog_init),
+	(gsm_logout_inhibit_dialog_finalize),
+	(gsm_logout_inhibit_dialog_new):
+	* gnome-session/gsm-logout-inhibit-dialog.h:
+	* gnome-session/gsm-manager.c (inhibitor_has_bus_name),
+	(bus_name_owner_changed), (logout_inhibit_dialog_response),
+	(request_logout), (_generate_unique_cookie),
+	(gsm_manager_uninhibit):
+	Populate inhibit dialog.
+
+2008-06-24  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.in:
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-client-store.h:

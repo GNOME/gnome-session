@@ -136,17 +136,38 @@ gsm_inhibitor_store_find (GsmInhibitorStore    *store,
 
 GsmInhibitor *
 gsm_inhibitor_store_lookup (GsmInhibitorStore *store,
-                            guint             *cookie)
+                            guint              cookie)
 {
         GsmInhibitor *inhibitor;
 
         g_return_val_if_fail (store != NULL, NULL);
-        g_return_val_if_fail (cookie != NULL, NULL);
 
         inhibitor = g_hash_table_lookup (store->priv->inhibitors,
-                                         cookie);
+                                         GUINT_TO_POINTER (cookie));
 
         return inhibitor;
+}
+
+typedef struct
+{
+        GsmInhibitorStoreFunc func;
+        gpointer              user_data;
+        GsmInhibitorStore    *store;
+} WrapperData;
+
+static gboolean
+foreach_remove_wrapper (guint        *cookie,
+                        GsmInhibitor *inhibitor,
+                        WrapperData  *data)
+{
+        gboolean res;
+
+        res = (data->func) (cookie, inhibitor, data->user_data);
+        if (res) {
+                g_signal_emit (data->store, signals [INHIBITOR_REMOVED], 0, gsm_inhibitor_get_cookie (inhibitor));
+        }
+
+        return res;
 }
 
 guint
@@ -154,14 +175,19 @@ gsm_inhibitor_store_foreach_remove (GsmInhibitorStore    *store,
                                     GsmInhibitorStoreFunc func,
                                     gpointer              user_data)
 {
-        guint ret;
+        guint       ret;
+        WrapperData data;
 
         g_return_val_if_fail (store != NULL, 0);
         g_return_val_if_fail (func != NULL, 0);
 
+        data.store = store;
+        data.user_data = user_data;
+        data.func = func;
+
         ret = g_hash_table_foreach_remove (store->priv->inhibitors,
-                                           (GHRFunc)func,
-                                           user_data);
+                                           (GHRFunc)foreach_remove_wrapper,
+                                           &data);
 
         return ret;
 }
@@ -179,7 +205,7 @@ gsm_inhibitor_store_add (GsmInhibitorStore *store,
 
         g_debug ("GsmInhibitorStore: Adding inhibitor %u to store", cookie);
         g_hash_table_insert (store->priv->inhibitors,
-                             &cookie,
+                             GUINT_TO_POINTER (cookie),
                              g_object_ref (inhibitor));
 
         g_signal_emit (store, signals [INHIBITOR_ADDED], 0, cookie);
@@ -267,8 +293,8 @@ gsm_inhibitor_store_init (GsmInhibitorStore *store)
 
         store->priv = GSM_INHIBITOR_STORE_GET_PRIVATE (store);
 
-        store->priv->inhibitors = g_hash_table_new_full (g_int_hash,
-                                                         g_int_equal,
+        store->priv->inhibitors = g_hash_table_new_full (g_direct_hash,
+                                                         g_direct_equal,
                                                          NULL,
                                                          (GDestroyNotify) inhibitor_unref);
 }

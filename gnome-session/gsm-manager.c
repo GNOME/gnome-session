@@ -499,7 +499,6 @@ inhibitor_has_bus_name (gpointer      key,
         const char *bus_name_b;
 
         bus_name_b = gsm_inhibitor_get_bus_name (inhibitor);
-        g_debug ("GsmManager: comparing bus names %s %s", bus_name_a, bus_name_b);
 
         matches = FALSE;
         if (bus_name_a != NULL && bus_name_b != NULL) {
@@ -613,9 +612,6 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         const char  *new_service_name,
                         GsmManager  *manager)
 {
-        g_debug ("GsmManager: name owner changed old:'%s' new:'%s'",
-                 old_service_name,
-                 new_service_name);
         if (strlen (new_service_name) == 0
             && strlen (old_service_name) > 0) {
                 /* service removed */
@@ -1519,6 +1515,7 @@ logout_inhibit_dialog_response (GsmLogoutInhibitDialog *dialog,
         }
 
         gtk_widget_destroy (GTK_WIDGET (dialog));
+        manager->priv->inhibit_dialog = NULL;
 }
 
 static void
@@ -1531,7 +1528,14 @@ request_logout (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (GSM_LOGOUT_ACTION_LOGOUT);
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_LOGOUT);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
@@ -1921,7 +1925,7 @@ _generate_unique_cookie (GsmManager *manager)
 
         do {
                 cookie = generate_cookie ();
-        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, &cookie) != NULL);
+        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
 
         return cookie;
 }
@@ -1991,7 +1995,7 @@ gsm_manager_uninhibit (GsmManager            *manager,
 
         g_debug ("GsmManager: Uninhibit %u", cookie);
 
-        inhibitor = gsm_inhibitor_store_lookup (manager->priv->inhibitors, &cookie);
+        inhibitor = gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie);
         if (inhibitor == NULL) {
                 GError *new_error;
 
