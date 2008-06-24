@@ -44,6 +44,10 @@
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
 
+#include "gsm-client-store.h"
+#include "gsm-inhibitor-store.h"
+#include "gsm-inhibitor.h"
+
 #include "gsm-xsmp-client.h"
 #include "gsm-method-client.h"
 #include "gsm-service-client.h"
@@ -54,6 +58,7 @@
 #include "util.h"
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
+#include "gsm-logout-inhibit-dialog.h"
 #include "gsm-consolekit.h"
 #include "gsm-power-manager.h"
 
@@ -67,21 +72,11 @@
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
 
-typedef struct
-{
-        char    *app_id;
-        guint32  toplevel_xid;
-        char    *reason;
-        guint32  flags;
-        char    *bus_name;
-        guint32  cookie;
-        GTimeVal since;
-} GsmInhibitor;
-
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
         GsmClientStore         *store;
+        GsmInhibitorStore      *inhibitors;
 
         /* Startup/resumed apps */
         GHashTable             *apps_by_id;
@@ -90,7 +85,7 @@ struct GsmManagerPrivate
         guint                   timeout_id;
         GSList                 *pending_apps;
 
-        GHashTable             *inhibitors;
+        GtkWidget              *inhibit_dialog;
 
         /* List of clients which were disconnected due to disabled condition
          * and shouldn't be automatically restarted */
@@ -160,15 +155,6 @@ gsm_manager_error_get_type (void)
         }
 
         return etype;
-}
-
-static void
-gsm_inhibitor_free (GsmInhibitor *inhibitor)
-{
-        g_free (inhibitor->bus_name);
-        g_free (inhibitor->app_id);
-        g_free (inhibitor->reason);
-        g_free (inhibitor);
 }
 
 static gboolean
@@ -507,32 +493,26 @@ remove_clients_for_connection (GsmManager *manager,
 static gboolean
 inhibitor_has_bus_name (gpointer      key,
                         GsmInhibitor *inhibitor,
-                        const char   *bus_name)
+                        const char   *bus_name_a)
 {
-        gboolean matches;
+        gboolean    matches;
+        const char *bus_name_b;
+
+        bus_name_b = gsm_inhibitor_get_bus_name (inhibitor);
+        g_debug ("GsmManager: comparing bus names %s %s", bus_name_a, bus_name_b);
 
         matches = FALSE;
-        if (bus_name != NULL && inhibitor->bus_name != NULL) {
-                matches = (strcmp (bus_name, inhibitor->bus_name) == 0);
+        if (bus_name_a != NULL && bus_name_b != NULL) {
+                matches = (strcmp (bus_name_a, bus_name_b) == 0);
                 if (matches) {
-                        g_debug ("removing inhibitor from %s for reason '%s' on connection %s",
-                                 inhibitor->app_id,
-                                 inhibitor->reason,
-                                 inhibitor->bus_name);
+                        g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
+                                 gsm_inhibitor_get_app_id (inhibitor),
+                                 gsm_inhibitor_get_reason (inhibitor),
+                                 gsm_inhibitor_get_bus_name (inhibitor));
                 }
         }
 
         return matches;
-}
-
-static void
-inhibit_changed_check (GsmManager *manager)
-{
-        gboolean inhibited;
-
-        inhibited = g_hash_table_size (manager->priv->inhibitors) > 0;
-
-        /* FIXME: do stuff */
 }
 
 static void
@@ -541,12 +521,11 @@ remove_inhibitors_for_connection (GsmManager *manager,
 {
         guint n_removed;
 
-        n_removed = g_hash_table_foreach_remove (manager->priv->inhibitors,
-                                                 (GHRFunc)inhibitor_has_bus_name,
-                                                 (gpointer)service_name);
-        if (n_removed > 0) {
-                inhibit_changed_check (manager);
-        }
+        g_debug ("GsmManager: removing inhibitors for bus name");
+
+        n_removed = gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
+                                                        (GsmInhibitorStoreFunc)inhibitor_has_bus_name,
+                                                        (gpointer)service_name);
 }
 
 static gboolean
@@ -634,6 +613,9 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         const char  *new_service_name,
                         GsmManager  *manager)
 {
+        g_debug ("GsmManager: name owner changed old:'%s' new:'%s'",
+                 old_service_name,
+                 new_service_name);
         if (strlen (new_service_name) == 0
             && strlen (old_service_name) > 0) {
                 /* service removed */
@@ -1283,10 +1265,7 @@ gsm_manager_init (GsmManager *manager)
                                                            g_free,
                                                            g_object_unref);
 
-        manager->priv->inhibitors = g_hash_table_new_full (g_int_hash,
-                                                           g_int_equal,
-                                                           NULL,
-                                                           (GDestroyNotify)gsm_inhibitor_free);
+        manager->priv->inhibitors = gsm_inhibitor_store_new ();
 }
 
 static void
@@ -1310,7 +1289,7 @@ gsm_manager_finalize (GObject *object)
         }
 
         if (manager->priv->inhibitors != NULL) {
-                g_hash_table_destroy (manager->priv->inhibitors);
+                g_object_unref (manager->priv->inhibitors);
         }
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->finalize (object);
@@ -1471,6 +1450,96 @@ manager_request_sleep (GsmManager *manager)
         g_object_unref (power_manager);
 }
 
+static gboolean
+gsm_manager_is_logout_inhibited (GsmManager *manager)
+{
+        if (manager->priv->inhibitors == NULL) {
+                return FALSE;
+        }
+        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+                return FALSE;
+        }
+        return TRUE;
+}
+
+static void
+do_action (GsmManager *manager,
+           int         action)
+{
+        switch (action) {
+        case GSM_LOGOUT_ACTION_SWITCH_USER:
+                gdm_new_login ();
+                break;
+        case GSM_LOGOUT_ACTION_HIBERNATE:
+                manager_request_hibernate (manager);
+                break;
+        case GSM_LOGOUT_ACTION_SLEEP:
+                manager_request_sleep (manager);
+                break;
+        case GSM_LOGOUT_ACTION_SHUTDOWN:
+                manager_request_shutdown (manager);
+                break;
+        case GSM_LOGOUT_ACTION_REBOOT:
+                manager_request_reboot (manager);
+                break;
+        case GSM_LOGOUT_ACTION_LOGOUT:
+                manager_logout (manager);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+}
+
+static void
+logout_inhibit_dialog_response (GsmLogoutInhibitDialog *dialog,
+                                guint                   response_id,
+                                GsmManager             *manager)
+{
+        int action;
+
+        g_debug ("GsmManager: Logout inhibit dialog response: %d", response_id);
+
+        /* In case of dialog cancel, switch user, hibernate and
+         * suspend, we just perform the respective action and return,
+         * without shutting down the session. */
+        switch (response_id) {
+        case GTK_RESPONSE_CANCEL:
+        case GTK_RESPONSE_NONE:
+        case GTK_RESPONSE_DELETE_EVENT:
+                break;
+        case GTK_RESPONSE_ACCEPT:
+                g_object_get (dialog, "action", &action, NULL);
+                g_debug ("GsmManager: doing action %d", action);
+                do_action (manager, action);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+}
+
+static void
+request_logout (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting logout");
+
+        if (! gsm_manager_is_logout_inhibited (manager)) {
+                manager_logout (manager);
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (GSM_LOGOUT_ACTION_LOGOUT);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
 static void
 logout_dialog_response (GsmLogoutDialog *logout_dialog,
                         guint            response_id,
@@ -1491,10 +1560,10 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
         case GSM_LOGOUT_RESPONSE_SWITCH_USER:
                 gdm_new_login ();
                 break;
-        case GSM_LOGOUT_RESPONSE_STD:
+        case GSM_LOGOUT_RESPONSE_HIBERNATE:
                 manager_request_hibernate (manager);
                 break;
-        case GSM_LOGOUT_RESPONSE_STR:
+        case GSM_LOGOUT_RESPONSE_SLEEP:
                 manager_request_sleep (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_SHUTDOWN:
@@ -1504,7 +1573,7 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                 manager_request_reboot (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_LOGOUT:
-                manager_logout (manager);
+                request_logout (manager);
                 break;
         default:
                 g_assert_not_reached ();
@@ -1553,8 +1622,8 @@ show_logout_dialog (GsmManager *manager)
 }
 
 static void
-initiate_logout (GsmManager           *manager,
-                 gboolean              show_confirmation)
+initiate_logout (GsmManager *manager,
+                 gboolean    show_confirmation)
 {
         gboolean     logout_prompt;
         GConfClient *client;
@@ -1578,7 +1647,7 @@ initiate_logout (GsmManager           *manager,
         if (logout_prompt) {
                 show_logout_dialog (manager);
         } else {
-                manager_logout (manager);
+                request_logout (manager);
         }
 }
 
@@ -1852,7 +1921,7 @@ _generate_unique_cookie (GsmManager *manager)
 
         do {
                 cookie = generate_cookie ();
-        } while (g_hash_table_lookup (manager->priv->inhibitors, &cookie) != NULL);
+        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, &cookie) != NULL);
 
         return cookie;
 }
@@ -1866,6 +1935,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                      DBusGMethodInvocation *context)
 {
         GsmInhibitor *inhibitor;
+        guint         cookie;
 
         g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
                  toplevel_xid,
@@ -1879,7 +1949,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                 new_error = g_error_new (GSM_MANAGER_ERROR,
                                          GSM_MANAGER_ERROR_GENERAL,
                                          "Application ID not specified");
-                g_debug ("Unable to inhibit: %s", new_error->message);
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
                 dbus_g_method_return_error (context, new_error);
                 g_error_free (new_error);
                 return FALSE;
@@ -1891,23 +1961,23 @@ gsm_manager_inhibit (GsmManager            *manager,
                 new_error = g_error_new (GSM_MANAGER_ERROR,
                                          GSM_MANAGER_ERROR_GENERAL,
                                          "Reason not specified");
-                g_debug ("Unable to inhibit: %s", new_error->message);
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
                 dbus_g_method_return_error (context, new_error);
                 g_error_free (new_error);
                 return FALSE;
         }
 
-        inhibitor = g_new0 (GsmInhibitor, 1);
-        inhibitor->app_id = g_strdup (app_id);
-        inhibitor->toplevel_xid = toplevel_xid;
-        inhibitor->reason = g_strdup (reason);
-        inhibitor->flags = flags;
-        inhibitor->bus_name = dbus_g_method_get_sender (context);
-        inhibitor->cookie = _generate_unique_cookie (manager);
+        cookie = _generate_unique_cookie (manager);
+        inhibitor = gsm_inhibitor_new (app_id,
+                                       toplevel_xid,
+                                       flags,
+                                       reason,
+                                       dbus_g_method_get_sender (context),
+                                       cookie);
+        gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+        g_object_unref (inhibitor);
 
-        g_hash_table_insert (manager->priv->inhibitors, &inhibitor->cookie, inhibitor);
-
-        dbus_g_method_return (context, inhibitor->cookie);
+        dbus_g_method_return (context, cookie);
 
         return TRUE;
 }
@@ -1918,11 +1988,10 @@ gsm_manager_uninhibit (GsmManager            *manager,
                        DBusGMethodInvocation *context)
 {
         GsmInhibitor *inhibitor;
-        gboolean      removed;
 
         g_debug ("GsmManager: Uninhibit %u", cookie);
 
-        inhibitor = g_hash_table_lookup (manager->priv->inhibitors, &cookie);
+        inhibitor = gsm_inhibitor_store_lookup (manager->priv->inhibitors, &cookie);
         if (inhibitor == NULL) {
                 GError *new_error;
 
@@ -1936,16 +2005,13 @@ gsm_manager_uninhibit (GsmManager            *manager,
         }
 
         g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
-                 inhibitor->app_id,
-                 inhibitor->toplevel_xid,
-                 inhibitor->reason,
-                 inhibitor->flags,
-                 inhibitor->bus_name);
+                 gsm_inhibitor_get_app_id (inhibitor),
+                 gsm_inhibitor_get_toplevel_xid (inhibitor),
+                 gsm_inhibitor_get_reason (inhibitor),
+                 gsm_inhibitor_get_flags (inhibitor),
+                 gsm_inhibitor_get_bus_name (inhibitor));
 
-        removed = g_hash_table_remove (manager->priv->inhibitors, &cookie);
-        if (removed) {
-                inhibit_changed_check (manager);
-        }
+        gsm_inhibitor_store_remove (manager->priv->inhibitors, inhibitor);
 
         dbus_g_method_return (context);
 

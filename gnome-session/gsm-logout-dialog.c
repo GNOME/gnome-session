@@ -373,13 +373,13 @@ gsm_get_dialog (GsmDialogLogoutType type,
                 if (gsm_power_manager_can_suspend (logout_dialog->priv->power_manager)) {
                         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                                _("S_uspend"),
-                                               GSM_LOGOUT_RESPONSE_STR);
+                                               GSM_LOGOUT_RESPONSE_SLEEP);
                 }
 
                 if (gsm_power_manager_can_hibernate (logout_dialog->priv->power_manager)) {
                         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                                _("_Hibernate"),
-                                               GSM_LOGOUT_RESPONSE_STD);
+                                               GSM_LOGOUT_RESPONSE_HIBERNATE);
                 }
 
                 if (gsm_logout_supports_reboot (logout_dialog)) {

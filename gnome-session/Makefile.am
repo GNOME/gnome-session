@@ -21,8 +21,14 @@ INCLUDES =					\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
+	-DGLADEDIR=\""$(pkgdatadir)"\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
+
+gladedir = $(pkgdatadir)
+glade_DATA = 					\
+	gsm-logout-inhibit-dialog.glade		\
+	$(NULL)
 
 test_inhibit_SOURCES = 	\
 	test-inhibit.c	\
@@ -80,6 +86,8 @@ gnome_session_SOURCES =				\
 	gsm-consolekit.h			\
 	gsm-logout-dialog.h			\
 	gsm-logout-dialog.c			\
+	gsm-logout-inhibit-dialog.h		\
+	gsm-logout-inhibit-dialog.c		\
 	gsm-power-manager.h			\
 	gsm-power-manager.c			\
 	gconf.c					\
@@ -89,6 +97,10 @@ gnome_session_SOURCES =				\
 	main.c					\
 	gsm-client-store.h			\
 	gsm-client-store.c			\
+	gsm-inhibitor.h				\
+	gsm-inhibitor.c				\
+	gsm-inhibitor-store.h			\
+	gsm-inhibitor-store.c			\
 	gsm-manager.c				\
 	gsm-manager.h				\
 	gsm-xsmp-server.c			\
@@ -120,6 +132,11 @@ CLEANFILES =					\
 	$(BUILT_SOURCES)
 
 EXTRA_DIST =					\
+	$(glade_DATA)				\
 	README					\
 	gsm-marshal.list        		\
 	gsm-manager.xml
+
+MAINTAINERCLEANFILES =                  \
+        *~                              \
+        Makefile.in

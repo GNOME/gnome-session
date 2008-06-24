@@ -102,8 +102,6 @@ typedef enum {
         GSM_MANAGER_INHIBIT_FLAG_NONE              = 1 << 0,
         GSM_MANAGER_INHIBIT_FLAG_ALLOW_USER_SWITCH = 1 << 1,
         GSM_MANAGER_INHIBIT_FLAG_ALLOW_SUSPEND     = 1 << 2,
-        GSM_MANAGER_INHIBIT_FLAG_ALLOW_LOG_OUT     = 1 << 3,
-        GSM_MANAGER_INHIBIT_FLAG_ALLOW_SHUTDOWN    = 1 << 4,
 } GsmManagerInhibitFlag;
 
 GType               gsm_manager_error_get_type       (void);

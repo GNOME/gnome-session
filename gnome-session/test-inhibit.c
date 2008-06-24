@@ -83,7 +83,7 @@ do_inhibit (void)
                                  "Inhibit",
                                  &error,
                                  G_TYPE_STRING, app_id,
-                                 G_TYPE_UINT, cookie,
+                                 G_TYPE_UINT, toplevel_xid,
                                  G_TYPE_STRING, reason,
                                  G_TYPE_UINT, flags,
                                  G_TYPE_INVALID,

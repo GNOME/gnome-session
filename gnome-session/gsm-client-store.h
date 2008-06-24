@@ -19,8 +19,8 @@
  */
 
 
-#ifndef __GSM_DISPLAY_STORE_H
-#define __GSM_DISPLAY_STORE_H
+#ifndef __GSM_CLIENT_STORE_H
+#define __GSM_CLIENT_STORE_H
 
 #include <glib-object.h>
 #include "gsm-client.h"
@@ -38,7 +38,7 @@ typedef struct GsmClientStorePrivate GsmClientStorePrivate;
 
 typedef struct
 {
-        GObject                 parent;
+        GObject                parent;
         GsmClientStorePrivate *priv;
 } GsmClientStore;
 
@@ -47,9 +47,9 @@ typedef struct
         GObjectClass   parent_class;
 
         void          (* client_added)    (GsmClientStore *client_store,
-                                           const char      *id);
+                                           const char     *id);
         void          (* client_removed)  (GsmClientStore *client_store,
-                                           const char      *id);
+                                           const char     *id);
 } GsmClientStoreClass;
 
 typedef enum

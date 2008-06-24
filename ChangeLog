@@ -1,3 +1,59 @@
+2008-06-24  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.in:
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-inhibitor-store.c
+	(gsm_inhibitor_store_error_quark), (gsm_inhibitor_store_size),
+	(gsm_inhibitor_store_clear), (remove_inhibitor),
+	(gsm_inhibitor_store_remove), (gsm_inhibitor_store_foreach),
+	(gsm_inhibitor_store_find), (gsm_inhibitor_store_lookup),
+	(gsm_inhibitor_store_foreach_remove), (gsm_inhibitor_store_add),
+	(gsm_inhibitor_store_set_property),
+	(gsm_inhibitor_store_get_property),
+	(gsm_inhibitor_store_class_init), (inhibitor_unref),
+	(gsm_inhibitor_store_init), (gsm_inhibitor_store_finalize),
+	(gsm_inhibitor_store_new):
+	* gnome-session/gsm-inhibitor-store.h:
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_constructor),
+	(gsm_inhibitor_init), (gsm_inhibitor_set_bus_name),
+	(gsm_inhibitor_set_app_id), (gsm_inhibitor_set_reason),
+	(gsm_inhibitor_set_cookie), (gsm_inhibitor_set_flags),
+	(gsm_inhibitor_set_toplevel_xid), (gsm_inhibitor_get_bus_name),
+	(gsm_inhibitor_get_app_id), (gsm_inhibitor_get_reason),
+	(gsm_inhibitor_get_flags), (gsm_inhibitor_get_toplevel_xid),
+	(gsm_inhibitor_get_cookie), (gsm_inhibitor_set_property),
+	(gsm_inhibitor_get_property), (gsm_inhibitor_finalize),
+	(gsm_inhibitor_class_init), (gsm_inhibitor_new):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-logout-dialog.c (gsm_get_dialog):
+	* gnome-session/gsm-logout-dialog.h:
+	* gnome-session/gsm-logout-inhibit-dialog.c
+	(gsm_logout_inhibit_dialog_set_action),
+	(gsm_logout_inhibit_dialog_set_property),
+	(gsm_logout_inhibit_dialog_get_property), (on_response),
+	(setup_dialog), (gsm_logout_inhibit_dialog_constructor),
+	(gsm_logout_inhibit_dialog_dispose),
+	(gsm_logout_inhibit_dialog_class_init),
+	(gsm_logout_inhibit_dialog_init),
+	(gsm_logout_inhibit_dialog_finalize),
+	(gsm_logout_inhibit_dialog_new):
+	* gnome-session/gsm-logout-inhibit-dialog.glade:
+	* gnome-session/gsm-logout-inhibit-dialog.h:
+	* gnome-session/gsm-manager.c (inhibitor_has_bus_name),
+	(remove_inhibitors_for_connection), (bus_name_owner_changed),
+	(gsm_manager_init), (gsm_manager_finalize),
+	(gsm_manager_is_logout_inhibited), (do_action),
+	(logout_inhibit_dialog_response), (request_logout),
+	(logout_dialog_response), (initiate_logout),
+	(_generate_unique_cookie), (gsm_manager_inhibit),
+	(gsm_manager_uninhibit):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/test-inhibit.c (do_inhibit):
+	Add an inhibitor class and store class to make it
+	easier to update the model for the inhibit dialog.
+	Add a stub for an inhibit dialog.
+
 2008-06-23  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/Makefile.am:
