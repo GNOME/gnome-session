@@ -73,8 +73,13 @@ do_inhibit (void)
         guint       flags;
 
         startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
+#if 1
         app_id = "nautilus-cd-burner";
         reason = "A CD burn is in progress.";
+#else
+        app_id = "nautilus";
+        reason = "A file transfer is in progress.";
+#endif
         toplevel_xid = 0;
         flags = 0;
 

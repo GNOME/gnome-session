@@ -104,6 +104,42 @@ egg_desktop_file_new_from_data_dirs (const char  *desktop_file_path,
 }
 
 /**
+ * egg_desktop_file_new_from_dirs:
+ * @desktop_file_path: relative path to a Freedesktop-style Desktop file
+ * @search_dirs: NULL-terminated array of directories to search
+ * @error: error pointer
+ *
+ * Looks for @desktop_file_path in the paths returned from
+ * g_get_user_data_dir() and g_get_system_data_dirs(), and creates
+ * a new #EggDesktopFile from it.
+ *
+ * Return value: the new #EggDesktopFile, or %NULL on error.
+ **/
+EggDesktopFile *
+egg_desktop_file_new_from_dirs (const char  *desktop_file_path,
+				const char **search_dirs,
+				GError     **error)
+{
+  EggDesktopFile *desktop_file;
+  GKeyFile *key_file;
+  char *full_path;
+
+  key_file = g_key_file_new ();
+  if (!g_key_file_load_from_dirs (key_file, desktop_file_path, search_dirs,
+				       &full_path, 0, error))
+    {
+      g_key_file_free (key_file);
+      return NULL;
+    }
+
+  desktop_file = egg_desktop_file_new_from_key_file (key_file,
+						     full_path,
+						     error);
+  g_free (full_path);
+  return desktop_file;
+}
+
+/**
  * egg_desktop_file_new_from_key_file:
  * @key_file: a #GKeyFile representing a desktop file
  * @source: the path or URI that @key_file was loaded from, or %NULL

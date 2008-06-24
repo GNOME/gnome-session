@@ -39,6 +39,9 @@ EggDesktopFile     *egg_desktop_file_new                (const char   *desktop_f
 
 EggDesktopFile     *egg_desktop_file_new_from_data_dirs (const char   *desktop_file_path,
 							 GError      **error);
+EggDesktopFile     *egg_desktop_file_new_from_dirs      (const char   *desktop_file_path,
+							 const char  **search_dirs,
+							 GError      **error);
 EggDesktopFile     *egg_desktop_file_new_from_key_file  (GKeyFile     *key_file,
 							 const char   *source,
 							 GError      **error);

@@ -103,7 +103,6 @@ find_inhibitor (GsmLogoutInhibitDialog *dialog,
                                     iter,
                                     INHIBIT_COOKIE_COLUMN, &item_cookie,
                                     -1);
-                g_debug ("Comparing cookie %u %u", item_cookie, cookie);
                 if (cookie == item_cookie) {
                         found_item = TRUE;
                 }
@@ -228,6 +227,7 @@ add_inhibitor (GsmLogoutInhibitDialog *dialog,
         GdkPixbuf      *pixbuf;
         EggDesktopFile *desktop_file;
         GError         *error;
+        char          **search_dirs;
 
         /* FIXME: get info from xid */
 
@@ -240,8 +240,15 @@ add_inhibitor (GsmLogoutInhibitDialog *dialog,
                 desktop_filename = g_strdup (app_id);
         }
 
+        /* FIXME: maybe also append the autostart dirs ? */
+        search_dirs = gsm_util_get_app_dirs ();
+
         error = NULL;
-        desktop_file = egg_desktop_file_new_from_data_dirs (desktop_filename, &error);
+        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
+                                                       search_dirs,
+                                                       &error);
+        g_strfreev (search_dirs);
+
         if (desktop_file == NULL) {
                 g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
                 g_error_free (error);
