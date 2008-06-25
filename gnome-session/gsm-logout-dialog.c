@@ -195,6 +195,31 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
         current_dialog = NULL;
 }
 
+static gboolean
+gsm_logout_supports_system_suspend (GsmLogoutDialog *logout_dialog)
+{
+        gboolean ret;
+        ret = gsm_power_manager_can_suspend (logout_dialog->priv->power_manager);
+        return ret;
+}
+
+static gboolean
+gsm_logout_supports_system_hibernate (GsmLogoutDialog *logout_dialog)
+{
+        gboolean ret;
+        ret = gsm_power_manager_can_hibernate (logout_dialog->priv->power_manager);
+        return ret;
+}
+
+static gboolean
+gsm_logout_supports_switch_user (GsmLogoutDialog *logout_dialog)
+{
+        gboolean ret;
+
+        ret = gsm_consolekit_can_switch_user (logout_dialog->priv->consolekit);
+
+        return ret;
+}
 
 static gboolean
 gsm_logout_supports_reboot (GsmLogoutDialog *logout_dialog)
@@ -349,7 +374,7 @@ gsm_get_dialog (GsmDialogLogoutType type,
 
                 logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_LOGOUT;
 
-                if (gdm_is_available ()) {
+                if (gsm_logout_supports_switch_user (logout_dialog)) {
                         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                                _("_Switch User"),
                                                GSM_LOGOUT_RESPONSE_SWITCH_USER);
@@ -370,13 +395,13 @@ gsm_get_dialog (GsmDialogLogoutType type,
 
                 logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_SHUTDOWN;
 
-                if (gsm_power_manager_can_suspend (logout_dialog->priv->power_manager)) {
+                if (gsm_logout_supports_system_suspend (logout_dialog)) {
                         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                                _("S_uspend"),
                                                GSM_LOGOUT_RESPONSE_SLEEP);
                 }
 
-                if (gsm_power_manager_can_hibernate (logout_dialog->priv->power_manager)) {
+                if (gsm_logout_supports_system_hibernate (logout_dialog)) {
                         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                                _("_Hibernate"),
                                                GSM_LOGOUT_RESPONSE_HIBERNATE);

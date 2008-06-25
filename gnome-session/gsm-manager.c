@@ -72,6 +72,9 @@
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
 
+#define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
+#define GDM_FLEXISERVER_ARGS    "--startnew Standard"
+
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
@@ -1447,6 +1450,21 @@ manager_request_sleep (GsmManager *manager)
 }
 
 static gboolean
+gsm_manager_is_switch_user_inhibited (GsmManager *manager)
+{
+        if (manager->priv->inhibitors == NULL) {
+                return FALSE;
+        }
+
+        /* FIXME: need to check ALLOW_SWITCH flags */
+        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+                return FALSE;
+        }
+        return TRUE;
+}
+
+
+static gboolean
 gsm_manager_is_logout_inhibited (GsmManager *manager)
 {
         if (manager->priv->inhibitors == NULL) {
@@ -1459,12 +1477,36 @@ gsm_manager_is_logout_inhibited (GsmManager *manager)
 }
 
 static void
+manager_switch_user (GsmManager *manager)
+{
+        GError  *error;
+        gboolean res;
+        char    *command;
+
+        command = g_strdup_printf ("%s %s",
+                                   GDM_FLEXISERVER_COMMAND,
+                                   GDM_FLEXISERVER_ARGS);
+
+        error = NULL;
+        res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
+                                                command,
+                                                &error);
+
+        g_free (command);
+
+        if (! res) {
+                g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
+                g_error_free (error);
+        }
+}
+
+static void
 do_action (GsmManager *manager,
            int         action)
 {
         switch (action) {
         case GSM_LOGOUT_ACTION_SWITCH_USER:
-                gdm_new_login ();
+                manager_switch_user (manager);
                 break;
         case GSM_LOGOUT_ACTION_HIBERNATE:
                 manager_request_hibernate (manager);
@@ -1545,6 +1587,32 @@ request_logout (GsmManager *manager)
 }
 
 static void
+request_switch_user (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting user switch");
+
+        if (! gsm_manager_is_switch_user_inhibited (manager)) {
+                manager_switch_user (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_SWITCH_USER);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
+static void
 logout_dialog_response (GsmLogoutDialog *logout_dialog,
                         guint            response_id,
                         GsmManager      *manager)
@@ -1562,7 +1630,7 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
         case GTK_RESPONSE_DELETE_EVENT:
                 break;
         case GSM_LOGOUT_RESPONSE_SWITCH_USER:
-                gdm_new_login ();
+                request_switch_user (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_HIBERNATE:
                 manager_request_hibernate (manager);

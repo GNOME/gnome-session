@@ -577,7 +577,7 @@ gsm_logout_inhibit_dialog_class_init (GsmLogoutInhibitDialogClass *klass)
                                                            -1,
                                                            G_MAXINT,
                                                            -1,
-                                                           G_PARAM_READWRITE));
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_INHIBITOR_STORE,
                                          g_param_spec_object ("inhibitor-store",

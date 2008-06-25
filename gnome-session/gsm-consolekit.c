@@ -31,6 +31,7 @@
 #include <glib/gi18n.h>
 
 #include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
 
 #ifdef HAVE_POLKIT_GNOME
 #include <polkit-gnome/polkit-gnome.h>
@@ -628,6 +629,202 @@ gsm_consolekit_attempt_stop (GsmConsolekit *manager)
 
                 g_error_free (error);
         }
+}
+
+static gboolean
+get_current_session_id (DBusConnection *connection,
+                        char          **session_id)
+{
+        DBusError       local_error;
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        gboolean        ret;
+        DBusMessageIter iter;
+        const char     *value;
+
+        ret = FALSE;
+        reply = NULL;
+
+        dbus_error_init (&local_error);
+        message = dbus_message_new_method_call (CK_NAME,
+                                                CK_MANAGER_PATH,
+                                                CK_MANAGER_INTERFACE,
+                                                "GetCurrentSession");
+        if (message == NULL) {
+                goto out;
+        }
+
+        dbus_error_init (&local_error);
+        reply = dbus_connection_send_with_reply_and_block (connection,
+                                                           message,
+                                                           -1,
+                                                           &local_error);
+        if (reply == NULL) {
+                if (dbus_error_is_set (&local_error)) {
+                        g_warning ("Unable to determine session: %s", local_error.message);
+                        dbus_error_free (&local_error);
+                        goto out;
+                }
+        }
+
+        dbus_message_iter_init (reply, &iter);
+        dbus_message_iter_get_basic (&iter, &value);
+        if (session_id != NULL) {
+                *session_id = g_strdup (value);
+        }
+
+        ret = TRUE;
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+        if (reply != NULL) {
+                dbus_message_unref (reply);
+        }
+
+        return ret;
+}
+
+static gboolean
+get_seat_id_for_session (DBusConnection *connection,
+                         const char     *session_id,
+                         char          **seat_id)
+{
+        DBusError       local_error;
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        gboolean        ret;
+        DBusMessageIter iter;
+        const char     *value;
+
+        ret = FALSE;
+        reply = NULL;
+
+        dbus_error_init (&local_error);
+        message = dbus_message_new_method_call (CK_NAME,
+                                                session_id,
+                                                CK_SESSION_INTERFACE,
+                                                "GetSeatId");
+        if (message == NULL) {
+                goto out;
+        }
+
+        dbus_error_init (&local_error);
+        reply = dbus_connection_send_with_reply_and_block (connection,
+                                                           message,
+                                                           -1,
+                                                           &local_error);
+        if (reply == NULL) {
+                if (dbus_error_is_set (&local_error)) {
+                        g_warning ("Unable to determine seat: %s", local_error.message);
+                        dbus_error_free (&local_error);
+                        goto out;
+                }
+        }
+
+        dbus_message_iter_init (reply, &iter);
+        dbus_message_iter_get_basic (&iter, &value);
+        if (seat_id != NULL) {
+                *seat_id = g_strdup (value);
+        }
+
+        ret = TRUE;
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+        if (reply != NULL) {
+                dbus_message_unref (reply);
+        }
+
+        return ret;
+}
+
+static char *
+get_current_seat_id (DBusConnection *connection)
+{
+        gboolean res;
+        char    *session_id;
+        char    *seat_id;
+
+        session_id = NULL;
+        seat_id = NULL;
+
+        res = get_current_session_id (connection, &session_id);
+        if (res) {
+                res = get_seat_id_for_session (connection, session_id, &seat_id);
+        }
+        g_free (session_id);
+
+        return seat_id;
+}
+
+static gboolean
+seat_can_activate_sessions (DBusConnection *connection,
+                            const char     *seat_id)
+{
+        DBusError       local_error;
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusMessageIter iter;
+        gboolean        can_activate;
+
+        can_activate = FALSE;
+        reply = NULL;
+
+        dbus_error_init (&local_error);
+        message = dbus_message_new_method_call (CK_NAME,
+                                                seat_id,
+                                                CK_SEAT_INTERFACE,
+                                                "CanActivateSessions");
+        if (message == NULL) {
+                goto out;
+        }
+
+        dbus_error_init (&local_error);
+        reply = dbus_connection_send_with_reply_and_block (connection,
+                                                           message,
+                                                           -1,
+                                                           &local_error);
+        if (reply == NULL) {
+                if (dbus_error_is_set (&local_error)) {
+                        g_warning ("Unable to activate session: %s", local_error.message);
+                        dbus_error_free (&local_error);
+                        goto out;
+                }
+        }
+
+        dbus_message_iter_init (reply, &iter);
+        dbus_message_iter_get_basic (&iter, &can_activate);
+
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+        if (reply != NULL) {
+                dbus_message_unref (reply);
+        }
+
+        return can_activate;
+}
+
+gboolean
+gsm_consolekit_can_switch_user (GsmConsolekit *manager)
+{
+        char    *seat_id;
+        gboolean ret;
+
+        seat_id = get_current_seat_id (dbus_g_connection_get_connection (manager->priv->dbus_connection));
+        if (seat_id == NULL || seat_id[0] == '\0') {
+                g_debug ("seat id is not set; can't switch sessions");
+                return FALSE;
+        }
+
+        ret = seat_can_activate_sessions (dbus_g_connection_get_connection (manager->priv->dbus_connection),
+                                          seat_id);
+        g_free (seat_id);
+
+        return ret;
 }
 
 gboolean

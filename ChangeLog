@@ -1,3 +1,20 @@
+2008-06-25  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-consolekit.c (get_current_session_id),
+	(get_seat_id_for_session), (get_current_seat_id),
+	(seat_can_activate_sessions), (gsm_consolekit_can_switch_user):
+	* gnome-session/gsm-consolekit.h:
+	* gnome-session/gsm-logout-dialog.c
+	(gsm_logout_supports_system_suspend),
+	(gsm_logout_supports_system_hibernate),
+	(gsm_logout_supports_switch_user), (gsm_get_dialog):
+	* gnome-session/gsm-logout-inhibit-dialog.c
+	(gsm_logout_inhibit_dialog_class_init):
+	* gnome-session/gsm-manager.c
+	(gsm_manager_is_switch_user_inhibited), (manager_switch_user),
+	(do_action), (request_switch_user), (logout_dialog_response):
+	Make switch user work.
+
 2008-06-24  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-logout-dialog.c (gsm_get_dialog):
