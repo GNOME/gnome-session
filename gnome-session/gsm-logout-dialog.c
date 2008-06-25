@@ -404,7 +404,8 @@ gsm_get_dialog (GsmDialogLogoutType type,
 
         gtk_image_set_from_icon_name (GTK_IMAGE (GTK_MESSAGE_DIALOG (logout_dialog)->image),
                                       icon_name, GTK_ICON_SIZE_DIALOG);
-
+        gtk_window_set_icon_name (GTK_WINDOW (logout_dialog), icon_name);
+        gtk_window_set_position (GTK_WINDOW (logout_dialog), GTK_WIN_POS_CENTER_ALWAYS);
         gtk_label_set_text (GTK_LABEL (GTK_MESSAGE_DIALOG (logout_dialog)->label),
                             primary_text);
 
