@@ -681,7 +681,7 @@ gsm_session_register_client (GsmSession *session,
       client_id = g_strdup (id);
     }
 
-  g_debug ("Adding new client %s to session", id);
+  g_debug ("Adding new client %s to session", client_id);
 
   g_signal_connect (client, "saved_state",
 		    G_CALLBACK (client_saved_state), session);

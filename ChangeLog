@@ -1,5 +1,11 @@
 2008-06-25  Lucas Rocha  <lucasr@gnome.org>
 
+	* gnome-session/session.c (gsm_session_register_client): use client_id
+	instead of id in order to fix a crasher when printing null strings.
+	#539187, Brian Cameron.
+
+2008-06-25  Lucas Rocha  <lucasr@gnome.org>
+
 	Provide a CanShutdown D-Bus method so that other apps (such as
 	gnome-panel) are able to query session manager if it's a Shutdown
 	D-Bus call is possible. #536915, Vincent Untz.
