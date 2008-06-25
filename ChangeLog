@@ -1,5 +1,20 @@
 2008-06-25  Lucas Rocha  <lucasr@gnome.org>
 
+	Provide a CanShutdown D-Bus method so that other apps (such as
+	gnome-panel) are able to query session manager if it's a Shutdown
+	D-Bus call is possible. #536915, Vincent Untz.
+
+	* gnome-session/org.gnome.SessionManagement.xml, gnome-session/dbus.c
+	(gsm_dbus_server_can_shutdown): added CanShutdown method to session 
+	manager D-Bus API.
+	* gnome-session/logout.[ch] (gsm_logout_can_shutdown,
+	gsm_logout_can_reboot): renamed logout-dialog.[ch] to logout.[ch] for
+	consistency (and updated related files accordingly). 
+	Made gsm_logout_can_shutdown() and gsm_logout_can_reboot() public 
+	methods.
+
+2008-06-25  Lucas Rocha  <lucasr@gnome.org>
+
 	* capplet/commands.c (spc_command_get_store): correctly sort apps
 	model by name.
 

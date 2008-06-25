@@ -34,7 +34,7 @@
 
 #include "dbus.h"
 #include "gsm.h"
-#include "dbus.h"
+#include "logout.h"
 
 enum {
   SESSION_RUNNING,
@@ -163,6 +163,10 @@ static gboolean gsm_dbus_server_shutdown (GsmDBusServer  *dbus,
 static gboolean gsm_dbus_server_set_name (GsmDBusServer  *dbus,
                                           const char     *session_name,
 					  GError        **error);
+
+static gboolean gsm_dbus_server_can_shutdown (GsmDBusServer  *dbus,
+                                              gboolean       *can_shutdown,
+					      GError        **error);
 
 #include "dbus-glue.h"
 
@@ -319,6 +323,23 @@ gsm_dbus_server_set_name (GsmDBusServer  *dbus,
     }
 
   gsm_session_set_name (global_session, session_name);
+
+  return TRUE;
+}
+
+static gboolean
+gsm_dbus_server_can_shutdown (GsmDBusServer  *dbus,
+                              gboolean       *can_shutdown,
+			      GError        **error)
+{
+  if (gsm_session_get_phase (global_session) != GSM_SESSION_PHASE_RUNNING)
+    {
+      *can_shutdown = FALSE;
+    }
+  else 
+    {
+      *can_shutdown = gsm_logout_can_shutdown ();
+    }
 
   return TRUE;
 }

@@ -31,7 +31,7 @@
 
 #include "gsm.h"
 #include "session.h"
-#include "logout-dialog.h"
+#include "logout.h"
 #include "power-manager.h"
 #include "consolekit.h"
 #include "gdm.h"
@@ -198,35 +198,6 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
   current_dialog = NULL;
 }
 
-static gboolean
-gsm_logout_supports_reboot (GsmLogoutDialog *logout_dialog)
-{
-  gboolean ret;
-
-  ret = gsm_consolekit_can_restart (logout_dialog->priv->consolekit);
-  if (!ret) 
-    {
-      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
-    }
-
-  return ret;
-}
-
-static gboolean
-gsm_logout_supports_shutdown (GsmLogoutDialog *logout_dialog)
-{
-  gboolean ret;
-
-  ret = gsm_consolekit_can_stop (logout_dialog->priv->consolekit);
-
-  if (!ret) 
-    {
-      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
-    }
-
-  return ret;
-}
-
 static void
 gsm_logout_dialog_show (GsmLogoutDialog *logout_dialog, gpointer user_data)
 {
@@ -326,7 +297,7 @@ gsm_logout_dialog_set_timeout (GsmLogoutDialog *logout_dialog)
 }
 
 GtkWidget *
-gsm_get_logout_dialog (GsmSessionLogoutType  type,
+gsm_logout_get_dialog (GsmSessionLogoutType  type,
                        GdkScreen            *screen,
                        guint32               activate_time)
 {
@@ -388,7 +359,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
                                _("_Hibernate"),
                                GSM_LOGOUT_RESPONSE_STD);
       
-      if (gsm_logout_supports_reboot (logout_dialog))
+      if (gsm_logout_can_reboot ())
         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                _("_Restart"),
                                GSM_LOGOUT_RESPONSE_REBOOT);
@@ -397,7 +368,7 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
                              GTK_STOCK_CANCEL,
                              GTK_RESPONSE_CANCEL);
   
-      if (gsm_logout_supports_shutdown (logout_dialog))
+      if (gsm_logout_can_shutdown ())
         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                _("_Shut Down"),
                                GSM_LOGOUT_RESPONSE_SHUTDOWN);
@@ -419,3 +390,44 @@ gsm_get_logout_dialog (GsmSessionLogoutType  type,
 
   return GTK_WIDGET (logout_dialog);
 }
+
+gboolean
+gsm_logout_can_reboot ()
+{
+  GsmConsolekit *consolekit;
+  gboolean ret;
+
+  consolekit = gsm_get_consolekit ();
+
+  ret = gsm_consolekit_can_restart (consolekit);
+
+  if (!ret) 
+    {
+      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+    }
+
+  g_object_unref (consolekit);
+
+  return ret;
+}
+
+gboolean
+gsm_logout_can_shutdown ()
+{
+  GsmConsolekit *consolekit;
+  gboolean ret;
+
+  consolekit = gsm_get_consolekit ();
+
+  ret = gsm_consolekit_can_stop (consolekit);
+
+  if (!ret) 
+    {
+      ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+    }
+
+  g_object_unref (consolekit);
+
+  return ret;
+}
+

@@ -24,7 +24,7 @@
 
 #include "app-autostart.h"
 #include "app-resumed.h"
-#include "logout-dialog.h"
+#include "logout.h"
 #include "consolekit.h"
 #include "power-manager.h"
 #include "gdm.h"
@@ -759,7 +759,7 @@ gsm_session_initiate_shutdown (GsmSession           *session,
     {
       GtkWidget *logout_dialog;
 
-      logout_dialog = gsm_get_logout_dialog (logout_type,
+      logout_dialog = gsm_logout_get_dialog (logout_type,
                                              gdk_screen_get_default (),
                                              gtk_get_current_event_time ());
 

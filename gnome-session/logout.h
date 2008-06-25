@@ -20,8 +20,8 @@
  *	Vincent Untz <vuntz@gnome.org>
  */
 
-#ifndef __GSM_LOGOUT_DIALOG_H__
-#define __GSM_LOGOUT_DIALOG_H__
+#ifndef __GSM_LOGOUT_H__
+#define __GSM_LOGOUT_H__
 
 #include <gtk/gtk.h>
 
@@ -62,10 +62,14 @@ struct _GsmLogoutDialogClass
 
 GType        gsm_logout_dialog_get_type   (void) G_GNUC_CONST;	
 
-GtkWidget   *gsm_get_logout_dialog        (GsmSessionLogoutType  type,
+GtkWidget   *gsm_logout_get_dialog        (GsmSessionLogoutType  type,
 		                           GdkScreen            *screen,
 		                           guint32               activate_time);
 
+gboolean     gsm_logout_can_shutdown      (void);
+
+gboolean     gsm_logout_can_reboot        (void);
+
 G_END_DECLS
 
-#endif /* __GSM_LOGOUT_DIALOG_H__ */
+#endif /* __GSM_LOGOUT_H__ */

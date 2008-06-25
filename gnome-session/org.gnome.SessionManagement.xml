@@ -27,6 +27,10 @@
       <arg name="name" type="s" direction="in"/>
     </method>
 
+    <method name="CanShutdown">
+      <arg name="can_shutdown" type="b" direction="out"/>
+    </method>
+
     <!-- Signals -->
 
     <signal name="SessionRunning">
