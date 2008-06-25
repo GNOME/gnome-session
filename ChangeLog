@@ -1,5 +1,12 @@
 2008-06-25  Lucas Rocha  <lucasr@gnome.org>
 
+	*  gnome-session/logout.c (gsm_logout_get_dialog): check if VT is
+	available (in addition to GDM) before adding "Switch user" button to
+	logout dialog. #540144, Xiurong Simon Zheng. Patch by Xiurong Simon
+	Zheng.
+
+2008-06-25  Lucas Rocha  <lucasr@gnome.org>
+
 	* capplet/commands.c (append_autostart_apps): remove debug message.
 
 2008-06-25  Lucas Rocha  <lucasr@gnome.org>

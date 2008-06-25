@@ -28,6 +28,7 @@
 #include <gtk/gtkimage.h>
 #include <gtk/gtklabel.h>
 #include <gtk/gtkstock.h>
+#include <gdk/gdkx.h>
 
 #include "gsm.h"
 #include "session.h"
@@ -296,6 +297,21 @@ gsm_logout_dialog_set_timeout (GsmLogoutDialog *logout_dialog)
                                                    logout_dialog);
 }
 
+static gboolean
+vt_is_available (void)
+{
+  Display *xdisplay;
+  GdkDisplay *gdisplay;
+  Atom prop;
+
+  gdisplay = gdk_display_get_default ();
+  xdisplay = gdk_x11_display_get_xdisplay (gdisplay);
+
+  prop = XInternAtom (xdisplay, "XFree86_VT", TRUE);
+
+  return (prop == None ? FALSE : TRUE);
+}
+
 GtkWidget *
 gsm_logout_get_dialog (GsmSessionLogoutType  type,
                        GdkScreen            *screen,
@@ -329,7 +345,7 @@ gsm_logout_get_dialog (GsmSessionLogoutType  type,
 
       logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_LOGOUT;
 
-      if (gdm_is_available ())
+      if (gdm_is_available () && vt_is_available ())
         gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
                                _("_Switch User"),
                                GSM_LOGOUT_RESPONSE_SWITCH_USER);
