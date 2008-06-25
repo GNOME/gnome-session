@@ -98,12 +98,6 @@ typedef enum {
         GSM_MANAGER_LOGOUT_MODE_FORCE
 } GsmManagerLogoutMode;
 
-typedef enum {
-        GSM_MANAGER_INHIBIT_FLAG_NONE              = 1 << 0,
-        GSM_MANAGER_INHIBIT_FLAG_ALLOW_USER_SWITCH = 1 << 1,
-        GSM_MANAGER_INHIBIT_FLAG_ALLOW_SUSPEND     = 1 << 2,
-} GsmManagerInhibitFlag;
-
 GType               gsm_manager_error_get_type       (void);
 #define GSM_MANAGER_TYPE_ERROR (gsm_manager_error_get_type ())
 
@@ -149,9 +143,6 @@ gboolean            gsm_manager_setenv               (GsmManager     *manager,
 gboolean            gsm_manager_initialization_error (GsmManager     *manager,
                                                       const char     *message,
                                                       gboolean        fatal,
-                                                      GError        **error);
-gboolean            gsm_manager_set_name             (GsmManager     *manager,
-                                                      const char     *session_name,
                                                       GError        **error);
 
 G_END_DECLS

@@ -1,5 +1,20 @@
 2008-06-25  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_class_init):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-logout-inhibit-dialog.c (add_inhibitor):
+	* gnome-session/gsm-manager.c (do_attempt_reboot),
+	(do_attempt_shutdown), (manager_attempt_reboot),
+	(manager_attempt_shutdown), (manager_attempt_hibernate),
+	(manager_attempt_suspend), (gsm_manager_is_switch_user_inhibited),
+	(gsm_manager_is_suspend_inhibited), (do_action), (request_reboot),
+	(request_shutdown), (request_suspend), (request_hibernate),
+	(logout_dialog_response):
+	* gnome-session/gsm-manager.h:
+	Make inhibit work for shutdown, reboot, suspend, hibernate.
+
+2008-06-25  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-consolekit.c (get_current_session_id),
 	(get_seat_id_for_session), (get_current_seat_id),
 	(seat_can_activate_sessions), (gsm_consolekit_can_switch_user):

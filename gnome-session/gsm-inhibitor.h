@@ -38,13 +38,6 @@ typedef struct _GsmInhibitorClass   GsmInhibitorClass;
 
 typedef struct GsmInhibitorPrivate GsmInhibitorPrivate;
 
-typedef enum {
-        GSM_INHIBITOR_UNREGISTERED = 0,
-        GSM_INHIBITOR_REGISTERED,
-        GSM_INHIBITOR_FINISHED,
-        GSM_INHIBITOR_FAILED,
-} GsmInhibitorStatus;
-
 struct _GsmInhibitor
 {
         GObject              parent;
@@ -55,6 +48,12 @@ struct _GsmInhibitorClass
 {
         GObjectClass parent_class;
 };
+
+typedef enum {
+        GSM_INHIBITOR_FLAG_NONE              = 1 << 0,
+        GSM_INHIBITOR_FLAG_ALLOW_USER_SWITCH = 1 << 1,
+        GSM_INHIBITOR_FLAG_ALLOW_SUSPEND     = 1 << 2,
+} GsmManagerInhibitFlag;
 
 GType          gsm_inhibitor_get_type             (void) G_GNUC_CONST;
 

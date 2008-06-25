@@ -143,7 +143,6 @@ static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-        GsmClientClass *client_class = GSM_CLIENT_CLASS (klass);
 
         object_class->finalize             = gsm_dbus_client_finalize;
         object_class->constructor          = gsm_dbus_client_constructor;

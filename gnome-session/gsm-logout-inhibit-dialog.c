@@ -35,6 +35,7 @@
 
 #include "gsm-logout-inhibit-dialog.h"
 #include "eggdesktopfile.h"
+#include "util.h"
 
 #define GSM_LOGOUT_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_LOGOUT_INHIBIT_DIALOG, GsmLogoutInhibitDialogPrivate))
 
@@ -245,7 +246,7 @@ add_inhibitor (GsmLogoutInhibitDialog *dialog,
 
         error = NULL;
         desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
-                                                       search_dirs,
+                                                       (const char **)search_dirs,
                                                        &error);
         g_strfreev (search_dirs);
 

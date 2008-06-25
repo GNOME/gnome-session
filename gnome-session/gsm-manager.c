@@ -1359,7 +1359,7 @@ gsm_manager_initialization_error (GsmManager  *manager,
 }
 
 static void
-do_request_reboot (GsmConsolekit *consolekit)
+do_attempt_reboot (GsmConsolekit *consolekit)
 {
         if (gsm_consolekit_can_restart (consolekit)) {
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
@@ -1370,7 +1370,7 @@ do_request_reboot (GsmConsolekit *consolekit)
 }
 
 static void
-do_request_shutdown (GsmConsolekit *consolekit)
+do_attempt_shutdown (GsmConsolekit *consolekit)
 {
         if (gsm_consolekit_can_stop (consolekit)) {
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
@@ -1381,22 +1381,22 @@ do_request_shutdown (GsmConsolekit *consolekit)
 }
 
 static void
-manager_request_reboot (GsmManager *manager)
+manager_attempt_reboot (GsmManager *manager)
 {
         GsmConsolekit *consolekit;
 
         consolekit = gsm_get_consolekit ();
-        do_request_reboot (consolekit);
+        do_attempt_reboot (consolekit);
         g_object_unref (consolekit);
 }
 
 static void
-manager_request_shutdown (GsmManager *manager)
+manager_attempt_shutdown (GsmManager *manager)
 {
         GsmConsolekit *consolekit;
 
         consolekit = gsm_get_consolekit ();
-        do_request_shutdown (consolekit);
+        do_attempt_shutdown (consolekit);
         g_object_unref (consolekit);
 }
 
@@ -1422,7 +1422,7 @@ manager_logout (GsmManager *manager)
 }
 
 static void
-manager_request_hibernate (GsmManager *manager)
+manager_attempt_hibernate (GsmManager *manager)
 {
         GsmPowerManager *power_manager;
 
@@ -1436,7 +1436,7 @@ manager_request_hibernate (GsmManager *manager)
 }
 
 static void
-manager_request_sleep (GsmManager *manager)
+manager_attempt_suspend (GsmManager *manager)
 {
         GsmPowerManager *power_manager;
 
@@ -1456,7 +1456,21 @@ gsm_manager_is_switch_user_inhibited (GsmManager *manager)
                 return FALSE;
         }
 
-        /* FIXME: need to check ALLOW_SWITCH flags */
+        /* FIXME: need to check ALLOW_SWITCH flag */
+        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+                return FALSE;
+        }
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_is_suspend_inhibited (GsmManager *manager)
+{
+        if (manager->priv->inhibitors == NULL) {
+                return FALSE;
+        }
+
+        /* FIXME: need to check ALLOW_SUSPEND flag */
         if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
                 return FALSE;
         }
@@ -1509,16 +1523,16 @@ do_action (GsmManager *manager,
                 manager_switch_user (manager);
                 break;
         case GSM_LOGOUT_ACTION_HIBERNATE:
-                manager_request_hibernate (manager);
+                manager_attempt_hibernate (manager);
                 break;
         case GSM_LOGOUT_ACTION_SLEEP:
-                manager_request_sleep (manager);
+                manager_attempt_suspend (manager);
                 break;
         case GSM_LOGOUT_ACTION_SHUTDOWN:
-                manager_request_shutdown (manager);
+                manager_attempt_shutdown (manager);
                 break;
         case GSM_LOGOUT_ACTION_REBOOT:
-                manager_request_reboot (manager);
+                manager_attempt_reboot (manager);
                 break;
         case GSM_LOGOUT_ACTION_LOGOUT:
                 manager_logout (manager);
@@ -1558,6 +1572,113 @@ logout_inhibit_dialog_response (GsmLogoutInhibitDialog *dialog,
 
         gtk_widget_destroy (GTK_WIDGET (dialog));
         manager->priv->inhibit_dialog = NULL;
+}
+
+static void
+request_reboot (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting reboot");
+
+        /* shutdown uses logout inhibit */
+        if (! gsm_manager_is_logout_inhibited (manager)) {
+                manager_attempt_reboot (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_REBOOT);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
+static void
+request_shutdown (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting shutdown");
+
+        /* shutdown uses logout inhibit */
+        if (! gsm_manager_is_logout_inhibited (manager)) {
+                manager_attempt_shutdown (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_SHUTDOWN);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
+static void
+request_suspend (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting suspend");
+
+        if (! gsm_manager_is_suspend_inhibited (manager)) {
+                manager_attempt_suspend (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_SLEEP);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
+static void
+request_hibernate (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting hibernate");
+
+        /* hibernate uses suspend inhibit */
+        if (! gsm_manager_is_suspend_inhibited (manager)) {
+                manager_attempt_hibernate (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                       GSM_LOGOUT_ACTION_HIBERNATE);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (logout_inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
 }
 
 static void
@@ -1633,16 +1754,16 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                 request_switch_user (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_HIBERNATE:
-                manager_request_hibernate (manager);
+                request_hibernate (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_SLEEP:
-                manager_request_sleep (manager);
+                request_suspend (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_SHUTDOWN:
-                manager_request_shutdown (manager);
+                request_shutdown (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_REBOOT:
-                manager_request_reboot (manager);
+                request_reboot (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_LOGOUT:
                 request_logout (manager);
