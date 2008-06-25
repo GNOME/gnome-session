@@ -6,7 +6,6 @@ noinst_LTLIBRARIES = libgsmutil.la
 
 noinst_PROGRAMS = 		\
 	test-client-method	\
-	test-client-service	\
 	test-inhibit		\
 	$(NULL)
 
@@ -43,14 +42,6 @@ test_client_method_SOURCES = 	\
 	$(NULL)
 
 test_client_method_LDADD =			\
-	$(DBUS_GLIB_LIBS)			\
-	$(NULL)
-
-test_client_service_SOURCES = 	\
-	test-client-service.c	\
-	$(NULL)
-
-test_client_service_LDADD =			\
 	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
