@@ -503,8 +503,6 @@ append_autostart_apps (GtkListStore *store, const char *path, GList **removed_ap
 
       if (!error)
 	{
-	  g_debug ("read %s", desktop_file_path);
-
 	  if (!append_app (store, desktop_file))
             {
               if (removed_apps)
