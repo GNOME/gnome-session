@@ -1,3 +1,13 @@
+2008-06-26  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (manager_logout),
+	(inhibitor_has_flag), (gsm_manager_is_switch_user_inhibited),
+	(gsm_manager_is_suspend_inhibited),
+	(gsm_manager_is_logout_inhibited), (gsm_manager_inhibit):
+	* gnome-session/test-inhibit.c (do_inhibit):
+	Change inhibit flags to be opt in for each scenario.
+
 2008-06-25  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-logout-inhibit-dialog.c (model_has_one_entry),

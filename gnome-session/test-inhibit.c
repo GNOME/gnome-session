@@ -61,6 +61,12 @@ session_manager_connect (void)
         return (sm_proxy != NULL);
 }
 
+typedef enum {
+        GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
+        GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
+        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
+} GsmInhibitFlag;
+
 static gboolean
 do_inhibit (void)
 {
@@ -81,7 +87,9 @@ do_inhibit (void)
         reason = "A file transfer is in progress.";
 #endif
         toplevel_xid = 0;
-        flags = 0;
+        flags = GSM_INHIBITOR_FLAG_LOGOUT
+                | GSM_INHIBITOR_FLAG_SWITCH_USER
+                | GSM_INHIBITOR_FLAG_SUSPEND;
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,

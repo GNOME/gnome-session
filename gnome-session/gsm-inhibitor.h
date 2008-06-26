@@ -50,9 +50,9 @@ struct _GsmInhibitorClass
 };
 
 typedef enum {
-        GSM_INHIBITOR_FLAG_NONE              = 1 << 0,
-        GSM_INHIBITOR_FLAG_ALLOW_USER_SWITCH = 1 << 1,
-        GSM_INHIBITOR_FLAG_ALLOW_SUSPEND     = 1 << 2,
+        GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
+        GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
+        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
 } GsmManagerInhibitFlag;
 
 GType          gsm_inhibitor_get_type             (void) G_GNUC_CONST;

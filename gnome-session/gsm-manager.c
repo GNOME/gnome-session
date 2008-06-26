@@ -1412,8 +1412,6 @@ _shutdown_client (const char *id,
 static void
 manager_logout (GsmManager *manager)
 {
-        /* FIXME: ask clients to delay logout */
-
         gsm_client_store_foreach (manager->priv->store,
                                   (GsmClientStoreFunc)_shutdown_client,
                                   NULL);
@@ -1450,14 +1448,32 @@ manager_attempt_suspend (GsmManager *manager)
 }
 
 static gboolean
+inhibitor_has_flag (gpointer      key,
+                    GsmInhibitor *inhibitor,
+                    gpointer      data)
+{
+        int flag;
+        int flags;
+
+        flag = GPOINTER_TO_INT (data);
+        flags = gsm_inhibitor_get_flags (inhibitor);
+
+        return (flags & flag);
+}
+
+static gboolean
 gsm_manager_is_switch_user_inhibited (GsmManager *manager)
 {
+        GsmInhibitor *inhibitor;
+
         if (manager->priv->inhibitors == NULL) {
                 return FALSE;
         }
 
-        /* FIXME: need to check ALLOW_SWITCH flag */
-        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
+                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
+                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
+        if (inhibitor == NULL) {
                 return FALSE;
         }
         return TRUE;
@@ -1466,25 +1482,34 @@ gsm_manager_is_switch_user_inhibited (GsmManager *manager)
 static gboolean
 gsm_manager_is_suspend_inhibited (GsmManager *manager)
 {
+        GsmInhibitor *inhibitor;
+
         if (manager->priv->inhibitors == NULL) {
                 return FALSE;
         }
 
-        /* FIXME: need to check ALLOW_SUSPEND flag */
-        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
+                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
+                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
+        if (inhibitor == NULL) {
                 return FALSE;
         }
         return TRUE;
 }
 
-
 static gboolean
 gsm_manager_is_logout_inhibited (GsmManager *manager)
 {
+        GsmInhibitor *inhibitor;
+
         if (manager->priv->inhibitors == NULL) {
                 return FALSE;
         }
-        if (gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+
+        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
+                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
+                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
+        if (inhibitor == NULL) {
                 return FALSE;
         }
         return TRUE;
@@ -2154,6 +2179,18 @@ gsm_manager_inhibit (GsmManager            *manager,
                 new_error = g_error_new (GSM_MANAGER_ERROR,
                                          GSM_MANAGER_ERROR_GENERAL,
                                          "Reason not specified");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                dbus_g_method_return_error (context, new_error);
+                g_error_free (new_error);
+                return FALSE;
+        }
+
+        if (flags == 0) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Invalid inhibit flags");
                 g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
                 dbus_g_method_return_error (context, new_error);
                 g_error_free (new_error);
