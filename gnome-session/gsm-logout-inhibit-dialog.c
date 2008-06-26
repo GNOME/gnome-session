@@ -286,6 +286,48 @@ add_inhibitor (GsmLogoutInhibitDialog *dialog,
         }
 }
 
+static gboolean
+model_has_one_entry (GtkTreeModel *model)
+{
+        guint n_rows;
+
+        n_rows = gtk_tree_model_iter_n_children (model, NULL);
+        g_debug ("Model has %d rows", n_rows);
+
+        return (n_rows < 2);
+}
+
+static void
+update_dialog_text (GsmLogoutInhibitDialog *dialog)
+{
+        const char *header_text;
+        const char *description_text;
+        GtkWidget  *widget;
+
+        if (model_has_one_entry (GTK_TREE_MODEL (dialog->priv->list_store))) {
+                g_debug ("Found one entry in model");
+                header_text = _("A program is still running:");
+                description_text = _("Interrupting this program may cause you to lose work.");
+        } else {
+                g_debug ("Found multiple entries in model");
+                header_text = _("Some programs are still running:");
+                description_text = _("Interrupting these programs may cause you to lose work.");
+        }
+
+        widget = glade_xml_get_widget (dialog->priv->xml, "header-label");
+        if (widget != NULL) {
+                char *markup;
+                markup = g_strdup_printf ("<b>%s</b>", header_text);
+                gtk_label_set_markup (GTK_LABEL (widget), markup);
+                g_free (markup);
+        }
+
+        widget = glade_xml_get_widget (dialog->priv->xml, "description-label");
+        if (widget != NULL) {
+                gtk_label_set_text (GTK_LABEL (widget), description_text);
+        }
+}
+
 static void
 on_store_inhibitor_added (GsmInhibitorStore      *store,
                           guint                   cookie,
@@ -301,6 +343,7 @@ on_store_inhibitor_added (GsmInhibitorStore      *store,
         /* Add to model */
         if (! find_inhibitor (dialog, cookie, &iter)) {
                 add_inhibitor (dialog, inhibitor);
+                update_dialog_text (dialog);
         }
 
 }
@@ -317,6 +360,7 @@ on_store_inhibitor_removed (GsmInhibitorStore      *store,
         /* Remove from model */
         if (find_inhibitor (dialog, cookie, &iter)) {
                 gtk_list_store_remove (dialog->priv->list_store, &iter);
+                update_dialog_text (dialog);
         }
 
         /* if there are no inhibitors left then trigger response */
@@ -451,6 +495,7 @@ populate_model (GsmLogoutInhibitDialog *dialog)
         gsm_inhibitor_store_foreach_remove (dialog->priv->inhibitors,
                                             (GsmInhibitorStoreFunc)add_to_model,
                                             dialog);
+        update_dialog_text (dialog);
 }
 
 static void

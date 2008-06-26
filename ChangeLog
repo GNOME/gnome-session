@@ -1,5 +1,14 @@
 2008-06-25  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-logout-inhibit-dialog.c (model_has_one_entry),
+	(update_dialog_text), (on_store_inhibitor_added),
+	(on_store_inhibitor_removed), (populate_model):
+	* gnome-session/gsm-logout-inhibit-dialog.glade:
+	Use the proper pluralization depending on how many inhibitors are present.
+	Fix up spacing.
+
+2008-06-25  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_class_init):
 	* gnome-session/gsm-inhibitor.h:
 	* gnome-session/gsm-logout-inhibit-dialog.c (add_inhibitor):
