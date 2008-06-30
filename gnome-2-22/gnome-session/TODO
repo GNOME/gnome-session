@@ -1,0 +1,100 @@
+Note to readers:
+
+	This TODO is likely to be *way* out of date. It hasn't
+seen an update since 1999/07/16.
+
+Mark McLoughlin - 2002/07/16. 
+
+===============================================================
+
+Gnome Session Manager
+
+This is still a work in progress.  Here's my plan of attack:
+
+* Additions to property configurator:
+  * Name of session?
+  * Mark the name of the default session?
+  * Whether session is saved per-display?  (Maybe only for this display)
+  * Ability to look at list of sessions and remove some
+    (This is how to clean up after per-display sessions)
+  * Ability to turn off SM entirely
+  * Ability to checkpoint *now* and then use this as session -- no
+    saving at log out (except in emergency)
+
+* Documentation!
+
+* save/restore DISPLAY and some other env variables
+* Save and restore more of the standard properties.
+  CurrentDirectory at least is useful
+
+* Write code that understands resign commands
+  (This doesn't seem very important in practice)
+
+* Write a user interface of some sort.
+  Should talk to sm via CORBA
+
+
+* Write code to use timeouts in useful places.
+  A session save shouldn't hang because of one losing client.
+  [ This is complicated if we have clients which are also managers.
+    We'd like the sub-manager to time out before the parent manager
+    does. ]
+
+* Export a CORBA interface exposing all interesting functionality
+  (See Elliot's IDL in components/)
+  E.g., save current session and start a different one
+
+* Report exec errors in some useful way
+
+* Change session management code into library that can be used
+  by embedder apps.  This probably requires merging with
+  gnome-client.[ch], since the resulting program will have to be both
+  a client and a server, and the two parts must collude.
+  It isn't clear that this will actually be useful.
+
+* support krsh and ssh as well in rstart
+
+I don't have a schedule for this work.  Feel free to hack on it if you
+feel like it.  Please contact me if you do so.
+
+	Tom Tromey
+	tromey@cygnus.com
+
+================================================================
+
+Some known bugs:
+
+- gsm doesn't keep track of user information
+  if program is run by a different user, should try *something*
+  (what to do with rstart at least is obvious)
+
+================================================================
+
+The default profile:
+
+We'll provide a default profile so that first time users will see
+something sensible.  The current thinking for the default profile:
+
+* Whatever magic Gnome programs are required (i.e., CORBA daemons)
+X A window manager (not sure which one yet; it depends on what is
+  available, easy-to-use, and Gnome-compliant)
+  [ we handle this by letting the package builder choose the default ]
+X The panel
+X The file manager opened to `~'
+X The help browser opened to an "About Gnome" page
+X smproxy
+
+================================================================
+
+Some random stuff:
+
+- handle initialization commands
+
+- make rsh stuff configurable somehow
+  in particular support ssh and `rsh -x'
+  (if we ever have the rsh/rcp VFS, then it would be cool if both shared
+  the same config info.  E.g. map host onto the name of the rsh-like
+  program used to access it)
+
+- If program crashes during save yourself, gsm doesn't notice
+  and will hang
