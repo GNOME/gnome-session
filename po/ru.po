@@ -1,0 +1,683 @@
+# translation of gnome-session to Russian
+# Copyright (C) 1998-2002, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+#
+# Max Valianskiy <maxcom@vinchi.ru>, 1998-1999.
+# Sergey Panov <sipan@mit.edu>, 1999.
+# Valek Filippov <frob@df.ru>, 2000-2002.
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2003.
+# Leonid Kanter <leon@asplinux.ru>, 2004, 2005, 2006, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session trunk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-09 02:15+0300\n"
+"PO-Revision-Date: 2008-03-08 15:06+0300\n"
+"Last-Translator: Vasiliy Faronov <qvvx@yandex.ru>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/gnome-session.schemas.in.h:1
+msgid "Allow TCP connections"
+msgstr "Разрешать соединения по протоколу TCP"
+
+#: ../data/gnome-session.schemas.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"По соображениям безопасности на платформах, которые имеют функцию "
+"_IceTcpTransNoListen() (системы с XFree86), gnome-session не ожидает "
+"соединений на портах протокола TCP. Этот ключ позволяет разрешить соединения "
+"с (авторизованных) удалённых узлов. Чтобы этот ключ вступил в силу, нужно "
+"перезапустить gnome-session."
+
+#: ../data/gnome-session.schemas.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Если этот ключ установлен, gnome-session будет спрашивать пользователя перед "
+"окончанием сеанса."
+
+#: ../data/gnome-session.schemas.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"Если этот ключ установлен, gnome-session будет сохранять сеанс "
+"автоматически. Иначе возможность сохранить сеанс будет предоставлена в "
+"диалоге завершения сеанса."
+
+#: ../data/gnome-session.schemas.in.h:5
+msgid "Logout prompt"
+msgstr "Запрос при выходе из сеанса"
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
+msgstr "Предпочитаемое изображение для экрана-заставки"
+
+#: ../data/gnome-session.schemas.in.h:7
+msgid "Save sessions"
+msgstr "Сохранять сеансы"
+
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Выбранный параметр диалога завершения сеанса"
+
+#: ../data/gnome-session.schemas.in.h:9
+msgid "Show the splash screen"
+msgstr "Показывать экран-заставку"
+
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr "Показывать экран-заставку при запуске сеанса"
+
+#: ../data/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"Этот ключ представляет собой путь относительно базового каталога $datadir/"
+"pixmaps/. Допустимые значения — подкаталоги и имена файлов изображений. "
+"Изменение этого параметра вступит в силу при входе в следующий сеанс."
+
+#: ../data/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"Этот ключ задаёт параметр, который будет выбран в диалоге завершения сеанса. "
+"Допустимые значения — «logout» для выхода из системы, «shutdown» для "
+"останова системы и «restart» для перезапуска системы."
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Этот сеанс позволяет вам войти в GNOME"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "Настройка сеансов работы"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Sessions"
+msgstr "Сеансы"
+
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"Для этого сеанса была запрошена поддержка вспомогательных технологий, но "
+"регистр вспомогательных технологий найти не удалось. Убедитесь, что пакет AT-"
+"SPI установлен. Ваш сеанс запущен без поддержки вспомогательных технологий."
+
+#: ../gnome-session/gsm-client-editor.c:123
+msgid "_Order:"
+msgstr "_Порядок:"
+
+#: ../gnome-session/gsm-client-editor.c:125
+msgid "The order in which applications are started in the session."
+msgstr "Порядок, в котором приложения запускаются в сеансе."
+
+#: ../gnome-session/gsm-client-editor.c:133
+msgid "What happens to the application when it exits."
+msgstr "Что случится с приложением по завершении."
+
+#: ../gnome-session/gsm-client-editor.c:134
+msgid "_Style:"
+msgstr "_Стиль:"
+
+#: ../gnome-session/gsm-client-list.c:44
+msgid "Inactive"
+msgstr "Неактивное"
+
+#: ../gnome-session/gsm-client-list.c:44
+msgid "Waiting to start or already finished."
+msgstr "Ожидает старта или уже завершено."
+
+#: ../gnome-session/gsm-client-list.c:46
+msgid "Starting"
+msgstr "Запускается"
+
+#: ../gnome-session/gsm-client-list.c:46
+msgid "Started but has not yet reported state."
+msgstr "Запущено, но ещё не сообщило состояние."
+
+#: ../gnome-session/gsm-client-list.c:48
+msgid "Running"
+msgstr "Запущена"
+
+#: ../gnome-session/gsm-client-list.c:48
+msgid "A normal member of the session."
+msgstr "Обычный участник сеанса."
+
+#: ../gnome-session/gsm-client-list.c:50
+msgid "Saving"
+msgstr "Сохраняется"
+
+#: ../gnome-session/gsm-client-list.c:50
+msgid "Saving session details."
+msgstr "Сохранение деталей сеанса."
+
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../gnome-session/gsm-client-list.c:53
+msgid "State not reported within timeout."
+msgstr "Состояние не установлено в срок."
+
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
+msgid "Normal"
+msgstr "Обычное"
+
+#: ../gnome-session/gsm-client-list.c:60
+msgid "Unaffected by logouts but can die."
+msgstr "Не зависит от выхода из сеанса, но может умереть."
+
+#: ../gnome-session/gsm-client-list.c:62
+msgid "Restart"
+msgstr "Перезапускаемое"
+
+#: ../gnome-session/gsm-client-list.c:62
+msgid "Never allowed to die."
+msgstr "Никогда не позволять умирать."
+
+#: ../gnome-session/gsm-client-list.c:64
+msgid "Trash"
+msgstr "Удалённое"
+
+#: ../gnome-session/gsm-client-list.c:64
+msgid "Discarded on logout and can die."
+msgstr "Закрывается при выходе из сеанса и может умереть."
+
+#: ../gnome-session/gsm-client-list.c:66
+msgid "Settings"
+msgstr "Настроечное"
+
+#: ../gnome-session/gsm-client-list.c:66
+msgid "Always started on every login."
+msgstr "Всегда запускается при начале сеанса."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "Порядок"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "С_тиль"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "Состояние"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:284
+msgid "Program"
+msgstr "Программа"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: ../gnome-session/gsm-gsd.c:47
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"Произошла ошибка при запуске демона параметров среды GNOME.\n"
+"\n"
+"Некоторые вещи — например, параметры темы, звуков, фона — могут работать "
+"неправильно."
+
+#: ../gnome-session/gsm-gsd.c:59
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Последнее сообщение об ошибке было:\n"
+"\n"
+
+#: ../gnome-session/gsm-gsd.c:64
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"Среда GNOME попробует перезапустить демон параметров в следующий раз при "
+"начале сеанса."
+
+#: ../gnome-session/gsm-gsd.c:162
+msgid "The Settings Daemon restarted too many times."
+msgstr "Демон параметров перезапускался слишком много раз."
+
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "Без имени"
+
+#: ../gnome-session/gnome-session-remove.c:50
+msgid "List registered clients, then exit"
+msgstr "Вывести список зарегистрированных клиентов и выйти"
+
+#: ../gnome-session/gnome-session-remove.c:52
+msgid "PROGRAM..."
+msgstr "ПРОГРАММА..."
+
+#: ../gnome-session/gnome-session-remove.c:176
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"Укажите хотя бы одну программу для удаления. Список программ можно "
+"просмотреть с помощью --list.\n"
+
+#: ../gnome-session/gnome-session-remove.c:183
+msgid "Error: could not connect to the session manager\n"
+msgstr "Ошибка: не удалось соединиться с менеджером сеансов\n"
+
+#: ../gnome-session/gnome-session-remove.c:197
+msgid "Currently registered clients:\n"
+msgstr "Зарегистрированные в настоящее время клиенты:\n"
+
+#: ../gnome-session/gnome-session-remove.c:207
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "Не удалось найти программу %s в сеансе\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+"Менеджеру сеансов GNOME не удалось правильно запуститься. Пожалуйста, "
+"сообщите об этом как об ошибке в среде GNOME. Включите в отчёт об ошибке "
+"следующее сообщение ICE: «%s». Пока вы можете попробовать войти в систему, "
+"используя защищённый от сбоев сеанс."
+
+#: ../gnome-session/ice.c:514
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"Менеджеру сеансов GNOME не удалось заблокировать файл «%s». Пожалуйста, "
+"сообщите об этом как об ошибке среды GNOME. Иногда эта ошибка случается, "
+"если каталог файла недоступен для записи. Попробуйте проверить это, войдя в "
+"систему с помощью защищённого от сбоев сеанса."
+
+#: ../gnome-session/ice.c:541
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+"Менеджеру сеансов GNOME не удалось прочитать файл: «%s». Если этот файл "
+"существует, он должен быть доступен вам для чтения, потому что иначе среда "
+"GNOME не сможет правильно работать. Попробуйте войти в систему с помощью "
+"защищённого от сбоев сеанса и удалить этот файл."
+
+#: ../gnome-session/ice.c:586
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+"Не удалось записать в файл «%s». Этот файл должен быть доступен для записи, "
+"потому что иначе среда GNOME не сможет правильно работать. Попробуйте войти "
+"в систему с помощью защищённого от сбоев сеанса и удалить этот файл. "
+"Убедитесь также в том, что каталог, в котором находится файл, доступен для "
+"записи."
+
+#: ../gnome-session/logout.c:392
+msgid "Are you sure you want to log out?"
+msgstr "Вы действительно хотите завершить сеанс?"
+
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
+msgstr "Запомнить запущенные приложения"
+
+#: ../gnome-session/logout.c:432
+msgid "Action"
+msgstr "Действие"
+
+#: ../gnome-session/logout.c:449
+msgid "_Log out"
+msgstr "_Завершить сеанс"
+
+#: ../gnome-session/logout.c:456
+msgid "Sh_ut down"
+msgstr "В_ыключить компьютер"
+
+#: ../gnome-session/logout.c:464
+msgid "_Restart the computer"
+msgstr "_Перезагрузить компьютер"
+
+#: ../gnome-session/main.c:86
+msgid "Specify a session name to load"
+msgstr "Указать название сеанса, который надо загрузить"
+
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
+msgid "NAME"
+msgstr "НАЗВАНИЕ"
+
+#: ../gnome-session/main.c:87
+msgid "Only read saved sessions from the default.session file"
+msgstr "Считывать сохраненные сеансы только из файла default.session"
+
+#: ../gnome-session/main.c:88
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "Период ожидания регистрации клиентов, в миллисекундах (0 = бесконечно)"
+
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
+msgid "DELAY"
+msgstr "ЗАДЕРЖКА"
+
+#: ../gnome-session/main.c:89
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "Период ожидания отклика клиентов, в миллисекундах (0 = бесконечно)"
+
+#: ../gnome-session/main.c:90
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "Период ожидания смерти клиентов, в миллисекундах (0 = бесконечно)"
+
+#: ../gnome-session/main.c:166
+msgid "This session is running as a privileged user"
+msgstr "Этот сеанс запущен от имени привилегированного пользователя"
+
+#: ../gnome-session/main.c:168
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+"Следует избегать сеансов, запущенных от имени привилегированного "
+"пользователя, потому что они вызывают проблемы с безопасностью. Если это "
+"возможно, выйдите из сеанса и войдите как обычный пользователь."
+
+#: ../gnome-session/main.c:172
+msgid "_Continue"
+msgstr "_Продолжить"
+
+#: ../gnome-session/main.c:256
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+"Ошибка настройки часов может вызвать проблемы при входе в сеанс. Попробуйте "
+"настроить время.\n"
+"\n"
+"Текущее время <b>%s</b>."
+
+#: ../gnome-session/main.c:375
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "Не удалось запустить инструмент настройки времени: %s"
+
+#: ../gnome-session/main.c:406
+msgid "The computer clock appears to be wrong"
+msgstr "Похоже, часы компьютера идут неверно"
+
+#: ../gnome-session/main.c:413
+msgid "_Ignore"
+msgstr "_Игнорировать"
+
+#: ../gnome-session/main.c:414
+msgid "_Adjust the Clock"
+msgstr "_Настроить часы"
+
+#: ../gnome-session/main.c:551
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"Не удалось найти адрес Интернета для «%s».\n"
+"Это будет мешать среде GNOME работать правильно.\n"
+"Возможно, проблему удастся решить, добавив\n"
+"«%s» в файл /etc/hosts."
+
+#: ../gnome-session/main.c:558
+msgid "Log in Anyway"
+msgstr "Всё равно начать сеанс"
+
+#: ../gnome-session/main.c:559
+msgid "Try Again"
+msgstr "Попробовать снова"
+
+#: ../gnome-session/main.c:693
+msgid "- Manage the GNOME session"
+msgstr "— управление сеансом GNOME"
+
+#: ../gnome-session/manager.c:513
+msgid "Wait abandoned due to conflict."
+msgstr "Ожидание прекращено в связи с конфликтом."
+
+#: ../gnome-session/manager.c:1021
+#, c-format
+msgid "No response to the %s command."
+msgstr "Нет отклика на команду %s."
+
+#: ../gnome-session/manager.c:1022
+msgid "The program may be slow, stopped or broken."
+msgstr "Возможно, программа работает медленно, остановлена или просто сломана."
+
+#: ../gnome-session/manager.c:1023
+msgid "You may wait for it to respond or remove it."
+msgstr "Можно продолжить ожидание отклика или удалить."
+
+#: ../gnome-session/manager.c:1749
+msgid "Restart abandoned due to failures."
+msgstr "Перезапуск отменён из-за ошибок."
+
+#: ../gnome-session/manager.c:1945
+msgid "A session shutdown is in progress."
+msgstr "Сейчас идёт завершение сеанса работы."
+
+#: ../gnome-session/gnome-session-save.c:48
+msgid "Set the current session name"
+msgstr "Установить название текущего сеанса"
+
+#: ../gnome-session/gnome-session-save.c:49
+msgid "Kill session"
+msgstr "Убить сеанс"
+
+#: ../gnome-session/gnome-session-save.c:50
+msgid "Use dialog boxes for errors"
+msgstr "Использовать диалоговые окна для ошибок"
+
+#: ../gnome-session/gnome-session-save.c:51
+msgid "Do not require confirmation"
+msgstr "Не требовать подтверждение"
+
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
+msgid "Could not connect to the session manager"
+msgstr "Не удалось соединиться с менеджером сеансов"
+
+#: ../gnome-session/gnome-session-save.c:172
+msgid "- Save the current session"
+msgstr "— сохранить текущий сеанс"
+
+#: ../gnome-session/session-properties-capplet.c:154
+msgid "Save changes to the current session before closing?"
+msgstr "Сохранить изменения текущего сеанса перед закрытием?"
+
+#: ../gnome-session/session-properties-capplet.c:156
+msgid "If you don't save, changes will be discarded."
+msgstr "Если не сохранить, изменения будут утеряны."
+
+#: ../gnome-session/session-properties-capplet.c:159
+msgid "_Close without Saving"
+msgstr "_Закрыть без сохранения"
+
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "Параметры сеансов"
+
+#. non-session managed startup programs
+#: ../gnome-session/session-properties-capplet.c:250
+msgid "Additional startup _programs:"
+msgstr "Дополнительные _программы, запускаемые при старте:"
+
+#: ../gnome-session/session-properties-capplet.c:275
+msgid "Enabled"
+msgstr "Включено"
+
+#: ../gnome-session/session-properties-capplet.c:319
+msgid "Startup Programs"
+msgstr "Автоматически запускаемые программы"
+
+#: ../gnome-session/session-properties-capplet.c:326
+msgid "Current Session"
+msgstr "Текущий сеанс"
+
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Автоматически запоминать запущенные приложения при выходе из сеанса"
+
+#: ../gnome-session/session-properties-capplet.c:353
+msgid "_Remember Currently Running Applications"
+msgstr "_Запомнить запущенные приложения"
+
+#: ../gnome-session/session-properties-capplet.c:361
+msgid "Session Options"
+msgstr "Параметры сеанса"
+
+#: ../gnome-session/session-properties-capplet.c:457
+msgid "Your session has been saved."
+msgstr "Ваш сеанс был сохранён."
+
+#: ../gnome-session/session-properties-capplet.c:500
+msgid "could not connect to the session manager\n"
+msgstr "не удалось соединиться с менеджером сеансов\n"
+
+#: ../gnome-session/session-properties-capplet.c:506
+msgid "session manager does not support GNOME extensions\n"
+msgstr "менеджер сеансов не поддерживает расширения GNOME\n"
+
+#: ../gnome-session/session-properties.c:51
+msgid "Remove the currently selected client from the session."
+msgstr "Удалить выделенного клиента из сеанса."
+
+#: ../gnome-session/session-properties.c:57
+msgid "Apply changes to the current session"
+msgstr "Применить изменения к текущему сеансу"
+
+#: ../gnome-session/session-properties.c:63
+msgid "The list of programs in the session."
+msgstr "Список программ в сеансе."
+
+#: ../gnome-session/session-properties.c:89
+msgid "Currently running _programs:"
+msgstr "_Программы, запущенные в настоящий момент:"
+
+#: ../gnome-session/splash-widget.c:44
+msgid "Sawfish Window Manager"
+msgstr "Менеджер окон Sawfish"
+
+#: ../gnome-session/splash-widget.c:45
+msgid "Metacity Window Manager"
+msgstr "Менеджер окон Metacity"
+
+#: ../gnome-session/splash-widget.c:46
+msgid "Window Manager"
+msgstr "Менеджер окон"
+
+#: ../gnome-session/splash-widget.c:47
+msgid "The Panel"
+msgstr "Панель"
+
+#: ../gnome-session/splash-widget.c:48
+msgid "Nautilus"
+msgstr "Nautilus"
+
+#: ../gnome-session/splash-widget.c:49
+msgid "Desktop Settings"
+msgstr "Параметры рабочего стола"
+
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr "Нет описания"
+
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "Выбрать команду"
+
+#: ../gnome-session/startup-programs.c:471
+msgid "_Name:"
+msgstr "_Имя:"
+
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "_Команда:"
+
+#: ../gnome-session/startup-programs.c:498
+msgid "_Browse..."
+msgstr "_Просмотреть..."
+
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
+msgstr "Ко_мментарий:"
+
+#: ../gnome-session/startup-programs.c:538
+msgid "The name of the startup program cannot be empty"
+msgstr "Имя автоматически запускаемой программы не может быть пустым"
+
+#: ../gnome-session/startup-programs.c:540
+msgid "The startup command cannot be empty"
+msgstr "Команда запуска не может быть пустой"
+
+#: ../gnome-session/startup-programs.c:546
+msgid "The startup command is not valid"
+msgstr "Автоматически запускаемая программа недопустима"
+
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "Новая автоматически запускаемая программа"
+
+#: ../gnome-session/startup-programs.c:647
+msgid "Edit Startup Program"
+msgstr "Изменить автоматически запускаемую программу"
+
+#~ msgid "New Startup Program"
+#~ msgstr "Новая автоматически запускаемая программа"

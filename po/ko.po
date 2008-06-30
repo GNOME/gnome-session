@@ -1,0 +1,671 @@
+# Updated by Sung-Hyun Nam <namsh@kldp.org>, 2000
+# Updated by Young-Ho Cha <ganadist@chollian.net>, 2000,2001,2006,2007
+# Changwoo Ryu <cwryu@debian.org>, 1998,2002-2006, 2007, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-02-26 08:43+0900\n"
+"PO-Revision-Date: 2008-02-26 08:46+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/gnome-session.schemas.in.h:1
+msgid "Allow TCP connections"
+msgstr "TCP 연결 허용"
+
+#: ../data/gnome-session.schemas.in.h:2
+msgid ""
+"For security reasons, on platforms which have _IceTcpTransNoListen() "
+"(XFree86 systems), gnome-session does not listen for connections on TCP "
+"ports. This option will allow connections from (authorized) remote hosts. "
+"gnome-session must be restarted for this to take effect."
+msgstr ""
+"보안때문에 _IceTcpTransNoListen()를 가진 플랫폼(XFree86 시스템)에서는 TCP포"
+"트 연결을 듣고있지 않습니다. 이 옵션은 (인증된) 원격 호스트의 연결을 혀옹합니"
+"다. gnome-session을 다시 시작하여야 적용됩니다."
+
+#: ../data/gnome-session.schemas.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "참이면 gnome-session이 끝나기 전에 사용자에게 물어봅니다."
+
+#: ../data/gnome-session.schemas.in.h:4
+msgid ""
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
+msgstr ""
+"참이면 gnome-session이 자동으로 세션을 저장합니다. 그렇지 않으면 로그아웃 대"
+"화상자에 세션 저장옵션이 보여질 것입니다."
+
+#: ../data/gnome-session.schemas.in.h:5
+msgid "Logout prompt"
+msgstr "로그아웃 물어보기"
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid "Preferred Image to use for login splash screen"
+msgstr "로그인 스플래시 화면에 사용할 그림"
+
+#: ../data/gnome-session.schemas.in.h:7
+msgid "Save sessions"
+msgstr "세션 저장"
+
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "로그아웃 대화 창에서 선택할 옵션"
+
+#: ../data/gnome-session.schemas.in.h:9
+msgid "Show the splash screen"
+msgstr "시작 화면 보이기"
+
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Show the splash screen when the session starts up"
+msgstr "세션이 시작하는 화면을 봅니다"
+
+#: ../data/gnome-session.schemas.in.h:11
+msgid ""
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
+msgstr ""
+"$datadir/pixmaps/ 디렉토리에 대한 상대 경로입니다. 하위 디렉토리를 쓸 수도 있"
+"고 그림 파일 이름을 쓸 수도 있습니다. 이 값을 바꾸면 다음에 로그인할 때 적용"
+"됩니다."
+
+#: ../data/gnome-session.schemas.in.h:12
+msgid ""
+"This is the option that will be selected in the logout dialog, valid values "
+"are \"logout\" for logging out, \"shutdown\" for halting the system and "
+"\"restart\" for restarting the system."
+msgstr ""
+"로그아웃 대화상자에서 선택할 옵션입니다. 올바른 값들로는,  로그아웃은 "
+"\"logout\", 시스템 끄기는 \"shutdown\", 시스템 다시 시작은 \"restart\"입니다."
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "그놈"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "이 세션을 사용하면 그놈에 로그인합니다"
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Configure your sessions"
+msgstr "세션 설정"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Sessions"
+msgstr "세션"
+
+#: ../gnome-session/gsm-at-startup.c:39
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"현재 세션에서 접근성 기술 지원이 요청되었지만, 접근성 레지스트리를 찾을 수 없"
+"습니다. AT-SPI 꾸러미가 설치되었는지 확인하기 바랍니다. 접근성 기술 지원이 빠"
+"진 채로 세션이 시작됩니다."
+
+#: ../gnome-session/gsm-client-editor.c:123
+msgid "_Order:"
+msgstr "순서(_O):"
+
+#: ../gnome-session/gsm-client-editor.c:125
+msgid "The order in which applications are started in the session."
+msgstr "세션에서 프로그램이 시작할 순서."
+
+#: ../gnome-session/gsm-client-editor.c:133
+msgid "What happens to the application when it exits."
+msgstr "프로그램이 실행할 때 벌어지는 일."
+
+#: ../gnome-session/gsm-client-editor.c:134
+msgid "_Style:"
+msgstr "형식(_S):"
+
+#: ../gnome-session/gsm-client-list.c:44
+msgid "Inactive"
+msgstr "비활성"
+
+#: ../gnome-session/gsm-client-list.c:44
+msgid "Waiting to start or already finished."
+msgstr "시작하려고 기다리는 중이거나 이미 끝났음."
+
+#: ../gnome-session/gsm-client-list.c:46
+msgid "Starting"
+msgstr "시작중"
+
+#: ../gnome-session/gsm-client-list.c:46
+msgid "Started but has not yet reported state."
+msgstr "시작했으나 아직 상태를 보고하지 않았음."
+
+#: ../gnome-session/gsm-client-list.c:48
+msgid "Running"
+msgstr "실행중"
+
+#: ../gnome-session/gsm-client-list.c:48
+msgid "A normal member of the session."
+msgstr "세션의 일반 멤버."
+
+#: ../gnome-session/gsm-client-list.c:50
+msgid "Saving"
+msgstr "저장중"
+
+#: ../gnome-session/gsm-client-list.c:50
+msgid "Saving session details."
+msgstr "세션 상세정보 저장중."
+
+#. FIXME find better icon
+#: ../gnome-session/gsm-client-list.c:53
+msgid "Unknown"
+msgstr "모름"
+
+#: ../gnome-session/gsm-client-list.c:53
+msgid "State not reported within timeout."
+msgstr "타임아웃이 발생할 때까지 상태를 보고하지 않았음."
+
+#. FIXME find icon
+#: ../gnome-session/gsm-client-list.c:60
+msgid "Normal"
+msgstr "보통"
+
+#: ../gnome-session/gsm-client-list.c:60
+msgid "Unaffected by logouts but can die."
+msgstr "로그아웃에 영향받지 않지만 죽을 수 있음."
+
+#: ../gnome-session/gsm-client-list.c:62
+msgid "Restart"
+msgstr "다시 시작"
+
+#: ../gnome-session/gsm-client-list.c:62
+msgid "Never allowed to die."
+msgstr "죽도록 허용하지 않음."
+
+#: ../gnome-session/gsm-client-list.c:64
+msgid "Trash"
+msgstr "휴지통"
+
+#: ../gnome-session/gsm-client-list.c:64
+msgid "Discarded on logout and can die."
+msgstr "로그아웃시 버려지며 죽을 수 있음."
+
+#: ../gnome-session/gsm-client-list.c:66
+msgid "Settings"
+msgstr "설정"
+
+#: ../gnome-session/gsm-client-list.c:66
+msgid "Always started on every login."
+msgstr "매 로그인할 때마다 시작됨."
+
+#: ../gnome-session/gsm-client-list.c:190
+msgid "Order"
+msgstr "순서"
+
+#: ../gnome-session/gsm-client-list.c:197
+msgid "Style"
+msgstr "형식"
+
+#: ../gnome-session/gsm-client-list.c:204
+msgid "State"
+msgstr "상태"
+
+#: ../gnome-session/gsm-client-list.c:211
+#: ../gnome-session/session-properties-capplet.c:284
+msgid "Program"
+msgstr "프로그램"
+
+#.
+#. * it would be nice to have a dialog which either:
+#. *
+#. * 1.  lets you change the message on it
+#. * 2.  lets you append messages and has a "history"
+#. *
+#. * for now, we just kill the old dialog and pop up a new one.
+#.
+#: ../gnome-session/gsm-gsd.c:45
+msgid ""
+"There was an error starting the GNOME Settings Daemon.\n"
+"\n"
+"Some things, such as themes, sounds, or background settings may not work "
+"correctly."
+msgstr ""
+"그놈 설정 데몬을 시작하는 데 오류가 발생했습니다.\n"
+"\n"
+"테마, 사운드, 배경 그림 설정과 같은 것들이 제대로 동작하지 않을 수도 있습니"
+"다."
+
+#: ../gnome-session/gsm-gsd.c:57
+msgid ""
+"\n"
+"\n"
+"The last error message was:\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"마지막 오류 메세지는:\n"
+"\n"
+
+#: ../gnome-session/gsm-gsd.c:62
+msgid ""
+"\n"
+"\n"
+"GNOME will still try to restart the Settings Daemon next time you log in."
+msgstr ""
+"\n"
+"\n"
+"다음에 로그인 할 때 그놈 설정 데몬을 다시 시작하도록 시도할 것입니다."
+
+#: ../gnome-session/gsm-gsd.c:145
+msgid "The Settings Daemon restarted too many times."
+msgstr "설정 데몬이 너무 많이 다시 시작합니다."
+
+#. Name is mandatory and might not be set by the caller
+#: ../gnome-session/gsm-keyfile.c:43
+msgid "No Name"
+msgstr "이름 없음"
+
+#: ../gnome-session/gnome-session-remove.c:50
+msgid "List registered clients, then exit"
+msgstr "등록된 클라이언트의 목록을 보이고 끝냅니다"
+
+#: ../gnome-session/gnome-session-remove.c:52
+msgid "PROGRAM..."
+msgstr "프로그램..."
+
+#: ../gnome-session/gnome-session-remove.c:176
+#, c-format
+msgid ""
+"You must specify at least one program to remove. You can list the programs "
+"with --list.\n"
+msgstr ""
+"지워야 할 프로그램을 하나 이상 지정해야 합니다. 프로그램 목록은 --list 옵션으"
+"로 볼 수 있습니다.\n"
+
+#: ../gnome-session/gnome-session-remove.c:183
+#, c-format
+msgid "Error: could not connect to the session manager\n"
+msgstr "오류: 세션 관리자에 연결할 수 없습니다\n"
+
+#: ../gnome-session/gnome-session-remove.c:197
+#, c-format
+msgid "Currently registered clients:\n"
+msgstr "현재 등록된 클라이언트:\n"
+
+#: ../gnome-session/gnome-session-remove.c:207
+#, c-format
+msgid "Couldn't find program %s in session\n"
+msgstr "세션에서 %s 프로그램을 찾을 수 없습니다\n"
+
+#. At least try to tell the user something.
+#: ../gnome-session/ice.c:355
+#, c-format
+msgid ""
+"The GNOME session manager cannot start properly.  Please report this as a "
+"GNOME bug. Please include this ICE failure message in the bug report:  '%"
+"s'.  Meanwhile you could try logging in using the failsafe session."
+msgstr ""
+"그놈 세션 관리자를 올바르게 시작할 수 없습니다. 그놈 버그로 알려주시기 바랍니"
+"다. 다음의 ICE 실패 메세지를 버그 보고에 꼭 포함하시기 바랍니다: '%s'. 또한 "
+"안전 모드 세션을 사용해서 로그인을 시도할 수 있습니다."
+
+#: ../gnome-session/ice.c:514
+#, c-format
+msgid ""
+"The GNOME session manager was unable to lock the file '%s'.  Please report "
+"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
+"is unwritable, you could try logging in via the failsafe session and "
+"ensuring that it is."
+msgstr ""
+"그놈 세션 관리자가 파일 '%s'의 잠금을 풀 수 없습니다. 그놈 버그로 알려주시기 "
+"바랍니다. 이런 오류는 가끔 디렉토리에 쓰기 권한이 없어서 발생할 수 있으니, 안"
+"전 모드 세션으로 로그인 해서 확인해보시기 바랍니다."
+
+#: ../gnome-session/ice.c:541
+#, c-format
+msgid ""
+"The GNOME session manager was unable to read the file: '%s'.  If this file "
+"exists it must be readable by you for GNOME to work properly.  Try logging "
+"in with the failsafe session and removing this file."
+msgstr ""
+"그놈 세션 관리자가 파일을 읽을 수 없습니다: '%s'. 이 파일은 읽기가 가능해야 "
+"그놈이 올바르게 작동할 수 있습니다. 안전 모드 세션으로 로그인 해서 이 파일을 "
+"지워보시기 바랍니다."
+
+#: ../gnome-session/ice.c:586
+#, c-format
+msgid ""
+"Could not write to file '%s'.  This file must be writable in order for GNOME "
+"to function properly.  Try logging in with the failsafe session and removing "
+"this file.  Also make sure that the file's directory is writable."
+msgstr ""
+"파일 '%s'(을)를 쓸 수 없습니다. 그놈의 기능이 올바르게 동작하려면, 이 파일은 "
+"쓰기 가능하여야 합니다. 안전 모드 세션으로 로그인 해서 이 파일을 지우고, 디렉"
+"토리가 쓰기 가능하도록 확인하시기 바랍니다."
+
+#: ../gnome-session/logout.c:392
+msgid "Are you sure you want to log out?"
+msgstr "정말로 로그 아웃하시겠습니까?"
+
+#: ../gnome-session/logout.c:409
+msgid "Remember running applications"
+msgstr "실행 중인 프로그램 기억"
+
+#: ../gnome-session/logout.c:432
+msgid "Action"
+msgstr "동작"
+
+#: ../gnome-session/logout.c:449
+msgid "_Log out"
+msgstr "로그아웃(_L)"
+
+#: ../gnome-session/logout.c:456
+msgid "Sh_ut down"
+msgstr "컴퓨터 끄기(_U)"
+
+#: ../gnome-session/logout.c:464
+msgid "_Restart the computer"
+msgstr "컴퓨터 다시 시작(_R)"
+
+#: ../gnome-session/main.c:86
+msgid "Specify a session name to load"
+msgstr "읽을 세션이름 지정"
+
+#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
+msgid "NAME"
+msgstr "<이름>"
+
+#: ../gnome-session/main.c:87
+msgid "Only read saved sessions from the default.session file"
+msgstr "기본세션(default) 파일에서만 저장된 세션을 읽어오기"
+
+#: ../gnome-session/main.c:88
+msgid "Millisecond period spent waiting for clients to register (0=forever)"
+msgstr "클라이언트가 등록하기까지 기다리는 시간 (천분의 일초) (0=영원히)"
+
+#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
+#: ../gnome-session/main.c:90
+msgid "DELAY"
+msgstr "<지연시간>"
+
+#: ../gnome-session/main.c:89
+msgid "Millisecond period spent waiting for clients to respond (0=forever)"
+msgstr "클라이언트가 대답할 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
+
+#: ../gnome-session/main.c:90
+msgid "Millisecond period spent waiting for clients to die (0=forever)"
+msgstr "클라이언트가 끝날 때까지 기다리는 시간 (천분의 일초) (0=영원히)"
+
+#: ../gnome-session/main.c:166
+msgid "This session is running as a privileged user"
+msgstr "이 세션은 관리자 권한으로 실행 중입니다"
+
+#: ../gnome-session/main.c:168
+msgid ""
+"Running a session as a privileged user should be avoided for security "
+"reasons. If possible, you should log in as a normal user."
+msgstr ""
+"보안상의 이유때문에 관리자 권한으로는 세션을 실행하지 말아야 합니다. 가능하다"
+"면 일반 사용자로 로그인해야 합니다."
+
+#: ../gnome-session/main.c:172
+msgid "_Continue"
+msgstr "계속(_C)"
+
+#: ../gnome-session/main.c:256
+#, c-format
+msgid ""
+"The session might encounter issues if the computer clock is not properly "
+"configured. Please consider adjusting it.\n"
+"\n"
+"Current date is <b>%s</b>."
+msgstr ""
+"컴퓨터의 시간이 올바르게 설정되어 있지 않은 경우 문제가 발생할 수 있습니다. "
+"시간을 조정해 보십시오.\n"
+"\n"
+"현재 시각은 <b>%s</b>입니다."
+
+#: ../gnome-session/main.c:375
+#, c-format
+msgid "Failed to launch time configuration tool: %s"
+msgstr "시간 설정 도구를 실행하는 데 실패했습니다: %s"
+
+#: ../gnome-session/main.c:406
+msgid "The computer clock appears to be wrong"
+msgstr "컴퓨터 시계가 잘못되었습니다"
+
+#: ../gnome-session/main.c:413
+msgid "_Ignore"
+msgstr "무시(_I)"
+
+#: ../gnome-session/main.c:414
+msgid "_Adjust the Clock"
+msgstr "시간 조정(_A)"
+
+# 받침이 있는지 없는지 모르므로 "를(을)"이라고 쓴다.
+#: ../gnome-session/main.c:551
+#, c-format
+msgid ""
+"Could not look up internet address for %s.\n"
+"This will prevent GNOME from operating correctly.\n"
+"It may be possible to correct the problem by adding\n"
+"%s to the file /etc/hosts."
+msgstr ""
+"%s의 인터넷 주소를 찾을 수 없습니다.\n"
+"이것때문에 그놈이 정상적으로 동작하지 못할 수도 있습니다.\n"
+"%s를(을) /etc/hosts 파일에 더해서 문제가 해결될\n"
+"수도 있습니다."
+
+#: ../gnome-session/main.c:558
+msgid "Log in Anyway"
+msgstr "그래도 로그인"
+
+#: ../gnome-session/main.c:559
+msgid "Try Again"
+msgstr "다시 시도"
+
+#: ../gnome-session/main.c:693
+msgid "- Manage the GNOME session"
+msgstr "- 그놈 세션을 관리합니다"
+
+#: ../gnome-session/manager.c:513
+msgid "Wait abandoned due to conflict."
+msgstr "충돌로 인해 기다리지 않습니다."
+
+#: ../gnome-session/manager.c:1021
+#, c-format
+msgid "No response to the %s command."
+msgstr "%s 명령에 반응이 없습니다."
+
+#: ../gnome-session/manager.c:1022
+msgid "The program may be slow, stopped or broken."
+msgstr "프로그램이 느리거나, 멈췄거나 문제가 있습니다."
+
+#: ../gnome-session/manager.c:1023
+msgid "You may wait for it to respond or remove it."
+msgstr "계속 응답을 기다리거나 강제종료할 수 있습니다."
+
+#: ../gnome-session/manager.c:1749
+msgid "Restart abandoned due to failures."
+msgstr "실패로 인해 다시 시작하지 않습니다."
+
+#: ../gnome-session/manager.c:1945
+msgid "A session shutdown is in progress."
+msgstr "세션 닫기가 진행 중입니다."
+
+#: ../gnome-session/gnome-session-save.c:48
+msgid "Set the current session name"
+msgstr "현재 세션의 이름을 지정합니다"
+
+#: ../gnome-session/gnome-session-save.c:49
+msgid "Kill session"
+msgstr "세션을 끝냅니다"
+
+#: ../gnome-session/gnome-session-save.c:50
+msgid "Use dialog boxes for errors"
+msgstr "오류를 보이기 위해 대화 상자를 사용합니다"
+
+#: ../gnome-session/gnome-session-save.c:51
+msgid "Do not require confirmation"
+msgstr "확인을 받지 않습니다"
+
+#: ../gnome-session/gnome-session-save.c:149
+#: ../gnome-session/gnome-session-save.c:187
+msgid "Could not connect to the session manager"
+msgstr "세션 관리자에 연결할 수 없습니다"
+
+#: ../gnome-session/gnome-session-save.c:172
+msgid "- Save the current session"
+msgstr "- 현재 세션을 저장합니다"
+
+#: ../gnome-session/session-properties-capplet.c:154
+msgid "Save changes to the current session before closing?"
+msgstr "현재 세션을 닫기 전에 저장합니까?"
+
+#: ../gnome-session/session-properties-capplet.c:156
+msgid "If you don't save, changes will be discarded."
+msgstr "저장하지 않으면, 바뀐 점은 무시됩니다."
+
+#: ../gnome-session/session-properties-capplet.c:159
+msgid "_Close without Saving"
+msgstr "저장하지 않고 닫기(_C)"
+
+#: ../gnome-session/session-properties-capplet.c:224
+msgid "Sessions Preferences"
+msgstr "세션 기본 설정"
+
+#. non-session managed startup programs
+#: ../gnome-session/session-properties-capplet.c:250
+msgid "Additional startup _programs:"
+msgstr "시작 프로그램 더하기(_P):"
+
+#: ../gnome-session/session-properties-capplet.c:275
+msgid "Enabled"
+msgstr "사용하기"
+
+#: ../gnome-session/session-properties-capplet.c:319
+msgid "Startup Programs"
+msgstr "시작 프로그램"
+
+#: ../gnome-session/session-properties-capplet.c:326
+msgid "Current Session"
+msgstr "현재 세션"
+
+#. Autosave
+#: ../gnome-session/session-properties-capplet.c:337
+msgid "_Automatically remember running applications when logging out"
+msgstr "로그아웃할 때 자동으로 실행 중인 프로그램 기억(_A)"
+
+#: ../gnome-session/session-properties-capplet.c:353
+msgid "_Remember Currently Running Applications"
+msgstr "현재 실행 중인 프로그램 기억(_R)"
+
+#: ../gnome-session/session-properties-capplet.c:361
+msgid "Session Options"
+msgstr "세션 옵션"
+
+#: ../gnome-session/session-properties-capplet.c:457
+msgid "Your session has been saved."
+msgstr "세션을 저장했습니다."
+
+#: ../gnome-session/session-properties-capplet.c:500
+#, c-format
+msgid "could not connect to the session manager\n"
+msgstr "세션 관리자에 연결할 수 없습니다\n"
+
+#: ../gnome-session/session-properties-capplet.c:506
+#, c-format
+msgid "session manager does not support GNOME extensions\n"
+msgstr "세션 관리자가 그놈 확장을 지원하지 않습니다\n"
+
+#: ../gnome-session/session-properties.c:51
+msgid "Remove the currently selected client from the session."
+msgstr "세션에서 현재 선택한 클라이언트를 지웁니다."
+
+#: ../gnome-session/session-properties.c:57
+msgid "Apply changes to the current session"
+msgstr "바뀐 부분을 현재 세션에 적용"
+
+#: ../gnome-session/session-properties.c:63
+msgid "The list of programs in the session."
+msgstr "세션에 들어 있는 프로그램 목록."
+
+#: ../gnome-session/session-properties.c:89
+msgid "Currently running _programs:"
+msgstr "현재 실행중인 프로그램(_P):"
+
+#: ../gnome-session/splash-widget.c:44
+msgid "Sawfish Window Manager"
+msgstr "Sawfish 창 관리자"
+
+#: ../gnome-session/splash-widget.c:45
+msgid "Metacity Window Manager"
+msgstr "메타시티 창 관리자"
+
+#: ../gnome-session/splash-widget.c:46
+msgid "Window Manager"
+msgstr "창 관리자"
+
+#: ../gnome-session/splash-widget.c:47
+msgid "The Panel"
+msgstr "패널"
+
+#: ../gnome-session/splash-widget.c:48
+msgid "Nautilus"
+msgstr "노틸러스"
+
+#: ../gnome-session/splash-widget.c:49
+msgid "Desktop Settings"
+msgstr "바탕 화면 설정"
+
+#: ../gnome-session/startup-programs.c:348
+msgid "No description"
+msgstr "설명 없음"
+
+#: ../gnome-session/startup-programs.c:409
+msgid "Select Command"
+msgstr "명령 선택"
+
+#: ../gnome-session/startup-programs.c:471
+msgid "_Name:"
+msgstr "이름(_N):"
+
+#: ../gnome-session/startup-programs.c:486
+msgid "Co_mmand:"
+msgstr "명령(_M):"
+
+#: ../gnome-session/startup-programs.c:498
+msgid "_Browse..."
+msgstr "찾아보기(_B)..."
+
+#: ../gnome-session/startup-programs.c:510
+msgid "Comm_ent:"
+msgstr "설명(_E):"
+
+#: ../gnome-session/startup-programs.c:538
+msgid "The name of the startup program cannot be empty"
+msgstr "시작 프로그램 이름을 비워 둘 수 없습니다"
+
+#: ../gnome-session/startup-programs.c:540
+msgid "The startup command cannot be empty"
+msgstr "시작 프로그램을 비워 둘 수 없습니다"
+
+#: ../gnome-session/startup-programs.c:546
+msgid "The startup command is not valid"
+msgstr "시작 프로그램이 올바르지 않습니다"
+
+#: ../gnome-session/startup-programs.c:603
+msgid "Add Startup Program"
+msgstr "시작 프로그램 더하기"
+
+#: ../gnome-session/startup-programs.c:647
+msgid "Edit Startup Program"
+msgstr "시작 프로그램 편집"
+
+#~ msgid "New Startup Program"
+#~ msgstr "새 시작 프로그램"
