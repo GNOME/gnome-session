@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-25 01:44+0200\n"
-"PO-Revision-Date: 2008-06-25 01:45+0200\n"
+"POT-Creation-Date: 2008-07-01 09:43+0200\n"
+"PO-Revision-Date: 2008-07-01 09:44+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -280,7 +280,7 @@ msgstr ""
 "Det er problemer med konfigurasjonstjeneren.\n"
 "(%s avsluttet med status %d)"
 
-#: ../gnome-session/logout-dialog.c:269
+#: ../gnome-session/logout.c:241
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -295,7 +295,7 @@ msgstr[1] ""
 "Du er logget inn som «%s».\n"
 "Du vil bli logget ut automatisk %d sekunder."
 
-#: ../gnome-session/logout-dialog.c:281
+#: ../gnome-session/logout.c:253
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -304,37 +304,41 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "This system will be automatically shut down in %d seconds."
 msgstr[0] ""
+"Du er nå logget inn som «%s».\n"
+"Systemet vil stenges ned automatisk om %d sekund."
 msgstr[1] ""
+"Du er nå logget inn som «%s».\n"
+"Systemet vil stenges ned automatisk om %d sekunder."
 
-#: ../gnome-session/logout-dialog.c:357
+#: ../gnome-session/logout.c:344
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:363
+#: ../gnome-session/logout.c:350
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/logout-dialog.c:371
+#: ../gnome-session/logout.c:358
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/logout-dialog.c:377
+#: ../gnome-session/logout.c:364
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:383
+#: ../gnome-session/logout.c:370
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/logout-dialog.c:388
+#: ../gnome-session/logout.c:375
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/logout-dialog.c:393
+#: ../gnome-session/logout.c:380
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/logout-dialog.c:402
+#: ../gnome-session/logout.c:389
 msgid "_Shut Down"
 msgstr "_Steng ned"
 
@@ -404,7 +408,7 @@ msgstr "Legg til oppstartsprogram"
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/commands.c:797
+#: ../capplet/commands.c:795
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
