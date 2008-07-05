@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-12 09:01+0700\n"
-"PO-Revision-Date: 2008-06-12 11:01+0700\n"
+"POT-Creation-Date: 2008-07-05 19:45+0700\n"
+"PO-Revision-Date: 2008-07-05 19:50+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -58,12 +58,12 @@ msgstr "รายชื่อโปรแกรมที่เป็นส่ว
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
-"รายชื่อองค์ประกอบที่ต้องการในวาระ (โดยแต่ละองค์ประกอบเป็นชื่อคีย์ใน "
-"\"/desktop/gnome/session/required-components\") โดยปกติ "
+"รายชื่อองค์ประกอบที่ต้องการในวาระ (โดยแต่ละองค์ประกอบเป็นชื่อคีย์ใน \"/desktop/gnome/"
+"session/required-components\") โดยปกติ "
 "เครื่องมือปรับแต่งวาระจะไม่อนุญาตให้ผู้ใช้ลบองค์ประกอบที่ต้องการออกจากวาระ "
 "และโปรแกรมจัดการวาระจะเพิ่มองค์ประกอบที่ต้องการกลับเข้าในวาระให้เอง ถ้ามีตัวใดถูกลบออก"
 
@@ -279,7 +279,7 @@ msgstr ""
 "มีปัญหากับเซิร์ฟเวอร์ค่าตั้ง\n"
 "(%s จบการทำงานด้วยสถานะ %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/logout.c:241
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -291,7 +291,7 @@ msgstr[0] ""
 "ขณะนี้ คุณกำลังเข้าระบบในนาม \"%s\"\n"
 "คุณจะออกจากระบบโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/logout.c:253
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -303,35 +303,35 @@ msgstr[0] ""
 "ขณะนี้ คุณกำลังเข้าระบบในนาม \"%s\"\n"
 "ระบบจะปิดเครื่องโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/logout.c:344
 msgid "Log out of this system now?"
 msgstr "ออกจากระบบเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/logout.c:350
 msgid "_Switch User"
 msgstr "_สลับผู้ใช้"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/logout.c:358
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/logout.c:364
 msgid "Shut down this system now?"
 msgstr "ปิดเครื่องเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/logout.c:370
 msgid "S_uspend"
 msgstr "_พักเครื่อง"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/logout.c:375
 msgid "_Hibernate"
 msgstr "_จำศีลเครื่อง"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/logout.c:380
 msgid "_Restart"
 msgstr "เ_ริ่มเปิดเครื่องใหม่"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/logout.c:389
 msgid "_Shut Down"
 msgstr "_ปิดเครื่อง"
 
@@ -401,7 +401,7 @@ msgstr "เพิ่มโปรแกรมเริ่มวาระ"
 msgid "Edit Startup Program"
 msgstr "แก้ไขโปรแกรมเริ่มวาระ"
 
-#: ../capplet/commands.c:793
+#: ../capplet/commands.c:795
 msgid "No description"
 msgstr "ไม่มีคำบรรยาย"
 
