@@ -45,6 +45,8 @@
 #define DEFAULT_ICON_SIZE 64
 #endif
 
+#define DIALOG_RESPONSE_LOCK_SCREEN 1
+
 struct GsmLogoutInhibitDialogPrivate
 {
         GladeXML          *xml;
@@ -72,6 +74,32 @@ static void     gsm_logout_inhibit_dialog_init        (GsmLogoutInhibitDialog   
 static void     gsm_logout_inhibit_dialog_finalize    (GObject                     *object);
 
 G_DEFINE_TYPE (GsmLogoutInhibitDialog, gsm_logout_inhibit_dialog, GTK_TYPE_DIALOG)
+
+static void
+lock_screen (GsmLogoutInhibitDialog *dialog)
+{
+        GError *error;
+        error = NULL;
+        g_spawn_command_line_async ("gnome-screensaver-command --lock", &error);
+        if (error != NULL) {
+                g_warning ("Couldn't lock screen: %s", error->message);
+                g_error_free (error);
+        }
+}
+
+static void
+on_response (GsmLogoutInhibitDialog *dialog,
+             gint                    response_id)
+{
+        switch (response_id) {
+        case DIALOG_RESPONSE_LOCK_SCREEN:
+                g_signal_stop_emission_by_name (dialog, "response");
+                lock_screen (dialog);
+                break;
+        default:
+                break;
+        }
+}
 
 static void
 gsm_logout_inhibit_dialog_set_action (GsmLogoutInhibitDialog *dialog,
@@ -520,11 +548,18 @@ setup_dialog (GsmLogoutInhibitDialog *dialog)
         }
 
         gtk_dialog_add_button (GTK_DIALOG (dialog),
+                               _("Lock Screen"),
+                               DIALOG_RESPONSE_LOCK_SCREEN);
+        gtk_dialog_add_button (GTK_DIALOG (dialog),
                                _("Cancel"),
                                GTK_RESPONSE_CANCEL);
         gtk_dialog_add_button (GTK_DIALOG (dialog),
                                button_text,
                                GTK_RESPONSE_ACCEPT);
+        g_signal_connect (dialog,
+                          "response",
+                          G_CALLBACK (on_response),
+                          dialog);
 
         dialog->priv->list_store = gtk_list_store_new (NUMBER_OF_COLUMNS,
                                                        GDK_TYPE_PIXBUF,
