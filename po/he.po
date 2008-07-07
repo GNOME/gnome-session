@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-10 20:30+0100\n"
+"POT-Creation-Date: 2008-07-01 07:45+0000\n"
 "PO-Revision-Date: 2006-04-27 16:44+0300\n"
 "Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -18,14 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../compat/at-spi-registryd-wrapper.c:48
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
 "is installed. Your session has been started without assistive technology "
 "support."
 msgstr ""
-"תמיכה בטכנולוגיה מסייעת התבקשה עבור הפעלה זאת, אבל הגדרות הנגישות לא נמצאו. נא לוודא שהחבילה AT-SPI מותקנת. ההפעלה הותחלה ללא תמיכה בטכנולוגיה מסייעת."
+"תמיכה בטכנולוגיה מסייעת התבקשה עבור הפעלה זאת, אבל הגדרות הנגישות לא נמצאו. "
+"נא לוודא שהחבילה AT-SPI מותקנת. ההפעלה הותחלה ללא תמיכה בטכנולוגיה מסייעת."
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -56,15 +57,15 @@ msgstr "List of applications that are part of the default session."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -152,15 +153,56 @@ msgstr "‏GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
+msgstr ""
+"הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
-msgstr "הגדר את תצורות ההפעלה שלך"
+msgstr "הגדר את ההפעלות שלך"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Sessions"
-msgstr "תצורות הפעלה"
+msgstr "הפעלות"
+
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "_תוכניות הפעלה נוספות:"
+
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "דפדף..."
+
+#: ../data/session-properties.glade.h:3
+msgid "Co_mmand:"
+msgstr "_פקודה:"
+
+#: ../data/session-properties.glade.h:4
+msgid "Comm_ent:"
+msgstr "הע_רה:"
+
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "אפשרויות"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "העדפות הפעלות"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "תוכניות הפעלה"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "זכור יישומים פעילים _אוטומטית בזמן התנתקות"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_שם:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "זכור את היישומים ה_פעילים כאת"
 
 #: ../egg/eggdesktopfile.c:130
 #, c-format
@@ -175,7 +217,7 @@ msgstr "גירסת קובץ .desktop '%s' אינה מזוהה"
 #: ../egg/eggdesktopfile.c:926
 #, c-format
 msgid "Starting %s"
-msgstr "מתחיל %s"
+msgstr "מתחיל את %s"
 
 #: ../egg/eggdesktopfile.c:1060
 #, c-format
@@ -186,7 +228,7 @@ msgstr "היישום לא מקבל מסמכים בשורת הפקודה"
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "אפשרות הרצה לא מזוהה: %d"
-	
+
 #: ../egg/eggdesktopfile.c:1335
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
@@ -199,7 +241,7 @@ msgstr "הפריט לא ניתן להרצה"
 
 #: ../egg/eggsmclient-libgnomeui.c:102
 msgid "Session management"
-msgstr "ניהול תצורת ההפעלה"
+msgstr "ניהול הפעלה"
 
 #: ../egg/eggsmclient-libgnomeui.c:136
 msgid "GNOME GUI Library + EggSMClient"
@@ -233,14 +275,16 @@ msgstr "Session Management Options"
 msgid "Show Session Management options"
 msgstr "Show Session Management options"
 
-#: ../gnome-session/gconf.c:109
+#: ../gnome-session/gconf.c:110
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
+"יש בעיה עם שרת ההגדרות.\n"
+"‏(%s הסתיים במצב %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/logout.c:241
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -252,11 +296,10 @@ msgstr[0] ""
 "אתה כרגע מחובר כ-\"%s\".\n"
 "בעוד שנייה אחת תנותק אוטומטית."
 msgstr[1] ""
-""
 "אתה כרגע מחובר כ-\"%s\".\n"
 "בעוד %d שניות תנותק אוטומטית."
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/logout.c:253
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -268,66 +311,141 @@ msgstr[0] ""
 "אתה כרגע מחובר כ-\"%s\".\n"
 "בעוד שנייה אחת המערכת תכבה אוטומטית."
 msgstr[1] ""
-""
 "אתה כרגע מחובר כ-\"%s\".\n"
 "בעוד %d שניות המערכת תכבה אוטומטית."
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/logout.c:344
 msgid "Log out of this system now?"
 msgstr "להתנתק מהמערכת?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/logout.c:350
 msgid "_Switch User"
 msgstr "_החלף משתמש"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/logout.c:358
 msgid "_Log Out"
 msgstr "_התנתק"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/logout.c:364
 msgid "Shut down this system now?"
 msgstr "לכבות את המערכת?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/logout.c:370
 msgid "S_uspend"
 msgstr "_השהה"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/logout.c:375
 msgid "_Hibernate"
 msgstr "_שנת חורף"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/logout.c:380
 msgid "_Restart"
-msgstr "הפעל _מחדש"
+msgstr "_שתחל"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/logout.c:389
 msgid "_Shut Down"
 msgstr "_כבה"
 
-#: ../gnome-session/main.c:33
+#: ../gnome-session/main.c:34
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
 #. Oh well, no X for you!
-#: ../gnome-session/main.c:68
+#: ../gnome-session/main.c:69
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Unable to start login session (and unable connect to the X server)"
 
-#: ../gnome-session/main.c:106
+#: ../gnome-session/main.c:105
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
-#: ../gnome-session/xsmp.c:132
+#: ../gnome-session/xsmp.c:130
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "Could not create ICE listening socket: %s"
 
 #: ../gnome-session/xsmp.c:335
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+
+#: ../capplet/main.c:69
+#, c-format
+msgid "Could not connect to the session manager\n"
+msgstr "Could not connect to the session manager\n"
+
+#: ../capplet/ui.c:107
+msgid "Select Command"
+msgstr "בחר פקודה"
+
+#: ../capplet/ui.c:219
+msgid "The name of the startup program cannot be empty"
+msgstr "שם פקודת ההפעלה לא יכול להיות ריק"
+
+#: ../capplet/ui.c:222
+msgid "The startup command cannot be empty"
+msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
+
+#: ../capplet/ui.c:229
+msgid "The startup command is not valid"
+msgstr "פקודת ההפעלה אינה תקינה"
+
+#: ../capplet/ui.c:464
+msgid "Enabled"
+msgstr "מאופשר"
+
+#: ../capplet/ui.c:478
+msgid "Icon"
+msgstr "איקון"
+
+#: ../capplet/ui.c:490
+msgid "Program"
+msgstr "תוכנית"
+
+#: ../capplet/ui.c:536
+msgid "Add Startup Program"
+msgstr "הוסף תוכנית הפעלה"
+
+#: ../capplet/ui.c:586
+msgid "Edit Startup Program"
+msgstr "ערוך תוכנית הפעלה"
+
+#: ../capplet/commands.c:795
+msgid "No description"
+msgstr "ללא תיאור"
+
+#: ../tools/gnome-session-save.c:54
+msgid "Set the current session name"
+msgstr "Set the current session name"
+
+#: ../tools/gnome-session-save.c:54
+msgid "NAME"
+msgstr "NAME"
+
+#: ../tools/gnome-session-save.c:55
+msgid "Kill session"
+msgstr "Kill session"
+
+#: ../tools/gnome-session-save.c:56
+msgid "Use dialog boxes for errors"
+msgstr "Use dialog boxes for errors"
+
+#: ../tools/gnome-session-save.c:57
+msgid "Do not require confirmation"
+msgstr "Do not require confirmation"
+
+#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
+#: ../tools/gnome-session-save.c:261
+msgid "Could not connect to the session manager"
+msgstr "לא ניתן להתחבר למנהל ההפעלה"
+
+#: ../tools/gnome-session-save.c:246
+msgid " - Save the current session"
+msgstr " - Save the current session"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -337,7 +455,7 @@ msgstr "Play logout sound instead of login"
 msgid "- GNOME login/logout sound"
 msgstr "- GNOME login/logout sound"
 
-#: ../splash/gnome-session-splash.c:204
+#: ../splash/gnome-session-splash.c:283
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME Splash Screen"
 
@@ -421,9 +539,6 @@ msgstr "- GNOME Splash Screen"
 #~ msgid "State"
 #~ msgstr "מצב"
 
-#~ msgid "Program"
-#~ msgstr "תוכנית"
-
 #~ msgid ""
 #~ "There was an error starting the GNOME Settings Daemon.\n"
 #~ "\n"
@@ -485,12 +600,6 @@ msgstr "- GNOME Splash Screen"
 #~ msgid "Are you sure you want to log out?"
 #~ msgstr "אתה בטוח שברצונך להתנתק?"
 
-#~ msgid "Remember running applications"
-#~ msgstr "זכור יישומים פעילים"
-
-#~ msgid "Action"
-#~ msgstr "פעולה"
-
 #~ msgid "_Restart the computer"
 #~ msgstr "הפעל _מחדש את המחשב"
 
@@ -548,38 +657,17 @@ msgstr "- GNOME Splash Screen"
 #~ msgid "A session shutdown is in progress."
 #~ msgstr "כיבוי ההפעלה בתהליכים."
 
-#~ msgid "Set the current session name"
-#~ msgstr "קבע את שם תצורת ההפעלה הנוכחית"
-
-#~ msgid "Use dialog boxes for errors"
-#~ msgstr "השתמש בתיבות דו-שיח עבור שגיאות"
-
-#~ msgid "- Save the current session"
-#~ msgstr "- Save the current session"
-
 #~ msgid "Save changes to the current session before closing?"
 #~ msgstr "לשמור שינויים לתצורת ההפעלה הנוכחית לפני הסגירה?"
 
 #~ msgid "_Close without Saving"
 #~ msgstr "_סגור מבלי לשמור"
 
-#~ msgid "Additional startup _programs:"
-#~ msgstr "_תוכניות הפעלה נוספות:"
-
-#~ msgid "Enabled"
-#~ msgstr "מאופשר"
-
-#~ msgid "Startup Programs"
-#~ msgstr "תוכניות הפעלה"
-
 #~ msgid "Current Session"
 #~ msgstr "תצורת הפעלה נוכחית"
 
 #~ msgid "Your session has been saved."
 #~ msgstr "תצורת ההפעלה שלך נשמרה."
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "לא ניתן להתחבר למנהל תצורת ההפעלה\n"
 
 #~ msgid "Remove the currently selected client from the session."
 #~ msgstr "הסר את הלקוח הנבחר מתצורת ההפעלה."
@@ -605,35 +693,8 @@ msgstr "- GNOME Splash Screen"
 #~ msgid "Desktop Settings"
 #~ msgstr "הגדרות שולחן עבודה"
 
-#~ msgid "No description"
-#~ msgstr "ללא תיאור"
-
-#~ msgid "_Name:"
-#~ msgstr "_שם:"
-
-#~ msgid "_Command:"
-#~ msgstr "_פקודה:"
-
-#~ msgid "_Browse..."
-#~ msgstr "_דפדף..."
-
-#~ msgid "Co_mment:"
-#~ msgstr "הע_רה:"
-
-#~ msgid "The name of the startup program cannot be empty"
-#~ msgstr "שם פקודת ההפעלה לא יכול להיות ריק"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
-
-#~ msgid "The startup command is not valid"
-#~ msgstr "פקודת ההפעלה אינה תקינה"
-
 #~ msgid "New Startup Program"
 #~ msgstr "תוכנית הפעלה חדשה"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "ערוך תוכנית הפעלה"
 
 #~ msgid "_Save current setup"
 #~ msgstr "_שמור תצורה נוכחית"
@@ -643,9 +704,6 @@ msgstr "- GNOME Splash Screen"
 
 #~ msgid "Save the current session"
 #~ msgstr "קבע את תצורת ההפעלה הנוכחית"
-
-#~ msgid "Startup Command"
-#~ msgstr "פקודת הפעלה"
 
 #~ msgid "There was an unknown activation error."
 #~ msgstr "ארעה שגיאת הפעלה לא ידועה."
@@ -689,6 +747,3 @@ msgstr "- GNOME Splash Screen"
 
 #~ msgid "_Startup Command:"
 #~ msgstr "_פקודת הפעלה:"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "הוסף תוכנית הפעלה"
