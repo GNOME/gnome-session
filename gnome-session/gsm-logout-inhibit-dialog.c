@@ -300,26 +300,15 @@ model_has_one_entry (GtkTreeModel *model)
 static void
 update_dialog_text (GsmLogoutInhibitDialog *dialog)
 {
-        const char *header_text;
         const char *description_text;
         GtkWidget  *widget;
 
         if (model_has_one_entry (GTK_TREE_MODEL (dialog->priv->list_store))) {
                 g_debug ("Found one entry in model");
-                header_text = _("A program is still running:");
-                description_text = _("Interrupting this program may cause you to lose work.");
+                description_text = _("Waiting for program to finish.  Interrupting program may cause you to lose work.");
         } else {
                 g_debug ("Found multiple entries in model");
-                header_text = _("Some programs are still running:");
-                description_text = _("Interrupting these programs may cause you to lose work.");
-        }
-
-        widget = glade_xml_get_widget (dialog->priv->xml, "header-label");
-        if (widget != NULL) {
-                char *markup;
-                markup = g_strdup_printf ("<b>%s</b>", header_text);
-                gtk_label_set_markup (GTK_LABEL (widget), markup);
-                g_free (markup);
+                description_text = _("Waiting for programs to finish.  Interrupting these programs may cause you to lose work.");
         }
 
         widget = glade_xml_get_widget (dialog->priv->xml, "description-label");
@@ -468,7 +457,7 @@ name_cell_data_func (GtkTreeViewColumn      *tree_column,
                             INHIBIT_REASON_COLUMN, &reason,
                             -1);
 
-        markup = g_strdup_printf ("<b>%s</b>\n"
+        markup = g_strdup_printf ("<b>%s</b> is busy\n"
                                   "<i><span size=\"x-small\">%s</span></i>",
                                   name ? name : "(null)",
                                   reason ? reason : "(null)");
@@ -508,22 +497,22 @@ setup_dialog (GsmLogoutInhibitDialog *dialog)
 
         switch (dialog->priv->action) {
         case GSM_LOGOUT_ACTION_SWITCH_USER:
-                button_text = _("Switch User Now");
+                button_text = _("Switch User Anyway");
                 break;
         case GSM_LOGOUT_ACTION_LOGOUT:
-                button_text = _("Logout Now");
+                button_text = _("Logout Anyway");
                 break;
         case GSM_LOGOUT_ACTION_SLEEP:
-                button_text = _("Suspend Now");
+                button_text = _("Suspend Anyway");
                 break;
         case GSM_LOGOUT_ACTION_HIBERNATE:
-                button_text = _("Hibernate Now");
+                button_text = _("Hibernate Anyway");
                 break;
         case GSM_LOGOUT_ACTION_SHUTDOWN:
-                button_text = _("Shutdown Now");
+                button_text = _("Shutdown Anyway");
                 break;
         case GSM_LOGOUT_ACTION_REBOOT:
-                button_text = _("Reboot Now");
+                button_text = _("Reboot Anyway");
                 break;
         default:
                 g_assert_not_reached ();
