@@ -1,6 +1,30 @@
 2008-07-15  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/Makefile.am:
+	* gnome-session/gsm-inhibit-dialog.c (lock_screen), (on_response),
+	(gsm_inhibit_dialog_set_action), (find_inhibitor), (add_inhibitor),
+	(update_dialog_text), (on_store_inhibitor_added),
+	(on_store_inhibitor_removed),
+	(gsm_inhibit_dialog_set_inhibitor_store),
+	(gsm_inhibit_dialog_set_property),
+	(gsm_inhibit_dialog_get_property), (name_cell_data_func),
+	(add_to_model), (populate_model), (setup_dialog),
+	(gsm_inhibit_dialog_constructor), (gsm_inhibit_dialog_dispose),
+	(gsm_inhibit_dialog_class_init), (gsm_inhibit_dialog_init),
+	(gsm_inhibit_dialog_finalize), (gsm_inhibit_dialog_new):
+	* gnome-session/gsm-inhibit-dialog.h:
+	* gnome-session/gsm-logout-inhibit-dialog.c:
+	* gnome-session/gsm-logout-inhibit-dialog.glade:
+	* gnome-session/gsm-logout-inhibit-dialog.h:
+	* gnome-session/gsm-manager.c (inhibit_dialog_response),
+	(request_reboot), (request_shutdown), (request_suspend),
+	(request_hibernate), (request_logout), (request_switch_user):
+	* gnome-session/test-client-dbus.c (register_client):
+	Rename logout_inhibit_dialog to inhibit_dialog.
+
+2008-07-15  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
 	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_new):
 	* gnome-session/gsm-dbus-client.h:
 	* gnome-session/gsm-manager.c (register_client_for_name),

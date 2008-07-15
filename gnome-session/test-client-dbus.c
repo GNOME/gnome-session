@@ -70,7 +70,7 @@ register_client (void)
         const char *app_id;
 
         startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-        app_id = "test-client-method";
+        app_id = "test-client-dbus";
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,

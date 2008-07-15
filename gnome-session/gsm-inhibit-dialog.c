@@ -33,11 +33,11 @@
 #include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
 
-#include "gsm-logout-inhibit-dialog.h"
+#include "gsm-inhibit-dialog.h"
 #include "eggdesktopfile.h"
 #include "util.h"
 
-#define GSM_LOGOUT_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_LOGOUT_INHIBIT_DIALOG, GsmLogoutInhibitDialogPrivate))
+#define GSM_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBIT_DIALOG, GsmInhibitDialogPrivate))
 
 #define GLADE_XML_FILE "gsm-logout-inhibit-dialog.glade"
 
@@ -47,7 +47,7 @@
 
 #define DIALOG_RESPONSE_LOCK_SCREEN 1
 
-struct GsmLogoutInhibitDialogPrivate
+struct GsmInhibitDialogPrivate
 {
         GladeXML          *xml;
         int                action;
@@ -69,14 +69,14 @@ enum {
         NUMBER_OF_COLUMNS
 };
 
-static void     gsm_logout_inhibit_dialog_class_init  (GsmLogoutInhibitDialogClass *klass);
-static void     gsm_logout_inhibit_dialog_init        (GsmLogoutInhibitDialog      *logout_inhibit_dialog);
-static void     gsm_logout_inhibit_dialog_finalize    (GObject                     *object);
+static void     gsm_inhibit_dialog_class_init  (GsmInhibitDialogClass *klass);
+static void     gsm_inhibit_dialog_init        (GsmInhibitDialog      *inhibit_dialog);
+static void     gsm_inhibit_dialog_finalize    (GObject                     *object);
 
-G_DEFINE_TYPE (GsmLogoutInhibitDialog, gsm_logout_inhibit_dialog, GTK_TYPE_DIALOG)
+G_DEFINE_TYPE (GsmInhibitDialog, gsm_inhibit_dialog, GTK_TYPE_DIALOG)
 
 static void
-lock_screen (GsmLogoutInhibitDialog *dialog)
+lock_screen (GsmInhibitDialog *dialog)
 {
         GError *error;
         error = NULL;
@@ -88,7 +88,7 @@ lock_screen (GsmLogoutInhibitDialog *dialog)
 }
 
 static void
-on_response (GsmLogoutInhibitDialog *dialog,
+on_response (GsmInhibitDialog *dialog,
              gint                    response_id)
 {
         switch (response_id) {
@@ -102,21 +102,21 @@ on_response (GsmLogoutInhibitDialog *dialog,
 }
 
 static void
-gsm_logout_inhibit_dialog_set_action (GsmLogoutInhibitDialog *dialog,
+gsm_inhibit_dialog_set_action (GsmInhibitDialog *dialog,
                                       int                     action)
 {
         dialog->priv->action = action;
 }
 
 static gboolean
-find_inhibitor (GsmLogoutInhibitDialog *dialog,
+find_inhibitor (GsmInhibitDialog *dialog,
                 guint                   cookie,
                 GtkTreeIter            *iter)
 {
         GtkTreeModel *model;
         gboolean      found_item;
 
-        g_assert (GSM_IS_LOGOUT_INHIBIT_DIALOG (dialog));
+        g_assert (GSM_IS_INHIBIT_DIALOG (dialog));
 
         found_item = FALSE;
         model = GTK_TREE_MODEL (dialog->priv->list_store);
@@ -246,7 +246,7 @@ _load_icon (GtkIconTheme  *icon_theme,
 }
 
 static void
-add_inhibitor (GsmLogoutInhibitDialog *dialog,
+add_inhibitor (GsmInhibitDialog *dialog,
                GsmInhibitor           *inhibitor)
 {
         const char     *name;
@@ -326,7 +326,7 @@ model_has_one_entry (GtkTreeModel *model)
 }
 
 static void
-update_dialog_text (GsmLogoutInhibitDialog *dialog)
+update_dialog_text (GsmInhibitDialog *dialog)
 {
         const char *description_text;
         GtkWidget  *widget;
@@ -348,12 +348,12 @@ update_dialog_text (GsmLogoutInhibitDialog *dialog)
 static void
 on_store_inhibitor_added (GsmInhibitorStore      *store,
                           guint                   cookie,
-                          GsmLogoutInhibitDialog *dialog)
+                          GsmInhibitDialog *dialog)
 {
         GsmInhibitor *inhibitor;
         GtkTreeIter   iter;
 
-        g_debug ("GsmLogoutInhibitDialog: inhibitor added: %u", cookie);
+        g_debug ("GsmInhibitDialog: inhibitor added: %u", cookie);
 
         inhibitor = gsm_inhibitor_store_lookup (store, cookie);
 
@@ -368,11 +368,11 @@ on_store_inhibitor_added (GsmInhibitorStore      *store,
 static void
 on_store_inhibitor_removed (GsmInhibitorStore      *store,
                             guint                   cookie,
-                            GsmLogoutInhibitDialog *dialog)
+                            GsmInhibitDialog *dialog)
 {
         GtkTreeIter   iter;
 
-        g_debug ("GsmLogoutInhibitDialog: inhibitor removed: %u", cookie);
+        g_debug ("GsmInhibitDialog: inhibitor removed: %u", cookie);
 
         /* Remove from model */
         if (find_inhibitor (dialog, cookie, &iter)) {
@@ -387,10 +387,10 @@ on_store_inhibitor_removed (GsmInhibitorStore      *store,
 }
 
 static void
-gsm_logout_inhibit_dialog_set_inhibitor_store (GsmLogoutInhibitDialog *dialog,
+gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
                                                GsmInhibitorStore      *store)
 {
-        g_return_if_fail (GSM_IS_LOGOUT_INHIBIT_DIALOG (dialog));
+        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
 
         if (store != NULL) {
                 g_object_ref (store);
@@ -408,7 +408,7 @@ gsm_logout_inhibit_dialog_set_inhibitor_store (GsmLogoutInhibitDialog *dialog,
         }
 
 
-        g_debug ("GsmLogoutInhibitDialog: setting store %p", store);
+        g_debug ("GsmInhibitDialog: setting store %p", store);
 
         dialog->priv->inhibitors = store;
 
@@ -425,19 +425,19 @@ gsm_logout_inhibit_dialog_set_inhibitor_store (GsmLogoutInhibitDialog *dialog,
 }
 
 static void
-gsm_logout_inhibit_dialog_set_property (GObject        *object,
+gsm_inhibit_dialog_set_property (GObject        *object,
                                         guint           prop_id,
                                         const GValue   *value,
                                         GParamSpec     *pspec)
 {
-        GsmLogoutInhibitDialog *dialog = GSM_LOGOUT_INHIBIT_DIALOG (object);
+        GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (object);
 
         switch (prop_id) {
         case PROP_ACTION:
-                gsm_logout_inhibit_dialog_set_action (dialog, g_value_get_int (value));
+                gsm_inhibit_dialog_set_action (dialog, g_value_get_int (value));
                 break;
         case PROP_INHIBITOR_STORE:
-                gsm_logout_inhibit_dialog_set_inhibitor_store (dialog, g_value_get_object (value));
+                gsm_inhibit_dialog_set_inhibitor_store (dialog, g_value_get_object (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -446,12 +446,12 @@ gsm_logout_inhibit_dialog_set_property (GObject        *object,
 }
 
 static void
-gsm_logout_inhibit_dialog_get_property (GObject        *object,
+gsm_inhibit_dialog_get_property (GObject        *object,
                                         guint           prop_id,
                                         GValue         *value,
                                         GParamSpec     *pspec)
 {
-        GsmLogoutInhibitDialog *dialog = GSM_LOGOUT_INHIBIT_DIALOG (object);
+        GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (object);
 
         switch (prop_id) {
         case PROP_ACTION:
@@ -471,7 +471,7 @@ name_cell_data_func (GtkTreeViewColumn      *tree_column,
                      GtkCellRenderer        *cell,
                      GtkTreeModel           *model,
                      GtkTreeIter            *iter,
-                     GsmLogoutInhibitDialog *dialog)
+                     GsmInhibitDialog *dialog)
 {
         char    *name;
         char    *reason;
@@ -500,14 +500,14 @@ name_cell_data_func (GtkTreeViewColumn      *tree_column,
 static gboolean
 add_to_model (guint                   cookie,
               GsmInhibitor           *inhibitor,
-              GsmLogoutInhibitDialog *dialog)
+              GsmInhibitDialog *dialog)
 {
         add_inhibitor (dialog, inhibitor);
         return FALSE;
 }
 
 static void
-populate_model (GsmLogoutInhibitDialog *dialog)
+populate_model (GsmInhibitDialog *dialog)
 {
         gsm_inhibitor_store_foreach_remove (dialog->priv->inhibitors,
                                             (GsmInhibitorStoreFunc)add_to_model,
@@ -516,7 +516,7 @@ populate_model (GsmLogoutInhibitDialog *dialog)
 }
 
 static void
-setup_dialog (GsmLogoutInhibitDialog *dialog)
+setup_dialog (GsmInhibitDialog *dialog)
 {
         const char        *button_text;
         GtkWidget         *treeview;
@@ -606,13 +606,13 @@ setup_dialog (GsmLogoutInhibitDialog *dialog)
 }
 
 static GObject *
-gsm_logout_inhibit_dialog_constructor (GType                  type,
+gsm_inhibit_dialog_constructor (GType                  type,
                                        guint                  n_construct_properties,
                                        GObjectConstructParam *construct_properties)
 {
-        GsmLogoutInhibitDialog *dialog;
+        GsmInhibitDialog *dialog;
 
-        dialog = GSM_LOGOUT_INHIBIT_DIALOG (G_OBJECT_CLASS (gsm_logout_inhibit_dialog_parent_class)->constructor (type,
+        dialog = GSM_INHIBIT_DIALOG (G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->constructor (type,
                                                                                                                   n_construct_properties,
                                                                                                                   construct_properties));
 
@@ -623,21 +623,21 @@ gsm_logout_inhibit_dialog_constructor (GType                  type,
 }
 
 static void
-gsm_logout_inhibit_dialog_dispose (GObject *object)
+gsm_inhibit_dialog_dispose (GObject *object)
 {
-        G_OBJECT_CLASS (gsm_logout_inhibit_dialog_parent_class)->dispose (object);
+        G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->dispose (object);
 }
 
 static void
-gsm_logout_inhibit_dialog_class_init (GsmLogoutInhibitDialogClass *klass)
+gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-        object_class->get_property = gsm_logout_inhibit_dialog_get_property;
-        object_class->set_property = gsm_logout_inhibit_dialog_set_property;
-        object_class->constructor = gsm_logout_inhibit_dialog_constructor;
-        object_class->dispose = gsm_logout_inhibit_dialog_dispose;
-        object_class->finalize = gsm_logout_inhibit_dialog_finalize;
+        object_class->get_property = gsm_inhibit_dialog_get_property;
+        object_class->set_property = gsm_inhibit_dialog_set_property;
+        object_class->constructor = gsm_inhibit_dialog_constructor;
+        object_class->dispose = gsm_inhibit_dialog_dispose;
+        object_class->finalize = gsm_inhibit_dialog_finalize;
 
         g_object_class_install_property (object_class,
                                          PROP_ACTION,
@@ -656,15 +656,15 @@ gsm_logout_inhibit_dialog_class_init (GsmLogoutInhibitDialogClass *klass)
                                                               GSM_TYPE_INHIBITOR_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
-        g_type_class_add_private (klass, sizeof (GsmLogoutInhibitDialogPrivate));
+        g_type_class_add_private (klass, sizeof (GsmInhibitDialogPrivate));
 }
 
 static void
-gsm_logout_inhibit_dialog_init (GsmLogoutInhibitDialog *dialog)
+gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
 {
         GtkWidget *widget;
 
-        dialog->priv = GSM_LOGOUT_INHIBIT_DIALOG_GET_PRIVATE (dialog);
+        dialog->priv = GSM_INHIBIT_DIALOG_GET_PRIVATE (dialog);
 
         dialog->priv->xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
                                            "main-box",
@@ -686,18 +686,18 @@ gsm_logout_inhibit_dialog_init (GsmLogoutInhibitDialog *dialog)
 }
 
 static void
-gsm_logout_inhibit_dialog_finalize (GObject *object)
+gsm_inhibit_dialog_finalize (GObject *object)
 {
-        GsmLogoutInhibitDialog *dialog;
+        GsmInhibitDialog *dialog;
 
         g_return_if_fail (object != NULL);
-        g_return_if_fail (GSM_IS_LOGOUT_INHIBIT_DIALOG (object));
+        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (object));
 
-        dialog = GSM_LOGOUT_INHIBIT_DIALOG (object);
+        dialog = GSM_INHIBIT_DIALOG (object);
 
         g_return_if_fail (dialog->priv != NULL);
 
-        g_debug ("GsmLogoutInhibitDialog: finalizing");
+        g_debug ("GsmInhibitDialog: finalizing");
 
         g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
                                               on_store_inhibitor_added,
@@ -709,16 +709,16 @@ gsm_logout_inhibit_dialog_finalize (GObject *object)
                 g_object_unref (dialog->priv->inhibitors);
         }
 
-        G_OBJECT_CLASS (gsm_logout_inhibit_dialog_parent_class)->finalize (object);
+        G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->finalize (object);
 }
 
 GtkWidget *
-gsm_logout_inhibit_dialog_new (GsmInhibitorStore *inhibitors,
+gsm_inhibit_dialog_new (GsmInhibitorStore *inhibitors,
                                int                action)
 {
         GObject *object;
 
-        object = g_object_new (GSM_TYPE_LOGOUT_INHIBIT_DIALOG,
+        object = g_object_new (GSM_TYPE_INHIBIT_DIALOG,
                                "action", action,
                                "inhibitor-store", inhibitors,
                                NULL);

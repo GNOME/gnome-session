@@ -57,7 +57,7 @@
 #include "util.h"
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
-#include "gsm-logout-inhibit-dialog.h"
+#include "gsm-inhibit-dialog.h"
 #include "gsm-consolekit.h"
 #include "gsm-power-manager.h"
 
@@ -1570,13 +1570,13 @@ do_action (GsmManager *manager,
 }
 
 static void
-logout_inhibit_dialog_response (GsmLogoutInhibitDialog *dialog,
-                                guint                   response_id,
-                                GsmManager             *manager)
+inhibit_dialog_response (GsmInhibitDialog *dialog,
+                         guint             response_id,
+                         GsmManager       *manager)
 {
         int action;
 
-        g_debug ("GsmManager: Logout inhibit dialog response: %d", response_id);
+        g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
 
         /* In case of dialog cancel, switch user, hibernate and
          * suspend, we just perform the respective action and return,
@@ -1617,12 +1617,12 @@ request_reboot (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_REBOOT);
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                GSM_LOGOUT_ACTION_REBOOT);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
@@ -1644,12 +1644,12 @@ request_shutdown (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
                                                                        GSM_LOGOUT_ACTION_SHUTDOWN);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
@@ -1670,12 +1670,12 @@ request_suspend (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
                                                                        GSM_LOGOUT_ACTION_SLEEP);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
@@ -1697,12 +1697,12 @@ request_hibernate (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
                                                                        GSM_LOGOUT_ACTION_HIBERNATE);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
@@ -1723,12 +1723,12 @@ request_logout (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_LOGOUT);
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                GSM_LOGOUT_ACTION_LOGOUT);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
@@ -1749,12 +1749,12 @@ request_switch_user (GsmManager *manager)
                 return;
         }
 
-        manager->priv->inhibit_dialog = gsm_logout_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_SWITCH_USER);
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                GSM_LOGOUT_ACTION_SWITCH_USER);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
-                          G_CALLBACK (logout_inhibit_dialog_response),
+                          G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
 }

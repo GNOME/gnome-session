@@ -26,7 +26,7 @@ INCLUDES =					\
 
 gladedir = $(pkgdatadir)
 glade_DATA = 					\
-	gsm-logout-inhibit-dialog.glade		\
+	gsm-inhibit-dialog.glade		\
 	$(NULL)
 
 test_inhibit_SOURCES = 	\
@@ -73,8 +73,8 @@ gnome_session_SOURCES =				\
 	gsm-consolekit.h			\
 	gsm-logout-dialog.h			\
 	gsm-logout-dialog.c			\
-	gsm-logout-inhibit-dialog.h		\
-	gsm-logout-inhibit-dialog.c		\
+	gsm-inhibit-dialog.h			\
+	gsm-inhibit-dialog.c			\
 	gsm-power-manager.h			\
 	gsm-power-manager.c			\
 	gconf.c					\
