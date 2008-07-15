@@ -1,3 +1,11 @@
+2008-07-15  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-client.c (register_client),
+	(gsm_client_constructor), (gsm_client_class_init):
+	* gnome-session/gsm-client.xml:
+	Register each client object with the bus.
+
 2008-07-07  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-logout-inhibit-dialog.c (lock_screen),

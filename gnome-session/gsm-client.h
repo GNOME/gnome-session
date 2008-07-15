@@ -57,7 +57,7 @@ struct _GsmClientClass
         GObjectClass parent_class;
 
         /* signals */
-        void     (*disconnected)            (GsmClient *client);
+        void         (*disconnected)        (GsmClient *client);
 
         /* virtual methods */
         void         (*notify_session_over) (GsmClient *client);

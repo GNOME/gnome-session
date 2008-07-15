@@ -23,7 +23,10 @@
 #include "config.h"
 #endif
 
+#include <dbus/dbus-glib.h>
+
 #include "gsm-client.h"
+#include "gsm-client-glue.h"
 
 static guint32 client_serial = 1;
 
@@ -31,10 +34,11 @@ static guint32 client_serial = 1;
 
 struct GsmClientPrivate
 {
-        char *id;
-        char *client_id;
-        char *app_id;
-        int   status;
+        char            *id;
+        char            *client_id;
+        char            *app_id;
+        int              status;
+        DBusGConnection *connection;
 };
 
 enum {
@@ -68,12 +72,34 @@ get_next_client_serial (void)
         return serial;
 }
 
+static gboolean
+register_client (GsmClient *client)
+{
+        GError *error;
+
+        error = NULL;
+        client->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (client->priv->connection == NULL) {
+                if (error != NULL) {
+                        g_critical ("error getting session bus: %s", error->message);
+                        g_error_free (error);
+                }
+                return FALSE;
+        }
+
+        dbus_g_connection_register_g_object (client->priv->connection, client->priv->id, G_OBJECT (client));
+
+        return TRUE;
+}
+
+
 static GObject *
 gsm_client_constructor (GType                  type,
                         guint                  n_construct_properties,
                         GObjectConstructParam *construct_properties)
 {
-        GsmClient      *client;
+        GsmClient *client;
+        gboolean   res;
 
         client = GSM_CLIENT (G_OBJECT_CLASS (gsm_client_parent_class)->constructor (type,
                                                                                     n_construct_properties,
@@ -82,12 +108,11 @@ gsm_client_constructor (GType                  type,
         g_free (client->priv->id);
         client->priv->id = g_strdup_printf ("/org/gnome/SessionManager/Client%u", get_next_client_serial ());
 
-#if 0
         res = register_client (client);
         if (! res) {
                 g_warning ("Unable to register client with session bus");
         }
-#endif
+
         return G_OBJECT (client);
 }
 
@@ -246,6 +271,8 @@ gsm_client_class_init (GsmClientClass *klass)
                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientPrivate));
+
+        dbus_g_object_type_install_info (GSM_TYPE_CLIENT, &dbus_glib_gsm_client_object_info);
 }
 
 const char *
