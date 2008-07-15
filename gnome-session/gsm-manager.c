@@ -49,8 +49,7 @@
 #include "gsm-inhibitor.h"
 
 #include "gsm-xsmp-client.h"
-#include "gsm-method-client.h"
-#include "gsm-service-client.h"
+#include "gsm-dbus-client.h"
 
 #include "gsm-autostart-app.h"
 #include "gsm-resumed-app.h"
@@ -586,6 +585,7 @@ static void
 register_client_for_name (GsmManager *manager,
                           const char *dbus_name)
 {
+#if 0
         GsmApp    *app;
         GsmClient *client;
 
@@ -606,6 +606,7 @@ register_client_for_name (GsmManager *manager,
         gsm_app_registered (app);
 
         gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
+#endif
 }
 
 static void
@@ -2050,7 +2051,7 @@ gsm_manager_register_client (GsmManager            *manager,
         }
 
         sender = dbus_g_method_get_sender (context);
-        client = gsm_method_client_new (client_id, sender);
+        client = gsm_dbus_client_new (client_id, sender);
         g_free (sender);
         if (client == NULL) {
                 GError *new_error;

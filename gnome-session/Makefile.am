@@ -5,7 +5,7 @@ bin_PROGRAMS = gnome-session
 noinst_LTLIBRARIES = libgsmutil.la
 
 noinst_PROGRAMS = 		\
-	test-client-method	\
+	test-client-dbus	\
 	test-inhibit		\
 	$(NULL)
 
@@ -37,11 +37,11 @@ test_inhibit_LDADD =				\
 	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
-test_client_method_SOURCES = 	\
-	test-client-method.c	\
+test_client_dbus_SOURCES = 	\
+	test-client-dbus.c	\
 	$(NULL)
 
-test_client_method_LDADD =			\
+test_client_dbus_LDADD =			\
 	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
@@ -67,10 +67,6 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-client.c			\
 	gsm-dbus-client.h			\
 	gsm-dbus-client.c			\
-	gsm-method-client.h			\
-	gsm-method-client.c			\
-	gsm-service-client.h			\
-	gsm-service-client.c			\
 	gsm-marshal.h				\
 	gsm-marshal.c				\
 	gsm-consolekit.c			\

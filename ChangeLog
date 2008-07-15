@@ -1,5 +1,20 @@
 2008-07-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_new):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-manager.c (register_client_for_name),
+	(gsm_manager_register_client):
+	* gnome-session/gsm-method-client.c:
+	* gnome-session/gsm-method-client.h:
+	* gnome-session/gsm-service-client.c:
+	* gnome-session/gsm-service-client.h:
+	* gnome-session/test-client-method.c:
+	Drop ServiceClient for now.  Move MethodClient stuff
+	into DBusClient.
+
+2008-07-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-dbus-client.c (dbus_client_stop),
 	(gsm_dbus_client_class_init):
 	Unicast the stop signal to the client.

@@ -50,7 +50,7 @@ enum {
         PROP_BUS_NAME,
 };
 
-G_DEFINE_ABSTRACT_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
+G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
 
 static GObject *
 gsm_dbus_client_constructor (GType                  type,
@@ -211,4 +211,18 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmDBusClientPrivate));
+}
+
+GsmClient *
+gsm_dbus_client_new (const char *client_id,
+                     const char *bus_name)
+{
+        GsmDBusClient *client;
+
+        client = g_object_new (GSM_TYPE_DBUS_CLIENT,
+                               "client-id", client_id,
+                               "bus-name", bus_name,
+                               NULL);
+
+        return GSM_CLIENT (client);
 }
