@@ -1,5 +1,11 @@
 2008-07-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-dbus-client.c (dbus_client_stop),
+	(gsm_dbus_client_class_init):
+	Unicast the stop signal to the client.
+
+2008-07-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.c (gsm_app_class_init), (gsm_app_get_id),
 	(gsm_app_is_disabled), (gsm_app_is_running),
 	(gsm_app_get_autorestart), (gsm_app_provides), (gsm_app_start),

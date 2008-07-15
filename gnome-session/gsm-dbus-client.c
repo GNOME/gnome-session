@@ -28,12 +28,17 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <dbus/dbus-glib.h>
+#include <dbus/dbus.h>
+
 #include "gsm-dbus-client.h"
 #include "gsm-marshal.h"
 
 #include "gsm-manager.h"
 
 #define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
+
+#define CLIENT_INTERFACE "org.gnome.SessionManager.Client"
 
 struct GsmDBusClientPrivate
 {
@@ -139,15 +144,63 @@ gsm_dbus_client_finalize (GObject *object)
         G_OBJECT_CLASS (gsm_dbus_client_parent_class)->finalize (object);
 }
 
+static gboolean
+dbus_client_stop (GsmClient *client,
+                  GError   **error)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        DBusMessage    *message;
+        gboolean        ret;
+        DBusConnection *connection;
+        DBusError       local_error;
+
+        ret = FALSE;
+
+        /* unicast the signal to only the registered bus name */
+        message = dbus_message_new_signal (gsm_client_get_id (client),
+                                           CLIENT_INTERFACE,
+                                           "Stop");
+        if (message == NULL) {
+                goto out;
+        }
+        if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                goto out;
+        }
+
+        dbus_error_init (&local_error);
+        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
+        if (dbus_error_is_set (&local_error)) {
+                g_warning ("%s", local_error.message);
+                dbus_error_free (&local_error);
+                goto out;
+        }
+
+        if (!dbus_connection_send (connection, message, NULL)) {
+                goto out;
+        }
+
+        ret = TRUE;
+
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+
+        return ret;
+}
+
 static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+        GsmClientClass *client_class = GSM_CLIENT_CLASS (klass);
 
         object_class->finalize             = gsm_dbus_client_finalize;
         object_class->constructor          = gsm_dbus_client_constructor;
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
+
+        client_class->impl_stop            = dbus_client_stop;
 
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
