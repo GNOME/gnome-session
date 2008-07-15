@@ -525,11 +525,25 @@ xsmp_stop (GsmClient *client,
 {
         GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
 
-        g_debug ("GsmXSMPClient: xsmp_die ('%s')", xsmp->priv->description);
+        g_debug ("GsmXSMPClient: xsmp_stop ('%s')", xsmp->priv->description);
 
         SmsDie (xsmp->priv->conn);
 
         return TRUE;
+}
+
+static void
+xsmp_query_end_session (GsmClient *client,
+                        guint      flags)
+{
+        xsmp_save_yourself (client, FALSE);
+}
+
+static void
+xsmp_end_session (GsmClient *client,
+                  guint      flags)
+{
+        xsmp_save_yourself (client, FALSE);
 }
 
 static void
@@ -632,7 +646,9 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
-        client_class->impl_stop            = xsmp_stop;
+        client_class->impl_stop              = xsmp_stop;
+        client_class->impl_query_end_session = xsmp_query_end_session;
+        client_class->impl_end_session       = xsmp_end_session;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
@@ -998,18 +1014,6 @@ gsm_xsmp_client_connect (GsmXSMPClient *client,
         *mask_ret |= SmsGetPropertiesProcMask;
         callbacks_ret->get_properties.callback = get_properties_callback;
         callbacks_ret->get_properties.manager_data = client;
-}
-
-gboolean
-gsm_xsmp_client_register_request (GsmXSMPClient *client,
-                                  char     **client_idp)
-{
-        gboolean res;
-
-        res = FALSE;
-        g_signal_emit (client, signals[REGISTER_REQUEST], 0, client_idp, &res);
-
-        return res;
 }
 
 void

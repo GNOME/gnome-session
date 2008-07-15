@@ -1406,7 +1406,11 @@ _shutdown_client (const char *id,
                   GsmClient  *client,
                   GsmManager *manager)
 {
-        gsm_client_notify_session_over (client);
+        guint flags;
+
+        flags = 0;
+        gsm_client_end_session (client, flags);
+
         return FALSE;
 }
 

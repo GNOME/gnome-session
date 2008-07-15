@@ -59,9 +59,16 @@ struct _GsmClientClass
         /* signals */
         void         (*disconnected)        (GsmClient *client);
         void         (*stop)                (GsmClient *client);
+        void         (*query_end_session)   (GsmClient *client,
+                                             guint      flags);
+        void         (*end_session)         (GsmClient *client,
+                                             guint      flags);
 
         /* virtual methods */
-        void         (*impl_notify_session_over) (GsmClient *client);
+        void         (*impl_query_end_session)   (GsmClient *client,
+                                                  guint      flags);
+        void         (*impl_end_session)         (GsmClient *client,
+                                                  guint      flags);
         gboolean     (*impl_stop)                (GsmClient *client,
                                                   GError   **error);
 };
@@ -77,7 +84,12 @@ int         gsm_client_get_status           (GsmClient  *client);
 void        gsm_client_set_status           (GsmClient  *client,
                                              int         status);
 
-void        gsm_client_notify_session_over  (GsmClient  *client);
+void        gsm_client_end_session          (GsmClient  *client,
+                                             guint       flags);
+void        gsm_client_query_end_session    (GsmClient  *client,
+                                             guint       flags);
+void        gsm_client_end_session          (GsmClient  *client,
+                                             guint       flags);
 
 gboolean    gsm_client_stop                 (GsmClient  *client,
                                              GError    **error);

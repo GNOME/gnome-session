@@ -324,11 +324,21 @@ gsm_client_get_app_id (GsmClient *client)
 }
 
 void
-gsm_client_notify_session_over (GsmClient *client)
+gsm_client_query_end_session (GsmClient *client,
+                              guint      flags)
 {
         g_return_if_fail (GSM_IS_CLIENT (client));
 
-        GSM_CLIENT_GET_CLASS (client)->impl_notify_session_over (client);
+        GSM_CLIENT_GET_CLASS (client)->impl_query_end_session (client, flags);
+}
+
+void
+gsm_client_end_session (GsmClient *client,
+                        guint      flags)
+{
+        g_return_if_fail (GSM_IS_CLIENT (client));
+
+        GSM_CLIENT_GET_CLASS (client)->impl_end_session (client, flags);
 }
 
 gboolean

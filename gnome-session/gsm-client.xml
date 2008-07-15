@@ -6,5 +6,13 @@
     <signal name="Stop">
     </signal>
 
+    <signal name="QueryEndSession">
+      <arg name="flags" type="u"/>
+    </signal>
+
+    <signal name="EndSession">
+      <arg name="flags" type="u"/>
+    </signal>
+
   </interface>
 </node>

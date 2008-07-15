@@ -190,6 +190,100 @@ dbus_client_stop (GsmClient *client,
 }
 
 static void
+dbus_client_query_end_session (GsmClient *client,
+                               guint      flags)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        DBusMessage    *message;
+        gboolean        ret;
+        DBusConnection *connection;
+        DBusError       local_error;
+        DBusMessageIter iter;
+
+        ret = FALSE;
+
+        /* unicast the signal to only the registered bus name */
+        message = dbus_message_new_signal (gsm_client_get_id (client),
+                                           CLIENT_INTERFACE,
+                                           "QueryEndSession");
+        if (message == NULL) {
+                goto out;
+        }
+        if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                goto out;
+        }
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
+
+        dbus_error_init (&local_error);
+        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
+        if (dbus_error_is_set (&local_error)) {
+                g_warning ("%s", local_error.message);
+                dbus_error_free (&local_error);
+                goto out;
+        }
+
+        if (!dbus_connection_send (connection, message, NULL)) {
+                goto out;
+        }
+
+        ret = TRUE;
+
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+}
+
+static void
+dbus_client_end_session (GsmClient *client,
+                         guint      flags)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        DBusMessage    *message;
+        gboolean        ret;
+        DBusConnection *connection;
+        DBusError       local_error;
+        DBusMessageIter iter;
+
+        ret = FALSE;
+
+        /* unicast the signal to only the registered bus name */
+        message = dbus_message_new_signal (gsm_client_get_id (client),
+                                           CLIENT_INTERFACE,
+                                           "EndSession");
+        if (message == NULL) {
+                goto out;
+        }
+        if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                goto out;
+        }
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
+
+        dbus_error_init (&local_error);
+        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
+        if (dbus_error_is_set (&local_error)) {
+                g_warning ("%s", local_error.message);
+                dbus_error_free (&local_error);
+                goto out;
+        }
+
+        if (!dbus_connection_send (connection, message, NULL)) {
+                goto out;
+        }
+
+        ret = TRUE;
+
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+}
+
+static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -200,7 +294,9 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
 
-        client_class->impl_stop            = dbus_client_stop;
+        client_class->impl_stop              = dbus_client_stop;
+        client_class->impl_query_end_session = dbus_client_query_end_session;
+        client_class->impl_end_session       = dbus_client_end_session;
 
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
