@@ -46,11 +46,6 @@ struct _GsmResumedApp
 struct _GsmResumedAppClass
 {
         GsmAppClass parent_class;
-
-        /* signals */
-
-        /* virtual methods */
-
 };
 
 GType   gsm_resumed_app_get_type (void) G_GNUC_CONST;

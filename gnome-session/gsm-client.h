@@ -58,11 +58,12 @@ struct _GsmClientClass
 
         /* signals */
         void         (*disconnected)        (GsmClient *client);
+        void         (*stop)                (GsmClient *client);
 
         /* virtual methods */
-        void         (*notify_session_over) (GsmClient *client);
-        gboolean     (*stop)                (GsmClient *client,
-                                             GError   **error);
+        void         (*impl_notify_session_over) (GsmClient *client);
+        gboolean     (*impl_stop)                (GsmClient *client,
+                                                  GError   **error);
 };
 
 GType       gsm_client_get_type             (void) G_GNUC_CONST;

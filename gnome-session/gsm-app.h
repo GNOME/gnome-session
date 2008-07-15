@@ -59,21 +59,21 @@ struct _GsmAppClass
         void        (*registered)   (GsmApp *app);
 
         /* virtual methods */
-        gboolean    (*start)           (GsmApp     *app,
-                                        GError    **error);
-        gboolean    (*restart)         (GsmApp     *app,
-                                        GError    **error);
-        gboolean    (*stop)            (GsmApp     *app,
-                                        GError    **error);
-        gboolean    (*provides)        (GsmApp     *app,
-                                        const char *service);
-        gboolean    (*is_running)      (GsmApp     *app);
+        gboolean    (*impl_start)           (GsmApp     *app,
+                                             GError    **error);
+        gboolean    (*impl_restart)         (GsmApp     *app,
+                                             GError    **error);
+        gboolean    (*impl_stop)            (GsmApp     *app,
+                                             GError    **error);
+        gboolean    (*impl_provides)        (GsmApp     *app,
+                                             const char *service);
+        gboolean    (*impl_is_running)      (GsmApp     *app);
 
-        gboolean    (*get_autorestart) (GsmApp     *app);
-        const char *(*get_id)          (GsmApp     *app);
-        gboolean    (*is_disabled)     (GsmApp     *app);
-        void        (*set_client)      (GsmApp     *app,
-                                        GsmClient  *client);
+        gboolean    (*impl_get_autorestart) (GsmApp     *app);
+        const char *(*impl_get_id)          (GsmApp     *app);
+        gboolean    (*impl_is_disabled)     (GsmApp     *app);
+        void        (*impl_set_client)      (GsmApp     *app,
+                                             GsmClient  *client);
 };
 
 typedef enum

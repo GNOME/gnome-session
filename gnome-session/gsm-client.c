@@ -51,6 +51,7 @@ enum {
 
 enum {
         DISCONNECTED,
+        STOP,
         LAST_SIGNAL
 };
 
@@ -226,6 +227,17 @@ gsm_client_get_property (GObject    *object,
         }
 }
 
+static gboolean
+default_stop (GsmClient *client,
+              GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+
+        g_signal_emit (client, signals[STOP], 0);
+
+        return TRUE;
+}
+
 static void
 gsm_client_class_init (GsmClientClass *klass)
 {
@@ -236,11 +248,22 @@ gsm_client_class_init (GsmClientClass *klass)
         object_class->constructor = gsm_client_constructor;
         object_class->finalize = gsm_client_finalize;
 
+        klass->impl_stop = default_stop;
+
         signals[DISCONNECTED] =
                 g_signal_new ("disconnected",
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmClientClass, disconnected),
+                              NULL, NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals[STOP] =
+                g_signal_new ("stop",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmClientClass, stop),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
@@ -305,7 +328,7 @@ gsm_client_notify_session_over (GsmClient *client)
 {
         g_return_if_fail (GSM_IS_CLIENT (client));
 
-        GSM_CLIENT_GET_CLASS (client)->notify_session_over (client);
+        GSM_CLIENT_GET_CLASS (client)->impl_notify_session_over (client);
 }
 
 gboolean
@@ -314,7 +337,9 @@ gsm_client_stop (GsmClient *client,
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
-        return GSM_CLIENT_GET_CLASS (client)->stop (client, error);
+        g_signal_emit (client, signals[STOP], 0);
+
+        return GSM_CLIENT_GET_CLASS (client)->impl_stop (client, error);
 }
 
 void

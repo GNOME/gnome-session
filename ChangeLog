@@ -1,5 +1,22 @@
 2008-07-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-app.c (gsm_app_class_init), (gsm_app_get_id),
+	(gsm_app_is_disabled), (gsm_app_is_running),
+	(gsm_app_get_autorestart), (gsm_app_provides), (gsm_app_start),
+	(gsm_app_restart), (gsm_app_stop):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_class_init):
+	* gnome-session/gsm-client.c (default_stop),
+	(gsm_client_class_init), (gsm_client_notify_session_over),
+	(gsm_client_stop):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-resumed-app.c (gsm_resumed_app_class_init):
+	* gnome-session/gsm-resumed-app.h:
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_class_init):
+	By default emit stop signal from client.
+
+2008-07-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-client.c (register_client),
 	(gsm_client_constructor), (gsm_client_class_init):

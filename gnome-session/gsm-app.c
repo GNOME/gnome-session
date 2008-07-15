@@ -174,11 +174,11 @@ gsm_app_class_init (GsmAppClass *klass)
         object_class->get_property = gsm_app_get_property;
         object_class->dispose = gsm_app_dispose;
 
-        klass->get_id = NULL;
-        klass->start = NULL;
-        klass->get_autorestart = NULL;
-        klass->provides = NULL;
-        klass->is_running = NULL;
+        klass->impl_get_id = NULL;
+        klass->impl_start = NULL;
+        klass->impl_get_autorestart = NULL;
+        klass->impl_provides = NULL;
+        klass->impl_is_running = NULL;
 
         g_object_class_install_property (object_class,
                                          PROP_PHASE,
@@ -239,7 +239,7 @@ gsm_app_class_init (GsmAppClass *klass)
 const char *
 gsm_app_get_id (GsmApp *app)
 {
-        return GSM_APP_GET_CLASS (app)->get_id (app);
+        return GSM_APP_GET_CLASS (app)->impl_get_id (app);
 }
 
 const char *
@@ -269,8 +269,8 @@ gsm_app_is_disabled (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        if (GSM_APP_GET_CLASS (app)->is_disabled) {
-                return GSM_APP_GET_CLASS (app)->is_disabled (app);
+        if (GSM_APP_GET_CLASS (app)->impl_is_disabled) {
+                return GSM_APP_GET_CLASS (app)->impl_is_disabled (app);
         } else {
                 return FALSE;
         }
@@ -281,8 +281,8 @@ gsm_app_is_running (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        if (GSM_APP_GET_CLASS (app)->is_running) {
-                return GSM_APP_GET_CLASS (app)->is_running (app);
+        if (GSM_APP_GET_CLASS (app)->impl_is_running) {
+                return GSM_APP_GET_CLASS (app)->impl_is_running (app);
         } else {
                 return FALSE;
         }
@@ -293,8 +293,8 @@ gsm_app_get_autorestart (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        if (GSM_APP_GET_CLASS (app)->get_autorestart) {
-                return GSM_APP_GET_CLASS (app)->get_autorestart (app);
+        if (GSM_APP_GET_CLASS (app)->impl_get_autorestart) {
+                return GSM_APP_GET_CLASS (app)->impl_get_autorestart (app);
         } else {
                 return FALSE;
         }
@@ -304,8 +304,8 @@ gboolean
 gsm_app_provides (GsmApp *app, const char *service)
 {
 
-        if (GSM_APP_GET_CLASS (app)->provides) {
-                return GSM_APP_GET_CLASS (app)->provides (app, service);
+        if (GSM_APP_GET_CLASS (app)->impl_provides) {
+                return GSM_APP_GET_CLASS (app)->impl_provides (app, service);
         } else {
                 return FALSE;
         }
@@ -317,7 +317,7 @@ gsm_app_start (GsmApp  *app,
 {
         g_debug ("Starting app: %s", app->priv->id);
 
-        return GSM_APP_GET_CLASS (app)->start (app, error);
+        return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
 gboolean
@@ -326,14 +326,14 @@ gsm_app_restart (GsmApp  *app,
 {
         g_debug ("Re-starting app: %s", app->priv->id);
 
-        return GSM_APP_GET_CLASS (app)->restart (app, error);
+        return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }
 
 gboolean
 gsm_app_stop (GsmApp  *app,
               GError **error)
 {
-        return GSM_APP_GET_CLASS (app)->stop (app, error);
+        return GSM_APP_GET_CLASS (app)->impl_stop (app, error);
 }
 
 void

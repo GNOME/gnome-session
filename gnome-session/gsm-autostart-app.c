@@ -871,14 +871,14 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->dispose = gsm_autostart_app_dispose;
         object_class->constructor = gsm_autostart_app_constructor;
 
-        app_class->is_disabled = is_disabled;
-        app_class->is_running = is_running;
-        app_class->start = gsm_autostart_app_start;
-        app_class->restart = gsm_autostart_app_restart;
-        app_class->stop = gsm_autostart_app_stop;
-        app_class->provides = gsm_autostart_app_provides;
-        app_class->get_id = gsm_autostart_app_get_id;
-        app_class->get_autorestart = gsm_autostart_app_get_autorestart;
+        app_class->impl_is_disabled = is_disabled;
+        app_class->impl_is_running = is_running;
+        app_class->impl_start = gsm_autostart_app_start;
+        app_class->impl_restart = gsm_autostart_app_restart;
+        app_class->impl_stop = gsm_autostart_app_stop;
+        app_class->impl_provides = gsm_autostart_app_provides;
+        app_class->impl_get_id = gsm_autostart_app_get_id;
+        app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
 
         g_object_class_install_property (object_class,
                                          PROP_DESKTOP_FILENAME,

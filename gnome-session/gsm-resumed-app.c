@@ -186,9 +186,9 @@ gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 
         object_class->dispose = gsm_resumed_app_dispose;
 
-        app_class->get_id = gsm_resumed_app_get_id;
-        app_class->start = gsm_resumed_app_start;
-        app_class->restart = gsm_resumed_app_restart;
+        app_class->impl_get_id = gsm_resumed_app_get_id;
+        app_class->impl_start = gsm_resumed_app_start;
+        app_class->impl_restart = gsm_resumed_app_restart;
 
         g_type_class_add_private (klass, sizeof (GsmResumedAppPrivate));
 }

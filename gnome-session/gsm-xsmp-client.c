@@ -632,7 +632,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
-        client_class->stop                 = xsmp_stop;
+        client_class->impl_stop            = xsmp_stop;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
