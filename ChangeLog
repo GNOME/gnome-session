@@ -1,3 +1,50 @@
+2008-07-16  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-app.c (gsm_app_set_startup_id),
+	(gsm_app_set_property), (gsm_app_get_property), (gsm_app_dispose),
+	(gsm_app_class_init), (gsm_app_get_startup_id):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (load_desktop_file),
+	(autostart_app_start_spawn), (autostart_app_start_activate):
+	* gnome-session/gsm-client.c (gsm_client_finalize),
+	(gsm_client_set_startup_id), (gsm_client_set_property),
+	(gsm_client_get_property), (default_stop), (gsm_client_class_init),
+	(gsm_client_get_startup_id), (gsm_client_stop),
+	(gdm_client_end_session_response):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-client.xml:
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_error_quark),
+	(gsm_dbus_client_error_get_type), (gsm_dbus_client_class_init),
+	(gsm_dbus_client_end_session_response):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-dbus-client.xml:
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_set_client_id),
+	(gsm_inhibitor_get_client_id), (gsm_inhibitor_set_property),
+	(gsm_inhibitor_get_property), (gsm_inhibitor_finalize),
+	(gsm_inhibitor_class_init), (gsm_inhibitor_new_for_client):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (_find_by_startup_id),
+	(app_condition_changed), (app_registered), (phase_timeout),
+	(start_phase), (inhibitor_has_bus_name), (_app_has_startup_id),
+	(find_app_for_startup_id), (register_client_for_name),
+	(_client_has_startup_id), (on_xsmp_client_register_request),
+	(_client_query_end_session), (query_end_session_complete),
+	(inhibitor_has_client_id), (generate_cookie),
+	(_generate_unique_cookie), (on_client_end_session_response),
+	(on_query_end_session_timeout), (query_end_session),
+	(request_logout), (user_logout), (gsm_manager_logout),
+	(gsm_manager_register_client), (gsm_manager_unregister_client):
+	* gnome-session/gsm-manager.xml:
+	* gnome-session/gsm-marshal.list:
+	* gnome-session/gsm-xsmp-client.c (set_description):
+	* gnome-session/test-client-dbus.c (register_client):
+	* gnome-session/util.c (gsm_util_generate_startup_id):
+	* gnome-session/util.h:
+	Rename client-id to startup-id to distinguish from
+	Client's ID.  Start adding a new shutdown path that
+	allows for more compatibility with xsmp.
+
 2008-07-15  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-client.c (gsm_client_query_end_session),

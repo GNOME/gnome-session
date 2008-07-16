@@ -160,14 +160,14 @@ gsm_util_init_error (gboolean fatal, const char *format, ...)
 }
 
 /**
- * gsm_util_generate_client_id:
+ * gsm_util_generate_startup_id:
  *
  * Generates a new SM client ID.
  *
  * Return value: an SM client ID.
  **/
 char *
-gsm_util_generate_client_id (void)
+gsm_util_generate_startup_id (void)
 {
   static int sequence = -1;
   static guint rand1 = 0, rand2 = 0;

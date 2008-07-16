@@ -18,13 +18,14 @@
 
     <method name="RegisterClient">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="s" name="client_startup_id" direction="in"/>
       <arg type="s" name="app_id" direction="in"/>
-      <arg type="s" name="session_client_id" direction="out"/>
+      <arg type="s" name="client_startup_id" direction="in"/>
+      <arg type="s" name="new_client_startup_id" direction="out"/>
+      <arg type="s" name="client_id" direction="out"/>
     </method>
     <method name="UnregisterClient">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="s" name="session_client_id" direction="in"/>
+      <arg type="s" name="client_id" direction="in"/>
     </method>
 
     <method name="Inhibit">

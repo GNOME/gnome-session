@@ -46,14 +46,33 @@ struct _GsmDBusClient
 struct _GsmDBusClientClass
 {
         GsmClientClass parent_class;
-
 };
+
+typedef enum
+{
+        GSM_DBUS_CLIENT_ERROR_GENERAL = 0,
+        GSM_DBUS_CLIENT_ERROR_NOT_CLIENT,
+        GSM_DBUS_CLIENT_NUM_ERRORS
+} GsmDBusClientError;
+
+#define GSM_DBUS_CLIENT_ERROR gsm_dbus_client_error_quark ()
+
+GType          gsm_dbus_client_error_get_type     (void);
+#define GSM_DBUS_CLIENT_TYPE_ERROR (gsm_dbus_client_error_get_type ())
+
+GQuark         gsm_dbus_client_error_quark        (void);
 
 GType          gsm_dbus_client_get_type           (void) G_GNUC_CONST;
 
 GsmClient *    gsm_dbus_client_new                (const char     *client_id,
                                                    const char     *bus_name);
 const char *   gsm_dbus_client_get_bus_name       (GsmDBusClient  *client);
+
+/* published methods */
+void           gsm_dbus_client_end_session_response (GsmDBusClient         *client,
+                                                     gboolean               ok_to_proceed,
+                                                     const char            *reason,
+                                                     DBusGMethodInvocation *context);
 
 G_END_DECLS
 

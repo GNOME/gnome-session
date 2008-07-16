@@ -35,6 +35,7 @@
 
 static DBusGConnection *bus_connection = NULL;
 static DBusGProxy      *sm_proxy = NULL;
+static char            *new_startup_id = NULL;
 static char            *client_id = NULL;
 
 static gboolean
@@ -76,9 +77,10 @@ register_client (void)
         res = dbus_g_proxy_call (sm_proxy,
                                  "RegisterClient",
                                  &error,
-                                 G_TYPE_STRING, startup_id,
                                  G_TYPE_STRING, app_id,
+                                 G_TYPE_STRING, startup_id,
                                  G_TYPE_INVALID,
+                                 G_TYPE_STRING, &new_startup_id,
                                  G_TYPE_STRING, &client_id,
                                  G_TYPE_INVALID);
         if (! res) {

@@ -30,15 +30,18 @@
 
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus.h>
+#include <dbus/dbus-glib.h>
+#include <dbus/dbus-glib-lowlevel.h>
 
 #include "gsm-dbus-client.h"
+#include "gsm-dbus-client-glue.h"
 #include "gsm-marshal.h"
 
 #include "gsm-manager.h"
 
 #define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
 
-#define CLIENT_INTERFACE "org.gnome.SessionManager.Client"
+#define CLIENT_INTERFACE "org.gnome.SessionManager.DBusClient"
 
 struct GsmDBusClientPrivate
 {
@@ -51,6 +54,39 @@ enum {
 };
 
 G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
+
+GQuark
+gsm_dbus_client_error_quark (void)
+{
+        static GQuark ret = 0;
+        if (ret == 0) {
+                ret = g_quark_from_static_string ("gsm_dbus_client_error");
+        }
+
+        return ret;
+}
+
+#define ENUM_ENTRY(NAME, DESC) { NAME, "" #NAME "", DESC }
+
+GType
+gsm_dbus_client_error_get_type (void)
+{
+        static GType etype = 0;
+
+        if (etype == 0) {
+                static const GEnumValue values[] = {
+                        ENUM_ENTRY (GSM_DBUS_CLIENT_ERROR_GENERAL, "GeneralError"),
+                        ENUM_ENTRY (GSM_DBUS_CLIENT_ERROR_NOT_CLIENT, "NotClient"),
+                        { 0, 0, 0 }
+                };
+
+                g_assert (GSM_DBUS_CLIENT_NUM_ERRORS == G_N_ELEMENTS (values) - 1);
+
+                etype = g_enum_register_static ("GsmDbusClientError", values);
+        }
+
+        return etype;
+}
 
 static GObject *
 gsm_dbus_client_constructor (GType                  type,
@@ -307,6 +343,8 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmDBusClientPrivate));
+        dbus_g_object_type_install_info (GSM_TYPE_CLIENT, &dbus_glib_gsm_dbus_client_object_info);
+        dbus_g_error_domain_register (GSM_DBUS_CLIENT_ERROR, NULL, GSM_DBUS_CLIENT_TYPE_ERROR);
 }
 
 GsmClient *
@@ -321,4 +359,32 @@ gsm_dbus_client_new (const char *client_id,
                                NULL);
 
         return GSM_CLIENT (client);
+}
+
+void
+gsm_dbus_client_end_session_response (GsmDBusClient         *client,
+                                      gboolean               is_ok,
+                                      const char            *reason,
+                                      DBusGMethodInvocation *context)
+{
+        const char *sender;
+
+        /* make sure it is from our client */
+        sender = dbus_g_method_get_sender (context);
+        if (sender == NULL
+            || client->priv->bus_name == NULL
+            || strcmp (sender, client->priv->bus_name) != 0) {
+                GError *error;
+
+                error = g_error_new (GSM_DBUS_CLIENT_ERROR,
+                                     GSM_DBUS_CLIENT_ERROR_NOT_CLIENT,
+                                     "%s",
+                                     "Not recognized as the session client");
+                dbus_g_method_return_error (context, error);
+                g_error_free (error);
+                return;
+        }
+
+        gdm_client_end_session_response (GSM_CLIENT (client), is_ok, reason);
+        dbus_g_method_return (context);
 }

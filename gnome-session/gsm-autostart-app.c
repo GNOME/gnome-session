@@ -87,7 +87,7 @@ static gboolean
 load_desktop_file (GsmAutostartApp *app)
 {
         char   *dbus_name;
-        char   *client_id;
+        char   *startup_id;
         char   *phase_str;
         int     phase;
 
@@ -128,10 +128,10 @@ load_desktop_file (GsmAutostartApp *app)
         /* this must only be done on first load */
         switch (app->priv->launch_type) {
         case AUTOSTART_LAUNCH_SPAWN:
-                client_id = gsm_util_generate_client_id ();
+                startup_id = gsm_util_generate_startup_id ();
                 break;
         case AUTOSTART_LAUNCH_ACTIVATE:
-                client_id = g_strdup (dbus_name);
+                startup_id = g_strdup (dbus_name);
                 break;
         default:
                 g_assert_not_reached ();
@@ -139,10 +139,10 @@ load_desktop_file (GsmAutostartApp *app)
 
         g_object_set (app,
                       "phase", phase,
-                      "client-id", client_id,
+                      "startup-id", startup_id,
                       NULL);
 
-        g_free (client_id);
+        g_free (startup_id);
         g_free (dbus_name);
 
         return TRUE;
@@ -584,13 +584,13 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         char            *env[2] = { NULL, NULL };
         gboolean         success;
         GError          *local_error;
-        const char      *client_id;
+        const char      *startup_id;
 
-        client_id = gsm_app_get_client_id (GSM_APP (app));
-        g_assert (client_id != NULL);
+        startup_id = gsm_app_get_startup_id (GSM_APP (app));
+        g_assert (startup_id != NULL);
 
-        env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", client_id);
-        g_debug ("GsmAutostartApp: starting %s: %s", app->priv->desktop_id, client_id);
+        env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", startup_id);
+        g_debug ("GsmAutostartApp: starting %s: %s", app->priv->desktop_id, startup_id);
 
         local_error = NULL;
         success = egg_desktop_file_launch (app->priv->desktop_file,
@@ -661,7 +661,7 @@ autostart_app_start_activate (GsmAutostartApp  *app,
                 return FALSE;
         }
 
-        name = gsm_app_get_client_id (GSM_APP (app));
+        name = gsm_app_get_startup_id (GSM_APP (app));
         g_assert (name != NULL);
 
         path = egg_desktop_file_get_string (app->priv->desktop_file,

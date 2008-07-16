@@ -97,7 +97,7 @@ gboolean         gsm_app_stop            (GsmApp     *app,
 gboolean         gsm_app_get_autorestart (GsmApp     *app);
 
 const char      *gsm_app_get_id          (GsmApp     *app);
-const char      *gsm_app_get_client_id   (GsmApp     *app);
+const char      *gsm_app_get_startup_id  (GsmApp     *app);
 GsmManagerPhase  gsm_app_get_phase       (GsmApp     *app);
 gboolean         gsm_app_is_running      (GsmApp     *app);
 

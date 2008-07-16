@@ -34,6 +34,7 @@ struct GsmInhibitorPrivate
 {
         char *bus_name;
         char *app_id;
+        char *client_id;
         char *reason;
         guint flags;
         guint toplevel_xid;
@@ -45,6 +46,7 @@ enum {
         PROP_BUS_NAME,
         PROP_REASON,
         PROP_APP_ID,
+        PROP_CLIENT_ID,
         PROP_FLAGS,
         PROP_TOPLEVEL_XID,
         PROP_COOKIE,
@@ -94,6 +96,18 @@ gsm_inhibitor_set_app_id (GsmInhibitor  *inhibitor,
 
         inhibitor->priv->app_id = g_strdup (app_id);
         g_object_notify (G_OBJECT (inhibitor), "app-id");
+}
+
+static void
+gsm_inhibitor_set_client_id (GsmInhibitor  *inhibitor,
+                             const char    *client_id)
+{
+        g_return_if_fail (GSM_IS_INHIBITOR (inhibitor));
+
+        g_free (inhibitor->priv->client_id);
+
+        inhibitor->priv->client_id = g_strdup (client_id);
+        g_object_notify (G_OBJECT (inhibitor), "client-id");
 }
 
 static void
@@ -161,6 +175,14 @@ gsm_inhibitor_get_app_id (GsmInhibitor  *inhibitor)
 }
 
 const char *
+gsm_inhibitor_get_client_id (GsmInhibitor  *inhibitor)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
+
+        return inhibitor->priv->client_id;
+}
+
+const char *
 gsm_inhibitor_get_reason (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
@@ -209,6 +231,9 @@ gsm_inhibitor_set_property (GObject       *object,
         case PROP_APP_ID:
                 gsm_inhibitor_set_app_id (self, g_value_get_string (value));
                 break;
+        case PROP_CLIENT_ID:
+                gsm_inhibitor_set_client_id (self, g_value_get_string (value));
+                break;
         case PROP_REASON:
                 gsm_inhibitor_set_reason (self, g_value_get_string (value));
                 break;
@@ -244,6 +269,9 @@ gsm_inhibitor_get_property (GObject    *object,
         case PROP_APP_ID:
                 g_value_set_string (value, self->priv->app_id);
                 break;
+        case PROP_CLIENT_ID:
+                g_value_set_string (value, self->priv->client_id);
+                break;
         case PROP_REASON:
                 g_value_set_string (value, self->priv->reason);
                 break;
@@ -269,6 +297,7 @@ gsm_inhibitor_finalize (GObject *object)
 
         g_free (inhibitor->priv->bus_name);
         g_free (inhibitor->priv->app_id);
+        g_free (inhibitor->priv->client_id);
         g_free (inhibitor->priv->reason);
 
         G_OBJECT_CLASS (gsm_inhibitor_parent_class)->finalize (object);
@@ -296,6 +325,13 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                          g_param_spec_string ("app-id",
                                                               "app-id",
                                                               "app-id",
+                                                              NULL,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_CLIENT_ID,
+                                         g_param_spec_string ("client-id",
+                                                              "client-id",
+                                                              "client-id",
                                                               NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
@@ -352,6 +388,24 @@ gsm_inhibitor_new (const char    *app_id,
                                   "bus-name", bus_name,
                                   "flags", flags,
                                   "toplevel-xid", toplevel_xid,
+                                  "cookie", cookie,
+                                  NULL);
+
+        return inhibitor;
+}
+
+GsmInhibitor *
+gsm_inhibitor_new_for_client (const char    *client_id,
+                              guint          flags,
+                              const char    *reason,
+                              guint          cookie)
+{
+        GsmInhibitor *inhibitor;
+
+        inhibitor = g_object_new (GSM_TYPE_INHIBITOR,
+                                  "client-id", client_id,
+                                  "reason", reason,
+                                  "flags", flags,
                                   "cookie", cookie,
                                   NULL);
 

@@ -91,7 +91,8 @@ gnome_session_SOURCES =				\
 	gsm-manager.c				\
 	gsm-manager.h				\
 	gsm-xsmp-server.c			\
-	gsm-xsmp-server.h
+	gsm-xsmp-server.h			\
+	$(NULL)
 
 libgsmutil_la_LIBADD = 				\
 	$(GNOME_SESSION_LIBS)
@@ -113,11 +114,15 @@ gsm-manager-glue.h: gsm-manager.xml Makefile.am
 gsm-client-glue.h: gsm-client.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/gsm-client.xml
 
+gsm-dbus-client-glue.h: gsm-dbus-client.xml Makefile.am
+	dbus-binding-tool --prefix=gsm_dbus_client --mode=glib-server --output=gsm-dbus-client-glue.h $(srcdir)/gsm-dbus-client.xml
+
 BUILT_SOURCES =			\
 	gsm-marshal.c           \
 	gsm-marshal.h           \
 	gsm-manager-glue.h	\
 	gsm-client-glue.h	\
+	gsm-dbus-client-glue.h	\
 	$(NULL)
 
 CLEANFILES =					\
@@ -127,7 +132,10 @@ EXTRA_DIST =					\
 	$(glade_DATA)				\
 	README					\
 	gsm-marshal.list        		\
-	gsm-manager.xml
+	gsm-manager.xml				\
+	gsm-client.xml				\
+	gsm-dbus-client.xml			\
+	$(NULL)
 
 MAINTAINERCLEANFILES =                  \
         *~                              \

@@ -82,9 +82,10 @@ struct GsmManagerPrivate
 
         /* Startup/resumed apps */
         GHashTable             *apps_by_id;
+
         /* Current status */
         GsmManagerPhase         phase;
-        guint                   timeout_id;
+        guint                   phase_timeout_id;
         GSList                 *pending_apps;
 
         GtkWidget              *inhibit_dialog;
@@ -92,6 +93,10 @@ struct GsmManagerPrivate
         /* List of clients which were disconnected due to disabled condition
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
+
+        guint                   query_timeout_id;
+        GSList                 *query_clients;
+        GSList                 *busy_clients;
 
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
@@ -160,18 +165,18 @@ gsm_manager_error_get_type (void)
 }
 
 static gboolean
-_find_by_client_id (const char *id,
-                    GsmClient  *client,
-                    const char *client_id_a)
+_find_by_startup_id (const char *id,
+                     GsmClient  *client,
+                     const char *startup_id_a)
 {
-        const char *client_id_b;
+        const char *startup_id_b;
 
-        client_id_b = gsm_client_get_client_id (client);
-        if (client_id_b == NULL) {
+        startup_id_b = gsm_client_get_startup_id (client);
+        if (startup_id_b == NULL) {
                 return FALSE;
         }
 
-        return (strcmp (client_id_a, client_id_b) == 0);
+        return (strcmp (startup_id_a, startup_id_b) == 0);
 }
 
 static void
@@ -182,8 +187,8 @@ app_condition_changed (GsmApp     *app,
         GsmClient *client;
 
         client = gsm_client_store_find (manager->priv->store,
-                                        (GsmClientStoreFunc)_find_by_client_id,
-                                        (char *)gsm_app_get_client_id (app));
+                                        (GsmClientStoreFunc)_find_by_startup_id,
+                                        (char *)gsm_app_get_startup_id (app));
 
         if (condition) {
                 if (!gsm_app_is_running (app) && client == NULL) {
@@ -246,9 +251,9 @@ app_registered (GsmApp     *app,
         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
 
         if (manager->priv->pending_apps == NULL) {
-                if (manager->priv->timeout_id > 0) {
-                        g_source_remove (manager->priv->timeout_id);
-                        manager->priv->timeout_id = 0;
+                if (manager->priv->phase_timeout_id > 0) {
+                        g_source_remove (manager->priv->phase_timeout_id);
+                        manager->priv->phase_timeout_id = 0;
                 }
 
                 end_phase (manager);
@@ -260,7 +265,7 @@ phase_timeout (GsmManager *manager)
 {
         GSList *a;
 
-        manager->priv->timeout_id = 0;
+        manager->priv->phase_timeout_id = 0;
 
         for (a = manager->priv->pending_apps; a; a = a->next) {
                 g_warning ("Application '%s' failed to register before timeout",
@@ -351,9 +356,9 @@ start_phase (GsmManager *manager)
 
         if (manager->priv->pending_apps != NULL) {
                 if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                        manager->priv->timeout_id = g_timeout_add_seconds (GSM_MANAGER_PHASE_TIMEOUT,
-                                                                           (GSourceFunc)phase_timeout,
-                                                                           manager);
+                        manager->priv->phase_timeout_id = g_timeout_add_seconds (GSM_MANAGER_PHASE_TIMEOUT,
+                                                                                 (GSourceFunc)phase_timeout,
+                                                                                 manager);
                 }
         } else {
                 end_phase (manager);
@@ -513,6 +518,8 @@ inhibitor_has_bus_name (gpointer      key,
                 }
         }
 
+        /* FIXME: also look for inhibitors from client with dbus name */
+
         return matches;
 }
 
@@ -530,24 +537,24 @@ remove_inhibitors_for_connection (GsmManager *manager,
 }
 
 static gboolean
-_app_has_client_id (const char *id,
-                    GsmApp     *app,
-                    const char *client_id_a)
+_app_has_startup_id (const char *id,
+                     GsmApp     *app,
+                     const char *startup_id_a)
 {
-        const char *client_id_b;
+        const char *startup_id_b;
 
-        client_id_b = gsm_app_get_client_id (app);
+        startup_id_b = gsm_app_get_startup_id (app);
 
-        if (client_id_b == NULL) {
+        if (startup_id_b == NULL) {
                 return FALSE;
         }
 
-        return (strcmp (client_id_a, client_id_b) == 0);
+        return (strcmp (startup_id_a, startup_id_b) == 0);
 }
 
 static GsmApp *
-find_app_for_client_id (GsmManager *manager,
-                        const char *client_id)
+find_app_for_startup_id (GsmManager *manager,
+                        const char *startup_id)
 {
         GsmApp *found_app;
         GSList *a;
@@ -561,7 +568,7 @@ find_app_for_client_id (GsmManager *manager,
                 for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
                         GsmApp *app = GSM_APP (a->data);
 
-                        if (strcmp (client_id, gsm_app_get_client_id (app)) == 0) {
+                        if (strcmp (startup_id, gsm_app_get_startup_id (app)) == 0) {
                                 found_app = app;
                                 goto out;
                         }
@@ -570,8 +577,8 @@ find_app_for_client_id (GsmManager *manager,
                 GsmApp *app;
 
                 app = g_hash_table_find (manager->priv->apps_by_id,
-                                         (GHRFunc)_app_has_client_id,
-                                         (char *)client_id);
+                                         (GHRFunc)_app_has_startup_id,
+                                         (char *)startup_id);
                 if (app != NULL) {
                         found_app = app;
                         goto out;
@@ -589,7 +596,7 @@ register_client_for_name (GsmManager *manager,
         GsmApp    *app;
         GsmClient *client;
 
-        app = find_app_for_client_id (manager, dbus_name);
+        app = find_app_for_startup_id (manager, dbus_name);
         if (app == NULL) {
                 return;
         }
@@ -676,19 +683,19 @@ gsm_manager_set_failsafe (GsmManager *manager,
 }
 
 static gboolean
-_client_has_client_id (const char *id,
-                       GsmClient  *client,
-                       const char *client_id_a)
+_client_has_startup_id (const char *id,
+                        GsmClient  *client,
+                        const char *startup_id_a)
 {
-        const char *client_id_b;
+        const char *startup_id_b;
 
-        client_id_b = gsm_client_get_client_id (client);
+        startup_id_b = gsm_client_get_startup_id (client);
 
-        if (client_id_b == NULL) {
+        if (startup_id_b == NULL) {
                 return FALSE;
         }
 
-        return (strcmp (client_id_a, client_id_b) == 0);
+        return (strcmp (startup_id_a, startup_id_b) == 0);
 }
 
 static void
@@ -716,12 +723,12 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         }
 
         if (*id == NULL) {
-                new_id = gsm_util_generate_client_id ();
+                new_id = gsm_util_generate_startup_id ();
         } else {
                 GsmClient *client;
 
                 client = gsm_client_store_find (manager->priv->store,
-                                                (GsmClientStoreFunc)_client_has_client_id,
+                                                (GsmClientStoreFunc)_client_has_startup_id,
                                                 *id);
                 /* We can't have two clients with the same id. */
                 if (client != NULL) {
@@ -755,7 +762,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
                 goto out;
         }
 
-        app = find_app_for_client_id (manager, new_id);
+        app = find_app_for_startup_id (manager, new_id);
         if (app != NULL) {
                 gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_get_id (app));
                 gsm_app_registered (app);
@@ -1711,11 +1718,20 @@ request_hibernate (GsmManager *manager)
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
 
-static void
-request_logout (GsmManager *manager)
+static gboolean
+_client_query_end_session (const char *id,
+                           GsmClient  *client,
+                           GsmManager *manager)
 {
-        g_debug ("GsmManager: requesting logout");
+        manager->priv->query_clients = g_slist_prepend (manager->priv->query_clients,
+                                                        client);
+        gsm_client_query_end_session (client, 0);
+        return FALSE;
+}
 
+static void
+query_end_session_complete (GsmManager *manager)
+{
         if (! gsm_manager_is_logout_inhibited (manager)) {
                 manager_logout (manager);
                 return;
@@ -1735,6 +1751,139 @@ request_logout (GsmManager *manager)
                           G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
+
+}
+
+static gboolean
+inhibitor_has_client_id (gpointer      key,
+                         GsmInhibitor *inhibitor,
+                         const char   *client_id_a)
+{
+        gboolean    matches;
+        const char *client_id_b;
+
+        client_id_b = gsm_inhibitor_get_client_id (inhibitor);
+
+        matches = FALSE;
+        if (client_id_a != NULL && client_id_b != NULL) {
+                matches = (strcmp (client_id_a, client_id_b) == 0);
+                if (matches) {
+                        g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
+                                 gsm_inhibitor_get_client_id (inhibitor),
+                                 gsm_inhibitor_get_reason (inhibitor));
+                }
+        }
+
+        return matches;
+}
+
+static guint32
+generate_cookie (void)
+{
+        guint32 cookie;
+
+        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
+
+        return cookie;
+}
+
+static guint32
+_generate_unique_cookie (GsmManager *manager)
+{
+        guint32 cookie;
+
+        do {
+                cookie = generate_cookie ();
+        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
+
+        return cookie;
+}
+
+static void
+on_client_end_session_response (GsmClient  *client,
+                                gboolean    is_ok,
+                                const char *reason,
+                                GsmManager *manager)
+{
+        if (manager->priv->phase != GSM_MANAGER_PHASE_SHUTDOWN) {
+                /* Not shutting down, nothing to do */
+                return;
+        }
+
+        manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
+
+        if (! is_ok) {
+                guint         cookie;
+                GsmInhibitor *inhibitor;
+
+                /* FIXME: do we support updating the reason? */
+
+                cookie = _generate_unique_cookie (manager);
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
+                                                          GSM_INHIBITOR_FLAG_LOGOUT,
+                                                          reason,
+                                                          cookie);
+                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                g_object_unref (inhibitor);
+        } else {
+                gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
+                                                    (GsmInhibitorStoreFunc)inhibitor_has_client_id,
+                                                    (gpointer)gsm_client_get_id (client));
+        }
+}
+
+static gboolean
+on_query_end_session_timeout (GsmManager *manager)
+{
+        GSList *l;
+
+        manager->priv->query_timeout_id = 0;
+
+        for (l = manager->priv->query_clients; l != NULL; l = l->next) {
+                guint         cookie;
+                GsmInhibitor *inhibitor;
+
+                g_warning ("Client '%s' failed to reply before timeout",
+                           gsm_client_get_id (l->data));
+
+                /* Add JIT inhibit for unresponsive client */
+
+                cookie = _generate_unique_cookie (manager);
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
+                                                          GSM_INHIBITOR_FLAG_LOGOUT,
+                                                          _("Not responding"),
+                                                          cookie);
+                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                g_object_unref (inhibitor);
+        }
+
+        query_end_session_complete (manager);
+
+        return FALSE;
+}
+
+static void
+query_end_session (GsmManager *manager)
+{
+        if (manager->priv->query_timeout_id > 0) {
+                g_source_remove (manager->priv->query_timeout_id);
+                manager->priv->query_timeout_id = 0;
+        }
+        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_client_query_end_session,
+                                  &manager);
+}
+
+static void
+request_logout (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting logout");
+
+        /* First thing is to alert clients that a logout has been requested.
+         * We wait for all clients to respond or 1 second, which ever occurs first.
+         */
+        query_end_session (manager);
 }
 
 static void
@@ -1845,8 +1994,8 @@ show_logout_dialog (GsmManager *manager)
 }
 
 static void
-initiate_logout (GsmManager *manager,
-                 gboolean    show_confirmation)
+user_logout (GsmManager *manager,
+             gboolean    show_confirmation)
 {
         gboolean     logout_prompt;
         GConfClient *client;
@@ -1855,7 +2004,6 @@ initiate_logout (GsmManager *manager,
                 /* Already shutting down, nothing more to do */
                 return;
         }
-
         client = gconf_client_get_default ();
         logout_prompt = gconf_client_get_bool (client,
                                                "/apps/gnome-session/options/logout_prompt",
@@ -1917,11 +2065,11 @@ gsm_manager_logout (GsmManager *manager,
 
         switch (logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
-                initiate_logout (manager, TRUE);
+                user_logout (manager, TRUE);
                 break;
 
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
-                initiate_logout (manager, FALSE);
+                user_logout (manager, FALSE);
                 break;
 
         case GSM_MANAGER_LOGOUT_MODE_FORCE:
@@ -1989,16 +2137,16 @@ out:
 
 gboolean
 gsm_manager_register_client (GsmManager            *manager,
-                             const char            *client_startup_id,
+                             const char            *startup_id,
                              const char            *app_id,
                              DBusGMethodInvocation *context)
 {
-        char      *client_id;
+        char      *new_startup_id;
         char      *sender;
         GsmClient *client;
         GsmApp    *app;
 
-        g_debug ("GsmManager: RegisterClient %s", client_startup_id);
+        g_debug ("GsmManager: RegisterClient %s", startup_id);
 
         if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
                 GError *new_error;
@@ -2013,16 +2161,15 @@ gsm_manager_register_client (GsmManager            *manager,
                 return FALSE;
         }
 
-        if (client_startup_id == NULL
-            || client_startup_id[0] == '\0') {
-                client_id = gsm_util_generate_client_id ();
+        if (startup_id == NULL
+            || startup_id[0] == '\0') {
+                new_startup_id = gsm_util_generate_startup_id ();
         } else {
-                GsmClient *client;
 
                 client = gsm_client_store_find (manager->priv->store,
-                                                (GsmClientStoreFunc)_client_has_client_id,
-                                                (char *)client_startup_id);
-                /* We can't have two clients with the same id. */
+                                                (GsmClientStoreFunc)_client_has_startup_id,
+                                                (char *)startup_id);
+                /* We can't have two clients with the same startup id. */
                 if (client != NULL) {
                         GError *new_error;
 
@@ -2036,26 +2183,26 @@ gsm_manager_register_client (GsmManager            *manager,
                         return FALSE;
                 }
 
-                client_id = g_strdup (client_startup_id);
+                new_startup_id = g_strdup (startup_id);
         }
 
-        g_debug ("GsmManager: Adding new client %s to session", client_id);
+        g_debug ("GsmManager: Adding new client %s to session", new_startup_id);
 
-        if ((client_startup_id == NULL || client_startup_id[0] == '\0')
+        if ((startup_id == NULL || startup_id[0] == '\0')
             && app_id == NULL) {
                 /* just accept the client - we can't associate with an
                    existing App */
-                goto out;
-        } else if (client_startup_id != NULL
-                   && client_startup_id[0] != '\0') {
-                app = find_app_for_client_id (manager, client_startup_id);
+                app = NULL;
+        } else if (startup_id != NULL
+                   && startup_id[0] != '\0') {
+                app = find_app_for_startup_id (manager, startup_id);
         } else if (app_id != NULL) {
                 /* try to associate this app id with a known app */
                 app = find_app_for_app_id (manager, app_id);
         }
 
         sender = dbus_g_method_get_sender (context);
-        client = gsm_dbus_client_new (client_id, sender);
+        client = gsm_dbus_client_new (new_startup_id, sender);
         g_free (sender);
         if (client == NULL) {
                 GError *new_error;
@@ -2083,27 +2230,23 @@ gsm_manager_register_client (GsmManager            *manager,
 
         gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
 
- out:
-        g_assert (client_id != NULL);
-        dbus_g_method_return (context, client_id);
-        g_free (client_id);
+        g_assert (new_startup_id != NULL);
+        dbus_g_method_return (context, new_startup_id, gsm_client_get_id (client));
+        g_free (new_startup_id);
 
         return TRUE;
 }
 
 gboolean
 gsm_manager_unregister_client (GsmManager            *manager,
-                               const char            *session_client_id,
+                               const char            *client_id,
                                DBusGMethodInvocation *context)
 {
         GsmClient *client;
 
-        g_debug ("GsmManager: UnregisterClient %s", session_client_id);
+        g_debug ("GsmManager: UnregisterClient %s", client_id);
 
-        client = gsm_client_store_find (manager->priv->store,
-                                        (GsmClientStoreFunc)_client_has_client_id,
-                                        (char *)session_client_id);
-
+        client = gsm_client_store_lookup (manager->priv->store, client_id);
         if (client == NULL) {
                 GError *new_error;
 
@@ -2117,7 +2260,6 @@ gsm_manager_unregister_client (GsmManager            *manager,
                 return FALSE;
         }
 
-
         /* don't disconnect client here, only change the status.
            Wait until it leaves the bus before disconnecting it */
         gsm_client_set_status (client, GSM_CLIENT_UNREGISTERED);
@@ -2125,28 +2267,6 @@ gsm_manager_unregister_client (GsmManager            *manager,
         dbus_g_method_return (context);
 
         return TRUE;
-}
-
-static guint32
-generate_cookie (void)
-{
-        guint32 cookie;
-
-        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
-
-        return cookie;
-}
-
-static guint32
-_generate_unique_cookie (GsmManager *manager)
-{
-        guint32 cookie;
-
-        do {
-                cookie = generate_cookie ();
-        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
-
-        return cookie;
 }
 
 gboolean

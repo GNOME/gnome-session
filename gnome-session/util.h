@@ -30,7 +30,7 @@ gboolean  gsm_util_text_is_blank        (const char *str);
 
 void      gsm_util_init_error           (gboolean    fatal,
                                          const char *format, ...);
-char *    gsm_util_generate_client_id   (void);
+char *    gsm_util_generate_startup_id  (void);
 
 G_END_DECLS
 
