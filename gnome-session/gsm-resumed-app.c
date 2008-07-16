@@ -226,7 +226,7 @@ gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file,
         }
 
         app = g_object_new (GSM_TYPE_RESUMED_APP,
-                            "client-id", id,
+                            "startup-id", id,
                             NULL);
 
         key = g_strdup_printf ("%d," SmProgram, n);

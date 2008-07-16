@@ -247,7 +247,7 @@ _load_icon (GtkIconTheme  *icon_theme,
 
 static void
 add_inhibitor (GsmInhibitDialog *dialog,
-               GsmInhibitor           *inhibitor)
+               GsmInhibitor     *inhibitor)
 {
         const char     *name;
         const char     *icon_name;
@@ -260,40 +260,55 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
         /* FIXME: get info from xid */
 
+        name = NULL;
         pixbuf = NULL;
         app_id = gsm_inhibitor_get_app_id (inhibitor);
 
-        if (! g_str_has_suffix (app_id, ".desktop")) {
+        if (app_id == NULL || app_id[0] == '\0') {
+                desktop_filename = NULL;
+        } else if (! g_str_has_suffix (app_id, ".desktop")) {
                 desktop_filename = g_strdup_printf ("%s.desktop", app_id);
         } else {
                 desktop_filename = g_strdup (app_id);
         }
 
-        /* FIXME: maybe also append the autostart dirs ? */
-        search_dirs = gsm_util_get_app_dirs ();
+        if (desktop_filename != NULL) {
+                /* FIXME: maybe also append the autostart dirs ? */
+                search_dirs = gsm_util_get_app_dirs ();
 
-        error = NULL;
-        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
-                                                       (const char **)search_dirs,
-                                                       &error);
-        g_strfreev (search_dirs);
+                error = NULL;
+                desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
+                                                               (const char **)search_dirs,
+                                                               &error);
+                g_strfreev (search_dirs);
 
-        if (desktop_file == NULL) {
-                g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
-                g_error_free (error);
-                name = app_id;
+                if (desktop_file == NULL) {
+                        g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
+                        g_error_free (error);
+                } else {
+                        name = egg_desktop_file_get_name (desktop_file);
+                        icon_name = egg_desktop_file_get_icon (desktop_file);
+
+                        pixbuf = _load_icon (gtk_icon_theme_get_default (),
+                                             icon_name,
+                                             DEFAULT_ICON_SIZE,
+                                             DEFAULT_ICON_SIZE,
+                                             DEFAULT_ICON_SIZE,
+                                             NULL);
+                }
+        }
+
+        if (name == NULL) {
+                if (app_id != NULL) {
+                        name = app_id;
+                } else {
+                        name = _("Unknown");
+                }
+        }
+
+        if (pixbuf == NULL) {
                 pixbuf = _load_icon (gtk_icon_theme_get_default (),
                                      "gnome-windows",
-                                     DEFAULT_ICON_SIZE,
-                                     DEFAULT_ICON_SIZE,
-                                     DEFAULT_ICON_SIZE,
-                                     NULL);
-        } else {
-                name = egg_desktop_file_get_name (desktop_file);
-                icon_name = egg_desktop_file_get_icon (desktop_file);
-
-                pixbuf = _load_icon (gtk_icon_theme_get_default (),
-                                     icon_name,
                                      DEFAULT_ICON_SIZE,
                                      DEFAULT_ICON_SIZE,
                                      DEFAULT_ICON_SIZE,

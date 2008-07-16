@@ -165,6 +165,24 @@ gsm_manager_error_get_type (void)
 }
 
 static gboolean
+_debug_client (const char *id,
+               GsmClient  *client,
+               GsmManager *manager)
+{
+        g_debug ("GsmManager: Client %s",
+                 gsm_client_get_id (client));
+        return FALSE;
+}
+
+static void
+debug_clients (GsmManager *manager)
+{
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_debug_client,
+                                  manager);
+}
+
+static gboolean
 _find_by_startup_id (const char *id,
                      GsmClient  *client,
                      const char *startup_id_a)
@@ -450,6 +468,7 @@ disconnect_client (GsmManager *manager,
 
         if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN
             && gsm_client_store_size (manager->priv->store) == 0) {
+                g_debug ("GsmManager: last client disconnected - exiting");
                 gtk_main_quit ();
         }
 }
@@ -528,8 +547,6 @@ remove_inhibitors_for_connection (GsmManager *manager,
                                   const char *service_name)
 {
         guint n_removed;
-
-        g_debug ("GsmManager: removing inhibitors for bus name");
 
         n_removed = gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
                                                         (GsmInhibitorStoreFunc)inhibitor_has_bus_name,
@@ -1428,6 +1445,7 @@ manager_logout (GsmManager *manager)
                                   (GsmClientStoreFunc)_shutdown_client,
                                   NULL);
 
+        g_debug ("GsmManager: session shutdown complete, exiting");
         gtk_main_quit ();
 }
 
@@ -1723,15 +1741,19 @@ _client_query_end_session (const char *id,
                            GsmClient  *client,
                            GsmManager *manager)
 {
+        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_get_id (client));
         manager->priv->query_clients = g_slist_prepend (manager->priv->query_clients,
                                                         client);
         gsm_client_query_end_session (client, 0);
+
         return FALSE;
 }
 
 static void
 query_end_session_complete (GsmManager *manager)
 {
+        g_debug ("GsmManager: query end session complete");
+
         if (! gsm_manager_is_logout_inhibited (manager)) {
                 manager_logout (manager);
                 return;
@@ -1805,10 +1827,7 @@ on_client_end_session_response (GsmClient  *client,
                                 const char *reason,
                                 GsmManager *manager)
 {
-        if (manager->priv->phase != GSM_MANAGER_PHASE_SHUTDOWN) {
-                /* Not shutting down, nothing to do */
-                return;
-        }
+        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason);
 
         manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
 
@@ -1820,6 +1839,7 @@ on_client_end_session_response (GsmClient  *client,
 
                 cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
+                                                          gsm_client_get_app_id (client),
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           reason,
                                                           cookie);
@@ -1839,6 +1859,8 @@ on_query_end_session_timeout (GsmManager *manager)
 
         manager->priv->query_timeout_id = 0;
 
+        g_debug ("GsmManager: query end session timed out");
+
         for (l = manager->priv->query_clients; l != NULL; l = l->next) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
@@ -1850,6 +1872,7 @@ on_query_end_session_timeout (GsmManager *manager)
 
                 cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
+                                                          gsm_client_get_app_id (l->data),
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           _("Not responding"),
                                                           cookie);
@@ -1870,9 +1893,12 @@ query_end_session (GsmManager *manager)
                 manager->priv->query_timeout_id = 0;
         }
         manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
+
+        debug_clients (manager);
+        g_debug ("GsmManager: sending query-end-session to clients");
         gsm_client_store_foreach (manager->priv->store,
                                   (GsmClientStoreFunc)_client_query_end_session,
-                                  &manager);
+                                  manager);
 }
 
 static void
@@ -2137,8 +2163,8 @@ out:
 
 gboolean
 gsm_manager_register_client (GsmManager            *manager,
-                             const char            *startup_id,
                              const char            *app_id,
+                             const char            *startup_id,
                              DBusGMethodInvocation *context)
 {
         char      *new_startup_id;
@@ -2218,6 +2244,11 @@ gsm_manager_register_client (GsmManager            *manager,
         }
 
         gsm_client_store_add (manager->priv->store, client);
+
+        g_signal_connect (client,
+                          "end-session-response",
+                          G_CALLBACK (on_client_end_session_response),
+                          manager);
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_get_id (app));

@@ -780,7 +780,7 @@ register_client_callback (SmsConn    conn,
                 return FALSE;
         }
 
-        g_object_set (client, "client-id", id, NULL);
+        g_object_set (client, "startup-id", id, NULL);
 
         set_description (client);
 

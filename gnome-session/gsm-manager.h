@@ -113,8 +113,8 @@ void                gsm_manager_start                (GsmManager     *manager);
 /* exported methods */
 
 gboolean            gsm_manager_register_client      (GsmManager            *manager,
-                                                      const char            *client_startup_id,
                                                       const char            *app_id,
+                                                      const char            *client_startup_id,
                                                       DBusGMethodInvocation *context);
 gboolean            gsm_manager_unregister_client    (GsmManager            *manager,
                                                       const char            *session_client_id,

@@ -33,10 +33,14 @@
 #define SM_DBUS_PATH      "/org/gnome/SessionManager"
 #define SM_DBUS_INTERFACE "org.gnome.SessionManager"
 
+#define SM_CLIENT_DBUS_INTERFACE "org.gnome.SessionManager.DBusClient"
+
 static DBusGConnection *bus_connection = NULL;
 static DBusGProxy      *sm_proxy = NULL;
 static char            *new_startup_id = NULL;
 static char            *client_id = NULL;
+static DBusGProxy      *client_proxy = NULL;
+static GMainLoop       *main_loop = NULL;
 
 static gboolean
 session_manager_connect (void)
@@ -62,6 +66,31 @@ session_manager_connect (void)
         return (sm_proxy != NULL);
 }
 
+static void
+on_client_query_end_session (DBusGProxy     *proxy,
+                             guint           flags,
+                             gpointer        data)
+{
+        GError     *error;
+        gboolean    is_ok;
+        gboolean    res;
+        const char *reason;
+
+        is_ok = FALSE;
+        reason = "Unsaved files";
+
+        g_debug ("Got query end session signal");
+
+        error = NULL;
+        res = dbus_g_proxy_call (proxy,
+                                 "EndSessionResponse",
+                                 &error,
+                                 G_TYPE_BOOLEAN, is_ok,
+                                 G_TYPE_STRING, reason,
+                                 G_TYPE_INVALID,
+                                 G_TYPE_INVALID);
+}
+
 static gboolean
 register_client (void)
 {
@@ -71,7 +100,7 @@ register_client (void)
         const char *app_id;
 
         startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-        app_id = "test-client-dbus";
+        app_id = "gedit";
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,
@@ -90,9 +119,30 @@ register_client (void)
         }
 
         g_debug ("Client registered with session manager: %s", client_id);
+        client_proxy = dbus_g_proxy_new_for_name (bus_connection,
+                                                  SM_DBUS_NAME,
+                                                  client_id,
+                                                  SM_CLIENT_DBUS_INTERFACE);
+        dbus_g_proxy_add_signal (client_proxy,
+                                 "QueryEndSession",
+                                 G_TYPE_UINT,
+                                 G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (client_proxy,
+                                 "EndSession",
+                                 G_TYPE_UINT,
+                                 G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (client_proxy,
+                                 "Stop",
+                                 G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (client_proxy,
+                                     "QueryEndSession",
+                                     G_CALLBACK (on_client_query_end_session),
+                                     NULL,
+                                     NULL);
 
         return TRUE;
 }
+
 static gboolean
 session_manager_disconnect (void)
 {
@@ -129,6 +179,13 @@ unregister_client (void)
         return TRUE;
 }
 
+static gboolean
+quit_test (gpointer data)
+{
+        g_main_loop_quit (main_loop);
+        return FALSE;
+}
+
 int
 main (int   argc,
       char *argv[])
@@ -150,7 +207,12 @@ main (int   argc,
                 g_warning ("Unable to register client with session manager");
         }
 
-        sleep (30);
+        main_loop = g_main_loop_new (NULL, FALSE);
+
+        g_timeout_add_seconds (30, quit_test, NULL);
+
+        g_main_loop_run (main_loop);
+        g_main_loop_unref (main_loop);
 
         unregister_client ();
         session_manager_disconnect ();

@@ -52,6 +52,14 @@ enum {
         PROP_0,
         PROP_BUS_NAME,
 };
+enum {
+        STOP,
+        QUERY_END_SESSION,
+        END_SESSION,
+        LAST_SIGNAL
+};
+
+static guint signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
 
@@ -230,6 +238,27 @@ dbus_client_query_end_session (GsmClient *client,
                                guint      flags)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
+        /* FIXME: unicast signal */
+        g_signal_emit (dbus_client, signals[QUERY_END_SESSION], 0, flags);
+}
+
+static void
+dbus_client_end_session (GsmClient *client,
+                         guint      flags)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        g_debug ("GsmDBusClient: sending EndSession signal to %s", dbus_client->priv->bus_name);
+        /* FIXME: unicast signal */
+        g_signal_emit (dbus_client, signals[END_SESSION], 0, flags);
+}
+
+#if 0
+static void
+dbus_client_query_end_session (GsmClient *client,
+                               guint      flags)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         gboolean        ret;
         DBusConnection *connection;
@@ -237,6 +266,8 @@ dbus_client_query_end_session (GsmClient *client,
         DBusMessageIter iter;
 
         ret = FALSE;
+
+        g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_get_id (client),
@@ -318,6 +349,7 @@ dbus_client_end_session (GsmClient *client,
                 dbus_message_unref (message);
         }
 }
+#endif
 
 static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
@@ -334,6 +366,37 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_query_end_session = dbus_client_query_end_session;
         client_class->impl_end_session       = dbus_client_end_session;
 
+        signals [STOP] =
+                g_signal_new ("stop",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmDBusClientClass, stop),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [QUERY_END_SESSION] =
+                g_signal_new ("query-end-session",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmDBusClientClass, query_end_session),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__UINT,
+                              G_TYPE_NONE,
+                              1, G_TYPE_UINT);
+        signals [END_SESSION] =
+                g_signal_new ("end-session",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmDBusClientClass, end_session),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__UINT,
+                              G_TYPE_NONE,
+                              1, G_TYPE_UINT);
+
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
                                          g_param_spec_string ("bus-name",
@@ -348,13 +411,13 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
 }
 
 GsmClient *
-gsm_dbus_client_new (const char *client_id,
+gsm_dbus_client_new (const char *startup_id,
                      const char *bus_name)
 {
         GsmDBusClient *client;
 
         client = g_object_new (GSM_TYPE_DBUS_CLIENT,
-                               "client-id", client_id,
+                               "startup-id", startup_id,
                                "bus-name", bus_name,
                                NULL);
 
@@ -368,6 +431,8 @@ gsm_dbus_client_end_session_response (GsmDBusClient         *client,
                                       DBusGMethodInvocation *context)
 {
         const char *sender;
+
+        g_debug ("GsmDBusClient: got EndSessionResponse is-ok:%d reason=%s", is_ok, reason);
 
         /* make sure it is from our client */
         sender = dbus_g_method_get_sender (context);

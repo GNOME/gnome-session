@@ -396,6 +396,7 @@ gsm_inhibitor_new (const char    *app_id,
 
 GsmInhibitor *
 gsm_inhibitor_new_for_client (const char    *client_id,
+                              const char    *app_id,
                               guint          flags,
                               const char    *reason,
                               guint          cookie)
@@ -404,6 +405,7 @@ gsm_inhibitor_new_for_client (const char    *client_id,
 
         inhibitor = g_object_new (GSM_TYPE_INHIBITOR,
                                   "client-id", client_id,
+                                  "app-id", app_id,
                                   "reason", reason,
                                   "flags", flags,
                                   "cookie", cookie,

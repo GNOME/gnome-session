@@ -46,6 +46,13 @@ struct _GsmDBusClient
 struct _GsmDBusClientClass
 {
         GsmClientClass parent_class;
+
+        /* signals */
+        void         (*stop)               (GsmClient  *client);
+        void         (*query_end_session)  (GsmClient  *client,
+                                            guint       flags);
+        void         (*end_session)        (GsmClient  *client,
+                                            guint       flags);
 };
 
 typedef enum
@@ -64,7 +71,7 @@ GQuark         gsm_dbus_client_error_quark        (void);
 
 GType          gsm_dbus_client_get_type           (void) G_GNUC_CONST;
 
-GsmClient *    gsm_dbus_client_new                (const char     *client_id,
+GsmClient *    gsm_dbus_client_new                (const char     *startup_id,
                                                    const char     *bus_name);
 const char *   gsm_dbus_client_get_bus_name       (GsmDBusClient  *client);
 

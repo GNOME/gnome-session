@@ -1,5 +1,29 @@
 2008-07-16  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-dbus-client.c (dbus_client_query_end_session),
+	(dbus_client_end_session), (gsm_dbus_client_class_init),
+	(gsm_dbus_client_new), (gsm_dbus_client_end_session_response):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor):
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_new_for_client):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (_debug_client), (debug_clients),
+	(disconnect_client), (remove_inhibitors_for_connection),
+	(manager_logout), (_client_query_end_session),
+	(query_end_session_complete), (on_client_end_session_response),
+	(on_query_end_session_timeout), (query_end_session),
+	(gsm_manager_register_client):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-resumed-app.c
+	(gsm_resumed_app_new_from_legacy_session):
+	* gnome-session/gsm-xsmp-client.c (register_client_callback):
+	* gnome-session/test-client-dbus.c (on_client_query_end_session),
+	(register_client), (quit_test), (main):
+	Fix up some missed property names.  Hook up query-end-session stuff
+	for dbus client.
+
+2008-07-16  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-app.c (gsm_app_set_startup_id),
 	(gsm_app_set_property), (gsm_app_get_property), (gsm_app_dispose),
