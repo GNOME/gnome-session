@@ -843,12 +843,21 @@ on_client_end_session_response (GsmClient  *client,
         if (! is_ok) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
+                const char   *app_id;
 
                 /* FIXME: do we support updating the reason? */
 
+                /* Create JIT inhibit */
+
+                app_id = gsm_client_get_app_id (client);
+                if (app_id == NULL || app_id[0] == '\0') {
+                        /* XSMP clients don't give us an app id unless we start them */
+                        app_id = gsm_client_get_app_name (client);
+                }
+
                 cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
-                                                          gsm_client_get_app_id (client),
+                                                          app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           reason,
                                                           cookie);

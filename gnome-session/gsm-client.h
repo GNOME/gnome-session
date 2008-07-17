@@ -63,6 +63,7 @@ struct _GsmClientClass
                                                     const char *reason);
 
         /* virtual methods */
+        char *       (*impl_get_app_name)         (GsmClient *client);
         void         (*impl_query_end_session)    (GsmClient *client,
                                                    guint      flags);
         void         (*impl_end_session)          (GsmClient *client,
@@ -76,6 +77,8 @@ GType       gsm_client_get_type                   (void) G_GNUC_CONST;
 const char *gsm_client_get_id                     (GsmClient  *client);
 const char *gsm_client_get_startup_id             (GsmClient  *client);
 const char *gsm_client_get_app_id                 (GsmClient  *client);
+char       *gsm_client_get_app_name               (GsmClient  *client);
+
 void        gsm_client_set_app_id                 (GsmClient  *client,
                                                    const char *app_id);
 int         gsm_client_get_status                 (GsmClient  *client);

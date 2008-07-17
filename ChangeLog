@@ -1,5 +1,17 @@
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_get_app_name):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (dbus_client_get_app_name),
+	(gsm_dbus_client_class_init):
+	* gnome-session/gsm-manager.c (on_client_end_session_response):
+	* gnome-session/gsm-xsmp-client.c (xsmp_get_app_name),
+	(gsm_xsmp_client_class_init), (interact_request_callback):
+	Try to get something like an app-id for XSMP clients to
+	display info in inhibit dialog.
+
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (on_xsmp_client_register_request),
 	(inhibitor_has_client_id), (generate_cookie),
 	(_generate_unique_cookie), (on_client_end_session_response),

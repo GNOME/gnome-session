@@ -324,6 +324,14 @@ gsm_client_get_app_id (GsmClient *client)
         return client->priv->app_id;
 }
 
+char *
+gsm_client_get_app_name (GsmClient *client)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+        return GSM_CLIENT_GET_CLASS (client)->impl_get_app_name (client);
+}
+
 void
 gsm_client_query_end_session (GsmClient *client,
                               guint      flags)

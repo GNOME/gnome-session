@@ -515,6 +515,18 @@ xsmp_end_session (GsmClient *client,
         xsmp_save_yourself (client, FALSE);
 }
 
+static char *
+xsmp_get_app_name (GsmClient *client)
+{
+        SmProp *prop;
+        char   *name;
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmProgram, NULL);
+        name = prop_to_command (prop);
+
+        return name;
+}
+
 static void
 gsm_client_set_ice_connection (GsmXSMPClient *client,
                                gpointer       conn)
@@ -618,6 +630,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         client_class->impl_stop              = xsmp_stop;
         client_class->impl_query_end_session = xsmp_query_end_session;
         client_class->impl_end_session       = xsmp_end_session;
+        client_class->impl_get_app_name      = xsmp_get_app_name;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
@@ -809,9 +822,10 @@ interact_request_callback (SmsConn   conn,
 
         gdm_client_end_session_response (GSM_CLIENT (client),
                                          FALSE,
-                                         _("Requesting user input"));
+                                         _("This program is blocking log out."));
 
-        xsmp_interact (GSM_CLIENT (client));
+        /* Can't just call back with Interact because session client
+           grabs keyboard in that case! */
 }
 
 static void

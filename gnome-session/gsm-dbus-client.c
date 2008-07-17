@@ -253,6 +253,13 @@ dbus_client_end_session (GsmClient *client,
         g_signal_emit (dbus_client, signals[END_SESSION], 0, flags);
 }
 
+static char *
+dbus_client_get_app_name (GsmClient *client)
+{
+        /* Always use app-id instead */
+        return NULL;
+}
+
 #if 0
 static void
 dbus_client_query_end_session (GsmClient *client,
@@ -365,6 +372,7 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_stop              = dbus_client_stop;
         client_class->impl_query_end_session = dbus_client_query_end_session;
         client_class->impl_end_session       = dbus_client_end_session;
+        client_class->impl_get_app_name      = dbus_client_get_app_name;
 
         signals [STOP] =
                 g_signal_new ("stop",
