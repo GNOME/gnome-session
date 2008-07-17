@@ -1516,6 +1516,16 @@ _shutdown_client (const char *id,
         return FALSE;
 }
 
+static gboolean
+_cancel_shutdown_client (const char *id,
+                         GsmClient  *client,
+                         GsmManager *manager)
+{
+        gsm_client_cancel_end_session (client);
+
+        return FALSE;
+}
+
 static void
 manager_logout (GsmManager *manager)
 {
@@ -1676,6 +1686,35 @@ do_action (GsmManager *manager,
         }
 }
 
+static gboolean
+inhibitor_is_jit (gpointer      key,
+                  GsmInhibitor *inhibitor,
+                  GsmManager   *manager)
+{
+        gboolean    matches;
+        const char *id;
+
+        id = gsm_inhibitor_get_client_id (inhibitor);
+
+        matches = (id != NULL && id[0] != '\0');
+
+        return matches;
+}
+
+static void
+cancel_end_session (GsmManager *manager)
+{
+        /* clear all JIT inhibitors */
+
+        gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
+                                            (GsmInhibitorStoreFunc)inhibitor_is_jit,
+                                            (gpointer)manager);
+
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_cancel_shutdown_client,
+                                  NULL);
+}
+
 static void
 inhibit_dialog_response (GsmInhibitDialog *dialog,
                          guint             response_id,
@@ -1685,6 +1724,13 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
 
         g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
 
+        /* must destroy dialog before cancelling since we'll
+           remove JIT inhibitors and we don't want to trigger
+           action. */
+        g_object_get (dialog, "action", &action, NULL);
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+        manager->priv->inhibit_dialog = NULL;
+
         /* In case of dialog cancel, switch user, hibernate and
          * suspend, we just perform the respective action and return,
          * without shutting down the session. */
@@ -1692,9 +1738,13 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
         case GTK_RESPONSE_CANCEL:
         case GTK_RESPONSE_NONE:
         case GTK_RESPONSE_DELETE_EVENT:
+                if (action == GSM_LOGOUT_ACTION_LOGOUT
+                    || action == GSM_LOGOUT_ACTION_SHUTDOWN
+                    || action == GSM_LOGOUT_ACTION_REBOOT) {
+                        cancel_end_session (manager);
+                }
                 break;
         case GTK_RESPONSE_ACCEPT:
-                g_object_get (dialog, "action", &action, NULL);
                 g_debug ("GsmManager: doing action %d", action);
                 do_action (manager, action);
                 break;
@@ -1702,9 +1752,6 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
                 g_assert_not_reached ();
                 break;
         }
-
-        gtk_widget_destroy (GTK_WIDGET (dialog));
-        manager->priv->inhibit_dialog = NULL;
 }
 
 static void
@@ -1752,7 +1799,7 @@ request_shutdown (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_SHUTDOWN);
+                                                                GSM_LOGOUT_ACTION_SHUTDOWN);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
@@ -1778,7 +1825,7 @@ request_suspend (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_SLEEP);
+                                                                GSM_LOGOUT_ACTION_SLEEP);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",
@@ -1805,7 +1852,7 @@ request_hibernate (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                       GSM_LOGOUT_ACTION_HIBERNATE);
+                                                                GSM_LOGOUT_ACTION_HIBERNATE);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",

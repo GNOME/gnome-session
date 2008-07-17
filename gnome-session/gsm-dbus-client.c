@@ -54,6 +54,7 @@ enum {
 };
 enum {
         STOP,
+        CANCEL_END_SESSION,
         QUERY_END_SESSION,
         END_SESSION,
         LAST_SIGNAL
@@ -253,6 +254,15 @@ dbus_client_end_session (GsmClient *client,
         g_signal_emit (dbus_client, signals[END_SESSION], 0, flags);
 }
 
+static void
+dbus_client_cancel_end_session (GsmClient *client)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        g_debug ("GsmDBusClient: sending CancelEndSession signal to %s", dbus_client->priv->bus_name);
+        /* FIXME: unicast signal */
+        g_signal_emit (dbus_client, signals[CANCEL_END_SESSION], 0);
+}
+
 static char *
 dbus_client_get_app_name (GsmClient *client)
 {
@@ -369,16 +379,27 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
 
-        client_class->impl_stop              = dbus_client_stop;
-        client_class->impl_query_end_session = dbus_client_query_end_session;
-        client_class->impl_end_session       = dbus_client_end_session;
-        client_class->impl_get_app_name      = dbus_client_get_app_name;
+        client_class->impl_stop               = dbus_client_stop;
+        client_class->impl_query_end_session  = dbus_client_query_end_session;
+        client_class->impl_end_session        = dbus_client_end_session;
+        client_class->impl_cancel_end_session = dbus_client_cancel_end_session;
+        client_class->impl_get_app_name       = dbus_client_get_app_name;
 
         signals [STOP] =
                 g_signal_new ("stop",
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmDBusClientClass, stop),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE,
+                              0);
+        signals [CANCEL_END_SESSION] =
+                g_signal_new ("cancel-end-session",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmDBusClientClass, cancel_end_session),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,

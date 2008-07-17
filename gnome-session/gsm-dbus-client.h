@@ -53,6 +53,7 @@ struct _GsmDBusClientClass
                                             guint       flags);
         void         (*end_session)        (GsmClient  *client,
                                             guint       flags);
+        void         (*cancel_end_session) (GsmClient  *client);
 };
 
 typedef enum

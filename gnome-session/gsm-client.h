@@ -68,6 +68,7 @@ struct _GsmClientClass
                                                    guint      flags);
         void         (*impl_end_session)          (GsmClient *client,
                                                    guint      flags);
+        void         (*impl_cancel_end_session)   (GsmClient *client);
         gboolean     (*impl_stop)                 (GsmClient *client,
                                                    GError   **error);
 };
@@ -89,6 +90,7 @@ void        gsm_client_end_session                (GsmClient  *client,
                                                    guint       flags);
 void        gsm_client_query_end_session          (GsmClient  *client,
                                                    guint       flags);
+void        gsm_client_cancel_end_session         (GsmClient  *client);
 
 gboolean    gsm_client_stop                       (GsmClient  *client,
                                                    GError    **error);

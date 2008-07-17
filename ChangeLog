@@ -1,5 +1,20 @@
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_cancel_end_session):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (dbus_client_cancel_end_session),
+	(gsm_dbus_client_class_init):
+	* gnome-session/gsm-dbus-client.h:
+	* gnome-session/gsm-dbus-client.xml:
+	* gnome-session/gsm-manager.c (_cancel_shutdown_client),
+	(inhibitor_is_jit), (cancel_end_session),
+	(inhibit_dialog_response):
+	* gnome-session/gsm-xsmp-client.c (xsmp_cancel_end_session),
+	(gsm_xsmp_client_class_init), (interact_request_callback):
+	Send cancellation to all clients.  Cancel JIT inhibitors.
+
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-xsmp-client.c (xsmp_shutdown_cancelled),
 	(interact_request_callback), (save_yourself_done_callback):
 	Try to work around some buggy grab behavior in session clients.

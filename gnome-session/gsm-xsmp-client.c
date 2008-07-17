@@ -489,11 +489,11 @@ xsmp_interact (GsmClient *client)
 }
 
 static void
-xsmp_shutdown_cancelled (GsmClient *client)
+xsmp_cancel_end_session (GsmClient *client)
 {
         GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
 
-        g_debug ("GsmXSMPClient: xsmp_shutdown_cancelled ('%s')", xsmp->priv->description);
+        g_debug ("GsmXSMPClient: xsmp_cancel_end_session ('%s')", xsmp->priv->description);
 
         SmsShutdownCancelled (xsmp->priv->conn);
 }
@@ -637,10 +637,11 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
-        client_class->impl_stop              = xsmp_stop;
-        client_class->impl_query_end_session = xsmp_query_end_session;
-        client_class->impl_end_session       = xsmp_end_session;
-        client_class->impl_get_app_name      = xsmp_get_app_name;
+        client_class->impl_stop               = xsmp_stop;
+        client_class->impl_query_end_session  = xsmp_query_end_session;
+        client_class->impl_end_session        = xsmp_end_session;
+        client_class->impl_cancel_end_session = xsmp_cancel_end_session;
+        client_class->impl_get_app_name       = xsmp_get_app_name;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
@@ -840,7 +841,7 @@ interact_request_callback (SmsConn   conn,
            This grabbing is clearly bullshit and is not supported by
            the client spec or protocol spec.
         */
-        xsmp_shutdown_cancelled (GSM_CLIENT (client));
+        xsmp_cancel_end_session (GSM_CLIENT (client));
 }
 
 static void
