@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.4 on Mon Jul  7 10:16:11 2008 -->
+<!--Generated with glade3 3.4.4 on Thu Jul 17 14:48:12 2008 -->
 <glade-interface>
   <widget class="GtkDialog" id="dialog1">
     <property name="border_width">5</property>
@@ -12,36 +12,59 @@
         <property name="visible">True</property>
         <property name="spacing">6</property>
         <child>
-          <widget class="GtkVBox" id="main-box">
+          <widget class="GtkHBox" id="hbox1">
             <property name="visible">True</property>
-            <property name="border_width">6</property>
-            <property name="spacing">6</property>
             <child>
-              <widget class="GtkTreeView" id="inhibitors-treeview">
+              <widget class="GtkVBox" id="main-box">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="headers_visible">False</property>
-                <property name="headers_clickable">False</property>
-                <property name="enable_search">False</property>
-                <property name="show_expanders">False</property>
+                <property name="border_width">6</property>
+                <property name="spacing">6</property>
+                <child>
+                  <widget class="GtkLabel" id="header-label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Some programs are still running:&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                    <property name="wrap">True</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkTreeView" id="inhibitors-treeview">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="headers_visible">False</property>
+                    <property name="headers_clickable">False</property>
+                    <property name="enable_search">False</property>
+                    <property name="show_expanders">False</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="description-label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="yalign">0</property>
+                    <property name="label" translatable="yes">Waiting for program to finish.  Interrupting program may cause you to lose work.</property>
+                    <property name="wrap">True</property>
+                  </widget>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
               </widget>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="description-label">
-                <property name="width_request">300</property>
-                <property name="visible">True</property>
-                <property name="xalign">0</property>
-                <property name="label" translatable="yes">Waiting for program to finish.  Interrupting program may cause you to lose work.</property>
-                <property name="wrap">True</property>
-              </widget>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
             </child>
           </widget>
           <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>

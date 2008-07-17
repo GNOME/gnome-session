@@ -1,5 +1,13 @@
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibit-dialog.c (update_dialog_text),
+	(name_cell_data_func):
+	* gnome-session/gsm-inhibit-dialog.glade:
+	Add back heading to inhibit dialog since it makes more
+	sense when some applications are not busy.
+
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.c (gsm_client_get_app_name):
 	* gnome-session/gsm-client.h:
 	* gnome-session/gsm-dbus-client.c (dbus_client_get_app_name),

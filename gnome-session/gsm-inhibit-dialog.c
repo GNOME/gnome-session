@@ -39,7 +39,7 @@
 
 #define GSM_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBIT_DIALOG, GsmInhibitDialogPrivate))
 
-#define GLADE_XML_FILE "gsm-logout-inhibit-dialog.glade"
+#define GLADE_XML_FILE "gsm-inhibit-dialog.glade"
 
 #ifndef DEFAULT_ICON_SIZE
 #define DEFAULT_ICON_SIZE 64
@@ -103,7 +103,7 @@ on_response (GsmInhibitDialog *dialog,
 
 static void
 gsm_inhibit_dialog_set_action (GsmInhibitDialog *dialog,
-                                      int                     action)
+                               int               action)
 {
         dialog->priv->action = action;
 }
@@ -344,14 +344,25 @@ static void
 update_dialog_text (GsmInhibitDialog *dialog)
 {
         const char *description_text;
+        const char *header_text;
         GtkWidget  *widget;
 
         if (model_has_one_entry (GTK_TREE_MODEL (dialog->priv->list_store))) {
                 g_debug ("Found one entry in model");
+                header_text = _("A program is still running:");
                 description_text = _("Waiting for program to finish.  Interrupting program may cause you to lose work.");
         } else {
                 g_debug ("Found multiple entries in model");
+                header_text = _("Some programs are still running:");
                 description_text = _("Waiting for programs to finish.  Interrupting these programs may cause you to lose work.");
+        }
+
+        widget = glade_xml_get_widget (dialog->priv->xml, "header-label");
+        if (widget != NULL) {
+                char *markup;
+                markup = g_strdup_printf ("<b>%s</b>", header_text);
+                gtk_label_set_markup (GTK_LABEL (widget), markup);
+                g_free (markup);
         }
 
         widget = glade_xml_get_widget (dialog->priv->xml, "description-label");
@@ -402,8 +413,8 @@ on_store_inhibitor_removed (GsmInhibitorStore      *store,
 }
 
 static void
-gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
-                                               GsmInhibitorStore      *store)
+gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog  *dialog,
+                                        GsmInhibitorStore *store)
 {
         g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
 
@@ -441,9 +452,9 @@ gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
 
 static void
 gsm_inhibit_dialog_set_property (GObject        *object,
-                                        guint           prop_id,
-                                        const GValue   *value,
-                                        GParamSpec     *pspec)
+                                 guint           prop_id,
+                                 const GValue   *value,
+                                 GParamSpec     *pspec)
 {
         GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (object);
 
@@ -500,8 +511,8 @@ name_cell_data_func (GtkTreeViewColumn      *tree_column,
                             INHIBIT_REASON_COLUMN, &reason,
                             -1);
 
-        markup = g_strdup_printf ("<b>%s</b> is busy\n"
-                                  "<i><span size=\"x-small\">%s</span></i>",
+        markup = g_strdup_printf ("<b>%s</b>\n"
+                                  "<span size=\"small\">%s</span>",
                                   name ? name : "(null)",
                                   reason ? reason : "(null)");
 
