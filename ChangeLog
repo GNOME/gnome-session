@@ -1,5 +1,16 @@
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_new_for_client):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (_debug_inhibitor),
+	(debug_inhibitors), (inhibitor_has_bus_name),
+	(remove_inhibitors_for_connection),
+	(on_client_end_session_response), (on_query_end_session_timeout):
+	Also clear JIT inhibitors from DBus clients when they leave the
+	bus.
+
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.c (gsm_client_cancel_end_session):
 	* gnome-session/gsm-client.h:
 	* gnome-session/gsm-dbus-client.c (dbus_client_cancel_end_session),

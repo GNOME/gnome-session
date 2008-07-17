@@ -183,6 +183,27 @@ debug_clients (GsmManager *manager)
 }
 
 static gboolean
+_debug_inhibitor (const char    *id,
+                  GsmInhibitor  *inhibitor,
+                  GsmManager    *manager)
+{
+        g_debug ("GsmManager: Inhibitor app:%s client:%s bus-name:%s reason:%s",
+                 gsm_inhibitor_get_app_id (inhibitor),
+                 gsm_inhibitor_get_client_id (inhibitor),
+                 gsm_inhibitor_get_bus_name (inhibitor),
+                 gsm_inhibitor_get_reason (inhibitor));
+        return FALSE;
+}
+
+static void
+debug_inhibitors (GsmManager *manager)
+{
+        gsm_inhibitor_store_foreach (manager->priv->inhibitors,
+                                     (GsmInhibitorStoreFunc)_debug_inhibitor,
+                                     manager);
+}
+
+static gboolean
 _find_by_startup_id (const char *id,
                      GsmClient  *client,
                      const char *startup_id_a)
@@ -517,9 +538,9 @@ remove_clients_for_connection (GsmManager *manager,
 }
 
 static gboolean
-inhibitor_has_bus_name (gpointer      key,
-                        GsmInhibitor *inhibitor,
-                        const char   *bus_name_a)
+inhibitor_has_bus_name (gpointer          key,
+                        GsmInhibitor     *inhibitor,
+                        RemoveClientData *data)
 {
         gboolean    matches;
         const char *bus_name_b;
@@ -527,8 +548,8 @@ inhibitor_has_bus_name (gpointer      key,
         bus_name_b = gsm_inhibitor_get_bus_name (inhibitor);
 
         matches = FALSE;
-        if (bus_name_a != NULL && bus_name_b != NULL) {
-                matches = (strcmp (bus_name_a, bus_name_b) == 0);
+        if (data->service_name != NULL && bus_name_b != NULL) {
+                matches = (strcmp (data->service_name, bus_name_b) == 0);
                 if (matches) {
                         g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
                                  gsm_inhibitor_get_app_id (inhibitor),
@@ -537,8 +558,6 @@ inhibitor_has_bus_name (gpointer      key,
                 }
         }
 
-        /* FIXME: also look for inhibitors from client with dbus name */
-
         return matches;
 }
 
@@ -546,11 +565,17 @@ static void
 remove_inhibitors_for_connection (GsmManager *manager,
                                   const char *service_name)
 {
-        guint n_removed;
+        guint            n_removed;
+        RemoveClientData data;
+
+        data.service_name = service_name;
+        data.manager = manager;
+
+        debug_inhibitors (manager);
 
         n_removed = gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
                                                         (GsmInhibitorStoreFunc)inhibitor_has_bus_name,
-                                                        (gpointer)service_name);
+                                                        &data);
 }
 
 static gboolean
@@ -844,10 +869,16 @@ on_client_end_session_response (GsmClient  *client,
                 guint         cookie;
                 GsmInhibitor *inhibitor;
                 const char   *app_id;
+                const char   *bus_name;
 
                 /* FIXME: do we support updating the reason? */
 
                 /* Create JIT inhibit */
+                if (GSM_IS_DBUS_CLIENT (client)) {
+                        bus_name = gsm_dbus_client_get_bus_name (GSM_DBUS_CLIENT (client));
+                } else {
+                        bus_name = NULL;
+                }
 
                 app_id = gsm_client_get_app_id (client);
                 if (app_id == NULL || app_id[0] == '\0') {
@@ -860,6 +891,7 @@ on_client_end_session_response (GsmClient  *client,
                                                           app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           reason,
+                                                          bus_name,
                                                           cookie);
                 gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
                 g_object_unref (inhibitor);
@@ -1914,17 +1946,24 @@ on_query_end_session_timeout (GsmManager *manager)
         for (l = manager->priv->query_clients; l != NULL; l = l->next) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
+                const char   *bus_name;
 
                 g_warning ("Client '%s' failed to reply before timeout",
                            gsm_client_get_id (l->data));
 
                 /* Add JIT inhibit for unresponsive client */
+                if (GSM_IS_DBUS_CLIENT (l->data)) {
+                        bus_name = gsm_dbus_client_get_bus_name (l->data);
+                } else {
+                        bus_name = NULL;
+                }
 
                 cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
                                                           gsm_client_get_app_id (l->data),
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           _("Not responding"),
+                                                          bus_name,
                                                           cookie);
                 gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
                 g_object_unref (inhibitor);

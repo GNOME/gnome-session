@@ -399,6 +399,7 @@ gsm_inhibitor_new_for_client (const char    *client_id,
                               const char    *app_id,
                               guint          flags,
                               const char    *reason,
+                              const char    *bus_name,
                               guint          cookie)
 {
         GsmInhibitor *inhibitor;
@@ -407,6 +408,7 @@ gsm_inhibitor_new_for_client (const char    *client_id,
                                   "client-id", client_id,
                                   "app-id", app_id,
                                   "reason", reason,
+                                  "bus-name", bus_name,
                                   "flags", flags,
                                   "cookie", cookie,
                                   NULL);
