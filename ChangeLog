@@ -1,5 +1,11 @@
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-xsmp-client.c (xsmp_shutdown_cancelled),
+	(interact_request_callback), (save_yourself_done_callback):
+	Try to work around some buggy grab behavior in session clients.
+
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-inhibit-dialog.c (update_dialog_text),
 	(name_cell_data_func):
 	* gnome-session/gsm-inhibit-dialog.glade:

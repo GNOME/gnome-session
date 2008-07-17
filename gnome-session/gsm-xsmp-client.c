@@ -488,6 +488,16 @@ xsmp_interact (GsmClient *client)
         SmsInteract (xsmp->priv->conn);
 }
 
+static void
+xsmp_shutdown_cancelled (GsmClient *client)
+{
+        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
+
+        g_debug ("GsmXSMPClient: xsmp_shutdown_cancelled ('%s')", xsmp->priv->description);
+
+        SmsShutdownCancelled (xsmp->priv->conn);
+}
+
 static gboolean
 xsmp_stop (GsmClient *client,
            GError   **error)
@@ -825,7 +835,12 @@ interact_request_callback (SmsConn   conn,
                                          _("This program is blocking log out."));
 
         /* Can't just call back with Interact because session client
-           grabs keyboard in that case! */
+           grabs the keyboard!  So, we try to get it to release
+           grabs by telling it we've cancelled the shutdown.
+           This grabbing is clearly bullshit and is not supported by
+           the client spec or protocol spec.
+        */
+        xsmp_shutdown_cancelled (GSM_CLIENT (client));
 }
 
 static void
@@ -862,9 +877,15 @@ save_yourself_done_callback (SmsConn   conn,
                 client->priv->current_save_yourself = -1;
         }
 
-        gdm_client_end_session_response (GSM_CLIENT (client),
-                                         TRUE,
-                                         NULL);
+        /* If success is false then the application still has
+           unsafe data.  We may also have tricked it into sending
+           us this message when we faked the ShutdownCancel to
+           break its grabs. */
+        if (success) {
+                gdm_client_end_session_response (GSM_CLIENT (client),
+                                                 TRUE,
+                                                 NULL);
+        }
 
         if (client->priv->next_save_yourself) {
                 int save_type = client->priv->next_save_yourself;
