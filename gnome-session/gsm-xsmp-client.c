@@ -29,6 +29,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <glib/gi18n.h>
+
 #include "gsm-xsmp-client.h"
 #include "gsm-marshal.h"
 
@@ -62,12 +64,6 @@ enum {
 enum {
         REGISTER_REQUEST,
         LOGOUT_REQUEST,
-        SAVED_STATE,
-        REQUEST_PHASE2,
-        REQUEST_INTERACTION,
-        INTERACTION_DONE,
-        SAVE_YOURSELF_DONE,
-        DISCONNECTED,
         LAST_SIGNAL
 };
 
@@ -419,22 +415,6 @@ xsmp_get_autorestart (GsmClient *client)
         return ((unsigned char *)prop->vals[0].value)[0] == SmRestartImmediately;
 }
 
-static gboolean
-xsmp_restart (GsmClient *client,
-              GError   **error)
-{
-        char    *restart_cmd;
-        gboolean res;
-
-        restart_cmd = xsmp_get_restart_command (client);
-
-        res = g_spawn_command_line_async (restart_cmd, error);
-
-        g_free (restart_cmd);
-
-        return res;
-}
-
 static void
 do_save_yourself (GsmXSMPClient *client,
                   int            save_type)
@@ -506,17 +486,6 @@ xsmp_interact (GsmClient *client)
         g_debug ("GsmXSMPClient: xsmp_interact ('%s')", xsmp->priv->description);
 
         SmsInteract (xsmp->priv->conn);
-}
-
-
-static void
-xsmp_shutdown_cancelled (GsmClient *client)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        g_debug ("GsmXSMPClient: xsmp_shutdown_cancelled ('%s')", xsmp->priv->description);
-
-        SmsShutdownCancelled (xsmp->priv->conn);
 }
 
 static gboolean
@@ -671,56 +640,6 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
                               G_TYPE_NONE,
                               1, G_TYPE_BOOLEAN);
 
-        signals[SAVED_STATE] =
-                g_signal_new ("saved_state",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmXSMPClientClass, saved_state),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-
-        signals[REQUEST_PHASE2] =
-                g_signal_new ("request_phase2",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmXSMPClientClass, request_phase2),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-
-        signals[REQUEST_INTERACTION] =
-                g_signal_new ("request_interaction",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmXSMPClientClass, request_interaction),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-
-        signals[INTERACTION_DONE] =
-                g_signal_new ("interaction_done",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmXSMPClientClass, interaction_done),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
-                              G_TYPE_NONE,
-                              1, G_TYPE_BOOLEAN);
-
-        signals[SAVE_YOURSELF_DONE] =
-                g_signal_new ("save_yourself_done",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmXSMPClientClass, save_yourself_done),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-
         g_object_class_install_property (object_class,
                                          PROP_ICE_CONNECTION,
                                          g_param_spec_pointer ("ice-connection",
@@ -871,17 +790,10 @@ save_yourself_phase2_request_callback (SmsConn   conn,
 {
         GsmXSMPClient *client = manager_data;
 
-        g_debug ("Client '%s' received SaveYourselfPhase2Request",
+        g_debug ("GsmXSMPClient: Client '%s' received SaveYourselfPhase2Request",
                  client->priv->description);
 
-        if (client->priv->current_save_yourself == SmSaveLocal) {
-                /* WTF? Anyway, if it's checkpointing, it doesn't have to wait
-                 * for anyone else.
-                 */
-                SmsSaveYourselfPhase2 (client->priv->conn);
-        } else {
-                g_signal_emit (client, signals[REQUEST_PHASE2], 0);
-        }
+        /* FIXME: change priority so this client runs at the end */
 }
 
 static void
@@ -891,11 +803,15 @@ interact_request_callback (SmsConn   conn,
 {
         GsmXSMPClient *client = manager_data;
 
-        g_debug ("Client '%s' received InteractRequest(%s)",
+        g_debug ("GsmXSMPClient: Client '%s' received InteractRequest(%s)",
                  client->priv->description,
                  dialog_type == SmInteractStyleAny ? "Any" : "Errors");
 
-        g_signal_emit (client, signals[REQUEST_INTERACTION], 0);
+        gdm_client_end_session_response (GSM_CLIENT (client),
+                                         FALSE,
+                                         _("Requesting user input"));
+
+        xsmp_interact (GSM_CLIENT (client));
 }
 
 static void
@@ -905,11 +821,13 @@ interact_done_callback (SmsConn   conn,
 {
         GsmXSMPClient *client = manager_data;
 
-        g_debug ("Client '%s' received InteractDone(cancel_shutdown = %s)",
+        g_debug ("GsmXSMPClient: Client '%s' received InteractDone(cancel_shutdown = %s)",
                  client->priv->description,
                  cancel_shutdown ? "True" : "False");
 
-        g_signal_emit (client, signals[INTERACTION_DONE], 0, cancel_shutdown);
+        gdm_client_end_session_response (GSM_CLIENT (client),
+                                         TRUE,
+                                         NULL);
 }
 
 static void
@@ -919,18 +837,20 @@ save_yourself_done_callback (SmsConn   conn,
 {
         GsmXSMPClient *client = manager_data;
 
-        g_debug ("Client '%s' received SaveYourselfDone(success = %s)",
+        g_debug ("GsmXSMPClient: Client '%s' received SaveYourselfDone(success = %s)",
                  client->priv->description,
                  success ? "True" : "False");
 
         if (client->priv->current_save_yourself == SmSaveLocal) {
                 client->priv->current_save_yourself = -1;
                 SmsSaveComplete (client->priv->conn);
-                g_signal_emit (client, signals[SAVED_STATE], 0);
         } else {
                 client->priv->current_save_yourself = -1;
-                g_signal_emit (client, signals[SAVE_YOURSELF_DONE], 0);
         }
+
+        gdm_client_end_session_response (GSM_CLIENT (client),
+                                         TRUE,
+                                         NULL);
 
         if (client->priv->next_save_yourself) {
                 int save_type = client->priv->next_save_yourself;
@@ -949,9 +869,9 @@ close_connection_callback (SmsConn     conn,
         GsmXSMPClient *client = manager_data;
         int            i;
 
-        g_debug ("Client '%s' received CloseConnection", client->priv->description);
+        g_debug ("GsmXSMPClient: Client '%s' received CloseConnection", client->priv->description);
         for (i = 0; i < count; i++) {
-                g_debug (" close reason: '%s'", reason_msgs[i]);
+                g_debug ("GsmXSMPClient:  close reason: '%s'", reason_msgs[i]);
         }
         SmFreeReasons (count, reason_msgs);
 
@@ -971,7 +891,7 @@ gsm_xsmp_client_connect (GsmXSMPClient *client,
                 client->priv->protocol_timeout = 0;
         }
 
-        g_debug ("Initializing client %s", client->priv->description);
+        g_debug ("GsmXSMPClient: Initializing client %s", client->priv->description);
 
         *mask_ret = 0;
 

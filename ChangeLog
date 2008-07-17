@@ -1,3 +1,16 @@
+2008-07-17  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-manager.c (on_xsmp_client_register_request),
+	(inhibitor_has_client_id), (generate_cookie),
+	(_generate_unique_cookie), (on_client_end_session_response),
+	(on_store_client_added), (gsm_manager_register_client):
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_class_init),
+	(save_yourself_phase2_request_callback),
+	(interact_request_callback), (interact_done_callback),
+	(save_yourself_done_callback), (close_connection_callback),
+	(gsm_xsmp_client_connect):
+	Start hooking up XSMP bit of query-end-session.
+
 2008-07-16  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-dbus-client.c (dbus_client_query_end_session),

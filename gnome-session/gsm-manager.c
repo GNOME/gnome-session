@@ -757,18 +757,6 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 
         g_debug ("GsmManager: Adding new client %s to session", new_id);
 
-#if 0
-        g_signal_connect (client, "saved_state",
-                          G_CALLBACK (client_saved_state), session);
-        g_signal_connect (client, "request_phase2",
-                          G_CALLBACK (client_request_phase2), session);
-        g_signal_connect (client, "request_interaction",
-                          G_CALLBACK (client_request_interaction), session);
-        g_signal_connect (client, "interaction_done",
-                          G_CALLBACK (client_interaction_done), session);
-        g_signal_connect (client, "save_yourself_done",
-                          G_CALLBACK (client_save_yourself_done), session);
-#endif
         g_signal_connect (client,
                           "disconnected",
                           G_CALLBACK (on_client_disconnected),
@@ -797,6 +785,82 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         return handled;
 }
 
+static gboolean
+inhibitor_has_client_id (gpointer      key,
+                         GsmInhibitor *inhibitor,
+                         const char   *client_id_a)
+{
+        gboolean    matches;
+        const char *client_id_b;
+
+        client_id_b = gsm_inhibitor_get_client_id (inhibitor);
+
+        matches = FALSE;
+        if (client_id_a != NULL && client_id_b != NULL) {
+                matches = (strcmp (client_id_a, client_id_b) == 0);
+                if (matches) {
+                        g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
+                                 gsm_inhibitor_get_client_id (inhibitor),
+                                 gsm_inhibitor_get_reason (inhibitor));
+                }
+        }
+
+        return matches;
+}
+
+static guint32
+generate_cookie (void)
+{
+        guint32 cookie;
+
+        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
+
+        return cookie;
+}
+
+static guint32
+_generate_unique_cookie (GsmManager *manager)
+{
+        guint32 cookie;
+
+        do {
+                cookie = generate_cookie ();
+        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
+
+        return cookie;
+}
+
+static void
+on_client_end_session_response (GsmClient  *client,
+                                gboolean    is_ok,
+                                const char *reason,
+                                GsmManager *manager)
+{
+        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason);
+
+        manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
+
+        if (! is_ok) {
+                guint         cookie;
+                GsmInhibitor *inhibitor;
+
+                /* FIXME: do we support updating the reason? */
+
+                cookie = _generate_unique_cookie (manager);
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
+                                                          gsm_client_get_app_id (client),
+                                                          GSM_INHIBITOR_FLAG_LOGOUT,
+                                                          reason,
+                                                          cookie);
+                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                g_object_unref (inhibitor);
+        } else {
+                gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
+                                                    (GsmInhibitorStoreFunc)inhibitor_has_client_id,
+                                                    (gpointer)gsm_client_get_id (client));
+        }
+}
+
 static void
 on_store_client_added (GsmClientStore *store,
                        const char     *id,
@@ -815,6 +879,11 @@ on_store_client_added (GsmClientStore *store,
                                   G_CALLBACK (on_xsmp_client_register_request),
                                   manager);
         }
+
+        g_signal_connect (client,
+                          "end-session-response",
+                          G_CALLBACK (on_client_end_session_response),
+                          manager);
 
         /* FIXME: disconnect signal handler */
 }
@@ -1776,81 +1845,6 @@ query_end_session_complete (GsmManager *manager)
 
 }
 
-static gboolean
-inhibitor_has_client_id (gpointer      key,
-                         GsmInhibitor *inhibitor,
-                         const char   *client_id_a)
-{
-        gboolean    matches;
-        const char *client_id_b;
-
-        client_id_b = gsm_inhibitor_get_client_id (inhibitor);
-
-        matches = FALSE;
-        if (client_id_a != NULL && client_id_b != NULL) {
-                matches = (strcmp (client_id_a, client_id_b) == 0);
-                if (matches) {
-                        g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
-                                 gsm_inhibitor_get_client_id (inhibitor),
-                                 gsm_inhibitor_get_reason (inhibitor));
-                }
-        }
-
-        return matches;
-}
-
-static guint32
-generate_cookie (void)
-{
-        guint32 cookie;
-
-        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
-
-        return cookie;
-}
-
-static guint32
-_generate_unique_cookie (GsmManager *manager)
-{
-        guint32 cookie;
-
-        do {
-                cookie = generate_cookie ();
-        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
-
-        return cookie;
-}
-
-static void
-on_client_end_session_response (GsmClient  *client,
-                                gboolean    is_ok,
-                                const char *reason,
-                                GsmManager *manager)
-{
-        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason);
-
-        manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
-
-        if (! is_ok) {
-                guint         cookie;
-                GsmInhibitor *inhibitor;
-
-                /* FIXME: do we support updating the reason? */
-
-                cookie = _generate_unique_cookie (manager);
-                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
-                                                          gsm_client_get_app_id (client),
-                                                          GSM_INHIBITOR_FLAG_LOGOUT,
-                                                          reason,
-                                                          cookie);
-                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
-                g_object_unref (inhibitor);
-        } else {
-                gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
-                                                    (GsmInhibitorStoreFunc)inhibitor_has_client_id,
-                                                    (gpointer)gsm_client_get_id (client));
-        }
-}
 
 static gboolean
 on_query_end_session_timeout (GsmManager *manager)
@@ -2244,11 +2238,6 @@ gsm_manager_register_client (GsmManager            *manager,
         }
 
         gsm_client_store_add (manager->priv->store, client);
-
-        g_signal_connect (client,
-                          "end-session-response",
-                          G_CALLBACK (on_client_end_session_response),
-                          manager);
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_get_id (app));
