@@ -332,6 +332,14 @@ gsm_client_get_app_name (GsmClient *client)
         return GSM_CLIENT_GET_CLASS (client)->impl_get_app_name (client);
 }
 
+GsmClientRestartStyle
+gsm_client_get_restart_style_hint (GsmClient *client)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
+
+        return GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
+}
+
 void
 gsm_client_cancel_end_session (GsmClient *client)
 {

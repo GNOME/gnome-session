@@ -980,11 +980,13 @@ static void
 disconnect_client (GsmManager *manager,
                    GsmClient  *client)
 {
-        gboolean    is_condition_client;
-        GsmApp     *app;
-        GError     *error;
-        gboolean    res;
-        const char *app_id;
+        gboolean              is_condition_client;
+        GsmApp               *app;
+        GError               *error;
+        gboolean              res;
+        const char           *app_id;
+        gboolean              app_restart;
+        GsmClientRestartStyle client_restart_hint;
 
         g_debug ("GsmManager: disconnect client");
 
@@ -1018,7 +1020,12 @@ disconnect_client (GsmManager *manager,
                 goto out;
         }
 
-        if (! gsm_app_get_autorestart (app)) {
+        app_restart = gsm_app_get_autorestart (app);
+        client_restart_hint = gsm_client_get_restart_style_hint (client);
+
+        /* allow legacy clients to override the app info */
+        if (! gsm_app_get_autorestart (app)
+            && client_restart_hint != GSM_CLIENT_RESTART_IMMEDIATELY) {
                 g_debug ("GsmManager: autorestart not set, not restarting application");
                 goto out;
         }

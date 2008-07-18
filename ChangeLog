@@ -1,5 +1,16 @@
 2008-07-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_get_restart_style_hint):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c
+	(dbus_client_get_restart_style_hint), (gsm_dbus_client_class_init):
+	* gnome-session/gsm-manager.c (disconnect_client):
+	* gnome-session/gsm-xsmp-client.c (xsmp_get_restart_style_hint),
+	(gsm_xsmp_client_class_init):
+	Add support for legacy restart style hints from clients.
+
+2008-07-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.h:
 	* gnome-session/gsm-manager.c (phase_num_to_name), (end_phase),
 	(on_phase_timeout), (do_phase_startup), (_client_end_session),

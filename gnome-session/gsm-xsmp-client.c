@@ -401,20 +401,6 @@ xsmp_get_discard_command (GsmClient *client)
         return prop_to_command (prop);
 }
 
-static gboolean
-xsmp_get_autorestart (GsmClient *client)
-{
-        SmProp *prop;
-
-        prop = find_property (GSM_XSMP_CLIENT (client), SmRestartStyleHint, NULL);
-
-        if (!prop || strcmp (prop->type, SmCARD8) != 0) {
-                return FALSE;
-        }
-
-        return ((unsigned char *)prop->vals[0].value)[0] == SmRestartImmediately;
-}
-
 static void
 do_save_yourself (GsmXSMPClient *client,
                   int            save_type,
@@ -628,6 +614,40 @@ _boolean_handled_accumulator (GSignalInvocationHint *ihint,
         return continue_emission;
 }
 
+static GsmClientRestartStyle
+xsmp_get_restart_style_hint (GsmClient *client)
+{
+        SmProp               *prop;
+        GsmClientRestartStyle hint;
+
+        g_debug ("GsmXSMPClient: getting restart style");
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmRestartStyleHint, NULL);
+
+        if (!prop || strcmp (prop->type, SmCARD8) != 0) {
+                return GSM_CLIENT_RESTART_NEVER;
+        }
+
+        switch (((unsigned char *)prop->vals[0].value)[0]) {
+        case SmRestartIfRunning:
+                hint = GSM_CLIENT_RESTART_IF_RUNNING;
+                break;
+        case SmRestartAnyway:
+                hint = GSM_CLIENT_RESTART_ANYWAY;
+                break;
+        case SmRestartImmediately:
+                hint = GSM_CLIENT_RESTART_IMMEDIATELY;
+                break;
+        case SmRestartNever:
+                hint = GSM_CLIENT_RESTART_NEVER;
+                break;
+        default:
+                break;
+        }
+
+        return hint;
+}
+
 static void
 gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
 {
@@ -639,11 +659,12 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
-        client_class->impl_stop               = xsmp_stop;
-        client_class->impl_query_end_session  = xsmp_query_end_session;
-        client_class->impl_end_session        = xsmp_end_session;
-        client_class->impl_cancel_end_session = xsmp_cancel_end_session;
-        client_class->impl_get_app_name       = xsmp_get_app_name;
+        client_class->impl_stop                   = xsmp_stop;
+        client_class->impl_query_end_session      = xsmp_query_end_session;
+        client_class->impl_end_session            = xsmp_end_session;
+        client_class->impl_cancel_end_session     = xsmp_cancel_end_session;
+        client_class->impl_get_app_name           = xsmp_get_app_name;
+        client_class->impl_get_restart_style_hint = xsmp_get_restart_style_hint;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",

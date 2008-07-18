@@ -45,7 +45,8 @@
 
 struct GsmDBusClientPrivate
 {
-        char *bus_name;
+        char                 *bus_name;
+        GsmClientRestartStyle restart_style_hint;
 };
 
 enum {
@@ -270,6 +271,12 @@ dbus_client_get_app_name (GsmClient *client)
         return NULL;
 }
 
+static GsmClientRestartStyle
+dbus_client_get_restart_style_hint (GsmClient *client)
+{
+        return (GSM_DBUS_CLIENT (client)->priv->restart_style_hint);
+}
+
 #if 0
 static void
 dbus_client_query_end_session (GsmClient *client,
@@ -379,11 +386,12 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
 
-        client_class->impl_stop               = dbus_client_stop;
-        client_class->impl_query_end_session  = dbus_client_query_end_session;
-        client_class->impl_end_session        = dbus_client_end_session;
-        client_class->impl_cancel_end_session = dbus_client_cancel_end_session;
-        client_class->impl_get_app_name       = dbus_client_get_app_name;
+        client_class->impl_stop                   = dbus_client_stop;
+        client_class->impl_query_end_session      = dbus_client_query_end_session;
+        client_class->impl_end_session            = dbus_client_end_session;
+        client_class->impl_cancel_end_session     = dbus_client_cancel_end_session;
+        client_class->impl_get_app_name           = dbus_client_get_app_name;
+        client_class->impl_get_restart_style_hint = dbus_client_get_restart_style_hint;
 
         signals [STOP] =
                 g_signal_new ("stop",

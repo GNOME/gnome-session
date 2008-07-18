@@ -47,6 +47,13 @@ typedef enum {
 } GsmClientStatus;
 
 typedef enum {
+        GSM_CLIENT_RESTART_NEVER = 0,
+        GSM_CLIENT_RESTART_IF_RUNNING,
+        GSM_CLIENT_RESTART_ANYWAY,
+        GSM_CLIENT_RESTART_IMMEDIATELY,
+} GsmClientRestartStyle;
+
+typedef enum {
         GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
 } GsmClientEndSessionFlag;
 
@@ -67,45 +74,47 @@ struct _GsmClientClass
                                                     const char *reason);
 
         /* virtual methods */
-        char *       (*impl_get_app_name)         (GsmClient *client);
-        void         (*impl_query_end_session)    (GsmClient *client,
-                                                   guint      flags);
-        void         (*impl_end_session)          (GsmClient *client,
-                                                   guint      flags);
-        void         (*impl_cancel_end_session)   (GsmClient *client);
-        gboolean     (*impl_stop)                 (GsmClient *client,
-                                                   GError   **error);
+        char *                (*impl_get_app_name)           (GsmClient *client);
+        GsmClientRestartStyle (*impl_get_restart_style_hint) (GsmClient *client);
+        void                  (*impl_query_end_session)      (GsmClient *client,
+                                                              guint      flags);
+        void                  (*impl_end_session)            (GsmClient *client,
+                                                              guint      flags);
+        void                  (*impl_cancel_end_session)     (GsmClient *client);
+        gboolean              (*impl_stop)                   (GsmClient *client,
+                                                              GError   **error);
 };
 
 GType       gsm_client_get_type                   (void) G_GNUC_CONST;
 
-const char *gsm_client_get_id                     (GsmClient  *client);
-const char *gsm_client_get_startup_id             (GsmClient  *client);
-const char *gsm_client_get_app_id                 (GsmClient  *client);
-char       *gsm_client_get_app_name               (GsmClient  *client);
+const char           *gsm_client_get_id                     (GsmClient  *client);
+const char           *gsm_client_get_startup_id             (GsmClient  *client);
+const char           *gsm_client_get_app_id                 (GsmClient  *client);
+char                 *gsm_client_get_app_name               (GsmClient  *client);
+GsmClientRestartStyle gsm_client_get_restart_style_hint     (GsmClient  *client);
 
-void        gsm_client_set_app_id                 (GsmClient  *client,
-                                                   const char *app_id);
-int         gsm_client_get_status                 (GsmClient  *client);
-void        gsm_client_set_status                 (GsmClient  *client,
-                                                   int         status);
+void                  gsm_client_set_app_id                 (GsmClient  *client,
+                                                             const char *app_id);
+int                   gsm_client_get_status                 (GsmClient  *client);
+void                  gsm_client_set_status                 (GsmClient  *client,
+                                                             int         status);
 
-void        gsm_client_end_session                (GsmClient  *client,
-                                                   guint       flags);
-void        gsm_client_query_end_session          (GsmClient  *client,
-                                                   guint       flags);
-void        gsm_client_cancel_end_session         (GsmClient  *client);
+void                  gsm_client_end_session                (GsmClient  *client,
+                                                             guint       flags);
+void                  gsm_client_query_end_session          (GsmClient  *client,
+                                                             guint       flags);
+void                  gsm_client_cancel_end_session         (GsmClient  *client);
 
-gboolean    gsm_client_stop                       (GsmClient  *client,
-                                                   GError    **error);
+gboolean              gsm_client_stop                       (GsmClient  *client,
+                                                             GError    **error);
 
-void        gsm_client_disconnected               (GsmClient  *client);
+void                  gsm_client_disconnected               (GsmClient  *client);
 
 /* private */
 
-void        gdm_client_end_session_response       (GsmClient  *client,
-                                                   gboolean    is_ok,
-                                                   const char *reason);
+void                  gdm_client_end_session_response       (GsmClient  *client,
+                                                             gboolean    is_ok,
+                                                             const char *reason);
 
 G_END_DECLS
 
