@@ -46,6 +46,10 @@ typedef enum {
         GSM_CLIENT_FAILED,
 } GsmClientStatus;
 
+typedef enum {
+        GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
+} GsmClientEndSessionFlag;
+
 struct _GsmClient
 {
         GObject           parent;

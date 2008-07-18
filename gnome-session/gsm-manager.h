@@ -77,7 +77,9 @@ typedef enum {
         /* done launching */
         GSM_MANAGER_PHASE_RUNNING,
         /* shutting down */
-        GSM_MANAGER_PHASE_SHUTDOWN
+        GSM_MANAGER_PHASE_QUERY_END_SESSION,
+        GSM_MANAGER_PHASE_END_SESSION,
+        GSM_MANAGER_PHASE_EXIT
 } GsmManagerPhase;
 
 typedef enum

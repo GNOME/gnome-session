@@ -1,3 +1,35 @@
+2008-07-18  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-manager.c (phase_num_to_name), (end_phase),
+	(on_phase_timeout), (do_phase_startup), (_client_end_session),
+	(do_phase_end_session), (_client_query_end_session),
+	(inhibitor_has_flag), (gsm_manager_is_logout_inhibited),
+	(_client_cancel_end_session), (inhibitor_is_jit),
+	(cancel_end_session), (manager_switch_user), (do_attempt_reboot),
+	(do_attempt_shutdown), (manager_attempt_reboot),
+	(manager_attempt_shutdown), (manager_attempt_hibernate),
+	(manager_attempt_suspend), (do_dialog_action),
+	(inhibit_dialog_response), (query_end_session_complete),
+	(generate_cookie), (_generate_unique_cookie),
+	(on_query_end_session_timeout), (do_phase_query_end_session),
+	(start_phase), (gsm_manager_start), (find_app_for_app_id),
+	(disconnect_client), (_disconnect_dbus_client),
+	(remove_clients_for_connection), (inhibitor_has_bus_name),
+	(remove_inhibitors_for_connection), (_app_has_startup_id),
+	(on_xsmp_client_register_request),
+	(on_client_end_session_response), (gsm_manager_setenv),
+	(gsm_manager_initialization_error), (request_logout),
+	(logout_dialog_response), (show_shutdown_dialog),
+	(show_logout_dialog), (user_logout), (gsm_manager_logout),
+	(gsm_manager_register_client):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-xsmp-client.c (do_save_yourself),
+	(xsmp_query_end_session), (xsmp_end_session),
+	(save_yourself_request_callback), (save_yourself_done_callback):
+	Add a forceful shutdown path.  Make shutdown path use
+	same state machine as phases.
+
 2008-07-17  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_new_for_client):

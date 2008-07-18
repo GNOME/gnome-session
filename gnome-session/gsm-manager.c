@@ -87,6 +87,9 @@ struct GsmManagerPrivate
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
         GSList                 *pending_apps;
+        gboolean                forceful;
+        GSList                 *query_clients;
+        guint                   query_timeout_id;
 
         GtkWidget              *inhibit_dialog;
 
@@ -94,9 +97,6 @@ struct GsmManagerPrivate
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
 
-        guint                   query_timeout_id;
-        GSList                 *query_clients;
-        GSList                 *busy_clients;
 
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
@@ -261,24 +261,89 @@ app_condition_changed (GsmApp     *app,
         }
 }
 
+static const char *
+phase_num_to_name (guint phase)
+{
+        const char *name;
+
+        switch (phase) {
+        case GSM_MANAGER_PHASE_STARTUP:
+                name = "STARTUP";
+        case GSM_MANAGER_PHASE_INITIALIZATION:
+                name = "INITIALIZATION";
+        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
+                name = "WINDOW_MANAGER";
+        case GSM_MANAGER_PHASE_PANEL:
+                name = "PANEL";
+        case GSM_MANAGER_PHASE_DESKTOP:
+                name = "DESKTOP";
+        case GSM_MANAGER_PHASE_APPLICATION:
+                name = "APPLICATION";
+                break;
+        case GSM_MANAGER_PHASE_RUNNING:
+                name = "RUNNING";
+                break;
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                name = "QUERY_END_SESSION";
+                break;
+        case GSM_MANAGER_PHASE_END_SESSION:
+                name = "END_SESSION";
+                break;
+        case GSM_MANAGER_PHASE_EXIT:
+                name = "EXIT";
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+
+        return name;
+}
+
 static void start_phase (GsmManager *manager);
 
 static void
 end_phase (GsmManager *manager)
 {
+        g_debug ("GsmManager: ending phase %s\n",
+                 phase_num_to_name (manager->priv->phase));
+
         g_slist_free (manager->priv->pending_apps);
         manager->priv->pending_apps = NULL;
 
-        g_debug ("GsmManager: ending phase %d\n", manager->priv->phase);
+        g_slist_free (manager->priv->query_clients);
+        manager->priv->query_clients = NULL;
+
+        if (manager->priv->phase_timeout_id > 0) {
+                g_source_remove (manager->priv->phase_timeout_id);
+                manager->priv->phase_timeout_id = 0;
+        }
 
         manager->priv->phase++;
 
-        if (manager->priv->phase < GSM_MANAGER_PHASE_RUNNING) {
-                start_phase (manager);
+        switch (manager->priv->phase) {
+        case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_INITIALIZATION:
+        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
+        case GSM_MANAGER_PHASE_PANEL:
+        case GSM_MANAGER_PHASE_DESKTOP:
+        case GSM_MANAGER_PHASE_APPLICATION:
+                break;
+        case GSM_MANAGER_PHASE_RUNNING:
+                break;
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+        case GSM_MANAGER_PHASE_END_SESSION:
+                break;
+        case GSM_MANAGER_PHASE_EXIT:
+                gtk_main_quit ();
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_RUNNING) {
-                g_signal_emit (manager, signals[SESSION_RUNNING], 0);
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+                start_phase (manager);
         }
 }
 
@@ -300,20 +365,40 @@ app_registered (GsmApp     *app,
 }
 
 static gboolean
-phase_timeout (GsmManager *manager)
+on_phase_timeout (GsmManager *manager)
 {
         GSList *a;
 
         manager->priv->phase_timeout_id = 0;
 
-        for (a = manager->priv->pending_apps; a; a = a->next) {
-                g_warning ("Application '%s' failed to register before timeout",
-                           gsm_app_get_id (a->data));
-                g_signal_handlers_disconnect_by_func (a->data, app_registered, manager);
-                /* FIXME: what if the app was filling in a required slot? */
+        switch (manager->priv->phase) {
+        case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_INITIALIZATION:
+        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
+        case GSM_MANAGER_PHASE_PANEL:
+        case GSM_MANAGER_PHASE_DESKTOP:
+        case GSM_MANAGER_PHASE_APPLICATION:
+                for (a = manager->priv->pending_apps; a; a = a->next) {
+                        g_warning ("Application '%s' failed to register before timeout",
+                                   gsm_app_get_id (a->data));
+                        g_signal_handlers_disconnect_by_func (a->data, app_registered, manager);
+                        /* FIXME: what if the app was filling in a required slot? */
+                }
+                break;
+        case GSM_MANAGER_PHASE_RUNNING:
+                break;
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+        case GSM_MANAGER_PHASE_END_SESSION:
+                break;
+        case GSM_MANAGER_PHASE_EXIT:
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 
         end_phase (manager);
+
         return FALSE;
 }
 
@@ -381,14 +466,8 @@ _start_app (const char *id,
 }
 
 static void
-start_phase (GsmManager *manager)
+do_phase_startup (GsmManager *manager)
 {
-
-        g_debug ("GsmManager: starting phase %d\n", manager->priv->phase);
-
-        g_slist_free (manager->priv->pending_apps);
-        manager->priv->pending_apps = NULL;
-
         g_hash_table_foreach (manager->priv->apps_by_id,
                               (GHFunc)_start_app,
                               manager);
@@ -396,11 +475,485 @@ start_phase (GsmManager *manager)
         if (manager->priv->pending_apps != NULL) {
                 if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
                         manager->priv->phase_timeout_id = g_timeout_add_seconds (GSM_MANAGER_PHASE_TIMEOUT,
-                                                                                 (GSourceFunc)phase_timeout,
+                                                                                 (GSourceFunc)on_phase_timeout,
                                                                                  manager);
                 }
         } else {
                 end_phase (manager);
+        }
+}
+
+typedef struct {
+        GsmManager *manager;
+        guint       flags;
+} ClientEndSessionData;
+
+
+static gboolean
+_client_end_session (const char           *id,
+                     GsmClient            *client,
+                     ClientEndSessionData *data)
+{
+        g_debug ("GsmManager: adding client to end-session clients: %s", gsm_client_get_id (client));
+        data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
+                                                              client);
+
+        gsm_client_end_session (client, data->flags);
+
+        return FALSE;
+}
+
+static void
+do_phase_end_session (GsmManager *manager)
+{
+        ClientEndSessionData data;
+
+        data.manager = manager;
+        data.flags = 0;
+
+        if (manager->priv->forceful) {
+                data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
+        }
+
+        if (manager->priv->phase_timeout_id > 0) {
+                g_source_remove (manager->priv->phase_timeout_id);
+                manager->priv->phase_timeout_id = 0;
+        }
+
+        if (gsm_client_store_size (manager->priv->store) > 0) {
+                manager->priv->phase_timeout_id = g_timeout_add_seconds (10,
+                                                                         (GSourceFunc)on_phase_timeout,
+                                                                         manager);
+
+                gsm_client_store_foreach (manager->priv->store,
+                                          (GsmClientStoreFunc)_client_end_session,
+                                          &data);
+        } else {
+                end_phase (manager);
+        }
+}
+
+static gboolean
+_client_query_end_session (const char           *id,
+                           GsmClient            *client,
+                           ClientEndSessionData *data)
+{
+        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_get_id (client));
+        data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
+                                                              client);
+        gsm_client_query_end_session (client, data->flags);
+
+        return FALSE;
+}
+
+static gboolean
+inhibitor_has_flag (gpointer      key,
+                    GsmInhibitor *inhibitor,
+                    gpointer      data)
+{
+        int flag;
+        int flags;
+
+        flag = GPOINTER_TO_INT (data);
+        flags = gsm_inhibitor_get_flags (inhibitor);
+
+        return (flags & flag);
+}
+
+static gboolean
+gsm_manager_is_logout_inhibited (GsmManager *manager)
+{
+        GsmInhibitor *inhibitor;
+
+        if (manager->priv->inhibitors == NULL) {
+                return FALSE;
+        }
+
+        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
+                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
+                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
+        if (inhibitor == NULL) {
+                return FALSE;
+        }
+        return TRUE;
+}
+
+static gboolean
+_client_cancel_end_session (const char *id,
+                            GsmClient  *client,
+                            GsmManager *manager)
+{
+        gsm_client_cancel_end_session (client);
+
+        return FALSE;
+}
+
+static gboolean
+inhibitor_is_jit (gpointer      key,
+                  GsmInhibitor *inhibitor,
+                  GsmManager   *manager)
+{
+        gboolean    matches;
+        const char *id;
+
+        id = gsm_inhibitor_get_client_id (inhibitor);
+
+        matches = (id != NULL && id[0] != '\0');
+
+        return matches;
+}
+
+static void
+cancel_end_session (GsmManager *manager)
+{
+        /* switch back to running phase */
+
+        /* clear all JIT inhibitors */
+        gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
+                                            (GsmInhibitorStoreFunc)inhibitor_is_jit,
+                                            (gpointer)manager);
+
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_client_cancel_end_session,
+                                  NULL);
+
+        manager->priv->phase = GSM_MANAGER_PHASE_RUNNING;
+        manager->priv->forceful = FALSE;
+
+        start_phase (manager);
+}
+
+
+static void
+manager_switch_user (GsmManager *manager)
+{
+        GError  *error;
+        gboolean res;
+        char    *command;
+
+        command = g_strdup_printf ("%s %s",
+                                   GDM_FLEXISERVER_COMMAND,
+                                   GDM_FLEXISERVER_ARGS);
+
+        error = NULL;
+        res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
+                                                command,
+                                                &error);
+
+        g_free (command);
+
+        if (! res) {
+                g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
+                g_error_free (error);
+        }
+}
+
+
+static void
+do_attempt_reboot (GsmConsolekit *consolekit)
+{
+        if (gsm_consolekit_can_restart (consolekit)) {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+                gsm_consolekit_attempt_restart (consolekit);
+        } else {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+        }
+}
+
+static void
+do_attempt_shutdown (GsmConsolekit *consolekit)
+{
+        if (gsm_consolekit_can_stop (consolekit)) {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+                gsm_consolekit_attempt_stop (consolekit);
+        } else {
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+        }
+}
+
+static void
+manager_attempt_reboot (GsmManager *manager)
+{
+        GsmConsolekit *consolekit;
+
+        consolekit = gsm_get_consolekit ();
+        do_attempt_reboot (consolekit);
+        g_object_unref (consolekit);
+}
+
+static void
+manager_attempt_shutdown (GsmManager *manager)
+{
+        GsmConsolekit *consolekit;
+
+        consolekit = gsm_get_consolekit ();
+        do_attempt_shutdown (consolekit);
+        g_object_unref (consolekit);
+}
+
+static void
+manager_attempt_hibernate (GsmManager *manager)
+{
+        GsmPowerManager *power_manager;
+
+        power_manager = gsm_get_power_manager ();
+
+        if (gsm_power_manager_can_hibernate (power_manager)) {
+                gsm_power_manager_attempt_hibernate (power_manager);
+        }
+
+        g_object_unref (power_manager);
+}
+
+static void
+manager_attempt_suspend (GsmManager *manager)
+{
+        GsmPowerManager *power_manager;
+
+        power_manager = gsm_get_power_manager ();
+
+        if (gsm_power_manager_can_suspend (power_manager)) {
+                gsm_power_manager_attempt_suspend (power_manager);
+        }
+
+        g_object_unref (power_manager);
+}
+
+static void
+do_dialog_action (GsmManager *manager,
+                  int         action)
+{
+        switch (action) {
+        case GSM_LOGOUT_ACTION_SWITCH_USER:
+                manager_switch_user (manager);
+                break;
+        case GSM_LOGOUT_ACTION_HIBERNATE:
+                manager_attempt_hibernate (manager);
+                break;
+        case GSM_LOGOUT_ACTION_SLEEP:
+                manager_attempt_suspend (manager);
+                break;
+        case GSM_LOGOUT_ACTION_SHUTDOWN:
+                manager_attempt_shutdown (manager);
+                break;
+        case GSM_LOGOUT_ACTION_REBOOT:
+                manager_attempt_reboot (manager);
+                break;
+        case GSM_LOGOUT_ACTION_LOGOUT:
+                manager->priv->forceful = TRUE;
+                end_phase (manager);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+}
+
+static void
+inhibit_dialog_response (GsmInhibitDialog *dialog,
+                         guint             response_id,
+                         GsmManager       *manager)
+{
+        int action;
+
+        g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
+
+        /* must destroy dialog before cancelling since we'll
+           remove JIT inhibitors and we don't want to trigger
+           action. */
+        g_object_get (dialog, "action", &action, NULL);
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+        manager->priv->inhibit_dialog = NULL;
+
+        /* In case of dialog cancel, switch user, hibernate and
+         * suspend, we just perform the respective action and return,
+         * without shutting down the session. */
+        switch (response_id) {
+        case GTK_RESPONSE_CANCEL:
+        case GTK_RESPONSE_NONE:
+        case GTK_RESPONSE_DELETE_EVENT:
+                if (action == GSM_LOGOUT_ACTION_LOGOUT
+                    || action == GSM_LOGOUT_ACTION_SHUTDOWN
+                    || action == GSM_LOGOUT_ACTION_REBOOT) {
+                        cancel_end_session (manager);
+                }
+                break;
+        case GTK_RESPONSE_ACCEPT:
+                g_debug ("GsmManager: doing action %d", action);
+                do_dialog_action (manager, action);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+}
+
+static void
+query_end_session_complete (GsmManager *manager)
+{
+        g_debug ("GsmManager: query end session complete");
+
+        if (! gsm_manager_is_logout_inhibited (manager)) {
+                end_phase (manager);
+                return;
+        }
+
+        if (manager->priv->inhibit_dialog != NULL) {
+                g_debug ("GsmManager: inhibit dialog already up");
+                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+                return;
+        }
+
+        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                GSM_LOGOUT_ACTION_LOGOUT);
+
+        g_signal_connect (manager->priv->inhibit_dialog,
+                          "response",
+                          G_CALLBACK (inhibit_dialog_response),
+                          manager);
+        gtk_widget_show (manager->priv->inhibit_dialog);
+
+}
+
+static guint32
+generate_cookie (void)
+{
+        guint32 cookie;
+
+        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
+
+        return cookie;
+}
+
+static guint32
+_generate_unique_cookie (GsmManager *manager)
+{
+        guint32 cookie;
+
+        do {
+                cookie = generate_cookie ();
+        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
+
+        return cookie;
+}
+
+static gboolean
+on_query_end_session_timeout (GsmManager *manager)
+{
+        GSList *l;
+
+        manager->priv->query_timeout_id = 0;
+
+        g_debug ("GsmManager: query end session timed out");
+
+        for (l = manager->priv->query_clients; l != NULL; l = l->next) {
+                guint         cookie;
+                GsmInhibitor *inhibitor;
+                const char   *bus_name;
+
+                g_warning ("Client '%s' failed to reply before timeout",
+                           gsm_client_get_id (l->data));
+
+                /* Add JIT inhibit for unresponsive client */
+                if (GSM_IS_DBUS_CLIENT (l->data)) {
+                        bus_name = gsm_dbus_client_get_bus_name (l->data);
+                } else {
+                        bus_name = NULL;
+                }
+
+                cookie = _generate_unique_cookie (manager);
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
+                                                          gsm_client_get_app_id (l->data),
+                                                          GSM_INHIBITOR_FLAG_LOGOUT,
+                                                          _("Not responding"),
+                                                          bus_name,
+                                                          cookie);
+                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                g_object_unref (inhibitor);
+        }
+
+        g_slist_free (manager->priv->query_clients);
+        manager->priv->query_clients = NULL;
+
+        query_end_session_complete (manager);
+
+        return FALSE;
+}
+
+static void
+do_phase_query_end_session (GsmManager *manager)
+{
+        ClientEndSessionData data;
+
+        /* This phase doesn't time out.  This separate timer
+         * is only used to show UI.
+         */
+
+        if (manager->priv->query_timeout_id > 0) {
+                g_source_remove (manager->priv->query_timeout_id);
+                manager->priv->query_timeout_id = 0;
+        }
+        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
+
+        data.manager = manager;
+        data.flags = 0;
+
+        if (manager->priv->forceful) {
+                data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
+        }
+
+        debug_clients (manager);
+        g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful);
+        gsm_client_store_foreach (manager->priv->store,
+                                  (GsmClientStoreFunc)_client_query_end_session,
+                                  &data);
+}
+
+static void
+start_phase (GsmManager *manager)
+{
+
+        g_debug ("GsmManager: starting phase %s\n",
+                 phase_num_to_name (manager->priv->phase));
+
+        /* reset state */
+        g_slist_free (manager->priv->pending_apps);
+        manager->priv->pending_apps = NULL;
+        g_slist_free (manager->priv->query_clients);
+        manager->priv->query_clients = NULL;
+
+        if (manager->priv->query_timeout_id > 0) {
+                g_source_remove (manager->priv->query_timeout_id);
+                manager->priv->query_timeout_id = 0;
+        }
+        if (manager->priv->phase_timeout_id > 0) {
+                g_source_remove (manager->priv->phase_timeout_id);
+                manager->priv->phase_timeout_id = 0;
+        }
+
+        switch (manager->priv->phase) {
+        case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_INITIALIZATION:
+        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
+        case GSM_MANAGER_PHASE_PANEL:
+        case GSM_MANAGER_PHASE_DESKTOP:
+        case GSM_MANAGER_PHASE_APPLICATION:
+                do_phase_startup (manager);
+                break;
+        case GSM_MANAGER_PHASE_RUNNING:
+                g_signal_emit (manager, signals[SESSION_RUNNING], 0);
+                break;
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                do_phase_query_end_session (manager);
+                break;
+        case GSM_MANAGER_PHASE_END_SESSION:
+                do_phase_end_session (manager);
+                break;
+        case GSM_MANAGER_PHASE_EXIT:
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 }
 
@@ -460,7 +1013,7 @@ disconnect_client (GsmManager *manager,
                 goto out;
         }
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 g_debug ("GsmManager: in shutdown, not restarting application");
                 goto out;
         }
@@ -487,10 +1040,10 @@ disconnect_client (GsmManager *manager,
  out:
         g_object_unref (client);
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION
             && gsm_client_store_size (manager->priv->store) == 0) {
                 g_debug ("GsmManager: last client disconnected - exiting");
-                gtk_main_quit ();
+                end_phase (manager);
         }
 }
 
@@ -760,7 +1313,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         handled = TRUE;
         new_id = NULL;
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 goto out;
         }
 
@@ -833,34 +1386,17 @@ inhibitor_has_client_id (gpointer      key,
         return matches;
 }
 
-static guint32
-generate_cookie (void)
-{
-        guint32 cookie;
-
-        cookie = (guint32)g_random_int_range (1, G_MAXINT32);
-
-        return cookie;
-}
-
-static guint32
-_generate_unique_cookie (GsmManager *manager)
-{
-        guint32 cookie;
-
-        do {
-                cookie = generate_cookie ();
-        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
-
-        return cookie;
-}
-
 static void
 on_client_end_session_response (GsmClient  *client,
                                 gboolean    is_ok,
                                 const char *reason,
                                 GsmManager *manager)
 {
+        /* just ignore if received outside of shutdown */
+        if (manager->priv->phase < GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                return;
+        }
+
         g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason);
 
         manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
@@ -899,6 +1435,16 @@ on_client_end_session_response (GsmClient  *client,
                 gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
                                                     (GsmInhibitorStoreFunc)inhibitor_has_client_id,
                                                     (gpointer)gsm_client_get_id (client));
+        }
+
+        if (manager->priv->query_clients == NULL
+            && gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+                if (manager->priv->query_timeout_id > 0) {
+                        g_source_remove (manager->priv->query_timeout_id);
+                        manager->priv->query_timeout_id = 0;
+                }
+
+                end_phase (manager);
         }
 }
 
@@ -1493,124 +2039,6 @@ gsm_manager_initialization_error (GsmManager  *manager,
         return TRUE;
 }
 
-static void
-do_attempt_reboot (GsmConsolekit *consolekit)
-{
-        if (gsm_consolekit_can_restart (consolekit)) {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-                gsm_consolekit_attempt_restart (consolekit);
-        } else {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
-        }
-}
-
-static void
-do_attempt_shutdown (GsmConsolekit *consolekit)
-{
-        if (gsm_consolekit_can_stop (consolekit)) {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-                gsm_consolekit_attempt_stop (consolekit);
-        } else {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
-        }
-}
-
-static void
-manager_attempt_reboot (GsmManager *manager)
-{
-        GsmConsolekit *consolekit;
-
-        consolekit = gsm_get_consolekit ();
-        do_attempt_reboot (consolekit);
-        g_object_unref (consolekit);
-}
-
-static void
-manager_attempt_shutdown (GsmManager *manager)
-{
-        GsmConsolekit *consolekit;
-
-        consolekit = gsm_get_consolekit ();
-        do_attempt_shutdown (consolekit);
-        g_object_unref (consolekit);
-}
-
-static gboolean
-_shutdown_client (const char *id,
-                  GsmClient  *client,
-                  GsmManager *manager)
-{
-        guint flags;
-
-        flags = 0;
-        gsm_client_end_session (client, flags);
-
-        return FALSE;
-}
-
-static gboolean
-_cancel_shutdown_client (const char *id,
-                         GsmClient  *client,
-                         GsmManager *manager)
-{
-        gsm_client_cancel_end_session (client);
-
-        return FALSE;
-}
-
-static void
-manager_logout (GsmManager *manager)
-{
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_shutdown_client,
-                                  NULL);
-
-        g_debug ("GsmManager: session shutdown complete, exiting");
-        gtk_main_quit ();
-}
-
-static void
-manager_attempt_hibernate (GsmManager *manager)
-{
-        GsmPowerManager *power_manager;
-
-        power_manager = gsm_get_power_manager ();
-
-        if (gsm_power_manager_can_hibernate (power_manager)) {
-                gsm_power_manager_attempt_hibernate (power_manager);
-        }
-
-        g_object_unref (power_manager);
-}
-
-static void
-manager_attempt_suspend (GsmManager *manager)
-{
-        GsmPowerManager *power_manager;
-
-        power_manager = gsm_get_power_manager ();
-
-        if (gsm_power_manager_can_suspend (power_manager)) {
-                gsm_power_manager_attempt_suspend (power_manager);
-        }
-
-        g_object_unref (power_manager);
-}
-
-static gboolean
-inhibitor_has_flag (gpointer      key,
-                    GsmInhibitor *inhibitor,
-                    gpointer      data)
-{
-        int flag;
-        int flags;
-
-        flag = GPOINTER_TO_INT (data);
-        flags = gsm_inhibitor_get_flags (inhibitor);
-
-        return (flags & flag);
-}
-
 static gboolean
 gsm_manager_is_switch_user_inhibited (GsmManager *manager)
 {
@@ -1645,145 +2073,6 @@ gsm_manager_is_suspend_inhibited (GsmManager *manager)
                 return FALSE;
         }
         return TRUE;
-}
-
-static gboolean
-gsm_manager_is_logout_inhibited (GsmManager *manager)
-{
-        GsmInhibitor *inhibitor;
-
-        if (manager->priv->inhibitors == NULL) {
-                return FALSE;
-        }
-
-        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
-                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
-                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
-        if (inhibitor == NULL) {
-                return FALSE;
-        }
-        return TRUE;
-}
-
-static void
-manager_switch_user (GsmManager *manager)
-{
-        GError  *error;
-        gboolean res;
-        char    *command;
-
-        command = g_strdup_printf ("%s %s",
-                                   GDM_FLEXISERVER_COMMAND,
-                                   GDM_FLEXISERVER_ARGS);
-
-        error = NULL;
-        res = gdk_spawn_command_line_on_screen (gdk_screen_get_default (),
-                                                command,
-                                                &error);
-
-        g_free (command);
-
-        if (! res) {
-                g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
-                g_error_free (error);
-        }
-}
-
-static void
-do_action (GsmManager *manager,
-           int         action)
-{
-        switch (action) {
-        case GSM_LOGOUT_ACTION_SWITCH_USER:
-                manager_switch_user (manager);
-                break;
-        case GSM_LOGOUT_ACTION_HIBERNATE:
-                manager_attempt_hibernate (manager);
-                break;
-        case GSM_LOGOUT_ACTION_SLEEP:
-                manager_attempt_suspend (manager);
-                break;
-        case GSM_LOGOUT_ACTION_SHUTDOWN:
-                manager_attempt_shutdown (manager);
-                break;
-        case GSM_LOGOUT_ACTION_REBOOT:
-                manager_attempt_reboot (manager);
-                break;
-        case GSM_LOGOUT_ACTION_LOGOUT:
-                manager_logout (manager);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-}
-
-static gboolean
-inhibitor_is_jit (gpointer      key,
-                  GsmInhibitor *inhibitor,
-                  GsmManager   *manager)
-{
-        gboolean    matches;
-        const char *id;
-
-        id = gsm_inhibitor_get_client_id (inhibitor);
-
-        matches = (id != NULL && id[0] != '\0');
-
-        return matches;
-}
-
-static void
-cancel_end_session (GsmManager *manager)
-{
-        /* clear all JIT inhibitors */
-
-        gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
-                                            (GsmInhibitorStoreFunc)inhibitor_is_jit,
-                                            (gpointer)manager);
-
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_cancel_shutdown_client,
-                                  NULL);
-}
-
-static void
-inhibit_dialog_response (GsmInhibitDialog *dialog,
-                         guint             response_id,
-                         GsmManager       *manager)
-{
-        int action;
-
-        g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
-
-        /* must destroy dialog before cancelling since we'll
-           remove JIT inhibitors and we don't want to trigger
-           action. */
-        g_object_get (dialog, "action", &action, NULL);
-        gtk_widget_destroy (GTK_WIDGET (dialog));
-        manager->priv->inhibit_dialog = NULL;
-
-        /* In case of dialog cancel, switch user, hibernate and
-         * suspend, we just perform the respective action and return,
-         * without shutting down the session. */
-        switch (response_id) {
-        case GTK_RESPONSE_CANCEL:
-        case GTK_RESPONSE_NONE:
-        case GTK_RESPONSE_DELETE_EVENT:
-                if (action == GSM_LOGOUT_ACTION_LOGOUT
-                    || action == GSM_LOGOUT_ACTION_SHUTDOWN
-                    || action == GSM_LOGOUT_ACTION_REBOOT) {
-                        cancel_end_session (manager);
-                }
-                break;
-        case GTK_RESPONSE_ACCEPT:
-                g_debug ("GsmManager: doing action %d", action);
-                do_action (manager, action);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
 }
 
 static void
@@ -1893,112 +2182,14 @@ request_hibernate (GsmManager *manager)
         gtk_widget_show (manager->priv->inhibit_dialog);
 }
 
-static gboolean
-_client_query_end_session (const char *id,
-                           GsmClient  *client,
-                           GsmManager *manager)
-{
-        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_get_id (client));
-        manager->priv->query_clients = g_slist_prepend (manager->priv->query_clients,
-                                                        client);
-        gsm_client_query_end_session (client, 0);
-
-        return FALSE;
-}
 
 static void
-query_end_session_complete (GsmManager *manager)
-{
-        g_debug ("GsmManager: query end session complete");
-
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                manager_logout (manager);
-                return;
-        }
-
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                GSM_LOGOUT_ACTION_LOGOUT);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
-                          manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
-
-}
-
-
-static gboolean
-on_query_end_session_timeout (GsmManager *manager)
-{
-        GSList *l;
-
-        manager->priv->query_timeout_id = 0;
-
-        g_debug ("GsmManager: query end session timed out");
-
-        for (l = manager->priv->query_clients; l != NULL; l = l->next) {
-                guint         cookie;
-                GsmInhibitor *inhibitor;
-                const char   *bus_name;
-
-                g_warning ("Client '%s' failed to reply before timeout",
-                           gsm_client_get_id (l->data));
-
-                /* Add JIT inhibit for unresponsive client */
-                if (GSM_IS_DBUS_CLIENT (l->data)) {
-                        bus_name = gsm_dbus_client_get_bus_name (l->data);
-                } else {
-                        bus_name = NULL;
-                }
-
-                cookie = _generate_unique_cookie (manager);
-                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
-                                                          gsm_client_get_app_id (l->data),
-                                                          GSM_INHIBITOR_FLAG_LOGOUT,
-                                                          _("Not responding"),
-                                                          bus_name,
-                                                          cookie);
-                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
-                g_object_unref (inhibitor);
-        }
-
-        query_end_session_complete (manager);
-
-        return FALSE;
-}
-
-static void
-query_end_session (GsmManager *manager)
-{
-        if (manager->priv->query_timeout_id > 0) {
-                g_source_remove (manager->priv->query_timeout_id);
-                manager->priv->query_timeout_id = 0;
-        }
-        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
-
-        debug_clients (manager);
-        g_debug ("GsmManager: sending query-end-session to clients");
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_client_query_end_session,
-                                  manager);
-}
-
-static void
-request_logout (GsmManager *manager)
+request_logout (GsmManager *manager,
+                gboolean    forceful)
 {
         g_debug ("GsmManager: requesting logout");
-
-        /* First thing is to alert clients that a logout has been requested.
-         * We wait for all clients to respond or 1 second, which ever occurs first.
-         */
-        query_end_session (manager);
+        manager->priv->forceful = forceful;
+        end_phase (manager);
 }
 
 static void
@@ -2060,7 +2251,7 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                 request_reboot (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_LOGOUT:
-                request_logout (manager);
+                request_logout (manager, FALSE);
                 break;
         default:
                 g_assert_not_reached ();
@@ -2073,7 +2264,7 @@ show_shutdown_dialog (GsmManager *manager)
 {
         GtkWidget *dialog;
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 /* Already shutting down, nothing more to do */
                 return;
         }
@@ -2093,7 +2284,7 @@ show_logout_dialog (GsmManager *manager)
 {
         GtkWidget *dialog;
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 /* Already shutting down, nothing more to do */
                 return;
         }
@@ -2110,12 +2301,13 @@ show_logout_dialog (GsmManager *manager)
 
 static void
 user_logout (GsmManager *manager,
-             gboolean    show_confirmation)
+             gboolean    show_confirmation,
+             gboolean    forceful)
 {
         gboolean     logout_prompt;
         GConfClient *client;
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 /* Already shutting down, nothing more to do */
                 return;
         }
@@ -2133,7 +2325,7 @@ user_logout (GsmManager *manager,
         if (logout_prompt) {
                 show_logout_dialog (manager);
         } else {
-                request_logout (manager);
+                request_logout (manager, forceful);
         }
 }
 
@@ -2180,15 +2372,15 @@ gsm_manager_logout (GsmManager *manager,
 
         switch (logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
-                user_logout (manager, TRUE);
+                user_logout (manager, TRUE, FALSE);
                 break;
 
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
-                user_logout (manager, FALSE);
+                user_logout (manager, FALSE, FALSE);
                 break;
 
         case GSM_MANAGER_LOGOUT_MODE_FORCE:
-                /* FIXME: Implement when session state saving is ready */
+                user_logout (manager, FALSE, TRUE);
                 break;
 
         default:
@@ -2263,7 +2455,7 @@ gsm_manager_register_client (GsmManager            *manager,
 
         g_debug ("GsmManager: RegisterClient %s", startup_id);
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_SHUTDOWN) {
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 GError *new_error;
 
                 g_debug ("Unable to register client: shutting down");

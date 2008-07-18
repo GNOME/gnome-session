@@ -417,7 +417,8 @@ xsmp_get_autorestart (GsmClient *client)
 
 static void
 do_save_yourself (GsmXSMPClient *client,
-                  int            save_type)
+                  int            save_type,
+                  gboolean       forceful)
 {
         if (client->priv->next_save_yourself != -1) {
                 /* Either we're currently doing a shutdown and there's a checkpoint
@@ -445,27 +446,22 @@ do_save_yourself (GsmXSMPClient *client,
 
                 default:
                         /* Logout */
-                        SmsSaveYourself (client->priv->conn,
-                                         save_type,
-                                         TRUE,
-                                         SmInteractStyleAny,
-                                         FALSE);
+                        if (forceful) {
+                                SmsSaveYourself (client->priv->conn,
+                                                 save_type, /* save type */
+                                                 TRUE, /* shutdown */
+                                                 SmInteractStyleNone, /* interact style */
+                                                 TRUE); /* fast */
+                        } else {
+                                SmsSaveYourself (client->priv->conn,
+                                                 save_type,
+                                                 TRUE,
+                                                 SmInteractStyleAny,
+                                                 FALSE);
+                        }
                         break;
                 }
         }
-}
-
-static void
-xsmp_save_yourself (GsmClient *client,
-                    gboolean   save_state)
-{
-        GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
-
-        g_debug ("GsmXSMPClient: xsmp_save_yourself ('%s', %s)",
-                 xsmp->priv->description,
-                 save_state ? "True" : "False");
-
-        do_save_yourself (xsmp, save_state ? SmSaveBoth : SmSaveGlobal);
 }
 
 static void
@@ -515,14 +511,20 @@ static void
 xsmp_query_end_session (GsmClient *client,
                         guint      flags)
 {
-        xsmp_save_yourself (client, FALSE);
+        gboolean forceful;
+
+        forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
+        do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
 }
 
 static void
 xsmp_end_session (GsmClient *client,
                   guint      flags)
 {
-        xsmp_save_yourself (client, FALSE);
+        gboolean forceful;
+
+        forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
+        do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
 }
 
 static char *
@@ -802,7 +804,7 @@ save_yourself_request_callback (SmsConn   conn,
                 g_signal_emit (client, signals[LOGOUT_REQUEST], 0, !fast);
         } else if (!shutdown && !global) {
                 g_debug ("GsmXSMPClient:   initiating checkpoint");
-                do_save_yourself (client, SmSaveLocal);
+                do_save_yourself (client, SmSaveLocal, FALSE);
         } else {
                 g_debug ("GsmXSMPClient:   ignoring");
         }
@@ -892,7 +894,7 @@ save_yourself_done_callback (SmsConn   conn,
                 int save_type = client->priv->next_save_yourself;
 
                 client->priv->next_save_yourself = -1;
-                do_save_yourself (client, save_type);
+                do_save_yourself (client, save_type, FALSE);
         }
 }
 
