@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-25 00:14-0600\n"
-"PO-Revision-Date: 2007-08-14 12:23+0200\n"
+"POT-Creation-Date: 2008-07-20 01:26+0200\n"
+"PO-Revision-Date: 2008-07-13 00:20+0100\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@t-online.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,9 +31,9 @@ msgid ""
 "support."
 msgstr ""
 "Für diese Sitzung wurde Unterstützung für Hilfstechnologien erbeten, die "
-"Registrierung für Barrierefreiheit wurde jedoch nicht gefunden. Bitte stellen "
-"Sie sicher, dass das Paket AT-SPI installiert ist. Diese Sitzung wurde ohne "
-"Unterstützung für Hilfstechnologien gestartet."
+"Registrierung für Barrierefreiheit wurde jedoch nicht gefunden. Bitte "
+"stellen Sie sicher, dass das Paket AT-SPI installiert ist. Diese Sitzung "
+"wurde ohne Unterstützung für Hilfstechnologien gestartet."
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -49,8 +49,8 @@ msgstr "Soll gnome-session den Benutzer vor dem Beenden einer Sitzung fragen?"
 
 #: ../data/gnome-session.schemas.in.h:4
 msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, the "
-"logout dialog will have an option to save the session."
+"If enabled, gnome-session will save the session automatically. Otherwise, "
+"the logout dialog will have an option to save the session."
 msgstr ""
 "Soll gnome-session die Sitzung automatisch speichern? Andernfalls wird dem "
 "Abmeldedialog eine Option hinzugefügt, mit dem die Sitzung manuell "
@@ -69,10 +69,10 @@ msgid ""
 "the required components back to the session if they do get removed."
 msgstr ""
 "Liste der Komponenten, die als Teil der Sitzung erforderlich sind. (Jedes "
-"Element bezeichnet einen Schlüssel unter \"/desktop/gnome/session/required-"
-"components\".) Die Sitzungsverwaltung erlaubt gewöhnlichen Benutzern nicht, "
-"eine dieser benötigten Komponenten aus der Sitzung zu entfernen. Diese werden "
-"automatisch wieder hinzugefügt, wenn sie entfernt wurden."
+"Element bezeichnet einen Schlüssel unter »/desktop/gnome/session/required-"
+"components«). Die Sitzungsverwaltung erlaubt gewöhnlichen Benutzern nicht, "
+"eine dieser benötigten Komponenten aus der Sitzung zu entfernen. Diese "
+"werden automatisch wieder hinzugefügt, falls sie entfernt wurden."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -124,8 +124,8 @@ msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
-"The window manager is the program that draws the title bar and borders around "
-"windows, and allows you to move and resize windows."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 msgstr ""
 "Der Fenstermanager ist das Programm, welches die Titelleiste und die Ränder "
 "der Fenster zeichnet, sowie das Bewegen und die Änderung der Größe der "
@@ -134,8 +134,8 @@ msgstr ""
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will effect "
-"the next session login."
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
 msgstr ""
 "Dies ist ein relativer Pfad basierend auf dem »$datadir/pixmaps/«-Ordner. "
 "Unterordner und Bildnamen sind gültige Werte. Die Änderung dieses Werts wird "
@@ -177,7 +177,7 @@ msgstr "_Zusätzliche Startprogramme:"
 
 #: ../data/session-properties.glade.h:2
 msgid "Browse..."
-msgstr "Durchsuchen…"
+msgstr "Durchsuchen …"
 
 #: ../data/session-properties.glade.h:3
 msgid "Co_mmand:"
@@ -291,7 +291,7 @@ msgstr ""
 "Es gibt ein Problem mit dem Konfigurationsserver.\n"
 "(%s beendet mit Status %d)"
 
-#: ../gnome-session/logout-dialog.c:269
+#: ../gnome-session/logout.c:241
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -306,7 +306,7 @@ msgstr[1] ""
 "Sie sind momentan als \"%s\" angemeldet.\n"
 "Sie werden in %d Sekunden automatisch abgemeldet."
 
-#: ../gnome-session/logout-dialog.c:281
+#: ../gnome-session/logout.c:253
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -321,35 +321,35 @@ msgstr[1] ""
 "Sie sind momentan als \"%s\" angemeldet.\n"
 "Der Rechner wird in %d Sekunden automatisch ausgeschaltet."
 
-#: ../gnome-session/logout-dialog.c:357
+#: ../gnome-session/logout.c:344
 msgid "Log out of this system now?"
 msgstr "Jetzt vom System abmelden?"
 
-#: ../gnome-session/logout-dialog.c:363
+#: ../gnome-session/logout.c:350
 msgid "_Switch User"
 msgstr "_Benutzer wechseln"
 
-#: ../gnome-session/logout-dialog.c:371
+#: ../gnome-session/logout.c:358
 msgid "_Log Out"
-msgstr "Benutzer ab_melden"
+msgstr "A_bmelden"
 
-#: ../gnome-session/logout-dialog.c:377
+#: ../gnome-session/logout.c:364
 msgid "Shut down this system now?"
 msgstr "Möchten Sie den Rechner jetzt ausschalten?"
 
-#: ../gnome-session/logout-dialog.c:383
+#: ../gnome-session/logout.c:370
 msgid "S_uspend"
 msgstr "_Bereitschaft"
 
-#: ../gnome-session/logout-dialog.c:388
+#: ../gnome-session/logout.c:375
 msgid "_Hibernate"
 msgstr "_Ruhezustand"
 
-#: ../gnome-session/logout-dialog.c:393
+#: ../gnome-session/logout.c:380
 msgid "_Restart"
-msgstr "Neu sta_rten"
+msgstr "_Neu starten"
 
-#: ../gnome-session/logout-dialog.c:402
+#: ../gnome-session/logout.c:389
 msgid "_Shut Down"
 msgstr "_Rechner ausschalten"
 
@@ -378,8 +378,8 @@ msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"Neue Client-Verbindung wurde abgelehnt, weil die aktuelle Sitzung gegenwärtig "
-"beendet wird\n"
+"Neue Client-Verbindung wurde abgelehnt, weil die aktuelle Sitzung "
+"gegenwärtig beendet wird\n"
 
 #: ../capplet/main.c:69
 #, c-format
@@ -422,7 +422,7 @@ msgstr "Startprogramm hinzufügen"
 msgid "Edit Startup Program"
 msgstr "Startprogramm bearbeiten"
 
-#: ../capplet/commands.c:797
+#: ../capplet/commands.c:795
 msgid "No description"
 msgstr "Keine Beschreibung"
 
@@ -477,10 +477,11 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ "gnome-session must be restarted for this to take effect."
 #~ msgstr ""
 #~ "Aus Sicherheitsgründen horcht gnome-session auf Plattformen, die "
-#~ "»_IceTcpTransNoListen()« unterstützen (XFree86-Systeme) an TCP-Ports nicht "
-#~ "nach Verbindungen. Dieser Schlüssel legt fest, ob (legitimierten) Rechnern "
-#~ "dennoch der Verbindungsaufbau gestattet werden soll. gnome-session muss "
-#~ "neu gestartet werden, damit eine Änderung an diesem Schlüssel wirksam wird."
+#~ "»_IceTcpTransNoListen()« unterstützen (XFree86-Systeme) an TCP-Ports "
+#~ "nicht nach Verbindungen. Dieser Schlüssel legt fest, ob (legitimierten) "
+#~ "Rechnern dennoch der Verbindungsaufbau gestattet werden soll. gnome-"
+#~ "session muss neu gestartet werden, damit eine Änderung an diesem "
+#~ "Schlüssel wirksam wird."
 
 #~ msgid "_Order:"
 #~ msgstr "_Reihenfolge: "
@@ -594,8 +595,8 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ msgstr "PROGRAMM …"
 
 #~ msgid ""
-#~ "You must specify at least one program to remove. You can list the programs "
-#~ "with --list.\n"
+#~ "You must specify at least one program to remove. You can list the "
+#~ "programs with --list.\n"
 #~ msgstr ""
 #~ "Sie müssen mindestens ein Programm angeben dass entfernt werden soll. Sie "
 #~ "können die Programme mit --list auflisten.\n"
@@ -616,14 +617,14 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ msgstr ""
 #~ "Die Sitzungsverwaltung von GNOME konnte nicht richtig gestartet werden. "
 #~ "Bitte melden Sie diesen GNOME-Fehler und schließen Sie die folgenden ICE-"
-#~ "Fehlermeldung in Ihren Fehlerbericht ein: »%s«. Bis auf weiteres können Sie "
-#~ "versuchen sich über die abgesicherte Sitzung anzumelden."
+#~ "Fehlermeldung in Ihren Fehlerbericht ein: »%s«. Bis auf weiteres können "
+#~ "Sie versuchen sich über die abgesicherte Sitzung anzumelden."
 
 #~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please report "
-#~ "this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe session "
-#~ "and ensuring that it is."
+#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
+#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
+#~ "directory is unwritable, you could try logging in via the failsafe "
+#~ "session and ensuring that it is."
 #~ msgstr ""
 #~ "Die·Sitzungsverwaltung·von·GNOME·konnte·die Datei »%s« nicht sperren."
 #~ "·Bitte·melden·Sie·diesen·GNOME-Fehler. Manchmal tritt dieser Fehler auf, "
@@ -632,9 +633,9 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ "überprüfen ob das Verzeichnis schreibbar ist."
 
 #~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this file "
-#~ "exists it must be readable by you for GNOME to work properly.  Try logging "
-#~ "in with the failsafe session and removing this file."
+#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
+#~ "file exists it must be readable by you for GNOME to work properly.  Try "
+#~ "logging in with the failsafe session and removing this file."
 #~ msgstr ""
 #~ "Die·Sitzungsverwaltung·von·GNOME·konnte die Datei »%s« nicht lesen. Falls "
 #~ "diese Datei existiert muss sie von Ihnen lesbar sein, damit GNOME "
@@ -646,10 +647,10 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ "GNOME to function properly.  Try logging in with the failsafe session and "
 #~ "removing this file.  Also make sure that the file's directory is writable."
 #~ msgstr ""
-#~ "Die Datei »%s« konnte nicht geschrieben werden. Diese Datei muss schreibbar "
-#~ "sein, damit GNOME ordnungsgemäß funktioniert. Versuchen Sie sich über die "
-#~ "abgesicherte Sitzung anzumelden und die Datei zu löschen. Stellen Sie "
-#~ "außerdem sicher, dass der Dateiordner schreibbar ist."
+#~ "Die Datei »%s« konnte nicht geschrieben werden. Diese Datei muss "
+#~ "schreibbar sein, damit GNOME ordnungsgemäß funktioniert. Versuchen Sie "
+#~ "sich über die abgesicherte Sitzung anzumelden und die Datei zu löschen. "
+#~ "Stellen Sie außerdem sicher, dass der Dateiordner schreibbar ist."
 
 #~ msgid "Are you sure you want to log out?"
 #~ msgstr "Sind Sie sicher, dass Sie sich abmelden wollen?"
@@ -703,7 +704,8 @@ msgstr "- Den Begrüßungsbildschirm anzeigen"
 #~ "Momentanes Datum: <b>%s</b>"
 
 #~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "Werkzeug zum Konfigurieren der Uhr konnte nicht gestartet werden: %s"
+#~ msgstr ""
+#~ "Werkzeug zum Konfigurieren der Uhr konnte nicht gestartet werden: %s"
 
 #~ msgid "The computer clock appears to be wrong"
 #~ msgstr "Die Uhr des Computers scheint falsch eingestellt zu sein"
