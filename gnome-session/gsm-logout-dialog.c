@@ -39,8 +39,8 @@
 
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
-#define GSM_ICON_LOGOUT   "gnome-logout"
-#define GSM_ICON_SHUTDOWN "gnome-shutdown"
+#define GSM_ICON_LOGOUT   "system-log-out"
+#define GSM_ICON_SHUTDOWN "system-shutdown"
 
 typedef enum {
         GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
