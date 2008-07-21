@@ -1,5 +1,11 @@
 2008-07-21  William Jon McCann  <jmccann@redhat.com>
 
+	* capplet/commands.c (spc_command_get_app_description):
+	Must escape the comment for displaying as markup
+	Patch from Matthias Clasen.  Fixes #542086
+
+2008-07-21  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.in: Bump version number.
 
 2008-07-18  William Jon McCann  <jmccann@redhat.com>
