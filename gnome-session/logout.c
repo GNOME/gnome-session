@@ -42,8 +42,8 @@
 
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
-#define GSM_ICON_LOGOUT   "gnome-logout"
-#define GSM_ICON_SHUTDOWN "gnome-shutdown"
+#define GSM_ICON_LOGOUT   "system-logout"
+#define GSM_ICON_SHUTDOWN "system-shutdown"
 
 struct _GsmLogoutDialogPrivate 
 {
