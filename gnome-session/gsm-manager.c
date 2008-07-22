@@ -2022,7 +2022,7 @@ gsm_manager_setenv (GsmManager  *manager,
                 return FALSE;
         }
 
-        g_setenv (variable, value, TRUE);
+        gsm_util_setenv (variable, value);
 
         return TRUE;
 }

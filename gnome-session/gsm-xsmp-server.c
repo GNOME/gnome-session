@@ -544,7 +544,7 @@ setup_listener (GsmXsmpServer *server)
         network_id_list = IceComposeNetworkIdList (server->priv->num_local_xsmp_sockets,
                                                    server->priv->xsmp_sockets);
 
-        g_setenv ("SESSION_MANAGER", network_id_list, TRUE);
+        gsm_util_setenv ("SESSION_MANAGER", network_id_list);
         g_debug ("GsmXsmpServer: SESSION_MANAGER=%s\n", network_id_list);
         free (network_id_list);
 }

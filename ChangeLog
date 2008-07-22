@@ -1,3 +1,15 @@
+2008-07-22  William Jon McCann  <jmccann@redhat.com>
+
+	* compat/at-spi-registryd-wrapper.c (main):
+	* gnome-session/gsm-manager.c (gsm_manager_setenv):
+	* gnome-session/gsm-xsmp-server.c (setup_listener):
+	* gnome-session/main.c (main):
+	* gnome-session/util.c (gsm_util_update_activation_environment),
+	(gsm_util_setenv):
+	* gnome-session/util.h:
+	Use DBus API to set environment variables in activation environment.
+	Patch from: Ray Strode Fixes #360475
+
 2008-07-22  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* splash/splash-window.c:

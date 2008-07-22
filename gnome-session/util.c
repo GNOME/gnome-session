@@ -29,6 +29,8 @@
 #include <gtk/gtkmain.h>
 #include <gtk/gtkmessagedialog.h>
 
+#include <dbus/dbus-glib.h>
+
 #include "util.h"
 
 gchar **
@@ -216,4 +218,76 @@ gsm_util_generate_startup_id (void)
 			  (unsigned) tv.tv_usec,
 			  (unsigned long) pid,
 			  sequence);
+}
+
+static gboolean
+gsm_util_update_activation_environment (const char  *variable,
+					const char  *value,
+					GError     **error)
+{
+  DBusGConnection *dbus_connection;
+  DBusGProxy      *bus_proxy;
+  GHashTable      *environment;
+  gboolean         environment_updated;
+
+  environment_updated = FALSE;
+  bus_proxy = NULL;
+  environment = NULL;
+
+  dbus_connection = dbus_g_bus_get (DBUS_BUS_SESSION, error);
+
+  if (dbus_connection == NULL)
+    return FALSE;
+
+  bus_proxy = dbus_g_proxy_new_for_name_owner (dbus_connection,
+                                               DBUS_SERVICE_DBUS,
+                                               DBUS_PATH_DBUS,
+                                               DBUS_INTERFACE_DBUS,
+                                               error);
+
+  if (bus_proxy == NULL)
+    goto out;
+
+  environment = g_hash_table_new (g_str_hash, g_str_equal);
+
+  g_hash_table_insert (environment, (void *) variable, (void *) value);
+
+  if (!dbus_g_proxy_call (bus_proxy,
+                          "UpdateActivationEnvironment", error,
+                          DBUS_TYPE_G_STRING_STRING_HASHTABLE,
+                          environment, G_TYPE_INVALID,
+                          G_TYPE_INVALID))
+    goto out;
+
+  environment_updated = TRUE;
+
+out:
+
+  if (bus_proxy != NULL)
+    g_object_unref (bus_proxy);
+
+  if (environment != NULL)
+    g_hash_table_destroy (environment);
+
+  return environment_updated;
+}
+
+void
+gsm_util_setenv (const char *variable,
+                 const char *value)
+{
+  GError *bus_error;
+
+  g_setenv (variable, value, TRUE);
+
+  bus_error = NULL;
+
+  /* If this fails it isn't fatal, it means some things like session
+   * management and keyring won't work in activated clients.
+   */
+  if (!gsm_util_update_activation_environment (variable, value, &bus_error))
+    {
+      g_warning ("Could not make bus activated clients aware of %s=%s environment variable: %s", variable, value, bus_error->message);
+      g_error_free (bus_error);
+    }
 }

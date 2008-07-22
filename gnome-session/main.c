@@ -225,20 +225,20 @@ main (int argc, char **argv)
          * was specified on the command line.
          */
         display_str = gdk_get_display ();
-        g_setenv ("DISPLAY", display_str, TRUE);
+        gsm_util_setenv ("DISPLAY", display_str);
         g_free (display_str);
 
         store = gsm_client_store_new ();
+
 
         /* Start up gconfd and dbus-daemon (in parallel) if they're not
          * already running. This requires us to initialize XSMP too, because
          * we want $SESSION_MANAGER to be set before launching dbus-daemon.
          */
+        maybe_start_session_bus ();
         gsm_gconf_init ();
 
         xsmp_server = gsm_xsmp_server_new (store);
-
-        maybe_start_session_bus ();
 
         /* Now make sure they succeeded. (They'll call
          * gsm_util_init_error() if they failed.)

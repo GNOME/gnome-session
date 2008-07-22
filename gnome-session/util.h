@@ -32,6 +32,9 @@ void      gsm_util_init_error           (gboolean    fatal,
                                          const char *format, ...);
 char *    gsm_util_generate_startup_id  (void);
 
+void      gsm_util_setenv               (const char *variable,
+                                         const char *value);
+
 G_END_DECLS
 
 #endif /* __GSM_UTIL_H__ */
