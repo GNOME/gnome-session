@@ -18,9 +18,7 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <errno.h>
 #include <string.h>
@@ -259,7 +257,7 @@ gsm_consolekit_init (GsmConsolekit *manager)
         error = NULL;
 
         if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
-                g_message ("Could not connect to ConsoleKit: %s",
+                g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
                 g_error_free (error);
         }
@@ -831,8 +829,18 @@ gboolean
 gsm_consolekit_can_restart (GsmConsolekit *manager)
 {
 #ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_ensure_ck_connection (manager, NULL);
+        gboolean res;
+        GError  *error;
+        error = NULL;
+        res = gsm_consolekit_ensure_ck_connection (manager, &error);
+        if (!res) {
+                g_warning ("Could not connect to ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+        }
+        return res;
 #else
+        g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot restart system");
         return FALSE;
 #endif
 }
@@ -841,8 +849,18 @@ gboolean
 gsm_consolekit_can_stop (GsmConsolekit *manager)
 {
 #ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_ensure_ck_connection (manager, NULL);
+        gboolean res;
+        GError  *error;
+        error = NULL;
+        res = gsm_consolekit_ensure_ck_connection (manager, &error);
+        if (!res) {
+                g_warning ("Could not connect to ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+        }
+        return res;
 #else
+        g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot stop system");
         return FALSE;
 #endif
 }
