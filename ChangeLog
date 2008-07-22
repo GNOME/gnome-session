@@ -1,3 +1,9 @@
+2008-07-22  Vincent Untz  <vuntz@gnome.org>
+
+	* capplet/commands.c: (spc_command_get_app_description): escape the
+	comment since we're using markup.
+	Fix #542086. Patch by Matthias Clasen <mclasen@redhat.com>
+
 2008-06-25  Lucas Rocha  <lucasr@gnome.org>
 
 	*  gnome-session/logout.c (gsm_logout_get_dialog): check if VT is

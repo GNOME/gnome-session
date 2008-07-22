@@ -787,10 +787,10 @@ spc_command_update_app (GtkListStore *store,
 }
 
 char *
-spc_command_get_app_description (const char *name, 
-                                                const char *comment)
+spc_command_get_app_description (const char *name,
+                                 const char *comment)
 {
-  return g_strdup_printf ("<b>%s</b>\n%s", name,
-                          (!gsm_util_text_is_blank (comment) ? 
-                           comment : _("No description")));
+  return g_markup_printf_escaped ("<b>%s</b>\n%s", name,
+                                  (!gsm_util_text_is_blank (comment) ?
+                                   comment : _("No description")));
 }
