@@ -191,20 +191,31 @@ splash_window_realize (GtkWidget *widget)
       GdkColormap *colormap;
 
       colormap = gtk_widget_get_colormap (widget);
-      gdk_pixbuf_render_pixmap_and_mask_for_colormap (splash->background,
-						      colormap,
-						      &pixmap, &mask,
-						      125);
+      pixmap = gdk_pixmap_new (widget->window, 
+			       gdk_pixbuf_get_width (splash->background),
+			       gdk_pixbuf_get_height (splash->background),
+			       -1);
 
       if (pixmap)
 	{
 	  GtkStyle *style;
+
+	  /* we want dither_max for 16-bits people */
+	  gdk_draw_pixbuf (pixmap, NULL, splash->background,
+	  		   0, 0, 0, 0, -1, -1,
+			   GDK_RGB_DITHER_MAX, 0, 0);
 
 	  style = gtk_style_copy (widget->style);
 	  style->bg_pixmap[GTK_STATE_NORMAL] = pixmap;
 
 	  gtk_widget_set_style (widget, style);
 	  g_object_unref (style);
+
+	  gdk_pixbuf_render_pixmap_and_mask_for_colormap (splash->background,
+						          colormap,
+						          NULL, 
+							  &mask,
+						          125);
 
 	  if (mask)
 	    {
