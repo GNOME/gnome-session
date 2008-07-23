@@ -621,6 +621,7 @@ xsmp_get_restart_style_hint (GsmClient *client)
         GsmClientRestartStyle hint;
 
         g_debug ("GsmXSMPClient: getting restart style");
+        hint = GSM_CLIENT_RESTART_NEVER;
 
         prop = find_property (GSM_XSMP_CLIENT (client), SmRestartStyleHint, NULL);
 
