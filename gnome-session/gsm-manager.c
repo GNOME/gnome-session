@@ -112,7 +112,6 @@ enum {
         PHASE_CHANGED,
         SESSION_RUNNING,
         SESSION_OVER,
-        SESSION_OVER_NOTICE,
         CLIENT_ADDED,
         CLIENT_REMOVED,
         LAST_SIGNAL
@@ -1884,16 +1883,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmManagerClass, session_over),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-
-        signals [SESSION_OVER_NOTICE] =
-                g_signal_new ("session-over-notice",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, session_over_notice),
                               NULL, NULL,
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,

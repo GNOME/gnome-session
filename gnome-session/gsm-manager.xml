@@ -1,62 +1,179 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node>
+<node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
   <interface name="org.gnome.SessionManager">
+
     <!-- Initialization phase interfaces -->
 
     <method name="Setenv">
-      <arg name="variable" type="s" direction="in"/>
-      <arg name="value" type="s" direction="in"/>
+      <arg name="variable" type="s" direction="in">
+        <doc:doc>
+          <doc:summary>The variable name</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg name="value" type="s" direction="in">
+        <doc:doc>
+          <doc:summary>The value</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Adds the variable name to the application launch environment with the specified value.  May only be used during the Session Manager initialization phase.</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <method name="InitializationError">
-      <arg name="message" type="s" direction="in"/>
-      <arg name="fatal" type="b" direction="in"/>
+      <arg name="message" type="s" direction="in">
+        <doc:doc>
+          <doc:summary>The error message</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg name="fatal" type="b" direction="in">
+        <doc:doc>
+          <doc:summary>Whether the error should be treated as fatal</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>May be used by applications launched during the Session Manager initialization phase to indicate there was a problem.</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <!-- Running phase interfaces -->
 
     <method name="RegisterClient">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="s" name="app_id" direction="in"/>
-      <arg type="s" name="client_startup_id" direction="in"/>
-      <arg type="s" name="new_client_startup_id" direction="out"/>
-      <arg type="s" name="client_id" direction="out"/>
+      <arg type="s" name="app_id" direction="in">
+        <doc:doc>
+          <doc:summary>The application identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="s" name="client_startup_id" direction="in">
+        <doc:doc>
+          <doc:summary>Client startup identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="s" name="new_client_startup_id" direction="out">
+        <doc:doc>
+          <doc:summary>New client startup identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="o" name="client_id" direction="out">
+        <doc:doc>
+          <doc:summary>The object path of the newly registered client</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Register the caller as a Session Management client.</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
+
     <method name="UnregisterClient">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="s" name="client_id" direction="in"/>
+      <arg type="o" name="client_id" direction="in">
+        <doc:doc>
+          <doc:summary>The object path of the client</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Unregister the specified client from Session Management.</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <method name="Inhibit">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="s" name="app_id" direction="in"/>
-      <arg type="u" name="toplevel_xid" direction="in"/>
-      <arg type="s" name="reason" direction="in"/>
-      <arg type="u" name="flags" direction="in"/>
-      <arg type="u" name="inhibit_cookie" direction="out"/>
+      <arg type="s" name="app_id" direction="in">
+        <doc:doc>
+          <doc:summary>The application identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="u" name="toplevel_xid" direction="in">
+        <doc:doc>
+          <doc:summary>The toplevel X window identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="s" name="reason" direction="in">
+        <doc:doc>
+          <doc:summary>The reason for the inhibit</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="u" name="flags" direction="in">
+        <doc:doc>
+          <doc:summary>Flags that spefify what should be inhibited</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="u" name="inhibit_cookie" direction="out">
+        <doc:doc>
+          <doc:summary>The cookie</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>This is used to proactively inform the session manager that the calling
+          application would like the actions specified by the flags to be blocked until
+          Uninhibit is called or the calling process exits.
+          </doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
+
     <method name="Uninhibit">
       <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
-      <arg type="u" name="inhibit_cookie" direction="in"/>
+      <arg type="u" name="inhibit_cookie" direction="in">
+        <doc:doc>
+          <doc:summary>The cookie</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Cancel a previous call to Inhibit() identified by the cookie.</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <method name="Shutdown">
+      <doc:doc>
+        <doc:description>
+          <doc:para>Request a shutdown dialog</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <method name="Logout">
-      <arg name="mode" type="i" direction="in"/>
+      <arg name="mode" type="i" direction="in">
+        <doc:doc>
+          <doc:summary>The variable name</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Request a logout dialog</doc:para>
+        </doc:description>
+      </doc:doc>
     </method>
 
     <!-- Signals -->
 
     <signal name="SessionRunning">
-    </signal>
-
-    <signal name="SessionOverNotice">
+      <doc:doc>
+        <doc:description>
+          <doc:para>Indicates the session has entered the Running phase.</doc:para>
+        </doc:description>
+      </doc:doc>
     </signal>
 
     <signal name="SessionOver">
+      <doc:doc>
+        <doc:description>
+          <doc:para>Indicates the session is about to end.</doc:para>
+        </doc:description>
+      </doc:doc>
     </signal>
 
   </interface>
