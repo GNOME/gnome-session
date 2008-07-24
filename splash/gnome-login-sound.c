@@ -49,6 +49,11 @@ get_sound_file_from_config (const char *event,
     }
 
   *was_set = TRUE;
+  if (!sound_file[0])
+    {
+      return NULL;
+    }
+
   if (!g_path_is_absolute (sound_file))
     {
       char *tmp_sound_file;
