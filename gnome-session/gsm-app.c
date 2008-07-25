@@ -159,10 +159,11 @@ gsm_app_dispose (GObject *object)
 {
         GsmApp *app = GSM_APP (object);
 
-        if (app->priv->startup_id) {
-                g_free (app->priv->startup_id);
-                app->priv->startup_id = NULL;
-        }
+        g_free (app->priv->startup_id);
+        app->priv->startup_id = NULL;
+
+        g_free (app->priv->id);
+        app->priv->id = NULL;
 }
 
 static void
