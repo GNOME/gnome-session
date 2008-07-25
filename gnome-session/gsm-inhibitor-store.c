@@ -74,34 +74,30 @@ gsm_inhibitor_store_size (GsmInhibitorStore    *store)
         return g_hash_table_size (store->priv->inhibitors);
 }
 
-void
-gsm_inhibitor_store_clear (GsmInhibitorStore    *store)
-{
-        g_return_if_fail (store != NULL);
-        g_debug ("GsmInhibitorStore: Clearing inhibitor store");
-        g_hash_table_remove_all (store->priv->inhibitors);
-}
-
-static gboolean
-remove_inhibitor (guint               *cookie,
-                  GsmInhibitor        *inhibitor,
-                  GsmInhibitor        *inhibitor_to_remove)
-{
-        if (inhibitor == inhibitor_to_remove) {
-                return TRUE;
-        }
-        return FALSE;
-}
-
 gboolean
 gsm_inhibitor_store_remove (GsmInhibitorStore    *store,
                             GsmInhibitor         *inhibitor)
 {
+        GsmInhibitor *found;
+        gboolean      removed;
+        guint         cookie;
+
         g_return_val_if_fail (store != NULL, FALSE);
 
-        gsm_inhibitor_store_foreach_remove (store,
-                                            (GsmInhibitorStoreFunc)remove_inhibitor,
-                                            inhibitor);
+        cookie = gsm_inhibitor_get_cookie (inhibitor);
+
+        found = g_hash_table_lookup (store->priv->inhibitors,
+                                     GUINT_TO_POINTER (cookie));
+        if (found == NULL) {
+                return FALSE;
+        }
+
+        g_signal_emit (store, signals [INHIBITOR_REMOVED], 0, cookie);
+
+        removed = g_hash_table_remove (store->priv->inhibitors,
+                                       GUINT_TO_POINTER (cookie));
+        g_assert (removed);
+
         return FALSE;
 }
 
@@ -190,6 +186,26 @@ gsm_inhibitor_store_foreach_remove (GsmInhibitorStore    *store,
                                            &data);
 
         return ret;
+}
+
+static gboolean
+_remove_all (guint        *cookie,
+             GsmInhibitor *inhibitor,
+             gpointer      data)
+{
+        return TRUE;
+}
+
+void
+gsm_inhibitor_store_clear (GsmInhibitorStore    *store)
+{
+        g_return_if_fail (store != NULL);
+
+        g_debug ("GsmInhibitorStore: Clearing inhibitor store");
+
+        gsm_inhibitor_store_foreach_remove (store,
+                                            _remove_all,
+                                            NULL);
 }
 
 gboolean
