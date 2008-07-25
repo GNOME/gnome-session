@@ -168,6 +168,7 @@ gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
 
         app->priv->desktop_id = g_path_get_basename (desktop_filename);
 
+        error = NULL;
         app->priv->desktop_file = egg_desktop_file_new (desktop_filename, &error);
         if (app->priv->desktop_file == NULL) {
                 g_warning ("Could not parse desktop file %s: %s",
@@ -627,6 +628,7 @@ start_notify (DBusGProxy      *proxy,
         gboolean res;
         GError  *error;
 
+        error = NULL;
         res = dbus_g_proxy_end_call (proxy,
                                      call,
                                      &error,

@@ -2395,7 +2395,7 @@ get_caller_info (GsmManager  *manager,
 {
         gboolean res;
         gboolean ret;
-        GError  *error = NULL;
+        GError  *error;
 
         ret = FALSE;
 
@@ -2403,6 +2403,7 @@ get_caller_info (GsmManager  *manager,
                 goto out;
         }
 
+        error = NULL;
         res = dbus_g_proxy_call (manager->priv->bus_proxy,
                                  "GetConnectionUnixUser",
                                  &error,
