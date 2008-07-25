@@ -1,5 +1,16 @@
 2008-07-24  William Jon McCann  <jmccann@redhat.com>
 
+	* data/gnome-session.schemas.in:
+	* splash/Makefile.am:
+	* splash/README:
+	* splash/gnome-session-splash.c:
+	* splash/gnome-session-splash.desktop.in:
+	* splash/splash-window.c:
+	* splash/splash-window.h:
+	Make startup faster by removing the splash.
+
+2008-07-24  William Jon McCann  <jmccann@redhat.com>
+
 	* capplet/commands.c (append_autostart_apps),
 	(spc_command_get_store): Merge from trunk.
 	Correctly sort apps model by name.
