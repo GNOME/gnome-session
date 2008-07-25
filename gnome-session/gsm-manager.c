@@ -830,6 +830,7 @@ on_query_end_session_timeout (GsmManager *manager)
                 guint         cookie;
                 GsmInhibitor *inhibitor;
                 const char   *bus_name;
+                char         *app_id;
 
                 g_warning ("Client '%s' failed to reply before timeout",
                            gsm_client_get_id (l->data));
@@ -841,13 +842,20 @@ on_query_end_session_timeout (GsmManager *manager)
                         bus_name = NULL;
                 }
 
+                app_id = g_strdup (gsm_client_get_app_id (l->data));
+                if (app_id == NULL || app_id[0] == '\0') {
+                        /* XSMP clients don't give us an app id unless we start them */
+                        app_id = gsm_client_get_app_name (l->data);
+                }
+
                 cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
-                                                          gsm_client_get_app_id (l->data),
+                                                          app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           _("Not responding"),
                                                           bus_name,
                                                           cookie);
+                g_free (app_id);
                 gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
                 g_object_unref (inhibitor);
         }
@@ -1363,7 +1371,7 @@ on_client_end_session_response (GsmClient  *client,
         if (! is_ok) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
-                const char   *app_id;
+                char         *app_id;
                 const char   *bus_name;
 
                 /* FIXME: do we support updating the reason? */
@@ -1375,7 +1383,7 @@ on_client_end_session_response (GsmClient  *client,
                         bus_name = NULL;
                 }
 
-                app_id = gsm_client_get_app_id (client);
+                app_id = g_strdup (gsm_client_get_app_id (client));
                 if (app_id == NULL || app_id[0] == '\0') {
                         /* XSMP clients don't give us an app id unless we start them */
                         app_id = gsm_client_get_app_name (client);
@@ -1388,6 +1396,7 @@ on_client_end_session_response (GsmClient  *client,
                                                           reason,
                                                           bus_name,
                                                           cookie);
+                g_free (app_id);
                 gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
                 g_object_unref (inhibitor);
         } else {
