@@ -1,5 +1,10 @@
 2008-07-25  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor):
+	Also check for desktop files using a gnome vendor prefix.
+
+2008-07-25  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (on_query_end_session_timeout),
 	(on_client_end_session_response):
 	Use app name when id isn't available.

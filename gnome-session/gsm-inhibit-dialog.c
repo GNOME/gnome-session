@@ -280,6 +280,18 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
                                                                (const char **)search_dirs,
                                                                &error);
+
+                /* look for a file with a vendor prefix */
+                if (desktop_file == NULL) {
+                        g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
+                        g_error_free (error);
+                        g_free (desktop_filename);
+                        desktop_filename = g_strdup_printf ("gnome-%s.desktop", app_id);
+                        error = NULL;
+                        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
+                                                                       (const char **)search_dirs,
+                                                                       &error);
+                }
                 g_strfreev (search_dirs);
 
                 if (desktop_file == NULL) {
