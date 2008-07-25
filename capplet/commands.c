@@ -503,8 +503,6 @@ append_autostart_apps (GtkListStore *store, const char *path, GList **removed_ap
 
       if (!error)
 	{
-	  g_debug ("read %s", desktop_file_path);
-
 	  if (!append_app (store, desktop_file))
             {
               if (removed_apps)
@@ -557,6 +555,10 @@ spc_command_get_store ()
   g_strfreev (autostart_dirs);
   g_list_foreach (removed_apps, (GFunc) g_free, NULL);
   g_list_free (removed_apps);
+
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
+                                        STORE_COL_NAME,
+                                        GTK_SORT_ASCENDING);
 
   return GTK_TREE_MODEL (store);
 }
