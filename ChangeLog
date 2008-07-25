@@ -1,5 +1,13 @@
 2008-07-24  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client-store.c (gsm_client_store_remove),
+	(foreach_remove_wrapper), (gsm_client_store_foreach_remove),
+	(_remove_all), (gsm_client_store_clear):
+	* gnome-session/gsm-inhibitor-store.c (gsm_inhibitor_store_remove):
+	Make sure client-removed signals are emitted.
+
+2008-07-24  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-inhibitor-store.c (gsm_inhibitor_store_remove),
 	(_remove_all), (gsm_inhibitor_store_clear):
 	Make sure to always emit the removed signal.

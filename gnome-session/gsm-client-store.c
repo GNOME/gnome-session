@@ -77,35 +77,32 @@ gsm_client_store_size (GsmClientStore    *store)
         return g_hash_table_size (store->priv->clients);
 }
 
-void
-gsm_client_store_clear (GsmClientStore    *store)
-{
-        g_return_if_fail (store != NULL);
-        g_debug ("GsmClientStore: Clearing client store");
-        g_hash_table_remove_all (store->priv->clients);
-}
-
-static gboolean
-remove_client (char              *id,
-                GsmClient        *client,
-                GsmClient        *client_to_remove)
-{
-        if (client == client_to_remove) {
-                return TRUE;
-        }
-        return FALSE;
-}
-
 gboolean
 gsm_client_store_remove (GsmClientStore    *store,
                          GsmClient         *client)
 {
+        GsmClient  *found;
+        gboolean    removed;
+        const char *id;
+
         g_return_val_if_fail (store != NULL, FALSE);
 
-        gsm_client_store_foreach_remove (store,
-                                          (GsmClientStoreFunc)remove_client,
-                                          client);
-        return FALSE;
+        id = gsm_client_get_id (client);
+        if (id == NULL) {
+                return FALSE;
+        }
+
+        found = g_hash_table_lookup (store->priv->clients, id);
+        if (found == NULL) {
+                return FALSE;
+        }
+
+        g_signal_emit (store, signals [CLIENT_REMOVED], 0, id);
+
+        removed = g_hash_table_remove (store->priv->clients, id);
+        g_assert (removed);
+
+        return TRUE;
 }
 
 void
@@ -152,21 +149,69 @@ gsm_client_store_lookup (GsmClientStore    *store,
         return client;
 }
 
+
+typedef struct
+{
+        GsmClientStoreFunc func;
+        gpointer           user_data;
+        GsmClientStore    *store;
+} WrapperData;
+
+static gboolean
+foreach_remove_wrapper (const char   *id,
+                        GsmClient    *client,
+                        WrapperData  *data)
+{
+        gboolean res;
+
+        res = (data->func) (id, client, data->user_data);
+        if (res) {
+                g_signal_emit (data->store, signals [CLIENT_REMOVED], 0, gsm_client_get_id (client));
+        }
+
+        return res;
+}
+
 guint
 gsm_client_store_foreach_remove (GsmClientStore    *store,
                                  GsmClientStoreFunc func,
                                  gpointer           user_data)
 {
-        guint ret;
+        guint       ret;
+        WrapperData data;
 
         g_return_val_if_fail (store != NULL, 0);
         g_return_val_if_fail (func != NULL, 0);
 
+        data.store = store;
+        data.user_data = user_data;
+        data.func = func;
+
         ret = g_hash_table_foreach_remove (store->priv->clients,
-                                           (GHRFunc)func,
-                                           user_data);
+                                           (GHRFunc)foreach_remove_wrapper,
+                                           &data);
 
         return ret;
+}
+
+static gboolean
+_remove_all (guint     *cookie,
+             GsmClient *client,
+             gpointer   data)
+{
+        return TRUE;
+}
+
+void
+gsm_client_store_clear (GsmClientStore *store)
+{
+        g_return_if_fail (store != NULL);
+
+        g_debug ("GsmClientStore: Clearing client store");
+
+        gsm_client_store_foreach_remove (store,
+                                         _remove_all,
+                                         NULL);
 }
 
 gboolean

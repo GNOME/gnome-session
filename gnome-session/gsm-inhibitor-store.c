@@ -98,7 +98,7 @@ gsm_inhibitor_store_remove (GsmInhibitorStore    *store,
                                        GUINT_TO_POINTER (cookie));
         g_assert (removed);
 
-        return FALSE;
+        return TRUE;
 }
 
 void
