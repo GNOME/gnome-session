@@ -173,9 +173,9 @@ setup_connection (GsmXSMPClient *client)
                                                  client);
         g_io_channel_unref (channel);
 
-        client->priv->protocol_timeout = g_timeout_add (5000,
-                                                        (GSourceFunc)client_protocol_timeout,
-                                                        client);
+        client->priv->protocol_timeout = g_timeout_add_seconds (5,
+                                                                (GSourceFunc)client_protocol_timeout,
+                                                                client);
 
         set_description (client);
 

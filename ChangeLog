@@ -1,5 +1,11 @@
 2008-07-24  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-xsmp-client.c (setup_connection):
+	Use add_seconds for timeout.
+	Pointed out by Matthias Clasen <mclasen@redhat.com>
+
+2008-07-24  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gconf.c (gsm_gconf_check):
 	Remove gsm_gconf_get_client.
 	* gnome-session/gsm-autostart-app.c (is_disabled):
