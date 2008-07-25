@@ -320,28 +320,9 @@ end_phase (GsmManager *manager)
 
         manager->priv->phase++;
 
-        switch (manager->priv->phase) {
-        case GSM_MANAGER_PHASE_STARTUP:
-        case GSM_MANAGER_PHASE_INITIALIZATION:
-        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
-        case GSM_MANAGER_PHASE_PANEL:
-        case GSM_MANAGER_PHASE_DESKTOP:
-        case GSM_MANAGER_PHASE_APPLICATION:
-                break;
-        case GSM_MANAGER_PHASE_RUNNING:
-                break;
-        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
-        case GSM_MANAGER_PHASE_END_SESSION:
-                break;
-        case GSM_MANAGER_PHASE_EXIT:
+        if (manager->priv->phase == GSM_MANAGER_PHASE_EXIT) {
                 gtk_main_quit ();
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+        } else if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 start_phase (manager);
         }
 }
@@ -1190,34 +1171,6 @@ find_app_for_startup_id (GsmManager *manager,
 }
 
 static void
-register_client_for_name (GsmManager *manager,
-                          const char *dbus_name)
-{
-#if 0
-        GsmApp    *app;
-        GsmClient *client;
-
-        app = find_app_for_startup_id (manager, dbus_name);
-        if (app == NULL) {
-                return;
-        }
-
-        client = gsm_service_client_new (dbus_name);
-        if (client == NULL) {
-                g_warning ("GsmManager: Unable to create client for name '%s'", dbus_name);
-                return;
-        }
-
-        gsm_client_store_add (manager->priv->store, client);
-
-        gsm_client_set_app_id (client, gsm_app_get_id (app));
-        gsm_app_registered (app);
-
-        gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
-#endif
-}
-
-static void
 bus_name_owner_changed (DBusGProxy  *bus_proxy,
                         const char  *service_name,
                         const char  *old_service_name,
@@ -1232,9 +1185,9 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
         } else if (strlen (old_service_name) == 0
                    && strlen (new_service_name) > 0) {
                 /* service added */
-                if (new_service_name[0] == '/') {
-                        register_client_for_name (manager, new_service_name);
-                }
+
+                /* use this if we support automatically registering
+                 * well known bus names */
         }
 }
 
@@ -2384,59 +2337,6 @@ gsm_manager_logout (GsmManager *manager,
         }
 
         return TRUE;
-}
-
-/* adapted from PolicyKit */
-static gboolean
-get_caller_info (GsmManager  *manager,
-                 const char  *sender,
-                 uid_t       *calling_uid,
-                 pid_t       *calling_pid)
-{
-        gboolean res;
-        gboolean ret;
-        GError  *error;
-
-        ret = FALSE;
-
-        if (sender == NULL) {
-                goto out;
-        }
-
-        error = NULL;
-        res = dbus_g_proxy_call (manager->priv->bus_proxy,
-                                 "GetConnectionUnixUser",
-                                 &error,
-                                 G_TYPE_STRING, sender,
-                                 G_TYPE_INVALID,
-                                 G_TYPE_UINT, calling_uid,
-                                 G_TYPE_INVALID);
-        if (! res) {
-                g_debug ("GetConnectionUnixUser() failed: %s", error->message);
-                g_error_free (error);
-                goto out;
-        }
-
-        res = dbus_g_proxy_call (manager->priv->bus_proxy,
-                                 "GetConnectionUnixProcessID",
-                                 &error,
-                                 G_TYPE_STRING, sender,
-                                 G_TYPE_INVALID,
-                                 G_TYPE_UINT, calling_pid,
-                                 G_TYPE_INVALID);
-        if (! res) {
-                g_debug ("GetConnectionUnixProcessID() failed: %s", error->message);
-                g_error_free (error);
-                goto out;
-        }
-
-        ret = TRUE;
-
-        g_debug ("uid = %d", *calling_uid);
-        g_debug ("pid = %d", *calling_pid);
-
-out:
-        return ret;
 }
 
 gboolean
