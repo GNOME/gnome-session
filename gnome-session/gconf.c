@@ -32,7 +32,6 @@
 #include "util.h"
 
 static pid_t gsc_pid;
-static GConfClient *client = NULL;
 
 static void unset_display_setup (gpointer user_data);
 
@@ -111,22 +110,6 @@ gsm_gconf_check (void)
                                GCONF_SANITY_CHECK, status);
 	}
     }
-
-  client = gconf_client_get_default ();
-}
-
-/**
- * gsm_gconf_get_client:
- *
- * Retrieves the global GConf client. (Assumes gsm_gconf_init() and
- * gsm_gconf_check() have already been called.)
- *
- * Return value: the global #GConfClient
- **/
-GConfClient *
-gsm_gconf_get_client (void)
-{
-  return client;
 }
 
 /**

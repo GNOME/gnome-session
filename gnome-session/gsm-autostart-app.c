@@ -489,8 +489,9 @@ is_disabled (GsmApp *app)
                                                                  gconf_condition_cb,
                                                                  app, NULL, NULL);
                                 }
+                                g_object_unref (client);
                         } else {
-                                                disabled = FALSE;
+                                disabled = FALSE;
                         }
                 } else {
                         disabled = TRUE;
