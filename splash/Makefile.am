@@ -10,6 +10,7 @@ LDADD =						\
 
 helperdir = $(pkglibdir)/helpers
 helper_PROGRAMS =				\
+	gnome-session-splash			\
 	gnome-login-sound
 
 shutdowndir = $(datadir)/gnome/shutdown
@@ -18,7 +19,17 @@ shutdown_SCRIPTS =				\
 
 default_sessiondir = $(datadir)/gnome/autostart
 default_session_DATA =				\
+	gnome-session-splash.desktop		\
 	gnome-login-sound.desktop
+
+gnome_session_splash_SOURCES =			\
+	gnome-session-splash.c			\
+	splash-window.c				\
+	splash-window.h
+gnome_session_splash_LDADD =			\
+	$(STARTUP_NOTIFICATION_LIBS)		\
+	$(DBUS_GLIB_LIBS)			\
+	$(LDADD)
 
 gnome_login_sound_SOURCES =			\
 	gnome-login-sound.c
@@ -32,5 +43,6 @@ CLEANFILES =					\
 
 EXTRA_DIST =					\
 	README					\
+	gnome-session-splash.desktop.in		\
 	gnome-login-sound.desktop.in		\
 	gnome-logout-sound.sh
