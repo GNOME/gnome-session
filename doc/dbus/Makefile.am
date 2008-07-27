@@ -44,3 +44,4 @@ MAINTAINERCLEANFILES =		\
 clean-local:
 	rm -f *~
 	rm -f gnome-session.html
+	rm -f *.ref.xml

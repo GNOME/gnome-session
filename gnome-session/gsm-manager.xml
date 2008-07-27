@@ -121,7 +121,7 @@
           <doc:para>Applications should invoke this method when they begin an operation that
             should not be interrupted, such as creating a CD or DVD.  The types of actions
             that may be blocked are specified by the flags parameter.  When the application
-            completes the operation it should call <doc:ref type="method" to="Uninhibit">Uninhibit()</doc:ref>
+            completes the operation it should call <doc:ref type="method" to="org.gnome.SessionManager.Uninhibit">Uninhibit()</doc:ref>
             or disconnect from the system bus.
           </doc:para>
           <doc:para>
@@ -152,7 +152,7 @@
           </doc:para>
           <doc:para>
             The returned cookie is used to uniquely identify this request.  It should be used
-            as an argument to <doc:ref type="method" to="Uninhibit">Uninhibit()</doc:ref> in
+            as an argument to <doc:ref type="method" to="org.gnome.SessionManager.Uninhibit">Uninhibit()</doc:ref> in
             order to remove the request.
           </doc:para>
         </doc:description>
