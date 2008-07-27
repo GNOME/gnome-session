@@ -1,6 +1,15 @@
 2008-07-27  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/Makefile.am:
+	* gnome-session/gsm-client.c:
+	* gnome-session/gsm-inhibitor.c (register_inhibitor),
+	(gsm_inhibitor_constructor):
+	* gnome-session/gsm-inhibitor.xml:
+	Put inhibitors on the bus.
+
+2008-07-27  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/Makefile.am:
 	* gnome-session/gsm-client-store.c:
 	* gnome-session/gsm-client-store.h:
 	* gnome-session/gsm-inhibit-dialog.c (find_inhibitor),

@@ -113,6 +113,9 @@ gsm-manager-glue.h: gsm-manager.xml Makefile.am
 gsm-client-glue.h: gsm-client.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/gsm-client.xml
 
+gsm-inhibitor-glue.h: gsm-inhibitor.xml Makefile.am
+	dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/gsm-inhibitor.xml
+
 gsm-dbus-client-glue.h: gsm-dbus-client.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_dbus_client --mode=glib-server --output=gsm-dbus-client-glue.h $(srcdir)/gsm-dbus-client.xml
 
@@ -120,6 +123,7 @@ BUILT_SOURCES =			\
 	gsm-marshal.c           \
 	gsm-marshal.h           \
 	gsm-manager-glue.h	\
+	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\
 	gsm-dbus-client-glue.h	\
 	$(NULL)
@@ -133,6 +137,7 @@ EXTRA_DIST =					\
 	gsm-marshal.list        		\
 	gsm-manager.xml				\
 	gsm-client.xml				\
+	gsm-inhibitor.xml			\
 	gsm-dbus-client.xml			\
 	$(NULL)
 

@@ -26,7 +26,10 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <dbus/dbus-glib.h>
+
 #include "gsm-inhibitor.h"
+#include "gsm-inhibitor-glue.h"
 
 static guint32 inhibitor_serial = 1;
 
@@ -42,6 +45,7 @@ struct GsmInhibitorPrivate
         guint flags;
         guint toplevel_xid;
         guint cookie;
+        DBusGConnection *connection;
 };
 
 enum {
@@ -71,12 +75,33 @@ get_next_inhibitor_serial (void)
         return serial;
 }
 
+static gboolean
+register_inhibitor (GsmInhibitor *inhibitor)
+{
+        GError *error;
+
+        error = NULL;
+        inhibitor->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (inhibitor->priv->connection == NULL) {
+                if (error != NULL) {
+                        g_critical ("error getting session bus: %s", error->message);
+                        g_error_free (error);
+                }
+                return FALSE;
+        }
+
+        dbus_g_connection_register_g_object (inhibitor->priv->connection, inhibitor->priv->id, G_OBJECT (inhibitor));
+
+        return TRUE;
+}
+
 static GObject *
 gsm_inhibitor_constructor (GType                  type,
                            guint                  n_construct_properties,
                            GObjectConstructParam *construct_properties)
 {
         GsmInhibitor *inhibitor;
+        gboolean      res;
 
         inhibitor = GSM_INHIBITOR (G_OBJECT_CLASS (gsm_inhibitor_parent_class)->constructor (type,
                                                                                              n_construct_properties,
@@ -84,6 +109,10 @@ gsm_inhibitor_constructor (GType                  type,
 
         g_free (inhibitor->priv->id);
         inhibitor->priv->id = g_strdup_printf ("/org/gnome/SessionManager/Inhibitor%u", get_next_inhibitor_serial ());
+        res = register_inhibitor (inhibitor);
+        if (! res) {
+                g_warning ("Unable to register inhibitor with session bus");
+        }
 
         return G_OBJECT (inhibitor);
 }

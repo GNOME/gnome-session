@@ -19,9 +19,7 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <dbus/dbus-glib.h>
 
@@ -93,7 +91,6 @@ register_client (GsmClient *client)
 
         return TRUE;
 }
-
 
 static GObject *
 gsm_client_constructor (GType                  type,
