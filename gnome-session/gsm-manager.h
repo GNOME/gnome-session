@@ -95,7 +95,7 @@ typedef enum
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
 
 typedef enum {
-        GSM_MANAGER_LOGOUT_MODE_NORMAL,
+        GSM_MANAGER_LOGOUT_MODE_NORMAL = 0,
         GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION,
         GSM_MANAGER_LOGOUT_MODE_FORCE
 } GsmManagerLogoutMode;
