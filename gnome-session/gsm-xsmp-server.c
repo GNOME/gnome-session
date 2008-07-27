@@ -126,7 +126,7 @@ accept_ice_connection (GIOChannel           *source,
         client = gsm_xsmp_client_new (ice_conn);
         ice_conn->context = client;
 
-        gsm_store_add (server->priv->client_store, gsm_client_get_id (client), client);
+        gsm_store_add (server->priv->client_store, gsm_client_get_id (client), G_OBJECT (client));
 
         return TRUE;
 }
@@ -607,8 +607,6 @@ gsm_xsmp_server_finalize (GObject *object)
         if (xsmp_server->priv->client_store != NULL) {
                 g_object_unref (xsmp_server->priv->client_store);
         }
-
-        /* FIXME */
 
         G_OBJECT_CLASS (gsm_xsmp_server_parent_class)->finalize (object);
 }

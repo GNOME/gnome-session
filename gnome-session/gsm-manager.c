@@ -111,8 +111,6 @@ enum {
         PHASE_CHANGED,
         SESSION_RUNNING,
         SESSION_OVER,
-        CLIENT_ADDED,
-        CLIENT_REMOVED,
         LAST_SIGNAL
 };
 
@@ -1859,27 +1857,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
-
-        signals [CLIENT_ADDED] =
-                g_signal_new ("client-added",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, client_added),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__STRING,
-                              G_TYPE_NONE,
-                              1, G_TYPE_STRING);
-        signals [CLIENT_REMOVED] =
-                g_signal_new ("client-removed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, client_removed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__STRING,
-                              G_TYPE_NONE,
-                              1, G_TYPE_STRING);
 
         g_object_class_install_property (object_class,
                                          PROP_FAILSAFE,

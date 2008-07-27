@@ -1,5 +1,14 @@
 2008-07-27  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (gsm_manager_class_init):
+	* gnome-session/gsm-store.c (gsm_store_remove),
+	(foreach_remove_wrapper), (gsm_store_foreach_remove):
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection),
+	(gsm_xsmp_server_finalize):
+	Emit removed signal after removing from store.
+
+2008-07-27  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-client.c:
 	* gnome-session/gsm-inhibitor.c (register_inhibitor),

@@ -90,10 +90,14 @@ gsm_store_remove (GsmStore   *store,
                 return FALSE;
         }
 
-        g_signal_emit (store, signals [REMOVED], 0, id);
+        g_object_ref (found);
 
         removed = g_hash_table_remove (store->priv->objects, id);
         g_assert (removed);
+
+        g_signal_emit (store, signals [REMOVED], 0, id);
+
+        g_object_unref (found);
 
         return TRUE;
 }
@@ -147,6 +151,7 @@ typedef struct
         GsmStoreFunc func;
         gpointer     user_data;
         GsmStore    *store;
+        GList       *removed;
 } WrapperData;
 
 static gboolean
@@ -158,7 +163,7 @@ foreach_remove_wrapper (const char  *id,
 
         res = (data->func) (id, object, data->user_data);
         if (res) {
-                g_signal_emit (data->store, signals [REMOVED], 0, id);
+                data->removed = g_list_prepend (data->removed, g_strdup (id));
         }
 
         return res;
@@ -178,10 +183,19 @@ gsm_store_foreach_remove (GsmStore    *store,
         data.store = store;
         data.user_data = user_data;
         data.func = func;
+        data.removed = NULL;
 
         ret = g_hash_table_foreach_remove (store->priv->objects,
                                            (GHRFunc)foreach_remove_wrapper,
                                            &data);
+
+        while (data.removed != NULL) {
+                char *id;
+                id = data.removed->data;
+                g_signal_emit (store, signals [REMOVED], 0, id);
+                g_free (id);
+                data.removed = g_list_delete_link (data.removed, data.removed);
+        }
 
         return ret;
 }
