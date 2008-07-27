@@ -1,3 +1,15 @@
+2008-07-26  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.in:
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-inhibit-dialog.c (scale_pixbuf), (get_cmap),
+	(pixbuf_get_from_pixmap), (get_pixmap_for_window),
+	(get_pixbuf_for_window), (add_inhibitor), (setup_dialog),
+	(gsm_inhibit_dialog_constructor):
+	* gnome-session/test-inhibit.c (do_inhibit_for_window),
+	(on_widget_show), (main):
+	Add ability to get a window snapshot of application.
+
 2008-07-25  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor):

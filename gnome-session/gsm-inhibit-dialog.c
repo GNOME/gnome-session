@@ -29,6 +29,7 @@
 #include <glib/gi18n.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 
 #include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
@@ -37,12 +38,20 @@
 #include "eggdesktopfile.h"
 #include "util.h"
 
+#ifdef HAVE_XRENDER
+#include <X11/extensions/Xrender.h>
+#endif
+
 #define GSM_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBIT_DIALOG, GsmInhibitDialogPrivate))
 
 #define GLADE_XML_FILE "gsm-inhibit-dialog.glade"
 
 #ifndef DEFAULT_ICON_SIZE
 #define DEFAULT_ICON_SIZE 64
+#endif
+
+#ifndef DEFAULT_SNAPSHOT_SIZE
+#define DEFAULT_SNAPSHOT_SIZE 128
 #endif
 
 #define DIALOG_RESPONSE_LOCK_SCREEN 1
@@ -53,6 +62,9 @@ struct GsmInhibitDialogPrivate
         int                action;
         GsmInhibitorStore *inhibitors;
         GtkListStore      *list_store;
+        gboolean           have_xrender;
+        int                xrender_event_base;
+        int                xrender_error_base;
 };
 
 enum {
@@ -71,7 +83,7 @@ enum {
 
 static void     gsm_inhibit_dialog_class_init  (GsmInhibitDialogClass *klass);
 static void     gsm_inhibit_dialog_init        (GsmInhibitDialog      *inhibit_dialog);
-static void     gsm_inhibit_dialog_finalize    (GObject                     *object);
+static void     gsm_inhibit_dialog_finalize    (GObject               *object);
 
 G_DEFINE_TYPE (GsmInhibitDialog, gsm_inhibit_dialog, GTK_TYPE_DIALOG)
 
@@ -89,7 +101,7 @@ lock_screen (GsmInhibitDialog *dialog)
 
 static void
 on_response (GsmInhibitDialog *dialog,
-             gint                    response_id)
+             gint              response_id)
 {
         switch (response_id) {
         case DIALOG_RESPONSE_LOCK_SCREEN:
@@ -110,8 +122,8 @@ gsm_inhibit_dialog_set_action (GsmInhibitDialog *dialog,
 
 static gboolean
 find_inhibitor (GsmInhibitDialog *dialog,
-                guint                   cookie,
-                GtkTreeIter            *iter)
+                guint             cookie,
+                GtkTreeIter      *iter)
 {
         GtkTreeModel *model;
         gboolean      found_item;
@@ -245,6 +257,210 @@ _load_icon (GtkIconTheme  *icon_theme,
         return retval;
 }
 
+
+static GdkPixbuf *
+scale_pixbuf (GdkPixbuf *pixbuf,
+              int        max_width,
+              int        max_height,
+              gboolean   no_stretch_hint)
+{
+        int        pw;
+        int        ph;
+        float      scale_factor_x = 1.0;
+        float      scale_factor_y = 1.0;
+        float      scale_factor = 1.0;
+
+        pw = gdk_pixbuf_get_width (pixbuf);
+        ph = gdk_pixbuf_get_height (pixbuf);
+
+        /* Determine which dimension requires the smallest scale. */
+        scale_factor_x = (float) max_width / (float) pw;
+        scale_factor_y = (float) max_height / (float) ph;
+
+        if (scale_factor_x > scale_factor_y) {
+                scale_factor = scale_factor_y;
+        } else {
+                scale_factor = scale_factor_x;
+        }
+
+        /* always scale down, allow to disable scaling up */
+        if (scale_factor < 1.0 || !no_stretch_hint) {
+                int scale_x = (int) (pw * scale_factor);
+                int scale_y = (int) (ph * scale_factor);
+                g_debug ("Scaling to %dx%d", scale_x, scale_y);
+                return gdk_pixbuf_scale_simple (pixbuf,
+                                                scale_x,
+                                                scale_y,
+                                                GDK_INTERP_BILINEAR);
+        } else {
+                return g_object_ref (pixbuf);
+        }
+}
+
+#ifdef HAVE_XRENDER
+
+/* adapted from metacity */
+static GdkColormap*
+get_cmap (GdkPixmap *pixmap)
+{
+        GdkColormap *cmap;
+
+        cmap = gdk_drawable_get_colormap (pixmap);
+        if (cmap) {
+                g_object_ref (G_OBJECT (cmap));
+        }
+
+        if (cmap == NULL) {
+                if (gdk_drawable_get_depth (pixmap) == 1) {
+                        g_debug ("Using NULL colormap for snapshotting bitmap\n");
+                        cmap = NULL;
+                } else {
+                        g_debug ("Using system cmap to snapshot pixmap\n");
+                        cmap = gdk_screen_get_system_colormap (gdk_drawable_get_screen (pixmap));
+
+                        g_object_ref (G_OBJECT (cmap));
+                }
+        }
+
+        /* Be sure we aren't going to blow up due to visual mismatch */
+        if (cmap &&
+            (gdk_colormap_get_visual (cmap)->depth !=
+             gdk_drawable_get_depth (pixmap))) {
+                cmap = NULL;
+                g_debug ("Switching back to NULL cmap because of depth mismatch\n");
+        }
+
+        return cmap;
+}
+
+static GdkPixbuf *
+pixbuf_get_from_pixmap (Pixmap xpixmap)
+{
+        GdkDrawable *drawable;
+        GdkPixbuf   *retval;
+        GdkColormap *cmap;
+        int          width;
+        int          height;
+
+        retval = NULL;
+        cmap = NULL;
+
+        g_debug ("GsmInhibitDialog: getting foreign pixmap for %u", (guint)xpixmap);
+        drawable = gdk_pixmap_foreign_new (xpixmap);
+        if (GDK_IS_PIXMAP (drawable)) {
+                cmap = get_cmap (drawable);
+                gdk_drawable_get_size (drawable,
+                                       &width,
+                                       &height);
+                g_debug ("GsmInhibitDialog: getting pixbuf w=%d h=%d", width, height);
+
+                retval = gdk_pixbuf_get_from_drawable (NULL,
+                                                       drawable,
+                                                       cmap,
+                                                       0, 0,
+                                                       0, 0,
+                                                       width, height);
+        }
+        if (cmap) {
+                g_object_unref (G_OBJECT (cmap));
+        }
+        if (drawable) {
+                g_object_unref (G_OBJECT (drawable));
+        }
+
+        return retval;
+}
+
+static Pixmap
+get_pixmap_for_window (Window window)
+{
+        XWindowAttributes        attr;
+        XRenderPictureAttributes pa;
+        Pixmap                   pixmap;
+        XRenderPictFormat       *format;
+        Picture                  src_picture;
+        Picture                  dst_picture;
+        gboolean                 has_alpha;
+        int                      x;
+        int                      y;
+        int                      width;
+        int                      height;
+
+        XGetWindowAttributes (GDK_DISPLAY (), window, &attr);
+
+        format = XRenderFindVisualFormat (GDK_DISPLAY (), attr.visual);
+        has_alpha = (format->type == PictTypeDirect && format->direct.alphaMask);
+        x = attr.x;
+        y = attr.y;
+        width = attr.width;
+        height = attr.height;
+
+        pa.subwindow_mode = IncludeInferiors; /* Don't clip child widgets */
+
+        src_picture = XRenderCreatePicture (GDK_DISPLAY (), window, format, CPSubwindowMode, &pa);
+
+        pixmap = XCreatePixmap (GDK_DISPLAY (),
+                                window,
+                                width, height,
+                                attr.depth);
+
+        dst_picture = XRenderCreatePicture (GDK_DISPLAY (), pixmap, format, 0, 0);
+        XRenderComposite (GDK_DISPLAY (),
+                          has_alpha ? PictOpOver : PictOpSrc,
+                          src_picture,
+                          None,
+                          dst_picture,
+                          0, 0, 0, 0,
+                          0, 0,
+                          width, height);
+
+
+        return pixmap;
+}
+
+#endif /* HAVE_COMPOSITE */
+
+static GdkPixbuf *
+get_pixbuf_for_window (guint xid,
+                       int   width,
+                       int   height)
+{
+        GdkPixbuf *pixbuf = NULL;
+#ifdef HAVE_XRENDER
+        Window     xwindow;
+        Pixmap     xpixmap;
+
+        xwindow = (Window) xid;
+        xpixmap = get_pixmap_for_window (xwindow);
+        if (xpixmap == None) {
+                g_debug ("GsmInhibitDialog: Unable to get window snapshot for %u", xid);
+                return NULL;
+        } else {
+                g_debug ("GsmInhibitDialog: Got xpixmap %u", (guint)xpixmap);
+        }
+
+        pixbuf = pixbuf_get_from_pixmap (xpixmap);
+
+        if (xpixmap != None) {
+                gdk_error_trap_push ();
+                XFreePixmap (GDK_DISPLAY (), xpixmap);
+                gdk_display_sync (gdk_display_get_default ());
+                gdk_error_trap_pop ();
+        }
+
+        if (pixbuf != NULL) {
+                GdkPixbuf *scaled;
+                g_debug ("GsmInhibitDialog: scaling pixbuf to w=%d h=%d", width, height);
+                scaled = scale_pixbuf (pixbuf, width, height, TRUE);
+                g_object_unref (pixbuf);
+                pixbuf = scaled;
+        }
+#else
+        g_debug ("GsmInhibitDialog: no support for getting window snapshot");
+#endif
+        return pixbuf;
+}
+
 static void
 add_inhibitor (GsmInhibitDialog *dialog,
                GsmInhibitor     *inhibitor)
@@ -257,6 +473,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         EggDesktopFile *desktop_file;
         GError         *error;
         char          **search_dirs;
+        guint           xid;
 
         /* FIXME: get info from xid */
 
@@ -270,6 +487,15 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 desktop_filename = g_strdup_printf ("%s.desktop", app_id);
         } else {
                 desktop_filename = g_strdup (app_id);
+        }
+
+        xid = gsm_inhibitor_get_toplevel_xid (inhibitor);
+        g_debug ("GsmInhibitDialog: inhibitor has XID %u", xid);
+        if (xid > 0 && dialog->priv->have_xrender) {
+                pixbuf = get_pixbuf_for_window (xid, DEFAULT_SNAPSHOT_SIZE, DEFAULT_SNAPSHOT_SIZE);
+                if (pixbuf == NULL) {
+                        g_debug ("GsmInhibitDialog: unable to read pixbuf from %u", xid);
+                }
         }
 
         if (desktop_filename != NULL) {
@@ -301,12 +527,14 @@ add_inhibitor (GsmInhibitDialog *dialog,
                         name = egg_desktop_file_get_name (desktop_file);
                         icon_name = egg_desktop_file_get_icon (desktop_file);
 
-                        pixbuf = _load_icon (gtk_icon_theme_get_default (),
-                                             icon_name,
-                                             DEFAULT_ICON_SIZE,
-                                             DEFAULT_ICON_SIZE,
-                                             DEFAULT_ICON_SIZE,
-                                             NULL);
+                        if (pixbuf == NULL) {
+                                pixbuf = _load_icon (gtk_icon_theme_get_default (),
+                                                     icon_name,
+                                                     DEFAULT_ICON_SIZE,
+                                                     DEFAULT_ICON_SIZE,
+                                                     DEFAULT_ICON_SIZE,
+                                                     NULL);
+                        }
                 }
         }
 
@@ -384,9 +612,9 @@ update_dialog_text (GsmInhibitDialog *dialog)
 }
 
 static void
-on_store_inhibitor_added (GsmInhibitorStore      *store,
-                          guint                   cookie,
-                          GsmInhibitDialog *dialog)
+on_store_inhibitor_added (GsmInhibitorStore *store,
+                          guint              cookie,
+                          GsmInhibitDialog  *dialog)
 {
         GsmInhibitor *inhibitor;
         GtkTreeIter   iter;
@@ -404,9 +632,9 @@ on_store_inhibitor_added (GsmInhibitorStore      *store,
 }
 
 static void
-on_store_inhibitor_removed (GsmInhibitorStore      *store,
-                            guint                   cookie,
-                            GsmInhibitDialog *dialog)
+on_store_inhibitor_removed (GsmInhibitorStore *store,
+                            guint              cookie,
+                            GsmInhibitDialog  *dialog)
 {
         GtkTreeIter   iter;
 
@@ -485,9 +713,9 @@ gsm_inhibit_dialog_set_property (GObject        *object,
 
 static void
 gsm_inhibit_dialog_get_property (GObject        *object,
-                                        guint           prop_id,
-                                        GValue         *value,
-                                        GParamSpec     *pspec)
+                                 guint           prop_id,
+                                 GValue         *value,
+                                 GParamSpec     *pspec)
 {
         GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (object);
 
@@ -505,11 +733,11 @@ gsm_inhibit_dialog_get_property (GObject        *object,
 }
 
 static void
-name_cell_data_func (GtkTreeViewColumn      *tree_column,
-                     GtkCellRenderer        *cell,
-                     GtkTreeModel           *model,
-                     GtkTreeIter            *iter,
-                     GsmInhibitDialog *dialog)
+name_cell_data_func (GtkTreeViewColumn *tree_column,
+                     GtkCellRenderer   *cell,
+                     GtkTreeModel      *model,
+                     GtkTreeIter       *iter,
+                     GsmInhibitDialog  *dialog)
 {
         char    *name;
         char    *reason;
@@ -536,8 +764,8 @@ name_cell_data_func (GtkTreeViewColumn      *tree_column,
 }
 
 static gboolean
-add_to_model (guint                   cookie,
-              GsmInhibitor           *inhibitor,
+add_to_model (guint             cookie,
+              GsmInhibitor     *inhibitor,
               GsmInhibitDialog *dialog)
 {
         add_inhibitor (dialog, inhibitor);
@@ -612,9 +840,6 @@ setup_dialog (GsmInhibitDialog *dialog)
 
         /* IMAGE COLUMN */
         renderer = gtk_cell_renderer_pixbuf_new ();
-        gtk_cell_renderer_set_fixed_size (renderer,
-                                          DEFAULT_ICON_SIZE,
-                                          DEFAULT_ICON_SIZE);
         column = gtk_tree_view_column_new ();
         gtk_tree_view_column_pack_start (column, renderer, FALSE);
         gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
@@ -645,8 +870,8 @@ setup_dialog (GsmInhibitDialog *dialog)
 
 static GObject *
 gsm_inhibit_dialog_constructor (GType                  type,
-                                       guint                  n_construct_properties,
-                                       GObjectConstructParam *construct_properties)
+                                guint                  n_construct_properties,
+                                GObjectConstructParam *construct_properties)
 {
         GsmInhibitDialog *dialog;
 
@@ -654,7 +879,21 @@ gsm_inhibit_dialog_constructor (GType                  type,
                                                                                                                   n_construct_properties,
                                                                                                                   construct_properties));
 
+#ifdef HAVE_XRENDER
+        gdk_error_trap_push ();
+        if (XRenderQueryExtension (GDK_DISPLAY (), &dialog->priv->xrender_event_base, &dialog->priv->xrender_error_base)) {
+                g_warning ("GsmInhibitDialog: Initialized XRender extension");
+                dialog->priv->have_xrender = TRUE;
+        } else {
+                g_warning ("GsmInhibitDialog: Unable to initialize XRender extension");
+                dialog->priv->have_xrender = FALSE;
+        }
+        gdk_display_sync (gdk_display_get_default ());
+        gdk_error_trap_pop ();
+#endif /* HAVE_XRENDER */
+
         setup_dialog (dialog);
+
         gtk_widget_show_all (GTK_WIDGET (dialog));
 
         return G_OBJECT (dialog);
@@ -752,7 +991,7 @@ gsm_inhibit_dialog_finalize (GObject *object)
 
 GtkWidget *
 gsm_inhibit_dialog_new (GsmInhibitorStore *inhibitors,
-                               int                action)
+                        int                action)
 {
         GObject *object;
 

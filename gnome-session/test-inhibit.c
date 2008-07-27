@@ -26,7 +26,8 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <glib.h>
+#include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 #include <dbus/dbus-glib.h>
 
 #define SM_DBUS_NAME      "org.gnome.SessionManager"
@@ -68,7 +69,7 @@ typedef enum {
 } GsmInhibitFlag;
 
 static gboolean
-do_inhibit (void)
+do_inhibit_for_window (GdkWindow *window)
 {
         GError     *error;
         gboolean    res;
@@ -86,7 +87,7 @@ do_inhibit (void)
         app_id = "nautilus";
         reason = "A file transfer is in progress.";
 #endif
-        toplevel_xid = 0;
+        toplevel_xid = GDK_DRAWABLE_XID (window);
         flags = GSM_INHIBITOR_FLAG_LOGOUT
                 | GSM_INHIBITOR_FLAG_SWITCH_USER
                 | GSM_INHIBITOR_FLAG_SUSPEND;
@@ -147,15 +148,28 @@ do_uninhibit (void)
         return TRUE;
 }
 
+static void
+on_widget_show (GtkWidget *dialog,
+                gpointer   data)
+{
+        gboolean res;
+
+        res = do_inhibit_for_window (dialog->window);
+        if (! res) {
+                g_warning ("Unable to register client with session manager");
+        }
+}
+
 int
 main (int   argc,
       char *argv[])
 {
-        gboolean res;
+        gboolean   res;
+        GtkWidget *dialog;
 
         g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
 
-        g_type_init ();
+        gtk_init (&argc, &argv);
 
         res = session_manager_connect ();
         if (! res) {
@@ -163,12 +177,19 @@ main (int   argc,
                 exit (1);
         }
 
-        res = do_inhibit ();
-        if (! res) {
-                g_warning ("Unable to register client with session manager");
-        }
+        g_timeout_add_seconds (30, (GSourceFunc)gtk_main_quit, NULL);
 
-        sleep (30);
+        dialog = gtk_message_dialog_new (NULL,
+                                         0,
+                                         GTK_MESSAGE_INFO,
+                                         GTK_BUTTONS_CANCEL,
+                                         "Inhibiting logout, switch user, and suspend.");
+
+        g_signal_connect (dialog, "response", G_CALLBACK (gtk_main_quit), NULL);
+        g_signal_connect (dialog, "show", G_CALLBACK (on_widget_show), NULL);
+        gtk_widget_show (dialog);
+
+        gtk_main ();
 
         do_uninhibit ();
         session_manager_disconnect ();

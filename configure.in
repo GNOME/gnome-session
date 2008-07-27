@@ -173,6 +173,19 @@ AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
 AC_SUBST(X_LIBS)
 
 dnl ====================================================================
+dnl XRender checks
+dnl ====================================================================
+
+PKG_CHECK_MODULES(XRENDER, xrender, have_xrender=yes, have_xrender=no)
+AM_CONDITIONAL(HAVE_XRENDER, test x$have_xrender = xyes)
+if test $have_xrender=yes; then
+    AC_DEFINE(HAVE_XRENDER, 1, [Have the Render X extension])
+fi
+AC_SUBST(HAVE_XRENDER)
+AC_SUBST(XRENDER_CFLAGS)
+AC_SUBST(XRENDER_LIBS)
+
+dnl ====================================================================
 dnl Language Support
 dnl ====================================================================
 GETTEXT_PACKAGE=gnome-session-2.0
@@ -354,4 +367,5 @@ echo "
         Maintainer mode:          ${USE_MAINTAINER_MODE}
 
         PolicyKit support :       ${have_polkit}
+        XComposite support :      ${have_xcomposite}
 "

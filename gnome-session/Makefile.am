@@ -34,6 +34,7 @@ test_inhibit_SOURCES = 	\
 	$(NULL)
 
 test_inhibit_LDADD =				\
+	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
