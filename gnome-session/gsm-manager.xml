@@ -114,10 +114,46 @@
         </doc:doc>
       </arg>
       <doc:doc>
+        <doc:summary>
+          Proactively indicates that the calling application is performing an action that should not be interrupted and sets a reason to be displayed to the user when an interruption is about to take placea.
+        </doc:summary>
         <doc:description>
-          <doc:para>This is used to proactively inform the session manager that the calling
-          application would like the actions specified by the flags to be blocked until
-          Uninhibit is called or the calling process exits.
+          <doc:para>Applications should invoke this method when they begin an operation that
+            should not be interrupted, such as creating a CD or DVD.  The types of actions
+            that may be blocked are specified by the flags parameter.  When the application
+            completes the operation it should call <doc:ref type="method" to="Uninhibit">Uninhibit()</doc:ref>
+            or disconnect from the system bus.
+          </doc:para>
+          <doc:para>
+            Applications should not expect that they will always be able to block the
+            action.  In most cases, users will be given the option to force the action
+            to take place.
+          </doc:para>
+          <doc:para>
+            Reasons should be short and to the point.
+          </doc:para>
+          <doc:para>
+            The flags parameter must include at least one of the following:
+            <doc:list>
+              <doc:item>
+                <doc:term>1</doc:term>
+                <doc:definition>Inhibit logging out</doc:definition>
+              </doc:item>
+              <doc:item>
+                <doc:term>2</doc:term>
+                <doc:definition>Inhibit user switching</doc:definition>
+              </doc:item>
+              <doc:item>
+                <doc:term>4</doc:term>
+                <doc:definition>Inhibit suspending the session or computer</doc:definition>
+              </doc:item>
+            </doc:list>
+            Values for flags may be bitwise or'ed together.
+          </doc:para>
+          <doc:para>
+            The returned cookie is used to uniquely identify this request.  It should be used
+            as an argument to <doc:ref type="method" to="Uninhibit">Uninhibit()</doc:ref> in
+            order to remove the request.
           </doc:para>
         </doc:description>
       </doc:doc>
