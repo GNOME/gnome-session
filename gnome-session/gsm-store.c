@@ -304,6 +304,21 @@ gsm_store_get_property (GObject    *object,
 }
 
 static void
+gsm_store_dispose (GObject *object)
+{
+        GsmStore *store;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSM_IS_STORE (object));
+
+        store = GSM_STORE (object);
+
+        gsm_store_clear (store);
+
+        G_OBJECT_CLASS (gsm_store_parent_class)->dispose (object);
+}
+
+static void
 gsm_store_class_init (GsmStoreClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -311,6 +326,7 @@ gsm_store_class_init (GsmStoreClass *klass)
         object_class->get_property = gsm_store_get_property;
         object_class->set_property = gsm_store_set_property;
         object_class->finalize = gsm_store_finalize;
+        object_class->dispose = gsm_store_dispose;
 
         signals [ADDED] =
                 g_signal_new ("added",
