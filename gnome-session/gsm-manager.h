@@ -25,7 +25,7 @@
 #include <glib-object.h>
 #include <dbus/dbus-glib.h>
 
-#include "gsm-client-store.h"
+#include "gsm-store.h"
 
 G_BEGIN_DECLS
 
@@ -106,7 +106,7 @@ GType               gsm_manager_error_get_type       (void);
 GQuark              gsm_manager_error_quark          (void);
 GType               gsm_manager_get_type             (void);
 
-GsmManager *        gsm_manager_new                  (GsmClientStore *store,
+GsmManager *        gsm_manager_new                  (GsmStore       *client_store,
                                                       gboolean        failsafe);
 
 void                gsm_manager_start                (GsmManager     *manager);

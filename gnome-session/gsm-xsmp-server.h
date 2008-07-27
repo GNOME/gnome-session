@@ -24,7 +24,7 @@
 
 #include <glib-object.h>
 
-#include "gsm-client-store.h"
+#include "gsm-store.h"
 
 G_BEGIN_DECLS
 
@@ -50,8 +50,8 @@ typedef struct
 
 GType               gsm_xsmp_server_get_type                       (void);
 
-GsmXsmpServer *     gsm_xsmp_server_new                            (GsmClientStore *store);
-void                gsm_xsmp_server_start                          (GsmXsmpServer  *server);
+GsmXsmpServer *     gsm_xsmp_server_new                            (GsmStore      *client_store);
+void                gsm_xsmp_server_start                          (GsmXsmpServer *server);
 
 G_END_DECLS
 

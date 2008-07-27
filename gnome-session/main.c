@@ -41,7 +41,7 @@
 #include "util.h"
 #include "gsm-manager.h"
 #include "gsm-xsmp-server.h"
-#include "gsm-client-store.h"
+#include "gsm-store.h"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
@@ -200,7 +200,7 @@ main (int argc, char **argv)
         GError          *error;
         char            *display_str;
         GsmManager      *manager;
-        GsmClientStore  *store;
+        GsmStore        *client_store;
         GsmXsmpServer   *xsmp_server;
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
@@ -228,7 +228,7 @@ main (int argc, char **argv)
         gsm_util_setenv ("DISPLAY", display_str);
         g_free (display_str);
 
-        store = gsm_client_store_new ();
+        client_store = gsm_store_new ();
 
 
         /* Start up gconfd and dbus-daemon (in parallel) if they're not
@@ -238,7 +238,7 @@ main (int argc, char **argv)
         maybe_start_session_bus ();
         gsm_gconf_init ();
 
-        xsmp_server = gsm_xsmp_server_new (store);
+        xsmp_server = gsm_xsmp_server_new (client_store);
 
         /* Now make sure they succeeded. (They'll call
          * gsm_util_init_error() if they failed.)
@@ -246,7 +246,7 @@ main (int argc, char **argv)
         gsm_gconf_check ();
         acquire_name ();
 
-        manager = gsm_manager_new (store, failsafe);
+        manager = gsm_manager_new (client_store, failsafe);
 
         gsm_xsmp_server_start (xsmp_server);
         gsm_manager_start (manager);

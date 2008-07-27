@@ -65,7 +65,7 @@
 
 struct GsmXsmpServerPrivate
 {
-        GsmClientStore *client_store;
+        GsmStore       *client_store;
 
         IceListenObj   *xsmp_sockets;
         int             num_xsmp_sockets;
@@ -126,7 +126,7 @@ accept_ice_connection (GIOChannel           *source,
         client = gsm_xsmp_client_new (ice_conn);
         ice_conn->context = client;
 
-        gsm_client_store_add (server->priv->client_store, client);
+        gsm_store_add (server->priv->client_store, gsm_client_get_id (client), client);
 
         return TRUE;
 }
@@ -156,8 +156,8 @@ gsm_xsmp_server_start (GsmXsmpServer *server)
 }
 
 static void
-gsm_xsmp_server_set_client_store (GsmXsmpServer  *xsmp_server,
-                                  GsmClientStore *store)
+gsm_xsmp_server_set_client_store (GsmXsmpServer *xsmp_server,
+                                  GsmStore      *store)
 {
         g_return_if_fail (GSM_IS_XSMP_SERVER (xsmp_server));
 
@@ -579,7 +579,7 @@ gsm_xsmp_server_class_init (GsmXsmpServerClass *klass)
                                          g_param_spec_object ("client-store",
                                                               NULL,
                                                               NULL,
-                                                              GSM_TYPE_CLIENT_STORE,
+                                                              GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmXsmpServerPrivate));
@@ -614,13 +614,13 @@ gsm_xsmp_server_finalize (GObject *object)
 }
 
 GsmXsmpServer *
-gsm_xsmp_server_new (GsmClientStore *store)
+gsm_xsmp_server_new (GsmStore *client_store)
 {
         if (xsmp_server_object != NULL) {
                 g_object_ref (xsmp_server_object);
         } else {
                 xsmp_server_object = g_object_new (GSM_TYPE_XSMP_SERVER,
-                                                   "client-store", store,
+                                                   "client-store", client_store,
                                                    NULL);
 
                 g_object_add_weak_pointer (xsmp_server_object,

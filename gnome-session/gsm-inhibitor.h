@@ -70,6 +70,7 @@ GsmInhibitor * gsm_inhibitor_new_for_client       (const char    *client_id,
                                                    const char    *bus_name,
                                                    guint          cookie);
 
+const char *   gsm_inhibitor_get_id               (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_get_app_id           (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_get_client_id        (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_get_reason           (GsmInhibitor  *inhibitor);

@@ -83,12 +83,10 @@ gnome_session_SOURCES =				\
 	gdm.h					\
 	gdm.c					\
 	main.c					\
-	gsm-client-store.h			\
-	gsm-client-store.c			\
+	gsm-store.h				\
+	gsm-store.c				\
 	gsm-inhibitor.h				\
 	gsm-inhibitor.c				\
-	gsm-inhibitor-store.h			\
-	gsm-inhibitor-store.c			\
 	gsm-manager.c				\
 	gsm-manager.h				\
 	gsm-xsmp-server.c			\

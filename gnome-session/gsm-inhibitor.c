@@ -28,10 +28,13 @@
 
 #include "gsm-inhibitor.h"
 
+static guint32 inhibitor_serial = 1;
+
 #define GSM_INHIBITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBITOR, GsmInhibitorPrivate))
 
 struct GsmInhibitorPrivate
 {
+        char *id;
         char *bus_name;
         char *app_id;
         char *client_id;
@@ -54,6 +57,20 @@ enum {
 
 G_DEFINE_TYPE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT)
 
+static guint32
+get_next_inhibitor_serial (void)
+{
+        guint32 serial;
+
+        serial = inhibitor_serial++;
+
+        if ((gint32)inhibitor_serial < 0) {
+                inhibitor_serial = 1;
+        }
+
+        return serial;
+}
+
 static GObject *
 gsm_inhibitor_constructor (GType                  type,
                            guint                  n_construct_properties,
@@ -64,6 +81,9 @@ gsm_inhibitor_constructor (GType                  type,
         inhibitor = GSM_INHIBITOR (G_OBJECT_CLASS (gsm_inhibitor_parent_class)->constructor (type,
                                                                                              n_construct_properties,
                                                                                              construct_properties));
+
+        g_free (inhibitor->priv->id);
+        inhibitor->priv->id = g_strdup_printf ("/org/gnome/SessionManager/Inhibitor%u", get_next_inhibitor_serial ());
 
         return G_OBJECT (inhibitor);
 }
@@ -164,6 +184,14 @@ gsm_inhibitor_get_bus_name (GsmInhibitor  *inhibitor)
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
         return inhibitor->priv->bus_name;
+}
+
+const char *
+gsm_inhibitor_get_id (GsmInhibitor *inhibitor)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
+
+        return inhibitor->priv->id;
 }
 
 const char *
@@ -295,6 +323,7 @@ gsm_inhibitor_finalize (GObject *object)
 {
         GsmInhibitor *inhibitor = (GsmInhibitor *) object;
 
+        g_free (inhibitor->priv->id);
         g_free (inhibitor->priv->bus_name);
         g_free (inhibitor->priv->app_id);
         g_free (inhibitor->priv->client_id);

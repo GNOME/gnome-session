@@ -1,5 +1,56 @@
 2008-07-27  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-client-store.c:
+	* gnome-session/gsm-client-store.h:
+	* gnome-session/gsm-inhibit-dialog.c (find_inhibitor),
+	(add_inhibitor), (on_store_inhibitor_added),
+	(on_store_inhibitor_removed),
+	(gsm_inhibit_dialog_set_inhibitor_store), (add_to_model),
+	(populate_model), (gsm_inhibit_dialog_class_init),
+	(gsm_inhibit_dialog_new):
+	* gnome-session/gsm-inhibit-dialog.h:
+	* gnome-session/gsm-inhibitor-store.c:
+	* gnome-session/gsm-inhibitor-store.h:
+	* gnome-session/gsm-inhibitor.c (get_next_inhibitor_serial),
+	(gsm_inhibitor_constructor), (gsm_inhibitor_get_id),
+	(gsm_inhibitor_finalize):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (_debug_client), (debug_clients),
+	(debug_inhibitors), (_find_by_cookie), (app_condition_changed),
+	(do_phase_end_session), (gsm_manager_is_logout_inhibited),
+	(cancel_end_session), (_generate_unique_cookie),
+	(on_query_end_session_timeout), (do_phase_query_end_session),
+	(disconnect_client), (remove_clients_for_connection),
+	(remove_inhibitors_for_connection),
+	(on_xsmp_client_register_request),
+	(on_client_end_session_response), (on_store_client_added),
+	(gsm_manager_set_client_store), (gsm_manager_get_property),
+	(gsm_manager_class_init), (gsm_manager_init),
+	(gsm_manager_finalize), (gsm_manager_new),
+	(gsm_manager_is_switch_user_inhibited),
+	(gsm_manager_is_suspend_inhibited), (gsm_manager_register_client),
+	(gsm_manager_unregister_client), (gsm_manager_inhibit),
+	(gsm_manager_uninhibit):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-store.c (gsm_store_error_quark),
+	(gsm_store_size), (gsm_store_remove), (gsm_store_foreach),
+	(gsm_store_find), (gsm_store_lookup), (foreach_remove_wrapper),
+	(gsm_store_foreach_remove), (_remove_all), (gsm_store_clear),
+	(gsm_store_add), (gsm_store_set_locked), (gsm_store_get_locked),
+	(gsm_store_set_property), (gsm_store_get_property),
+	(gsm_store_class_init), (_destroy_object), (gsm_store_init),
+	(gsm_store_finalize), (gsm_store_new):
+	* gnome-session/gsm-store.h:
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection),
+	(gsm_xsmp_server_set_client_store), (gsm_xsmp_server_class_init),
+	(gsm_xsmp_server_new):
+	* gnome-session/gsm-xsmp-server.h:
+	* gnome-session/main.c (main):
+	Unify the InhibitorStore and ClientStore classes.
+
+2008-07-27  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-dbus-client.xml:
 	Add docs for dbus-client.
 

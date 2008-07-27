@@ -35,6 +35,8 @@
 #include <gconf/gconf-client.h>
 
 #include "gsm-inhibit-dialog.h"
+#include "gsm-store.h"
+#include "gsm-inhibitor.h"
 #include "eggdesktopfile.h"
 #include "util.h"
 
@@ -60,7 +62,7 @@ struct GsmInhibitDialogPrivate
 {
         GladeXML          *xml;
         int                action;
-        GsmInhibitorStore *inhibitors;
+        GsmStore          *inhibitors;
         GtkListStore      *list_store;
         gboolean           have_xrender;
         int                xrender_event_base;
@@ -77,7 +79,7 @@ enum {
         INHIBIT_IMAGE_COLUMN = 0,
         INHIBIT_NAME_COLUMN,
         INHIBIT_REASON_COLUMN,
-        INHIBIT_COOKIE_COLUMN,
+        INHIBIT_ID_COLUMN,
         NUMBER_OF_COLUMNS
 };
 
@@ -122,7 +124,7 @@ gsm_inhibit_dialog_set_action (GsmInhibitDialog *dialog,
 
 static gboolean
 find_inhibitor (GsmInhibitDialog *dialog,
-                guint             cookie,
+                const char       *id,
                 GtkTreeIter      *iter)
 {
         GtkTreeModel *model;
@@ -138,15 +140,18 @@ find_inhibitor (GsmInhibitDialog *dialog,
         }
 
         do {
-                guint item_cookie;
+                char *item_id;
 
                 gtk_tree_model_get (model,
                                     iter,
-                                    INHIBIT_COOKIE_COLUMN, &item_cookie,
+                                    INHIBIT_ID_COLUMN, &item_id,
                                     -1);
-                if (cookie == item_cookie) {
+                if (item_id != NULL
+                    && id != NULL
+                    && strcmp (item_id, id) == 0) {
                         found_item = TRUE;
                 }
+                g_free (item_id);
         } while (!found_item && gtk_tree_model_iter_next (model, iter));
 
         return found_item;
@@ -560,7 +565,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                                            INHIBIT_IMAGE_COLUMN, pixbuf,
                                            INHIBIT_NAME_COLUMN, name,
                                            INHIBIT_REASON_COLUMN, gsm_inhibitor_get_reason (inhibitor),
-                                           INHIBIT_COOKIE_COLUMN, gsm_inhibitor_get_cookie (inhibitor),
+                                           INHIBIT_ID_COLUMN, gsm_inhibitor_get_id (inhibitor),
                                            -1);
 
         g_free (desktop_filename);
@@ -612,19 +617,19 @@ update_dialog_text (GsmInhibitDialog *dialog)
 }
 
 static void
-on_store_inhibitor_added (GsmInhibitorStore *store,
-                          guint              cookie,
+on_store_inhibitor_added (GsmStore          *store,
+                          const char        *id,
                           GsmInhibitDialog  *dialog)
 {
         GsmInhibitor *inhibitor;
         GtkTreeIter   iter;
 
-        g_debug ("GsmInhibitDialog: inhibitor added: %u", cookie);
+        g_debug ("GsmInhibitDialog: inhibitor added: %s", id);
 
-        inhibitor = gsm_inhibitor_store_lookup (store, cookie);
+        inhibitor = gsm_store_lookup (store, id);
 
         /* Add to model */
-        if (! find_inhibitor (dialog, cookie, &iter)) {
+        if (! find_inhibitor (dialog, id, &iter)) {
                 add_inhibitor (dialog, inhibitor);
                 update_dialog_text (dialog);
         }
@@ -632,16 +637,16 @@ on_store_inhibitor_added (GsmInhibitorStore *store,
 }
 
 static void
-on_store_inhibitor_removed (GsmInhibitorStore *store,
-                            guint              cookie,
+on_store_inhibitor_removed (GsmStore          *store,
+                            const char        *id,
                             GsmInhibitDialog  *dialog)
 {
         GtkTreeIter   iter;
 
-        g_debug ("GsmInhibitDialog: inhibitor removed: %u", cookie);
+        g_debug ("GsmInhibitDialog: inhibitor removed: %s", id);
 
         /* Remove from model */
-        if (find_inhibitor (dialog, cookie, &iter)) {
+        if (find_inhibitor (dialog, id, &iter)) {
                 gtk_list_store_remove (dialog->priv->list_store, &iter);
                 update_dialog_text (dialog);
         }
@@ -653,8 +658,8 @@ on_store_inhibitor_removed (GsmInhibitorStore *store,
 }
 
 static void
-gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog  *dialog,
-                                        GsmInhibitorStore *store)
+gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
+                                        GsmStore         *store)
 {
         g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
 
@@ -680,11 +685,11 @@ gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog  *dialog,
 
         if (dialog->priv->inhibitors != NULL) {
                 g_signal_connect (dialog->priv->inhibitors,
-                                  "inhibitor-added",
+                                  "added",
                                   G_CALLBACK (on_store_inhibitor_added),
                                   dialog);
                 g_signal_connect (dialog->priv->inhibitors,
-                                  "inhibitor-removed",
+                                  "removed",
                                   G_CALLBACK (on_store_inhibitor_removed),
                                   dialog);
         }
@@ -764,7 +769,7 @@ name_cell_data_func (GtkTreeViewColumn *tree_column,
 }
 
 static gboolean
-add_to_model (guint             cookie,
+add_to_model (const char       *id,
               GsmInhibitor     *inhibitor,
               GsmInhibitDialog *dialog)
 {
@@ -775,9 +780,9 @@ add_to_model (guint             cookie,
 static void
 populate_model (GsmInhibitDialog *dialog)
 {
-        gsm_inhibitor_store_foreach_remove (dialog->priv->inhibitors,
-                                            (GsmInhibitorStoreFunc)add_to_model,
-                                            dialog);
+        gsm_store_foreach_remove (dialog->priv->inhibitors,
+                                  (GsmStoreFunc)add_to_model,
+                                  dialog);
         update_dialog_text (dialog);
 }
 
@@ -930,7 +935,7 @@ gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
                                          g_param_spec_object ("inhibitor-store",
                                                               NULL,
                                                               NULL,
-                                                              GSM_TYPE_INHIBITOR_STORE,
+                                                              GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmInhibitDialogPrivate));
@@ -990,8 +995,8 @@ gsm_inhibit_dialog_finalize (GObject *object)
 }
 
 GtkWidget *
-gsm_inhibit_dialog_new (GsmInhibitorStore *inhibitors,
-                        int                action)
+gsm_inhibit_dialog_new (GsmStore *inhibitors,
+                        int       action)
 {
         GObject *object;
 

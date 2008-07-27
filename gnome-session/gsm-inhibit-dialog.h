@@ -24,7 +24,7 @@
 #include <glib-object.h>
 #include <gtk/gtkdialog.h>
 
-#include "gsm-inhibitor-store.h"
+#include "gsm-store.h"
 
 G_BEGIN_DECLS
 
@@ -60,8 +60,8 @@ typedef struct
 
 GType                  gsm_inhibit_dialog_get_type           (void);
 
-GtkWidget            * gsm_inhibit_dialog_new                (GsmInhibitorStore      *inhibitors,
-                                                              int                     action);
+GtkWidget            * gsm_inhibit_dialog_new                (GsmStore         *inhibitors,
+                                                              int               action);
 GtkTreeModel         * gsm_inhibit_dialog_get_model          (GsmInhibitDialog *dialog);
 
 G_END_DECLS

@@ -44,8 +44,7 @@
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
 
-#include "gsm-client-store.h"
-#include "gsm-inhibitor-store.h"
+#include "gsm-store.h"
 #include "gsm-inhibitor.h"
 
 #include "gsm-xsmp-client.h"
@@ -77,8 +76,8 @@
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
-        GsmClientStore         *store;
-        GsmInhibitorStore      *inhibitors;
+        GsmStore               *clients;
+        GsmStore               *inhibitors;
 
         /* Startup/resumed apps */
         GHashTable             *apps_by_id;
@@ -168,17 +167,16 @@ _debug_client (const char *id,
                GsmClient  *client,
                GsmManager *manager)
 {
-        g_debug ("GsmManager: Client %s",
-                 gsm_client_get_id (client));
+        g_debug ("GsmManager: Client %s", gsm_client_get_id (client));
         return FALSE;
 }
 
 static void
 debug_clients (GsmManager *manager)
 {
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_debug_client,
-                                  manager);
+        gsm_store_foreach (manager->priv->clients,
+                           (GsmStoreFunc)_debug_client,
+                           manager);
 }
 
 static gboolean
@@ -197,9 +195,21 @@ _debug_inhibitor (const char    *id,
 static void
 debug_inhibitors (GsmManager *manager)
 {
-        gsm_inhibitor_store_foreach (manager->priv->inhibitors,
-                                     (GsmInhibitorStoreFunc)_debug_inhibitor,
-                                     manager);
+        gsm_store_foreach (manager->priv->inhibitors,
+                           (GsmStoreFunc)_debug_inhibitor,
+                           manager);
+}
+
+static gboolean
+_find_by_cookie (const char   *id,
+                 GsmInhibitor *inhibitor,
+                 guint        *cookie_ap)
+{
+        guint cookie_b;
+
+        cookie_b = gsm_inhibitor_get_cookie (inhibitor);
+
+        return (*cookie_ap == cookie_b);
 }
 
 static gboolean
@@ -224,9 +234,9 @@ app_condition_changed (GsmApp     *app,
 {
         GsmClient *client;
 
-        client = gsm_client_store_find (manager->priv->store,
-                                        (GsmClientStoreFunc)_find_by_startup_id,
-                                        (char *)gsm_app_get_startup_id (app));
+        client = (GsmClient *)gsm_store_find (manager->priv->clients,
+                                              (GsmStoreFunc)_find_by_startup_id,
+                                              (char *)gsm_app_get_startup_id (app));
 
         if (condition) {
                 if (!gsm_app_is_running (app) && client == NULL) {
@@ -500,14 +510,14 @@ do_phase_end_session (GsmManager *manager)
                 manager->priv->phase_timeout_id = 0;
         }
 
-        if (gsm_client_store_size (manager->priv->store) > 0) {
+        if (gsm_store_size (manager->priv->clients) > 0) {
                 manager->priv->phase_timeout_id = g_timeout_add_seconds (10,
                                                                          (GSourceFunc)on_phase_timeout,
                                                                          manager);
 
-                gsm_client_store_foreach (manager->priv->store,
-                                          (GsmClientStoreFunc)_client_end_session,
-                                          &data);
+                gsm_store_foreach (manager->priv->clients,
+                                   (GsmStoreFunc)_client_end_session,
+                                   &data);
         } else {
                 end_phase (manager);
         }
@@ -549,9 +559,9 @@ gsm_manager_is_logout_inhibited (GsmManager *manager)
                 return FALSE;
         }
 
-        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
-                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
-                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)inhibitor_has_flag,
+                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -589,13 +599,13 @@ cancel_end_session (GsmManager *manager)
         /* switch back to running phase */
 
         /* clear all JIT inhibitors */
-        gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
-                                            (GsmInhibitorStoreFunc)inhibitor_is_jit,
-                                            (gpointer)manager);
+        gsm_store_foreach_remove (manager->priv->inhibitors,
+                                  (GsmStoreFunc)inhibitor_is_jit,
+                                  (gpointer)manager);
 
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_client_cancel_end_session,
-                                  NULL);
+        gsm_store_foreach (manager->priv->clients,
+                           (GsmStoreFunc)_client_cancel_end_session,
+                           NULL);
 
         manager->priv->phase = GSM_MANAGER_PHASE_RUNNING;
         manager->priv->forceful = FALSE;
@@ -812,7 +822,7 @@ _generate_unique_cookie (GsmManager *manager)
 
         do {
                 cookie = generate_cookie ();
-        } while (gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie) != NULL);
+        } while (gsm_store_find (manager->priv->inhibitors, (GsmStoreFunc)_find_by_cookie, &cookie) != NULL);
 
         return cookie;
 }
@@ -856,7 +866,7 @@ on_query_end_session_timeout (GsmManager *manager)
                                                           bus_name,
                                                           cookie);
                 g_free (app_id);
-                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         }
 
@@ -892,9 +902,9 @@ do_phase_query_end_session (GsmManager *manager)
 
         debug_clients (manager);
         g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful);
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_client_query_end_session,
-                                  &data);
+        gsm_store_foreach (manager->priv->clients,
+                           (GsmStoreFunc)_client_query_end_session,
+                           &data);
 }
 
 static void
@@ -981,7 +991,7 @@ disconnect_client (GsmManager *manager,
         /* take a ref so it doesn't get finalized */
         g_object_ref (client);
 
-        gsm_client_store_remove (manager->priv->store, client);
+        gsm_store_remove (manager->priv->clients, gsm_client_get_id (client));
 
         is_condition_client = FALSE;
         if (g_slist_find (manager->priv->condition_clients, client)) {
@@ -1036,7 +1046,7 @@ disconnect_client (GsmManager *manager,
         g_object_unref (client);
 
         if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION
-            && gsm_client_store_size (manager->priv->store) == 0) {
+            && gsm_store_size (manager->priv->clients) == 0) {
                 g_debug ("GsmManager: last client disconnected - exiting");
                 end_phase (manager);
         }
@@ -1080,9 +1090,9 @@ remove_clients_for_connection (GsmManager *manager,
         data.manager = manager;
 
         /* disconnect dbus clients for name */
-        gsm_client_store_foreach (manager->priv->store,
-                                  (GsmClientStoreFunc)_disconnect_dbus_client,
-                                  &data);
+        gsm_store_foreach (manager->priv->clients,
+                           (GsmStoreFunc)_disconnect_dbus_client,
+                           &data);
 }
 
 static gboolean
@@ -1121,9 +1131,9 @@ remove_inhibitors_for_connection (GsmManager *manager,
 
         debug_inhibitors (manager);
 
-        n_removed = gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
-                                                        (GsmInhibitorStoreFunc)inhibitor_has_bus_name,
-                                                        &data);
+        n_removed = gsm_store_foreach_remove (manager->priv->inhibitors,
+                                              (GsmStoreFunc)inhibitor_has_bus_name,
+                                              &data);
 }
 
 static gboolean
@@ -1289,9 +1299,9 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         } else {
                 GsmClient *client;
 
-                client = gsm_client_store_find (manager->priv->store,
-                                                (GsmClientStoreFunc)_client_has_startup_id,
-                                                *id);
+                client = (GsmClient *)gsm_store_find (manager->priv->clients,
+                                                      (GsmStoreFunc)_client_has_startup_id,
+                                                      *id);
                 /* We can't have two clients with the same id. */
                 if (client != NULL) {
                         goto out;
@@ -1397,16 +1407,16 @@ on_client_end_session_response (GsmClient  *client,
                                                           bus_name,
                                                           cookie);
                 g_free (app_id);
-                gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         } else {
-                gsm_inhibitor_store_foreach_remove (manager->priv->inhibitors,
-                                                    (GsmInhibitorStoreFunc)inhibitor_has_client_id,
-                                                    (gpointer)gsm_client_get_id (client));
+                gsm_store_foreach_remove (manager->priv->inhibitors,
+                                          (GsmStoreFunc)inhibitor_has_client_id,
+                                          (gpointer)gsm_client_get_id (client));
         }
 
         if (manager->priv->query_clients == NULL
-            && gsm_inhibitor_store_size (manager->priv->inhibitors) == 0) {
+            && gsm_store_size (manager->priv->inhibitors) == 0) {
                 if (manager->priv->query_timeout_id > 0) {
                         g_source_remove (manager->priv->query_timeout_id);
                         manager->priv->query_timeout_id = 0;
@@ -1417,15 +1427,15 @@ on_client_end_session_response (GsmClient  *client,
 }
 
 static void
-on_store_client_added (GsmClientStore *store,
-                       const char     *id,
-                       GsmManager     *manager)
+on_store_client_added (GsmStore   *store,
+                       const char *id,
+                       GsmManager *manager)
 {
         GsmClient *client;
 
         g_debug ("GsmManager: Client added: %s", id);
 
-        client = gsm_client_store_lookup (store, id);
+        client = (GsmClient *)gsm_store_lookup (store, id);
 
         /* a bit hacky */
         if (GSM_IS_XSMP_CLIENT (client)) {
@@ -1444,8 +1454,8 @@ on_store_client_added (GsmClientStore *store,
 }
 
 static void
-gsm_manager_set_client_store (GsmManager     *manager,
-                              GsmClientStore *store)
+gsm_manager_set_client_store (GsmManager *manager,
+                              GsmStore   *store)
 {
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
@@ -1453,30 +1463,30 @@ gsm_manager_set_client_store (GsmManager     *manager,
                 g_object_ref (store);
         }
 
-        if (manager->priv->store != NULL) {
-                g_signal_handlers_disconnect_by_func (manager->priv->store,
+        if (manager->priv->clients != NULL) {
+                g_signal_handlers_disconnect_by_func (manager->priv->clients,
                                                       on_store_client_added,
                                                       manager);
 
-                g_object_unref (manager->priv->store);
+                g_object_unref (manager->priv->clients);
         }
 
 
-        g_debug ("GsmManager: setting store %p", store);
+        g_debug ("GsmManager: setting client store %p", store);
 
-        manager->priv->store = store;
+        manager->priv->clients = store;
 
-        if (manager->priv->store != NULL) {
-                g_signal_connect (manager->priv->store,
-                                  "client-added",
+        if (manager->priv->clients != NULL) {
+                g_signal_connect (manager->priv->clients,
+                                  "added",
                                   G_CALLBACK (on_store_client_added),
                                   manager);
         }
 }
 
 static void
-gsm_manager_set_property (GObject      *object,
-                          guint         prop_id,
+gsm_manager_set_property (GObject       *object,
+                          guint          prop_id,
                           const GValue  *value,
                           GParamSpec    *pspec)
 {
@@ -1512,7 +1522,7 @@ gsm_manager_get_property (GObject    *object,
                 g_value_set_boolean (value, self->priv->failsafe);
                 break;
         case PROP_CLIENT_STORE:
-                g_value_set_object (value, self->priv->store);
+                g_value_set_object (value, self->priv->clients);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1883,7 +1893,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                          g_param_spec_object ("client-store",
                                                               NULL,
                                                               NULL,
-                                                              GSM_TYPE_CLIENT_STORE,
+                                                              GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmManagerPrivate));
@@ -1903,7 +1913,7 @@ gsm_manager_init (GsmManager *manager)
                                                            g_free,
                                                            g_object_unref);
 
-        manager->priv->inhibitors = gsm_inhibitor_store_new ();
+        manager->priv->inhibitors = gsm_store_new ();
 }
 
 static void
@@ -1918,8 +1928,8 @@ gsm_manager_finalize (GObject *object)
 
         g_return_if_fail (manager->priv != NULL);
 
-        if (manager->priv->store != NULL) {
-                g_object_unref (manager->priv->store);
+        if (manager->priv->clients != NULL) {
+                g_object_unref (manager->priv->clients);
         }
 
         if (manager->priv->apps_by_id != NULL) {
@@ -1934,8 +1944,8 @@ gsm_manager_finalize (GObject *object)
 }
 
 GsmManager *
-gsm_manager_new (GsmClientStore *store,
-                 gboolean        failsafe)
+gsm_manager_new (GsmStore *client_store,
+                 gboolean  failsafe)
 {
         if (manager_object != NULL) {
                 g_object_ref (manager_object);
@@ -1943,7 +1953,7 @@ gsm_manager_new (GsmClientStore *store,
                 gboolean res;
 
                 manager_object = g_object_new (GSM_TYPE_MANAGER,
-                                               "client-store", store,
+                                               "client-store", client_store,
                                                "failsafe", failsafe,
                                                NULL);
 
@@ -2006,9 +2016,9 @@ gsm_manager_is_switch_user_inhibited (GsmManager *manager)
                 return FALSE;
         }
 
-        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
-                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
-                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)inhibitor_has_flag,
+                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -2024,9 +2034,9 @@ gsm_manager_is_suspend_inhibited (GsmManager *manager)
                 return FALSE;
         }
 
-        inhibitor = gsm_inhibitor_store_find (manager->priv->inhibitors,
-                                              (GsmInhibitorStoreFunc)inhibitor_has_flag,
-                                              GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)inhibitor_has_flag,
+                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -2379,9 +2389,9 @@ gsm_manager_register_client (GsmManager            *manager,
                 new_startup_id = gsm_util_generate_startup_id ();
         } else {
 
-                client = gsm_client_store_find (manager->priv->store,
-                                                (GsmClientStoreFunc)_client_has_startup_id,
-                                                (char *)startup_id);
+                client = (GsmClient *)gsm_store_find (manager->priv->clients,
+                                                      (GsmStoreFunc)_client_has_startup_id,
+                                                      (char *)startup_id);
                 /* We can't have two clients with the same startup id. */
                 if (client != NULL) {
                         GError *new_error;
@@ -2430,7 +2440,7 @@ gsm_manager_register_client (GsmManager            *manager,
                 return FALSE;
         }
 
-        gsm_client_store_add (manager->priv->store, client);
+        gsm_store_add (manager->priv->clients, gsm_client_get_id (client), G_OBJECT (client));
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_get_id (app));
@@ -2459,7 +2469,7 @@ gsm_manager_unregister_client (GsmManager            *manager,
 
         g_debug ("GsmManager: UnregisterClient %s", client_id);
 
-        client = gsm_client_store_lookup (manager->priv->store, client_id);
+        client = (GsmClient *)gsm_store_lookup (manager->priv->clients, client_id);
         if (client == NULL) {
                 GError *new_error;
 
@@ -2542,7 +2552,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                                        reason,
                                        dbus_g_method_get_sender (context),
                                        cookie);
-        gsm_inhibitor_store_add (manager->priv->inhibitors, inhibitor);
+        gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
         g_object_unref (inhibitor);
 
         dbus_g_method_return (context, cookie);
@@ -2559,7 +2569,9 @@ gsm_manager_uninhibit (GsmManager            *manager,
 
         g_debug ("GsmManager: Uninhibit %u", cookie);
 
-        inhibitor = gsm_inhibitor_store_lookup (manager->priv->inhibitors, cookie);
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)_find_by_cookie,
+                                                    &cookie);
         if (inhibitor == NULL) {
                 GError *new_error;
 
@@ -2579,7 +2591,7 @@ gsm_manager_uninhibit (GsmManager            *manager,
                  gsm_inhibitor_get_flags (inhibitor),
                  gsm_inhibitor_get_bus_name (inhibitor));
 
-        gsm_inhibitor_store_remove (manager->priv->inhibitors, inhibitor);
+        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor));
 
         dbus_g_method_return (context);
 
