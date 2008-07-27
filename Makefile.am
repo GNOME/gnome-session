@@ -6,5 +6,4 @@ SUBDIRS =			\
 	compat			\
 	splash			\
 	po			\
-	data			\
-	man
+	data
