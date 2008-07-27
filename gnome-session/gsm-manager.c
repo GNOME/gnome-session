@@ -889,7 +889,6 @@ do_phase_query_end_session (GsmManager *manager)
                 g_source_remove (manager->priv->query_timeout_id);
                 manager->priv->query_timeout_id = 0;
         }
-        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
 
         data.manager = manager;
         data.flags = 0;
@@ -903,6 +902,8 @@ do_phase_query_end_session (GsmManager *manager)
         gsm_store_foreach (manager->priv->clients,
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
+
+        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
 }
 
 static void
