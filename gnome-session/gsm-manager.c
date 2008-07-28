@@ -1021,7 +1021,7 @@ disconnect_client (GsmManager *manager,
         client_restart_hint = gsm_client_get_restart_style_hint (client);
 
         /* allow legacy clients to override the app info */
-        if (! gsm_app_get_autorestart (app)
+        if (! app_restart
             && client_restart_hint != GSM_CLIENT_RESTART_IMMEDIATELY) {
                 g_debug ("GsmManager: autorestart not set, not restarting application");
                 goto out;
