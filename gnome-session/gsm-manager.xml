@@ -214,6 +214,60 @@
 
     <!-- Signals -->
 
+    <signal name="ClientAdded">
+      <arg name="id" type="o">
+        <doc:doc>
+          <doc:summary>The object path for the added client</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Emitted when a client has been added to the session manager.
+          </doc:para>
+        </doc:description>
+      </doc:doc>
+    </signal>
+    <signal name="ClientRemoved">
+      <arg name="id" type="o">
+        <doc:doc>
+          <doc:summary>The object path for the removed client</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Emitted when a client has been removed from the session manager.
+          </doc:para>
+        </doc:description>
+      </doc:doc>
+    </signal>
+
+    <signal name="InhibitorAdded">
+      <arg name="id" type="o">
+        <doc:doc>
+          <doc:summary>The object path for the added inhibitor</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Emitted when an inhibitor has been added to the session manager.
+          </doc:para>
+        </doc:description>
+      </doc:doc>
+    </signal>
+    <signal name="InhibitorRemoved">
+      <arg name="id" type="o">
+        <doc:doc>
+          <doc:summary>The object path for the removed inhibitor</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Emitted when an inhibitor has been removed from the session manager.
+          </doc:para>
+        </doc:description>
+      </doc:doc>
+    </signal>
+
     <signal name="SessionRunning">
       <doc:doc>
         <doc:description>

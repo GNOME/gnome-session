@@ -1,6 +1,17 @@
 2008-07-28  William Jon McCann  <jmccann@redhat.com>
 
 	* doc/dbus/Makefile.am:
+	* gnome-session/gsm-manager.c (on_store_client_added),
+	(on_store_client_removed), (gsm_manager_set_client_store),
+	(gsm_manager_class_init), (on_store_inhibitor_added),
+	(on_store_inhibitor_removed), (gsm_manager_init):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-manager.xml:
+	Add signals for client and inhibitor add/remove.
+
+2008-07-28  William Jon McCann  <jmccann@redhat.com>
+
+	* doc/dbus/Makefile.am:
 	* doc/dbus/gnome-session.xml.in:
 	* gnome-session/gsm-inhibitor.xml:
 	Add docs for inhibitors.

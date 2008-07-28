@@ -109,6 +109,10 @@ enum {
 
 enum {
         PHASE_CHANGED,
+        CLIENT_ADDED,
+        CLIENT_REMOVED,
+        INHIBITOR_ADDED,
+        INHIBITOR_REMOVED,
         SESSION_RUNNING,
         SESSION_OVER,
         LAST_SIGNAL
@@ -1449,7 +1453,18 @@ on_store_client_added (GsmStore   *store,
                           G_CALLBACK (on_client_end_session_response),
                           manager);
 
+        g_signal_emit (manager, signals [CLIENT_ADDED], 0, id);
         /* FIXME: disconnect signal handler */
+}
+
+static void
+on_store_client_removed (GsmStore   *store,
+                         const char *id,
+                         GsmManager *manager)
+{
+        g_debug ("GsmManager: Client removed: %s", id);
+
+        g_signal_emit (manager, signals [CLIENT_REMOVED], 0, id);
 }
 
 static void
@@ -1466,6 +1481,9 @@ gsm_manager_set_client_store (GsmManager *manager,
                 g_signal_handlers_disconnect_by_func (manager->priv->clients,
                                                       on_store_client_added,
                                                       manager);
+                g_signal_handlers_disconnect_by_func (manager->priv->clients,
+                                                      on_store_client_removed,
+                                                      manager);
 
                 g_object_unref (manager->priv->clients);
         }
@@ -1479,6 +1497,10 @@ gsm_manager_set_client_store (GsmManager *manager,
                 g_signal_connect (manager->priv->clients,
                                   "added",
                                   G_CALLBACK (on_store_client_added),
+                                  manager);
+                g_signal_connect (manager->priv->clients,
+                                  "removed",
+                                  G_CALLBACK (on_store_client_removed),
                                   manager);
         }
 }
@@ -1858,6 +1880,46 @@ gsm_manager_class_init (GsmManagerClass *klass)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE,
                               0);
+        signals [CLIENT_ADDED] =
+                g_signal_new ("client-added",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmManagerClass, client_added),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOXED,
+                              G_TYPE_NONE,
+                              1, DBUS_TYPE_G_OBJECT_PATH);
+        signals [CLIENT_REMOVED] =
+                g_signal_new ("client-removed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmManagerClass, client_removed),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOXED,
+                              G_TYPE_NONE,
+                              1, DBUS_TYPE_G_OBJECT_PATH);
+        signals [INHIBITOR_ADDED] =
+                g_signal_new ("inhibitor-added",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmManagerClass, inhibitor_added),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOXED,
+                              G_TYPE_NONE,
+                              1, DBUS_TYPE_G_OBJECT_PATH);
+        signals [INHIBITOR_REMOVED] =
+                g_signal_new ("inhibitor-removed",
+                              G_TYPE_FROM_CLASS (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmManagerClass, inhibitor_removed),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__BOXED,
+                              G_TYPE_NONE,
+                              1, DBUS_TYPE_G_OBJECT_PATH);
 
         g_object_class_install_property (object_class,
                                          PROP_FAILSAFE,
@@ -1881,6 +1943,24 @@ gsm_manager_class_init (GsmManagerClass *klass)
 }
 
 static void
+on_store_inhibitor_added (GsmStore   *store,
+                          const char *id,
+                          GsmManager *manager)
+{
+        g_debug ("GsmManager: Inhibitor added: %s", id);
+        g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
+}
+
+static void
+on_store_inhibitor_removed (GsmStore   *store,
+                            const char *id,
+                            GsmManager *manager)
+{
+        g_debug ("GsmManager: Inhibitor removed: %s", id);
+        g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
+}
+
+static void
 gsm_manager_init (GsmManager *manager)
 {
 
@@ -1892,6 +1972,14 @@ gsm_manager_init (GsmManager *manager)
                                                            g_object_unref);
 
         manager->priv->inhibitors = gsm_store_new ();
+        g_signal_connect (manager->priv->inhibitors,
+                          "added",
+                          G_CALLBACK (on_store_inhibitor_added),
+                          manager);
+        g_signal_connect (manager->priv->inhibitors,
+                          "removed",
+                          G_CALLBACK (on_store_inhibitor_removed),
+                          manager);
 }
 
 static void

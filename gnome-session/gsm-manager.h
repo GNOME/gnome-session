@@ -59,6 +59,10 @@ typedef struct
                                                const char      *id);
         void          (* client_removed)      (GsmManager      *manager,
                                                const char      *id);
+        void          (* inhibitor_added)     (GsmManager      *manager,
+                                               const char      *id);
+        void          (* inhibitor_removed)   (GsmManager      *manager,
+                                               const char      *id);
 } GsmManagerClass;
 
 typedef enum {
