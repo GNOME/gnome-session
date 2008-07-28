@@ -5,6 +5,7 @@ SPEC_XML_FILES =			\
 	org.gnome.SessionManager.ref.xml \
 	org.gnome.SessionManager.Client.ref.xml \
 	org.gnome.SessionManager.DBusClient.ref.xml \
+	org.gnome.SessionManager.Inhibitor.ref.xml \
 	$(NULL)
 
 if DOCBOOK_DOCS_ENABLED
@@ -17,13 +18,15 @@ gnome-session.html : $(SPEC_XML_FILES)
 
 endif # DOCBOOK_DOCS_ENABLED
 
-all : org.gnome.SessionManager.ref.xml org.gnome.SessionManager.Client.ref.xml org.gnome.SessionManager.DBusClient.ref.xml
+all : org.gnome.SessionManager.ref.xml org.gnome.SessionManager.Client.ref.xml org.gnome.SessionManager.DBusClient.ref.xml org.gnome.SessionManager.Inhibitor.ref.xml
 
 org.gnome.SessionManager.ref.xml : $(top_srcdir)/gnome-session/gsm-manager.xml spec-to-docbook.xsl
 	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 >> $@
 org.gnome.SessionManager.Client.ref.xml : $(top_srcdir)/gnome-session/gsm-client.xml spec-to-docbook.xsl
 	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 >> $@
 org.gnome.SessionManager.DBusClient.ref.xml : $(top_srcdir)/gnome-session/gsm-dbus-client.xml spec-to-docbook.xsl
+	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 >> $@
+org.gnome.SessionManager.Inhibitor.ref.xml : $(top_srcdir)/gnome-session/gsm-inhibitor.xml spec-to-docbook.xsl
 	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 >> $@
 
 EXTRA_DIST =				\
