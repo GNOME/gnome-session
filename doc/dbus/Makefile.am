@@ -10,7 +10,7 @@ SPEC_XML_FILES =			\
 
 if DOCBOOK_DOCS_ENABLED
 
-htmldocdir = $(docdir)/spec
+htmldocdir = $(docdir)/dbus
 htmldoc_DATA = gnome-session.html
 
 gnome-session.html : $(SPEC_XML_FILES)
