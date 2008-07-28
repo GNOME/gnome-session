@@ -543,10 +543,11 @@ inhibitor_has_flag (gpointer      key,
                     GsmInhibitor *inhibitor,
                     gpointer      data)
 {
-        int flag;
-        int flags;
+        guint flag;
+        guint flags;
 
-        flag = GPOINTER_TO_INT (data);
+        flag = GPOINTER_TO_UINT (data);
+
         flags = gsm_inhibitor_get_flags (inhibitor);
 
         return (flags & flag);
@@ -563,7 +564,7 @@ gsm_manager_is_logout_inhibited (GsmManager *manager)
 
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
                                                     (GsmStoreFunc)inhibitor_has_flag,
-                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
+                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -962,6 +963,8 @@ void
 gsm_manager_start (GsmManager *manager)
 {
         g_debug ("GsmManager: GSM starting to manage");
+
+        g_return_if_fail (GSM_IS_MANAGER (manager));
 
         manager->priv->phase = GSM_MANAGER_PHASE_INITIALIZATION;
 
@@ -2041,6 +2044,8 @@ gsm_manager_setenv (GsmManager  *manager,
                     const char  *value,
                     GError     **error)
 {
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
         if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
@@ -2060,6 +2065,8 @@ gsm_manager_initialization_error (GsmManager  *manager,
                                   gboolean     fatal,
                                   GError     **error)
 {
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
         if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
@@ -2084,7 +2091,7 @@ gsm_manager_is_switch_user_inhibited (GsmManager *manager)
 
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
                                                     (GsmStoreFunc)inhibitor_has_flag,
-                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
+                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -2102,7 +2109,7 @@ gsm_manager_is_suspend_inhibited (GsmManager *manager)
 
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
                                                     (GsmStoreFunc)inhibitor_has_flag,
-                                                    GINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
+                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -2376,6 +2383,8 @@ gsm_manager_shutdown (GsmManager *manager,
 {
         g_debug ("GsmManager: Shutdown called");
 
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
@@ -2395,6 +2404,8 @@ gsm_manager_logout (GsmManager *manager,
                     GError    **error)
 {
         g_debug ("GsmManager: Logout called");
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,
@@ -2434,6 +2445,8 @@ gsm_manager_register_client (GsmManager            *manager,
         char      *sender;
         GsmClient *client;
         GsmApp    *app;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         g_debug ("GsmManager: RegisterClient %s", startup_id);
 
@@ -2533,6 +2546,8 @@ gsm_manager_unregister_client (GsmManager            *manager,
 {
         GsmClient *client;
 
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
         g_debug ("GsmManager: UnregisterClient %s", client_id);
 
         client = (GsmClient *)gsm_store_lookup (manager->priv->clients, client_id);
@@ -2568,6 +2583,8 @@ gsm_manager_inhibit (GsmManager            *manager,
 {
         GsmInhibitor *inhibitor;
         guint         cookie;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
                  toplevel_xid,
@@ -2633,6 +2650,8 @@ gsm_manager_uninhibit (GsmManager            *manager,
 {
         GsmInhibitor *inhibitor;
 
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
         g_debug ("GsmManager: Uninhibit %u", cookie);
 
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
@@ -2662,4 +2681,33 @@ gsm_manager_uninhibit (GsmManager            *manager,
         dbus_g_method_return (context);
 
         return TRUE;
+}
+
+gboolean
+gsm_manager_is_inhibited (GsmManager *manager,
+                          guint       flags,
+                          gboolean   *is_inhibited,
+                          GError     *error)
+{
+        GsmInhibitor *inhibitor;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        if (manager->priv->inhibitors == NULL
+            || gsm_store_size (manager->priv->inhibitors) == 0) {
+                *is_inhibited = FALSE;
+                return TRUE;
+        }
+
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)inhibitor_has_flag,
+                                                    GUINT_TO_POINTER (flags));
+        if (inhibitor == NULL) {
+                *is_inhibited = FALSE;
+        } else {
+                *is_inhibited = TRUE;
+        }
+
+        return TRUE;
+
 }

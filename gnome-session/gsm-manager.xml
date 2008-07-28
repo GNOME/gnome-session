@@ -173,6 +173,28 @@
       </doc:doc>
     </method>
 
+    <method name="IsInhibited">
+      <arg type="u" name="flags" direction="in">
+        <doc:doc>
+          <doc:summary>Flags that spefify what should be inhibited</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg type="b" name="is_inhibited" direction="out">
+        <doc:doc>
+          <doc:summary>Returns TRUE if any of the operations in the bitfield flags are inhibited</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Determine if operation(s) specified by the flags
+            are currently inhibited.  Flags are same as those accepted
+            by the
+            <doc:ref type="method" to="org.gnome.SessionManager.Inhibit">Inhibit()</doc:ref>
+            method.</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
+
     <method name="Shutdown">
       <doc:doc>
         <doc:description>

@@ -1,5 +1,19 @@
 2008-07-28  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (inhibitor_has_flag),
+	(gsm_manager_is_logout_inhibited), (gsm_manager_start),
+	(gsm_manager_setenv), (gsm_manager_initialization_error),
+	(gsm_manager_is_switch_user_inhibited),
+	(gsm_manager_is_suspend_inhibited), (gsm_manager_shutdown),
+	(gsm_manager_logout), (gsm_manager_register_client),
+	(gsm_manager_unregister_client), (gsm_manager_inhibit),
+	(gsm_manager_uninhibit), (gsm_manager_is_inhibited):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/gsm-manager.xml:
+	Export an IsInhibited method to the bus.
+
+2008-07-28  William Jon McCann  <jmccann@redhat.com>
+
 	* doc/dbus/Makefile.am:
 	* gnome-session/gsm-manager.c (on_store_client_added),
 	(on_store_client_removed), (gsm_manager_set_client_store),

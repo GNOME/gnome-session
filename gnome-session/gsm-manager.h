@@ -135,6 +135,10 @@ gboolean            gsm_manager_inhibit              (GsmManager            *man
 gboolean            gsm_manager_uninhibit            (GsmManager            *manager,
                                                       guint                  inhibit_cookie,
                                                       DBusGMethodInvocation *context);
+gboolean            gsm_manager_is_inhibited         (GsmManager            *manager,
+                                                      guint                  flags,
+                                                      gboolean              *is_inhibited,
+                                                      GError                *error);
 
 gboolean            gsm_manager_shutdown             (GsmManager     *manager,
                                                       GError        **error);
