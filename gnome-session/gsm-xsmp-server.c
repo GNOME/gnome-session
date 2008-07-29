@@ -126,7 +126,7 @@ accept_ice_connection (GIOChannel           *source,
         client = gsm_xsmp_client_new (ice_conn);
         ice_conn->context = client;
 
-        gsm_store_add (server->priv->client_store, gsm_client_get_id (client), G_OBJECT (client));
+        gsm_store_add (server->priv->client_store, gsm_client_peek_id (client), G_OBJECT (client));
 
         return TRUE;
 }

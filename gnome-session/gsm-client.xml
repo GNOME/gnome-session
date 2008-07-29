@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node>
+<node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
   <interface name="org.gnome.SessionManager.Client">
+    <property name="app-id" type="s" access="read">
+      <doc:doc>
+        <doc:description>
+          <doc:para>The application identifier associated with the client</doc:para>
+        </doc:description>
+      </doc:doc>
+    </property>
+    <property name="startup-id" type="s" access="read">
+      <doc:doc>
+        <doc:description>
+          <doc:para>The startup identifier to be used by the client</doc:para>
+        </doc:description>
+      </doc:doc>
+    </property>
   </interface>
 </node>

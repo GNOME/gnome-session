@@ -87,15 +87,18 @@ struct _GsmClientClass
 
 GType       gsm_client_get_type                   (void) G_GNUC_CONST;
 
-const char           *gsm_client_get_id                     (GsmClient  *client);
-const char           *gsm_client_get_startup_id             (GsmClient  *client);
-const char           *gsm_client_get_app_id                 (GsmClient  *client);
-char                 *gsm_client_get_app_name               (GsmClient  *client);
-GsmClientRestartStyle gsm_client_get_restart_style_hint     (GsmClient  *client);
+const char           *gsm_client_peek_id                    (GsmClient  *client);
 
+
+const char *          gsm_client_peek_startup_id            (GsmClient  *client);
+const char *          gsm_client_peek_app_id                (GsmClient  *client);
+guint                 gsm_client_peek_restart_style_hint    (GsmClient  *client);
+guint                 gsm_client_peek_status                (GsmClient  *client);
+
+
+char                 *gsm_client_get_app_name               (GsmClient  *client);
 void                  gsm_client_set_app_id                 (GsmClient  *client,
                                                              const char *app_id);
-int                   gsm_client_get_status                 (GsmClient  *client);
 void                  gsm_client_set_status                 (GsmClient  *client,
                                                              int         status);
 
@@ -105,10 +108,23 @@ void                  gsm_client_query_end_session          (GsmClient  *client,
                                                              guint       flags);
 void                  gsm_client_cancel_end_session         (GsmClient  *client);
 
+void                  gsm_client_disconnected               (GsmClient  *client);
+
+/* exported to bus */
 gboolean              gsm_client_stop                       (GsmClient  *client,
                                                              GError    **error);
-
-void                  gsm_client_disconnected               (GsmClient  *client);
+gboolean              gsm_client_get_startup_id             (GsmClient  *client,
+                                                             char      **startup_id,
+                                                             GError    **error);
+gboolean              gsm_client_get_app_id                 (GsmClient  *client,
+                                                             char      **app_id,
+                                                             GError    **error);
+gboolean              gsm_client_get_restart_style_hint     (GsmClient  *client,
+                                                             guint      *hint,
+                                                             GError    **error);
+gboolean              gsm_client_get_status                 (GsmClient  *client,
+                                                             guint      *status,
+                                                             GError    **error);
 
 /* private */
 

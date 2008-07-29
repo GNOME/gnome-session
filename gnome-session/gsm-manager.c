@@ -168,7 +168,7 @@ _debug_client (const char *id,
                GsmClient  *client,
                GsmManager *manager)
 {
-        g_debug ("GsmManager: Client %s", gsm_client_get_id (client));
+        g_debug ("GsmManager: Client %s", gsm_client_peek_id (client));
         return FALSE;
 }
 
@@ -186,10 +186,10 @@ _debug_inhibitor (const char    *id,
                   GsmManager    *manager)
 {
         g_debug ("GsmManager: Inhibitor app:%s client:%s bus-name:%s reason:%s",
-                 gsm_inhibitor_get_app_id (inhibitor),
-                 gsm_inhibitor_get_client_id (inhibitor),
-                 gsm_inhibitor_get_bus_name (inhibitor),
-                 gsm_inhibitor_get_reason (inhibitor));
+                 gsm_inhibitor_peek_app_id (inhibitor),
+                 gsm_inhibitor_peek_client_id (inhibitor),
+                 gsm_inhibitor_peek_bus_name (inhibitor),
+                 gsm_inhibitor_peek_reason (inhibitor));
         return FALSE;
 }
 
@@ -208,7 +208,7 @@ _find_by_cookie (const char   *id,
 {
         guint cookie_b;
 
-        cookie_b = gsm_inhibitor_get_cookie (inhibitor);
+        cookie_b = gsm_inhibitor_peek_cookie (inhibitor);
 
         return (*cookie_ap == cookie_b);
 }
@@ -220,7 +220,7 @@ _find_by_startup_id (const char *id,
 {
         const char *startup_id_b;
 
-        startup_id_b = gsm_client_get_startup_id (client);
+        startup_id_b = gsm_client_peek_startup_id (client);
         if (startup_id_b == NULL) {
                 return FALSE;
         }
@@ -485,7 +485,7 @@ _client_end_session (const char           *id,
                      GsmClient            *client,
                      ClientEndSessionData *data)
 {
-        g_debug ("GsmManager: adding client to end-session clients: %s", gsm_client_get_id (client));
+        g_debug ("GsmManager: adding client to end-session clients: %s", gsm_client_peek_id (client));
         data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
                                                               client);
 
@@ -529,7 +529,7 @@ _client_query_end_session (const char           *id,
                            GsmClient            *client,
                            ClientEndSessionData *data)
 {
-        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_get_id (client));
+        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_peek_id (client));
         data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
                                                               client);
         gsm_client_query_end_session (client, data->flags);
@@ -547,7 +547,7 @@ inhibitor_has_flag (gpointer      key,
 
         flag = GPOINTER_TO_UINT (data);
 
-        flags = gsm_inhibitor_get_flags (inhibitor);
+        flags = gsm_inhibitor_peek_flags (inhibitor);
 
         return (flags & flag);
 }
@@ -588,7 +588,7 @@ inhibitor_is_jit (gpointer      key,
         gboolean    matches;
         const char *id;
 
-        id = gsm_inhibitor_get_client_id (inhibitor);
+        id = gsm_inhibitor_peek_client_id (inhibitor);
 
         matches = (id != NULL && id[0] != '\0');
 
@@ -845,7 +845,7 @@ on_query_end_session_timeout (GsmManager *manager)
                 char         *app_id;
 
                 g_warning ("Client '%s' failed to reply before timeout",
-                           gsm_client_get_id (l->data));
+                           gsm_client_peek_id (l->data));
 
                 /* Add JIT inhibit for unresponsive client */
                 if (GSM_IS_DBUS_CLIENT (l->data)) {
@@ -854,21 +854,21 @@ on_query_end_session_timeout (GsmManager *manager)
                         bus_name = NULL;
                 }
 
-                app_id = g_strdup (gsm_client_get_app_id (l->data));
+                app_id = g_strdup (gsm_client_peek_app_id (l->data));
                 if (app_id == NULL || app_id[0] == '\0') {
                         /* XSMP clients don't give us an app id unless we start them */
                         app_id = gsm_client_get_app_name (l->data);
                 }
 
                 cookie = _generate_unique_cookie (manager);
-                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (l->data),
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (l->data),
                                                           app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           _("Not responding"),
                                                           bus_name,
                                                           cookie);
                 g_free (app_id);
-                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
+                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         }
 
@@ -996,7 +996,7 @@ disconnect_client (GsmManager *manager,
         /* take a ref so it doesn't get finalized */
         g_object_ref (client);
 
-        gsm_store_remove (manager->priv->clients, gsm_client_get_id (client));
+        gsm_store_remove (manager->priv->clients, gsm_client_peek_id (client));
 
         is_condition_client = FALSE;
         if (g_slist_find (manager->priv->condition_clients, client)) {
@@ -1005,7 +1005,7 @@ disconnect_client (GsmManager *manager,
                 is_condition_client = TRUE;
         }
 
-        app_id = gsm_client_get_app_id (client);
+        app_id = gsm_client_peek_app_id (client);
         if (app_id == NULL) {
                 g_debug ("GsmManager: no application associated with client, not restarting application");
                 goto out;
@@ -1024,7 +1024,7 @@ disconnect_client (GsmManager *manager,
         }
 
         app_restart = gsm_app_get_autorestart (app);
-        client_restart_hint = gsm_client_get_restart_style_hint (client);
+        client_restart_hint = gsm_client_peek_restart_style_hint (client);
 
         /* allow legacy clients to override the app info */
         if (! app_restart
@@ -1108,16 +1108,16 @@ inhibitor_has_bus_name (gpointer          key,
         gboolean    matches;
         const char *bus_name_b;
 
-        bus_name_b = gsm_inhibitor_get_bus_name (inhibitor);
+        bus_name_b = gsm_inhibitor_peek_bus_name (inhibitor);
 
         matches = FALSE;
         if (data->service_name != NULL && bus_name_b != NULL) {
                 matches = (strcmp (data->service_name, bus_name_b) == 0);
                 if (matches) {
                         g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
-                                 gsm_inhibitor_get_app_id (inhibitor),
-                                 gsm_inhibitor_get_reason (inhibitor),
-                                 gsm_inhibitor_get_bus_name (inhibitor));
+                                 gsm_inhibitor_peek_app_id (inhibitor),
+                                 gsm_inhibitor_peek_reason (inhibitor),
+                                 gsm_inhibitor_peek_bus_name (inhibitor));
                 }
         }
 
@@ -1266,7 +1266,7 @@ _client_has_startup_id (const char *id,
 {
         const char *startup_id_b;
 
-        startup_id_b = gsm_client_get_startup_id (client);
+        startup_id_b = gsm_client_peek_startup_id (client);
 
         if (startup_id_b == NULL) {
                 return FALSE;
@@ -1353,15 +1353,15 @@ inhibitor_has_client_id (gpointer      key,
         gboolean    matches;
         const char *client_id_b;
 
-        client_id_b = gsm_inhibitor_get_client_id (inhibitor);
+        client_id_b = gsm_inhibitor_peek_client_id (inhibitor);
 
         matches = FALSE;
         if (client_id_a != NULL && client_id_b != NULL) {
                 matches = (strcmp (client_id_a, client_id_b) == 0);
                 if (matches) {
                         g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
-                                 gsm_inhibitor_get_client_id (inhibitor),
-                                 gsm_inhibitor_get_reason (inhibitor));
+                                 gsm_inhibitor_peek_client_id (inhibitor),
+                                 gsm_inhibitor_peek_reason (inhibitor));
                 }
         }
 
@@ -1398,26 +1398,26 @@ on_client_end_session_response (GsmClient  *client,
                         bus_name = NULL;
                 }
 
-                app_id = g_strdup (gsm_client_get_app_id (client));
+                app_id = g_strdup (gsm_client_peek_app_id (client));
                 if (app_id == NULL || app_id[0] == '\0') {
                         /* XSMP clients don't give us an app id unless we start them */
                         app_id = gsm_client_get_app_name (client);
                 }
 
                 cookie = _generate_unique_cookie (manager);
-                inhibitor = gsm_inhibitor_new_for_client (gsm_client_get_id (client),
+                inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (client),
                                                           app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           reason,
                                                           bus_name,
                                                           cookie);
                 g_free (app_id);
-                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
+                gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         } else {
                 gsm_store_foreach_remove (manager->priv->inhibitors,
                                           (GsmStoreFunc)inhibitor_has_client_id,
-                                          (gpointer)gsm_client_get_id (client));
+                                          (gpointer)gsm_client_peek_id (client));
         }
 
         if (manager->priv->query_clients == NULL
@@ -2540,7 +2540,7 @@ gsm_manager_register_client (GsmManager            *manager,
                 return FALSE;
         }
 
-        gsm_store_add (manager->priv->clients, gsm_client_get_id (client), G_OBJECT (client));
+        gsm_store_add (manager->priv->clients, gsm_client_peek_id (client), G_OBJECT (client));
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_get_id (app));
@@ -2556,7 +2556,7 @@ gsm_manager_register_client (GsmManager            *manager,
         g_assert (new_startup_id != NULL);
         g_free (new_startup_id);
 
-        dbus_g_method_return (context, gsm_client_get_id (client));
+        dbus_g_method_return (context, gsm_client_peek_id (client));
 
         return TRUE;
 }
@@ -2657,7 +2657,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                                        reason,
                                        dbus_g_method_get_sender (context),
                                        cookie);
-        gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor), G_OBJECT (inhibitor));
+        gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
         g_object_unref (inhibitor);
 
         dbus_g_method_return (context, cookie);
@@ -2692,13 +2692,13 @@ gsm_manager_uninhibit (GsmManager            *manager,
         }
 
         g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
-                 gsm_inhibitor_get_app_id (inhibitor),
-                 gsm_inhibitor_get_toplevel_xid (inhibitor),
-                 gsm_inhibitor_get_reason (inhibitor),
-                 gsm_inhibitor_get_flags (inhibitor),
-                 gsm_inhibitor_get_bus_name (inhibitor));
+                 gsm_inhibitor_peek_app_id (inhibitor),
+                 gsm_inhibitor_peek_toplevel_xid (inhibitor),
+                 gsm_inhibitor_peek_reason (inhibitor),
+                 gsm_inhibitor_peek_flags (inhibitor),
+                 gsm_inhibitor_peek_bus_name (inhibitor));
 
-        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_get_id (inhibitor));
+        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor));
 
         dbus_g_method_return (context);
 

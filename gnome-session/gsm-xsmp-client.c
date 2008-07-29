@@ -140,7 +140,7 @@ set_description (GsmXSMPClient *client)
         const char *id;
 
         prop = find_property (client, SmProgram, NULL);
-        id = gsm_client_get_startup_id (GSM_CLIENT (client));
+        id = gsm_client_peek_startup_id (GSM_CLIENT (client));
 
         g_free (client->priv->description);
         if (prop) {

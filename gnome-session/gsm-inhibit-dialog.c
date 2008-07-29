@@ -484,7 +484,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
         name = NULL;
         pixbuf = NULL;
-        app_id = gsm_inhibitor_get_app_id (inhibitor);
+        app_id = gsm_inhibitor_peek_app_id (inhibitor);
 
         if (app_id == NULL || app_id[0] == '\0') {
                 desktop_filename = NULL;
@@ -494,7 +494,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 desktop_filename = g_strdup (app_id);
         }
 
-        xid = gsm_inhibitor_get_toplevel_xid (inhibitor);
+        xid = gsm_inhibitor_peek_toplevel_xid (inhibitor);
         g_debug ("GsmInhibitDialog: inhibitor has XID %u", xid);
         if (xid > 0 && dialog->priv->have_xrender) {
                 pixbuf = get_pixbuf_for_window (xid, DEFAULT_SNAPSHOT_SIZE, DEFAULT_SNAPSHOT_SIZE);
@@ -564,8 +564,8 @@ add_inhibitor (GsmInhibitDialog *dialog,
                                            NULL, 0,
                                            INHIBIT_IMAGE_COLUMN, pixbuf,
                                            INHIBIT_NAME_COLUMN, name,
-                                           INHIBIT_REASON_COLUMN, gsm_inhibitor_get_reason (inhibitor),
-                                           INHIBIT_ID_COLUMN, gsm_inhibitor_get_id (inhibitor),
+                                           INHIBIT_REASON_COLUMN, gsm_inhibitor_peek_reason (inhibitor),
+                                           INHIBIT_ID_COLUMN, gsm_inhibitor_peek_id (inhibitor),
                                            -1);
 
         g_free (desktop_filename);

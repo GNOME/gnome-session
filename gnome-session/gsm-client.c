@@ -297,28 +297,72 @@ gsm_client_class_init (GsmClientClass *klass)
 }
 
 const char *
-gsm_client_get_id (GsmClient *client)
+gsm_client_peek_id (GsmClient *client)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
         return client->priv->id;
 }
 
+const char *
+gsm_client_peek_app_id (GsmClient *client)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+
+        return client->priv->app_id;
+}
 
 const char *
-gsm_client_get_startup_id (GsmClient *client)
+gsm_client_peek_startup_id (GsmClient *client)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
         return client->priv->startup_id;
 }
 
-const char *
-gsm_client_get_app_id (GsmClient *client)
+guint
+gsm_client_peek_restart_style_hint (GsmClient *client)
 {
-        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
 
-        return client->priv->app_id;
+        return GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
+}
+
+
+gboolean
+gsm_client_get_startup_id (GsmClient *client,
+                           char     **id,
+                           GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+
+        *id = g_strdup (client->priv->startup_id);
+
+        return TRUE;
+}
+
+gboolean
+gsm_client_get_app_id (GsmClient *client,
+                       char     **id,
+                       GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+
+        *id = g_strdup (client->priv->app_id);
+
+        return TRUE;
+}
+
+gboolean
+gsm_client_get_restart_style_hint (GsmClient *client,
+                                   guint     *hint,
+                                   GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
+
+        *hint = GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
+
+        return TRUE;
 }
 
 char *
@@ -327,14 +371,6 @@ gsm_client_get_app_name (GsmClient *client)
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
         return GSM_CLIENT_GET_CLASS (client)->impl_get_app_name (client);
-}
-
-GsmClientRestartStyle
-gsm_client_get_restart_style_hint (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
-
-        return GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
 }
 
 void

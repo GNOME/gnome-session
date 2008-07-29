@@ -1,5 +1,37 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_peek_id),
+	(gsm_client_peek_app_id), (gsm_client_peek_startup_id),
+	(gsm_client_peek_restart_style_hint), (gsm_client_get_startup_id),
+	(gsm_client_get_app_id), (gsm_client_get_restart_style_hint),
+	(gsm_client_get_app_name):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-client.xml:
+	* gnome-session/gsm-dbus-client.c (dbus_client_stop),
+	(dbus_client_query_end_session), (dbus_client_end_session):
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor):
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_peek_bus_name),
+	(gsm_inhibitor_get_app_id), (gsm_inhibitor_get_client_id),
+	(gsm_inhibitor_get_reason), (gsm_inhibitor_get_flags),
+	(gsm_inhibitor_get_toplevel_xid), (gsm_inhibitor_peek_id),
+	(gsm_inhibitor_peek_app_id), (gsm_inhibitor_peek_client_id),
+	(gsm_inhibitor_peek_reason), (gsm_inhibitor_peek_flags),
+	(gsm_inhibitor_peek_toplevel_xid), (gsm_inhibitor_peek_cookie):
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (_debug_client), (_debug_inhibitor),
+	(_find_by_cookie), (_find_by_startup_id), (_client_end_session),
+	(_client_query_end_session), (inhibitor_has_flag),
+	(inhibitor_is_jit), (on_query_end_session_timeout),
+	(disconnect_client), (inhibitor_has_bus_name),
+	(_client_has_startup_id), (inhibitor_has_client_id),
+	(on_client_end_session_response), (gsm_manager_register_client),
+	(gsm_manager_inhibit), (gsm_manager_uninhibit):
+	* gnome-session/gsm-xsmp-client.c (set_description):
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection):
+	Add client introspection info.  Fix the inhibitor methods.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (gsm_manager_register_client):
 	* gnome-session/gsm-manager.xml:
 	* gnome-session/test-client-dbus.c (register_client):

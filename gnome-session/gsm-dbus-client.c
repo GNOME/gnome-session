@@ -203,7 +203,7 @@ dbus_client_stop (GsmClient *client,
         ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
-        message = dbus_message_new_signal (gsm_client_get_id (client),
+        message = dbus_message_new_signal (gsm_client_peek_id (client),
                                            CLIENT_INTERFACE,
                                            "Stop");
         if (message == NULL) {
@@ -294,7 +294,7 @@ dbus_client_query_end_session (GsmClient *client,
         g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
 
         /* unicast the signal to only the registered bus name */
-        message = dbus_message_new_signal (gsm_client_get_id (client),
+        message = dbus_message_new_signal (gsm_client_peek_id (client),
                                            CLIENT_INTERFACE,
                                            "QueryEndSession");
         if (message == NULL) {
@@ -341,7 +341,7 @@ dbus_client_end_session (GsmClient *client,
         ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
-        message = dbus_message_new_signal (gsm_client_get_id (client),
+        message = dbus_message_new_signal (gsm_client_peek_id (client),
                                            CLIENT_INTERFACE,
                                            "EndSession");
         if (message == NULL) {

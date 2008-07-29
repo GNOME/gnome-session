@@ -208,15 +208,75 @@ gsm_inhibitor_set_toplevel_xid (GsmInhibitor  *inhibitor,
 }
 
 const char *
-gsm_inhibitor_get_bus_name (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_bus_name (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
         return inhibitor->priv->bus_name;
 }
 
+gboolean
+gsm_inhibitor_get_app_id (GsmInhibitor *inhibitor,
+                          char        **id,
+                          GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
+
+        *id = g_strdup (inhibitor->priv->app_id);
+
+        return TRUE;
+}
+
+gboolean
+gsm_inhibitor_get_client_id (GsmInhibitor *inhibitor,
+                             char        **id,
+                             GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
+
+        *id = g_strdup (inhibitor->priv->client_id);
+
+        return TRUE;
+}
+
+gboolean
+gsm_inhibitor_get_reason (GsmInhibitor *inhibitor,
+                          char        **reason,
+                          GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
+
+        *reason = g_strdup (inhibitor->priv->reason);
+
+        return TRUE;
+}
+
+gboolean
+gsm_inhibitor_get_flags (GsmInhibitor *inhibitor,
+                         guint        *flags,
+                         GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
+
+        *flags = inhibitor->priv->flags;
+
+        return TRUE;
+}
+
+gboolean
+gsm_inhibitor_get_toplevel_xid (GsmInhibitor *inhibitor,
+                                guint        *xid,
+                                GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
+
+        *xid = inhibitor->priv->toplevel_xid;
+
+        return TRUE;
+}
+
 const char *
-gsm_inhibitor_get_id (GsmInhibitor *inhibitor)
+gsm_inhibitor_peek_id (GsmInhibitor *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
@@ -224,7 +284,7 @@ gsm_inhibitor_get_id (GsmInhibitor *inhibitor)
 }
 
 const char *
-gsm_inhibitor_get_app_id (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_app_id (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
@@ -232,7 +292,7 @@ gsm_inhibitor_get_app_id (GsmInhibitor  *inhibitor)
 }
 
 const char *
-gsm_inhibitor_get_client_id (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_client_id (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
@@ -240,7 +300,7 @@ gsm_inhibitor_get_client_id (GsmInhibitor  *inhibitor)
 }
 
 const char *
-gsm_inhibitor_get_reason (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_reason (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
 
@@ -248,7 +308,7 @@ gsm_inhibitor_get_reason (GsmInhibitor  *inhibitor)
 }
 
 guint
-gsm_inhibitor_get_flags (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_flags (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), 0);
 
@@ -256,7 +316,7 @@ gsm_inhibitor_get_flags (GsmInhibitor  *inhibitor)
 }
 
 guint
-gsm_inhibitor_get_toplevel_xid (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_toplevel_xid (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), 0);
 
@@ -264,7 +324,7 @@ gsm_inhibitor_get_toplevel_xid (GsmInhibitor  *inhibitor)
 }
 
 guint
-gsm_inhibitor_get_cookie (GsmInhibitor  *inhibitor)
+gsm_inhibitor_peek_cookie (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), 0);
 
