@@ -34,14 +34,13 @@
 #include <dbus/dbus-glib-lowlevel.h>
 
 #include "gsm-dbus-client.h"
-#include "gsm-dbus-client-glue.h"
 #include "gsm-marshal.h"
 
 #include "gsm-manager.h"
 
 #define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
 
-#define CLIENT_INTERFACE "org.gnome.SessionManager.DBusClient"
+#define CLIENT_INTERFACE "org.gnome.SessionManager.ClientPrivate"
 
 struct GsmDBusClientPrivate
 {
@@ -443,8 +442,6 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmDBusClientPrivate));
-        dbus_g_object_type_install_info (GSM_TYPE_CLIENT, &dbus_glib_gsm_dbus_client_object_info);
-        dbus_g_error_domain_register (GSM_DBUS_CLIENT_ERROR, NULL, GSM_DBUS_CLIENT_TYPE_ERROR);
 }
 
 GsmClient *

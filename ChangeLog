@@ -1,6 +1,18 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
 	* doc/dbus/Makefile.am:
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-client.xml:
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_class_init):
+	* gnome-session/gsm-dbus-client.xml:
+	* gnome-session/gsm-inhibitor.xml:
+	* gnome-session/gsm-manager.xml:
+	Rename the introspection docs.  Remove the
+	dbus-glib stuff from the DBusClient.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
+	* doc/dbus/Makefile.am:
 	* gnome-session/gsm-dbus-client.xml:
 	Rename the DBusClient interface to ClientPrivate.
 	Cuz well that's what it is.
