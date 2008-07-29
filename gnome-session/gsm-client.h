@@ -85,7 +85,7 @@ struct _GsmClientClass
                                                               GError   **error);
 };
 
-GType       gsm_client_get_type                   (void) G_GNUC_CONST;
+GType                 gsm_client_get_type                   (void) G_GNUC_CONST;
 
 const char           *gsm_client_peek_id                    (GsmClient  *client);
 
@@ -100,7 +100,7 @@ char                 *gsm_client_get_app_name               (GsmClient  *client)
 void                  gsm_client_set_app_id                 (GsmClient  *client,
                                                              const char *app_id);
 void                  gsm_client_set_status                 (GsmClient  *client,
-                                                             int         status);
+                                                             guint       status);
 
 void                  gsm_client_end_session                (GsmClient  *client,
                                                              guint       flags);

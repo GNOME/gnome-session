@@ -36,7 +36,7 @@ struct GsmClientPrivate
         char            *id;
         char            *startup_id;
         char            *app_id;
-        int              status;
+        guint            status;
         DBusGConnection *connection;
 };
 
@@ -140,7 +140,7 @@ gsm_client_finalize (GObject *object)
 
 void
 gsm_client_set_status (GsmClient *client,
-                       int        status)
+                       guint      status)
 {
         g_return_if_fail (GSM_IS_CLIENT (client));
         if (client->priv->status != status) {
@@ -191,7 +191,7 @@ gsm_client_set_property (GObject       *object,
                 gsm_client_set_app_id (self, g_value_get_string (value));
                 break;
         case PROP_STATUS:
-                gsm_client_set_status (self, g_value_get_int (value));
+                gsm_client_set_status (self, g_value_get_uint (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -217,7 +217,7 @@ gsm_client_get_property (GObject    *object,
                 g_value_set_string (value, self->priv->app_id);
                 break;
         case PROP_STATUS:
-                g_value_set_int (value, self->priv->status);
+                g_value_set_uint (value, self->priv->status);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -283,13 +283,13 @@ gsm_client_class_init (GsmClientClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_STATUS,
-                                         g_param_spec_int ("status",
-                                                           "status",
-                                                           "status",
-                                                           -1,
-                                                           G_MAXINT,
-                                                           GSM_CLIENT_UNREGISTERED,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                         g_param_spec_uint ("status",
+                                                            "status",
+                                                            "status",
+                                                            -1,
+                                                            G_MAXINT,
+                                                            GSM_CLIENT_UNREGISTERED,
+                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmClientPrivate));
 
@@ -321,13 +321,20 @@ gsm_client_peek_startup_id (GsmClient *client)
 }
 
 guint
+gsm_client_peek_status (GsmClient *client)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_UNREGISTERED);
+
+        return client->priv->status;
+}
+
+guint
 gsm_client_peek_restart_style_hint (GsmClient *client)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
 
         return GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
 }
-
 
 gboolean
 gsm_client_get_startup_id (GsmClient *client,
@@ -361,6 +368,18 @@ gsm_client_get_restart_style_hint (GsmClient *client,
         g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
 
         *hint = GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
+
+        return TRUE;
+}
+
+gboolean
+gsm_client_get_status (GsmClient *client,
+                       guint     *status,
+                       GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
+
+        *status = client->priv->status;
 
         return TRUE;
 }
