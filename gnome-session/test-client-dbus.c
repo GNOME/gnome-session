@@ -37,7 +37,6 @@
 
 static DBusGConnection *bus_connection = NULL;
 static DBusGProxy      *sm_proxy = NULL;
-static char            *new_startup_id = NULL;
 static char            *client_id = NULL;
 static DBusGProxy      *client_proxy = NULL;
 static GMainLoop       *main_loop = NULL;
@@ -109,7 +108,6 @@ register_client (void)
                                  G_TYPE_STRING, app_id,
                                  G_TYPE_STRING, startup_id,
                                  G_TYPE_INVALID,
-                                 G_TYPE_STRING, &new_startup_id,
                                  G_TYPE_STRING, &client_id,
                                  G_TYPE_INVALID);
         if (! res) {

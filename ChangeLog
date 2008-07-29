@@ -1,5 +1,14 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (gsm_manager_register_client):
+	* gnome-session/gsm-manager.xml:
+	* gnome-session/test-client-dbus.c (register_client):
+	Don't return the "new" startup ID from the register
+	client method.  We can make this available via
+	the Client interface if necessary.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (append_default_apps):
 	Check for gnome vendor prefix on default apps.
 

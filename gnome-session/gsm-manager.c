@@ -2554,8 +2554,9 @@ gsm_manager_register_client (GsmManager            *manager,
         gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
 
         g_assert (new_startup_id != NULL);
-        dbus_g_method_return (context, new_startup_id, gsm_client_get_id (client));
         g_free (new_startup_id);
+
+        dbus_g_method_return (context, gsm_client_get_id (client));
 
         return TRUE;
 }
