@@ -634,6 +634,10 @@ on_store_inhibitor_added (GsmStore          *store,
 
         g_debug ("GsmInhibitDialog: inhibitor added: %s", id);
 
+        if (dialog->priv->is_done) {
+                return;
+        }
+
         inhibitor = gsm_store_lookup (store, id);
 
         /* Add to model */
@@ -653,6 +657,10 @@ on_store_inhibitor_removed (GsmStore          *store,
 
         g_debug ("GsmInhibitDialog: inhibitor removed: %s", id);
 
+        if (dialog->priv->is_done) {
+                return;
+        }
+
         /* Remove from model */
         if (find_inhibitor (dialog, id, &iter)) {
                 gtk_list_store_remove (dialog->priv->list_store, &iter);
@@ -660,8 +668,7 @@ on_store_inhibitor_removed (GsmStore          *store,
         }
 
         /* if there are no inhibitors left then trigger response */
-        if (! gtk_tree_model_get_iter_first (GTK_TREE_MODEL (dialog->priv->list_store), &iter)
-            && ! dialog->priv->is_done) {
+        if (! gtk_tree_model_get_iter_first (GTK_TREE_MODEL (dialog->priv->list_store), &iter)) {
                 gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
         }
 }
@@ -845,7 +852,7 @@ setup_dialog (GsmInhibitDialog *dialog)
                                                        GDK_TYPE_PIXBUF,
                                                        G_TYPE_STRING,
                                                        G_TYPE_STRING,
-                                                       G_TYPE_UINT);
+                                                       G_TYPE_STRING);
 
         treeview = glade_xml_get_widget (dialog->priv->xml, "inhibitors-treeview");
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);

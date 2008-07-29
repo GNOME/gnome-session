@@ -82,6 +82,7 @@ gsm_store_remove (GsmStore   *store,
 {
         GObject *found;
         gboolean removed;
+        char    *id_copy;
 
         g_return_val_if_fail (store != NULL, FALSE);
 
@@ -90,14 +91,17 @@ gsm_store_remove (GsmStore   *store,
                 return FALSE;
         }
 
+        id_copy = g_strdup (id);
+
         g_object_ref (found);
 
-        removed = g_hash_table_remove (store->priv->objects, id);
+        removed = g_hash_table_remove (store->priv->objects, id_copy);
         g_assert (removed);
 
-        g_signal_emit (store, signals [REMOVED], 0, id);
+        g_signal_emit (store, signals [REMOVED], 0, id_copy);
 
         g_object_unref (found);
+        g_free (id_copy);
 
         return TRUE;
 }
