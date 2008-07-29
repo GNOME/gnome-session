@@ -1,5 +1,38 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_class_init):
+	Fix the minimum value for guint property.
+
+	* gnome-session/gsm-dbus-client.c (setup_connection),
+	(raise_error), (handle_end_session_response),
+	(client_dbus_filter_function), (gsm_dbus_client_constructor),
+	(dbus_client_stop), (dbus_client_query_end_session),
+	(dbus_client_end_session), (dbus_client_cancel_end_session),
+	(gsm_dbus_client_new):
+	* gnome-session/org.gnome.SessionManager.ClientPrivate.xml:
+	* gnome-session/test-client-dbus.c (on_client_query_end_session),
+	(on_client_end_session), (on_client_cancel_end_session),
+	(on_client_stop), (register_client), (unregister_client):
+	Unicast the client private signals.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
+	reviewed by: <delete if not using a buddy>
+
+	* gnome-session/gsm-client.c (gsm_client_class_init):
+	* gnome-session/gsm-dbus-client.c (setup_connection),
+	(raise_error), (handle_end_session_response),
+	(client_dbus_filter_function), (gsm_dbus_client_constructor),
+	(dbus_client_stop), (dbus_client_query_end_session),
+	(dbus_client_end_session), (dbus_client_cancel_end_session),
+	(gsm_dbus_client_new):
+	* gnome-session/org.gnome.SessionManager.ClientPrivate.xml:
+	* gnome-session/test-client-dbus.c (on_client_query_end_session),
+	(on_client_end_session), (on_client_cancel_end_session),
+	(on_client_stop), (register_client), (unregister_client):
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* doc/dbus/Makefile.am:
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-client.xml:

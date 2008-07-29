@@ -23,7 +23,9 @@
 #endif
 
 #include <fcntl.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
@@ -40,12 +42,14 @@
 
 #define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
 
-#define CLIENT_INTERFACE "org.gnome.SessionManager.ClientPrivate"
+#define SM_DBUS_NAME                     "org.gnome.SessionManager"
+#define SM_DBUS_CLIENT_PRIVATE_INTERFACE "org.gnome.SessionManager.ClientPrivate"
 
 struct GsmDBusClientPrivate
 {
         char                 *bus_name;
         GsmClientRestartStyle restart_style_hint;
+        DBusConnection       *connection;
 };
 
 enum {
@@ -97,6 +101,138 @@ gsm_dbus_client_error_get_type (void)
         return etype;
 }
 
+static gboolean
+setup_connection (GsmDBusClient *client)
+{
+        DBusError error;
+
+        dbus_error_init (&error);
+
+        if (client->priv->connection == NULL) {
+                client->priv->connection = dbus_bus_get (DBUS_BUS_SESSION, &error);
+                if (client->priv->connection == NULL) {
+                        if (dbus_error_is_set (&error)) {
+                                g_debug ("GsmDbusClient: Couldn't connect to session bus: %s",
+                                         error.message);
+                                dbus_error_free (&error);
+                        }
+                        return FALSE;
+                }
+
+                dbus_connection_setup_with_g_main (client->priv->connection, NULL);
+                dbus_connection_set_exit_on_disconnect (client->priv->connection, FALSE);
+        }
+
+        return TRUE;
+}
+
+static void
+raise_error (DBusConnection *connection,
+             DBusMessage    *in_reply_to,
+             const char     *error_name,
+             char           *format, ...)
+{
+        char         buf[512];
+        DBusMessage *reply;
+
+        va_list args;
+        va_start (args, format);
+        vsnprintf (buf, sizeof (buf), format, args);
+        va_end (args);
+
+        reply = dbus_message_new_error (in_reply_to, error_name, buf);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+        if (! dbus_connection_send (connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+}
+
+static void
+handle_end_session_response (GsmDBusClient *client,
+                             DBusMessage   *message)
+{
+        const char     *sender;
+        DBusMessage    *reply;
+        DBusError       error;
+        dbus_bool_t     is_ok;
+        const char     *reason;
+
+        dbus_error_init (&error);
+        if (! dbus_message_get_args (message, &error,
+                                     DBUS_TYPE_BOOLEAN, &is_ok,
+                                     DBUS_TYPE_STRING, &reason,
+                                     DBUS_TYPE_INVALID)) {
+                if (dbus_error_is_set (&error)) {
+                        g_warning ("Invalid method call: %s", error.message);
+                        dbus_error_free (&error);
+                }
+                raise_error (client->priv->connection,
+                             message,
+                             DBUS_ERROR_FAILED,
+                             "There is a syntax error in the invocation of the method EndSessionReponse");
+                return;
+        }
+
+        g_debug ("GsmDBusClient: got EndSessionResponse is-ok:%d reason=%s", is_ok, reason);
+
+        /* make sure it is from our client */
+        sender = dbus_message_get_sender (message);
+        if (sender == NULL
+            || client->priv->bus_name == NULL
+            || strcmp (sender, client->priv->bus_name) != 0) {
+
+                raise_error (client->priv->connection,
+                             message,
+                             DBUS_ERROR_FAILED,
+                             "Caller not recognized as the client");
+                return;
+        }
+
+        reply = dbus_message_new_method_return (message);
+        if (reply == NULL) {
+                g_error ("No memory");
+        }
+
+        gdm_client_end_session_response (GSM_CLIENT (client), is_ok, reason);
+
+
+        if (! dbus_connection_send (client->priv->connection, reply, NULL)) {
+                g_error ("No memory");
+        }
+
+        dbus_message_unref (reply);
+}
+
+static DBusHandlerResult
+client_dbus_filter_function (DBusConnection *connection,
+                             DBusMessage    *message,
+                             void           *user_data)
+{
+        GsmDBusClient *client = GSM_DBUS_CLIENT (user_data);
+        const char    *path;
+
+        g_return_val_if_fail (connection != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+        g_return_val_if_fail (message != NULL, DBUS_HANDLER_RESULT_NOT_YET_HANDLED);
+
+        path = dbus_message_get_path (message);
+
+        g_debug ("GsmDBusClient: obj_path=%s interface=%s method=%s",
+                 dbus_message_get_path (message),
+                 dbus_message_get_interface (message),
+                 dbus_message_get_member (message));
+
+        if (dbus_message_is_method_call (message, SM_DBUS_CLIENT_PRIVATE_INTERFACE, "EndSessionResponse")) {
+                handle_end_session_response (client, message);
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
 static GObject *
 gsm_dbus_client_constructor (GType                  type,
                              guint                  n_construct_properties,
@@ -108,7 +244,13 @@ gsm_dbus_client_constructor (GType                  type,
                                                                                               n_construct_properties,
                                                                                               construct_properties));
 
+        if (! setup_connection (client)) {
+                g_object_unref (client);
+                return NULL;
+        }
 
+        /* Object path is already registered by base class */
+        dbus_connection_add_filter (client->priv->connection, client_dbus_filter_function, client, NULL);
 
         return G_OBJECT (client);
 }
@@ -203,7 +345,7 @@ dbus_client_stop (GsmClient *client,
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
-                                           CLIENT_INTERFACE,
+                                           SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "Stop");
         if (message == NULL) {
                 goto out;
@@ -234,35 +376,6 @@ dbus_client_stop (GsmClient *client,
         return ret;
 }
 
-static void
-dbus_client_query_end_session (GsmClient *client,
-                               guint      flags)
-{
-        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
-        g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
-        /* FIXME: unicast signal */
-        g_signal_emit (dbus_client, signals[QUERY_END_SESSION], 0, flags);
-}
-
-static void
-dbus_client_end_session (GsmClient *client,
-                         guint      flags)
-{
-        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
-        g_debug ("GsmDBusClient: sending EndSession signal to %s", dbus_client->priv->bus_name);
-        /* FIXME: unicast signal */
-        g_signal_emit (dbus_client, signals[END_SESSION], 0, flags);
-}
-
-static void
-dbus_client_cancel_end_session (GsmClient *client)
-{
-        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
-        g_debug ("GsmDBusClient: sending CancelEndSession signal to %s", dbus_client->priv->bus_name);
-        /* FIXME: unicast signal */
-        g_signal_emit (dbus_client, signals[CANCEL_END_SESSION], 0);
-}
-
 static char *
 dbus_client_get_app_name (GsmClient *client)
 {
@@ -276,7 +389,6 @@ dbus_client_get_restart_style_hint (GsmClient *client)
         return (GSM_DBUS_CLIENT (client)->priv->restart_style_hint);
 }
 
-#if 0
 static void
 dbus_client_query_end_session (GsmClient *client,
                                guint      flags)
@@ -284,8 +396,6 @@ dbus_client_query_end_session (GsmClient *client,
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         gboolean        ret;
-        DBusConnection *connection;
-        DBusError       local_error;
         DBusMessageIter iter;
 
         ret = FALSE;
@@ -294,7 +404,7 @@ dbus_client_query_end_session (GsmClient *client,
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
-                                           CLIENT_INTERFACE,
+                                           SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "QueryEndSession");
         if (message == NULL) {
                 goto out;
@@ -306,15 +416,7 @@ dbus_client_query_end_session (GsmClient *client,
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
 
-        dbus_error_init (&local_error);
-        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
-        if (dbus_error_is_set (&local_error)) {
-                g_warning ("%s", local_error.message);
-                dbus_error_free (&local_error);
-                goto out;
-        }
-
-        if (!dbus_connection_send (connection, message, NULL)) {
+        if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
                 goto out;
         }
 
@@ -333,15 +435,13 @@ dbus_client_end_session (GsmClient *client,
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         gboolean        ret;
-        DBusConnection *connection;
-        DBusError       local_error;
         DBusMessageIter iter;
 
         ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
-                                           CLIENT_INTERFACE,
+                                           SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "EndSession");
         if (message == NULL) {
                 goto out;
@@ -353,15 +453,7 @@ dbus_client_end_session (GsmClient *client,
         dbus_message_iter_init_append (message, &iter);
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
 
-        dbus_error_init (&local_error);
-        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
-        if (dbus_error_is_set (&local_error)) {
-                g_warning ("%s", local_error.message);
-                dbus_error_free (&local_error);
-                goto out;
-        }
-
-        if (!dbus_connection_send (connection, message, NULL)) {
+        if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
                 goto out;
         }
 
@@ -372,7 +464,38 @@ dbus_client_end_session (GsmClient *client,
                 dbus_message_unref (message);
         }
 }
-#endif
+
+static void
+dbus_client_cancel_end_session (GsmClient *client)
+{
+        GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
+        DBusMessage    *message;
+        gboolean        ret;
+
+        ret = FALSE;
+
+        /* unicast the signal to only the registered bus name */
+        message = dbus_message_new_signal (gsm_client_peek_id (client),
+                                           SM_DBUS_CLIENT_PRIVATE_INTERFACE,
+                                           "CancelEndSession");
+        if (message == NULL) {
+                goto out;
+        }
+        if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                goto out;
+        }
+
+        if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
+                goto out;
+        }
+
+        ret = TRUE;
+
+ out:
+        if (message != NULL) {
+                dbus_message_unref (message);
+        }
+}
 
 static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
@@ -456,34 +579,4 @@ gsm_dbus_client_new (const char *startup_id,
                                NULL);
 
         return GSM_CLIENT (client);
-}
-
-void
-gsm_dbus_client_end_session_response (GsmDBusClient         *client,
-                                      gboolean               is_ok,
-                                      const char            *reason,
-                                      DBusGMethodInvocation *context)
-{
-        const char *sender;
-
-        g_debug ("GsmDBusClient: got EndSessionResponse is-ok:%d reason=%s", is_ok, reason);
-
-        /* make sure it is from our client */
-        sender = dbus_g_method_get_sender (context);
-        if (sender == NULL
-            || client->priv->bus_name == NULL
-            || strcmp (sender, client->priv->bus_name) != 0) {
-                GError *error;
-
-                error = g_error_new (GSM_DBUS_CLIENT_ERROR,
-                                     GSM_DBUS_CLIENT_ERROR_NOT_CLIENT,
-                                     "%s",
-                                     "Not recognized as the session client");
-                dbus_g_method_return_error (context, error);
-                g_error_free (error);
-                return;
-        }
-
-        gdm_client_end_session_response (GSM_CLIENT (client), is_ok, reason);
-        dbus_g_method_return (context);
 }

@@ -286,7 +286,7 @@ gsm_client_class_init (GsmClientClass *klass)
                                          g_param_spec_uint ("status",
                                                             "status",
                                                             "status",
-                                                            -1,
+                                                            0,
                                                             G_MAXINT,
                                                             GSM_CLIENT_UNREGISTERED,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));

@@ -33,7 +33,7 @@
 #define SM_DBUS_PATH      "/org/gnome/SessionManager"
 #define SM_DBUS_INTERFACE "org.gnome.SessionManager"
 
-#define SM_CLIENT_DBUS_INTERFACE "org.gnome.SessionManager.DBusClient"
+#define SM_CLIENT_DBUS_INTERFACE "org.gnome.SessionManager.ClientPrivate"
 
 static DBusGConnection *bus_connection = NULL;
 static DBusGProxy      *sm_proxy = NULL;
@@ -78,7 +78,7 @@ on_client_query_end_session (DBusGProxy     *proxy,
         is_ok = FALSE;
         reason = "Unsaved files";
 
-        g_debug ("Got query end session signal");
+        g_debug ("Got query end session signal flags=%u", flags);
 
         error = NULL;
         res = dbus_g_proxy_call (proxy,
@@ -88,6 +88,29 @@ on_client_query_end_session (DBusGProxy     *proxy,
                                  G_TYPE_STRING, reason,
                                  G_TYPE_INVALID,
                                  G_TYPE_INVALID);
+}
+
+static void
+on_client_end_session (DBusGProxy     *proxy,
+                       guint           flags,
+                       gpointer        data)
+{
+        g_debug ("Got end session signal flags=%u", flags);
+}
+
+static void
+on_client_cancel_end_session (DBusGProxy     *proxy,
+                              gpointer        data)
+{
+        g_debug ("Got end session cancelled signal");
+}
+
+static void
+on_client_stop (DBusGProxy     *proxy,
+                gpointer        data)
+{
+        g_debug ("Got client stop signal");
+        g_main_loop_quit (main_loop);
 }
 
 static gboolean
@@ -108,7 +131,7 @@ register_client (void)
                                  G_TYPE_STRING, app_id,
                                  G_TYPE_STRING, startup_id,
                                  G_TYPE_INVALID,
-                                 G_TYPE_STRING, &client_id,
+                                 DBUS_TYPE_G_OBJECT_PATH, &client_id,
                                  G_TYPE_INVALID);
         if (! res) {
                 g_warning ("Failed to register client: %s", error->message);
@@ -130,11 +153,30 @@ register_client (void)
                                  G_TYPE_UINT,
                                  G_TYPE_INVALID);
         dbus_g_proxy_add_signal (client_proxy,
+                                 "CancelEndSession",
+                                 G_TYPE_UINT,
+                                 G_TYPE_INVALID);
+        dbus_g_proxy_add_signal (client_proxy,
                                  "Stop",
                                  G_TYPE_INVALID);
         dbus_g_proxy_connect_signal (client_proxy,
                                      "QueryEndSession",
                                      G_CALLBACK (on_client_query_end_session),
+                                     NULL,
+                                     NULL);
+        dbus_g_proxy_connect_signal (client_proxy,
+                                     "EndSession",
+                                     G_CALLBACK (on_client_end_session),
+                                     NULL,
+                                     NULL);
+        dbus_g_proxy_connect_signal (client_proxy,
+                                     "CancelEndSession",
+                                     G_CALLBACK (on_client_cancel_end_session),
+                                     NULL,
+                                     NULL);
+        dbus_g_proxy_connect_signal (client_proxy,
+                                     "Stop",
+                                     G_CALLBACK (on_client_stop),
                                      NULL,
                                      NULL);
 
@@ -162,7 +204,7 @@ unregister_client (void)
         res = dbus_g_proxy_call (sm_proxy,
                                  "UnregisterClient",
                                  &error,
-                                 G_TYPE_STRING, client_id,
+                                 DBUS_TYPE_G_OBJECT_PATH, client_id,
                                  G_TYPE_INVALID,
                                  G_TYPE_INVALID);
         if (! res) {

@@ -3,7 +3,6 @@
 <node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
   <interface name="org.gnome.SessionManager.ClientPrivate">
     <method name="EndSessionResponse">
-      <annotation name="org.freedesktop.DBus.GLib.Async" value=""/>
       <arg name="is_ok" type="b" direction="in">
         <doc:doc>
           <doc:summary>Whether or not it is OK to preceed</doc:summary>
