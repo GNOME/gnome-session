@@ -338,8 +338,6 @@ dbus_client_stop (GsmClient *client,
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         gboolean        ret;
-        DBusConnection *connection;
-        DBusError       local_error;
 
         ret = FALSE;
 
@@ -354,15 +352,7 @@ dbus_client_stop (GsmClient *client,
                 goto out;
         }
 
-        dbus_error_init (&local_error);
-        connection = dbus_bus_get (DBUS_BUS_SESSION, &local_error);
-        if (dbus_error_is_set (&local_error)) {
-                g_warning ("%s", local_error.message);
-                dbus_error_free (&local_error);
-                goto out;
-        }
-
-        if (!dbus_connection_send (connection, message, NULL)) {
+        if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
                 goto out;
         }
 
@@ -395,10 +385,7 @@ dbus_client_query_end_session (GsmClient *client,
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
-        gboolean        ret;
         DBusMessageIter iter;
-
-        ret = FALSE;
 
         g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
 
@@ -420,8 +407,6 @@ dbus_client_query_end_session (GsmClient *client,
                 goto out;
         }
 
-        ret = TRUE;
-
  out:
         if (message != NULL) {
                 dbus_message_unref (message);
@@ -434,10 +419,7 @@ dbus_client_end_session (GsmClient *client,
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
-        gboolean        ret;
         DBusMessageIter iter;
-
-        ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
@@ -456,9 +438,6 @@ dbus_client_end_session (GsmClient *client,
         if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
                 goto out;
         }
-
-        ret = TRUE;
-
  out:
         if (message != NULL) {
                 dbus_message_unref (message);
@@ -470,9 +449,6 @@ dbus_client_cancel_end_session (GsmClient *client)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
-        gboolean        ret;
-
-        ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
@@ -488,8 +464,6 @@ dbus_client_cancel_end_session (GsmClient *client)
         if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
                 goto out;
         }
-
-        ret = TRUE;
 
  out:
         if (message != NULL) {
@@ -514,47 +488,6 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_cancel_end_session     = dbus_client_cancel_end_session;
         client_class->impl_get_app_name           = dbus_client_get_app_name;
         client_class->impl_get_restart_style_hint = dbus_client_get_restart_style_hint;
-
-        signals [STOP] =
-                g_signal_new ("stop",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmDBusClientClass, stop),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [CANCEL_END_SESSION] =
-                g_signal_new ("cancel-end-session",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmDBusClientClass, cancel_end_session),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
-                              G_TYPE_NONE,
-                              0);
-        signals [QUERY_END_SESSION] =
-                g_signal_new ("query-end-session",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmDBusClientClass, query_end_session),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__UINT,
-                              G_TYPE_NONE,
-                              1, G_TYPE_UINT);
-        signals [END_SESSION] =
-                g_signal_new ("end-session",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmDBusClientClass, end_session),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__UINT,
-                              G_TYPE_NONE,
-                              1, G_TYPE_UINT);
 
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,

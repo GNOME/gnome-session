@@ -46,14 +46,6 @@ struct _GsmDBusClient
 struct _GsmDBusClientClass
 {
         GsmClientClass parent_class;
-
-        /* signals */
-        void         (*stop)               (GsmClient  *client);
-        void         (*query_end_session)  (GsmClient  *client,
-                                            guint       flags);
-        void         (*end_session)        (GsmClient  *client,
-                                            guint       flags);
-        void         (*cancel_end_session) (GsmClient  *client);
 };
 
 typedef enum
@@ -75,12 +67,6 @@ GType          gsm_dbus_client_get_type           (void) G_GNUC_CONST;
 GsmClient *    gsm_dbus_client_new                (const char     *startup_id,
                                                    const char     *bus_name);
 const char *   gsm_dbus_client_get_bus_name       (GsmDBusClient  *client);
-
-/* published methods */
-void           gsm_dbus_client_end_session_response (GsmDBusClient         *client,
-                                                     gboolean               ok_to_proceed,
-                                                     const char            *reason,
-                                                     DBusGMethodInvocation *context);
 
 G_END_DECLS
 
