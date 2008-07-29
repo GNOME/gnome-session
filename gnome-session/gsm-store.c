@@ -192,8 +192,10 @@ gsm_store_foreach_remove (GsmStore    *store,
         while (data.removed != NULL) {
                 char *id;
                 id = data.removed->data;
+                g_debug ("GsmStore: emitting removed for %s", id);
                 g_signal_emit (store, signals [REMOVED], 0, id);
-                g_free (id);
+                g_free (data.removed->data);
+                data.removed->data = NULL;
                 data.removed = g_list_delete_link (data.removed, data.removed);
         }
 

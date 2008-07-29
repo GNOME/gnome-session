@@ -487,6 +487,7 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	dbus_g_object_type_install_info (GSM_TYPE_INHIBITOR, &dbus_glib_gsm_inhibitor_object_info);
         g_type_class_add_private (klass, sizeof (GsmInhibitorPrivate));
 }
 

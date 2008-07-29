@@ -56,15 +56,6 @@ enum {
         PROP_0,
         PROP_BUS_NAME,
 };
-enum {
-        STOP,
-        CANCEL_END_SESSION,
-        QUERY_END_SESSION,
-        END_SESSION,
-        LAST_SIGNAL
-};
-
-static guint signals [LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
 
@@ -472,6 +463,21 @@ dbus_client_cancel_end_session (GsmClient *client)
 }
 
 static void
+gsm_dbus_client_dispose (GObject *object)
+{
+        GsmDBusClient *client;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSM_IS_DBUS_CLIENT (object));
+
+        client = GSM_DBUS_CLIENT (object);
+
+        dbus_connection_remove_filter (client->priv->connection, client_dbus_filter_function, client);
+
+        G_OBJECT_CLASS (gsm_dbus_client_parent_class)->dispose (object);
+}
+
+static void
 gsm_dbus_client_class_init (GsmDBusClientClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -481,6 +487,7 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->constructor          = gsm_dbus_client_constructor;
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
+        object_class->dispose              = gsm_dbus_client_dispose;
 
         client_class->impl_stop                   = dbus_client_stop;
         client_class->impl_query_end_session      = dbus_client_query_end_session;

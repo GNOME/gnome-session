@@ -237,6 +237,21 @@ default_stop (GsmClient *client,
 }
 
 static void
+gsm_client_dispose (GObject *object)
+{
+        GsmClient *client;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSM_IS_CLIENT (object));
+
+        client = GSM_CLIENT (object);
+
+        g_debug ("GsmClient: disposing %s", client->priv->id);
+
+        G_OBJECT_CLASS (gsm_client_parent_class)->dispose (object);
+}
+
+static void
 gsm_client_class_init (GsmClientClass *klass)
 {
         GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -245,6 +260,7 @@ gsm_client_class_init (GsmClientClass *klass)
         object_class->set_property = gsm_client_set_property;
         object_class->constructor = gsm_client_constructor;
         object_class->finalize = gsm_client_finalize;
+        object_class->dispose = gsm_client_dispose;
 
         klass->impl_stop = default_stop;
 

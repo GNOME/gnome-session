@@ -127,6 +127,8 @@ accept_ice_connection (GIOChannel           *source,
         ice_conn->context = client;
 
         gsm_store_add (server->priv->client_store, gsm_client_peek_id (client), G_OBJECT (client));
+        /* the store will own the ref */
+        g_object_unref (client);
 
         return TRUE;
 }

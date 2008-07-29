@@ -1,5 +1,22 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_dispose),
+	(gsm_client_class_init):
+	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_dispose),
+	(gsm_dbus_client_class_init):
+	* gnome-session/gsm-inhibit-dialog.c (on_response),
+	(model_has_one_entry), (on_store_inhibitor_removed),
+	(gsm_inhibit_dialog_dispose), (gsm_inhibit_dialog_finalize):
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_class_init):
+	* gnome-session/gsm-manager.c (bus_name_owner_changed),
+	(gsm_manager_register_client):
+	* gnome-session/gsm-store.c (gsm_store_foreach_remove):
+	* gnome-session/gsm-xsmp-server.c (accept_ice_connection):
+	Add introspection info to Inhibitor.  Fix a few
+	refcounting problems.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-dbus-client.c (dbus_client_stop),
 	(dbus_client_query_end_session), (dbus_client_end_session),
 	(dbus_client_cancel_end_session), (gsm_dbus_client_class_init):

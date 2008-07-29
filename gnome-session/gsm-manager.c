@@ -1203,8 +1203,8 @@ bus_name_owner_changed (DBusGProxy  *bus_proxy,
         if (strlen (new_service_name) == 0
             && strlen (old_service_name) > 0) {
                 /* service removed */
-                remove_clients_for_connection (manager, old_service_name);
                 remove_inhibitors_for_connection (manager, old_service_name);
+                remove_clients_for_connection (manager, old_service_name);
         } else if (strlen (old_service_name) == 0
                    && strlen (new_service_name) > 0) {
                 /* service added */
@@ -2541,6 +2541,8 @@ gsm_manager_register_client (GsmManager            *manager,
         }
 
         gsm_store_add (manager->priv->clients, gsm_client_peek_id (client), G_OBJECT (client));
+        /* the store will own the ref */
+        g_object_unref (client);
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_get_id (app));

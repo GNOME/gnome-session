@@ -62,6 +62,7 @@ struct GsmInhibitDialogPrivate
 {
         GladeXML          *xml;
         int                action;
+        gboolean           is_done;
         GsmStore          *inhibitors;
         GtkListStore      *list_store;
         gboolean           have_xrender;
@@ -104,13 +105,20 @@ lock_screen (GsmInhibitDialog *dialog)
 static void
 on_response (GsmInhibitDialog *dialog,
              gint              response_id)
+
 {
+        if (dialog->priv->is_done) {
+                g_signal_stop_emission_by_name (dialog, "response");
+                return;
+        }
+
         switch (response_id) {
         case DIALOG_RESPONSE_LOCK_SCREEN:
                 g_signal_stop_emission_by_name (dialog, "response");
                 lock_screen (dialog);
                 break;
         default:
+                dialog->priv->is_done = TRUE;
                 break;
         }
 }
@@ -582,7 +590,7 @@ model_has_one_entry (GtkTreeModel *model)
         n_rows = gtk_tree_model_iter_n_children (model, NULL);
         g_debug ("Model has %d rows", n_rows);
 
-        return (n_rows < 2);
+        return (n_rows > 0 && n_rows < 2);
 }
 
 static void
@@ -652,7 +660,8 @@ on_store_inhibitor_removed (GsmStore          *store,
         }
 
         /* if there are no inhibitors left then trigger response */
-        if (! gtk_tree_model_get_iter_first (GTK_TREE_MODEL (dialog->priv->list_store), &iter)) {
+        if (! gtk_tree_model_get_iter_first (GTK_TREE_MODEL (dialog->priv->list_store), &iter)
+            && ! dialog->priv->is_done) {
                 gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
         }
 }
@@ -907,6 +916,33 @@ gsm_inhibit_dialog_constructor (GType                  type,
 static void
 gsm_inhibit_dialog_dispose (GObject *object)
 {
+        GsmInhibitDialog *dialog;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (object));
+
+        dialog = GSM_INHIBIT_DIALOG (object);
+
+        g_debug ("GsmInhibitDialog: dispose called");
+
+        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
+                                              on_store_inhibitor_added,
+                                              dialog);
+        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
+                                              on_store_inhibitor_removed,
+                                              dialog);
+
+        if (dialog->priv->list_store != NULL) {
+                g_object_unref (dialog->priv->list_store);
+                dialog->priv->list_store = NULL;
+        }
+
+
+        if (dialog->priv->inhibitors != NULL) {
+                g_object_unref (dialog->priv->inhibitors);
+                dialog->priv->inhibitors = NULL;
+        }
+
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->dispose (object);
 }
 
@@ -980,16 +1016,6 @@ gsm_inhibit_dialog_finalize (GObject *object)
         g_return_if_fail (dialog->priv != NULL);
 
         g_debug ("GsmInhibitDialog: finalizing");
-
-        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                              on_store_inhibitor_added,
-                                              dialog);
-        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                              on_store_inhibitor_removed,
-                                              dialog);
-        if (dialog->priv->inhibitors != NULL) {
-                g_object_unref (dialog->priv->inhibitors);
-        }
 
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->finalize (object);
 }
