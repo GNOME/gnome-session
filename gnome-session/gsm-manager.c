@@ -96,7 +96,6 @@ struct GsmManagerPrivate
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
 
-
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
 };
@@ -1617,6 +1616,28 @@ append_default_apps (GsmManager *manager,
                                            &app_path,
                                            G_KEY_FILE_NONE,
                                            NULL);
+
+                if (app_path == NULL) {
+                        g_key_file_load_from_dirs (key_file,
+                                                   desktop_file,
+                                                   (const gchar**) autostart_dirs,
+                                                   &app_path,
+                                                   G_KEY_FILE_NONE,
+                                                   NULL);
+                }
+
+                /* look for gnome vender prefix */
+                if (app_path == NULL) {
+                        g_free (desktop_file);
+                        desktop_file = g_strdup_printf ("gnome-%s.desktop", (char *) a->data);
+
+                        g_key_file_load_from_dirs (key_file,
+                                                   desktop_file,
+                                                   (const gchar**) app_dirs,
+                                                   &app_path,
+                                                   G_KEY_FILE_NONE,
+                                                   NULL);
+                }
 
                 if (app_path == NULL) {
                         g_key_file_load_from_dirs (key_file,
