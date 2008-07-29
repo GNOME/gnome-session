@@ -980,8 +980,8 @@ find_app_for_app_id (GsmManager *manager,
 }
 
 static void
-disconnect_client (GsmManager *manager,
-                   GsmClient  *client)
+_disconnect_client (GsmManager *manager,
+                    GsmClient  *client)
 {
         gboolean              is_condition_client;
         GsmApp               *app;
@@ -991,12 +991,12 @@ disconnect_client (GsmManager *manager,
         gboolean              app_restart;
         GsmClientRestartStyle client_restart_hint;
 
-        g_debug ("GsmManager: disconnect client");
+        g_debug ("GsmManager: disconnect client: %s", gsm_client_peek_id (client));
 
         /* take a ref so it doesn't get finalized */
         g_object_ref (client);
 
-        gsm_store_remove (manager->priv->clients, gsm_client_peek_id (client));
+        gsm_client_set_status (client, GSM_CLIENT_FINISHED);
 
         is_condition_client = FALSE;
         if (g_slist_find (manager->priv->condition_clients, client)) {
@@ -1049,12 +1049,6 @@ disconnect_client (GsmManager *manager,
 
  out:
         g_object_unref (client);
-
-        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION
-            && gsm_store_size (manager->priv->clients) == 0) {
-                g_debug ("GsmManager: last client disconnected - exiting");
-                end_phase (manager);
-        }
 }
 
 typedef struct {
@@ -1079,7 +1073,8 @@ _disconnect_dbus_client (const char       *id,
         }
 
         if (strcmp (data->service_name, name) == 0) {
-                disconnect_client (data->manager, client);
+                _disconnect_client (data->manager, client);
+                return TRUE;
         }
 
         return FALSE;
@@ -1095,9 +1090,15 @@ remove_clients_for_connection (GsmManager *manager,
         data.manager = manager;
 
         /* disconnect dbus clients for name */
-        gsm_store_foreach (manager->priv->clients,
-                           (GsmStoreFunc)_disconnect_dbus_client,
-                           &data);
+        gsm_store_foreach_remove (manager->priv->clients,
+                                  (GsmStoreFunc)_disconnect_dbus_client,
+                                  &data);
+
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION
+            && gsm_store_size (manager->priv->clients) == 0) {
+                g_debug ("GsmManager: last client disconnected - exiting");
+                end_phase (manager);
+        }
 }
 
 static gboolean
@@ -1280,7 +1281,13 @@ on_client_disconnected (GsmClient  *client,
                         GsmManager *manager)
 {
         g_debug ("GsmManager: disconnect client");
-        disconnect_client (manager, client);
+        _disconnect_client (manager, client);
+        gsm_store_remove (manager->priv->clients, gsm_client_peek_id (client));
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION
+            && gsm_store_size (manager->priv->clients) == 0) {
+                g_debug ("GsmManager: last client disconnected - exiting");
+                end_phase (manager);
+        }
 }
 
 static gboolean

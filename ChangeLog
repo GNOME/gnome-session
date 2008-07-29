@@ -1,5 +1,13 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (_disconnect_client),
+	(_disconnect_dbus_client), (remove_clients_for_connection),
+	(on_client_disconnected):
+	Don't remove clients from the iterator func.  Set
+	client status when disconnecting.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.c (gsm_client_dispose),
 	(gsm_client_class_init):
 	* gnome-session/gsm-dbus-client.c (gsm_dbus_client_dispose),
