@@ -1,5 +1,13 @@
 2008-07-30  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (listify_store_ids),
+	(gsm_manager_get_clients), (gsm_manager_get_inhibitors):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/org.gnome.SessionManager.xml:
+	Add GetClients and GetInhibitors.
+
+2008-07-30  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.c (gsm_client_set_startup_id),
 	(gsm_client_set_app_id), (gsm_client_class_init):
 	* gnome-session/gsm-dbus-client.c (handle_end_session_response):

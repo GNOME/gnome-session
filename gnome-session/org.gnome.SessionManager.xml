@@ -190,6 +190,40 @@
       </doc:doc>
     </method>
 
+    <method name="GetClients">
+      <arg name="clients" direction="out" type="ao">
+        <doc:doc>
+          <doc:summary>an array of client IDs</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>This gets a list of all the <doc:ref type="interface" to="org.gnome.SessionManager.Client">Clients</doc:ref>
+          that are currently known to the session manager.</doc:para>
+          <doc:para>Each Client ID is an D-Bus object path for the object that implements the
+          <doc:ref type="interface" to="org.gnome.SessionManager.Client">Client</doc:ref> interface.</doc:para>
+        </doc:description>
+        <doc:seealso><doc:ref type="interface" to="org.gnome.SessionManager.Client">org.gnome.SessionManager.Client</doc:ref></doc:seealso>
+      </doc:doc>
+    </method>
+
+    <method name="GetInhibitors">
+      <arg name="inhibitors" direction="out" type="ao">
+        <doc:doc>
+          <doc:summary>an array of inhibitor IDs</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>This gets a list of all the <doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">Inhibitors</doc:ref>
+          that are currently known to the session manager.</doc:para>
+          <doc:para>Each Inhibitor ID is an D-Bus object path for the object that implements the
+          <doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">Inhibitor</doc:ref> interface.</doc:para>
+        </doc:description>
+        <doc:seealso><doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">org.gnome.SessionManager.Inhibitor</doc:ref></doc:seealso>
+      </doc:doc>
+    </method>
+
     <method name="Shutdown">
       <doc:doc>
         <doc:description>

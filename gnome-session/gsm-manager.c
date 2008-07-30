@@ -2744,3 +2744,46 @@ gsm_manager_is_inhibited (GsmManager *manager,
         return TRUE;
 
 }
+
+static gboolean
+listify_store_ids (char       *id,
+                   GObject    *object,
+                   GPtrArray **array)
+{
+        g_ptr_array_add (*array, g_strdup (id));
+        return FALSE;
+}
+
+gboolean
+gsm_manager_get_clients (GsmManager *manager,
+                         GPtrArray **clients,
+                         GError    **error)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        if (clients == NULL) {
+                return FALSE;
+        }
+
+        *clients = g_ptr_array_new ();
+        gsm_store_foreach (manager->priv->clients, (GsmStoreFunc)listify_store_ids, clients);
+
+        return TRUE;
+}
+
+gboolean
+gsm_manager_get_inhibitors (GsmManager *manager,
+                            GPtrArray **inhibitors,
+                            GError    **error)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        if (inhibitors == NULL) {
+                return FALSE;
+        }
+
+        *inhibitors = g_ptr_array_new ();
+        gsm_store_foreach (manager->priv->inhibitors, (GsmStoreFunc)listify_store_ids, inhibitors);
+
+        return TRUE;
+}

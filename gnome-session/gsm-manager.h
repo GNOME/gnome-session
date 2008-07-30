@@ -155,6 +155,13 @@ gboolean            gsm_manager_initialization_error (GsmManager     *manager,
                                                       gboolean        fatal,
                                                       GError        **error);
 
+gboolean            gsm_manager_get_clients          (GsmManager     *manager,
+                                                      GPtrArray     **clients,
+                                                      GError        **error);
+gboolean            gsm_manager_get_inhibitors       (GsmManager     *manager,
+                                                      GPtrArray     **inhibitors,
+                                                      GError        **error);
+
 G_END_DECLS
 
 #endif /* __GSM_MANAGER_H */
