@@ -381,7 +381,7 @@ gsm_client_get_restart_style_hint (GsmClient *client,
                                    guint     *hint,
                                    GError   **error)
 {
-        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
         *hint = GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
 
@@ -393,7 +393,7 @@ gsm_client_get_status (GsmClient *client,
                        guint     *status,
                        GError   **error)
 {
-        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_UNREGISTERED);
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
         *status = client->priv->status;
 
@@ -405,7 +405,7 @@ gsm_client_get_unix_process_id (GsmClient  *client,
                                 guint      *pid,
                                 GError    **error)
 {
-        g_return_val_if_fail (GSM_IS_CLIENT (client), 0);
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
         *pid = GSM_CLIENT_GET_CLASS (client)->impl_get_unix_process_id (client);
 
