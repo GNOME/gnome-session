@@ -108,6 +108,15 @@ maybe_start_session_bus (void)
         g_free (output);
 }
 
+static void
+on_bus_name_lost (DBusGProxy *bus_proxy,
+                  const char *name,
+                  gpointer    data)
+{
+        g_warning ("Lost name on bus: %s, exiting", name);
+        exit (1);
+}
+
 static gboolean
 acquire_name_on_proxy (DBusGProxy *bus_proxy,
                        const char *name)
@@ -152,6 +161,18 @@ acquire_name_on_proxy (DBusGProxy *bus_proxy,
                 goto out;
         }
 
+        /* register for name lost */
+        dbus_g_proxy_add_signal (bus_proxy,
+                                 "NameLost",
+                                 G_TYPE_STRING,
+                                 G_TYPE_INVALID);
+        dbus_g_proxy_connect_signal (bus_proxy,
+                                     "NameLost",
+                                     G_CALLBACK (on_bus_name_lost),
+                                     NULL,
+                                     NULL);
+
+
         ret = TRUE;
 
  out:
@@ -173,8 +194,6 @@ acquire_name (void)
                                      error->message);
                 /* not reached */
         }
-
-        dbus_connection_set_exit_on_disconnect (dbus_g_connection_get_connection (connection), FALSE);
 
         bus_proxy = dbus_g_proxy_new_for_name (connection,
                                                DBUS_SERVICE_DBUS,

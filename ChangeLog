@@ -1,5 +1,11 @@
 2008-07-30  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/main.c (on_bus_name_lost), (acquire_name_on_proxy),
+	(acquire_name):
+	Handle NameLost signal and exit when disconnected from bus.
+
+2008-07-30  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/org.gnome.SessionManager.Client.xml:
 	* gnome-session/org.gnome.SessionManager.Inhibitor.xml:
 	Drop the properties for now until we can figure out
