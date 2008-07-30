@@ -157,7 +157,11 @@ gsm_client_set_startup_id (GsmClient  *client,
 
         g_free (client->priv->startup_id);
 
-        client->priv->startup_id = g_strdup (startup_id);
+        if (startup_id != NULL) {
+                client->priv->startup_id = g_strdup (startup_id);
+        } else {
+                client->priv->startup_id = g_strdup ("");
+        }
         g_object_notify (G_OBJECT (client), "startup-id");
 }
 
@@ -169,7 +173,11 @@ gsm_client_set_app_id (GsmClient  *client,
 
         g_free (client->priv->app_id);
 
-        client->priv->app_id = g_strdup (app_id);
+        if (app_id != NULL) {
+                client->priv->app_id = g_strdup (app_id);
+        } else {
+                client->priv->app_id = g_strdup ("");
+        }
         g_object_notify (G_OBJECT (client), "app-id");
 }
 
@@ -288,14 +296,14 @@ gsm_client_class_init (GsmClientClass *klass)
                                          g_param_spec_string ("startup-id",
                                                               "startup-id",
                                                               "startup-id",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
                                          g_param_spec_string ("app-id",
                                                               "app-id",
                                                               "app-id",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_STATUS,

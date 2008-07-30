@@ -42,6 +42,9 @@
 
 #define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
+
 #define SM_DBUS_NAME                     "org.gnome.SessionManager"
 #define SM_DBUS_CLIENT_PRIVATE_INTERFACE "org.gnome.SessionManager.ClientPrivate"
 
@@ -174,7 +177,7 @@ handle_end_session_response (GsmDBusClient *client,
         /* make sure it is from our client */
         sender = dbus_message_get_sender (message);
         if (sender == NULL
-            || client->priv->bus_name == NULL
+            || IS_STRING_EMPTY (client->priv->bus_name)
             || strcmp (sender, client->priv->bus_name) != 0) {
 
                 raise_error (client->priv->connection,

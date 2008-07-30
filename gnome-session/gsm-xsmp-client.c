@@ -38,6 +38,9 @@
 /* FIXME */
 #define GsmDesktopFile "_Gsm_DesktopFile"
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
+
 #define GSM_XSMP_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_XSMP_CLIENT, GsmXSMPClientPrivate))
 
 struct GsmXSMPClientPrivate
@@ -790,7 +793,7 @@ register_client_callback (SmsConn    conn,
                 return FALSE;
         }
 
-        if (id == NULL) {
+        if (IS_STRING_EMPTY (id)) {
                 g_debug ("GsmXSMPClient:   rejected: invalid previous_id");
                 free (previous_id);
                 return FALSE;
@@ -804,7 +807,7 @@ register_client_callback (SmsConn    conn,
 
         SmsRegisterClientReply (conn, id);
 
-        if (previous_id == NULL) {
+        if (IS_STRING_EMPTY (previous_id)) {
                 /* Send the initial SaveYourself. */
                 g_debug ("GsmXSMPClient: Sending initial SaveYourself");
                 SmsSaveYourself (conn, SmSaveLocal, False, SmInteractStyleNone, False);

@@ -73,6 +73,8 @@
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
@@ -221,7 +223,7 @@ _find_by_startup_id (const char *id,
         const char *startup_id_b;
 
         startup_id_b = gsm_client_peek_startup_id (client);
-        if (startup_id_b == NULL) {
+        if (IS_STRING_EMPTY (startup_id_b)) {
                 return FALSE;
         }
 
@@ -855,7 +857,7 @@ _on_query_end_session_timeout (GsmManager *manager)
                 }
 
                 app_id = g_strdup (gsm_client_peek_app_id (l->data));
-                if (app_id == NULL || app_id[0] == '\0') {
+                if (IS_STRING_EMPTY (app_id)) {
                         /* XSMP clients don't give us an app id unless we start them */
                         app_id = gsm_client_get_app_name (l->data);
                 }
@@ -1006,7 +1008,7 @@ _disconnect_client (GsmManager *manager,
         }
 
         app_id = gsm_client_peek_app_id (client);
-        if (app_id == NULL) {
+        if (IS_STRING_EMPTY (app_id)) {
                 g_debug ("GsmManager: no application associated with client, not restarting application");
                 goto out;
         }
@@ -1068,7 +1070,7 @@ _disconnect_dbus_client (const char       *id,
         }
 
         name = gsm_dbus_client_get_bus_name (GSM_DBUS_CLIENT (client));
-        if (name == NULL) {
+        if (IS_STRING_EMPTY (name)) {
                 return FALSE;
         }
 
@@ -1112,7 +1114,7 @@ inhibitor_has_bus_name (gpointer          key,
         bus_name_b = gsm_inhibitor_peek_bus_name (inhibitor);
 
         matches = FALSE;
-        if (data->service_name != NULL && bus_name_b != NULL) {
+        if (! IS_STRING_EMPTY (data->service_name) && ! IS_STRING_EMPTY (bus_name_b)) {
                 matches = (strcmp (data->service_name, bus_name_b) == 0);
                 if (matches) {
                         g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
@@ -1151,7 +1153,7 @@ _app_has_startup_id (const char *id,
 
         startup_id_b = gsm_app_get_startup_id (app);
 
-        if (startup_id_b == NULL) {
+        if (IS_STRING_EMPTY (startup_id_b)) {
                 return FALSE;
         }
 
@@ -1269,7 +1271,7 @@ _client_has_startup_id (const char *id,
 
         startup_id_b = gsm_client_peek_startup_id (client);
 
-        if (startup_id_b == NULL) {
+        if (IS_STRING_EMPTY (startup_id_b)) {
                 return FALSE;
         }
 
@@ -1306,7 +1308,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
                 goto out;
         }
 
-        if (*id == NULL) {
+        if (IS_STRING_EMPTY (*id)) {
                 new_id = gsm_util_generate_startup_id ();
         } else {
                 GsmClient *client;
@@ -1330,7 +1332,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
                           manager);
 
         /* If it's a brand new client id, we just accept the client*/
-        if (*id == NULL) {
+        if (IS_STRING_EMPTY (*id)) {
                 goto out;
         }
 
@@ -1363,7 +1365,7 @@ inhibitor_has_client_id (gpointer      key,
         client_id_b = gsm_inhibitor_peek_client_id (inhibitor);
 
         matches = FALSE;
-        if (client_id_a != NULL && client_id_b != NULL) {
+        if (! IS_STRING_EMPTY (client_id_a) && ! IS_STRING_EMPTY (client_id_b)) {
                 matches = (strcmp (client_id_a, client_id_b) == 0);
                 if (matches) {
                         g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
@@ -1406,7 +1408,7 @@ on_client_end_session_response (GsmClient  *client,
                 }
 
                 app_id = g_strdup (gsm_client_peek_app_id (client));
-                if (app_id == NULL || app_id[0] == '\0') {
+                if (IS_STRING_EMPTY (app_id)) {
                         /* XSMP clients don't give us an app id unless we start them */
                         app_id = gsm_client_get_app_name (client);
                 }
@@ -1568,7 +1570,7 @@ append_app (GsmManager *manager,
         GsmApp     *dup;
 
         id = gsm_app_get_id (app);
-        if (id == NULL) {
+        if (IS_STRING_EMPTY (id)) {
                 g_debug ("GsmManager: not adding app: no ID");
                 return;
         }
@@ -1609,7 +1611,7 @@ append_default_apps (GsmManager *manager,
 
                 key_file = g_key_file_new ();
 
-                if (a->data == NULL) {
+                if (IS_STRING_EMPTY ((char *)a->data)) {
                         continue;
                 }
 
@@ -2476,6 +2478,9 @@ gsm_manager_register_client (GsmManager            *manager,
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
+        app = NULL;
+        client = NULL;
+
         g_debug ("GsmManager: RegisterClient %s", startup_id);
 
         if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
@@ -2491,8 +2496,7 @@ gsm_manager_register_client (GsmManager            *manager,
                 return FALSE;
         }
 
-        if (startup_id == NULL
-            || startup_id[0] == '\0') {
+        if (IS_STRING_EMPTY (startup_id)) {
                 new_startup_id = gsm_util_generate_startup_id ();
         } else {
 
@@ -2518,15 +2522,13 @@ gsm_manager_register_client (GsmManager            *manager,
 
         g_debug ("GsmManager: Adding new client %s to session", new_startup_id);
 
-        if ((startup_id == NULL || startup_id[0] == '\0')
-            && app_id == NULL) {
+        if (IS_STRING_EMPTY (startup_id) && IS_STRING_EMPTY (app_id)) {
                 /* just accept the client - we can't associate with an
                    existing App */
                 app = NULL;
-        } else if (startup_id != NULL
-                   && startup_id[0] != '\0') {
+        } else if (IS_STRING_EMPTY (startup_id)) {
                 app = find_app_for_startup_id (manager, startup_id);
-        } else if (app_id != NULL) {
+        } else if (IS_STRING_EMPTY (startup_id)) {
                 /* try to associate this app id with a known app */
                 app = find_app_for_app_id (manager, app_id);
         }
@@ -2623,7 +2625,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                  reason,
                  flags);
 
-        if (app_id == NULL || app_id[0] == '\0') {
+        if (IS_STRING_EMPTY (app_id)) {
                 GError *new_error;
 
                 new_error = g_error_new (GSM_MANAGER_ERROR,
@@ -2635,7 +2637,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                 return FALSE;
         }
 
-        if (reason == NULL || reason[0] == '\0') {
+        if (IS_STRING_EMPTY (reason)) {
                 GError *new_error;
 
                 new_error = g_error_new (GSM_MANAGER_ERROR,

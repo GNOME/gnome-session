@@ -131,7 +131,11 @@ gsm_inhibitor_set_bus_name (GsmInhibitor  *inhibitor,
 
         g_free (inhibitor->priv->bus_name);
 
-        inhibitor->priv->bus_name = g_strdup (bus_name);
+        if (bus_name != NULL) {
+                inhibitor->priv->bus_name = g_strdup (bus_name);
+        } else {
+                inhibitor->priv->bus_name = g_strdup ("");
+        }
         g_object_notify (G_OBJECT (inhibitor), "bus-name");
 }
 
@@ -155,7 +159,11 @@ gsm_inhibitor_set_client_id (GsmInhibitor  *inhibitor,
 
         g_free (inhibitor->priv->client_id);
 
-        inhibitor->priv->client_id = g_strdup (client_id);
+        if (client_id != NULL) {
+                inhibitor->priv->client_id = g_strdup (client_id);
+        } else {
+                inhibitor->priv->client_id = g_strdup ("");
+        }
         g_object_notify (G_OBJECT (inhibitor), "client-id");
 }
 
@@ -167,7 +175,11 @@ gsm_inhibitor_set_reason (GsmInhibitor  *inhibitor,
 
         g_free (inhibitor->priv->reason);
 
-        inhibitor->priv->reason = g_strdup (reason);
+        if (reason != NULL) {
+                inhibitor->priv->reason = g_strdup (reason);
+        } else {
+                inhibitor->priv->reason = g_strdup ("");
+        }
         g_object_notify (G_OBJECT (inhibitor), "reason");
 }
 
@@ -222,7 +234,11 @@ gsm_inhibitor_get_app_id (GsmInhibitor *inhibitor,
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
 
-        *id = g_strdup (inhibitor->priv->app_id);
+        if (inhibitor->priv->app_id != NULL) {
+                *id = g_strdup (inhibitor->priv->app_id);
+        } else {
+                *id = g_strdup ("");
+        }
 
         return TRUE;
 }
@@ -234,7 +250,11 @@ gsm_inhibitor_get_client_id (GsmInhibitor *inhibitor,
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
 
-        *id = g_strdup (inhibitor->priv->client_id);
+        if (inhibitor->priv->client_id != NULL) {
+                *id = g_strdup (inhibitor->priv->client_id);
+        } else {
+                *id = g_strdup ("");
+        }
 
         return TRUE;
 }
@@ -246,7 +266,11 @@ gsm_inhibitor_get_reason (GsmInhibitor *inhibitor,
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
 
-        *reason = g_strdup (inhibitor->priv->reason);
+        if (inhibitor->priv->reason != NULL) {
+                *reason = g_strdup (inhibitor->priv->reason);
+        } else {
+                *reason = g_strdup ("");
+        }
 
         return TRUE;
 }
@@ -436,28 +460,28 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                          g_param_spec_string ("bus-name",
                                                               "bus-name",
                                                               "bus-name",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
                                          g_param_spec_string ("app-id",
                                                               "app-id",
                                                               "app-id",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_ID,
                                          g_param_spec_string ("client-id",
                                                               "client-id",
                                                               "client-id",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_REASON,
                                          g_param_spec_string ("reason",
                                                               "reason",
                                                               "reason",
-                                                              NULL,
+                                                              "",
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_FLAGS,
@@ -487,7 +511,7 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
-	dbus_g_object_type_install_info (GSM_TYPE_INHIBITOR, &dbus_glib_gsm_inhibitor_object_info);
+        dbus_g_object_type_install_info (GSM_TYPE_INHIBITOR, &dbus_glib_gsm_inhibitor_object_info);
         g_type_class_add_private (klass, sizeof (GsmInhibitorPrivate));
 }
 

@@ -1,3 +1,27 @@
+2008-07-30  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-client.c (gsm_client_set_startup_id),
+	(gsm_client_set_app_id), (gsm_client_class_init):
+	* gnome-session/gsm-dbus-client.c (handle_end_session_response):
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor),
+	(on_store_inhibitor_added):
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_set_bus_name),
+	(gsm_inhibitor_set_client_id), (gsm_inhibitor_set_reason),
+	(gsm_inhibitor_get_app_id), (gsm_inhibitor_get_client_id),
+	(gsm_inhibitor_get_reason), (gsm_inhibitor_class_init):
+	* gnome-session/gsm-manager.c (_find_by_startup_id),
+	(_on_query_end_session_timeout), (_disconnect_client),
+	(_disconnect_dbus_client), (inhibitor_has_bus_name),
+	(_app_has_startup_id), (_client_has_startup_id),
+	(on_xsmp_client_register_request), (inhibitor_has_client_id),
+	(on_client_end_session_response), (append_app),
+	(append_default_apps), (gsm_manager_register_client),
+	(gsm_manager_inhibit):
+	* gnome-session/gsm-xsmp-client.c (register_client_callback):
+	DBus forces us to not use NULL strings for properties.  Would
+	be nice if the bindings took care of this for us by converting
+	NULL strings into some "unset" value.
+
 2008-07-30  Matthias Clasen  <mclasen@redhat.com>
 
 	* gnome-session/gsm-client.c: Cosmetic fix to some

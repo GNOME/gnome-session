@@ -46,6 +46,8 @@
 
 #define GSM_INHIBIT_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBIT_DIALOG, GsmInhibitDialogPrivate))
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
 #define GLADE_XML_FILE "gsm-inhibit-dialog.glade"
 
 #ifndef DEFAULT_ICON_SIZE
@@ -494,7 +496,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         pixbuf = NULL;
         app_id = gsm_inhibitor_peek_app_id (inhibitor);
 
-        if (app_id == NULL || app_id[0] == '\0') {
+        if (IS_STRING_EMPTY (app_id)) {
                 desktop_filename = NULL;
         } else if (! g_str_has_suffix (app_id, ".desktop")) {
                 desktop_filename = g_strdup_printf ("%s.desktop", app_id);
@@ -552,7 +554,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         }
 
         if (name == NULL) {
-                if (app_id != NULL) {
+                if (! IS_STRING_EMPTY (app_id)) {
                         name = app_id;
                 } else {
                         name = _("Unknown");
@@ -638,7 +640,7 @@ on_store_inhibitor_added (GsmStore          *store,
                 return;
         }
 
-        inhibitor = gsm_store_lookup (store, id);
+        inhibitor = (GsmInhibitor *)gsm_store_lookup (store, id);
 
         /* Add to model */
         if (! find_inhibitor (dialog, id, &iter)) {
