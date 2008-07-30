@@ -100,7 +100,7 @@ client_iochannel_watch (GIOChannel    *channel,
  * the XSMP protocol setup.
  */
 static gboolean
-client_protocol_timeout (GsmXSMPClient *client)
+_client_protocol_timeout (GsmXSMPClient *client)
 {
         g_debug ("GsmXSMPClient: client_protocol_timeout for client '%s' in ICE status %d",
                  client->priv->description,
@@ -174,7 +174,7 @@ setup_connection (GsmXSMPClient *client)
         g_io_channel_unref (channel);
 
         client->priv->protocol_timeout = g_timeout_add_seconds (5,
-                                                                (GSourceFunc)client_protocol_timeout,
+                                                                (GSourceFunc)_client_protocol_timeout,
                                                                 client);
 
         set_description (client);

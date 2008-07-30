@@ -830,7 +830,7 @@ _generate_unique_cookie (GsmManager *manager)
 }
 
 static gboolean
-on_query_end_session_timeout (GsmManager *manager)
+_on_query_end_session_timeout (GsmManager *manager)
 {
         GSList *l;
 
@@ -907,7 +907,7 @@ do_phase_query_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
 
-        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)on_query_end_session_timeout, manager);
+        manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)_on_query_end_session_timeout, manager);
 }
 
 static void
