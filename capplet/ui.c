@@ -28,7 +28,7 @@
 #include <glade/glade.h>
 
 #include "eggdesktopfile.h"
-#include "util.h"
+#include "gsm-util.h"
 #include "ui.h"
 #include "commands.h"
 

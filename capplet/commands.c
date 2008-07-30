@@ -28,7 +28,7 @@
 
 #include "eggdesktopfile.h"
 #include "commands.h"
-#include "util.h"
+#include "gsm-util.h"
 
 #define DESKTOP_ENTRY_GROUP  "Desktop Entry"
 #define STARTUP_APP_ICON     "gnome-run"
