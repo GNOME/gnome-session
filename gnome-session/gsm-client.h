@@ -76,6 +76,7 @@ struct _GsmClientClass
         /* virtual methods */
         char *                (*impl_get_app_name)           (GsmClient *client);
         GsmClientRestartStyle (*impl_get_restart_style_hint) (GsmClient *client);
+        guint                 (*impl_get_unix_process_id)    (GsmClient *client);
         void                  (*impl_query_end_session)      (GsmClient *client,
                                                               guint      flags);
         void                  (*impl_end_session)            (GsmClient *client,
@@ -124,6 +125,9 @@ gboolean              gsm_client_get_restart_style_hint     (GsmClient  *client,
                                                              GError    **error);
 gboolean              gsm_client_get_status                 (GsmClient  *client,
                                                              guint      *status,
+                                                             GError    **error);
+gboolean              gsm_client_get_unix_process_id        (GsmClient  *client,
+                                                             guint      *pid,
                                                              GError    **error);
 
 /* private */

@@ -1,5 +1,17 @@
 2008-07-29  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_get_unix_process_id):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (get_caller_info),
+	(gsm_dbus_client_set_bus_name), (dbus_client_get_unix_process_id),
+	(gsm_dbus_client_class_init):
+	* gnome-session/gsm-xsmp-client.c (_parse_value_as_uint),
+	(xsmp_get_unix_process_id), (gsm_xsmp_client_class_init):
+	* gnome-session/org.gnome.SessionManager.Client.xml:
+	Add GetUnixProcessId to Client interface.
+
+2008-07-29  William Jon McCann  <jmccann@redhat.com>
+
 	* capplet/commands.c:
 	* capplet/ui.c:
 	* doc/dbus/gnome-session.xml.in:

@@ -400,6 +400,18 @@ gsm_client_get_status (GsmClient *client,
         return TRUE;
 }
 
+gboolean
+gsm_client_get_unix_process_id (GsmClient  *client,
+                                guint      *pid,
+                                GError    **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
+
+        *pid = GSM_CLIENT_GET_CLASS (client)->impl_get_unix_process_id (client);
+
+        return TRUE;
+}
+
 char *
 gsm_client_get_app_name (GsmClient *client)
 {

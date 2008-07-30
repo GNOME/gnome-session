@@ -38,6 +38,18 @@
         </doc:description>
       </doc:doc>
     </method>
+    <method name="GetUnixProcessId">
+      <arg type="u" name="pid" direction="out">
+        <doc:doc>
+          <doc:summary>The Unix process identifier</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Return the Unix process identifier for this client.</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
     <method name="GetStatus">
       <arg type="u" name="status" direction="out">
         <doc:doc>

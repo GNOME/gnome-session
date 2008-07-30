@@ -48,6 +48,7 @@
 struct GsmDBusClientPrivate
 {
         char                 *bus_name;
+        GPid                  caller_pid;
         GsmClientRestartStyle restart_style_hint;
         DBusConnection       *connection;
 };
@@ -252,16 +253,99 @@ gsm_dbus_client_init (GsmDBusClient *client)
         client->priv = GSM_DBUS_CLIENT_GET_PRIVATE (client);
 }
 
+/* adapted from PolicyKit */
+static gboolean
+get_caller_info (GsmDBusClient *client,
+                 const char    *sender,
+                 uid_t         *calling_uid,
+                 pid_t         *calling_pid)
+{
+        gboolean         res;
+        GError          *error;
+        DBusGConnection *connection;
+        DBusGProxy      *bus_proxy;
+
+        res = FALSE;
+        bus_proxy = NULL;
+
+        if (sender == NULL) {
+                goto out;
+        }
+
+        error = NULL;
+        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        if (connection == NULL) {
+                if (error != NULL) {
+                        g_warning ("error getting session bus: %s", error->message);
+                        g_error_free (error);
+                }
+                goto out;
+        }
+
+        bus_proxy = dbus_g_proxy_new_for_name (connection,
+                                               DBUS_SERVICE_DBUS,
+                                               DBUS_PATH_DBUS,
+                                               DBUS_INTERFACE_DBUS);
+
+        error = NULL;
+        if (! dbus_g_proxy_call (bus_proxy, "GetConnectionUnixUser", &error,
+                                 G_TYPE_STRING, sender,
+                                 G_TYPE_INVALID,
+                                 G_TYPE_UINT, calling_uid,
+                                 G_TYPE_INVALID)) {
+                g_debug ("GetConnectionUnixUser() failed: %s", error->message);
+                g_error_free (error);
+                goto out;
+        }
+
+        error = NULL;
+        if (! dbus_g_proxy_call (bus_proxy, "GetConnectionUnixProcessID", &error,
+                                 G_TYPE_STRING, sender,
+                                 G_TYPE_INVALID,
+                                 G_TYPE_UINT, calling_pid,
+                                 G_TYPE_INVALID)) {
+                g_debug ("GetConnectionUnixProcessID() failed: %s", error->message);
+                g_error_free (error);
+                goto out;
+        }
+
+        res = TRUE;
+
+        g_debug ("uid = %d", *calling_uid);
+        g_debug ("pid = %d", *calling_pid);
+
+out:
+        if (bus_proxy != NULL) {
+                g_object_unref (bus_proxy);
+        }
+        return res;
+}
+
 static void
 gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
                               const char     *bus_name)
 {
+        uid_t    uid;
+        pid_t    pid;
+
         g_return_if_fail (GSM_IS_DBUS_CLIENT (client));
 
         g_free (client->priv->bus_name);
 
         client->priv->bus_name = g_strdup (bus_name);
         g_object_notify (G_OBJECT (client), "bus-name");
+
+        if (client->priv->bus_name != NULL) {
+                gboolean res;
+
+                res = get_caller_info (client, bus_name, &uid, &pid);
+                if (! res) {
+                        pid = 0;
+                }
+        } else {
+                pid = 0;
+        }
+        client->priv->caller_pid = pid;
 }
 
 const char *
@@ -368,6 +452,12 @@ static GsmClientRestartStyle
 dbus_client_get_restart_style_hint (GsmClient *client)
 {
         return (GSM_DBUS_CLIENT (client)->priv->restart_style_hint);
+}
+
+static guint
+dbus_client_get_unix_process_id (GsmClient *client)
+{
+        return (GSM_DBUS_CLIENT (client)->priv->caller_pid);
 }
 
 static void
@@ -495,6 +585,7 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_cancel_end_session     = dbus_client_cancel_end_session;
         client_class->impl_get_app_name           = dbus_client_get_app_name;
         client_class->impl_get_restart_style_hint = dbus_client_get_restart_style_hint;
+        client_class->impl_get_unix_process_id    = dbus_client_get_unix_process_id;
 
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,

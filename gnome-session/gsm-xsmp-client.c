@@ -19,15 +19,14 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <glib/gi18n.h>
 
@@ -649,6 +648,55 @@ xsmp_get_restart_style_hint (GsmClient *client)
         return hint;
 }
 
+static gboolean
+_parse_value_as_uint (const char *value,
+                      guint      *uintval)
+{
+        char  *end_of_valid_uint;
+        gulong ulong_value;
+        guint  uint_value;
+
+        errno = 0;
+        ulong_value = strtoul (value, &end_of_valid_uint, 10);
+
+        if (*value == '\0' || *end_of_valid_uint != '\0') {
+                return FALSE;
+        }
+
+        uint_value = ulong_value;
+        if (uint_value != ulong_value || errno == ERANGE) {
+                return FALSE;
+        }
+
+        *uintval = uint_value;
+
+        return TRUE;
+}
+
+static guint
+xsmp_get_unix_process_id (GsmClient *client)
+{
+        SmProp  *prop;
+        guint    pid;
+        gboolean res;
+
+        g_debug ("GsmXSMPClient: getting pid");
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmProcessID, NULL);
+
+        if (!prop || strcmp (prop->type, SmARRAY8) != 0) {
+                return 0;
+        }
+
+        pid = 0;
+        res = _parse_value_as_uint ((char *)prop->vals[0].value, &pid);
+        if (! res) {
+                pid = 0;
+        }
+
+        return pid;
+}
+
 static void
 gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
 {
@@ -666,6 +714,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         client_class->impl_cancel_end_session     = xsmp_cancel_end_session;
         client_class->impl_get_app_name           = xsmp_get_app_name;
         client_class->impl_get_restart_style_hint = xsmp_get_restart_style_hint;
+        client_class->impl_get_unix_process_id    = xsmp_get_unix_process_id;
 
         signals[REGISTER_REQUEST] =
                 g_signal_new ("register-request",
