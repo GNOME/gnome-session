@@ -33,6 +33,8 @@
 
 static guint32 inhibitor_serial = 1;
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
 #define GSM_INHIBITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBITOR, GsmInhibitorPrivate))
 
 struct GsmInhibitorPrivate
@@ -60,6 +62,39 @@ enum {
 };
 
 G_DEFINE_TYPE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT)
+
+GQuark
+gsm_inhibitor_error_quark (void)
+{
+        static GQuark ret = 0;
+        if (ret == 0) {
+                ret = g_quark_from_static_string ("gsm_inhibitor_error");
+        }
+
+        return ret;
+}
+
+#define ENUM_ENTRY(NAME, DESC) { NAME, "" #NAME "", DESC }
+
+GType
+gsm_inhibitor_error_get_type (void)
+{
+        static GType etype = 0;
+
+        if (etype == 0) {
+                static const GEnumValue values[] = {
+                        ENUM_ENTRY (GSM_INHIBITOR_ERROR_GENERAL, "GeneralError"),
+                        ENUM_ENTRY (GSM_INHIBITOR_ERROR_NOT_SET, "NotSet"),
+                        { 0, 0, 0 }
+                };
+
+                g_assert (GSM_INHIBITOR_NUM_ERRORS == G_N_ELEMENTS (values) - 1);
+
+                etype = g_enum_register_static ("GsmInhibitorError", values);
+        }
+
+        return etype;
+}
 
 static guint32
 get_next_inhibitor_serial (void)
@@ -159,6 +194,8 @@ gsm_inhibitor_set_client_id (GsmInhibitor  *inhibitor,
 
         g_free (inhibitor->priv->client_id);
 
+        g_debug ("GsmInhibitor: setting client-id = %s", client_id);
+
         if (client_id != NULL) {
                 inhibitor->priv->client_id = g_strdup (client_id);
         } else {
@@ -250,11 +287,18 @@ gsm_inhibitor_get_client_id (GsmInhibitor *inhibitor,
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), FALSE);
 
-        if (inhibitor->priv->client_id != NULL) {
-                *id = g_strdup (inhibitor->priv->client_id);
-        } else {
-                *id = g_strdup ("");
+        /* object paths are not allowed to be NULL or blank */
+        if (IS_STRING_EMPTY (inhibitor->priv->client_id)) {
+                g_set_error (error,
+                             GSM_INHIBITOR_ERROR,
+                             GSM_INHIBITOR_ERROR_NOT_SET,
+                             "Value is not set");
+                return FALSE;
         }
+
+        *id = g_strdup (inhibitor->priv->client_id);
+
+        g_debug ("GsmInhibitor: getting client-id = '%s'", *id);
 
         return TRUE;
 }
@@ -512,6 +556,7 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         dbus_g_object_type_install_info (GSM_TYPE_INHIBITOR, &dbus_glib_gsm_inhibitor_object_info);
+        dbus_g_error_domain_register (GSM_INHIBITOR_ERROR, NULL, GSM_INHIBITOR_TYPE_ERROR);
         g_type_class_add_private (klass, sizeof (GsmInhibitorPrivate));
 }
 

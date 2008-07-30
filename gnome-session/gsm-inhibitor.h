@@ -53,7 +53,20 @@ typedef enum {
         GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
         GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
         GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
-} GsmManagerInhibitFlag;
+} GsmInhibitorFlag;
+
+typedef enum
+{
+        GSM_INHIBITOR_ERROR_GENERAL = 0,
+        GSM_INHIBITOR_ERROR_NOT_SET,
+        GSM_INHIBITOR_NUM_ERRORS
+} GsmInhibitorError;
+
+#define GSM_INHIBITOR_ERROR gsm_inhibitor_error_quark ()
+GType          gsm_inhibitor_error_get_type       (void);
+#define GSM_INHIBITOR_TYPE_ERROR (gsm_inhibitor_error_get_type ())
+
+GQuark         gsm_inhibitor_error_quark          (void);
 
 GType          gsm_inhibitor_get_type             (void) G_GNUC_CONST;
 

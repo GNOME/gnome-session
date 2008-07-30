@@ -1,5 +1,14 @@
 2008-07-30  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_error_quark),
+	(gsm_inhibitor_error_get_type), (gsm_inhibitor_set_client_id),
+	(gsm_inhibitor_get_client_id), (gsm_inhibitor_class_init):
+	* gnome-session/gsm-inhibitor.h:
+	DBus doesn't allow NULL or empty object path strings.  Throw
+	an error instead.
+
+2008-07-30  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/main.c (on_bus_name_lost), (acquire_name_on_proxy),
 	(acquire_name):
 	Handle NameLost signal and exit when disconnected from bus.
