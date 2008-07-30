@@ -78,8 +78,8 @@ gnome_session_SOURCES =				\
 	gsm-inhibit-dialog.c			\
 	gsm-power-manager.h			\
 	gsm-power-manager.c			\
-	gconf.c					\
-	gconf.h					\
+	gsm-gconf.c				\
+	gsm-gconf.h				\
 	gdm.h					\
 	gdm.c					\
 	main.c					\
@@ -97,8 +97,8 @@ libgsmutil_la_LIBADD = 				\
 	$(GNOME_SESSION_LIBS)
 
 libgsmutil_la_SOURCES =				\
-	util.c					\
-	util.h
+	gsm-util.c				\
+	gsm-util.h
 
 gsm-marshal.c: gsm-marshal.list
 	echo "#include \"gsm-marshal.h\"" > $@ && \

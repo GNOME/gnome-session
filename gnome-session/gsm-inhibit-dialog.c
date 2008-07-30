@@ -38,7 +38,7 @@
 #include "gsm-store.h"
 #include "gsm-inhibitor.h"
 #include "eggdesktopfile.h"
-#include "util.h"
+#include "gsm-util.h"
 
 #ifdef HAVE_XRENDER
 #include <X11/extensions/Xrender.h>

@@ -1,4 +1,4 @@
-/* util.h
+/* gsm-util.c
  * Copyright (C) 2008 Lucas Rocha.
  *
  * This program is free software; you can redistribute it and/or
@@ -31,7 +31,7 @@
 
 #include <dbus/dbus-glib.h>
 
-#include "util.h"
+#include "gsm-util.h"
 
 gchar **
 gsm_util_get_autostart_dirs ()

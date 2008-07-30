@@ -53,7 +53,7 @@
 #include "gsm-autostart-app.h"
 #include "gsm-resumed-app.h"
 
-#include "util.h"
+#include "gsm-util.h"
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
 #include "gsm-inhibit-dialog.h"

@@ -37,8 +37,8 @@
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include "gconf.h"
-#include "util.h"
+#include "gsm-gconf.h"
+#include "gsm-util.h"
 #include "gsm-manager.h"
 #include "gsm-xsmp-server.h"
 #include "gsm-store.h"

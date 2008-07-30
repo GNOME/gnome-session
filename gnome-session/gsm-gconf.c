@@ -1,4 +1,4 @@
-/* gconf.c
+/* gsm-gconf.c
  * Copyright (C) 2007 Novell, Inc.
  *
  * FIXME: (C) on gconf-sanity-check call, gsm_get_conf_client,
@@ -28,8 +28,8 @@
 
 #include <sys/wait.h>
 
-#include "gconf.h"
-#include "util.h"
+#include "gsm-gconf.h"
+#include "gsm-util.h"
 
 static pid_t gsc_pid;
 

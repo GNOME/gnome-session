@@ -50,7 +50,7 @@
 
 #include "gsm-xsmp-server.h"
 #include "gsm-xsmp-client.h"
-#include "util.h"
+#include "gsm-util.h"
 
 /* ICEauthority stuff */
 /* Various magic numbers stolen from iceauth.c */

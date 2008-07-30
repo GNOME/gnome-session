@@ -32,7 +32,7 @@
 #include <gconf/gconf-client.h>
 
 #include "gsm-autostart-app.h"
-#include "util.h"
+#include "gsm-util.h"
 
 enum {
         AUTOSTART_LAUNCH_SPAWN = 0,
