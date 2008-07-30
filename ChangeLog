@@ -1,5 +1,12 @@
 2008-07-30  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/org.gnome.SessionManager.Client.xml:
+	* gnome-session/org.gnome.SessionManager.Inhibitor.xml:
+	Drop the properties for now until we can figure out
+	why they are causing the dbus-glib bindings to crash.
+
+2008-07-30  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-manager.c (listify_store_ids),
 	(gsm_manager_get_clients), (gsm_manager_get_inhibitors):
 	* gnome-session/gsm-manager.h:

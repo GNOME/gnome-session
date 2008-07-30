@@ -62,42 +62,5 @@
         </doc:description>
       </doc:doc>
     </method>
-
-    <property name="app-id" type="s" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The application identifier associated with the inhibit.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-    <property name="client-id" type="o" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The session management client object path associated with the inhibit.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-    <property name="reason" type="s" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The reason for the inhibit.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-    <property name="flags" type="u" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The flags that determine the scope of the inhibit.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-    <property name="toplevel-xid" type="u" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The X11 toplevel window identifier associated with this inhibit.  Zero if not set.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-
   </interface>
 </node>
