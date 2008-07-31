@@ -87,10 +87,6 @@ gsm_util_get_app_dirs ()
       g_ptr_array_add (dirs,
                        g_build_filename (system_data_dirs[i], "applications",
                                          NULL));
-
-      g_ptr_array_add (dirs,
-                       g_build_filename (system_data_dirs[i], "gnome", "wm-properties",
-                                         NULL));
     }
 
   g_ptr_array_add (dirs, NULL);

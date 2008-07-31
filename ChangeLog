@@ -1,3 +1,17 @@
+2008-07-31  William Jon McCann  <jmccann@redhat.com>
+
+	* data/Makefile.am:
+	* data/gnome-session.schemas.in:
+	* data/gnome-wm:
+	* data/gnome-wm.desktop.in:
+	* gnome-session/gsm-util.c (gsm_util_get_app_dirs):
+	Install a desktop file for gnome-wm and use that
+	as the default window manager instead of calling
+	metacity directly.  Add a gconf key to allow
+	changing the default program for gnome-wm to use.
+	Remove the gnome/wm-properties directory from
+	the autostart search path.
+
 2008-07-30  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-inhibitor.c (gsm_inhibitor_error_quark),

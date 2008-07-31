@@ -1,7 +1,7 @@
 SUBDIRS = icons
 
 gladedir = $(datadir)/gnome-session
-glade_DATA = session-properties.glade 
+glade_DATA = session-properties.glade
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -19,6 +19,10 @@ schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
 bin_SCRIPTS = gnome-wm
+
+autostartdir = $(datadir)/gnome/autostart
+autostart_in_files = gnome-wm.desktop.in
+autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
 
 settingsdir = $(datadir)/applications
 settings_in_files = session-properties.desktop.in
@@ -38,10 +42,12 @@ EXTRA_DIST =					\
 	session-properties.desktop.in		\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
+	$(autostart_in_files)			\
 	$(glade_DATA)				\
 	$(pixmap_DATA)
 
 DISTCLEANFILES =				\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
+	$(autostart_DATA)			\
 	$(settings_DATA)

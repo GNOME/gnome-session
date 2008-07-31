@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <gconfschemafile>
    <schemalist>
+
+       <schema>
+         <key>/schemas/apps/gnome-session/gnome-wm/prefered_window_manager</key>
+         <applyto>/apps/gnome-session/gnome-wm/window_manager</applyto>
+         <owner>gnome</owner>
+         <type>string</type>
+         <default>metacity</default>
+         <locale name="C">
+          <short>Window Manager to start</short>
+          <long>The Window manager that gnome-session will start. Valid values are "metacity" and "compiz".</long>
+         </locale>
+      </schema>
+
       <schema>
          <key>/schemas/apps/gnome-session/options/show_splash_screen</key>
          <applyto>/apps/gnome-session/options/show_splash_screen</applyto>
@@ -63,7 +76,7 @@
          <owner>gnome</owner>
          <type>list</type>
          <list_type>string</list_type>
-         <default>[gnome-settings-daemon,metacity,gnome-panel,nautilus]</default>
+         <default>[gnome-settings-daemon,gnome-wm,gnome-panel,nautilus]</default>
          <locale name="C">
             <short>Default session</short>
             <long>List of applications that are part of the default session.</long>
@@ -86,7 +99,7 @@
          <applyto>/desktop/gnome/session/required-components/windowmanager</applyto>
          <owner>gnome</owner>
          <type>string</type>
-         <default>metacity</default>
+         <default>gnome-wm</default>
          <locale name="C">
             <short>Window Manager</short>
             <long>The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows.</long>

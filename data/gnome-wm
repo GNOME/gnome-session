@@ -38,6 +38,9 @@ for n in "$@" ; do
 done
 
 # WINDOW_MANAGER overrides all
+if [ -z "$WINDOW_MANAGER" ] ; then
+  WINDOW_MANAGER=$(gconftool-2 --get /apps/gnome-session/gnome-wm/preferred_window_manager)
+fi
 
 if [ -z "$WINDOW_MANAGER" ] ; then
   # Create a list of window manager we can handle, trying to only use the
