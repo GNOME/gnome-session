@@ -1,3 +1,10 @@
+2008-08-01  Matthias Clasen  <mclasen@redhat.com>
+
+	* gnome-session/gsm-util.c (gsm_util_get_autostart_dirs): Don't 
+	look in /usr/share/autostart, since that is a KDE-specific 
+	location using legacy KDE autostart conventions predating the
+	autostart spec.
+
 2008-07-31  William Jon McCann  <jmccann@redhat.com>
 
 	* data/Makefile.am:
