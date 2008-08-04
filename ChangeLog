@@ -1,5 +1,24 @@
 2008-08-04  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-app.c (gsm_app_has_autostart_condition):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_dispose),
+	(is_disabled), (gsm_autostart_app_has_autostart_condition),
+	(gsm_autostart_app_class_init):
+	* gnome-session/gsm-manager.c (_start_app), (do_phase_startup),
+	(find_app_for_app_id), (find_app_for_startup_id), (append_app),
+	(append_required_apps), (gsm_manager_init), (gsm_manager_finalize),
+	(_app_has_autostart_condition),
+	(gsm_manager_is_autostart_condition_handled):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/org.gnome.SessionManager.xml:
+	Add a method to ask if a certain AutostartCondition is
+	being handled.  One use of this is for the settings daemon
+	to know if there are any a11y tools that will be started
+	for a certain gconf key.
+
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
 	* data/Makefile.am:
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-inhibit-dialog.glade:

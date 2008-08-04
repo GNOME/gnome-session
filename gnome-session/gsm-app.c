@@ -313,6 +313,18 @@ gsm_app_provides (GsmApp *app, const char *service)
 }
 
 gboolean
+gsm_app_has_autostart_condition (GsmApp     *app,
+                                 const char *condition)
+{
+
+        if (GSM_APP_GET_CLASS (app)->impl_has_autostart_condition) {
+                return GSM_APP_GET_CLASS (app)->impl_has_autostart_condition (app, condition);
+        } else {
+                return FALSE;
+        }
+}
+
+gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {

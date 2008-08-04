@@ -80,9 +80,7 @@ struct GsmManagerPrivate
         gboolean                failsafe;
         GsmStore               *clients;
         GsmStore               *inhibitors;
-
-        /* Startup/resumed apps */
-        GHashTable             *apps_by_id;
+        GsmStore               *apps;
 
         /* Current status */
         GsmManagerPhase         phase;
@@ -407,7 +405,7 @@ on_app_exited (GsmApp     *app,
         }
 }
 
-static void
+static gboolean
 _start_app (const char *id,
             GsmApp     *app,
             GsmManager *manager)
@@ -416,7 +414,7 @@ _start_app (const char *id,
         gboolean res;
 
         if (gsm_app_get_phase (app) != manager->priv->phase) {
-                return;
+                goto out;
         }
 
         /* Keep track of app autostart condition in order to react
@@ -428,7 +426,7 @@ _start_app (const char *id,
 
         if (gsm_app_is_disabled (app)) {
                 g_debug ("GsmManager: Skipping disabled app: %s", id);
-                return;
+                goto out;
         }
 
         error = NULL;
@@ -441,7 +439,7 @@ _start_app (const char *id,
                         g_error_free (error);
                         error = NULL;
                 }
-                return;
+                goto out;
         }
 
         g_signal_connect (app,
@@ -456,14 +454,16 @@ _start_app (const char *id,
                                   manager);
                 manager->priv->pending_apps = g_slist_prepend (manager->priv->pending_apps, app);
         }
+ out:
+        return FALSE;
 }
 
 static void
 do_phase_startup (GsmManager *manager)
 {
-        g_hash_table_foreach (manager->priv->apps_by_id,
-                              (GHFunc)_start_app,
-                              manager);
+        gsm_store_foreach (manager->priv->apps,
+                           (GsmStoreFunc)_start_app,
+                           manager);
 
         if (manager->priv->pending_apps != NULL) {
                 if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
@@ -977,7 +977,7 @@ find_app_for_app_id (GsmManager *manager,
                      const char *app_id)
 {
         GsmApp *app;
-        app = g_hash_table_lookup (manager->priv->apps_by_id, app_id);
+        app = (GsmApp *)gsm_store_lookup (manager->priv->apps, app_id);
         return app;
 }
 
@@ -1184,9 +1184,9 @@ find_app_for_startup_id (GsmManager *manager,
         } else {
                 GsmApp *app;
 
-                app = g_hash_table_find (manager->priv->apps_by_id,
-                                         (GHRFunc)_app_has_startup_id,
-                                         (char *)startup_id);
+                app = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                                (GsmStoreFunc)_app_has_startup_id,
+                                                (char *)startup_id);
                 if (app != NULL) {
                         found_app = app;
                         goto out;
@@ -1575,13 +1575,13 @@ append_app (GsmManager *manager,
                 return;
         }
 
-        dup = g_hash_table_lookup (manager->priv->apps_by_id, id);
+        dup = (GsmApp *)gsm_store_lookup (manager->priv->apps, id);
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: already added");
                 return;
         }
 
-        g_hash_table_insert (manager->priv->apps_by_id, g_strdup (id), g_object_ref (app));
+        gsm_store_add (manager->priv->apps, id, G_OBJECT (app));
 }
 
 static void
@@ -1811,9 +1811,9 @@ append_required_apps (GsmManager *manager)
                         continue;
                 }
 
-                app = g_hash_table_find (manager->priv->apps_by_id,
-                                         (GHRFunc)_find_app_provides,
-                                         (char *)service);
+                app = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                                (GsmStoreFunc)_find_app_provides,
+                                                (char *)service);
                 if (app == NULL) {
                         app = gsm_autostart_app_new (default_provider);
                         if (app != NULL) {
@@ -1999,11 +1999,6 @@ gsm_manager_init (GsmManager *manager)
 
         manager->priv = GSM_MANAGER_GET_PRIVATE (manager);
 
-        manager->priv->apps_by_id = g_hash_table_new_full (g_str_hash,
-                                                           g_str_equal,
-                                                           g_free,
-                                                           g_object_unref);
-
         manager->priv->inhibitors = gsm_store_new ();
         g_signal_connect (manager->priv->inhibitors,
                           "added",
@@ -2013,6 +2008,8 @@ gsm_manager_init (GsmManager *manager)
                           "removed",
                           G_CALLBACK (on_store_inhibitor_removed),
                           manager);
+
+        manager->priv->apps = gsm_store_new ();
 }
 
 static void
@@ -2031,8 +2028,8 @@ gsm_manager_finalize (GObject *object)
                 g_object_unref (manager->priv->clients);
         }
 
-        if (manager->priv->apps_by_id != NULL) {
-                g_hash_table_destroy (manager->priv->apps_by_id);
+        if (manager->priv->apps != NULL) {
+                g_object_unref (manager->priv->apps);
         }
 
         if (manager->priv->inhibitors != NULL) {
@@ -2784,6 +2781,41 @@ gsm_manager_get_inhibitors (GsmManager *manager,
 
         *inhibitors = g_ptr_array_new ();
         gsm_store_foreach (manager->priv->inhibitors, (GsmStoreFunc)listify_store_ids, inhibitors);
+
+        return TRUE;
+}
+
+
+static gboolean
+_app_has_autostart_condition (const char *id,
+                              GsmApp     *app,
+                              const char *condition)
+{
+        gboolean has;
+        gboolean disabled;
+
+        has = gsm_app_has_autostart_condition (app, condition);
+        disabled = gsm_app_is_disabled (app);
+
+        return has && !disabled;
+}
+
+gboolean
+gsm_manager_is_autostart_condition_handled (GsmManager *manager,
+                                            const char *condition,
+                                            gboolean   *handled,
+                                            GError    **error)
+{
+        GsmApp *app;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        app = (GsmApp *)gsm_store_find (manager->priv->apps, (GsmStoreFunc)_app_has_autostart_condition, (char *)condition);
+        if (app != NULL) {
+                *handled = TRUE;
+        } else {
+                *handled = FALSE;
+        }
 
         return TRUE;
 }

@@ -45,6 +45,7 @@ struct _GsmAutostartAppPrivate {
         char                 *desktop_filename;
         char                 *desktop_id;
         char                 *startup_id;
+        char                 *condition_string;
 
         GFileMonitor         *monitor;
         gboolean              condition;
@@ -235,6 +236,11 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->startup_id = NULL;
         }
 
+        if (priv->condition_string) {
+                g_free (priv->condition_string);
+                priv->condition_string = NULL;
+        }
+
         if (priv->desktop_file) {
                 egg_desktop_file_free (priv->desktop_file);
                 priv->desktop_file = NULL;
@@ -372,7 +378,6 @@ static gboolean
 is_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
-        char                   *condition;
         gboolean                autorestart = FALSE;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
@@ -410,23 +415,25 @@ is_disabled (GsmApp *app)
         }
 
         /* Check AutostartCondition */
-        condition = egg_desktop_file_get_string (priv->desktop_file,
-                                                 "AutostartCondition",
-                                                 NULL);
+        g_free (priv->condition_string);
+        priv->condition_string = egg_desktop_file_get_string (priv->desktop_file,
+                                                              "AutostartCondition",
+                                                              NULL);
 
-        if (condition) {
+        if (priv->condition_string != NULL) {
                 gboolean disabled;
-                char *space, *key;
-                int len;
+                char    *space;
+                char    *key;
+                int      len;
 
-                space = condition + strcspn (condition, " ");
-                len = space - condition;
+                space = priv->condition_string + strcspn (priv->condition_string, " ");
+                len = space - priv->condition_string;
                 key = space;
                 while (isspace ((unsigned char)*key)) {
                         key++;
                 }
 
-                if (!g_ascii_strncasecmp (condition, "if-exists", len) && key) {
+                if (!g_ascii_strncasecmp (priv->condition_string, "if-exists", len) && key) {
                         char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
 
                         disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
@@ -444,7 +451,7 @@ is_disabled (GsmApp *app)
                         }
 
                         g_free (file_path);
-                } else if (!g_ascii_strncasecmp (condition, "unless-exists", len) && key) {
+                } else if (!g_ascii_strncasecmp (priv->condition_string, "unless-exists", len) && key) {
                         char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
 
                         disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
@@ -462,7 +469,7 @@ is_disabled (GsmApp *app)
                         }
 
                         g_free (file_path);
-                } else if (!g_ascii_strncasecmp (condition, "GNOME", len)) {
+                } else if (!g_ascii_strncasecmp (priv->condition_string, "GNOME", len)) {
                         if (key) {
                                 GConfClient *client;
 
@@ -496,8 +503,6 @@ is_disabled (GsmApp *app)
                 } else {
                         disabled = TRUE;
                 }
-
-                g_free (condition);
 
                 /* Set initial condition */
                 priv->condition = !disabled;
@@ -796,6 +801,28 @@ gsm_autostart_app_provides (GsmApp     *app,
 }
 
 static gboolean
+gsm_autostart_app_has_autostart_condition (GsmApp     *app,
+                                           const char *condition)
+{
+        GsmAutostartApp *aapp;
+
+        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
+        g_return_val_if_fail (condition != NULL, FALSE);
+
+        aapp = GSM_AUTOSTART_APP (app);
+
+        if (aapp->priv->condition_string == NULL) {
+                return FALSE;
+        }
+
+        if (strcmp (aapp->priv->condition_string, condition) == 0) {
+                return TRUE;
+        }
+
+        return FALSE;
+}
+
+static gboolean
 gsm_autostart_app_get_autorestart (GsmApp *app)
 {
         gboolean res;
@@ -880,6 +907,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_restart = gsm_autostart_app_restart;
         app_class->impl_stop = gsm_autostart_app_stop;
         app_class->impl_provides = gsm_autostart_app_provides;
+        app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
         app_class->impl_get_id = gsm_autostart_app_get_id;
         app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
 

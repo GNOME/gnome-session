@@ -224,6 +224,26 @@
       </doc:doc>
     </method>
 
+
+    <method name="IsAutostartConditionHandled">
+      <arg name="condition" direction="in" type="s">
+        <doc:doc>
+          <doc:summary>The autostart condition string</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg name="handled" direction="out" type="b">
+        <doc:doc>
+          <doc:summary>True if condition is handled, false otherwise</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Allows the caller to determine whether the session manager is
+          handling changes to the specified autostart condition.</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
+
     <method name="Shutdown">
       <doc:doc>
         <doc:description>
