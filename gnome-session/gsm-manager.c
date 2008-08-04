@@ -237,7 +237,7 @@ app_condition_changed (GsmApp     *app,
 
         client = (GsmClient *)gsm_store_find (manager->priv->clients,
                                               (GsmStoreFunc)_find_by_startup_id,
-                                              (char *)gsm_app_get_startup_id (app));
+                                              (char *)gsm_app_peek_startup_id (app));
 
         if (condition) {
                 if (!gsm_app_is_running (app) && client == NULL) {
@@ -371,7 +371,7 @@ on_phase_timeout (GsmManager *manager)
         case GSM_MANAGER_PHASE_APPLICATION:
                 for (a = manager->priv->pending_apps; a; a = a->next) {
                         g_warning ("Application '%s' failed to register before timeout",
-                                   gsm_app_get_id (a->data));
+                                   gsm_app_peek_app_id (a->data));
                         g_signal_handlers_disconnect_by_func (a->data, app_registered, manager);
                         /* FIXME: what if the app was filling in a required slot? */
                 }
@@ -413,7 +413,7 @@ _start_app (const char *id,
         GError  *error;
         gboolean res;
 
-        if (gsm_app_get_phase (app) != manager->priv->phase) {
+        if (gsm_app_peek_phase (app) != manager->priv->phase) {
                 goto out;
         }
 
@@ -424,7 +424,7 @@ _start_app (const char *id,
                           G_CALLBACK (app_condition_changed),
                           manager);
 
-        if (gsm_app_is_disabled (app)) {
+        if (gsm_app_peek_is_disabled (app)) {
                 g_debug ("GsmManager: Skipping disabled app: %s", id);
                 goto out;
         }
@@ -434,7 +434,7 @@ _start_app (const char *id,
         if (!res) {
                 if (error != NULL) {
                         g_warning ("Could not launch application '%s': %s",
-                                   gsm_app_get_id (app),
+                                   gsm_app_peek_app_id (app),
                                    error->message);
                         g_error_free (error);
                         error = NULL;
@@ -1025,7 +1025,7 @@ _disconnect_client (GsmManager *manager,
                 goto out;
         }
 
-        app_restart = gsm_app_get_autorestart (app);
+        app_restart = gsm_app_peek_autorestart (app);
         client_restart_hint = gsm_client_peek_restart_style_hint (client);
 
         /* allow legacy clients to override the app info */
@@ -1151,7 +1151,7 @@ _app_has_startup_id (const char *id,
 {
         const char *startup_id_b;
 
-        startup_id_b = gsm_app_get_startup_id (app);
+        startup_id_b = gsm_app_peek_startup_id (app);
 
         if (IS_STRING_EMPTY (startup_id_b)) {
                 return FALSE;
@@ -1176,7 +1176,7 @@ find_app_for_startup_id (GsmManager *manager,
                 for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
                         GsmApp *app = GSM_APP (a->data);
 
-                        if (strcmp (startup_id, gsm_app_get_startup_id (app)) == 0) {
+                        if (strcmp (startup_id, gsm_app_peek_startup_id (app)) == 0) {
                                 found_app = app;
                                 goto out;
                         }
@@ -1338,7 +1338,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 
         app = find_app_for_startup_id (manager, new_id);
         if (app != NULL) {
-                gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_get_id (app));
+                gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_peek_app_id (app));
                 gsm_app_registered (app);
                 goto out;
         }
@@ -1569,7 +1569,7 @@ append_app (GsmManager *manager,
         const char *id;
         GsmApp     *dup;
 
-        id = gsm_app_get_id (app);
+        id = gsm_app_peek_id (app);
         if (IS_STRING_EMPTY (id)) {
                 g_debug ("GsmManager: not adding app: no ID");
                 return;
@@ -2551,7 +2551,7 @@ gsm_manager_register_client (GsmManager            *manager,
         g_object_unref (client);
 
         if (app != NULL) {
-                gsm_client_set_app_id (client, gsm_app_get_id (app));
+                gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
                 gsm_app_registered (app);
         } else {
                 /* if an app id is specified store it in the client
@@ -2795,7 +2795,7 @@ _app_has_autostart_condition (const char *id,
         gboolean disabled;
 
         has = gsm_app_has_autostart_condition (app, condition);
-        disabled = gsm_app_is_disabled (app);
+        disabled = gsm_app_peek_is_disabled (app);
 
         return has && !disabled;
 }

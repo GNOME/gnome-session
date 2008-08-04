@@ -108,6 +108,9 @@ gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
 gsm-client-glue.h: org.gnome.SessionManager.Client.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/org.gnome.SessionManager.Client.xml
 
+gsm-app-glue.h: org.gnome.SessionManager.App.xml Makefile.am
+	dbus-binding-tool --prefix=gsm_app --mode=glib-server --output=gsm-app-glue.h $(srcdir)/org.gnome.SessionManager.App.xml
+
 gsm-inhibitor-glue.h: org.gnome.SessionManager.Inhibitor.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/org.gnome.SessionManager.Inhibitor.xml
 
@@ -117,6 +120,7 @@ BUILT_SOURCES =			\
 	gsm-manager-glue.h	\
 	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\
+	gsm-app-glue.h		\
 	$(NULL)
 
 CLEANFILES =					\
@@ -127,6 +131,7 @@ EXTRA_DIST =						\
 	README						\
 	gsm-marshal.list        			\
 	org.gnome.SessionManager.xml			\
+	org.gnome.SessionManager.App.xml		\
 	org.gnome.SessionManager.Client.xml		\
 	org.gnome.SessionManager.ClientPrivate.xml	\
 	org.gnome.SessionManager.Inhibitor.xml		\

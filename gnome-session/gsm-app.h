@@ -72,7 +72,7 @@ struct _GsmAppClass
         gboolean    (*impl_is_running)              (GsmApp     *app);
 
         gboolean    (*impl_get_autorestart)         (GsmApp     *app);
-        const char *(*impl_get_id)                  (GsmApp     *app);
+        const char *(*impl_get_app_id)              (GsmApp     *app);
         gboolean    (*impl_is_disabled)             (GsmApp     *app);
         void        (*impl_set_client)              (GsmApp     *app,
                                                      GsmClient  *client);
@@ -90,17 +90,20 @@ typedef enum
 GQuark           gsm_app_error_quark             (void);
 GType            gsm_app_get_type                (void) G_GNUC_CONST;
 
+gboolean         gsm_app_peek_autorestart        (GsmApp     *app);
+
+const char      *gsm_app_peek_id                 (GsmApp     *app);
+const char      *gsm_app_peek_app_id             (GsmApp     *app);
+const char      *gsm_app_peek_startup_id         (GsmApp     *app);
+GsmManagerPhase  gsm_app_peek_phase              (GsmApp     *app);
+gboolean         gsm_app_peek_is_disabled        (GsmApp     *app);
+
 gboolean         gsm_app_start                   (GsmApp     *app,
                                                   GError    **error);
 gboolean         gsm_app_restart                 (GsmApp     *app,
                                                   GError    **error);
 gboolean         gsm_app_stop                    (GsmApp     *app,
                                                   GError    **error);
-gboolean         gsm_app_get_autorestart         (GsmApp     *app);
-
-const char      *gsm_app_get_id                  (GsmApp     *app);
-const char      *gsm_app_get_startup_id          (GsmApp     *app);
-GsmManagerPhase  gsm_app_get_phase               (GsmApp     *app);
 gboolean         gsm_app_is_running              (GsmApp     *app);
 
 void             gsm_app_exited                  (GsmApp     *app);
@@ -110,8 +113,18 @@ gboolean         gsm_app_provides                (GsmApp     *app,
                                                   const char *service);
 gboolean         gsm_app_has_autostart_condition (GsmApp     *app,
                                                   const char *condition);
-gboolean         gsm_app_is_disabled             (GsmApp     *app);
 void             gsm_app_registered              (GsmApp     *app);
+
+/* exported to bus */
+gboolean         gsm_app_get_app_id              (GsmApp     *app,
+                                                  char      **id,
+                                                  GError    **error);
+gboolean         gsm_app_get_startup_id          (GsmApp     *app,
+                                                  char      **id,
+                                                  GError    **error);
+gboolean         gsm_app_get_phase               (GsmApp     *app,
+                                                  guint      *phase,
+                                                  GError    **error);
 
 G_END_DECLS
 

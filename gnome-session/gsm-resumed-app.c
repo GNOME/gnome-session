@@ -153,7 +153,7 @@ gsm_resumed_app_restart (GsmApp  *app,
 }
 
 static const char *
-gsm_resumed_app_get_id (GsmApp *app)
+gsm_resumed_app_get_app_id (GsmApp *app)
 {
         return GSM_RESUMED_APP (app)->priv->program;
 }
@@ -186,7 +186,7 @@ gsm_resumed_app_class_init (GsmResumedAppClass *klass)
 
         object_class->dispose = gsm_resumed_app_dispose;
 
-        app_class->impl_get_id = gsm_resumed_app_get_id;
+        app_class->impl_get_app_id = gsm_resumed_app_get_app_id;
         app_class->impl_start = gsm_resumed_app_start;
         app_class->impl_restart = gsm_resumed_app_restart;
 

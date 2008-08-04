@@ -1,5 +1,30 @@
 2008-08-04  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gsm-app.c (gsm_app_error_quark),
+	(get_next_app_serial), (register_app), (gsm_app_constructor),
+	(gsm_app_class_init), (gsm_app_peek_id), (gsm_app_peek_app_id),
+	(gsm_app_peek_startup_id), (gsm_app_peek_phase),
+	(gsm_app_peek_is_disabled), (gsm_app_peek_autorestart),
+	(gsm_app_get_app_id), (gsm_app_get_startup_id),
+	(gsm_app_get_phase):
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (is_disabled),
+	(autostart_app_start_spawn), (autostart_app_start_activate),
+	(gsm_autostart_app_get_app_id), (gsm_autostart_app_constructor),
+	(gsm_autostart_app_class_init):
+	* gnome-session/gsm-manager.c (app_condition_changed),
+	(on_phase_timeout), (_start_app), (_disconnect_client),
+	(_app_has_startup_id), (find_app_for_startup_id),
+	(on_xsmp_client_register_request), (append_app),
+	(gsm_manager_register_client), (_app_has_autostart_condition):
+	* gnome-session/gsm-resumed-app.c (gsm_resumed_app_get_app_id),
+	(gsm_resumed_app_class_init):
+	* gnome-session/org.gnome.SessionManager.App.xml:
+	Put the apps on the bus.
+
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.c (gsm_app_has_autostart_condition):
 	* gnome-session/gsm-app.h:
 	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_dispose),

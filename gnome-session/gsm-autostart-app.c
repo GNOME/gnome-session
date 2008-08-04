@@ -395,7 +395,7 @@ is_disabled (GsmApp *app)
             !egg_desktop_file_get_boolean (priv->desktop_file,
                                            "X-GNOME-Autostart-enabled", NULL)) {
                 g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
-                         gsm_app_get_id (app));
+                         gsm_app_peek_id (app));
                 return TRUE;
         }
 
@@ -403,14 +403,14 @@ is_disabled (GsmApp *app)
         if (egg_desktop_file_get_boolean (priv->desktop_file,
                                           EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
                 g_debug ("app %s is disabled by Hidden",
-                         gsm_app_get_id (app));
+                         gsm_app_peek_id (app));
                 return TRUE;
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
         if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
                 g_debug ("app %s not installed or not for GNOME",
-                         gsm_app_get_id (app));
+                         gsm_app_peek_id (app));
                 return TRUE;
         }
 
@@ -509,7 +509,7 @@ is_disabled (GsmApp *app)
 
                 if (disabled) {
                         g_debug ("app %s is disabled by AutostartCondition",
-                                 gsm_app_get_id (app));
+                                 gsm_app_peek_id (app));
                         return TRUE;
                 }
         }
@@ -593,7 +593,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         GError          *local_error;
         const char      *startup_id;
 
-        startup_id = gsm_app_get_startup_id (GSM_APP (app));
+        startup_id = gsm_app_peek_startup_id (GSM_APP (app));
         g_assert (startup_id != NULL);
 
         env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", startup_id);
@@ -669,7 +669,7 @@ autostart_app_start_activate (GsmAutostartApp  *app,
                 return FALSE;
         }
 
-        name = gsm_app_get_startup_id (GSM_APP (app));
+        name = gsm_app_peek_startup_id (GSM_APP (app));
         g_assert (name != NULL);
 
         path = egg_desktop_file_get_string (app->priv->desktop_file,
@@ -847,7 +847,7 @@ gsm_autostart_app_get_autorestart (GsmApp *app)
 }
 
 static const char *
-gsm_autostart_app_get_id (GsmApp *app)
+gsm_autostart_app_get_app_id (GsmApp *app)
 {
         const char *location;
         const char *slash;
@@ -872,15 +872,10 @@ gsm_autostart_app_constructor (GType                  type,
                                GObjectConstructParam *construct_properties)
 {
         GsmAutostartApp *app;
-        const char      *id;
 
         app = GSM_AUTOSTART_APP (G_OBJECT_CLASS (gsm_autostart_app_parent_class)->constructor (type,
                                                                                                n_construct_properties,
                                                                                                construct_properties));
-
-        id = gsm_autostart_app_get_id (GSM_APP (app));
-
-        g_object_set (app, "id", id, NULL);
 
         if (! load_desktop_file (app)) {
                 g_object_unref (app);
@@ -908,7 +903,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_stop = gsm_autostart_app_stop;
         app_class->impl_provides = gsm_autostart_app_provides;
         app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
-        app_class->impl_get_id = gsm_autostart_app_get_id;
+        app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
         app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
 
         g_object_class_install_property (object_class,
