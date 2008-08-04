@@ -29,8 +29,7 @@
 
 #include <glib/gi18n.h>
 #include <glib/goption.h>
-#include <gtk/gtkmain.h>
-#include <gtk/gtkmessagedialog.h>
+#include <gtk/gtk.h>
 
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>

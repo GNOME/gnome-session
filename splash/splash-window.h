@@ -20,8 +20,7 @@
 #ifndef __GSM_SPLASH_WINDOW_H__
 #define __GSM_SPLASH_WINDOW_H__
 
-#include <gtk/gtkwindow.h>
-#include <gtk/gtkicontheme.h>
+#include <gtk/gtk.h>
 
 #define GSM_TYPE_SPLASH_WINDOW            (gsm_splash_window_get_type ())
 #define GSM_SPLASH_WINDOW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_SPLASH_WINDOW, GsmSplashWindow))

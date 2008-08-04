@@ -1,5 +1,19 @@
 2008-08-04  William Jon McCann  <jmccann@redhat.com>
 
+	* compat/at-spi-registryd-wrapper.c:
+	* egg/eggdesktopfile.c:
+	* gnome-session/gsm-util.c:
+	* gnome-session/gsm-util.h:
+	* gnome-session/main.c:
+	* splash/gnome-login-sound.c:
+	* splash/gnome-session-splash.c:
+	* splash/splash-window.h:
+	Use single GTK+ includes
+	Patch from: Wouter Bolsterlee <wbolster@gnome.org>
+	Fixes #544830
+
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gsm-app.c (gsm_app_error_quark),
 	(get_next_app_serial), (register_app), (gsm_app_constructor),

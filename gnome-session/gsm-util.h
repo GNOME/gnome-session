@@ -20,6 +20,8 @@
 #ifndef __GSM_UTIL_H__
 #define __GSM_UTIL_H__
 
+#include <glib.h>
+
 G_BEGIN_DECLS
 
 gchar**   gsm_util_get_app_dirs         (void);

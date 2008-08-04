@@ -22,7 +22,8 @@
 
 #include <libgnome/libgnome.h>
 #include <gconf/gconf-client.h>
-#include <gtk/gtkmain.h>
+#include <gtk/gtk.h>
+
 #include "eggsmclient-libgnomeui.h"
 
 /* FIXME: Move the sound file configuration into GConf and use
