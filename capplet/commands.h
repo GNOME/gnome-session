@@ -19,7 +19,7 @@
  * 02111-1307, USA.
  */
 
-#ifndef __SESSION_PROPERTIES_COMMANDS_H__ 
+#ifndef __SESSION_PROPERTIES_COMMANDS_H__
 #define __SESSION_PROPERTIES_COMMANDS_H__
 
 #include <gtk/gtk.h>
@@ -36,22 +36,22 @@ enum
   STORE_COL_COMMENT,
   STORE_COL_DESKTOP_FILE,
   STORE_COL_ID,
-  STORE_COL_ACTIVATABLE, 
-  STORE_NUM_COLS              
+  STORE_COL_ACTIVATABLE,
+  STORE_NUM_COLS
 };
 
 GtkTreeModel*   spc_command_get_store            (void);
 
-gboolean        spc_command_enable_app           (GtkListStore *store, 
+gboolean        spc_command_enable_app           (GtkListStore *store,
                                                   GtkTreeIter  *iter);
 
-gboolean        spc_command_disable_app          (GtkListStore *store, 
+gboolean        spc_command_disable_app          (GtkListStore *store,
                                                   GtkTreeIter  *iter);
 
 void            spc_command_add_app              (GtkListStore *store,
                                                   GtkTreeIter  *iter);
 
-void            spc_command_delete_app           (GtkListStore *store, 
+void            spc_command_delete_app           (GtkListStore *store,
                                                   GtkTreeIter  *iter);
 
 void            spc_command_update_app           (GtkListStore *store,

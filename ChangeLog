@@ -1,3 +1,45 @@
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
+	* capplet/commands.c (system_desktop_entry_exists), (find_by_id),
+	(ensure_user_autostart_dir), (key_file_to_file),
+	(key_file_set_locale_string), (delete_desktop_file),
+	(write_desktop_file), (append_app), (compare_app),
+	(append_autostart_apps), (spc_command_get_store),
+	(spc_command_enable_app), (spc_command_disable_app),
+	(spc_command_add_app):
+	* capplet/main.c (main):
+	* capplet/ui.c (make_exec_uri), (cmd_browse_button_clicked_cb),
+	(entry_activate_cb), (edit_app_dialog), (selection_changed_cb),
+	(startup_enabled_toggled_cb), (add_from_desktop_file),
+	(drag_data_cb), (setup_treeview), (add_app_cb), (delete_app_cb),
+	(edit_app_cb), (autosave_value_notify), (autosave_value_toggled),
+	(help_cb):
+	* compat/at-spi-registryd-wrapper.c (registry_ior_watch),
+	(set_gtk_modules), (main):
+	* compat/gnome-keyring-daemon-wrapper.c (keyring_daemon_stop),
+	(child_setup), (keyring_daemon_start), (quit), (main):
+	* compat/gnome-settings-daemon-helper.c (set_gtk1_theme_rcfile):
+	* gnome-session/gsm-gconf.c (gsm_gconf_init), (gsm_gconf_check),
+	(gsm_gconf_shutdown):
+	* gnome-session/gsm-util.c (gsm_util_get_autostart_dirs),
+	(gsm_util_get_app_dirs), (gsm_util_text_is_blank),
+	(gsm_util_init_error), (gsm_util_generate_startup_id),
+	(gsm_util_update_activation_environment), (gsm_util_setenv):
+	* splash/gnome-login-sound.c (get_sound_file_from_config),
+	(get_sound_file), (maybe_play_sound):
+	* splash/gnome-session-splash.c (get_session_bus),
+	(set_session_running_handler), (event_func), (splash_clicked),
+	(filter_func), (load_pixbuf), (load_splash_pixbuf), (main):
+	* splash/splash-window.c (re_scale), (splash_window_expose_event),
+	(splash_window_realize), (splash_icon_destroy),
+	(splash_window_finalize), (layout_icon), (re_laydown),
+	(update_trans_effect), (gsm_splash_window_new),
+	(gsm_splash_window_start), (gsm_splash_window_finish):
+	* tools/gnome-session-save.c (ping_reply), (ice_ping), (die_cb),
+	(cancelled_cb), (display_error), (ice_connection_watch),
+	(get_session_bus), (set_session_name), (main):
+	Some cosmetic / code-style changes requested by Lucas.
+
 2008-08-01  Matthias Clasen  <mclasen@redhat.com>
 
 	* gnome-session/gsm-util.c (gsm_util_get_autostart_dirs): Don't 

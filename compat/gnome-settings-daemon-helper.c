@@ -1,4 +1,5 @@
-/*
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ *
  * gnome-settings-daemon-helper: Does things g-s-d should do, but doesn't:
  *
  *   1) Sets screen resolution
@@ -12,9 +13,7 @@
  * Copyright (C) 2007 Novell, Inc.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <stdio.h>
 #include <unistd.h>
@@ -25,44 +24,45 @@
 static void
 set_gtk1_theme_rcfile (void)
 {
-  DBusGConnection *connection;
-  DBusGProxy *gsm;
-  char *value;
-  GError *error = NULL;
+        DBusGConnection *connection;
+        DBusGProxy      *gsm;
+        char            *value;
+        GError          *error;
 
-  connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
+        error = NULL;
+        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
 
-  if (!connection)
-    g_error ("couldn't get D-Bus connection: %s", error->message);
+        if (connection == NULL) {
+                g_error ("couldn't get D-Bus connection: %s", error->message);
+        }
 
-  gsm = dbus_g_proxy_new_for_name (connection,
-				   "org.gnome.SessionManager",
-				   "/org/gnome/SessionManager",
-				   "org.gnome.SessionManager");
+        gsm = dbus_g_proxy_new_for_name (connection,
+                                         "org.gnome.SessionManager",
+                                         "/org/gnome/SessionManager",
+                                         "org.gnome.SessionManager");
 
-  value = g_strdup_printf (SYSCONFDIR "/gtk/gtkrc:%s/.gtkrc-1.2-gnome2", g_get_home_dir ());
-  if (!dbus_g_proxy_call (gsm, "Setenv", &error,
-			  G_TYPE_STRING, "GTK_RC_FILES",
-			  G_TYPE_STRING, value,
-			  G_TYPE_INVALID,
-			  G_TYPE_INVALID))
-    {
-      g_warning ("Could not set GTK_RC_FILES: %s", error->message);
-      g_error_free (error);
-    }
+        value = g_strdup_printf (SYSCONFDIR "/gtk/gtkrc:%s/.gtkrc-1.2-gnome2", g_get_home_dir ());
+        if (!dbus_g_proxy_call (gsm, "Setenv", &error,
+                                G_TYPE_STRING, "GTK_RC_FILES",
+                                G_TYPE_STRING, value,
+                                G_TYPE_INVALID,
+                                G_TYPE_INVALID)) {
+                g_warning ("Could not set GTK_RC_FILES: %s", error->message);
+                g_error_free (error);
+        }
 
-  g_free (value);
+        g_free (value);
 }
 
 int
 main (int argc, char **argv)
 {
-  gtk_init (&argc, &argv);
+        gtk_init (&argc, &argv);
 
-  /* Point GTK_RC_FILES (for gtk 1.2) at a file that we change in in
-   * gnome-settings-daemon.
-   */
-  set_gtk1_theme_rcfile ();
+        /* Point GTK_RC_FILES (for gtk 1.2) at a file that we change in in
+         * gnome-settings-daemon.
+         */
+        set_gtk1_theme_rcfile ();
 
-  return 0;
+        return 0;
 }

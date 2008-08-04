@@ -1,4 +1,5 @@
-/* commands.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
+ * commands.c
  * Copyright (C) 1999 Free Software Foundation, Inc.
  * Copyright (C) 2007 Vincent Untz.
  * Copyright (C) 2008 Lucas Rocha.
@@ -33,764 +34,767 @@
 #define DESKTOP_ENTRY_GROUP  "Desktop Entry"
 #define STARTUP_APP_ICON     "gnome-run"
 
-#define REALLY_IDENTICAL_STRING(a, b) \
-      ((a && b && !strcmp (a, b)) || (!a && !b))
+#define REALLY_IDENTICAL_STRING(a, b)                   \
+        ((a && b && !strcmp (a, b)) || (!a && !b))
 
 static gboolean
 system_desktop_entry_exists (const char  *basename,
                              char       **system_path)
 {
-  char *path;
-  char **autostart_dirs;
-  int i;
+        char *path;
+        char **autostart_dirs;
+        int i;
 
-  autostart_dirs = gsm_util_get_autostart_dirs ();
+        autostart_dirs = gsm_util_get_autostart_dirs ();
 
-  for (i = 0; autostart_dirs[i]; i++)
-    {
-      path = g_build_filename (autostart_dirs[i], basename, NULL);
+        for (i = 0; autostart_dirs[i]; i++) {
+                path = g_build_filename (autostart_dirs[i], basename, NULL);
 
-      if (g_str_has_prefix (autostart_dirs[i], g_get_user_config_dir ()))
-        continue;
- 
-      if (g_file_test (path, G_FILE_TEST_EXISTS))
-        {
-          if (system_path)
-            *system_path = path;
-          else
-            g_free (path);
+                if (g_str_has_prefix (autostart_dirs[i], g_get_user_config_dir ())) {
+                        continue;
+                }
 
-          g_strfreev (autostart_dirs);
+                if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+                        if (system_path) {
+                                *system_path = path;
+                        } else {
+                                g_free (path);
+                        }
+                        g_strfreev (autostart_dirs);
 
-          return TRUE;
+                        return TRUE;
+                }
+
+                g_free (path);
         }
 
-      g_free (path);
-    }
+        g_strfreev (autostart_dirs);
 
-  g_strfreev (autostart_dirs);
-
-  return FALSE;
+        return FALSE;
 }
 
 static void
-update_desktop_file (GtkListStore *store, 
-                     GtkTreeIter *iter, 
+update_desktop_file (GtkListStore   *store,
+                     GtkTreeIter    *iter,
                      EggDesktopFile *new_desktop_file)
 {
-  EggDesktopFile *old_desktop_file;
+        EggDesktopFile *old_desktop_file;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter, 
-                      STORE_COL_DESKTOP_FILE, &old_desktop_file,
-                      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_DESKTOP_FILE, &old_desktop_file,
+                            -1);
 
-  egg_desktop_file_free (old_desktop_file);
+        egg_desktop_file_free (old_desktop_file);
 
-  gtk_list_store_set (store, iter, 
-                      STORE_COL_DESKTOP_FILE, new_desktop_file,
-                      -1);
+        gtk_list_store_set (store, iter,
+                            STORE_COL_DESKTOP_FILE, new_desktop_file,
+                            -1);
 }
 
-static gboolean 
-find_by_id (GtkListStore *store, const gchar *id)
+static gboolean
+find_by_id (GtkListStore *store,
+            const char   *id)
 {
-  GtkTreeIter iter;
-  gchar *iter_id = NULL;
-	
-  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter))
-    return FALSE;
-  
-  do
-    {
-      gtk_tree_model_get (GTK_TREE_MODEL (store), &iter,
-          		  STORE_COL_ID, &iter_id,
-          		  -1);
+        GtkTreeIter iter;
+        char       *iter_id = NULL;
 
-      if (!strcmp (iter_id, id))
-        {
-          return TRUE;
+        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
+                return FALSE;
         }
-    } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter));
 
-  return FALSE;
+        do {
+                gtk_tree_model_get (GTK_TREE_MODEL (store), &iter,
+                                    STORE_COL_ID, &iter_id,
+                                    -1);
+
+                if (!strcmp (iter_id, id)) {
+                        return TRUE;
+                }
+        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter));
+
+        return FALSE;
 }
 
 static void
 ensure_user_autostart_dir ()
 {
-  gchar *dir;
-  
-  dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-  g_mkdir_with_parents (dir, S_IRWXU);
+        char *dir;
 
-  g_free (dir);
+        dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+        g_mkdir_with_parents (dir, S_IRWXU);
+
+        g_free (dir);
 }
 
 static gboolean
-key_file_to_file (GKeyFile *keyfile, 
-                  const gchar *file,
-                  GError **error)
+key_file_to_file (GKeyFile   *keyfile,
+                  const char *file,
+                  GError    **error)
 {
-  GError *write_error;
-  gchar *filename;
-  gchar *data;
-  gsize length;
-  gboolean res;
+        GError  *write_error;
+        char    *filename;
+        char    *data;
+        gsize    length;
+        gboolean res;
 
-  g_return_val_if_fail (keyfile != NULL, FALSE);
-  g_return_val_if_fail (file != NULL, FALSE);
+        g_return_val_if_fail (keyfile != NULL, FALSE);
+        g_return_val_if_fail (file != NULL, FALSE);
 
-  write_error = NULL;
+        write_error = NULL;
 
-  data = g_key_file_to_data (keyfile, &length, &write_error);
+        data = g_key_file_to_data (keyfile, &length, &write_error);
 
-  if (write_error)
-    {
-      g_propagate_error (error, write_error);
-      return FALSE;
-    }
+        if (write_error) {
+                g_propagate_error (error, write_error);
+                return FALSE;
+        }
 
-  if (!g_path_is_absolute (file))
-    filename = g_filename_from_uri (file, NULL, &write_error);
-  else
-    filename = g_filename_from_utf8 (file, -1, NULL, NULL, &write_error);
+        if (!g_path_is_absolute (file)) {
+                filename = g_filename_from_uri (file, NULL, &write_error);
+        } else {
+                filename = g_filename_from_utf8 (file, -1, NULL, NULL, &write_error);
+        }
 
-  if (write_error)
-    {
-      g_propagate_error (error, write_error);
-      g_free (data);
-      return FALSE;
-    }
+        if (write_error) {
+                g_propagate_error (error, write_error);
+                g_free (data);
+                return FALSE;
+        }
 
-  res = g_file_set_contents (filename, data, length, &write_error);
+        res = g_file_set_contents (filename, data, length, &write_error);
 
-  g_free (filename);
+        g_free (filename);
 
-  if (write_error)
-    {
-      g_propagate_error (error, write_error);
-      g_free (data);
-      return FALSE;
-    }
+        if (write_error) {
+                g_propagate_error (error, write_error);
+                g_free (data);
+                return FALSE;
+        }
 
-  g_free (data);
+        g_free (data);
 
-  return res;
+        return res;
 }
 
 static void
-key_file_set_locale_string (GKeyFile *keyfile,
-                            const gchar *group,
-                            const gchar *key,
-                            const gchar *value)
+key_file_set_locale_string (GKeyFile   *keyfile,
+                            const char *group,
+                            const char *key,
+                            const char *value)
 {
-  const char *locale;
-  const char * const *langs_pointer;
-  int i;
+        const char         *locale;
+        const char * const *langs_pointer;
+        int                 i;
 
-  locale = NULL;
-  langs_pointer = g_get_language_names ();
+        locale = NULL;
+        langs_pointer = g_get_language_names ();
 
-  for (i = 0; langs_pointer[i] != NULL; i++)
-    {
-      /* Find first without encoding  */
-      if (strchr (langs_pointer[i], '.') == NULL)
-        {
-          locale = langs_pointer[i];
-          break;
+        for (i = 0; langs_pointer[i] != NULL; i++) {
+                /* Find first without encoding  */
+                if (strchr (langs_pointer[i], '.') == NULL) {
+                        locale = langs_pointer[i];
+                        break;
+                }
         }
-    }
 
-  if (locale)
-    g_key_file_set_locale_string (keyfile, group,
-                                  key, locale, value);
-  else
-    g_key_file_set_string (keyfile, "Desktop Entry", key, value);
+        if (locale) {
+                g_key_file_set_locale_string (keyfile, group,
+                                              key, locale, value);
+        } else {
+                g_key_file_set_string (keyfile, "Desktop Entry", key, value);
+        }
 }
 
 static void
-delete_desktop_file (GtkListStore *store, GtkTreeIter *iter)
+delete_desktop_file (GtkListStore *store,
+                     GtkTreeIter  *iter)
 {
-  EggDesktopFile *desktop_file;
-  GFile *source;
-  char *basename, *path;
+        EggDesktopFile *desktop_file;
+        GFile          *source;
+        char           *basename;
+        char           *path;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-      		      STORE_COL_DESKTOP_FILE, &desktop_file,
-      		      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_DESKTOP_FILE, &desktop_file,
+                            -1);
 
-  source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
+        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
-  path = g_file_get_path (source);
-  basename = g_file_get_basename (source);
+        path = g_file_get_path (source);
+        basename = g_file_get_basename (source);
 
-  if (g_str_has_prefix (path, g_get_user_config_dir ()) && 
-      !system_desktop_entry_exists (basename, NULL))
-    {
-      if (g_file_test (path, G_FILE_TEST_EXISTS))
-        g_remove (path);
-    }
-  else
-    {
-      /* Two possible cases:
-       * a) We want to remove a system wide startup desktop file.
-       *    We can't do that, so we will create a user desktop file
-       *    with the hidden flag set.
-       * b) We want to remove a startup desktop file that is both
-       *    system and user. So we have to mark it as hidden.
-       */
-      GKeyFile *keyfile;
-      GError   *error;
-      char     *user_path;
+        if (g_str_has_prefix (path, g_get_user_config_dir ()) &&
+            !system_desktop_entry_exists (basename, NULL)) {
+                if (g_file_test (path, G_FILE_TEST_EXISTS))
+                        g_remove (path);
+        } else {
+                /* Two possible cases:
+                 * a) We want to remove a system wide startup desktop file.
+                 *    We can't do that, so we will create a user desktop file
+                 *    with the hidden flag set.
+                 * b) We want to remove a startup desktop file that is both
+                 *    system and user. So we have to mark it as hidden.
+                 */
+                GKeyFile *keyfile;
+                GError   *error;
+                char     *user_path;
 
-      ensure_user_autostart_dir ();
+                ensure_user_autostart_dir ();
 
-      keyfile = g_key_file_new ();
+                keyfile = g_key_file_new ();
 
-      error = NULL;
+                error = NULL;
 
-      g_key_file_load_from_file (keyfile, path,
-                                 G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
-                                 &error);
+                g_key_file_load_from_file (keyfile, path,
+                                           G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
+                                           &error);
 
-      if (error)
-        {
-          g_error_free (error);
-          g_key_file_free (keyfile);
+                if (error) {
+                        g_error_free (error);
+                        g_key_file_free (keyfile);
+                }
+
+                g_key_file_set_boolean (keyfile, DESKTOP_ENTRY_GROUP,
+                                        "Hidden", TRUE);
+
+                user_path = g_build_filename (g_get_user_config_dir (),
+                                              "autostart", basename, NULL);
+
+                if (!key_file_to_file (keyfile, user_path, NULL)) {
+                        g_warning ("Could not save %s file", user_path);
+                }
+
+                g_key_file_free (keyfile);
+
+                g_free (user_path);
         }
 
-      g_key_file_set_boolean (keyfile, DESKTOP_ENTRY_GROUP,
-                              "Hidden", TRUE);
-
-      user_path = g_build_filename (g_get_user_config_dir (),
-                                    "autostart", basename, NULL);
-
-      if (!key_file_to_file (keyfile, user_path, NULL))
-        g_warning ("Could not save %s file", user_path);
-
-      g_key_file_free (keyfile);
-
-      g_free (user_path);
-    }
-
-  g_object_unref (source);
-  g_free (path);
-  g_free (basename);
+        g_object_unref (source);
+        g_free (path);
+        g_free (basename);
 }
 
 static void
 write_desktop_file (EggDesktopFile *desktop_file,
-                    GtkListStore   *store, 
-                    GtkTreeIter    *iter, 
+                    GtkListStore   *store,
+                    GtkTreeIter    *iter,
                     gboolean        enabled)
 {
-  GKeyFile *keyfile;
-  GFile *source;
-  GError *error;
-  gchar *path, *name, *command, *comment;
-  gboolean path_changed = FALSE;
+        GKeyFile *keyfile;
+        GFile    *source;
+        GError   *error;
+        char     *path;
+        char     *name;
+        char     *command;
+        char     *comment;
+        gboolean  path_changed = FALSE;
 
-  ensure_user_autostart_dir ();
+        ensure_user_autostart_dir ();
 
-  keyfile = g_key_file_new ();
+        keyfile = g_key_file_new ();
 
-  source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
+        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
-  path = g_file_get_path (source);
+        path = g_file_get_path (source);
 
-  error = NULL;
+        error = NULL;
 
-  g_key_file_load_from_file (keyfile, path,
-                             G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
-                             &error);
+        g_key_file_load_from_file (keyfile, path,
+                                   G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
+                                   &error);
 
-  if (error)
-    goto out;
+        if (error) {
+                goto out;
+        }
 
-  if (!g_str_has_prefix (path, g_get_user_config_dir ()))
-    {
-      /* It's a system-wide file, save it to the user's home */
-      gchar *basename;
+        if (!g_str_has_prefix (path, g_get_user_config_dir ())) {
+                /* It's a system-wide file, save it to the user's home */
+                char *basename;
 
-      basename = g_file_get_basename (source);
+                basename = g_file_get_basename (source);
 
-      g_free (path);
+                g_free (path);
 
-      path = g_build_filename (g_get_user_config_dir (),
-                               "autostart", basename, NULL);
+                path = g_build_filename (g_get_user_config_dir (),
+                                         "autostart", basename, NULL);
 
-      g_free (basename);
+                g_free (basename);
 
-      path_changed = TRUE;
-    }
+                path_changed = TRUE;
+        }
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                      STORE_COL_NAME, &name,
-                      STORE_COL_COMMAND, &command,
-                      STORE_COL_COMMENT, &comment,
-                      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_NAME, &name,
+                            STORE_COL_COMMAND, &command,
+                            STORE_COL_COMMENT, &comment,
+                            -1);
 
-  key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP, 
-                              "Name", name);
+        key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP,
+                                    "Name", name);
 
-  key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP, 
-                              "Comment", comment);
+        key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP,
+                                    "Comment", comment);
 
-  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                         "Exec", command);
+        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                               "Exec", command);
 
-  g_key_file_set_boolean (keyfile,
-                          DESKTOP_ENTRY_GROUP,
-                          "X-GNOME-Autostart-enabled", 
-                          enabled);
+        g_key_file_set_boolean (keyfile,
+                                DESKTOP_ENTRY_GROUP,
+                                "X-GNOME-Autostart-enabled",
+                                enabled);
 
-  if (!key_file_to_file (keyfile, path, &error))
-    goto out;
+        if (!key_file_to_file (keyfile, path, &error)) {
+                goto out;
+        }
 
-  if (path_changed)
-    {
-      EggDesktopFile *new_desktop_file;
+        if (path_changed) {
+                EggDesktopFile *new_desktop_file;
 
-      new_desktop_file = egg_desktop_file_new (path, &error);
+                new_desktop_file = egg_desktop_file_new (path, &error);
 
-      if (error)
-        goto out;
- 
-      update_desktop_file (store, iter, new_desktop_file);
-    }
+                if (error) {
+                        goto out;
+                }
 
-out:
-  if (error)
-    {
-      g_warning ("Error when writing desktop file %s: %s", 
-                 path, error->message); 
+                update_desktop_file (store, iter, new_desktop_file);
+        }
 
-      g_error_free (error);
-    }
+ out:
+        if (error) {
+                g_warning ("Error when writing desktop file %s: %s",
+                           path, error->message);
 
-  g_free (path);
-  g_free (name);
-  g_free (comment);
-  g_free (command);
-  g_object_unref (source);
-  g_key_file_free (keyfile);
+                g_error_free (error);
+        }
+
+        g_free (path);
+        g_free (name);
+        g_free (comment);
+        g_free (command);
+        g_object_unref (source);
+        g_key_file_free (keyfile);
 }
 
-static gboolean 
-append_app (GtkListStore *store, EggDesktopFile *desktop_file)
+static gboolean
+append_app (GtkListStore   *store,
+            EggDesktopFile *desktop_file)
 {
-  GtkTreeIter iter;
-  GFile *source;
-  gchar *basename, *description, *name, *comment, *command, *icon_name;
-  gboolean enabled = TRUE;
+        GtkTreeIter iter;
+        GFile      *source;
+        char       *basename;
+        char       *description;
+        char       *name;
+        char       *comment;
+        char       *command;
+        char       *icon_name;
+        gboolean    enabled = TRUE;
 
-  source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
+        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
-  basename = g_file_get_basename (source);
+        basename = g_file_get_basename (source);
 
-  if (egg_desktop_file_has_key (desktop_file,
-				"Hidden", NULL))
-    {
-      if (egg_desktop_file_get_boolean (desktop_file, 
-                                        "Hidden", NULL))
-        return FALSE; 
-    }
+        if (egg_desktop_file_has_key (desktop_file,
+                                      "Hidden", NULL)) {
+                if (egg_desktop_file_get_boolean (desktop_file,
+                                                  "Hidden", NULL))
+                        return FALSE;
+        }
 
-  /* Check for duplicate apps */
-  if (find_by_id (store, basename))
-    return TRUE;
+        /* Check for duplicate apps */
+        if (find_by_id (store, basename)) {
+                return TRUE;
+        }
 
-  name = egg_desktop_file_get_locale_string (desktop_file,
-                                             "Name", NULL, NULL);
+        name = egg_desktop_file_get_locale_string (desktop_file,
+                                                   "Name", NULL, NULL);
 
-  comment = NULL;
+        comment = NULL;
 
-  if (egg_desktop_file_has_key (desktop_file,
-				"Comment", NULL))
-    {
-      comment = 
-         egg_desktop_file_get_locale_string (desktop_file,
-                                             "Comment", NULL, NULL); 
-    }
+        if (egg_desktop_file_has_key (desktop_file,
+                                      "Comment", NULL)) {
+                comment =
+                        egg_desktop_file_get_locale_string (desktop_file,
+                                                            "Comment", NULL, NULL);
+        }
 
-  description = spc_command_get_app_description (name, comment);
- 
-  command = egg_desktop_file_get_string (desktop_file,
-                                         "Exec", NULL);
+        description = spc_command_get_app_description (name, comment);
 
-  icon_name = NULL;
+        command = egg_desktop_file_get_string (desktop_file,
+                                               "Exec", NULL);
 
-  if (egg_desktop_file_has_key (desktop_file,
-				"Icon", NULL))
-    {
-      icon_name = 
-         egg_desktop_file_get_string (desktop_file,
-                                      "Icon", NULL); 
-    }
+        icon_name = NULL;
 
-  if (icon_name == NULL || *icon_name == '\0')
-    {
-      icon_name = g_strdup (STARTUP_APP_ICON);
-    }
+        if (egg_desktop_file_has_key (desktop_file,
+                                      "Icon", NULL)) {
+                icon_name =
+                        egg_desktop_file_get_string (desktop_file,
+                                                     "Icon", NULL);
+        }
 
-  if (egg_desktop_file_has_key (desktop_file,
-				"X-GNOME-Autostart-enabled", NULL))
-    {
-      enabled = egg_desktop_file_get_boolean (desktop_file, 
-                                              "X-GNOME-Autostart-enabled", 
-                                              NULL);
-    }
+        if (icon_name == NULL || *icon_name == '\0') {
+                icon_name = g_strdup (STARTUP_APP_ICON);
+        }
 
-  gtk_list_store_append (store, &iter);
+        if (egg_desktop_file_has_key (desktop_file,
+                                      "X-GNOME-Autostart-enabled", NULL)) {
+                enabled = egg_desktop_file_get_boolean (desktop_file,
+                                                        "X-GNOME-Autostart-enabled",
+                                                        NULL);
+        }
 
-  gtk_list_store_set (store, &iter,
-                      STORE_COL_ENABLED, enabled,
-                      STORE_COL_ICON_NAME, icon_name,
-                      STORE_COL_DESCRIPTION, description,
-                      STORE_COL_NAME, name,
-                      STORE_COL_COMMAND, command,
-                      STORE_COL_COMMENT, comment,
-                      STORE_COL_DESKTOP_FILE, desktop_file,
-                      STORE_COL_ID, basename,
-                      STORE_COL_ACTIVATABLE, TRUE,
-                      -1);
+        gtk_list_store_append (store, &iter);
 
-  g_object_unref (source);
-  g_free (basename);
-  g_free (name);
-  g_free (comment);
-  g_free (description);
-  g_free (icon_name);
+        gtk_list_store_set (store, &iter,
+                            STORE_COL_ENABLED, enabled,
+                            STORE_COL_ICON_NAME, icon_name,
+                            STORE_COL_DESCRIPTION, description,
+                            STORE_COL_NAME, name,
+                            STORE_COL_COMMAND, command,
+                            STORE_COL_COMMENT, comment,
+                            STORE_COL_DESKTOP_FILE, desktop_file,
+                            STORE_COL_ID, basename,
+                            STORE_COL_ACTIVATABLE, TRUE,
+                            -1);
 
-  return TRUE;
+        g_object_unref (source);
+        g_free (basename);
+        g_free (name);
+        g_free (comment);
+        g_free (description);
+        g_free (icon_name);
+
+        return TRUE;
 }
 
-static gint
-compare_app (gconstpointer a, gconstpointer b)
+static int
+compare_app (gconstpointer a,
+             gconstpointer b)
 {
-  if (!strcmp (a, b))
-    return 0;
+        if (!strcmp (a, b)) {
+                return 0;
+        }
 
-  return 1;
+        return 1;
 }
 
 static void
-append_autostart_apps (GtkListStore *store, const char *path, GList **removed_apps)
+append_autostart_apps (GtkListStore *store,
+                       const char   *path,
+                       GList       **removed_apps)
 {
-  GDir *dir;
-  const char *name;
+        GDir       *dir;
+        const char *name;
 
-  dir = g_dir_open (path, 0, NULL);
-  if (!dir)
-    return;
-
-  while ((name = g_dir_read_name (dir)))
-    {
-      EggDesktopFile *desktop_file;
-      GError *error = NULL;
-      char *desktop_file_path;
-
-      if (!g_str_has_suffix (name, ".desktop"))
-	continue;
-
-      if (removed_apps && 
-          g_list_find_custom (*removed_apps, name, compare_app)) 
-        continue;
-
-      desktop_file_path = g_build_filename (path, name, NULL);
-
-      desktop_file = egg_desktop_file_new (desktop_file_path, &error);
-
-      if (!error)
-	{
-	  if (!append_app (store, desktop_file))
-            {
-              if (removed_apps)
-                *removed_apps = 
-                   g_list_prepend (*removed_apps, g_strdup (name));
-            }
-	}
-      else
-        {
-	  g_warning ("could not read %s: %s\n", desktop_file_path, error->message);
-
-          g_error_free (error);
-          error = NULL;
+        dir = g_dir_open (path, 0, NULL);
+        if (!dir) {
+                return;
         }
 
-      g_free (desktop_file_path);
-    }
+        while ((name = g_dir_read_name (dir))) {
+                EggDesktopFile *desktop_file;
+                GError         *error = NULL;
+                char           *desktop_file_path;
 
-  g_dir_close (dir);
+                if (!g_str_has_suffix (name, ".desktop")) {
+                        continue;
+                }
+
+                if (removed_apps &&
+                    g_list_find_custom (*removed_apps, name, compare_app)) {
+                        continue;
+                }
+
+                desktop_file_path = g_build_filename (path, name, NULL);
+
+                desktop_file = egg_desktop_file_new (desktop_file_path, &error);
+
+                if (!error) {
+                        if (!append_app (store, desktop_file)) {
+                                if (removed_apps) {
+                                        *removed_apps = g_list_prepend (*removed_apps, g_strdup (name));
+                                }
+                        }
+                } else {
+                        g_warning ("could not read %s: %s\n", desktop_file_path, error->message);
+
+                        g_error_free (error);
+                        error = NULL;
+                }
+
+                g_free (desktop_file_path);
+        }
+
+        g_dir_close (dir);
 }
 
 GtkTreeModel *
 spc_command_get_store ()
 {
-  GtkListStore *store;
-  GList *removed_apps;
-  char **autostart_dirs;
-  gint i;
+        GtkListStore *store;
+        GList        *removed_apps;
+        char        **autostart_dirs;
+        int           i;
 
-  store = gtk_list_store_new (STORE_NUM_COLS,
-                              G_TYPE_BOOLEAN,
-                              G_TYPE_STRING,
-                              G_TYPE_STRING,
-                              G_TYPE_STRING,
-                              G_TYPE_STRING,
-                              G_TYPE_STRING,
-                              G_TYPE_POINTER,
-                              G_TYPE_STRING,
-                              G_TYPE_BOOLEAN);
+        store = gtk_list_store_new (STORE_NUM_COLS,
+                                    G_TYPE_BOOLEAN,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_STRING,
+                                    G_TYPE_POINTER,
+                                    G_TYPE_STRING,
+                                    G_TYPE_BOOLEAN);
 
-  autostart_dirs = gsm_util_get_autostart_dirs ();
- 
-  removed_apps = NULL;
- 
-  for (i = 0; autostart_dirs[i]; i++)
-    {
-      append_autostart_apps (store, autostart_dirs[i], &removed_apps);
-    }
+        autostart_dirs = gsm_util_get_autostart_dirs ();
 
-  g_strfreev (autostart_dirs);
-  g_list_foreach (removed_apps, (GFunc) g_free, NULL);
-  g_list_free (removed_apps);
+        removed_apps = NULL;
 
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
-                                        STORE_COL_NAME,
-                                        GTK_SORT_ASCENDING);
+        for (i = 0; autostart_dirs[i]; i++) {
+                append_autostart_apps (store, autostart_dirs[i], &removed_apps);
+        }
 
-  return GTK_TREE_MODEL (store);
+        g_strfreev (autostart_dirs);
+        g_list_foreach (removed_apps, (GFunc) g_free, NULL);
+        g_list_free (removed_apps);
+
+        gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (store),
+                                              STORE_COL_NAME,
+                                              GTK_SORT_ASCENDING);
+
+        return GTK_TREE_MODEL (store);
 }
 
 gboolean
-spc_command_enable_app (GtkListStore *store, 
-                                       GtkTreeIter  *iter)
+spc_command_enable_app (GtkListStore *store,
+                        GtkTreeIter  *iter)
 {
-  EggDesktopFile *desktop_file;
-  GFile *source;
-  char *system_path, *basename, *path; 
-  char *name, *comment;
-  gboolean enabled;
+        EggDesktopFile *desktop_file;
+        GFile          *source;
+        char           *system_path;
+        char           *basename;
+        char           *path;
+        char           *name;
+        char           *comment;
+        gboolean        enabled;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-      		      STORE_COL_ENABLED, &enabled,
-      		      STORE_COL_NAME, &name,
-      		      STORE_COL_COMMENT, &comment,
-      		      STORE_COL_DESKTOP_FILE, &desktop_file,
-      		      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_ENABLED, &enabled,
+                            STORE_COL_NAME, &name,
+                            STORE_COL_COMMENT, &comment,
+                            STORE_COL_DESKTOP_FILE, &desktop_file,
+                            -1);
 
-  if (enabled)
-    return TRUE;
-
-  source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
-
-  path = g_file_get_path (source);
-
-  basename = g_file_get_basename (source);
-
-  if (system_desktop_entry_exists (basename, &system_path))
-    {
-      EggDesktopFile *system_desktop_file;
-
-      char *original_name, *original_comment;
-
-      system_desktop_file = egg_desktop_file_new (system_path, NULL);
-
-      original_name = 
-         egg_desktop_file_get_locale_string (system_desktop_file,
-                                             "Name", NULL, NULL); 
- 
-      original_comment = 
-         egg_desktop_file_get_locale_string (system_desktop_file,
-                                             "Comment", NULL, NULL);
- 
-      if (REALLY_IDENTICAL_STRING (name, original_name) &&
-          REALLY_IDENTICAL_STRING (comment, original_comment))
-        {
-          gchar *user_file =
-            g_build_filename (g_get_user_config_dir (), 
-                              "autostart", basename, NULL);
-
-          if (g_file_test (user_file, G_FILE_TEST_EXISTS))
-            g_remove (user_file);
-
-          g_free (user_file);
-
-          update_desktop_file (store, iter, system_desktop_file);
-        }
-      else
-        {
-          write_desktop_file (desktop_file, store, iter, TRUE);
-          egg_desktop_file_free (system_desktop_file);
+        if (enabled) {
+                return TRUE;
         }
 
-      g_free (original_name);
-      g_free (original_comment);
-    }
-  else
-    {
-      write_desktop_file (desktop_file, store, iter, TRUE);
-    }
+        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
-  g_free (name);
-  g_free (comment);
-  g_free (basename);
+        path = g_file_get_path (source);
 
-  return TRUE;
+        basename = g_file_get_basename (source);
+
+        if (system_desktop_entry_exists (basename, &system_path)) {
+                EggDesktopFile *system_desktop_file;
+                char           *original_name;
+                char           *original_comment;
+
+                system_desktop_file = egg_desktop_file_new (system_path, NULL);
+
+                original_name = egg_desktop_file_get_locale_string (system_desktop_file,
+                                                                    "Name", NULL, NULL);
+
+                original_comment = egg_desktop_file_get_locale_string (system_desktop_file,
+                                                                       "Comment", NULL, NULL);
+
+                if (REALLY_IDENTICAL_STRING (name, original_name) &&
+                    REALLY_IDENTICAL_STRING (comment, original_comment)) {
+                        char *user_file =
+                                g_build_filename (g_get_user_config_dir (),
+                                                  "autostart", basename, NULL);
+
+                        if (g_file_test (user_file, G_FILE_TEST_EXISTS)) {
+                                g_remove (user_file);
+                        }
+
+                        g_free (user_file);
+
+                        update_desktop_file (store, iter, system_desktop_file);
+                } else {
+                        write_desktop_file (desktop_file, store, iter, TRUE);
+                        egg_desktop_file_free (system_desktop_file);
+                }
+
+                g_free (original_name);
+                g_free (original_comment);
+        } else {
+                write_desktop_file (desktop_file, store, iter, TRUE);
+        }
+
+        g_free (name);
+        g_free (comment);
+        g_free (basename);
+
+        return TRUE;
 }
 
 gboolean
-spc_command_disable_app (GtkListStore *store, 
-                                        GtkTreeIter  *iter)
+spc_command_disable_app (GtkListStore *store,
+                         GtkTreeIter  *iter)
 {
-  EggDesktopFile *desktop_file;
-  const gchar *source;
-  gchar *basename;
-  gboolean enabled;
+        EggDesktopFile *desktop_file;
+        const char     *source;
+        char           *basename;
+        gboolean        enabled;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-      		      STORE_COL_ENABLED, &enabled,
-      		      STORE_COL_DESKTOP_FILE, &desktop_file,
-      		      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_ENABLED, &enabled,
+                            STORE_COL_DESKTOP_FILE, &desktop_file,
+                            -1);
 
-  if (!enabled)
-    return TRUE;
+        if (!enabled) {
+                return TRUE;
+        }
 
-  source = egg_desktop_file_get_source (desktop_file);
+        source = egg_desktop_file_get_source (desktop_file);
 
-  basename = g_path_get_basename (source);
+        basename = g_path_get_basename (source);
 
-  write_desktop_file (desktop_file, store, iter, FALSE);
+        write_desktop_file (desktop_file, store, iter, FALSE);
 
-  g_free (basename);
+        g_free (basename);
 
-  return TRUE;
+        return TRUE;
 }
 
 void
 spc_command_add_app (GtkListStore *store,
-                                    GtkTreeIter *iter)
+                     GtkTreeIter  *iter)
 {
-  EggDesktopFile *desktop_file;
-  GKeyFile *keyfile;
-  char **argv;
-  char *basename, *orig_filename, *filename;
-  char *name, *command, *comment, *description, *icon;
-  int argc;
-  int i = 2;
+        EggDesktopFile *desktop_file;
+        GKeyFile       *keyfile;
+        char          **argv;
+        char           *basename;
+        char           *orig_filename;
+        char           *filename;
+        char           *name;
+        char           *command;
+        char           *comment;
+        char           *description;
+        char           *icon;
+        int             argc;
+        int             i = 2;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                      STORE_COL_NAME, &name,
-                      STORE_COL_COMMAND, &command,
-                      STORE_COL_COMMENT, &comment,
-                      STORE_COL_ICON_NAME, &icon,
-                      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_NAME, &name,
+                            STORE_COL_COMMAND, &command,
+                            STORE_COL_COMMENT, &comment,
+                            STORE_COL_ICON_NAME, &icon,
+                            -1);
 
-  g_shell_parse_argv (command, &argc, &argv, NULL);
+        g_shell_parse_argv (command, &argc, &argv, NULL);
 
-  basename = g_path_get_basename (argv[0]);
+        basename = g_path_get_basename (argv[0]);
 
-  orig_filename = g_build_filename (g_get_user_config_dir (), 
-                                    "autostart", basename, NULL);
+        orig_filename = g_build_filename (g_get_user_config_dir (),
+                                          "autostart", basename, NULL);
 
-  filename = g_strdup_printf ("%s.desktop", orig_filename);
+        filename = g_strdup_printf ("%s.desktop", orig_filename);
 
-  while (g_file_test (filename, G_FILE_TEST_EXISTS))
-    {
-      char *tmp = g_strdup_printf ("%s-%d.desktop", orig_filename, i);
+        while (g_file_test (filename, G_FILE_TEST_EXISTS)) {
+                char *tmp = g_strdup_printf ("%s-%d.desktop", orig_filename, i);
 
-      g_free (filename);
-      filename = tmp;
+                g_free (filename);
+                filename = tmp;
 
-      i++;
-    }
+                i++;
+        }
 
-  g_free (orig_filename);
+        g_free (orig_filename);
 
-  keyfile = g_key_file_new ();
+        keyfile = g_key_file_new ();
 
-  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                         "Type", "Application");  
+        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                               "Type", "Application");
 
-  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                         "Name", name);  
+        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                               "Name", name);
 
-  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                         "Exec", command);  
+        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                               "Exec", command);
 
-  if (icon == NULL)
-    {
-      icon = g_strdup (STARTUP_APP_ICON);
-    }
-  
-  g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                         "Icon", icon);
+        if (icon == NULL) {
+                icon = g_strdup (STARTUP_APP_ICON);
+        }
 
-  if (comment)
-    g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                           "Comment", comment);  
+        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                               "Icon", icon);
 
-  description = spc_command_get_app_description (name, comment);
- 
-  if (!key_file_to_file (keyfile, filename, NULL))
-    {
-      g_warning ("Could not save %s file", filename);
-    }
+        if (comment) {
+                g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
+                                       "Comment", comment);
+        }
 
-  desktop_file = egg_desktop_file_new_from_key_file (keyfile,
-                                                     filename,
-                                                     NULL);
+        description = spc_command_get_app_description (name, comment);
 
-  g_free (basename);
+        if (!key_file_to_file (keyfile, filename, NULL)) {
+                g_warning ("Could not save %s file", filename);
+        }
 
-  basename = g_path_get_basename (filename);
+        desktop_file = egg_desktop_file_new_from_key_file (keyfile,
+                                                           filename,
+                                                           NULL);
 
-  gtk_list_store_set (store, iter,
-                      STORE_COL_ENABLED, TRUE, 
-                      STORE_COL_ICON_NAME, icon, 
-                      STORE_COL_DESKTOP_FILE, desktop_file,
-                      STORE_COL_ID, basename, 
-                      STORE_COL_ACTIVATABLE, TRUE,
-                      -1);
+        g_free (basename);
 
-  g_key_file_free (keyfile);
-  g_strfreev (argv);
-  g_free (name);
-  g_free (command);
-  g_free (comment);
-  g_free (description);
-  g_free (basename);
-  g_free (icon);
+        basename = g_path_get_basename (filename);
+
+        gtk_list_store_set (store, iter,
+                            STORE_COL_ENABLED, TRUE,
+                            STORE_COL_ICON_NAME, icon,
+                            STORE_COL_DESKTOP_FILE, desktop_file,
+                            STORE_COL_ID, basename,
+                            STORE_COL_ACTIVATABLE, TRUE,
+                            -1);
+
+        g_key_file_free (keyfile);
+        g_strfreev (argv);
+        g_free (name);
+        g_free (command);
+        g_free (comment);
+        g_free (description);
+        g_free (basename);
+        g_free (icon);
 }
 
 void
-spc_command_delete_app (GtkListStore *store, 
-                                       GtkTreeIter  *iter)
+spc_command_delete_app (GtkListStore *store,
+                        GtkTreeIter  *iter)
 {
-  delete_desktop_file (store, iter);
+        delete_desktop_file (store, iter);
 }
 
 void
-spc_command_update_app (GtkListStore *store, 
-                                       GtkTreeIter *iter)
+spc_command_update_app (GtkListStore *store,
+                        GtkTreeIter *iter)
 {
-  EggDesktopFile *desktop_file;
-  gboolean enabled;
+        EggDesktopFile *desktop_file;
+        gboolean        enabled;
 
-  gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-      		      STORE_COL_ENABLED, &enabled,
-      		      STORE_COL_DESKTOP_FILE, &desktop_file,
-      		      -1);
+        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+                            STORE_COL_ENABLED, &enabled,
+                            STORE_COL_DESKTOP_FILE, &desktop_file,
+                            -1);
 
-  write_desktop_file (desktop_file, store, iter, enabled);
+        write_desktop_file (desktop_file, store, iter, enabled);
 }
 
 char *
 spc_command_get_app_description (const char *name,
                                  const char *comment)
 {
-  return g_markup_printf_escaped ("<b>%s</b>\n%s", name,
-                                  (!gsm_util_text_is_blank (comment) ?
-                                   comment : _("No description")));
+        return g_markup_printf_escaped ("<b>%s</b>\n%s", name,
+                                        (!gsm_util_text_is_blank (comment) ?
+                                         comment : _("No description")));
 }

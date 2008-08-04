@@ -34,7 +34,7 @@ typedef struct  {
   GtkWindow       window;
 
   GtkIconTheme   *icon_theme;
-  
+
   GdkPixbuf      *background;
   GList          *icons;
   PangoLayout    *layout;
@@ -62,9 +62,9 @@ GType      gsm_splash_window_get_type (void);
 
 GtkWidget *gsm_splash_window_new      (GdkPixbuf       *background);
 void       gsm_splash_window_start    (GsmSplashWindow *splash,
-				       const char      *app_name,
-				       const char      *icon_name);
+                                       const char      *app_name,
+                                       const char      *icon_name);
 void       gsm_splash_window_finish   (GsmSplashWindow *splash,
-				       const char      *app_name);
+                                       const char      *app_name);
 
 #endif /* __GSM_SPLASH_WINDOW_H__ */
