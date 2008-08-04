@@ -24,11 +24,6 @@ INCLUDES =					\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
-gladedir = $(pkgdatadir)
-glade_DATA = 					\
-	gsm-inhibit-dialog.glade		\
-	$(NULL)
-
 test_inhibit_SOURCES = 	\
 	test-inhibit.c	\
 	$(NULL)

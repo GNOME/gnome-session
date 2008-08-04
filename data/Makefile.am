@@ -1,7 +1,11 @@
+NULL =
 SUBDIRS = icons
 
-gladedir = $(datadir)/gnome-session
-glade_DATA = session-properties.glade
+gladedir = $(pkgdatadir)
+glade_DATA = \
+	session-properties.glade	\
+	gsm-inhibit-dialog.glade	\
+	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@
 
