@@ -424,7 +424,8 @@ _start_app (const char *id,
                           G_CALLBACK (app_condition_changed),
                           manager);
 
-        if (gsm_app_peek_is_disabled (app)) {
+        if (gsm_app_peek_is_disabled (app)
+            || gsm_app_peek_is_conditionally_disabled (app)) {
                 g_debug ("GsmManager: Skipping disabled app: %s", id);
                 goto out;
         }

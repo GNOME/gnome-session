@@ -19,9 +19,7 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <ctype.h>
 #include <string.h>
@@ -375,7 +373,7 @@ is_running (GsmApp *app)
 }
 
 static gboolean
-is_disabled (GsmApp *app)
+is_conditionally_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
         gboolean                autorestart = FALSE;
@@ -387,31 +385,6 @@ is_disabled (GsmApp *app)
                 autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
                                                             "X-GNOME-AutoRestart",
                                                             NULL);
-        }
-
-        /* X-GNOME-Autostart-enabled key, used by old gnome-session */
-        if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-Autostart-enabled", NULL) &&
-            !egg_desktop_file_get_boolean (priv->desktop_file,
-                                           "X-GNOME-Autostart-enabled", NULL)) {
-                g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
-                         gsm_app_peek_id (app));
-                return TRUE;
-        }
-
-        /* Hidden key, used by autostart spec */
-        if (egg_desktop_file_get_boolean (priv->desktop_file,
-                                          EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
-                g_debug ("app %s is disabled by Hidden",
-                         gsm_app_peek_id (app));
-                return TRUE;
-        }
-
-        /* Check OnlyShowIn/NotShowIn/TryExec */
-        if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
-                g_debug ("app %s not installed or not for GNOME",
-                         gsm_app_peek_id (app));
-                return TRUE;
         }
 
         /* Check AutostartCondition */
@@ -515,6 +488,52 @@ is_disabled (GsmApp *app)
         }
 
         priv->condition = TRUE;
+
+        return FALSE;
+}
+
+static gboolean
+is_disabled (GsmApp *app)
+{
+        GsmAutostartAppPrivate *priv;
+        gboolean                autorestart = FALSE;
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        if (egg_desktop_file_has_key (priv->desktop_file,
+                                      "X-GNOME-AutoRestart", NULL)) {
+                autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
+                                                            "X-GNOME-AutoRestart",
+                                                            NULL);
+        }
+
+        /* X-GNOME-Autostart-enabled key, used by old gnome-session */
+        if (egg_desktop_file_has_key (priv->desktop_file,
+                                      "X-GNOME-Autostart-enabled", NULL) &&
+            !egg_desktop_file_get_boolean (priv->desktop_file,
+                                           "X-GNOME-Autostart-enabled", NULL)) {
+                g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Hidden key, used by autostart spec */
+        if (egg_desktop_file_get_boolean (priv->desktop_file,
+                                          EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
+                g_debug ("app %s is disabled by Hidden",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Check OnlyShowIn/NotShowIn/TryExec */
+        if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
+                g_debug ("app %s not installed or not for GNOME",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Do not check AutostartCondition - this method is only to determine
+         if the app is unconditionally disabled */
 
         return FALSE;
 }
@@ -897,6 +916,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->constructor = gsm_autostart_app_constructor;
 
         app_class->impl_is_disabled = is_disabled;
+        app_class->impl_is_conditionally_disabled = is_conditionally_disabled;
         app_class->impl_is_running = is_running;
         app_class->impl_start = gsm_autostart_app_start;
         app_class->impl_restart = gsm_autostart_app_restart;
