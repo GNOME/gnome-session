@@ -75,8 +75,6 @@ struct _GsmAppClass
         const char *(*impl_get_app_id)                (GsmApp     *app);
         gboolean    (*impl_is_disabled)               (GsmApp     *app);
         gboolean    (*impl_is_conditionally_disabled) (GsmApp     *app);
-        void        (*impl_set_client)                (GsmApp     *app,
-                                                       GsmClient  *client);
 };
 
 typedef enum
