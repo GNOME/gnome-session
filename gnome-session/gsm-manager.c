@@ -235,6 +235,10 @@ app_condition_changed (GsmApp     *app,
 {
         GsmClient *client;
 
+        g_debug ("GsmManager: app:%s condition changed condition:%d",
+                 gsm_app_peek_id (app),
+                 condition);
+
         client = (GsmClient *)gsm_store_find (manager->priv->clients,
                                               (GsmStoreFunc)_find_by_startup_id,
                                               (char *)gsm_app_peek_startup_id (app));
@@ -256,17 +260,19 @@ app_condition_changed (GsmApp     *app,
                 GError  *error;
                 gboolean res;
 
-                /* Kill client in case condition if false and make sure it won't
-                 * be automatically restarted by adding the client to
-                 * condition_clients */
-                manager->priv->condition_clients = g_slist_prepend (manager->priv->condition_clients, client);
+                if (client != NULL) {
+                        /* Kill client in case condition if false and make sure it won't
+                         * be automatically restarted by adding the client to
+                         * condition_clients */
+                        manager->priv->condition_clients = g_slist_prepend (manager->priv->condition_clients, client);
 
-                error = NULL;
-                res = gsm_client_stop (client, &error);
-                if (error != NULL) {
-                        g_warning ("Not able to stop app from its condition: %s",
-                                   error->message);
-                        g_error_free (error);
+                        error = NULL;
+                        res = gsm_client_stop (client, &error);
+                        if (error != NULL) {
+                                g_warning ("Not able to stop app from its condition: %s",
+                                           error->message);
+                                g_error_free (error);
+                        }
                 }
         }
 }
@@ -973,12 +979,25 @@ gsm_manager_start (GsmManager *manager)
         start_phase (manager);
 }
 
+static gboolean
+_app_has_app_id (const char   *id,
+                 GsmApp       *app,
+                 const char   *app_id_a)
+{
+        const char *app_id_b;
+
+        app_id_b = gsm_app_peek_app_id (app);
+        return (app_id_b != NULL && strcmp (app_id_a, app_id_b) == 0);
+}
+
 static GsmApp *
 find_app_for_app_id (GsmManager *manager,
                      const char *app_id)
 {
         GsmApp *app;
-        app = (GsmApp *)gsm_store_lookup (manager->priv->apps, app_id);
+        app = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                        (GsmStoreFunc)_app_has_app_id,
+                                        (char *)app_id);
         return app;
 }
 

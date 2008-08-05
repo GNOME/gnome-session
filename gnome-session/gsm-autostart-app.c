@@ -37,21 +37,35 @@ enum {
         AUTOSTART_LAUNCH_ACTIVATE,
 };
 
+enum {
+        GSM_CONDITION_NONE          = 0,
+        GSM_CONDITION_IF_EXISTS     = 1,
+        GSM_CONDITION_UNLESS_EXISTS = 2,
+        GSM_CONDITION_GNOME         = 3,
+        GSM_CONDITION_UNKNOWN       = 4,
+};
+
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
 
 struct _GsmAutostartAppPrivate {
         char                 *desktop_filename;
         char                 *desktop_id;
         char                 *startup_id;
-        char                 *condition_string;
 
-        GFileMonitor         *monitor;
-        gboolean              condition;
         EggDesktopFile       *desktop_file;
+
+        /* desktop file state */
+        char                 *condition_string;
+        gboolean              condition;
+        gboolean              autorestart;
+
+        GFileMonitor         *condition_monitor;
+        guint                 condition_notify_id;
 
         int                   launch_type;
         GPid                  pid;
         guint                 child_watch_id;
+
         DBusGProxy           *proxy;
         DBusGProxyCall       *proxy_call;
 };
@@ -78,17 +92,298 @@ gsm_autostart_app_init (GsmAutostartApp *app)
         app->priv = GSM_AUTOSTART_APP_GET_PRIVATE (app);
 
         app->priv->pid = -1;
-        app->priv->monitor = NULL;
+        app->priv->condition_monitor = NULL;
         app->priv->condition = FALSE;
+}
+
+static gboolean
+is_disabled (GsmApp *app)
+{
+        GsmAutostartAppPrivate *priv;
+        gboolean                autorestart = FALSE;
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        if (egg_desktop_file_has_key (priv->desktop_file,
+                                      "X-GNOME-AutoRestart", NULL)) {
+                autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
+                                                            "X-GNOME-AutoRestart",
+                                                            NULL);
+        }
+
+        /* X-GNOME-Autostart-enabled key, used by old gnome-session */
+        if (egg_desktop_file_has_key (priv->desktop_file,
+                                      "X-GNOME-Autostart-enabled", NULL) &&
+            !egg_desktop_file_get_boolean (priv->desktop_file,
+                                           "X-GNOME-Autostart-enabled", NULL)) {
+                g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Hidden key, used by autostart spec */
+        if (egg_desktop_file_get_boolean (priv->desktop_file,
+                                          EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
+                g_debug ("app %s is disabled by Hidden",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Check OnlyShowIn/NotShowIn/TryExec */
+        if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
+                g_debug ("app %s not installed or not for GNOME",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Do not check AutostartCondition - this method is only to determine
+         if the app is unconditionally disabled */
+
+        return FALSE;
+}
+
+static gboolean
+parse_condition_string (const char *condition_string,
+                        guint      *condition_kindp,
+                        char      **keyp)
+{
+        const char *space;
+        const char *key;
+        int         len;
+        guint       kind;
+
+        space = condition_string + strcspn (condition_string, " ");
+        len = space - condition_string;
+        key = space;
+        while (isspace ((unsigned char)*key)) {
+                key++;
+        }
+
+        if (!g_ascii_strncasecmp (condition_string, "if-exists", len) && key) {
+                kind = GSM_CONDITION_IF_EXISTS;
+        } else if (!g_ascii_strncasecmp (condition_string, "unless-exists", len) && key) {
+                kind = GSM_CONDITION_UNLESS_EXISTS;
+        } else if (!g_ascii_strncasecmp (condition_string, "GNOME", len)) {
+                kind = GSM_CONDITION_GNOME;
+        } else {
+                key = NULL;
+                kind = GSM_CONDITION_UNKNOWN;
+        }
+
+        if (keyp != NULL) {
+                *keyp = g_strdup (key);
+        }
+
+        if (condition_kindp != NULL) {
+                *condition_kindp = kind;
+        }
+
+        return (kind != GSM_CONDITION_UNKNOWN);
+}
+
+static void
+if_exists_condition_cb (GFileMonitor     *monitor,
+                        GFile            *file,
+                        GFile            *other_file,
+                        GFileMonitorEvent event,
+                        GsmApp           *app)
+{
+        GsmAutostartAppPrivate *priv;
+        gboolean                condition = FALSE;
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        switch (event) {
+        case G_FILE_MONITOR_EVENT_CREATED:
+                condition = TRUE;
+                break;
+        case G_FILE_MONITOR_EVENT_DELETED:
+                condition = FALSE;
+                break;
+        default:
+                /* Ignore any other monitor event */
+                return;
+        }
+
+        /* Emit only if the condition actually changed */
+        if (condition != priv->condition) {
+                priv->condition = condition;
+                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        }
+}
+
+static void
+unless_exists_condition_cb (GFileMonitor     *monitor,
+                            GFile            *file,
+                            GFile            *other_file,
+                            GFileMonitorEvent event,
+                            GsmApp           *app)
+{
+        GsmAutostartAppPrivate *priv;
+        gboolean                condition = FALSE;
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        switch (event) {
+        case G_FILE_MONITOR_EVENT_CREATED:
+                condition = FALSE;
+                break;
+        case G_FILE_MONITOR_EVENT_DELETED:
+                condition = TRUE;
+                break;
+        default:
+                /* Ignore any other monitor event */
+                return;
+        }
+
+        /* Emit only if the condition actually changed */
+        if (condition != priv->condition) {
+                priv->condition = condition;
+                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        }
+}
+
+static void
+gconf_condition_cb (GConfClient *client,
+                    guint        cnxn_id,
+                    GConfEntry  *entry,
+                    gpointer     user_data)
+{
+        GsmApp                 *app;
+        GsmAutostartAppPrivate *priv;
+        gboolean                condition;
+
+        g_return_if_fail (GSM_IS_APP (user_data));
+
+        app = GSM_APP (user_data);
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        condition = FALSE;
+        if (entry->value != NULL && entry->value->type == GCONF_VALUE_BOOL) {
+                condition = gconf_value_get_bool (entry->value);
+        }
+
+        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
+                 gsm_app_peek_id (app),
+                 condition);
+
+        /* Emit only if the condition actually changed */
+        if (condition != priv->condition) {
+                priv->condition = condition;
+                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        }
+}
+
+static void
+setup_condition_monitor (GsmAutostartApp *app)
+{
+        guint    kind;
+        char    *key;
+        gboolean res;
+        gboolean disabled;
+
+        if (app->priv->condition_monitor != NULL) {
+                g_file_monitor_cancel (app->priv->condition_monitor);
+        }
+
+        if (app->priv->condition_notify_id > 0) {
+                GConfClient *client;
+                client = gconf_client_get_default ();
+                gconf_client_notify_remove (client,
+                                            app->priv->condition_notify_id);
+                app->priv->condition_notify_id = 0;
+        }
+
+        if (app->priv->condition_string == NULL) {
+                return;
+        }
+
+        /* if it is disabled outright there is no point in monitoring */
+        if (is_disabled (GSM_APP (app))) {
+                return;
+        }
+
+        key = NULL;
+        res = parse_condition_string (app->priv->condition_string, &kind, &key);
+        if (! res) {
+                return;
+        }
+
+        if (key == NULL) {
+                return;
+        }
+
+        if (kind == GSM_CONDITION_IF_EXISTS) {
+                char  *file_path;
+                GFile *file;
+
+                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+
+                disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
+
+                file = g_file_new_for_path (file_path);
+                app->priv->condition_monitor = g_file_monitor_file (file, 0, NULL, NULL);
+
+                g_signal_connect (app->priv->condition_monitor, "changed",
+                                  G_CALLBACK (if_exists_condition_cb),
+                                  app);
+
+                g_object_unref (file);
+                g_free (file_path);
+        } else if (kind == GSM_CONDITION_UNLESS_EXISTS) {
+                char  *file_path;
+                GFile *file;
+
+                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+
+                disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
+
+                file = g_file_new_for_path (file_path);
+                app->priv->condition_monitor = g_file_monitor_file (file, 0, NULL, NULL);
+
+                g_signal_connect (app->priv->condition_monitor, "changed",
+                                  G_CALLBACK (unless_exists_condition_cb),
+                                  app);
+
+                g_object_unref (file);
+                g_free (file_path);
+        } else if (kind == GSM_CONDITION_GNOME) {
+                GConfClient *client;
+                char        *dir;
+
+                client = gconf_client_get_default ();
+                g_assert (GCONF_IS_CLIENT (client));
+
+                disabled = !gconf_client_get_bool (client, key, NULL);
+
+                dir = g_path_get_dirname (key);
+
+                gconf_client_add_dir (client,
+                                      dir,
+                                      GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+                g_free (dir);
+
+                app->priv->condition_notify_id = gconf_client_notify_add (client,
+                                                                          key,
+                                                                          gconf_condition_cb,
+                                                                          app, NULL, NULL);
+                g_object_unref (client);
+        } else {
+                disabled = TRUE;
+        }
+
+        /* FIXME: cache the disabled value? */
 }
 
 static gboolean
 load_desktop_file (GsmAutostartApp *app)
 {
-        char   *dbus_name;
-        char   *startup_id;
-        char   *phase_str;
-        int     phase;
+        char    *dbus_name;
+        char    *startup_id;
+        char    *phase_str;
+        int      phase;
+        gboolean res;
 
         if (app->priv->desktop_file == NULL) {
                 return FALSE;
@@ -135,6 +430,23 @@ load_desktop_file (GsmAutostartApp *app)
         default:
                 g_assert_not_reached ();
         }
+
+        res = egg_desktop_file_has_key (app->priv->desktop_file,
+                                        "X-GNOME-AutoRestart",
+                                        NULL);
+        if (res) {
+                app->priv->autorestart = egg_desktop_file_get_boolean (app->priv->desktop_file,
+                                                                       "X-GNOME-AutoRestart",
+                                                                       NULL);
+        } else {
+                app->priv->autorestart = FALSE;
+        }
+
+        g_free (app->priv->condition_string);
+        app->priv->condition_string = egg_desktop_file_get_string (app->priv->desktop_file,
+                                                                   "AutostartCondition",
+                                                                   NULL);
+        setup_condition_monitor (app);
 
         g_object_set (app,
                       "phase", phase,
@@ -264,94 +576,8 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->proxy = NULL;
         }
 
-        if (priv->monitor) {
-                g_file_monitor_cancel (priv->monitor);
-        }
-}
-
-
-static void
-if_exists_condition_cb (GFileMonitor     *monitor,
-                        GFile            *file,
-                        GFile            *other_file,
-                        GFileMonitorEvent event,
-                        GsmApp           *app)
-{
-        GsmAutostartAppPrivate *priv;
-        gboolean                condition = FALSE;
-
-        priv = GSM_AUTOSTART_APP (app)->priv;
-
-        switch (event) {
-        case G_FILE_MONITOR_EVENT_CREATED:
-                condition = TRUE;
-                break;
-
-        default:
-                /* Ignore any other monitor event */
-                return;
-        }
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static void
-unless_exists_condition_cb (GFileMonitor     *monitor,
-                            GFile            *file,
-                            GFile            *other_file,
-                            GFileMonitorEvent event,
-                            GsmApp           *app)
-{
-        GsmAutostartAppPrivate *priv;
-        gboolean                condition = FALSE;
-
-        priv = GSM_AUTOSTART_APP (app)->priv;
-
-        switch (event) {
-        case G_FILE_MONITOR_EVENT_DELETED:
-                condition = TRUE;
-                break;
-
-        default:
-                /* Ignore any other monitor event */
-                return;
-        }
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static void
-gconf_condition_cb (GConfClient *client,
-                    guint       cnxn_id,
-                    GConfEntry  *entry,
-                    gpointer    user_data)
-{
-        GsmApp                 *app;
-        GsmAutostartAppPrivate *priv;
-        gboolean                condition = FALSE;
-
-        g_return_if_fail (GSM_IS_APP (user_data));
-
-        app = GSM_APP (user_data);
-
-        priv = GSM_AUTOSTART_APP (app)->priv;
-
-        if (entry->value != NULL && entry->value->type == GCONF_VALUE_BOOL) {
-                condition = gconf_value_get_bool (entry->value);
-        }
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        if (priv->condition_monitor) {
+                g_file_monitor_cancel (priv->condition_monitor);
         }
 }
 
@@ -376,166 +602,59 @@ static gboolean
 is_conditionally_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
-        gboolean                autorestart = FALSE;
+        gboolean                res;
+        gboolean                disabled;
+        char                   *key;
+        guint                   kind;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
-
-        if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-AutoRestart", NULL)) {
-                autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
-                                                            "X-GNOME-AutoRestart",
-                                                            NULL);
-        }
 
         /* Check AutostartCondition */
-        g_free (priv->condition_string);
-        priv->condition_string = egg_desktop_file_get_string (priv->desktop_file,
-                                                              "AutostartCondition",
-                                                              NULL);
-
-        if (priv->condition_string != NULL) {
-                gboolean disabled;
-                char    *space;
-                char    *key;
-                int      len;
-
-                space = priv->condition_string + strcspn (priv->condition_string, " ");
-                len = space - priv->condition_string;
-                key = space;
-                while (isspace ((unsigned char)*key)) {
-                        key++;
-                }
-
-                if (!g_ascii_strncasecmp (priv->condition_string, "if-exists", len) && key) {
-                        char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
-
-                        disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
-
-                        if (autorestart) {
-                                GFile *file = g_file_new_for_path (file_path);
-
-                                priv->monitor = g_file_monitor_file (file, 0, NULL, NULL);
-
-                                g_signal_connect (priv->monitor, "changed",
-                                                  G_CALLBACK (if_exists_condition_cb),
-                                                  app);
-
-                                g_object_unref (file);
-                        }
-
-                        g_free (file_path);
-                } else if (!g_ascii_strncasecmp (priv->condition_string, "unless-exists", len) && key) {
-                        char *file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
-
-                        disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
-
-                        if (autorestart) {
-                                GFile *file = g_file_new_for_path (file_path);
-
-                                priv->monitor = g_file_monitor_file (file, 0, NULL, NULL);
-
-                                g_signal_connect (priv->monitor, "changed",
-                                                  G_CALLBACK (unless_exists_condition_cb),
-                                                  app);
-
-                                g_object_unref (file);
-                        }
-
-                        g_free (file_path);
-                } else if (!g_ascii_strncasecmp (priv->condition_string, "GNOME", len)) {
-                        if (key) {
-                                GConfClient *client;
-
-                                client = gconf_client_get_default ();
-
-                                g_assert (GCONF_IS_CLIENT (client));
-
-                                disabled = !gconf_client_get_bool (client, key, NULL);
-
-                                if (autorestart) {
-                                        gchar *dir;
-
-                                        dir = g_path_get_dirname (key);
-
-                                        /* Add key dir in order to be able to keep track
-                                         * of changed in the key later */
-                                        gconf_client_add_dir (client, dir,
-                                                              GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
-
-                                        g_free (dir);
-
-                                        gconf_client_notify_add (client,
-                                                                 key,
-                                                                 gconf_condition_cb,
-                                                                 app, NULL, NULL);
-                                }
-                                g_object_unref (client);
-                        } else {
-                                disabled = FALSE;
-                        }
-                } else {
-                        disabled = TRUE;
-                }
-
-                /* Set initial condition */
-                priv->condition = !disabled;
-
-                if (disabled) {
-                        g_debug ("app %s is disabled by AutostartCondition",
-                                 gsm_app_peek_id (app));
-                        return TRUE;
-                }
+        if (priv->condition_string == NULL) {
+                return FALSE;
         }
 
-        priv->condition = TRUE;
-
-        return FALSE;
-}
-
-static gboolean
-is_disabled (GsmApp *app)
-{
-        GsmAutostartAppPrivate *priv;
-        gboolean                autorestart = FALSE;
-
-        priv = GSM_AUTOSTART_APP (app)->priv;
-
-        if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-AutoRestart", NULL)) {
-                autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
-                                                            "X-GNOME-AutoRestart",
-                                                            NULL);
-        }
-
-        /* X-GNOME-Autostart-enabled key, used by old gnome-session */
-        if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-Autostart-enabled", NULL) &&
-            !egg_desktop_file_get_boolean (priv->desktop_file,
-                                           "X-GNOME-Autostart-enabled", NULL)) {
-                g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
-                         gsm_app_peek_id (app));
+        key = NULL;
+        res = parse_condition_string (priv->condition_string, &kind, &key);
+        if (! res) {
                 return TRUE;
         }
 
-        /* Hidden key, used by autostart spec */
-        if (egg_desktop_file_get_boolean (priv->desktop_file,
-                                          EGG_DESKTOP_FILE_KEY_HIDDEN, NULL)) {
-                g_debug ("app %s is disabled by Hidden",
-                         gsm_app_peek_id (app));
+        if (key == NULL) {
                 return TRUE;
         }
 
-        /* Check OnlyShowIn/NotShowIn/TryExec */
-        if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
-                g_debug ("app %s not installed or not for GNOME",
-                         gsm_app_peek_id (app));
-                return TRUE;
+        if (kind == GSM_CONDITION_IF_EXISTS) {
+                char *file_path;
+
+                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+                disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
+                g_free (file_path);
+        } else if (kind == GSM_CONDITION_UNLESS_EXISTS) {
+                char *file_path;
+
+                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+                disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
+                g_free (file_path);
+        } else if (kind == GSM_CONDITION_GNOME) {
+                GConfClient *client;
+                client = gconf_client_get_default ();
+                g_assert (GCONF_IS_CLIENT (client));
+                disabled = !gconf_client_get_bool (client, key, NULL);
+                g_object_unref (client);
+        } else {
+                disabled = TRUE;
         }
 
-        /* Do not check AutostartCondition - this method is only to determine
-         if the app is unconditionally disabled */
+        /* Set initial condition */
+        priv->condition = !disabled;
 
-        return FALSE;
+        if (disabled) {
+                g_debug ("app %s is disabled by AutostartCondition",
+                         gsm_app_peek_id (app));
+        }
+
+        return disabled;
 }
 
 static void
@@ -611,12 +730,25 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         gboolean         success;
         GError          *local_error;
         const char      *startup_id;
+        char            *command;
 
         startup_id = gsm_app_peek_startup_id (GSM_APP (app));
         g_assert (startup_id != NULL);
 
         env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", startup_id);
-        g_debug ("GsmAutostartApp: starting %s: %s", app->priv->desktop_id, startup_id);
+
+        command = egg_desktop_file_parse_exec (app->priv->desktop_file,
+                                               NULL,
+                                               &local_error);
+        if (command == NULL) {
+                g_warning ("Unable to parse command '%s': %s",
+                           command,
+                           local_error->message);
+                g_error_free (local_error);
+        }
+
+        g_debug ("GsmAutostartApp: starting %s: command=%s startup-id=%s", app->priv->desktop_id, command, startup_id);
+        g_free (command);
 
         local_error = NULL;
         success = egg_desktop_file_launch (app->priv->desktop_file,

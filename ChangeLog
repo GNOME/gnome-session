@@ -1,5 +1,21 @@
 2008-08-04  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_init),
+	(is_disabled), (parse_condition_string), (if_exists_condition_cb),
+	(unless_exists_condition_cb), (gconf_condition_cb),
+	(setup_condition_monitor), (load_desktop_file),
+	(gsm_autostart_app_dispose), (is_conditionally_disabled),
+	(autostart_app_start_spawn):
+	Fix a number of bugs and leaks related to the monitoring
+	of the AutostartCondition keys.
+
+	* gnome-session/gsm-manager.c (app_condition_changed),
+	(_app_has_app_id), (find_app_for_app_id):
+	Allow NULL clients on conditional disable.  Fix
+	finding of clients.
+
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.c (gsm_app_peek_is_conditionally_disabled):
 	* gnome-session/gsm-app.h:
 	* gnome-session/gsm-autostart-app.c (is_conditionally_disabled),
