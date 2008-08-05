@@ -53,61 +53,6 @@ static GOptionEntry entries[] = {
 };
 
 static void
-maybe_start_session_bus (void)
-{
-        char   *argv[3];
-        char   *output;
-        char  **vars;
-        int     status;
-        int     i;
-        GError *error;
-
-        /* Check whether there is a dbus-daemon session instance currently
-         * running (not spawned by us).
-         */
-        if (g_getenv ("DBUS_SESSION_BUS_ADDRESS")) {
-                g_warning ("dbus-daemon is already running: processes launched by "
-                           "D-Bus won't have access to $SESSION_MANAGER!");
-                return;
-        }
-
-        argv[0] = DBUS_LAUNCH;
-        argv[1] = "--exit-with-session";
-        argv[2] = NULL;
-
-        /* dbus-launch exits pretty quickly, but if necessary, we could
-         * make this async. (It's a little annoying since the main loop isn't
-         * running yet...)
-         */
-        error = NULL;
-        g_spawn_sync (NULL,
-                      argv,
-                      NULL,
-                      G_SPAWN_SEARCH_PATH,
-                      NULL,
-                      NULL,
-                      &output,
-                      NULL,
-                      &status,
-                      &error);
-        if (error != NULL) {
-                gsm_util_init_error (TRUE,
-                                     "Could not start dbus-daemon: %s",
-                                     error->message);
-                /* not reached */
-        }
-
-        vars = g_strsplit (output, "\n", 0);
-        for (i = 0; vars[i]; i++) {
-                putenv (vars[i]);
-        }
-
-        /* Can't free the putenv'ed strings */
-        g_free (vars);
-        g_free (output);
-}
-
-static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
                   const char *name,
                   gpointer    data)
@@ -189,7 +134,7 @@ acquire_name (void)
         connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (connection == NULL) {
                 gsm_util_init_error (TRUE,
-                                     "Could not start D-Bus: %s",
+                                     "Could not connect to session bus: %s",
                                      error->message);
                 /* not reached */
         }
@@ -201,7 +146,7 @@ acquire_name (void)
 
         if (! acquire_name_on_proxy (bus_proxy, GSM_DBUS_NAME) ) {
                 gsm_util_init_error (TRUE,
-                                     "Could not start D-Bus: %s",
+                                     "Could not acquire name on session bus: %s",
                                      error->message);
                 /* not reached */
         }
@@ -249,11 +194,7 @@ main (int argc, char **argv)
         client_store = gsm_store_new ();
 
 
-        /* Start up gconfd and dbus-daemon (in parallel) if they're not
-         * already running. This requires us to initialize XSMP too, because
-         * we want $SESSION_MANAGER to be set before launching dbus-daemon.
-         */
-        maybe_start_session_bus ();
+        /* Start up gconfd if not already running. */
         gsm_gconf_init ();
 
         xsmp_server = gsm_xsmp_server_new (client_store);

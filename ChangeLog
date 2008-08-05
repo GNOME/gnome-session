@@ -1,5 +1,11 @@
 2008-08-04  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/main.c (acquire_name), (main):
+	Remove session bus launching code.  The bus was
+	designed to be started before the session is run.
+
+2008-08-04  William Jon McCann  <jmccann@redhat.com>
+
 	* compat/at-spi-registryd-wrapper.c:
 	* egg/eggdesktopfile.c:
 	* gnome-session/gsm-util.c:
