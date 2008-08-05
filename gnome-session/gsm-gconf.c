@@ -26,6 +26,7 @@
 #include <glib/gi18n.h>
 
 #include <sys/wait.h>
+#include <sys/types.h>
 
 #include "gsm-gconf.h"
 #include "gsm-util.h"
