@@ -32,7 +32,7 @@
 #include "gsm-util.h"
 
 #define DESKTOP_ENTRY_GROUP  "Desktop Entry"
-#define STARTUP_APP_ICON     "gnome-run"
+#define STARTUP_APP_ICON     "system-run"
 
 #define REALLY_IDENTICAL_STRING(a, b)                   \
         ((a && b && !strcmp (a, b)) || (!a && !b))
