@@ -36,6 +36,7 @@
 
 #include "gsm-inhibit-dialog.h"
 #include "gsm-store.h"
+#include "gsm-client.h"
 #include "gsm-inhibitor.h"
 #include "eggdesktopfile.h"
 #include "gsm-util.h"
@@ -66,6 +67,7 @@ struct GsmInhibitDialogPrivate
         int                action;
         gboolean           is_done;
         GsmStore          *inhibitors;
+        GsmStore          *clients;
         GtkListStore      *list_store;
         gboolean           have_xrender;
         int                xrender_event_base;
@@ -76,6 +78,7 @@ enum {
         PROP_0,
         PROP_ACTION,
         PROP_INHIBITOR_STORE,
+        PROP_CLIENT_STORE,
 };
 
 enum {
@@ -489,11 +492,14 @@ add_inhibitor (GsmInhibitDialog *dialog,
         GError         *error;
         char          **search_dirs;
         guint           xid;
+        char           *freeme;
 
         /* FIXME: get info from xid */
 
         name = NULL;
         pixbuf = NULL;
+        freeme = NULL;
+
         app_id = gsm_inhibitor_peek_app_id (inhibitor);
 
         if (IS_STRING_EMPTY (app_id)) {
@@ -553,6 +559,19 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 }
         }
 
+        /* try client info */
+        if (name == NULL) {
+                const char *client_id;
+                client_id = gsm_inhibitor_peek_client_id (inhibitor);
+                if (! IS_STRING_EMPTY (client_id)) {
+                        GsmClient *client;
+                        client = gsm_store_lookup (dialog->priv->clients, client_id);
+                        if (client != NULL) {
+                                freeme = name = gsm_client_get_app_name (client);
+                        }
+                }
+        }
+
         if (name == NULL) {
                 if (! IS_STRING_EMPTY (app_id)) {
                         name = app_id;
@@ -579,6 +598,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                                            -1);
 
         g_free (desktop_filename);
+        g_free (freeme);
         if (pixbuf != NULL) {
                 g_object_unref (pixbuf);
         }
@@ -714,6 +734,23 @@ gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
 }
 
 static void
+gsm_inhibit_dialog_set_client_store (GsmInhibitDialog *dialog,
+                                     GsmStore         *store)
+{
+        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
+
+        if (store != NULL) {
+                g_object_ref (store);
+        }
+
+        if (dialog->priv->clients != NULL) {
+                g_object_unref (dialog->priv->clients);
+        }
+
+        dialog->priv->clients = store;
+}
+
+static void
 gsm_inhibit_dialog_set_property (GObject        *object,
                                  guint           prop_id,
                                  const GValue   *value,
@@ -727,6 +764,9 @@ gsm_inhibit_dialog_set_property (GObject        *object,
                 break;
         case PROP_INHIBITOR_STORE:
                 gsm_inhibit_dialog_set_inhibitor_store (dialog, g_value_get_object (value));
+                break;
+        case PROP_CLIENT_STORE:
+                gsm_inhibit_dialog_set_client_store (dialog, g_value_get_object (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -748,6 +788,9 @@ gsm_inhibit_dialog_get_property (GObject        *object,
                 break;
         case PROP_INHIBITOR_STORE:
                 g_value_set_object (value, dialog->priv->inhibitors);
+                break;
+        case PROP_CLIENT_STORE:
+                g_value_set_object (value, dialog->priv->clients);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -982,6 +1025,13 @@ gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
                                                               NULL,
                                                               GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_CLIENT_STORE,
+                                         g_param_spec_object ("client-store",
+                                                              NULL,
+                                                              NULL,
+                                                              GSM_TYPE_STORE,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmInhibitDialogPrivate));
 }
@@ -1031,6 +1081,7 @@ gsm_inhibit_dialog_finalize (GObject *object)
 
 GtkWidget *
 gsm_inhibit_dialog_new (GsmStore *inhibitors,
+                        GsmStore *clients,
                         int       action)
 {
         GObject *object;
@@ -1038,6 +1089,7 @@ gsm_inhibit_dialog_new (GsmStore *inhibitors,
         object = g_object_new (GSM_TYPE_INHIBIT_DIALOG,
                                "action", action,
                                "inhibitor-store", inhibitors,
+                               "client-store", clients,
                                NULL);
 
         return GTK_WIDGET (object);

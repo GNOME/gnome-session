@@ -1,5 +1,21 @@
 2008-08-08  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor),
+	(gsm_inhibit_dialog_set_client_store),
+	(gsm_inhibit_dialog_set_property),
+	(gsm_inhibit_dialog_get_property), (gsm_inhibit_dialog_class_init),
+	(gsm_inhibit_dialog_new):
+	* gnome-session/gsm-inhibit-dialog.h:
+	* gnome-session/gsm-manager.c (query_end_session_complete),
+	(on_client_end_session_response), (request_reboot),
+	(request_shutdown), (request_suspend), (request_hibernate),
+	(request_switch_user):
+	Try to get application name for client when not responding
+	and we don't have an app-id for it.
+	Should fix #546755
+
+2008-08-08  William Jon McCann  <jmccann@redhat.com>
+
 	* configure.in: Bump dbus-glib dep to 0.76
 	Fixes #546722
 

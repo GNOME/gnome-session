@@ -806,6 +806,7 @@ query_end_session_complete (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_LOGOUT);
 
         g_signal_connect (manager->priv->inhibit_dialog,
@@ -1437,7 +1438,7 @@ on_client_end_session_response (GsmClient  *client,
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (client),
                                                           app_id,
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
-                                                          reason,
+                                                          reason != NULL ? reason : _("Not responding"),
                                                           bus_name,
                                                           cookie);
                 g_free (app_id);
@@ -2181,6 +2182,7 @@ request_reboot (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_REBOOT);
 
         g_signal_connect (manager->priv->inhibit_dialog,
@@ -2208,6 +2210,7 @@ request_shutdown (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_SHUTDOWN);
 
         g_signal_connect (manager->priv->inhibit_dialog,
@@ -2234,6 +2237,7 @@ request_suspend (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_SLEEP);
 
         g_signal_connect (manager->priv->inhibit_dialog,
@@ -2261,6 +2265,7 @@ request_hibernate (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_HIBERNATE);
 
         g_signal_connect (manager->priv->inhibit_dialog,
@@ -2297,6 +2302,7 @@ request_switch_user (GsmManager *manager)
         }
 
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+                                                                manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_SWITCH_USER);
 
         g_signal_connect (manager->priv->inhibit_dialog,

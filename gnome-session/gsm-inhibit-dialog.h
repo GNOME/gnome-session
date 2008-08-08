@@ -61,6 +61,7 @@ typedef struct
 GType                  gsm_inhibit_dialog_get_type           (void);
 
 GtkWidget            * gsm_inhibit_dialog_new                (GsmStore         *inhibitors,
+                                                              GsmStore         *clients,
                                                               int               action);
 GtkTreeModel         * gsm_inhibit_dialog_get_model          (GsmInhibitDialog *dialog);
 
