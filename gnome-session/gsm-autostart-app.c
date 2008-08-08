@@ -100,16 +100,8 @@ static gboolean
 is_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
-        gboolean                autorestart = FALSE;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
-
-        if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-AutoRestart", NULL)) {
-                autorestart = egg_desktop_file_get_boolean (priv->desktop_file,
-                                                            "X-GNOME-AutoRestart",
-                                                            NULL);
-        }
 
         /* X-GNOME-Autostart-enabled key, used by old gnome-session */
         if (egg_desktop_file_has_key (priv->desktop_file,
