@@ -93,6 +93,7 @@ typedef enum
         GSM_MANAGER_ERROR_NOT_IN_RUNNING,
         GSM_MANAGER_ERROR_ALREADY_REGISTERED,
         GSM_MANAGER_ERROR_NOT_REGISTERED,
+        GSM_MANAGER_ERROR_INVALID_OPTION,
         GSM_MANAGER_NUM_ERRORS
 } GsmManagerError;
 
@@ -143,7 +144,7 @@ gboolean            gsm_manager_is_inhibited                   (GsmManager      
 gboolean            gsm_manager_shutdown                       (GsmManager     *manager,
                                                                 GError        **error);
 gboolean            gsm_manager_logout                         (GsmManager     *manager,
-                                                                int             logout_mode,
+                                                                guint           logout_mode,
                                                                 GError        **error);
 
 gboolean            gsm_manager_setenv                         (GsmManager     *manager,

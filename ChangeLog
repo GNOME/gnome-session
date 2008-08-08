@@ -1,3 +1,14 @@
+2008-08-08  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-manager.c (gsm_manager_error_get_type),
+	(gsm_manager_logout):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/org.gnome.SessionManager.xml:
+	* tools/gnome-session-save.c (display_error), (get_sm_proxy),
+	(set_session_name), (logout_session), (main):
+	Melt the gnome-session-save tool and make it actually work.
+	Fix the api for Logout to take a uint.
+
 2008-08-08  Jonh Wendell <jwendell@gnome.org>
 
 	* gnome-session/gsm-autostart-app.c (is_disabled): Dropped the

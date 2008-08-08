@@ -152,6 +152,7 @@ gsm_manager_error_get_type (void)
                         ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_IN_RUNNING, "NotInRunning"),
                         ENUM_ENTRY (GSM_MANAGER_ERROR_ALREADY_REGISTERED, "AlreadyRegistered"),
                         ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_REGISTERED, "NotRegistered"),
+                        ENUM_ENTRY (GSM_MANAGER_ERROR_INVALID_OPTION, "InvalidOption"),
                         { 0, 0, 0 }
                 };
 
@@ -2453,7 +2454,7 @@ gsm_manager_shutdown (GsmManager *manager,
 
 gboolean
 gsm_manager_logout (GsmManager *manager,
-                    gint        logout_mode,
+                    guint       logout_mode,
                     GError    **error)
 {
         g_debug ("GsmManager: Logout called");
@@ -2482,7 +2483,13 @@ gsm_manager_logout (GsmManager *manager,
                 break;
 
         default:
-                g_assert_not_reached ();
+                g_debug ("Unknown logout mode option");
+
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_INVALID_OPTION,
+                             "Unknown logout mode flag");
+                return FALSE;
         }
 
         return TRUE;
