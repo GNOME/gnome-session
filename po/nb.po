@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-07 18:24+0200\n"
-"PO-Revision-Date: 2008-06-07 18:24+0200\n"
+"POT-Creation-Date: 2008-08-09 10:59+0200\n"
+"PO-Revision-Date: 2008-08-09 11:02+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:48
+#: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -51,12 +51,13 @@ msgid "List of applications that are part of the default session."
 msgstr "Liste med programmer som er en del av forvalgt sesjon."
 
 #: ../data/gnome-session.schemas.in.h:6
+#, fuzzy
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
 "Liste med komponenter som kreves i sesjonen. (Hvert element navngir en "
 "nøkkel under «/desktop/gnome/session/required-components».) Dialog for "
@@ -99,11 +100,17 @@ msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
+"The Window manager that gnome-session will start. Valid values are \"metacity"
+"\" and \"compiz\"."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr "Filhåndterer gir deg skrivebordsikoner og lar deg håndtere dine filer."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -111,7 +118,7 @@ msgstr ""
 "Panelet er linjen øverst eller nederst på skjermen som inneholder menyer, "
 "vinduliste, statusikoner, klokke, etc."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -119,7 +126,7 @@ msgstr ""
 "Vindushåndterer er programmet som styrer tittellinje og kanter rundt vinduer "
 "i tillegg til å la deg flytte og endre størrelse på vinduene."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -129,7 +136,7 @@ msgstr ""
 "og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
 "innlogging."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:20
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -139,9 +146,13 @@ msgstr ""
 "«logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å "
 "starte systemet på nytt."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:21
 msgid "Window Manager"
 msgstr "Vindushåndterer"
+
+#: ../data/gnome-session.schemas.in.h:22
+msgid "Window Manager to start"
+msgstr "Vindushåndterer som skal startes"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -199,37 +210,52 @@ msgstr "_Navn:"
 msgid "_Remember Currently Running Application"
 msgstr "Husk kjø_rende program"
 
-#: ../egg/eggdesktopfile.c:130
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Noen programmer kjører fremdeles:</b>"
+
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr "Venter på at programmet skal avsluttes. Hvis du avbryter programmet kan du miste data."
+
+#: ../data/gsm-inhibit-dialog.glade.h:3
+msgid "gtk-cancel"
+msgstr ""
+
+#: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "Filen er ikke en gyldig .desktop-fil"
 
-#: ../egg/eggdesktopfile.c:153
+#: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Versjon «%s» i skrivebordsfil ikke gjenkjent"
 
-#: ../egg/eggdesktopfile.c:926
+#: ../egg/eggdesktopfile.c:961
 #, c-format
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: ../egg/eggdesktopfile.c:1060
+#: ../egg/eggdesktopfile.c:1095
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Programmet tar ikke dokumenter på kommandolinjen"
 
-#: ../egg/eggdesktopfile.c:1128
+#: ../egg/eggdesktopfile.c:1163
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Ikke gjenkjent oppstartsflagg: %d"
 
-#: ../egg/eggdesktopfile.c:1335
+#: ../egg/eggdesktopfile.c:1370
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Kan ikke gi dokument-URIer til en skrivebordsoppføring med «Type=Link»"
 
-#: ../egg/eggdesktopfile.c:1354
+#: ../egg/eggdesktopfile.c:1389
 #, c-format
 msgid "Not a launchable item"
 msgstr "Ikke en startbar oppføring"
@@ -270,7 +296,7 @@ msgstr "Alternativer for sesjonshåndtering"
 msgid "Show Session Management options"
 msgstr "Vis alternativer for sesjonshåndtering"
 
-#: ../gnome-session/gconf.c:110
+#: ../gnome-session/gsm-gconf.c:106
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -279,7 +305,62 @@ msgstr ""
 "Det er problemer med konfigurasjonstjeneren.\n"
 "(%s avsluttet med status %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/gsm-inhibit-dialog.c:256
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "Ikon «%s» ikke funnet"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:579
+msgid "Unknown"
+msgstr "Ukjent"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:627
+msgid "A program is still running:"
+msgstr "Et program kjører fremdeles:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:631
+msgid "Some programs are still running:"
+msgstr "Noen programmer kjører fremdeles:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid ""
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
+msgstr "Venter på at programmer skal avsluttes. Hvis du avbryter disse programmene kan du miste data."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:860
+msgid "Switch User Anyway"
+msgstr "Bytt bruker likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:863
+msgid "Logout Anyway"
+msgstr "Logg ut likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:866
+msgid "Suspend Anyway"
+msgstr "Gå i hvilemodus likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:869
+msgid "Hibernate Anyway"
+msgstr "Gå i dvalemodus likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:872
+msgid "Shutdown Anyway"
+msgstr "Slå av likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:875
+msgid "Reboot Anyway"
+msgstr "Start på nytt likevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:883
+msgid "Lock Screen"
+msgstr "Lås skjerm"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:886
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -290,7 +371,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/gsm-logout-dialog.c:295
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -301,136 +382,140 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:371
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Shut Down"
 msgstr "_Steng ned"
 
-#: ../gnome-session/main.c:34
-msgid "Do not load user-specified applications"
-msgstr "Ikke last brukerdefinerte programmer"
+#: ../gnome-session/gsm-manager.c:878 ../gnome-session/gsm-manager.c:1442
+msgid "Not responding"
+msgstr "Svarer ikke"
 
-#. Oh well, no X for you!
-#: ../gnome-session/main.c:69
-#, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
+#: ../gnome-session/gsm-xsmp-client.c:912
+msgid "This program is blocking log out."
+msgstr "Dette programmet hindrer utlogging."
 
-#: ../gnome-session/main.c:105
-msgid " - the GNOME session manager"
-msgstr "- GNOME sesjonshåndterer"
-
-#: ../gnome-session/xsmp.c:130
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
-
-#: ../gnome-session/xsmp.c:335
+#: ../gnome-session/gsm-xsmp-server.c:234
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Nekter ny klient tilgang fordi sesjonen er i ferd med å avsluttes\n"
 
-#: ../capplet/main.c:69
+#: ../gnome-session/gsm-xsmp-server.c:489
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
+
+#. Oh well, no X for you!
+#: ../gnome-session/gsm-util.c:138
+#, c-format
+msgid "Unable to start login session (and unable connect to the X server)"
+msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
+
+#: ../gnome-session/main.c:51
+msgid "Do not load user-specified applications"
+msgstr "Ikke last brukerdefinerte programmer"
+
+#: ../gnome-session/main.c:180
+msgid " - the GNOME session manager"
+msgstr "- GNOME sesjonshåndterer"
+
+#: ../capplet/main.c:67
 #, c-format
 msgid "Could not connect to the session manager\n"
 msgstr "Kunne ikke koble til sesjonshåndterer\n"
 
-#: ../capplet/ui.c:107
+#: ../capplet/ui.c:112
 msgid "Select Command"
 msgstr "Velg kommando"
 
-#: ../capplet/ui.c:219
+#: ../capplet/ui.c:226
 msgid "The name of the startup program cannot be empty"
 msgstr "Navn på oppstartsprogrammet kan ikke være tomt"
 
-#: ../capplet/ui.c:222
+#: ../capplet/ui.c:230
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommando kan ikke være tom"
 
-#: ../capplet/ui.c:229
+#: ../capplet/ui.c:237
 msgid "The startup command is not valid"
 msgstr "Oppstartskommandoen er ikke gyldig"
 
-#: ../capplet/ui.c:464
+#: ../capplet/ui.c:473
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: ../capplet/ui.c:478
+#: ../capplet/ui.c:487
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/ui.c:490
+#: ../capplet/ui.c:499
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/ui.c:536
+#: ../capplet/ui.c:545
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: ../capplet/ui.c:586
+#: ../capplet/ui.c:598
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/commands.c:793
+#: ../capplet/commands.c:799
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:52
 msgid "Set the current session name"
 msgstr "Gi navn til denne sesjonen"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:52
 msgid "NAME"
 msgstr "NAVN"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:53
 msgid "Kill session"
 msgstr "Terminer sesjon"
 
-#: ../tools/gnome-session-save.c:56
+#: ../tools/gnome-session-save.c:54
 msgid "Use dialog boxes for errors"
 msgstr "Bruk dialoger for feil"
 
-#: ../tools/gnome-session-save.c:57
+#: ../tools/gnome-session-save.c:55
 msgid "Do not require confirmation"
 msgstr "Ikke krev bekreftelse"
 
-#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
-#: ../tools/gnome-session-save.c:261
+#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
+#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonshåndterer"
-
-#: ../tools/gnome-session-save.c:246
-msgid " - Save the current session"
-msgstr "- Lagre denne sesjonen"
 
 #: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
@@ -440,6 +525,6 @@ msgstr "Spill lyd når du logger ut i stedet for når du logger inn"
 msgid "- GNOME login/logout sound"
 msgstr "- Lyd for inn-/utlogging i GNOME"
 
-#: ../splash/gnome-session-splash.c:283
+#: ../splash/gnome-session-splash.c:281
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME oppstartskjerm"
