@@ -401,6 +401,12 @@ key_file_set_locale_string (GKeyFile   *keyfile,
         const char * const *langs_pointer;
         int                 i;
 
+        g_assert (key != NULL);
+
+        if (value == NULL) {
+                value = "";
+        }
+
         locale = NULL;
         langs_pointer = g_get_language_names ();
 
@@ -412,9 +418,12 @@ key_file_set_locale_string (GKeyFile   *keyfile,
                 }
         }
 
-        if (locale) {
-                g_key_file_set_locale_string (keyfile, group,
-                                              key, locale, value);
+        if (locale != NULL) {
+                g_key_file_set_locale_string (keyfile,
+                                              group,
+                                              key,
+                                              locale,
+                                              value);
         } else {
                 g_key_file_set_string (keyfile, "Desktop Entry", key, value);
         }
@@ -494,12 +503,11 @@ write_desktop_file (EggDesktopFile *desktop_file,
         path = g_file_get_path (source);
 
         error = NULL;
-
-        g_key_file_load_from_file (keyfile, path,
-                                   G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
+        g_key_file_load_from_file (keyfile,
+                                   path,
+                                   G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
                                    &error);
-
-        if (error) {
+        if (error != NULL) {
                 goto out;
         }
 
@@ -519,7 +527,8 @@ write_desktop_file (EggDesktopFile *desktop_file,
                 path_changed = TRUE;
         }
 
-        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
+        gtk_tree_model_get (GTK_TREE_MODEL (store),
+                            iter,
                             STORE_COL_NAME, &name,
                             STORE_COL_COMMAND, &command,
                             STORE_COL_COMMENT, &comment,
@@ -556,7 +565,7 @@ write_desktop_file (EggDesktopFile *desktop_file,
         }
 
  out:
-        if (error) {
+        if (error != NULL) {
                 g_warning ("Error when writing desktop file %s: %s",
                            path, error->message);
 
