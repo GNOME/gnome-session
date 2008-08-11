@@ -1,3 +1,42 @@
+2008-08-11  William Jon McCann  <jmccann@redhat.com>
+
+	* capplet/Makefile.am:
+	* capplet/commands.c:
+	* capplet/commands.h:
+	* capplet/gsm-app-dialog.c (make_exec_uri),
+	(on_browse_button_clicked), (on_entry_activate), (setup_dialog),
+	(gsm_app_dialog_constructor), (gsm_app_dialog_dispose),
+	(gsm_app_dialog_set_name), (gsm_app_dialog_set_command),
+	(gsm_app_dialog_set_comment), (gsm_app_dialog_get_name),
+	(gsm_app_dialog_get_command), (gsm_app_dialog_get_comment),
+	(gsm_app_dialog_set_property), (gsm_app_dialog_get_property),
+	(gsm_app_dialog_class_init), (gsm_app_dialog_init),
+	(gsm_app_dialog_finalize), (gsm_app_dialog_new):
+	* capplet/gsm-app-dialog.h:
+	* capplet/gsm-properties-dialog.c (on_response), (find_by_id),
+	(get_app_description), (append_app), (compare_app),
+	(append_autostart_apps), (populate_model), (on_selection_changed),
+	(system_desktop_entry_exists), (update_desktop_file),
+	(ensure_user_autostart_dir), (key_file_set_locale_string),
+	(key_file_to_file), (write_desktop_file), (enable_app),
+	(disable_app), (on_startup_enabled_toggled), (add_app),
+	(add_from_desktop_file), (on_drag_data), (edit_app_dialog),
+	(on_add_app_clicked), (delete_desktop_file), (delete_app),
+	(on_delete_app_clicked), (update_app), (on_edit_app_clicked),
+	(on_autosave_value_notify), (on_autosave_value_toggled),
+	(on_save_session_clicked), (setup_dialog),
+	(gsm_properties_dialog_constructor),
+	(gsm_properties_dialog_dispose),
+	(gsm_properties_dialog_class_init), (gsm_properties_dialog_init),
+	(gsm_properties_dialog_finalize), (gsm_properties_dialog_new):
+	* capplet/gsm-properties-dialog.h:
+	* capplet/main.c (dialog_response), (main):
+	* capplet/ui.c:
+	* capplet/ui.h:
+	* data/session-properties.glade:
+	* gnome-session/gsm-inhibit-dialog.h:
+	Rework the dialogs to use gobject.
+
 2008-08-08  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-manager.c (gsm_manager_error_get_type),

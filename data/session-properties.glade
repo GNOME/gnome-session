@@ -1,4 +1,6 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<!--Generated with glade3 3.4.4 on Mon Aug 11 15:28:59 2008 -->
 <glade-interface>
   <widget class="GtkDialog" id="session_properties_edit_dialog">
     <property name="border_width">5</property>
@@ -11,7 +13,7 @@
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkTable" id="table1">
+          <widget class="GtkTable" id="main-table">
             <property name="visible">True</property>
             <property name="border_width">5</property>
             <property name="n_rows">3</property>
@@ -172,7 +174,7 @@
         <property name="visible">True</property>
         <property name="spacing">2</property>
         <child>
-          <widget class="GtkNotebook" id="notebook2">
+          <widget class="GtkNotebook" id="main-notebook">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
@@ -283,8 +285,8 @@
                 <property name="label" translatable="yes">Startup Programs</property>
               </widget>
               <packing>
-                <property name="tab_fill">False</property>
                 <property name="type">tab</property>
+                <property name="tab_fill">False</property>
               </packing>
             </child>
             <child>
@@ -366,9 +368,9 @@
                 <property name="label" translatable="yes">Options</property>
               </widget>
               <packing>
+                <property name="type">tab</property>
                 <property name="position">1</property>
                 <property name="tab_fill">False</property>
-                <property name="type">tab</property>
               </packing>
             </child>
           </widget>
