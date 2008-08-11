@@ -1463,6 +1463,25 @@ on_client_end_session_response (GsmClient  *client,
 }
 
 static void
+on_xsmp_client_logout_request (GsmXSMPClient *client,
+                               gboolean       show_dialog,
+                               GsmManager    *manager)
+{
+        GError *error;
+        int     logout_mode;
+
+        logout_mode = (show_dialog) ? GSM_MANAGER_LOGOUT_MODE_NORMAL :
+                GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION;
+
+        error = NULL;
+        gsm_manager_logout (manager, logout_mode, &error);
+        if (error != NULL) {
+                g_warning ("Unable to logout: %s", error->message);
+                g_error_free (error);
+        }
+}
+
+static void
 on_store_client_added (GsmStore   *store,
                        const char *id,
                        GsmManager *manager)
@@ -1478,6 +1497,10 @@ on_store_client_added (GsmStore   *store,
                 g_signal_connect (client,
                                   "register-request",
                                   G_CALLBACK (on_xsmp_client_register_request),
+                                  manager);
+                g_signal_connect (client,
+                                  "logout-request",
+                                  G_CALLBACK (on_xsmp_client_logout_request),
                                   manager);
         }
 

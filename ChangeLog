@@ -1,5 +1,13 @@
 2008-08-11  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (on_xsmp_client_logout_request),
+	(on_store_client_added):
+	Add back support for logout via SaveYourselfRequest.
+	Based on patch from: Kim Woelders <kim@woelders.dk>
+	Fixes #547069
+
+2008-08-11  William Jon McCann  <jmccann@redhat.com>
+
 	* capplet/main.c (main):
 	Add support for --version.
 
