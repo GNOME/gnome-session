@@ -31,7 +31,10 @@
 
 #include "gsm-properties-dialog.h"
 
+static gboolean    show_version     = FALSE;
+
 static GOptionEntry options[] = {
+        { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
         { NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
@@ -57,6 +60,11 @@ main (int argc, char *argv[])
         if (! gtk_init_with_args (&argc, &argv, " - GNOME Session Properties", options, GETTEXT_PACKAGE, &error)) {
                 g_warning ("Unable to start: %s", error->message);
                 g_error_free (error);
+                exit (1);
+        }
+
+        if (show_version) {
+                g_print ("%s %s\n", argv [0], VERSION);
                 exit (1);
         }
 
