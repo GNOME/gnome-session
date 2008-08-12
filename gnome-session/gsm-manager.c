@@ -286,14 +286,19 @@ phase_num_to_name (guint phase)
         switch (phase) {
         case GSM_MANAGER_PHASE_STARTUP:
                 name = "STARTUP";
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
                 name = "INITIALIZATION";
+                break;
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
                 name = "WINDOW_MANAGER";
+                break;
         case GSM_MANAGER_PHASE_PANEL:
                 name = "PANEL";
+                break;
         case GSM_MANAGER_PHASE_DESKTOP:
                 name = "DESKTOP";
+                break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 name = "APPLICATION";
                 break;
