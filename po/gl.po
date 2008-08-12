@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-04 20:47+0200\n"
-"PO-Revision-Date: 2008-08-04 20:53+0200\n"
+"POT-Creation-Date: 2008-08-12 08:42+0200\n"
+"PO-Revision-Date: 2008-08-12 08:42+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:48
+#: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -207,6 +207,7 @@ msgid "Options"
 msgstr "Opcións"
 
 #: ../data/session-properties.glade.h:6
+#: ../capplet/gsm-properties-dialog.c:1462
 msgid "Sessions Preferences"
 msgstr "Preferencias de sesión"
 
@@ -227,38 +228,55 @@ msgstr "_Nome:"
 msgid "_Remember Currently Running Application"
 msgstr "_Recordar as aplicacións que están actualmente en execución"
 
-#: ../egg/eggdesktopfile.c:166
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Algúns programas están todavía en execución:</b>"
+
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Esperando a que remate o programa.  A interrupción do programa pode causar "
+"pérdida de traballo."
+
+#: ../data/gsm-inhibit-dialog.glade.h:3
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "O ficheiro non é un ficheiro .desktop válido"
 
-#: ../egg/eggdesktopfile.c:189
+#: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "A versión '%s' do ficheiro desktop non se recoñece"
 
-#: ../egg/eggdesktopfile.c:962
+#: ../egg/eggdesktopfile.c:961
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../egg/eggdesktopfile.c:1096
+#: ../egg/eggdesktopfile.c:1095
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "A aplicación non acepta documentos na liña de comandos"
 
-#: ../egg/eggdesktopfile.c:1164
+#: ../egg/eggdesktopfile.c:1163
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Opción de lanzamento non recoñecida: %d"
 
-#: ../egg/eggdesktopfile.c:1371
+#: ../egg/eggdesktopfile.c:1370
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
 "Non se poden pasar as URIs de documentos a entradas de escritorio 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1390
+#: ../egg/eggdesktopfile.c:1389
 #, c-format
 msgid "Not a launchable item"
 msgstr "Non é un elemento que se poida lanzar"
@@ -299,7 +317,7 @@ msgstr "Opcións de xestión da sesión"
 msgid "Show Session Management options"
 msgstr "Mostrar opcións da xestión da sesión"
 
-#: ../gnome-session/gsm-gconf.c:108
+#: ../gnome-session/gsm-gconf.c:106
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -308,33 +326,24 @@ msgstr ""
 "Hai un problema coa configuración do servidor.\n"
 "(%s saíu co estado %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
+#: ../gnome-session/gsm-inhibit-dialog.c:256
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Non se encontrou a icona '%s'"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:560
+#: ../gnome-session/gsm-inhibit-dialog.c:579
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:607
+#: ../gnome-session/gsm-inhibit-dialog.c:627
 msgid "A program is still running:"
 msgstr "Un programa está todavía en execución:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:608
-#: ../gnome-session/gsm-inhibit-dialog.glade.h:2
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Esperando a que remate o programa.  A interrupción do programa pode causar "
-"pérdida de traballo."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:611
+#: ../gnome-session/gsm-inhibit-dialog.c:631
 msgid "Some programs are still running:"
 msgstr "Algúns programas están todavía en execución:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:612
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -342,45 +351,37 @@ msgstr ""
 "Esperando a que rematen os programas.  Interrumpir estes programas pode "
 "causar unha perda de traballo."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:817
+#: ../gnome-session/gsm-inhibit-dialog.c:860
 msgid "Switch User Anyway"
 msgstr "Cambiar de usuario de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:820
+#: ../gnome-session/gsm-inhibit-dialog.c:863
 msgid "Logout Anyway"
 msgstr "Pechar sesión de todas as formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:823
+#: ../gnome-session/gsm-inhibit-dialog.c:866
 msgid "Suspend Anyway"
 msgstr "Suspender de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:826
+#: ../gnome-session/gsm-inhibit-dialog.c:869
 msgid "Hibernate Anyway"
 msgstr "Hibernar de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:829
+#: ../gnome-session/gsm-inhibit-dialog.c:872
 msgid "Shutdown Anyway"
 msgstr "Apagar de todas as formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:832
+#: ../gnome-session/gsm-inhibit-dialog.c:875
 msgid "Reboot Anyway"
 msgstr "Reiniciar de todas as formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:840
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Lock Screen"
 msgstr "Bloquear pantalla"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:843
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Cancel"
 msgstr "Cancelar"
-
-#: ../gnome-session/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Algúns programas están todavía en execución:</b>"
-
-#: ../gnome-session/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
 
 #: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
@@ -444,7 +445,7 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "A_pagar"
 
-#: ../gnome-session/gsm-manager.c:869
+#: ../gnome-session/gsm-manager.c:878 ../gnome-session/gsm-manager.c:1442
 msgid "Not responding"
 msgstr "Non respondendo"
 
@@ -466,106 +467,107 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Non se puido crear o socket de escoita ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:140
+#: ../gnome-session/gsm-util.c:138
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 "Non se puido iniciar o inicio de sesión (e foi imposible conectar co "
 "servidor de X)"
 
-#: ../gnome-session/main.c:52
+#: ../gnome-session/main.c:51
 msgid "Do not load user-specified applications"
 msgstr "Non cargar as aplicacións especificadas polo usuario"
 
-#: ../gnome-session/main.c:236
+#: ../gnome-session/main.c:180
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións de Gnome"
 
-#: ../capplet/main.c:69
-#, c-format
-msgid "Could not connect to the session manager\n"
-msgstr "Non se puido conectar co xestor de sesión\n"
+#: ../capplet/main.c:37
+msgid "Version of this application"
+msgstr "A versión desta aplicación"
 
-#: ../capplet/ui.c:107
+#: ../capplet/gsm-app-dialog.c:130
 msgid "Select Command"
 msgstr "Seleccionar comando"
 
-#: ../capplet/ui.c:219
-msgid "The name of the startup program cannot be empty"
-msgstr "O nome do programa de inicio non pode estar baleiro"
-
-#: ../capplet/ui.c:222
-msgid "The startup command cannot be empty"
-msgstr "O comando de inicio non pode estar baleiro"
-
-#: ../capplet/ui.c:229
-msgid "The startup command is not valid"
-msgstr "O comando de inicio non é válido"
-
-#: ../capplet/ui.c:464
-msgid "Enabled"
-msgstr "Activado"
-
-#: ../capplet/ui.c:478
-msgid "Icon"
-msgstr "Icona"
-
-#: ../capplet/ui.c:490
-msgid "Program"
-msgstr "Programa"
-
-#: ../capplet/ui.c:536
+#: ../capplet/gsm-app-dialog.c:174
 msgid "Add Startup Program"
 msgstr "Engadir programa ao inicio"
 
-#: ../capplet/ui.c:586
+#: ../capplet/gsm-app-dialog.c:178
 msgid "Edit Startup Program"
 msgstr "Editar programa de inicio"
 
-#: ../capplet/commands.c:795
+#: ../capplet/gsm-properties-dialog.c:131
 msgid "No description"
 msgstr "Sen descrición"
 
-#: ../tools/gnome-session-save.c:54
+#: ../capplet/gsm-properties-dialog.c:974
+msgid "The name of the startup program cannot be empty"
+msgstr "O nome do programa de inicio non pode estar baleiro"
+
+#: ../capplet/gsm-properties-dialog.c:978
+msgid "The startup command cannot be empty"
+msgstr "O comando de inicio non pode estar baleiro"
+
+#: ../capplet/gsm-properties-dialog.c:984
+msgid "The startup command is not valid"
+msgstr "O comando de inicio non é válido"
+
+#: ../capplet/gsm-properties-dialog.c:1288
+msgid "Enabled"
+msgstr "Activado"
+
+#: ../capplet/gsm-properties-dialog.c:1301
+msgid "Icon"
+msgstr "Icona"
+
+#: ../capplet/gsm-properties-dialog.c:1312
+msgid "Program"
+msgstr "Programa"
+
+#: ../tools/gnome-session-save.c:52
 msgid "Set the current session name"
 msgstr "Definir o nome da sesión actual"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:52
 msgid "NAME"
 msgstr "NOME"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:53
 msgid "Kill session"
 msgstr "Matar sesión"
 
-#: ../tools/gnome-session-save.c:56
+#: ../tools/gnome-session-save.c:54
 msgid "Use dialog boxes for errors"
 msgstr "Usar caixas de diálogo para erros"
 
-#: ../tools/gnome-session-save.c:57
+#: ../tools/gnome-session-save.c:55
 msgid "Do not require confirmation"
 msgstr "Non solicitar confirmación"
 
-#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
-#: ../tools/gnome-session-save.c:261
+#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
+#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
 msgid "Could not connect to the session manager"
 msgstr "Non se puido conectar co xestor de sesión"
 
-#: ../tools/gnome-session-save.c:246
-msgid " - Save the current session"
-msgstr " - Gardar a sesión actual"
-
-#: ../splash/gnome-login-sound.c:141
+#: ../splash/gnome-login-sound.c:136
 msgid "Play logout sound instead of login"
 msgstr "Reproducir o son de saída no lugar do de entrada"
 
-#: ../splash/gnome-login-sound.c:153
+#: ../splash/gnome-login-sound.c:148
 msgid "- GNOME login/logout sound"
 msgstr "- Son de inicio/saída de sesión de Gnome"
 
-#: ../splash/gnome-session-splash.c:283
+#: ../splash/gnome-session-splash.c:281
 msgid "- GNOME Splash Screen"
 msgstr "- Pantalla de benvida de Gnome"
+
+#~ msgid "Could not connect to the session manager\n"
+#~ msgstr "Non se puido conectar co xestor de sesión\n"
+
+#~ msgid " - Save the current session"
+#~ msgstr " - Gardar a sesión actual"
 
 #~ msgid "Allow TCP connections"
 #~ msgstr "Permitir conexións TCP"
