@@ -729,6 +729,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
 
         env[0] = g_strdup_printf ("DESKTOP_AUTOSTART_ID=%s", startup_id);
 
+        local_error = NULL;
         command = egg_desktop_file_parse_exec (app->priv->desktop_file,
                                                NULL,
                                                &local_error);
