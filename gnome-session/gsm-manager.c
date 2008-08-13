@@ -1706,7 +1706,7 @@ append_default_apps (GsmManager *manager,
         char       **app_dirs;
         GConfClient *client;
 
-        g_debug ("GsmManager: append_default_apps ()");
+        g_debug ("GsmManager: *** Adding default apps");
 
         app_dirs = gsm_util_get_app_dirs ();
 
@@ -1729,9 +1729,6 @@ append_default_apps (GsmManager *manager,
                 }
 
                 desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data);
-
-                g_debug ("GsmManager: Looking for: %s", desktop_file);
-
                 g_key_file_load_from_dirs (key_file,
                                            desktop_file,
                                            (const gchar**) app_dirs,
@@ -1773,18 +1770,15 @@ append_default_apps (GsmManager *manager,
                 if (app_path != NULL) {
                         GsmApp *app;
 
-                        g_debug ("GsmManager: Found in: %s", app_path);
-
                         app = gsm_autostart_app_new (app_path);
-                        g_free (app_path);
-
                         if (app != NULL) {
-                                g_debug ("GsmManager: read %s\n", desktop_file);
+                                g_debug ("GsmManager: read %s\n", app_path);
                                 append_app (manager, app);
                                 g_object_unref (app);
                         } else {
-                                g_warning ("could not read %s\n", desktop_file);
+                                g_warning ("could not read %s\n", app_path);
                         }
+                        g_free (app_path);
                 }
 
                 g_free (desktop_file);
@@ -1803,7 +1797,7 @@ append_autostart_apps (GsmManager *manager,
         GDir       *dir;
         const char *name;
 
-        g_debug ("GsmManager: append_autostart_apps (%s)", path);
+        g_debug ("GsmManager: *** Adding autostart apps (%s)", path);
 
         dir = g_dir_open (path, 0, NULL);
         if (dir == NULL) {

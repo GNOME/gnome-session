@@ -457,8 +457,6 @@ gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
 {
         GError *error;
 
-        g_debug ("GsmAutostartApp: setting desktop filename to %s", desktop_filename);
-
         if (app->priv->desktop_file != NULL) {
                 egg_desktop_file_free (app->priv->desktop_file);
                 app->priv->desktop_file = NULL;
