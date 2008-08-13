@@ -48,7 +48,8 @@ gnome_session_LDADD =				\
 	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)				\
-	$(POLKIT_GNOME_LIBS)
+	$(POLKIT_GNOME_LIBS)			\
+	$(XRENDER_LIBS)
 
 gnome_session_SOURCES =				\
 	gsm-app.h				\
