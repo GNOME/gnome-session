@@ -1,5 +1,12 @@
 2008-08-13  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-autostart-app.c (is_conditionally_disabled):
+	* gnome-session/gsm-manager.c (_debug_app_for_phase),
+	(debug_app_summary), (gsm_manager_start):
+	Add a debugging summary of all apps before starting.
+
+2008-08-13  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-client.c (gsm_client_error_quark),
 	(gsm_client_error_get_type), (gsm_client_cancel_end_session),
 	(gsm_client_query_end_session), (gsm_client_end_session):

@@ -641,11 +641,6 @@ is_conditionally_disabled (GsmApp *app)
         /* Set initial condition */
         priv->condition = !disabled;
 
-        if (disabled) {
-                g_debug ("app %s is disabled by AutostartCondition",
-                         gsm_app_peek_id (app));
-        }
-
         return disabled;
 }
 

@@ -1001,6 +1001,42 @@ start_phase (GsmManager *manager)
         }
 }
 
+static gboolean
+_debug_app_for_phase (const char *id,
+                      GsmApp     *app,
+                      gpointer    data)
+{
+        guint phase;
+
+        phase = GPOINTER_TO_UINT (data);
+
+        if (gsm_app_peek_phase (app) != phase) {
+                return FALSE;
+        }
+
+        g_debug ("GsmManager:\tID: %s\tapp-id:%s\tis-disabled:%d\tis-conditionally-disabled:%d",
+                 gsm_app_peek_id (app),
+                 gsm_app_peek_app_id (app),
+                 gsm_app_peek_is_disabled (app),
+                 gsm_app_peek_is_conditionally_disabled (app));
+
+        return FALSE;
+}
+
+static void
+debug_app_summary (GsmManager *manager)
+{
+        guint phase;
+
+        g_debug ("GsmManager: App startup summary");
+        for (phase = GSM_MANAGER_PHASE_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
+                g_debug ("GsmManager: Phase %s", phase_num_to_name (phase));
+                gsm_store_foreach (manager->priv->apps,
+                                   (GsmStoreFunc)_debug_app_for_phase,
+                                   GUINT_TO_POINTER (phase));
+        }
+}
+
 void
 gsm_manager_start (GsmManager *manager)
 {
@@ -1009,7 +1045,7 @@ gsm_manager_start (GsmManager *manager)
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
         manager->priv->phase = GSM_MANAGER_PHASE_INITIALIZATION;
-
+        debug_app_summary (manager);
         start_phase (manager);
 }
 
