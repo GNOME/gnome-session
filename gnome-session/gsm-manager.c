@@ -1680,17 +1680,30 @@ append_app (GsmManager *manager,
             GsmApp     *app)
 {
         const char *id;
+        const char *app_id;
         GsmApp     *dup;
 
         id = gsm_app_peek_id (app);
         if (IS_STRING_EMPTY (id)) {
-                g_debug ("GsmManager: not adding app: no ID");
+                g_debug ("GsmManager: not adding app: no id");
                 return;
         }
 
         dup = (GsmApp *)gsm_store_lookup (manager->priv->apps, id);
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: already added");
+                return;
+        }
+
+        app_id = gsm_app_peek_app_id (app);
+        if (IS_STRING_EMPTY (app_id)) {
+                g_debug ("GsmManager: not adding app: no app-id");
+                return;
+        }
+
+        dup = find_app_for_app_id (manager, app_id);
+        if (dup != NULL) {
+                g_debug ("GsmManager: not adding app: app-id already exists");
                 return;
         }
 
@@ -1772,11 +1785,11 @@ append_default_apps (GsmManager *manager,
 
                         app = gsm_autostart_app_new (app_path);
                         if (app != NULL) {
-                                g_debug ("GsmManager: read %s\n", app_path);
+                                g_debug ("GsmManager: read %s", app_path);
                                 append_app (manager, app);
                                 g_object_unref (app);
                         } else {
-                                g_warning ("could not read %s\n", app_path);
+                                g_warning ("could not read %s", app_path);
                         }
                         g_free (app_path);
                 }
