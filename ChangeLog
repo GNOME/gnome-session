@@ -1,6 +1,15 @@
+2008-08-13  William Jon McCann  <jmccann@redhat.com>
+
+	* splash/Makefile.am:
+	* splash/gnome-login-sound.c:
+	* splash/gnome-login-sound.desktop.in:
+	* splash/gnome-logout-sound.sh:
+	Remove gnome-login-sound.  It is superseded and
+	improved upon by libcanberra-login-sound.
+
 2008-08-13 Erwann Chenede - <erwann.chenede@sun.com>
 
-	* gnome-session/Makefile.am: added XRENDER_LIBS to 
+	* gnome-session/Makefile.am: added XRENDER_LIBS to
 	  enable compilation on Solaris. Fixes #547619
 
 2008-08-12  William Jon McCann  <jmccann@redhat.com>
