@@ -18,9 +18,7 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -463,13 +461,25 @@ dbus_client_get_unix_process_id (GsmClient *client)
         return (GSM_DBUS_CLIENT (client)->priv->caller_pid);
 }
 
-static void
+static gboolean
 dbus_client_query_end_session (GsmClient *client,
-                               guint      flags)
+                               guint      flags,
+                               GError   **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         DBusMessageIter iter;
+        gboolean        ret;
+
+        ret = FALSE;
+
+        if (dbus_client->priv->bus_name == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Client is not registered");
+                return FALSE;
+        }
 
         g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
 
@@ -478,9 +488,17 @@ dbus_client_query_end_session (GsmClient *client,
                                            SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "QueryEndSession");
         if (message == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send QueryEndSession message");
                 goto out;
         }
         if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send QueryEndSession message");
                 goto out;
         }
 
@@ -488,31 +506,51 @@ dbus_client_query_end_session (GsmClient *client,
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
 
         if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send QueryEndSession message");
                 goto out;
         }
+
+        ret = TRUE;
 
  out:
         if (message != NULL) {
                 dbus_message_unref (message);
         }
+
+        return ret;
 }
 
-static void
+static gboolean
 dbus_client_end_session (GsmClient *client,
-                         guint      flags)
+                         guint      flags,
+                         GError   **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
         DBusMessageIter iter;
+        gboolean        ret;
+
+        ret = FALSE;
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
                                            SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "EndSession");
         if (message == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send EndSession message");
                 goto out;
         }
         if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send EndSession message");
                 goto out;
         }
 
@@ -520,39 +558,65 @@ dbus_client_end_session (GsmClient *client,
         dbus_message_iter_append_basic (&iter, DBUS_TYPE_UINT32, &flags);
 
         if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send EndSession message");
                 goto out;
         }
+
+        ret = TRUE;
+
  out:
         if (message != NULL) {
                 dbus_message_unref (message);
         }
+        return ret;
 }
 
-static void
-dbus_client_cancel_end_session (GsmClient *client)
+static gboolean
+dbus_client_cancel_end_session (GsmClient *client,
+                                GError   **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
+        gboolean        ret;
 
         /* unicast the signal to only the registered bus name */
         message = dbus_message_new_signal (gsm_client_peek_id (client),
                                            SM_DBUS_CLIENT_PRIVATE_INTERFACE,
                                            "CancelEndSession");
         if (message == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send CancelEndSession message");
                 goto out;
         }
         if (!dbus_message_set_destination (message, dbus_client->priv->bus_name)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send CancelEndSession message");
                 goto out;
         }
 
         if (!dbus_connection_send (dbus_client->priv->connection, message, NULL)) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Unable to send CancelEndSession message");
                 goto out;
         }
+
+        ret = TRUE;
 
  out:
         if (message != NULL) {
                 dbus_message_unref (message);
         }
+
+        return ret;
 }
 
 static void

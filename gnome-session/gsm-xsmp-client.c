@@ -85,6 +85,7 @@ client_iochannel_watch (GIOChannel    *channel,
 
         case IceProcessMessagesIOError:
                 g_debug ("GsmXSMPClient: IceProcessMessagesIOError on '%s'", client->priv->description);
+                gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_FAILED);
                 gsm_client_disconnected (GSM_CLIENT (client));
                 return FALSE;
 
@@ -108,6 +109,7 @@ _client_protocol_timeout (GsmXSMPClient *client)
                  client->priv->description,
                  IceConnectionStatus (client->priv->ice_connection));
 
+        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_FAILED);
         gsm_client_disconnected (GSM_CLIENT (client));
 
         return FALSE;
@@ -408,6 +410,8 @@ do_save_yourself (GsmXSMPClient *client,
                   int            save_type,
                   gboolean       forceful)
 {
+        g_assert (client->priv->conn != NULL);
+
         if (client->priv->next_save_yourself != -1) {
                 /* Either we're currently doing a shutdown and there's a checkpoint
                  * queued after it, or vice versa. Either way, the new SaveYourself
@@ -472,14 +476,24 @@ xsmp_interact (GsmClient *client)
         SmsInteract (xsmp->priv->conn);
 }
 
-static void
-xsmp_cancel_end_session (GsmClient *client)
+static gboolean
+xsmp_cancel_end_session (GsmClient *client,
+                         GError   **error)
 {
         GsmXSMPClient *xsmp = (GsmXSMPClient *) client;
 
         g_debug ("GsmXSMPClient: xsmp_cancel_end_session ('%s')", xsmp->priv->description);
 
+        if (xsmp->priv->conn == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Client is not registered");
+                return FALSE;
+        }
+
         SmsShutdownCancelled (xsmp->priv->conn);
+        return TRUE;
 }
 
 static gboolean
@@ -495,24 +509,44 @@ xsmp_stop (GsmClient *client,
         return TRUE;
 }
 
-static void
+static gboolean
 xsmp_query_end_session (GsmClient *client,
-                        guint      flags)
+                        guint      flags,
+                        GError   **error)
 {
         gboolean forceful;
 
+        if (GSM_XSMP_CLIENT (client)->priv->conn == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Client is not registered");
+                return FALSE;
+        }
+
         forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
         do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
+        return TRUE;
 }
 
-static void
+static gboolean
 xsmp_end_session (GsmClient *client,
-                  guint      flags)
+                  guint      flags,
+                  GError   **error)
 {
         gboolean forceful;
 
+        if (GSM_XSMP_CLIENT (client)->priv->conn == NULL) {
+                g_set_error (error,
+                             GSM_CLIENT_ERROR,
+                             GSM_CLIENT_ERROR_NOT_REGISTERED,
+                             "Client is not registered");
+                return FALSE;
+        }
+
         forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
         do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
+        return TRUE;
 }
 
 static char *
@@ -575,12 +609,8 @@ gsm_xsmp_client_get_property (GObject    *object,
 }
 
 static void
-gsm_xsmp_client_finalize (GObject *object)
+gsm_xsmp_client_disconnect (GsmXSMPClient *client)
 {
-        GsmXSMPClient *client = (GsmXSMPClient *) object;
-
-        g_debug ("GsmXSMPClient: xsmp_finalize (%s)", client->priv->description);
-
         if (client->priv->watch_id > 0) {
                 g_source_remove (client->priv->watch_id);
         }
@@ -594,6 +624,15 @@ gsm_xsmp_client_finalize (GObject *object)
         if (client->priv->protocol_timeout > 0) {
                 g_source_remove (client->priv->protocol_timeout);
         }
+}
+
+static void
+gsm_xsmp_client_finalize (GObject *object)
+{
+        GsmXSMPClient *client = (GsmXSMPClient *) object;
+
+        g_debug ("GsmXSMPClient: xsmp_finalize (%s)", client->priv->description);
+        gsm_xsmp_client_disconnect (client);
 
         g_free (client->priv->description);
 
@@ -902,6 +941,8 @@ interact_request_callback (SmsConn   conn,
                            int       dialog_type)
 {
         GsmXSMPClient *client = manager_data;
+        gboolean       res;
+        GError        *error;
 
         g_debug ("GsmXSMPClient: Client '%s' received InteractRequest(%s)",
                  client->priv->description,
@@ -917,7 +958,11 @@ interact_request_callback (SmsConn   conn,
            This grabbing is clearly bullshit and is not supported by
            the client spec or protocol spec.
         */
-        xsmp_cancel_end_session (GSM_CLIENT (client));
+        res = xsmp_cancel_end_session (GSM_CLIENT (client), &error);
+        if (! res) {
+                g_warning ("Unable to cancel end session: %s", error->message);
+                g_error_free (error);
+        }
 }
 
 static void
@@ -987,6 +1032,7 @@ close_connection_callback (SmsConn     conn,
         }
         SmFreeReasons (count, reason_msgs);
 
+        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_FINISHED);
         gsm_client_disconnected (GSM_CLIENT (client));
 }
 

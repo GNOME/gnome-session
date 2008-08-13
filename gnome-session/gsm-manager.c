@@ -500,11 +500,20 @@ _client_end_session (const char           *id,
                      GsmClient            *client,
                      ClientEndSessionData *data)
 {
-        g_debug ("GsmManager: adding client to end-session clients: %s", gsm_client_peek_id (client));
-        data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
-                                                              client);
+        gboolean ret;
+        GError  *error;
 
-        gsm_client_end_session (client, data->flags);
+        error = NULL;
+        ret = gsm_client_end_session (client, data->flags, &error);
+        if (! ret) {
+                g_warning ("Unable to query client: %s", error->message);
+                g_error_free (error);
+                /* FIXME: what should we do if we can't communicate with client? */
+        } else {
+                g_debug ("GsmManager: adding client to end-session clients: %s", gsm_client_peek_id (client));
+                data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
+                                                                      client);
+        }
 
         return FALSE;
 }
@@ -544,10 +553,20 @@ _client_query_end_session (const char           *id,
                            GsmClient            *client,
                            ClientEndSessionData *data)
 {
-        g_debug ("GsmManager: adding client to query clients: %s", gsm_client_peek_id (client));
-        data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
-                                                              client);
-        gsm_client_query_end_session (client, data->flags);
+        gboolean ret;
+        GError  *error;
+
+        error = NULL;
+        ret = gsm_client_query_end_session (client, data->flags, &error);
+        if (! ret) {
+                g_warning ("Unable to query client: %s", error->message);
+                g_error_free (error);
+                /* FIXME: what should we do if we can't communicate with client? */
+        } else {
+                g_debug ("GsmManager: adding client to query clients: %s", gsm_client_peek_id (client));
+                data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
+                                                                      client);
+        }
 
         return FALSE;
 }
@@ -590,7 +609,15 @@ _client_cancel_end_session (const char *id,
                             GsmClient  *client,
                             GsmManager *manager)
 {
-        gsm_client_cancel_end_session (client);
+        gboolean res;
+        GError  *error;
+
+        error = NULL;
+        res = gsm_client_cancel_end_session (client, &error);
+        if (! res) {
+                g_warning ("Unable to cancel end session: %s", error->message);
+                g_error_free (error);
+        }
 
         return FALSE;
 }

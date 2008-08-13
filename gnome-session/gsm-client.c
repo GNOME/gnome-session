@@ -58,6 +58,39 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_ABSTRACT_TYPE (GsmClient, gsm_client, G_TYPE_OBJECT)
 
+GQuark
+gsm_client_error_quark (void)
+{
+        static GQuark ret = 0;
+        if (ret == 0) {
+                ret = g_quark_from_static_string ("gsm_client_error");
+        }
+
+        return ret;
+}
+
+#define ENUM_ENTRY(NAME, DESC) { NAME, "" #NAME "", DESC }
+
+GType
+gsm_client_error_get_type (void)
+{
+        static GType etype = 0;
+
+        if (etype == 0) {
+                static const GEnumValue values[] = {
+                        ENUM_ENTRY (GSM_CLIENT_ERROR_GENERAL, "GeneralError"),
+                        ENUM_ENTRY (GSM_CLIENT_ERROR_NOT_REGISTERED, "NotRegistered"),
+                        { 0, 0, 0 }
+                };
+
+                g_assert (GSM_CLIENT_NUM_ERRORS == G_N_ELEMENTS (values) - 1);
+
+                etype = g_enum_register_static ("GsmClientError", values);
+        }
+
+        return etype;
+}
+
 static guint32
 get_next_client_serial (void)
 {
@@ -428,31 +461,34 @@ gsm_client_get_app_name (GsmClient *client)
         return GSM_CLIENT_GET_CLASS (client)->impl_get_app_name (client);
 }
 
-void
-gsm_client_cancel_end_session (GsmClient *client)
+gboolean
+gsm_client_cancel_end_session (GsmClient *client,
+                               GError   **error)
 {
-        g_return_if_fail (GSM_IS_CLIENT (client));
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
-        GSM_CLIENT_GET_CLASS (client)->impl_cancel_end_session (client);
+        return GSM_CLIENT_GET_CLASS (client)->impl_cancel_end_session (client, error);
 }
 
 
-void
+gboolean
 gsm_client_query_end_session (GsmClient *client,
-                              guint      flags)
+                              guint      flags,
+                              GError   **error)
 {
-        g_return_if_fail (GSM_IS_CLIENT (client));
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
-        GSM_CLIENT_GET_CLASS (client)->impl_query_end_session (client, flags);
+        return GSM_CLIENT_GET_CLASS (client)->impl_query_end_session (client, flags, error);
 }
 
-void
+gboolean
 gsm_client_end_session (GsmClient *client,
-                        guint      flags)
+                        guint      flags,
+                        GError   **error)
 {
-        g_return_if_fail (GSM_IS_CLIENT (client));
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
-        GSM_CLIENT_GET_CLASS (client)->impl_end_session (client, flags);
+        return GSM_CLIENT_GET_CLASS (client)->impl_end_session (client, flags, error);
 }
 
 gboolean

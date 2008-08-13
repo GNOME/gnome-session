@@ -1,5 +1,25 @@
 2008-08-13  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-client.c (gsm_client_error_quark),
+	(gsm_client_error_get_type), (gsm_client_cancel_end_session),
+	(gsm_client_query_end_session), (gsm_client_end_session):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c (dbus_client_query_end_session),
+	(dbus_client_end_session), (dbus_client_cancel_end_session):
+	* gnome-session/gsm-manager.c (_client_end_session),
+	(_client_query_end_session), (_client_cancel_end_session):
+	* gnome-session/gsm-xsmp-client.c (client_iochannel_watch),
+	(_client_protocol_timeout), (do_save_yourself),
+	(xsmp_cancel_end_session), (xsmp_query_end_session),
+	(xsmp_end_session), (gsm_xsmp_client_disconnect),
+	(gsm_xsmp_client_finalize), (interact_request_callback),
+	(close_connection_callback):
+	Make QES,ES,CES return errors.  Check to make sure that
+	connection is valid before handling same.  Set
+	status and disconnect when disconnected.
+
+2008-08-13  William Jon McCann  <jmccann@redhat.com>
+
 	* splash/Makefile.am:
 	* splash/gnome-login-sound.c:
 	* splash/gnome-login-sound.desktop.in:
