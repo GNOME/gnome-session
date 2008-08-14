@@ -67,9 +67,6 @@
 
 #define GSM_MANAGER_PHASE_TIMEOUT 10 /* seconds */
 
-#define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
-#define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
-
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
@@ -1675,306 +1672,12 @@ gsm_manager_get_property (GObject    *object,
         }
 }
 
-static void
-append_app (GsmManager *manager,
-            GsmApp     *app)
-{
-        const char *id;
-        const char *app_id;
-        GsmApp     *dup;
-
-        id = gsm_app_peek_id (app);
-        if (IS_STRING_EMPTY (id)) {
-                g_debug ("GsmManager: not adding app: no id");
-                return;
-        }
-
-        dup = (GsmApp *)gsm_store_lookup (manager->priv->apps, id);
-        if (dup != NULL) {
-                g_debug ("GsmManager: not adding app: already added");
-                return;
-        }
-
-        app_id = gsm_app_peek_app_id (app);
-        if (IS_STRING_EMPTY (app_id)) {
-                g_debug ("GsmManager: not adding app: no app-id");
-                return;
-        }
-
-        dup = find_app_for_app_id (manager, app_id);
-        if (dup != NULL) {
-                g_debug ("GsmManager: not adding app: app-id already exists");
-                return;
-        }
-
-        gsm_store_add (manager->priv->apps, id, G_OBJECT (app));
-}
-
-static void
-append_default_apps (GsmManager *manager,
-                     char      **autostart_dirs)
-{
-        GSList      *default_apps;
-        GSList      *a;
-        char       **app_dirs;
-        GConfClient *client;
-
-        g_debug ("GsmManager: *** Adding default apps");
-
-        app_dirs = gsm_util_get_app_dirs ();
-
-        client = gconf_client_get_default ();
-        default_apps = gconf_client_get_list (client,
-                                              GSM_GCONF_DEFAULT_SESSION_KEY,
-                                              GCONF_VALUE_STRING,
-                                              NULL);
-        g_object_unref (client);
-
-        for (a = default_apps; a; a = a->next) {
-                GKeyFile *key_file;
-                char     *app_path = NULL;
-                char     *desktop_file;
-
-                key_file = g_key_file_new ();
-
-                if (IS_STRING_EMPTY ((char *)a->data)) {
-                        continue;
-                }
-
-                desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data);
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const gchar**) app_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-
-                if (app_path == NULL) {
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const gchar**) autostart_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
-                /* look for gnome vender prefix */
-                if (app_path == NULL) {
-                        g_free (desktop_file);
-                        desktop_file = g_strdup_printf ("gnome-%s.desktop", (char *) a->data);
-
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const gchar**) app_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
-                if (app_path == NULL) {
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const gchar**) autostart_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
-                if (app_path != NULL) {
-                        GsmApp *app;
-
-                        app = gsm_autostart_app_new (app_path);
-                        if (app != NULL) {
-                                g_debug ("GsmManager: read %s", app_path);
-                                append_app (manager, app);
-                                g_object_unref (app);
-                        } else {
-                                g_warning ("could not read %s", app_path);
-                        }
-                        g_free (app_path);
-                }
-
-                g_free (desktop_file);
-                g_key_file_free (key_file);
-        }
-
-        g_slist_foreach (default_apps, (GFunc) g_free, NULL);
-        g_slist_free (default_apps);
-        g_strfreev (app_dirs);
-}
-
-static void
-append_autostart_apps (GsmManager *manager,
-                       const char *path)
-{
-        GDir       *dir;
-        const char *name;
-
-        g_debug ("GsmManager: *** Adding autostart apps (%s)", path);
-
-        dir = g_dir_open (path, 0, NULL);
-        if (dir == NULL) {
-                return;
-        }
-
-        while ((name = g_dir_read_name (dir))) {
-                GsmApp *app;
-                char   *desktop_file;
-
-                if (!g_str_has_suffix (name, ".desktop")) {
-                        continue;
-                }
-
-                desktop_file = g_build_filename (path, name, NULL);
-
-                app = gsm_autostart_app_new (desktop_file);
-                if (app != NULL) {
-                        g_debug ("GsmManager: read %s\n", desktop_file);
-                        append_app (manager, app);
-                        g_object_unref (app);
-                } else {
-                        g_warning ("could not read %s\n", desktop_file);
-                }
-
-                g_free (desktop_file);
-        }
-
-        g_dir_close (dir);
-}
-
-/* FIXME: need to make sure this only happens once */
-static void
-append_legacy_session_apps (GsmManager *manager,
-                            const char *session_filename)
-{
-        GKeyFile *saved;
-        int num_clients, i;
-
-        saved = g_key_file_new ();
-        if (!g_key_file_load_from_file (saved, session_filename, 0, NULL)) {
-                /* FIXME: error handling? */
-                g_key_file_free (saved);
-                return;
-        }
-
-        num_clients = g_key_file_get_integer (saved,
-                                              "Default",
-                                              "num_clients",
-                                              NULL);
-        for (i = 0; i < num_clients; i++) {
-                GsmApp *app = gsm_resumed_app_new_from_legacy_session (saved, i);
-                if (app != NULL) {
-                        append_app (manager, app);
-                        g_object_unref (app);
-                }
-        }
-
-        g_key_file_free (saved);
-}
-
-static void
-append_saved_session_apps (GsmManager *manager)
-{
-        char *session_filename;
-
-        /* try resuming from the old gnome-session's files */
-        session_filename = g_build_filename (g_get_home_dir (),
-                                             ".gnome2",
-                                             "session",
-                                             NULL);
-        if (g_file_test (session_filename, G_FILE_TEST_EXISTS)) {
-                append_legacy_session_apps (manager, session_filename);
-                g_free (session_filename);
-                return;
-        }
-
-        g_free (session_filename);
-}
-
 static gboolean
 _find_app_provides (const char *id,
                     GsmApp     *app,
                     const char *service)
 {
         return gsm_app_provides (app, service);
-}
-
-static void
-append_required_apps (GsmManager *manager)
-{
-        GSList      *required_components;
-        GSList      *r;
-        GsmApp      *app;
-        GConfClient *client;
-
-        client = gconf_client_get_default ();
-        required_components = gconf_client_all_entries (client,
-                                                        GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY,
-                                                        NULL);
-        g_object_unref (client);
-
-        for (r = required_components; r; r = r->next) {
-                GConfEntry *entry;
-                const char *default_provider;
-                const char *service;
-
-                entry = (GConfEntry *) r->data;
-
-                service = strrchr (entry->key, '/');
-                if (service == NULL) {
-                        continue;
-                }
-                service++;
-
-                default_provider = gconf_value_get_string (entry->value);
-                if (default_provider == NULL) {
-                        continue;
-                }
-
-                app = (GsmApp *)gsm_store_find (manager->priv->apps,
-                                                (GsmStoreFunc)_find_app_provides,
-                                                (char *)service);
-                if (app == NULL) {
-                        app = gsm_autostart_app_new (default_provider);
-                        if (app != NULL) {
-                                append_app (manager, app);
-                                g_object_unref (app);
-                        }
-                        /* FIXME: else error */
-                }
-
-                gconf_entry_free (entry);
-        }
-
-        g_slist_free (required_components);
-}
-
-static void
-load_apps (GsmManager *manager)
-{
-        char **autostart_dirs;
-        int    i;
-
-        autostart_dirs = gsm_util_get_autostart_dirs ();
-
-        append_default_apps (manager, autostart_dirs);
-
-        if (manager->priv->failsafe) {
-                goto out;
-        }
-
-        for (i = 0; autostart_dirs[i]; i++) {
-                append_autostart_apps (manager, autostart_dirs[i]);
-        }
-
-        append_saved_session_apps (manager);
-
-        /* We don't do this in the failsafe case, because the default
-         * session should include all requirements anyway. */
-        append_required_apps (manager);
-
- out:
-        g_strfreev (autostart_dirs);
 }
 
 static GObject *
@@ -1987,8 +1690,6 @@ gsm_manager_constructor (GType                  type,
         manager = GSM_MANAGER (G_OBJECT_CLASS (gsm_manager_parent_class)->constructor (type,
                                                                                        n_construct_properties,
                                                                                        construct_properties));
-        load_apps (manager);
-
         return G_OBJECT (manager);
 }
 
@@ -2947,6 +2648,148 @@ gsm_manager_is_autostart_condition_handled (GsmManager *manager,
         } else {
                 *handled = FALSE;
         }
+
+        return TRUE;
+}
+
+static void
+append_app (GsmManager *manager,
+            GsmApp     *app)
+{
+        const char *id;
+        const char *app_id;
+        GsmApp     *dup;
+
+        id = gsm_app_peek_id (app);
+        if (IS_STRING_EMPTY (id)) {
+                g_debug ("GsmManager: not adding app: no id");
+                return;
+        }
+
+        dup = (GsmApp *)gsm_store_lookup (manager->priv->apps, id);
+        if (dup != NULL) {
+                g_debug ("GsmManager: not adding app: already added");
+                return;
+        }
+
+        app_id = gsm_app_peek_app_id (app);
+        if (IS_STRING_EMPTY (app_id)) {
+                g_debug ("GsmManager: not adding app: no app-id");
+                return;
+        }
+
+        dup = find_app_for_app_id (manager, app_id);
+        if (dup != NULL) {
+                g_debug ("GsmManager: not adding app: app-id already exists");
+                return;
+        }
+
+        gsm_store_add (manager->priv->apps, id, G_OBJECT (app));
+}
+
+gboolean
+gsm_manager_add_autostart_app (GsmManager *manager,
+                               const char *path,
+                               const char *provides)
+{
+        GsmApp *app;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+        g_return_val_if_fail (path != NULL, FALSE);
+
+        /* first check to see if service is already provided */
+        if (provides != NULL) {
+                GsmApp *dup;
+
+                dup = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                                (GsmStoreFunc)_find_app_provides,
+                                                (char *)provides);
+                if (dup != NULL) {
+                        g_debug ("GsmManager: service '%s' is already provided", provides);
+                        return FALSE;
+                }
+        }
+
+        app = gsm_autostart_app_new (path);
+        if (app == NULL) {
+                g_warning ("could not read %s", path);
+                return FALSE;
+        }
+
+        g_debug ("GsmManager: read %s", path);
+        append_app (manager, app);
+        g_object_unref (app);
+
+        return TRUE;
+}
+
+gboolean
+gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
+                                         const char *path)
+{
+        GDir       *dir;
+        const char *name;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+        g_return_val_if_fail (path != NULL, FALSE);
+
+        g_debug ("GsmManager: *** Adding autostart apps for %s", path);
+
+        dir = g_dir_open (path, 0, NULL);
+        if (dir == NULL) {
+                return FALSE;
+        }
+
+        while ((name = g_dir_read_name (dir))) {
+                char *desktop_file;
+
+                if (!g_str_has_suffix (name, ".desktop")) {
+                        continue;
+                }
+
+                desktop_file = g_build_filename (path, name, NULL);
+                gsm_manager_add_autostart_app (manager, desktop_file, NULL);
+                g_free (desktop_file);
+        }
+
+        g_dir_close (dir);
+
+        return TRUE;
+}
+
+gboolean
+gsm_manager_add_legacy_session_apps (GsmManager *manager,
+                                     const char *path)
+{
+        GKeyFile *saved;
+        int       num_clients;
+        int       i;
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+        g_return_val_if_fail (path != NULL, FALSE);
+
+        saved = g_key_file_new ();
+        if (!g_key_file_load_from_file (saved, path, 0, NULL)) {
+                /* FIXME: error handling? */
+                g_key_file_free (saved);
+                return FALSE;
+        }
+
+        num_clients = g_key_file_get_integer (saved,
+                                              "Default",
+                                              "num_clients",
+                                              NULL);
+        for (i = 0; i < num_clients; i++) {
+                GsmApp *app;
+
+                app = gsm_resumed_app_new_from_legacy_session (saved, i);
+                if (app != NULL) {
+                        append_app (manager, app);
+                        g_object_unref (app);
+                }
+        }
+
+        g_key_file_free (saved);
 
         return TRUE;
 }

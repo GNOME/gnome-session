@@ -1,3 +1,15 @@
+2008-08-14  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-manager.c (gsm_manager_constructor),
+	(append_app), (gsm_manager_add_autostart_app),
+	(gsm_manager_add_autostart_apps_from_dir),
+	(gsm_manager_add_legacy_session_apps):
+	* gnome-session/gsm-manager.h:
+	* gnome-session/main.c (append_default_apps),
+	(append_saved_session_apps), (append_required_apps), (load_apps),
+	(main):
+	Move the gconf key and dir loading code out of the manager.
+
 2008-08-14  Ghee Teo <ghee.teo@sun.com>
 
 	* data/gnome-wm:

@@ -114,6 +114,14 @@ GType               gsm_manager_get_type                       (void);
 GsmManager *        gsm_manager_new                            (GsmStore       *client_store,
                                                                 gboolean        failsafe);
 
+gboolean            gsm_manager_add_autostart_app              (GsmManager     *manager,
+                                                                const char     *path,
+                                                                const char     *provides);
+gboolean            gsm_manager_add_autostart_apps_from_dir    (GsmManager     *manager,
+                                                                const char     *path);
+gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *manager,
+                                                                const char     *path);
+
 void                gsm_manager_start                          (GsmManager     *manager);
 
 

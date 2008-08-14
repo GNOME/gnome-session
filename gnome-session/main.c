@@ -24,6 +24,7 @@
 #include <libintl.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <glib/gi18n.h>
 #include <glib/goption.h>
@@ -40,7 +41,12 @@
 #include "gsm-xsmp-server.h"
 #include "gsm-store.h"
 
+#define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
+#define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
+
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
+
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
@@ -155,6 +161,176 @@ acquire_name (void)
         return TRUE;
 }
 
+static void
+append_default_apps (GsmManager *manager,
+                     char      **autostart_dirs)
+{
+        GSList      *default_apps;
+        GSList      *a;
+        char       **app_dirs;
+        GConfClient *client;
+
+        g_debug ("main: *** Adding default apps");
+
+        app_dirs = gsm_util_get_app_dirs ();
+
+        client = gconf_client_get_default ();
+        default_apps = gconf_client_get_list (client,
+                                              GSM_GCONF_DEFAULT_SESSION_KEY,
+                                              GCONF_VALUE_STRING,
+                                              NULL);
+        g_object_unref (client);
+
+        for (a = default_apps; a; a = a->next) {
+                GKeyFile *key_file;
+                char     *app_path = NULL;
+                char     *desktop_file;
+
+                key_file = g_key_file_new ();
+
+                if (IS_STRING_EMPTY ((char *)a->data)) {
+                        continue;
+                }
+
+                desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data);
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char**) app_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+
+                if (app_path == NULL) {
+                        g_key_file_load_from_dirs (key_file,
+                                                   desktop_file,
+                                                   (const char**) autostart_dirs,
+                                                   &app_path,
+                                                   G_KEY_FILE_NONE,
+                                                   NULL);
+                }
+
+                /* look for gnome vender prefix */
+                if (app_path == NULL) {
+                        g_free (desktop_file);
+                        desktop_file = g_strdup_printf ("gnome-%s.desktop", (char *) a->data);
+
+                        g_key_file_load_from_dirs (key_file,
+                                                   desktop_file,
+                                                   (const char**) app_dirs,
+                                                   &app_path,
+                                                   G_KEY_FILE_NONE,
+                                                   NULL);
+                }
+
+                if (app_path == NULL) {
+                        g_key_file_load_from_dirs (key_file,
+                                                   desktop_file,
+                                                   (const char**) autostart_dirs,
+                                                   &app_path,
+                                                   G_KEY_FILE_NONE,
+                                                   NULL);
+                }
+
+                if (app_path != NULL) {
+                        gsm_manager_add_autostart_app (manager, app_path, NULL);
+                        g_free (app_path);
+                }
+
+                g_free (desktop_file);
+                g_key_file_free (key_file);
+        }
+
+        g_slist_foreach (default_apps, (GFunc) g_free, NULL);
+        g_slist_free (default_apps);
+        g_strfreev (app_dirs);
+}
+
+static void
+append_saved_session_apps (GsmManager *manager)
+{
+        char *session_filename;
+
+        /* try resuming from the old gnome-session's files */
+        session_filename = g_build_filename (g_get_home_dir (),
+                                             ".gnome2",
+                                             "session",
+                                             NULL);
+        if (g_file_test (session_filename, G_FILE_TEST_EXISTS)) {
+                gsm_manager_add_legacy_session_apps (manager, session_filename);
+                g_free (session_filename);
+                return;
+        }
+
+        g_free (session_filename);
+}
+
+static void
+append_required_apps (GsmManager *manager)
+{
+        GSList      *required_components;
+        GSList      *r;
+        GConfClient *client;
+
+        client = gconf_client_get_default ();
+        required_components = gconf_client_all_entries (client,
+                                                        GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY,
+                                                        NULL);
+        g_object_unref (client);
+
+        for (r = required_components; r != NULL; r = r->next) {
+                GConfEntry *entry;
+                const char *default_provider;
+                const char *service;
+
+                entry = (GConfEntry *) r->data;
+
+                service = strrchr (entry->key, '/');
+                if (service == NULL) {
+                        continue;
+                }
+                service++;
+
+                default_provider = gconf_value_get_string (entry->value);
+                if (default_provider == NULL) {
+                        continue;
+                }
+
+                gsm_manager_add_autostart_app (manager, default_provider, service);
+
+                gconf_entry_free (entry);
+        }
+
+        g_slist_free (required_components);
+}
+
+static void
+load_apps (GsmManager *manager)
+{
+        char **autostart_dirs;
+        int    i;
+
+        autostart_dirs = gsm_util_get_autostart_dirs ();
+
+        append_default_apps (manager, autostart_dirs);
+
+        if (failsafe) {
+                goto out;
+        }
+
+        for (i = 0; autostart_dirs[i]; i++) {
+                gsm_manager_add_autostart_apps_from_dir (manager, autostart_dirs[i]);
+        }
+
+        append_saved_session_apps (manager);
+
+        /* We don't do this in the failsafe case, because the default
+         * session should include all requirements anyway. */
+        append_required_apps (manager);
+
+ out:
+        g_strfreev (autostart_dirs);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -211,6 +387,7 @@ main (int argc, char **argv)
         acquire_name ();
 
         manager = gsm_manager_new (client_store, failsafe);
+        load_apps (manager);
 
         gsm_xsmp_server_start (xsmp_server);
         gsm_manager_start (manager);
