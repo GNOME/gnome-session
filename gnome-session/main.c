@@ -50,8 +50,10 @@
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
+static char **override_autostart_dirs = NULL;
 
 static GOptionEntry entries[] = {
+        { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
         { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
         { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
         { NULL, 0, 0, 0, NULL, NULL, NULL }
@@ -304,7 +306,7 @@ append_required_apps (GsmManager *manager)
 }
 
 static void
-load_apps (GsmManager *manager)
+load_standard_apps (GsmManager *manager)
 {
         char **autostart_dirs;
         int    i;
@@ -329,6 +331,15 @@ load_apps (GsmManager *manager)
 
  out:
         g_strfreev (autostart_dirs);
+}
+
+static void
+load_override_apps (GsmManager *manager)
+{
+        int i;
+        for (i = 0; override_autostart_dirs[i]; i++) {
+                gsm_manager_add_autostart_apps_from_dir (manager, override_autostart_dirs[i]);
+        }
 }
 
 int
@@ -387,7 +398,11 @@ main (int argc, char **argv)
         acquire_name ();
 
         manager = gsm_manager_new (client_store, failsafe);
-        load_apps (manager);
+        if (override_autostart_dirs != NULL) {
+                load_override_apps (manager);
+        } else {
+                load_standard_apps (manager);
+        }
 
         gsm_xsmp_server_start (xsmp_server);
         gsm_manager_start (manager);
