@@ -39,7 +39,7 @@ done
 
 # WINDOW_MANAGER overrides all
 if [ -z "$WINDOW_MANAGER" ] ; then
-  WINDOW_MANAGER=$(gconftool-2 --get /apps/gnome-session/gnome-wm/preferred_window_manager)
+  WINDOW_MANAGER=`gconftool-2 --get /apps/gnome-session/gnome-wm/preferred_window_manager 2> /dev/null`
 fi
 
 if [ -z "$WINDOW_MANAGER" ] ; then
