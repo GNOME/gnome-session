@@ -19,9 +19,7 @@
  * 02111-1307, USA.
  */
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <libintl.h>
 #include <signal.h>
@@ -44,11 +42,12 @@
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
-static gboolean failsafe;
+static gboolean failsafe = FALSE;
+static gboolean show_version = FALSE;
 
 static GOptionEntry entries[] = {
-        { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe,
-          N_("Do not load user-specified applications"), NULL },
+        { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
+        { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
         { NULL, 0, 0, 0, NULL, NULL, NULL }
 };
 
@@ -181,7 +180,13 @@ main (int argc, char **argv)
                             entries, GETTEXT_PACKAGE,
                             &error);
         if (error != NULL) {
-                gsm_util_init_error (TRUE, "%s", error->message);
+                g_warning ("%s", error->message);
+                exit (1);
+        }
+
+        if (show_version) {
+                g_print ("%s %s\n", argv [0], VERSION);
+                exit (1);
         }
 
         /* Set DISPLAY explicitly for all our children, in case --display
