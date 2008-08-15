@@ -1084,6 +1084,29 @@ find_app_for_app_id (GsmManager *manager,
         return app;
 }
 
+static gboolean
+inhibitor_has_client_id (gpointer      key,
+                         GsmInhibitor *inhibitor,
+                         const char   *client_id_a)
+{
+        gboolean    matches;
+        const char *client_id_b;
+
+        client_id_b = gsm_inhibitor_peek_client_id (inhibitor);
+
+        matches = FALSE;
+        if (! IS_STRING_EMPTY (client_id_a) && ! IS_STRING_EMPTY (client_id_b)) {
+                matches = (strcmp (client_id_a, client_id_b) == 0);
+                if (matches) {
+                        g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
+                                 gsm_inhibitor_peek_client_id (inhibitor),
+                                 gsm_inhibitor_peek_reason (inhibitor));
+                }
+        }
+
+        return matches;
+}
+
 static void
 _disconnect_client (GsmManager *manager,
                     GsmClient  *client)
@@ -1109,6 +1132,11 @@ _disconnect_client (GsmManager *manager,
 
                 is_condition_client = TRUE;
         }
+
+        /* remove any inhibitors for this client */
+        gsm_store_foreach_remove (manager->priv->inhibitors,
+                                  (GsmStoreFunc)inhibitor_has_client_id,
+                                  (gpointer)gsm_client_peek_id (client));
 
         app_id = gsm_client_peek_app_id (client);
         if (IS_STRING_EMPTY (app_id)) {
@@ -1455,29 +1483,6 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         *id = new_id;
 
         return handled;
-}
-
-static gboolean
-inhibitor_has_client_id (gpointer      key,
-                         GsmInhibitor *inhibitor,
-                         const char   *client_id_a)
-{
-        gboolean    matches;
-        const char *client_id_b;
-
-        client_id_b = gsm_inhibitor_peek_client_id (inhibitor);
-
-        matches = FALSE;
-        if (! IS_STRING_EMPTY (client_id_a) && ! IS_STRING_EMPTY (client_id_b)) {
-                matches = (strcmp (client_id_a, client_id_b) == 0);
-                if (matches) {
-                        g_debug ("GsmManager: removing JIT inhibitor for %s for reason '%s'",
-                                 gsm_inhibitor_peek_client_id (inhibitor),
-                                 gsm_inhibitor_peek_reason (inhibitor));
-                }
-        }
-
-        return matches;
 }
 
 static void
