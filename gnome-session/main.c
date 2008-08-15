@@ -422,6 +422,7 @@ main (int argc, char **argv)
         }
 
         signal_handler = gdm_signal_handler_new ();
+        gdm_signal_handler_set_fatal_func (signal_handler, (GDestroyNotify)gtk_main_quit, NULL);
         gdm_signal_handler_add_fatal (signal_handler);
         gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, NULL);
         gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, NULL);
@@ -466,15 +467,16 @@ main (int argc, char **argv)
                 g_object_unref (xsmp_server);
         }
 
-        gsm_gconf_shutdown ();
-
         if (manager != NULL) {
+                g_debug ("Unreffing manager");
                 g_object_unref (manager);
         }
 
         if (client_store != NULL) {
                 g_object_unref (client_store);
         }
+
+        gsm_gconf_shutdown ();
 
         return 0;
 }

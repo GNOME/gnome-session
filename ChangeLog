@@ -1,5 +1,13 @@
 2008-08-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gdm-signal-handler.c (signal_io_watch),
+	(gdm_signal_handler_set_fatal_func):
+	* gnome-session/gdm-signal-handler.h:
+	* gnome-session/main.c (main):
+	Allow the signal handler to call gtk_main_quit.
+
+2008-08-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/Makefile.am:
 	* gnome-session/gdm-signal-handler.c (block_signals_push),
 	(block_signals_pop), (signal_io_watch), (fallback_get_backtrace),
