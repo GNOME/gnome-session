@@ -81,6 +81,8 @@ gnome_session_SOURCES =				\
 	gdm.c					\
 	gdm-signal-handler.h			\
 	gdm-signal-handler.c			\
+	gdm-log.h				\
+	gdm-log.c				\
 	main.c					\
 	gsm-store.h				\
 	gsm-store.c				\

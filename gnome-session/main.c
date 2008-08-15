@@ -36,6 +36,7 @@
 #include <dbus/dbus-glib-lowlevel.h>
 
 #include "gdm-signal-handler.h"
+#include "gdm-log.h"
 
 #include "gsm-gconf.h"
 #include "gsm-util.h"
@@ -53,9 +54,12 @@
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static char **override_autostart_dirs = NULL;
+/* FIXME: turn this off closer to release */
+static gboolean debug = TRUE;
 
 static GOptionEntry entries[] = {
         { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
+        { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
         { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
         { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
         { NULL, 0, 0, 0, NULL, NULL, NULL }
@@ -374,7 +378,7 @@ signal_cb (int      signo,
         case SIGUSR1:
                 g_debug ("Got USR1 signal");
                 ret = TRUE;
-                /*gdm_log_toggle_debug (); */
+                gdm_log_toggle_debug ();
                 break;
         default:
                 g_debug ("Caught unhandled signal %d", signo);
@@ -420,6 +424,9 @@ main (int argc, char **argv)
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (1);
         }
+
+        gdm_log_init ();
+        gdm_log_set_debug (debug);
 
         signal_handler = gdm_signal_handler_new ();
         gdm_signal_handler_set_fatal_func (signal_handler, (GDestroyNotify)gtk_main_quit, NULL);
@@ -477,6 +484,8 @@ main (int argc, char **argv)
         }
 
         gsm_gconf_shutdown ();
+
+        gdm_log_shutdown ();
 
         return 0;
 }

@@ -1,5 +1,15 @@
 2008-08-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gdm-log.c (log_level_to_priority_and_prefix),
+	(gdm_log_default_handler), (gdm_log_toggle_debug),
+	(gdm_log_set_debug), (gdm_log_init), (gdm_log_shutdown):
+	* gnome-session/gdm-log.h:
+	* gnome-session/main.c (signal_cb), (main):
+	Add log/debugging framework.
+
+2008-08-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gdm-signal-handler.c (signal_io_watch),
 	(gdm_signal_handler_set_fatal_func):
 	* gnome-session/gdm-signal-handler.h:
