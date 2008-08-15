@@ -1710,6 +1710,30 @@ gsm_manager_constructor (GType                  type,
 }
 
 static void
+gsm_manager_dispose (GObject *object)
+{
+        GsmManager *manager = GSM_MANAGER (object);
+
+        g_debug ("GsmManager: disposing manager");
+
+        if (manager->priv->clients != NULL) {
+                g_object_unref (manager->priv->clients);
+                manager->priv->clients = NULL;
+        }
+
+        if (manager->priv->apps != NULL) {
+                g_object_unref (manager->priv->apps);
+                manager->priv->apps = NULL;
+        }
+
+        if (manager->priv->inhibitors != NULL) {
+                g_object_unref (manager->priv->inhibitors);
+                manager->priv->inhibitors = NULL;
+        }
+
+}
+
+static void
 gsm_manager_class_init (GsmManagerClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
@@ -1718,6 +1742,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
         object_class->set_property = gsm_manager_set_property;
         object_class->constructor = gsm_manager_constructor;
         object_class->finalize = gsm_manager_finalize;
+        object_class->dispose = gsm_manager_dispose;
 
         signals [PHASE_CHANGED] =
                 g_signal_new ("phase-changed",
@@ -1860,18 +1885,6 @@ gsm_manager_finalize (GObject *object)
         manager = GSM_MANAGER (object);
 
         g_return_if_fail (manager->priv != NULL);
-
-        if (manager->priv->clients != NULL) {
-                g_object_unref (manager->priv->clients);
-        }
-
-        if (manager->priv->apps != NULL) {
-                g_object_unref (manager->priv->apps);
-        }
-
-        if (manager->priv->inhibitors != NULL) {
-                g_object_unref (manager->priv->inhibitors);
-        }
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->finalize (object);
 }

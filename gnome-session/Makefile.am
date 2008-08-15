@@ -20,6 +20,7 @@ INCLUDES =					\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
+	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGLADEDIR=\""$(pkgdatadir)"\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
@@ -78,6 +79,8 @@ gnome_session_SOURCES =				\
 	gsm-gconf.h				\
 	gdm.h					\
 	gdm.c					\
+	gdm-signal-handler.h			\
+	gdm-signal-handler.c			\
 	main.c					\
 	gsm-store.h				\
 	gsm-store.c				\

@@ -35,6 +35,8 @@
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#include "gdm-signal-handler.h"
+
 #include "gsm-gconf.h"
 #include "gsm-util.h"
 #include "gsm-manager.h"
@@ -342,15 +344,58 @@ load_override_apps (GsmManager *manager)
         }
 }
 
+static gboolean
+signal_cb (int      signo,
+           gpointer data)
+{
+        int ret;
+
+        g_debug ("Got callback for signal %d", signo);
+
+        ret = TRUE;
+
+        switch (signo) {
+        case SIGFPE:
+        case SIGPIPE:
+                /* let the fatal signals interrupt us */
+                g_debug ("Caught signal %d, shutting down abnormally.", signo);
+                ret = FALSE;
+                break;
+        case SIGINT:
+        case SIGTERM:
+                /* let the fatal signals interrupt us */
+                g_debug ("Caught signal %d, shutting down normally.", signo);
+                ret = FALSE;
+                break;
+        case SIGHUP:
+                g_debug ("Got HUP signal");
+                ret = TRUE;
+                break;
+        case SIGUSR1:
+                g_debug ("Got USR1 signal");
+                ret = TRUE;
+                /*gdm_log_toggle_debug (); */
+                break;
+        default:
+                g_debug ("Caught unhandled signal %d", signo);
+                ret = TRUE;
+
+                break;
+        }
+
+        return ret;
+}
+
 int
 main (int argc, char **argv)
 {
-        struct sigaction sa;
-        GError          *error;
-        char            *display_str;
-        GsmManager      *manager;
-        GsmStore        *client_store;
-        GsmXsmpServer   *xsmp_server;
+        struct sigaction  sa;
+        GError           *error;
+        char             *display_str;
+        GsmManager       *manager;
+        GsmStore         *client_store;
+        GsmXsmpServer    *xsmp_server;
+        GdmSignalHandler *signal_handler;
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -375,6 +420,14 @@ main (int argc, char **argv)
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (1);
         }
+
+        signal_handler = gdm_signal_handler_new ();
+        gdm_signal_handler_add_fatal (signal_handler);
+        gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGFPE, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGHUP, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGUSR1, signal_cb, NULL);
 
         /* Set DISPLAY explicitly for all our children, in case --display
          * was specified on the command line.
@@ -417,6 +470,10 @@ main (int argc, char **argv)
 
         if (manager != NULL) {
                 g_object_unref (manager);
+        }
+
+        if (client_store != NULL) {
+                g_object_unref (client_store);
         }
 
         return 0;

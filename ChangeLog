@@ -1,5 +1,25 @@
 2008-08-15  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/Makefile.am:
+	* gnome-session/gdm-signal-handler.c (block_signals_push),
+	(block_signals_pop), (signal_io_watch), (fallback_get_backtrace),
+	(crashlogger_get_backtrace), (gdm_signal_handler_backtrace),
+	(signal_handler), (catch_signal), (uncatch_signal),
+	(gdm_signal_handler_add), (gdm_signal_handler_add_fatal),
+	(callback_data_free), (gdm_signal_handler_remove_and_free_data),
+	(gdm_signal_handler_remove), (find_callback_data_by_func),
+	(gdm_signal_handler_remove_func), (gdm_signal_handler_class_init),
+	(signal_list_free), (gdm_signal_handler_set_main_loop),
+	(gdm_signal_handler_init), (gdm_signal_handler_finalize),
+	(gdm_signal_handler_new):
+	* gnome-session/gdm-signal-handler.h:
+	* gnome-session/gsm-manager.c (gsm_manager_dispose),
+	(gsm_manager_class_init), (gsm_manager_finalize):
+	* gnome-session/main.c (signal_cb), (main):
+	Add signal handling framework.
+
+2008-08-15  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-app.h:
 	* gnome-session/gsm-autostart-app.c (_signal_pid),
 	(autostart_app_stop_spawn):
