@@ -24,6 +24,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
+
 #include <glib.h>
 #include <gio/gio.h>
 
@@ -667,10 +669,57 @@ app_exited (GPid             pid,
         }
 }
 
+static int
+_signal_pid (int pid,
+             int signal)
+{
+        int status = -1;
+
+        /* perhaps block sigchld */
+        g_debug ("GsmAutostartApp: sending signal %d to process %d", signal, pid);
+        errno = 0;
+        status = kill (pid, signal);
+
+        if (status < 0) {
+                if (errno == ESRCH) {
+                        g_warning ("Child process %d was already dead.",
+                                   (int)pid);
+                } else {
+                        g_warning ("Couldn't kill child process %d: %s",
+                                   pid,
+                                   g_strerror (errno));
+                }
+        }
+
+        /* perhaps unblock sigchld */
+
+        return status;
+}
+
 static gboolean
 autostart_app_stop_spawn (GsmAutostartApp *app,
                           GError         **error)
 {
+        int res;
+
+        if (app->priv->pid < 1) {
+                g_set_error (error,
+                             GSM_APP_ERROR,
+                             GSM_APP_ERROR_STOP,
+                             "Not running");
+                return FALSE;
+        }
+
+        res = _signal_pid (app->priv->pid, SIGTERM);
+        if (res != 0) {
+                g_set_error (error,
+                             GSM_APP_ERROR,
+                             GSM_APP_ERROR_STOP,
+                             "Unable to stop: %s",
+                             g_strerror (errno));
+                return FALSE;
+        }
+
         return TRUE;
 }
 

@@ -1,3 +1,12 @@
+2008-08-15  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-app.h:
+	* gnome-session/gsm-autostart-app.c (_signal_pid),
+	(autostart_app_stop_spawn):
+	* gnome-session/gsm-manager.c (app_condition_changed):
+	Add support for killing apps.  Try to stop app if
+	there isn't a client available for it.
+
 2008-08-14  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/main.c (load_standard_apps), (load_override_apps),

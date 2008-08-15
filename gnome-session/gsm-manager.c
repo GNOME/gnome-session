@@ -246,6 +246,8 @@ app_condition_changed (GsmApp     *app,
                         GError  *error;
                         gboolean res;
 
+                        g_debug ("GsmManager: starting app '%s'", gsm_app_peek_id (app));
+
                         error = NULL;
                         res = gsm_app_start (app, &error);
                         if (error != NULL) {
@@ -253,6 +255,8 @@ app_condition_changed (GsmApp     *app,
                                            error->message);
                                 g_error_free (error);
                         }
+                } else {
+                        g_debug ("GsmManager: not starting - app still running '%s'", gsm_app_peek_id (app));
                 }
         } else {
                 GError  *error;
@@ -263,9 +267,21 @@ app_condition_changed (GsmApp     *app,
                          * be automatically restarted by adding the client to
                          * condition_clients */
                         manager->priv->condition_clients = g_slist_prepend (manager->priv->condition_clients, client);
+                        g_debug ("GsmManager: stopping client %s for app", gsm_client_peek_id (client));
 
                         error = NULL;
                         res = gsm_client_stop (client, &error);
+                        if (error != NULL) {
+                                g_warning ("Not able to stop app client from its condition: %s",
+                                           error->message);
+                                g_error_free (error);
+                        }
+                } else {
+                        g_debug ("GsmManager: stopping app %s", gsm_app_peek_id (app));
+
+                        /* If we don't have a client then we should try to kill the app */
+                        error = NULL;
+                        res = gsm_app_stop (app, &error);
                         if (error != NULL) {
                                 g_warning ("Not able to stop app from its condition: %s",
                                            error->message);
