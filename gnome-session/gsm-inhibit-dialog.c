@@ -510,6 +510,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 desktop_filename = g_strdup (app_id);
         }
 
+#if 0
         xid = gsm_inhibitor_peek_toplevel_xid (inhibitor);
         g_debug ("GsmInhibitDialog: inhibitor has XID %u", xid);
         if (xid > 0 && dialog->priv->have_xrender) {
@@ -518,6 +519,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                         g_debug ("GsmInhibitDialog: unable to read pixbuf from %u", xid);
                 }
         }
+#endif
 
         if (desktop_filename != NULL) {
                 /* FIXME: maybe also append the autostart dirs ? */
