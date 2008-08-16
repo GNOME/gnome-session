@@ -61,7 +61,7 @@ enum {
         PROP_0,
         PROP_NAME,
         PROP_COMMAND,
-        PROP_COMMENT,
+        PROP_COMMENT
 };
 
 G_DEFINE_TYPE (GsmAppDialog, gsm_app_dialog, GTK_TYPE_DIALOG)

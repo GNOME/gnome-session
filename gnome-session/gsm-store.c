@@ -48,10 +48,10 @@ enum {
 
 enum {
         PROP_0,
-        PROP_LOCKED,
+        PROP_LOCKED
 };
 
-static guint signals [LAST_SIGNAL] = { 0, };
+static guint signals [LAST_SIGNAL] = { 0 };
 
 static void     gsm_store_class_init    (GsmStoreClass *klass);
 static void     gsm_store_init          (GsmStore      *store);

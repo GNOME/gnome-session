@@ -1,3 +1,27 @@
+2008-08-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* capplet/gsm-app-dialog.c:
+	* egg/eggdesktopfile.h:
+	* egg/eggsmclient-libgnomeui.c: (egg_sm_client_module_info_get):
+	* egg/eggsmclient-xsmp.c:
+	* gnome-session/gsm-autostart-app.c:
+	* gnome-session/gsm-client.c:
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c:
+	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor):
+	* gnome-session/gsm-inhibit-dialog.h:
+	* gnome-session/gsm-inhibitor.c:
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c:
+	* gnome-session/gsm-store.c:
+	* gnome-session/gsm-util.c:
+	* gnome-session/gsm-xsmp-client.c:
+	* gnome-session/gsm-xsmp-server.c:
+	* gnome-session/test-inhibit.c:
+	* tools/gnome-session-save.c:
+	Fix some warnings from sparse and other tools. Closes
+	bug #521413
+
 2008-08-15  William Jon McCann  <jmccann@redhat.com>
 
 	* gnome-session/gsm-manager.c (inhibitor_has_client_id),

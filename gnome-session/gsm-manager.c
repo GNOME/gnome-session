@@ -100,7 +100,7 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
-        PROP_FAILSAFE,
+        PROP_FAILSAFE
 };
 
 enum {
@@ -114,7 +114,7 @@ enum {
         LAST_SIGNAL
 };
 
-static guint signals [LAST_SIGNAL] = { 0, };
+static guint signals [LAST_SIGNAL] = { 0 };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);

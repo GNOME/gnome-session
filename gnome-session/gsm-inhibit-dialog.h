@@ -44,7 +44,7 @@ typedef enum
         GSM_LOGOUT_ACTION_SHUTDOWN,
         GSM_LOGOUT_ACTION_REBOOT,
         GSM_LOGOUT_ACTION_HIBERNATE,
-        GSM_LOGOUT_ACTION_SLEEP,
+        GSM_LOGOUT_ACTION_SLEEP
 } GsmLogoutAction;
 
 typedef struct

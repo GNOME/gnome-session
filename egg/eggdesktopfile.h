@@ -31,7 +31,7 @@ typedef enum {
 
 	EGG_DESKTOP_FILE_TYPE_APPLICATION,
 	EGG_DESKTOP_FILE_TYPE_LINK,
-	EGG_DESKTOP_FILE_TYPE_DIRECTORY,
+	EGG_DESKTOP_FILE_TYPE_DIRECTORY
 } EggDesktopFileType;
 
 EggDesktopFile     *egg_desktop_file_new                (const char   *desktop_file_path,
@@ -146,7 +146,7 @@ GQuark egg_desktop_file_error_quark (void);
 typedef enum {
 	EGG_DESKTOP_FILE_ERROR_INVALID,
 	EGG_DESKTOP_FILE_ERROR_NOT_LAUNCHABLE,
-	EGG_DESKTOP_FILE_ERROR_UNRECOGNIZED_OPTION,
+	EGG_DESKTOP_FILE_ERROR_UNRECOGNIZED_OPTION
 } EggDesktopFileError;
 
 /* Global application desktop file */

@@ -105,6 +105,7 @@ get_session_bus (void)
         return bus;
 }
 
+#if 0
 static void
 set_session_name (const char  *session_name)
 {
@@ -151,6 +152,7 @@ set_session_name (const char  *session_name)
                 g_object_unref (sm_proxy);
         }
 }
+#endif
 
 static void
 logout_session (gboolean show_confirmation)

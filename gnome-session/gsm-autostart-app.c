@@ -36,7 +36,7 @@
 
 enum {
         AUTOSTART_LAUNCH_SPAWN = 0,
-        AUTOSTART_LAUNCH_ACTIVATE,
+        AUTOSTART_LAUNCH_ACTIVATE
 };
 
 enum {
@@ -44,7 +44,7 @@ enum {
         GSM_CONDITION_IF_EXISTS     = 1,
         GSM_CONDITION_UNLESS_EXISTS = 2,
         GSM_CONDITION_GNOME         = 3,
-        GSM_CONDITION_UNKNOWN       = 4,
+        GSM_CONDITION_UNKNOWN       = 4
 };
 
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
@@ -79,7 +79,7 @@ enum {
 
 enum {
         PROP_0,
-        PROP_DESKTOP_FILENAME,
+        PROP_DESKTOP_FILENAME
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };

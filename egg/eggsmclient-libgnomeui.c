@@ -107,7 +107,7 @@ egg_sm_client_module_info_get (void)
 		NULL, /* init pass */
 		egg_sm_client_module_class_init,
 		NULL, /* opt prefix */
-		egg_sm_client_get_option_group,
+		egg_sm_client_get_option_group
 	};
 
 	return &module_info;

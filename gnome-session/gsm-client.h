@@ -43,18 +43,18 @@ typedef enum {
         GSM_CLIENT_UNREGISTERED = 0,
         GSM_CLIENT_REGISTERED,
         GSM_CLIENT_FINISHED,
-        GSM_CLIENT_FAILED,
+        GSM_CLIENT_FAILED
 } GsmClientStatus;
 
 typedef enum {
         GSM_CLIENT_RESTART_NEVER = 0,
         GSM_CLIENT_RESTART_IF_RUNNING,
         GSM_CLIENT_RESTART_ANYWAY,
-        GSM_CLIENT_RESTART_IMMEDIATELY,
+        GSM_CLIENT_RESTART_IMMEDIATELY
 } GsmClientRestartStyle;
 
 typedef enum {
-        GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
+        GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0
 } GsmClientEndSessionFlag;
 
 struct _GsmClient

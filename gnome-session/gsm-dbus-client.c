@@ -28,7 +28,6 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <dbus/dbus-glib.h>
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
@@ -56,7 +55,7 @@ struct GsmDBusClientPrivate
 
 enum {
         PROP_0,
-        PROP_BUS_NAME,
+        PROP_BUS_NAME
 };
 
 G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)

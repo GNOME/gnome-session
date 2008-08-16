@@ -60,7 +60,7 @@ struct GsmXSMPClientPrivate
 
 enum {
         PROP_0,
-        PROP_ICE_CONNECTION,
+        PROP_ICE_CONNECTION
 };
 
 enum {
@@ -377,6 +377,7 @@ prop_to_command (SmProp *prop)
         return g_string_free (str, FALSE);
 }
 
+#if 0
 static char *
 xsmp_get_restart_command (GsmClient *client)
 {
@@ -404,6 +405,7 @@ xsmp_get_discard_command (GsmClient *client)
 
         return prop_to_command (prop);
 }
+#endif
 
 static void
 do_save_yourself (GsmXSMPClient *client,
@@ -456,6 +458,7 @@ do_save_yourself (GsmXSMPClient *client,
         }
 }
 
+#if 0
 static void
 xsmp_save_yourself_phase2 (GsmClient *client)
 {
@@ -475,6 +478,7 @@ xsmp_interact (GsmClient *client)
 
         SmsInteract (xsmp->priv->conn);
 }
+#endif
 
 static gboolean
 xsmp_cancel_end_session (GsmClient *client,

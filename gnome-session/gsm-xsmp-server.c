@@ -75,7 +75,7 @@ struct GsmXsmpServerPrivate
 
 enum {
         PROP_0,
-        PROP_CLIENT_STORE,
+        PROP_CLIENT_STORE
 };
 
 static void     gsm_xsmp_server_class_init  (GsmXsmpServerClass *klass);

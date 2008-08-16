@@ -58,7 +58,7 @@ enum {
         PROP_CLIENT_ID,
         PROP_FLAGS,
         PROP_TOPLEVEL_XID,
-        PROP_COOKIE,
+        PROP_COOKIE
 };
 
 G_DEFINE_TYPE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT)

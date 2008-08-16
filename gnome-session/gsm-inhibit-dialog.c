@@ -78,7 +78,7 @@ enum {
         PROP_0,
         PROP_ACTION,
         PROP_INHIBITOR_STORE,
-        PROP_CLIENT_STORE,
+        PROP_CLIENT_STORE
 };
 
 enum {
@@ -565,7 +565,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 client_id = gsm_inhibitor_peek_client_id (inhibitor);
                 if (! IS_STRING_EMPTY (client_id)) {
                         GsmClient *client;
-                        client = (GsmClient *)gsm_store_lookup (dialog->priv->clients, client_id);
+                        client = GSM_CLIENT (gsm_store_lookup (dialog->priv->clients, client_id));
                         if (client != NULL) {
                                 freeme = name = gsm_client_get_app_name (client);
                         }
