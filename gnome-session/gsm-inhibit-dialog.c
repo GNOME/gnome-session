@@ -948,10 +948,10 @@ gsm_inhibit_dialog_constructor (GType                  type,
 #ifdef HAVE_XRENDER
         gdk_error_trap_push ();
         if (XRenderQueryExtension (GDK_DISPLAY (), &dialog->priv->xrender_event_base, &dialog->priv->xrender_error_base)) {
-                g_warning ("GsmInhibitDialog: Initialized XRender extension");
+                g_debug ("GsmInhibitDialog: Initialized XRender extension");
                 dialog->priv->have_xrender = TRUE;
         } else {
-                g_warning ("GsmInhibitDialog: Unable to initialize XRender extension");
+                g_debug ("GsmInhibitDialog: Unable to initialize XRender extension");
                 dialog->priv->have_xrender = FALSE;
         }
         gdk_display_sync (gdk_display_get_default ());
