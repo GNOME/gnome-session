@@ -964,7 +964,7 @@ interact_request_callback (SmsConn   conn,
 
         g_debug ("GsmXSMPClient: Client '%s' received InteractRequest(%s)",
                  client->priv->description,
-                 dialog_type == SmInteractStyleAny ? "Any" : "Errors");
+                 dialog_type == SmDialogNormal ? "Dialog" : "Errors");
 
         gdm_client_end_session_response (GSM_CLIENT (client),
                                          FALSE,
