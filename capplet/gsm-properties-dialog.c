@@ -770,6 +770,8 @@ add_app (GtkListStore *store,
 
         g_free (orig_filename);
 
+        ensure_user_autostart_dir ();
+
         keyfile = g_key_file_new ();
 
         g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,

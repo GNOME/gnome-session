@@ -1,5 +1,12 @@
 2008-08-18  William Jon McCann  <jmccann@redhat.com>
 
+	* capplet/gsm-properties-dialog.c (add_app):
+	Fix a case where we don't create ~/.config/autostart
+	Based on patch from: James Westby <jw+debian@jameswestby.net>
+	Fixes #548129
+
+2008-08-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-inhibit-dialog.c (gsm_inhibit_dialog_dispose):
 	Don't try to remove the signal handlers more than once.
 
