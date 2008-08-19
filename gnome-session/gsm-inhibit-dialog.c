@@ -980,20 +980,19 @@ gsm_inhibit_dialog_dispose (GObject *object)
 
         g_debug ("GsmInhibitDialog: dispose called");
 
-        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                              on_store_inhibitor_added,
-                                              dialog);
-        g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                              on_store_inhibitor_removed,
-                                              dialog);
-
         if (dialog->priv->list_store != NULL) {
                 g_object_unref (dialog->priv->list_store);
                 dialog->priv->list_store = NULL;
         }
 
-
         if (dialog->priv->inhibitors != NULL) {
+                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
+                                                      on_store_inhibitor_added,
+                                                      dialog);
+                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
+                                                      on_store_inhibitor_removed,
+                                                      dialog);
+
                 g_object_unref (dialog->priv->inhibitors);
                 dialog->priv->inhibitors = NULL;
         }

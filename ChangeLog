@@ -1,5 +1,10 @@
 2008-08-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-inhibit-dialog.c (gsm_inhibit_dialog_dispose):
+	Don't try to remove the signal handlers more than once.
+
+2008-08-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-inhibit-dialog.c
 	(gsm_inhibit_dialog_constructor):
 	Change a warning to a debug.
