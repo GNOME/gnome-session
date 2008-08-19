@@ -46,6 +46,8 @@
 #define GNOME_SESSION_DBUS_OBJECT    "/org/gnome/SessionManager"
 #define GNOME_SESSION_DBUS_INTERFACE "org.gnome.SessionManager"
 
+static int splash_clients = 0;
+
 static DBusGConnection *
 get_session_bus (void)
 {
@@ -123,6 +125,7 @@ event_func (SnMonitorEvent *event,
                 gsm_splash_window_start (splash,
                                          sn_startup_sequence_get_name (seq),
                                          sn_startup_sequence_get_icon_name (seq));
+                splash_clients++;
                 break;
 
         case SN_MONITOR_EVENT_COMPLETED:
@@ -135,6 +138,11 @@ event_func (SnMonitorEvent *event,
 
                 gsm_splash_window_finish (splash,
                                           sn_startup_sequence_get_name (seq));
+                splash_clients--;
+                if (splash_clients <= 0) {
+                        gtk_main_quit ();
+                        return;
+                }
                 break;
 
         default:
