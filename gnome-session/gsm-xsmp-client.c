@@ -936,7 +936,21 @@ save_yourself_phase2_request_callback (SmsConn   conn,
         g_debug ("GsmXSMPClient: Client '%s' received SaveYourselfPhase2Request",
                  client->priv->description);
 
-        /* FIXME: change priority so this client runs at the end */
+        /* Treat this just like a SaveYourselfDone */
+        if (client->priv->current_save_yourself == SmSaveLocal) {
+                client->priv->current_save_yourself = -1;
+                SmsSaveComplete (client->priv->conn);
+        } else {
+                client->priv->current_save_yourself = -1;
+        }
+
+        /* this is a valid response to SaveYourself and therefore
+           may be a response to a QES or ES */
+        gdm_client_end_session_response (GSM_CLIENT (client),
+                                         TRUE,
+                                         NULL);
+
+        /* FIXME: change priority so this client runs at the end? */
 }
 
 static void
