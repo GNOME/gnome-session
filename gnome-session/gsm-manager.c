@@ -1715,6 +1715,24 @@ gsm_manager_constructor (GType                  type,
 }
 
 static void
+on_store_inhibitor_added (GsmStore   *store,
+                          const char *id,
+                          GsmManager *manager)
+{
+        g_debug ("GsmManager: Inhibitor added: %s", id);
+        g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
+}
+
+static void
+on_store_inhibitor_removed (GsmStore   *store,
+                            const char *id,
+                            GsmManager *manager)
+{
+        g_debug ("GsmManager: Inhibitor removed: %s", id);
+        g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
+}
+
+static void
 gsm_manager_dispose (GObject *object)
 {
         GsmManager *manager = GSM_MANAGER (object);
@@ -1722,6 +1740,12 @@ gsm_manager_dispose (GObject *object)
         g_debug ("GsmManager: disposing manager");
 
         if (manager->priv->clients != NULL) {
+                g_signal_handlers_disconnect_by_func (manager->priv->clients,
+                                                      on_store_client_added,
+                                                      manager);
+                g_signal_handlers_disconnect_by_func (manager->priv->clients,
+                                                      on_store_client_removed,
+                                                      manager);
                 g_object_unref (manager->priv->clients);
                 manager->priv->clients = NULL;
         }
@@ -1732,6 +1756,13 @@ gsm_manager_dispose (GObject *object)
         }
 
         if (manager->priv->inhibitors != NULL) {
+                g_signal_handlers_disconnect_by_func (manager->priv->inhibitors,
+                                                      on_store_inhibitor_added,
+                                                      manager);
+                g_signal_handlers_disconnect_by_func (manager->priv->inhibitors,
+                                                      on_store_inhibitor_removed,
+                                                      manager);
+
                 g_object_unref (manager->priv->inhibitors);
                 manager->priv->inhibitors = NULL;
         }
@@ -1840,24 +1871,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
 
         dbus_g_object_type_install_info (GSM_TYPE_MANAGER, &dbus_glib_gsm_manager_object_info);
         dbus_g_error_domain_register (GSM_MANAGER_ERROR, NULL, GSM_MANAGER_TYPE_ERROR);
-}
-
-static void
-on_store_inhibitor_added (GsmStore   *store,
-                          const char *id,
-                          GsmManager *manager)
-{
-        g_debug ("GsmManager: Inhibitor added: %s", id);
-        g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
-}
-
-static void
-on_store_inhibitor_removed (GsmStore   *store,
-                            const char *id,
-                            GsmManager *manager)
-{
-        g_debug ("GsmManager: Inhibitor removed: %s", id);
-        g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
 }
 
 static void

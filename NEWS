@@ -1,3 +1,48 @@
+===============
+Version 2.23.90
+===============
+
+- Remove inhibitors for the client when it disconnects
+- Add log/debugging framework
+- Add signal handling framework
+- Add support for stopping/killing apps
+- Add command line option to override autostart dirs (used by GDM)
+- Improve QES,ES,CES error handling
+- Remove gnome-login-sound (replaced by libcanberra-login-sound)
+- Rework the capplet dialogs to use gobject.
+- Make gnome-session-save tool use D-Bus API
+- Fixed #521413, Fixes for sparse warnings in gnome-session (Kjartan Maraas)
+- Fixed #546410, splash no longer disappear (Frederic Crozat)
+- Fixed #546439, missing include for pid_t (Jens Granseuer)
+- Fixed #546722, Need bump dbus-glib dependency to 0.76 (William Jon McCann)
+- Fixed #546896, crash wen passing null strings to key_file_set_locale_string() (William Jon McCann)
+- Fixed #547069, [patch] Logout by sending XSMP SaveYourselfRequest is broken (William Jon McCann)
+- Fixed #547443, crashes on desktop parsing errors (William Jon McCann)
+- Fixed #547619, gnome-session 2.23.6 doesn't compile on Solaris (Erwann Chenede -)
+- Fixed #547769, part of gnome-wm potentially can break (Ghee Teo)
+- Fixed #548129, gnome-session-properties doesn't create ~/.config/autostart (William Jon McCann)
+- Fixed #548259, g-s thinks that metacity is 'not responding' if it was --replace'd (William Jon McCann)
+
+Translations:
+- Updated ar: Khaled Hosny
+- Updated cs: Petr Kovar
+- Updated es: Jorge González, Jorge Gonzalez
+- Updated et: Ivar Smolin
+- Updated fi: Timo Jyrinki
+- Updated fr: Robert-André Mauchin
+- Updated he: Yair Hershkovitz
+- Updated ml: Harivishnu, Hari Vishnu
+- Updated nb: Kjartan Maraas
+- Updated pl: Tomasz Dominikowski  <tdominikowski@aviary.pl>
++	* pl.po: Updated Polish
+- Updated pt: Duarte Loreto
+- Updated pt_BR: Og Maciel <ogmaciel@gnome.org>
++    * pt_BR.po: Updated translation Vladimir
+- Updated th: Theppitak Karoonboonyanan
+- Updated zh_HK: Chao-Hsiung Liao
+- Updated zh_TW: Chao-Hsiung Liao
+
+
 ==============
 Version 2.23.6
 ==============
