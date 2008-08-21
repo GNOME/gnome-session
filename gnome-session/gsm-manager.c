@@ -1107,6 +1107,58 @@ inhibitor_has_client_id (gpointer      key,
         return matches;
 }
 
+static gboolean
+_app_has_startup_id (const char *id,
+                     GsmApp     *app,
+                     const char *startup_id_a)
+{
+        const char *startup_id_b;
+
+        startup_id_b = gsm_app_peek_startup_id (app);
+
+        if (IS_STRING_EMPTY (startup_id_b)) {
+                return FALSE;
+        }
+
+        return (strcmp (startup_id_a, startup_id_b) == 0);
+}
+
+static GsmApp *
+find_app_for_startup_id (GsmManager *manager,
+                        const char *startup_id)
+{
+        GsmApp *found_app;
+        GSList *a;
+
+        found_app = NULL;
+
+        /* If we're starting up the session, try to match the new client
+         * with one pending apps for the current phase. If not, try to match
+         * with any of the autostarted apps. */
+        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
+                        GsmApp *app = GSM_APP (a->data);
+
+                        if (strcmp (startup_id, gsm_app_peek_startup_id (app)) == 0) {
+                                found_app = app;
+                                goto out;
+                        }
+                }
+        } else {
+                GsmApp *app;
+
+                app = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                                (GsmStoreFunc)_app_has_startup_id,
+                                                (char *)startup_id);
+                if (app != NULL) {
+                        found_app = app;
+                        goto out;
+                }
+        }
+ out:
+        return found_app;
+}
+
 static void
 _disconnect_client (GsmManager *manager,
                     GsmClient  *client)
@@ -1116,6 +1168,7 @@ _disconnect_client (GsmManager *manager,
         GError               *error;
         gboolean              res;
         const char           *app_id;
+        const char           *startup_id;
         gboolean              app_restart;
         GsmClientRestartStyle client_restart_hint;
 
@@ -1138,16 +1191,26 @@ _disconnect_client (GsmManager *manager,
                                   (GsmStoreFunc)inhibitor_has_client_id,
                                   (gpointer)gsm_client_peek_id (client));
 
-        app_id = gsm_client_peek_app_id (client);
-        if (IS_STRING_EMPTY (app_id)) {
-                g_debug ("GsmManager: no application associated with client, not restarting application");
-                goto out;
+        app = NULL;
+
+        /* first try to match on startup ID */
+        startup_id = gsm_client_peek_startup_id (client);
+        if (! IS_STRING_EMPTY (startup_id)) {
+                app = find_app_for_startup_id (manager, startup_id);
+
         }
 
-        g_debug ("GsmManager: disconnect for app '%s'", app_id);
-        app = find_app_for_app_id (manager, app_id);
+        /* then try to find matching app-id */
         if (app == NULL) {
-                g_debug ("GsmManager: invalid application id, not restarting application");
+                app_id = gsm_client_peek_app_id (client);
+                if (! IS_STRING_EMPTY (app_id)) {
+                        g_debug ("GsmManager: disconnect for app '%s'", app_id);
+                        app = find_app_for_app_id (manager, app_id);
+                }
+        }
+
+        if (app == NULL) {
+                g_debug ("GsmManager: unable to find application for client - not restarting");
                 goto out;
         }
 
@@ -1273,58 +1336,6 @@ remove_inhibitors_for_connection (GsmManager *manager,
         n_removed = gsm_store_foreach_remove (manager->priv->inhibitors,
                                               (GsmStoreFunc)inhibitor_has_bus_name,
                                               &data);
-}
-
-static gboolean
-_app_has_startup_id (const char *id,
-                     GsmApp     *app,
-                     const char *startup_id_a)
-{
-        const char *startup_id_b;
-
-        startup_id_b = gsm_app_peek_startup_id (app);
-
-        if (IS_STRING_EMPTY (startup_id_b)) {
-                return FALSE;
-        }
-
-        return (strcmp (startup_id_a, startup_id_b) == 0);
-}
-
-static GsmApp *
-find_app_for_startup_id (GsmManager *manager,
-                        const char *startup_id)
-{
-        GsmApp *found_app;
-        GSList *a;
-
-        found_app = NULL;
-
-        /* If we're starting up the session, try to match the new client
-         * with one pending apps for the current phase. If not, try to match
-         * with any of the autostarted apps. */
-        if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                for (a = manager->priv->pending_apps; a != NULL; a = a->next) {
-                        GsmApp *app = GSM_APP (a->data);
-
-                        if (strcmp (startup_id, gsm_app_peek_startup_id (app)) == 0) {
-                                found_app = app;
-                                goto out;
-                        }
-                }
-        } else {
-                GsmApp *app;
-
-                app = (GsmApp *)gsm_store_find (manager->priv->apps,
-                                                (GsmStoreFunc)_app_has_startup_id,
-                                                (char *)startup_id);
-                if (app != NULL) {
-                        found_app = app;
-                        goto out;
-                }
-        }
- out:
-        return found_app;
 }
 
 static void

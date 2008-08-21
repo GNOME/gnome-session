@@ -935,11 +935,12 @@ gsm_autostart_app_restart (GsmApp  *app,
         GError  *local_error;
         gboolean res;
 
+        /* ignore stop errors - it is fine if it is already stopped */
         local_error = NULL;
         res = gsm_app_stop (app, &local_error);
         if (! res) {
-                g_propagate_error (error, local_error);
-                return FALSE;
+                g_debug ("GsmAutostartApp: Couldn't stop app: %s", local_error->message);
+                g_error_free (local_error);
         }
 
         res = gsm_app_start (app, &local_error);

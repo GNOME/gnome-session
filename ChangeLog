@@ -1,3 +1,13 @@
+2008-08-21  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-autostart-app.c (gsm_autostart_app_restart):
+	* gnome-session/gsm-manager.c (_app_has_startup_id),
+	(find_app_for_startup_id), (_disconnect_client):
+	Don't return an error if we can't stop an app that we want
+	to restart.  It may be stopped.  Also try to find the
+	app based on the startup ID first if we have one.
+	Probably fixes #548710
+
 2008-08-20  William Jon McCann  <jmccann@redhat.com>
 
 	* configure.in: Post release version bump
