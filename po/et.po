@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-16 21:52+0000\n"
-"PO-Revision-Date: 2008-08-16 16:45+0300\n"
+"POT-Creation-Date: 2008-08-16 16:39+0000\n"
+"PO-Revision-Date: 2008-08-20 23:22+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
 "Assistive technology support has been requested for this session, but the "
 "accessibility registry was not found. Please ensure that the AT-SPI package "
@@ -64,9 +64,9 @@ msgstr "Vaikimisi seansi osaks olevate rakenduste nimekiri."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required-components\".) The "
-"session capplet will not normally allow users to remove a required component "
-"from the session, and the session manager will automatically add the "
-"required components back to the session if they do get removed."
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
 msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:7
@@ -103,23 +103,33 @@ msgstr "Näita sisselogimisel tiitelkuva"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
+"The Window manager that gnome-session will start. Valid values are \"metacity"
+"\" and \"compiz\"."
+msgstr ""
+"Gnome seansi poolt käivitatav aknahaldur. Lubatud väärtused on \"metacity\" "
+"ja \"compiz\"."
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
+"Aknahaldur on programm, mis joonistab akendele raame ja pealkirjaribasid, "
+"samuti hoolitseb selle eest, et akende suurust oleks võimalik muuta."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -129,7 +139,7 @@ msgstr ""
 "kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
 "rakendub järgmisel seansil pärast sisselogimist."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:20
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -139,9 +149,13 @@ msgstr ""
 "\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
 "\" alglaadimise tegemiseks."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:21
 msgid "Window Manager"
 msgstr "Aknahaldur"
+
+#: ../data/gnome-session.schemas.in.h:22
+msgid "Window Manager to start"
+msgstr "Käivitatav aknahaldur"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -180,6 +194,7 @@ msgid "Options"
 msgstr "Valikud"
 
 #: ../data/session-properties.glade.h:6
+#: ../capplet/gsm-properties-dialog.c:1462
 msgid "Sessions Preferences"
 msgstr "Seansi eelistused"
 
@@ -199,37 +214,54 @@ msgstr "_Nimi:"
 msgid "_Remember Currently Running Application"
 msgstr "_Jäta praegu töötav rakendus meelde"
 
-#: ../egg/eggdesktopfile.c:130
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Mõned programmid töötavad ikka veel:</b>"
+
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Programmi lõpetamise järgi ootamine.  Programmi kõrvaldamine võib põhjustada "
+"tööde kadumist."
+
+#: ../data/gsm-inhibit-dialog.glade.h:3
+msgid "gtk-cancel"
+msgstr "gtk-cancel"
+
+#: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "Fail pole korrektne .desktop-fail"
 
-#: ../egg/eggdesktopfile.c:153
+#: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Töölauafaili tundmatu versioon '%s'"
 
-#: ../egg/eggdesktopfile.c:926
+#: ../egg/eggdesktopfile.c:961
 #, c-format
 msgid "Starting %s"
 msgstr "Käivitamine: %s"
 
-#: ../egg/eggdesktopfile.c:1060
+#: ../egg/eggdesktopfile.c:1095
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Rakendus ei toeta käsurealt määratavaid dokumente"
 
-#: ../egg/eggdesktopfile.c:1128
+#: ../egg/eggdesktopfile.c:1163
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Tundmatu käivitusvalik: %d"
 
-#: ../egg/eggdesktopfile.c:1335
+#: ../egg/eggdesktopfile.c:1370
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Dokumendi URI-sid pole võimalik 'Liik=Viit' töölauakirjele edasi anda"
 
-#: ../egg/eggdesktopfile.c:1354
+#: ../egg/eggdesktopfile.c:1389
 #, c-format
 msgid "Not a launchable item"
 msgstr ""
@@ -270,7 +302,7 @@ msgstr "Seansihalduse valikud"
 msgid "Show Session Management options"
 msgstr "Seansihalduse valikute näitamine"
 
-#: ../gnome-session/gconf.c:110
+#: ../gnome-session/gsm-gconf.c:106
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -279,7 +311,62 @@ msgstr ""
 "Seadistuste serveriga tekkis probleem.\n"
 "(%s lõpetas olekuga %d)"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/gsm-inhibit-dialog.c:256
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "Ikooni '%s' ei leitud"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:579
+msgid "Unknown"
+msgstr "Tundmatu"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:627
+msgid "A program is still running:"
+msgstr "Üks programm töötab ikka veel:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:631
+msgid "Some programs are still running:"
+msgstr "Mõned programmid töötavad ikka veel:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid ""
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:860
+msgid "Switch User Anyway"
+msgstr "Vaheta ikkagi kasutajat"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:863
+msgid "Logout Anyway"
+msgstr "Logi ikkagi välja"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:866
+msgid "Suspend Anyway"
+msgstr "Peata ikkagi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:869
+msgid "Hibernate Anyway"
+msgstr "Hiberneeri ikkagi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:872
+msgid "Shutdown Anyway"
+msgstr "Lülita ikkagi välja"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:875
+msgid "Reboot Anyway"
+msgstr "Taaskäivita ikkagi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:883
+msgid "Lock Screen"
+msgstr "Lukusta ekraan"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:886
+msgid "Cancel"
+msgstr "Tühista"
+
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -290,7 +377,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/gsm-logout-dialog.c:295
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -301,147 +388,152 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:371
 msgid "Log out of this system now?"
 msgstr "Kas logida sellest süsteemist välja?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "_Switch User"
 msgstr "_Vaheta kasutajat"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Log Out"
 msgstr "Logi _välja"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "Shut down this system now?"
 msgstr "Kas jätta süsteem seisma?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "S_uspend"
 msgstr "_Peata"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Hibernate"
 msgstr "_Hiberneeri"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Restart"
 msgstr "_Taaskäivita"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Shut Down"
 msgstr "_Seiska"
 
-#: ../gnome-session/main.c:34
-msgid "Do not load user-specified applications"
-msgstr "Kasutaja määratud rakendusi ei laadita"
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1528
+msgid "Not responding"
+msgstr "Ei vasta"
+
+#: ../gnome-session/gsm-xsmp-client.c:957
+msgid "This program is blocking log out."
+msgstr "See programm takistab väljalogimist."
+
+#: ../gnome-session/gsm-xsmp-server.c:234
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+
+#: ../gnome-session/gsm-xsmp-server.c:489
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "ICE kuulamissoklit pole võimalik luua: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/main.c:69
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 "Sisselogimise seanssi pole võimalik käivitada (ja X-serveriga pole võimalik "
 "ühendust saada)"
 
-#: ../gnome-session/main.c:107
+#: ../gnome-session/main.c:61
+msgid "Override standard autostart directories"
+msgstr ""
+"Standardsete automaatkäivituse kataloogide asemel muude kataloogide "
+"kasutamine"
+
+#: ../gnome-session/main.c:62
+msgid "Enable debugging code"
+msgstr "Silumiskoodi lubamine"
+
+#: ../gnome-session/main.c:63
+msgid "Do not load user-specified applications"
+msgstr "Kasutaja määratud rakendusi ei laadita"
+
+#: ../gnome-session/main.c:64 ../capplet/main.c:37
+msgid "Version of this application"
+msgstr "Raknduse versioon"
+
+#: ../gnome-session/main.c:415
 msgid " - the GNOME session manager"
 msgstr "- GNOME seansihaldud"
 
-#: ../gnome-session/xsmp.c:133
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE kuulamissoklit pole võimalik luua: %s"
-
-#: ../gnome-session/xsmp.c:336
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-
-#: ../capplet/main.c:69
-#, c-format
-msgid "Could not connect to the session manager\n"
-msgstr "Seansihalduriga pole võimalik ühenduda\n"
-
-#: ../capplet/ui.c:106
+#: ../capplet/gsm-app-dialog.c:130
 msgid "Select Command"
 msgstr "Käsi valimine"
 
-#: ../capplet/ui.c:218
-msgid "The name of the startup program cannot be empty"
-msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
-
-#: ../capplet/ui.c:221
-msgid "The startup command cannot be empty"
-msgstr "Käivituskäsku ei tohi tühjaks jätta"
-
-#: ../capplet/ui.c:228
-msgid "The startup command is not valid"
-msgstr "Käivituskäsk pole korrektne"
-
-#: ../capplet/ui.c:356
-msgid "Enabled"
-msgstr "Lubatud"
-
-#: ../capplet/ui.c:370
-msgid "Icon"
-msgstr "Ikoon"
-
-#: ../capplet/ui.c:382
-msgid "Program"
-msgstr "Programm"
-
-#: ../capplet/ui.c:417
+#: ../capplet/gsm-app-dialog.c:174
 msgid "Add Startup Program"
 msgstr "Käivitusprogrammi lisamine"
 
-#: ../capplet/ui.c:467
+#: ../capplet/gsm-app-dialog.c:178
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
 
-#: ../capplet/commands.c:783
+#: ../capplet/gsm-properties-dialog.c:131
 msgid "No description"
 msgstr "Kirjeldus puudub"
 
-#: ../tools/gnome-session-save.c:54
+#: ../capplet/gsm-properties-dialog.c:974
+msgid "The name of the startup program cannot be empty"
+msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
+
+#: ../capplet/gsm-properties-dialog.c:978
+msgid "The startup command cannot be empty"
+msgstr "Käivituskäsku ei tohi tühjaks jätta"
+
+#: ../capplet/gsm-properties-dialog.c:984
+msgid "The startup command is not valid"
+msgstr "Käivituskäsk pole korrektne"
+
+#: ../capplet/gsm-properties-dialog.c:1288
+msgid "Enabled"
+msgstr "Lubatud"
+
+#: ../capplet/gsm-properties-dialog.c:1301
+msgid "Icon"
+msgstr "Ikoon"
+
+#: ../capplet/gsm-properties-dialog.c:1312
+msgid "Program"
+msgstr "Programm"
+
+#: ../tools/gnome-session-save.c:52
 msgid "Set the current session name"
 msgstr "Määra aktiivse seansi nimi"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:52
 msgid "NAME"
 msgstr "NIMI"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:53
 msgid "Kill session"
 msgstr "Kõrvalda seanss"
 
-#: ../tools/gnome-session-save.c:56
+#: ../tools/gnome-session-save.c:54
 msgid "Use dialog boxes for errors"
 msgstr "Vigade jaoks dialoogiakna kasutamine"
 
-#: ../tools/gnome-session-save.c:57
+#: ../tools/gnome-session-save.c:55
 msgid "Do not require confirmation"
 msgstr "Kinnitust pole vaja küsida"
 
-#: ../tools/gnome-session-save.c:192 ../tools/gnome-session-save.c:201
-#: ../tools/gnome-session-save.c:261
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
+#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
 msgid "Could not connect to the session manager"
 msgstr "Ei saa ühendust seansihalduriga"
 
-#: ../tools/gnome-session-save.c:246
-msgid " - Save the current session"
-msgstr "- Praeguse seansi salvestamine"
-
-#: ../splash/gnome-login-sound.c:136
-msgid "Play logout sound instead of login"
-msgstr "Sisselogimise asemel väljalogimise heli esitamine"
-
-#: ../splash/gnome-login-sound.c:148
-msgid "- GNOME login/logout sound"
-msgstr "- GNOME sisse- ja väljalogimise heli"
-
-#: ../splash/gnome-session-splash.c:204
+#: ../splash/gnome-session-splash.c:281
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME tiitelkuva"
