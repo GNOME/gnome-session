@@ -1,5 +1,10 @@
 2008-08-22  Frederic Crozat  <fcrozat@mandriva.com>
 
+	* compat/at-spi-registryd-wrapper.c: don't set a11y gtk modules
+	if at registry could not be started. Fixes #548982.
+
+2008-08-22  Frederic Crozat  <fcrozat@mandriva.com>
+
 	* gnome-session/gsm-util.c: ensure non-fatal error
 	are treated as such. Fixes #548980.
 

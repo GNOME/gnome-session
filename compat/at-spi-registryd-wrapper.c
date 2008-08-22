@@ -146,11 +146,12 @@ main (int argc, char **argv)
         gdk_window_set_events (root, GDK_PROPERTY_CHANGE_MASK);
         gdk_window_add_filter (root, registry_ior_watch, NULL);
 
-        set_gtk_modules (gsm);
 
         if (!g_spawn_command_line_async (AT_SPI_REGISTRYD_DIR "/at-spi-registryd", &error)) {
                 show_error (gsm);
                 /* not reached */
+        } else {
+                set_gtk_modules (gsm);
         }
 
         gtk_main ();
