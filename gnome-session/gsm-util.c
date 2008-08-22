@@ -152,7 +152,9 @@ gsm_util_init_error (gboolean    fatal,
 
         gtk_widget_destroy (dialog);
 
-        gtk_main_quit ();
+        if (fatal) {
+                gtk_main_quit ();
+        }
 }
 
 /**
