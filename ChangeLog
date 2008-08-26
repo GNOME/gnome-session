@@ -1,5 +1,13 @@
 2008-08-26  William Jon McCann  <jmccann@redhat.com>
 
+	* data/gnome-session.schemas.in:
+	* data/gnome-wm:
+	Don't use gnome-wm by default.  We should encourage
+	WMs to install a desktop file and to set
+	/desktop/gnome/session/required-components/windowmanager
+
+2008-08-26  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/main.c (find_desktop_file_for_app_name),
 	(append_default_apps), (append_required_apps):
 	Look in app dirs for required components.

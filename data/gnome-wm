@@ -6,6 +6,9 @@
 # If this is not set, we search a list of known windowmanagers and use
 # the first one that is found in the users's PATH
 #
+# NOTE: DON'T USE THIS.  Please have your window manager install
+# a desktop file and change the gconf key
+# /desktop/gnome/session/required-components/windowmanager
 
 # sm-client-id value
 SMID=
@@ -36,11 +39,6 @@ for n in "$@" ; do
       ;;
   esac
 done
-
-# WINDOW_MANAGER overrides all
-if [ -z "$WINDOW_MANAGER" ] ; then
-  WINDOW_MANAGER=`gconftool-2 --get /apps/gnome-session/gnome-wm/preferred_window_manager 2> /dev/null`
-fi
 
 if [ -z "$WINDOW_MANAGER" ] ; then
   # Create a list of window manager we can handle, trying to only use the
