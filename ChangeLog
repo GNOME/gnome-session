@@ -1,5 +1,11 @@
 2008-08-26  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/main.c (find_desktop_file_for_app_name),
+	(append_default_apps), (append_required_apps):
+	Look in app dirs for required components.
+
+2008-08-26  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/main.c (append_required_apps):
 	Honor the list of required apps in the list key instead of
 	loading all component keys in the dir.

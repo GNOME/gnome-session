@@ -170,18 +170,77 @@ acquire_name (void)
         return TRUE;
 }
 
+static char *
+find_desktop_file_for_app_name (const char *name,
+                                char      **autostart_dirs)
+{
+        char     *app_path;
+        char    **app_dirs;
+        GKeyFile *key_file;
+        char     *desktop_file;
+
+        app_path = NULL;
+
+        app_dirs = gsm_util_get_app_dirs ();
+
+        key_file = g_key_file_new ();
+
+        desktop_file = g_strdup_printf ("%s.desktop", name);
+        g_key_file_load_from_dirs (key_file,
+                                   desktop_file,
+                                   (const char **) app_dirs,
+                                   &app_path,
+                                   G_KEY_FILE_NONE,
+                                   NULL);
+
+        if (app_path == NULL && autostart_dirs != NULL) {
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) autostart_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+        }
+
+        /* look for gnome vender prefix */
+        if (app_path == NULL) {
+                g_free (desktop_file);
+                desktop_file = g_strdup_printf ("gnome-%s.desktop", name);
+
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) app_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+        }
+
+        if (app_path == NULL && autostart_dirs != NULL) {
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) autostart_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+        }
+
+        g_free (desktop_file);
+        g_key_file_free (key_file);
+
+        g_strfreev (app_dirs);
+
+        return app_path;
+}
+
 static void
 append_default_apps (GsmManager *manager,
                      char      **autostart_dirs)
 {
         GSList      *default_apps;
         GSList      *a;
-        char       **app_dirs;
         GConfClient *client;
 
         g_debug ("main: *** Adding default apps");
-
-        app_dirs = gsm_util_get_app_dirs ();
 
         client = gconf_client_get_default ();
         default_apps = gconf_client_get_list (client,
@@ -191,67 +250,21 @@ append_default_apps (GsmManager *manager,
         g_object_unref (client);
 
         for (a = default_apps; a; a = a->next) {
-                GKeyFile *key_file;
-                char     *app_path = NULL;
-                char     *desktop_file;
-
-                key_file = g_key_file_new ();
+                char *app_path;
 
                 if (IS_STRING_EMPTY ((char *)a->data)) {
                         continue;
                 }
 
-                desktop_file = g_strdup_printf ("%s.desktop", (char *) a->data);
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char**) app_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-
-                if (app_path == NULL) {
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const char**) autostart_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
-                /* look for gnome vender prefix */
-                if (app_path == NULL) {
-                        g_free (desktop_file);
-                        desktop_file = g_strdup_printf ("gnome-%s.desktop", (char *) a->data);
-
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const char**) app_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
-                if (app_path == NULL) {
-                        g_key_file_load_from_dirs (key_file,
-                                                   desktop_file,
-                                                   (const char**) autostart_dirs,
-                                                   &app_path,
-                                                   G_KEY_FILE_NONE,
-                                                   NULL);
-                }
-
+                app_path = find_desktop_file_for_app_name (a->data, autostart_dirs);
                 if (app_path != NULL) {
                         gsm_manager_add_autostart_app (manager, app_path, NULL);
                         g_free (app_path);
                 }
-
-                g_free (desktop_file);
-                g_key_file_free (key_file);
         }
 
         g_slist_foreach (default_apps, (GFunc) g_free, NULL);
         g_slist_free (default_apps);
-        g_strfreev (app_dirs);
 }
 
 static void
@@ -303,7 +316,17 @@ append_required_apps (GsmManager *manager)
 
                 default_provider = gconf_client_get_string (client, path, NULL);
                 if (default_provider != NULL) {
-                        gsm_manager_add_autostart_app (manager, default_provider, component);
+                        char *app_path;
+
+                        app_path = find_desktop_file_for_app_name (default_provider, NULL);
+                        if (app_path != NULL) {
+                                gsm_manager_add_autostart_app (manager, app_path, component);
+                        } else {
+                                g_warning ("Unable to find provider '%s' of required component '%s'",
+                                           default_provider,
+                                           component);
+                        }
+                        g_free (app_path);
                 }
 
                 g_free (default_provider);
