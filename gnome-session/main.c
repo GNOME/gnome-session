@@ -46,6 +46,7 @@
 
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
+#define GSM_GCONF_REQUIRED_COMPONENTS_KEY       "/desktop/gnome/session/required-components"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
@@ -280,35 +281,39 @@ append_required_apps (GsmManager *manager)
         GConfClient *client;
 
         client = gconf_client_get_default ();
-        required_components = gconf_client_all_entries (client,
-                                                        GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY,
-                                                        NULL);
-        g_object_unref (client);
+        required_components = gconf_client_get_list (client,
+                                                     GSM_GCONF_REQUIRED_COMPONENTS_KEY,
+                                                     GCONF_VALUE_STRING,
+                                                     NULL);
 
         for (r = required_components; r != NULL; r = r->next) {
-                GConfEntry *entry;
-                const char *default_provider;
-                const char *service;
+                char       *path;
+                char       *default_provider;
+                const char *component;
 
-                entry = (GConfEntry *) r->data;
-
-                service = strrchr (entry->key, '/');
-                if (service == NULL) {
-                        continue;
-                }
-                service++;
-
-                default_provider = gconf_value_get_string (entry->value);
-                if (default_provider == NULL) {
+                if (IS_STRING_EMPTY ((char *)r->data)) {
                         continue;
                 }
 
-                gsm_manager_add_autostart_app (manager, default_provider, service);
+                component = r->data;
 
-                gconf_entry_free (entry);
+                path = g_strdup_printf ("%s/%s",
+                                        GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY,
+                                        component);
+
+                default_provider = gconf_client_get_string (client, path, NULL);
+                if (default_provider != NULL) {
+                        gsm_manager_add_autostart_app (manager, default_provider, component);
+                }
+
+                g_free (default_provider);
+                g_free (path);
         }
 
+        g_slist_foreach (required_components, (GFunc)g_free, NULL);
         g_slist_free (required_components);
+
+        g_object_unref (client);
 }
 
 static void
