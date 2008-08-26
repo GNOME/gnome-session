@@ -57,7 +57,7 @@ show_error (DBusGProxy *gsm)
         return FALSE;
 }
 
-static void
+static const char *
 set_gtk_modules (DBusGProxy *gsm)
 {
         const char *old;
@@ -114,6 +114,24 @@ set_gtk_modules (DBusGProxy *gsm)
         }
 
         g_free (value);
+        return old;
+}
+
+static void
+restore_gtk_modules (DBusGProxy *gsm, const char *old_gtk_modules)
+{
+
+        GError     *error;
+
+        error = NULL;
+        if (!dbus_g_proxy_call (gsm, "Setenv", &error,
+                                G_TYPE_STRING, "GTK_MODULES",
+                                G_TYPE_STRING, old_gtk_modules,
+                                G_TYPE_INVALID,
+                                G_TYPE_INVALID)) {
+                g_warning ("Could not set GTK_MODULES: %s", error->message);
+                g_error_free (error);
+        }
 }
 
 int
@@ -124,6 +142,7 @@ main (int argc, char **argv)
         GError          *error;
         DBusGConnection *connection;
         DBusGProxy      *gsm;
+        const char      *old_gtk_modules;
 
         gtk_init (&argc, &argv);
 
@@ -147,11 +166,11 @@ main (int argc, char **argv)
         gdk_window_add_filter (root, registry_ior_watch, NULL);
 
 
+        old_gtk_modules = set_gtk_modules (gsm);
         if (!g_spawn_command_line_async (AT_SPI_REGISTRYD_DIR "/at-spi-registryd", &error)) {
+                restore_gtk_modules (gsm, old_gtk_modules);
                 show_error (gsm);
                 /* not reached */
-        } else {
-                set_gtk_modules (gsm);
         }
 
         gtk_main ();

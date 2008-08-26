@@ -1,3 +1,8 @@
+2008-08-26  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* compat/at-spi-registryd-wrapper.c: always set a11y gtk modules
+	but unset it if at-registry could not be started. Still fixes #548982.
+
 2008-08-22  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* compat/at-spi-registryd-wrapper.c: don't set a11y gtk modules
