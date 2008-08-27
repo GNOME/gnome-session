@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-16 16:39+0000\n"
-"PO-Revision-Date: 2008-08-20 23:22+0300\n"
+"PO-Revision-Date: 2008-08-27 12:38+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,11 @@ msgid ""
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
 msgstr ""
+"Seansi osaks olevate komponentide nimekiri. (Iga kirje kohta on "
+"\"/desktop/gnome/session/required-components\" all samanimeline võti.) "
+"Seansi eelistused tavaliselt ei luba kasutajal seansist vajalikke komponente "
+"eemaldada ja seansihaldur taastab automaatselt kasutaja poolt eemaldatud "
+"vajalikud komponendid."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -114,12 +119,16 @@ msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
+"Failihaldur tagab töölauaikoonide funktsionaalsuse ja võimaldab salvestatud "
+"failidega tegeleda."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
+"Paneel tagab ekraani üla- või allosas oleva riba. Nendel ribadel võivad "
+"asuda menüüd, akende nimekiri, olekuikoonid, kell jms."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -264,7 +273,7 @@ msgstr "Dokumendi URI-sid pole võimalik 'Liik=Viit' töölauakirjele edasi anda
 #: ../egg/eggdesktopfile.c:1389
 #, c-format
 msgid "Not a launchable item"
-msgstr ""
+msgstr "Pole käivitatav kirje"
 
 #: ../egg/eggsmclient-libgnomeui.c:102
 msgid "Session management"
@@ -333,6 +342,8 @@ msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
+"Programmi töö lõpetamise järel ootamine.  Nende programmide katkestamine "
+"võib põhjustada (salvestamata) tööde kaotsimineku."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:860
 msgid "Switch User Anyway"
@@ -375,7 +386,11 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "You will be automatically logged out in %d seconds."
 msgstr[0] ""
+"Sa oled hetkel sisse logitud kasutajana \"%s\".\n"
+"Sind logitakse %d sekundi pärast automaatselt välja."
 msgstr[1] ""
+"Sa oled hetkel sisse logitud kasutajana \"%s\".\n"
+"Sind logitakse %d sekundi pärast automaatselt välja."
 
 #: ../gnome-session/gsm-logout-dialog.c:295
 #, c-format
@@ -386,7 +401,11 @@ msgid_plural ""
 "You are currently logged in as \"%s\".\n"
 "This system will be automatically shut down in %d seconds."
 msgstr[0] ""
+"Sa oled hetkel sisse logitud kasutajana \"%s\".\n"
+"See süsteem jäetakse %d sekundi pärast automaatselt seisma."
 msgstr[1] ""
+"Sa oled hetkel sisse logitud kasutajana \"%s\".\n"
+"See süsteem jäetakse %d sekundi pärast automaatselt seisma."
 
 #: ../gnome-session/gsm-logout-dialog.c:371
 msgid "Log out of this system now?"
@@ -433,6 +452,7 @@ msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
+"Uue kliendi ühendus lükati tagasi, kuna hetkel jäetakse seanss seisma\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
@@ -467,7 +487,7 @@ msgstr "Raknduse versioon"
 
 #: ../gnome-session/main.c:415
 msgid " - the GNOME session manager"
-msgstr "- GNOME seansihaldud"
+msgstr "- GNOME seansihaldur"
 
 #: ../capplet/gsm-app-dialog.c:130
 msgid "Select Command"
@@ -532,7 +552,7 @@ msgstr "Kinnitust pole vaja küsida"
 #: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
 #: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
 msgid "Could not connect to the session manager"
-msgstr "Ei saa ühendust seansihalduriga"
+msgstr "Seansihalduriga pole võimalik ühenduda"
 
 #: ../splash/gnome-session-splash.c:281
 msgid "- GNOME Splash Screen"
