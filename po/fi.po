@@ -1,6 +1,5 @@
 # gnome-session Finnish translation
 # Copyright (C) 2002-2008 Free Software Foundation, Inc.
-# Suomennos: http://gnome.fi/
 # Ville Hautamäki <villeh@cs.joensuu.fi>, 1998, 2000
 # Mikko Rauhala <mjr@iki.fi>, 1999
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005
@@ -11,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 15:01+0300\n"
-"PO-Revision-Date: 2008-08-13 12:26+0300\n"
-"Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
+"POT-Creation-Date: 2008-08-27 12:02+0300\n"
+"PO-Revision-Date: 2008-08-27 12:00+0300\n"
+"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,21 +103,13 @@ msgstr "Näytä käynnistymiskuva, kun istunto alkaa"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"gnome-sessionin käynnistämä ikkunointiohjelma. Kelvollisia arvoja ovat "
-"\"metacity\" ja \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "Tiedostonhallinta mahdollistaa kuvakkeet työpöydällä ja tallennettujen "
 "tiedostojen kanssa työskentelyn."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -126,7 +117,7 @@ msgstr ""
 "Paneeli tarjoaa näytön ylä- tai alaosassa olevan palkin, joka sisältää "
 "valikot, ikkunaluettelot, tilakuvakkeet, kellon ja niin edelleen."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -134,7 +125,7 @@ msgstr ""
 "Ikkunanhallinta on ohjelma, joka piirtää otsikkopalkin ja reunat ikkunoiden "
 "ympärille, sekä mahdollistaa ikkunoiden siirtämisen ja koon muuttamisen."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -144,7 +135,7 @@ msgstr ""
 "arvoja ovat alihakemistot ja kuvien nimet. Tämän arvon muuttaminen vaikuttaa "
 "vasta seuraavaan istuntoon kirjauduttua."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -155,13 +146,9 @@ msgstr ""
 "sammuttamiseksi ja \"uudelleenkäynnistys\" järjestelmän käynnistämiseksi "
 "uudestaan."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Ikkunointiohjelma"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Käynnistettävä ikkunointiohjelma"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -200,7 +187,7 @@ msgid "Options"
 msgstr "Valinnat"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
+#: ../capplet/gsm-properties-dialog.c:1465
 msgid "Sessions Preferences"
 msgstr "Istuntojen asetukset"
 
@@ -232,10 +219,6 @@ msgid ""
 msgstr ""
 "Odotetaan ohjelman lopettamista. Ohjelman suorituksen keskeyttäminen voi "
 "aiheuttaa töiden häviämistä."
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "Peru"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -436,11 +419,11 @@ msgstr "Käynnistä _uudelleen"
 msgid "_Shut Down"
 msgstr "_Sammuta"
 
-#: ../gnome-session/gsm-manager.c:883 ../gnome-session/gsm-manager.c:1447
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-xsmp-client.c:912
+#: ../gnome-session/gsm-xsmp-client.c:971
 msgid "This program is blocking log out."
 msgstr "Tämä ohjelma estää kirjautumisen ulos"
 
@@ -458,22 +441,30 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistokette ei voi luoda: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:138
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kirjautumisistuntoa ei voi käynnistää (eikä X-palvelimeen yhdistää)"
 
-#: ../gnome-session/main.c:51
+#: ../gnome-session/main.c:62
+msgid "Override standard autostart directories"
+msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
+
+#: ../gnome-session/main.c:63
+msgid "Enable debugging code"
+msgstr "Käytä vianetsintäkoodia"
+
+#: ../gnome-session/main.c:64
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:180
-msgid " - the GNOME session manager"
-msgstr " - Gnomen istunnonhallinta"
-
-#: ../capplet/main.c:37
+#: ../gnome-session/main.c:65 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
+
+#: ../gnome-session/main.c:443
+msgid " - the GNOME session manager"
+msgstr " - Gnomen istunnonhallinta"
 
 #: ../capplet/gsm-app-dialog.c:130
 msgid "Select Command"
@@ -487,31 +478,31 @@ msgstr "Lisää käynnistyvä ohjelma"
 msgid "Edit Startup Program"
 msgstr "Muokkaa käynnistyvää ohjelmaa"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Ei kuvausta"
 
-#: ../capplet/gsm-properties-dialog.c:974
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "Käynnistyskomennon nimi ei voi olla tyhjä"
 
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "Käynnistyskomento ei voi olla tyhjä"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "Käynnistyskomento ei ole kelvollinen"
 
-#: ../capplet/gsm-properties-dialog.c:1288
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ../capplet/gsm-properties-dialog.c:1301
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Kuvake"
 
-#: ../capplet/gsm-properties-dialog.c:1312
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Ohjelma"
 
@@ -535,22 +526,33 @@ msgstr "Käytä valintaikkunoita virheille"
 msgid "Do not require confirmation"
 msgstr "Älä vaadi vahvistusta"
 
-#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
-#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
+#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
 msgid "Could not connect to the session manager"
 msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
 
-#: ../splash/gnome-login-sound.c:136
-msgid "Play logout sound instead of login"
-msgstr "Soita uloskirjautumisääni sisäänkirjautumisäänen sijaan"
-
-#: ../splash/gnome-login-sound.c:148
-msgid "- GNOME login/logout sound"
-msgstr "- Gnomen kirjautumis/uloskirjautumisääni"
-
-#: ../splash/gnome-session-splash.c:281
+#: ../splash/gnome-session-splash.c:289
 msgid "- GNOME Splash Screen"
 msgstr "- Gnomen käynnistymisikkuna"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "gnome-sessionin käynnistämä ikkunointiohjelma. Kelvollisia arvoja ovat "
+#~ "\"metacity\" ja \"compiz\"."
+
+#~ msgid "Window Manager to start"
+#~ msgstr "Käynnistettävä ikkunointiohjelma"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "Peru"
+
+#~ msgid "Play logout sound instead of login"
+#~ msgstr "Soita uloskirjautumisääni sisäänkirjautumisäänen sijaan"
+
+#~ msgid "- GNOME login/logout sound"
+#~ msgstr "- Gnomen kirjautumis/uloskirjautumisääni"
 
 #~ msgid "Could not connect to the session manager\n"
 #~ msgstr "Istunnonhallintaan ei voi yhdistää\n"
