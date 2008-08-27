@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 13:19+0700\n"
-"PO-Revision-Date: 2008-08-15 15:52+0700\n"
+"POT-Creation-Date: 2008-08-27 21:02+0700\n"
+"PO-Revision-Date: 2008-08-27 21:04+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -62,8 +62,8 @@ msgid ""
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
 msgstr ""
-"รายชื่อองค์ประกอบที่จำเป็นสำหรับวาระ (สมาชิกแต่ละตัวเป็นคีย์ที่อยู่ใต้ "
-"\"/desktop/gnome/session/required-components\") โดยปกติ "
+"รายชื่อองค์ประกอบที่จำเป็นสำหรับวาระ (สมาชิกแต่ละตัวเป็นคีย์ที่อยู่ใต้ \"/desktop/gnome/"
+"session/required-components\") โดยปกติ "
 "การปรับแต่งวาระจะไม่ให้ผู้ใช้ลบองค์ประกอบที่จำเป็นออกจากวาระ และถ้าถูกลบจริง "
 "โปรแกรมจัดการวาระก็จะเพิ่มองค์ประกอบที่จำเป็นกลับเข้าในวาระให้โดยอัตโนมัติ"
 
@@ -101,27 +101,19 @@ msgstr "แสดงรูปไตเติลขณะที่กำลัง
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"โปรแกรมจัดการหน้าต่างที่ gnome-session จะเรียกใช้ ค่าที่ใช้ได้คือ \"metacity\" และ "
-"\"compiz\""
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "โปรแกรมจัดการแฟ้ม จะเตรียมไอคอนต่างๆ บนพื้นโต๊ะ และช่วยคุณโต้ตอบกับแฟ้มต่างๆ ที่เก็บไว้ในดิสก์"
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 "พาเนลคือแถบที่ด้านบนหรือด้านล่างหน้าจอ บรรจุเมนู รายชื่อหน้าต่าง ไอคอนสถานะ นาฬิกา ฯลฯ"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -129,7 +121,7 @@ msgstr ""
 "โปรแกรมจัดการหน้าต่าง คือโปรแกรมที่วาดแถบหัวและกรอบรอบหน้าต่าง "
 "และให้คุณย้ายหรือปรับขนาดหน้าต่างได้"
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -138,7 +130,7 @@ msgstr ""
 "ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
 "โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -148,13 +140,9 @@ msgstr ""
 "สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
 "สำหรับการเริ่มการทำงานของเครื่องใหม่"
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "โปรแกรมจัดการหน้าต่างที่จะเรียกใช้"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -193,7 +181,7 @@ msgid "Options"
 msgstr "ตัวเลือก"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
+#: ../capplet/gsm-properties-dialog.c:1465
 msgid "Sessions Preferences"
 msgstr "ปรับแต่งวาระ"
 
@@ -223,10 +211,6 @@ msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
 msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -419,11 +403,11 @@ msgstr "_เปิดเครื่องใหม่"
 msgid "_Shut Down"
 msgstr "ปิ_ดเครื่อง"
 
-#: ../gnome-session/gsm-manager.c:907 ../gnome-session/gsm-manager.c:1507
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
-#: ../gnome-session/gsm-xsmp-client.c:953
+#: ../gnome-session/gsm-xsmp-client.c:971
 msgid "This program is blocking log out."
 msgstr "โปรแกรมนี้ระงับการออกจากระบบอยู่"
 
@@ -439,24 +423,28 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:138
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:56
+#: ../gnome-session/main.c:62
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:57
+#: ../gnome-session/main.c:63
+msgid "Enable debugging code"
+msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
+
+#: ../gnome-session/main.c:64
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:58 ../capplet/main.c:37
+#: ../gnome-session/main.c:65 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
-#: ../gnome-session/main.c:366
+#: ../gnome-session/main.c:443
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
@@ -472,31 +460,31 @@ msgstr "เพิ่มโปรแกรมเริ่มวาระ"
 msgid "Edit Startup Program"
 msgstr "แก้ไขโปรแกรมเริ่มวาระ"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "ไม่มีคำบรรยาย"
 
-#: ../capplet/gsm-properties-dialog.c:974
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
 
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระผิดพลาด"
 
-#: ../capplet/gsm-properties-dialog.c:1288
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "เปิดใช้"
 
-#: ../capplet/gsm-properties-dialog.c:1301
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "ไอคอน"
 
-#: ../capplet/gsm-properties-dialog.c:1312
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "โปรแกรม"
 
@@ -520,14 +508,27 @@ msgstr "ใช้กล่องโต้ตอบแสดงข้อผิด
 msgid "Do not require confirmation"
 msgstr "ไม่ต้องถามการยืนยัน"
 
-#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
-#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
+#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
 msgid "Could not connect to the session manager"
 msgstr "ติดต่อโปรแกรมจัดการวาระไม่สำเร็จ"
 
-#: ../splash/gnome-session-splash.c:281
+#: ../splash/gnome-session-splash.c:289
 msgid "- GNOME Splash Screen"
 msgstr "- รูปไตเติลเริ่มระบบ GNOME"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "โปรแกรมจัดการหน้าต่างที่ gnome-session จะเรียกใช้ ค่าที่ใช้ได้คือ \"metacity\" และ "
+#~ "\"compiz\""
+
+#~ msgid "Window Manager to start"
+#~ msgstr "โปรแกรมจัดการหน้าต่างที่จะเรียกใช้"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
 
 #~ msgid "Allow TCP connections"
 #~ msgstr "ยอมรับการเชื่อมต่อ TCP"
