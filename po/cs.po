@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-09 18:27+0200\n"
-"PO-Revision-Date: 2008-08-09 18:10+0200\n"
+"POT-Creation-Date: 2008-08-28 03:09+0200\n"
+"PO-Revision-Date: 2008-08-28 03:07+0200\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -110,21 +110,13 @@ msgstr "Zobrazovat úvodní obrazovku při startu sezení"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"Správce oken, kterého spustí gnome-session. Platnými hodnotami jsou "
-"\"metacity\" a \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "Správce souborů poskytuje ikony pracovní plochy a umožňuje zprostředkování "
 "činnosti s uloženými soubory."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -132,7 +124,7 @@ msgstr ""
 "Panel poskytuje lištu v horní a dolní části obrazovky, včetně nabídek, "
 "seznamu oken, stavových ikon, hodin atd."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -140,7 +132,7 @@ msgstr ""
 "Správce oken je program vykreslující záhlaví a okraje oken, umožňuje "
 "přesunovat a měnit velikost oken."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -149,7 +141,7 @@ msgstr ""
 "Relativní cesta vůči adresáři $datadir/pixmaps/. Platné hodnoty jsou názvy "
 "podadresářů a obrázků. Změna této hodnoty se projeví při příštím přihlášení."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -159,13 +151,9 @@ msgstr ""
 "\"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart\" "
 "pro restartování systému."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Správce oken"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Správce oken určený ke spuštění"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -204,8 +192,9 @@ msgid "Options"
 msgstr "Možnosti"
 
 #: ../data/session-properties.glade.h:6
+#: ../capplet/gsm-properties-dialog.c:1465
 msgid "Sessions Preferences"
-msgstr "Nastavení sezení"
+msgstr "Předvolby sezení"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -235,10 +224,6 @@ msgid ""
 msgstr ""
 "Čeká se na ukončení programu. Přerušení běhu programu může způsobit ztrátu "
 "dat."
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -445,11 +430,11 @@ msgstr "_Restartovat"
 msgid "_Shut Down"
 msgstr "_Vypnout"
 
-#: ../gnome-session/gsm-manager.c:878 ../gnome-session/gsm-manager.c:1442
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Neodpovídá"
 
-#: ../gnome-session/gsm-xsmp-client.c:912
+#: ../gnome-session/gsm-xsmp-client.c:971
 msgid "This program is blocking log out."
 msgstr "Tento program zabraňuje odhlášení."
 
@@ -466,63 +451,70 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:138
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Nepodařilo se spustit sezení s přihlášením (a spojit se se serverem X)"
 
-#: ../gnome-session/main.c:51
+#: ../gnome-session/main.c:62
+msgid "Override standard autostart directories"
+msgstr "Přepsat standardní adresáře automatického spuštění"
+
+#: ../gnome-session/main.c:63
+msgid "Enable debugging code"
+msgstr "Zapnout ladicí kód"
+
+#: ../gnome-session/main.c:64
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
-#: ../gnome-session/main.c:180
+#: ../gnome-session/main.c:65 ../capplet/main.c:37
+msgid "Version of this application"
+msgstr "Verze této aplikace"
+
+#: ../gnome-session/main.c:443
 msgid " - the GNOME session manager"
 msgstr " - správce sezení GNOME"
 
-#: ../capplet/main.c:67
-#, c-format
-msgid "Could not connect to the session manager\n"
-msgstr "Nelze se spojit se správcem sezení\n"
-
-#: ../capplet/ui.c:112
+#: ../capplet/gsm-app-dialog.c:130
 msgid "Select Command"
 msgstr "Vybrat příkaz"
 
-#: ../capplet/ui.c:226
-msgid "The name of the startup program cannot be empty"
-msgstr "Název programu při přihlášení nesmí být prázdný"
-
-#: ../capplet/ui.c:230
-msgid "The startup command cannot be empty"
-msgstr "Příkaz při přihlášení nesmí být prázdný"
-
-#: ../capplet/ui.c:237
-msgid "The startup command is not valid"
-msgstr "Příkaz při přihlášení není platný"
-
-#: ../capplet/ui.c:473
-msgid "Enabled"
-msgstr "Povoleno"
-
-#: ../capplet/ui.c:487
-msgid "Icon"
-msgstr "Ikona"
-
-#: ../capplet/ui.c:499
-msgid "Program"
-msgstr "Program"
-
-#: ../capplet/ui.c:545
+#: ../capplet/gsm-app-dialog.c:174
 msgid "Add Startup Program"
 msgstr "Přidat program při přihlášení"
 
-#: ../capplet/ui.c:598
+#: ../capplet/gsm-app-dialog.c:178
 msgid "Edit Startup Program"
 msgstr "Upravit program při přihlášení"
 
-#: ../capplet/commands.c:799
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Bez popisu"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Název programu při přihlášení nesmí být prázdný"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Příkaz při přihlášení nesmí být prázdný"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Příkaz při přihlášení není platný"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Povoleno"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikona"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
 
 #: ../tools/gnome-session-save.c:52
 msgid "Set the current session name"
@@ -544,19 +536,11 @@ msgstr "U chyb použije dialogová okna"
 msgid "Do not require confirmation"
 msgstr "Nebude vyžadovat potvrzení"
 
-#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
-#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
+#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
 msgid "Could not connect to the session manager"
 msgstr "Nelze se spojit se správcem sezení"
 
-#: ../splash/gnome-login-sound.c:136
-msgid "Play logout sound instead of login"
-msgstr "Přehrát zvuk odhlášení namísto přihlášení"
-
-#: ../splash/gnome-login-sound.c:148
-msgid "- GNOME login/logout sound"
-msgstr "- zvuk přihlášení/odhlášení GNOME"
-
-#: ../splash/gnome-session-splash.c:281
+#: ../splash/gnome-session-splash.c:289
 msgid "- GNOME Splash Screen"
 msgstr "- úvodní obrazovka GNOME"
