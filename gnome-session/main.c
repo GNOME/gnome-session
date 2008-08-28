@@ -54,17 +54,8 @@
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
-static char **override_autostart_dirs = NULL;
 /* FIXME: turn this off closer to release */
 static gboolean debug = TRUE;
-
-static GOptionEntry entries[] = {
-        { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
-        { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
-        { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
-        { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
-        { NULL, 0, 0, 0, NULL, NULL, NULL }
-};
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
@@ -234,6 +225,7 @@ find_desktop_file_for_app_name (const char *name,
 
 static void
 append_default_apps (GsmManager *manager,
+                     const char *default_session_key,
                      char      **autostart_dirs)
 {
         GSList      *default_apps;
@@ -242,9 +234,12 @@ append_default_apps (GsmManager *manager,
 
         g_debug ("main: *** Adding default apps");
 
+        g_assert (default_session_key != NULL);
+        g_assert (autostart_dirs != NULL);
+
         client = gconf_client_get_default ();
         default_apps = gconf_client_get_list (client,
-                                              GSM_GCONF_DEFAULT_SESSION_KEY,
+                                              default_session_key,
                                               GCONF_VALUE_STRING,
                                               NULL);
         g_object_unref (client);
@@ -340,14 +335,15 @@ append_required_apps (GsmManager *manager)
 }
 
 static void
-load_standard_apps (GsmManager *manager)
+load_standard_apps (GsmManager *manager,
+                    const char *default_session_key)
 {
         char **autostart_dirs;
         int    i;
 
         autostart_dirs = gsm_util_get_autostart_dirs ();
 
-        append_default_apps (manager, autostart_dirs);
+        append_default_apps (manager, default_session_key, autostart_dirs);
 
         if (failsafe) {
                 goto out;
@@ -368,7 +364,8 @@ load_standard_apps (GsmManager *manager)
 }
 
 static void
-load_override_apps (GsmManager *manager)
+load_override_apps (GsmManager *manager,
+                    char      **override_autostart_dirs)
 {
         int i;
         for (i = 0; override_autostart_dirs[i]; i++) {
@@ -428,6 +425,16 @@ main (int argc, char **argv)
         GsmStore         *client_store;
         GsmXsmpServer    *xsmp_server;
         GdmSignalHandler *signal_handler;
+        static char     **override_autostart_dirs = NULL;
+        static char      *default_session_key = NULL;
+        static GOptionEntry entries[] = {
+                { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
+                { "default-session-key", 0, 0, G_OPTION_ARG_STRING, &default_session_key, N_("GConf key used to loopup default session"), NULL },
+                { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
+                { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
+                { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
+                { NULL, 0, 0, 0, NULL, NULL, NULL }
+        };
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -488,9 +495,13 @@ main (int argc, char **argv)
 
         manager = gsm_manager_new (client_store, failsafe);
         if (override_autostart_dirs != NULL) {
-                load_override_apps (manager);
+                load_override_apps (manager, override_autostart_dirs);
         } else {
-                load_standard_apps (manager);
+                if (! IS_STRING_EMPTY (default_session_key)) {
+                        load_standard_apps (manager, default_session_key);
+                } else {
+                        load_standard_apps (manager, GSM_GCONF_DEFAULT_SESSION_KEY);
+                }
         }
 
         gsm_xsmp_server_start (xsmp_server);
