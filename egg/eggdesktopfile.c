@@ -190,7 +190,6 @@ egg_desktop_file_new_from_key_file (GKeyFile    *key_file,
 	  g_key_file_free (key_file);
 	  return NULL;
 	}
-      else 
       g_free (version);
     }
 
@@ -231,6 +230,7 @@ egg_desktop_file_new_from_key_file (GKeyFile    *key_file,
       if (!exec)
 	{
 	  egg_desktop_file_free (desktop_file);
+	  g_free (type);
 	  return NULL;
 	}
 
@@ -263,6 +263,7 @@ egg_desktop_file_new_from_key_file (GKeyFile    *key_file,
       if (!url)
 	{
 	  egg_desktop_file_free (desktop_file);
+	  g_free (type);
 	  return NULL;
 	}
       g_free (url);
@@ -1272,6 +1273,7 @@ egg_desktop_file_launchv (EggDesktopFile *desktop_file,
  out:
   if (env)
     {
+      g_ptr_array_foreach (env, (GFunc)g_free, NULL);
       g_ptr_array_free (env, TRUE);
     }
   free_document_list (translated_documents);

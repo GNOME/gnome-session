@@ -228,6 +228,7 @@ gsm_resumed_app_new_from_legacy_session (GKeyFile *session_file,
         app = g_object_new (GSM_TYPE_RESUMED_APP,
                             "startup-id", id,
                             NULL);
+        g_free (id);
 
         key = g_strdup_printf ("%d," SmProgram, n);
         val = g_key_file_get_string (session_file, "Default", key, NULL);

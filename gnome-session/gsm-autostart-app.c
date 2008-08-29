@@ -301,6 +301,7 @@ setup_condition_monitor (GsmAutostartApp *app)
         key = NULL;
         res = parse_condition_string (app->priv->condition_string, &kind, &key);
         if (! res) {
+                g_free (key);
                 return;
         }
 
@@ -366,6 +367,8 @@ setup_condition_monitor (GsmAutostartApp *app)
         } else {
                 disabled = TRUE;
         }
+
+        g_free (key);
 
         /* FIXME: cache the disabled value? */
 }
@@ -609,6 +612,7 @@ is_conditionally_disabled (GsmApp *app)
         key = NULL;
         res = parse_condition_string (priv->condition_string, &kind, &key);
         if (! res) {
+                g_free (key);
                 return TRUE;
         }
 
@@ -640,6 +644,8 @@ is_conditionally_disabled (GsmApp *app)
 
         /* Set initial condition */
         priv->condition = !disabled;
+
+        g_free (key);
 
         return disabled;
 }

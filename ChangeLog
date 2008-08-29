@@ -1,5 +1,18 @@
 2008-08-29  William Jon McCann  <jmccann@redhat.com>
 
+	* egg/eggdesktopfile.c (egg_desktop_file_new_from_key_file),
+	(egg_desktop_file_launchv):
+	* gnome-session/gsm-autostart-app.c (setup_condition_monitor),
+	(is_conditionally_disabled):
+	* gnome-session/gsm-resumed-app.c
+	(gsm_resumed_app_new_from_legacy_session):
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_finalize),
+	(register_client_callback):
+	Fix some leaks found by valgrind.
+	Patch from: Matthias Clasen <mclasen@redhat.com>
+
+2008-08-29  William Jon McCann  <jmccann@redhat.com>
+
 	* data/Makefile.am:
 	Don't install the gnome-wm.desktop by default.
 
