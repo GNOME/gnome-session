@@ -169,6 +169,7 @@ find_desktop_file_for_app_name (const char *name,
         char    **app_dirs;
         GKeyFile *key_file;
         char     *desktop_file;
+        int       i;
 
         app_path = NULL;
 
@@ -177,12 +178,23 @@ find_desktop_file_for_app_name (const char *name,
         key_file = g_key_file_new ();
 
         desktop_file = g_strdup_printf ("%s.desktop", name);
+
+        g_debug ("main: Looking for file '%s'", desktop_file);
+
+        for (i = 0; app_dirs[i] != NULL; i++) {
+                g_debug ("main: Looking in '%s'", app_dirs[i]);
+        }
+
         g_key_file_load_from_dirs (key_file,
                                    desktop_file,
                                    (const char **) app_dirs,
                                    &app_path,
                                    G_KEY_FILE_NONE,
                                    NULL);
+
+        if (app_path != NULL) {
+                g_debug ("main: found in XDG app dirs: '%s'", app_path);
+        }
 
         if (app_path == NULL && autostart_dirs != NULL) {
                 g_key_file_load_from_dirs (key_file,
@@ -191,6 +203,10 @@ find_desktop_file_for_app_name (const char *name,
                                            &app_path,
                                            G_KEY_FILE_NONE,
                                            NULL);
+                if (app_path != NULL) {
+                        g_debug ("main: found in autostart dirs: '%s'", app_path);
+                }
+
         }
 
         /* look for gnome vender prefix */
@@ -204,6 +220,9 @@ find_desktop_file_for_app_name (const char *name,
                                            &app_path,
                                            G_KEY_FILE_NONE,
                                            NULL);
+                if (app_path != NULL) {
+                        g_debug ("main: found in XDG app dirs: '%s'", app_path);
+                }
         }
 
         if (app_path == NULL && autostart_dirs != NULL) {
@@ -213,6 +232,9 @@ find_desktop_file_for_app_name (const char *name,
                                            &app_path,
                                            G_KEY_FILE_NONE,
                                            NULL);
+                if (app_path != NULL) {
+                        g_debug ("main: found in autostart dirs: '%s'", app_path);
+                }
         }
 
         g_free (desktop_file);
