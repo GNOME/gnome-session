@@ -24,10 +24,6 @@ schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
 bin_SCRIPTS = gnome-wm
 
-autostartdir = $(datadir)/gnome/autostart
-autostart_in_files = gnome-wm.desktop.in
-autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
-
 settingsdir = $(datadir)/applications
 settings_in_files = session-properties.desktop.in
 settings_DATA = $(settings_in_files:.desktop.in=.desktop)
@@ -46,12 +42,10 @@ EXTRA_DIST =					\
 	session-properties.desktop.in		\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
-	$(autostart_in_files)			\
 	$(glade_DATA)				\
 	$(pixmap_DATA)
 
 DISTCLEANFILES =				\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
-	$(autostart_DATA)			\
 	$(settings_DATA)
