@@ -36,7 +36,6 @@
 
 #define GLADE_XML_FILE "session-properties.glade"
 
-#define CAPPLET_EDIT_DIALOG_WIDGET_NAME   "session_properties_edit_dialog"
 #define CAPPLET_NAME_ENTRY_WIDGET_NAME    "session_properties_name_entry"
 #define CAPPLET_COMMAND_ENTRY_WIDGET_NAME "session_properties_command_entry"
 #define CAPPLET_COMMENT_ENTRY_WIDGET_NAME "session_properties_comment_entry"
@@ -47,10 +46,13 @@
 
 struct GsmAppDialogPrivate
 {
-        GladeXML *xml;
-        char     *name;
-        char     *command;
-        char     *comment;
+        GtkWidget *name_entry;
+        GtkWidget *command_entry;
+        GtkWidget *comment_entry;
+        GtkWidget *browse_button;
+        char      *name;
+        char      *command;
+        char      *comment;
 };
 
 static void     gsm_app_dialog_class_init  (GsmAppDialogClass *klass);
@@ -105,13 +107,7 @@ on_browse_button_clicked (GtkWidget    *widget,
                           GsmAppDialog *dialog)
 {
         GtkWidget *chooser;
-        GtkWidget *dlg;
-        GtkWidget *cmd_entry;
         int        response;
-
-        dlg = glade_xml_get_widget (dialog->priv->xml, CAPPLET_EDIT_DIALOG_WIDGET_NAME);
-
-        cmd_entry = glade_xml_get_widget (dialog->priv->xml, CAPPLET_COMMAND_ENTRY_WIDGET_NAME);
 
         chooser = gtk_file_chooser_dialog_new ("",
                                                GTK_WINDOW (dialog),
@@ -143,9 +139,7 @@ on_browse_button_clicked (GtkWidget    *widget,
 
                 g_free (text);
 
-                g_assert (cmd_entry != NULL);
-
-                gtk_entry_set_text (GTK_ENTRY (cmd_entry), uri);
+                gtk_entry_set_text (GTK_ENTRY (dialog->priv->command_entry), uri);
 
                 g_free (uri);
         }
@@ -164,6 +158,25 @@ static void
 setup_dialog (GsmAppDialog *dialog)
 {
         GtkWidget *widget;
+        GladeXML  *xml;
+
+        xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
+                             "main-table",
+                             PACKAGE);
+        g_assert (xml != NULL);
+
+        widget = glade_xml_get_widget (xml, "main-table");
+        gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
+
+        gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
+        gtk_container_set_border_width (GTK_CONTAINER (widget), 5);
+        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");
+
+        g_object_set (dialog,
+                      "allow-shrink", FALSE,
+                      "allow-grow", FALSE,
+                      NULL);
 
         gtk_dialog_add_button (GTK_DIALOG (dialog),
                                GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
@@ -180,44 +193,48 @@ setup_dialog (GsmAppDialog *dialog)
                                        GTK_STOCK_SAVE, GTK_RESPONSE_OK);
         }
 
-        widget = glade_xml_get_widget (dialog->priv->xml, CAPPLET_NAME_ENTRY_WIDGET_NAME);
-        g_signal_connect (widget,
+        dialog->priv->name_entry = glade_xml_get_widget (xml, CAPPLET_NAME_ENTRY_WIDGET_NAME);
+        g_signal_connect (dialog->priv->name_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),
                           dialog);
         if (dialog->priv->name != NULL) {
-                gtk_entry_set_text (GTK_ENTRY (widget), dialog->priv->name);
+                gtk_entry_set_text (GTK_ENTRY (dialog->priv->name_entry), dialog->priv->name);
         }
 
-        widget = glade_xml_get_widget (dialog->priv->xml, CAPPLET_BROWSE_WIDGET_NAME);
-        g_signal_connect (widget,
+        dialog->priv->browse_button = glade_xml_get_widget (xml, CAPPLET_BROWSE_WIDGET_NAME);
+        g_signal_connect (dialog->priv->browse_button,
                           "clicked",
                           G_CALLBACK (on_browse_button_clicked),
                           dialog);
 
-        widget = glade_xml_get_widget (dialog->priv->xml, CAPPLET_COMMAND_ENTRY_WIDGET_NAME);
-        g_signal_connect (widget,
+        dialog->priv->command_entry = glade_xml_get_widget (xml, CAPPLET_COMMAND_ENTRY_WIDGET_NAME);
+        g_signal_connect (dialog->priv->command_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),
                           dialog);
         if (dialog->priv->command != NULL) {
-                gtk_entry_set_text (GTK_ENTRY (widget), dialog->priv->command);
+                gtk_entry_set_text (GTK_ENTRY (dialog->priv->command_entry), dialog->priv->command);
         }
 
-        widget = glade_xml_get_widget (dialog->priv->xml, CAPPLET_COMMENT_ENTRY_WIDGET_NAME);
-        g_signal_connect (widget,
+        dialog->priv->comment_entry = glade_xml_get_widget (xml, CAPPLET_COMMENT_ENTRY_WIDGET_NAME);
+        g_signal_connect (dialog->priv->comment_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),
                           dialog);
         if (dialog->priv->comment != NULL) {
-                gtk_entry_set_text (GTK_ENTRY (widget), dialog->priv->comment);
+                gtk_entry_set_text (GTK_ENTRY (dialog->priv->comment_entry), dialog->priv->comment);
+        }
+
+        if (xml != NULL) {
+                g_object_unref (xml);
         }
 }
 
 static GObject *
 gsm_app_dialog_constructor (GType                  type,
-                                guint                  n_construct_app,
-                                GObjectConstructParam *construct_app)
+                            guint                  n_construct_app,
+                            GObjectConstructParam *construct_app)
 {
         GsmAppDialog *dialog;
 
@@ -241,12 +258,6 @@ gsm_app_dialog_dispose (GObject *object)
         g_return_if_fail (GSM_IS_APP_DIALOG (object));
 
         dialog = GSM_APP_DIALOG (object);
-
-        g_debug ("GsmAppDialog: dispose called");
-        if (dialog->priv->xml != NULL) {
-                g_object_unref (dialog->priv->xml);
-                dialog->priv->xml = NULL;
-        }
 
         g_free (dialog->priv->name);
         dialog->priv->name = NULL;
@@ -298,22 +309,21 @@ const char *
 gsm_app_dialog_get_name (GsmAppDialog *dialog)
 {
         g_return_val_if_fail (GSM_IS_APP_DIALOG (dialog), NULL);
-        return dialog->priv->name;
+        return gtk_entry_get_text (GTK_ENTRY (dialog->priv->name_entry));
 }
 
 const char *
 gsm_app_dialog_get_command (GsmAppDialog *dialog)
 {
         g_return_val_if_fail (GSM_IS_APP_DIALOG (dialog), NULL);
-
-        return dialog->priv->command;
+        return gtk_entry_get_text (GTK_ENTRY (dialog->priv->command_entry));
 }
 
 const char *
 gsm_app_dialog_get_comment (GsmAppDialog *dialog)
 {
         g_return_val_if_fail (GSM_IS_APP_DIALOG (dialog), NULL);
-        return dialog->priv->comment;
+        return gtk_entry_get_text (GTK_ENTRY (dialog->priv->comment_entry));
 }
 
 static void
@@ -403,27 +413,8 @@ gsm_app_dialog_class_init (GsmAppDialogClass *klass)
 static void
 gsm_app_dialog_init (GsmAppDialog *dialog)
 {
-        GtkWidget *widget;
 
         dialog->priv = GSM_APP_DIALOG_GET_PRIVATE (dialog);
-
-        dialog->priv->xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
-                                           "main-table",
-                                           PACKAGE);
-        g_assert (dialog->priv->xml != NULL);
-
-        widget = glade_xml_get_widget (dialog->priv->xml, "main-table");
-        gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
-
-        gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
-        gtk_container_set_border_width (GTK_CONTAINER (widget), 5);
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-        gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");
-
-        g_object_set (dialog,
-                      "allow-shrink", FALSE,
-                      "allow-grow", FALSE,
-                      NULL);
 }
 
 static void
@@ -437,8 +428,6 @@ gsm_app_dialog_finalize (GObject *object)
         dialog = GSM_APP_DIALOG (object);
 
         g_return_if_fail (dialog->priv != NULL);
-
-        g_debug ("GsmAppDialog: finalizing");
 
         G_OBJECT_CLASS (gsm_app_dialog_parent_class)->finalize (object);
 }

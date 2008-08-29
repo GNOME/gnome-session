@@ -1415,7 +1415,6 @@ gsm_properties_dialog_dispose (GObject *object)
 
         dialog = GSM_PROPERTIES_DIALOG (object);
 
-        g_debug ("GsmPropertiesDialog: dispose called");
         if (dialog->priv->xml != NULL) {
                 g_object_unref (dialog->priv->xml);
                 dialog->priv->xml = NULL;
@@ -1480,8 +1479,6 @@ gsm_properties_dialog_finalize (GObject *object)
         dialog = GSM_PROPERTIES_DIALOG (object);
 
         g_return_if_fail (dialog->priv != NULL);
-
-        g_debug ("GsmPropertiesDialog: finalizing");
 
         G_OBJECT_CLASS (gsm_properties_dialog_parent_class)->finalize (object);
 }
