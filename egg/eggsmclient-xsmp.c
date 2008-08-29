@@ -300,6 +300,7 @@ sm_client_xsmp_connect (gpointer user_data)
 			 err->message);
 	      g_error_free (err);
 	    }
+          g_free (cmdline);
 	}
     }
 
