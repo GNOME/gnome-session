@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-19 21:33-0400\n"
+"POT-Creation-Date: 2008-08-29 09:25-0400\n"
 "PO-Revision-Date: 2008-08-19 21:33-0300\n"
 "Last-Translator: Vladimir Melo <vladimirmelo.psi@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-br@listas.cipsga.org.br>\n"
@@ -110,21 +110,13 @@ msgstr "Mostrar tela inicial ao iniciar a sessão"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"O gerenciador de janelas com o qual o gnome-session iniciará. Os valores "
-"válidos são \"metacity\" and \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "O gerenciador de arquivos fornece os ícones da área de trabalho e permite "
 "que você interaja com os seus arquivos salvos."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -132,7 +124,7 @@ msgstr ""
 "O painel fornece a barra no topo ou na base da tela contendo menus, lista de "
 "janelas, ícones de status, relógio, etc."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -141,7 +133,7 @@ msgstr ""
 "bordas ao redor das janelas, e permite que você mova e redimensione as "
 "janelas."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -151,7 +143,7 @@ msgstr ""
 "Sub-diretórios e nomes de imagens são valores válidos. Alterar esses valores "
 "vai afetar a próxima sessão."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -161,13 +153,9 @@ msgstr ""
 "válidos são \"logout\" para sair, \"shutdown\" para desligar o computador e "
 "\"restart\" para reiniciar o computador."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Gerenciador de janelas"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Gerenciador de janelas a ser iniciado"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -206,7 +194,7 @@ msgid "Options"
 msgstr "Opções"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
+#: ../capplet/gsm-properties-dialog.c:1465
 msgid "Sessions Preferences"
 msgstr "Preferências de sessões"
 
@@ -440,7 +428,7 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Desligar"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1528
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Não respondendo"
 
@@ -469,23 +457,27 @@ msgstr ""
 "Não foi possível iniciar a sessão de login (e não foi possível conectar ao "
 "servidor X)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:431
 msgid "Override standard autostart directories"
 msgstr "Substituir os diretórios padrões de início automático"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:432
+msgid "GConf key used to lookup default session"
+msgstr "A chave do GConf usada para procurar a sessão padrão"
+
+#: ../gnome-session/main.c:433
 msgid "Enable debugging code"
 msgstr "Habilitar código de depuração"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:434
 msgid "Do not load user-specified applications"
 msgstr "Não carregar aplicativos especificados pelo usuário"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
+#: ../gnome-session/main.c:435 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Versão deste aplicativo"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:450
 msgid " - the GNOME session manager"
 msgstr "- gerenciador de sessões do GNOME"
 
@@ -501,31 +493,31 @@ msgstr "Adicionar programa inicial"
 msgid "Edit Startup Program"
 msgstr "Editar programa inicial"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Nenhuma descrição"
 
-#: ../capplet/gsm-properties-dialog.c:976
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "O nome do programa inicial não pode ser vazio"
 
-#: ../capplet/gsm-properties-dialog.c:980
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "O comando inicial não pode ser vazio"
 
-#: ../capplet/gsm-properties-dialog.c:986
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "O comando inicial não é válido"
 
-#: ../capplet/gsm-properties-dialog.c:1290
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Habilitado"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Ícone"
 
-#: ../capplet/gsm-properties-dialog.c:1314
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Programa"
 
@@ -557,6 +549,16 @@ msgstr "Não foi possível conectar ao gerenciador de sessões"
 #: ../splash/gnome-session-splash.c:289
 msgid "- GNOME Splash Screen"
 msgstr "- Tela inicial do GNOME"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "O gerenciador de janelas com o qual o gnome-session iniciará. Os valores "
+#~ "válidos são \"metacity\" and \"compiz\"."
+
+#~ msgid "Window Manager to start"
+#~ msgstr "Gerenciador de janelas a ser iniciado"
 
 #~ msgid "gtk-cancel"
 #~ msgstr "gtk-cancel"
