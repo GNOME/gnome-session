@@ -99,6 +99,7 @@ set_gtk_modules (DBusGProxy *gsm)
 
                 value = g_strjoinv (":", modules);
                 g_free (modules);
+                g_strfreev (old_modules);
         } else {
                 value = g_strdup ("gail:atk-bridge");
         }
