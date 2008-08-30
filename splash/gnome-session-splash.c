@@ -208,6 +208,8 @@ load_pixbuf (const char *filename)
                 g_error_free (error);
         }
 
+        g_free (path);
+
         return pixbuf;
 }
 
