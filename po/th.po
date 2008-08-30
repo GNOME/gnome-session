@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 21:02+0700\n"
-"PO-Revision-Date: 2008-08-27 21:04+0700\n"
+"POT-Creation-Date: 2008-08-30 20:01+0700\n"
+"PO-Revision-Date: 2008-08-30 20:04+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -181,7 +181,7 @@ msgid "Options"
 msgstr "ตัวเลือก"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
+#: ../capplet/gsm-properties-dialog.c:1464
 msgid "Sessions Preferences"
 msgstr "ปรับแต่งวาระ"
 
@@ -222,27 +222,27 @@ msgstr "แฟ้มนี้ไม่ใช่แฟ้ม .desktop ที่�
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "ไม่รู้จักแฟ้มเดสก์ท็อปรุ่น '%s'"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "กำลังเริ่ม %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "โปรแกรมไม่รับเอกสารในบรรทัดคำสั่ง"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "ไม่รู้จักตัวเลือกของการเรียกโปรแกรม: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "ไม่สามารถส่ง URI ของเอกสารไปยังรายการเดสก์ท็อปที่มี 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "ไม่ใช่รายการที่เรียกทำงานได้"
@@ -407,7 +407,7 @@ msgstr "ปิ_ดเครื่อง"
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "โปรแกรมนี้ระงับการออกจากระบบอยู่"
 
@@ -428,35 +428,39 @@ msgstr "ไม่สามารถสร้างซ็อกเก็ตรอ
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:453
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:454
+msgid "GConf key used to lookup default session"
+msgstr "คีย์ GConf ที่ใช้เปิดหาวาระปริยาย"
+
+#: ../gnome-session/main.c:455
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: ../gnome-session/main.c:64
+#: ../gnome-session/main.c:456
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:65 ../capplet/main.c:37
+#: ../gnome-session/main.c:457 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
-#: ../gnome-session/main.c:443
+#: ../gnome-session/main.c:472
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "เลือกคำสั่ง"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "เพิ่มโปรแกรมเริ่มวาระ"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "แก้ไขโปรแกรมเริ่มวาระ"
 
