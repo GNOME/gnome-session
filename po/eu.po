@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-22 18:55+0200\n"
-"PO-Revision-Date: 2008-08-22 19:35+0200\n"
+"POT-Creation-Date: 2008-08-30 13:05+0200\n"
+"PO-Revision-Date: 2008-08-30 13:06+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,12 +65,11 @@ msgid ""
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
 msgstr ""
-"Saioaren zati gisa beharrezkoak diren osagaien zerrenda. "
-"Elementu bakoitzak gako bat izendatzen du "
-"\"/desktop/gnome/session/required-components\" pean. "
-"Saioaren hobespenak normalean ez dio erabiltzaileari uzten beharrezko "
-"osagai bat saiotik kentzen, eta saio-kudeatzaileak automatikoki "
-"gehitzen du beharrezko osagaia berriro saioari (kenduta egonez gero)."
+"Saioaren zati gisa beharrezkoak diren osagaien zerrenda. Elementu bakoitzak "
+"gako bat izendatzen du \"/desktop/gnome/session/required-components\" pean. "
+"Saioaren hobespenak normalean ez dio erabiltzaileari uzten beharrezko osagai "
+"bat saiotik kentzen, eta saio-kudeatzaileak automatikoki gehitzen du "
+"beharrezko osagaia berriro saioari (kenduta egonez gero)."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -106,39 +105,29 @@ msgstr "Erakutsi harrerako pantaila saioa abiaraztean"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"'Gnome-session'-ek abiaraziko duen leiho-kudeatzailea. Balio erabilgarriak: "
-"\"metacity\" eta \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
-"Fitxategi-kudeatzaileak mahaigaineko ikonoak eskaintzen ditu, eta "
-"gordetako fitxategiekin elkarreragitea baimentzen dizu."
+"Fitxategi-kudeatzaileak mahaigaineko ikonoak eskaintzen ditu, eta gordetako "
+"fitxategiekin elkarreragitea baimentzen dizu."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
-"Panelak pantailaren goiko edo beheko barra eskaintzen du. "
-"Panel batek menuak, leihoen zerrenda, egoera-ikonoak, ordularia e.a. eduki "
-"ditzake."
+"Panelak pantailaren goiko edo beheko barra eskaintzen du. Panel batek "
+"menuak, leihoen zerrenda, egoera-ikonoak, ordularia e.a. eduki ditzake."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
-"Leiho-kudeatzailea leihoen inguruan titulu-barra eta ertzak "
-"marrazten ditu, eta leihoak lekuz edo tamainaz aldatzea "
-"uzten du."
+"Leiho-kudeatzailea leihoen inguruan titulu-barra eta ertzak marrazten ditu, "
+"eta leihoak lekuz edo tamainaz aldatzea uzten du."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -148,7 +137,7 @@ msgstr ""
 "Azpidirektorioak eta irudien izenak balio baliagarriak dira. Balio hau "
 "aldatzeak hurrengo saio-hasiera eragingo du."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -159,13 +148,9 @@ msgstr ""
 "\" sistema itzaltzeko eta \"Berrabiarazi\" systema itzali eta berriro "
 "abiarazteko."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Leiho-kudeatzailea"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Leiho-kudeatzailea abiarazteko"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -233,9 +218,7 @@ msgstr "<b>Programa batzuk oraindik exekutatzen ari dira:</b>"
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
-msgstr ""
-"Programa amaitu zai. Programa etetzeak zure lana galtzea "
-"eragin lezake."
+msgstr "Programa amaitu zai. Programa etetzeak zure lana galtzea eragin lezake."
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -247,27 +230,27 @@ msgstr "Fitxategia ez da baliozko '.desktop' fitxategia"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Mahaigaineko fitxategiaren '%s' bertsioa ezezaguna"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "%s abiarazten"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Aplikazioak ez ditu dokumenturik onartzen komando-lerroan"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Abiarazteko aukera ezezaguna: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Ezin zaio dokumentuaren URIrik eman mahaigaineko 'Type=Link' sarrerari"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Ez da elementu abiarazgarria"
@@ -339,8 +322,8 @@ msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
-"Programak amaitu zai. Programa hauek etetzeak zure "
-"lanak galtzea eragin lezake."
+"Programak amaitu zai. Programa hauek etetzeak zure lanak galtzea eragin "
+"lezake."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:860
 msgid "Switch User Anyway"
@@ -440,7 +423,7 @@ msgstr "_Itzali"
 msgid "Not responding"
 msgstr "Ez du erantzuten"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Programa honek saioa amaitzea blokeatzen ari da."
 
@@ -461,63 +444,67 @@ msgstr "Ezin izan da entzuteko ICE socket-a sortu: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Ezin da saio-hasiera hasi (eta ezin da X zerbitzariarekin konektatu)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:453
 msgid "Override standard autostart directories"
 msgstr "Jaramonik ez egin hasiera automatikoko direktorio estandarrei"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:454
+msgid "GConf key used to lookup default session"
+msgstr "Erabilitako GConf gakoa saio lehenetsia bilatzeko"
+
+#: ../gnome-session/main.c:455
 msgid "Enable debugging code"
 msgstr "Gaitu arazketa-kodea"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:456
 msgid "Do not load user-specified applications"
 msgstr "Ez kargatu erabiltzaileak zehaztutako aplikazioak"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
+#: ../gnome-session/main.c:457 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Aplikazio honen bertsioa"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:472
 msgid " - the GNOME session manager"
 msgstr "- GNOMEren saio-kudeatzailea"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "Hautatu komandoa:"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "Gehitu abioko programa"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "Editatu abioko programa"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Azalpenik ez"
 
-#: ../capplet/gsm-properties-dialog.c:976
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "Abioko programaren izena ezin da hutsik egon"
 
-#: ../capplet/gsm-properties-dialog.c:980
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "Abioko komandoa ezin da hutsik egon"
 
-#: ../capplet/gsm-properties-dialog.c:986
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "Abioko komandoa ez da baliozkoa"
 
-#: ../capplet/gsm-properties-dialog.c:1290
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Gaituta"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: ../capplet/gsm-properties-dialog.c:1314
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Programa"
 
