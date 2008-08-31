@@ -1778,6 +1778,7 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->inhibitors = NULL;
         }
 
+        G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
 }
 
 static void

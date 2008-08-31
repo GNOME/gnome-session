@@ -227,6 +227,8 @@ gsm_app_dispose (GObject *object)
 
         g_free (app->priv->id);
         app->priv->id = NULL;
+
+        G_OBJECT_CLASS (gsm_app_parent_class)->dispose (object);
 }
 
 static void

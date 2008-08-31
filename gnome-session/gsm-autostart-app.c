@@ -574,6 +574,8 @@ gsm_autostart_app_dispose (GObject *object)
         if (priv->condition_monitor) {
                 g_file_monitor_cancel (priv->condition_monitor);
         }
+
+        G_OBJECT_CLASS (gsm_autostart_app_parent_class)->dispose (object);
 }
 
 static gboolean

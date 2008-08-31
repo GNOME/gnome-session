@@ -176,6 +176,8 @@ gsm_resumed_app_dispose (GObject *object)
                 g_source_remove (priv->child_watch_id);
                 priv->child_watch_id = 0;
         }
+
+        G_OBJECT_CLASS (gsm_resumed_app_parent_class)->dispose (object);
 }
 
 static void
