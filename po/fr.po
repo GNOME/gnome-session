@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-18 23:22+0200\n"
-"PO-Revision-Date: 2008-08-18 23:22+0200\n"
+"POT-Creation-Date: 2008-08-31 11:38+0200\n"
+"PO-Revision-Date: 2008-08-31 11:36+0200\n"
 "Last-Translator: Robert-André Mauchin <zebob.m@pengzone.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -114,21 +114,13 @@ msgstr "Affiche l'écran d'accueil au démarrage de la session"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"Le gestionnaire de fenêtres que gnome-session démarrera. Les valeurs "
-"possibles sont « metacity » et « compiz »."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "Le gestionnaire de fichiers gère les icônes du bureau et vous permet "
 "d'interagir avec vos fichiers."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -137,7 +129,7 @@ msgstr ""
 "contient les menus, la liste des fenêtres, des icônes de notification, "
 "l'horloge, etc."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -146,7 +138,7 @@ msgstr ""
 "et les bordures autour des fenêtres et qui vous permet de déplacer et "
 "redimensionner les fenêtres."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -157,7 +149,7 @@ msgstr ""
 "modification de cette valeur prendra effet lors de la prochaine ouverture de "
 "session."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -167,13 +159,9 @@ msgstr ""
 "Les valeurs valides sont « logout » pour se déconnecter, « shutdown » pour "
 "arrêter le système et « restart » pour redémarrer le système."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Gestionnaire de fenêtres"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Gestionnaire de fenêtres à démarrer"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -213,7 +201,7 @@ msgid "Options"
 msgstr "Options"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
+#: ../capplet/gsm-properties-dialog.c:1464
 msgid "Sessions Preferences"
 msgstr "Préférences des sessions"
 
@@ -258,29 +246,29 @@ msgstr "Le fichier n'est pas un fichier .desktop valide"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "La version « %s » du fichier desktop n'est pas reconnue"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Démarrage de %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "L'application n'accepte pas de documents en ligne de commande"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Option de démarrage non reconnue : %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
 "Impossible de passer des URI de document à un fichier de bureau avec "
 "« Type=Link »"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Cet élément ne peut être lancé"
@@ -449,11 +437,11 @@ msgstr "_Redémarrer"
 msgid "_Shut Down"
 msgstr "Ét_eindre"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1528
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Absence de réponse"
 
-#: ../gnome-session/gsm-xsmp-client.c:957
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Ce programme bloque la déconnexion."
 
@@ -476,63 +464,67 @@ msgstr "Impossible de créer le connecteur d'écoute ICE : %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Impossible de démarrer la session (et de se connecter au serveur X)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:453
 msgid "Override standard autostart directories"
 msgstr "Remplace les répertoires autostart standards"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:454
+msgid "GConf key used to lookup default session"
+msgstr "Clé GConf utilisée pour rechercher la session par défaut"
+
+#: ../gnome-session/main.c:455
 msgid "Enable debugging code"
 msgstr "Active le code de débogage"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:456
 msgid "Do not load user-specified applications"
 msgstr "Ne charge pas les applications demandées par l'utilisateur"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
+#: ../gnome-session/main.c:457 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Version de cette application"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:472
 msgid " - the GNOME session manager"
 msgstr "- le gestionnaire de sessions de GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "Sélection d'une commande"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "Ajout d'un programme de démarrage"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "Modification d'un programme de démarrage"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Pas de description"
 
-#: ../capplet/gsm-properties-dialog.c:974
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "Le nom du programme de démarrage ne peut pas être vide"
 
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "La commande de démarrage ne peut pas être vide"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "La commande de démarrage n'est pas valide"
 
-#: ../capplet/gsm-properties-dialog.c:1288
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Activé"
 
-#: ../capplet/gsm-properties-dialog.c:1301
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Icône"
 
-#: ../capplet/gsm-properties-dialog.c:1312
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Programme"
 
@@ -561,9 +553,19 @@ msgstr "Ne demande pas de confirmation"
 msgid "Could not connect to the session manager"
 msgstr "Impossible de se connecter au gestionnaire de sessions"
 
-#: ../splash/gnome-session-splash.c:281
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- Écran d'accueil de GNOME"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "Le gestionnaire de fenêtres que gnome-session démarrera. Les valeurs "
+#~ "possibles sont « metacity » et « compiz »."
+
+#~ msgid "Window Manager to start"
+#~ msgstr "Gestionnaire de fenêtres à démarrer"
 
 #~ msgid "Could not connect to the session manager\n"
 #~ msgstr "Impossible de se connecter au gestionnaire de sessions\n"
