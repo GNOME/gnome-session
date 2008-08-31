@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-16 16:39+0000\n"
-"PO-Revision-Date: 2008-08-27 12:38+0300\n"
+"POT-Creation-Date: 2008-08-29 14:53+0000\n"
+"PO-Revision-Date: 2008-08-30 11:44+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,9 @@ msgid ""
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
 msgstr ""
-"Seansi osaks olevate komponentide nimekiri. (Iga kirje kohta on "
-"\"/desktop/gnome/session/required-components\" all samanimeline võti.) "
-"Seansi eelistused tavaliselt ei luba kasutajal seansist vajalikke komponente "
+"Seansi osaks olevate komponentide nimekiri. (Iga kirje kohta on \"/desktop/"
+"gnome/session/required-components\" all samanimeline võti.) Seansi "
+"eelistused tavaliselt ei luba kasutajal seansist vajalikke komponente "
 "eemaldada ja seansihaldur taastab automaatselt kasutaja poolt eemaldatud "
 "vajalikud komponendid."
 
@@ -108,21 +108,13 @@ msgstr "Näita sisselogimisel tiitelkuva"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"Gnome seansi poolt käivitatav aknahaldur. Lubatud väärtused on \"metacity\" "
-"ja \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "Failihaldur tagab töölauaikoonide funktsionaalsuse ja võimaldab salvestatud "
 "failidega tegeleda."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -130,7 +122,7 @@ msgstr ""
 "Paneel tagab ekraani üla- või allosas oleva riba. Nendel ribadel võivad "
 "asuda menüüd, akende nimekiri, olekuikoonid, kell jms."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -138,7 +130,7 @@ msgstr ""
 "Aknahaldur on programm, mis joonistab akendele raame ja pealkirjaribasid, "
 "samuti hoolitseb selle eest, et akende suurust oleks võimalik muuta."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -148,7 +140,7 @@ msgstr ""
 "kataloogil. Alamkataloogid ja pildinimed on lubatud. Selle väärtuse muutmine "
 "rakendub järgmisel seansil pärast sisselogimist."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -158,13 +150,9 @@ msgstr ""
 "\"logout\" väljalogimiseks, \"shutdown\" süsteemi seiskamiseks ja \"restart"
 "\" alglaadimise tegemiseks."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Aknahaldur"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Käivitatav aknahaldur"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -203,7 +191,7 @@ msgid "Options"
 msgstr "Valikud"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
+#: ../capplet/gsm-properties-dialog.c:1465
 msgid "Sessions Preferences"
 msgstr "Seansi eelistused"
 
@@ -235,10 +223,6 @@ msgid ""
 msgstr ""
 "Programmi lõpetamise järgi ootamine.  Programmi kõrvaldamine võib põhjustada "
 "tööde kadumist."
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -439,11 +423,11 @@ msgstr "_Taaskäivita"
 msgid "_Shut Down"
 msgstr "_Seiska"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1528
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Ei vasta"
 
-#: ../gnome-session/gsm-xsmp-client.c:957
+#: ../gnome-session/gsm-xsmp-client.c:971
 msgid "This program is blocking log out."
 msgstr "See programm takistab väljalogimist."
 
@@ -467,25 +451,29 @@ msgstr ""
 "Sisselogimise seanssi pole võimalik käivitada (ja X-serveriga pole võimalik "
 "ühendust saada)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:431
 msgid "Override standard autostart directories"
 msgstr ""
 "Standardsete automaatkäivituse kataloogide asemel muude kataloogide "
 "kasutamine"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:432
+msgid "GConf key used to lookup default session"
+msgstr "GConf'i võti vaikimisi seansi otsimiseks"
+
+#: ../gnome-session/main.c:433
 msgid "Enable debugging code"
 msgstr "Silumiskoodi lubamine"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:434
 msgid "Do not load user-specified applications"
 msgstr "Kasutaja määratud rakendusi ei laadita"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
+#: ../gnome-session/main.c:435 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Raknduse versioon"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:450
 msgid " - the GNOME session manager"
 msgstr "- GNOME seansihaldur"
 
@@ -501,31 +489,31 @@ msgstr "Käivitusprogrammi lisamine"
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Kirjeldus puudub"
 
-#: ../capplet/gsm-properties-dialog.c:974
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
 
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei tohi tühjaks jätta"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "Käivituskäsk pole korrektne"
 
-#: ../capplet/gsm-properties-dialog.c:1288
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Lubatud"
 
-#: ../capplet/gsm-properties-dialog.c:1301
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Ikoon"
 
-#: ../capplet/gsm-properties-dialog.c:1312
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Programm"
 
@@ -554,6 +542,16 @@ msgstr "Kinnitust pole vaja küsida"
 msgid "Could not connect to the session manager"
 msgstr "Seansihalduriga pole võimalik ühenduda"
 
-#: ../splash/gnome-session-splash.c:281
+#: ../splash/gnome-session-splash.c:289
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME tiitelkuva"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "Gnome seansi poolt käivitatav aknahaldur. Lubatud väärtused on \"metacity"
+#~ "\" ja \"compiz\"."
+
+#~ msgid "Window Manager to start"
+#~ msgstr "Käivitatav aknahaldur"
