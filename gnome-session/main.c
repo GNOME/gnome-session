@@ -25,6 +25,8 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
 
 #include <glib/gi18n.h>
 #include <glib/goption.h>
@@ -437,6 +439,46 @@ signal_cb (int      signo,
         return ret;
 }
 
+static gboolean
+require_dbus_session (int      argc,
+                      char   **argv,
+                      GError **error)
+{
+        char **new_argv;
+        int    i;
+
+        if (g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
+                return TRUE;
+
+        /* Just a sanity check to prevent infinite recursion if
+         * dbus-launch fails to set DBUS_SESSION_BUS_ADDRESS 
+         */
+        g_return_val_if_fail (!g_str_has_prefix (argv[0], "dbus-launch"),
+                              TRUE);
+
+        /* +2 for our new arguments, +1 for NULL */
+        new_argv = g_malloc (argc + 3 * sizeof (*argv));
+        
+        new_argv[0] = "dbus-launch";
+        new_argv[1] = "--exit-with-session";
+        new_argv[2] = argv[0];
+        for (i = 1; i < argc - 1; i++)
+                new_argv[i + 2] = argv[i];
+        new_argv[i + 2] = NULL;
+        
+        if (!execvp ("dbus-launch", new_argv)) {
+                g_set_error (error, 
+                             G_SPAWN_ERROR,
+                             G_SPAWN_ERROR_FAILED,
+                             "No session bus and could not exec dbus-launch: %s",
+                             g_strerror (errno));
+                return FALSE;
+        }
+
+        /* Should not be reached */
+        return TRUE;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -457,6 +499,11 @@ main (int argc, char **argv)
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
+
+        /* Make sure that we have a session bus */
+        if (!require_dbus_session (argc, argv, &error)) {
+                gsm_util_init_error (TRUE, "%s", error->message);
+        }
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");

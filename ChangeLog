@@ -1,3 +1,12 @@
+2008-09-01  Vincent Untz  <vuntz@gnome.org>
+
+	* gnome-session/main.c: (require_dbus_session): make sure we have a
+	session bus by re-running ourself with "dbus-launch
+	--exit-with-session" if necessary.
+	(main): call require_dbus_session() at the early beginning
+	Based on patch by Colin Walters <walters@verbum.org>
+	Fix bug #546863.
+
 2008-08-30  Matthias Clasen  <mclasen@redhat.com>
 
 	* gnome-session/gsm-app.c:
