@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 18:05+0200\n"
-"PO-Revision-Date: 2008-08-30 18:05+0200\n"
+"POT-Creation-Date: 2008-09-01 21:31+0200\n"
+"PO-Revision-Date: 2008-09-01 21:32+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -459,27 +459,27 @@ msgstr ""
 "Non se puido iniciar o inicio de sesión (e foi imposible conectar co "
 "servidor de X)"
 
-#: ../gnome-session/main.c:453
+#: ../gnome-session/main.c:495
 msgid "Override standard autostart directories"
 msgstr "Substituír os directorios estándar de inicio automático"
 
-#: ../gnome-session/main.c:454
+#: ../gnome-session/main.c:496
 msgid "GConf key used to lookup default session"
 msgstr "A chave de GConf para buscar a sesión predeterminada"
 
-#: ../gnome-session/main.c:455
+#: ../gnome-session/main.c:497
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
-#: ../gnome-session/main.c:456
+#: ../gnome-session/main.c:498
 msgid "Do not load user-specified applications"
 msgstr "Non cargar as aplicacións especificadas polo usuario"
 
-#: ../gnome-session/main.c:457 ../capplet/main.c:37
+#: ../gnome-session/main.c:499 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "A versión desta aplicación"
 
-#: ../gnome-session/main.c:472
+#: ../gnome-session/main.c:519
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións de Gnome"
 
@@ -523,32 +523,51 @@ msgstr "Icona"
 msgid "Program"
 msgstr "Programa"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Definir o nome da sesión actual"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NOME"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Terminar a sesión"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Terminar sesión, ignorando calquer inhibidor existente"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Mostrar o diálogo de terminar sesión"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Mostrar o diálogo de apagado"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Matar sesión"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Usar caixas de diálogo para erros"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Non solicitar confirmación"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Non se puido conectar co xestor de sesión"
 
-#: ../splash/gnome-session-splash.c:289
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "O programa chamouse con opcións conflitivas"
+
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- Pantalla de benvida de Gnome"
 
