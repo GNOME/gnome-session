@@ -1,5 +1,23 @@
 2008-09-01  Vincent Untz  <vuntz@gnome.org>
 
+	Add --logout, --force-logout, --logout-dialog and --shutdown-dialog
+	arguments to gnome-session-save, and deprecate --kill. This will make
+	things less ambiguous.
+
+	* tools/gnome-session-save.c: rename some variables
+	(display_error): updated
+	(get_sm_proxy): call get_session_bus() from there, since it simplifies
+	code elsewhere
+	(set_session_name): updated
+	(do_logout): renamed from logout_session(), and simplified. Also add
+	a mode argument for the logout dbus method.
+	(do_shutdown_dialog): new
+	(main): updated for new options
+	* doc/man/gnome-session-save.1: update man page
+	Fix bug #550211.
+
+2008-09-01  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/main.c: (require_dbus_session): make sure we have a
 	session bus by re-running ourself with "dbus-launch
 	--exit-with-session" if necessary.
