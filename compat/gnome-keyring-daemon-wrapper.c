@@ -73,18 +73,13 @@ keyring_daemon_start (DBusGProxy *gsm)
         char       *pid_str;
         char       *end;
         const char *old_keyring;
-        const char *display;
         char       *argv[2];
 
         /* If there is already a working keyring, don't start a new daemon */
         old_keyring = g_getenv ("GNOME_KEYRING_SOCKET");
         if (old_keyring != NULL &&
             access (old_keyring, R_OK | W_OK) == 0) {
-                display = g_getenv ("DISPLAY");
-                if (display != NULL) {
-                        gnome_keyring_daemon_set_display_sync (display);
-                }
-
+                gnome_keyring_daemon_prepare_environment_sync ();
                 return;
         }
 
@@ -149,6 +144,8 @@ keyring_daemon_start (DBusGProxy *gsm)
                         }
 
                         g_strfreev (lines);
+
+                        gnome_keyring_daemon_prepare_environment_sync ();
                 } else {
                         /* daemon failed for some reason */
                         g_printerr ("gnome-keyring-daemon failed to start correctly, exit code: %d\n",

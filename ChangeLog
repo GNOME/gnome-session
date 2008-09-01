@@ -1,5 +1,13 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	* compat/gnome-keyring-daemon-wrapper.c: (keyring_daemon_start): call
+	gnome_keyring_daemon_prepare_environment_sync() so that the keyring
+	daemon has all the right environment variables.
+	Patch by Stef Walter <stef@memberwebs.com>
+	Fix part of bug #547272.
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/main.c: (main): set GNOME_DESKTOP_SESSION_ID to
 	"this-is-deprecated" to make it clear that people should stop relying
 	on this.
