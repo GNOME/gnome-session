@@ -551,8 +551,7 @@ main (int argc, char **argv)
         /* Some third-party programs rely on GNOME_DESKTOP_SESSION_ID to
          * detect if GNOME is running. We keep this for compatibility reasons.
          */
-        gsm_util_setenv ("GNOME_DESKTOP_SESSION_ID",
-                         failsafe ? "failsafe" : "default");
+        gsm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
 
         client_store = gsm_store_new ();
 

@@ -1,5 +1,11 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/main.c: (main): set GNOME_DESKTOP_SESSION_ID to
+	"this-is-deprecated" to make it clear that people should stop relying
+	on this.
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/main.c: (main): export GNOME_DESKTOP_SESSION_ID. We
 	need this for compatibility reasons for third-party programs.
 	Fix bug #542880.
