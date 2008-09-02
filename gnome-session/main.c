@@ -247,6 +247,8 @@ find_desktop_file_for_app_name (const char *name,
         return app_path;
 }
 
+/* This doesn't contain the required components, so we need to always
+ * call append_required_apps() after a call to append_default_apps(). */
 static void
 append_default_apps (GsmManager *manager,
                      const char *default_session_key,
@@ -379,11 +381,11 @@ load_standard_apps (GsmManager *manager,
 
         append_saved_session_apps (manager);
 
-        /* We don't do this in the failsafe case, because the default
-         * session should include all requirements anyway. */
+ out:
+        /* We do this at the end in case a saved session contains an
+         * application that already provides one of the components. */
         append_required_apps (manager);
 
- out:
         g_strfreev (autostart_dirs);
 }
 

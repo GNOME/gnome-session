@@ -64,7 +64,8 @@
          <owner>gnome</owner>
          <type>list</type>
          <list_type>string</list_type>
-         <default>[gnome-settings-daemon,metacity,gnome-panel,nautilus]</default>
+         <default>[gnome-settings-daemon]</default>
+	 <!-- FIXME when not string frozen: mention that required components are added to the default session -->
          <locale name="C">
             <short>Default session</short>
             <long>List of applications that are part of the default session.</long>
@@ -77,7 +78,7 @@
          <type>list</type>
          <list_type>string</list_type>
          <default>[windowmanager,panel,filemanager]</default>
-	 <!-- FIXME: s/required-components/required_components/ -->
+	 <!-- FIXME when not string frozen: s/required-components/required_components/ -->
          <locale name="C">
             <short>Required session components</short>
             <long>List of components that are required as part of the session. (Each element names a key under "/desktop/gnome/session/required-components".) The Session Preferences will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed.</long>

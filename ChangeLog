@@ -1,5 +1,22 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	Remove required components from the default session. The required
+	components should always be in the default session anyway, and keeping
+	the list up-to-date in two places can break easily stuff (if someone
+	adds a required component or if the user change the value if
+	windowmanager only in required components, eg)
+	Note that it affects the failsafe session case: all required components
+	will also run in the failsafe session. This was intended to be this
+	way, as far as I understand.
+
+	* data/gnome-session.schemas.in: remove metacity,gnome-panel,nautilus
+	from the default session
+	* gnome-session/main.c: (load_standard_apps): always call
+	append_required_apps() since the required applications are not in the
+	default session.
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* data/gnome-session.schemas.in:
 	* gnome-session/main.c: (append_required_apps):
 	Rename /desktop/gnome/session/required_components key to
