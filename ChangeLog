@@ -1,5 +1,14 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	* data/gnome-session.schemas.in:
+	* gnome-session/main.c: (append_required_apps):
+	Rename /desktop/gnome/session/required_components key to
+	/desktop/gnome/session/required_components_list avoid potential clash
+	that might happen because of the
+	/desktop/gnome/session/required_components directory.
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* data/gnome-session.schemas.in: revert string freeze break. Add a
 	FIXME for the future instead.
 

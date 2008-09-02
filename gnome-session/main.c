@@ -48,7 +48,7 @@
 
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default_session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required_components"
-#define GSM_GCONF_REQUIRED_COMPONENTS_KEY       "/desktop/gnome/session/required_components"
+#define GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY  "/desktop/gnome/session/required_components_list"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
@@ -314,7 +314,7 @@ append_required_apps (GsmManager *manager)
 
         client = gconf_client_get_default ();
         required_components = gconf_client_get_list (client,
-                                                     GSM_GCONF_REQUIRED_COMPONENTS_KEY,
+                                                     GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY,
                                                      GCONF_VALUE_STRING,
                                                      NULL);
 
