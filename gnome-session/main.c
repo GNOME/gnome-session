@@ -46,9 +46,9 @@
 #include "gsm-xsmp-server.h"
 #include "gsm-store.h"
 
-#define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default-session"
-#define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required-components"
-#define GSM_GCONF_REQUIRED_COMPONENTS_KEY       "/desktop/gnome/session/required-components"
+#define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default_session"
+#define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required_components"
+#define GSM_GCONF_REQUIRED_COMPONENTS_KEY       "/desktop/gnome/session/required_components"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 

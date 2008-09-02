@@ -1,5 +1,14 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	* data/gnome-session.schemas.in:
+	* data/gnome-wm:
+	* gnome-session/main.c:
+	Do not use dash but underscore to separate words in gconf keys, as
+	recommended by the gconf naming conventions. Since they keys are new in
+	2.23, it's not too late to do this change.
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* configure.in: post-release bump to 2.23.92.
 
 ==================== 2.23.91 ====================

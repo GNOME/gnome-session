@@ -8,7 +8,7 @@
 #
 # NOTE: DON'T USE THIS.  Please have your window manager install
 # a desktop file and change the gconf key
-# /desktop/gnome/session/required-components/windowmanager
+# /desktop/gnome/session/required_components/windowmanager
 
 # sm-client-id value
 SMID=
@@ -42,7 +42,7 @@ done
 
 # WINDOW_MANAGER overrides all
 if [ -z "$WINDOW_MANAGER" ] ; then
-    WINDOW_MANAGER=`gconftool-2 --get /desktop/gnome/session/required-components/windowmanager 2> /dev/null`
+    WINDOW_MANAGER=`gconftool-2 --get /desktop/gnome/session/required_components/windowmanager 2> /dev/null`
 fi
 
 if [ -z "$WINDOW_MANAGER" ] ; then
