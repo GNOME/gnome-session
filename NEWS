@@ -1,4 +1,50 @@
 ===============
+Version 2.23.91
+===============
+
+- Fixed #548710, metacity is not respawned when dies (William Jon McCann)
+- Fixed #548909, compilation fix (Jens Granseuer)
+- Fixed #548980, make non-fatal errors are treated as such (Frederic Crozat)
+- Fixed #548982, do not set a11y gtk modules if at registry could not be
+  started (Frederic Crozat)
+- Honor the list of required apps in the list key instead of loading all
+  component keys in the dir (William Jon McCann)
+- Look in app dirs for required components (William Jon McCann)
+- Do not use and install gnome-wm by default (William Jon McCann)
+- Add command line option to override the gconf key used to look up the default
+  session (William Jon McCann)
+- Fix add/edit dialog of the capplet (William Jon McCann)
+- Fix leaks (Matthias Clasen)
+- Code cleanups (Matthias Clasen)
+- Fixed #546863, make sure there is a session bus running (Colin Walters,
+  Vincent Untz)
+- Fixed #550211, add --logout, --force-logout, --logout-dialog and
+  --shutdown-dialog arguments to gnome-session-save, and deprecate --kill
+  (Vincent Untz)
+- Fixed #542880, set GNOME_DESKTOP_SESSION_ID environment variable for
+  compatibility reasons (Vincent Untz)
+- Fixed #547272, make gnome-keyring-daemon work correctly again in the session
+  (Vincent Untz, Stef Walter)
+
+Translations:
+- Updated cs: Petr Kovar
+- Updated de: Mario Blättermann
+- Updated es: Jorge González
+- Updated eu: Iñaki Larrañaga Murgoitio
+- Updated fi: Ilkka Tuohela
+- Updated fr: Robert-André Mauchin
+- Updated ga: Seán de Búrca
+- Updated he: Yair Hershkovitz
+- Updated ja: Takeshi AIHANA
+- Updated mk: Arangel Angov
+- Updated nb: Kjartan Maraas
+- Updated pt_BR: Vladimir Melo
+- Updated ru: Leonid Kanter
+- Updated sv: Daniel Nylander
+- Updated th: Theppitak Karoonboonyanan
+- Updated vi: Clytie Siddall
+
+===============
 Version 2.23.90
 ===============
 
