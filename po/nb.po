@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 13:51+0200\n"
-"PO-Revision-Date: 2008-08-27 13:54+0200\n"
+"POT-Creation-Date: 2008-09-02 08:04+0200\n"
+"PO-Revision-Date: 2008-09-02 08:05+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,12 @@ msgid ""
 "Session Preferences will not normally allow users to remove a required "
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
-msgstr "Liste med komponenter som kreves i sesjonen. (Hvert element navngir en nøkkel under «/desktop/gnome/session/required-components».) Dialog for egenskaper for sesjon vil vanligvis ikke la brukere fjerne en påkrevet komponent fra sesjonen. Sesjonshåndtereren vil automatisk legge tilbake påkrevede komponenter i sesjonen hvis de fjernes."
+msgstr ""
+"Liste med komponenter som kreves i sesjonen. (Hvert element navngir en "
+"nøkkel under «/desktop/gnome/session/required-components».) Dialog for "
+"egenskaper for sesjon vil vanligvis ikke la brukere fjerne en påkrevet "
+"komponent fra sesjonen. Sesjonshåndtereren vil automatisk legge tilbake "
+"påkrevede komponenter i sesjonen hvis de fjernes."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -176,7 +181,7 @@ msgid "Options"
 msgstr "Alternativer"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
+#: ../capplet/gsm-properties-dialog.c:1464
 msgid "Sessions Preferences"
 msgstr "Brukervalg for sesjoner"
 
@@ -219,27 +224,27 @@ msgstr "Filen er ikke en gyldig .desktop-fil"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Versjon «%s» i skrivebordsfil ikke gjenkjent"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Programmet tar ikke dokumenter på kommandolinjen"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Ikke gjenkjent oppstartsflagg: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Kan ikke gi dokument-URIer til en skrivebordsoppføring med «Type=Link»"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Ikke en startbar oppføring"
@@ -412,7 +417,7 @@ msgstr "_Slå av"
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Dette programmet hindrer utlogging."
 
@@ -433,35 +438,39 @@ msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:495
 msgid "Override standard autostart directories"
 msgstr "Overstyr forvalgte kataloger for autostart"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:496
+msgid "GConf key used to lookup default session"
+msgstr "GConf-nøkkel som brukes til å finne forvalgt sesjon"
+
+#: ../gnome-session/main.c:497
 msgid "Enable debugging code"
 msgstr "Aktiver feilsøkingskode"
 
-#: ../gnome-session/main.c:64
+#: ../gnome-session/main.c:498
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: ../gnome-session/main.c:65 ../capplet/main.c:37
+#: ../gnome-session/main.c:499 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
-#: ../gnome-session/main.c:443
+#: ../gnome-session/main.c:519
 msgid " - the GNOME session manager"
 msgstr "- GNOME sesjonshåndterer"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "Velg kommando"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
@@ -493,31 +502,50 @@ msgstr "Ikon"
 msgid "Program"
 msgstr "Program"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Gi navn til denne sesjonen"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAVN"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Logg ut"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Logg ut og overse eventuelle hindringer"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Vis logg ut-dialog"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Vis slå av-dialog"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Terminer sesjon"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Bruk dialoger for feil"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Ikke krev bekreftelse"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonshåndterer"
 
-#: ../splash/gnome-session-splash.c:289
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Programmet ble kalt med motstridende alternativer"
+
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME oppstartskjerm"
