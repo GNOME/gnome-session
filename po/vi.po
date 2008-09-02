@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.2.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 22:01+0000\n"
-"PO-Revision-Date: 2008-08-24 14:48+0700\n"
+"POT-Creation-Date: 2008-09-01 16:49+0000\n"
+"PO-Revision-Date: 2008-09-02 15:22+0700\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,12 @@ msgid ""
 "Session Preferences will not normally allow users to remove a required "
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
-msgstr "Danh sách các thành phần bắt buộc của một phiên chạy mặc định. (Mỗi thành phần đặt tên một khoá dưới « /desktop/gnome/session/required-components ».) Tuỳ thích Phiên chạy bình thường sẽ không cho phép người dùng gỡ bỏ một thành phần bắt buộc khỏi phiên chạy, và bộ quản lý phiên chạy sẽ tự động phục hồi các thành phần bắt buộc đã bị gỡ bỏ."
+msgstr ""
+"Danh sách các thành phần bắt buộc của một phiên chạy mặc định. (Mỗi thành "
+"phần đặt tên một khoá dưới « /desktop/gnome/session/required-components ».) "
+"Tuỳ thích Phiên chạy bình thường sẽ không cho phép người dùng gỡ bỏ một "
+"thành phần bắt buộc khỏi phiên chạy, và bộ quản lý phiên chạy sẽ tự động "
+"phục hồi các thành phần bắt buộc đã bị gỡ bỏ."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -97,19 +102,13 @@ msgstr "Hiển thị màn hình giật gân khi khởi chạy phiên chạy"
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr "Trình quản lý cửa sổ mà gnome-session sẽ khởi động. Giá trị hợp lệ là \"metacity\" và \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "Bộ quản lý tập tin thì cung cấp các biểu tượng trên màn hình và cho phép bạn "
 "tương tác với các tập tin đã lưu của mình."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -117,7 +116,7 @@ msgstr ""
 "Bảng điều khiển cung cấp thanh ở đầu/cưới màn hình mà chứa các trình đơn, "
 "danh sách các cửa sổ, các biểu tượng trạng thái, đồng hồ v.v."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -125,7 +124,7 @@ msgstr ""
 "Bộ quản lý cửa sổ là chương trình mà vẽ thanh tựa đề và các viền chung quanh "
 "cửa sổ, và cho phép bạn di chuyển và co giãn cửa sổ."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -135,7 +134,7 @@ msgstr ""
 "Các tên của thư mục con và các tên ảnh đều là giá trị hợp lệ. Thay đổi giá "
 "trị này sẽ có tác động khi đăng nhập trong phiên chạy kế tiếp."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -146,13 +145,9 @@ msgstr ""
 " • shutdown — ngừng hệ thống\n"
 " • restart — khởi động lại hệ thống"
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
 msgid "Window Manager"
 msgstr "Bộ quản lý cửa sổ"
-
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Bộ quản lý cửa sổ cần chạy"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -191,7 +186,7 @@ msgid "Options"
 msgstr "Tùy chọn"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
+#: ../capplet/gsm-properties-dialog.c:1464
 msgid "Sessions Preferences"
 msgstr "Tuỳ thích phiên chạy"
 
@@ -220,11 +215,8 @@ msgstr "<b>Vài chương trình vẫn đang hoạt đọng:</b>"
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
-msgstr "Đang chờ chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất dữ liệu."
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
+msgstr ""
+"Đang chờ chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất dữ liệu."
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -236,29 +228,29 @@ msgstr "Tập tin không phải là một tập tin .desktop hợp lệ"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Không nhận ra tập tin màn hình nền phiên bản « %s »"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Đang khởi chạy %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Ứng dụng không chấp nhận tài liệu thông qua dòng lệnh"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Không nhận ra tùy chọn khởi chạy: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
 "Không thể gởi địa chỉ URI của tài liệu cho một mục nhập màn hình nền « "
 "Kiểu=Liên_kết »"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Không phải một mục có thể khởi chạy"
@@ -329,7 +321,9 @@ msgstr "Vài chương trình vẫn đang chạy:"
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
-msgstr "Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến mất dữ liệu."
+msgstr ""
+"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
+"mất dữ liệu."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:860
 msgid "Switch User Anyway"
@@ -419,11 +413,11 @@ msgstr "_Khởi chạy lại"
 msgid "_Shut Down"
 msgstr "_Tắt máy"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1523
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Không trả lời"
 
-#: ../gnome-session/gsm-xsmp-client.c:953
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Chương trình này đang ngăn cản đăng xuất."
 
@@ -439,101 +433,137 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:138
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 "Không thể khởi chạy buổi hợp đăng nhập (và không thể kết nối đến trình phục "
 "vụ X)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:495
 msgid "Override standard autostart directories"
 msgstr "Đè thư mục autostart chuẩn"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:496
+msgid "GConf key used to lookup default session"
+msgstr "Khoá GConf dùng để tìm phiên làm việc mặc định"
+
+#: ../gnome-session/main.c:497
 msgid "Enable debugging code"
 msgstr "Bật mã hỗ trợ tìm lỗi"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:498
 msgid "Do not load user-specified applications"
 msgstr "Đừng nạp ứng dụng do người dùng xác định"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
+#: ../gnome-session/main.c:499 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Phiên bản của ứng dụng"
 
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:519
 msgid " - the GNOME session manager"
 msgstr " — Bộ Quản lý Phiên chạy GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "Chọn câu lệnh"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "Thêm chương trình khởi động"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "Sửa chương trình khởi động"
 
-#: ../capplet/gsm-properties-dialog.c:131
+#: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
 msgstr "Không mô tả"
 
-#: ../capplet/gsm-properties-dialog.c:974
+#: ../capplet/gsm-properties-dialog.c:977
 msgid "The name of the startup program cannot be empty"
 msgstr "Tên của chương trình khởi động không thể là rỗng"
 
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-properties-dialog.c:981
 msgid "The startup command cannot be empty"
 msgstr "Không cho phép tạo lệnh khởi động rỗng"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-properties-dialog.c:987
 msgid "The startup command is not valid"
 msgstr "Lệnh khởi động không hợp lệ"
 
-#: ../capplet/gsm-properties-dialog.c:1288
+#: ../capplet/gsm-properties-dialog.c:1291
 msgid "Enabled"
 msgstr "Bật"
 
-#: ../capplet/gsm-properties-dialog.c:1301
+#: ../capplet/gsm-properties-dialog.c:1304
 msgid "Icon"
 msgstr "Biểu tượng"
 
-#: ../capplet/gsm-properties-dialog.c:1312
+#: ../capplet/gsm-properties-dialog.c:1315
 msgid "Program"
 msgstr "Chương trình"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Đặt tên của phiên chạy hiện thời"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "TÊN"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Đăng xuất"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Đăng xuất, bỏ qua các ứng dụng ngăn cản"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Hiện hộp thoại đăng xuất"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Hiện hộp thoại tắt máy"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Buộc kết thúc phiên chạy"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Dùng hộp thoại cho lỗi"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Không yêu cầu xác nhận"
 
-#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
-#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với trình quản lý phiên chạy"
 
-#: ../splash/gnome-session-splash.c:281
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Chương trình được gọi với tuỳ chọn xung đột"
+
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr " — Màn hình giật gân GNOME"
+
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "Trình quản lý cửa sổ mà gnome-session sẽ khởi động. Giá trị hợp lệ là "
+#~ "\"metacity\" và \"compiz\"."
+
+#~ msgid "Window Manager to start"
+#~ msgstr "Bộ quản lý cửa sổ cần chạy"
+
+#~ msgid "gtk-cancel"
+#~ msgstr "gtk-cancel"
 
 #~ msgid "Could not connect to the session manager\n"
 #~ msgstr "Không thể kết nối với trình quản lý phiên chạy\n"
