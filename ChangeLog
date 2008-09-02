@@ -1,5 +1,21 @@
 2008-09-02  Vincent Untz  <vuntz@gnome.org>
 
+	Synchronize the environment set by the gnome-keyring daemon in the
+	gnome-keyring-daemon wrapper to the environment of gnome-session.
+	Fix the other part of bug #547272.
+
+	* compat/gnome-keyring-daemon-wrapper.c:
+	(keyring_env_to_hashtable): new, put an environment in a hash table
+	(keyring_environment_updated_from_new): new, call Setenv dbus method to
+	have gnome-session aware of changed/new environment variables
+	(keyring_environment_removed_from_old): new, unset (kind of, since
+	that's the Setenv dbus method with an empty value) environment
+	variables that were unset
+	(keyring_export_environment): new, does the synchronization magic
+	(keyring_daemon_start): updated to use keyring_export_environment()
+
+2008-09-02  Vincent Untz  <vuntz@gnome.org>
+
 	* compat/gnome-keyring-daemon-wrapper.c: (keyring_daemon_start): call
 	gnome_keyring_daemon_prepare_environment_sync() so that the keyring
 	daemon has all the right environment variables.

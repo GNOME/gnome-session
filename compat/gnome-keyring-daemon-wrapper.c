@@ -61,6 +61,111 @@ child_setup (gpointer user_data)
                   TRUE);
 }
 
+static GHashTable *
+keyring_env_to_hashtable (void)
+{
+        GHashTable  *env_hash;
+        char       **envp;
+        char       **env;
+
+        env_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                          g_free, g_free);
+
+        envp = g_listenv ();
+        for (env = envp; *env; env++) {
+                g_hash_table_insert (env_hash,
+                                     g_strdup (*env),
+                                     g_strdup (g_getenv (*env)));
+        }
+        g_strfreev (envp);
+
+        return env_hash;
+}
+
+struct keyring_environment_foreach {
+        GHashTable *other_env;
+        DBusGProxy *gsm;
+};
+
+static void
+keyring_environment_updated_from_new (const char *name,
+                                      const char *value,
+                                      struct keyring_environment_foreach *data)
+{
+        const char *old_value;
+        GError     *err;
+
+        old_value = g_hash_table_lookup (data->other_env, name);
+
+        /* If we didn't have a value for this environment variable before,
+         * or if it changed, then we want to update the session-wide
+         * environment variable. */
+        if (!old_value || strcmp (old_value, value) != 0) {
+                err = NULL;
+                if (!dbus_g_proxy_call (data->gsm, "Setenv", &err,
+                                        G_TYPE_STRING, name,
+                                        G_TYPE_STRING, value,
+                                        G_TYPE_INVALID,
+                                        G_TYPE_INVALID)) {
+                        g_warning ("Could not set %s: %s", name, err->message);
+                        g_clear_error (&err);
+                }
+        }
+}
+
+static void
+keyring_environment_removed_from_old (const char *name,
+                                      const char *value,
+                                      struct keyring_environment_foreach *data)
+{
+        const char *new_value;
+        GError     *err;
+
+        new_value = g_hash_table_lookup (data->other_env, name);
+
+        /* If we don't have a value anymore for this environment variable,
+         * then we want to remove it from the session-wide environment. */
+        if (!new_value) {
+                /* There's no proper Unsetenv, so just make it empty */
+                err = NULL;
+                if (!dbus_g_proxy_call (data->gsm, "Setenv", &err,
+                                        G_TYPE_STRING, name,
+                                        G_TYPE_STRING, "",
+                                        G_TYPE_INVALID,
+                                        G_TYPE_INVALID)) {
+                        g_warning ("Could not set %s: %s", name, err->message);
+                        g_clear_error (&err);
+                }
+        }
+}
+
+static void
+keyring_export_environment (DBusGProxy *gsm)
+{
+        GHashTable  *old_env;
+        GHashTable  *new_env;
+        struct keyring_environment_foreach data;
+
+        old_env = keyring_env_to_hashtable ();
+        gnome_keyring_daemon_prepare_environment_sync ();
+        new_env = keyring_env_to_hashtable ();
+
+        data.gsm = gsm;
+
+        data.other_env = old_env;
+        g_hash_table_foreach (new_env,
+                              (GHFunc) keyring_environment_updated_from_new,
+                              &data);
+
+        data.other_env = new_env;
+        g_hash_table_foreach (old_env,
+                              (GHFunc) keyring_environment_removed_from_old,
+                              &data);
+
+        g_hash_table_destroy (old_env);
+        g_hash_table_destroy (new_env);
+}
+
 static void
 keyring_daemon_start (DBusGProxy *gsm)
 {
@@ -79,7 +184,7 @@ keyring_daemon_start (DBusGProxy *gsm)
         old_keyring = g_getenv ("GNOME_KEYRING_SOCKET");
         if (old_keyring != NULL &&
             access (old_keyring, R_OK | W_OK) == 0) {
-                gnome_keyring_daemon_prepare_environment_sync ();
+                keyring_export_environment (gsm);
                 return;
         }
 
@@ -145,7 +250,7 @@ keyring_daemon_start (DBusGProxy *gsm)
 
                         g_strfreev (lines);
 
-                        gnome_keyring_daemon_prepare_environment_sync ();
+                        keyring_export_environment (gsm);
                 } else {
                         /* daemon failed for some reason */
                         g_printerr ("gnome-keyring-daemon failed to start correctly, exit code: %d\n",
