@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-31 11:38+0200\n"
-"PO-Revision-Date: 2008-08-31 11:36+0200\n"
+"POT-Creation-Date: 2008-09-01 16:49+0000\n"
+"PO-Revision-Date: 2008-09-02 11:39+0200\n"
 "Last-Translator: Robert-André Mauchin <zebob.m@pengzone.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -464,27 +464,27 @@ msgstr "Impossible de créer le connecteur d'écoute ICE : %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Impossible de démarrer la session (et de se connecter au serveur X)"
 
-#: ../gnome-session/main.c:453
+#: ../gnome-session/main.c:495
 msgid "Override standard autostart directories"
 msgstr "Remplace les répertoires autostart standards"
 
-#: ../gnome-session/main.c:454
+#: ../gnome-session/main.c:496
 msgid "GConf key used to lookup default session"
 msgstr "Clé GConf utilisée pour rechercher la session par défaut"
 
-#: ../gnome-session/main.c:455
+#: ../gnome-session/main.c:497
 msgid "Enable debugging code"
 msgstr "Active le code de débogage"
 
-#: ../gnome-session/main.c:456
+#: ../gnome-session/main.c:498
 msgid "Do not load user-specified applications"
 msgstr "Ne charge pas les applications demandées par l'utilisateur"
 
-#: ../gnome-session/main.c:457 ../capplet/main.c:37
+#: ../gnome-session/main.c:499 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Version de cette application"
 
-#: ../gnome-session/main.c:472
+#: ../gnome-session/main.c:519
 msgid " - the GNOME session manager"
 msgstr "- le gestionnaire de sessions de GNOME"
 
@@ -528,47 +528,50 @@ msgstr "Icône"
 msgid "Program"
 msgstr "Programme"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Définit le nom de la session actuelle"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NOM"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Se déconnecte"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Se déconnecte, en ignorant tout inhibiteur existant"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Affiche le dialogue de déconnexion"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Affiche le dialogue d'extinction"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Tue la session"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Utilise des boîtes de dialogue pour les erreurs"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Ne demande pas de confirmation"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Impossible de se connecter au gestionnaire de sessions"
+
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Programme appelé avec des options conflictuelles"
 
 #: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- Écran d'accueil de GNOME"
-
-#~ msgid ""
-#~ "The Window manager that gnome-session will start. Valid values are "
-#~ "\"metacity\" and \"compiz\"."
-#~ msgstr ""
-#~ "Le gestionnaire de fenêtres que gnome-session démarrera. Les valeurs "
-#~ "possibles sont « metacity » et « compiz »."
-
-#~ msgid "Window Manager to start"
-#~ msgstr "Gestionnaire de fenêtres à démarrer"
-
-#~ msgid "Could not connect to the session manager\n"
-#~ msgstr "Impossible de se connecter au gestionnaire de sessions\n"
-
-#~ msgid "Play logout sound instead of login"
-#~ msgstr "Lit le son de déconnexion au lieu du son de connexion"
