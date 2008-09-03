@@ -360,12 +360,11 @@ AC_DEFINE_UNQUOTED(GNOME_SESSION_TARBALL_YEAR, $GNOME_SESSION_TARBALL,
 
 AC_OUTPUT([
 Makefile
-compat/Makefile
-tools/Makefile
 capplet/Makefile
-gnome-session/Makefile
-egg/Makefile
-splash/Makefile
+compat/Makefile
+compat/at-spi-registryd-wrapper.desktop.in.in
+compat/gnome-keyring-daemon-wrapper.desktop.in.in
+compat/gnome-settings-daemon-helper.desktop.in.in
 doc/Makefile
 doc/dbus/Makefile
 doc/dbus/gnome-session.xml
@@ -373,6 +372,7 @@ doc/man/Makefile
 doc/man/gnome-session.1
 doc/man/default.session.5
 data/Makefile
+data/gnome-wm.desktop.in
 data/session-properties.desktop.in
 data/icons/Makefile
 data/icons/16x16/Makefile
@@ -380,6 +380,11 @@ data/icons/22x22/Makefile
 data/icons/24x24/Makefile
 data/icons/32x32/Makefile
 data/icons/scalable/Makefile
+egg/Makefile
+gnome-session/Makefile
+splash/Makefile
+splash/gnome-session-splash.desktop.in.in
+tools/Makefile
 po/Makefile.in
 ])
 

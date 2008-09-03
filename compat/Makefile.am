@@ -21,10 +21,12 @@ helper_PROGRAMS =				\
 	gnome-settings-daemon-helper
 
 default_sessiondir = $(datadir)/gnome/autostart
-default_session_DATA =				\
-	at-spi-registryd-wrapper.desktop	\
-	gnome-keyring-daemon-wrapper.desktop	\
-	gnome-settings-daemon-helper.desktop
+default_session_in_in_files = 				\
+	at-spi-registryd-wrapper.desktop.in.in	\
+	gnome-keyring-daemon-wrapper.desktop.in.in	\
+	gnome-settings-daemon-helper.desktop.in.in
+default_session_in_files = $(default_session_in_in_files:.desktop.in.in=.desktop.in)
+default_session_DATA = $(default_session_in_files:.desktop.in=.desktop)
 
 at_spi_registryd_wrapper_SOURCES =		\
 	at-spi-registryd-wrapper.c
@@ -42,15 +44,18 @@ gnome_settings_daemon_helper_LDADD =		\
 	$(GCONF_LIBS)				\
 	$(LDADD)
 
-%.desktop: %.desktop.in
-	sed -e 's,\@helperdir\@,$(helperdir),' \
-		< $^ > $@
+@INTLTOOL_DESKTOP_RULE@
 
-CLEANFILES =					\
-	$(default_session_DATA)
+%.desktop.in: %.desktop.in.in Makefile.am
+	sed -e 's,\@helperdir\@,$(helperdir),' \
+		< $< > $@
 
 EXTRA_DIST =					\
-	README					\
-	at-spi-registryd-wrapper.desktop.in	\
-	gnome-keyring-daemon-wrapper.desktop.in	\
-	gnome-settings-daemon-helper.desktop.in
+	README
+
+CLEANFILES =					\
+	$(default_session_DATA)			\
+	$(default_session_in_files)
+
+DISTCLEANFILES =					\
+	$(default_session_in_in_files)

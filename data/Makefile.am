@@ -39,13 +39,15 @@ endif
 
 EXTRA_DIST =					\
 	gnome-wm				\
-	session-properties.desktop.in		\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
 	$(glade_DATA)				\
 	$(pixmap_DATA)
 
-DISTCLEANFILES =				\
+CLEANFILES =					\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
 	$(settings_DATA)
+
+DISTCLEANFILES =				\
+	$(settings_in_files)

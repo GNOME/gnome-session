@@ -16,9 +16,9 @@ helper_PROGRAMS =				\
 	$(NULL)
 
 default_sessiondir = $(datadir)/gnome/autostart
-default_session_DATA =				\
-	gnome-session-splash.desktop		\
-	$(NULL)
+default_session_in_in_files = gnome-session-splash.desktop.in.in
+default_session_in_files = $(default_session_in_in_files:.desktop.in.in=.desktop.in)
+default_session_DATA = $(default_session_in_files:.desktop.in=.desktop)
 
 gnome_session_splash_SOURCES =			\
 	gnome-session-splash.c			\
@@ -29,14 +29,19 @@ gnome_session_splash_LDADD =			\
 	$(DBUS_GLIB_LIBS)			\
 	$(LDADD)
 
-%.desktop: %.desktop.in
-	sed -e 's,\@helperdir\@,$(helperdir),' \
-		< $^ > $@
+@INTLTOOL_DESKTOP_RULE@
 
-CLEANFILES =					\
-	$(default_session_DATA)
+%.desktop.in: %.desktop.in.in Makefile.am
+	sed -e 's,\@helperdir\@,$(helperdir),' \
+		< $< > $@
 
 EXTRA_DIST =					\
 	README					\
-	gnome-session-splash.desktop.in		\
 	$(NULL)
+
+CLEANFILES =					\
+	$(default_session_DATA)			\
+	$(default_session_in_files)
+
+DISTCLEANFILES =					\
+	$(default_session_in_in_files)
