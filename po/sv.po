@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-28 22:06+0200\n"
-"PO-Revision-Date: 2008-08-28 22:12+0100\n"
+"POT-Creation-Date: 2008-09-04 21:31+0200\n"
+"PO-Revision-Date: 2008-09-04 21:34+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\\n\n"
 
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Välj kommando"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Lägg till startprogram"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Redigera startprogram"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Ingen beskrivning"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Namnet för startprogrammet får inte vara blankt"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Startprogrammets kommando får inte vara blankt"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Startprogrammets kommando är inte giltigt"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Aktiverat"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Sessionsinställningar"
+
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "Version av detta program"
+
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
 msgstr "Stöd för hjälpmedelsteknik har begärts för den här sessionen, men tillgänglighetsregistret hittades inte. Kontrollera att AT-SPI-paketet är installerat. Din session har startats utan stöd för hjälpmedelsteknik."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "Omslag för AT SPI-registret"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Omslag för GNOME-nyckelringsdemon"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Hjälp för GNOME-inställningsdemon"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Denna session loggar in dig i GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -106,16 +176,18 @@ msgid "This is the option that will be selected in the logout dialog, valid valu
 msgstr "Detta är det alternativ som kommer att vara markerat i utloggningsdialogen. Giltiga värden är \"logout\" för att logga ut, \"shutdown\" för att stanna systemet och \"restart\" för att starta om systemet."
 
 #: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Fönsterhanterare"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Några program är fortfarande igång:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Denna session loggar in dig i GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
+msgstr "Väntar på att programmet ska köras färdigt.  Avbryta program kan innebära att du förlorar data."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -145,11 +217,6 @@ msgstr "Komm_entar:"
 msgid "Options"
 msgstr "Alternativ"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
-msgid "Sessions Preferences"
-msgstr "Sessionsinställningar"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Startprogram"
@@ -166,15 +233,6 @@ msgstr "_Namn:"
 msgid "_Remember Currently Running Application"
 msgstr "_Kom ihåg för närvarande körande program"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Några program är fortfarande igång:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
-msgstr "Väntar på att programmet ska köras färdigt.  Avbryta program kan innebära att du förlorar data."
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -185,27 +243,27 @@ msgstr "Filen är inte en giltig .desktop-fil"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Okänd version i skrivbordsfil \"%s\""
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Startar %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Programmet tar inte emot dokument på kommandoraden"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Okänt startaralternativ: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Kan inte skicka dokument-URI:er till en \"Type=Link\"-skrivbordspost"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Inte ett startbart objekt"
@@ -375,7 +433,7 @@ msgstr "St_äng av"
 msgid "Not responding"
 msgstr "Svarar inte"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Detta program blockerar en utloggning."
 
@@ -394,101 +452,78 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
-#: ../gnome-session/main.c:431
+#: ../gnome-session/main.c:497
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: ../gnome-session/main.c:432
-msgid "GConf key used to loopup default session"
+#: ../gnome-session/main.c:498
+msgid "GConf key used to lookup default session"
 msgstr "GConf-nyckeln som används för att slå upp standardsessionen"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:499
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:500
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: ../gnome-session/main.c:435
-#: ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Version av detta program"
-
-#: ../gnome-session/main.c:450
+#: ../gnome-session/main.c:521
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "Välj kommando"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- GNOME-startbild"
 
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "Lägg till startprogram"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "GNOME-startbild"
 
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "Redigera startprogram"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Ingen beskrivning"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "Namnet för startprogrammet får inte vara blankt"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "Startprogrammets kommando får inte vara blankt"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "Startprogrammets kommando är inte giltigt"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Aktiverat"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Ikon"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Program"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Ange det aktuella sessionsnamnet"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAMN"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Logga ut"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Logga ut, ignorera allt som förhindrar det"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Visa utloggningsdialogrutan"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Visa avstängningsdialogrutan"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Döda session"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Använd dialogrutor för fel"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Kräv ingen bekräftelse"
 
 #: ../tools/gnome-session-save.c:120
-#: ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170
-#: ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Kunde inte ansluta till sessionshanteraren"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME-startbild"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Program anropat med motsägande flaggor"
 
 #~ msgid "Play logout sound instead of login"
 #~ msgstr "Spela upp utloggningsljud istället för inloggning"
