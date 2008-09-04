@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-29 14:53+0000\n"
-"PO-Revision-Date: 2008-08-30 11:44+0300\n"
+"POT-Creation-Date: 2008-09-01 16:49+0000\n"
+"PO-Revision-Date: 2008-09-03 18:36+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgid "Options"
 msgstr "Valikud"
 
 #: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
+#: ../capplet/gsm-properties-dialog.c:1464
 msgid "Sessions Preferences"
 msgstr "Seansi eelistused"
 
@@ -234,27 +234,27 @@ msgstr "Fail pole korrektne .desktop-fail"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Töölauafaili tundmatu versioon '%s'"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Käivitamine: %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Rakendus ei toeta käsurealt määratavaid dokumente"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Tundmatu käivitusvalik: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Dokumendi URI-sid pole võimalik 'Liik=Viit' töölauakirjele edasi anda"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Pole käivitatav kirje"
@@ -427,7 +427,7 @@ msgstr "_Seiska"
 msgid "Not responding"
 msgstr "Ei vasta"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "See programm takistab väljalogimist."
 
@@ -451,41 +451,41 @@ msgstr ""
 "Sisselogimise seanssi pole võimalik käivitada (ja X-serveriga pole võimalik "
 "ühendust saada)"
 
-#: ../gnome-session/main.c:431
+#: ../gnome-session/main.c:495
 msgid "Override standard autostart directories"
 msgstr ""
 "Standardsete automaatkäivituse kataloogide asemel muude kataloogide "
 "kasutamine"
 
-#: ../gnome-session/main.c:432
+#: ../gnome-session/main.c:496
 msgid "GConf key used to lookup default session"
 msgstr "GConf'i võti vaikimisi seansi otsimiseks"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:497
 msgid "Enable debugging code"
 msgstr "Silumiskoodi lubamine"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:498
 msgid "Do not load user-specified applications"
 msgstr "Kasutaja määratud rakendusi ei laadita"
 
-#: ../gnome-session/main.c:435 ../capplet/main.c:37
+#: ../gnome-session/main.c:499 ../capplet/main.c:37
 msgid "Version of this application"
 msgstr "Raknduse versioon"
 
-#: ../gnome-session/main.c:450
+#: ../gnome-session/main.c:519
 msgid " - the GNOME session manager"
 msgstr "- GNOME seansihaldur"
 
-#: ../capplet/gsm-app-dialog.c:130
+#: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
 msgstr "Käsi valimine"
 
-#: ../capplet/gsm-app-dialog.c:174
+#: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
 msgstr "Käivitusprogrammi lisamine"
 
-#: ../capplet/gsm-app-dialog.c:178
+#: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
 
@@ -517,32 +517,51 @@ msgstr "Ikoon"
 msgid "Program"
 msgstr "Programm"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Määra aktiivse seansi nimi"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NIMI"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Logi välja"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Väljalogimine, kõiki olemasolevaid piiranguid eirates"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Väljalogimisdialoogi näitamine"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Seiskamisdialoogi näitamine"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Kõrvalda seanss"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Vigade jaoks dialoogiakna kasutamine"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Kinnitust pole vaja küsida"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Seansihalduriga pole võimalik ühenduda"
 
-#: ../splash/gnome-session-splash.c:289
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Programm kutsuti välja vastuoluliste andmetega"
+
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME tiitelkuva"
 
