@@ -10,14 +10,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 20:01+0700\n"
-"PO-Revision-Date: 2008-08-30 20:04+0700\n"
+"POT-Creation-Date: 2008-09-04 22:44+0700\n"
+"PO-Revision-Date: 2008-09-04 22:51+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "เลือกคำสั่ง"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "เพิ่มโปรแกรมเริ่มวาระ"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "แก้ไขโปรแกรมเริ่มวาระ"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "ไม่มีคำบรรยาย"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระผิดพลาด"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "เปิดใช้"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "ไอคอน"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "โปรแกรม"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "ปรับแต่งวาระ"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "รุ่นของโปรแกรมนี้"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -29,6 +78,26 @@ msgstr ""
 "มีการร้องขอการรองรับเทคโนโลยีอำนวยความสะดวกในวาระนี้ "
 "แต่ไม่พบเรจิสตรีสำหรับระบบอำนวยความสะดวก กรุณาตรวจสอบให้แน่ใจ ว่าได้ติดตั้งแพกเกจ AT-SPI "
 "เรียบร้อย วาระนี้ของคุณจะเปิดโดยไม่มีการรองรับเทคโนโลยีอำนวยความสะดวก"
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "ตัวหุ้มเรจิสตรี AT SPI"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "ตัวหุ้มดีมอนพวงกุญแจ GNOME"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "ตัวช่วยดีมอนค่าตั้ง GNOME"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "วาระนี้จะเข้าสู่ GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -140,17 +209,20 @@ msgstr ""
 "สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
 "สำหรับการเริ่มการทำงานของเครื่องใหม่"
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>ยังมีบางโปรแกรมทำงานอยู่:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "วาระนี้จะเข้าสู่ GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -180,11 +252,6 @@ msgstr "ห_มายเหตุ:"
 msgid "Options"
 msgstr "ตัวเลือก"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "ปรับแต่งวาระ"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "โปรแกรมเริ่มวาระ"
@@ -200,17 +267,6 @@ msgstr "_ชื่อ:"
 #: ../data/session-properties.glade.h:10
 msgid "_Remember Currently Running Application"
 msgstr "_จำรายชื่อโปรแกรมที่ทำงานอยู่"
-
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>ยังมีบางโปรแกรมทำงานอยู่:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -428,98 +484,77 @@ msgstr "ไม่สามารถสร้างซ็อกเก็ตรอ
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:453
+#: ../gnome-session/main.c:497
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:454
+#: ../gnome-session/main.c:498
 msgid "GConf key used to lookup default session"
 msgstr "คีย์ GConf ที่ใช้เปิดหาวาระปริยาย"
 
-#: ../gnome-session/main.c:455
+#: ../gnome-session/main.c:499
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: ../gnome-session/main.c:456
+#: ../gnome-session/main.c:500
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:457 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "รุ่นของโปรแกรมนี้"
-
-#: ../gnome-session/main.c:472
+#: ../gnome-session/main.c:521
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
-#: ../capplet/gsm-app-dialog.c:126
-msgid "Select Command"
-msgstr "เลือกคำสั่ง"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- รูปไตเติลเริ่มระบบ GNOME"
 
-#: ../capplet/gsm-app-dialog.c:187
-msgid "Add Startup Program"
-msgstr "เพิ่มโปรแกรมเริ่มวาระ"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "รูปไตเติลเริ่มระบบ GNOME"
 
-#: ../capplet/gsm-app-dialog.c:191
-msgid "Edit Startup Program"
-msgstr "แก้ไขโปรแกรมเริ่มวาระ"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "ไม่มีคำบรรยาย"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระผิดพลาด"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "เปิดใช้"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "ไอคอน"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "โปรแกรม"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "กำหนดชื่อวาระปัจจุบัน"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAME"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "ออกจากระบบ"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "ออกจากระบบ โดยไม่สนใจการระงับต่างๆ ที่มีอยู่"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "แสดงกล่องโต้ตอบออกจากระบบ"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "แสดงกล่องโต้ตอบปิดเครื่อง"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "ฆ่าวาระ"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "ใช้กล่องโต้ตอบแสดงข้อผิดพลาด"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "ไม่ต้องถามการยืนยัน"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "ติดต่อโปรแกรมจัดการวาระไม่สำเร็จ"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- รูปไตเติลเริ่มระบบ GNOME"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
 
 #~ msgid ""
 #~ "The Window manager that gnome-session will start. Valid values are "
