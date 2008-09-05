@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-19 11:53+0200\n"
-"PO-Revision-Date: 2008-08-19 12:02+0100\n"
+"POT-Creation-Date: 2008-09-05 15:19+0200\n"
+"PO-Revision-Date: 2008-09-05 15:22+0100\n"
 "Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,79 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Wybór polecenia"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Nowy program startowy"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Modyfikacja programu startowego"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Brak opisu"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Nazwa programu startowego nie może być pusta"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Polecenie startowe nie może być puste"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Polecenie startowe jest niepoprawne"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Włączone"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikona"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Preferencje sesji"
+
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "Wersja tego programu"
+
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
 msgstr "Dla tej sesji zażądano obsługi technologii wspierających, lecz nie znaleziono rejestru dostępności. Proszę sprawdzić czy pakiet AT-SPI jest zainstalowany. Sesja została uruchomiona bez obsługi technologii wspierających."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "Osłona rejestru AT SPI"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Osłona usługi bazy kluczy środowiska GNOME"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Pomocnik usługi ustawień środowiska GNOME"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Ta sesja loguje użytkownika do środowiska GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -85,44 +155,38 @@ msgid "Show the splash screen when the session starts up"
 msgstr "Wyświetlanie ekranu powitalnego przy rozpoczynaniu sesji"
 
 #: ../data/gnome-session.schemas.in.h:15
-msgid "The Window manager that gnome-session will start. Valid values are \"metacity\" and \"compiz\"."
-msgstr "Menedżer okien uruchamiany przez gnome-session. Poprawne wartości to \"metacity oraz \"compiz\"."
-
-#: ../data/gnome-session.schemas.in.h:16
 msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
 msgstr "Menedżer plików wyświetla ikony na pulpicie i pozwala na interakcje z zapisanymi plikami."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
 msgstr "Panel wyświetla paski na górze i na dole ekranu, które zawierają menu, listę okien, ikony stanu, zegar, itp."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
 msgstr "Menedżer okien jest programem wyświetlającym paski tytułowe i krawędzie wokół okien oraz pozwala na przenoszenie i zmianę rozmiaru okien."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
 msgstr "Jest to względna ścieżka bazująca na katalogu $datadir/pixmaps/. Dopuszczalne są podkatalogi i nazwy obrazów. Zmiana tej wartości odniesie skutek przy następnym logowaniu."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
 msgstr "Opcja jaka będzie zaznaczona w oknie wylogowania, poprawnymi wartościami są \"logout\" dla wylogowania, \"shutdown\" dla zamknięcia systemu oraz \"restart\" dla ponownego uruchomienia systemu."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Menedżer okien"
 
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Menedżer okien do uruchomienia"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Niektóre programy są nadal uruchomione:</b>"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Ta sesja loguje użytkownika do środowiska GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
+msgstr "Oczekiwanie na zakończenie działania programu. Przerwanie działania programu może spowodować utratę niezapisanych wyników pracy."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -152,11 +216,6 @@ msgstr "_Komentarz:"
 msgid "Options"
 msgstr "Opcje"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "Preferencje sesji"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Programy startowe"
@@ -173,15 +232,6 @@ msgstr "_Nazwa:"
 msgid "_Remember Currently Running Application"
 msgstr "_Zapamiętaj uruchomione programy"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Niektóre programy są nadal uruchomione:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
-msgstr "Oczekiwanie na zakończenie działania programu. Przerwanie działania programu może spowodować utratę niezapisanych wyników pracy."
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -192,27 +242,27 @@ msgstr "Plik nie jest poprawnym plikiem .desktop"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Nierozpoznana wersja pliku .desktop \"%s\""
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Uruchamianie %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Program nie akceptuje dokumentów w wierszu poleceń"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Nierozpoznana opcja uruchamiania: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Nie można przekazać adresów URI dokumentów do pozycji pulpitu \"Type=Link\""
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Tego elementu nie można uruchomić"
@@ -384,11 +434,11 @@ msgid "_Shut Down"
 msgstr "_Wyłącz komputer"
 
 #: ../gnome-session/gsm-manager.c:923
-#: ../gnome-session/gsm-manager.c:1528
+#: ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Ten program uniemożliwia wylogowanie."
 
@@ -407,98 +457,87 @@ msgstr "Nie można było utworzyć gniazda nasłuchującego ICE: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Nie można uruchomić sesji logowania (oraz nie można się połączyć z serwerem X)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:497
 msgid "Override standard autostart directories"
 msgstr "Obejście standardowych katalogów automatycznego uruchamiania"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:498
+msgid "GConf key used to lookup default session"
+msgstr "Klucz GConf używany do sprawdzenia domyślnej sesji"
+
+#: ../gnome-session/main.c:499
 msgid "Enable debugging code"
 msgstr "Uruchomienie kodu do debugowania"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:500
 msgid "Do not load user-specified applications"
 msgstr "Bez wczytywania programów określonych przez użytkownika"
 
-#: ../gnome-session/main.c:64
-#: ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Wersja tego programu"
-
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:521
 msgid " - the GNOME session manager"
 msgstr "- Menedżer sesji środowiska GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "Wybór polecenia"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- Ekran powitalny środowiska GNOME"
 
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "Nowy program startowy"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Ekran powitalny środowiska GNOME"
 
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "Modyfikacja programu startowego"
-
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "Brak opisu"
-
-#: ../capplet/gsm-properties-dialog.c:976
-msgid "The name of the startup program cannot be empty"
-msgstr "Nazwa programu startowego nie może być pusta"
-
-#: ../capplet/gsm-properties-dialog.c:980
-msgid "The startup command cannot be empty"
-msgstr "Polecenie startowe nie może być puste"
-
-#: ../capplet/gsm-properties-dialog.c:986
-msgid "The startup command is not valid"
-msgstr "Polecenie startowe jest niepoprawne"
-
-#: ../capplet/gsm-properties-dialog.c:1290
-msgid "Enabled"
-msgstr "Włączone"
-
-#: ../capplet/gsm-properties-dialog.c:1303
-msgid "Icon"
-msgstr "Ikona"
-
-#: ../capplet/gsm-properties-dialog.c:1314
-msgid "Program"
-msgstr "Program"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Ustawia nazwę bieżącej sesji"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAZWA"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Wylogowanie"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Wylogowanie, ignorując istniejące mechanizmy wstrzymujące"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Wyświetlenie okna wylogowania"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Wyświetlenie okna wyłączenia komputera"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Usunięcie sesji"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Wykorzystanie okien dialogowych dla błędów"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Nie wymaga potwierdzenia"
 
 #: ../tools/gnome-session-save.c:120
-#: ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170
-#: ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Nie można połączyć się z menedżerem sesji"
 
-#: ../splash/gnome-session-splash.c:281
-msgid "- GNOME Splash Screen"
-msgstr "- Ekran powitalny środowiska GNOME"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Wywołano program ze sprzecznymi opcjami"
 
+#~ msgid ""
+#~ "The Window manager that gnome-session will start. Valid values are "
+#~ "\"metacity\" and \"compiz\"."
+#~ msgstr ""
+#~ "Menedżer okien uruchamiany przez gnome-session. Poprawne wartości to "
+#~ "\"metacity oraz \"compiz\"."
+#~ msgid "Window Manager to start"
+#~ msgstr "Menedżer okien do uruchomienia"
 #~ msgid "Allow TCP connections"
 #~ msgstr "Zezwolenie na połączenia TCP"
 #~ msgid ""
@@ -644,8 +683,6 @@ msgstr "- Ekran powitalny środowiska GNOME"
 #~ msgstr "Czy na pewno chcesz zakończyć sesję?"
 #~ msgid "Remember running applications"
 #~ msgstr "Pamiętaj uruchomione aplikacje"
-#~ msgid "_Log out"
-#~ msgstr "_Wylogowanie"
 #~ msgid "Sh_ut down"
 #~ msgstr "_Wyłączenie systemu"
 #~ msgid "_Restart the computer"
