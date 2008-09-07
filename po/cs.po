@@ -15,14 +15,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-28 03:09+0200\n"
-"PO-Revision-Date: 2008-08-28 03:07+0200\n"
+"POT-Creation-Date: 2008-09-08 00:52+0200\n"
+"PO-Revision-Date: 2008-09-08 00:50+0200\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Vybrat příkaz"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Přidat program při přihlášení"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Upravit program při přihlášení"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Bez popisu"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Název programu při přihlášení nesmí být prázdný"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Příkaz při přihlášení nesmí být prázdný"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Příkaz při přihlášení není platný"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Povoleno"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikona"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Předvolby sezení"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "Verze této aplikace"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -35,6 +84,26 @@ msgstr ""
 "technologií usnadnění nebyl nalezen. Přesvědčte se prosím, že je "
 "nainstalován balíček AT-SPI. Sezení bylo spuštěno bez podpory technologií "
 "usnadnění."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "Objekt registru AT SPI"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Objekt démona klíčenky GNOME"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Pomocný program démona nastavení GNOME"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Toto sezení vás přihlásí do GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -151,17 +220,22 @@ msgstr ""
 "\"logout\" pro odhlášení, \"shutdown\" pro zastavení systému a \"restart\" "
 "pro restartování systému."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Správce oken"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Některé programy stále běží:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Toto sezení vás přihlásí do GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Čeká se na ukončení programu. Přerušení běhu programu může způsobit ztrátu "
+"dat."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -191,11 +265,6 @@ msgstr "_Komentář:"
 msgid "Options"
 msgstr "Možnosti"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
-msgid "Sessions Preferences"
-msgstr "Předvolby sezení"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Programy při přihlášení"
@@ -212,19 +281,6 @@ msgstr "_Název:"
 msgid "_Remember Currently Running Application"
 msgstr "Zapa_matovat si aktuálně běžící aplikaci"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Některé programy stále běží:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Čeká se na ukončení programu. Přerušení běhu programu může způsobit ztrátu "
-"dat."
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -235,27 +291,27 @@ msgstr "Soubor není platným souborem .desktop"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Nerozpoznaná verze \"%s\" souboru pracovní plochy"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Aplikace neumožňuje přijmout dokumenty v příkazovém řádku"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Nerozpoznaná spouštěcí volba: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "URI dokumentu nelze postoupit položce pracovní plochy \"Type=Link\""
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Není spustitelnou položkou"
@@ -434,7 +490,7 @@ msgstr "_Vypnout"
 msgid "Not responding"
 msgstr "Neodpovídá"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Tento program zabraňuje odhlášení."
 
@@ -456,91 +512,74 @@ msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Nepodařilo se spustit sezení s přihlášením (a spojit se se serverem X)"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:497
 msgid "Override standard autostart directories"
 msgstr "Přepsat standardní adresáře automatického spuštění"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:498
+msgid "GConf key used to lookup default session"
+msgstr "Klíč GConf použitý k vyhledání výchozího sezení"
+
+#: ../gnome-session/main.c:499
 msgid "Enable debugging code"
 msgstr "Zapnout ladicí kód"
 
-#: ../gnome-session/main.c:64
+#: ../gnome-session/main.c:500
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
-#: ../gnome-session/main.c:65 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Verze této aplikace"
-
-#: ../gnome-session/main.c:443
+#: ../gnome-session/main.c:521
 msgid " - the GNOME session manager"
 msgstr " - správce sezení GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "Vybrat příkaz"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- úvodní obrazovka GNOME"
 
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "Přidat program při přihlášení"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Úvodní obrazovka GNOME"
 
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "Upravit program při přihlášení"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Bez popisu"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "Název programu při přihlášení nesmí být prázdný"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "Příkaz při přihlášení nesmí být prázdný"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "Příkaz při přihlášení není platný"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Povoleno"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Ikona"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Program"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Nastaví název aktuálního sezení"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NÁZEV"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Odhlásit se"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Odhlásit se, ignorovat jakékoliv existující inhibitory"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Zobrazit dialog odhlášení"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Zobrazit dialog vypnutí"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Ukončí sezení"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "U chyb použije dialogová okna"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Nebude vyžadovat potvrzení"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Nelze se spojit se správcem sezení"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- úvodní obrazovka GNOME"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Program volán s kolidujícími volbami"
