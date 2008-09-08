@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-17 04:30+0100\n"
-"PO-Revision-Date: 2008-04-13 18:56+0100\n"
+"POT-Creation-Date: 2008-09-03 23:20+0000\n"
+"PO-Revision-Date: 2008-09-08 15:16+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,79 @@ msgstr ""
 "X-Poedit-Country: SLOVENIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: ../compat/at-spi-registryd-wrapper.c:51
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Izbor ukaza"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Dodaj začetni program"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Uredi začetni program"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Brez opisa"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Polje z imenom programa ne more biti prazno"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Zagonski ukaz ne more biti prazen"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Zagonski ukaz ni veljaven"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Omogočeno"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikona"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Lastnosti seje"
+
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "Različica tega programa"
+
+#: ../compat/at-spi-registryd-wrapper.c:47
 msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
 msgstr "Za sejo je zahtevana podporo pomožnim tehnologijam, vendar registra ni mogoče najti. Prepričajte se, da je AT-SPI paket naložen. Seja je zagnana brez zahtevane podpore."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI Registry Wrapper"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Demon GNOME zbirke ključev"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Demon GNOME pomoči nastavitev"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Seja vas prijavi v GNOME namizje"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -45,8 +115,8 @@ msgid "List of applications that are part of the default session."
 msgstr "Seznam programov, ki so del privzete seje."
 
 #: ../data/gnome-session.schemas.in.h:6
-msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required-components\".) The session capplet will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed."
-msgstr "Seznam komponent, ki morajo biti del seje. (Vsak predmet določa vnos v \"/desktop/gnome/session/required-components\".) Capleti seje običajno ne dovolijo uporabnikom odstraniti zahtevanih predmetov, upravljalnik seje pa bo odstranjene predmete samodejno vpisal na seznam v primeru, da jih nekdo izbriše."
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required-components\".) The Session Preferences will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed."
+msgstr "Seznam predmetov, ki morajo biti del seje. (Vsak predmet določa vnos v \"/desktop/gnome/session/required-components\".) Program upravljanja seje običajno ne dovoli uporabnikom odstraniti zahtevanih predmetov, upravljalnik seje pa bo odstranjene predmete samodejno vpisal nazaj na seznam v primeru, da jih nekdo izbriše."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -101,16 +171,18 @@ msgid "This is the option that will be selected in the logout dialog, valid valu
 msgstr "To je možnost, ki bo izbrana v odjavnem pogovornem oknu. Veljavne vrednosti so \"logout\" za odjavo, \"shutdown\" za izklop sistema in \"restart\" za ponoven zagon sistema."
 
 #: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Upravitelj oken"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Nekateri programi so še vedno zagnani:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Seja vas prijavi v GNOME namizje"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
+msgstr "Čakanje na konec izvajanja programa. Prekinitav izvajanja lahko povzroči izgubo vaših podatkov."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -120,37 +192,73 @@ msgstr "Nastavite sejo"
 msgid "Sessions"
 msgstr "Seje"
 
-#: ../egg/eggdesktopfile.c:130
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "Dodatni programi ob _zagonu:"
+
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Prebrskaj ..."
+
+#: ../data/session-properties.glade.h:3
+msgid "Co_mmand:"
+msgstr "_Ukaz:"
+
+#: ../data/session-properties.glade.h:4
+msgid "Comm_ent:"
+msgstr "_Opomba:"
+
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Možnosti"
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Začetni programi"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Zapomni si programe ob odjavi iz sistema"
+
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Ime:"
+
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Zapomni si trenutno zagnane programe"
+
+#: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
 msgstr "Datoteka ni veljavna .desktop datoteka"
 
-#: ../egg/eggdesktopfile.c:153
+#: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Neznana različica datoteke namizja '%s'"
 
-#: ../egg/eggdesktopfile.c:926
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Zaganjanje %s"
 
-#: ../egg/eggdesktopfile.c:1060
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Program ne sprejme dokumentov preko ukazne vrstice"
 
-#: ../egg/eggdesktopfile.c:1128
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Neznana možnost zagona: %d"
 
-#: ../egg/eggdesktopfile.c:1335
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Ni mogoče poslati naslova dokumenta preko 'Vrsta=povezava' vnosa namizja"
 
-#: ../egg/eggdesktopfile.c:1354
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Predmet ni izvedljiv"
@@ -191,7 +299,7 @@ msgstr "Možnosti upravljanja seje"
 msgid "Show Session Management options"
 msgstr "Prikaži možnosti upravljanja seje"
 
-#: ../gnome-session/gconf.c:109
+#: ../gnome-session/gsm-gconf.c:106
 #, c-format
 msgid ""
 "There is a problem with the configuration server.\n"
@@ -200,7 +308,60 @@ msgstr ""
 "Prišlo je do napak na nastavitvenem strežniku.\n"
 "(%s izhod s stanjem %d"
 
-#: ../gnome-session/logout-dialog.c:214
+#: ../gnome-session/gsm-inhibit-dialog.c:256
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "Ikone '%s' ni mogoče najti"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:579
+msgid "Unknown"
+msgstr "Neznano"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:627
+msgid "A program is still running:"
+msgstr "Program je še vedno zagnan:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:631
+msgid "Some programs are still running:"
+msgstr "Nekateri programi so še vedno zagnani:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Čakanje na konec izvajanja programov. Prekinitav izvajanja lahko povzroči izgubo vaših podatkov."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:860
+msgid "Switch User Anyway"
+msgstr "Vseeno preklopi uporabnika"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:863
+msgid "Logout Anyway"
+msgstr "Vseeno odjavi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:866
+msgid "Suspend Anyway"
+msgstr "Vseeno zaustavi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:869
+msgid "Hibernate Anyway"
+msgstr "Vseeno hiberniraj"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:872
+msgid "Shutdown Anyway"
+msgstr "Vseeno izklopi računalnik"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:875
+msgid "Reboot Anyway"
+msgstr "Vseeno ponovno zaženi"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:883
+msgid "Lock Screen"
+msgstr "Zakleni zaslon"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:886
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -221,7 +382,7 @@ msgstr[3] ""
 "Trenutno ste prijavljeni kot \"%s\".\n"
 "Samodejno boste odjavljeni čez %d sekunde."
 
-#: ../gnome-session/logout-dialog.c:226
+#: ../gnome-session/gsm-logout-dialog.c:295
 #, c-format
 msgid ""
 "You are currently logged in as \"%s\".\n"
@@ -242,70 +403,137 @@ msgstr[3] ""
 "Trenutno ste prijavljeni kot \"%s\".\n"
 "Sistem se bo samodejno izklopil čez %d sekunde."
 
-#: ../gnome-session/logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:371
 msgid "Log out of this system now?"
 msgstr "Ali se želite odjaviti iz sistema?"
 
-#: ../gnome-session/logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "_Switch User"
 msgstr "_Preklopi uporabnika"
 
-#: ../gnome-session/logout-dialog.c:317
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: ../gnome-session/logout-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "Shut down this system now?"
 msgstr "Ali naj se sistem takoj izklopi?"
 
-#: ../gnome-session/logout-dialog.c:329
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "S_uspend"
 msgstr "Za_ustavi"
 
-#: ../gnome-session/logout-dialog.c:334
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Hibernate"
 msgstr "_Hibernacija"
 
-#: ../gnome-session/logout-dialog.c:339
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Restart"
 msgstr "_Ponoven zagon"
 
-#: ../gnome-session/logout-dialog.c:348
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Shut Down"
 msgstr "_Izklop"
 
-#: ../gnome-session/main.c:33
-msgid "Do not load user-specified applications"
-msgstr "Ne naloži uporabniško določenih programov"
+#: ../gnome-session/gsm-manager.c:923
+#: ../gnome-session/gsm-manager.c:1539
+msgid "Not responding"
+msgstr "Ni odziva"
 
-#. Oh well, no X for you!
-#: ../gnome-session/main.c:68
-#, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "Ni mogoče zagnati prijavne seje (in ni se mogoče povezati s strežnikom X)"
+#: ../gnome-session/gsm-xsmp-client.c:975
+msgid "This program is blocking log out."
+msgstr "Program zavira odjavo."
 
-#: ../gnome-session/main.c:106
-msgid " - the GNOME session manager"
-msgstr "- upravitelj seje GNOME"
+#: ../gnome-session/gsm-xsmp-server.c:234
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Zavračajo se povezave odjemalcev, ker se trenutno seja izklaplja.\n"
 
-#: ../gnome-session/xsmp.c:132
+#: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti ICE vtiča za poslušanje: %s"
 
-#: ../gnome-session/xsmp.c:335
-msgid "Refusing new client connection because the session is currently being shut down\n"
-msgstr "Zavračajo se povezave odjemalcev, ker se trenutno seja izklaplja.\n"
+#. Oh well, no X for you!
+#: ../gnome-session/gsm-util.c:139
+#, c-format
+msgid "Unable to start login session (and unable connect to the X server)"
+msgstr "Ni mogoče zagnati prijavne seje (in ni se mogoče povezati s strežnikom X)"
 
-#: ../splash/gnome-login-sound.c:136
-msgid "Play logout sound instead of login"
-msgstr "Predvajaj zvok odjave namesto prijave"
+#: ../gnome-session/main.c:497
+msgid "Override standard autostart directories"
+msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: ../splash/gnome-login-sound.c:148
-msgid "- GNOME login/logout sound"
-msgstr "- zvok GNOME prijave in odjave"
+#: ../gnome-session/main.c:498
+msgid "GConf key used to lookup default session"
+msgstr "GConf ključ za ogled privzete seje"
 
-#: ../splash/gnome-session-splash.c:204
+#: ../gnome-session/main.c:499
+msgid "Enable debugging code"
+msgstr "Omogoči kodo za razhroščevanje"
+
+#: ../gnome-session/main.c:500
+msgid "Do not load user-specified applications"
+msgstr "Ne naloži uporabniško določenih programov"
+
+#: ../gnome-session/main.c:521
+msgid " - the GNOME session manager"
+msgstr "- upravitelj seje GNOME"
+
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- pozdravno okno GNOME"
+
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Pozdravno okno GNOME"
+
+#: ../tools/gnome-session-save.c:65
+msgid "Set the current session name"
+msgstr "Nastavi ime trenutne seje"
+
+#: ../tools/gnome-session-save.c:65
+msgid "NAME"
+msgstr "IME"
+
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Odjava"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Odjava kljub mogočim dejavnim programom"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Prikaži sporočila med odjavljanjem"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Prikaži sporočila med izklapljanjem"
+
+#: ../tools/gnome-session-save.c:70
+msgid "Kill session"
+msgstr "Ubij sejo"
+
+#: ../tools/gnome-session-save.c:71
+msgid "Use dialog boxes for errors"
+msgstr "Uporabi pogovorna okna za prikaz napak"
+
+#: ../tools/gnome-session-save.c:72
+msgid "Do not require confirmation"
+msgstr "Ne zahtevaj potrditve"
+
+#: ../tools/gnome-session-save.c:120
+#: ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "Ni se mogoče povezati z upraviteljem sej"
+
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Program zagnan z nasprotujočimi si ukazi"
+
+#~ msgid "Play logout sound instead of login"
+#~ msgstr "Predvajaj zvok odjave namesto prijave"
+#~ msgid "- GNOME login/logout sound"
+#~ msgstr "- zvok GNOME prijave in odjave"
 
