@@ -314,11 +314,16 @@ append_required_apps (GsmManager *manager)
         GSList      *r;
         GConfClient *client;
 
+        g_debug ("main: *** Adding required apps");
+
         client = gconf_client_get_default ();
         required_components = gconf_client_get_list (client,
                                                      GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY,
                                                      GCONF_VALUE_STRING,
                                                      NULL);
+        if (required_components == NULL) {
+                g_warning ("No required applications specified");
+        }
 
         for (r = required_components; r != NULL; r = r->next) {
                 char       *path;
@@ -336,6 +341,7 @@ append_required_apps (GsmManager *manager)
                                         component);
 
                 default_provider = gconf_client_get_string (client, path, NULL);
+                g_debug ("main: %s looking for component: '%s'", path, default_provider);
                 if (default_provider != NULL) {
                         char *app_path;
 
@@ -353,6 +359,8 @@ append_required_apps (GsmManager *manager)
                 g_free (default_provider);
                 g_free (path);
         }
+
+        g_debug ("main: *** Done adding required apps");
 
         g_slist_foreach (required_components, (GFunc)g_free, NULL);
         g_slist_free (required_components);
