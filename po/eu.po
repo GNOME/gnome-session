@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 13:05+0200\n"
-"PO-Revision-Date: 2008-08-30 13:06+0200\n"
+"POT-Creation-Date: 2008-09-09 12:43+0200\n"
+"PO-Revision-Date: 2008-09-09 12:48+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Hautatu komandoa:"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Gehitu abioko programa"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Editatu abioko programa"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Azalpenik ez"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Abioko programaren izena ezin da hutsik egon"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Abioko komandoa ezin da hutsik egon"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Abioko komandoa ez da baliozkoa"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Gaituta"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikonoa"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Programa"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Saioen hobespenak"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:509
+msgid "Version of this application"
+msgstr "Aplikazio honen bertsioa"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -30,6 +79,26 @@ msgstr ""
 "da erabilgarritasunaren erregistrorik aurkitu. Ziurtatu AT-SPI paketea "
 "instalatuta dagoela. Saioa laguntzako teknologiaren euskarririk gabe "
 "abiarazi da."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI erregistro-doitzailea"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "GNOME gako sorten daemonaren doitzailea"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "GNOMEren ezarpenen daemonaren laguntzailea"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Saio honek GNOMEn sartuko zaitu"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -148,17 +217,20 @@ msgstr ""
 "\" sistema itzaltzeko eta \"Berrabiarazi\" systema itzali eta berriro "
 "abiarazteko."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Leiho-kudeatzailea"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Programa batzuk oraindik exekutatzen ari dira:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Saio honek GNOMEn sartuko zaitu"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr "Programa amaitu zai. Programa etetzeak zure lana galtzea eragin lezake."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -188,11 +260,6 @@ msgstr "_Iruzkina:"
 msgid "Options"
 msgstr "Aukerak"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "Saioen hobespenak"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Abioko programak"
@@ -208,17 +275,6 @@ msgstr "_Izena:"
 #: ../data/session-properties.glade.h:10
 msgid "_Remember Currently Running Application"
 msgstr "_Gogoratu unean exekutatzen ari diren aplikazioak"
-
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Programa batzuk oraindik exekutatzen ari dira:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr "Programa amaitu zai. Programa etetzeak zure lana galtzea eragin lezake."
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -444,96 +500,75 @@ msgstr "Ezin izan da entzuteko ICE socket-a sortu: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Ezin da saio-hasiera hasi (eta ezin da X zerbitzariarekin konektatu)"
 
-#: ../gnome-session/main.c:453
+#: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
 msgstr "Jaramonik ez egin hasiera automatikoko direktorio estandarrei"
 
-#: ../gnome-session/main.c:454
+#: ../gnome-session/main.c:506
 msgid "GConf key used to lookup default session"
 msgstr "Erabilitako GConf gakoa saio lehenetsia bilatzeko"
 
-#: ../gnome-session/main.c:455
+#: ../gnome-session/main.c:507
 msgid "Enable debugging code"
 msgstr "Gaitu arazketa-kodea"
 
-#: ../gnome-session/main.c:456
+#: ../gnome-session/main.c:508
 msgid "Do not load user-specified applications"
 msgstr "Ez kargatu erabiltzaileak zehaztutako aplikazioak"
 
-#: ../gnome-session/main.c:457 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Aplikazio honen bertsioa"
-
-#: ../gnome-session/main.c:472
+#: ../gnome-session/main.c:529
 msgid " - the GNOME session manager"
 msgstr "- GNOMEren saio-kudeatzailea"
 
-#: ../capplet/gsm-app-dialog.c:126
-msgid "Select Command"
-msgstr "Hautatu komandoa:"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- GNOMEren harrerako pantaila"
 
-#: ../capplet/gsm-app-dialog.c:187
-msgid "Add Startup Program"
-msgstr "Gehitu abioko programa"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "GNOMEren harrerako pantaila"
 
-#: ../capplet/gsm-app-dialog.c:191
-msgid "Edit Startup Program"
-msgstr "Editatu abioko programa"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Azalpenik ez"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "Abioko programaren izena ezin da hutsik egon"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "Abioko komandoa ezin da hutsik egon"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "Abioko komandoa ez da baliozkoa"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Gaituta"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Ikonoa"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Programa"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Ezarri uneko saioaren izena"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "IZENA"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Amaitu saioa"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Amaitu saioa (ezikusi egin dauden inhibitzaileei)"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Erakutsi 'Amaitu saioa' elkarrizketa-koadroa"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Erakutsi 'Itzali' elkarrizketa-koadroa"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Hil saioa"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Erabili erroreen elkarrizketa-koadroak"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Ez du baieztapenik behar"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Ezin izan da saio-kudeatzailearekin konektatu"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- GNOMEren harrerako pantaila"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Gatazkan dauden aukerekin deitu da programa"
 
