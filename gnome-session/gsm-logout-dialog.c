@@ -257,7 +257,7 @@ gsm_logout_dialog_timeout (gpointer data)
 {
         GsmLogoutDialog *logout_dialog;
         char            *secondary_text;
-        const char      *name;
+        char            *name;
         int              seconds_to_show;
 
         logout_dialog = (GsmLogoutDialog *) data;
@@ -307,10 +307,14 @@ gsm_logout_dialog_timeout (gpointer data)
                 g_assert_not_reached ();
         }
 
-        name = g_get_real_name ();
+        name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);
 
-        if (!name || name[0] == '\0') {
-                name = g_get_user_name ();
+        if (!name || name[0] == '\0' || strcmp (name, "Unknown") == 0) {
+                name = g_locale_to_utf8 (g_get_user_name (), -1 , NULL, NULL, NULL);
+        }
+
+        if (!name) {
+                name = g_strdup (g_get_user_name ());
         }
 
         gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (logout_dialog),
@@ -320,6 +324,8 @@ gsm_logout_dialog_timeout (gpointer data)
                                                   NULL);
 
         logout_dialog->priv->timeout--;
+
+        g_free (name);
 
         return TRUE;
 }
