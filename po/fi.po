@@ -10,14 +10,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 12:02+0300\n"
-"PO-Revision-Date: 2008-08-27 12:00+0300\n"
+"POT-Creation-Date: 2008-09-14 12:50+0300\n"
+"PO-Revision-Date: 2008-09-14 12:30+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Valitse komento"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Lisää käynnistyvä ohjelma"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Muokkaa käynnistyvää ohjelmaa"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Ei kuvausta"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Käynnistyskomennon nimi ei voi olla tyhjä"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Käynnistyskomento ei voi olla tyhjä"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Käynnistyskomento ei ole kelvollinen"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Käytössä"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Kuvake"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Ohjelma"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Istuntojen asetukset"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:509
+msgid "Version of this application"
+msgstr "Tämän ohjelman versio"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -29,6 +78,26 @@ msgstr ""
 "Esteettömyysohjelmien tukea pyydettiin avattavaksi tähän istuntoon, mutta "
 "esteettömyysrekisteriä ei löydy. Varmista, että paketti at-spi on asennettu. "
 "Istunto käynnistettiin ilman esteettömyystukea."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI -rekisterin käärin"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Gnomen avainrengaspalvelimen käärin"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Gnomen asetuspalvelimen käärin"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "Gnome"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Tämä istunto kirjautuu Gnomeen"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -146,17 +215,22 @@ msgstr ""
 "sammuttamiseksi ja \"uudelleenkäynnistys\" järjestelmän käynnistämiseksi "
 "uudestaan."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Ikkunointiohjelma"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "Gnome"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Joitakin ohjelmia on vielä käynnissä:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Tämä istunto kirjautuu Gnomeen"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Odotetaan ohjelman lopettamista. Ohjelman suorituksen keskeyttäminen voi "
+"aiheuttaa töiden häviämistä."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -186,11 +260,6 @@ msgstr "Komm_entti:"
 msgid "Options"
 msgstr "Valinnat"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1465
-msgid "Sessions Preferences"
-msgstr "Istuntojen asetukset"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Käynnistyvät ohjelmat"
@@ -207,19 +276,6 @@ msgstr "_Nimi:"
 msgid "_Remember Currently Running Application"
 msgstr "Muista tällä hetkellä _käynnissä olevat ohjelmat"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Joitakin ohjelmia on vielä käynnissä:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Odotetaan ohjelman lopettamista. Ohjelman suorituksen keskeyttäminen voi "
-"aiheuttaa töiden häviämistä."
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -230,27 +286,27 @@ msgstr "Tiedosto ei ole kelvollinen .desktop-tiedosto"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Tuntematon desktop-tiedoston versio \"%s\""
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "%s käynnistyy"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Sovellus ei hyväksy asiakirjoja komentoriviltä"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Tuntematon käynnistinvalitsin: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Asiakirja-URIa ei voida antaa \"Type=Link\"-työpöytäkohteelle"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Kohde ei ole käynnistettävä"
@@ -387,35 +443,35 @@ msgstr[1] ""
 "Olet tällä hetkellä kirjautuneena tunnuksella \"%s\".\n"
 "Järjestelmä sammuu automaattisesti %d sekunnin kuluttua."
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "Log out of this system now?"
 msgstr "Kirjaudu ulos järjestelmästä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Switch User"
 msgstr "_Vaihda käyttäjää"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "_Log Out"
 msgstr "Kirjaudu _ulos"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "Shut down this system now?"
 msgstr "Sammuta järjestelmä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "S_uspend"
 msgstr "_Keskeytystila"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Hibernate"
 msgstr "_Lepotila"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "_Restart"
 msgstr "Käynnistä _uudelleen"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:426
 msgid "_Shut Down"
 msgstr "_Sammuta"
 
@@ -423,7 +479,7 @@ msgstr "_Sammuta"
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Tämä ohjelma estää kirjautumisen ulos"
 
@@ -446,489 +502,75 @@ msgstr "ICE-kuuntelupistokette ei voi luoda: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kirjautumisistuntoa ei voi käynnistää (eikä X-palvelimeen yhdistää)"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:506
+msgid "GConf key used to lookup default session"
+msgstr "GConf-avain, josta oletusistuntoa etsitään"
+
+#: ../gnome-session/main.c:507
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
-#: ../gnome-session/main.c:64
+#: ../gnome-session/main.c:508
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:65 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Tämän ohjelman versio"
-
-#: ../gnome-session/main.c:443
+#: ../gnome-session/main.c:529
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "Valitse komento"
-
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "Lisää käynnistyvä ohjelma"
-
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "Muokkaa käynnistyvää ohjelmaa"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Ei kuvausta"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "Käynnistyskomennon nimi ei voi olla tyhjä"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "Käynnistyskomento ei voi olla tyhjä"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "Käynnistyskomento ei ole kelvollinen"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Käytössä"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Kuvake"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Ohjelma"
-
-#: ../tools/gnome-session-save.c:52
-msgid "Set the current session name"
-msgstr "Aseta nykyisen istunnon nimi"
-
-#: ../tools/gnome-session-save.c:52
-msgid "NAME"
-msgstr "NIMI"
-
-#: ../tools/gnome-session-save.c:53
-msgid "Kill session"
-msgstr "Tapa istunto"
-
-#: ../tools/gnome-session-save.c:54
-msgid "Use dialog boxes for errors"
-msgstr "Käytä valintaikkunoita virheille"
-
-#: ../tools/gnome-session-save.c:55
-msgid "Do not require confirmation"
-msgstr "Älä vaadi vahvistusta"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
-msgid "Could not connect to the session manager"
-msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
-
-#: ../splash/gnome-session-splash.c:289
+#: ../splash/gnome-session-splash.c:291
 msgid "- GNOME Splash Screen"
 msgstr "- Gnomen käynnistymisikkuna"
 
-#~ msgid ""
-#~ "The Window manager that gnome-session will start. Valid values are "
-#~ "\"metacity\" and \"compiz\"."
-#~ msgstr ""
-#~ "gnome-sessionin käynnistämä ikkunointiohjelma. Kelvollisia arvoja ovat "
-#~ "\"metacity\" ja \"compiz\"."
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Gnomen käynnistymisikkuna"
 
-#~ msgid "Window Manager to start"
-#~ msgstr "Käynnistettävä ikkunointiohjelma"
+#: ../tools/gnome-session-save.c:65
+msgid "Set the current session name"
+msgstr "Aseta nykyisen istunnon nimi"
 
-#~ msgid "gtk-cancel"
-#~ msgstr "Peru"
+#: ../tools/gnome-session-save.c:65
+msgid "NAME"
+msgstr "NIMI"
 
-#~ msgid "Play logout sound instead of login"
-#~ msgstr "Soita uloskirjautumisääni sisäänkirjautumisäänen sijaan"
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Kirjaudu ulos"
 
-#~ msgid "- GNOME login/logout sound"
-#~ msgstr "- Gnomen kirjautumis/uloskirjautumisääni"
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Kirjaudu ulos, jättäen käynnissä olevat estot huomioimatta"
 
-#~ msgid "Could not connect to the session manager\n"
-#~ msgstr "Istunnonhallintaan ei voi yhdistää\n"
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Näytä uloskirjautumisikkuna"
 
-#~ msgid " - Save the current session"
-#~ msgstr " - Tallenna nykyinen istunto"
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Näytä sammutusikkuna"
 
-#~ msgid "Allow TCP connections"
-#~ msgstr "Salli TCP-yhteydet"
+#: ../tools/gnome-session-save.c:70
+msgid "Kill session"
+msgstr "Tapa istunto"
 
-#~ msgid ""
-#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
-#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
-#~ "ports. This option will allow connections from (authorized) remote hosts. "
-#~ "gnome-session must be restarted for this to take effect."
-#~ msgstr ""
-#~ "Turvallisuussyistä gnome-session ei kuuntele yhteyksiä TCP-portteihin, "
-#~ "jos alustalla (kuten XFree86-järjestelmillä) ei ole _IceTcpTransNoListen"
-#~ "()-kutsua. Tämä asetus sallii yhteydet (sallituista) etäkoneista. gnome-"
-#~ "session täytyy käynnistää uudelleen, jotta tämä tulisi voimaan."
+#: ../tools/gnome-session-save.c:71
+msgid "Use dialog boxes for errors"
+msgstr "Käytä valintaikkunoita virheille"
 
-#~ msgid "_Order:"
-#~ msgstr "_Järjestys:"
+#: ../tools/gnome-session-save.c:72
+msgid "Do not require confirmation"
+msgstr "Älä vaadi vahvistusta"
 
-#~ msgid "What happens to the application when it exits."
-#~ msgstr "Mitä sovellukselle tapahtuu, kun se sulkeutuu."
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
 
-#~ msgid "_Style:"
-#~ msgstr "_Tyyli:"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
 
-#~ msgid "Inactive"
-#~ msgstr "Ei aktiivinen"
-
-#~ msgid "Waiting to start or already finished."
-#~ msgstr "Odottaa käynnistystä tai on jo valmis."
-
-#~ msgid "Started but has not yet reported state."
-#~ msgstr "Käynnistynyt, mutta ei ole ilmoittanut vielä tilaansa."
-
-#~ msgid "Running"
-#~ msgstr "Käynnissä"
-
-#~ msgid "A normal member of the session."
-#~ msgstr "Tavallinen istunnon jäsen."
-
-#~ msgid "Saving"
-#~ msgstr "Tallentuu"
-
-#~ msgid "Saving session details."
-#~ msgstr "Istunnon tiedot tallentuvat."
-
-#~ msgid "State not reported within timeout."
-#~ msgstr "Ei ilmoittanut tilaansa aikarajaan mennessä."
-
-#~ msgid "Normal"
-#~ msgstr "Tavallinen"
-
-#~ msgid "Unaffected by logouts but can die."
-#~ msgstr "Uloskirjautuminen ei vaikuta, mutta voi sulkeutua."
-
-#~ msgid "Never allowed to die."
-#~ msgstr "Ei anneta sammua."
-
-#~ msgid "Trash"
-#~ msgstr "Roskaohjelma"
-
-#~ msgid "Discarded on logout and can die."
-#~ msgstr "Hylätään uloskirjauduttaessa, ja voi sulkeutua."
-
-#~ msgid "Settings"
-#~ msgstr "Asetukset"
-
-#~ msgid "Always started on every login."
-#~ msgstr "Käynnistyy sisään kirjauduttaessa."
-
-#~ msgid "Order"
-#~ msgstr "Järjestys"
-
-#~ msgid "Style"
-#~ msgstr "Tyyli"
-
-#~ msgid "State"
-#~ msgstr "Tila"
-
-#~ msgid ""
-#~ "There was an error starting the GNOME Settings Daemon.\n"
-#~ "\n"
-#~ "Some things, such as themes, sounds, or background settings may not work "
-#~ "correctly."
-#~ msgstr ""
-#~ "Gnomen asetusdemonin käynnistys epäonnistui.\n"
-#~ "\n"
-#~ "Jotkin ominaisuudet, kuten teemat, äänet tai taustan asetukset eivät "
-#~ "välttämättä toimi kunnolla."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "The last error message was:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Viimeisin virheviesti oli:\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME will still try to restart the Settings Daemon next time you log in."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Gnome yrittää vielä käynnistää asetusdemonin uudestaan, kun kirjaudut "
-#~ "seuraavan kerran sisään."
-
-#~ msgid "The Settings Daemon restarted too many times."
-#~ msgstr "Asetusdemoni on käynnistynyt liian monta kertaa uudestaan."
-
-#~ msgid "No Name"
-#~ msgstr "Ei nimeä"
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "Näytä rekisteröidyt asiakkaat ja sulje"
-
-#~ msgid "PROGRAM..."
-#~ msgstr "OHJELMA..."
-
-#~ msgid ""
-#~ "You must specify at least one program to remove. You can list the "
-#~ "programs with --list.\n"
-#~ msgstr ""
-#~ "Ainakin yksi poistettava ohjelma täytyy antaa. Voit näyttää ohjelmat "
-#~ "valitsimella --list.\n"
-
-#~ msgid "Error: could not connect to the session manager\n"
-#~ msgstr "Virhe: istunnonhallintaan ei saatu yhteyttä\n"
-
-#~ msgid "Currently registered clients:\n"
-#~ msgstr "Tällä hetkellä rekisteröidyt asiakkaat:\n"
-
-#~ msgid "Couldn't find program %s in session\n"
-#~ msgstr "Ohjelmaa %s ei löydy istunnosta\n"
-
-#~ msgid ""
-#~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
-#~ msgstr ""
-#~ "Gnomen istunnonhallintaa ei voida käynnistää. Raportoi tämä Gnomen "
-#~ "vikana. Liitä seuraava ICE-virheviesti vikailmoitukseen: \"%s\". Voit "
-#~ "tällä välin yrittää käynnistää vikasietoisen istunnon."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
-#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe "
-#~ "session and ensuring that it is."
-#~ msgstr ""
-#~ "Gnomen istunnonhallinta ei voinut lukita tiedostoa \"%s\". Raportoi tämä "
-#~ "Gnomen vikana. Tämä virhe saattaa tapahtua, jos tiedoston kansio ei ole "
-#~ "kirjoitettavissa. Voit yrittää kirjautua vikasietoiseen istuntoon ja "
-#~ "tarkistaa, että kyseiseen kansioon voidaan kirjoittaa."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
-#~ "file exists it must be readable by you for GNOME to work properly.  Try "
-#~ "logging in with the failsafe session and removing this file."
-#~ msgstr ""
-#~ "Gnomen istunnonhallinta ei voinut lukea tiedostoa: \"%s\". Jos tämä "
-#~ "tiedosto on olemassa, sinulla täytyy olla oikeudet lukea se, jotta Gnome "
-#~ "toimii oikein. Yritä kirjautua vikasietoiseen istuntoon ja poistaa "
-#~ "kyseinen tiedosto."
-
-#~ msgid ""
-#~ "Could not write to file '%s'.  This file must be writable in order for "
-#~ "GNOME to function properly.  Try logging in with the failsafe session and "
-#~ "removing this file.  Also make sure that the file's directory is writable."
-#~ msgstr ""
-#~ "Tiedostoon \"%s\" ei voitu kirjoittaa. Tähän tiedostoon täytyy voida "
-#~ "kirjoittaa, jotta Gnome toimii oikein. Yritä kirjautua vikasietoiseen "
-#~ "istuntoon ja poistaa kyseisen tiedoston. Varmista myös että kyseinen "
-#~ "kansio on kirjoitettavissa."
-
-#~ msgid "Are you sure you want to log out?"
-#~ msgstr "Oletko varma, että haluat kirjautua ulos?"
-
-#~ msgid "Remember running applications"
-#~ msgstr "Muista suoritettavat ohjelmat"
-
-#~ msgid "_Restart the computer"
-#~ msgstr "_Käynnistä tietokone uudelleen"
-
-#~ msgid "Only read saved sessions from the default.session file"
-#~ msgstr "Lue tallennetut istunnot vain oletusistuntotiedostosta"
-
-#~ msgid "Millisecond period spent waiting for clients to register (0=forever)"
-#~ msgstr ""
-#~ "Asiakasohjelmien rekisteröitymisen odotusaika millisekunteina "
-#~ "(0=ikuisesti)"
-
-#~ msgid "DELAY"
-#~ msgstr "AIKAVIIVE"
-
-#~ msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-#~ msgstr ""
-#~ "Asiakasohjelmien vastauksen odotusaika millisekunteina (0=ikuisesti)"
-
-#~ msgid "Millisecond period spent waiting for clients to die (0=forever)"
-#~ msgstr ""
-#~ "Asiakasohjelmien sammumisen odotusaika millisekunteina (0=ikuisesti)"
-
-#~ msgid "This session is running as a privileged user"
-#~ msgstr "Tämä istunto on ylläpitäjäkäyttäjänistunto"
-
-#~ msgid ""
-#~ "Running a session as a privileged user should be avoided for security "
-#~ "reasons. If possible, you should log in as a normal user."
-#~ msgstr ""
-#~ "Työpöytäympäristöjä ei tulisi turvallisuussyistä käyttää ylläpitäjänä. "
-#~ "Jos mahdollista, kirjaudu sisään tavallisena käyttäjänä."
-
-#~ msgid "_Continue"
-#~ msgstr "_Jatka"
-
-#~ msgid ""
-#~ "The session might encounter issues if the computer clock is not properly "
-#~ "configured. Please consider adjusting it.\n"
-#~ "\n"
-#~ "Current date is <b>%s</b>."
-#~ msgstr ""
-#~ "Istunnossa saattaa tapahtua virheitä, jos tietokoneen kello on väärässä. "
-#~ "Korjaa päivämäärä, jos mahdollista.\n"
-#~ "\n"
-#~ "Päiväys on nyt <b>%s</b>."
-
-#~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "Ajan asetustyökalua ei voitu käynnistää: %s"
-
-#~ msgid "The computer clock appears to be wrong"
-#~ msgstr "Tietokoneen kello näyttää olevan väärässä"
-
-#~ msgid "_Ignore"
-#~ msgstr "_Ohita"
-
-#~ msgid "_Adjust the Clock"
-#~ msgstr "_Säädä kelloa"
-
-#~ msgid ""
-#~ "Could not look up internet address for %s.\n"
-#~ "This will prevent GNOME from operating correctly.\n"
-#~ "It may be possible to correct the problem by adding\n"
-#~ "%s to the file /etc/hosts."
-#~ msgstr ""
-#~ "Koneen %s Internet-osoite ei selvinnyt,\n"
-#~ "mikä estää Gnomea toimimasta kunnolla.\n"
-#~ "Ongelman korjaaminen saattaa olla mahdollista lisäämällä\n"
-#~ "%s tiedostoon /etc/hosts."
-
-#~ msgid "Try Again"
-#~ msgstr "Yritä uudelleen"
-
-#~ msgid "Wait abandoned due to conflict."
-#~ msgstr "Odottaminen loppui ristiriidan vuoksi."
-
-#~ msgid "No response to the %s command."
-#~ msgstr "Ei vastausta komentoon %s."
-
-#~ msgid "The program may be slow, stopped or broken."
-#~ msgstr "Ohjelma voi olla hidas, pysäytetty tai rikki."
-
-#~ msgid "You may wait for it to respond or remove it."
-#~ msgstr "Voit odottaa sen vastausta tai poistaa sen."
-
-#~ msgid "Restart abandoned due to failures."
-#~ msgstr "Ei käynnisty uudelleen virheiden vuoksi."
-
-#~ msgid "A session shutdown is in progress."
-#~ msgstr "Istunto sulkeutuu."
-
-#~ msgid "Save changes to the current session before closing?"
-#~ msgstr "Tallennetaanko muutokset istuntoon ennen sulkemista?"
-
-#~ msgid "If you don't save, changes will be discarded."
-#~ msgstr "Jos et tallenna, muutokset hukataan."
-
-#~ msgid "_Close without Saving"
-#~ msgstr "S_ulje tallentamatta"
-
-#~ msgid "Current Session"
-#~ msgstr "Nykyinen istunto"
-
-#~ msgid "Your session has been saved."
-#~ msgstr "Istunto on tallennettu."
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "istunnonhallintaan ei saatu yhteyttä\n"
-
-#~ msgid "session manager does not support GNOME extensions\n"
-#~ msgstr "istunnonhallinta ei tue Gnome-laajennoksia\n"
-
-#~ msgid "Remove the currently selected client from the session."
-#~ msgstr "Poista valittu asiakasohjelma istunnosta."
-
-#~ msgid "Apply changes to the current session"
-#~ msgstr "Ota istunnon muutokset käyttöön"
-
-#~ msgid "The list of programs in the session."
-#~ msgstr "Luettelo istunnon ohjelmista."
-
-#~ msgid "Currently running _programs:"
-#~ msgstr "_Nyt käynnissä olevat ohjelmat:"
-
-#~ msgid "Sawfish Window Manager"
-#~ msgstr "Sawfish-ikkunointiohjelma"
-
-#~ msgid "Metacity Window Manager"
-#~ msgstr "Metacity-ikkunointiohjelma"
-
-#~ msgid "Nautilus"
-#~ msgstr "Nautilus"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Työpöydän asetukset"
-
-#~ msgid "New Startup Program"
-#~ msgstr "Uusi kirjautumisohjelma"
-
-#~ msgid "_Save current setup"
-#~ msgstr "_Tallenna nykyinen tila"
-
-#~ msgid "Automatically save chan_ges to session"
-#~ msgstr "Tallenna istunnon _muutokset itsestään"
-
-#~ msgid "Save the current session"
-#~ msgstr "Tallenna nykyinen istunto"
-
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Istunnon nimi ei voi olla tyhjä"
-
-#~ msgid "The session name already exists"
-#~ msgstr "Istunnon nimi on jo olemassa"
-
-#~ msgid "Add a new session"
-#~ msgstr "Lisää uusi istunto"
-
-#~ msgid "Edit session name"
-#~ msgstr "Muokkaa istunnon nimeä"
-
-#~ msgid "Disable"
-#~ msgstr "Poista käytöstä"
-
-#~ msgid "_Edit"
-#~ msgstr "_Muokkaa"
-
-#~ msgid ""
-#~ "Some changes are not saved.\n"
-#~ "Is it still OK to exit?"
-#~ msgstr ""
-#~ "Joitakin muutoksia ei ole tallennettu.\n"
-#~ "Haluatko silti lopettaa?"
-
-#~ msgid "Show splash screen on _login"
-#~ msgstr "Näytä aloitusikkuna _käynnistyessä"
-
-#~ msgid "As_k on logout"
-#~ msgstr "_Kysy poistuttaessa"
-
-#~ msgid "_Sessions:"
-#~ msgstr "_Istunnot:"
-
-#~ msgid "_Startup Command:"
-#~ msgstr "_Käynnistyskomento:"
-
-#~ msgid "There was an unknown activation error."
-#~ msgstr "Tuntematon aktivointivirhe tapahtui."
-
-#~ msgid "Initialize session settings"
-#~ msgstr "Alusta istuntoasetukset"
