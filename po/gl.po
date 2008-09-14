@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-01 21:31+0200\n"
-"PO-Revision-Date: 2008-09-01 21:32+0200\n"
+"POT-Creation-Date: 2008-09-14 16:29+0200\n"
+"PO-Revision-Date: 2008-09-14 16:30+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -25,6 +25,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Seleccionar comando"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Engadir programa ao inicio"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Editar programa de inicio"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Sen descrición"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "O nome do programa de inicio non pode estar baleiro"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "O comando de inicio non pode estar baleiro"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "O comando de inicio non é válido"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Activado"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Icona"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Programa"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Preferencias de sesión"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:509
+msgid "Version of this application"
+msgstr "A versión desta aplicación"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -37,6 +86,26 @@ msgstr ""
 "se encontrou o rexistro de accesibilidade. Asegúrese de que o paquete AT-SPI "
 "está instalado. A súa sesión iniciouse sen soporte de tecnoloxías de "
 "asistencia."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "Envolvente de rexistro AT SPI"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Envolvente do daemon do anel de chaves de Gnome"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Axudante do daemon do xestor de preferencias de Gnome"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "Gnome"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Esta sesión accede a Gnome"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -155,17 +224,22 @@ msgstr ""
 "valores válidos son \"logout\" para terminar a sesión, \"shutdown\" para "
 "deter o sistema e \"restart\" para reiniciar o sistema."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Xestor de ventás"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "Gnome"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Algúns programas están todavía en execución:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Esta sesión accede a Gnome"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Esperando a que remate o programa.  A interrupción do programa pode causar "
+"pérdida de traballo."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -195,11 +269,6 @@ msgstr "Com_entario:"
 msgid "Options"
 msgstr "Opcións"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "Preferencias de sesión"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Programas de inicio"
@@ -216,19 +285,6 @@ msgstr "_Nome:"
 #: ../data/session-properties.glade.h:10
 msgid "_Remember Currently Running Application"
 msgstr "_Recordar as aplicacións que están actualmente en execución"
-
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Algúns programas están todavía en execución:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Esperando a que remate o programa.  A interrupción do programa pode causar "
-"pérdida de traballo."
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -398,35 +454,35 @@ msgstr[1] ""
 "Actualmente está rexistrado na sesión como \"%s\".\n"
 "O sistema apagarase automaticamente en %d segundos."
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "Log out of this system now?"
 msgstr "Quere terminar agora a sesión neste sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Switch User"
 msgstr "Cambiar de u_suario"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "_Log Out"
 msgstr "_Terminar a sesión"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "Shut down this system now?"
 msgstr "Quere apagar agora este sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "S_uspend"
 msgstr "S_uspender"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Hibernate"
 msgstr "_Hibernar"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:426
 msgid "_Shut Down"
 msgstr "A_pagar"
 
@@ -459,69 +515,33 @@ msgstr ""
 "Non se puido iniciar o inicio de sesión (e foi imposible conectar co "
 "servidor de X)"
 
-#: ../gnome-session/main.c:495
+#: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
 msgstr "Substituír os directorios estándar de inicio automático"
 
-#: ../gnome-session/main.c:496
+#: ../gnome-session/main.c:506
 msgid "GConf key used to lookup default session"
 msgstr "A chave de GConf para buscar a sesión predeterminada"
 
-#: ../gnome-session/main.c:497
+#: ../gnome-session/main.c:507
 msgid "Enable debugging code"
 msgstr "Activar código de depuración"
 
-#: ../gnome-session/main.c:498
+#: ../gnome-session/main.c:508
 msgid "Do not load user-specified applications"
 msgstr "Non cargar as aplicacións especificadas polo usuario"
 
-#: ../gnome-session/main.c:499 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "A versión desta aplicación"
-
-#: ../gnome-session/main.c:519
+#: ../gnome-session/main.c:529
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións de Gnome"
 
-#: ../capplet/gsm-app-dialog.c:126
-msgid "Select Command"
-msgstr "Seleccionar comando"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- Pantalla de benvida de Gnome"
 
-#: ../capplet/gsm-app-dialog.c:187
-msgid "Add Startup Program"
-msgstr "Engadir programa ao inicio"
-
-#: ../capplet/gsm-app-dialog.c:191
-msgid "Edit Startup Program"
-msgstr "Editar programa de inicio"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Sen descrición"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "O nome do programa de inicio non pode estar baleiro"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "O comando de inicio non pode estar baleiro"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "O comando de inicio non é válido"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Activado"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Icona"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Programa"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Pantalla de benvida de Gnome"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
@@ -566,10 +586,6 @@ msgstr "Non se puido conectar co xestor de sesión"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "O programa chamouse con opcións conflitivas"
-
-#: ../splash/gnome-session-splash.c:291
-msgid "- GNOME Splash Screen"
-msgstr "- Pantalla de benvida de Gnome"
 
 #~ msgid ""
 #~ "The Window manager that gnome-session will start. Valid values are "
