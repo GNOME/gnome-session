@@ -1,5 +1,19 @@
 2008-09-15  Matthias Clasen  <mclasen@redhat.com>
 
+	Bug 552255 – leaks IceConnection objects
+
+	* gnome-session/gsm-xsmp-client.c (gsm_xsmp_client_disconnect):
+	Need to call IceCloseConnection always; SmsCleanUp doesn't do it
+	for us.
+	(client_iochannel_watch): ref client around the ICE processing,
+	since handling SM callbacks might otherwise cause it to be
+	destroyed. Clear client->priv->ice_connection on a
+	ConnectionClosed response to avoid a double free.
+
+	Patch by Dan Winship
+
+2008-09-15  Matthias Clasen  <mclasen@redhat.com>
+
 	Bug 552302 – leaks empty strings
 
 	* gnome-session/gsm-manager.c (_on_query_end_session_timeout):

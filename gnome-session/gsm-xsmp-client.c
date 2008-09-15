@@ -78,25 +78,37 @@ client_iochannel_watch (GIOChannel    *channel,
                         GIOCondition   condition,
                         GsmXSMPClient *client)
 {
+        gboolean keep_going;
 
+        g_object_ref (client);
         switch (IceProcessMessages (client->priv->ice_connection, NULL, NULL)) {
         case IceProcessMessagesSuccess:
-                return TRUE;
+                keep_going = TRUE;
+                break;
 
         case IceProcessMessagesIOError:
                 g_debug ("GsmXSMPClient: IceProcessMessagesIOError on '%s'", client->priv->description);
                 gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_FAILED);
+                /* Emitting "disconnected" will eventually cause
+                 * IceCloseConnection() to be called.
+                 */
                 gsm_client_disconnected (GSM_CLIENT (client));
-                return FALSE;
+                keep_going = FALSE;
+                break;
 
         case IceProcessMessagesConnectionClosed:
                 g_debug ("GsmXSMPClient: IceProcessMessagesConnectionClosed on '%s'",
                          client->priv->description);
-                return FALSE;
+                client->priv->ice_connection = NULL;
+                keep_going = FALSE;
+                break;
 
         default:
                 g_assert_not_reached ();
         }
+        g_object_unref (client);
+
+        return keep_going;
 }
 
 /* Called if too much time passes between the initial connection and
@@ -621,7 +633,9 @@ gsm_xsmp_client_disconnect (GsmXSMPClient *client)
 
         if (client->priv->conn != NULL) {
                 SmsCleanUp (client->priv->conn);
-        } else {
+        }
+
+        if (client->priv->ice_connection != NULL) {
                 IceCloseConnection (client->priv->ice_connection);
         }
 
