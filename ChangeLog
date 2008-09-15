@@ -1,5 +1,12 @@
 2008-09-15  Matthias Clasen  <mclasen@redhat.com>
 
+	Bug 552302 – leaks empty strings
+
+	* gnome-session/gsm-manager.c (_on_query_end_session_timeout):
+	(on_client_end_session_response): Plug a small string leak.
+
+2008-09-15  Matthias Clasen  <mclasen@redhat.com>
+
 	Bug 552294 – leaks EggDesktopFiles
 
 	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor): Free

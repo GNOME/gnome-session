@@ -913,6 +913,7 @@ _on_query_end_session_timeout (GsmManager *manager)
                 app_id = g_strdup (gsm_client_peek_app_id (l->data));
                 if (IS_STRING_EMPTY (app_id)) {
                         /* XSMP clients don't give us an app id unless we start them */
+                        g_free (app_id);
                         app_id = gsm_client_get_app_name (l->data);
                 }
 
@@ -1529,6 +1530,7 @@ on_client_end_session_response (GsmClient  *client,
                 app_id = g_strdup (gsm_client_peek_app_id (client));
                 if (IS_STRING_EMPTY (app_id)) {
                         /* XSMP clients don't give us an app id unless we start them */
+                        g_free (app_id);
                         app_id = gsm_client_get_app_name (client);
                 }
 
