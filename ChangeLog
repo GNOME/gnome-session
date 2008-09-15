@@ -1,5 +1,12 @@
 2008-09-15  Matthias Clasen  <mclasen@redhat.com>
 
+	Bug 552294 – leaks EggDesktopFiles
+
+	* gnome-session/gsm-inhibit-dialog.c (add_inhibitor): Free
+	the desktop file when done with it.
+
+2008-09-15  Matthias Clasen  <mclasen@redhat.com>
+
 	Bug 552293 – leaks previous_id
 
 	* gnome-session/gsm-xsmp-client.c (register_client_callback): 

@@ -496,6 +496,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
         /* FIXME: get info from xid */
 
+        desktop_file = NULL;
         name = NULL;
         pixbuf = NULL;
         freeme = NULL;
@@ -601,6 +602,9 @@ add_inhibitor (GsmInhibitDialog *dialog,
         g_free (freeme);
         if (pixbuf != NULL) {
                 g_object_unref (pixbuf);
+        }
+        if (desktop_file != NULL) {
+                egg_desktop_file_free (desktop_file);
         }
 }
 
