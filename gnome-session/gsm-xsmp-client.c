@@ -857,13 +857,12 @@ register_client_callback (SmsConn    conn,
                 g_debug ("GsmXSMPClient: Sending initial SaveYourself");
                 SmsSaveYourself (conn, SmSaveLocal, False, SmInteractStyleNone, False);
                 client->priv->current_save_yourself = SmSaveLocal;
-
-                free (previous_id);
         }
 
         gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_REGISTERED);
 
         g_free (id);
+        free (previous_id);
 
         return TRUE;
 }

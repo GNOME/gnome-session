@@ -1,5 +1,12 @@
 2008-09-15  Matthias Clasen  <mclasen@redhat.com>
 
+	Bug 552293 – leaks previous_id
+
+	* gnome-session/gsm-xsmp-client.c (register_client_callback): 
+	Free previous_id in all cases.
+
+2008-09-15  Matthias Clasen  <mclasen@redhat.com>
+
 	Bug 552292 – leaks ListenObjs
 
 	* gnome-session/gsm-xsmp-server.c (gsm_xsmp_server_finalize): 
