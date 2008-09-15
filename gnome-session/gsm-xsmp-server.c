@@ -606,6 +606,9 @@ gsm_xsmp_server_finalize (GObject *object)
 
         g_return_if_fail (xsmp_server->priv != NULL);
 
+        IceFreeListenObjs (xsmp_server->priv->num_xsmp_sockets, 
+                           xsmp_server->priv->xsmp_sockets);
+
         if (xsmp_server->priv->client_store != NULL) {
                 g_object_unref (xsmp_server->priv->client_store);
         }

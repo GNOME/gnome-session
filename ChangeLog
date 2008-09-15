@@ -1,3 +1,10 @@
+2008-09-15  Matthias Clasen  <mclasen@redhat.com>
+
+	Bug 552292 – leaks ListenObjs
+
+	* gnome-session/gsm-xsmp-server.c (gsm_xsmp_server_finalize): 
+	Don't leak xsmp_sockets.
+
 2008-09-10  Frederic Crozat  <fcrozat@mandriva.com>
 
 	* gnome-session/gsm-logout-dialog.c: backport
