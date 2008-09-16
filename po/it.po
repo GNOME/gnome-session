@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-14 15:29+0200\n"
-"PO-Revision-Date: 2008-09-14 15:45+0200\n"
+"PO-Revision-Date: 2008-09-16 14:48+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -131,6 +131,14 @@ msgstr "Elenco delle applicazioni che sono parte della sessione predefinita."
 
 # GNOME-2-24
 # un po' libera, ma mi pare corretta
+#
+# FIXME FIXME FIXME in originale c'è required-components, ma le chiavi
+# in realtà sono installate in required_components.
+#
+# Nel file schemas.in c'è una nota che dice che questo messaggio
+# non è stato aggiornato causa string freeze, io cmq correggo
+# la traduzione, anche se mi sa che hanno fatto in modo
+# di gestire entrambi.
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
@@ -138,7 +146,7 @@ msgid ""
 "Session Preferences will not normally allow users to remove a required "
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
-msgstr "Lista di componenti che sono richiesti come parte della sessione (ciascun elemento da il nome a una chiave sotto \"/desktop/gnome/session/required-components\"). Lo strumento di preferenze Sessioni di norma non consente agli utenti di rimuovere un componente richiesto dalla sessione e il gestore di sessione aggiungerà nuovamente in modo automatico alla sessione i componenti richiesti che sono rimossi."
+msgstr "Lista di componenti che sono richiesti come parte della sessione (ciascun elemento da il nome a una chiave sotto \"/desktop/gnome/session/required_components\"). Lo strumento di preferenze Sessioni di norma non consente agli utenti di rimuovere un componente richiesto dalla sessione e il gestore di sessione aggiungerà nuovamente in modo automatico alla sessione i componenti richiesti che sono rimossi."
 
 # GNOME-2-24
 #: ../data/gnome-session.schemas.in.h:7
