@@ -7,7 +7,7 @@
 # Benedikt Roth <Benedikt.Roth@gmx.net>, 2000, 2001.
 # Jörgen Scheibengruber <mfcn@gmx.de>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002, 2003, 2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007.
+# Hendrik Richter <hendrikr@gnome.org>, 2005, 2006, 2007, 2008.
 # Jochen Skulj <jochen@jochenskulj.de>, 2006.
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Mario Blättermann <mario.blaettermann@t-online.de, 2008.
@@ -16,14 +16,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-30 18:23+0200\n"
-"PO-Revision-Date: 2008-08-29 16:46+0200\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@t-online.de>\n"
+"POT-Creation-Date: 2008-09-18 21:15+0200\n"
+"PO-Revision-Date: 2008-09-18 21:20+0200\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Startbefehl auswählen"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Startprogramm hinzufügen"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Startprogramm bearbeiten"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Keine Beschreibung"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Der Name des Startgefehls darf nicht leer sein"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Der Startbefehl darf nicht leer sein"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Der Startbefehl ist ungültig"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Symbol"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Programm"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Sitzungseinstellungen"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:509
+msgid "Version of this application"
+msgstr "Version dieser Anwendung"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -36,6 +85,26 @@ msgstr ""
 "Registrierung für Barrierefreiheit wurde jedoch nicht gefunden. Bitte "
 "stellen Sie sicher, dass das Paket AT-SPI installiert ist. Diese Sitzung "
 "wurde ohne Unterstützung für Hilfstechnologien gestartet."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT-SPI-Registrierungseinbindung"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "GNOME-Schlüsselbund-Dienst-Einbindung"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "GNOME-Einstellungen-Dienst-Helfer"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Diese Sitzung meldet Sie bei GNOME an"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -153,17 +222,22 @@ msgstr ""
 "Gültige Werte sind »logout« (Benutzer abmelden), »shutdown« (Rechner "
 "ausschalten) und »restart« (System neu starten)."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Fenstermanager"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Einige Anwendungen laufen noch:</b>"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Diese Sitzung meldet Sie bei GNOME an"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Warten auf das Beenden der Anwendung. Durch Abbruch der Anwendung könnten "
+"Änderungen verlorengehen."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -193,11 +267,6 @@ msgstr "Ko_mmentar:"
 msgid "Options"
 msgstr "Optionen"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "Sitzungseinstellungen"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Startprogramme"
@@ -213,19 +282,6 @@ msgstr "_Name:"
 #: ../data/session-properties.glade.h:10
 msgid "_Remember Currently Running Application"
 msgstr "Momentan laufendes Programm _merken"
-
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Einige Anwendungen laufen noch:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Warten auf das Beenden der Anwendung. Durch Abbruch der Anwendung könnten "
-"Änderungen verlorengehen."
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -312,19 +368,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Symbol »%s« konnte nicht gefunden werden"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:580
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:631
 msgid "A program is still running:"
 msgstr "Eine Anwendung läuft noch:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:635
 msgid "Some programs are still running:"
 msgstr "Einige Anwendungen laufen noch:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -332,35 +388,35 @@ msgstr ""
 "Warten auf das Beenden der Anwendungen. Durch Abbruch der Anwendungen "
 "könnten Änderungen verlorengehen."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:864
 msgid "Switch User Anyway"
 msgstr "Trotzdem Benutzer wechseln"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:867
 msgid "Logout Anyway"
 msgstr "Trotzdem abmelden"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:870
 msgid "Suspend Anyway"
 msgstr "Trotzdem in Bereitschaftsmodus gehen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:873
 msgid "Hibernate Anyway"
 msgstr "Trotzdem in Ruhezustand gehen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:876
 msgid "Shutdown Anyway"
 msgstr "Trotzdem ausschalten"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Reboot Anyway"
 msgstr "Trotzdem neu starten"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Lock Screen"
 msgstr "Bildschirm sperren"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -394,43 +450,43 @@ msgstr[1] ""
 "Sie sind momentan als \"%s\" angemeldet.\n"
 "Der Rechner wird in %d Sekunden automatisch ausgeschaltet."
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "Log out of this system now?"
 msgstr "Jetzt vom System abmelden?"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Switch User"
 msgstr "_Benutzer wechseln"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "_Log Out"
 msgstr "Benutzer ab_melden"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "Shut down this system now?"
 msgstr "Möchten Sie den Rechner jetzt ausschalten?"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "S_uspend"
 msgstr "_Bereitschaft"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Hibernate"
 msgstr "_Ruhezustand"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "_Restart"
 msgstr "Neu sta_rten"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:426
 msgid "_Shut Down"
 msgstr "_Rechner ausschalten"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
 msgid "Not responding"
 msgstr "Keine Antwort"
 
-#: ../gnome-session/gsm-xsmp-client.c:975
+#: ../gnome-session/gsm-xsmp-client.c:988
 msgid "This program is blocking log out."
 msgstr "Diese Anwendung blockiert die Abmeldung."
 
@@ -454,98 +510,77 @@ msgid "Unable to start login session (and unable connect to the X server)"
 msgstr ""
 "Anmeldesitzung konnte nicht gestartet werden (keine Verbindung zum X-Server)"
 
-#: ../gnome-session/main.c:453
+#: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
 msgstr "Überschreiben vorgegebener Autostart-Ordner"
 
-#: ../gnome-session/main.c:454
+#: ../gnome-session/main.c:506
 msgid "GConf key used to lookup default session"
 msgstr "GConf-Schlüssel zum Neustart der Standardsitzung"
 
-#: ../gnome-session/main.c:455
+#: ../gnome-session/main.c:507
 msgid "Enable debugging code"
 msgstr "Debugging-Code aktivieren"
 
-#: ../gnome-session/main.c:456
+#: ../gnome-session/main.c:508
 msgid "Do not load user-specified applications"
 msgstr "Keine benutzerspezifischen Anwendungen laden"
 
-#: ../gnome-session/main.c:457 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Version dieser Anwendung"
-
-#: ../gnome-session/main.c:472
+#: ../gnome-session/main.c:529
 msgid " - the GNOME session manager"
 msgstr " - Die GNOME-Sitzung verwalten"
 
-#: ../capplet/gsm-app-dialog.c:126
-msgid "Select Command"
-msgstr "Startbefehl auswählen"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- Den Begrüßungsbildschirm anzeigen"
 
-#: ../capplet/gsm-app-dialog.c:187
-msgid "Add Startup Program"
-msgstr "Startprogramm hinzufügen"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "GNOME-Begrüßungsbildschirm"
 
-#: ../capplet/gsm-app-dialog.c:191
-msgid "Edit Startup Program"
-msgstr "Startprogramm bearbeiten"
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Keine Beschreibung"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr "Der Name des Startgefehls darf nicht leer sein"
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr "Der Startbefehl darf nicht leer sein"
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr "Der Startbefehl ist ungültig"
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Aktiviert"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Symbol"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Programm"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Den Namen der momentan geöffneten Sitzung festlegen"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAME"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Abmelden"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Abmelden und Unterdrückungen ignorieren"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Abmelden-Dialog anzeigen"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Ausschalten-Dialog anzeigen"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Sitzung zwangsweise beenden"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Dialogfenster bei Fehlern anzeigen"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Keine Bestätigung erwarten"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Sitzungsmanager konnte nicht kontaktiert werden"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- Den Begrüßungsbildschirm anzeigen"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 
 #~ msgid "Could not connect to the session manager\n"
 #~ msgstr "Sitzungsmanager konnte nicht kontaktiert werden\n"
