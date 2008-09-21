@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-14 15:29+0200\n"
-"PO-Revision-Date: 2008-09-16 14:48+0200\n"
+"POT-Creation-Date: 2008-09-21 22:18+0200\n"
+"PO-Revision-Date: 2008-09-21 22:21+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -79,17 +79,20 @@ msgstr ""
 "pacchetto AT-SPI risulta installato. La sessione è stata avviata senza il "
 "supporto alle tecnologie assistive."
 
+# GNOME-2-24
 #: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
 msgid "AT SPI Registry Wrapper"
-msgstr ""
+msgstr "Wrapper registry AT SPI"
 
+# GNOME-2-24
 #: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
 msgid "GNOME Keyring Daemon Wrapper"
-msgstr ""
+msgstr "Wrapper demone portachiavi GNOME "
 
+# GNOME-2-24
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
-msgstr ""
+msgstr "Helper demone impostazioni GNOME"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -146,7 +149,13 @@ msgid ""
 "Session Preferences will not normally allow users to remove a required "
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
-msgstr "Lista di componenti che sono richiesti come parte della sessione (ciascun elemento da il nome a una chiave sotto \"/desktop/gnome/session/required_components\"). Lo strumento di preferenze Sessioni di norma non consente agli utenti di rimuovere un componente richiesto dalla sessione e il gestore di sessione aggiungerà nuovamente in modo automatico alla sessione i componenti richiesti che sono rimossi."
+msgstr ""
+"Lista di componenti che sono richiesti come parte della sessione (ciascun "
+"elemento da il nome a una chiave sotto \"/desktop/gnome/session/"
+"required_components\"). Lo strumento di preferenze Sessioni di norma non "
+"consente agli utenti di rimuovere un componente richiesto dalla sessione e "
+"il gestore di sessione aggiungerà nuovamente in modo automatico alla "
+"sessione i componenti richiesti che sono rimossi."
 
 # GNOME-2-24
 #: ../data/gnome-session.schemas.in.h:7
@@ -245,7 +254,7 @@ msgstr "<b>Alcuni programmi sono ancora in esecuzione:</b>"
 
 # GNOME-2-24
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -338,7 +347,8 @@ msgstr "Opzione di lancio non riconosciuta: %d"
 #: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Impossibile passare URI di documenti a una voce desktop con \"Type=Link\""
+msgstr ""
+"Impossibile passare URI di documenti a una voce desktop con \"Type=Link\""
 
 # GNOME-2-24
 #: ../egg/eggdesktopfile.c:1391
@@ -408,22 +418,22 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Icona «%s» non trovata"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:580
 msgid "Unknown"
 msgstr "Sconosciuto"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:631
 msgid "A program is still running:"
 msgstr "Un programma è ancora in esecuzione:"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:635
 msgid "Some programs are still running:"
 msgstr "Alcuni programmi sono ancora in esecuzione:"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -432,42 +442,42 @@ msgstr ""
 "causare la perdita del proprio lavoro."
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:864
 msgid "Switch User Anyway"
 msgstr "Cambia utente comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:867
 msgid "Logout Anyway"
 msgstr "Termina sessione comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:870
 msgid "Suspend Anyway"
 msgstr "Sospendi comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:873
 msgid "Hibernate Anyway"
 msgstr "Iberna comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:876
 msgid "Shutdown Anyway"
 msgstr "Arresta comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Reboot Anyway"
 msgstr "Riavvia comunque"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Lock Screen"
 msgstr "Blocca schermo"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -557,12 +567,12 @@ msgstr "A_rresta"
 # GNOME-2-24
 # non so se la forma è corretta, non ho provato
 # a inibire il termine sessione
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
 msgid "Not responding"
 msgstr "Non risponde"
 
 # GNOME-2-24
-#: ../gnome-session/gsm-xsmp-client.c:975
+#: ../gnome-session/gsm-xsmp-client.c:988
 msgid "This program is blocking log out."
 msgstr "Questo programma sta bloccando la terminazione della sessione."
 
@@ -571,7 +581,8 @@ msgstr "Questo programma sta bloccando la terminazione della sessione."
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "Rifiutate nuove connessioni client perché la sessione è in via di arresto\n"
+msgstr ""
+"Rifiutate nuove connessioni client perché la sessione è in via di arresto\n"
 
 # GNOME-2-24
 #: ../gnome-session/gsm-xsmp-server.c:489
@@ -583,7 +594,9 @@ msgstr "Impossibile creare il socket di ascolto ICE: %s"
 #: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "Impossibile avviare la sessione di accesso (e impossibile connettersi al server X)"
+msgstr ""
+"Impossibile avviare la sessione di accesso (e impossibile connettersi al "
+"server X)"
 
 #: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
