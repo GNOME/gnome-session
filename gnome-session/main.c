@@ -56,8 +56,7 @@
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
-/* FIXME: turn this off closer to release */
-static gboolean debug = TRUE;
+static gboolean debug = FALSE;
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
