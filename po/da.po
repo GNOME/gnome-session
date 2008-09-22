@@ -1,15 +1,7 @@
+# translation of gnome-session.HEAD.po to Dansk
 # Danish translation of gnome-session.
-# Copyright (C) 1998-08 Free Software Foundation, Inc.
+# Copyright (C) 1998-08, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
-# Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
-# Birger Langkjer <birger.langkjer@image.dk>, 1999.
-# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
-# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
-# Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
-# Peter Bach <bach.peter@gmail.com>, 2007.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
-# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008.
 #
 # Konventioner:
 #
@@ -20,34 +12,117 @@
 #   tasklist -> procesliste
 #   URL -> adresse
 #
+# Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
+# Birger Langkjer <birger.langkjer@image.dk>, 1999.
+# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
+# Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
+# Peter Bach <bach.peter@gmail.com>, 2007.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
+# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008.
+# M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session\n"
+"Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 23:01+0100\n"
-"PO-Revision-Date: 2008-03-09 21:52+0100\n"
-"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"POT-Creation-Date: 2008-09-22 03:36+0200\n"
+"PO-Revision-Date: 2008-09-22 03:29+0200\n"
+"Last-Translator: M.P. Rommedahl <Lhademmor@gmail.com>\n"
+"Language-Team: Dansk <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Vælg kommando"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Tilføj startet program"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Redigér opstartsprogram"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Ingen beskrivelse"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Startkommandoen kan ikke være tom"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Startkommandoen kan ikke være tom"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Startkommandoen er ugyldig"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Ikon"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Program"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Sessionsindstillinger"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:509
+msgid "Version of this application"
+msgstr "Version af dette program"
+
+#: ../compat/at-spi-registryd-wrapper.c:47
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"Assisterende teknologi understøttelse er blevet anmodet i denne session, men "
+"blev ikke fundet. Vær sikker på at AT-SPI-pakken er installeret. Din session "
+"er blevet startet uden brug af assisterende teknologi understøttelse."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI registreringsomslag"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "GNOME-nøglering dæmonomslag"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "GNOME-indstillinger dæmonhjælper"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Denne session logger dig ind i GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "Tillad TCP-forbindelser"
+msgid "Default session"
+msgstr "Standardsession"
 
 #: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Af sikkerhedshensyn til gnome-session ikke lytte efter forbindelser på TCP-"
-"porte på platforme som har _IceTcpTransNoListen() (XFree86-systemer). Dette "
-"vil tillade forbindelser fra (godkendte) fjernværter. gnome-session skal "
-"genstartes for at ændringen træder i kraft."
+msgid "File Manager"
+msgstr "Filhåndtering"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -63,30 +138,80 @@ msgstr ""
 "ud-vinduet indeholde en valgmulighed for at gemme sessionen."
 
 #: ../data/gnome-session.schemas.in.h:5
+msgid "List of applications that are part of the default session."
+msgstr "Programmer som er en del af standardsessionen."
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid ""
+"List of components that are required as part of the session. (Each element "
+"names a key under \"/desktop/gnome/session/required-components\".) The "
+"Session Preferences will not normally allow users to remove a required "
+"component from the session, and the session manager will automatically add "
+"the required components back to the session if they do get removed."
+msgstr ""
+"Liste over komponenter der er nødvendige som en del af sessionen. (Hvert "
+"element navngiver en nøgle under \"/desktop/gnome/session/required-components"
+"\".) Sessionsindstillingerne vil normalt ikke tillade brugere at fjerne en "
+"nødvendig komponent fra sessionen, og sessionshåndteringen vil automatisk "
+"tilføje nødvendige komponenter tilbage til sessionen hvis de bliver fjernet."
+
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "Log ud-prompt"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:8
+msgid "Panel"
+msgstr "Panel"
+
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "Foretrukket billede til brug for velkomstvinduet"
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Required session components"
+msgstr "Nødvendige sessionskomponenter"
+
+#: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "Gem sessioner"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.h:12
 msgid "Selected option in the log out dialog"
 msgstr "Forvalgt valgmulighed i \"Log ud\"-vinduet"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Vis velkomstvinduet"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:14
 msgid "Show the splash screen when the session starts up"
 msgstr "Vis velkomstvinduet når sessionen starter"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:15
+msgid ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+msgstr ""
+"Filhåndteringen sørger for skrivebordsikoner og lader dig bruge dine gemte "
+"filer."
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
+msgstr ""
+"Panelet sørger for bjælken i toppen eller bunden af skærmen, som indeholder "
+"menuer, vindueslisten, statusikoner, uret, osv."
+
+#: ../data/gnome-session.schemas.in.h:17
+msgid ""
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
+msgstr ""
+"Vindueshåndteringen er det program, som optegner titelbjælken og grænserne "
+"rundt om vinduer, samt lader dig flytte og ændre størrelse på vinduer."
+
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -96,7 +221,7 @@ msgstr ""
 "kataloger og billednavne er gyldige værdier. Ændring af denne værdi vil "
 "påvirke det næste sessionslogind."
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -106,13 +231,22 @@ msgstr ""
 "\"logout\" for at logge ud, \"shutdown\" for at stoppe systemet og \"restart"
 "\" for at genstarte systemet."
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+msgid "Window Manager"
+msgstr "Vindueshåndtering"
 
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Denne session logger dig ind i GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Nogle programmer kører stadigvæk:</b>"
+
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Venter på at programmer afslutter. At forstyrre disse programmer kan føre "
+"til at du mister data."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -122,723 +256,336 @@ msgstr "Konfigurér dine sessioner"
 msgid "Sessions"
 msgstr "Sessioner"
 
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Assisterende teknologi understøttelse er blevet anmodet i denne session, men "
-"blev ikke fundet. Vær sikker på at AT-SPI-pakken er installeret. Din session "
-"er blevet startet uden brug af assisterende teknologi understøttelse."
-
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_Orden:"
-
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "Startrækkefølge af programmer i sessionen."
-
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "Hvad der sker når programmet afslutter."
-
-# "stil" virker forkert her
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_Type:"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "Inaktiv"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "Venter på at starte eller er allerede færdig."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "Starter"
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "Startet men har endnu ikke rapporteret status."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "Kører"
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "Et normalt medlem af sessionen."
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "Gemmer"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "Gemmer sessionsdetaljer."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "Ukendt"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "Status ikke rapporteret inden tiden løb ud."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "Normal"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "Upåvirket af logud men kan dø."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "Genstart"
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "Får aldrig lov til at dø."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "Affald"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "Forkastes ved logud og må gerne dø."
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "Indstillinger"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "Startes altid ved hvert logind."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "Orden"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "Type"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "Status"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:284
-msgid "Program"
-msgstr "Program"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:47
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"Der opstod en fejl under kørsel af indstillingsserveren til Gnome.\n"
-"\n"
-"Nogle ting, så som temaer, lyde eller baggrundsindstillinger virker muligvis "
-"ikke korrekt."
-
-#: ../gnome-session/gsm-gsd.c:59
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Den sidste fejlbesked var:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:64
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"Gnome vil stadig forsøge at starte indstillingsserveren næste gang du logger "
-"på."
-
-#: ../gnome-session/gsm-gsd.c:162
-msgid "The Settings Daemon restarted too many times."
-msgstr "Indstillingsserveren er blevet genstartet for mange gange."
-
-#. Name is mandatory and might not be set by the caller
-#: ../gnome-session/gsm-keyfile.c:43
-msgid "No Name"
-msgstr "Intet navn"
-
-#: ../gnome-session/gnome-session-remove.c:50
-msgid "List registered clients, then exit"
-msgstr "List registrede klienter, derefter afslut"
-
-#: ../gnome-session/gnome-session-remove.c:52
-msgid "PROGRAM..."
-msgstr "PROGRAM..."
-
-#: ../gnome-session/gnome-session-remove.c:176
-#, c-format
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
-"Du skal angive mindst et program til fjernelse. Du kan liste programmerne "
-"med --list.\n"
-
-#: ../gnome-session/gnome-session-remove.c:183
-#, c-format
-msgid "Error: could not connect to the session manager\n"
-msgstr "Fejl: Kunne ikke forbinde til sessionshåndteringen\n"
-
-#: ../gnome-session/gnome-session-remove.c:197
-#, c-format
-msgid "Currently registered clients:\n"
-msgstr "Nuværende registrede klienter:\n"
-
-#: ../gnome-session/gnome-session-remove.c:207
-#, c-format
-msgid "Couldn't find program %s in session\n"
-msgstr "Kunne ikke finde programmet %s i sessionen\n"
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"GNOME sessionshåndteringen kan ikke starte korrekt. Vær venligt at "
-"rapportere dette som en GNOME-fejl. Vær venlig at inkludere denne ICE-"
-"fejlbesked i fejlrapporten: \"%s\". Imens kan du forsøge at logge ind ved "
-"brug af den fejlsikrede session."
-
-#: ../gnome-session/ice.c:514
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-"GNOME sessionshåndteringen kunne ikke låse filen \"%s\". Vær venlig at "
-"rapportere dette som en GNOME-fejl. Nogle gange optræder denne fejl hvis "
-"filens mappe er skrivebeskyttet. Du kan forsøge at logge ind via den "
-"fejlsikrede session og undersøge om den er."
-
-#: ../gnome-session/ice.c:541
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-"GNOME sessionshåndteringen kunne ikke læse filen: \"%s\". Hvis denne fil "
-"eksisterer skal den være læsbar af dig for at GNOME virker korrekt. Forsøg "
-"at logge ind med den fejlsikrede session og fjern denne fil."
-
-#: ../gnome-session/ice.c:586
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"Kunne ikke skrive til filen \"%s\". Denne fil skal være skrivebar for at "
-"GNOME virker korrekt. Forsøg at logge ind med den fejlsikrede session og "
-"fjern denne fil. Vær tilmed sikker på at filens mappe er skrivebar."
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr "Er du sikker på at du vil logge ud?"
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr "Husk kørende programmer"
-
-#: ../gnome-session/logout.c:432
-msgid "Action"
-msgstr "Handling"
-
-#: ../gnome-session/logout.c:449
-msgid "_Log out"
-msgstr "_Log ud"
-
-#: ../gnome-session/logout.c:456
-msgid "Sh_ut down"
-msgstr "_Sluk"
-
-#: ../gnome-session/logout.c:464
-msgid "_Restart the computer"
-msgstr "_Genstart maskinen"
-
-#: ../gnome-session/main.c:86
-msgid "Specify a session name to load"
-msgstr "Angiv session som skal indlæses"
-
-#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
-msgid "NAME"
-msgstr "NAVN"
-
-#: ../gnome-session/main.c:87
-msgid "Only read saved sessions from the default.session file"
-msgstr "Læs kun gemte sessioner fra default.session-filen"
-
-#: ../gnome-session/main.c:88
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Tidsrum (ms) at vente på at klienter registrerer sig (0=for evigt)"
-
-#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
-#: ../gnome-session/main.c:90
-msgid "DELAY"
-msgstr "FORSINKELSE"
-
-#: ../gnome-session/main.c:89
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Tidsrum (ms) at vente på at klienter svarer (0=for evigt)"
-
-#: ../gnome-session/main.c:90
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "Tidsrum (ms) at vente på at klienter dør (0=for evigt)"
-
-#: ../gnome-session/main.c:166
-msgid "This session is running as a privileged user"
-msgstr "Denne session kører som priviligeret bruger"
-
-#: ../gnome-session/main.c:168
-msgid ""
-"Running a session as a privileged user should be avoided for security "
-"reasons. If possible, you should log in as a normal user."
-msgstr ""
-"At køre en session som priviligeret bruger bør undgås af sikkerhedshensyn. "
-"Hvis muligt, så log ind som normal bruger."
-
-#: ../gnome-session/main.c:172
-msgid "_Continue"
-msgstr "_Fortsæt"
-
-#: ../gnome-session/main.c:256
-#, c-format
-msgid ""
-"The session might encounter issues if the computer clock is not properly "
-"configured. Please consider adjusting it.\n"
-"\n"
-"Current date is <b>%s</b>."
-msgstr ""
-"Sessionen kan støde på problemer hvis computerens ur ikke er korrekt "
-"konfigureret. Overvej venligst at justere det.\n"
-"\n"
-"Nuværende dato er <b>%s</b>."
-
-#: ../gnome-session/main.c:375
-#, c-format
-msgid "Failed to launch time configuration tool: %s"
-msgstr "Kunne ikke køre tidskonfigurationsværktøjet: %s"
-
-#: ../gnome-session/main.c:406
-msgid "The computer clock appears to be wrong"
-msgstr "Computerens ur synes at gå forkert"
-
-#: ../gnome-session/main.c:413
-msgid "_Ignore"
-msgstr "_Ignorér"
-
-#: ../gnome-session/main.c:414
-msgid "_Adjust the Clock"
-msgstr "_Justér uret"
-
-#: ../gnome-session/main.c:551
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Kunne ikke slå internetadressen for %s op.\n"
-"Dette vil forhindre Gnome i at fungere korrekt.\n"
-"Det kan muligvis lade sig gøre at løse problemet\n"
-"ved at tilføje %s til filen /etc/hosts."
-
-#: ../gnome-session/main.c:558
-msgid "Log in Anyway"
-msgstr "Log på alligevel"
-
-#: ../gnome-session/main.c:559
-msgid "Try Again"
-msgstr "Prøv igen"
-
-#: ../gnome-session/main.c:693
-msgid "- Manage the GNOME session"
-msgstr "- Håndtér GNOME-sessionen"
-
-#: ../gnome-session/manager.c:513
-msgid "Wait abandoned due to conflict."
-msgstr "Ventning opgivet pga. konflikt."
-
-#: ../gnome-session/manager.c:1021
-#, c-format
-msgid "No response to the %s command."
-msgstr "Ingen reaktion på %s-kommandoen."
-
-#: ../gnome-session/manager.c:1022
-msgid "The program may be slow, stopped or broken."
-msgstr "Programmet er måske langsomt, gået i stå eller defekt."
-
-#: ../gnome-session/manager.c:1023
-msgid "You may wait for it to respond or remove it."
-msgstr "Du kan vente på at programmet svarer eller blot fjerne det."
-
-#: ../gnome-session/manager.c:1749
-msgid "Restart abandoned due to failures."
-msgstr "Genstart opgivet pga. fejl."
-
-#: ../gnome-session/manager.c:1945
-msgid "A session shutdown is in progress."
-msgstr "En session er i færd med at lukke ned."
-
-#: ../gnome-session/gnome-session-save.c:48
-msgid "Set the current session name"
-msgstr "Sæt det nuværende sessionsnavn"
-
-#: ../gnome-session/gnome-session-save.c:49
-msgid "Kill session"
-msgstr "Afslut session"
-
-#: ../gnome-session/gnome-session-save.c:50
-msgid "Use dialog boxes for errors"
-msgstr "Benyt vinduesbokse til fejl"
-
-#: ../gnome-session/gnome-session-save.c:51
-msgid "Do not require confirmation"
-msgstr "Opkræv ikke beskæftigelse"
-
-#: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:187
-msgid "Could not connect to the session manager"
-msgstr "Kunne ikke tilkoble til sessionshåndteringen"
-
-#: ../gnome-session/gnome-session-save.c:172
-msgid "- Save the current session"
-msgstr "- Gem den nuværende session"
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr "Gem ændringer i den nuværende session før nedlukning?"
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr "Hvis du ikke gemmer vil ændringerne være tabt."
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "_Luk uden at gemme"
-
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions Preferences"
-msgstr "Sessionsindstillinger"
-
-#. non-session managed startup programs
-#: ../gnome-session/session-properties-capplet.c:250
+#: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
 msgstr "Yderligere opstarts_programmer:"
 
-#: ../gnome-session/session-properties-capplet.c:275
-msgid "Enabled"
-msgstr "Aktiveret"
+#: ../data/session-properties.glade.h:2
+msgid "Browse..."
+msgstr "Gennemse..."
 
-#: ../gnome-session/session-properties-capplet.c:319
-msgid "Startup Programs"
-msgstr "Opstartsprogrammer"
-
-#: ../gnome-session/session-properties-capplet.c:326
-msgid "Current Session"
-msgstr "Aktuel session"
-
-#. Autosave
-#: ../gnome-session/session-properties-capplet.c:337
-msgid "_Automatically remember running applications when logging out"
-msgstr "Husk _automatisk kørende programmer når der logges ud"
-
-#: ../gnome-session/session-properties-capplet.c:353
-msgid "_Remember Currently Running Applications"
-msgstr "_Husk de nuværende kørende programmer"
-
-#: ../gnome-session/session-properties-capplet.c:361
-msgid "Session Options"
-msgstr "Sessionsegenskaber"
-
-#: ../gnome-session/session-properties-capplet.c:457
-msgid "Your session has been saved."
-msgstr "Din session er blevet gemt."
-
-#: ../gnome-session/session-properties-capplet.c:500
-#, c-format
-msgid "could not connect to the session manager\n"
-msgstr "kunne ikke forbinde til sessionshåndteringen\n"
-
-#: ../gnome-session/session-properties-capplet.c:506
-#, c-format
-msgid "session manager does not support GNOME extensions\n"
-msgstr "sessionshåndtering understøtter ikke GNOME-udvidelser\n"
-
-#: ../gnome-session/session-properties.c:51
-msgid "Remove the currently selected client from the session."
-msgstr "Fjern den aktuelt valgte klient fra sessionen."
-
-#: ../gnome-session/session-properties.c:57
-msgid "Apply changes to the current session"
-msgstr "Anvend ændringer i den aktuelle session"
-
-#: ../gnome-session/session-properties.c:63
-msgid "The list of programs in the session."
-msgstr "Listen af programmer i sessionen."
-
-#: ../gnome-session/session-properties.c:89
-msgid "Currently running _programs:"
-msgstr "Aktuelt kørende _programmer:"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "Vindueshåndteringen Sawfish"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "Vindueshåndteringen Metacity"
-
-#: ../gnome-session/splash-widget.c:46
-msgid "Window Manager"
-msgstr "Vindueshåndtering"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "Panelet"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Indstillinger for skrivebordet"
-
-#: ../gnome-session/startup-programs.c:348
-msgid "No description"
-msgstr "Ingen beskrivelse"
-
-#: ../gnome-session/startup-programs.c:409
-msgid "Select Command"
-msgstr "Vælg kommando"
-
-#: ../gnome-session/startup-programs.c:471
-msgid "_Name:"
-msgstr "_Navn:"
-
-#: ../gnome-session/startup-programs.c:486
+#: ../data/session-properties.glade.h:3
 msgid "Co_mmand:"
 msgstr "Ko_mmando:"
 
-#: ../gnome-session/startup-programs.c:498
-msgid "_Browse..."
-msgstr "_Gennemse..."
-
-#: ../gnome-session/startup-programs.c:510
+#: ../data/session-properties.glade.h:4
 msgid "Comm_ent:"
 msgstr "Komm_entar:"
 
-#: ../gnome-session/startup-programs.c:538
-msgid "The name of the startup program cannot be empty"
-msgstr "Startkommandoen kan ikke være tom"
+#: ../data/session-properties.glade.h:5
+msgid "Options"
+msgstr "Indstillinger"
 
-#: ../gnome-session/startup-programs.c:540
-msgid "The startup command cannot be empty"
-msgstr "Startkommandoen kan ikke være tom"
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "Opstartsprogrammer"
 
-#: ../gnome-session/startup-programs.c:546
-msgid "The startup command is not valid"
-msgstr "Startkommandoen er ugyldig"
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "Husk _automatisk kørende programmer når der logges ud"
 
-#: ../gnome-session/startup-programs.c:603
-msgid "Add Startup Program"
-msgstr "Tilføj startet program"
+#: ../data/session-properties.glade.h:9
+msgid "_Name:"
+msgstr "_Navn:"
 
-#: ../gnome-session/startup-programs.c:647
-msgid "Edit Startup Program"
-msgstr "Redigér opstartsprogram"
+#: ../data/session-properties.glade.h:10
+msgid "_Remember Currently Running Application"
+msgstr "_Husk program, der kører nu"
 
-#~ msgid "New Startup Program"
-#~ msgstr "Nyt opstartsprogram"
+#: ../egg/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Filen er ikke en gyldig .desktop-fil"
 
-#~ msgid "_Save current setup"
-#~ msgstr "_Gem aktuel opsætning"
+#: ../egg/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Ukendt desktop-filversion \"%s\""
 
-#~ msgid "Automatically save chan_ges to session"
-#~ msgstr "Gem automatisk ændrin_ger i sessionen"
+#: ../egg/eggdesktopfile.c:962
+#, c-format
+msgid "Starting %s"
+msgstr "Starter %s"
 
-#~ msgid "Save the current session"
-#~ msgstr "Gem den nuværende session"
+#: ../egg/eggdesktopfile.c:1096
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Programmet accepterer ikke dokumenter på kommandolinje"
 
-#~ msgid "There was an unknown activation error."
-#~ msgstr "Der opstod en ukendt aktiveringsfejl."
+#: ../egg/eggdesktopfile.c:1164
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Ukendt køreindstilling: %d"
 
-#~ msgid "The session name cannot be empty"
-#~ msgstr "Sessionsnavnet kan ikke være tomt"
+#: ../egg/eggdesktopfile.c:1372
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Kan ikke sende dokumentets URI til en \"Type=Link\"-skrivebordsentitet"
 
-#~ msgid "The session name already exists"
-#~ msgstr "Sessionsnavnet eksisterer allerede"
+#: ../egg/eggdesktopfile.c:1391
+#, c-format
+msgid "Not a launchable item"
+msgstr "Ikke et kørbart element"
 
-#~ msgid "Add a new session"
-#~ msgstr "Tilføj en ny session"
+#: ../egg/eggsmclient-libgnomeui.c:102
+msgid "Session management"
+msgstr "Sessionshåndtering"
 
-#~ msgid "Edit session name"
-#~ msgstr "Ændr sessions navn"
+#: ../egg/eggsmclient-libgnomeui.c:136
+msgid "GNOME GUI Library + EggSMClient"
+msgstr "GNOME GUI-bibliotek + EggSMClient"
 
-#~ msgid "Disable"
-#~ msgstr "Deaktivér"
+#: ../egg/eggsmclient.c:185
+msgid "Disable connection to session manager"
+msgstr "Deaktivér forbindelse til sessionshåndteringen"
 
-#~ msgid "_Edit"
-#~ msgstr "_Redigér"
+#: ../egg/eggsmclient.c:188
+msgid "Specify file containing saved configuration"
+msgstr "Angiv fil som indeholder den gemte konfiguration"
 
-#~ msgid ""
-#~ "Some changes are not saved.\n"
-#~ "Is it still OK to exit?"
-#~ msgstr ""
-#~ "Nogle ændringer er ikke gemt.\n"
-#~ "Skal der alligevel afsluttes?"
+#: ../egg/eggsmclient.c:188
+msgid "FILE"
+msgstr "FILE"
 
-#~ msgid "Show splash screen on _login"
-#~ msgstr "Vis _velkomstsvindue ved logind"
+#: ../egg/eggsmclient.c:191
+msgid "Specify session management ID"
+msgstr "Angiv sessionshåndterings-id"
 
-#~ msgid "As_k on logout"
-#~ msgstr "Sp_ørg ved logud"
+#: ../egg/eggsmclient.c:191
+msgid "ID"
+msgstr "ID"
 
-#~ msgid "_Sessions:"
-#~ msgstr "_Sessioner:"
+#: ../egg/eggsmclient.c:241
+msgid "Session Management Options"
+msgstr "Sessionshåndtering-indstillinger"
 
-#~ msgid "Initialize session settings"
-#~ msgstr "Klargør sessionsopsætning"
+#: ../egg/eggsmclient.c:242
+msgid "Show Session Management options"
+msgstr "Vis tilvalg for sessionshåndtering"
 
-#~ msgid "_Startup Command:"
-#~ msgstr "Startkommando:"
+#: ../gnome-session/gsm-gconf.c:106
+#, c-format
+msgid ""
+"There is a problem with the configuration server.\n"
+"(%s exited with status %d)"
+msgstr ""
+"Der er et problem med konfigurationsserveren.\n"
+"(%s afsluttede med status %d)"
 
-#~ msgid "Session Manager Proxy"
-#~ msgstr "Sessionsmellemvært"
+#: ../gnome-session/gsm-inhibit-dialog.c:256
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "Ikon \"%s\" kunne ikke findes"
 
-#~ msgid "Splash Screen Image"
-#~ msgstr "Billede til velkomstvindue"
+#: ../gnome-session/gsm-inhibit-dialog.c:580
+msgid "Unknown"
+msgstr "Ukendt"
 
-#~ msgid "Save Current Session"
-#~ msgstr "Gem session"
+#: ../gnome-session/gsm-inhibit-dialog.c:631
+msgid "A program is still running:"
+msgstr "Et program kører stadigvæk:"
 
-#~ msgid "Save current state of desktop"
-#~ msgstr "Gem skrivebordets aktuelle tilstand"
+#: ../gnome-session/gsm-inhibit-dialog.c:635
+msgid "Some programs are still running:"
+msgstr "Nogle programmer kører stadigvæk:"
 
-#~ msgid "Starting GNOME: done"
-#~ msgstr "Starter Gnome: færdig"
+#: ../gnome-session/gsm-inhibit-dialog.c:636
+msgid ""
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
+msgstr ""
+"Venter på at programmer afslutter. At afbryde disse programmer kan føre til "
+"at du mister data."
 
-#~ msgid "Starting GNOME"
-#~ msgstr "Starter Gnome"
+#: ../gnome-session/gsm-inhibit-dialog.c:864
+msgid "Switch User Anyway"
+msgstr "Skift bruger alligevel"
 
-#~ msgid "Really reset all GNOME user settings for %s?"
-#~ msgstr "Gendan alle brugerindstillinger for Gnome for %s?"
+#: ../gnome-session/gsm-inhibit-dialog.c:867
+msgid "Logout Anyway"
+msgstr "Log ud alligevel"
 
-#~ msgid "Respawn"
-#~ msgstr "Gendan"
+#: ../gnome-session/gsm-inhibit-dialog.c:870
+msgid "Suspend Anyway"
+msgstr "Gå i standby alligevel"
 
-#~ msgid "Really log out?"
-#~ msgstr "Vil du logge ud?"
+#: ../gnome-session/gsm-inhibit-dialog.c:873
+msgid "Hibernate Anyway"
+msgstr "Gå i dvale alligevel"
 
-#~ msgid "Reboot"
-#~ msgstr "Genstart"
+#: ../gnome-session/gsm-inhibit-dialog.c:876
+msgid "Shutdown Anyway"
+msgstr "Sluk alligevel"
 
-#~ msgid "Session properties"
-#~ msgstr "Sessionsegenskaber"
+#: ../gnome-session/gsm-inhibit-dialog.c:879
+msgid "Reboot Anyway"
+msgstr "Genstart alligevel"
 
-#~ msgid "Options"
-#~ msgstr "Indstillinger"
+#: ../gnome-session/gsm-inhibit-dialog.c:887
+msgid "Lock Screen"
+msgstr "Lås skærmen"
 
-#~ msgid "<i>These changes take effect immediately</i>"
-#~ msgstr "<i>Disse ændringer træder i kraft med det samme</i>"
+#: ../gnome-session/gsm-inhibit-dialog.c:890
+msgid "Cancel"
+msgstr "Annullér"
 
-#~ msgid "Choose Current Session"
-#~ msgstr "Vælg session"
+#: ../gnome-session/gsm-logout-dialog.c:283
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d second."
+msgid_plural ""
+"You are currently logged in as \"%s\".\n"
+"You will be automatically logged out in %d seconds."
+msgstr[0] ""
+"Du er i øjeblikket logget ind som \"%s\".\n"
+"Du vil automatisk blive logget ud om %d sekund."
+msgstr[1] ""
+"Du er i øjeblikket logget ind som \"%s\".\n"
+"Du vil automatisk blive logget ud om %d sekunder."
 
-#~ msgid "Add..."
-#~ msgstr "Tilføj..."
+#: ../gnome-session/gsm-logout-dialog.c:295
+#, c-format
+msgid ""
+"You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d second."
+msgid_plural ""
+"You are currently logged in as \"%s\".\n"
+"This system will be automatically shut down in %d seconds."
+msgstr[0] ""
+"Du er i øjeblikket logget ind som \"%s\".\n"
+"Dette system vil automatisk lukke ned om %d sekund."
+msgstr[1] ""
+"Du er i øjeblikket logget ind som \"%s\".\n"
+"Dette system vil automatisk lukke ned om %d sekunder."
 
-#~ msgid "Delete"
-#~ msgstr "Slet"
+#: ../gnome-session/gsm-logout-dialog.c:377
+msgid "Log out of this system now?"
+msgstr "Log ud af dette system nu?"
 
-#~ msgid "Session Chooser"
-#~ msgstr "Sessionsvælger"
+#: ../gnome-session/gsm-logout-dialog.c:383
+msgid "_Switch User"
+msgstr "_Skift bruger"
 
-#~ msgid "Start Session"
-#~ msgstr "Start session"
+#: ../gnome-session/gsm-logout-dialog.c:392
+msgid "_Log Out"
+msgstr "_Log ud"
 
-#~ msgid "Cancel Login"
-#~ msgstr "Annullér logind"
+#: ../gnome-session/gsm-logout-dialog.c:398
+msgid "Shut down this system now?"
+msgstr "Sluk dette system nu?"
 
-#~ msgid ""
-#~ "Programs with smaller values are started before programs with higher "
-#~ "values. The default value should be OK"
-#~ msgstr ""
-#~ "Programmer med mindre værdier startes først. Standardværdien burde være i "
-#~ "orden."
+#: ../gnome-session/gsm-logout-dialog.c:404
+msgid "S_uspend"
+msgstr "S_tandby"
 
-#~ msgid "Could not connect to gnome-session"
-#~ msgstr "Kunne ikke tilkoble til gnome-session"
+#: ../gnome-session/gsm-logout-dialog.c:410
+msgid "_Hibernate"
+msgstr "_Dvale"
 
-#~ msgid "Current session managed programs"
-#~ msgstr "Aktuelt sessionshåndterede programmer"
+#: ../gnome-session/gsm-logout-dialog.c:416
+msgid "_Restart"
+msgstr "_Genstart"
 
-#~ msgid "Enlightenment Window Manager"
-#~ msgstr "Vindueshåndteringen Enlightenment"
+#: ../gnome-session/gsm-logout-dialog.c:426
+msgid "_Shut Down"
+msgstr "_Sluk"
 
-#~ msgid "Keyboard Bell"
-#~ msgstr "Tastaturklokke"
+#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
+msgid "Not responding"
+msgstr "Svarer ikke"
 
-#~ msgid "Desktop"
-#~ msgstr "Skrivebord"
+#: ../gnome-session/gsm-xsmp-client.c:988
+msgid "This program is blocking log out."
+msgstr "Dette program blokerer log ud."
 
-#~ msgid "Remove"
-#~ msgstr "Fjern"
+#: ../gnome-session/gsm-xsmp-server.c:234
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+"Nægter ny klientforbindelse fordi sessionen er ved at blive lukket ned\n"
 
-#~ msgid "Try"
-#~ msgstr "Prøv"
+#: ../gnome-session/gsm-xsmp-server.c:489
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#~ msgid "OK"
-#~ msgstr "O.k."
+#. Oh well, no X for you!
+#: ../gnome-session/gsm-util.c:139
+#, c-format
+msgid "Unable to start login session (and unable connect to the X server)"
+msgstr ""
+"Kunne ikke starte logind-session (og kunne ikke forbinde til X-serveren)"
 
-#~ msgid "Cancel"
-#~ msgstr "Annullér"
+#: ../gnome-session/main.c:505
+msgid "Override standard autostart directories"
+msgstr "Tilsidesæt standard-autostartmapper"
 
-#~ msgid "Help"
-#~ msgstr "Hjælp"
+#: ../gnome-session/main.c:506
+msgid "GConf key used to lookup default session"
+msgstr "GConf-nøgle brugt til at finde standardsession"
 
-#~ msgid "Remove Program"
-#~ msgstr "Fjern program"
+#: ../gnome-session/main.c:507
+msgid "Enable debugging code"
+msgstr "Aktivér fejlfindingskode"
+
+#: ../gnome-session/main.c:508
+msgid "Do not load user-specified applications"
+msgstr "Hent ikke brugerangivne programmer"
+
+#: ../gnome-session/main.c:529
+msgid " - the GNOME session manager"
+msgstr " - GNOME-sessionshåndteringen"
+
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- GNOME-velkomstvindue"
+
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "GNOME-velkomstvindue"
+
+#: ../tools/gnome-session-save.c:65
+msgid "Set the current session name"
+msgstr "Sæt det nuværende sessionsnavn"
+
+#: ../tools/gnome-session-save.c:65
+msgid "NAME"
+msgstr "NAVN"
+
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Log ud"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Log ud, og ignorér eventuelle eksisterende blokeringer"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Vis log ud-dialog"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Vis sluk-dialog"
+
+#: ../tools/gnome-session-save.c:70
+msgid "Kill session"
+msgstr "Afslut session"
+
+#: ../tools/gnome-session-save.c:71
+msgid "Use dialog boxes for errors"
+msgstr "Benyt vinduesbokse til fejl"
+
+#: ../tools/gnome-session-save.c:72
+msgid "Do not require confirmation"
+msgstr "Opkræv ikke beskæftigelse"
+
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "Kunne ikke tilkoble til sessionshåndteringen"
+
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Program blev kaldt med selvmodsigende tilvalg"
