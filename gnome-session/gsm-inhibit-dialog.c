@@ -1001,6 +1001,11 @@ gsm_inhibit_dialog_dispose (GObject *object)
                 dialog->priv->inhibitors = NULL;
         }
 
+        if (dialog->priv->xml != NULL) {
+                g_object_unref (dialog->priv->xml);
+                dialog->priv->xml = NULL;
+        }
+
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->dispose (object);
 }
 

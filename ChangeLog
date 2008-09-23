@@ -1,3 +1,10 @@
+2008-09-23  William Jon McCann  <jmccann@redhat.com>
+
+	* gnome-session/gsm-inhibit-dialog.c (gsm_inhibit_dialog_dispose):
+	Fix a glade xml leak.
+	Fixes #552780
+	Patch from: Matthias Clasen <mclasen@redhat.com>
+
 2008-09-23  Patryk Zawadzki  <patrys@pld-linux.org>
 
 	* data/session-properties.desktop.in.in: add GTK and GNOME.
