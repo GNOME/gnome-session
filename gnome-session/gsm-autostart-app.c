@@ -793,6 +793,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         g_debug ("GsmAutostartApp: starting %s: command=%s startup-id=%s", app->priv->desktop_id, command, startup_id);
         g_free (command);
 
+        g_free (app->priv->startup_id);
         local_error = NULL;
         success = egg_desktop_file_launch (app->priv->desktop_file,
                                            NULL,
