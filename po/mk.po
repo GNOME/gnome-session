@@ -1,23 +1,72 @@
-# translation of gnome-session.HEAD.po to Macedonian
+# translation of gnome-session.HEAD.mk.po to Macedonian
 # Copyright (C) 2002, 2006, 2007, 2008 Free Software Foundation, Inc.
 #
 # Ivan Stojmirov<stojmir@linux.net.mk>, 2002.
 # Arangel Angov <ufo@linux.net.mk>, 2006, 2008.
-# Jovan Naumovski <jovan@lugola.net>, 2006, 2007.
+# Jovan Naumovski <jovan@lugola.net>, 2006, 2007, 2008.
 # Arangel Angov <arangel@linux.net.mk>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD\n"
+"Project-Id-Version: gnome-session.HEAD.mk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 22:01+0000\n"
-"PO-Revision-Date: 2008-08-25 15:27+0200\n"
-"Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
-"Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
+"POT-Creation-Date: 2008-09-03 23:20+0000\n"
+"PO-Revision-Date: 2008-09-25 18:28+0200\n"
+"Last-Translator: Jovan Naumovski <jovan@lugola.net>\n"
+"Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural= n==1 || n%10==1 ? 0 : 1\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "Изнерете команда"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "Додај програма за подигнување"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "Уреди програма за подигнување"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "Нема опис"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "Името на startup командата не смее да биде празно"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "Startup командата не смее да биде празна"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "Startup командата не е валидна"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "Овозможено"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "Икона"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "Програма"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Преференци за сесијата"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:501
+msgid "Version of this application"
+msgstr "Верзија на апликацијата"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -30,6 +79,26 @@ msgstr ""
 "за пристапност не беше пронајден. Ве молам, осигурајте се дека AT_SPI "
 "пакетот е инсталиран. Вашата сесија се стартуваше без поддршка за помошни "
 "технологии."
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI обвиткувач на регистри"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "Обвивка на демонот за приврзоци на GNOME "
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "Помагач за демонот за поставување на GNOME"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Оваа сесија Ве најавува во GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -65,12 +134,11 @@ msgid ""
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
 msgstr ""
-"Листа на компоненти кои што се потребни како дел од сесијата. (Секој "
-"елемент именува клуч под „desktop/gnome/session/required-components“.) "
-"Преференците за сесиите обично не им дозволуваат на корисниците да "
-"отстрануваат потребни компоненти од сесијата и менаџерот за сесии "
-"автоматски ги додава компонентите назад во сесијата ако истите бидат "
-"отстранети."
+"Листа на компоненти кои што се потребни како дел од сесијата. (Секој елемент "
+"именува клуч под „desktop/gnome/session/required-components“.) Преференците "
+"за сесиите обично не им дозволуваат на корисниците да отстрануваат потребни "
+"компоненти од сесијата и менаџерот за сесии автоматски ги додава "
+"компонентите назад во сесијата ако истите бидат отстранети."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -108,38 +176,30 @@ msgstr "Прикажи го поздравниот екран при старт�
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"Менаџерот за прозорци кој што ќе го подигне gnome-session. Валидни вредности се "
-" metacity и compiz."
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
-"Менаџерот за датотеки нуди икони за работната површина и ви дозволува "
-"да работите со Вашите зачувани датотеки."
+"Менаџерот за датотеки нуди икони за работната површина и ви дозволува да "
+"работите со Вашите зачувани датотеки."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
-"Панелот нуди лента на врвот и дното на екранот која што содржи "
-"менија, листа со прозорци, икони за статус, часовник итн."
+"Панелот нуди лента на врвот и дното на екранот која што содржи менија, листа "
+"со прозорци, икони за статус, часовник итн."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
-"Менаџерот за прозорци е програма која што ја исцртува лентата со насловот "
-"и границите околу прозорците, и дозволува да го поместувата и да им ја "
+"Менаџерот за прозорци е програма која што ја исцртува лентата со насловот и "
+"границите околу прозорците, и дозволува да го поместувата и да им ја "
 "менувате големината на прозорците."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -150,7 +210,7 @@ msgstr ""
 "Доколку ја промените оваа вредност, промените ќе се одразат при наредното "
 "најавување."
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -160,21 +220,22 @@ msgstr ""
 "вредностисе „одјава“ за одјава, „исклучи“ за исклучување на системот и "
 "„рестартирај“ за рестартирање на системот."
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Менаџер за прозорци"
 
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "Менаџер за прозорци"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>Некои програми сè уште работат:</b>"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Оваа сесија Ве најавува во GNOME"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:628
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"Чекам да се затвори програмата.  Прекинувањето може да предизвика загуба на "
+"податоци."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -204,11 +265,6 @@ msgstr "Ко_ментар:"
 msgid "Options"
 msgstr "Опции"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1462
-msgid "Sessions Preferences"
-msgstr "Преференци за сесијата"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Програми за подигнување"
@@ -225,23 +281,6 @@ msgstr "_Име:"
 msgid "_Remember Currently Running Application"
 msgstr "_Запамти ги апликациите кои што работат"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Некои програми сè уште работат:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Чекам да се затвори програмата.  Прекинувањето може да предизвика "
-"загуба на податоци."
-
-#: ../data/gsm-inhibit-dialog.glade.h:3
-msgid "gtk-cancel"
-msgstr "gtk-cancel"
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -252,29 +291,29 @@ msgstr "Датотеката не е валидна .desktop датотека"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Непозната верзија на датотека за работната површина %s"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "Подигнувам %s"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Апликацијата не прифаќа документи на командната линија"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Непозната опција за извршување: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
-"Не можам да ја префрлам адресата за документот во запис на работната површина со "
-"Тип=Врска"
+"Не можам да ја префрлам адресата за документот во запис на работната "
+"површина со Тип=Врска"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "Предметот не може да се изврши"
@@ -346,8 +385,8 @@ msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
-"Чекам да завршат програми.  Прекинувањето на овие програми може "
-"да предизвика загуба на податоци."
+"Чекам да завршат програми.  Прекинувањето на овие програми може да "
+"предизвика загуба на податоци."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:860
 msgid "Switch User Anyway"
@@ -449,11 +488,11 @@ msgstr "_Рестартирај"
 msgid "_Shut Down"
 msgstr "_Исклучи"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1523
+#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
 msgid "Not responding"
 msgstr "Не реагира"
 
-#: ../gnome-session/gsm-xsmp-client.c:953
+#: ../gnome-session/gsm-xsmp-client.c:975
 msgid "This program is blocking log out."
 msgstr "Оваа програма ја блокира одјавата."
 
@@ -469,97 +508,82 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Не можам да креирак socket за ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:138
+#: ../gnome-session/gsm-util.c:139
 #, c-format
 msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "Не успеав да ја започнам сесијата за најава (и не успеав да се поврзам за X серверот)"
+msgstr ""
+"Не успеав да ја започнам сесијата за најава (и не успеав да се поврзам за X "
+"серверот)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:497
 msgid "Override standard autostart directories"
 msgstr "Запиши врз стандардните директориуми за автоматско стартување"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:498
+msgid "GConf key used to lookup default session"
+msgstr "GConf клучот кој се користи за барање на стандардна сесија"
+
+#: ../gnome-session/main.c:499
 msgid "Enable debugging code"
 msgstr "Вклучи код за дебагирање"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:500
 msgid "Do not load user-specified applications"
 msgstr "Не вчитувај апликации одредени од корисникот"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "Верзија на апликацијата"
-
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:521
 msgid " - the GNOME session manager"
 msgstr "- Менаџер за сесии за GNOME"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "Изнерете команда"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- Поздравен екран за GNOME"
 
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "Додај програма за подигнување"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "Поздравен екран за GNOME"
 
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "Уреди програма за подигнување"
-
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "Нема опис"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "Името на startup командата не смее да биде празно"
-
-#: ../capplet/gsm-properties-dialog.c:978
-msgid "The startup command cannot be empty"
-msgstr "Startup командата не смее да биде празна"
-
-#: ../capplet/gsm-properties-dialog.c:984
-msgid "The startup command is not valid"
-msgstr "Startup командата не е валидна"
-
-#: ../capplet/gsm-properties-dialog.c:1288
-msgid "Enabled"
-msgstr "Овозможено"
-
-#: ../capplet/gsm-properties-dialog.c:1301
-msgid "Icon"
-msgstr "Икона"
-
-#: ../capplet/gsm-properties-dialog.c:1312
-msgid "Program"
-msgstr "Програма"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "Постави го името на тековната сесија"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAME"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "Одјава"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "Одјави се со игнорирање на сите постоечки инхибитори"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "Покажи дијалог за одјавување"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "Покажи дијалог за исклучување"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "Отстрани сесија"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "Користи дијалог полиња за грешки"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Не барај потврда"
 
-#: ../tools/gnome-session-save.c:119 ../tools/gnome-session-save.c:125
-#: ../tools/gnome-session-save.c:168 ../tools/gnome-session-save.c:174
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Не може да се приклучи на менаџерот за сесии."
 
-#: ../splash/gnome-session-splash.c:281
-msgid "- GNOME Splash Screen"
-msgstr "- Поздравен екран за GNOME"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "Програмата се повика со конфлитни опции"
 
