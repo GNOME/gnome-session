@@ -15,14 +15,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-22 22:18+0900\n"
-"PO-Revision-Date: 2008-08-22 21:55+0900\n"
+"POT-Creation-Date: 2008-09-25 22:15+0900\n"
+"PO-Revision-Date: 2008-09-25 22:15+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+msgid "Select Command"
+msgstr "コマンドの選択"
+
+#: ../capplet/gsm-app-dialog.c:187
+msgid "Add Startup Program"
+msgstr "自動起動するプログラムの追加"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "自動起動するプログラムの編集"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "(説明なし)"
+
+#: ../capplet/gsm-properties-dialog.c:977
+msgid "The name of the startup program cannot be empty"
+msgstr "自動起動するプログラムの名前を入力して下さい"
+
+#: ../capplet/gsm-properties-dialog.c:981
+msgid "The startup command cannot be empty"
+msgstr "自動起動するプログラムのコマンド名を入力して下さい"
+
+#: ../capplet/gsm-properties-dialog.c:987
+msgid "The startup command is not valid"
+msgstr "コマンド名が間違っています"
+
+#: ../capplet/gsm-properties-dialog.c:1291
+msgid "Enabled"
+msgstr "有効"
+
+#: ../capplet/gsm-properties-dialog.c:1304
+msgid "Icon"
+msgstr "アイコン"
+
+#: ../capplet/gsm-properties-dialog.c:1315
+msgid "Program"
+msgstr "プログラム"
+
+#: ../capplet/gsm-properties-dialog.c:1464
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "セッションのプロパティ"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:508
+msgid "Version of this application"
+msgstr "このアプリのバージョンを表示する"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -35,6 +84,26 @@ msgstr ""
 "が、アクセシビリティの機能が登録されていないようです。AT-SPI パッケージがイン"
 "ストールされているか確認して下さい。ひとまず、支援技術のサポートなしでセッ"
 "ションを起動します。"
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "AT SPI レジストリのラッパー"
+
+#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
+msgid "GNOME Keyring Daemon Wrapper"
+msgstr "GNOME Keyring デーモンのラッパー"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr "GNOME 設定デーモンのヘルパー"
+
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "このセッションで GNOME にログインします"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -111,21 +180,13 @@ msgstr "セッションを開始したらスプラッシュ・スクリーンを
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
-"The Window manager that gnome-session will start. Valid values are \"metacity"
-"\" and \"compiz\"."
-msgstr ""
-"セッション (gnome-session) が起動するウィンドウ・マネージャです。指定可能な"
-"値: \"metacity\" または \"compiz\""
-
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "ファイル・マネージャはデスクトップ・アイコンを持ちファイルシステムに保存した"
 "いろいろなファイルを操作・管理します。"
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -133,7 +194,7 @@ msgstr ""
 "パネルは画面の上または下にメニューやウィンドウ一覧ボタン、ステータス・アイコ"
 "ン、時計などのデスクトップ・オブジェクトを持つバーを提供してくれます。"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -141,7 +202,7 @@ msgstr ""
 "ウィンドウ・マネージャはウィンドウの周りにタイトルバーや境界線を描画するプロ"
 "グラムで、ウィンドウを移動したり大きさを変更することができます。"
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -151,7 +212,7 @@ msgstr ""
 "ファイル名を指定して下さい。この値を変更すると、次回ログインする際に適応され"
 "ます。"
 
-#: ../data/gnome-session.schemas.in.h:20
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -161,21 +222,22 @@ msgstr ""
 "\"logout\" (ログアウトする場合)、\"shutdown\" (システムを停止する場合)、"
 "\"restart\" (システムを再起動する場合)"
 
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "ウインドウ・マネージャ"
 
-#: ../data/gnome-session.schemas.in.h:22
-msgid "Window Manager to start"
-msgstr "起動するウインドウ・マネージャ"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>いくつかのプログラムが未だ実行中です:</b>"
 
-#: ../data/gnome.desktop.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "このセッションで GNOME にログインします"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
+"プログラムの終了待ちです。実行中のプログラムを途中で強制終了させてしまうと、"
+"ここまでの処理結果を失うことになります。"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
@@ -205,11 +267,6 @@ msgstr "説明(_E):"
 msgid "Options"
 msgstr "オプション"
 
-#: ../data/session-properties.glade.h:6
-#: ../capplet/gsm-properties-dialog.c:1464
-msgid "Sessions Preferences"
-msgstr "セッションのプロパティ"
-
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "自動起動するプログラム"
@@ -226,19 +283,6 @@ msgstr "名前(_N):"
 msgid "_Remember Currently Running Application"
 msgstr "現在実行中のアプリを記憶しておく(_R)"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>いくつかのプログラムが未だ実行中です:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"プログラムの終了待ちです。実行中のプログラムを途中で強制終了させてしまうと、"
-"ここまでの処理結果を失うことになります。"
-
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
@@ -249,27 +293,27 @@ msgstr "無効な .desktop ファイルです"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr ".desktop ファイルのバージョンが '%s' ではないようです"
 
-#: ../egg/eggdesktopfile.c:961
+#: ../egg/eggdesktopfile.c:962
 #, c-format
 msgid "Starting %s"
 msgstr "%s の起動中"
 
-#: ../egg/eggdesktopfile.c:1095
+#: ../egg/eggdesktopfile.c:1096
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "コマンドラインからドキュメントを指定できません"
 
-#: ../egg/eggdesktopfile.c:1163
+#: ../egg/eggdesktopfile.c:1164
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "不明な起動オプションです: %d"
 
-#: ../egg/eggdesktopfile.c:1370
+#: ../egg/eggdesktopfile.c:1372
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "'Type=Link' のエントリにはドキュメントの URI を指定できません"
 
-#: ../egg/eggdesktopfile.c:1389
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Not a launchable item"
 msgstr "起動可能なアイテムではありません"
@@ -324,19 +368,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "'%s' というアイコンが見つかりませんでした"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:580
 msgid "Unknown"
 msgstr "不明"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:631
 msgid "A program is still running:"
 msgstr "プログラムが未だ実行中です:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:635
 msgid "Some programs are still running:"
 msgstr "いくつかのプログラムが未だ実行中です:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -344,35 +388,35 @@ msgstr ""
 "プログラムの終了待ちです。実行中のプログラムを途中で強制終了させてしまうと、"
 "ここまでの処理結果を失うことになります。"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:864
 msgid "Switch User Anyway"
 msgstr "とにかくユーザを切り替える"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:867
 msgid "Logout Anyway"
 msgstr "とにかくログアウトする"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:870
 msgid "Suspend Anyway"
 msgstr "とにかくサスペンドにする"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:873
 msgid "Hibernate Anyway"
 msgstr "とにかくハイバネートにする"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:876
 msgid "Shutdown Anyway"
 msgstr "とにかくシャットダウンする"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Reboot Anyway"
 msgstr "とにかく再起動する"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Lock Screen"
 msgstr "画面をロックする"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -406,43 +450,43 @@ msgstr[1] ""
 "あなたは現在 \"%s\" でログインしています。\n"
 "このシステムは残り %d秒で自動的にシャットダウンします。"
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "Log out of this system now?"
 msgstr "このシステムから今すぐログアウトしますか？"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Switch User"
 msgstr "ユーザを切り替える(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "Shut down this system now?"
 msgstr "このシステムを今すぐシャットダウンしますか？"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "S_uspend"
 msgstr "サスペンド(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Hibernate"
 msgstr "ハイバーネート(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "_Restart"
 msgstr "再起動(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:426
 msgid "_Shut Down"
 msgstr "シャットダウン(_S)"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
 msgid "Not responding"
 msgstr "応答なし"
 
-#: ../gnome-session/gsm-xsmp-client.c:971
+#: ../gnome-session/gsm-xsmp-client.c:988
 msgid "This program is blocking log out."
 msgstr "このプログラムがログアウトできないようにしています。"
 
@@ -465,91 +509,74 @@ msgstr "ICE の監視ソケットを生成できませんでした: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "ログイン・セッションを起動できません (Ｘサーバにも接続できません)"
 
-#: ../gnome-session/main.c:61
+#: ../gnome-session/main.c:504
 msgid "Override standard autostart directories"
 msgstr "標準の自動起動フォルダをオーバーライドする"
 
-#: ../gnome-session/main.c:62
+#: ../gnome-session/main.c:505
+msgid "GConf key used to lookup default session"
+msgstr "GConf のキーを使ってデフォルトのセッションを検索する"
+
+#: ../gnome-session/main.c:506
 msgid "Enable debugging code"
 msgstr "デバッグ・モードにする"
 
-#: ../gnome-session/main.c:63
+#: ../gnome-session/main.c:507
 msgid "Do not load user-specified applications"
 msgstr "ユーザが指定したアプリを起動しない"
 
-#: ../gnome-session/main.c:64 ../capplet/main.c:37
-msgid "Version of this application"
-msgstr "このアプリのバージョンを表示する"
-
-#: ../gnome-session/main.c:415
+#: ../gnome-session/main.c:528
 msgid " - the GNOME session manager"
 msgstr "- GNOME セッション・マネージャ"
 
-#: ../capplet/gsm-app-dialog.c:130
-msgid "Select Command"
-msgstr "コマンドの選択"
+#: ../splash/gnome-session-splash.c:291
+msgid "- GNOME Splash Screen"
+msgstr "- GNOME スプラッシュ・スクリーン"
 
-#: ../capplet/gsm-app-dialog.c:174
-msgid "Add Startup Program"
-msgstr "自動起動するプログラムの追加"
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr "GNOME スプラッシュ・スクリーン"
 
-#: ../capplet/gsm-app-dialog.c:178
-msgid "Edit Startup Program"
-msgstr "自動起動するプログラムの編集"
-
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "(説明なし)"
-
-#: ../capplet/gsm-properties-dialog.c:976
-msgid "The name of the startup program cannot be empty"
-msgstr "自動起動するプログラムの名前を入力して下さい"
-
-#: ../capplet/gsm-properties-dialog.c:980
-msgid "The startup command cannot be empty"
-msgstr "自動起動するプログラムのコマンド名を入力して下さい"
-
-#: ../capplet/gsm-properties-dialog.c:986
-msgid "The startup command is not valid"
-msgstr "コマンド名が間違っています"
-
-#: ../capplet/gsm-properties-dialog.c:1290
-msgid "Enabled"
-msgstr "有効"
-
-#: ../capplet/gsm-properties-dialog.c:1303
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../capplet/gsm-properties-dialog.c:1314
-msgid "Program"
-msgstr "プログラム"
-
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
 msgstr "現在のセッション名をセットする"
 
-#: ../tools/gnome-session-save.c:52
+#: ../tools/gnome-session-save.c:65
 msgid "NAME"
 msgstr "NAME"
 
-#: ../tools/gnome-session-save.c:53
+#: ../tools/gnome-session-save.c:66
+msgid "Log out"
+msgstr "ログアウトする"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "ログアウトする (阻害するプロセスを無視する)"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr "ログアウトのダイアログを表示する"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr "シャットダウンのダイアログを表示する"
+
+#: ../tools/gnome-session-save.c:70
 msgid "Kill session"
 msgstr "セッションを強制終了する"
 
-#: ../tools/gnome-session-save.c:54
+#: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
 msgstr "エラーをダイアログで表示する"
 
-#: ../tools/gnome-session-save.c:55
+#: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
-msgstr "確認をせずに実行する"
+msgstr "確認を入れずに実行する"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:126
-#: ../tools/gnome-session-save.c:170 ../tools/gnome-session-save.c:176
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "セッション・マネージャに接続できませんでした。"
 
-#: ../splash/gnome-session-splash.c:289
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME スプラッシュ・スクリーン"
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "同時には適用できないオプションを指定しました"
