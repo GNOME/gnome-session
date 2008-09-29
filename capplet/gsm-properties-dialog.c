@@ -998,7 +998,7 @@ edit_app_dialog (GsmPropertiesDialog *dialog,
                                                          GTK_DIALOG_MODAL,
                                                          GTK_MESSAGE_ERROR,
                                                          GTK_BUTTONS_OK,
-                                                         error_msg);
+                                                         "%s", error_msg);
 
                         if (error != NULL) {
                                 g_error_free (error);
@@ -1457,8 +1457,9 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
         widget = glade_xml_get_widget (dialog->priv->xml, "main-notebook");
         gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
 
-        gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
-        gtk_container_set_border_width (GTK_CONTAINER (widget), 5);
+        gtk_window_set_resizable (GTK_WINDOW (dialog), TRUE);
+        gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+        gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");
         gtk_window_set_title (GTK_WINDOW (dialog), _("Sessions Preferences"));
