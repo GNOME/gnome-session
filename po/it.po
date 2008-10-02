@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-session 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-22 14:30+0200\n"
-"PO-Revision-Date: 2008-09-22 14:32+0200\n"
+"PO-Revision-Date: 2008-10-02 08:43+0200\n"
 "Last-Translator: Luca Ferretti <elle.uca@libero.it>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -149,13 +149,7 @@ msgid ""
 "Session Preferences will not normally allow users to remove a required "
 "component from the session, and the session manager will automatically add "
 "the required components back to the session if they do get removed."
-msgstr ""
-"Lista di componenti che sono richiesti come parte della sessione (ciascun "
-"elemento da il nome a una chiave sotto \"/desktop/gnome/session/"
-"required_components\"). Lo strumento di preferenze Sessioni di norma non "
-"consente agli utenti di rimuovere un componente richiesto dalla sessione e "
-"il gestore di sessione aggiungerà nuovamente in modo automatico alla "
-"sessione i componenti richiesti che sono rimossi."
+msgstr "Lista di componenti che sono richiesti come parte della sessione (ciascun elemento dà il nome a una chiave sotto \"/desktop/gnome/session/required_components\"). Lo strumento di preferenze Sessioni di norma non consente agli utenti di rimuovere un componente richiesto dalla sessione e il gestore di sessione aggiungerà nuovamente in modo automatico alla sessione i componenti richiesti che sono rimossi."
 
 # GNOME-2-24
 #: ../data/gnome-session.schemas.in.h:7
@@ -208,10 +202,7 @@ msgstr ""
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Il pannello fornisce le barre nelle parti superiore e inferiore dello "
-"schermo, contenenti i menù, l'elenco delle finestra, le icone di stato, "
-"l'orologio e altro."
+msgstr "Il pannello fornisce le barre nelle parti superiore e inferiore dello schermo, contenenti i menù, l'elenco delle finestre, le icone di stato, l'orologio e altro."
 
 # GNOME-2-24
 #: ../data/gnome-session.schemas.in.h:17
@@ -376,7 +367,7 @@ msgstr "Disabilita la connessione al gestore di sessione"
 # spiegazione opzione riga comando
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr "Specifica il file contentene la configurazione salvata"
+msgstr "Specifica il file contenente la configurazione salvata"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
@@ -601,7 +592,7 @@ msgstr ""
 # GNOME-2-24
 #: ../gnome-session/main.c:505
 msgid "Override standard autostart directories"
-msgstr "Non tiene conto delle directory stardard di avvio automatico"
+msgstr "Non tiene conto delle directory standard di avvio automatico"
 
 # GNOME-2-24
 #: ../gnome-session/main.c:506
@@ -693,343 +684,3 @@ msgstr "Impossibile connettersi al gestore di sessione"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Programma chiamato con opzioni in conflitto"
-
-#~ msgid "Allow TCP connections"
-#~ msgstr "Consenti connessioni TCP"
-
-#~ msgid ""
-#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
-#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
-#~ "ports. This option will allow connections from (authorized) remote hosts. "
-#~ "gnome-session must be restarted for this to take effect."
-#~ msgstr ""
-#~ "Per motivi di sicurezza, su piattaforme che utilizzano "
-#~ "_IceTcpTransNoListen() (sistemi XFree86), gnome-session non resta in "
-#~ "ascolto di connessioni su porte TCP. Questa opzione consente connessioni "
-#~ "da macchine remote (autorizzate). Sarà comunque necessario riavviare "
-#~ "gnome-session affinché le modifiche abbiano effetto."
-
-#~ msgid "_Order:"
-#~ msgstr "_Ordine:"
-
-#~ msgid "What happens to the application when it exits."
-#~ msgstr "Cosa accade all'applicazione quando questa termina."
-
-#~ msgid "_Style:"
-#~ msgstr "_Stile:"
-
-#~ msgid "Inactive"
-#~ msgstr "Inattivo"
-
-#~ msgid "Waiting to start or already finished."
-#~ msgstr "In attesa di avvio o già finito."
-
-#~ msgid "Started but has not yet reported state."
-#~ msgstr "Avviato, ma non ha ancora riportato lo stato."
-
-#~ msgid "Running"
-#~ msgstr "In esecuzione"
-
-#~ msgid "A normal member of the session."
-#~ msgstr "Un normale membro della sessione."
-
-#~ msgid "Saving"
-#~ msgstr "Salvataggio"
-
-#~ msgid "Saving session details."
-#~ msgstr "Salvataggio dei dettagli della sessione."
-
-#~ msgid "State not reported within timeout."
-#~ msgstr "Stato non riportato in tempo utile."
-
-#~ msgid "Normal"
-#~ msgstr "Normale"
-
-# GNOME-2-22
-#~ msgid "Unaffected by logouts but can die."
-#~ msgstr "Inalterabile dal termine della sessione, ma può terminare."
-
-# GNOME-2-22
-#~ msgid "Never allowed to die."
-#~ msgstr "Mai concesso di terminare."
-
-#~ msgid "Trash"
-#~ msgstr "Cestino"
-
-# GNOME-2-22
-#~ msgid "Discarded on logout and can die."
-#~ msgstr "Abbandonato al termine della sessione e può terminare."
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
-
-# GNOME-2-22
-#~ msgid "Always started on every login."
-#~ msgstr "Avviato sempre a ogni accesso."
-
-#~ msgid "Order"
-#~ msgstr "Ordine"
-
-#~ msgid "Style"
-#~ msgstr "Stile"
-
-#~ msgid "State"
-#~ msgstr "Stato"
-
-#~ msgid ""
-#~ "There was an error starting the GNOME Settings Daemon.\n"
-#~ "\n"
-#~ "Some things, such as themes, sounds, or background settings may not work "
-#~ "correctly."
-#~ msgstr ""
-#~ "Si è verificato un errore durante l'avvio del demone delle impostazioni "
-#~ "di GNOME.\n"
-#~ "\n"
-#~ "Alcuni aspetti come temi, suoni o impostazioni dello sfondo potrebbero "
-#~ "non funzionare correttamente."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "The last error message was:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "L'ultimo messaggio di errore è stato:\n"
-#~ "\n"
-
-# GNOME-2-22
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME will still try to restart the Settings Daemon next time you log in."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME tenterà di riavviare il demone delle impostazioni al prossimo "
-#~ "accesso."
-
-#~ msgid "The Settings Daemon restarted too many times."
-#~ msgstr "Il demone delle impostazioni è stato riavviato troppe volte."
-
-#~ msgid "No Name"
-#~ msgstr "Nessun nome"
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "Elenca i client registrati, quindi esce"
-
-#~ msgid "PROGRAM..."
-#~ msgstr "PROGRAMMA..."
-
-#~ msgid ""
-#~ "You must specify at least one program to remove. You can list the "
-#~ "programs with --list.\n"
-#~ msgstr ""
-#~ "È necessario specificare almeno un programma da rimuovere. È possibile "
-#~ "elencare i programmi con --list.\n"
-
-#~ msgid "Error: could not connect to the session manager\n"
-#~ msgstr "Errore: impossibile collegarsi al gestore di sessione\n"
-
-#~ msgid "Currently registered clients:\n"
-#~ msgstr "Client attualmente registrati:\n"
-
-#~ msgid "Couldn't find program %s in session\n"
-#~ msgstr "Impossibile trovare il programma «%s» nella sessione\n"
-
-# GNOME-2-22
-#~ msgid ""
-#~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
-#~ msgstr ""
-#~ "Non è possibile avviare correttamente il gestore di sessione di GNOME. "
-#~ "Possibilmente, segnalare tale evento come bug di GNOME. Includere nella "
-#~ "segnalazione di bug il messaggio di fallimento di ICE: «%s». Nel "
-#~ "frattempo è possibile provare a effettuare l'accesso usando la sessione "
-#~ "d'emergenza."
-
-# GNOME-2-22
-#~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
-#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe "
-#~ "session and ensuring that it is."
-#~ msgstr ""
-#~ "Il gestore di sessioni di GNOME non è stato in grado di bloccare il file "
-#~ "«%s». Possibilmente, segnalare tale evento come bug di GNOME. Talvolta "
-#~ "tale errore potrebbe verificarsi se la directory del file non è "
-#~ "scrivibile; provare a effettuare l'accesso con la sessione d'emergenza e "
-#~ "verificare tale proprietà."
-
-# GNOME-2-22
-# %s è il nome del file, tolgo i : che lo precedono nella traduzione
-#~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
-#~ "file exists it must be readable by you for GNOME to work properly.  Try "
-#~ "logging in with the failsafe session and removing this file."
-#~ msgstr ""
-#~ "Il gestore di sessione di GNOME non è stato in grado di leggere il file «%"
-#~ "s». Se questo file esiste, deve essere leggibile per consentire a GNOME "
-#~ "di operare correttamente. Provare a effettuare l'accesso con la sessione "
-#~ "d'emergenza e a rimuovere questo file."
-
-# GNOME-2-22
-#~ msgid ""
-#~ "Could not write to file '%s'.  This file must be writable in order for "
-#~ "GNOME to function properly.  Try logging in with the failsafe session and "
-#~ "removing this file.  Also make sure that the file's directory is writable."
-#~ msgstr ""
-#~ "Impossibile scrivere sul file «%s». Questo file deve essere scrivibile "
-#~ "affinché GNOME funzioni correttamente. Provare a effettuare l'accesso con "
-#~ "la sessione d'emergenza e a rimuovere questo file. Inoltre assicurarsi "
-#~ "che la directory del file sia scrivibile."
-
-#~ msgid "Are you sure you want to log out?"
-#~ msgstr "Terminare veramente questa sessione?"
-
-#~ msgid "Remember running applications"
-#~ msgstr "Memorizzare le applicazioni in esecuzione"
-
-#~ msgid "_Restart the computer"
-#~ msgstr "Ria_vviare il computer"
-
-#~ msgid "Only read saved sessions from the default.session file"
-#~ msgstr "Leggi le sessioni salvate solo dal file default.session"
-
-#~ msgid "Millisecond period spent waiting for clients to register (0=forever)"
-#~ msgstr ""
-#~ "Tempo speso in attesa della registrazione dei client (in ms, 0 = infinito)"
-
-#~ msgid "DELAY"
-#~ msgstr "RITARDO"
-
-#~ msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-#~ msgstr ""
-#~ "Tempo speso in attesa della registrazione dei client (in ms, 0 = infinito)"
-
-#~ msgid "Millisecond period spent waiting for clients to die (0=forever)"
-#~ msgstr "Tempo speso in attesa della morte del client (in ms, 0 = infinito)"
-
-# cambiata un po' la forma...
-#~ msgid "This session is running as a privileged user"
-#~ msgstr "Si sta eseguendo questa sesssione come utente con privilegi"
-
-# GNOME-2-22
-#~ msgid ""
-#~ "Running a session as a privileged user should be avoided for security "
-#~ "reasons. If possible, you should log in as a normal user."
-#~ msgstr ""
-#~ "Per ragioni di sicurezza, l'esecuzione di una sessione come utente con "
-#~ "privilegi dovrebbe essere evitato. Se possibile, accedere come utente "
-#~ "normale."
-
-#~ msgid "_Continue"
-#~ msgstr "_Continua"
-
-#~ msgid ""
-#~ "The session might encounter issues if the computer clock is not properly "
-#~ "configured. Please consider adjusting it.\n"
-#~ "\n"
-#~ "Current date is <b>%s</b>."
-#~ msgstr ""
-#~ "La sessione potrebbe incontrare dei problemi se l'orologio del computer "
-#~ "non è configurato correttamente. È consigliato regolare l'orologio.\n"
-#~ "\n"
-#~ "La data attuale è <b>%s</b>."
-
-#~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "Lancio dello strumento di configurazione dell'ora fallito: %s"
-
-# un orogologio non è "sbagliato" tout-cour
-#~ msgid "The computer clock appears to be wrong"
-#~ msgstr "L'orologio del computer sembra non essere regolato"
-
-#~ msgid "_Ignore"
-#~ msgstr "_Ignora"
-
-# Credo sia un pulsante, rimosso l'articolo
-# per coerenza con il resto del desktop
-#~ msgid "_Adjust the Clock"
-#~ msgstr "_Regola orologio"
-
-#~ msgid ""
-#~ "Could not look up internet address for %s.\n"
-#~ "This will prevent GNOME from operating correctly.\n"
-#~ "It may be possible to correct the problem by adding\n"
-#~ "%s to the file /etc/hosts."
-#~ msgstr ""
-#~ "Non è possibile risolvere l'indirizzo internet per %s.\n"
-#~ "Ciò non permette a GNOME di operare correttamente.\n"
-#~ "È eventualmente possibile correggere l'errore aggiungendo\n"
-#~ "%s al file /etc/hosts."
-
-#~ msgid "Try Again"
-#~ msgstr "Prova ancora"
-
-#~ msgid "Wait abandoned due to conflict."
-#~ msgstr "Attesa interrotta a causa di un conflitto."
-
-#~ msgid "No response to the %s command."
-#~ msgstr "Nessuna risposta al comando %s."
-
-#~ msgid "The program may be slow, stopped or broken."
-#~ msgstr "Il programma potrebbe essere lento, fermo o non funzionante."
-
-#~ msgid "You may wait for it to respond or remove it."
-#~ msgstr "È possibile attendere che risponda o rimuoverlo."
-
-#~ msgid "Restart abandoned due to failures."
-#~ msgstr "Riavvio interrotto a causa di errori."
-
-#~ msgid "A session shutdown is in progress."
-#~ msgstr "L'arresto della sessione è in corso."
-
-#~ msgid "- Save the current session"
-#~ msgstr "- Salva la sessione corrente"
-
-#~ msgid "Save changes to the current session before closing?"
-#~ msgstr "Salvare i cambiamenti alla sessione corrente prima di chiudere?"
-
-#~ msgid "If you don't save, changes will be discarded."
-#~ msgstr "Se non si salva, le modifiche saranno scartate."
-
-#~ msgid "_Close without Saving"
-#~ msgstr "_Chiudi senza salvare"
-
-#~ msgid "Current Session"
-#~ msgstr "Sessione corrente"
-
-#~ msgid "Your session has been saved."
-#~ msgstr "La sessione è stata salvata"
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "impossibile connettersi al gestore di sessione\n"
-
-#~ msgid "session manager does not support GNOME extensions\n"
-#~ msgstr "il gestore di sessione non supporta le estensioni di GNOME\n"
-
-#~ msgid "Remove the currently selected client from the session."
-#~ msgstr "Rimuove il client attualmente selezionato dalla sessione."
-
-#~ msgid "Apply changes to the current session"
-#~ msgstr "Applica modifiche alla sessione corrente"
-
-#~ msgid "The list of programs in the session."
-#~ msgstr "L'elenco dei programmi nella sessione."
-
-#~ msgid "Currently running _programs:"
-#~ msgstr "Pro_grammi attualmente in esecuzione:"
-
-#~ msgid "Sawfish Window Manager"
-#~ msgstr "Window manager Sawfish"
-
-#~ msgid "Metacity Window Manager"
-#~ msgstr "Window manager Metacity"
-
-#~ msgid "Nautilus"
-#~ msgstr "Nautilus"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Impostazioni ambiente grafico"
