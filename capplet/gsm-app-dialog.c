@@ -162,7 +162,7 @@ setup_dialog (GsmAppDialog *dialog)
 
         xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
                              "main-table",
-                             PACKAGE);
+                             GETTEXT_PACKAGE);
         g_assert (xml != NULL);
 
         widget = glade_xml_get_widget (xml, "main-table");

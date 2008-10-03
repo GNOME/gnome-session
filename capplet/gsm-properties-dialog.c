@@ -1451,7 +1451,7 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
 
         dialog->priv->xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
                                            "main-notebook",
-                                           PACKAGE);
+                                           GETTEXT_PACKAGE);
         g_assert (dialog->priv->xml != NULL);
 
         widget = glade_xml_get_widget (dialog->priv->xml, "main-notebook");
