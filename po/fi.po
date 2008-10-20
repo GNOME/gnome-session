@@ -4,14 +4,15 @@
 # Mikko Rauhala <mjr@iki.fi>, 1999
 # Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2005
 # Ilkka Tuohela <hile@iki.fi>, 2005-2008
+# Mikko Piippo (https://launchpad.net/~piippo-cc), 2008
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-14 12:50+0300\n"
-"PO-Revision-Date: 2008-09-22 12:20+0300\n"
+"POT-Creation-Date: 2008-10-20 09:35+0300\n"
+"PO-Revision-Date: 2008-10-20 09:35+0300\n"
 "Last-Translator: Timo Jyrinki <timo.jyrinki@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -59,12 +60,12 @@ msgstr "Kuvake"
 msgid "Program"
 msgstr "Ohjelma"
 
-#: ../capplet/gsm-properties-dialog.c:1464
+#: ../capplet/gsm-properties-dialog.c:1465
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
 msgstr "Istuntojen asetukset"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:509
+#: ../capplet/main.c:37 ../gnome-session/main.c:508
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
@@ -200,9 +201,9 @@ msgid ""
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
 msgstr ""
-"Tämä on suhteellinen polku hakemistossa $datadir/pixmaps/. Kelvollisia "
-"arvoja ovat alihakemistot ja kuvien nimet. Tämän arvon muuttaminen vaikuttaa "
-"vasta seuraavaan istuntoon kirjauduttua."
+"Tämä on suhteellinen polku, joka saa arvonsa hakemistosta $datadir/pixmaps/. "
+"Kelvollisia arvoja ovat alihakemistot ja kuvien nimet. Tämän arvon muutos "
+"tulee voimaan vasta seuraavalla kirjautumiskerralla."
 
 #: ../data/gnome-session.schemas.in.h:19
 msgid ""
@@ -210,10 +211,9 @@ msgid ""
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 "\"restart\" for restarting the system."
 msgstr ""
-"Tämä on valinta, joka on valittu uloskirjautumisen ikkunassa. Kelvolliset "
-"arvot ovat \"logout\" uloskirjautumiseen, \"shutdown\" järjestelmän "
-"sammuttamiseksi ja \"uudelleenkäynnistys\" järjestelmän käynnistämiseksi "
-"uudestaan."
+"Tämä vaihtoehto valitaan uloskirjautumisikkunasta. Kelvolliset arvot ovat "
+"\"logout\" uloskirjautumiseen, \"shutdown\" järjestelmän sammuttamiseksi ja "
+"\"uudellenkäynnistys\" järjestelmän käynnistämiseksi uudelleen."
 
 #: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
@@ -224,7 +224,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Joitakin ohjelmia on vielä käynnissä:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -361,19 +361,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Kuvaketta \"%s\" ei löydy"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:580
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:631
 msgid "A program is still running:"
 msgstr "Ohjelma on vielä käynnissä:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:635
 msgid "Some programs are still running:"
 msgstr "Joitakin ohjelmia on vielä käynnissä:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -381,35 +381,35 @@ msgstr ""
 "Odotetaan ohjelmien lopettamista. Ohjelmien suorituksen keskeyttäminen voi "
 "aiheuttaa töiden häviämistä."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:864
 msgid "Switch User Anyway"
 msgstr "Vaihda käyttäjää kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:867
 msgid "Logout Anyway"
-msgstr "Kirjaudu sisään kaikesta huolimatta"
+msgstr "Kirjaudu ulos kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:870
 msgid "Suspend Anyway"
 msgstr "Siirry keskeytystilaan kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:873
 msgid "Hibernate Anyway"
 msgstr "Siirry lepotilaan kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:876
 msgid "Shutdown Anyway"
 msgstr "Sammuta kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Reboot Anyway"
 msgstr "Käynnistä uudelleen kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Lock Screen"
 msgstr "Lukitse näyttö"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Cancel"
 msgstr "Peru"
 
@@ -475,11 +475,11 @@ msgstr "Käynnistä _uudelleen"
 msgid "_Shut Down"
 msgstr "_Sammuta"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-xsmp-client.c:975
+#: ../gnome-session/gsm-xsmp-client.c:988
 msgid "This program is blocking log out."
 msgstr "Tämä ohjelma estää kirjautumisen ulos"
 
@@ -502,23 +502,23 @@ msgstr "ICE-kuuntelupistokette ei voi luoda: %s"
 msgid "Unable to start login session (and unable connect to the X server)"
 msgstr "Kirjautumisistuntoa ei voi käynnistää (eikä X-palvelimeen yhdistää)"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:504
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:505
 msgid "GConf key used to lookup default session"
 msgstr "GConf-avain, josta oletusistuntoa etsitään"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:506
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
-#: ../gnome-session/main.c:508
+#: ../gnome-session/main.c:507
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:529
+#: ../gnome-session/main.c:528
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
@@ -544,15 +544,15 @@ msgstr "Kirjaudu ulos"
 
 #: ../tools/gnome-session-save.c:67
 msgid "Log out, ignoring any existing inhibitors"
-msgstr "Kirjaudu ulos, jättäen käynnissä olevat estot huomioimatta"
+msgstr "Kirjaudu ulos, jättäen huomiotta mahdolliset esteet tälle"
 
 #: ../tools/gnome-session-save.c:68
 msgid "Show logout dialog"
-msgstr "Näytä uloskirjautumisikkuna"
+msgstr "Näytä uloskirjautumisen valintaikkuna"
 
 #: ../tools/gnome-session-save.c:69
 msgid "Show shutdown dialog"
-msgstr "Näytä sammutusikkuna"
+msgstr "Näytä sammuttamisen valintaikkuna"
 
 #: ../tools/gnome-session-save.c:70
 msgid "Kill session"
@@ -573,4 +573,3 @@ msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
-
