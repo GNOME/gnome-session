@@ -1463,10 +1463,6 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");
         gtk_window_set_title (GTK_WINDOW (dialog), _("Sessions Preferences"));
-        g_object_set (dialog,
-                      "allow-shrink", FALSE,
-                      "allow-grow", FALSE,
-                      NULL);
 }
 
 static void
