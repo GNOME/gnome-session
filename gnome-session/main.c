@@ -152,8 +152,8 @@ acquire_name (void)
 
         if (! acquire_name_on_proxy (bus_proxy, GSM_DBUS_NAME) ) {
                 gsm_util_init_error (TRUE,
-                                     "Could not acquire name on session bus: %s",
-                                     error->message);
+                                     "%s",
+                                     "Could not acquire name on session bus");
                 /* not reached */
         }
 
