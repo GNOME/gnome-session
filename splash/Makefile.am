@@ -3,11 +3,13 @@ NULL =
 INCLUDES =					\
 	-I$(top_srcdir)/egg			\
 	$(DBUS_GLIB_CFLAGS)			\
+	$(GCONF_CFLAGS)				\
 	$(LIBGNOMEUI_CFLAGS)			\
 	$(STARTUP_NOTIFICATION_CFLAGS)
 
 LDADD =						\
 	$(top_builddir)/egg/libeggsmclient-gnome.la \
+	$(GCONF_LIBS)				\
 	$(LIBGNOMEUI_LIBS)
 
 helperdir = $(pkglibdir)/helpers

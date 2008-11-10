@@ -82,7 +82,7 @@ display_error (const char *message)
                 GtkWidget *dialog;
 
                 dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
-                                                 GTK_BUTTONS_OK, message);
+                                                 GTK_BUTTONS_OK, "%s", message);
 
                 /*gtk_window_set_default_icon_name (GTK_STOCK_SAVE);*/
 

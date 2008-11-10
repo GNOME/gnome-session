@@ -137,7 +137,7 @@ gsm_util_init_error (gboolean    fatal,
                 if (!gtk_init_check (NULL, NULL)) {
                         /* Oh well, no X for you! */
                         g_printerr (_("Unable to start login session (and unable connect to the X server)"));
-                        g_printerr (msg);
+                        g_printerr ("%s", msg);
                         exit (1);
                 }
         }
