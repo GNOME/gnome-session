@@ -2416,7 +2416,7 @@ gsm_manager_register_client (GsmManager            *manager,
                 /* just accept the client - we can't associate with an
                    existing App */
                 app = NULL;
-        } else if (IS_STRING_EMPTY (startup_id)) {
+        } else if (IS_STRING_EMPTY (app_id)) {
                 app = find_app_for_startup_id (manager, startup_id);
         } else if (IS_STRING_EMPTY (startup_id)) {
                 /* try to associate this app id with a known app */
