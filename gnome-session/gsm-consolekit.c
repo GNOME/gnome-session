@@ -825,20 +825,78 @@ gsm_consolekit_can_switch_user (GsmConsolekit *manager)
         return ret;
 }
 
+#ifdef HAVE_POLKIT_GNOME
+static gboolean
+gsm_consolekit_can_do_action (GsmConsolekit *manager,
+                              const char    *action_id)
+{
+        PolKitGnomeContext *gnome_context;
+        PolKitAction *action;
+        PolKitCaller *caller;
+        DBusError dbus_error;
+        PolKitError *error;
+        PolKitResult result;
+
+        gnome_context = polkit_gnome_context_get (NULL);
+
+        if (gnome_context == NULL) {
+                return FALSE;
+        }
+
+        if (gnome_context->pk_tracker == NULL) {
+                return FALSE;
+        }
+
+        dbus_error_init (&dbus_error);
+        caller = polkit_tracker_get_caller_from_pid (gnome_context->pk_tracker,
+                                                     getpid (),
+                                                     &dbus_error);
+        dbus_error_free (&dbus_error);
+
+        if (caller == NULL) {
+                return FALSE;
+        }
+
+        action = polkit_action_new ();
+        if (!polkit_action_set_action_id (action, action_id)) {
+                polkit_action_unref (action);
+                polkit_caller_unref (caller);
+                return FALSE;
+        }
+
+        result = POLKIT_RESULT_UNKNOWN;
+        error = NULL;
+        result = polkit_context_is_caller_authorized (gnome_context->pk_context,
+                                                      action, caller, FALSE,
+                                                      &error);
+        if (polkit_error_is_set (error)) {
+                polkit_error_free (error);
+        }
+        polkit_action_unref (action);
+                polkit_caller_unref (caller);
+
+        return result != POLKIT_RESULT_NO && result != POLKIT_RESULT_UNKNOWN;
+}
+#endif
+
 gboolean
 gsm_consolekit_can_restart (GsmConsolekit *manager)
 {
 #ifdef HAVE_POLKIT_GNOME
         gboolean res;
         GError  *error;
+
         error = NULL;
         res = gsm_consolekit_ensure_ck_connection (manager, &error);
         if (!res) {
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
                 g_error_free (error);
+                return FALSE;
         }
-        return res;
+
+        return gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.restart") ||
+               gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.restart-multiple-users");
 #else
         g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot restart system");
         return FALSE;
@@ -857,8 +915,11 @@ gsm_consolekit_can_stop (GsmConsolekit *manager)
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
                 g_error_free (error);
+                return FALSE;
         }
-        return res;
+
+        return gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.stop") ||
+               gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.stop-multiple-users");
 #else
         g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot stop system");
         return FALSE;

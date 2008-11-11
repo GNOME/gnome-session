@@ -252,6 +252,20 @@
       </doc:doc>
     </method>
 
+    <method name="CanShutdown">
+      <arg name="is_available" direction="out" type="b">
+        <doc:doc>
+          <doc:summary>True if shutdown is available to the user, false otherwise</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Allows the caller to determine whether or not it's okay to show
+          a shutdown option in the UI</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
+
     <method name="Logout">
       <arg name="mode" type="u" direction="in">
         <doc:doc>

@@ -1,3 +1,14 @@
+2008-11-11  Ray Strode  <rstrode@redhat.com>
+
+	* gnome-session/org.gnome.SessionManager.xml (CanShutdown)
+	* gnome-session/gsm-manager.[ch] (gsm_manager_can_shutdown):
+	Add new dbus api to say whether shutdown dialog is available.
+	(bug 536915)
+	* gnome-session/gsm-consolekit.c
+	(gsm_consolekit_can_do_action): new function to query
+	policykit to determine whether the current session is
+	authorized to shutdown/reboot/etc.
+
 2008-11-10  Matthias Clasen  <mclasen@redhat.com>
 
 	* gnome-session/gsm-manager.c (gsm_manager_register_client):

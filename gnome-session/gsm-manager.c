@@ -2313,6 +2313,30 @@ gsm_manager_shutdown (GsmManager *manager,
 }
 
 gboolean
+gsm_manager_can_shutdown (GsmManager *manager,
+                          gboolean   *shutdown_available,
+                          GError    **error)
+{
+        GsmConsolekit *consolekit;
+        GsmPowerManager *power_manager;
+
+        g_debug ("GsmManager: CanShutdown called");
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        consolekit = gsm_get_consolekit ();
+        power_manager = gsm_get_power_manager ();
+        *shutdown_available = gsm_consolekit_can_stop (consolekit)
+                              || gsm_consolekit_can_restart (consolekit)
+                              || gsm_power_manager_can_suspend (power_manager)
+                              || gsm_power_manager_can_hibernate (power_manager);
+        g_object_unref (consolekit);
+        g_object_unref (power_manager);
+
+        return TRUE;
+}
+
+gboolean
 gsm_manager_logout (GsmManager *manager,
                     guint       logout_mode,
                     GError    **error)
