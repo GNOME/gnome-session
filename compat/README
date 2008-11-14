@@ -15,22 +15,6 @@ the new gnome-session features and make everything work.
     it should register for XSMP auto-restart, so that if it crashes,
     gnome-session will restart it.
 
-  * gnome-keyring-daemon-wrapper: As with at-spi-registryd-wrapper,
-    this translates between XSMP and gnome-keyring's own custom
-    protocol. Unlike at-spi-registryd-wrapper, it actually hangs
-    around for the entire session, so that it can force
-    gnome-keyring-daemon to exit when the session ends.
-
-    It also uses gnome-session's new Setenv D-Bus interface to set the
-    GNOME_KEYRING_SOCKET environment variable in gnome-session's (and
-    its children's) environment.
-
-    In the future, gnome-keyring-daemon should just link to
-    EggSMClient (or its replacement) and use the Setenv D-Bus
-    interface itself. (Or perhaps GNOME_KEYRING_SOCKET is unnecessary
-    in the shiny new future since libgnomekeyring uses D-Bus to find
-    the daemon as well.)
-
   * gnome-settings-daemon-helper: This does two things that have
     traditionally been done by gnome-session, but which ought to be
     done by gnome-settings-daemon: setting the screen resolution, and

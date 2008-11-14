@@ -55,7 +55,6 @@ LIBGNOMEUI_REQUIRED=2.2.0
 GTK_REQUIRED=2.11.1
 GLADE_REQUIRED=2.3.6
 DBUS_GLIB_REQUIRED=0.76
-GNOME_KEYRING_REQUIRED=2.21.92
 POLKIT_GNOME_REQUIRED=0.7
 
 dnl ====================================================================
@@ -121,16 +120,6 @@ fi
 
 AC_SUBST(GCONF_SANITY_CHECK)
 PATH=$old_path
-
-dnl ====================================================================
-dnl GNOME Keyring Checks
-dnl ====================================================================
-AC_PATH_PROG(GNOME_KEYRING_DAEMON, gnome-keyring-daemon, no)
-if test x"$GNOME_KEYRING_DAEMON" = xno; then
-  AC_MSG_ERROR([gnome-keyring-daemon executable not found in your path - should be installed with gnome-keyring])
-fi
-AC_SUBST(GNOME_KEYRING_DAEMON)
-PKG_CHECK_MODULES(GNOME_KEYRING, gnome-keyring-1 >= $GNOME_KEYRING_REQUIRED)
 
 dnl ====================================================================
 dnl X development libraries check
@@ -361,7 +350,6 @@ Makefile
 capplet/Makefile
 compat/Makefile
 compat/at-spi-registryd-wrapper.desktop.in.in
-compat/gnome-keyring-daemon-wrapper.desktop.in.in
 compat/gnome-settings-daemon-helper.desktop.in.in
 doc/Makefile
 doc/dbus/Makefile
