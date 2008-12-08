@@ -218,6 +218,12 @@ client_dbus_filter_function (DBusConnection *connection,
                  dbus_message_get_member (message));
 
         if (dbus_message_is_method_call (message, SM_DBUS_CLIENT_PRIVATE_INTERFACE, "EndSessionResponse")) {
+                g_assert (gsm_client_peek_id (GSM_CLIENT (client)) != NULL);
+
+                if (path != NULL && strcmp (path, gsm_client_peek_id (GSM_CLIENT (client))) != 0) {
+                        /* Different object path */
+                        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+                }
                 handle_end_session_response (client, message);
                 return DBUS_HANDLER_RESULT_HANDLED;
         }

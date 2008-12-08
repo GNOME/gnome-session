@@ -1,3 +1,12 @@
+2008-12-08  Ray Strode  <rstrode@redhat.com>
+
+	* gnome-session/gsm-dbus-client.c
+	(client_dbus_filter_function):
+	Add patch from Tim Kosse to address
+	issue with multiple clients trying
+	to use the QueryEndSession dbus api
+	(bug 559469)
+
 2008-12-02  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in: post-release bump to 2.25.3.
