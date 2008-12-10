@@ -1,17 +1,15 @@
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
-	$(DBUS_GLIB_CFLAGS)			\
+	$(COMPAT_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(GTK_CFLAGS)				\
 	-I$(top_srcdir)/egg			\
 	-DAT_SPI_REGISTRYD_DIR=\""$(AT_SPI_REGISTRYD_DIR)"\" \
 	-DDEFAULT_SESSION_DIR=\""$(default_sessiondir)"\" \
 	-DSYSCONFDIR=\""$(sysconfdir)"\"
 
 LDADD =						\
-	$(DBUS_GLIB_LIBS)			\
-	$(GTK_LIBS)
+	$(COMPAT_LIBS)
 
 helperdir = $(pkglibdir)/helpers
 helper_PROGRAMS =				\

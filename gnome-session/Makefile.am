@@ -13,9 +13,7 @@ INCLUDES =					\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
 	$(GNOME_SESSION_CFLAGS)			\
-	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(GTK_CFLAGS)				\
 	$(POLKIT_GNOME_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
@@ -32,7 +30,6 @@ test_inhibit_SOURCES = 	\
 
 test_inhibit_LDADD =				\
 	$(GNOME_SESSION_LIBS)			\
-	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
 test_client_dbus_SOURCES = 	\
@@ -40,7 +37,6 @@ test_client_dbus_SOURCES = 	\
 	$(NULL)
 
 test_client_dbus_LDADD =			\
-	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
 gnome_session_LDADD =				\
@@ -48,7 +44,6 @@ gnome_session_LDADD =				\
 	libgsmutil.la 				\
 	$(top_builddir)/egg/libeggdesktopfile.la \
 	$(GNOME_SESSION_LIBS)			\
-	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(POLKIT_GNOME_LIBS)			\
 	$(XRENDER_LIBS)

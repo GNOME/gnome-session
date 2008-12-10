@@ -4,15 +4,13 @@ INCLUDES =					\
 	-I$(top_srcdir)/egg			\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
-	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(LIBGNOMEUI_CFLAGS)			\
-	$(STARTUP_NOTIFICATION_CFLAGS)
+	$(SPLASH_CFLAGS)
 
 LDADD =						\
 	$(top_builddir)/egg/libeggsmclient-gnome.la \
 	$(GCONF_LIBS)				\
-	$(LIBGNOMEUI_LIBS)
+	$(SPLASH_LIBS)
 
 helperdir = $(pkglibdir)/helpers
 helper_PROGRAMS =				\
@@ -29,8 +27,6 @@ gnome_session_splash_SOURCES =			\
 	splash-window.c				\
 	splash-window.h
 gnome_session_splash_LDADD =			\
-	$(STARTUP_NOTIFICATION_LIBS)		\
-	$(DBUS_GLIB_LIBS)			\
 	$(LDADD)
 
 @INTLTOOL_DESKTOP_RULE@

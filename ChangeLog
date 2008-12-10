@@ -1,5 +1,13 @@
 2008-12-10  Vincent Untz  <vuntz@gnome.org>
 
+	* configure.in:
+	* compat/Makefile.am:
+	* gnome-session/Makefile.am:
+	* splash/Makefile.am: try to sanitize things a bit so we can know which
+	part of gnome-session depends on which library
+
+2008-12-10  Vincent Untz  <vuntz@gnome.org>
+
 	* configure.in: remove TIME_UTILITY and GNOME_SESSION_TARBALL_* since
 	it's unused, use GNOME_COMPILE_WARNINGS instead of some custom stuff
 	to define compiler warning flags
