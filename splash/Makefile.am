@@ -2,6 +2,8 @@ NULL =
 
 INCLUDES =					\
 	-I$(top_srcdir)/egg			\
+	$(WARN_CFLAGS)				\
+	$(DISABLE_DEPRECATED_CFLAGS)		\
 	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	$(LIBGNOMEUI_CFLAGS)			\

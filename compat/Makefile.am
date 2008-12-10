@@ -1,5 +1,6 @@
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
+	$(DISABLE_DEPRECATED_CFLAGS)		\
 	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	$(GTK_CFLAGS)				\

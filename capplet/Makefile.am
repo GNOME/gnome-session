@@ -4,6 +4,7 @@ bin_PROGRAMS = gnome-session-properties
 
 INCLUDES =						\
 	$(WARN_CFLAGS)					\
+	$(DISABLE_DEPRECATED_CFLAGS)			\
 	$(SESSION_PROPERTIES_CFLAGS)			\
 	$(GCONF_CFLAGS)					\
 	-I$(top_srcdir)/egg				\

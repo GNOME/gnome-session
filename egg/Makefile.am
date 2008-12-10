@@ -10,7 +10,8 @@ INCLUDES =                               \
 	$(platform_defines)              \
 	$(EGG_SMCLIENT_CFLAGS)           \
 	$(EGG_LIBGNOMEUI_CFLAGS)	 \
-	$(WARN_CFLAGS)
+	$(WARN_CFLAGS)			 \
+	$(DISABLE_DEPRECATED_CFLAGS)
 
 noinst_LTLIBRARIES =                     \
 	libeggsmclient.la                \

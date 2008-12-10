@@ -568,7 +568,8 @@ add_inhibitor (GsmInhibitDialog *dialog,
                         GsmClient *client;
                         client = GSM_CLIENT (gsm_store_lookup (dialog->priv->clients, client_id));
                         if (client != NULL) {
-                                freeme = name = gsm_client_get_app_name (client);
+                                freeme = gsm_client_get_app_name (client);
+                                name = freeme;
                         }
                 }
         }

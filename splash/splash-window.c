@@ -142,14 +142,16 @@ splash_window_expose_event (GtkWidget      *widget,
                 if (gdk_rectangle_intersect (&event->area,
                                              &si->position,
                                              &exposed)) {
-                        gdk_pixbuf_render_to_drawable (si->scaled, widget->window,
-                                                       widget->style->black_gc,
-                                                       exposed.x - si->position.x,
-                                                       exposed.y - si->position.y,
-                                                       exposed.x, exposed.y,
-                                                       exposed.width, exposed.height,
-                                                       GDK_RGB_DITHER_MAX,
-                                                       exposed.x, exposed.y);
+                        gdk_draw_pixbuf (
+                                widget->window,
+                                widget->style->black_gc,
+                                si->scaled,
+                                exposed.x - si->position.x,
+                                exposed.y - si->position.y,
+                                exposed.x, exposed.y,
+                                exposed.width, exposed.height,
+                                GDK_RGB_DITHER_MAX,
+                                exposed.x, exposed.y);
                 }
         }
 
@@ -241,7 +243,7 @@ splash_window_finalize (GObject *object)
 {
         GsmSplashWindow *splash = (GsmSplashWindow *) object;
 
-        g_object_unref (splash->icon_theme);
+        /* do not unref it: we don't own it */
         splash->icon_theme = NULL;
 
         g_list_foreach (splash->icons, (GFunc) splash_icon_destroy, NULL);

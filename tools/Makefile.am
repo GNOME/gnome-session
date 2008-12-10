@@ -2,6 +2,7 @@ bin_PROGRAMS = gnome-session-save
 
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
+	$(DISABLE_DEPRECATED_CFLAGS)		\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(DBUS_GLIB_CFLAGS)			\
 	$(GCONF_FLAGS)				\

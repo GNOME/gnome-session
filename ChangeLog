@@ -1,3 +1,20 @@
+2008-12-10  Vincent Untz  <vuntz@gnome.org>
+
+	* configure.in: remove TIME_UTILITY and GNOME_SESSION_TARBALL_* since
+	it's unused, use GNOME_COMPILE_WARNINGS instead of some custom stuff
+	to define compiler warning flags
+	* capplet/Makefile.am:
+	* compat/Makefile.am:
+	* egg/Makefile.am:
+	* gnome-session/Makefile.am:
+	* splash/Makefile.am:
+	* tools/Makefile.am: add WARN_CFLAGS/DISABLE_DEPRECATED_CFLAGS
+	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor): fix compilation
+	warning
+	* splash/splash-window.c: (splash_window_expose_event): don't use
+	deprecated API
+	(splash_window_finalize): don't unref something we don't own
+
 2008-12-08  Ray Strode  <rstrode@redhat.com>
 
 	* gnome-session/gsm-dbus-client.c
