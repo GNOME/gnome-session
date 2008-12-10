@@ -30,12 +30,9 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include <libgnome/gnome-program.h>
-#include <libgnomeui/gnome-ui-init.h>
-
 #include <glib/gi18n.h>
 
-#include "eggsmclient-libgnomeui.h"
+#include "eggsmclient.h"
 
 #define SN_API_NOT_YET_FROZEN
 #include <libsn/sn-monitor.h>
@@ -183,23 +180,10 @@ pop_trap_func (SnDisplay *display, Display *xdisplay)
 }
 
 static GdkPixbuf *
-load_pixbuf (const char *filename)
+load_pixbuf (const char *path)
 {
         GdkPixbuf *pixbuf;
         GError    *error = NULL;
-        char      *path;
-
-        if (filename == NULL) {
-                return NULL;
-        }
-
-        path = gnome_program_locate_file (NULL,
-                                          GNOME_FILE_DOMAIN_PIXMAP,
-                                          filename, TRUE,
-                                          NULL);
-        if (path == NULL) {
-                return NULL;
-        }
 
         pixbuf = gdk_pixbuf_new_from_file (path, &error);
         if (pixbuf == NULL) {
@@ -208,9 +192,45 @@ load_pixbuf (const char *filename)
                 g_error_free (error);
         }
 
-        g_free (path);
-
         return pixbuf;
+}
+
+static GdkPixbuf *
+load_pixbuf_relative_path (const char *filename)
+{
+        const char * const *xdg_data_dirs;
+        int                 i;
+
+        if (filename == NULL) {
+                return NULL;
+        }
+
+        if (g_path_is_absolute (filename)) {
+                return load_pixbuf (filename);
+        }
+
+        xdg_data_dirs = g_get_system_data_dirs ();
+
+        for (i = 0; xdg_data_dirs[i] != NULL; i++) {
+                GdkPixbuf *pixbuf;
+                char      *path;
+
+                path = g_build_filename (xdg_data_dirs[i], "pixmaps",
+                                         filename, NULL);
+
+                if (!g_file_test (path, G_FILE_TEST_EXISTS)) {
+                        g_free (path);
+                        continue;
+                }
+
+                pixbuf = load_pixbuf (path);
+                g_free (path);
+
+                if (pixbuf)
+                        return pixbuf;
+        }
+
+        return NULL;
 }
 
 static GdkPixbuf *
@@ -226,14 +246,14 @@ load_splash_pixbuf (void)
                                             NULL);
 
         if (filename != NULL) {
-                pixbuf = load_pixbuf (filename);
+                pixbuf = load_pixbuf_relative_path (filename);
                 g_free (filename);
         } else {
                 pixbuf = NULL;
         }
 
         if (pixbuf == NULL) {
-                pixbuf = load_pixbuf ("splash/gnome-splash.png");
+                pixbuf = load_pixbuf_relative_path ("splash/gnome-splash.png");
         }
 
         return pixbuf;
@@ -254,7 +274,8 @@ setup_splash_window (void)
         background = load_splash_pixbuf ();
         splash_widget = gsm_splash_window_new (background);
         splash = (GsmSplashWindow *)splash_widget;
-        g_object_unref (background);
+        if (background)
+                g_object_unref (background);
 
         /* Set up startup notification monitoring */
         display = gdk_display_get_default ();
@@ -285,16 +306,30 @@ int
 main (int argc, char *argv[])
 {
         GOptionContext *context;
+        GError         *error;
 
-        g_type_init ();
+        bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        textdomain (GETTEXT_PACKAGE);
 
-        context = g_option_context_new (_("- GNOME Splash Screen"));
+        context = g_option_context_new (N_("- GNOME Splash Screen"));
+        g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
+        g_option_context_add_group (context,
+                                    egg_sm_client_get_option_group ());
+        g_option_context_add_group (context, gtk_get_option_group (TRUE));
 
-        gnome_program_init ("gnome-session-splash", VERSION,
-                            EGG_SM_CLIENT_LIBGNOMEUI_MODULE,
-                            argc, argv,
-                            GNOME_PARAM_GOPTION_CONTEXT, context,
-                            NULL);
+        gtk_init (&argc, &argv);
+
+        error = NULL;
+        if (!g_option_context_parse (context, &argc, &argv, &error)) {
+                g_printerr ("Cannot parse arguments: %s\n", error->message);
+                g_error_free (error);
+                g_option_context_free (context);
+
+                return 1;
+        }
+
+        g_option_context_free (context);
 
         g_signal_connect (egg_sm_client_get (),
                           "quit",

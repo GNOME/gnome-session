@@ -1,5 +1,24 @@
 2008-12-10  Vincent Untz  <vuntz@gnome.org>
 
+	Kill libgnomeui dependency.
+
+	* configure.in: remove libgnomeui dep for splash, remove check for
+	libgnomeui for eggsmclient
+	* egg/Makefile.am: remove eggsmclient-libgnomeui.* stuff
+	* egg/eggsmclient-libgnomeui.[ch]: killed
+	* splash/Makefile.am: updated
+	* splash/gnome-session-splash.c: (load_pixbuf): changed to a helper
+	function
+	(load_pixbuf_relative_path): use g_get_system_data_dirs() instead of
+	gnome_program_locate_file()
+	(load_splash_pixbuf): updated
+	(setup_splash_window): don't unref the pixbuf if we didn't have a
+	pixbuf
+	(main): setup gettext, use GOption + gtk_init() instead of
+	gnome_program_init()
+
+2008-12-10  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/Makefile.am: fix build
 
 2008-12-10  Vincent Untz  <vuntz@gnome.org>

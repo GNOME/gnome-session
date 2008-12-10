@@ -9,7 +9,6 @@ INCLUDES =                               \
 	-DG_LOG_DOMAIN=\""EggSMClient"\" \
 	$(platform_defines)              \
 	$(EGG_SMCLIENT_CFLAGS)           \
-	$(EGG_LIBGNOMEUI_CFLAGS)	 \
 	$(WARN_CFLAGS)			 \
 	$(DISABLE_DEPRECATED_CFLAGS)
 
@@ -28,14 +27,11 @@ libeggsmclient_la_SOURCES =              \
 	$(platform_sources)
 
 libeggsmclient_gnome_la_LIBADD =         \
-	$(EGG_LIBGNOMEUI_LIBS)           \
 	$(libeggsmclient_la_LIBADD)
 
 libeggsmclient_gnome_la_SOURCES =        \
 	eggsmclient.c                    \
 	eggsmclient.h                    \
-	eggsmclient-libgnomeui.c         \
-	eggsmclient-libgnomeui.h         \
 	eggsmclient-private.h            \
 	$(platform_sources)
 

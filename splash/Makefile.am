@@ -2,14 +2,13 @@ NULL =
 
 INCLUDES =					\
 	-I$(top_srcdir)/egg			\
+	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
-	$(GCONF_CFLAGS)				\
 	$(SPLASH_CFLAGS)
 
 LDADD =						\
 	$(top_builddir)/egg/libeggsmclient-gnome.la \
-	$(GCONF_LIBS)				\
 	$(SPLASH_LIBS)
 
 helperdir = $(pkglibdir)/helpers
