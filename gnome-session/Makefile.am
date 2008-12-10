@@ -37,6 +37,7 @@ test_client_dbus_SOURCES = 	\
 	$(NULL)
 
 test_client_dbus_LDADD =			\
+	$(DBUS_GLIB_LIBS)			\
 	$(NULL)
 
 gnome_session_LDADD =				\
