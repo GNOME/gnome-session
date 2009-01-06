@@ -636,6 +636,7 @@ gsm_xsmp_client_disconnect (GsmXSMPClient *client)
         }
 
         if (client->priv->ice_connection != NULL) {
+                IceSetShutdownNegotiation (client->priv->ice_connection, FALSE);
                 IceCloseConnection (client->priv->ice_connection);
         }
 
