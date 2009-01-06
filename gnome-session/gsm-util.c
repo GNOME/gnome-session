@@ -75,6 +75,11 @@ gsm_util_get_app_dirs ()
 
         dirs = g_ptr_array_new ();
 
+        g_ptr_array_add (dirs,
+			 g_build_filename (g_get_user_data_dir (),
+					   "applications",
+					   NULL));
+
         system_data_dirs = g_get_system_data_dirs ();
         for (i = 0; system_data_dirs[i]; i++) {
                 g_ptr_array_add (dirs,
