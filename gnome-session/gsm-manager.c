@@ -418,18 +418,6 @@ on_phase_timeout (GsmManager *manager)
         return FALSE;
 }
 
-static void
-on_app_exited (GsmApp     *app,
-               GsmManager *manager)
-{
-        if (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION) {
-                /* Applications from Initialization phase are considered
-                 * registered when they exit normally. This is because
-                 * they are expected to just do "something" and exit */
-                app_registered (app, manager);
-        }
-}
-
 static gboolean
 _start_app (const char *id,
             GsmApp     *app,
@@ -468,12 +456,11 @@ _start_app (const char *id,
                 goto out;
         }
 
-        g_signal_connect (app,
-                          "exited",
-                          G_CALLBACK (on_app_exited),
-                          manager);
-
         if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                g_signal_connect (app,
+                                  "exited",
+                                  G_CALLBACK (app_registered),
+                                  manager);
                 g_signal_connect (app,
                                   "registered",
                                   G_CALLBACK (app_registered),

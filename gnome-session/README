@@ -45,9 +45,7 @@ For each startup phase, GsmSession launches the appropriate GsmApps.
 When apps connect to the XSMP or D-Bus servers, GsmClients are created
 and added to the session. The session tries to map these clients to
 GsmApps. GsmApps signal when they register (via XSMP or SN) or exit,
-and GsmSession uses this to decide when the phase is complete. (NOTE:
-THE GsmClient->GsmApp MAPPING ISN'T WRITTEN YET. PHASES CAN CURRENTLY
-ONLY END BY TIMING OUT.)
+and GsmSession uses this to decide when the phase is complete.
 
 FIXME: after starting the session, we need to run the DiscardCommands
 of resumed apps.
