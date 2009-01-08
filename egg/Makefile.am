@@ -2,13 +2,18 @@ platform_defines = -DEGG_SM_CLIENT_BACKEND_XSMP
 platform_ltlibraries =                   \
 	libeggdesktopfile.la             \
 	libeggsmclient-gnome.la
-platform_libs = libeggdesktopfile.la -lSM -lICE
+platform_libs = 			\
+	libeggdesktopfile.la		\
+	$(SM_LIBS)			\
+	$(ICE_LIBS)
 platform_sources = eggsmclient-xsmp.c
 
 INCLUDES =                               \
 	-DG_LOG_DOMAIN=\""EggSMClient"\" \
 	$(platform_defines)              \
 	$(EGG_SMCLIENT_CFLAGS)           \
+	$(SM_LIBS)			 \
+	$(ICE_LIBS)			 \
 	$(WARN_CFLAGS)			 \
 	$(DISABLE_DEPRECATED_CFLAGS)
 

@@ -12,6 +12,8 @@ noinst_PROGRAMS = 		\
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
+	$(SM_CFLAGS)				\
+	$(ICE_CFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	$(POLKIT_GNOME_CFLAGS)			\
@@ -41,9 +43,10 @@ test_client_dbus_LDADD =			\
 	$(NULL)
 
 gnome_session_LDADD =				\
-	-lSM -lICE				\
 	libgsmutil.la 				\
 	$(top_builddir)/egg/libeggdesktopfile.la \
+	$(SM_LIBS)				\
+	$(ICE_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(POLKIT_GNOME_LIBS)			\

@@ -9,7 +9,8 @@ INCLUDES =					\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"
 
 gnome_session_save_LDADD =			\
-	-lSM -lICE				\
+	$(SM_LIBS)				\
+	$(ICE_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)
