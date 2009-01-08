@@ -1,5 +1,13 @@
 2009-01-08  Lucas Rocha  <lucasr@gnome.org>
 
+	Bug 551766 – Automagic dependency on PolicyKit in configure.in
+
+	* configure.in: added support for explicit --enable-polkit and
+	--disable-polkit. The default (if nothing is specified) is auto.
+	Patch by Nirbheek Chauhan.
+
+2009-01-08  Lucas Rocha  <lucasr@gnome.org>
+
 	Bug 555369 – gnome-session-properties work improperly when key
 	X-GNOME-Autostart-enabled=false in .desktop
 
