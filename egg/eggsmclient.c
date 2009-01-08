@@ -189,6 +189,10 @@ static GOptionEntry entries[] = {
   { "sm-client-id", 0, 0,
     G_OPTION_ARG_STRING, &sm_client_id,
     N_("Specify session management ID"), N_("ID") },
+  /* Compatibility options */
+  { "sm-disable", 0, G_OPTION_FLAG_HIDDEN,
+    G_OPTION_ARG_NONE, &sm_client_disable,
+    NULL, NULL },
   { NULL }
 };
 
@@ -263,7 +267,7 @@ egg_sm_client_get_option_group (void)
  *    user is logging out, etc), but will request to not be
  *    automatically restarted with saved state in future sessions.
  *
- *    %EGG_SM_CLIENT_MODE_NORMAL: The default. #EggSMClient will
+ *    %EGG_SM_CLIENT_MODE_NORMAL: The default. #EggSMCLient will
  *    function normally.
  *
  * This must be called before the application's main loop begins.

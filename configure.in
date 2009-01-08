@@ -104,11 +104,6 @@ if test "x$have_polkit" = "xyes"; then
   AC_DEFINE(HAVE_POLKIT_GNOME, [1], [whether PolKit GNOME was found])
 fi
 
-AC_CHECK_LIB(gdk-x11-2.0, gdk_x11_display_broadcast_startup_message, have_startup_message=yes, have_startup_message=no, "$GTK_LIBS")
-if test "x$have_startup_message" = "xyes"; then
-  AC_DEFINE([HAVE_GDK_X11_DISPLAY_BROADCAST_STARTUP_MESSAGE],[1],[Define to compile with broadcast startup message support])
-fi
-
 dnl ====================================================================
 dnl GConf Checks
 dnl ====================================================================
