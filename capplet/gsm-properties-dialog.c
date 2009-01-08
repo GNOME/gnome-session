@@ -582,8 +582,9 @@ write_desktop_file (EggDesktopFile *desktop_file,
 }
 
 static gboolean
-enable_app (GsmPropertiesDialog *dialog,
-            GtkTreeIter         *iter)
+toggle_app (GsmPropertiesDialog *dialog,
+            GtkTreeIter         *iter,
+            gboolean             enabled)
 {
         EggDesktopFile *desktop_file;
         GFile          *source;
@@ -592,19 +593,13 @@ enable_app (GsmPropertiesDialog *dialog,
         char           *path;
         char           *name;
         char           *comment;
-        gboolean        enabled;
 
         gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->list_store),
                             iter,
-                            STORE_COL_ENABLED, &enabled,
                             STORE_COL_NAME, &name,
                             STORE_COL_COMMENT, &comment,
                             STORE_COL_DESKTOP_FILE, &desktop_file,
                             -1);
-
-        if (enabled) {
-                return TRUE;
-        }
 
         source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
@@ -616,6 +611,7 @@ enable_app (GsmPropertiesDialog *dialog,
                 EggDesktopFile *system_desktop_file;
                 char           *original_name;
                 char           *original_comment;
+                gboolean        original_enabled;
 
                 system_desktop_file = egg_desktop_file_new (system_path, NULL);
 
@@ -625,8 +621,17 @@ enable_app (GsmPropertiesDialog *dialog,
                 original_comment = egg_desktop_file_get_locale_string (system_desktop_file,
                                                                        "Comment", NULL, NULL);
 
+                if (egg_desktop_file_has_key (system_desktop_file,
+                                              "X-GNOME-Autostart-enabled", NULL)) {
+                        original_enabled = egg_desktop_file_get_boolean (system_desktop_file,
+                                                                         "X-GNOME-Autostart-enabled", NULL);
+                } else {
+                        original_enabled = TRUE;
+                }
+
                 if (REALLY_IDENTICAL_STRING (name, original_name) &&
-                    REALLY_IDENTICAL_STRING (comment, original_comment)) {
+                    REALLY_IDENTICAL_STRING (comment, original_comment) &&
+                    (enabled == original_enabled)) {
                         char *user_file =
                                 g_build_filename (g_get_user_config_dir (),
                                                   "autostart", basename, NULL);
@@ -639,47 +644,18 @@ enable_app (GsmPropertiesDialog *dialog,
 
                         update_desktop_file (dialog->priv->list_store, iter, system_desktop_file);
                 } else {
-                        write_desktop_file (desktop_file, dialog->priv->list_store, iter, TRUE);
+                        write_desktop_file (desktop_file, dialog->priv->list_store, iter, enabled);
                         egg_desktop_file_free (system_desktop_file);
                 }
 
                 g_free (original_name);
                 g_free (original_comment);
         } else {
-                write_desktop_file (desktop_file, dialog->priv->list_store, iter, TRUE);
+                write_desktop_file (desktop_file, dialog->priv->list_store, iter, enabled);
         }
 
         g_free (name);
         g_free (comment);
-        g_free (basename);
-
-        return TRUE;
-}
-
-static gboolean
-disable_app (GsmPropertiesDialog *dialog,
-             GtkTreeIter         *iter)
-{
-        EggDesktopFile *desktop_file;
-        const char     *source;
-        char           *basename;
-        gboolean        enabled;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->list_store), iter,
-                            STORE_COL_ENABLED, &enabled,
-                            STORE_COL_DESKTOP_FILE, &desktop_file,
-                            -1);
-
-        if (!enabled) {
-                return TRUE;
-        }
-
-        source = egg_desktop_file_get_source (desktop_file);
-
-        basename = g_path_get_basename (source);
-
-        write_desktop_file (desktop_file, dialog->priv->list_store, iter, FALSE);
-
         g_free (basename);
 
         return TRUE;
@@ -708,20 +684,11 @@ on_startup_enabled_toggled (GtkCellRendererToggle *cell_renderer,
         active = !active;
         gtk_cell_renderer_toggle_set_active (cell_renderer, active);
 
-        if (active) {
-                if (enable_app (dialog, &iter)) {
-                        gtk_list_store_set (dialog->priv->list_store,
-                                            &iter,
-                                            STORE_COL_ENABLED, TRUE,
-                                            -1);
-                }
-        } else {
-                if (disable_app (dialog, &iter)) {
-                        gtk_list_store_set (dialog->priv->list_store,
-                                            &iter,
-                                            STORE_COL_ENABLED, FALSE,
-                                            -1);
-                }
+        if (toggle_app (dialog, &iter, active)) {
+                gtk_list_store_set (dialog->priv->list_store,
+                                    &iter,
+                                    STORE_COL_ENABLED, active,
+                                    -1);
         }
 }
 
