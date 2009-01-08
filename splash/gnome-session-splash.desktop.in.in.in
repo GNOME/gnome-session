@@ -3,6 +3,7 @@ Type=Application
 _Name=GNOME Splash Screen
 Exec=@helperdir@/gnome-session-splash
 OnlyShowIn=GNOME;
+NoDisplay=true
 AutostartCondition=GNOME /apps/gnome-session/options/show_splash_screen
 X-GNOME-Autostart-Phase=Panel
 X-GNOME-Provides=splash
