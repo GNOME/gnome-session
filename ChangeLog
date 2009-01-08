@@ -1,5 +1,13 @@
 2009-01-08  Lucas Rocha  <lucasr@gnome.org>
 
+	Bug 559145 – Double-click startup program entry to open edit dialog
+
+	* capplet/gsm-properties-dialog.c (setup_dialog, on_row_activated):
+	open the edit app dialog when activating the respective entry in the
+	view.
+
+2009-01-08  Lucas Rocha  <lucasr@gnome.org>
+
 	Bug 552218 – typo: "unable connect"
 
 	* gnome-session/gsm-util.c: fix typo.

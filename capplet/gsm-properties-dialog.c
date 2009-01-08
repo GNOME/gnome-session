@@ -1164,6 +1164,15 @@ on_edit_app_clicked (GtkWidget           *widget,
 }
 
 static void
+on_row_activated (GtkTreeView         *tree_view,
+                  GtkTreePath         *path,
+                  GtkTreeViewColumn   *column,
+                  GsmPropertiesDialog *dialog)  
+{
+        on_edit_app_clicked (NULL, dialog);
+}
+
+static void
 on_autosave_value_notify (GConfClient         *client,
                           guint                id,
                           GConfEntry          *entry,
@@ -1245,6 +1254,10 @@ setup_dialog (GsmPropertiesDialog *dialog)
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (dialog->priv->list_store));
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
+        g_signal_connect (treeview,
+                          "row-activated",
+                          G_CALLBACK (on_row_activated),
+                          dialog);
 
         selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
         gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
