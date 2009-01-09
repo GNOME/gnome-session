@@ -136,15 +136,16 @@ static gboolean
 append_app (GsmPropertiesDialog *dialog,
             EggDesktopFile      *desktop_file)
 {
-        GtkTreeIter iter;
-        GFile      *source;
-        char       *basename;
-        char       *description;
-        char       *name;
-        char       *comment;
-        char       *command;
-        char       *icon_name;
-        gboolean    enabled = TRUE;
+        GtkIconTheme *theme;
+        GtkTreeIter   iter;
+        GFile        *source;
+        char         *basename;
+        char         *description;
+        char         *name;
+        char         *comment;
+        char         *command;
+        char         *icon_name;
+        gboolean      enabled = TRUE;
 
         source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
 
@@ -188,7 +189,14 @@ append_app (GsmPropertiesDialog *dialog,
                                                      "Icon", NULL);
         }
 
-        if (icon_name == NULL || *icon_name == '\0') {
+        theme = gtk_icon_theme_get_default ();
+
+        if (icon_name == NULL || *icon_name == '\0' ||
+            !gtk_icon_theme_has_icon (theme, icon_name)) {
+                if (icon_name) {
+                        g_free (icon_name);
+                }
+
                 icon_name = g_strdup (STARTUP_APP_ICON);
         }
 
