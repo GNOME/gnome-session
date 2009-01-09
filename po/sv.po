@@ -1,18 +1,18 @@
 # Swedish messages for gnome-session.
-# Copyright (C) 1998-2008 Free Software Foundation, Inc.
-# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008.
+# Copyright (C) 1998-2009 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998.
 # Anders Carlsson <anders.carlsson@tordata.se>, 1999.
 # Andreas Hyden  <a.hyden@cyberpoint.se>, 2000.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 22:41+0100\n"
-"PO-Revision-Date: 2008-11-24 22:41+0100\n"
+"POT-Creation-Date: 2009-01-09 21:52+0100\n"
+"PO-Revision-Date: 2009-01-09 21:52+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -36,31 +36,31 @@ msgstr "Redigera startprogram"
 msgid "No description"
 msgstr "Ingen beskrivning"
 
-#: ../capplet/gsm-properties-dialog.c:977
+#: ../capplet/gsm-properties-dialog.c:952
 msgid "The name of the startup program cannot be empty"
 msgstr "Namnet för startprogrammet får inte vara blankt"
 
-#: ../capplet/gsm-properties-dialog.c:981
+#: ../capplet/gsm-properties-dialog.c:956
 msgid "The startup command cannot be empty"
 msgstr "Startprogrammets kommando får inte vara blankt"
 
-#: ../capplet/gsm-properties-dialog.c:987
+#: ../capplet/gsm-properties-dialog.c:962
 msgid "The startup command is not valid"
 msgstr "Startprogrammets kommando är inte giltigt"
 
-#: ../capplet/gsm-properties-dialog.c:1291
+#: ../capplet/gsm-properties-dialog.c:1279
 msgid "Enabled"
 msgstr "Aktiverat"
 
-#: ../capplet/gsm-properties-dialog.c:1304
+#: ../capplet/gsm-properties-dialog.c:1292
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:1315
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:1465
+#: ../capplet/gsm-properties-dialog.c:1453
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
 msgstr "Sessionsinställningar"
@@ -181,7 +181,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Några program är fortfarande igång:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:633
 msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
 msgstr "Väntar på att programmet ska köras färdigt.  Avbryta program kan innebära att du förlorar data."
 
@@ -239,38 +239,30 @@ msgstr "Filen är inte en giltig .desktop-fil"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Okänd version i skrivbordsfil \"%s\""
 
-#: ../egg/eggdesktopfile.c:962
+#: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
 msgstr "Startar %s"
 
-#: ../egg/eggdesktopfile.c:1096
+#: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Programmet tar inte emot dokument på kommandoraden"
 
-#: ../egg/eggdesktopfile.c:1164
+#: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Okänt startaralternativ: %d"
 
-#: ../egg/eggdesktopfile.c:1372
+#: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Kan inte skicka dokument-URI:er till en \"Type=Link\"-skrivbordspost"
 
-#: ../egg/eggdesktopfile.c:1391
+#: ../egg/eggdesktopfile.c:1392
 #, c-format
 msgid "Not a launchable item"
 msgstr "Inte ett startbart objekt"
-
-#: ../egg/eggsmclient-libgnomeui.c:102
-msgid "Session management"
-msgstr "Sessionshantering"
-
-#: ../egg/eggsmclient-libgnomeui.c:136
-msgid "GNOME GUI Library + EggSMClient"
-msgstr "GNOME-bibliotek för grafiskt gränssnitt + EggSMClient"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
@@ -292,11 +284,11 @@ msgstr "Ange sessionshanterings-id"
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:241
+#: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
 msgstr "Alternativ för sessionshantering"
 
-#: ../egg/eggsmclient.c:242
+#: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
 msgstr "Visa alternativ för sessionshantering"
 
@@ -314,51 +306,51 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Ikonen \"%s\" hittades inte"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:580
+#: ../gnome-session/gsm-inhibit-dialog.c:581
 msgid "Unknown"
 msgstr "Okänt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid "A program is still running:"
 msgstr "Ett program körs fortfarande:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:635
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid "Some programs are still running:"
 msgstr "Några program körs fortfarande:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:637
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "Väntar på att programmen ska köras färdigt.  Avbryta dessa program kan innebära att du förlorar data."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:864
+#: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
 msgstr "Växla användare ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:867
+#: ../gnome-session/gsm-inhibit-dialog.c:868
 msgid "Logout Anyway"
 msgstr "Logga ut ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:870
+#: ../gnome-session/gsm-inhibit-dialog.c:871
 msgid "Suspend Anyway"
 msgstr "Försätt i vänteläge ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:873
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Hibernate Anyway"
 msgstr "Försätt i viloläge ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:876
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Shutdown Anyway"
 msgstr "Stäng av ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Reboot Anyway"
 msgstr "Starta om ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Lock Screen"
 msgstr "Lås skärmen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -424,12 +416,12 @@ msgstr "Starta _om"
 msgid "_Shut Down"
 msgstr "St_äng av"
 
-#: ../gnome-session/gsm-manager.c:924
-#: ../gnome-session/gsm-manager.c:1541
+#: ../gnome-session/gsm-manager.c:911
+#: ../gnome-session/gsm-manager.c:1528
 msgid "Not responding"
 msgstr "Svarar inte"
 
-#: ../gnome-session/gsm-xsmp-client.c:988
+#: ../gnome-session/gsm-xsmp-client.c:989
 msgid "This program is blocking log out."
 msgstr "Detta program blockerar en utloggning."
 
@@ -443,9 +435,9 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:139
+#: ../gnome-session/gsm-util.c:143
 #, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
+msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
 #: ../gnome-session/main.c:504
@@ -468,7 +460,7 @@ msgstr "Läs inte in användarspecifika program"
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
 
-#: ../splash/gnome-session-splash.c:291
+#: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME-startbild"
 
@@ -521,6 +513,10 @@ msgstr "Kunde inte ansluta till sessionshanteraren"
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
 
+#~ msgid "Session management"
+#~ msgstr "Sessionshantering"
+#~ msgid "GNOME GUI Library + EggSMClient"
+#~ msgstr "GNOME-bibliotek för grafiskt gränssnitt + EggSMClient"
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "Omslag för GNOME-nyckelringsdemon"
 #~ msgid "Play logout sound instead of login"
