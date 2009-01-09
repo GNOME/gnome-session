@@ -1,3 +1,11 @@
+2009-01-09  Lucas Rocha  <lucasr@gnome.org>
+
+	550726 – Apps with an icon not existing in the icon theme displayed
+	with no icon
+
+	* capplet (append_app): check if defined icon name actually exists
+	in the icon theme. Use default icon otherwise.
+
 2009-01-06  Lucas Rocha  <lucasr@gnome.org>
 
 	Bug 557634 – gnome-session doesn't inspect $XDG_DATA_HOME/applications
