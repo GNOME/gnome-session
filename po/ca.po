@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-19 20:43+0200\n"
-"PO-Revision-Date: 2008-10-19 13:33+0200\n"
+"POT-Creation-Date: 2009-01-10 20:27+0100\n"
+"PO-Revision-Date: 2009-01-10 15:10+0100\n"
 "Last-Translator: David Planella <david.planella@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -35,31 +35,31 @@ msgstr "Edita el programa d'inici"
 msgid "No description"
 msgstr "Sense descripció"
 
-#: ../capplet/gsm-properties-dialog.c:977
+#: ../capplet/gsm-properties-dialog.c:952
 msgid "The name of the startup program cannot be empty"
 msgstr "El nom del programa d'inici no pot ser buit"
 
-#: ../capplet/gsm-properties-dialog.c:981
+#: ../capplet/gsm-properties-dialog.c:956
 msgid "The startup command cannot be empty"
 msgstr "L'ordre d'inici no pot ser buida"
 
-#: ../capplet/gsm-properties-dialog.c:987
+#: ../capplet/gsm-properties-dialog.c:962
 msgid "The startup command is not valid"
 msgstr "L'ordre d'inici no és vàlida"
 
-#: ../capplet/gsm-properties-dialog.c:1291
+#: ../capplet/gsm-properties-dialog.c:1279
 msgid "Enabled"
 msgstr "Habilitat"
 
-#: ../capplet/gsm-properties-dialog.c:1304
+#: ../capplet/gsm-properties-dialog.c:1292
 msgid "Icon"
 msgstr "Icona"
 
-#: ../capplet/gsm-properties-dialog.c:1315
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:1465
+#: ../capplet/gsm-properties-dialog.c:1453
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
 msgstr "Preferències de les sessions"
@@ -85,10 +85,6 @@ msgstr ""
 #: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
 msgid "AT SPI Registry Wrapper"
 msgstr "Embolcall del servei de registre de l'accessibilitat (AT SPI)"
-
-#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
-msgid "GNOME Keyring Daemon Wrapper"
-msgstr "Embolcall del dimoni de l'anell de claus  del GNOME"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -229,7 +225,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Hi ha alguns programes encara en execució:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:633
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -294,41 +290,32 @@ msgstr "Aquest no és un fitxer .desktop vàlid"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "No es reconeix la versió «%s» del fitxer d'escriptori"
 
-#: ../egg/eggdesktopfile.c:962
+#: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
 msgstr "S'està iniciant %s"
 
-#: ../egg/eggdesktopfile.c:1096
+#: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "L'aplicació no accepta documents des de la línia d'ordres"
 
-#: ../egg/eggdesktopfile.c:1164
+#: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "No és reconeix l'opció de llançament: %d"
 
-#: ../egg/eggdesktopfile.c:1372
+#: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
 "No es poden passar URI de document a una entrada d'escriptori de tipus "
 "«Type=Link»"
 
-#: ../egg/eggdesktopfile.c:1391
+#: ../egg/eggdesktopfile.c:1392
 #, c-format
 msgid "Not a launchable item"
 msgstr "No és un element executable"
-
-#: ../egg/eggsmclient-libgnomeui.c:102
-msgid "Session management"
-msgstr "Gestió de sessions"
-
-#: ../egg/eggsmclient-libgnomeui.c:136
-msgid "GNOME GUI Library + EggSMClient"
-msgstr ""
-"Biblioteca de la interfìcie gràfica d'usuari del GNOME amb l'EggSMClient"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
@@ -350,11 +337,11 @@ msgstr "Especifiqueu l'identificador de gestió de la sessió"
 msgid "ID"
 msgstr "IDENTIFICADOR"
 
-#: ../egg/eggsmclient.c:241
+#: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
 msgstr "Opcions de gestió de la sessió"
 
-#: ../egg/eggsmclient.c:242
+#: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
 msgstr "Mostra les opcions de gestió de la sessió"
 
@@ -372,19 +359,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "No s'ha trobat la icona «%s»"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:580
+#: ../gnome-session/gsm-inhibit-dialog.c:581
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid "A program is still running:"
 msgstr "Hi ha un programa que encara s'està executant:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:635
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid "Some programs are still running:"
 msgstr "Hi ha alguns programes que encara s'estan executant:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:637
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -392,35 +379,35 @@ msgstr ""
 "S'està esperant que finalitzin alguns programes. Si els interrompeu és "
 "possible que perdeu les dades no desades."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:864
+#: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
 msgstr "Canvia d'usuari de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:867
+#: ../gnome-session/gsm-inhibit-dialog.c:868
 msgid "Logout Anyway"
 msgstr "Surt de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:870
+#: ../gnome-session/gsm-inhibit-dialog.c:871
 msgid "Suspend Anyway"
 msgstr "Atura temporalment de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:873
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Hibernate Anyway"
 msgstr "Hiberna de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:876
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Shutdown Anyway"
 msgstr "Atura de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Reboot Anyway"
 msgstr "Reinicia de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Lock Screen"
 msgstr "Bloca la pantalla"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -486,11 +473,11 @@ msgstr "_Reinicia"
 msgid "_Shut Down"
 msgstr "_Atura l'ordinador"
 
-#: ../gnome-session/gsm-manager.c:924 ../gnome-session/gsm-manager.c:1541
+#: ../gnome-session/gsm-manager.c:911 ../gnome-session/gsm-manager.c:1528
 msgid "Not responding"
 msgstr "No està responent"
 
-#: ../gnome-session/gsm-xsmp-client.c:988
+#: ../gnome-session/gsm-xsmp-client.c:989
 msgid "This program is blocking log out."
 msgstr "Aquest programa està blocant la sortida."
 
@@ -508,11 +495,11 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:139
+#: ../gnome-session/gsm-util.c:143
 #, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
+msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
-"No s'ha pogut iniciar la sessió d'entrada ni connectar amb el servidor X"
+"No s'ha pogut iniciar la sessió d'entrada (ni connectar amb el servidor X)"
 
 #: ../gnome-session/main.c:504
 msgid "Override standard autostart directories"
@@ -534,7 +521,7 @@ msgstr "No carreguis les aplicacions especificades per l'usuari"
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
-#: ../splash/gnome-session-splash.c:291
+#: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
 msgstr "- pantalla de presentació del GNOME"
 
@@ -586,6 +573,16 @@ msgstr "No s'ha pogut connectar al gestor de sessions"
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#~ msgid "GNOME Keyring Daemon Wrapper"
+#~ msgstr "Embolcall del dimoni de l'anell de claus  del GNOME"
+
+#~ msgid "Session management"
+#~ msgstr "Gestió de sessions"
+
+#~ msgid "GNOME GUI Library + EggSMClient"
+#~ msgstr ""
+#~ "Biblioteca de la interfìcie gràfica d'usuari del GNOME amb l'EggSMClient"
 
 #~ msgid "Allow TCP connections"
 #~ msgstr "Permet connexions TCP"
