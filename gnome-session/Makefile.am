@@ -50,7 +50,9 @@ gnome_session_LDADD =				\
 	$(GNOME_SESSION_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(POLKIT_GNOME_LIBS)			\
-	$(XRENDER_LIBS)
+	$(XRENDER_LIBS)				\
+	$(XTEST_LIBS)				\
+	$(NULL)
 
 gnome_session_SOURCES =				\
 	gsm-app.h				\
@@ -75,6 +77,10 @@ gnome_session_SOURCES =				\
 	gsm-inhibit-dialog.c			\
 	gsm-power-manager.h			\
 	gsm-power-manager.c			\
+	gs-idle-monitor.h			\
+	gs-idle-monitor.c			\
+	gsm-presence.h				\
+	gsm-presence.c				\
 	gsm-gconf.c				\
 	gsm-gconf.h				\
 	gdm.h					\
@@ -120,10 +126,14 @@ gsm-app-glue.h: org.gnome.SessionManager.App.xml Makefile.am
 gsm-inhibitor-glue.h: org.gnome.SessionManager.Inhibitor.xml Makefile.am
 	dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/org.gnome.SessionManager.Inhibitor.xml
 
+gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
+	dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
+
 BUILT_SOURCES =			\
 	gsm-marshal.c           \
 	gsm-marshal.h           \
 	gsm-manager-glue.h	\
+	gsm-presence-glue.h	\
 	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\
 	gsm-app-glue.h		\
@@ -141,6 +151,7 @@ EXTRA_DIST =						\
 	org.gnome.SessionManager.Client.xml		\
 	org.gnome.SessionManager.ClientPrivate.xml	\
 	org.gnome.SessionManager.Inhibitor.xml		\
+	org.gnome.SessionManager.Presence.xml		\
 	$(NULL)
 
 MAINTAINERCLEANFILES =                  \

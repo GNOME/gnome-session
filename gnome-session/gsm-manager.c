@@ -46,6 +46,7 @@
 
 #include "gsm-store.h"
 #include "gsm-inhibitor.h"
+#include "gsm-presence.h"
 
 #include "gsm-xsmp-client.h"
 #include "gsm-dbus-client.h"
@@ -78,6 +79,7 @@ struct GsmManagerPrivate
         GsmStore               *clients;
         GsmStore               *inhibitors;
         GsmStore               *apps;
+        GsmPresence            *presence;
 
         /* Current status */
         GsmManagerPhase         phase;
@@ -358,7 +360,7 @@ end_phase (GsmManager *manager)
 
         if (manager->priv->phase == GSM_MANAGER_PHASE_EXIT) {
                 gtk_main_quit ();
-        } else if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+        } else {
                 start_phase (manager);
         }
 }
@@ -598,6 +600,24 @@ gsm_manager_is_logout_inhibited (GsmManager *manager)
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
                                                     (GsmStoreFunc)inhibitor_has_flag,
                                                     GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
+        if (inhibitor == NULL) {
+                return FALSE;
+        }
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_is_idle_inhibited (GsmManager *manager)
+{
+        GsmInhibitor *inhibitor;
+
+        if (manager->priv->inhibitors == NULL) {
+                return FALSE;
+        }
+
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)inhibitor_has_flag,
+                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_IDLE));
         if (inhibitor == NULL) {
                 return FALSE;
         }
@@ -955,6 +975,16 @@ do_phase_query_end_session (GsmManager *manager)
 }
 
 static void
+update_idle (GsmManager *manager)
+{
+        if (gsm_manager_is_idle_inhibited (manager)) {
+                gsm_presence_set_idle_enabled (manager->priv->presence, FALSE);
+        } else {
+                gsm_presence_set_idle_enabled (manager->priv->presence, TRUE);
+        }
+}
+
+static void
 start_phase (GsmManager *manager)
 {
 
@@ -987,6 +1017,7 @@ start_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
                 g_signal_emit (manager, signals[SESSION_RUNNING], 0);
+                update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
                 do_phase_query_end_session (manager);
@@ -1721,6 +1752,7 @@ on_store_inhibitor_added (GsmStore   *store,
 {
         g_debug ("GsmManager: Inhibitor added: %s", id);
         g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
+        update_idle (manager);
 }
 
 static void
@@ -1730,6 +1762,7 @@ on_store_inhibitor_removed (GsmStore   *store,
 {
         g_debug ("GsmManager: Inhibitor removed: %s", id);
         g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
+        update_idle (manager);
 }
 
 static void
@@ -1765,6 +1798,11 @@ gsm_manager_dispose (GObject *object)
 
                 g_object_unref (manager->priv->inhibitors);
                 manager->priv->inhibitors = NULL;
+        }
+
+        if (manager->priv->presence != NULL) {
+                g_object_unref (manager->priv->presence);
+                manager->priv->presence = NULL;
         }
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
@@ -1891,6 +1929,8 @@ gsm_manager_init (GsmManager *manager)
                           manager);
 
         manager->priv->apps = gsm_store_new ();
+
+        manager->priv->presence = gsm_presence_new ();
 }
 
 static void

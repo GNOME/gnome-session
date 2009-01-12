@@ -1,3 +1,36 @@
+2009-01-11  William Jon McCann  <jmccann@redhat.com>
+
+	* configure.in:
+	* gnome-session/Makefile.am:
+	* gnome-session/gs-idle-monitor.c (_xsyncvalue_to_int64),
+	(_int64_to_xsyncvalue), (gs_idle_monitor_dispose), (_find_alarm),
+	(find_watch_for_alarm), (send_fake_event), (gs_idle_monitor_reset),
+	(handle_alarm_notify_event), (xevent_filter), (init_xsync),
+	(_init_xtest), (gs_idle_monitor_constructor),
+	(gs_idle_monitor_class_init), (get_next_watch_serial),
+	(idle_monitor_watch_new), (idle_monitor_watch_free),
+	(gs_idle_monitor_init), (gs_idle_monitor_finalize),
+	(gs_idle_monitor_new), (_xsync_alarm_set),
+	(gs_idle_monitor_add_watch), (gs_idle_monitor_remove_watch):
+	* gnome-session/gs-idle-monitor.h:
+	* gnome-session/gsm-inhibitor.h:
+	* gnome-session/gsm-manager.c (end_phase),
+	(gsm_manager_is_idle_inhibited), (update_idle), (start_phase),
+	(on_store_inhibitor_added), (on_store_inhibitor_removed),
+	(gsm_manager_dispose), (gsm_manager_init):
+	* gnome-session/gsm-presence.c (gsm_presence_error_quark),
+	(gsm_presence_error_get_type), (register_presence),
+	(gsm_presence_constructor), (gsm_presence_init),
+	(gsm_presence_get_status_text), (gsm_presence_get_status),
+	(on_idle_timeout), (gsm_presence_set_idle_enabled),
+	(gsm_presence_set_status_text), (gsm_presence_set_status),
+	(gsm_presence_set_idle_timeout), (gsm_presence_set_property),
+	(gsm_presence_get_property), (gsm_presence_finalize),
+	(gsm_presence_class_init), (gsm_presence_new):
+	* gnome-session/gsm-presence.h:
+	* gnome-session/org.gnome.SessionManager.Presence.xml:
+	Add presence API.
+
 2009-01-09  Lucas Rocha  <lucasr@gnome.org>
 
 	Bug 502944 – application icon gets tiny on desktop

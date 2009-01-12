@@ -167,6 +167,30 @@ AC_CHECK_LIB(Xau, XauFileName, [X_LIBS="$X_LIBS -lXau"],
 AC_SUBST(X_LIBS)
 
 dnl ====================================================================
+dnl Check for XSync extension
+dnl ====================================================================
+
+have_xsync=no
+AC_CHECK_HEADER(X11/extensions/sync.h, [have_xsync=yes],,
+                    [#include <X11/Xlib.h>])
+if test "$have_xsync" = yes; then
+  AC_DEFINE(HAVE_XSYNC, 1, [Have the SYNC extension library])
+fi
+
+dnl ====================================================================
+dnl Check for XTest extension
+dnl ====================================================================
+
+have_xtest=no
+PKG_CHECK_MODULES(XTEST, xtst, have_xtest=yes, have_xtest=no)
+if test "$have_xtest" = yes; then
+    AC_DEFINE(HAVE_XTEST, 1, [Have the XTest extension library])
+fi
+AC_SUBST(HAVE_XTEST)
+AC_SUBST(XTEST_CFLAGS)
+AC_SUBST(XTEST_LIBS)
+
+dnl ====================================================================
 dnl XRender checks
 dnl ====================================================================
 
@@ -353,6 +377,8 @@ echo "
 
         PolicyKit support:        ${have_polkit}
         XRender support:          ${have_xrender}
+        XSync support:            ${have_xsync}
+        XTest support:            ${have_xtest}
         Build documentation:      ${enable_docbook_docs}
 
 "

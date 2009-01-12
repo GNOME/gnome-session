@@ -52,7 +52,8 @@ struct _GsmInhibitorClass
 typedef enum {
         GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
         GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
-        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2
+        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
+        GSM_INHIBITOR_FLAG_IDLE        = 1 << 3
 } GsmInhibitorFlag;
 
 typedef enum
