@@ -35,6 +35,8 @@
 
 #define GSM_PRESENCE_DBUS_PATH "/org/gnome/SessionManager/Presence"
 
+#define MAX_STATUS_TEXT 140
+
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 #define GSM_PRESENCE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_PRESENCE, GsmPresencePrivate))
@@ -240,7 +242,11 @@ gsm_presence_set_status_text (GsmPresence  *presence,
 
         /* check length */
         if (status_text != NULL && strlen (status_text) > MAX_STATUS_TEXT) {
-
+                g_set_error (error,
+                             GSM_PRESENCE_ERROR,
+                             GSM_PRESENCE_ERROR_GENERAL,
+                             "Status text too long");
+                return FALSE;
         }
 
         if (status_text != NULL) {
