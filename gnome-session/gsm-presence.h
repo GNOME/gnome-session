@@ -84,12 +84,6 @@ void           gsm_presence_set_idle_timeout     (GsmPresence  *presence,
                                                   guint         n_seconds);
 
 /* exported to bus */
-gboolean       gsm_presence_get_status           (GsmPresence  *presence,
-                                                  guint        *status,
-                                                  GError      **error);
-gboolean       gsm_presence_get_status_text      (GsmPresence  *presence,
-                                                  char        **status_text,
-                                                  GError      **error);
 gboolean       gsm_presence_set_status           (GsmPresence  *presence,
                                                   guint         status,
                                                   GError      **error);

@@ -152,34 +152,6 @@ gsm_presence_init (GsmPresence *presence)
         presence->priv->idle_monitor = gs_idle_monitor_new ();
 }
 
-gboolean
-gsm_presence_get_status_text (GsmPresence *presence,
-                              char       **status_text,
-                              GError     **error)
-{
-        g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
-
-        if (presence->priv->status_text != NULL) {
-                *status_text = g_strdup (presence->priv->status_text);
-        } else {
-                *status_text = g_strdup ("");
-        }
-
-        return TRUE;
-}
-
-gboolean
-gsm_presence_get_status (GsmPresence *presence,
-                         guint       *status,
-                         GError     **error)
-{
-        g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
-
-        *status = presence->priv->status;
-
-        return TRUE;
-}
-
 static gboolean
 on_idle_timeout (GSIdleMonitor *monitor,
                  guint          id,
