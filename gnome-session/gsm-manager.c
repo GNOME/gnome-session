@@ -71,6 +71,14 @@
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
+
+#define KEY_LOCKDOWN_DIR          "/desktop/gnome/lockdown"
+#define KEY_LOCK_DISABLE          KEY_LOCKDOWN_DIR "/disable_lock_screen"
+#define KEY_USER_SWITCH_DISABLE   KEY_LOCKDOWN_DIR "/disable_user_switching"
+
+#define KEY_DESKTOP_DIR           "/desktop/gnome/session"
+#define KEY_IDLE_DELAY            KEY_DESKTOP_DIR "/idle_delay"
+
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 struct GsmManagerPrivate
@@ -94,6 +102,10 @@ struct GsmManagerPrivate
         /* List of clients which were disconnected due to disabled condition
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
+
+        GConfClient            *gconf_client;
+        guint                   desktop_notify_id;
+        guint                   lockdown_notify_id;
 
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
@@ -1805,6 +1817,28 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->presence = NULL;
         }
 
+        if (manager->priv->gconf_client) {
+                if (manager->priv->desktop_notify_id != 0) {
+                        gconf_client_remove_dir (manager->priv->gconf_client,
+                                                 KEY_DESKTOP_DIR,
+                                                 NULL);
+                        gconf_client_notify_remove (manager->priv->gconf_client,
+                                                    manager->priv->desktop_notify_id);
+                        manager->priv->desktop_notify_id = 0;
+                }
+                if (manager->priv->lockdown_notify_id != 0) {
+                        gconf_client_remove_dir (manager->priv->gconf_client,
+                                                 KEY_LOCKDOWN_DIR,
+                                                 NULL);
+                        gconf_client_notify_remove (manager->priv->gconf_client,
+                                                    manager->priv->lockdown_notify_id);
+                        manager->priv->lockdown_notify_id = 0;
+                }
+
+                g_object_unref (manager->priv->gconf_client);
+                manager->priv->gconf_client = NULL;
+        }
+
         G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
 }
 
@@ -1913,10 +1947,95 @@ gsm_manager_class_init (GsmManagerClass *klass)
 }
 
 static void
+invalid_type_warning (const char *type)
+{
+        g_warning ("Error retrieving configuration key '%s': Invalid type",
+                   type);
+}
+
+static void
+load_from_gconf (GsmManager *manager)
+{
+        GError *error;
+        glong   value;
+
+        error = NULL;
+        value = gconf_client_get_int (manager->priv->gconf_client,
+                                      KEY_IDLE_DELAY,
+                                      &error);
+        if (error == NULL) {
+                gsm_presence_set_idle_timeout (manager->priv->presence, value * 60);
+        } else {
+                g_warning ("Error retrieving configuration key '%s': %s",
+                           KEY_IDLE_DELAY,
+                           error->message);
+                g_error_free (error);
+        }
+
+}
+
+static void
+on_gconf_key_changed (GConfClient *client,
+                      guint        cnxn_id,
+                      GConfEntry  *entry,
+                      GsmManager  *manager)
+{
+        const char *key;
+        GConfValue *value;
+
+        key = gconf_entry_get_key (entry);
+
+        if (! g_str_has_prefix (key, KEY_DESKTOP_DIR)
+            && ! g_str_has_prefix (key, KEY_LOCKDOWN_DIR)) {
+                return;
+        }
+
+        value = gconf_entry_get_value (entry);
+
+        if (strcmp (key, KEY_IDLE_DELAY) == 0) {
+                if (value->type == GCONF_VALUE_INT) {
+                        int delay;
+
+                        delay = gconf_value_get_int (value);
+
+                        gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60);
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean disabled;
+
+                        disabled = gconf_value_get_bool (value);
+
+                        /* FIXME: handle this */
+                } else {
+                        invalid_type_warning (key);
+                }
+        } else if (strcmp (key, KEY_USER_SWITCH_DISABLE) == 0) {
+
+                if (value->type == GCONF_VALUE_BOOL) {
+                        gboolean disabled;
+
+                        disabled = gconf_value_get_bool (value);
+
+                        /* FIXME: handle this */
+                } else {
+                        invalid_type_warning (key);
+                }
+
+        } else {
+                g_debug ("Config key not handled: %s", key);
+        }
+}
+
+static void
 gsm_manager_init (GsmManager *manager)
 {
 
         manager->priv = GSM_MANAGER_GET_PRIVATE (manager);
+
+        manager->priv->gconf_client = gconf_client_get_default ();
 
         manager->priv->inhibitors = gsm_store_new ();
         g_signal_connect (manager->priv->inhibitors,
@@ -1931,6 +2050,27 @@ gsm_manager_init (GsmManager *manager)
         manager->priv->apps = gsm_store_new ();
 
         manager->priv->presence = gsm_presence_new ();
+
+        /* GConf setup */
+        gconf_client_add_dir (manager->priv->gconf_client,
+                              KEY_DESKTOP_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+        gconf_client_add_dir (manager->priv->gconf_client,
+                              KEY_LOCKDOWN_DIR,
+                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+
+        manager->priv->desktop_notify_id = gconf_client_notify_add (manager->priv->gconf_client,
+                                                                    KEY_DESKTOP_DIR,
+                                                                    (GConfClientNotifyFunc)on_gconf_key_changed,
+                                                                    manager,
+                                                                    NULL, NULL);
+        manager->priv->lockdown_notify_id = gconf_client_notify_add (manager->priv->gconf_client,
+                                                                     KEY_LOCKDOWN_DIR,
+                                                                     (GConfClientNotifyFunc)on_gconf_key_changed,
+                                                                     manager,
+                                                                     NULL, NULL);
+
+        load_from_gconf (manager);
 }
 
 static void
