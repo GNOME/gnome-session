@@ -2030,6 +2030,18 @@ on_gconf_key_changed (GConfClient *client,
 }
 
 static void
+on_presence_status_changed (GsmPresence  *presence,
+                            guint         status,
+                            GsmManager   *manager)
+{
+        GsmConsolekit *consolekit;
+
+        consolekit = gsm_get_consolekit ();
+        gsm_consolekit_set_session_idle (consolekit,
+                                         (status == GSM_PRESENCE_STATUS_IDLE));
+}
+
+static void
 gsm_manager_init (GsmManager *manager)
 {
 
@@ -2050,6 +2062,10 @@ gsm_manager_init (GsmManager *manager)
         manager->priv->apps = gsm_store_new ();
 
         manager->priv->presence = gsm_presence_new ();
+        g_signal_connect (manager->priv->presence,
+                          "status-changed",
+                          G_CALLBACK (on_presence_status_changed),
+                          manager);
 
         /* GConf setup */
         gconf_client_add_dir (manager->priv->gconf_client,

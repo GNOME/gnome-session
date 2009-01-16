@@ -757,6 +757,69 @@ get_current_seat_id (DBusConnection *connection)
         return seat_id;
 }
 
+void
+gsm_consolekit_set_session_idle (GsmConsolekit *manager,
+                                 gboolean       is_idle)
+{
+        gboolean        res;
+        GError         *error;
+        char           *session_id;
+        DBusMessage    *message;
+        DBusMessage    *reply;
+        DBusError       dbus_error;
+        DBusMessageIter iter;
+
+        error = NULL;
+
+        if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
+                g_warning ("Could not connect to ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+                return;
+        }
+
+        session_id = NULL;
+        res = get_current_session_id (dbus_g_connection_get_connection (manager->priv->dbus_connection),
+                                      &session_id);
+        if (!res) {
+                goto out;
+        }
+
+
+        g_debug ("Updating ConsoleKit idle status: %d", is_idle);
+        message = dbus_message_new_method_call (CK_NAME,
+                                                session_id,
+                                                CK_SESSION_INTERFACE,
+                                                "SetIdleHint");
+        if (message == NULL) {
+                g_debug ("Couldn't allocate the D-Bus message");
+                return;
+        }
+
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_BOOLEAN, &is_idle);
+
+        /* FIXME: use async? */
+        dbus_error_init (&dbus_error);
+        reply = dbus_connection_send_with_reply_and_block (dbus_g_connection_get_connection (manager->priv->dbus_connection),
+                                                           message,
+                                                           -1,
+                                                           &dbus_error);
+        dbus_message_unref (message);
+
+        if (reply != NULL) {
+                dbus_message_unref (reply);
+        }
+
+        if (dbus_error_is_set (&dbus_error)) {
+                g_debug ("%s raised:\n %s\n\n", dbus_error.name, dbus_error.message);
+                dbus_error_free (&dbus_error);
+        }
+
+out:
+        g_free (session_id);
+}
+
 static gboolean
 seat_can_activate_sessions (DBusConnection *connection,
                             const char     *seat_id)

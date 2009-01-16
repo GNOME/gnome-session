@@ -78,6 +78,9 @@ void             gsm_consolekit_attempt_stop    (GsmConsolekit *manager);
 
 void             gsm_consolekit_attempt_restart (GsmConsolekit *manager);
 
+void             gsm_consolekit_set_session_idle (GsmConsolekit *manager,
+                                                  gboolean       is_idle);
+
 GsmConsolekit   *gsm_get_consolekit             (void);
 
 G_END_DECLS
