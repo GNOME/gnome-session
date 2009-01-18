@@ -176,6 +176,26 @@ on_idle_timeout (GSIdleMonitor *monitor,
         return handled;
 }
 
+static void
+reset_idle_watch (GsmPresence  *presence)
+{
+        if (presence->priv->idle_watch_id > 0) {
+                g_debug ("GsmPresence: removing idle watch");
+                gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
+                                              presence->priv->idle_watch_id);
+                presence->priv->idle_watch_id = 0;
+        }
+
+        if (presence->priv->idle_enabled) {
+                g_debug ("GsmPresence: adding idle watch");
+
+                presence->priv->idle_watch_id = gs_idle_monitor_add_watch (presence->priv->idle_monitor,
+                                                                           presence->priv->idle_timeout,
+                                                                           (GSIdleMonitorWatchFunc)on_idle_timeout,
+                                                                           presence);
+        }
+}
+
 void
 gsm_presence_set_idle_enabled (GsmPresence  *presence,
                                gboolean      enabled)
@@ -183,21 +203,8 @@ gsm_presence_set_idle_enabled (GsmPresence  *presence,
         g_return_if_fail (GSM_IS_PRESENCE (presence));
 
         if (presence->priv->idle_enabled != enabled) {
-                if (enabled) {
-                        g_debug ("GsmPresence: adding idle watch");
-                        presence->priv->idle_watch_id = gs_idle_monitor_add_watch (presence->priv->idle_monitor,
-                                                                                   presence->priv->idle_timeout,
-                                                                                   (GSIdleMonitorWatchFunc)on_idle_timeout,
-                                                                                   presence);
-                } else {
-                        if (presence->priv->idle_watch_id > 0) {
-                                g_debug ("GsmPresence: removing idle watch");
-                                gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
-                                                              presence->priv->idle_watch_id);
-                                presence->priv->idle_watch_id = 0;
-                        }
-                }
-
+                presence->priv->idle_enabled = enabled;
+                reset_idle_watch (presence);
                 g_object_notify (G_OBJECT (presence), "idle-enabled");
 
         }
@@ -254,6 +261,7 @@ gsm_presence_set_idle_timeout (GsmPresence  *presence,
 
         if (timeout != presence->priv->idle_timeout) {
                 presence->priv->idle_timeout = timeout;
+                reset_idle_watch (presence);
                 g_object_notify (G_OBJECT (presence), "idle-timeout");
         }
 }
