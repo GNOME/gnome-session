@@ -207,6 +207,12 @@ on_bus_name_owner_changed (DBusGProxy  *bus_proxy,
 {
         GError *error;
 
+        if (service_name == NULL
+            || strcmp (service_name, GS_NAME) != 0) {
+                /* ignore */
+                return;
+        }
+
         if (strlen (new_service_name) == 0
             && strlen (old_service_name) > 0) {
                 /* service removed */
@@ -214,31 +220,29 @@ on_bus_name_owner_changed (DBusGProxy  *bus_proxy,
         } else if (strlen (old_service_name) == 0
                    && strlen (new_service_name) > 0) {
                 /* service added */
-                if (strcmp (new_service_name, GS_NAME) == 0) {
-                        error = NULL;
-                        presence->priv->screensaver_proxy = dbus_g_proxy_new_for_name_owner (presence->priv->bus_connection,
-                                                                                             GS_NAME,
-                                                                                             GS_PATH,
-                                                                                             GS_INTERFACE,
-                                                                                             &error);
-                        if (presence->priv->screensaver_proxy != NULL) {
-                                g_signal_connect (presence->priv->screensaver_proxy,
-                                                  "destroy",
-                                                  G_CALLBACK (on_screensaver_proxy_destroy),
-                                                  presence);
-                                dbus_g_proxy_add_signal (presence->priv->screensaver_proxy,
-                                                         "ActiveChanged",
-                                                         G_TYPE_BOOLEAN,
-                                                         G_TYPE_INVALID);
-                                dbus_g_proxy_connect_signal (presence->priv->screensaver_proxy,
-                                                             "ActiveChanged",
-                                                             G_CALLBACK (on_screensaver_active_changed),
-                                                             presence,
-                                                             NULL);
-                        } else {
-                                g_warning ("Unable to get screensaver proxy: %s", error->message);
-                                g_error_free (error);
-                        }
+                error = NULL;
+                presence->priv->screensaver_proxy = dbus_g_proxy_new_for_name_owner (presence->priv->bus_connection,
+                                                                                     GS_NAME,
+                                                                                     GS_PATH,
+                                                                                     GS_INTERFACE,
+                                                                                     &error);
+                if (presence->priv->screensaver_proxy != NULL) {
+                        g_signal_connect (presence->priv->screensaver_proxy,
+                                          "destroy",
+                                          G_CALLBACK (on_screensaver_proxy_destroy),
+                                          presence);
+                        dbus_g_proxy_add_signal (presence->priv->screensaver_proxy,
+                                                 "ActiveChanged",
+                                                 G_TYPE_BOOLEAN,
+                                                 G_TYPE_INVALID);
+                        dbus_g_proxy_connect_signal (presence->priv->screensaver_proxy,
+                                                     "ActiveChanged",
+                                                     G_CALLBACK (on_screensaver_active_changed),
+                                                     presence,
+                                                     NULL);
+                } else {
+                        g_warning ("Unable to get screensaver proxy: %s", error->message);
+                        g_error_free (error);
                 }
         }
 }
