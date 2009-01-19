@@ -1964,7 +1964,7 @@ load_from_gconf (GsmManager *manager)
                                       KEY_IDLE_DELAY,
                                       &error);
         if (error == NULL) {
-                gsm_presence_set_idle_timeout (manager->priv->presence, value * 60);
+                gsm_presence_set_idle_timeout (manager->priv->presence, value * 60000);
         } else {
                 g_warning ("Error retrieving configuration key '%s': %s",
                            KEY_IDLE_DELAY,
@@ -1998,7 +1998,7 @@ on_gconf_key_changed (GConfClient *client,
 
                         delay = gconf_value_get_int (value);
 
-                        gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60);
+                        gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60000);
                 } else {
                         invalid_type_warning (key);
                 }

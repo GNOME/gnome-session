@@ -1,5 +1,17 @@
 2009-01-18  William Jon McCann  <jmccann@redhat.com>
 
+	* gnome-session/gsm-manager.c (load_from_gconf),
+	(on_gconf_key_changed):
+	* gnome-session/gsm-presence.c (set_session_idle),
+	(on_idle_timeout), (reset_idle_watch),
+	(on_screensaver_active_changed), (on_screensaver_proxy_destroy),
+	(on_bus_name_owner_changed), (register_presence),
+	(gsm_presence_constructor):
+	Fix timeout scale.  Disable idle detection while screensaver
+	is active.
+
+2009-01-18  William Jon McCann  <jmccann@redhat.com>
+
 	* gnome-session/gsm-presence.c (reset_idle_watch),
 	(gsm_presence_set_idle_enabled), (gsm_presence_set_idle_timeout):
 	Reset the idle watch when the timeout property changes.
