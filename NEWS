@@ -1,4 +1,38 @@
 ==============
+Version 2.25.5
+==============
+
+- Close ICE connection for qt3 applications (Edward Sheldrake)
+- In all phases before APPLICATION, consider process termination as completion
+  (Behdad Esfahbod)
+- Fix gnome-session not looking at $XDG_DATA_HOME/applications (tuxce)
+- Correctly check for sm and ice libraries in configure script (Lucas)
+- Correctly handle X-GNOME-Autostart-enabled=false in gnome-session-properties
+  (Halton Huo)
+- Add support for --enable-polkit/--disable-polkit in configure script (default
+  is still automatic) (Nirbheek Chauhan)
+- Add NoDisplay=True to desktop files (Lucas)
+- Fix typo in error message (Lucas)
+- Double-click startup program entry to open edit dialog in
+  gnome-session-properties (Lucas)
+- Fix apps with an icon not existing in the icon theme displayed with no icon
+  (Lucas)
+- Add 48x48 icon for session properties (Lucas)
+- Add a presence dbus API (William Jon McCann)
+
+Translations:
+- Updated ca: David Planella
+- Updated de: Hendrik Richter
+- Updated es: Jorge González
+- Updated ha: saudat mohammed
+- Updated ig: Onye, Sylvester
+- Updated nb: Kjartan Maraas
+- Updated sv: Daniel Nylander
+- Updated uz@cyrillic: Nurali Abdurahmonov
+- Updated uz: Nurali Abdurahmonov
+- Updated yo: David Lodge
+
+==============
 Version 2.25.3
 ==============
 
