@@ -16,7 +16,7 @@ helper_PROGRAMS =				\
 	at-spi-registryd-wrapper		\
 	gnome-settings-daemon-helper
 
-default_sessiondir = $(datadir)/gnome/autostart
+default_sessiondir = $(sysconfdir)/xdg/autostart
 default_session_in_in_files = 				\
 	at-spi-registryd-wrapper.desktop.in.in	\
 	gnome-settings-daemon-helper.desktop.in.in
