@@ -41,7 +41,7 @@ G_DEFINE_TYPE (GsmSplashWindow, gsm_splash_window, GTK_TYPE_WINDOW)
 #define SPLASH_ICON_BORDER  26
 #define SPLASH_ICON_SPACING 4
 #define SPLASH_ICON_V_OFFSET 28
-#define SPLASH_BASE_ICON_SIZE 36
+#define SPLASH_BASE_ICON_SIZE 22
 #define SPLASH_BASE_ICON_ROWS 1
 
 static gboolean update_trans_effect (gpointer);
@@ -342,7 +342,7 @@ layout_icon (GsmSplashWindow *splash,
         if (!si->scaled) {
                 if (gdk_pixbuf_get_width (si->unscaled) == splash->icon_size &&
                     gdk_pixbuf_get_height (si->unscaled) == splash->icon_size) {
-                        si->scaled = g_object_ref (si->unscaled);
+                        si->scaled = gdk_pixbuf_copy (si->unscaled);
                 } else {
                         si->scaled = gdk_pixbuf_scale_simple (si->unscaled, splash->icon_size,
                                                               splash->icon_size,
@@ -471,7 +471,7 @@ gsm_splash_window_start (GsmSplashWindow *splash,
 
         pb = gtk_icon_theme_load_icon (splash->icon_theme,
                                        icon_name,
-                                       48, /* icon size */
+                                       22, /* icon size */
                                        0 /* flags */,
                                        NULL);
         if (!pb) {
