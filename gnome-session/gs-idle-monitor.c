@@ -167,8 +167,10 @@ gs_idle_monitor_reset (GSIdleMonitor *monitor)
 {
         g_return_if_fail (GS_IS_IDLE_MONITOR (monitor));
 
+#ifdef HAVE_XTEST
         /* FIXME: is there a better way to reset the IDLETIME? */
         send_fake_event (monitor);
+#endif
 }
 
 static void
