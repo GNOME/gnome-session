@@ -27,8 +27,10 @@
       <doc:doc>
         <doc:summary>Stop client</doc:summary>
         <doc:description>
-          The client should stop and remove itself from the session in
-          response to this signal.
+          <doc:para>
+            The client should stop and remove itself from the session in
+            response to this signal.
+          </doc:para>
         </doc:description>
       </doc:doc>
     </signal>
@@ -108,9 +110,11 @@
     <signal name="CancelEndSession">
       <doc:doc>
         <doc:description>
-          This signal indicates to the client that a previous emission of
-          <doc:ref type="signal" to="org.gnome.SessionManager.ClientPrivate::QueryEndSession">QueryEndSession</doc:ref>
-          has been cancelled.  The client should resume normal operations.
+          <doc:para>
+            This signal indicates to the client that a previous emission of
+            <doc:ref type="signal" to="org.gnome.SessionManager.ClientPrivate::QueryEndSession">QueryEndSession</doc:ref>
+            has been cancelled.  The client should resume normal operations.
+          </doc:para>
         </doc:description>
       </doc:doc>
     </signal>
