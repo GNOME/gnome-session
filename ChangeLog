@@ -1,3 +1,16 @@
+2009-02-11  Lucas Rocha  <lucasr@gnome.org>
+
+	Bug 565063 – Avoid restarting applications when shutting down
+
+	* gnome-session/gdm-signal-handler.[ch]
+	(gdm_signal_handler_set_fatal_func): redefine this function to receive
+	custom callback.
+	* gnome-session/gsm-manager.[ch]: added gsm_manager_set_phase
+	function.
+	* gnome-session/main.c: set session manager phase to
+	GSM_MANAGER_PHASE_EXIT when gnome-session process is shutting down.
+	Patch by Brian Cameron.
+
 2009-02-07  Matthias Clasen  <mclasen@redhat.com>
 
 	* gnome-session/gs-idle-monitor.c (_xsync_alarm_set): Fix a 

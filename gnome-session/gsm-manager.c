@@ -2475,6 +2475,15 @@ user_logout (GsmManager *manager,
 */
 
 gboolean
+gsm_manager_set_phase (GsmManager      *manager,
+                       GsmManagerPhase  phase)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+        manager->priv->phase = phase;
+        return (TRUE);
+}
+
+gboolean
 gsm_manager_shutdown (GsmManager *manager,
                       GError    **error)
 {

@@ -178,6 +178,8 @@ gboolean            gsm_manager_is_autostart_condition_handled (GsmManager     *
                                                                 const char     *condition,
                                                                 gboolean       *handled,
                                                                 GError        **error);
+gboolean            gsm_manager_set_phase                      (GsmManager     *manager,
+                                                                GsmManagerPhase phase);
 
 G_END_DECLS
 

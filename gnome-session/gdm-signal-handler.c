@@ -458,9 +458,9 @@ signal_list_free (GSList *list)
 }
 
 void
-gdm_signal_handler_set_fatal_func (GdmSignalHandler *handler,
-                                   GDestroyNotify    func,
-                                   gpointer          user_data)
+gdm_signal_handler_set_fatal_func (GdmSignalHandler       *handler,
+                                   GdmShutdownHandlerFunc  func,
+                                   gpointer                user_data)
 {
         g_return_if_fail (GDM_IS_SIGNAL_HANDLER (handler));
 
@@ -487,7 +487,8 @@ gdm_signal_handler_init (GdmSignalHandler *handler)
 
         ioc = g_io_channel_unix_new (signal_pipes[0]);
         g_io_channel_set_flags (ioc, G_IO_FLAG_NONBLOCK, NULL);
-        g_io_add_watch (ioc, G_IO_IN, (GIOFunc)signal_io_watch, handler);
+        g_io_add_watch_full (ioc, G_PRIORITY_HIGH, G_IO_IN,
+                             (GIOFunc) signal_io_watch, handler, NULL);
         g_io_channel_set_close_on_unref (ioc, TRUE);
         g_io_channel_unref (ioc);
 }

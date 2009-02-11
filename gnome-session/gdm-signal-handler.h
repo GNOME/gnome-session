@@ -37,6 +37,8 @@ G_BEGIN_DECLS
 typedef gboolean (*GdmSignalHandlerFunc) (int           signal,
                                           gpointer      data);
 
+typedef void     (*GdmShutdownHandlerFunc) (gpointer    data);
+
 typedef struct GdmSignalHandlerPrivate GdmSignalHandlerPrivate;
 
 typedef struct
@@ -53,9 +55,9 @@ typedef struct
 GType               gdm_signal_handler_get_type                (void);
 
 GdmSignalHandler *  gdm_signal_handler_new                     (void);
-void                gdm_signal_handler_set_fatal_func          (GdmSignalHandler    *handler,
-                                                                GDestroyNotify       func,
-                                                                gpointer             user_data);
+void                gdm_signal_handler_set_fatal_func          (GdmSignalHandler       *handler,
+                                                                GdmShutdownHandlerFunc  func,
+                                                                gpointer                user_data);
 
 void                gdm_signal_handler_add_fatal               (GdmSignalHandler    *handler);
 guint               gdm_signal_handler_add                     (GdmSignalHandler    *handler,

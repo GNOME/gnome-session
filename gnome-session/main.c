@@ -448,6 +448,23 @@ signal_cb (int      signo,
         return ret;
 }
 
+static void
+shutdown_cb (gpointer data)
+{
+        GsmManager *manager = (GsmManager *)data;
+        g_debug ("Calling shutdown callback function");
+
+        /*
+         * When the signal handler gets a shutdown signal, it calls
+         * this function to inform GsmManager to not restart
+         * applications in the off chance a handler is already queued
+         * to dispatch following the below call to gtk_main_quit.
+         */
+        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EXIT);
+
+        gtk_main_quit ();
+}
+
 static gboolean
 require_dbus_session (int      argc,
                       char   **argv,
@@ -542,7 +559,6 @@ main (int argc, char **argv)
         gdm_log_set_debug (debug);
 
         signal_handler = gdm_signal_handler_new ();
-        gdm_signal_handler_set_fatal_func (signal_handler, (GDestroyNotify)gtk_main_quit, NULL);
         gdm_signal_handler_add_fatal (signal_handler);
         gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, NULL);
         gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, NULL);
@@ -577,6 +593,9 @@ main (int argc, char **argv)
         acquire_name ();
 
         manager = gsm_manager_new (client_store, failsafe);
+
+        gdm_signal_handler_set_fatal_func (signal_handler, shutdown_cb, manager);
+
         if (override_autostart_dirs != NULL) {
                 load_override_apps (manager, override_autostart_dirs);
         } else {
