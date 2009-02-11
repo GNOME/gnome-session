@@ -1,17 +1,17 @@
 # Thai translation for gnome-session.
-# Copyright (C) 2003-2008 Free Software Foundation, Inc.
+# Copyright (C) 2003-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2008
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-04 22:44+0700\n"
-"PO-Revision-Date: 2008-09-04 22:51+0700\n"
+"POT-Creation-Date: 2009-02-11 14:17+0700\n"
+"PO-Revision-Date: 2009-02-11 14:22+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -35,36 +35,36 @@ msgstr "แก้ไขโปรแกรมเริ่มวาระ"
 msgid "No description"
 msgstr "ไม่มีคำบรรยาย"
 
-#: ../capplet/gsm-properties-dialog.c:977
+#: ../capplet/gsm-properties-dialog.c:952
 msgid "The name of the startup program cannot be empty"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
 
-#: ../capplet/gsm-properties-dialog.c:981
+#: ../capplet/gsm-properties-dialog.c:956
 msgid "The startup command cannot be empty"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
 
-#: ../capplet/gsm-properties-dialog.c:987
+#: ../capplet/gsm-properties-dialog.c:962
 msgid "The startup command is not valid"
 msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระผิดพลาด"
 
-#: ../capplet/gsm-properties-dialog.c:1291
+#: ../capplet/gsm-properties-dialog.c:1279
 msgid "Enabled"
 msgstr "เปิดใช้"
 
-#: ../capplet/gsm-properties-dialog.c:1304
+#: ../capplet/gsm-properties-dialog.c:1292
 msgid "Icon"
 msgstr "ไอคอน"
 
-#: ../capplet/gsm-properties-dialog.c:1315
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Program"
 msgstr "โปรแกรม"
 
-#: ../capplet/gsm-properties-dialog.c:1464
+#: ../capplet/gsm-properties-dialog.c:1453
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
 msgstr "ปรับแต่งวาระ"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:501
+#: ../capplet/main.c:37 ../gnome-session/main.c:508
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
@@ -82,10 +82,6 @@ msgstr ""
 #: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
 msgid "AT SPI Registry Wrapper"
 msgstr "ตัวหุ้มเรจิสตรี AT SPI"
-
-#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
-msgid "GNOME Keyring Daemon Wrapper"
-msgstr "ตัวหุ้มดีมอนพวงกุญแจ GNOME"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -177,12 +173,17 @@ msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr "จำนวนนาทีของช่วงไร้กิจกรรมที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
+
+#: ../data/gnome-session.schemas.in.h:17
+msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 "พาเนลคือแถบที่ด้านบนหรือด้านล่างหน้าจอ บรรจุเมนู รายชื่อหน้าต่าง ไอคอนสถานะ นาฬิกา ฯลฯ"
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -190,7 +191,7 @@ msgstr ""
 "โปรแกรมจัดการหน้าต่าง คือโปรแกรมที่วาดแถบหัวและกรอบรอบหน้าต่าง "
 "และให้คุณย้ายหรือปรับขนาดหน้าต่างได้"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:19
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -199,7 +200,7 @@ msgstr ""
 "ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
 "โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:20
 msgid ""
 "This is the option that will be selected in the logout dialog, valid values "
 "are \"logout\" for logging out, \"shutdown\" for halting the system and "
@@ -209,7 +210,11 @@ msgstr ""
 "สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
 "สำหรับการเริ่มการทำงานของเครื่องใหม่"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:21
+msgid "Time before session is considered idle"
+msgstr "ระยะเวลาที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
+
+#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
 
@@ -218,7 +223,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ยังมีบางโปรแกรมทำงานอยู่:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
+#: ../gnome-session/gsm-inhibit-dialog.c:633
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -278,38 +283,30 @@ msgstr "แฟ้มนี้ไม่ใช่แฟ้ม .desktop ที่�
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "ไม่รู้จักแฟ้มเดสก์ท็อปรุ่น '%s'"
 
-#: ../egg/eggdesktopfile.c:962
+#: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
 msgstr "กำลังเริ่ม %s"
 
-#: ../egg/eggdesktopfile.c:1096
+#: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "โปรแกรมไม่รับเอกสารในบรรทัดคำสั่ง"
 
-#: ../egg/eggdesktopfile.c:1164
+#: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "ไม่รู้จักตัวเลือกของการเรียกโปรแกรม: %d"
 
-#: ../egg/eggdesktopfile.c:1372
+#: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "ไม่สามารถส่ง URI ของเอกสารไปยังรายการเดสก์ท็อปที่มี 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1391
+#: ../egg/eggdesktopfile.c:1392
 #, c-format
 msgid "Not a launchable item"
 msgstr "ไม่ใช่รายการที่เรียกทำงานได้"
-
-#: ../egg/eggsmclient-libgnomeui.c:102
-msgid "Session management"
-msgstr "การจัดการวาระ"
-
-#: ../egg/eggsmclient-libgnomeui.c:136
-msgid "GNOME GUI Library + EggSMClient"
-msgstr "ไลบรารี GUI ของ GNOME + EggSMClient"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
@@ -331,11 +328,11 @@ msgstr "ระบุหมายเลขการจัดการวาระ
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:241
+#: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
 msgstr "ตัวเลือกเกี่ยวกับการจัดการวาระ"
 
-#: ../egg/eggsmclient.c:242
+#: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
 msgstr "แสดงตัวเลือกเกี่ยวกับการจัดการวาระ"
 
@@ -353,53 +350,53 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "ไม่พบไอคอน '%s'"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:581
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid "A program is still running:"
 msgstr "มีโปรแกรมที่ยังทำงานอยู่:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid "Some programs are still running:"
 msgstr "ยังมีบางโปรแกรมทำงานอยู่:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:637
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "จะรอให้โปรแกรมเหล่านี้ทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
 msgstr "ยืนยันการสลับผู้ใช้"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:868
 msgid "Logout Anyway"
 msgstr "ยืนยันการออกจากระบบ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:871
 msgid "Suspend Anyway"
 msgstr "ยืนยันการพักเครื่อง"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Hibernate Anyway"
 msgstr "ยืนยันการจำศีลเครื่อง"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Shutdown Anyway"
 msgstr "ยืนยันการปิดเครื่อง"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Reboot Anyway"
 msgstr "ยืนยันการเปิดเครื่องใหม่"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Lock Screen"
 msgstr "ล็อคหน้าจอ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -427,43 +424,43 @@ msgstr[0] ""
 "คุณกำลังเข้าระบบในนาม \"%s\"\n"
 "ระบบจะปิดโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:377
 msgid "Log out of this system now?"
 msgstr "ออกจากระบบเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Switch User"
 msgstr "_สลับผู้ใช้"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:392
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:398
 msgid "Shut down this system now?"
 msgstr "ปิดเครื่องเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "S_uspend"
 msgstr "_พักเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "_Hibernate"
 msgstr "_จำศีลเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "_Restart"
 msgstr "_เปิดเครื่องใหม่"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:426
 msgid "_Shut Down"
 msgstr "ปิ_ดเครื่อง"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
-#: ../gnome-session/gsm-xsmp-client.c:975
+#: ../gnome-session/gsm-xsmp-client.c:989
 msgid "This program is blocking log out."
 msgstr "โปรแกรมนี้ระงับการออกจากระบบอยู่"
 
@@ -479,32 +476,32 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:139
+#: ../gnome-session/gsm-util.c:143
 #, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
+msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:497
+#: ../gnome-session/main.c:504
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:498
+#: ../gnome-session/main.c:505
 msgid "GConf key used to lookup default session"
 msgstr "คีย์ GConf ที่ใช้เปิดหาวาระปริยาย"
 
-#: ../gnome-session/main.c:499
+#: ../gnome-session/main.c:506
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: ../gnome-session/main.c:500
+#: ../gnome-session/main.c:507
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:528
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
-#: ../splash/gnome-session-splash.c:291
+#: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
 msgstr "- รูปไตเติลเริ่มระบบ GNOME"
 
@@ -555,6 +552,15 @@ msgstr "ติดต่อโปรแกรมจัดการวาระไ
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
+
+#~ msgid "GNOME Keyring Daemon Wrapper"
+#~ msgstr "ตัวหุ้มดีมอนพวงกุญแจ GNOME"
+
+#~ msgid "Session management"
+#~ msgstr "การจัดการวาระ"
+
+#~ msgid "GNOME GUI Library + EggSMClient"
+#~ msgstr "ไลบรารี GUI ของ GNOME + EggSMClient"
 
 #~ msgid ""
 #~ "The Window manager that gnome-session will start. Valid values are "
