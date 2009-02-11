@@ -1,5 +1,15 @@
 2009-02-11  Lucas Rocha  <lucasr@gnome.org>
 
+	Bug 556439 – improve logout/shutdown dialog messages
+
+	* gnome-session/gsm-consolekit.[ch]: add new
+	gsm_consolekit_get_current_session_type function to GsmConsolekit.
+	* gnome-session/gsm-logout-dialog.c (gsm_logout_dialog_timeout): only
+	message about logged user when using logout dialog from gdm.
+	Patch by Matthias Clasen.
+
+2009-02-11  Lucas Rocha  <lucasr@gnome.org>
+
 	Bug 565063 – Avoid restarting applications when shutting down
 
 	* gnome-session/gdm-signal-handler.[ch]

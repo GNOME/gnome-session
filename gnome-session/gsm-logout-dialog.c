@@ -256,9 +256,10 @@ static gboolean
 gsm_logout_dialog_timeout (gpointer data)
 {
         GsmLogoutDialog *logout_dialog;
+        char            *seconds_warning;
         char            *secondary_text;
-        char            *name;
         int              seconds_to_show;
+        static char     *session_type = NULL;
 
         logout_dialog = (GsmLogoutDialog *) data;
 
@@ -280,52 +281,63 @@ gsm_logout_dialog_timeout (gpointer data)
 
         switch (logout_dialog->priv->type) {
         case GSM_DIALOG_LOGOUT_TYPE_LOGOUT:
-                secondary_text = ngettext ("You are currently logged in as "
-                                           "\"%s\".\n"
-                                           "You will be automatically logged "
-                                           "out in %d second.",
-                                           "You are currently logged in as "
-                                           "\"%s\".\n"
-                                           "You will be automatically logged "
-                                           "out in %d seconds.",
-                                           seconds_to_show);
+                seconds_warning = ngettext ("You will be automatically logged "
+                                            "out in %d second.",
+                                            "You will be automatically logged "
+                                            "out in %d seconds.",
+                                            seconds_to_show);
                 break;
 
         case GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN:
-                secondary_text = ngettext ("You are currently logged in as "
-                                           "\"%s\".\n"
-                                           "This system will be automatically "
-                                           "shut down in %d second.",
-                                           "You are currently logged in as "
-                                           "\"%s\".\n"
-                                           "This system will be automatically "
-                                           "shut down in %d seconds.",
-                                           seconds_to_show);
+                seconds_warning = ngettext ("This system will be automatically "
+                                            "shut down in %d second.",
+                                            "This system will be automatically "
+                                            "shut down in %d seconds.",
+                                            seconds_to_show);
                 break;
 
         default:
                 g_assert_not_reached ();
         }
 
-        name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);
+        if (session_type == NULL) {
+		GsmConsolekit *consolekit;
 
-        if (!name || name[0] == '\0' || strcmp (name, "Unknown") == 0) {
-                name = g_locale_to_utf8 (g_get_user_name (), -1 , NULL, NULL, NULL);
+                consolekit = gsm_get_consolekit ();
+                session_type = gsm_consolekit_get_current_session_type (consolekit);
+                g_object_unref (consolekit);
         }
 
-        if (!name) {
-                name = g_strdup (g_get_user_name ());
-        }
+        if (g_strcmp0 (session_type, "LoginWindow") != 0) {
+                char *name, *tmp;
+
+                name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);
+
+                if (!name || name[0] == '\0' || strcmp (name, "Unknown") == 0) {
+                        name = g_locale_to_utf8 (g_get_user_name (), -1 , NULL, NULL, NULL);
+                }
+
+                if (!name) {
+                        name = g_strdup (g_get_user_name ());
+                }
+
+                tmp = g_strdup_printf (_("You are currently logged in as \"%s\"."), name);
+                secondary_text = g_strconcat (tmp, "\n", seconds_warning, NULL);
+                g_free (tmp);
+
+                g_free (name);
+	} else {
+		secondary_text = g_strdup (seconds_warning);
+	}
 
         gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (logout_dialog),
                                                   secondary_text,
-                                                  name,
                                                   seconds_to_show,
                                                   NULL);
 
         logout_dialog->priv->timeout--;
 
-        g_free (name);
+        g_free (secondary_text);
 
         return TRUE;
 }
