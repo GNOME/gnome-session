@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-01 10:17+0100\n"
-"PO-Revision-Date: 2009-02-01 12:48+0100\n"
+"POT-Creation-Date: 2009-02-11 22:29+0100\n"
+"PO-Revision-Date: 2009-02-11 22:30+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgid "Sessions Preferences"
 msgstr "Sessionsinställningar"
 
 #: ../capplet/main.c:37
-#: ../gnome-session/main.c:508
+#: ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Version av detta program"
 
@@ -362,65 +362,54 @@ msgstr "Lås skärmen"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Du är för närvarande inloggad som \"%s\".\n"
-"Du kommer automatiskt att loggas ut om %d sekund."
-msgstr[1] ""
-"Du är för närvarande inloggad som \"%s\".\n"
-"Du kommer automatiskt att loggas ut om %d sekunder."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Du kommer automatiskt att loggas ut om %d sekund."
+msgstr[1] "Du kommer automatiskt att loggas ut om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Du är för närvarande inloggad som \"%s\".\n"
-"Systemet kommer automatiskt att stängas av om %d sekund."
-msgstr[1] ""
-"Du är för närvarande inloggad som \"%s\".\n"
-"Systemet kommer automatiskt att stängas av om %d sekunder."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Systemet kommer automatiskt att stängas av om %d sekund."
+msgstr[1] "Systemet kommer automatiskt att stängas av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Du är för närvarande inloggad som \"%s\"."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Logga ut ur detta system nu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_Växla användare"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "Stäng av detta system nu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "Vä_nteläge"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "Vilolä_ge"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "Starta _om"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "St_äng av"
 
@@ -448,23 +437,23 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "GConf-nyckeln som används för att slå upp standardsessionen"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
 
