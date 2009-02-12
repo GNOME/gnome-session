@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-01-15 20:55+0000\n"
-"PO-Revision-Date: 2009-01-17 12:15+0100\n"
+"POT-Creation-Date: 2009-02-12 02:18+0000\n"
+"PO-Revision-Date: 2009-02-12 15:11+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr "Programa"
 msgid "Sessions Preferences"
 msgstr "Preferencias de la sesión"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
@@ -252,12 +252,12 @@ msgstr ""
 "pérdidas de datos."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Configure sus sesiones"
+msgid "Choose what applications to start when you log in"
+msgstr "Elija qué aplicaciones iniciar al iniciar la sesión"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sesiones"
+msgid "Startup Applications"
+msgstr "Configurar aplicaciones"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -426,65 +426,66 @@ msgstr "Bloquear pantalla"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Actualmente está registrado en la sesión como «%s».\n"
-"Saldrá automáticamente de la sesión en %d segundo."
-msgstr[1] ""
-"Actualmente está registrado en la sesión como «%s».\n"
-"Saldrá automáticamente de la sesión en %d segundos."
+#| msgid ""
+#| "You are currently logged in as \"%s\".\n"
+#| "You will be automatically logged out in %d second."
+#| msgid_plural ""
+#| "You are currently logged in as \"%s\".\n"
+#| "You will be automatically logged out in %d seconds."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Saldrá automáticamente de la sesión en %d segundo."
+msgstr[1] "Saldrá automáticamente de la sesión en %d segundos."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Actualmente está registrado en la sesión como «%s».\n"
-"El sistema se apagará automáticamente en %d segundo."
-msgstr[1] ""
-"Actualmente está registrado en la sesión como «%s».\n"
-"El sistema se apagará automáticamente en %d segundos."
+#| msgid ""
+#| "You are currently logged in as \"%s\".\n"
+#| "This system will be automatically shut down in %d second."
+#| msgid_plural ""
+#| "You are currently logged in as \"%s\".\n"
+#| "This system will be automatically shut down in %d seconds."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "El sistema se apagará automáticamente en %d segundo."
+msgstr[1] "El sistema se apagará automáticamente en %d segundos."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Ha iniciado sesión como «%s»."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "¿Terminar ahora la sesión en este sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "Ca_mbiar usuario"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Terminar la sesión"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "¿Apagar ahora este sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "S_uspender"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Hibernar"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "A_pagar"
 
@@ -517,23 +518,23 @@ msgstr ""
 "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el "
 "servidor X)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Sobreescribir los directorios de inicio automático estándar"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "Clave de GConf usada para buscar la sesión predeterminada"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
@@ -588,6 +589,12 @@ msgstr "No se pudo conectar con el gestor de sesiones"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Se llamó al programa con opciones en conflicto"
+
+#~ msgid "Configure your sessions"
+#~ msgstr "Configure sus sesiones"
+
+#~ msgid "Sessions"
+#~ msgstr "Sesiones"
 
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "Envolvente del demonio del Depósito de claves de GNOME"
