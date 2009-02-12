@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-04 23:40+0100\n"
-"PO-Revision-Date: 2009-02-04 23:40+0100\n"
+"POT-Creation-Date: 2009-02-12 23:53+0100\n"
+"PO-Revision-Date: 2009-02-12 23:53+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "Programma"
 msgid "Sessions Preferences"
 msgstr "Sessievoorkeuren"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
@@ -255,12 +255,12 @@ msgstr ""
 "kan er toe leiden dat er werk verloren gaat."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Configureer uw sessies"
+msgid "Choose what applications to start when you log in"
+msgstr "Toepassingen kiezen die bij aanmelden opgestart worden"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sessies"
+msgid "Startup Applications"
+msgstr "Opstart-toepassingen"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -434,72 +434,55 @@ msgstr "Beeldscherm vergrendelen"
 msgid "Cancel"
 msgstr "Annuleren"
 
-# U wordt over d seconde automatisch afgemeld./
-# Over d seconde wordt u automatisch afgemeld.
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"U bent momenteel aangemeld onder de naam ‘%s’.\n"
-"Over %d seconde wordt u automatisch afgemeld."
-msgstr[1] ""
-"U bent momenteel aangemeld onder de naam ‘%s’.\n"
-"Over %d seconden wordt u automatisch afgemeld."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Over %d seconde wordt u automatisch afgemeld."
+msgstr[1] "Over %d seconden wordt u automatisch afgemeld."
 
-# uitgeschakeld/uitgezet
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"U bent momenteel aangemeld onder de naam ‘%s’.\n"
-"Over %d seconde wordt de computer automatisch uitgezet."
-msgstr[1] ""
-"U bent momenteel aangemeld onder de naam ‘%s’.\n"
-"Over %d seconden wordt de computer automatisch uitgezet."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Over %d seconde wordt de computer automatisch afgesloten."
+msgstr[1] "Over %d seconden wordt de computer automatisch afgesloten."
 
-# zometeen/nu meteen/direkt/aanstonds/nu/[leeg]
-# (is waarschijnlijk wel duidelijk dat het 'nu' is)
-# deze computer/dit systeem
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "U bent momenteel aangemeld onder de naam ‘%s’."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Afmelden bij deze computer?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "Gebruiker _wisselen"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "Af_melden"
 
 # afsluiten/uitschakelen/uitzetten
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "Deze computer uitzetten?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "_Pauzestand"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Slaapstand"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_Herstarten"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "_Uitzetten"
 
@@ -532,23 +515,23 @@ msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Kon aanmeldsessie niet opstarten (en kon niet met de X-server verbinden)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Map voor automatisch te starten toepassingen"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "GConf-sleutel voor het opzoeken van de standaardsessie"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Debugging-code inschakelen"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "Geen toepassingen laden die door de gebruiker opgegeven zijn"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr " — het Gnome-sessiebeheer"
 
@@ -604,6 +587,12 @@ msgstr "Kan geen verbinding maken met het sessiebeheer"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Toepassing aangeroepen met conflicterende opties"
+
+#~ msgid "Configure your sessions"
+#~ msgstr "Configureer uw sessies"
+
+#~ msgid "Sessions"
+#~ msgstr "Sessies"
 
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "Wrapper voor Gnome-sleutelbosvoorziening"
