@@ -47,18 +47,6 @@
          </locale>
       </schema>
       <schema>
-         <key>/schemas/apps/gnome-session/options/logout_option</key>
-         <applyto>/apps/gnome-session/options/logout_option</applyto>
-         <owner>gnome</owner>
-         <type>string</type>
-         <default>Logout</default>
-         <locale name="C">
-            <short>Selected option in the log out dialog</short>
-            <long>This is the option that will be selected in the logout dialog, valid values are "logout" for logging out, "shutdown" for halting the system and "restart" for restarting the system.</long>
-         </locale>
-      </schema>
-
-      <schema>
         <key>/schemas/desktop/gnome/session/idle_delay</key>
         <applyto>/desktop/gnome/session/idle_delay</applyto>
         <owner>gnome</owner>
@@ -92,10 +80,9 @@
          <type>list</type>
          <list_type>string</list_type>
          <default>[windowmanager,panel,filemanager]</default>
-         <!-- FIXME when not string frozen: s/required-components/required_components/ -->
          <locale name="C">
             <short>Required session components</short>
-            <long>List of components that are required as part of the session. (Each element names a key under "/desktop/gnome/session/required-components".) The Session Preferences will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed.</long>
+            <long>List of components that are required as part of the session. (Each element names a key under "/desktop/gnome/session/required_components"). To be a required component of the session means that removing a required component from a running session (for instance killing related process), gnome-session will start it next time you log in anyway.</long>
          </locale>
       </schema>
       <schema>
