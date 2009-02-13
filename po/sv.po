@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 22:29+0100\n"
-"PO-Revision-Date: 2009-02-11 22:30+0100\n"
+"POT-Creation-Date: 2009-02-13 21:30+0100\n"
+"PO-Revision-Date: 2009-02-13 21:33+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -26,11 +26,11 @@ msgstr "Välj kommando"
 
 #: ../capplet/gsm-app-dialog.c:187
 msgid "Add Startup Program"
-msgstr "Lägg till startprogram"
+msgstr "Lägg till uppstartsprogram"
 
 #: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
-msgstr "Redigera startprogram"
+msgstr "Redigera uppstartsprogram"
 
 #: ../capplet/gsm-properties-dialog.c:132
 msgid "No description"
@@ -38,15 +38,15 @@ msgstr "Ingen beskrivning"
 
 #: ../capplet/gsm-properties-dialog.c:952
 msgid "The name of the startup program cannot be empty"
-msgstr "Namnet för startprogrammet får inte vara blankt"
+msgstr "Namnet för uppstartsprogrammet får inte vara tomt"
 
 #: ../capplet/gsm-properties-dialog.c:956
 msgid "The startup command cannot be empty"
-msgstr "Startprogrammets kommando får inte vara blankt"
+msgstr "Uppstartsprogrammets kommando får inte vara tomt"
 
 #: ../capplet/gsm-properties-dialog.c:962
 msgid "The startup command is not valid"
-msgstr "Startprogrammets kommando är inte giltigt"
+msgstr "Uppstartsprogrammets kommando är inte giltigt"
 
 #: ../capplet/gsm-properties-dialog.c:1279
 msgid "Enabled"
@@ -61,9 +61,8 @@ msgid "Program"
 msgstr "Program"
 
 #: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Sessionsinställningar"
+msgid "Startup Applications Preferences"
+msgstr "Inställningar för uppstartsprogram"
 
 #: ../capplet/main.c:37
 #: ../gnome-session/main.c:525
@@ -116,8 +115,8 @@ msgid "List of applications that are part of the default session."
 msgstr "Lista över program som är en del av standardsessionen."
 
 #: ../data/gnome-session.schemas.in.h:6
-msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required-components\".) The Session Preferences will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session if they do get removed."
-msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Inställningar för sessioner tillåter oftast inte användare att ta bort en nödvändig komponent från sessionen och sessionshanteraren kommer automatiskt att lägga tillbaks de nödvändiga komponenterna till sessionen om de blir borttagna."
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). To be a required component of the session means that removing a required component from a running session (for instance killing related process), gnome-session will start it next time you log in anyway."
+msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Att vara en nödvändig komponent av sessionen betyder att om man tar bort en nödvändig komponent från en körande session (till exempel döda relaterad process) så kommer gnome-session ändå att starta den nästa gång du loggar in."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -140,46 +139,38 @@ msgid "Save sessions"
 msgstr "Spara sessioner"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Markerat alternativ i utloggningsdialogen"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Visa startbilden"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Visa startbilden då sessionen startar"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
 msgstr "Filhanteraren tillhandahåller skrivbordsikoner och låter dig interagera med dina sparade filer."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "Antalet minuters inaktivitet innan sessionen anses vara overksam."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
 msgstr "Panelen tillhandahåller raden på övre eller nedre delen av skärmen och innehåller menyer, fönsterlistan, statusikoner, klockan, etc."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
 msgstr "Fönsterhanteraren är det program som ritar upp titellisten och ramar runt fönster samt låter dig flytta och ändra storlek på fönster."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
 msgstr "Detta är en relativ sökväg som baseras på katalogen $datadir/pixmaps/. Giltiga värden är underkataloger och bildnamn. Att ändra detta värde kommer att påverka nästa sessionsinloggning."
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
-msgstr "Detta är det alternativ som kommer att vara markerat i utloggningsdialogen. Giltiga värden är \"logout\" för att logga ut, \"shutdown\" för att stanna systemet och \"restart\" för att starta om systemet."
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Tid innan sessionen anses vara overksam"
 
-#: ../data/gnome-session.schemas.in.h:22
+#: ../data/gnome-session.schemas.in.h:20
 #: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Fönsterhanterare"
@@ -194,12 +185,12 @@ msgid "Waiting for program to finish.  Interrupting program may cause you to los
 msgstr "Väntar på att programmet ska köras färdigt.  Avbryta program kan innebära att du förlorar data."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Konfigurera dina sessioner"
+msgid "Choose what applications to start when you log in"
+msgstr "Välj vilka program att starta när du loggar in"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sessioner"
+msgid "Startup Applications"
+msgstr "Uppstartsprogram"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -221,9 +212,13 @@ msgstr "Komm_entar:"
 msgid "Options"
 msgstr "Alternativ"
 
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Sessionsinställningar"
+
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
-msgstr "Startprogram"
+msgstr "Uppstartsprogram"
 
 #: ../data/session-properties.glade.h:8
 msgid "_Automatically remember running applications when logging out"
@@ -510,6 +505,21 @@ msgstr "Kunde inte ansluta till sessionshanteraren"
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
 
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "Markerat alternativ i utloggningsdialogen"
+#~ msgid ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+#~ msgstr ""
+#~ "Detta är det alternativ som kommer att vara markerat i "
+#~ "utloggningsdialogen. Giltiga värden är \"logout\" för att logga ut, "
+#~ "\"shutdown\" för att stanna systemet och \"restart\" för att starta om "
+#~ "systemet."
+#~ msgid "Configure your sessions"
+#~ msgstr "Konfigurera dina sessioner"
+#~ msgid "Sessions"
+#~ msgstr "Sessioner"
 #~ msgid "Session management"
 #~ msgstr "Sessionshantering"
 #~ msgid "GNOME GUI Library + EggSMClient"
