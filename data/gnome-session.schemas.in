@@ -82,7 +82,7 @@
          <default>[windowmanager,panel,filemanager]</default>
          <locale name="C">
             <short>Required session components</short>
-            <long>List of components that are required as part of the session. (Each element names a key under "/desktop/gnome/session/required_components"). To be a required component of the session means that removing a required component from a running session (for instance killing related process), gnome-session will start it next time you log in anyway.</long>
+            <long>List of components that are required as part of the session. (Each element names a key under "/desktop/gnome/session/required_components"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed.</long>
          </locale>
       </schema>
       <schema>
