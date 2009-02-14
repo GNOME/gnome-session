@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-13 21:30+0100\n"
-"PO-Revision-Date: 2009-02-13 21:33+0100\n"
+"POT-Creation-Date: 2009-02-14 09:39+0100\n"
+"PO-Revision-Date: 2009-02-14 09:41+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -115,8 +115,8 @@ msgid "List of applications that are part of the default session."
 msgstr "Lista över program som är en del av standardsessionen."
 
 #: ../data/gnome-session.schemas.in.h:6
-msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). To be a required component of the session means that removing a required component from a running session (for instance killing related process), gnome-session will start it next time you log in anyway."
-msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Att vara en nödvändig komponent av sessionen betyder att om man tar bort en nödvändig komponent från en körande session (till exempel döda relaterad process) så kommer gnome-session ändå att starta den nästa gång du loggar in."
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
+msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required-components\".) Inställningsverktyget Uppstartsprogram kommer vanligtvis inte att tillåta användare att ta bort en nödvändig komponent från sessionen, och sessionshanterare kommer automatiskt att lägga tillbaka till de nödvändiga komponenterna till sessionen vid inloggning om de blir borttagna."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
