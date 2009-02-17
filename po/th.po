@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-11 14:17+0700\n"
-"PO-Revision-Date: 2009-02-11 14:22+0700\n"
+"POT-Creation-Date: 2009-02-17 17:40+0700\n"
+"PO-Revision-Date: 2009-02-17 17:46+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -60,11 +60,10 @@ msgid "Program"
 msgstr "โปรแกรม"
 
 #: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "ปรับแต่งวาระ"
+msgid "Startup Applications Preferences"
+msgstr "ปรับแต่งโปรแกรมเริ่มวาระ"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
@@ -122,15 +121,16 @@ msgstr "รายชื่อโปรแกรมที่จะเปิดใ
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
 "รายชื่อองค์ประกอบที่จำเป็นสำหรับวาระ (สมาชิกแต่ละตัวเป็นคีย์ที่อยู่ใต้ \"/desktop/gnome/"
 "session/required-components\") โดยปกติ "
-"การปรับแต่งวาระจะไม่ให้ผู้ใช้ลบองค์ประกอบที่จำเป็นออกจากวาระ และถ้าถูกลบจริง "
-"โปรแกรมจัดการวาระก็จะเพิ่มองค์ประกอบที่จำเป็นกลับเข้าในวาระให้โดยอัตโนมัติ"
+"เครื่องมือปรับแต่งโปรแกรมเริ่มวาระจะไม่ให้ผู้ใช้ลบองค์ประกอบที่จำเป็นออกจากวาระ และถ้าถูกลบจริง "
+"โปรแกรมจัดการวาระก็จะเพิ่มองค์ประกอบที่จำเป็นกลับเข้าในวาระให้โดยอัตโนมัติขณะเข้าระบบ"
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -153,37 +153,33 @@ msgid "Save sessions"
 msgstr "รักษารายละเอียดวาระ"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "ตัวเลือกที่เลือกในกล่องโต้ตอบออกจากระบบ"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "แสดงรูปไตเติลเมื่อเริ่มระบบ"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "แสดงรูปไตเติลขณะที่กำลังเข้าสู่ระบบ"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "โปรแกรมจัดการแฟ้ม จะเตรียมไอคอนต่างๆ บนพื้นโต๊ะ และช่วยคุณโต้ตอบกับแฟ้มต่างๆ ที่เก็บไว้ในดิสก์"
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "จำนวนนาทีของช่วงไร้กิจกรรมที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 "พาเนลคือแถบที่ด้านบนหรือด้านล่างหน้าจอ บรรจุเมนู รายชื่อหน้าต่าง ไอคอนสถานะ นาฬิกา ฯลฯ"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -191,7 +187,7 @@ msgstr ""
 "โปรแกรมจัดการหน้าต่าง คือโปรแกรมที่วาดแถบหัวและกรอบรอบหน้าต่าง "
 "และให้คุณย้ายหรือปรับขนาดหน้าต่างได้"
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -200,21 +196,11 @@ msgstr ""
 "ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
 "โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"ตัวเลือกที่จะเลือกไว้เมื่อเปิดกล่องโต้ตอบออกจากระบบ ค่าที่เป็นไปได้คือ \"logout\" "
-"สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
-"สำหรับการเริ่มการทำงานของเครื่องใหม่"
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
 msgstr "ระยะเวลาที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
 
@@ -230,12 +216,12 @@ msgid ""
 msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "ตั้งค่าสำหรับวาระของคุณ"
+msgid "Choose what applications to start when you log in"
+msgstr "เลือกโปรแกรมที่จะเปิดเมื่อคุณเข้าระบบ"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "วาระ"
+msgid "Startup Applications"
+msgstr "โปรแกรมเริ่มวาระ"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -256,6 +242,10 @@ msgstr "ห_มายเหตุ:"
 #: ../data/session-properties.glade.h:5
 msgid "Options"
 msgstr "ตัวเลือก"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "ปรับแต่งวาระ"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -400,59 +390,52 @@ msgstr "ล็อคหน้าจอ"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"คุณกำลังเข้าระบบในนาม \"%s\"\n"
-"คุณจะออกจากระบบโดยอัตโนมัติภายใน %d วินาที"
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "คุณจะออกจากระบบโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"คุณกำลังเข้าระบบในนาม \"%s\"\n"
-"ระบบจะปิดโดยอัตโนมัติภายใน %d วินาที"
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "ระบบจะปิดโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "คุณกำลังเข้าระบบในนาม \"%s\""
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "ออกจากระบบเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_สลับผู้ใช้"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "ปิดเครื่องเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "_พักเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_จำศีลเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_เปิดเครื่องใหม่"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "ปิ_ดเครื่อง"
 
@@ -481,23 +464,23 @@ msgstr "ไม่สามารถสร้างซ็อกเก็ตรอ
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "คีย์ GConf ที่ใช้เปิดหาวาระปริยาย"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
@@ -552,6 +535,24 @@ msgstr "ติดต่อโปรแกรมจัดการวาระไ
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
+
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "ตัวเลือกที่เลือกในกล่องโต้ตอบออกจากระบบ"
+
+#~ msgid ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+#~ msgstr ""
+#~ "ตัวเลือกที่จะเลือกไว้เมื่อเปิดกล่องโต้ตอบออกจากระบบ ค่าที่เป็นไปได้คือ \"logout\" "
+#~ "สำหรับการออกจากระบบ, \"shutdown\" สำหรับการปิดเครื่อง และ \"restart\" "
+#~ "สำหรับการเริ่มการทำงานของเครื่องใหม่"
+
+#~ msgid "Configure your sessions"
+#~ msgstr "ตั้งค่าสำหรับวาระของคุณ"
+
+#~ msgid "Sessions"
+#~ msgstr "วาระ"
 
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "ตัวหุ้มดีมอนพวงกุญแจ GNOME"
