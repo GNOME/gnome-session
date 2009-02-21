@@ -8,7 +8,7 @@
 # Gustavo Maciel Dias Vieira <gustavo@sagui.org>, 2000-2001.
 # Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002-2005.
 # Og Maciel <ogmaciel@ubuntu.com>, 2007-2008.
-# Vladimir Melo <vladimirmelo@foresightlinux.org>, 2008.
+# Vladimir Melo <vmelo@gnome.org>, 2008.
 # Leonardo Ferreira Fontenelle <leonardof@gnome.org>, 2008.
 # Djavan Fagundes <dnoway@gmail.com>, 2008.
 # André Gondim <andregondim@ubuntu.com>, 2009.
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-26 16:11-0300\n"
-"PO-Revision-Date: 2009-01-25 22:51-0300\n"
+"POT-Creation-Date: 2009-02-21 14:44-0500\n"
+"PO-Revision-Date: 2009-02-21 02:22-0300\n"
 "Last-Translator: Andre Gondim <andregondim@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +67,12 @@ msgid "Program"
 msgstr "Programa"
 
 #: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Preferências de sessões"
+#, fuzzy
+#| msgid "Startup Applications"
+msgid "Startup Applications Preferences"
+msgstr "Aplicativos que inicializarão"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Versão deste aplicativo"
 
@@ -131,12 +132,21 @@ msgid "List of applications that are part of the default session."
 msgstr "Lista de aplicativos que são parte da sessão padrão."
 
 #: ../data/gnome-session.schemas.in.h:6
+#, fuzzy
+#| msgid ""
+#| "List of components that are required as part of the session. (Each "
+#| "element names a key under \"/desktop/gnome/session/required-components"
+#| "\".) The Session Preferences will not normally allow users to remove a "
+#| "required component from the session, and the session manager will "
+#| "automatically add the required components back to the session if they do "
+#| "get removed."
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
 "Lista de componentes que são requeridos como parte da sessão. (Cada elemento "
 "nomeia uma chave em \"/desktop/gnome/session/required-components\".) As "
@@ -165,18 +175,14 @@ msgid "Save sessions"
 msgstr "Salvar sessões"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Opção selecionada na caixa de diálogo de encerramento da sessão"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Mostrar tela inicial ao entrar"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Mostrar tela inicial ao iniciar a sessão"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -184,13 +190,13 @@ msgstr ""
 "O gerenciador de arquivos fornece os ícones da área de trabalho e permite "
 "que você interaja com os seus arquivos salvos."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "O número em minutos de inatividade antes da sessão ser considerada ociosa."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -198,7 +204,7 @@ msgstr ""
 "O painel fornece a barra no topo ou na base da tela contendo menus, lista de "
 "janelas, ícones de status, relógio, etc."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -207,7 +213,7 @@ msgstr ""
 "bordas ao redor das janelas, e permite que você mova e redimensione as "
 "janelas."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -217,21 +223,11 @@ msgstr ""
 "Sub-diretórios e nomes de imagens são valores válidos. Alterar esses valores "
 "vai afetar a próxima sessão."
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Essa é a opção que será selecionada na caixa de diálogo de encerramento da "
-"sessão. Os valores válidos são \"logout\" para encerrar a sessão, \"shutdown"
-"\" para desligar o computador e \"restart\" para reiniciar o computador."
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Tempo antes da sessão ser considerada ociosa"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Gerenciador de janelas"
 
@@ -249,12 +245,12 @@ msgstr ""
 "ocasionar em perda de trabalho."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Configure suas sessões"
+msgid "Choose what applications to start when you log in"
+msgstr "Escolha quais os aplicativos que irão iniciar quando você logar-se"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sessões"
+msgid "Startup Applications"
+msgstr "Aplicativos que inicializarão"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -275,6 +271,10 @@ msgstr "Co_mentário:"
 #: ../data/session-properties.glade.h:5
 msgid "Options"
 msgstr "Opções"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Preferências de sessões"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -424,65 +424,54 @@ msgstr "Bloquear tela"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Você está numa sessão do usuário \"%s\".\n"
-"Essa sessão será encerrada automaticamente em %d segundo."
-msgstr[1] ""
-"Você está numa sessão do usuário \"%s\".\n"
-"Essa sessão será encerrada automaticamente em %d segundos."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Essa sessão será encerrada automaticamente em %d segundo."
+msgstr[1] "Essa sessão será encerrada automaticamente em %d segundos."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Você está numa sessão do usuário \"%s\".\n"
-"Este sistema será automaticamente desligado em %d segundo."
-msgstr[1] ""
-"Você está numa sessão do usuário \"%s\".\n"
-"Este sistema será automaticamente desligado em %d segundos."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Este sistema será automaticamente desligado em %d segundo."
+msgstr[1] "Este sistema será automaticamente desligado em %d segundos."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Você está logado atualmente como \"%s\"."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Desligar este sistema agora?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_Trocar usuário"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Encerrar Sessão"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "Desligar este sistema agora?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "S_uspender"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Hibernar"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "_Desligar"
 
@@ -515,23 +504,23 @@ msgstr ""
 "Não foi possível iniciar a sessão de login (e não foi possível conectar ao "
 "servidor X)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Substituir os diretórios padrões de início automático"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "A chave do GConf usada para procurar a sessão padrão"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Habilitar código de depuração"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "Não carregar aplicativos especificados pelo usuário"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr "- gerenciador de sessões do GNOME"
 
@@ -561,19 +550,19 @@ msgstr "Encerrar sessão, ignorando qualquer inibidor existente"
 
 #: ../tools/gnome-session-save.c:68
 msgid "Show logout dialog"
-msgstr "Mostra o diálogo de encerramento da sessão"
+msgstr "Mostrar o diálogo de encerramento da sessão"
 
 #: ../tools/gnome-session-save.c:69
 msgid "Show shutdown dialog"
-msgstr "Mostra o diálogo de desligamento"
+msgstr "Mostrar o diálogo de desligamento"
 
 #: ../tools/gnome-session-save.c:70
 msgid "Kill session"
-msgstr "Mata a sessão"
+msgstr "Matar a sessão"
 
 #: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
-msgstr "Usa caixas de diálogo para erros"
+msgstr "Usar caixas de diálogo para erros"
 
 #: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
@@ -586,6 +575,25 @@ msgstr "Não foi possível conectar ao gerenciador de sessões"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Programa chamado com opções conflitantes"
+
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "Opção selecionada na caixa de diálogo de encerramento da sessão"
+
+#~ msgid ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+#~ msgstr ""
+#~ "Essa é a opção que será selecionada na caixa de diálogo de encerramento "
+#~ "da sessão. Os valores válidos são \"logout\" para encerrar a sessão, "
+#~ "\"shutdown\" para desligar o computador e \"restart\" para reiniciar o "
+#~ "computador."
+
+#~ msgid "Configure your sessions"
+#~ msgstr "Configure suas sessões"
+
+#~ msgid "Sessions"
+#~ msgstr "Sessões"
 
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "Wrapper do daemon do Chaveiro do GNOME"
