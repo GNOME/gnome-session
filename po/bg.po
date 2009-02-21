@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-10 07:23+0200\n"
-"PO-Revision-Date: 2009-02-10 07:23+0200\n"
+"POT-Creation-Date: 2009-02-21 22:43+0200\n"
+"PO-Revision-Date: 2009-02-21 22:35+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -63,11 +63,10 @@ msgid "Program"
 msgstr "Програма"
 
 #: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Настройки на сесиите"
+msgid "Startup Applications Preferences"
+msgstr "Настройки за автоматично стартиране на програми"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Версията на тази програма"
 
@@ -126,13 +125,14 @@ msgstr "Списък с програми, които са част от стан
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
 "Списък с компоненти, които са необходими като част от сесията. (Всеки "
-"елемент е ключ от дървото „/desktop/gnome/session/required-components“.) "
+"елемент е ключ от дървото „/desktop/gnome/session/required_components“.) "
 "Обикновено програмата за настройване на сесиите не позволява потребител да "
 "премахва необходими компоненти от сесията — управлението на сесии "
 "автоматично ще добави липсващите компоненти, ако те бъдат премахнати."
@@ -159,18 +159,14 @@ msgid "Save sessions"
 msgstr "Запазване на сесиите"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Избраната настройка в прозореца за изход"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Показване на изображение по време на зареждането на GNOME"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Показване на прозореца при зареждането в началото на сесията"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -178,14 +174,14 @@ msgstr ""
 "Файловият мениджър осигурява иконите на работната среда и позволява да "
 "взаимодействате със запазените файлове."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Време на бездействие в минути, след което цялата сесията се счита за "
 "бездействаща."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -193,7 +189,7 @@ msgstr ""
 "Панелът осигурява лентите горе и долу на екрана, които съдържат менюта, "
 "списък с прозорци, икони за състояние, часовник и т.н."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -201,7 +197,7 @@ msgstr ""
 "Мениджърът на прозорци е програмата, която рисува заглавната лента и рамките "
 "около прозорците и ви позволява да ги местите и оразмерявате."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -211,21 +207,11 @@ msgstr ""
 "са подпапки и имена на изображения. Промяната на тази стойност ще е валидна "
 "за следващото влизане в системата."
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Това ще е настройката, която ще бъде избрана в прозореца за изход. Валидни "
-"стойности са „logout“ за изход, „shutdown“ за спиране на системата и "
-"„restart“ за рестартиране на системата."
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Време за обявяване на сесия за бездействаща"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Мениджър на прозорци"
 
@@ -243,12 +229,13 @@ msgstr ""
 "на информация."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Настройки на сесиите"
+msgid "Choose what applications to start when you log in"
+msgstr ""
+"Изберете програмите, които да се стартират при влизането ви в системата"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Сесии"
+msgid "Startup Applications"
+msgstr "Автоматично стартирани програми"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -270,6 +257,10 @@ msgstr "Ко_ментар:"
 msgid "Options"
 msgstr "Опции"
 
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Настройки на сесиите"
+
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Програми стартиращи при влизане"
@@ -289,12 +280,12 @@ msgstr "_Запомняне на стартираните програми пр�
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr "Файлът не е валиден формат тип .desktop"
+msgstr "Файлът не е във формат .desktop"
 
 #: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "Непознато поле „Version“: %s"
+msgstr "Непозната версия на файла: %s"
 
 #: ../egg/eggdesktopfile.c:958
 #, c-format
@@ -304,17 +295,17 @@ msgstr "Стартиране на %s"
 #: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr "Приложението не допуска документи като опция на командния ред"
+msgstr "Програмата не приема документи през командния ред"
 
 #: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
-msgstr "Непозната опция за стартиране: %d"
+msgstr "Непозната опция при стартиране „%d“"
 
 #: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Не може да се подават адреси на документи до запис от вида „Type=Link“"
+msgstr "В обекти от вида „Type=Link“ не може да се подават адреси на документи"
 
 #: ../egg/eggdesktopfile.c:1392
 #, c-format
@@ -323,11 +314,11 @@ msgstr "Не е обект за стартиране"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
-msgstr "Преустановяване на връзката с управлението на сесии"
+msgstr "Изключване на връзката с управлението на сесиите"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr "Задаване на файл, съдържащ запазени настройки"
+msgstr "Указване на файла със запазените настройки"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
@@ -335,19 +326,19 @@ msgstr "ФАЙЛ"
 
 #: ../egg/eggsmclient.c:191
 msgid "Specify session management ID"
-msgstr "Задаване идентификатор на сесията"
+msgstr "Указване на идентификатор за управлението на сесиите"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
-msgstr "ID"
+msgstr "ИДЕНТИФИКАТОР"
 
 #: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
-msgstr "Настройки за управлението на сесии"
+msgstr "Настройки на управлението на сесии:"
 
 #: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
-msgstr "Показване на настройки за управление на сесии"
+msgstr "Показване на настройките за управлението на сесиите"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -415,65 +406,54 @@ msgstr "Заключване на екрана"
 msgid "Cancel"
 msgstr "Отказ"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"В момента сте влезли като „%s“.\n"
-"Ще излезете от системата автоматично след %d секунда."
-msgstr[1] ""
-"В момента сте влезли като „%s“.\n"
-"Ще излезете от системата автоматично след %d секунди."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Ще излезете от системата автоматично след %d секунда."
+msgstr[1] "Ще излезете от системата автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"В момента сте влезли като „%s“.\n"
-"Компютърът ще се изключи автоматично след %d секунда."
-msgstr[1] ""
-"В момента сте влезли като „%s“.\n"
-"Компютърът ще се изключи автоматично след %d секунди."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Компютърът ще се изключи автоматично след %d секунда."
+msgstr[1] "Компютърът ще се изключи автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "В момента сте влезли като „%s“."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Излизане от системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "Изключване на системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "_Приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Дълбоко приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_Рестартиране"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
@@ -506,23 +486,23 @@ msgstr ""
 "Неуспех при стартирането на входната сесия (и неуспех при свързването с X "
 "сървъра)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "Ключ на GConf за стандартната сесия"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
 
