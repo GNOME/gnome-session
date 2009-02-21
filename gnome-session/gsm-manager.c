@@ -683,7 +683,7 @@ cancel_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_cancel_end_session,
                            NULL);
 
-        manager->priv->phase = GSM_MANAGER_PHASE_RUNNING;
+        gsm_manager_set_phase(manager, GSM_MANAGER_PHASE_RUNNING);
         manager->priv->forceful = FALSE;
 
         start_phase (manager);
@@ -1088,7 +1088,7 @@ gsm_manager_start (GsmManager *manager)
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
-        manager->priv->phase = GSM_MANAGER_PHASE_INITIALIZATION;
+        gsm_manager_set_phase(manager, GSM_MANAGER_PHASE_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
 }
