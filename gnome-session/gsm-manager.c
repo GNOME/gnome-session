@@ -1954,7 +1954,7 @@ invalid_type_warning (const char *type)
 }
 
 static void
-load_from_gconf (GsmManager *manager)
+load_idle_delay_from_gconf (GsmManager *manager)
 {
         GError *error;
         glong   value;
@@ -2086,7 +2086,7 @@ gsm_manager_init (GsmManager *manager)
                                                                      manager,
                                                                      NULL, NULL);
 
-        load_from_gconf (manager);
+        load_idle_delay_from_gconf (manager);
 }
 
 static void
