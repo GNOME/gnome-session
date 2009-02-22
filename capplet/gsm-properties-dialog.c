@@ -61,7 +61,6 @@
 #define CAPPLET_SAVE_WIDGET_NAME          "session_properties_save_button"
 #define CAPPLET_REMEMBER_WIDGET_NAME      "session_properties_remember_toggle"
 
-#define DESKTOP_ENTRY_GROUP  "Desktop Entry"
 #define STARTUP_APP_ICON     "system-run"
 
 #define SPC_GCONF_CONFIG_PREFIX   "/apps/gnome-session/options"
@@ -152,9 +151,10 @@ append_app (GsmPropertiesDialog *dialog,
         basename = g_file_get_basename (source);
 
         if (egg_desktop_file_has_key (desktop_file,
-                                      "Hidden", NULL)) {
+                                      G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL)) {
                 if (egg_desktop_file_get_boolean (desktop_file,
-                                                  "Hidden", NULL))
+                                                  G_KEY_FILE_DESKTOP_KEY_HIDDEN,
+                                                  NULL))
                         return FALSE;
         }
 
@@ -164,7 +164,8 @@ append_app (GsmPropertiesDialog *dialog,
         }
 
         name = egg_desktop_file_get_locale_string (desktop_file,
-                                                   "Name", NULL, NULL);
+                                                   G_KEY_FILE_DESKTOP_KEY_NAME,
+                                                   NULL, NULL);
 
         comment = NULL;
 
@@ -172,21 +173,24 @@ append_app (GsmPropertiesDialog *dialog,
                                       "Comment", NULL)) {
                 comment =
                         egg_desktop_file_get_locale_string (desktop_file,
-                                                            "Comment", NULL, NULL);
+                                                            G_KEY_FILE_DESKTOP_KEY_COMMENT,
+                                                            NULL, NULL);
         }
 
         description = get_app_description (name, comment);
 
         command = egg_desktop_file_get_string (desktop_file,
-                                               "Exec", NULL);
+                                               G_KEY_FILE_DESKTOP_KEY_EXEC,
+                                               NULL);
 
         icon_name = NULL;
 
         if (egg_desktop_file_has_key (desktop_file,
-                                      "Icon", NULL)) {
+                                      G_KEY_FILE_DESKTOP_KEY_ICON, NULL)) {
                 icon_name =
                         egg_desktop_file_get_string (desktop_file,
-                                                     "Icon", NULL);
+                                                     G_KEY_FILE_DESKTOP_KEY_ICON,
+                                                     NULL);
         }
 
         theme = gtk_icon_theme_get_default ();
@@ -434,7 +438,9 @@ key_file_set_locale_string (GKeyFile   *keyfile,
                                               locale,
                                               value);
         } else {
-                g_key_file_set_string (keyfile, "Desktop Entry", key, value);
+                g_key_file_set_string (keyfile,
+                                       G_KEY_FILE_DESKTOP_GROUP,
+                                       key, value);
         }
 }
 
@@ -543,17 +549,23 @@ write_desktop_file (EggDesktopFile *desktop_file,
                             STORE_COL_COMMENT, &comment,
                             -1);
 
-        key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP,
-                                    "Name", name);
+        key_file_set_locale_string (keyfile,
+                                    G_KEY_FILE_DESKTOP_GROUP,
+                                    G_KEY_FILE_DESKTOP_KEY_NAME,
+                                    name);
 
-        key_file_set_locale_string (keyfile, DESKTOP_ENTRY_GROUP,
-                                    "Comment", comment);
+        key_file_set_locale_string (keyfile,
+                                    G_KEY_FILE_DESKTOP_GROUP,
+                                    G_KEY_FILE_DESKTOP_KEY_COMMENT,
+                                    comment);
 
-        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                               "Exec", command);
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_EXEC,
+                               command);
 
         g_key_file_set_boolean (keyfile,
-                                DESKTOP_ENTRY_GROUP,
+                                G_KEY_FILE_DESKTOP_GROUP,
                                 "X-GNOME-Autostart-enabled",
                                 enabled);
 
@@ -750,25 +762,35 @@ add_app (GtkListStore *store,
 
         keyfile = g_key_file_new ();
 
-        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                               "Type", "Application");
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_TYPE,
+                               "Application");
 
-        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                               "Name", name);
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_NAME,
+                               name);
 
-        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                               "Exec", command);
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_EXEC,
+                               command);
 
         if (icon == NULL) {
                 icon = g_strdup (STARTUP_APP_ICON);
         }
 
-        g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                               "Icon", icon);
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_ICON,
+                               icon);
 
         if (comment) {
-                g_key_file_set_string (keyfile, DESKTOP_ENTRY_GROUP,
-                                       "Comment", comment);
+                g_key_file_set_string (keyfile,
+                                       G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_COMMENT,
+                                       comment);
         }
 
         description = get_app_description (name, comment);
@@ -1081,8 +1103,10 @@ delete_desktop_file (GtkListStore *store,
                         g_key_file_free (keyfile);
                 }
 
-                g_key_file_set_boolean (keyfile, DESKTOP_ENTRY_GROUP,
-                                        "Hidden", TRUE);
+                g_key_file_set_boolean (keyfile,
+                                        G_KEY_FILE_DESKTOP_GROUP,
+                                        G_KEY_FILE_DESKTOP_KEY_HIDDEN,
+                                        TRUE);
 
                 user_path = g_build_filename (g_get_user_config_dir (),
                                               "autostart", basename, NULL);
