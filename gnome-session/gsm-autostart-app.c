@@ -419,7 +419,14 @@ load_desktop_file (GsmAutostartApp *app)
         /* this must only be done on first load */
         switch (app->priv->launch_type) {
         case AUTOSTART_LAUNCH_SPAWN:
-                startup_id = gsm_util_generate_startup_id ();
+                startup_id =
+                        egg_desktop_file_get_string (app->priv->desktop_file,
+                                                     "X-GNOME-Autostart-startup-id",
+                                                     NULL);
+
+                if (startup_id == NULL) {
+                        startup_id = gsm_util_generate_startup_id ();
+                }
                 break;
         case AUTOSTART_LAUNCH_ACTIVATE:
                 startup_id = g_strdup (dbus_name);

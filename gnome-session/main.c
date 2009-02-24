@@ -162,90 +162,6 @@ acquire_name (void)
         return TRUE;
 }
 
-static char *
-find_desktop_file_for_app_name (const char *name,
-                                char      **autostart_dirs)
-{
-        char     *app_path;
-        char    **app_dirs;
-        GKeyFile *key_file;
-        char     *desktop_file;
-        int       i;
-
-        app_path = NULL;
-
-        app_dirs = gsm_util_get_app_dirs ();
-
-        key_file = g_key_file_new ();
-
-        desktop_file = g_strdup_printf ("%s.desktop", name);
-
-        g_debug ("main: Looking for file '%s'", desktop_file);
-
-        for (i = 0; app_dirs[i] != NULL; i++) {
-                g_debug ("main: Looking in '%s'", app_dirs[i]);
-        }
-
-        g_key_file_load_from_dirs (key_file,
-                                   desktop_file,
-                                   (const char **) app_dirs,
-                                   &app_path,
-                                   G_KEY_FILE_NONE,
-                                   NULL);
-
-        if (app_path != NULL) {
-                g_debug ("main: found in XDG app dirs: '%s'", app_path);
-        }
-
-        if (app_path == NULL && autostart_dirs != NULL) {
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) autostart_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("main: found in autostart dirs: '%s'", app_path);
-                }
-
-        }
-
-        /* look for gnome vender prefix */
-        if (app_path == NULL) {
-                g_free (desktop_file);
-                desktop_file = g_strdup_printf ("gnome-%s.desktop", name);
-
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) app_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("main: found in XDG app dirs: '%s'", app_path);
-                }
-        }
-
-        if (app_path == NULL && autostart_dirs != NULL) {
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) autostart_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("main: found in autostart dirs: '%s'", app_path);
-                }
-        }
-
-        g_free (desktop_file);
-        g_key_file_free (key_file);
-
-        g_strfreev (app_dirs);
-
-        return app_path;
-}
-
 /* This doesn't contain the required components, so we need to always
  * call append_required_apps() after a call to append_default_apps(). */
 static void
@@ -276,7 +192,7 @@ append_default_apps (GsmManager *manager,
                         continue;
                 }
 
-                app_path = find_desktop_file_for_app_name (a->data, autostart_dirs);
+                app_path = gsm_util_find_desktop_file_for_app_name (a->data, autostart_dirs);
                 if (app_path != NULL) {
                         gsm_manager_add_autostart_app (manager, app_path, NULL);
                         g_free (app_path);
@@ -285,25 +201,6 @@ append_default_apps (GsmManager *manager,
 
         g_slist_foreach (default_apps, (GFunc) g_free, NULL);
         g_slist_free (default_apps);
-}
-
-static void
-append_saved_session_apps (GsmManager *manager)
-{
-        char *session_filename;
-
-        /* try resuming from the old gnome-session's files */
-        session_filename = g_build_filename (g_get_home_dir (),
-                                             ".gnome2",
-                                             "session",
-                                             NULL);
-        if (g_file_test (session_filename, G_FILE_TEST_EXISTS)) {
-                gsm_manager_add_legacy_session_apps (manager, session_filename);
-                g_free (session_filename);
-                return;
-        }
-
-        g_free (session_filename);
 }
 
 static void
@@ -344,7 +241,7 @@ append_required_apps (GsmManager *manager)
                 if (default_provider != NULL) {
                         char *app_path;
 
-                        app_path = find_desktop_file_for_app_name (default_provider, NULL);
+                        app_path = gsm_util_find_desktop_file_for_app_name (default_provider, NULL);
                         if (app_path != NULL) {
                                 gsm_manager_add_autostart_app (manager, app_path, component);
                         } else {
@@ -382,11 +279,11 @@ load_standard_apps (GsmManager *manager,
                 goto out;
         }
 
+        gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());
+
         for (i = 0; autostart_dirs[i]; i++) {
                 gsm_manager_add_autostart_apps_from_dir (manager, autostart_dirs[i]);
         }
-
-        append_saved_session_apps (manager);
 
  out:
         /* We do this at the end in case a saved session contains an

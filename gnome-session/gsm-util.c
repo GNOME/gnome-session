@@ -24,14 +24,153 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/time.h>
+#include <errno.h>
+#include <string.h>
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <glib/gstdio.h>
 #include <gtk/gtk.h>
 
 #include <dbus/dbus-glib.h>
 
 #include "gsm-util.h"
+
+static gchar *_saved_session_dir = NULL;
+
+char *
+gsm_util_find_desktop_file_for_app_name (const char *name,
+                                         char      **autostart_dirs)
+{
+        char     *app_path;
+        char    **app_dirs;
+        GKeyFile *key_file;
+        char     *desktop_file;
+        int       i;
+
+        app_path = NULL;
+
+        app_dirs = gsm_util_get_app_dirs ();
+
+        key_file = g_key_file_new ();
+
+        desktop_file = g_strdup_printf ("%s.desktop", name);
+
+        g_debug ("GsmUtil: Looking for file '%s'", desktop_file);
+
+        for (i = 0; app_dirs[i] != NULL; i++) {
+                g_debug ("GsmUtil: Looking in '%s'", app_dirs[i]);
+        }
+
+        g_key_file_load_from_dirs (key_file,
+                                   desktop_file,
+                                   (const char **) app_dirs,
+                                   &app_path,
+                                   G_KEY_FILE_NONE,
+                                   NULL);
+
+        if (app_path != NULL) {
+                g_debug ("GsmUtil: found in XDG app dirs: '%s'", app_path);
+        }
+
+        if (app_path == NULL && autostart_dirs != NULL) {
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) autostart_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+                if (app_path != NULL) {
+                        g_debug ("GsmUtil: found in autostart dirs: '%s'", app_path);
+                }
+
+        }
+
+        /* look for gnome vender prefix */
+        if (app_path == NULL) {
+                g_free (desktop_file);
+                desktop_file = g_strdup_printf ("gnome-%s.desktop", name);
+
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) app_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+                if (app_path != NULL) {
+                        g_debug ("GsmUtil: found in XDG app dirs: '%s'", app_path);
+                }
+        }
+
+        if (app_path == NULL && autostart_dirs != NULL) {
+                g_key_file_load_from_dirs (key_file,
+                                           desktop_file,
+                                           (const char **) autostart_dirs,
+                                           &app_path,
+                                           G_KEY_FILE_NONE,
+                                           NULL);
+                if (app_path != NULL) {
+                        g_debug ("GsmUtil: found in autostart dirs: '%s'", app_path);
+                }
+        }
+
+        g_free (desktop_file);
+        g_key_file_free (key_file);
+
+        g_strfreev (app_dirs);
+
+        return app_path;
+}
+
+static gboolean
+ensure_dir_exists (const char *dir)
+{
+        if (g_file_test (dir, G_FILE_TEST_IS_DIR))
+                return TRUE;
+
+        if (g_mkdir_with_parents (dir, 488) == 0)
+                return TRUE;
+
+        if (errno == EEXIST)
+                return g_file_test (dir, G_FILE_TEST_IS_DIR);
+
+        g_warning ("GsmSessionSave: Failed to create directory %s: %s", dir, strerror (errno));
+
+        return FALSE;
+}
+
+const gchar *
+gsm_util_get_saved_session_dir (void)
+{
+        if (_saved_session_dir == NULL) {
+                gboolean exists;
+
+                _saved_session_dir =
+                        g_build_filename (g_get_home_dir (),
+                                          ".gnome2",
+                                          "gnome-session",
+                                          "saved-session",
+                                          NULL);
+
+                exists = ensure_dir_exists (_saved_session_dir);
+
+                if (G_UNLIKELY (!exists)) {
+                        static gboolean printed_warning = FALSE;
+
+                        if (!printed_warning) {
+                                g_warning ("GsmSessionSave: could not create directory for saved session: %s", _saved_session_dir);
+                                printed_warning = TRUE;
+                        }
+
+                        _saved_session_dir = NULL;
+
+                        return NULL;
+                }
+        }
+
+        return _saved_session_dir;
+}
+
 
 char **
 gsm_util_get_autostart_dirs ()

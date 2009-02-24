@@ -1,3 +1,63 @@
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/Makefile.am, gnome-session/gsm-resumed-app.[ch]:
+	remove GsmResumedApp code as it's being used anymore.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/main.c, gnome-session/gsm-manager.c: remove code for
+	handling legacy session saving files as it won't be supported anymore.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	Bug 552387 – gnome-session doesn't save session anymore
+
+	* gnome-session/Makefile.am: add gsm-session-save.[ch] to the build.
+	* gnome-session/gsm-session-save.[ch]: session saving functions.
+	* gnome-session/gsm-autostart-app.c (load_desktop_file): check if the
+	desktop file has X-GNOME-Autostart-startup-id to define startup id of
+	the GsmAutostartApp.
+	* gnome-session/gsm-client.[ch] (gsm_client_save): add gsm_client_save
+	virtual method which should be implemented by each type of client.
+	* gnome-session/gsm-dbus-client.c, gnome-session/gsm-xsmp-client.c:
+	add respective gsm_client_save implementations. D-Bus clients still
+	don't implement saving.
+	* gnome-session/gsm-manager.c (auto_save_is_enabled,
+	maybe_save_session): save session state if auto save is enable before
+	finalizing the session.
+	* gnome-session/main.c (load_standard_apps): load GsmApps from the
+	saved session directory.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/main.c, gnome-session/gsm-util.[ch]: move
+	find_desktop_file_for_app_name to gsm-util so that we can use it in
+	other places.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-manager.c (user_logout): use gconf client from
+	GsmManager instead of getting a new one.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-xsmp-client.c (do_save_yourself): add comments on
+	SmsSaveYourself parameters for clarity.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-manager.c (on_xsmp_client_logout_request):
+	improve readability of conditional code.
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-manager.c: wrap too long lines into 80 cols. 
+
+2009-02-23  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-manager.c: rename forceful attribute to
+	forceful_logout for clarity. 
+
 2009-02-22  Lucas Rocha  <lucasr@gnome.org>
 
 	* capplet/gsm-properties-dialog.c: use G_KEY_FILE_DESKTOP_* constants

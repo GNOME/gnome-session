@@ -52,7 +52,6 @@
 #include "gsm-dbus-client.h"
 
 #include "gsm-autostart-app.h"
-#include "gsm-resumed-app.h"
 
 #include "gsm-util.h"
 #include "gdm.h"
@@ -60,6 +59,7 @@
 #include "gsm-inhibit-dialog.h"
 #include "gsm-consolekit.h"
 #include "gsm-power-manager.h"
+#include "gsm-session-save.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
 
@@ -79,6 +79,9 @@
 #define KEY_DESKTOP_DIR           "/desktop/gnome/session"
 #define KEY_IDLE_DELAY            KEY_DESKTOP_DIR "/idle_delay"
 
+#define KEY_GNOME_SESSION_DIR     "/apps/gnome-session/options"
+#define KEY_AUTOSAVE              KEY_GNOME_SESSION_DIR "/auto_save_session"
+
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 struct GsmManagerPrivate
@@ -93,7 +96,7 @@ struct GsmManagerPrivate
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
         GSList                 *pending_apps;
-        gboolean                forceful;
+        gboolean                forceful_logout;
         GSList                 *query_clients;
         guint                   query_timeout_id;
 
@@ -280,7 +283,9 @@ app_condition_changed (GsmApp     *app,
                         /* Kill client in case condition if false and make sure it won't
                          * be automatically restarted by adding the client to
                          * condition_clients */
-                        manager->priv->condition_clients = g_slist_prepend (manager->priv->condition_clients, client);
+                        manager->priv->condition_clients =
+                                g_slist_prepend (manager->priv->condition_clients, client);
+
                         g_debug ("GsmManager: stopping client %s for app", gsm_client_peek_id (client));
 
                         error = NULL;
@@ -540,7 +545,7 @@ do_phase_end_session (GsmManager *manager)
         data.manager = manager;
         data.flags = 0;
 
-        if (manager->priv->forceful) {
+        if (manager->priv->forceful_logout) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
 
@@ -684,7 +689,7 @@ cancel_end_session (GsmManager *manager)
                            NULL);
 
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_RUNNING);
-        manager->priv->forceful = FALSE;
+        manager->priv->forceful_logout = FALSE;
 
         start_phase (manager);
 }
@@ -806,7 +811,7 @@ do_dialog_action (GsmManager *manager,
                 manager_attempt_reboot (manager);
                 break;
         case GSM_LOGOUT_ACTION_LOGOUT:
-                manager->priv->forceful = TRUE;
+                manager->priv->forceful_logout = TRUE;
                 end_phase (manager);
                 break;
         default:
@@ -973,12 +978,12 @@ do_phase_query_end_session (GsmManager *manager)
         data.manager = manager;
         data.flags = 0;
 
-        if (manager->priv->forceful) {
+        if (manager->priv->forceful_logout) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
 
         debug_clients (manager);
-        g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful);
+        g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful_logout);
         gsm_store_foreach (manager->priv->clients,
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
@@ -1527,6 +1532,51 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         return handled;
 }
 
+static gboolean
+auto_save_is_enabled(GsmManager *manager)
+{
+        GError   *error;
+        gboolean  auto_save;
+
+        error = NULL;
+        auto_save = gconf_client_get_bool (manager->priv->gconf_client,
+                                           KEY_AUTOSAVE,
+                                           &error);
+
+        if (error) {
+                g_warning ("Error retrieving configuration key '%s': %s",
+                           KEY_AUTOSAVE,
+                           error->message);
+                g_error_free (error);
+
+                /* If we fail to query gconf key, disable auto save */
+                auto_save = FALSE;
+        }
+
+        return auto_save;
+}
+
+static void
+maybe_save_session (GsmManager *manager)
+{
+        GError *error;
+
+        /* We only allow session saving when session is running or when
+         * logging out */
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING &&
+            manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
+                return;
+        }
+
+        error = NULL;
+        gsm_session_save (manager->priv->clients, &error);
+
+        if (error) {
+                g_warning ("Error saving session: %s", error->message);
+                g_error_free (error);
+        }
+}
+
 static void
 on_client_end_session_response (GsmClient  *client,
                                 gboolean    is_ok,
@@ -1587,6 +1637,10 @@ on_client_end_session_response (GsmClient  *client,
                         manager->priv->query_timeout_id = 0;
                 }
 
+                if (auto_save_is_enabled (manager)) {
+                        maybe_save_session (manager);
+                }
+
                 end_phase (manager);
         }
 }
@@ -1599,8 +1653,11 @@ on_xsmp_client_logout_request (GsmXSMPClient *client,
         GError *error;
         int     logout_mode;
 
-        logout_mode = (show_dialog) ? GSM_MANAGER_LOGOUT_MODE_NORMAL :
-                GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION;
+        if (show_dialog) {
+                logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
+        } else {
+                logout_mode = GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION;
+        }
 
         error = NULL;
         gsm_manager_logout (manager, logout_mode, &error);
@@ -2322,10 +2379,10 @@ request_hibernate (GsmManager *manager)
 
 static void
 request_logout (GsmManager *manager,
-                gboolean    forceful)
+                gboolean    forceful_logout)
 {
         g_debug ("GsmManager: requesting logout");
-        manager->priv->forceful = forceful;
+        manager->priv->forceful_logout = forceful_logout;
         end_phase (manager);
 }
 
@@ -2440,20 +2497,19 @@ show_logout_dialog (GsmManager *manager)
 static void
 user_logout (GsmManager *manager,
              gboolean    show_confirmation,
-             gboolean    forceful)
+             gboolean    forceful_logout)
 {
-        gboolean     logout_prompt;
-        GConfClient *client;
+        gboolean logout_prompt;
 
         if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 /* Already shutting down, nothing more to do */
                 return;
         }
-        client = gconf_client_get_default ();
-        logout_prompt = gconf_client_get_bool (client,
-                                               "/apps/gnome-session/options/logout_prompt",
-                                               NULL);
-        g_object_unref (client);
+
+        logout_prompt =
+               gconf_client_get_bool (manager->priv->gconf_client,
+                                      "/apps/gnome-session/options/logout_prompt",
+                                      NULL);
 
         /* Global settings overides input parameter in order to disable confirmation
          * dialog accordingly. If we're shutting down, we always show the confirmation
@@ -2463,7 +2519,7 @@ user_logout (GsmManager *manager,
         if (logout_prompt) {
                 show_logout_dialog (manager);
         } else {
-                request_logout (manager, forceful);
+                request_logout (manager, forceful_logout);
         }
 }
 
@@ -2835,9 +2891,9 @@ gsm_manager_is_inhibited (GsmManager *manager,
                 return TRUE;
         }
 
-        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
-                                                    (GsmStoreFunc)inhibitor_has_flag,
-                                                    GUINT_TO_POINTER (flags));
+        inhibitor = (GsmInhibitor *) gsm_store_find (manager->priv->inhibitors,
+                                                     (GsmStoreFunc)inhibitor_has_flag,
+                                                     GUINT_TO_POINTER (flags));
         if (inhibitor == NULL) {
                 *is_inhibited = FALSE;
         } else {
@@ -2886,7 +2942,9 @@ gsm_manager_get_inhibitors (GsmManager *manager,
         }
 
         *inhibitors = g_ptr_array_new ();
-        gsm_store_foreach (manager->priv->inhibitors, (GsmStoreFunc)listify_store_ids, inhibitors);
+        gsm_store_foreach (manager->priv->inhibitors,
+                           (GsmStoreFunc) listify_store_ids,
+                           inhibitors);
 
         return TRUE;
 }
@@ -2916,7 +2974,10 @@ gsm_manager_is_autostart_condition_handled (GsmManager *manager,
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
-        app = (GsmApp *)gsm_store_find (manager->priv->apps, (GsmStoreFunc)_app_has_autostart_condition, (char *)condition);
+        app = (GsmApp *) gsm_store_find (manager->priv->apps,(
+                                         GsmStoreFunc) _app_has_autostart_condition,
+                                         (char *)condition);
+
         if (app != NULL) {
                 *handled = TRUE;
         } else {
@@ -3027,43 +3088,6 @@ gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
         }
 
         g_dir_close (dir);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_add_legacy_session_apps (GsmManager *manager,
-                                     const char *path)
-{
-        GKeyFile *saved;
-        int       num_clients;
-        int       i;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-        g_return_val_if_fail (path != NULL, FALSE);
-
-        saved = g_key_file_new ();
-        if (!g_key_file_load_from_file (saved, path, 0, NULL)) {
-                /* FIXME: error handling? */
-                g_key_file_free (saved);
-                return FALSE;
-        }
-
-        num_clients = g_key_file_get_integer (saved,
-                                              "Default",
-                                              "num_clients",
-                                              NULL);
-        for (i = 0; i < num_clients; i++) {
-                GsmApp *app;
-
-                app = gsm_resumed_app_new_from_legacy_session (saved, i);
-                if (app != NULL) {
-                        append_app (manager, app);
-                        g_object_unref (app);
-                }
-        }
-
-        g_key_file_free (saved);
 
         return TRUE;
 }

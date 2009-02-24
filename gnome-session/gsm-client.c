@@ -23,6 +23,8 @@
 
 #include <dbus/dbus-glib.h>
 
+#include "eggdesktopfile.h"
+
 #include "gsm-marshal.h"
 #include "gsm-client.h"
 #include "gsm-client-glue.h"
@@ -504,6 +506,15 @@ void
 gsm_client_disconnected (GsmClient *client)
 {
         g_signal_emit (client, signals[DISCONNECTED], 0);
+}
+
+GKeyFile *
+gsm_client_save (GsmClient *client,
+                 GError   **error)
+{
+        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+
+        return GSM_CLIENT_GET_CLASS (client)->impl_save (client, error);
 }
 
 void

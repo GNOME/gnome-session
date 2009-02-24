@@ -59,8 +59,6 @@ gnome_session_SOURCES =				\
 	gsm-app.c				\
 	gsm-autostart-app.h			\
 	gsm-autostart-app.c			\
-	gsm-resumed-app.h			\
-	gsm-resumed-app.c			\
 	gsm-client.c				\
 	gsm-client.h				\
 	gsm-xsmp-client.h			\
@@ -96,6 +94,8 @@ gnome_session_SOURCES =				\
 	gsm-inhibitor.c				\
 	gsm-manager.c				\
 	gsm-manager.h				\
+	gsm-session-save.c			\
+	gsm-session-save.h			\
 	gsm-xsmp-server.c			\
 	gsm-xsmp-server.h			\
 	$(NULL)

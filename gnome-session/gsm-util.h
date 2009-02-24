@@ -24,18 +24,24 @@
 
 G_BEGIN_DECLS
 
-gchar**   gsm_util_get_app_dirs         (void);
+char *      gsm_util_find_desktop_file_for_app_name (const char  *app_name,
+                                                     char       **dirs);
 
-gchar**   gsm_util_get_autostart_dirs   (void);
+const char *gsm_util_get_saved_session_dir          (void);
 
-gboolean  gsm_util_text_is_blank        (const char *str);
+gchar**     gsm_util_get_app_dirs                   (void);
 
-void      gsm_util_init_error           (gboolean    fatal,
-                                         const char *format, ...);
-char *    gsm_util_generate_startup_id  (void);
+gchar**     gsm_util_get_autostart_dirs             (void);
 
-void      gsm_util_setenv               (const char *variable,
-                                         const char *value);
+gboolean    gsm_util_text_is_blank                  (const char *str);
+
+void        gsm_util_init_error                     (gboolean    fatal,
+                                                     const char *format, ...);
+
+char *      gsm_util_generate_startup_id            (void);
+
+void        gsm_util_setenv                         (const char *variable,
+                                                     const char *value);
 
 G_END_DECLS
 

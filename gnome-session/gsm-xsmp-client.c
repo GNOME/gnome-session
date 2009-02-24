@@ -28,18 +28,18 @@
 #include <unistd.h>
 #include <errno.h>
 
+#include <gio/gio.h>
 #include <glib/gi18n.h>
 
 #include "gsm-xsmp-client.h"
 #include "gsm-marshal.h"
 
+#include "gsm-util.h"
 #include "gsm-manager.h"
 
-/* FIXME */
-#define GsmDesktopFile "_Gsm_DesktopFile"
+#define GsmDesktopFile "_GSM_DesktopFile"
 
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
-
 
 #define GSM_XSMP_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_XSMP_CLIENT, GsmXSMPClientPrivate))
 
@@ -389,7 +389,6 @@ prop_to_command (SmProp *prop)
         return g_string_free (str, FALSE);
 }
 
-#if 0
 static char *
 xsmp_get_restart_command (GsmClient *client)
 {
@@ -404,6 +403,7 @@ xsmp_get_restart_command (GsmClient *client)
         return prop_to_command (prop);
 }
 
+#if 0
 static char *
 xsmp_get_discard_command (GsmClient *client)
 {
@@ -460,10 +460,10 @@ do_save_yourself (GsmXSMPClient *client,
                                                  TRUE); /* fast */
                         } else {
                                 SmsSaveYourself (client->priv->conn,
-                                                 save_type,
-                                                 TRUE,
-                                                 SmInteractStyleAny,
-                                                 FALSE);
+                                                 save_type, /* save type */
+                                                 TRUE, /* shutdown */
+                                                 SmInteractStyleAny, /* interact style */
+                                                 FALSE /* fast */);
                         }
                         break;
                 }
@@ -510,6 +510,165 @@ xsmp_cancel_end_session (GsmClient *client,
 
         SmsShutdownCancelled (xsmp->priv->conn);
         return TRUE;
+}
+
+static char *
+get_desktop_file_path (GsmXSMPClient *client)
+{
+        SmProp     *prop;
+        char       *desktop_file_path = NULL;
+        char      **dirs;
+        const char *program_name;
+
+        /* XSMP clients using eggsmclient defines a special property
+         * pointing to their respective desktop entry file */
+        prop = find_property (client, GsmDesktopFile, NULL);
+
+        if (prop) {
+                GFile *file = g_file_new_for_uri (prop->vals[0].value);
+                desktop_file_path = g_file_get_path (file);
+                g_object_unref (file);
+                goto out;
+        }
+
+        /* If we can't get desktop file from GsmDesktopFile then we
+         * try to find the desktop file from its program name */
+        prop = find_property (client, SmProgram, NULL);
+        program_name = prop->vals[0].value;
+
+        dirs = gsm_util_get_autostart_dirs ();
+
+        desktop_file_path =
+                gsm_util_find_desktop_file_for_app_name (program_name,
+                                                         dirs);
+
+        g_strfreev (dirs);
+
+out:
+        g_debug ("GsmXSMPClient: desktop file for client %s is %s",
+                 gsm_client_peek_id (GSM_CLIENT (client)),
+                 desktop_file_path ? desktop_file_path : "(null)");
+
+        return desktop_file_path;
+}
+
+static void
+set_desktop_file_keys_from_client (GsmClient *client,
+                                   GKeyFile  *keyfile)
+{
+        SmProp *prop;
+        char   *name;
+        char   *comment;
+
+        prop = find_property (GSM_XSMP_CLIENT (client), SmProgram, NULL);
+        name = g_strdup (prop->vals[0].value);
+
+        comment = g_strdup_printf ("Client %s which was automatically saved",
+                                   gsm_client_peek_startup_id (client));
+
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_NAME,
+                               name);
+
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_COMMENT,
+                               comment);
+
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_ICON,
+                               "system-run");
+
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_TYPE,
+                               "Application");
+
+        g_key_file_set_boolean (keyfile,
+                                G_KEY_FILE_DESKTOP_GROUP,
+                                G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY,
+                                TRUE);
+
+        g_free (name);
+        g_free (comment);
+}
+
+static GKeyFile *
+create_client_key_file (GsmClient   *client,
+                        const char  *desktop_file_path,
+                        GError     **error) {
+        GKeyFile *keyfile;
+
+        keyfile = g_key_file_new ();
+
+        if (desktop_file_path != NULL) {
+                g_key_file_load_from_file (keyfile,
+                                           desktop_file_path,
+                                           G_KEY_FILE_KEEP_COMMENTS |
+                                           G_KEY_FILE_KEEP_TRANSLATIONS,
+                                           error);
+        } else {
+                set_desktop_file_keys_from_client (client, keyfile);
+        }
+
+        return keyfile;
+}
+
+static GKeyFile *
+xsmp_save (GsmClient *client,
+           GError   **error)
+{
+        GKeyFile *keyfile;
+        char     *desktop_file_path = NULL;
+        char     *exec_program = NULL;
+        char     *startup_id = NULL;
+        GError   *local_error;
+
+        g_debug ("GsmXSMPClient: saving client with id %s",
+                 gsm_client_peek_id (client));
+
+        local_error = NULL;
+
+        desktop_file_path = get_desktop_file_path (GSM_XSMP_CLIENT (client));
+
+        keyfile = create_client_key_file (client,
+                                          desktop_file_path,
+                                          &local_error);
+
+        if (local_error) {
+                goto out;
+        }
+
+        g_object_get (client,
+                      "startup-id", &startup_id,
+                      NULL);
+
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               "X-GNOME-Autostart-startup-id",
+                               startup_id);
+
+        exec_program = xsmp_get_restart_command (client);
+        g_key_file_set_string (keyfile,
+                               G_KEY_FILE_DESKTOP_GROUP,
+                               G_KEY_FILE_DESKTOP_KEY_EXEC,
+                               exec_program);
+
+out:
+        g_free (desktop_file_path);
+        g_free (exec_program);
+        g_free (startup_id);
+
+        if (local_error != NULL) {
+                g_propagate_error (error, local_error);
+                g_key_file_free (keyfile);
+
+                return NULL;
+        }
+
+        return keyfile;
 }
 
 static gboolean
@@ -771,6 +930,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
         object_class->get_property         = gsm_xsmp_client_get_property;
         object_class->set_property         = gsm_xsmp_client_set_property;
 
+        client_class->impl_save                   = xsmp_save;
         client_class->impl_stop                   = xsmp_stop;
         client_class->impl_query_end_session      = xsmp_query_end_session;
         client_class->impl_end_session            = xsmp_end_session;

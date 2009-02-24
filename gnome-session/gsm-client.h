@@ -22,6 +22,7 @@
 #ifndef __GSM_CLIENT_H__
 #define __GSM_CLIENT_H__
 
+#include <glib.h>
 #include <glib-object.h>
 #include <sys/types.h>
 
@@ -87,6 +88,8 @@ struct _GsmClientClass
                                                               GError   **error);
         gboolean              (*impl_stop)                   (GsmClient *client,
                                                               GError   **error);
+        GKeyFile *            (*impl_save)                   (GsmClient *client,
+                                                              GError   **error);
 };
 
 typedef enum
@@ -130,6 +133,8 @@ gboolean              gsm_client_cancel_end_session         (GsmClient  *client,
 
 void                  gsm_client_disconnected               (GsmClient  *client);
 
+GKeyFile             *gsm_client_save                       (GsmClient  *client,
+                                                             GError    **error);
 /* exported to bus */
 gboolean              gsm_client_stop                       (GsmClient  *client,
                                                              GError    **error);
