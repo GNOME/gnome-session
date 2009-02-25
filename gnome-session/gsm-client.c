@@ -171,6 +171,8 @@ gsm_client_finalize (GObject *object)
         g_free (client->priv->id);
         g_free (client->priv->startup_id);
         g_free (client->priv->app_id);
+
+        G_OBJECT_CLASS (gsm_client_parent_class)->finalize (object);
 }
 
 void
