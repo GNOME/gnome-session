@@ -273,13 +273,6 @@ init_xsync (GSIdleMonitor *monitor)
                 return FALSE;
         }
 
-        /* select for sync events */
-        gdk_error_trap_push ();
-        XSelectInput (GDK_DISPLAY (), GDK_ROOT_WINDOW (), XSyncAlarmNotifyMask);
-        if (gdk_error_trap_pop ()) {
-                g_warning ("XSelectInput failed");
-        }
-
         gdk_window_add_filter (NULL, (GdkFilterFunc)xevent_filter, monitor);
 
         return TRUE;
@@ -440,13 +433,15 @@ _xsync_alarm_set (GSIdleMonitor      *monitor,
                 | XSyncCAValueType
                 | XSyncCATestType
                 | XSyncCAValue
-                | XSyncCADelta;
+                | XSyncCADelta
+                | XSyncCAEvents;
 
         XSyncIntToValue (&delta, 0);
         attr.trigger.counter = monitor->priv->counter;
         attr.trigger.value_type = XSyncAbsolute;
         attr.trigger.wait_value = watch->interval;
         attr.delta = delta;
+        attr.events = TRUE;
 
         attr.trigger.test_type = XSyncPositiveTransition;
         if (watch->xalarm_positive != None) {
