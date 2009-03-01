@@ -62,6 +62,8 @@ enum _GsmConsolekitError {
         GSM_CONSOLEKIT_ERROR_STOPPING
 };
 
+#define GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW "LoginWindow"
+
 GType            gsm_consolekit_get_type        (void);
 
 GQuark           gsm_consolekit_error_quark     (void);

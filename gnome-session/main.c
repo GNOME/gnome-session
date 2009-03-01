@@ -40,6 +40,7 @@
 #include "gdm-signal-handler.h"
 #include "gdm-log.h"
 
+#include "gsm-consolekit.h"
 #include "gsm-gconf.h"
 #include "gsm-util.h"
 #include "gsm-manager.h"
@@ -56,7 +57,7 @@
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
-static gboolean debug = FALSE;
+static gboolean debug = TRUE;
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
@@ -265,6 +266,23 @@ append_required_apps (GsmManager *manager)
 }
 
 static void
+maybe_load_saved_session_apps (GsmManager *manager)
+{
+        GsmConsolekit *consolekit;
+        char *session_type;
+
+        consolekit = gsm_get_consolekit ();
+        session_type = gsm_consolekit_get_current_session_type (consolekit);
+
+        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) != 0) {
+                gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());
+        }
+
+        g_object_unref (consolekit);
+        g_free (session_type);
+}
+
+static void
 load_standard_apps (GsmManager *manager,
                     const char *default_session_key)
 {
@@ -279,7 +297,7 @@ load_standard_apps (GsmManager *manager,
                 goto out;
         }
 
-        gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());
+        maybe_load_saved_session_apps (manager);
 
         for (i = 0; autostart_dirs[i]; i++) {
                 gsm_manager_add_autostart_apps_from_dir (manager, autostart_dirs[i]);

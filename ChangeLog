@@ -1,4 +1,15 @@
-2009-02-026  Matthias Clasen <mclasen@redhat.com>
+2009-03-01  Lucas Rocha  <lucasr@gnome.org>
+
+	* gnome-session/gsm-consolekit.c: add constant holding login window
+	session type value to be used in different places of the code.
+	* gnome-session/gsm-logout-dialog.c: use new consolekit constant for
+	login window session type.
+	* gnome-session/gsm-manager.c: don't save session if session type is
+	login window.
+	* gnome-session/main.c: don't load saved session if session type is
+	login window.
+
+2009-02-26  Matthias Clasen <mclasen@redhat.com>
 
 	* gnome-session/gs-idle-monitor.c: Ask for AlertNotify in a way
 	that XSync understands. (#567958)

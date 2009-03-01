@@ -1559,13 +1559,22 @@ auto_save_is_enabled(GsmManager *manager)
 static void
 maybe_save_session (GsmManager *manager)
 {
+        GsmConsolekit *consolekit;
+        char *session_type;
         GError *error;
+
+        consolekit = gsm_get_consolekit ();
+        session_type = gsm_consolekit_get_current_session_type (consolekit);
+
+        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0) {
+                goto out;
+        }
 
         /* We only allow session saving when session is running or when
          * logging out */
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING &&
             manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
-                return;
+                goto out;
         }
 
         error = NULL;
@@ -1575,6 +1584,10 @@ maybe_save_session (GsmManager *manager)
                 g_warning ("Error saving session: %s", error->message);
                 g_error_free (error);
         }
+
+out:
+        g_object_unref (consolekit);
+        g_free (session_type);
 }
 
 static void

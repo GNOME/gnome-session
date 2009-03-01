@@ -308,7 +308,7 @@ gsm_logout_dialog_timeout (gpointer data)
                 g_object_unref (consolekit);
         }
 
-        if (g_strcmp0 (session_type, "LoginWindow") != 0) {
+        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) != 0) {
                 char *name, *tmp;
 
                 name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);
