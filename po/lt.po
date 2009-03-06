@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-02 04:11+0200\n"
-"PO-Revision-Date: 2009-02-02 04:12+0200\n"
+"POT-Creation-Date: 2009-03-06 23:31+0200\n"
+"PO-Revision-Date: 2009-03-06 23:46+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -34,40 +34,39 @@ msgstr "Pridėti paleidimo programą"
 msgid "Edit Startup Program"
 msgstr "Redaguoti paleidžiamą programą"
 
-#: ../capplet/gsm-properties-dialog.c:132
+#: ../capplet/gsm-properties-dialog.c:131
 msgid "No description"
 msgstr "Nėra aprašymo"
 
-#: ../capplet/gsm-properties-dialog.c:952
+#: ../capplet/gsm-properties-dialog.c:974
 msgid "The name of the startup program cannot be empty"
 msgstr "Paleidimo komandos pavadinimas negali būti tuščias"
 
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-properties-dialog.c:978
 msgid "The startup command cannot be empty"
 msgstr "Paleidimo komanda negali būti tuščia"
 
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-properties-dialog.c:984
 msgid "The startup command is not valid"
 msgstr "Paleidimo komanda netinkama"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Enabled"
 msgstr "Įjungta"
 
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:1316
 msgid "Icon"
 msgstr "Piktograma"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:1327
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Sesijos nustatymai"
+#: ../capplet/gsm-properties-dialog.c:1477
+msgid "Startup Applications Preferences"
+msgstr "Paleidžiamų programų nustatymai"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:440
 msgid "Version of this application"
 msgstr "Programos versija"
 
@@ -88,7 +87,7 @@ msgstr "AT SPI registro sąsaja"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME nustatymų tarnybos pagalbininkas"
+msgstr "GNOME parametrų tarnybos pagalbininkas"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -96,7 +95,7 @@ msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "Ši sesija atveria GNOME"
+msgstr "Šis seansas prijungia jus prie GNOME"
 
 #: ../data/gnome-session.schemas.in.h:1
 msgid "Default session"
@@ -125,16 +124,18 @@ msgstr "Programos, kurios yra numatytojo seanso dalis."
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
-"Komponentų, būtinų seanse, sąrašas.  Kiekvienas elementas įvardija raktą iš "
-"„/desktop/gnome/session/required-components“.) Seanso nustatymai paprastai "
-"neleis naudotojui pašalinti būtino komponento iš seanso, o sesijos valdyklė "
-"automatiškai vėl pridės būtinus komponentus prie seanso, jei jie kaip nors "
-"būtų pašalinti."
+"Komponentų, kurie yra būtini seanse, sąrašas. (Kiekvienas elementas "
+"nurodo raktą, esantį „/desktop/gnome/session/required-components“.) "
+"Paleidžiamų programų nustatymų įrankis paprastai neleidžia naudotojams "
+"pašalinti būtiną komponentą iš seanso, o seansų valdyklė "
+"automatiškai vėl grąžins būtinus komponentus į seansą prisijungimo metu, jei "
+"jie kaip nors bus pašalinti."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -146,59 +147,54 @@ msgstr "Skydelis"
 
 #: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
-msgstr "Įkelties paveikslėlis rodytinas prisijungio metu"
+msgstr "Įkelties paveikslėlis, naudotinas prisistatymo langui"
 
 #: ../data/gnome-session.schemas.in.h:10
 msgid "Required session components"
-msgstr "Reikalingi sesijos komponentai"
+msgstr "Reikalingi seanso komponentai"
 
 #: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "Išsaugoti seansus"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Atsijungimo dialoge pasirinkta parinktis"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Rodyti įkelties paveikslėlį"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Seanso paleidimo metu rodyti įkelties paveiksliuką"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
-"Failų valdyklė teikia darbastalio piktogramas ir leidžia valdyti įrašytus "
+"Failų valdyklė suteikia darbastalio piktogramas ir leidžia valdyti įrašytus "
 "failus."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Minučių skaičius, kurioms praėjus sesija laikoma neaktyvia."
+msgstr "Minučių skaičius, kurioms praėjus seansas laikomas neaktyvus."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
-"Skydelis teikia sritį ekrano apačioje ar viršuje, kurioje yra meniu, langų "
+"Skydelis suteikia sritį ekrano apačioje ar viršuje, kurioje yra meniu, langų "
 "sąrašas, būsenos piktogramos, laikrodis ir t.t."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
 "Langų valdyklė yra programa, paišanti langų antraštes ir kraštus.  Ji taip "
-"pat leidžia stumdyti langus ir keisti jų dydį."
+"pat leidžia perkelti langus ir keisti jų dydį."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -206,23 +202,13 @@ msgid ""
 msgstr ""
 "Ši reikšmė – tai santykinis kelias, pagrįstas $datadir/pixmaps/ aplanku. "
 "Tinkamos reikšmės yra poaplankiai ir paveikslėlių pavadinimai. Šios reikšmės "
-"pakeitimai įsigalios kitos seanso prisijungimo metu."
+"pakeitimai įsigalios kito seanso prisijungimo metu."
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Tai parinktis, kuri bus pasirinkta atsijungimo dialoge. Galimos reikšmės "
-"yra: „logout“ - atsijungti, „shutdown“ - išjungti sistemą, „restart“ "
-"paleisti sistemą iš naujo."
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
-msgstr "Laikas, po kurio sesija laikoma neaktyvia"
+msgstr "Laikas, po kurio seansas laikomas neaktyviu"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Langų valdyklė"
 
@@ -236,16 +222,16 @@ msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
 msgstr ""
-"Laukiama, kol programa baigs darbą.  Jei programa bus nutraukta, galite "
+"Laukiama, kol programa baigs darbą. Jei programa bus nutraukta, galite "
 "prarasti informacijos."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Konfigūruoti savo seansus"
+msgid "Choose what applications to start when you log in"
+msgstr "Pasirinkite, kokias programas paleisti jums prisijungiant"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Seansai"
+msgid "Startup Applications"
+msgstr "Paleidžiamos programos"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -267,13 +253,17 @@ msgstr "Ko_mentaras:"
 msgid "Options"
 msgstr "Parinktys"
 
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Seanso nustatymai"
+
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
 msgstr "Pradžioje paleidžiamos programos"
 
 #: ../data/session-properties.glade.h:8
 msgid "_Automatically remember running applications when logging out"
-msgstr "_Atsijungiant automatiškai atsiminti paleistas programas"
+msgstr "_Atsijungiant, automatiškai atsiminti paleistas programas"
 
 #: ../data/session-properties.glade.h:9
 msgid "_Name:"
@@ -324,7 +314,7 @@ msgstr "Išjungti prisijungimą prie seansų valdyklės"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr "Nurodyti failą su įrašytais nustatymais"
+msgstr "Nurodyti failą, kuriame įrašyta konfigūracija"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
@@ -332,7 +322,7 @@ msgstr "FAILAS"
 
 #: ../egg/eggsmclient.c:191
 msgid "Specify session management ID"
-msgstr "Nurodykite sesijos valdymo ID"
+msgstr "Nurodyti seanso valdymo ID"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
@@ -340,11 +330,11 @@ msgstr "ID"
 
 #: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
-msgstr "Seanso valdymo nustatymai"
+msgstr "Seanso valdymo parinktys"
 
 #: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
-msgstr "Rodyti sesijos valdymo nustatymus"
+msgstr "Rodyti seanso valdymo parinktys"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -352,8 +342,8 @@ msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
-"Konfigūracijos tarnyboje įvyko klaida.\n"
-"(%s baigė darbą su kodu %d)"
+"Konfigūracijos serveryje įvyko klaida.\n"
+"(%s baigė darbą, grąžino kodą %d)"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:256
 #, c-format
@@ -377,7 +367,7 @@ msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
-"Laukiama, kol programos baigs darbą.  Šias programas nutraukus gali būti "
+"Laukiama, kol programos baigs darbą. Šias programas nutraukus gali būti "
 "prarasta informacija."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:865
@@ -410,81 +400,66 @@ msgstr "Užrakinti ekraną"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Cancel"
-msgstr "Atmesti"
+msgstr "Atsisakyti"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Esate prisijungę kaip „%s“.\n"
-"Būsite atjungti po %d sekundės."
-msgstr[1] ""
-"Esate prisijungę kaip „%s“.\n"
-"Būsite atjungti po %d sekundžių."
-msgstr[2] ""
-"Esate prisijungę kaip „%s“.\n"
-"Būsite atjungti po %d sekundžių."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Būsite automatiškai atjungti po %d sekundės."
+msgstr[1] "Būsite automatiškai atjungti po %d sekundžių."
+msgstr[2] "Būsite automatiškai atjungti po %d sekundžių."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Esate prisijungę kaip „%s“.\n"
-"Sistema automatiškai išsijungs po %d sekundės."
-msgstr[1] ""
-"Esate prisijungę kaip „%s“.\n"
-"Sistema automatiškai išsijungs po %d sekundžių."
-msgstr[2] ""
-"Esate prisijungę kaip „%s“.\n"
-"Sistema automatiškai išsijungs po %d sekundžių."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Sistema automatiškai išsijungs po %d sekundės."
+msgstr[1] "Sistema automatiškai išsijungs po %d sekundžių."
+msgstr[2] "Sistema automatiškai išsijungs po %d sekundžių."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Esate prisijungę kaip „%s“."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Atsijungti dabar?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_Keisti naudotoją"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
-msgstr "Išjungti dabar?"
+msgstr "Išjungti sistemą dabar?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "_Užmigdyti"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Hibernuoti"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "Įkelti iš _naujo"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "Išj_ungti"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:948 ../gnome-session/gsm-manager.c:1634
 msgid "Not responding"
 msgstr "Neatsako"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1149
 msgid "This program is blocking log out."
 msgstr "Ši programa blokuoja atsijungimą"
 
@@ -492,7 +467,7 @@ msgstr "Ši programa blokuoja atsijungimą"
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "Atsisakoma naujo kliento prisijungimo, nes sesija išjungiama\n"
+msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
@@ -500,40 +475,40 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:282
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
-"Nepavyko paleisti prisijungimo seanso (ir nepavyko prisijungti prie X "
+"Nepavyko paleisti prisijungimo seanso (taip pat nepavyko prisijungti prie X "
 "serverio)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:436
 msgid "Override standard autostart directories"
-msgstr "Nepaisyti numatytųjų automatinio paleidimo aplankų"
+msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:437
 msgid "GConf key used to lookup default session"
-msgstr "GConf raktas numatytajai sesijai rasti"
+msgstr "GConf raktas, kuriame ieškoma numatytojo seanso"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:438
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:439
 msgid "Do not load user-specified applications"
-msgstr "Nekelti naudotojo nurodytų programų"
+msgstr "Neįkelti naudotojo nurodytų programų"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:460
 msgid " - the GNOME session manager"
 msgstr " – GNOME seanso valdyklė"
 
 #: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
-msgstr "– GNOME įkelties paveikslėlis"
+msgstr "– GNOME pristatymo langas"
 
 #: ../splash/gnome-session-splash.desktop.in.in.in.h:1
 msgid "GNOME Splash Screen"
-msgstr "GNOME įkelties paveikslėlis"
+msgstr "GNOME pristatymo langas"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
@@ -549,7 +524,7 @@ msgstr "Atsijungti"
 
 #: ../tools/gnome-session-save.c:67
 msgid "Log out, ignoring any existing inhibitors"
-msgstr "Atsijungti, ignoruojant trukdžius"
+msgstr "Atsijungti, ignoruojant bet kokius trukdžius"
 
 #: ../tools/gnome-session-save.c:68
 msgid "Show logout dialog"
@@ -565,343 +540,16 @@ msgstr "Nužudyti seansą"
 
 #: ../tools/gnome-session-save.c:71
 msgid "Use dialog boxes for errors"
-msgstr "Naudoti dialogus klaidoms rodyti"
+msgstr "Naudoti dialogus klaidų rodymui"
 
 #: ../tools/gnome-session-save.c:72
 msgid "Do not require confirmation"
 msgstr "Nereikalauti patvirtinimo"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:121 ../tools/gnome-session-save.c:131
 msgid "Could not connect to the session manager"
 msgstr "Nepavyko prisijungti prie seansų valdyklės"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-save.c:274
 msgid "Program called with conflicting options"
-msgstr "Programa iškviesta su prieštaringais argumentais"
-
-#~ msgid "GNOME Keyring Daemon Wrapper"
-#~ msgstr "GNOME raktinės tarnybos sąsaja"
-
-#~ msgid "Session management"
-#~ msgstr "Sesijos valdymas"
-
-#~ msgid "GNOME GUI Library + EggSMClient"
-#~ msgstr "GNOME GUI biblioteka + EggSMClient"
-
-#~ msgid "Allow TCP connections"
-#~ msgstr "Leisti TCP prisijungimus"
-
-#~ msgid ""
-#~ "For security reasons, on platforms which have _IceTcpTransNoListen() "
-#~ "(XFree86 systems), gnome-session does not listen for connections on TCP "
-#~ "ports. This option will allow connections from (authorized) remote hosts. "
-#~ "gnome-session must be restarted for this to take effect."
-#~ msgstr ""
-#~ "Saugumo sumetimais, platformose kurios turi _IceTcpTransNoListen() "
-#~ "(XFree86 sistemos), gnome-session nelaukia prisijungimų TCP prievadais. "
-#~ "Šis nustatymas leis prisijungimus iš (autorizuotų) nuotolinių hostų. Kad "
-#~ "pakeitimai įsigalėtų gnome-session turi būti perkrauta."
-
-#~ msgid "_Order:"
-#~ msgstr "_Tvarka:"
-
-#~ msgid "What happens to the application when it exits."
-#~ msgstr "Kas atsitinka programai, kai ji baigia darbą."
-
-#~ msgid "_Style:"
-#~ msgstr "_Stilius:"
-
-#~ msgid "Inactive"
-#~ msgstr "Neaktyvi"
-
-#~ msgid "Waiting to start or already finished."
-#~ msgstr "Laukiama, kol pasileis, arba jau baigėsi."
-
-#~ msgid "Started but has not yet reported state."
-#~ msgstr "Paleista, bet kol kas nepranešė būsenos."
-
-#~ msgid "Running"
-#~ msgstr "Veikianti"
-
-#~ msgid "A normal member of the session."
-#~ msgstr "Normalus seanso narys."
-
-#~ msgid "Saving"
-#~ msgstr "Išsaugoma"
-
-#~ msgid "Saving session details."
-#~ msgstr "Išsaugoma seanso informacija."
-
-#~ msgid "State not reported within timeout."
-#~ msgstr "Būsena nepranešta laiko ribose."
-
-#~ msgid "Normal"
-#~ msgstr "Normali"
-
-#~ msgid "Unaffected by logouts but can die."
-#~ msgstr "Nepaveikiama atsijungimų, bet gali nutraukti darbą."
-
-#~ msgid "Never allowed to die."
-#~ msgstr "Niekada neleidžiama nutraukti darbo."
-
-#~ msgid "Trash"
-#~ msgstr "Šiukšlės"
-
-#~ msgid "Discarded on logout and can die."
-#~ msgstr "Išjungiama atsijungiant ir gali nutraukti darbą."
-
-#~ msgid "Settings"
-#~ msgstr "Parametrai"
-
-#~ msgid "Always started on every login."
-#~ msgstr "Paleidžiama kaskart prisijungus."
-
-#~ msgid "Order"
-#~ msgstr "Tvarka"
-
-#~ msgid "Style"
-#~ msgstr "Stilius"
-
-#~ msgid "State"
-#~ msgstr "Būsena"
-
-#~ msgid ""
-#~ "There was an error starting the GNOME Settings Daemon.\n"
-#~ "\n"
-#~ "Some things, such as themes, sounds, or background settings may not work "
-#~ "correctly."
-#~ msgstr ""
-#~ "Klaida paleidžiant GNOME Parametrų tarnybą.\n"
-#~ "\n"
-#~ "Kai kurie dalykai, tokie kaip temos, garsai ir fono nustatymai gali "
-#~ "veikti neteisingai arba visai neveikti."
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "The last error message was:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "Paskutinės klaidos pranešimas buvo:\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME will still try to restart the Settings Daemon next time you log in."
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "GNOME vis dar bandys paleisti Parametrų tarnybą kito jūsų prisijungimo "
-#~ "metu."
-
-#~ msgid "The Settings Daemon restarted too many times."
-#~ msgstr "Parametrų tarnyba paleista iš naujo per daug kartų."
-
-#~ msgid "No Name"
-#~ msgstr "Nėra pavadinimo"
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "Parodyti registruotus klientus, tada išeiti"
-
-#~ msgid "PROGRAM..."
-#~ msgstr "PROGRAMA..."
-
-#~ msgid ""
-#~ "You must specify at least one program to remove. You can list the "
-#~ "programs with --list.\n"
-#~ msgstr ""
-#~ "Turite nurodyti bent vieną pašalintiną programą. Programų sąrašą galite "
-#~ "pamatyti su --list.\n"
-
-#~ msgid "Error: could not connect to the session manager\n"
-#~ msgstr "Klaida: nepavyko prisijungti prie seansų valdyklės\n"
-
-#~ msgid "Currently registered clients:\n"
-#~ msgstr "Šiuo metu registruoti klientai:\n"
-
-#~ msgid "Couldn't find program %s in session\n"
-#~ msgstr "Seanse nepavyko rasti programos %s\n"
-
-#~ msgid ""
-#~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
-#~ msgstr ""
-#~ "Nepavyksta tinkamai paleisti GNOME seansų valdyklės. Praneškite apie šią "
-#~ "problemą GNOME kūrėjams. Būtinai atsiųskite ir ICE klaidos pranešimą: „%"
-#~ "s“. Kol kas galite pabandyti prisijungti naudodami atsarginį seansą."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
-#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe "
-#~ "session and ensuring that it is."
-#~ msgstr ""
-#~ "GNOME seansų valdyklei nepavyko užrakinti failo „%s“. Praneškite apie šią "
-#~ "problemą GNOME kūrėjams. Kartais ši klaida iškyla, kai negalima rašyti į "
-#~ "failo aplanką. Pabandykite prisijungti naudodami atsarginį seansą ir "
-#~ "įsitikinkite, kad taip nėra."
-
-#~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
-#~ "file exists it must be readable by you for GNOME to work properly.  Try "
-#~ "logging in with the failsafe session and removing this file."
-#~ msgstr ""
-#~ "GNOME seansų valdyklei nepavyko perskaityti failo „%s“. Jei šis failas "
-#~ "yra, kad GNOME galėtų tinkamai veikti, jūs turite turėti teises jį "
-#~ "skaityti. Pabandykite prisijungti naudodami atsarginį seansą ir ištrinti "
-#~ "šį failą."
-
-#~ msgid ""
-#~ "Could not write to file '%s'.  This file must be writable in order for "
-#~ "GNOME to function properly.  Try logging in with the failsafe session and "
-#~ "removing this file.  Also make sure that the file's directory is writable."
-#~ msgstr ""
-#~ "Nepavyko įrašyti failo „%s“. Norėdami, kad GNOME galėtų tinkamai veikti, "
-#~ "jūs turite turėti teises rašyti į šį failą. Pabandykite prisijungti "
-#~ "naudodami atsarginį seansą ir ištrinti šį failą. Taip pat įsitikinkite, "
-#~ "kad galite rašyti į jo aplanką."
-
-#~ msgid "Are you sure you want to log out?"
-#~ msgstr "Ar tikrai norite atsijungti?"
-
-#~ msgid "Remember running applications"
-#~ msgstr "Atsiminti paleistas programas"
-
-#~ msgid "_Restart the computer"
-#~ msgstr "_Paleisti kompiuterį iš naujo"
-
-#~ msgid "Only read saved sessions from the default.session file"
-#~ msgstr "Tik perskaityti išsaugotas seansus iš failo default.session"
-
-#~ msgid "Millisecond period spent waiting for clients to register (0=forever)"
-#~ msgstr "Kiek milisekundžių laukti, kol klientai prisiregistruos (0=amžinai)"
-
-#~ msgid "DELAY"
-#~ msgstr "DELSA"
-
-#~ msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-#~ msgstr "Kiek milisekundžių laukti, kol klientai atsilieps (0=amžinai)"
-
-#~ msgid "Millisecond period spent waiting for clients to die (0=forever)"
-#~ msgstr "Kiek milisekundžių laukti, kol klientai „numirs“ (0=amžinai)"
-
-#~ msgid "This session is running as a privileged user"
-#~ msgstr "Šis seansas veikia kaip priligijuotas naudotojas"
-
-#~ msgid ""
-#~ "Running a session as a privileged user should be avoided for security "
-#~ "reasons. If possible, you should log in as a normal user."
-#~ msgstr ""
-#~ "Saugumo sumetimais rekomenduojama vengti naudoti seansą kaip "
-#~ "priviliguotam naudotojui. Jeigu galima, turėtumėte prisijungti kaip "
-#~ "paprastas naudotojas."
-
-#~ msgid "_Continue"
-#~ msgstr "_Tęsti"
-
-#~ msgid ""
-#~ "The session might encounter issues if the computer clock is not properly "
-#~ "configured. Please consider adjusting it.\n"
-#~ "\n"
-#~ "Current date is <b>%s</b>."
-#~ msgstr ""
-#~ "Seanse gali iškilti klaidų, jei kompiuterio laikrodis neteisingai "
-#~ "sukonfigūruotas. Patikslinkite jį.\n"
-#~ "\n"
-#~ "Dabartinė data yra <b>%s</b>."
-
-#~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "Nepavyko paleisti laiko konfigūravimo įrankio: %s"
-
-#~ msgid "The computer clock appears to be wrong"
-#~ msgstr "Kompiuterio laikrodis neteisingas"
-
-#~ msgid "_Ignore"
-#~ msgstr "_Nepaisyti"
-
-#~ msgid "_Adjust the Clock"
-#~ msgstr "_Patikslinti laikrodį"
-
-#~ msgid ""
-#~ "Could not look up internet address for %s.\n"
-#~ "This will prevent GNOME from operating correctly.\n"
-#~ "It may be possible to correct the problem by adding\n"
-#~ "%s to the file /etc/hosts."
-#~ msgstr ""
-#~ "Nepavyko rasti %s internetinio adreso.\n"
-#~ "Dėl to GNOME neveiks taip, kaip turėtų.\n"
-#~ "Problemą įmanoma išpręsti, faile /etc/hosts\n"
-#~ "prirašius %s."
-
-#~ msgid "Try Again"
-#~ msgstr "Bandyti vėl"
-
-#~ msgid "Wait abandoned due to conflict."
-#~ msgstr "Kilus konfliktui, laukimo atsisakyta."
-
-#~ msgid "No response to the %s command."
-#~ msgstr "Jokio atsako į %s komandą."
-
-#~ msgid "The program may be slow, stopped or broken."
-#~ msgstr "Programa gali būti lėta, sustabdyta arba nulūžusi."
-
-#~ msgid "You may wait for it to respond or remove it."
-#~ msgstr "Galit palaukti, kol ji atsakys, arba ją pašalinti."
-
-#~ msgid "Restart abandoned due to failures."
-#~ msgstr "Paleidimas iš naujo dėl nesėkmių atšauktas."
-
-#~ msgid "A session shutdown is in progress."
-#~ msgstr "Seansas šiuo metu išjungiama."
-
-#~ msgid "- Save the current session"
-#~ msgstr "– Išsaugoti esamą seansą"
-
-#~ msgid "Save changes to the current session before closing?"
-#~ msgstr "Prieš užveriant įrašyti esamo seanso pakeitimus?"
-
-#~ msgid "If you don't save, changes will be discarded."
-#~ msgstr "Jei neįrašysite, pakeitimai bus prarasti."
-
-#~ msgid "_Close without Saving"
-#~ msgstr "_Užverti neįrašant"
-
-#~ msgid "Current Session"
-#~ msgstr "Dabartinis seansas"
-
-#~ msgid "Your session has been saved."
-#~ msgstr "Jūsų seansas išsaugotas."
-
-#~ msgid "could not connect to the session manager\n"
-#~ msgstr "nepavyko prisijungti prie seansų valdyklės\n"
-
-#~ msgid "session manager does not support GNOME extensions\n"
-#~ msgstr "seansų valdyklė nepalaiko GNOME išplėtimų\n"
-
-#~ msgid "Remove the currently selected client from the session."
-#~ msgstr "Pašalinti šiuo metu pasirinktą klientą iš seanso."
-
-#~ msgid "Apply changes to the current session"
-#~ msgstr "Pritaikyti dabartinio seanso pakeitimus"
-
-#~ msgid "The list of programs in the session."
-#~ msgstr "Seanse esančių programų sąrašas."
-
-#~ msgid "Currently running _programs:"
-#~ msgstr "Dabar paleistos _programos:"
-
-#~ msgid "Sawfish Window Manager"
-#~ msgstr "Sawfish langų valdyklė"
-
-#~ msgid "Metacity Window Manager"
-#~ msgstr "Metacity langų valdyklė"
-
-#~ msgid "Nautilus"
-#~ msgstr "Nautilus"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Darbo aplinkos parametrai"
+msgstr "Programa iškviesta naudojant konfliktuojančias parinktis"
