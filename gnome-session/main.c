@@ -57,7 +57,7 @@
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
-static gboolean debug = TRUE;
+static gboolean debug = FALSE;
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
