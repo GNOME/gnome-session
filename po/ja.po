@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-25 08:10+0900\n"
-"PO-Revision-Date: 2009-02-25 08:10+0900\n"
+"POT-Creation-Date: 2009-03-08 23:14+0900\n"
+"PO-Revision-Date: 2009-03-08 23:14+0900\n"
 "Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -66,9 +66,9 @@ msgstr "プログラム"
 
 #: ../capplet/gsm-properties-dialog.c:1477
 msgid "Startup Applications Preferences"
-msgstr "ログイン後に起動するアプリの設定"
+msgstr "自動起動するアプリの設定"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:422
+#: ../capplet/main.c:37 ../gnome-session/main.c:440
 msgid "Version of this application"
 msgstr "このアプリのバージョンを表示する"
 
@@ -138,10 +138,10 @@ msgid ""
 msgstr ""
 "セッションの一部として必要となるコンポーネントのリストで、そのコンポーネント"
 "の名前が \"/desktop/gnome/session/required_components\" 配下にキーとして格納"
-"されます。通常、｢ログイン後に起動するアプリの設定｣からセッションで必要となる"
-"コンポーネントを削除することはできません。もし削除しても、そのセッションで必"
-"要となるコンポーネントをセッション・マネージャが自動的に追加するような仕組み"
-"になっています。"
+"されます。通常、\"自動起動するアプリの設定\" からセッションで必要となるコン"
+"ポーネントを削除することはできません。もし削除しても、そのセッションで必要と"
+"なるコンポーネントをセッション・マネージャが自動的に追加するような仕組みに"
+"なっています。"
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -239,7 +239,7 @@ msgstr "ログインした後に起動するアプリケーションを選択し
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
-msgstr "ログイン後に起動するアプリ"
+msgstr "自動起動するアプリ"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -284,22 +284,22 @@ msgstr "現在実行中のアプリを記憶しておく(_R)"
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr "無効な .desktop ファイルです"
+msgstr "妥当な .desktop ファイルではありません"
 
 #: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr ".desktop ファイルのバージョンが '%s' ではないようです"
+msgstr "バージョン '%s' の .desktop ファイルはサポートしていません"
 
 #: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
-msgstr "%s の起動中"
+msgstr "%sの起動中です"
 
 #: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr "コマンドラインからドキュメントを指定できません"
+msgstr "コマンドラインからドキュメントにはアクセスできません"
 
 #: ../egg/eggdesktopfile.c:1168
 #, c-format
@@ -309,7 +309,7 @@ msgstr "不明な起動オプションです: %d"
 #: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "'Type=Link' のエントリにはドキュメントの URI を指定できません"
+msgstr "ドキュメントの URI を 'Type=Link' な .desktop エントリには渡せません"
 
 #: ../egg/eggdesktopfile.c:1392
 #, c-format
@@ -318,11 +318,11 @@ msgstr "起動可能なアイテムではありません"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
-msgstr "セッション・マネージャに接続できません"
+msgstr "セッション・マネージャに接続しない"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
-msgstr "保存した設定を格納しているファイルを指定する"
+msgstr "設定を保存したファイルを指定する"
 
 #: ../egg/eggsmclient.c:188
 msgid "FILE"
@@ -338,7 +338,7 @@ msgstr "ID"
 
 #: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
-msgstr "セッション管理のオプション"
+msgstr "セッション管理のオプション:"
 
 #: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
@@ -375,8 +375,8 @@ msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
-"プログラムの終了待ちです。実行中のプログラムを途中で強制終了させてしまうと、"
-"ここまでの処理結果を失うことになります。"
+"プログラムが終了するのを待っています。実行中のプログラムを途中で強制終了させ"
+"てしまうと、これまでの処理結果を失ってしまう可能性があります。"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
@@ -414,15 +414,15 @@ msgstr "キャンセル"
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "残り %d秒で自動的にログアウトします。"
-msgstr[1] "残り %d秒で自動的にログアウトします。"
+msgstr[0] "残り%d秒で自動的にログアウトします。"
+msgstr[1] "残り%d秒で自動的にログアウトします。"
 
 #: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "このシステムは残り %d秒で自動的にシャットダウンします。"
-msgstr[1] "このシステムは残り %d秒で自動的にシャットダウンします。"
+msgstr[0] "このシステムは残り%d秒で自動的にシャットダウンします。"
+msgstr[1] "このシステムは残り%d秒で自動的にシャットダウンします。"
 
 #: ../gnome-session/gsm-logout-dialog.c:324
 #, c-format
@@ -461,7 +461,7 @@ msgstr "再起動(_R)"
 msgid "_Shut Down"
 msgstr "シャットダウン(_S)"
 
-#: ../gnome-session/gsm-manager.c:948 ../gnome-session/gsm-manager.c:1621
+#: ../gnome-session/gsm-manager.c:948 ../gnome-session/gsm-manager.c:1634
 msgid "Not responding"
 msgstr "応答なし"
 
@@ -488,23 +488,23 @@ msgstr "ICE の監視ソケットを生成できませんでした: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "ログイン・セッションを起動できません (Ｘサーバにも接続できません)"
 
-#: ../gnome-session/main.c:418
+#: ../gnome-session/main.c:436
 msgid "Override standard autostart directories"
 msgstr "標準の自動起動フォルダをオーバーライドする"
 
-#: ../gnome-session/main.c:419
+#: ../gnome-session/main.c:437
 msgid "GConf key used to lookup default session"
 msgstr "GConf のキーを使ってデフォルトのセッションを検索する"
 
-#: ../gnome-session/main.c:420
+#: ../gnome-session/main.c:438
 msgid "Enable debugging code"
 msgstr "デバッグ・モードにする"
 
-#: ../gnome-session/main.c:421
+#: ../gnome-session/main.c:439
 msgid "Do not load user-specified applications"
 msgstr "ユーザが指定したアプリを起動しない"
 
-#: ../gnome-session/main.c:442
+#: ../gnome-session/main.c:460
 msgid " - the GNOME session manager"
 msgstr "- GNOME セッション・マネージャ"
 
@@ -552,10 +552,10 @@ msgstr "エラーをダイアログで表示する"
 msgid "Do not require confirmation"
 msgstr "確認を入れずに実行する"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:121 ../tools/gnome-session-save.c:131
 msgid "Could not connect to the session manager"
 msgstr "セッション・マネージャに接続できませんでした。"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-save.c:274
 msgid "Program called with conflicting options"
 msgstr "同時には適用できないオプションを指定しました"
