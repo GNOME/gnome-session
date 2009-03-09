@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-01-15 20:55+0000\n"
-"PO-Revision-Date: 2006-04-27 16:44+0300\n"
-"Last-Translator: Yair Hershkovitz <yairhr@gmail.com>\n"
+"POT-Creation-Date: 2009-03-07 16:58+0000\n"
+"PO-Revision-Date: 2009-03-07 23:21+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,11 +60,11 @@ msgid "Program"
 msgstr "תוכנית"
 
 #: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "העדפות הפעלה"
+#| msgid "Sessions Preferences"
+msgid "Startup Applications Preferences"
+msgstr "העדפות יישומי הפעלה"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -80,11 +80,11 @@ msgstr ""
 
 #: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
 msgid "AT SPI Registry Wrapper"
-msgstr ""
+msgstr "עוטף רישומי ה־AT SPI"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
-msgstr ""
+msgstr "מסייע מנוע ההגדרות של GNOME"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -120,18 +120,27 @@ msgid "List of applications that are part of the default session."
 msgstr "List of applications that are part of the default session."
 
 #: ../data/gnome-session.schemas.in.h:6
+#| msgid ""
+#| "List of components that are required as part of the session. (Each "
+#| "element names a key under \"/desktop/gnome/session/required-components"
+#| "\".) The Session Preferences will not normally allow users to remove a "
+#| "required component from the session, and the session manager will "
+#| "automatically add the required components back to the session if they do "
+#| "get removed."
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -154,72 +163,58 @@ msgid "Save sessions"
 msgstr "Save sessions"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Selected option in the log out dialog"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Show the splash screen"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Show the splash screen when the session starts up"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
+
+#: ../data/gnome-session.schemas.in.h:15
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"The number of minutes of inactivity before the session is considered idle."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
-"The number of minutes of inactivity before the session is considered idle."
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
 msgstr ""
-"The number of minutes of inactivity before the session is considered idle."
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 msgstr ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
 msgstr ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
+"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
+"directories and image names are valid values. Changing this value will "
+"effect the next session login."
 
 #: ../data/gnome-session.schemas.in.h:19
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-
-#: ../data/gnome-session.schemas.in.h:21
 msgid "Time before session is considered idle"
 msgstr "Time before session is considered idle"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Window Manager"
 
@@ -235,12 +230,12 @@ msgid ""
 msgstr "ממתין לסיום תוכנית. הפרעה לתוכנית עלולה לגרום לאיבוד העבודה שלך."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "הגדר את תצורות ההפעלה שלך"
+msgid "Choose what applications to start when you log in"
+msgstr "בחר אילו יישומים יופעלו בעת כניסת המשתמש"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "תצורות הפעלה"
+msgid "Startup Applications"
+msgstr "יישומי ההפעלה"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -261,6 +256,10 @@ msgstr "הע_רה:"
 #: ../data/session-properties.glade.h:5
 msgid "Options"
 msgstr "אפשרויות"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "העדפות הפעלה"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -405,65 +404,54 @@ msgstr "נעל מסך"
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"אתה כרגע מחובר כ-\"%s\".\n"
-"בעוד שנייה אחת תנותק אוטומטית."
-msgstr[1] ""
-"אתה כרגע מחובר כ-\"%s\".\n"
-"בעוד %d שניות תנותק אוטומטית."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "בעוד שניה אחת תנותק אוטומטית."
+msgstr[1] "אתה תנותק אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"אתה כרגע מחובר כ-\"%s\".\n"
-"בעוד שנייה אחת המערכת תכבה אוטומטית."
-msgstr[1] ""
-"אתה כרגע מחובר כ-\"%s\".\n"
-"בעוד %d שניות המערכת תכבה אוטומטית."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "בעוד שניה אחת המערכת תכבה אוטומטית."
+msgstr[1] "המערכת תכבה אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "אתה כרגע מחובר כ־\"%s\"."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "להתנתק מהמערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_החלף משתמש"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_התנתק"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "לכבות את המערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "_השהה"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_מצב שינה"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "_שתחול"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "_כבה"
 
@@ -489,27 +477,26 @@ msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 #. Oh well, no X for you!
 #: ../gnome-session/gsm-util.c:143
 #, c-format
-#| msgid "Unable to start login session (and unable connect to the X server)"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Unable to start login session (and unable to connect to the X server)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "GConf key used to lookup default session"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -518,7 +505,6 @@ msgid "- GNOME Splash Screen"
 msgstr "- GNOME Splash Screen"
 
 #: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-#| msgid "- GNOME Splash Screen"
 msgid "GNOME Splash Screen"
 msgstr "GNOME Splash Screen"
 
@@ -531,7 +517,6 @@ msgid "NAME"
 msgstr "NAME"
 
 #: ../tools/gnome-session-save.c:66
-#| msgid "_Log Out"
 msgid "Log out"
 msgstr "Log out"
 
@@ -565,7 +550,25 @@ msgstr "לא ניתן להתחבר למנהל ההפעלה"
 
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
-msgstr ""
+msgstr "התוכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "Selected option in the log out dialog"
+
+#~ msgid ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+#~ msgstr ""
+#~ "This is the option that will be selected in the logout dialog, valid "
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
+
+#~ msgid "Configure your sessions"
+#~ msgstr "הגדר את תצורות ההפעלה שלך"
+
+#~ msgid "Sessions"
+#~ msgstr "תצורות הפעלה"
 
 #~ msgid "Session management"
 #~ msgstr "ניהול תצורת ההפעלה"
