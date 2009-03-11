@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.25.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-10 07:46+0100\n"
-"PO-Revision-Date: 2009-02-10 07:46+0100\n"
+"POT-Creation-Date: 2009-03-11 22:42+0100\n"
+"PO-Revision-Date: 2009-03-11 22:44+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -27,40 +27,39 @@ msgstr "Legg til oppstartsprogram"
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/gsm-properties-dialog.c:132
+#: ../capplet/gsm-properties-dialog.c:131
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../capplet/gsm-properties-dialog.c:952
+#: ../capplet/gsm-properties-dialog.c:974
 msgid "The name of the startup program cannot be empty"
 msgstr "Navn på oppstartsprogrammet kan ikke være tomt"
 
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-properties-dialog.c:978
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommando kan ikke være tom"
 
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-properties-dialog.c:984
 msgid "The startup command is not valid"
 msgstr "Oppstartskommandoen er ikke gyldig"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:1316
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:1327
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:1453
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Brukervalg for sesjoner"
+#: ../capplet/gsm-properties-dialog.c:1477
+msgid "Startup Applications Preferences"
+msgstr "Brukervalg for oppstartsprogrammer"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
+#: ../capplet/main.c:37 ../gnome-session/main.c:440
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
@@ -117,12 +116,14 @@ msgid "List of applications that are part of the default session."
 msgstr "Liste med programmer som er en del av forvalgt sesjon."
 
 #: ../data/gnome-session.schemas.in.h:6
+#, fuzzy
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
 msgstr ""
 "Liste med komponenter som kreves i sesjonen. (Hvert element navngir en "
 "nøkkel under «/desktop/gnome/session/required-components».) Dialog for "
@@ -152,29 +153,25 @@ msgid "Save sessions"
 msgstr "Lagre sesjoner"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Valgt alternativ i «Logg ut»-dialogen"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "Vis oppstartskjerm"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Vis oppstartskjerm når sesjonen starter opp"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr "Filhåndterer gir deg skrivebordsikoner og lar deg håndtere dine filer."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Antall minutter uten aktivitet før sesjonen anses som inaktiv."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -182,7 +179,7 @@ msgstr ""
 "Panelet er linjen øverst eller nederst på skjermen som inneholder menyer, "
 "vinduliste, statusikoner, klokke, etc."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -190,7 +187,7 @@ msgstr ""
 "Vindushåndterer er programmet som styrer tittellinje og kanter rundt vinduer "
 "i tillegg til å la deg flytte og endre størrelse på vinduene."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -200,21 +197,11 @@ msgstr ""
 "og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
 "innlogging."
 
-#: ../data/gnome-session.schemas.in.h:20
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Dette er alternativet som er valgt i «Logg ut»-dialogen. Gyldige verdier er "
-"«logout» for å logge ut, «shutdown» for å stoppe systemet og «restart» for å "
-"starte systemet på nytt."
-
-#: ../data/gnome-session.schemas.in.h:21
+#: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Tid før sesjonen antas å være ubrukt"
 
-#: ../data/gnome-session.schemas.in.h:22 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Vindushåndterer"
 
@@ -232,12 +219,12 @@ msgstr ""
 "miste data."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Konfigurer dine sesjoner"
+msgid "Choose what applications to start when you log in"
+msgstr "Velg programmer som skal startes når du logger inn"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sesjoner"
+msgid "Startup Applications"
+msgstr "Oppstartsprogrammer"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -258,6 +245,10 @@ msgstr "Komm_entar:"
 #: ../data/session-properties.glade.h:5
 msgid "Options"
 msgstr "Alternativer"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "Brukervalg for sesjoner"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -404,73 +395,62 @@ msgstr "Lås skjerm"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Du er logget inn som «%s».\n"
-"Du vil bli logget ut automatisk om %d sekund."
-msgstr[1] ""
-"Du er logget inn som «%s».\n"
-"Du vil bli logget ut automatisk om %d sekunder."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Du vil bli logget ut automatisk om %d sekund."
+msgstr[1] "Du vil bli logget ut automatisk om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Du er logget inn som «%s».\n"
-"Systemet vil bli slått av om %d sekund."
-msgstr[1] ""
-"Du er logget inn som «%s».\n"
-"Systemet vil bli slått av om %d sekunder."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Systemet vil bli slått av automatisk om %d sekund."
+msgstr[1] "Systemet vil bli slått automatisk av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Du er logget inn som «%s»"
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/gsm-logout-dialog.c:426
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:948 ../gnome-session/gsm-manager.c:1634
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1149
 msgid "This program is blocking log out."
 msgstr "Dette programmet hindrer utlogging."
 
@@ -486,28 +466,28 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:282
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
 
-#: ../gnome-session/main.c:504
+#: ../gnome-session/main.c:436
 msgid "Override standard autostart directories"
 msgstr "Overstyr forvalgte kataloger for autostart"
 
-#: ../gnome-session/main.c:505
+#: ../gnome-session/main.c:437
 msgid "GConf key used to lookup default session"
 msgstr "GConf-nøkkel som brukes til å finne forvalgt sesjon"
 
-#: ../gnome-session/main.c:506
+#: ../gnome-session/main.c:438
 msgid "Enable debugging code"
 msgstr "Aktiver feilsøkingskode"
 
-#: ../gnome-session/main.c:507
+#: ../gnome-session/main.c:439
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: ../gnome-session/main.c:528
+#: ../gnome-session/main.c:460
 msgid " - the GNOME session manager"
 msgstr "- GNOME sesjonshåndterer"
 
@@ -555,10 +535,10 @@ msgstr "Bruk dialoger for feil"
 msgid "Do not require confirmation"
 msgstr "Ikke krev bekreftelse"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:121 ../tools/gnome-session-save.c:131
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til sesjonshåndterer"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-save.c:274
 msgid "Program called with conflicting options"
 msgstr "Programmet ble kalt med motstridende alternativer"
