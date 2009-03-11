@@ -1,36 +1,119 @@
+# translation of gnome-session.HEAD.te.po to Telugu
 # Telugu translation of gnome-session.
 # Copyright (C) 2007 Swecha Telugu Localisation team <localisation@swecha.org>
 # This file is distributed under the same license as the gnome-session package.
-# Pavan Kumar <pavanpreetam@gmail.com>, 2007
-# Y.Kiran Chandra <kiran@swecha.net>, 2007
-# J.Bharat Kumar <jonnalagaddabharat@gmail.com>, 2007
-# 
+#
+# Pavan Kumar <pavanpreetam@gmail.com>, 2007.
+# Y.Kiran Chandra <kiran@swecha.net>, 2007.
+# J.Bharat Kumar <jonnalagaddabharat@gmail.com>, 2007.
+# Krishna Babu K <kkrothap@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-23 20:06+0530\n"
-"PO-Revision-Date: 2007-07-19 13:59+0530\n"
-"Last-Translator: Bharat Kumar <jonnalagaddabharat@gmail.com>\n"
-"Language-Team: Swecha Telugu Localisation Team <localisation@swecha.org>\n"
+"Project-Id-Version: gnome-session.HEAD.te\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2009-02-13 22:26+0000\n"
+"PO-Revision-Date: 2009-03-11 13:29+0530\n"
+"Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
+"Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+
+#: ../capplet/gsm-app-dialog.c:126
+#, fuzzy
+#| msgid "_Command:"
+msgid "Select Command"
+msgstr "ఆదేశం"
+
+#: ../capplet/gsm-app-dialog.c:187
+#, fuzzy
+#| msgid "Edit Startup Program"
+msgid "Add Startup Program"
+msgstr "ప్రారంభ కార్యక్రమాన్ని సరిచేయు"
+
+#: ../capplet/gsm-app-dialog.c:191
+msgid "Edit Startup Program"
+msgstr "ప్రారంభ కార్యక్రమాన్ని సరిచేయు"
+
+#: ../capplet/gsm-properties-dialog.c:132
+msgid "No description"
+msgstr "వివరణ లేదు"
+
+#: ../capplet/gsm-properties-dialog.c:952
+msgid "The name of the startup program cannot be empty"
+msgstr "ప్రారంభ కార్యక్రమము యొక్క పేరు ఖాళీగా  ఉండరాదు"
+
+#: ../capplet/gsm-properties-dialog.c:956
+msgid "The startup command cannot be empty"
+msgstr "ప్రారంభ  ఆదేశం ఖాళీగా  ఉండరాదు"
+
+#: ../capplet/gsm-properties-dialog.c:962
+msgid "The startup command is not valid"
+msgstr "ప్రారంభ  ఆదేశం సరియైనదికాదు"
+
+#: ../capplet/gsm-properties-dialog.c:1279
+msgid "Enabled"
+msgstr "క్రియాశీలీకరించబడిన"
+
+#: ../capplet/gsm-properties-dialog.c:1292
+#, fuzzy
+#| msgid "Action"
+msgid "Icon"
+msgstr "ప్రతిమ"
+
+#: ../capplet/gsm-properties-dialog.c:1303
+msgid "Program"
+msgstr "కార్యక్రమం"
+
+#: ../capplet/gsm-properties-dialog.c:1453
+msgid "Startup Applications Preferences"
+msgstr ""
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
+msgid "Version of this application"
+msgstr "ఈ అనువర్తనం యొక్క వర్షన్"
+
+#: ../compat/at-spi-registryd-wrapper.c:47
+msgid ""
+"Assistive technology support has been requested for this session, but the "
+"accessibility registry was not found. Please ensure that the AT-SPI package "
+"is installed. Your session has been started without assistive technology "
+"support."
+msgstr ""
+"ఈ సమకూర్పునకు సాంకేతిక సహాయము కోరడమైనది, కాని అందుబాటు పట్టిక కనపడలేదు. దయ చేసి AT-SPI ప్యాకేజి  "
+"ప్రతిష్టించటమైనదని దృవీకరించడమైనది. సాంకేతిక సహాయము లేకుండానే సమకూర్పు ప్రారంభించబడినది. "
+
+#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
+msgid "AT SPI Registry Wrapper"
+msgstr "SPI రిజిస్ట్రీ వ్రాపర్ వద్ద"
+
+#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
+msgid "GNOME Settings Daemon Helper"
+msgstr ""
+
+#: ../data/gnome.desktop.in.h:1
+#, fuzzy
+#| msgid "NAME"
+msgid "GNOME"
+msgstr "గ్నోమ్"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "TCP భాంధవ్యాలను అనుమతించుము"
+#, fuzzy
+#| msgid "Kill session"
+msgid "Default session"
+msgstr "సమకూర్పును  చంపుము"
 
 #: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"భద్రతా కారణాల రీత్యా _IceTcpT ransNoListen() ఉన్న వేదికల పైన.గ్నోమ్-సమకూర్పు  కనెక్షన్లను వినదు."
-"(XFree86.వ్యవస్థలు),ఈ   సుదూర  వ్యవస్థ ల నుండి అధీక్ుత కనెక్షన్లను అనుమతిస్తుంది. .గ్నోమ్-"
-"సమకూర్పు ని పున:ప్రారంభించిన వెంటనే  ఈ మార్పు అమలవుతుంది."
+#, fuzzy
+#| msgid "Window Manager"
+msgid "File Manager"
+msgstr "దస్త్రాల అభికర్త"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -45,30 +128,74 @@ msgstr ""
 "ఇచ్ఛాపూర్వకంగా దాచుతుంది. "
 
 #: ../data/gnome-session.schemas.in.h:5
+#, fuzzy
+#| msgid "The order in which applications are started in the session."
+msgid "List of applications that are part of the default session."
+msgstr "సమకూర్పులో  కార్యక్షేత్రాలు మొదలైన క్రమం."
+
+#: ../data/gnome-session.schemas.in.h:6
+msgid ""
+"List of components that are required as part of the session. (Each element "
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "నిష్క్రమణ ద్వారం"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.h:8
+#, fuzzy
+#| msgid "The Panel"
+msgid "Panel"
+msgstr "ప్యానల్"
+
+#: ../data/gnome-session.schemas.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "స్ప్లాష్ తెర  ప్రవేశానికి ఉపయోగించతగిన ప్రతిరూపం "
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.h:10
+msgid "Required session components"
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
 msgstr "సమకూర్పులను దాచుము"
 
-#: ../data/gnome-session.schemas.in.h:8
-msgid "Selected option in the log out dialog"
-msgstr "నిష్క్రమణ ద్వారం సంభాషణలో  ఇచ్ఛాపూర్వకంగా ఎంచుకున్నది"
-
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.h:12
 msgid "Show the splash screen"
 msgstr "స్ప్లాష్ తెరను చూపుము"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "సమకూర్పు మొదలైనప్పుడు స్ప్లాష్ తెరను చూపుము"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.h:14
+msgid ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:15
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "ఎన్ని నిముషాల అచేతనం తరువాత సమకూర్పు తీరికగా ఉందని భావించాలి."
+
+#: ../data/gnome-session.schemas.in.h:16
+msgid ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:17
+msgid ""
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
+msgstr ""
+
+#: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -77,564 +204,382 @@ msgstr ""
 "$datadir/pixmaps/·వివరము ఆధారంగా సాపేక్షంగా తీసుకోబడిన దారి .ఉప వివరాలు మరియు ప్రతిరూపనామాలు "
 "చెల్లుబడి అయ్యే విలువలు.ఈ విలువ మార్పు భవిష్యత్ సమకూర్పుల ప్రవేశములో ప్రభావము చూపెను."
 
-#: ../data/gnome-session.schemas.in.h:12
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"నిష్క్రమణ ద్వారం లో ఎన్నుకోబడిన ఇచ్చాపూర్వకము.నిష్క్రమించుటకు \"నిష్క్రమణ\" ,వ్యవస్థ ను ఆపుటకు "
-"\"మూయడం\",వ్యవస్థ ను పున:ప్రారంభించుటకు \"పున:ప్రారంభించు\"  "
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "మీ సమకూర్పుల రూపకరణ చేయు"
-
-#: ../data/session-properties.desktop.in.in.h:2
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions"
-msgstr "సమకూర్పులు"
-
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"ఈ సమకూర్పునకు సాంకేతిక సహాయము కోరడమైనది, కాని అందుబాటు పట్టిక కనపడలేదు. దయ చేసి AT-SPI ప్యాకేజి  "
-"ప్రతిష్టించటమైనదని దృవీకరించడమైనది. సాంకేతిక సహాయము లేకుండానే సమకూర్పు ప్రారంభించబడినది. "
-
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_క్రమం"
-
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "సమకూర్పులో  కార్యక్షేత్రాలు మొదలైన క్రమం."
-
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "బయటకు పోయినపుడు  కార్యక్షేత్రానికి ఏమవుతుంది."
-
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_శైలి"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "క్రియాహీన"
-
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "ప్రారంభానికి నిరీక్షణ  లేక ఇంతకముందే పూర్తి అయినది. "
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "మొదలవుతున్నది."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "మొదలయినది కాని ఇంకా స్థితిని నివేదించలేదు."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "నడుస్తున్నది."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "సమకూర్పు యొక్క సాధరణ సభ్యుడు"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "దాస్తున్నది"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "సమకూర్పు వివరాలు దాచుట."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "అపరిచిత"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "కాలహరణం లోపు స్థితిని నివేదించక పోవుట."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "సాధారణ"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "నిష్క్రమణ వల్ల ప్రభావితం కాదు కాని మరణిస్తుంది."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "పున:ప్రారంభించు."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "మరణిచుటకు  అనుమతి లేదు."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "చెత్త"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "నిష్క్రమించినపుడు విసర్జించబడినది ఇది నిరుపయోగమువును"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "అమరిక"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "ప్రతి ప్రవేశానికి మొదలైనది."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "క్రమం"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "శైలి"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "స్థితి"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:283
-msgid "Program"
-msgstr "కార్యక్రమం"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:45
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"గ్నోమ్ అమరిక సూత్రధారి మొదలవుటకు దోషము ఉన్నది.\n"
-".\n"
-".శబ్దాలు,పూర్వరంగపు  అమరికలు లేక వైవిద్యాంశాలు  సరిగా పని చేయకపోచ్చు"
-
-#: ../gnome-session/gsm-gsd.c:57
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"చివరి దోష సందేశం ఏమిటంటే:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:62
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-" \n"
-"మరోసారి  ప్రవేశించినా కూడా గ్నోమ్ అమరికల సూత్రధారి ని పున:ప్రారంభించుటకు ప్రయత్నిస్తుంది."
-
-#: ../gnome-session/gsm-gsd.c:145
-msgid "The Settings Daemon restarted too many times."
-msgstr "అమరికల సూత్రధారి చాలా సార్లు  పున:ప్రారంభమైనది."
-
-#. Name is mandatory and might not be set by the caller
-#: ../gnome-session/gsm-keyfile.c:43
-msgid "No Name"
-msgstr "పేరు లేదు."
-
-#: ../gnome-session/gnome-session-remove.c:50
-msgid "List registered clients, then exit"
-msgstr "నమోదు అయిన క్లైంట్లను తెలిపి మూయుము."
-
-#: ../gnome-session/gnome-session-remove.c:52
-msgid "PROGRAM..."
-msgstr "కార్యక్రమం..."
-
-#: ../gnome-session/gnome-session-remove.c:176
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
-"కనీసం ఒక్క కార్యక్రమము అయినా  తీసివేయుటకు నిర్దేశించుము. -- జాబితా తో కార్యక్రమాల జాబితా ను తయారు "
-"చేయవచ్చును. \n"
-
-#: ../gnome-session/gnome-session-remove.c:183
-msgid "Error: could not connect to the session manager\n"
-msgstr "దోషము: సమకూర్పు నిర్వాహకి తో బంధం సాధ్యపడలేదు.\n"
-
-#: ../gnome-session/gnome-session-remove.c:197
-msgid "Currently registered clients:\n"
-msgstr "ప్రస్తుతము నమోదైన క్లైంట్లు :\n"
-
-#: ../gnome-session/gnome-session-remove.c:207
-#, c-format
-msgid "Couldn't find program %s in session\n"
-msgstr "%s కార్యక్రమము సమకూర్పు లో  కనపడలేదు\n"
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-"గ్నోమ్ సమకూర్పు నిర్వాహకి సరిగ్గా మొదలు కాలేదు.దయచేసి దీన్ని గ్నోమ్  లోపముగా నివేదించుము.దయచేసి ఈ ICE "
-"విఫలమైన సందేశాన్ని '%s'లోప నివేదిక లో జతచేయుము.ఈ లోపల విఫలమైనా భద్రంగా ఉన్న సమకూర్పు లో  "
-"ప్రవేశించడానికి ప్రయత్నించవచ్చు"
-
-#: ../gnome-session/ice.c:511
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-"గ్నోము సమకూర్పు అభికర్త '%s' దస్త్రమున తాళం వేయుట విఫలంకు.దీన్ని గ్నోము దోషముగా నివేదించుము. "
-"దస్త్రము వివరమును రాయలేనప్పుడు కూడా ఈ దోషము రావచ్చు."
-
-#: ../gnome-session/ice.c:538
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-"·గ్నొము సమకూర్పు అభికర్త '%s' దస్త్రమును చదువుట విఫలం.ఈ దస్త్రము ఉంటే అది మీరు "
-"చదువగలిగేటట్లుంటేనే గ్నోము సరిగ్గా పనిచేస్తుంది. భద్రమైన సమకూర్పుతో ప్రవేశించి ఆ దస్త్రమును తొలగించి "
-"ప్రయత్నించండి."
-
-#: ../gnome-session/ice.c:583
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-"'%s'దస్త్రమునకు   రాయలేదు. గ్నోమ్  సరిగా పనిచేయుటకు ఈ దస్త్రము వ్రాయబడాలి. విఫలమైనా భద్రంగా ఉన్న "
-"సమకూర్పు ద్వారా ప్రవేశించుటకు ప్రయత్నించి  ఈ దస్త్రమును తీసివేయుము."
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr "నిష్క్రమించదలుచుకున్నారా?"
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr "నడుస్తున్న కార్యక్షేత్రాలను గుర్తుంచుకొనుము"
-
-#: ../gnome-session/logout.c:432
-msgid "Action"
-msgstr "క్రియ"
-
-#: ../gnome-session/logout.c:449
-msgid "_Log out"
-msgstr "_నిష్క్రమించుట"
-
-#: ../gnome-session/logout.c:456
-msgid "Sh_ut down"
-msgstr "మూయడం"
-
-#: ../gnome-session/logout.c:464
-msgid "_Restart the computer"
-msgstr "_కంప్యూటర్ ని పున:ప్రారంభించు"
-
-#: ../gnome-session/main.c:87
-msgid "Specify a session name to load"
-msgstr "సమకూర్పు పేరును నిర్దేశించు"
-
-#: ../gnome-session/main.c:87 ../gnome-session/gnome-session-save.c:48
-msgid "NAME"
-msgstr "పేరు"
-
-#: ../gnome-session/main.c:88
-msgid "Only read saved sessions from the default.session file"
-msgstr "అప్రమేయ  .సమకూర్పు  నుండి దాచిన సమకూర్పులనే చదువుము."
-
-#: ../gnome-session/main.c:89
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "క్లైంట్లు నమోదు చేసుకొనుటకు మిల్లీసెకను వ్యవధి నిరీక్షించడం.(౦=ఎప్పటికి)"
-
-#: ../gnome-session/main.c:89 ../gnome-session/main.c:90
-#: ../gnome-session/main.c:91
-msgid "DELAY"
-msgstr "జాప్యము."
-
-#: ../gnome-session/main.c:90
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "క్లైంట్లు స్పందించుటకు మిల్లీసెకను వ్యవధి నిరీక్షించడం"
-
-#: ../gnome-session/main.c:91
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "క్లైంట్లు మరణించుటకు మిల్లీసెకను వ్యవధి నిరీక్షించడం."
-
-#: ../gnome-session/main.c:167
-msgid "This session is running as a privileged user"
-msgstr "ఈ సమకూర్పు ప్రత్యేక వినియోగదారి గా నడుస్తున్నది."
-
-#: ../gnome-session/main.c:169
-msgid ""
-"Running a session as a privileged user should be avoided for security "
-"reasons. If possible, you should log in as a normal user."
-msgstr ""
-"భద్రతా కారణాల రీత్యా సమకూర్పును  ప్రత్యేక వినియోగదారుని గా నడపడం  నివారించుట మంచిది.సాధ్యమైతే సాధారణ "
-"వినియోగదారుని గ ప్రవేశించవలెను."
-
-#: ../gnome-session/main.c:173
-msgid "_Continue"
-msgstr "_కొనసాగు"
-
-#: ../gnome-session/main.c:234
-#, c-format
-msgid ""
-"The session might encounter issues if the computer clock is not properly "
-"configured. Please consider adjusting it.\n"
-"\n"
-"Current date is <b>%s</b>."
-msgstr ""
-"కంప్యూటరు గడియారము సరిగ్గా అమర్చకపోతే ఈ సమకూర్పు సమస్యలను ఎదుర్కొంటుంది.దయచేసి దానిని సరిచేయండి.\n"
-"\n"
-"ప్రస్తుత తేదీ <b>%s</b>."
-
-#: ../gnome-session/main.c:353
-#, c-format
-msgid "Failed to launch time configuration tool: %s"
-msgstr "%s సమయ రూపకరణ పనిముట్టు ప్రయోగం విఫలం "
-
-#: ../gnome-session/main.c:384
-msgid "The computer clock appears to be wrong"
-msgstr "కంప్యూటర్ సమయము తప్పుగ ఉన్నది"
-
-#: ../gnome-session/main.c:391
-msgid "_Ignore"
-msgstr "_పట్టించుకోకపోవుట"
-
-#: ../gnome-session/main.c:392
-msgid "_Adjust the Clock"
-msgstr "సమయాన్ని సరిచేయు"
-
-#: ../gnome-session/main.c:529
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"·%sచిరునామా మాహాతలంలో దొరకలేదు.\n"
-"ఇది గ్నోము పనివిధానానికి ఆటంకమవుతుంది.\n"
-"%s·ను ·/etc/hosts దస్త్రమునకు జతచేస్తే అది సరిగ్గా పనిచేస్తుంది."
-
-#: ../gnome-session/main.c:536
-msgid "Log in Anyway"
-msgstr "ఎలాగైనా ప్రవేశించుము"
-
-#: ../gnome-session/main.c:537
-msgid "Try Again"
-msgstr "మళ్ళీ ప్రయత్నించుము"
-
-#: ../gnome-session/main.c:671
-msgid "- Manage the GNOME session"
-msgstr "గ్నోమ్ సమకూర్పు ని నిర్వహించుము"
-
-#: ../gnome-session/manager.c:513
-msgid "Wait abandoned due to conflict."
-msgstr "ఘర్షణ తో నిష్క్రమించడమైనది"
-
-#: ../gnome-session/manager.c:1021
-#, c-format
-msgid "No response to the %s command."
-msgstr "%s కి  స్పందన లేదు"
-
-#: ../gnome-session/manager.c:1022
-msgid "The program may be slow, stopped or broken."
-msgstr "కార్యక్రమం మెల్లిగా,ఆగిపోయి ఉండవచ్చు"
-
-#: ../gnome-session/manager.c:1023
-msgid "You may wait for it to respond or remove it."
-msgstr "దాని స్పందన కొరకు నిరీక్షించవచ్చు లేక తీసివేయవచ్చును"
-
-#: ../gnome-session/manager.c:1749
-msgid "Restart abandoned due to failures."
-msgstr "విఫలమైనందున పున:ప్రారంభించలేదు "
-
-#: ../gnome-session/manager.c:1945
-msgid "A session shutdown is in progress."
-msgstr "సమకూర్పు మూ యడం పురోగమనము లో ఉన్నది"
-
-#: ../gnome-session/gnome-session-save.c:48
-msgid "Set the current session name"
-msgstr "ప్రస్తుత సమకూర్పు పేరు ని అమర్చుము."
-
-#: ../gnome-session/gnome-session-save.c:49
-msgid "Kill session"
-msgstr "సమకూర్పును  చంపుము"
-
-#: ../gnome-session/gnome-session-save.c:50
-msgid "Use dialog boxes for errors"
-msgstr "దోషాలకు సంభాషణపేటికలు వాడుము"
-
-#: ../gnome-session/gnome-session-save.c:51
-msgid "Do not require confirmation"
-msgstr "దృవీకరణ అక్కర్లేదు"
-
-#: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:187
-msgid "Could not connect to the session manager"
-msgstr "సమకూర్పు నిర్వాహకి తో  బంధం సాధ్యపడలేదు"
-
-#: ../gnome-session/gnome-session-save.c:172
-msgid "- Save the current session"
-msgstr "ప్రస్తుత సమకూర్పును దాయుము"
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr "మూసేముందు ప్రస్తుత సమకూర్పునకు చేసిన మార్పులను దాయుము"
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr "మీరు దాయకపోతే  చేసిన  మార్పులు  తొలగించబడతాయి"
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "దాయకుండా మూయుము"
-
-#: ../gnome-session/session-properties-capplet.c:250
-msgid "Additional startup _programs:"
-msgstr "అదనపు  ప్రారంభ కార్యక్రమాలు"
-
-#: ../gnome-session/session-properties-capplet.c:274
-msgid "Enabled"
-msgstr "క్రియాశీలీకరించబడిన"
-
-#: ../gnome-session/session-properties-capplet.c:322
-msgid "Startup Programs"
-msgstr "ప్రారంభ కార్యక్రమాలు"
-
-#: ../gnome-session/session-properties-capplet.c:328
-msgid "Current Session"
-msgstr "ప్రస్తుత సమకూర్పు"
-
-#: ../gnome-session/session-properties-capplet.c:341
-msgid "_Automatically remember running applications when logging out"
-msgstr "నిష్క్రమించేటప్పుడు నడుస్తున్న కార్యక్షేత్రాలని స్వయంచాలకంగా గుర్తుంచుకొనుము"
-
-#: ../gnome-session/session-properties-capplet.c:356
-msgid "_Remember currently running applications"
-msgstr "_ప్రస్తుతము నడుస్తున్న కార్యక్షేత్రాలను గుర్తుంచుకొనుము"
-
-#: ../gnome-session/session-properties-capplet.c:364
-msgid "Session Options"
-msgstr "సమకూర్పు ఇఛ్ఛాపూర్వకాలు"
-
-#: ../gnome-session/session-properties-capplet.c:460
-msgid "Your session has been saved."
-msgstr "మీ సమకూర్పు దాచబడింది"
-
-#: ../gnome-session/session-properties-capplet.c:503
-msgid "could not connect to the session manager\n"
-msgstr "సమకూర్పు నిర్వాహకి తో  బంధం సాధ్యపడలేదు\n"
-
-#: ../gnome-session/session-properties-capplet.c:509
-msgid "session manager does not support GNOME extensions\n"
-msgstr "GNOME పొడగింపులకు సమకూర్పుల నిర్వాహకి సహకరించదు\n"
-
-#: ../gnome-session/session-properties.c:51
-msgid "Remove the currently selected client from the session."
-msgstr "ప్రస్తుతము ఎన్నుకున్న క్లైంటును సమకూర్పు నుండి తొలగించుము"
-
-#: ../gnome-session/session-properties.c:57
-msgid "Apply changes to the current session"
-msgstr "ప్రస్తుత సమకూర్పుకు మార్పులు  చేయు"
-
-#: ../gnome-session/session-properties.c:63
-msgid "The list of programs in the session."
-msgstr "సమకూర్పులో ఉన్న కార్యక్రమాల  జాబితా"
-
-#: ../gnome-session/session-properties.c:90
-msgid "Currently running _programs:"
-msgstr "ప్రస్తుతం నడుస్తున్న కార్యక్రమాలు"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "సాఫిష్ గవాక్ష నిర్వాహకి"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "మెటాసిటి గవాక్ష నిర్వాహకి"
-
-#: ../gnome-session/splash-widget.c:46
+#: ../data/gnome-session.schemas.in.h:19
+msgid "Time before session is considered idle"
+msgstr "సమకూర్పు తీరికగా భావించక ముందు సమయం"
+
+#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "గవాక్ష నిర్వాహకి"
 
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "ప్యానల్"
+#: ../data/gsm-inhibit-dialog.glade.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr ""
 
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "నాటిలస్"
+#: ../data/gsm-inhibit-dialog.glade.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:633
+msgid ""
+"Waiting for program to finish.  Interrupting program may cause you to lose "
+"work."
+msgstr ""
 
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "రంగస్థల అమరికలు"
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Choose what applications to start when you log in"
+msgstr ""
 
-#: ../gnome-session/startup-programs.c:348
-msgid "No description"
-msgstr "వివరణ లేదు"
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Startup Applications"
+msgstr ""
 
-#: ../gnome-session/startup-programs.c:467
+#: ../data/session-properties.glade.h:1
+msgid "Additional startup _programs:"
+msgstr "అదనపు  ప్రారంభ కార్యక్రమాలు"
+
+#: ../data/session-properties.glade.h:2
+#, fuzzy
+#| msgid "_Browse..."
+msgid "Browse..."
+msgstr "అన్వేషణ..."
+
+#: ../data/session-properties.glade.h:3
+#, fuzzy
+#| msgid "_Command:"
+msgid "Co_mmand:"
+msgstr "ఆదేశం (_m):"
+
+#: ../data/session-properties.glade.h:4
+#, fuzzy
+#| msgid "Co_mment:"
+msgid "Comm_ent:"
+msgstr "వ్యాఖ్య"
+
+#: ../data/session-properties.glade.h:5
+#, fuzzy
+#| msgid "Session Options"
+msgid "Options"
+msgstr "ఇచ్ఛాపూర్వకాలు"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr ""
+
+#: ../data/session-properties.glade.h:7
+msgid "Startup Programs"
+msgstr "ప్రారంభ కార్యక్రమాలు"
+
+#: ../data/session-properties.glade.h:8
+msgid "_Automatically remember running applications when logging out"
+msgstr "నిష్క్రమించేటప్పుడు నడుస్తున్న కార్యక్షేత్రాలని స్వయంచాలకంగా గుర్తుంచుకొనుము"
+
+#: ../data/session-properties.glade.h:9
 msgid "_Name:"
 msgstr "పేరు"
 
-#: ../gnome-session/startup-programs.c:485
-msgid "_Command:"
-msgstr "ఆదేశం"
+#: ../data/session-properties.glade.h:10
+#, fuzzy
+#| msgid "_Remember currently running applications"
+msgid "_Remember Currently Running Application"
+msgstr "_ప్రస్తుతము నడుస్తున్న కార్యక్షేత్రాలను గుర్తుంచుకొనుము"
 
-#: ../gnome-session/startup-programs.c:499
-msgid "_Browse..."
-msgstr "అన్వేషణ"
+#: ../egg/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "ఫైలు చెల్లునటువంచి .desktop ఫైలు కాదు"
 
-#: ../gnome-session/startup-programs.c:512
-msgid "Co_mment:"
-msgstr "వ్యాఖ్య"
+#: ../egg/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "గుర్తించబడని డెస్కుటాపు ఫైలు వర్షన్ '%s'"
 
-#: ../gnome-session/startup-programs.c:542
-msgid "The name of the startup program cannot be empty"
-msgstr "ప్రారంభ కార్యక్రమము యొక్క పేరు ఖాళీగా  ఉండరాదు"
+#: ../egg/eggdesktopfile.c:958
+#, fuzzy, c-format
+#| msgid "Starting"
+msgid "Starting %s"
+msgstr "%s ప్రారంభిస్తోంది"
 
-#: ../gnome-session/startup-programs.c:544
-msgid "The startup command cannot be empty"
-msgstr "ప్రారంభ  ఆదేశం ఖాళీగా  ఉండరాదు"
+#: ../egg/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "ఆదేశవరుస నందు అనువర్తనములు పత్రములను ఆంగీకరించవు"
 
-#: ../gnome-session/startup-programs.c:550
-msgid "The startup command is not valid"
-msgstr "ప్రారంభ  ఆదేశం సరియైనదికాదు"
+#: ../egg/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "గుర్తించబడని ప్రారంభ ఐచ్చికము: %d"
 
-#: ../gnome-session/startup-programs.c:607
-msgid "New Startup Program"
-msgstr "కొత్త  ప్రారంభ  కార్యక్రమం"
+#: ../egg/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "పత్రము URIలను Type=Link' desktop entry కు పంపలేదు."
 
-#: ../gnome-session/startup-programs.c:651
-msgid "Edit Startup Program"
-msgstr "ప్రారంభ కార్యక్రమాన్ని సరిచేయు"
+#: ../egg/eggdesktopfile.c:1392
+#, c-format
+msgid "Not a launchable item"
+msgstr "దించదగిన అంశము కాదు"
+
+#: ../egg/eggsmclient.c:185
+#, fuzzy
+#| msgid "Could not connect to the session manager"
+msgid "Disable connection to session manager"
+msgstr "సెషన్ నిర్వాహికకు అనుసంధానమును అచేతనము చేయుము"
+
+#: ../egg/eggsmclient.c:188
+msgid "Specify file containing saved configuration"
+msgstr "దాచివున్న ఆకృతీకరణను కలిగివున్న ఫైలు తెలుపుము"
+
+#: ../egg/eggsmclient.c:188
+msgid "FILE"
+msgstr "FILE"
+
+#: ../egg/eggsmclient.c:191
+#, fuzzy
+#| msgid "Specify a session name to load"
+msgid "Specify session management ID"
+msgstr "సెషన్ నిర్వహణా IDను తెలుపుము"
+
+#: ../egg/eggsmclient.c:191
+msgid "ID"
+msgstr "ఐడి"
+
+#: ../egg/eggsmclient.c:245
+#, fuzzy
+#| msgid "Session Options"
+msgid "Session Management Options"
+msgstr "సమకూర్పు ఇఛ్ఛాపూర్వకాలు"
+
+#: ../egg/eggsmclient.c:246
+#, fuzzy
+#| msgid "Session Options"
+msgid "Show Session Management options"
+msgstr "సమకూర్పు ఇఛ్ఛాపూర్వకాలు"
+
+#: ../gnome-session/gsm-gconf.c:106
+#, c-format
+msgid ""
+"There is a problem with the configuration server.\n"
+"(%s exited with status %d)"
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:256
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "ప్రతిమ '%s' కనబడలేదు"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:581
+msgid "Unknown"
+msgstr "అపరిచిత"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:632
+msgid "A program is still running:"
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:636
+msgid "Some programs are still running:"
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:637
+msgid ""
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:865
+msgid "Switch User Anyway"
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:868
+#, fuzzy
+#| msgid "Log in Anyway"
+msgid "Logout Anyway"
+msgstr "ఎలాగైనా ప్రవేశించుము"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:871
+msgid "Suspend Anyway"
+msgstr ""
+
+#: ../gnome-session/gsm-inhibit-dialog.c:874
+#, fuzzy
+#| msgid "Log in Anyway"
+msgid "Hibernate Anyway"
+msgstr "ఎలాగైనా ప్రవేశించుము"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:877
+#, fuzzy
+#| msgid "Log in Anyway"
+msgid "Shutdown Anyway"
+msgstr "ఎలాగైనా ప్రవేశించుము"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:880
+#, fuzzy
+#| msgid "Log in Anyway"
+msgid "Reboot Anyway"
+msgstr "ఎలాగైనా ప్రవేశించుము"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:888
+msgid "Lock Screen"
+msgstr "స్క్రీన్ లాక్‌చేయుము"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:891
+msgid "Cancel"
+msgstr "రద్దు"
+
+#: ../gnome-session/gsm-logout-dialog.c:284
+#, c-format
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gnome-session/gsm-logout-dialog.c:292
+#, c-format
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr ""
+
+#: ../gnome-session/gsm-logout-dialog.c:389
+msgid "Log out of this system now?"
+msgstr "ఈ సిస్టమ్ నుండి ఇప్పుడే లాగ్అవుట్ అవ్వాలా?"
+
+#: ../gnome-session/gsm-logout-dialog.c:395
+msgid "_Switch User"
+msgstr "వినియోగదారున్ని మార్చు(_S)"
+
+#: ../gnome-session/gsm-logout-dialog.c:404
+#, fuzzy
+#| msgid "_Log out"
+msgid "_Log Out"
+msgstr "_నిష్క్రమణ ద్వారం"
+
+#: ../gnome-session/gsm-logout-dialog.c:410
+msgid "Shut down this system now?"
+msgstr "ఈ సిస్టమ్ ను ఇప్పుడే మూసివేయాలా?"
+
+#: ../gnome-session/gsm-logout-dialog.c:416
+msgid "S_uspend"
+msgstr ""
+
+#: ../gnome-session/gsm-logout-dialog.c:422
+msgid "_Hibernate"
+msgstr ""
+
+#: ../gnome-session/gsm-logout-dialog.c:428
+#, fuzzy
+#| msgid "Restart"
+msgid "_Restart"
+msgstr "_పున:ప్రారంభించు"
+
+#: ../gnome-session/gsm-logout-dialog.c:438
+#, fuzzy
+#| msgid "Sh_ut down"
+msgid "_Shut Down"
+msgstr "మూయడం"
+
+#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+msgid "Not responding"
+msgstr ""
+
+#: ../gnome-session/gsm-xsmp-client.c:989
+msgid "This program is blocking log out."
+msgstr ""
+
+#: ../gnome-session/gsm-xsmp-server.c:234
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+
+#: ../gnome-session/gsm-xsmp-server.c:489
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr ""
+
+#. Oh well, no X for you!
+#: ../gnome-session/gsm-util.c:143
+#, c-format
+msgid "Unable to start login session (and unable to connect to the X server)"
+msgstr ""
+
+#: ../gnome-session/main.c:521
+msgid "Override standard autostart directories"
+msgstr ""
+
+#: ../gnome-session/main.c:522
+msgid "GConf key used to lookup default session"
+msgstr ""
+
+#: ../gnome-session/main.c:523
+msgid "Enable debugging code"
+msgstr "డీబగ్గింగ్ సంహిత ను చేతనంచేయి"
+
+#: ../gnome-session/main.c:524
+msgid "Do not load user-specified applications"
+msgstr ""
+
+#: ../gnome-session/main.c:545
+#, fuzzy
+#| msgid "- Manage the GNOME session"
+msgid " - the GNOME session manager"
+msgstr "గ్నోమ్ సమకూర్పు ని నిర్వహించుము"
+
+#: ../splash/gnome-session-splash.c:315
+#, fuzzy
+#| msgid "Show the splash screen"
+msgid "- GNOME Splash Screen"
+msgstr "స్ప్లాష్ తెరను చూపుము"
+
+#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
+msgid "GNOME Splash Screen"
+msgstr ""
+
+#: ../tools/gnome-session-save.c:65
+msgid "Set the current session name"
+msgstr "ప్రస్తుత సమకూర్పు పేరు ని అమర్చుము."
+
+#: ../tools/gnome-session-save.c:65
+msgid "NAME"
+msgstr "పేరు"
+
+#: ../tools/gnome-session-save.c:66
+#, fuzzy
+#| msgid "_Log out"
+msgid "Log out"
+msgstr "లాగ్ అవుట్"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Log out, ignoring any existing inhibitors"
+msgstr ""
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show logout dialog"
+msgstr ""
+
+#: ../tools/gnome-session-save.c:69
+msgid "Show shutdown dialog"
+msgstr ""
+
+#: ../tools/gnome-session-save.c:70
+msgid "Kill session"
+msgstr "సమకూర్పును  చంపుము"
+
+#: ../tools/gnome-session-save.c:71
+msgid "Use dialog boxes for errors"
+msgstr "దోషాలకు సంభాషణపేటికలు వాడుము"
+
+#: ../tools/gnome-session-save.c:72
+msgid "Do not require confirmation"
+msgstr "దృవీకరణ అక్కర్లేదు"
+
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "సమకూర్పు నిర్వాహకి తో  బంధం సాధ్యపడలేదు"
+
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr ""
+
