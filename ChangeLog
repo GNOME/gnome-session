@@ -1,3 +1,12 @@
+2009-03-14  Vincent Untz  <vuntz@gnome.org>
+
+	* capplet/gsm-properties-dialog.c:
+	(gsm_properties_dialog_constructor): do not call gtk_widget_show_all on
+	the dialog, just gtk_widget_show
+	* data/session-properties.glade: hide the "save current session" button
+	since it doesn't do anything at the moment, so it's confusing to have
+	it there.
+
 2009-03-08  Lucas Rocha  <lucasr@gnome.org>
 
 	Bug 574399 – turn off debug spew
