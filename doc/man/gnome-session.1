@@ -1,0 +1,70 @@
+.\" 
+.\" gnome-session manual page.
+.\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\"
+.TH GNOME-SESSION 1 "GNOME"
+.SH NAME
+gnome-session \- Starts up the GNOME desktop environment
+.SH SYNOPSIS
+.B gnome-session [\-\-autostart=DIR] [\-\-default-session-key=KEY] [\-\-failsafe|\-f] [\-\-debug]
+.SH DESCRIPTION
+The \fIgnome-session\fP program starts up the GNOME desktop
+environment.  This command is typically executed by your login manager
+(either gdm, xdm, or from your X startup scripts).  It will load
+either your saved session, or it will provide a default session for the
+user as defined by the system administrator (or the default GNOME
+installation on your system).
+.PP
+The default session is defined in the GConf keys under
+\fB/desktop/gnome/session\fP.
+When saving a session, \fIgnome-session\fP saves the currently running
+applications in the \fB$XDG_CONFIG_HOME/gnome-session/saved-session\fP
+directory.
+.PP
+\fIgnome-session\fP is an X11R6 session manager.  It can manage GNOME
+applications as well as any X11R6 SM compliant.
+.SH OPTIONS
+The following options are supported:
+.TP
+.I "--autostart=DIR"
+Start all applications defined in \fIDIR\fP, instead of starting the
+applications defined in \fB/desktop/gnome/session/default_session\fP,
+or via the \fI--default-session-key\fP option. Multiple
+\fI--autostart\fP options can be passed.
+.TP
+.I "--default-session-key=KEY"
+Sets the GConf key from which applications running a default session
+should be read to \fIKEY\fP. If not specificed,
+\fB/desktop/gnome/session/default_session\fP will be used.
+.TP
+.I "--failsafe"
+\fIgnome-session\fP will run in fail-safe mode. User-specified applications
+will not be started.
+.TP
+.I "--debug"
+Enable debugging code.
+.SH ENVIRONMENT
+\fIgnome-session\fP accepts all of the standard environment variables
+used by gnome programs, other than the SESSION_MANAGER 
+environment variable.
+\fIgnome-session\fP also sets several environment variables
+for the use of its child processes.
+.PP 
+.B SESSION_MANAGER
+.IP
+This variable is used by session-manager aware clients to contact
+gnome-session. 
+.PP
+.B DISPLAY
+.IP
+This variable is set to the X display being used by 
+\fIgnome-session\fP. Note that if the --display option is used
+this might be different from the setting of the environment variable
+when gnome-session is invoked.
+.SH SEE ALSO
+.BR gnome-session-properties(1)
+.BR gnome-session-save(1)
+.BR gnome-wm(1)
+.SH BUGS
+If you find bugs in the \fIgnome-session\fP program, please report
+these on http://bugzilla.gnome.org.

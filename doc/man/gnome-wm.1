@@ -2,7 +2,7 @@
 .\" gnome-wm manual page.
 .\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
 .\"
-.TH GNOME 1 "GNOME 1.0"
+.TH GNOME-WM 1 "GNOME"
 .SH NAME
 gnome-wm \- Launches the user selected window manager for the GNOME
 session
@@ -11,19 +11,18 @@ session
 .B gnome-wm [--default-wm windowmanager] [--sm-client-id id]
 .SH DESCRIPTION
 The \fIgnome-wm\fP script invokes the user selected window manager.
-If the user has not chosen a window manager it will try to launch a
+If the user has not chosen a window manager it will launch a
 GNOME compliant window manager.
 .PP
 The user can overwrite the selection of a window manager by setting
 the 
 .B WINDOW_MANAGER
-environment variable.  If a --default-wm option is given the script uses
+environment variable.  If a \fB--default-wm\fP option is given the script uses
 that window manager in case
 .B WINDOW_MANAGER
-is not set.  If gnome-wm is given as the argument to --default-wm then it
-is the same as if no default was given.
+is not set.
 .PP
-The script takes the --sm-client-id argument and translates the id to an
+The script takes the \fB--sm-client-id\fP option and translates the id to an
 appropriate option depending on which window manager was selected.
 .PP
 
@@ -33,8 +32,7 @@ The \fIgnome-wm\fP program uses the value of the
 environment variable to let the user override the configured window
 manager. 
 .SH SEE ALSO
-.BR gnome-session(1), default.session(5)
+.BR gnome-session(1)
 .SH BUGS
 If you find bugs in the \fIgnome-wm\fP program, please report
-these using \fIbug-buddy\fP.
-
+these on http://bugzilla.gnome.org.
