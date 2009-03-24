@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Shankar Prasad <svenkate@redhat.com>, 2008.
+# Shankar Prasad <svenkate@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.kn\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-03 23:20+0000\n"
-"PO-Revision-Date: 2008-09-19 12:47+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2009-02-13 22:26+0000\n"
+"PO-Revision-Date: 2009-03-23 23:25+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,36 +33,36 @@ msgstr "ಆರಂಭಿಕ ಪ್ರೊಗ್ರಾಂ ಅನ್ನು ಸಂಪ
 msgid "No description"
 msgstr "ಯಾವುದೆ ವಿವರಣೆ ಇಲ್ಲ"
 
-#: ../capplet/gsm-properties-dialog.c:977
+#: ../capplet/gsm-properties-dialog.c:952
 msgid "The name of the startup program cannot be empty"
 msgstr "ಆರಂಭಿಕ ಪ್ರೊಗ್ರಾಂನ ಹೆಸರು ಖಾಲಿ ಇರುವಂತಿಲ್ಲ"
 
-#: ../capplet/gsm-properties-dialog.c:981
+#: ../capplet/gsm-properties-dialog.c:956
 msgid "The startup command cannot be empty"
 msgstr "ಆರಂಭಿಕ ಆಜ್ಞೆಯು ಖಾಲಿ ಇರುವಂತಿಲ್ಲ"
 
-#: ../capplet/gsm-properties-dialog.c:987
+#: ../capplet/gsm-properties-dialog.c:962
 msgid "The startup command is not valid"
 msgstr "ಆರಂಭಿಕ ಆಜ್ಞೆಯು ಮಾನ್ಯವಾದುದಲ್ಲ"
 
-#: ../capplet/gsm-properties-dialog.c:1291
+#: ../capplet/gsm-properties-dialog.c:1279
 msgid "Enabled"
 msgstr "ಶಕ್ತಗೊಂಡ"
 
-#: ../capplet/gsm-properties-dialog.c:1304
+#: ../capplet/gsm-properties-dialog.c:1292
 msgid "Icon"
 msgstr "ಚಿಹ್ನೆ"
 
-#: ../capplet/gsm-properties-dialog.c:1315
+#: ../capplet/gsm-properties-dialog.c:1303
 msgid "Program"
 msgstr "ಪ್ರೊಗ್ರಾಂ"
 
-#: ../capplet/gsm-properties-dialog.c:1464
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "ಅಧಿವೇಶನದ ಆದ್ಯತೆಗಳು"
+#: ../capplet/gsm-properties-dialog.c:1453
+#| msgid "Sessions Preferences"
+msgid "Startup Applications Preferences"
+msgstr "ಆರಂಭಿಕ ಅನ್ವಯಗಳ ಆದ್ಯತೆಗಳು"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:501
+#: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
 msgstr "ಈ ಅನ್ವಯದ ಆವೃತ್ತಿ"
 
@@ -72,15 +72,11 @@ msgid ""
 "accessibility registry was not found. Please ensure that the AT-SPI package "
 "is installed. Your session has been started without assistive technology "
 "support."
-msgstr ""
+msgstr "ಈ ಅಧಿವೇಶನಕ್ಕಾಗಿ ಸಹಾಯಕ ತಂತ್ರಜ್ಞಾನ ಬೆಂಬಲವನ್ನು ಕೋರಲಾಗಿದೆ, ಆದರೆ ನಿಲುಕಣಾ ರಿಜಿಸ್ಟ್ರಿಯು ಕಂಡುಬಂದಿಲ್ಲ. ದಯವಿಟ್ಟು AT-SPI ಪ್ಯಾಕೇಜನ್ನು ಅನುಸ್ಥಾಪಿಸಲಾಗಿದೆಯೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ. ನಿಮ್ಮ ಅಧಿವೇಶನವು ಸಹಾಯಕ ತಂತ್ರಜ್ಞಾನದ ಬೆಂಬಲವಿಲ್ಲದೆ ಆರಂಭಗೊಳ್ಳುತ್ತದೆ."
 
 #: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
 msgid "AT SPI Registry Wrapper"
 msgstr "AT SPI ರಿಜಿಸ್ಟ್ರಿ ವ್ರಾಪರ್"
-
-#: ../compat/gnome-keyring-daemon-wrapper.desktop.in.in.in.h:1
-msgid "GNOME Keyring Daemon Wrapper"
-msgstr "GNOME ಕೀರಿಂಗ್ ಡೀಮನ್ ವ್ರಾಪರ್"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -104,13 +100,15 @@ msgstr "ಕಡತ ವ್ಯವಸ್ಥಾಪಕ"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "ಶಕ್ತಗೊಂಡಿದ್ದಲ್ಲಿ, ಯಾವುದೆ ಒಂದು ಅಧೀವೇಶನವನ್ನು ಮುಗಿಸುವ ಮೊದಲು gnome-session ಬಳಕೆದಾರನನ್ನು ಕೇಳುತ್ತದೆ."
+msgstr ""
+"ಶಕ್ತಗೊಂಡಿದ್ದಲ್ಲಿ, ಯಾವುದೆ ಒಂದು ಅಧೀವೇಶನವನ್ನು ಮುಗಿಸುವ ಮೊದಲು gnome-session "
+"ಬಳಕೆದಾರನನ್ನು ಕೇಳುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
-msgstr ""
+msgstr "ಶಕ್ತಗೊಂಡಿದ್ದಲ್ಲಿ, gnome-session ಅಧಿವೇಶನವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಉಳಿಸುತ್ತದೆ. ಇಲ್ಲದೆ ಹೋದಲ್ಲಿ, ಅಧಿವೇಶನವನ್ನು ಉಳಿಸಲು ನಿರ್ಗಮಿಸುವ ಸಂವಾದದಲ್ಲಿ ಆಯ್ಕೆಯು ಇರುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:5
 msgid "List of applications that are part of the default session."
@@ -119,11 +117,12 @@ msgstr "ಡೀಫಾಲ್ಟ್‍ ಅಧಿವೇಶನದ ಭಾಗವಾಗ�
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
-msgstr ""
+"names a key under \"/desktop/gnome/session/required_components\"). The "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
+"automatically add the required components back to the session at login time "
+"if they do get removed."
+msgstr "ಅಧಿವೇಶನದ ಭಾಗವಾಗಿರಬೇಕಾಗಿರುವ ಘಟಕಗಳ ಪಟ್ಟಿ.. (ಪ್ರತಿಯೊಂದು ಅಂಶದ ಹೆಸರುಗಳು \"/desktop/gnome/session/required_components\" ನ ಅಡಿಯಲ್ಲಿ ಒಂದು ಕೀಲಿಯಾಗಿರುತ್ತದೆ). ಬಳಕೆದಾರರು ಒಂದು ಅಗತ್ಯವಾದ ಘಟಕವನ್ನು ತೆಗೆದು ಹಾಕಲು ಸಾಮಾನ್ಯವಾಗಿ ಆರಂಭಿಕ ಅನ್ವಯದ ಆದ್ಯತೆಗಳು ಅನುಮತಿಸುವುದಿಲ್ಲ ಹಾಗು ಎಲ್ಲಿಯಾದರೂ ಅವುಗಳನ್ನು ತೆಗೆದು ಹಾಕಿದಲ್ಲಿ ಅಧಿವೇಶನದ ವ್ಯವಸ್ಥಾಪಕವು ಪ್ರವೇಶದ ಸಮಯದಲ್ಲಿ ಅಗತ್ಯವಾದ ಘಟಕಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರಳಿ ಸೇರಿಸುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -146,48 +145,52 @@ msgid "Save sessions"
 msgstr "ಅಧಿವೇಶನವನ್ನು ಉಳಿಸು"
 
 #: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "ನಿರ್ಗಮನ ಸಂವಾದದಲ್ಲಿನ ಆರಿಸಲಾದ ಆಯ್ಕೆ"
-
-#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen"
 msgstr "ಎರಚು ತೆರೆಯನ್ನು ತೋರಿಸು"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "ಅಧಿವೇಶನವು ಆರಂಭಗೊಂಡಾಗ ಎರಚು ತೆರೆಯನ್ನು ತೋರಿಸು"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
-msgstr "ಕಡತ ವ್ಯವಸ್ಥಾಪಕವು ಗಣಕತೆರೆ ಚಿಹ್ನೆಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ ಹಾಗು ನೀವು ಉಳಿಸಿದ ಕಡತಗಳೊಂದಿಗೆ ವ್ಯವಹರಿಸಲು ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ."
+msgstr ""
+"ಕಡತ ವ್ಯವಸ್ಥಾಪಕವು ಗಣಕತೆರೆ ಚಿಹ್ನೆಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ ಹಾಗು ನೀವು ಉಳಿಸಿದ ಕಡತಗಳೊಂದಿಗೆ "
+"ವ್ಯವಹರಿಸಲು ಅನುವು ಮಾಡಿಕೊಡುತ್ತದೆ."
+
+#: ../data/gnome-session.schemas.in.h:15
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "ಅಧಿವೇಶನವನ್ನು ಜಡವಾಗಿದೆ ಎಂದು ಪರಿಗಣಿಸಬೇಕಿರುವ ಮೊದಲು ಅದು ನಿಷ್ಕ್ರಿಯವಾಗಿರಬೇಕಿರುವ ನಿಮಿಷಗಳ ಸಂಖ್ಯೆ."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
-msgstr "ಮೆನುಗಳು, ವಿಂಡೋ ಪಟ್ಟಿ, ಸ್ಥಿತಿ ಚಿಹ್ನೆಗಳು, ಗಡಿಯಾರ ಹಾಗು ಇತ್ಯಾದಿಗಳನ್ನು ಹೊಂದಿರುವ ಪಟ್ಟಿಯನ್ನು ತೆರೆಯ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಅಥವ ಕೆಳಭಾಗದಲ್ಲಿನ ಒದಗಿಸುತ್ತದೆ."
+msgstr ""
+"ಮೆನುಗಳು, ವಿಂಡೋ ಪಟ್ಟಿ, ಸ್ಥಿತಿ ಚಿಹ್ನೆಗಳು, ಗಡಿಯಾರ ಹಾಗು ಇತ್ಯಾದಿಗಳನ್ನು ಹೊಂದಿರುವ "
+"ಪಟ್ಟಿಯನ್ನು ತೆರೆಯ ಮೇಲ್ಭಾಗದಲ್ಲಿ ಅಥವ ಕೆಳಭಾಗದಲ್ಲಿನ ಒದಗಿಸುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
-msgstr "ವಿಂಡೋ ವ್ಯವಸ್ಥಾಪಕವು ವಿಂಡೋಗಳ ಸುತ್ತಲೂ ಶೀರ್ಷಿಕೆ ಪಟ್ಟಿ ಹಾಗು ಅಂಚುಗಳನ್ನು ಎಳೆಯುವ ಪ್ರೊಗ್ರಾಂ ಆಗಿದೆ, ಹಾಗು ಇದು ವಿಂಡೋಗಳನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ಹಾಗು ಗಾತ್ರಬದಲಾವಣೆಯನ್ನು ಮಾಡಲು ಅನುವು ಮಾಡುತ್ತದೆ."
+msgstr ""
+"ವಿಂಡೋ ವ್ಯವಸ್ಥಾಪಕವು ವಿಂಡೋಗಳ ಸುತ್ತಲೂ ಶೀರ್ಷಿಕೆ ಪಟ್ಟಿ ಹಾಗು ಅಂಚುಗಳನ್ನು ಎಳೆಯುವ ಪ್ರೊಗ್ರಾಂ "
+"ಆಗಿದೆ, ಹಾಗು ಇದು ವಿಂಡೋಗಳನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ಹಾಗು ಗಾತ್ರಬದಲಾವಣೆಯನ್ನು ಮಾಡಲು ಅನುವು "
+"ಮಾಡುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
 "effect the next session login."
-msgstr ""
+msgstr "ಇದು $datadir/pixmaps/ ಕೋಶದ ಮೇಲೆ ಆಧರಿತವಾದ ಒಂದು ಸಂಬಂಧಿತ ಮಾರ್ಗವಾಗಿದೆ. ಉಪ-ಕೋಶಗಳು ಹಾಗು ಚಿತ್ರದ ಹೆಸರುಗಳು ಮಾನ್ಯವಾದ ಮೌಲ್ಯಗಳನ್ನು ಹೊಂದಿರುತ್ತವೆ. ಈ ಮೌಲ್ಯವನ್ನು ಬದಲಾಯಿಸುವುದರಿಂದ ಮುಂದಿನ ಅಧಿವೇಶನದ ಪ್ರವೇಶದ ಮೇಲೆ ಪರಿಣಾಮ ಬೀರುತ್ತದೆ."
 
 #: ../data/gnome-session.schemas.in.h:19
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
+msgid "Time before session is considered idle"
+msgstr "ಅಧಿವೇಶನವನ್ನು ಜಡ ಎಂದು ಪರಿಗಣಿಸುವ ಮುಂಚಿನ ಸಮಯ"
 
 #: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
@@ -198,19 +201,21 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ಕೆಲವು ಪ್ರೊಗ್ರಾಂಗಳು ಇನ್ನೂ ಚಾಲನೆಯಲ್ಲಿವೆ:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:628
+#: ../gnome-session/gsm-inhibit-dialog.c:633
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
-msgstr "ಪ್ರೊಗ್ರಾಂ ಅಂತ್ಯಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಲಾಗುತ್ತಿದೆ.  ಪ್ರೊಗ್ರಾಂ ಅನ್ನು ಮಧ್ಯದಲ್ಲಿ ತಡೆಯುವುದರಿಂದ ನಿಮ್ಮ ಕೆಲಸವು ನಾಶಗೊಳ್ಳಬಹುದು."
+msgstr ""
+"ಪ್ರೊಗ್ರಾಂ ಅಂತ್ಯಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಲಾಗುತ್ತಿದೆ.  ಪ್ರೊಗ್ರಾಂ ಅನ್ನು ಮಧ್ಯದಲ್ಲಿ ತಡೆಯುವುದರಿಂದ "
+"ನಿಮ್ಮ ಕೆಲಸವು ನಾಶಗೊಳ್ಳಬಹುದು."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "ನಿಮ್ಮ ಅಧಿವೇಶನಗಳನ್ನು ಸಂರಚಿಸಿ"
+msgid "Choose what applications to start when you log in"
+msgstr "ನೀವು ಪ್ರವೇಶಿಸಿದಾಗ ಯಾವ ಅನ್ವಯವನ್ನು ಆರಂಭಿಸಬೇಕು ಎನ್ನುವುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "ಅಧಿವೇಶನಗಳು"
+msgid "Startup Applications"
+msgstr "ಆರಂಭಿಕ ಅನ್ವಯಗಳು"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -231,6 +236,10 @@ msgstr "ಟಿಪ್ಪಣಿ(_e):"
 #: ../data/session-properties.glade.h:5
 msgid "Options"
 msgstr "ಆಯ್ಕೆಗಳು"
+
+#: ../data/session-properties.glade.h:6
+msgid "Sessions Preferences"
+msgstr "ಅಧಿವೇಶನದ ಆದ್ಯತೆಗಳು"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -258,38 +267,30 @@ msgstr "ಕಡತವು ಮಾನ್ಯವಾದ .desktop ಕಡತವಾಗಿ�
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "ಗುರುತಿಸಲಾಗದ ಗಣಕತೆರೆ ಕಡತದ ಆವೃತ್ತಿ '%s'"
 
-#: ../egg/eggdesktopfile.c:962
+#: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
 msgstr "%s ಅನ್ನು ಆರಂಭಿಸಲಾಗುತ್ತಿದೆ"
 
-#: ../egg/eggdesktopfile.c:1096
+#: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "ಅನ್ವಯವು ಆಜ್ಞಾ ಸಾಲಿನಲ್ಲಿ ದಸ್ತಾವೇಜುಗಳನ್ನು ಅಂಗೀಕರಿಸುವುದಿಲ್ಲ"
 
-#: ../egg/eggdesktopfile.c:1164
+#: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "ಗುರುತಿಸಲಾಗದ ಆರಂಭಿಕ ಆಯ್ಕೆ: %d"
 
-#: ../egg/eggdesktopfile.c:1372
+#: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "ಒಂದು 'Type=Link' ಗಣಕತೆರೆ ನಮೂದು ದಸ್ತಾವೇಜು URIಗಳನ್ನು ರವಾನಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ"
 
-#: ../egg/eggdesktopfile.c:1391
+#: ../egg/eggdesktopfile.c:1392
 #, c-format
 msgid "Not a launchable item"
 msgstr "ಆರಂಭಿಸಬಹುದಾದ ಅಂಶವಾಗಿಲ್ಲ"
-
-#: ../egg/eggsmclient-libgnomeui.c:102
-msgid "Session management"
-msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪನೆ"
-
-#: ../egg/eggsmclient-libgnomeui.c:136
-msgid "GNOME GUI Library + EggSMClient"
-msgstr "GNOME GUI ಲೈಬ್ರರಿ + EggSMClient"
 
 #: ../egg/eggsmclient.c:185
 msgid "Disable connection to session manager"
@@ -311,11 +312,11 @@ msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪಕ ID ಯನ್ನು 
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:241
+#: ../egg/eggsmclient.c:245
 msgid "Session Management Options"
 msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪಕ ಆಯ್ಕೆಗಳು"
 
-#: ../egg/eggsmclient.c:242
+#: ../egg/eggsmclient.c:246
 msgid "Show Session Management options"
 msgstr "ಅಧಿವೇಶನದ ವ್ಯವಸ್ಥಾಪಕ ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
 
@@ -333,125 +334,128 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "ಚಿಹ್ನೆ '%s' ಯು ಕಂಡು ಬಂದಿಲ್ಲ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:579
+#: ../gnome-session/gsm-inhibit-dialog.c:581
 msgid "Unknown"
 msgstr "ತಿಳಿಯದ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:627
+#: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid "A program is still running:"
 msgstr "ಒಂದು ಪ್ರೊಗ್ರಾಂಗಳು ಇನ್ನೂ ಚಾಲನೆಯಲ್ಲಿವೆ:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:631
+#: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid "Some programs are still running:"
 msgstr "ಕೆಲವು ಪ್ರೊಗ್ರಾಂಗಳು ಇನ್ನೂ ಚಾಲನೆಯಲ್ಲಿವೆ:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:637
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
-msgstr "ಪ್ರೊಗ್ರಾಂಗಳು ಅಂತ್ಯಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಲಾಗುತ್ತಿದೆ.  ಈ ಪ್ರೊಗ್ರಾಂಗಳನ್ನು ಅನ್ನು ಮಧ್ಯದಲ್ಲಿ ತಡೆಯುವುದರಿಂದ ನಿಮ್ಮ ಕೆಲಸವು ನಾಶಗೊಳ್ಳಬಹುದು."
+msgstr ""
+"ಪ್ರೊಗ್ರಾಂಗಳು ಅಂತ್ಯಗೊಳ್ಳುವವರೆಗೆ ಕಾಯಲಾಗುತ್ತಿದೆ.  ಈ ಪ್ರೊಗ್ರಾಂಗಳನ್ನು ಅನ್ನು ಮಧ್ಯದಲ್ಲಿ "
+"ತಡೆಯುವುದರಿಂದ ನಿಮ್ಮ ಕೆಲಸವು ನಾಶಗೊಳ್ಳಬಹುದು."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:860
+#: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ಬಳಕೆದಾರನನ್ನು ಬದಲಾಯಿಸು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:863
+#: ../gnome-session/gsm-inhibit-dialog.c:868
 msgid "Logout Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ನಿರ್ಗಮಿಸು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:866
+#: ../gnome-session/gsm-inhibit-dialog.c:871
 msgid "Suspend Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ತಾತ್ಕಾಲಿಕ ಸ್ಥಗಿತಗೊಳಿಸು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:869
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Hibernate Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ಹೈಬರ್ನೇಟ್ ಮಾಡು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:872
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Shutdown Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ಮುಚ್ಚು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:875
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Reboot Anyway"
 msgstr "ಪರವಾಗಿಲ್ಲ ಇನ್ನೊಮ್ಮೆ ಬೂಟ್ ಮಾಡು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Lock Screen"
 msgstr "ತೆರೆಯನ್ನು ಲಾಕ್ ಮಾಡು"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Cancel"
 msgstr "ರದ್ದುಗೊಳಿಸು"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:284
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"ನೀವು ಪ್ರಸಕ್ತ \"%s\" ಆಗಿ ಪ್ರವೇಶಿಸಿದ್ದೀರಿ.\n"
-"ನೀವು ತಾನಾಗಿಯೆ %d ಸೆಕೆಂಡಿನಲ್ಲಿ ನಿರ್ಗಮಿಸಲಿದ್ದೀರಿ."
-msgstr[1] ""
-"ನೀವು ಪ್ರಸಕ್ತ \"%s\" ಆಗಿ ಪ್ರವೇಶಿಸಿದ್ದೀರಿ.\n"
-"ನೀವು ತಾನಾಗಿಯೆ %d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ನಿರ್ಗಮಿಸಲಿದ್ದೀರಿ."
+#| msgid ""
+#| "You are currently logged in as \"%s\".\n"
+#| "You will be automatically logged out in %d second."
+#| msgid_plural ""
+#| "You are currently logged in as \"%s\".\n"
+#| "You will be automatically logged out in %d seconds."
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ %d ಸೆಕೆಂಡಿನಲ್ಲಿ ನಿರ್ಗಮಿಸಲಿದ್ದೀರಿ."
+msgstr[1] "ನೀವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ %d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ನಿರ್ಗಮಿಸಲಿದ್ದೀರಿ."
 
-#: ../gnome-session/gsm-logout-dialog.c:295
+#: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"ನೀವು ಪ್ರಸಕ್ತ \"%s\" ಆಗಿ ಪ್ರವೇಶಿಸಿದ್ದೀರಿ.\n"
-"ಗಣಕವು ತಾನಾಗಿಯೆ %d ಸೆಕೆಂಡಿನಲ್ಲಿ ಮುಚ್ಚಲ್ಪಡುತ್ತದೆ."
-msgstr[1] ""
-"ನೀವು ಪ್ರಸಕ್ತ \"%s\" ಆಗಿ ಪ್ರವೇಶಿಸಿದ್ದೀರಿ.\n"
-"ಗಣಕವು ತಾನಾಗಿಯೆ %d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಮುಚ್ಚಲ್ಪಡುತ್ತದೆ."
+#| msgid ""
+#| "You are currently logged in as \"%s\".\n"
+#| "This system will be automatically shut down in %d second."
+#| msgid_plural ""
+#| "You are currently logged in as \"%s\".\n"
+#| "This system will be automatically shut down in %d seconds."
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "ಗಣಕವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ %d ಸೆಕೆಂಡಿನಲ್ಲಿ ಮುಚ್ಚಲ್ಪಡುತ್ತದೆ."
+msgstr[1] "ಗಣಕವು ಸ್ವಯಂಚಾಲಿತವಾಗಿ %d ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಮುಚ್ಚಲ್ಪಡುತ್ತದೆ."
 
-#: ../gnome-session/gsm-logout-dialog.c:371
+#: ../gnome-session/gsm-logout-dialog.c:324
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "ನೀವು ಪ್ರಸಕ್ತ \"%s\" ಆಗಿ ಪ್ರವೇಶಿಸಿದ್ದೀರಿ."
+
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
 msgstr "ಈ ಗಣಕದಿಂದ ಈಗಲೆ ನಿರ್ಗಮಿಸಬೇಕೆ?"
 
-#: ../gnome-session/gsm-logout-dialog.c:377
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Switch User"
 msgstr "ಬಳಕೆದಾರರನ್ನು ಬದಲಾಯಿಸು(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:404
 msgid "_Log Out"
 msgstr "ನಿರ್ಗಮಿಸು(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
 msgstr "ಈ ಗಣಕವನ್ನು ಈಗಲೆ ಮುಚ್ಚಬೇಕೆ?"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
+#: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
 msgstr "ತಾತ್ಕಾಲಿಕ ಸ್ಥಗಿತಗೊಳಿಸು(_u)"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
 msgstr "ಹೈಬರ್ನೇಟ್(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Restart"
 msgstr "ಮತ್ತೆ ಆರಂಭಿಸು(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:438
 msgid "_Shut Down"
 msgstr "ಮುಚ್ಚು(_S)"
 
-#: ../gnome-session/gsm-manager.c:923 ../gnome-session/gsm-manager.c:1539
+#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
 msgid "Not responding"
 msgstr "ಪ್ರತಿಕ್ರಿಯಿಸುತ್ತಿಲ್ಲ"
 
-#: ../gnome-session/gsm-xsmp-client.c:975
+#: ../gnome-session/gsm-xsmp-client.c:989
 msgid "This program is blocking log out."
-msgstr "ಪ್ರೊಗ್ರಾಂ ನಿರ್ಗಮನವನ್ನು ತಡೆಯುತ್ತಿದೆ"
+msgstr "ಪ್ರೊಗ್ರಾಂ ನಿರ್ಗಮನವನ್ನು ತಡೆಯುತ್ತಿದೆ."
 
 #: ../gnome-session/gsm-xsmp-server.c:234
 msgid ""
@@ -465,32 +469,35 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ICE ಆಲಿಸುವ ಸಾಕೆಟ್ ಅನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:139
+#: ../gnome-session/gsm-util.c:143
 #, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
-msgstr "ಪ್ರವೇಶ ಅಧಿವೇಶನವನ್ನು ಆರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ (ಹಾಗು X ಪರಿಚಾರಕಕ್ಕೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ)"
+#| msgid "Unable to start login session (and unable connect to the X server)"
+msgid "Unable to start login session (and unable to connect to the X server)"
+msgstr ""
+"ಪ್ರವೇಶ ಅಧಿವೇಶನವನ್ನು ಆರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ (ಹಾಗು X ಪರಿಚಾರಕಕ್ಕೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು "
+"ಸಾಧ್ಯವಾಗಿಲ್ಲ)"
 
-#: ../gnome-session/main.c:497
+#: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
 msgstr "ರೂಢಿಗತ ಸ್ವಯಂಚಾಲನಾ ಕೋಶಗಳನ್ನು ಅತಿಕ್ರಮಿಸು"
 
-#: ../gnome-session/main.c:498
+#: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
 msgstr "ಡೀಫಾಲ್ಟ್‍ ಅಧಿವೇಶನವನ್ನು ನೋಡಿಕೊಳ್ಳಲು ಬಳಸಲಾಗುವ GConf ಕೀಲಿ"
 
-#: ../gnome-session/main.c:499
+#: ../gnome-session/main.c:523
 msgid "Enable debugging code"
 msgstr "ದೋಷನಿವಾರಣ ಕೋಡ್ ಅನ್ನು ಶಕ್ತಗೊಳಿಸು"
 
-#: ../gnome-session/main.c:500
+#: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
 msgstr "ಬಳಕೆದಾರ-ಸೂಚಿತ ಅನ್ವಯಗಳನ್ನು ಲೋಡ್ ಮಾಡಬೇಡ"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:545
 msgid " - the GNOME session manager"
 msgstr "- GNOME ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪಕ"
 
-#: ../splash/gnome-session-splash.c:291
+#: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME ಎರಚು ತೆರೆ"
 
@@ -540,5 +547,5 @@ msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪಕನೊಂದಿಗ�
 
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
-msgstr ""
+msgstr "ಅಸಮಂಜಸ ಆಯ್ಕೆಗಳೊಂದಿಗೆ ಪ್ರೊಗ್ರಾಂ ಅನ್ನು ಕರೆಯಲಾಗಿದೆ"
 
