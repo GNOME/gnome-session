@@ -232,6 +232,43 @@ gsm_util_get_app_dirs ()
         return (char **) g_ptr_array_free (dirs, FALSE);
 }
 
+char **
+gsm_util_get_desktop_dirs ()
+{
+	char **apps;
+	char **autostart;
+	char **result;
+	int    size;
+	int    i;
+
+	apps = gsm_util_get_app_dirs ();
+	autostart = gsm_util_get_autostart_dirs ();
+
+	size = 0;
+	for (i = 0; apps[i] != NULL; i++) { size++; }
+	for (i = 0; autostart[i] != NULL; i++) { size++; }
+	size += 2; /* saved session + last NULL */
+
+	result = g_new (char *, size + 1);
+
+	for (i = 0; apps[i] != NULL; i++) {
+		result[i] = apps[i];
+	}
+	g_free (apps);
+	size = i;
+
+	for (i = 0; autostart[i] != NULL; i++) {
+		result[size + i] = autostart[i];
+	}
+	g_free (autostart);
+	size = size + i;
+
+	result[size] = g_strdup (gsm_util_get_saved_session_dir ());
+	result[size + 1] = NULL;
+
+	return result;
+}
+
 gboolean
 gsm_util_text_is_blank (const char *str)
 {

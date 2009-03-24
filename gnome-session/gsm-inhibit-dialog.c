@@ -521,13 +521,36 @@ add_inhibitor (GsmInhibitDialog *dialog,
         }
 
         if (desktop_filename != NULL) {
-                /* FIXME: maybe also append the autostart dirs ? */
-                search_dirs = gsm_util_get_app_dirs ();
+                search_dirs = gsm_util_get_desktop_dirs ();
 
-                error = NULL;
-                desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
-                                                               (const char **)search_dirs,
-                                                               &error);
+                if (g_path_is_absolute (desktop_filename)) {
+                        char *basename;
+
+                        error = NULL;
+                        desktop_file = egg_desktop_file_new (desktop_filename,
+                                                             &error);
+                        if (desktop_file == NULL) {
+                                if (error) {
+                                        g_warning ("Unable to load desktop file '%s': %s",
+                                                   desktop_filename, error->message);
+                                        g_error_free (error);
+                                } else {
+                                        g_warning ("Unable to load desktop file '%s'",
+                                                   desktop_filename);
+                                }
+
+                                basename = g_path_get_basename (desktop_filename);
+                                g_free (desktop_filename);
+                                desktop_filename = basename;
+                        }
+                }
+
+                if (desktop_file == NULL) {
+                        error = NULL;
+                        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
+                                                                       (const char **)search_dirs,
+                                                                       &error);
+                }
 
                 /* look for a file with a vendor prefix */
                 if (desktop_file == NULL) {

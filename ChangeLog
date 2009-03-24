@@ -1,5 +1,15 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor): use
+	gsm_util_get_desktop_dirs() instead of just gsm_util_get_app_dirs().
+	Also try to handle desktop filenames that are an absolute path the best
+	way possible (this happens with OpenOffice.org).
+	* gnome-session/gsm-util.[ch]: (gsm_util_get_desktop_dirs): new
+	function, to return all the directories where we look up for the
+	desktop files.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor): handle NULL
 	errors instead of crashing, which can happen in some cases in
 	EggDesktopFile.
