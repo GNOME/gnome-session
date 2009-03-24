@@ -567,7 +567,6 @@ do_phase_end_session (GsmManager *manager)
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_SAVE;
         }
 
-
         if (manager->priv->phase_timeout_id > 0) {
                 g_source_remove (manager->priv->phase_timeout_id);
                 manager->priv->phase_timeout_id = 0;
@@ -1606,7 +1605,7 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 }
 
 static gboolean
-auto_save_is_enabled(GsmManager *manager)
+auto_save_is_enabled (GsmManager *manager)
 {
         GError   *error;
         gboolean  auto_save;
