@@ -52,7 +52,7 @@
 #define GLADE_XML_FILE "gsm-inhibit-dialog.glade"
 
 #ifndef DEFAULT_ICON_SIZE
-#define DEFAULT_ICON_SIZE 64
+#define DEFAULT_ICON_SIZE 32
 #endif
 
 #ifndef DEFAULT_SNAPSHOT_SIZE
