@@ -1,5 +1,17 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	s/gdm_client_end_session_response/gsm_client_end_session_response/g
+
+	* gnome-session/gsm-client.c: (gsm_client_end_session_response):
+	* gnome-session/gsm-client.h:
+	* gnome-session/gsm-dbus-client.c: (handle_end_session_response):
+	* gnome-session/gsm-xsmp-client.c:
+	(save_yourself_phase2_request_callback),
+	(interact_request_callback), (interact_done_callback),
+	(save_yourself_done_callback):
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Allow clients to specify that they want to be ended last (this mainly
 	matches the Phase2 of SaveYourself in XSMP). The server doesn't use
 	this information yet.

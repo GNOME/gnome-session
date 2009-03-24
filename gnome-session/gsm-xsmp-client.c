@@ -1152,7 +1152,7 @@ save_yourself_phase2_request_callback (SmsConn   conn,
 
         /* this is a valid response to SaveYourself and therefore
            may be a response to a QES or ES */
-        gdm_client_end_session_response (GSM_CLIENT (client),
+        gsm_client_end_session_response (GSM_CLIENT (client),
                                          TRUE, TRUE, FALSE,
                                          NULL);
 }
@@ -1172,7 +1172,7 @@ interact_request_callback (SmsConn   conn,
                  client->priv->description,
                  dialog_type == SmDialogNormal ? "Dialog" : "Errors");
 
-        gdm_client_end_session_response (GSM_CLIENT (client),
+        gsm_client_end_session_response (GSM_CLIENT (client),
                                          FALSE, FALSE, FALSE,
                                          _("This program is blocking log out."));
 
@@ -1203,7 +1203,7 @@ interact_done_callback (SmsConn   conn,
                  client->priv->description,
                  cancel_shutdown ? "True" : "False");
 
-        gdm_client_end_session_response (GSM_CLIENT (client),
+        gsm_client_end_session_response (GSM_CLIENT (client),
                                          TRUE, FALSE, cancel_shutdown,
                                          NULL);
 }
@@ -1225,7 +1225,7 @@ save_yourself_done_callback (SmsConn   conn,
         /* If success is false then the application couldn't save data. Nothing
          * the session manager can do about, though. FIXME: we could display a
          * dialog about this, I guess. */
-        gdm_client_end_session_response (GSM_CLIENT (client),
+        gsm_client_end_session_response (GSM_CLIENT (client),
                                          TRUE, FALSE, FALSE,
                                          NULL);
 

@@ -520,7 +520,7 @@ gsm_client_save (GsmClient *client,
 }
 
 void
-gdm_client_end_session_response (GsmClient  *client,
+gsm_client_end_session_response (GsmClient  *client,
                                  gboolean    is_ok,
                                  gboolean    do_last,
                                  gboolean    cancel,

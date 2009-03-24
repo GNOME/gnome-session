@@ -159,7 +159,7 @@ gboolean              gsm_client_get_unix_process_id        (GsmClient  *client,
 
 /* private */
 
-void                  gdm_client_end_session_response       (GsmClient  *client,
+void                  gsm_client_end_session_response       (GsmClient  *client,
                                                              gboolean    is_ok,
                                                              gboolean    do_last,
                                                              gboolean    cancel,
