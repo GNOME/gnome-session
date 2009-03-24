@@ -1,5 +1,13 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-xsmp-client.c: (xsmp_get_discard_command):
+	uncomment
+	(xsmp_save): when saving the xsmp client to a desktop file, also save
+	the discard command since we'll want to use it at some point when
+	discarding the saved app.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-manager.c: (cancel_end_session): ignore this if
 	we're not in a relevant phase. Also make sure the inhibit dialog is
 	destroyed before removing inhibitors (which would activate the

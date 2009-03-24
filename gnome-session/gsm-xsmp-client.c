@@ -403,7 +403,6 @@ xsmp_get_restart_command (GsmClient *client)
         return prop_to_command (prop);
 }
 
-#if 0
 static char *
 xsmp_get_discard_command (GsmClient *client)
 {
@@ -417,7 +416,6 @@ xsmp_get_discard_command (GsmClient *client)
 
         return prop_to_command (prop);
 }
-#endif
 
 static void
 do_save_yourself (GsmXSMPClient *client,
@@ -623,6 +621,7 @@ xsmp_save (GsmClient *client,
         GKeyFile *keyfile;
         char     *desktop_file_path = NULL;
         char     *exec_program = NULL;
+        char     *exec_discard = NULL;
         char     *startup_id = NULL;
         GError   *local_error;
 
@@ -656,9 +655,17 @@ xsmp_save (GsmClient *client,
                                G_KEY_FILE_DESKTOP_KEY_EXEC,
                                exec_program);
 
+        exec_discard = xsmp_get_discard_command (client);
+        if (exec_discard)
+                g_key_file_set_string (keyfile,
+                                       G_KEY_FILE_DESKTOP_GROUP,
+                                       "X-GNOME-Autostart-discard-exec",
+                                       exec_discard);
+
 out:
         g_free (desktop_file_path);
         g_free (exec_program);
+        g_free (exec_discard);
         g_free (startup_id);
 
         if (local_error != NULL) {
