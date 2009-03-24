@@ -1,5 +1,13 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-util.c: (ensure_dir_exists): create the dir with
+	permission 0755.
+	(gsm_util_get_saved_session_dir): use ~/.config instead of ~/.gnome2.
+	It's a good time to start using the xdg folders before we actually
+	start putting data.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-inhibit-dialog.c: (update_dialog_text): fix debug
 	string
 	* gnome-session/gsm-manager.c: (cancel_end_session): add debug string

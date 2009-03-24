@@ -128,7 +128,7 @@ ensure_dir_exists (const char *dir)
         if (g_file_test (dir, G_FILE_TEST_IS_DIR))
                 return TRUE;
 
-        if (g_mkdir_with_parents (dir, 488) == 0)
+        if (g_mkdir_with_parents (dir, 0755) == 0)
                 return TRUE;
 
         if (errno == EEXIST)
@@ -146,8 +146,7 @@ gsm_util_get_saved_session_dir (void)
                 gboolean exists;
 
                 _saved_session_dir =
-                        g_build_filename (g_get_home_dir (),
-                                          ".gnome2",
+                        g_build_filename (g_get_user_config_dir (),
                                           "gnome-session",
                                           "saved-session",
                                           NULL);
