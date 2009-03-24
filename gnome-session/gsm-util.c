@@ -139,6 +139,42 @@ ensure_dir_exists (const char *dir)
         return FALSE;
 }
 
+gchar *
+gsm_util_get_empty_tmp_session_dir (void)
+{
+        char *tmp;
+        gboolean exists;
+
+        tmp = g_build_filename (g_get_user_config_dir (),
+                                "gnome-session",
+                                "saved-session.new",
+                                NULL);
+
+        exists = ensure_dir_exists (tmp);
+
+        if (G_UNLIKELY (!exists)) {
+                g_warning ("GsmSessionSave: could not create directory for saved session: %s", tmp);
+                g_free (tmp);
+                return NULL;
+        } else {
+                /* make sure it's empty */
+                GDir       *dir;
+                const char *filename;
+
+                dir = g_dir_open (tmp, 0, NULL);
+                if (dir) {
+                        while ((filename = g_dir_read_name (dir))) {
+                                char *path = g_build_filename (tmp, filename,
+                                                               NULL);
+                                g_unlink (path);
+                        }
+                        g_dir_close (dir);
+                }
+        }
+
+        return tmp;
+}
+
 const gchar *
 gsm_util_get_saved_session_dir (void)
 {

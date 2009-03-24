@@ -1,5 +1,34 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	Rework deeply the code that writes the saved session to desktop files:
+	we now properly discard a client when removing it; we also make sure we
+	save the current session before we completely remove the previously
+	saved session (to be on the safe side).
+	Note that we only discard a client when the new saved session doesn't
+	use the same discard command: for example, when metacity saves its
+	state, it will reuse the same discard command and so we can't discard
+	the old metacity client (it would discard the new client).
+
+	* gnome-session/gsm-util.[ch]: (gsm_util_get_empty_tmp_session_dir):
+	new function to get a temporary directory where to save the new
+	session, while we still keep the previously saved session. It also
+	makes sure the directory is empty.
+	* gnome-session/gsm-session-save.[ch]: (save_one_client): update to
+	make sure we remember the discard command from the client.
+	(gsm_session_save): rework to first save the session in the temporary
+	directory (and remember the discard commands from the saved clients),
+	and then clear the old session. We finish by renaming the temporary
+	directory to its final name.
+	(gsm_session_clear_one_client): new, to properly clear one client from
+	a saved session. We unlink the desktop file, but also run the discard
+	command if it's not used by any other client from the newly saved
+	session.
+	(gsm_session_clear_saved_session): change to clear a saved session in a
+	specified directory, and use gsm_session_clear_one_client() instead of
+	just unlinking the desktop file. Also add missing g_dir_close().
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-xsmp-client.c: (xsmp_save): just don't return a
 	keyfile if there's no restart command for this client (ie, we won't
 	save this client). Also make sure keyfile is properly initialized to

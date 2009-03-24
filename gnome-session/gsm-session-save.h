@@ -29,8 +29,6 @@ G_BEGIN_DECLS
 void      gsm_session_save                 (GsmStore  *client_store,
                                             GError   **error);
 
-gboolean  gsm_session_clear_saved_session  (void);
-
 G_END_DECLS
 
 #endif /* __GSM_SESSION_SAVE_H__ */

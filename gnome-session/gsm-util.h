@@ -27,6 +27,8 @@ G_BEGIN_DECLS
 char *      gsm_util_find_desktop_file_for_app_name (const char  *app_name,
                                                      char       **dirs);
 
+gchar      *gsm_util_get_empty_tmp_session_dir      (void);
+
 const char *gsm_util_get_saved_session_dir          (void);
 
 gchar**     gsm_util_get_app_dirs                   (void);
