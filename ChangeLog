@@ -1,5 +1,11 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor): handle NULL
+	errors instead of crashing, which can happen in some cases in
+	EggDesktopFile.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-inhibit-dialog.c: use a 32x32 icon size for icons,
 	looks better this way.
 

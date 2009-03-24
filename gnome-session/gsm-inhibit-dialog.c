@@ -531,8 +531,14 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
                 /* look for a file with a vendor prefix */
                 if (desktop_file == NULL) {
-                        g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
-                        g_error_free (error);
+                        if (error) {
+                                g_warning ("Unable to find desktop file '%s': %s",
+                                           desktop_filename, error->message);
+                                g_error_free (error);
+                        } else {
+                                g_warning ("Unable to find desktop file '%s'",
+                                           desktop_filename);
+                        }
                         g_free (desktop_filename);
                         desktop_filename = g_strdup_printf ("gnome-%s.desktop", app_id);
                         error = NULL;
@@ -543,8 +549,14 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 g_strfreev (search_dirs);
 
                 if (desktop_file == NULL) {
-                        g_warning ("Unable to find desktop file '%s': %s", desktop_filename, error->message);
-                        g_error_free (error);
+                        if (error) {
+                                g_warning ("Unable to find desktop file '%s': %s",
+                                           desktop_filename, error->message);
+                                g_error_free (error);
+                        } else {
+                                g_warning ("Unable to find desktop file '%s'",
+                                           desktop_filename);
+                        }
                 } else {
                         name = egg_desktop_file_get_name (desktop_file);
                         icon_name = egg_desktop_file_get_icon (desktop_file);
