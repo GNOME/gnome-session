@@ -1,5 +1,20 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Actually allow XSMP clients to interact during the logout. It works
+	quite well with the inhibitor infrastructure since a JIT inhibitor will
+	be created.
+	Note that the user will get two dialogs: eg, when gedit has an unsaved
+	document, the user will see the gedit save/cancel dialog and the
+	inhibit dialog. That's actually a good thing since the save/cancel
+	dialog from gedit might be in another workspace, and so the inhibit
+	dialog makes sure the user knows what's going on.
+
+	* gnome-session/gsm-xsmp-client.c: (xsmp_interact): uncomment
+	(interact_request_callback): stop cancelling the session when a client
+	wants to interact, and allow the client to interact.
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Make session saving works a bit better by telling client to not just
 	save the global state, but also the local state when relevant.
 

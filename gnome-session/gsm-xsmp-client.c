@@ -480,6 +480,7 @@ xsmp_save_yourself_phase2 (GsmClient *client)
 
         SmsSaveYourselfPhase2 (xsmp->priv->conn);
 }
+#endif
 
 static void
 xsmp_interact (GsmClient *client)
@@ -490,7 +491,6 @@ xsmp_interact (GsmClient *client)
 
         SmsInteract (xsmp->priv->conn);
 }
-#endif
 
 static gboolean
 xsmp_cancel_end_session (GsmClient *client,
@@ -1165,8 +1165,10 @@ interact_request_callback (SmsConn   conn,
                            int       dialog_type)
 {
         GsmXSMPClient *client = manager_data;
+#if 0
         gboolean       res;
         GError        *error;
+#endif
 
         g_debug ("GsmXSMPClient: Client '%s' received InteractRequest(%s)",
                  client->priv->description,
@@ -1176,6 +1178,7 @@ interact_request_callback (SmsConn   conn,
                                          FALSE,
                                          _("This program is blocking log out."));
 
+#if 0
         /* Can't just call back with Interact because session client
            grabs the keyboard!  So, we try to get it to release
            grabs by telling it we've cancelled the shutdown.
@@ -1187,6 +1190,8 @@ interact_request_callback (SmsConn   conn,
                 g_warning ("Unable to cancel end session: %s", error->message);
                 g_error_free (error);
         }
+#endif
+        xsmp_interact (GSM_CLIENT (client));
 }
 
 static void
