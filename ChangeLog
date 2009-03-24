@@ -1,5 +1,12 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-xsmp-client.c: (xsmp_save): just don't return a
+	keyfile if there's no restart command for this client (ie, we won't
+	save this client). Also make sure keyfile is properly initialized to
+	NULL to avoid an undefined return value in that case.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-xsmp-client.c: (xsmp_get_discard_command):
 	uncomment
 	(xsmp_save): when saving the xsmp client to a desktop file, also save

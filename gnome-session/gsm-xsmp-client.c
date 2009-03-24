@@ -618,7 +618,7 @@ static GKeyFile *
 xsmp_save (GsmClient *client,
            GError   **error)
 {
-        GKeyFile *keyfile;
+        GKeyFile *keyfile = NULL;
         char     *desktop_file_path = NULL;
         char     *exec_program = NULL;
         char     *exec_discard = NULL;
@@ -629,6 +629,11 @@ xsmp_save (GsmClient *client,
                  gsm_client_peek_id (client));
 
         local_error = NULL;
+
+        exec_program = xsmp_get_restart_command (client);
+        if (!exec_program) {
+                goto out;
+        }
 
         desktop_file_path = get_desktop_file_path (GSM_XSMP_CLIENT (client));
 
@@ -649,7 +654,6 @@ xsmp_save (GsmClient *client,
                                "X-GNOME-Autostart-startup-id",
                                startup_id);
 
-        exec_program = xsmp_get_restart_command (client);
         g_key_file_set_string (keyfile,
                                G_KEY_FILE_DESKTOP_GROUP,
                                G_KEY_FILE_DESKTOP_KEY_EXEC,
