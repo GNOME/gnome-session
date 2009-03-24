@@ -708,6 +708,7 @@ xsmp_query_end_session (GsmClient *client,
                         GError   **error)
 {
         gboolean forceful;
+        int      save_type;
 
         if (GSM_XSMP_CLIENT (client)->priv->conn == NULL) {
                 g_set_error (error,
@@ -718,7 +719,14 @@ xsmp_query_end_session (GsmClient *client,
         }
 
         forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
-        do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
+
+        if (flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
+                save_type = SmSaveBoth;
+        } else {
+                save_type = SmSaveGlobal;
+        }
+
+        do_save_yourself (GSM_XSMP_CLIENT (client), save_type, forceful);
         return TRUE;
 }
 
@@ -728,6 +736,7 @@ xsmp_end_session (GsmClient *client,
                   GError   **error)
 {
         gboolean forceful;
+        int      save_type;
 
         if (GSM_XSMP_CLIENT (client)->priv->conn == NULL) {
                 g_set_error (error,
@@ -738,7 +747,14 @@ xsmp_end_session (GsmClient *client,
         }
 
         forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
-        do_save_yourself (GSM_XSMP_CLIENT (client), SmSaveGlobal, forceful);
+
+        if (flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
+                save_type = SmSaveBoth;
+        } else {
+                save_type = SmSaveGlobal;
+        }
+
+        do_save_yourself (GSM_XSMP_CLIENT (client), save_type, forceful);
         return TRUE;
 }
 

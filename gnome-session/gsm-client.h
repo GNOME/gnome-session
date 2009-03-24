@@ -55,7 +55,8 @@ typedef enum {
 } GsmClientRestartStyle;
 
 typedef enum {
-        GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0
+        GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
+        GSM_CLIENT_END_SESSION_FLAG_SAVE     = 1 << 1
 } GsmClientEndSessionFlag;
 
 struct _GsmClient

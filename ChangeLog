@@ -1,3 +1,18 @@
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
+	Make session saving works a bit better by telling client to not just
+	save the global state, but also the local state when relevant.
+
+	* gnome-session/gsm-client.h: add new GSM_CLIENT_END_SESSION_FLAG_SAVE
+	* gnome-session/gsm-manager.c: (do_phase_end_session): if the session
+	should be autosaved, then pass the GSM_CLIENT_END_SESSION_FLAG_SAVE
+	flag
+	(do_phase_query_end_session): add a comment explaining why we don't use
+	the GSM_CLIENT_END_SESSION_FLAG_SAVE flag
+	* gnome-session/gsm-xsmp-client.c: (xsmp_query_end_session),
+	(xsmp_end_session): depending on the presence of the
+	GSM_CLIENT_END_SESSION_FLAG_SAVE flag, use SmSaveBoth or SmSaveGlobal
+
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
 	* gnome-session/gsm-xsmp-client.c: (do_save_yourself): just add some

@@ -137,6 +137,8 @@ static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
 static void     gsm_manager_finalize    (GObject         *object);
 
+static gboolean auto_save_is_enabled (GsmManager *manager);
+
 static gpointer manager_object = NULL;
 
 G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
@@ -561,6 +563,10 @@ do_phase_end_session (GsmManager *manager)
         if (manager->priv->forceful_logout) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
+        if (auto_save_is_enabled (manager)) {
+                data.flags |= GSM_CLIENT_END_SESSION_FLAG_SAVE;
+        }
+
 
         if (manager->priv->phase_timeout_id > 0) {
                 g_source_remove (manager->priv->phase_timeout_id);
@@ -1044,6 +1050,9 @@ do_phase_query_end_session (GsmManager *manager)
         if (manager->priv->forceful_logout) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
+        /* We only query if an app is ready to log out, so we don't use
+         * GSM_CLIENT_END_SESSION_FLAG_SAVE here.
+         */
 
         debug_clients (manager);
         g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful_logout);
