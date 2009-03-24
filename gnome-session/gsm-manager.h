@@ -83,6 +83,7 @@ typedef enum {
         /* shutting down */
         GSM_MANAGER_PHASE_QUERY_END_SESSION,
         GSM_MANAGER_PHASE_END_SESSION,
+        GSM_MANAGER_PHASE_END_SESSION_LAST, /* for apps that want to be done after all other apps */
         GSM_MANAGER_PHASE_EXIT
 } GsmManagerPhase;
 

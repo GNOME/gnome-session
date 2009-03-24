@@ -1,5 +1,38 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Create a END_SESSION_LAST phase during which we handle the clients
+	which wanted to be ended last.
+	For this, we need to keep a list of clients in that case.
+
+	* gnome-session/gsm-client.h: add a new
+	GSM_CLIENT_END_SESSION_FLAG_LAST flag, to tell the client it's running
+	last.
+	* gnome-session/gsm-manager.[ch]: (phase_num_to_name): handle new phase
+	(end_phase): empty the list of clients that wants to be ended last if
+	it's not a relevant phase. Also handle new phase.
+	(on_phase_timeout): handle new phase
+	(_client_end_session_last): new, to tell a client that the session is
+	being ended. Works like _client_end_session()
+	(do_phase_end_session_last): prepare the right flags to be used for
+	each clients via _client_end_session_last(). Note that we don't use all
+	clients in the session here, but the list of clients that wanted to be
+	ended last.
+	We use a 10 seconds timeout for that phase to not block on clients that
+	don't reply. Also, if there's no client in the session, then save the
+	session if auto-save is enabled.
+	(start_phase): empty the list of clients that wants to be ended last if
+	it's not a relevant phase. Also handle new phase.
+	(maybe_save_session): make this call valid in END_SESSION_LAST instead
+	of END_SESSION
+	(on_client_end_session_response): save the client in a specific list if
+	it wants to be ended last.
+	* gnome-session/gsm-xsmp-client.c: (xsmp_save_yourself_phase2):
+	uncomment
+	(xsmp_end_session): if the client is running last, then it means it's
+	phase2 of SaveYourself, so use xsmp_save_yourself_phase2()
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	s/gdm_client_end_session_response/gsm_client_end_session_response/g
 
 	* gnome-session/gsm-client.c: (gsm_client_end_session_response):
