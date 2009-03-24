@@ -1,3 +1,17 @@
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
+	Let all processes cleanly exit on exit.
+
+	* gnome-session/gsm-manager.c: (end_phase): rework with a switch so
+	that it's easy to see what's going on for which phases. We also don't
+	exit immediately when we reach the exit phase, and instead let
+	start_phase() do its work
+	(_client_stop): stop a client
+	(do_phase_exit): create a 10 second timeout that will force the end of
+	the phase, and tells each client to stop via _client_stop() so they can
+	have a chance to properly exit before we quit.
+	(start_phase): call do_phase_exit() on exit phase
+
 2009-03-18  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in:

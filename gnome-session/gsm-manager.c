@@ -373,12 +373,25 @@ end_phase (GsmManager *manager)
                 manager->priv->phase_timeout_id = 0;
         }
 
-        manager->priv->phase++;
-
-        if (manager->priv->phase == GSM_MANAGER_PHASE_EXIT) {
-                gtk_main_quit ();
-        } else {
+        switch (manager->priv->phase) {
+        case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_INITIALIZATION:
+        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
+        case GSM_MANAGER_PHASE_PANEL:
+        case GSM_MANAGER_PHASE_DESKTOP:
+        case GSM_MANAGER_PHASE_APPLICATION:
+        case GSM_MANAGER_PHASE_RUNNING:
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+        case GSM_MANAGER_PHASE_END_SESSION:
+                manager->priv->phase++;
                 start_phase (manager);
+                break;
+        case GSM_MANAGER_PHASE_EXIT:
+                gtk_main_quit ();
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 }
 
@@ -562,6 +575,43 @@ do_phase_end_session (GsmManager *manager)
                 gsm_store_foreach (manager->priv->clients,
                                    (GsmStoreFunc)_client_end_session,
                                    &data);
+        } else {
+                end_phase (manager);
+        }
+}
+
+static gboolean
+_client_stop (const char *id,
+              GsmClient  *client,
+              gpointer    user_data)
+{
+        gboolean ret;
+        GError  *error;
+
+        error = NULL;
+        ret = gsm_client_stop (client, &error);
+        if (! ret) {
+                g_warning ("Unable to stop client: %s", error->message);
+                g_error_free (error);
+                /* FIXME: what should we do if we can't communicate with client? */
+        } else {
+                g_debug ("GsmManager: stopped client: %s", gsm_client_peek_id (client));
+        }
+
+        return FALSE;
+}
+
+static void
+do_phase_exit (GsmManager *manager)
+{
+        if (gsm_store_size (manager->priv->clients) > 0) {
+                manager->priv->phase_timeout_id = g_timeout_add_seconds (10,
+                                                                         (GSourceFunc)on_phase_timeout,
+                                                                         manager);
+
+                gsm_store_foreach (manager->priv->clients,
+                                   (GsmStoreFunc)_client_stop,
+                                   NULL);
         } else {
                 end_phase (manager);
         }
@@ -1043,6 +1093,7 @@ start_phase (GsmManager *manager)
                 do_phase_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
+                do_phase_exit (manager);
                 break;
         default:
                 g_assert_not_reached ();
