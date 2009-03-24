@@ -324,9 +324,9 @@ gsm_client_class_init (GsmClientClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmClientClass, end_session_response),
                               NULL, NULL,
-                              gsm_marshal_VOID__BOOLEAN_STRING,
+                              gsm_marshal_VOID__BOOLEAN_BOOLEAN_STRING,
                               G_TYPE_NONE,
-                              2, G_TYPE_BOOLEAN, G_TYPE_STRING);
+                              3, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
         g_object_class_install_property (object_class,
                                          PROP_STARTUP_ID,
@@ -522,7 +522,9 @@ gsm_client_save (GsmClient *client,
 void
 gdm_client_end_session_response (GsmClient  *client,
                                  gboolean    is_ok,
+                                 gboolean    cancel,
                                  const char *reason)
 {
-        g_signal_emit (client, signals[END_SESSION_RESPONSE], 0, is_ok, reason);
+        g_signal_emit (client, signals[END_SESSION_RESPONSE], 0,
+                       is_ok, cancel, reason);
 }

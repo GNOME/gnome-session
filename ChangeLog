@@ -1,5 +1,24 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Allow an interacting app to cancel the logout.
+
+	* gnome-session/gsm-client.[ch]: (gsm_client_class_init): add new
+	cancel argument to END_SESSION_RESPONSE signal
+	(gdm_client_end_session_response): add cancel and use it
+	* gnome-session/gsm-marshal.list: updated for new signature
+	* gnome-session/gsm-manager.c: (on_client_end_session_response): add
+	cancel paramter, and call cancel_end_session if cancel is TRUE
+	* gnome-session/gsm-dbus-client.c: (handle_end_session_response): pass
+	FALSE as cancel
+	* gnome-session/gsm-xsmp-client.c:
+	(save_yourself_phase2_request_callback): pass FALSE as cancel
+	(interact_request_callback): pass FALSE as cancel
+	(interact_done_callback): pass the value returned by the client as
+	cancel
+	(save_yourself_done_callback): pass FALSE as cancel
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Actually allow XSMP clients to interact during the logout. It works
 	quite well with the inhibitor infrastructure since a JIT inhibitor will
 	be created.

@@ -1668,6 +1668,7 @@ out:
 static void
 on_client_end_session_response (GsmClient  *client,
                                 gboolean    is_ok,
+                                gboolean    cancel,
                                 const char *reason,
                                 GsmManager *manager)
 {
@@ -1676,7 +1677,12 @@ on_client_end_session_response (GsmClient  *client,
                 return;
         }
 
-        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason);
+        g_debug ("GsmManager: Response from end session request: is-ok=%d cancel=%d reason=%s", is_ok, cancel, reason);
+
+        if (cancel) {
+                cancel_end_session (manager);
+                return;
+        }
 
         manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
 

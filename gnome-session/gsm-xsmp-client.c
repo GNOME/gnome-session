@@ -1153,7 +1153,7 @@ save_yourself_phase2_request_callback (SmsConn   conn,
         /* this is a valid response to SaveYourself and therefore
            may be a response to a QES or ES */
         gdm_client_end_session_response (GSM_CLIENT (client),
-                                         TRUE,
+                                         TRUE, FALSE,
                                          NULL);
 
         /* FIXME: change priority so this client runs at the end? */
@@ -1175,7 +1175,7 @@ interact_request_callback (SmsConn   conn,
                  dialog_type == SmDialogNormal ? "Dialog" : "Errors");
 
         gdm_client_end_session_response (GSM_CLIENT (client),
-                                         FALSE,
+                                         FALSE, FALSE,
                                          _("This program is blocking log out."));
 
 #if 0
@@ -1206,7 +1206,7 @@ interact_done_callback (SmsConn   conn,
                  cancel_shutdown ? "True" : "False");
 
         gdm_client_end_session_response (GSM_CLIENT (client),
-                                         TRUE,
+                                         TRUE, cancel_shutdown,
                                          NULL);
 }
 
@@ -1228,7 +1228,7 @@ save_yourself_done_callback (SmsConn   conn,
          * the session manager can do about, though. FIXME: we could display a
          * dialog about this, I guess. */
         gdm_client_end_session_response (GSM_CLIENT (client),
-                                         TRUE,
+                                         TRUE, FALSE,
                                          NULL);
 
         if (client->priv->next_save_yourself) {

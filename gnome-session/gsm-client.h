@@ -73,6 +73,7 @@ struct _GsmClientClass
         void         (*disconnected)               (GsmClient  *client);
         void         (*end_session_response)       (GsmClient  *client,
                                                     gboolean    ok,
+                                                    gboolean    cancel,
                                                     const char *reason);
 
         /* virtual methods */
@@ -159,6 +160,7 @@ gboolean              gsm_client_get_unix_process_id        (GsmClient  *client,
 
 void                  gdm_client_end_session_response       (GsmClient  *client,
                                                              gboolean    is_ok,
+                                                             gboolean    cancel,
                                                              const char *reason);
 
 G_END_DECLS
