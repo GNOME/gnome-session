@@ -1,5 +1,12 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-inhibit-dialog.c: (update_dialog_text): fix debug
+	string
+	* gnome-session/gsm-manager.c: (cancel_end_session): add debug string
+	(gsm_manager_shutdown): fix debug string
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-inhibit-dialog.c: (add_inhibitor): use
 	gsm_util_get_desktop_dirs() instead of just gsm_util_get_app_dirs().
 	Also try to handle desktop filenames that are an absolute path the best

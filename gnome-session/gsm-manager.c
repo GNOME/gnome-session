@@ -728,6 +728,7 @@ static void
 cancel_end_session (GsmManager *manager)
 {
         /* switch back to running phase */
+        g_debug ("GsmManager: Cancelling the end of session");
 
         /* clear all JIT inhibitors */
         gsm_store_foreach_remove (manager->priv->inhibitors,
@@ -2617,7 +2618,7 @@ gsm_manager_shutdown (GsmManager *manager,
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Logout interface is only available during the Running phase");
+                             "Shutdown interface is only available during the Running phase");
                 return FALSE;
         }
 

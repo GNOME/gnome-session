@@ -667,7 +667,7 @@ update_dialog_text (GsmInhibitDialog *dialog)
                 header_text = _("A program is still running:");
                 description_text = _("Waiting for program to finish.  Interrupting program may cause you to lose work.");
         } else {
-                g_debug ("Found multiple entries in model");
+                g_debug ("Found multiple entries (or none) in model");
                 header_text = _("Some programs are still running:");
                 description_text = _("Waiting for programs to finish.  Interrupting these programs may cause you to lose work.");
         }
