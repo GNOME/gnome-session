@@ -1,5 +1,17 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-xsmp-client.c: (do_save_yourself): just add some
+	paranoia code to make sure our state is consistent
+	(xsmp_cancel_end_session): reset the save_yourself state here since we
+	cancel the operation anyway
+	(save_yourself_phase2_request_callback): fix to not behave exactly like
+	SaveYourselfDone. This is wrong according to XSMP.
+	(save_yourself_done_callback): always call SmsSaveComplete() (it's
+	expected by XSMP), and ignore the success argument. It's actually
+	useless.
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	Rework deeply the code that writes the saved session to desktop files:
 	we now properly discard a client when removing it; we also make sure we
 	save the current session before we completely remove the previously

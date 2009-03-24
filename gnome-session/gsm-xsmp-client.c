@@ -437,6 +437,8 @@ do_save_yourself (GsmXSMPClient *client,
                 client->priv->next_save_yourself = save_type;
         } else {
                 client->priv->current_save_yourself = save_type;
+                /* make sure we don't have anything queued */
+                client->priv->next_save_yourself = -1;
 
                 switch (save_type) {
                 case SmSaveLocal:
@@ -507,6 +509,11 @@ xsmp_cancel_end_session (GsmClient *client,
         }
 
         SmsShutdownCancelled (xsmp->priv->conn);
+
+        /* reset the state */
+        xsmp->priv->current_save_yourself = -1;
+        xsmp->priv->next_save_yourself = -1;
+
         return TRUE;
 }
 
@@ -1125,13 +1132,7 @@ save_yourself_phase2_request_callback (SmsConn   conn,
         g_debug ("GsmXSMPClient: Client '%s' received SaveYourselfPhase2Request",
                  client->priv->description);
 
-        /* Treat this just like a SaveYourselfDone */
-        if (client->priv->current_save_yourself == SmSaveLocal) {
-                client->priv->current_save_yourself = -1;
-                SmsSaveComplete (client->priv->conn);
-        } else {
-                client->priv->current_save_yourself = -1;
-        }
+        client->priv->current_save_yourself = -1;
 
         /* this is a valid response to SaveYourself and therefore
            may be a response to a QES or ES */
@@ -1199,22 +1200,15 @@ save_yourself_done_callback (SmsConn   conn,
                  client->priv->description,
                  success ? "True" : "False");
 
-        if (client->priv->current_save_yourself == SmSaveLocal) {
-                client->priv->current_save_yourself = -1;
-                SmsSaveComplete (client->priv->conn);
-        } else {
-                client->priv->current_save_yourself = -1;
-        }
+        client->priv->current_save_yourself = -1;
+        SmsSaveComplete (client->priv->conn);
 
-        /* If success is false then the application still has
-           unsafe data.  We may also have tricked it into sending
-           us this message when we faked the ShutdownCancel to
-           break its grabs. */
-        if (success) {
-                gdm_client_end_session_response (GSM_CLIENT (client),
-                                                 TRUE,
-                                                 NULL);
-        }
+        /* If success is false then the application couldn't save data. Nothing
+         * the session manager can do about, though. FIXME: we could display a
+         * dialog about this, I guess. */
+        gdm_client_end_session_response (GSM_CLIENT (client),
+                                         TRUE,
+                                         NULL);
 
         if (client->priv->next_save_yourself) {
                 int save_type = client->priv->next_save_yourself;
