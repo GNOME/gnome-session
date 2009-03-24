@@ -1,5 +1,26 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Allow clients to specify that they want to be ended last (this mainly
+	matches the Phase2 of SaveYourself in XSMP). The server doesn't use
+	this information yet.
+
+	* gnome-session/gsm-client.[ch]: (gsm_client_class_init): add new
+	do_last argument to END_SESSION_RESPONSE signal
+	(gdm_client_end_session_response): add do_last and use it
+	* gnome-session/gsm-marshal.list: updated for new signature
+	* gnome-session/gsm-manager.c: (on_client_end_session_response): add
+	do_last parameter, unused for now
+	* gnome-session/gsm-dbus-client.c: (handle_end_session_response): pass
+	FALSE as do_last
+	* gnome-session/gsm-xsmp-client.c:
+	(save_yourself_phase2_request_callback): pass TRUE as do_last since
+	that's what the phase2 is
+	(interact_request_callback): pass FALSE as do_last
+	(interact_done_callback): pass FALSE as do_last
+	(save_yourself_done_callback): pass FALSE as do_last
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-manager.c: (do_phase_end_session),
 	(auto_save_is_enabled): coding style nit-picking
 

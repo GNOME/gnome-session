@@ -1667,6 +1667,7 @@ out:
 static void
 on_client_end_session_response (GsmClient  *client,
                                 gboolean    is_ok,
+                                gboolean    do_last,
                                 gboolean    cancel,
                                 const char *reason,
                                 GsmManager *manager)
@@ -1676,7 +1677,7 @@ on_client_end_session_response (GsmClient  *client,
                 return;
         }
 
-        g_debug ("GsmManager: Response from end session request: is-ok=%d cancel=%d reason=%s", is_ok, cancel, reason);
+        g_debug ("GsmManager: Response from end session request: is-ok=%d do-last=%d cancel=%d reason=%s", is_ok, do_last, cancel, reason);
 
         if (cancel) {
                 cancel_end_session (manager);
