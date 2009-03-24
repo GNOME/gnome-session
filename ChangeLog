@@ -1,5 +1,12 @@
 2009-03-24  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-manager.c: (cancel_end_session): ignore this if
+	we're not in a relevant phase. Also make sure the inhibit dialog is
+	destroyed before removing inhibitors (which would activate the
+	inhibit dialog)
+
+2009-03-24  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-util.c: (ensure_dir_exists): create the dir with
 	permission 0755.
 	(gsm_util_get_saved_session_dir): use ~/.config instead of ~/.gnome2.

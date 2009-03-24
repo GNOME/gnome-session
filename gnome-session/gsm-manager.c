@@ -727,8 +727,20 @@ inhibitor_is_jit (gpointer      key,
 static void
 cancel_end_session (GsmManager *manager)
 {
+        /* just ignore if received outside of shutdown */
+        if (manager->priv->phase < GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                return;
+        }
+
         /* switch back to running phase */
         g_debug ("GsmManager: Cancelling the end of session");
+
+        /* remove the dialog before we remove the inhibitors, else the dialog
+         * will activate itself automatically when the last inhibitor will be
+         * removed */
+        if (manager->priv->inhibit_dialog)
+                gtk_widget_destroy (GTK_WIDGET (manager->priv->inhibit_dialog));
+        manager->priv->inhibit_dialog = NULL;
 
         /* clear all JIT inhibitors */
         gsm_store_foreach_remove (manager->priv->inhibitors,
