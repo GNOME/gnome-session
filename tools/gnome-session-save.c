@@ -62,18 +62,17 @@ static gboolean no_interaction = FALSE;
 static char *session_name = NULL;
 
 static GOptionEntry options[] = {
-        {"session-name", 's', 0, G_OPTION_ARG_STRING, &session_name, N_("Set the current session name"), N_("NAME")},
         {"logout", '\0', 0, G_OPTION_ARG_NONE, &logout, N_("Log out"), NULL},
         {"force-logout", '\0', 0, G_OPTION_ARG_NONE, &force_logout, N_("Log out, ignoring any existing inhibitors"), NULL},
         {"logout-dialog", '\0', 0, G_OPTION_ARG_NONE, &logout_dialog, N_("Show logout dialog"), NULL},
         {"shutdown-dialog", '\0', 0, G_OPTION_ARG_NONE, &shutdown_dialog, N_("Show shutdown dialog"), NULL},
-        {"kill", '\0', 0, G_OPTION_ARG_NONE, &kill_session, N_("Kill session"), NULL},
         {"gui",  '\0', 0, G_OPTION_ARG_NONE, &show_error_dialogs, N_("Use dialog boxes for errors"), NULL},
-        {"silent", '\0', 0, G_OPTION_ARG_NONE, &no_interaction, N_("Do not require confirmation"), NULL},
+	/* deprecated options */
+        {"session-name", 's', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &session_name, N_("Set the current session name"), N_("NAME")},
+        {"kill", '\0', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &kill_session, N_("Kill session"), NULL},
+        {"silent", '\0', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &no_interaction, N_("Do not require confirmation"), NULL},
         {NULL}
 };
-
-static int exit_status = 0;
 
 static void
 display_error (const char *message)
@@ -290,5 +289,5 @@ main (int argc, char *argv[])
                 do_shutdown_dialog ();
         }
 
-        return exit_status;
+        return 0;
 }

@@ -1,5 +1,11 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	* tools/gnome-session-save.c: hide deprecated command-line options from
+	--help, but still accept them.
+	(main): return 0 instead of a variable that is always set to 0
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Create a END_SESSION_LAST phase during which we handle the clients
 	which wanted to be ended last.
 	For this, we need to keep a list of clients in that case.
