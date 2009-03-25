@@ -99,9 +99,9 @@ struct GsmManagerPrivate
         gboolean                forceful_logout;
         GSList                 *query_clients;
         guint                   query_timeout_id;
-        /* This is used for GSM_MANAGER_PHASE_END_SESSION_LAST only at the
-         * moment, since it uses a sublist of all running client that replied
-         * in a specific way */
+        /* This is used for GSM_MANAGER_PHASE_END_SESSION only at the moment,
+         * since it uses a sublist of all running client that replied in a
+         * specific way */
         GSList                 *next_query_clients;
 
         GtkWidget              *inhibit_dialog;
@@ -350,9 +350,6 @@ phase_num_to_name (guint phase)
         case GSM_MANAGER_PHASE_END_SESSION:
                 name = "END_SESSION";
                 break;
-        case GSM_MANAGER_PHASE_END_SESSION_LAST:
-                name = "END_SESSION_LAST";
-                break;
         case GSM_MANAGER_PHASE_EXIT:
                 name = "EXIT";
                 break;
@@ -378,10 +375,8 @@ end_phase (GsmManager *manager)
         g_slist_free (manager->priv->query_clients);
         manager->priv->query_clients = NULL;
 
-        if (manager->priv->phase < GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                g_slist_free (manager->priv->next_query_clients);
-                manager->priv->next_query_clients = NULL;
-        }
+        g_slist_free (manager->priv->next_query_clients);
+        manager->priv->next_query_clients = NULL;
 
         if (manager->priv->phase_timeout_id > 0) {
                 g_source_remove (manager->priv->phase_timeout_id);
@@ -398,7 +393,6 @@ end_phase (GsmManager *manager)
         case GSM_MANAGER_PHASE_RUNNING:
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
         case GSM_MANAGER_PHASE_END_SESSION:
-        case GSM_MANAGER_PHASE_END_SESSION_LAST:
                 manager->priv->phase++;
                 start_phase (manager);
                 break;
@@ -453,7 +447,6 @@ on_phase_timeout (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
         case GSM_MANAGER_PHASE_END_SESSION:
-        case GSM_MANAGER_PHASE_END_SESSION_LAST:
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 break;
@@ -545,8 +538,7 @@ typedef struct {
 
 
 static gboolean
-_client_end_session (const char           *id,
-                     GsmClient            *client,
+_client_end_session (GsmClient            *client,
                      ClientEndSessionData *data)
 {
         gboolean ret;
@@ -565,6 +557,14 @@ _client_end_session (const char           *id,
         }
 
         return FALSE;
+}
+
+static gboolean
+_client_end_session_helper (const char           *id,
+                            GsmClient            *client,
+                            ClientEndSessionData *data)
+{
+        return _client_end_session (client, data);
 }
 
 static void
@@ -593,37 +593,19 @@ do_phase_end_session (GsmManager *manager)
                                                                          manager);
 
                 gsm_store_foreach (manager->priv->clients,
-                                   (GsmStoreFunc)_client_end_session,
+                                   (GsmStoreFunc)_client_end_session_helper,
                                    &data);
         } else {
+                if (data.flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
+                        maybe_save_session (manager);
+                }
+
                 end_phase (manager);
         }
 }
 
-static gboolean
-_client_end_session_last (GsmClient            *client,
-                          ClientEndSessionData *data)
-{
-        gboolean ret;
-        GError  *error;
-
-        error = NULL;
-        ret = gsm_client_end_session (client, data->flags, &error);
-        if (! ret) {
-                g_warning ("Unable to query client: %s", error->message);
-                g_error_free (error);
-                /* FIXME: what should we do if we can't communicate with client? */
-        } else {
-                g_debug ("GsmManager: adding client to end-session-last clients: %s", gsm_client_peek_id (client));
-                data->manager->priv->query_clients = g_slist_prepend (data->manager->priv->query_clients,
-                                                                      client);
-        }
-
-        return FALSE;
-}
-
 static void
-do_phase_end_session_last (GsmManager *manager)
+do_phase_end_session_part_2 (GsmManager *manager)
 {
         ClientEndSessionData data;
 
@@ -638,19 +620,16 @@ do_phase_end_session_last (GsmManager *manager)
         }
         data.flags |= GSM_CLIENT_END_SESSION_FLAG_LAST;
 
-        if (manager->priv->phase_timeout_id > 0) {
-                g_source_remove (manager->priv->phase_timeout_id);
-                manager->priv->phase_timeout_id = 0;
-        }
+        /* keep the timeout that was started at the beginning of the
+         * GSM_MANAGER_PHASE_END_SESSION phase */
 
         if (g_slist_length (manager->priv->next_query_clients) > 0) {
-                manager->priv->phase_timeout_id = g_timeout_add_seconds (10,
-                                                                         (GSourceFunc)on_phase_timeout,
-                                                                         manager);
-
                 g_slist_foreach (manager->priv->next_query_clients,
-                                 (GFunc)_client_end_session_last,
+                                 (GFunc)_client_end_session,
                                  &data);
+
+                g_slist_free (manager->priv->next_query_clients);
+                manager->priv->next_query_clients = NULL;
         } else {
                 if (data.flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
                         maybe_save_session (manager);
@@ -1159,10 +1138,8 @@ start_phase (GsmManager *manager)
         manager->priv->pending_apps = NULL;
         g_slist_free (manager->priv->query_clients);
         manager->priv->query_clients = NULL;
-        if (manager->priv->phase < GSM_MANAGER_PHASE_END_SESSION) {
-                g_slist_free (manager->priv->next_query_clients);
-                manager->priv->next_query_clients = NULL;
-        }
+        g_slist_free (manager->priv->next_query_clients);
+        manager->priv->next_query_clients = NULL;
 
         if (manager->priv->query_timeout_id > 0) {
                 g_source_remove (manager->priv->query_timeout_id);
@@ -1191,9 +1168,6 @@ start_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
                 do_phase_end_session (manager);
-                break;
-        case GSM_MANAGER_PHASE_END_SESSION_LAST:
-                do_phase_end_session_last (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 do_phase_exit (manager);
@@ -1727,7 +1701,7 @@ maybe_save_session (GsmManager *manager)
         /* We only allow session saving when session is running or when
          * logging out */
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING &&
-            manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION_LAST) {
+            manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
                 goto out;
         }
 
@@ -1804,18 +1778,26 @@ on_client_end_session_response (GsmClient  *client,
                                           (gpointer)gsm_client_peek_id (client));
         }
 
-        if (do_last) {
-                manager->priv->next_query_clients =  g_slist_prepend (manager->priv->next_query_clients,
-                                                                      client);
+        if (do_last && manager->priv->phase == GSM_MANAGER_PHASE_END_SESSION) {
+                /* This only makes sense if we're in part 1 of
+                 * GSM_MANAGER_PHASE_END_SESSION. Doing this in part 2 can only
+                 * happen because of a buggy client that loops wanting to be
+                 * last again and again. The phase timeout will take care of
+                 * this issue. */
+                manager->priv->next_query_clients = g_slist_prepend (manager->priv->next_query_clients,
+                                                                     client);
         }
 
-        if (manager->priv->query_clients == NULL
-            && gsm_store_size (manager->priv->inhibitors) == 0) {
-                if (manager->priv->query_timeout_id > 0) {
-                        g_source_remove (manager->priv->query_timeout_id);
-                        manager->priv->query_timeout_id = 0;
-                }
+        /* we can continue to the next step if all clients have replied and
+         * if there's no inhibitor */
+        if (manager->priv->query_clients != NULL
+            || gsm_store_size (manager->priv->inhibitors) != 0) {
+                return;
+        }
 
+        if (manager->priv->next_query_clients != NULL) {
+                do_phase_end_session_part_2 (manager);
+        } else {
                 if (auto_save_is_enabled (manager)) {
                         maybe_save_session (manager);
                 }

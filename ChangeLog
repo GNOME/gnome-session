@@ -1,5 +1,37 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Remove the END_SESSION_LAST phase since it was considered to break the
+	design. Instead, just use a second step in the END_SESSION phase.
+
+	* gnome-session/gsm-manager.[ch]: (phase_num_to_name): remove
+	END_SESSION_LAST phase
+	(end_phase): always clean up next_query_clients, and remove
+	END_SESSION_LAST phase.
+	(on_phase_timeout): remove END_SESSION_LAST phase
+	(_client_end_session): change the function signature so that we can
+	merge this old function and _client_end_session_last
+	(_client_end_session_last): killed
+	(_client_end_session_helper): new, helper used for
+	do_phase_end_session() since _client_end_session() cannot be directly
+	used anymore
+	(do_phase_end_session): use _client_end_session_helper(), and save
+	session if there's nothing to do
+	(do_phase_end_session_last): renamed to...
+	(do_phase_end_session_part_2): ... this. Don't reset the phase timeout
+	since we're still in the END_SESSION phase. Clean up next_query_clients
+	after having used it.
+	(start_phase): always clean up next_query_clients, remove
+	END_SESSION_LAST phase
+	(maybe_save_session): s/END_SESSION_LAST/END_SESSION/
+	(on_client_end_session_response): only accept to end a client last if
+	we're in END_SESSION. Start the second step of END_SESSION if there's
+	no clients that haven't replied, no inhibitor and if there are clients
+	to end last. Note that we don't remove the phase timeout here since it
+	will either be needed in the second step or will be removed in
+	end_phase().
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Allow XSMP clients to interact only during the
 	GSM_MANAGER_PHASE_QUERY_END_SESSION phase. If they didn't interact
 	during this phase, too bad for them.
