@@ -392,7 +392,13 @@ end_phase (GsmManager *manager)
         case GSM_MANAGER_PHASE_APPLICATION:
         case GSM_MANAGER_PHASE_RUNNING:
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                manager->priv->phase++;
+                start_phase (manager);
+                break;
         case GSM_MANAGER_PHASE_END_SESSION:
+                if (auto_save_is_enabled (manager)) {
+                        maybe_save_session (manager);
+                }
                 manager->priv->phase++;
                 start_phase (manager);
                 break;
@@ -596,10 +602,6 @@ do_phase_end_session (GsmManager *manager)
                                    (GsmStoreFunc)_client_end_session_helper,
                                    &data);
         } else {
-                if (data.flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
-                        maybe_save_session (manager);
-                }
-
                 end_phase (manager);
         }
 }
@@ -631,10 +633,6 @@ do_phase_end_session_part_2 (GsmManager *manager)
                 g_slist_free (manager->priv->next_query_clients);
                 manager->priv->next_query_clients = NULL;
         } else {
-                if (data.flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
-                        maybe_save_session (manager);
-                }
-
                 end_phase (manager);
         }
 }
@@ -1798,10 +1796,6 @@ on_client_end_session_response (GsmClient  *client,
         if (manager->priv->next_query_clients != NULL) {
                 do_phase_end_session_part_2 (manager);
         } else {
-                if (auto_save_is_enabled (manager)) {
-                        maybe_save_session (manager);
-                }
-
                 end_phase (manager);
         }
 }

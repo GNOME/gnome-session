@@ -1,5 +1,14 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-manager.c: (end_phase): put the call that
+	potentially saves the session here, at the end of END_SESSION instead
+	of many random places
+	(do_phase_end_session),
+	(do_phase_end_session_part_2), (on_client_end_session_response): remove
+	calls to maybe_save_session()
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	Remove the END_SESSION_LAST phase since it was considered to break the
 	design. Instead, just use a second step in the END_SESSION phase.
 
