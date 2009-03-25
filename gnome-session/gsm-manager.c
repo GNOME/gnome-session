@@ -1732,9 +1732,7 @@ maybe_save_session (GsmManager *manager)
         }
 
         error = NULL;
-#if 0
         gsm_session_save (manager->priv->clients, &error);
-#endif
 
         if (error) {
                 g_warning ("Error saving session: %s", error->message);

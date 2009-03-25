@@ -1,5 +1,10 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-manager.c: (maybe_save_session): re-enable session
+	saving (revert the change that was committed just before 2.26.0).
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	* tools/gnome-session-save.c: hide deprecated command-line options from
 	--help, but still accept them.
 	(main): return 0 instead of a variable that is always set to 0
