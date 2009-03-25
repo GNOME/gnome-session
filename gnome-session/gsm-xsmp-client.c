@@ -52,10 +52,13 @@ struct GsmXSMPClientPrivate
         guint      watch_id;
         guint      protocol_timeout;
 
-        int        current_save_yourself;
-        int        next_save_yourself;
         char      *description;
         GPtrArray *props;
+
+        /* SaveYourself state */
+        int        current_save_yourself;
+        int        next_save_yourself;
+        guint      next_save_yourself_allow_interact : 1;
 };
 
 enum {
@@ -221,6 +224,7 @@ gsm_xsmp_client_init (GsmXSMPClient *client)
         client->priv->props = g_ptr_array_new ();
         client->priv->current_save_yourself = -1;
         client->priv->next_save_yourself = -1;
+        client->priv->next_save_yourself_allow_interact = FALSE;
 }
 
 
@@ -420,7 +424,7 @@ xsmp_get_discard_command (GsmClient *client)
 static void
 do_save_yourself (GsmXSMPClient *client,
                   int            save_type,
-                  gboolean       forceful)
+                  gboolean       allow_interact)
 {
         g_assert (client->priv->conn != NULL);
 
@@ -435,10 +439,12 @@ do_save_yourself (GsmXSMPClient *client,
                 g_debug ("GsmXSMPClient:   queuing new SaveYourself for '%s'",
                          client->priv->description);
                 client->priv->next_save_yourself = save_type;
+                client->priv->next_save_yourself_allow_interact = allow_interact;
         } else {
                 client->priv->current_save_yourself = save_type;
                 /* make sure we don't have anything queued */
                 client->priv->next_save_yourself = -1;
+                client->priv->next_save_yourself_allow_interact = FALSE;
 
                 switch (save_type) {
                 case SmSaveLocal:
@@ -452,7 +458,7 @@ do_save_yourself (GsmXSMPClient *client,
 
                 default:
                         /* Logout */
-                        if (forceful) {
+                        if (!allow_interact) {
                                 SmsSaveYourself (client->priv->conn,
                                                  save_type, /* save type */
                                                  TRUE, /* shutdown */
@@ -511,6 +517,7 @@ xsmp_cancel_end_session (GsmClient *client,
         /* reset the state */
         xsmp->priv->current_save_yourself = -1;
         xsmp->priv->next_save_yourself = -1;
+        xsmp->priv->next_save_yourself_allow_interact = FALSE;
 
         return TRUE;
 }
@@ -705,7 +712,7 @@ xsmp_query_end_session (GsmClient *client,
                         guint      flags,
                         GError   **error)
 {
-        gboolean forceful;
+        gboolean allow_interact;
         int      save_type;
 
         if (GSM_XSMP_CLIENT (client)->priv->conn == NULL) {
@@ -716,15 +723,16 @@ xsmp_query_end_session (GsmClient *client,
                 return FALSE;
         }
 
-        forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
+        allow_interact = !(flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
 
-        if (flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
-                save_type = SmSaveBoth;
-        } else {
-                save_type = SmSaveGlobal;
-        }
+        /* we don't want to save the session state, but we just want to know if
+         * there's user data the client has to save and we want to give the
+         * client a chance to tell the user about it. This is consistent with
+         * the manager not setting GSM_CLIENT_END_SESSION_FLAG_SAVE for this
+         * phase. */
+        save_type = SmSaveGlobal;
 
-        do_save_yourself (GSM_XSMP_CLIENT (client), save_type, forceful);
+        do_save_yourself (GSM_XSMP_CLIENT (client), save_type, allow_interact);
         return TRUE;
 }
 
@@ -748,10 +756,12 @@ xsmp_end_session (GsmClient *client,
         if (phase2) {
                 xsmp_save_yourself_phase2 (client);
         } else {
-                gboolean forceful;
+                gboolean allow_interact;
                 int      save_type;
 
-                forceful = (flags & GSM_CLIENT_END_SESSION_FLAG_FORCEFUL);
+                /* we gave a chance to interact to the app during
+                 * xsmp_query_end_session(), now it's too late to interact */
+                allow_interact = FALSE;
 
                 if (flags & GSM_CLIENT_END_SESSION_FLAG_SAVE) {
                         save_type = SmSaveBoth;
@@ -760,7 +770,7 @@ xsmp_end_session (GsmClient *client,
                 }
 
                 do_save_yourself (GSM_XSMP_CLIENT (client),
-                                  save_type, forceful);
+                                  save_type, allow_interact);
         }
 
         return TRUE;
@@ -1141,7 +1151,7 @@ save_yourself_request_callback (SmsConn   conn,
                 g_signal_emit (client, signals[LOGOUT_REQUEST], 0, !fast);
         } else if (!shutdown && !global) {
                 g_debug ("GsmXSMPClient:   initiating checkpoint");
-                do_save_yourself (client, SmSaveLocal, FALSE);
+                do_save_yourself (client, SmSaveLocal, TRUE);
         } else {
                 g_debug ("GsmXSMPClient:   ignoring");
         }
@@ -1238,10 +1248,12 @@ save_yourself_done_callback (SmsConn   conn,
                                          NULL);
 
         if (client->priv->next_save_yourself) {
-                int save_type = client->priv->next_save_yourself;
+                int      save_type = client->priv->next_save_yourself;
+                gboolean allow_interact = client->priv->next_save_yourself_allow_interact;
 
                 client->priv->next_save_yourself = -1;
-                do_save_yourself (client, save_type, FALSE);
+                client->priv->next_save_yourself_allow_interact = -1;
+                do_save_yourself (client, save_type, allow_interact);
         }
 }
 

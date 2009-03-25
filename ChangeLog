@@ -1,5 +1,33 @@
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
+	Allow XSMP clients to interact only during the
+	GSM_MANAGER_PHASE_QUERY_END_SESSION phase. If they didn't interact
+	during this phase, too bad for them.
+	The idea is that GSM_MANAGER_PHASE_QUERY_END_SESSION is about letting
+	them save user data and interact if it's needed for saving user data,
+	while GSM_MANAGER_PHASE_END_SESSION is about telling them that they
+	really have to save data now if they need too.
+
+	Also if we have a queued SaveYourself, remember if it allowed
+	interaction or not.
+
+	* gnome-session/gsm-xsmp-client.c: (gsm_xsmp_client_init): initialize
+	next_save_yourself_allow_interact
+	(do_save_yourself): change forceful argument to allow_interact for
+	better clarity, and save it to next_save_yourself_allow_interact when
+	relevant
+	(xsmp_cancel_end_session): reset next_save_yourself_allow_interact
+	(xsmp_query_end_session): update for do_save_yourself() argument
+	change, and also enforce the fact that we don't save the state of the
+	client here
+	(xsmp_end_session): force the client to not interact here
+	(save_yourself_request_callback): update for do_save_yourself()
+	argument change
+	(save_yourself_done_callback): use next_save_yourself_allow_interact if
+	there was a queued SaveYourself.
+
+2009-03-25  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-manager.c: (maybe_save_session): re-enable session
 	saving (revert the change that was committed just before 2.26.0).
 
