@@ -181,6 +181,10 @@ handle_alarm_notify_event (GSIdleMonitor         *monitor,
         gboolean            res;
         gboolean            condition;
 
+        if (alarm_event->state == XSyncAlarmDestroyed) {
+                return;
+        }
+
         watch = find_watch_for_alarm (monitor, alarm_event->alarm);
 
         if (watch == NULL) {

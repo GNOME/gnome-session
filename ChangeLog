@@ -1,3 +1,8 @@
+2009-04-05  Matthias Clasen  <mclasen@redhat.com>
+
+	* gnome-session/gs-idle-monitor.c (handle_alarm_notify_event): Ignore
+	XSyncAlarmDestroyed events, and don't spam .xsession-errors for these.
+
 2009-03-25  Vincent Untz  <vuntz@gnome.org>
 
 	* gnome-session/gsm-manager.c: (end_phase): put the call that
