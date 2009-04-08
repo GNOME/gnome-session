@@ -1,5 +1,12 @@
 2009-04-08  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-logout-dialog.c: (on_ck_request_completed): killed
+	(gsm_logout_dialog_init): don't connect to request-completed of the
+	consolekit object: we actually don't do anything in the callback
+	anyway...
+
+2009-04-08  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-xsmp-client.c: (save_yourself_done_callback): only
 	call SmsSaveComplete() if we are still in a SaveYourself state. My
 	previous change about this didn't take into account the case where the

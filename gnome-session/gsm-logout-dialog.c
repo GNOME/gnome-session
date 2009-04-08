@@ -129,16 +129,6 @@ gsm_logout_dialog_class_init (GsmLogoutDialogClass *klass)
 }
 
 static void
-on_ck_request_completed (GsmConsolekit *consolekit,
-                         GError        *error)
-{
-        if (error == NULL) {
-                /* request was successful */
-                return;
-        }
-}
-
-static void
 gsm_logout_dialog_init (GsmLogoutDialog *logout_dialog)
 {
         logout_dialog->priv = GSM_LOGOUT_DIALOG_GET_PRIVATE (logout_dialog);
@@ -154,11 +144,6 @@ gsm_logout_dialog_init (GsmLogoutDialog *logout_dialog)
         logout_dialog->priv->power_manager = gsm_get_power_manager ();
 
         logout_dialog->priv->consolekit = gsm_get_consolekit ();
-
-        g_signal_connect (logout_dialog->priv->consolekit,
-                          "request-completed",
-                          G_CALLBACK (on_ck_request_completed),
-                          NULL);
 
         g_signal_connect (logout_dialog,
                           "destroy",
