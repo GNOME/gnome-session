@@ -984,6 +984,13 @@ query_end_session_complete (GsmManager *manager)
 {
         g_debug ("GsmManager: query end session complete");
 
+        /* Remove the timeout since this can be called from outside the timer
+         * and we don't want to have it called twice */
+        if (manager->priv->query_timeout_id > 0) {
+                g_source_remove (manager->priv->query_timeout_id);
+                manager->priv->query_timeout_id = 0;
+        }
+
         if (! gsm_manager_is_logout_inhibited (manager)) {
                 end_phase (manager);
                 return;
@@ -1086,15 +1093,6 @@ do_phase_query_end_session (GsmManager *manager)
 {
         ClientEndSessionData data;
 
-        /* This phase doesn't time out.  This separate timer
-         * is only used to show UI.
-         */
-
-        if (manager->priv->query_timeout_id > 0) {
-                g_source_remove (manager->priv->query_timeout_id);
-                manager->priv->query_timeout_id = 0;
-        }
-
         data.manager = manager;
         data.flags = 0;
 
@@ -1111,6 +1109,8 @@ do_phase_query_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
 
+        /* This phase doesn't time out. This separate timer is only used to
+         * show UI. */
         manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)_on_query_end_session_timeout, manager);
 }
 
@@ -1776,27 +1776,33 @@ on_client_end_session_response (GsmClient  *client,
                                           (gpointer)gsm_client_peek_id (client));
         }
 
-        if (do_last && manager->priv->phase == GSM_MANAGER_PHASE_END_SESSION) {
-                /* This only makes sense if we're in part 1 of
-                 * GSM_MANAGER_PHASE_END_SESSION. Doing this in part 2 can only
-                 * happen because of a buggy client that loops wanting to be
-                 * last again and again. The phase timeout will take care of
-                 * this issue. */
-                manager->priv->next_query_clients = g_slist_prepend (manager->priv->next_query_clients,
-                                                                     client);
-        }
+        if (manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) { 
+                if (manager->priv->query_clients == NULL) {
+                        query_end_session_complete (manager);
+                }
+        } else if (manager->priv->phase == GSM_MANAGER_PHASE_END_SESSION) {
+                if (do_last) {
+                        /* This only makes sense if we're in part 1 of
+                         * GSM_MANAGER_PHASE_END_SESSION. Doing this in part 2
+                         * can only happen because of a buggy client that loops
+                         * wanting to be last again and again. The phase
+                         * timeout will take care of this issue. */
+                        manager->priv->next_query_clients = g_slist_prepend (manager->priv->next_query_clients,
+                                                                             client);
+                }
 
-        /* we can continue to the next step if all clients have replied and
-         * if there's no inhibitor */
-        if (manager->priv->query_clients != NULL
-            || gsm_store_size (manager->priv->inhibitors) != 0) {
-                return;
-        }
+                /* we can continue to the next step if all clients have replied
+                 * and if there's no inhibitor */
+                if (manager->priv->query_clients != NULL
+                    || gsm_manager_is_logout_inhibited (manager)) {
+                        return;
+                }
 
-        if (manager->priv->next_query_clients != NULL) {
-                do_phase_end_session_part_2 (manager);
-        } else {
-                end_phase (manager);
+                if (manager->priv->next_query_clients != NULL) {
+                        do_phase_end_session_part_2 (manager);
+                } else {
+                        end_phase (manager);
+                }
         }
 }
 

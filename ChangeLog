@@ -1,5 +1,18 @@
 2009-04-08  Vincent Untz  <vuntz@gnome.org>
 
+	Remove the 1-second delay to display the inhibit dialog when an
+	application is blocking logging out.
+
+	* gnome-session/gsm-manager.c: (query_end_session_complete): remove the
+	query timeout since it might still be running
+	(do_phase_query_end_session): do not remove the query timeout here:
+	it's the start of a phase, so there's no such timeout
+	(on_client_end_session_response): rework a bit to make sure we call
+	query_end_session_complete() if we are at the end of
+	GSM_MANAGER_PHASE_QUERY_END_SESSION
+
+2009-04-08  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-manager.c: (do_phase_end_session),
 	(do_phase_exit): use GSM_MANAGER_PHASE_TIMEOUT instead of hard-coding
 	10 seconds everywhere.
