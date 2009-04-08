@@ -1237,8 +1237,10 @@ save_yourself_done_callback (SmsConn   conn,
                  client->priv->description,
                  success ? "True" : "False");
 
-        client->priv->current_save_yourself = -1;
-        SmsSaveComplete (client->priv->conn);
+	if (client->priv->current_save_yourself != -1) {
+		SmsSaveComplete (client->priv->conn);
+		client->priv->current_save_yourself = -1;
+	}
 
         /* If success is false then the application couldn't save data. Nothing
          * the session manager can do about, though. FIXME: we could display a
