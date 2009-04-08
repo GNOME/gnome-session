@@ -1,5 +1,11 @@
 2009-04-08  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/gsm-manager.c: (do_phase_end_session),
+	(do_phase_exit): use GSM_MANAGER_PHASE_TIMEOUT instead of hard-coding
+	10 seconds everywhere.
+
+2009-04-08  Vincent Untz  <vuntz@gnome.org>
+
 	* gnome-session/gsm-logout-dialog.c: (on_ck_request_completed): killed
 	(gsm_logout_dialog_init): don't connect to request-completed of the
 	consolekit object: we actually don't do anything in the callback
