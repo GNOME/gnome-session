@@ -1,5 +1,77 @@
 2009-04-08  Vincent Untz  <vuntz@gnome.org>
 
+	Make reboot and shutdown leave the session properly, by letting apps
+	exit before doing the real reboot/shutdown.
+
+	Note that because of the ConsoleKit policies, the ways it's handled
+	when there are more than one user logged in or when the policy always
+	require a password might be a bit different:
+	 - in the usual case (single user, no password required), everything
+	   works as expected.
+	 - in the multiple users case (password generally required once), we
+	   ask for the password before trying to exit the session.
+	 - if the password is required each time the ConsoleKit action is
+	   called, then we'll ask for the password only once, after having made
+	   all apps exit. If this doesn't work (wrong password), since the
+	   session is killed anyway, we log out and ask gdm to do the action.
+
+	* gnome-session/gsm-marshal.list: add new signature that we need
+	* gnome-session/gsm-consolekit.[ch]: add new privileges-completed
+	signal
+	(gsm_consolekit_class_init): add new signal
+	(gsm_consolekit_get_result_for_action): new, split from
+	gsm_consolekit_can_do_action()
+	(gsm_consolekit_can_do_action): ensure that the CK connection works
+	here (instead of requiring callers to do it), and use
+	gsm_consolekit_get_result_for_action()
+	(gsm_consolekit_is_session_for_other_user): new, ask ConsoleKit if a
+	session object is for a different user than the current user (ignoring
+	the login sessions)
+	(gsm_consolekit_is_single_user): new, determine if there's only a
+	single user logged in on this machine
+	(obtain_privileges_cb): new, PolicyKit callback when the privileges
+	were obtained/denied, to send the privileges-completed signal
+	(gsm_consolekit_obtain_privileges_for_action): new, obtain the
+	PolicyKit privileges for a specific action
+	(gsm_consolekit_get_privileges_for_actions): new, to know if we have
+	privileges for a set of actions, and request the privileges if needed
+	(gsm_consolekit_get_restart_privileges): new, trivial
+	(gsm_consolekit_get_stop_privileges): new, trivial
+	(gsm_consolekit_can_restart): do not ensure that the CK connection
+	works here, it will be done in gsm_consolekit_can_do_action()
+	(gsm_consolekit_can_stop): ditto
+
+	* gnome-session/gsm-manager.c: we add a logout type variable that lets
+	us remember what should be done when gnome-session exits.
+	(quit_request_completed): new, callback that will make gnome-session
+	exit after the ConsoleKit call to Stop/Restart has been done. If the
+	ConsoleKit call wasn't successful, we fallback on gdm (since we're in
+	the EXIT phase, and all apps have quitted, there's no point in not
+	asking gdm to do that).
+	(gsm_manager_quit): new, to do the right thing to log out depending on
+	what the user wanted to achieve when logging out.
+	(end_phase): use gsm_manager_quit() instead of directly calling
+	gtk_main_quit()
+	(cancel_end_session): reset the logout type to none
+	(do_attempt_reboot), (do_attempt_shutdown), (manager_attempt_reboot),
+	(manager_attempt_shutdown): killed/merged in
+	request_reboot/request_shutdown
+	(do_inhibit_dialog_action): renamed from do_dialog_action(); for
+	shutdown and reboot, we just do like logout and end the phase.
+	(inhibit_dialog_response): s/do_dialog_action/do_inhibit_dialog_action
+	(query_end_session_complete): add a comment about
+	gsm_inhibit_dialog_new to make it clear that the
+	GSM_LOGOUT_ACTION_LOGOUT parameter is fine for shutdown and reboot too
+	(request_reboot_privileges_completed): new, handle the fact that we got
+	the privileges from ConsoleKit to do the reboot.
+	(request_reboot): ask ConsoleKit for the privileges to reboot, and if
+	it doesn't work (no ConsoleKit), just end the phase
+	(request_shutdown_privileges_completed), (request_shutdown): see above
+	changes for reboot functions
+	(request_logout): set the logout type
+
+2009-04-08  Vincent Untz  <vuntz@gnome.org>
+
 	Remove the 1-second delay to display the inhibit dialog when an
 	application is blocking logging out.
 

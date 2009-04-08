@@ -84,6 +84,18 @@
 
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
+typedef enum
+{
+        GSM_MANAGER_LOGOUT_NONE,
+        GSM_MANAGER_LOGOUT_LOGOUT,
+        GSM_MANAGER_LOGOUT_REBOOT,
+        GSM_MANAGER_LOGOUT_REBOOT_INTERACT,
+        GSM_MANAGER_LOGOUT_REBOOT_GDM,
+        GSM_MANAGER_LOGOUT_SHUTDOWN,
+        GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT,
+        GSM_MANAGER_LOGOUT_SHUTDOWN_GDM
+} GsmManagerLogoutType;
+
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
@@ -103,6 +115,8 @@ struct GsmManagerPrivate
          * since it uses a sublist of all running client that replied in a
          * specific way */
         GSList                 *next_query_clients;
+        /* This is the action that will be done just before we exit */
+        GsmManagerLogoutType    logout_type;
 
         GtkWidget              *inhibit_dialog;
 
@@ -364,6 +378,70 @@ phase_num_to_name (guint phase)
 static void start_phase (GsmManager *manager);
 
 static void
+quit_request_completed (GsmConsolekit *consolekit,
+                        GError        *error,
+                        gpointer       user_data)
+{
+        GdmLogoutAction fallback_action = GPOINTER_TO_INT (user_data);
+
+        if (error != NULL) {
+                gdm_set_logout_action (fallback_action);
+        }
+
+        g_object_unref (consolekit);
+
+        gtk_main_quit ();
+}
+
+static void
+gsm_manager_quit (GsmManager *manager)
+{
+        GsmConsolekit *consolekit;
+
+        /* See the comment in request_reboot() for some more details about how
+         * this works. */
+
+        switch (manager->priv->logout_type) {
+        case GSM_MANAGER_LOGOUT_LOGOUT:
+                gtk_main_quit ();
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT:
+        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+
+                consolekit = gsm_get_consolekit ();
+                g_signal_connect (consolekit,
+                                  "request-completed",
+                                  G_CALLBACK (quit_request_completed),
+                                  GINT_TO_POINTER (GDM_LOGOUT_ACTION_REBOOT));
+                gsm_consolekit_attempt_restart (consolekit);
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+                gtk_main_quit ();
+                break;
+        case GSM_MANAGER_LOGOUT_SHUTDOWN:
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+
+                consolekit = gsm_get_consolekit ();
+                g_signal_connect (consolekit,
+                                  "request-completed",
+                                  G_CALLBACK (quit_request_completed),
+                                  GINT_TO_POINTER (GDM_LOGOUT_ACTION_SHUTDOWN));
+                gsm_consolekit_attempt_stop (consolekit);
+                break;
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
+                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+                gtk_main_quit ();
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
+        }
+}
+
+static void
 end_phase (GsmManager *manager)
 {
         g_debug ("GsmManager: ending phase %s\n",
@@ -403,7 +481,7 @@ end_phase (GsmManager *manager)
                 start_phase (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
-                gtk_main_quit ();
+                gsm_manager_quit (manager);
                 break;
         default:
                 g_assert_not_reached ();
@@ -811,6 +889,9 @@ cancel_end_session (GsmManager *manager)
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_RUNNING);
         manager->priv->forceful_logout = FALSE;
 
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
+        gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
+
         start_phase (manager);
 }
 
@@ -837,49 +918,6 @@ manager_switch_user (GsmManager *manager)
                 g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
                 g_error_free (error);
         }
-}
-
-
-static void
-do_attempt_reboot (GsmConsolekit *consolekit)
-{
-        if (gsm_consolekit_can_restart (consolekit)) {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-                gsm_consolekit_attempt_restart (consolekit);
-        } else {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
-        }
-}
-
-static void
-do_attempt_shutdown (GsmConsolekit *consolekit)
-{
-        if (gsm_consolekit_can_stop (consolekit)) {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-                gsm_consolekit_attempt_stop (consolekit);
-        } else {
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
-        }
-}
-
-static void
-manager_attempt_reboot (GsmManager *manager)
-{
-        GsmConsolekit *consolekit;
-
-        consolekit = gsm_get_consolekit ();
-        do_attempt_reboot (consolekit);
-        g_object_unref (consolekit);
-}
-
-static void
-manager_attempt_shutdown (GsmManager *manager)
-{
-        GsmConsolekit *consolekit;
-
-        consolekit = gsm_get_consolekit ();
-        do_attempt_shutdown (consolekit);
-        g_object_unref (consolekit);
 }
 
 static void
@@ -911,8 +949,8 @@ manager_attempt_suspend (GsmManager *manager)
 }
 
 static void
-do_dialog_action (GsmManager *manager,
-                  int         action)
+do_inhibit_dialog_action (GsmManager *manager,
+                          int         action)
 {
         switch (action) {
         case GSM_LOGOUT_ACTION_SWITCH_USER:
@@ -924,12 +962,12 @@ do_dialog_action (GsmManager *manager,
         case GSM_LOGOUT_ACTION_SLEEP:
                 manager_attempt_suspend (manager);
                 break;
+        /* If changing the code to make SHUTDOWN/REBOOT/LOGOUT cases different,
+         * then the call to gsm_inhibit_dialog_new() in
+         * query_end_session_complete() should be updated to pass the right
+         * action */
         case GSM_LOGOUT_ACTION_SHUTDOWN:
-                manager_attempt_shutdown (manager);
-                break;
         case GSM_LOGOUT_ACTION_REBOOT:
-                manager_attempt_reboot (manager);
-                break;
         case GSM_LOGOUT_ACTION_LOGOUT:
                 manager->priv->forceful_logout = TRUE;
                 end_phase (manager);
@@ -971,7 +1009,7 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
                 break;
         case GTK_RESPONSE_ACCEPT:
                 g_debug ("GsmManager: doing action %d", action);
-                do_dialog_action (manager, action);
+                do_inhibit_dialog_action (manager, action);
                 break;
         default:
                 g_assert_not_reached ();
@@ -1002,6 +1040,10 @@ query_end_session_complete (GsmManager *manager)
                 return;
         }
 
+        /* Note: GSM_LOGOUT_ACTION_SHUTDOWN and GSM_LOGOUT_ACTION_REBOOT are
+         * actually handled the same way as GSM_LOGOUT_ACTION_LOGOUT in the
+         * inhibit dialog; the action, if the button is clicked, will be to
+         * simply go to the next phase. */
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
                                                                 manager->priv->clients,
                                                                 GSM_LOGOUT_ACTION_LOGOUT);
@@ -2427,59 +2469,133 @@ gsm_manager_is_suspend_inhibited (GsmManager *manager)
 }
 
 static void
+request_reboot_privileges_completed (GsmConsolekit *consolekit,
+                                     gboolean       success,
+                                     gboolean       ask_later,
+                                     GError        *error,
+                                     GsmManager    *manager)
+{
+        /* make sure we disconnect the signal handler so that it's not called
+         * again next time the event is fired -- this can happen if the reboot
+         * is cancelled. */
+        g_signal_handlers_disconnect_by_func (consolekit,
+                                              request_reboot_privileges_completed,
+                                              manager);
+
+        g_object_unref (consolekit);
+
+        if (success) {
+                if (ask_later) {
+                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
+                } else {
+                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT;
+                }
+
+                end_phase (manager);
+        }
+}
+
+static void
 request_reboot (GsmManager *manager)
 {
+        GsmConsolekit *consolekit;
+        gboolean       success;
+
         g_debug ("GsmManager: requesting reboot");
 
-        /* shutdown uses logout inhibit */
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                manager_attempt_reboot (manager);
-                return;
-        }
+        /* We request the privileges before doing anything. There are a few
+         * different cases here:
+         *
+         *   - no ConsoleKit: we fallback on GDM
+         *   - no password required: everything is fine
+         *   - password asked once: we ask for it now. If the user enters it
+         *     fine, then all is great. If the user doesn't enter it fine, we
+         *     don't do anything (so no logout).
+         *   - password asked each time: we don't ask it for now since we don't
+         *     want to ask for it twice. Instead we'll ask for it at the very
+         *     end. If the user will enter it fine, then all is great again. If
+         *     the user doesn't enter it fine, then we'll just fallback to GDM.
+         *
+         * The last case (password asked each time) is a bit broken, but
+         * there's really nothing we can do about it. Generally speaking,
+         * though, the password will only be asked once (unless the system is
+         * configured in paranoid mode), and most probably only if there are
+         * more than one user connected. So the general case is that it will
+         * just work fine.
+         */
 
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_REBOOT);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
+        consolekit = gsm_get_consolekit ();
+        g_signal_connect (consolekit,
+                          "privileges-completed",
+                          G_CALLBACK (request_reboot_privileges_completed),
                           manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
+        success = gsm_consolekit_get_restart_privileges (consolekit);
+
+        if (!success) {
+                g_signal_handlers_disconnect_by_func (consolekit,
+                                                      request_reboot_privileges_completed,
+                                                      manager);
+                g_object_unref (consolekit);
+
+                manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_GDM;
+                end_phase (manager);
+        }
+}
+
+static void
+request_shutdown_privileges_completed (GsmConsolekit *consolekit,
+                                       gboolean       success,
+                                       gboolean       ask_later,
+                                       GError        *error,
+                                       GsmManager    *manager)
+{
+        /* make sure we disconnect the signal handler so that it's not called
+         * again next time the event is fired -- this can happen if the reboot
+         * is cancelled. */
+        g_signal_handlers_disconnect_by_func (consolekit,
+                                              request_shutdown_privileges_completed,
+                                              manager);
+
+        g_object_unref (consolekit);
+
+        if (success) {
+                if (ask_later) {
+                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
+                } else {
+                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN;
+                }
+
+                end_phase (manager);
+        }
 }
 
 static void
 request_shutdown (GsmManager *manager)
 {
+        GsmConsolekit *consolekit;
+        gboolean       success;
+
         g_debug ("GsmManager: requesting shutdown");
 
-        /* shutdown uses logout inhibit */
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                manager_attempt_shutdown (manager);
-                return;
-        }
+        /* See the comment in request_reboot() for some more details about how
+         * this works. */
 
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_SHUTDOWN);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
+        consolekit = gsm_get_consolekit ();
+        g_signal_connect (consolekit,
+                          "privileges-completed",
+                          G_CALLBACK (request_shutdown_privileges_completed),
                           manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
+        success = gsm_consolekit_get_stop_privileges (consolekit);
+
+        if (!success) {
+                g_signal_handlers_disconnect_by_func (consolekit,
+                                                      request_shutdown_privileges_completed,
+                                                      manager);
+                g_object_unref (consolekit);
+
+                manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_GDM;
+                end_phase (manager);
+        }
 }
 
 static void
@@ -2543,7 +2659,10 @@ request_logout (GsmManager *manager,
                 gboolean    forceful_logout)
 {
         g_debug ("GsmManager: requesting logout");
+
         manager->priv->forceful_logout = forceful_logout;
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
+
         end_phase (manager);
 }
 
