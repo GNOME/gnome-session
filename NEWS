@@ -1,3 +1,55 @@
+=================
+Version 2.26.0.90
+=================
+
+Note: while this is a tarball from a stable branch, this version should be
+considered as a test tarball. It contains some important changes to the session
+manager to fix various issues, and we want those changes to be tested before
+2.26.1.
+
+Depending on how D-Bus and ConsoleKit are configured on your system, you might
+need the patch from https://bugs.freedesktop.org/show_bug.cgi?id=20471 for your
+ConsoleKit configuration. This is required so it's possible for applications to
+be able to know if there are more than one user logged in on the machine.
+
+The two main fixes for this release are:
+ - gnome-session now lets applications properly exit on logout
+ - saving a session on logout is activated again
+
+- Update man pages (Vincent)
+- Let all processes exit cleanly on logout/reboot/shutdown (Vincent)
+- Use smaller icon size in inhibit dialog (Vincent)
+- Fix various crashes in inhibit dialog and during the logout process (Vincent)
+- Make the inhibit dialog look at desktop files from autostart directories too
+  (Vincent)
+- Use XDG_CONFIG_HOME to save the session and create the session directory with
+  the right permissions (Vincent)
+- Get the discard command from XSMP clients and save it when saving a session,
+  and use it when removing a saved session (Vincent)
+- Properly handle XSMP clients that don't return a restart command when saving
+  the session (Vincent)
+- Various XSMP protocol fixes (Vincent)
+- When saving the session, ask the XSMP clients to save the global and local
+  states when needed instead of just asking them to save their global states.
+  Else, clients won't appear on next login (Vincent)
+- Allow XSMP clients to interact during the logout (and cancel the logout),
+  using the inhibit infrastructure (Vincent)
+- Allow clients to specify that they want to be ended last (Vincent)
+- Hide deprecated command-line options from gnome-session-save --help (Vincent)
+- Re-enable session saving (Vincent)
+- Ignore XSyncAlarmDestroyed events, to avoid filling ~/.xsession-errors
+  (Matthias Clasen)
+- Various code cleanups (Vincent)
+
+Translations:
+- Updated ar: Anas Afif Emad
+- Updated el: Jennie Petoumenou
+- Updated hu: Gabor Kelemen
+- Updated kn: Shankar Prasad
+- Updated nb: Kjartan Maraas
+- Updated pa: A S Alam
+- Updated ru: Nickolay V. Shmyrev
+
 ==============
 Version 2.26.0
 ==============
