@@ -962,10 +962,6 @@ do_inhibit_dialog_action (GsmManager *manager,
         case GSM_LOGOUT_ACTION_SLEEP:
                 manager_attempt_suspend (manager);
                 break;
-        /* If changing the code to make SHUTDOWN/REBOOT/LOGOUT cases different,
-         * then the call to gsm_inhibit_dialog_new() in
-         * query_end_session_complete() should be updated to pass the right
-         * action */
         case GSM_LOGOUT_ACTION_SHUTDOWN:
         case GSM_LOGOUT_ACTION_REBOOT:
         case GSM_LOGOUT_ACTION_LOGOUT:
@@ -1020,6 +1016,8 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
 static void
 query_end_session_complete (GsmManager *manager)
 {
+        GsmLogoutAction action;
+
         g_debug ("GsmManager: query end session complete");
 
         /* Remove the timeout since this can be called from outside the timer
@@ -1040,13 +1038,34 @@ query_end_session_complete (GsmManager *manager)
                 return;
         }
 
+        switch (manager->priv->logout_type) {
+        case GSM_MANAGER_LOGOUT_LOGOUT:
+                action = GSM_LOGOUT_ACTION_LOGOUT;
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT:
+        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
+                action = GSM_LOGOUT_ACTION_REBOOT;
+                break;
+        case GSM_MANAGER_LOGOUT_SHUTDOWN:
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
+                action = GSM_LOGOUT_ACTION_SHUTDOWN;
+                break;
+        default:
+                g_warning ("Unexpected logout type %d when creating inhibit dialog",
+                           manager->priv->logout_type);
+                action = GSM_LOGOUT_ACTION_LOGOUT;
+                break;
+        }
+
         /* Note: GSM_LOGOUT_ACTION_SHUTDOWN and GSM_LOGOUT_ACTION_REBOOT are
          * actually handled the same way as GSM_LOGOUT_ACTION_LOGOUT in the
          * inhibit dialog; the action, if the button is clicked, will be to
          * simply go to the next phase. */
         manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
                                                                 manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_LOGOUT);
+                                                                action);
 
         g_signal_connect (manager->priv->inhibit_dialog,
                           "response",

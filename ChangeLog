@@ -1,3 +1,11 @@
+2009-04-09  Vincent Untz  <vuntz@gnome.org>
+
+	* gnome-session/gsm-manager.c: (do_inhibit_dialog_action): remove
+	comment that is now wrong
+	(query_end_session_complete): pass the right action to the inhibit
+	dialog so that the button doesn't always tell "Log out anyway", but
+	"Shutdown anyway" when it's about shutting down.
+
 2009-04-08  Vincent Untz  <vuntz@gnome.org>
 
 	* configure.in: post-release bump to 2.26.1
