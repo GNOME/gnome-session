@@ -399,12 +399,12 @@ require_dbus_session (int      argc,
 
         /* +2 for our new arguments, +1 for NULL */
         new_argv = g_malloc (argc + 3 * sizeof (*argv));
-        
+
         new_argv[0] = "dbus-launch";
         new_argv[1] = "--exit-with-session";
-        new_argv[2] = argv[0];
-        for (i = 1; i < argc - 1; i++)
+        for (i = 0; i < argc; i++) {
                 new_argv[i + 2] = argv[i];
+	}
         new_argv[i + 2] = NULL;
         
         if (!execvp ("dbus-launch", new_argv)) {

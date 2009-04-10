@@ -1,5 +1,12 @@
 2009-04-10  Vincent Untz  <vuntz@gnome.org>
 
+	* gnome-session/main.c: (require_dbus_session): when relaunching with
+	dbus-launch, correctly copy arguments that were passed to
+	gnome-session over to the new call
+	Fix bug #574310.
+
+2009-04-10  Vincent Untz  <vuntz@gnome.org>
+
 	* tools/gnome-session-save.c: (main): make gnome-session-save --kill
 	--silent work as --force-logout (no inhibitor dialog).
 	Fix bug #574982.
