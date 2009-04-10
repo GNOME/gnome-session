@@ -274,7 +274,7 @@ main (int argc, char *argv[])
 
         if (kill_session) {
                 if (no_interaction)
-                        logout = TRUE;
+                        force_logout = TRUE;
                 else
                         logout_dialog = TRUE;
         }
