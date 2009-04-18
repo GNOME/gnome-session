@@ -1,27 +1,26 @@
 # translation of gnome-session.HEAD.po to Arabic
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
-#
 # Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
 # Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007, 2008.
 # Anas Husseini <linux.anas@gmail.com>, 2007.
 # Anas Afif Emad <anas.e87@gmail.com>, 2008.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&component=general\n"
-"POT-Creation-Date: 2009-03-17 09:53+0000\n"
-"PO-Revision-Date: 2008-09-20 17:03+0200\n"
-"Last-Translator: Anas Afif Emad <anas.e87@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-18 22:12+0200\n"
+"PO-Revision-Date: 2009-04-18 22:18+0300\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.3.1\n"
 
 #: ../capplet/gsm-app-dialog.c:126
 msgid "Select Command"
@@ -64,9 +63,8 @@ msgid "Program"
 msgstr "البرنامج"
 
 #: ../capplet/gsm-properties-dialog.c:1477
-#, fuzzy
 msgid "Startup Applications Preferences"
-msgstr "تفضيلات الجلسة"
+msgstr "تفضيلات برمجيات بدء التشغيل"
 
 #: ../capplet/main.c:37 ../gnome-session/main.c:440
 msgid "Version of this application"
@@ -123,7 +121,6 @@ msgid "List of applications that are part of the default session."
 msgstr "قائمة بالتطبيقات الموجودة في الجلسة المبدئية"
 
 #: ../data/gnome-session.schemas.in.h:6
-#, fuzzy
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -132,9 +129,9 @@ msgid ""
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
-"قائمة بالمكونات المطلوبة كجزء من الجلسة. (كل عنصر يسمي مفتاحا تحت \"/desktop/"
-"gnome/session/required-components\".) عادة لن يسمح عنصر التحكم في الجلسات "
-"بحذف مكون مطلوب من الجلسة، وسيعيد مدير الجلسات أي عناصر مطلوبة تحذف."
+"قائمة بالمكونات المطلوبة كجزء من الجلسة. (كل عنصر يسمي مفتاحا تحت "
+"\"/desktop/gnome/session/required-components\".) عادة لن يسمح عنصر التحكم في "
+"الجلسات بحذف مكون مطلوب من الجلسة، وسيعيد مدير الجلسات أي عناصر مطلوبة تحذف."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
@@ -175,7 +172,7 @@ msgstr ""
 #: ../data/gnome-session.schemas.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
-msgstr ""
+msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
 #: ../data/gnome-session.schemas.in.h:16
 msgid ""
@@ -204,7 +201,7 @@ msgstr ""
 
 #: ../data/gnome-session.schemas.in.h:19
 msgid "Time before session is considered idle"
-msgstr ""
+msgstr "مدة الانتظار قبل اعتبار الجلسة خاملة"
 
 #: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
@@ -215,7 +212,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ما زالت بعض البرامج تعمل:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../gnome-session/gsm-inhibit-dialog.c:668
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -223,11 +220,11 @@ msgstr "بانتظار انتهاء البرنامج. مقاطعة هذا الب
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
-msgstr ""
+msgstr "اختر التطبيقات التي تريد تشغيلها عند ولوجك"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
-msgstr ""
+msgstr "تطبيقات بدء التشغيل"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
@@ -346,144 +343,120 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "الأيقونة '%s' غير موجودة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:616
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:667
 msgid "A program is still running:"
 msgstr "ما زال أحد البرامج يعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid "Some programs are still running:"
 msgstr "ما زالت بعض البرامج تعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:672
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "بانتظار انتهاء البرامج. مقاطعة هذه البرامج قد يتسبب في فقد بيانات."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Switch User Anyway"
 msgstr "بدّل المستخدم بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Logout Anyway"
 msgstr "اخرج بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:906
 msgid "Suspend Anyway"
 msgstr "علّق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:909
 msgid "Hibernate Anyway"
 msgstr "أسبِت بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:912
 msgid "Shutdown Anyway"
 msgstr "أغلق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:915
 msgid "Reboot Anyway"
 msgstr "أعد التشغيل بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:923
 msgid "Lock Screen"
 msgstr "أوصد الشاشة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:926
 msgid "Cancel"
 msgstr "ألغ"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
-#, fuzzy, c-format
+#: ../gnome-session/gsm-logout-dialog.c:269
+#, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك حالا."
-msgstr[1] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك خلال ثانية واحدة."
-msgstr[2] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك خلال ثانيتين."
-msgstr[3] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك خلال %Id ثوان."
-msgstr[4] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك خلال %Id ثانية."
-msgstr[5] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إخراجك خلال %Id ثانية."
+msgstr[0] "سيتم إخراجك حالا."
+msgstr[1] "سيتم إخراجك خلال ثانية واحدة."
+msgstr[2] "سيتم إخراجك خلال ثانيتين."
+msgstr[3] "سيتم إخراجك خلال %Id ثوان."
+msgstr[4] "سيتم إخراجك خلال %Id ثانية."
+msgstr[5] "سيتم إخراجك خلال %Id ثانية."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
-#, fuzzy, c-format
+#: ../gnome-session/gsm-logout-dialog.c:277
+#, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام حالا."
-msgstr[1] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام خلال ثانية واحدة."
-msgstr[2] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام خلال ثانيتين."
-msgstr[3] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام خلال %Id ثوان."
-msgstr[4] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام خلال %Id ثانية."
-msgstr[5] ""
-"حاليا أنت والج باسم \"%s\".\n"
-"سيتم إطفاء النظام خلال %Id ثوان."
+msgstr[0] "سيتم إطفاء النظام حالا."
+msgstr[1] "سيتم إطفاء النظام خلال ثانية واحدة."
+msgstr[2] "سيتم إطفاء النظام خلال ثانيتين."
+msgstr[3] "سيتم إطفاء النظام خلال %Id ثوان."
+msgstr[4] "سيتم إطفاء النظام خلال %Id ثانية."
+msgstr[5] "سيتم إطفاء النظام خلال %Id ثوان."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:309
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr ""
+msgstr "حاليا أنت والج باسم \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "أأخرج من هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "ب_دّل المستخدم"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "ا_خرج"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "أأطفئ هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "_علّق"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "أ_سبِت"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "أعِد الت_شغيل"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
-#: ../gnome-session/gsm-manager.c:948 ../gnome-session/gsm-manager.c:1636
+#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
 msgid "Not responding"
 msgstr "لا يستجيب"
 
-#: ../gnome-session/gsm-xsmp-client.c:1149
+#: ../gnome-session/gsm-xsmp-client.c:1195
 msgid "This program is blocking log out."
 msgstr "يعيق هذا البرنامج الخروج."
 
@@ -499,10 +472,10 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "تعذّر إنشاء مقبس استماع ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:282
-#, fuzzy, c-format
+#: ../gnome-session/gsm-util.c:354
+#, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "تعذّر بدء جلسة الولوج (وتعذّر الاتصال بالخادوم س)"
+msgstr "تعذّر بدء جلسة الولوج (وتعذّر الاتصال بالخادوم الرسومي)"
 
 #: ../gnome-session/main.c:436
 msgid "Override standard autostart directories"
@@ -533,46 +506,47 @@ msgid "GNOME Splash Screen"
 msgstr "شاشة بداية جنوم"
 
 #: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "اضبط اسم الجلسة الحالية"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "الاسم"
-
-#: ../tools/gnome-session-save.c:66
 msgid "Log out"
 msgstr "اخرج"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "اخرج، متجاهلاً أية معيقات موجودة"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "أعرض حوار تسجيل الخروج"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "أعرض حوار إيقاف التشغيل"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "اقتل الجلسة"
-
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "استخدم صناديق الحوار للأخطاء"
 
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "اضبط اسم الجلسة الحالية"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "الاسم"
+
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "اقتل الجلسة"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "لا تطلب تأكيدا"
 
-#: ../tools/gnome-session-save.c:121 ../tools/gnome-session-save.c:131
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "تعذّر الاتصال بمدير الجلسات"
 
-#: ../tools/gnome-session-save.c:274
+#: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "تم استدعاء البرنامج بخيارات متضاربة"
 
