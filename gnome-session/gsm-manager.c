@@ -2349,7 +2349,7 @@ gsm_manager_init (GsmManager *manager)
         /* GConf setup */
         gconf_client_add_dir (manager->priv->gconf_client,
                               KEY_DESKTOP_DIR,
-                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+                              GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
         gconf_client_add_dir (manager->priv->gconf_client,
                               KEY_LOCKDOWN_DIR,
                               GCONF_CLIENT_PRELOAD_NONE, NULL);
