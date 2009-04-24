@@ -46,3 +46,5 @@ libeggdesktopfile_la_LIBADD =            \
 libeggdesktopfile_la_SOURCES =           \
 	eggdesktopfile.c                 \
 	eggdesktopfile.h
+
+-include $(top_srcdir)/git.mk

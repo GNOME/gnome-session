@@ -52,4 +52,6 @@ MAINTAINERCLEANFILES =		\
 clean-local:
 	rm -f *~
 	rm -f gnome-session.html
-	rm -f *.ref.xml
+
+GITIGNOREFILES = gnome-session.html
+-include $(top_srcdir)/git.mk

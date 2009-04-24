@@ -17,3 +17,5 @@ gnome_session_save_LDADD =			\
 
 gnome_session_save_SOURCES =			\
 	gnome-session-save.c
+
+-include $(top_srcdir)/git.mk

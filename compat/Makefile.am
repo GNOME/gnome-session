@@ -49,3 +49,5 @@ CLEANFILES =					\
 
 DISTCLEANFILES =					\
 	$(default_session_in_in_files)
+
+-include $(top_srcdir)/git.mk

@@ -51,3 +51,5 @@ CLEANFILES =					\
 
 DISTCLEANFILES =				\
 	$(settings_in_files)
+
+-include $(top_srcdir)/git.mk

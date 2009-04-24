@@ -158,3 +158,5 @@ EXTRA_DIST =						\
 MAINTAINERCLEANFILES =                  \
         *~                              \
         Makefile.in
+
+-include $(top_srcdir)/git.mk
