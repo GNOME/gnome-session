@@ -356,7 +356,7 @@ setup_condition_monitor (GsmAutostartApp *app)
 
                 gconf_client_add_dir (client,
                                       dir,
-                                      GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
+                                      GCONF_CLIENT_PRELOAD_NONE, NULL);
                 g_free (dir);
 
                 app->priv->condition_notify_id = gconf_client_notify_add (client,
