@@ -1,4 +1,5 @@
 NULL =
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
 
 INCLUDES =					\
 	-I$(top_srcdir)/egg			\
@@ -31,7 +32,7 @@ gnome_session_splash_LDADD =			\
 @INTLTOOL_DESKTOP_RULE@
 
 %.desktop.in: %.desktop.in.in Makefile.am
-	sed -e 's,\@helperdir\@,$(helperdir),' \
+	$(QUIET_GEN)sed -e 's,\@helperdir\@,$(helperdir),' \
 		< $< > $@
 
 EXTRA_DIST =					\

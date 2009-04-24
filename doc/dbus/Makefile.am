@@ -1,4 +1,5 @@
 NULL =
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
 
 SPEC_XML_FILES =			\
 	gnome-session.xml		\
@@ -14,7 +15,7 @@ htmldocdir = $(docdir)/dbus
 htmldoc_DATA = gnome-session.html
 
 gnome-session.html : $(SPEC_XML_FILES)
-	$(XMLTO) xhtml-nochunks -m $(top_srcdir)/doc/dbus/config.xsl gnome-session.xml
+	$(QUIET_GEN)$(XMLTO) xhtml-nochunks -m $(top_srcdir)/doc/dbus/config.xsl gnome-session.xml
 
 endif # DOCBOOK_DOCS_ENABLED
 
@@ -26,13 +27,13 @@ BUILT_SOURCES =	\
 	$(NULL)
 
 org.gnome.SessionManager.ref.xml : $(top_srcdir)/gnome-session/org.gnome.SessionManager.xml spec-to-docbook.xsl
-	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
+	$(QUIET_GEN)$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
 org.gnome.SessionManager.Client.ref.xml : $(top_srcdir)/gnome-session/org.gnome.SessionManager.Client.xml spec-to-docbook.xsl
-	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
+	$(QUIET_GEN)$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
 org.gnome.SessionManager.ClientPrivate.ref.xml : $(top_srcdir)/gnome-session/org.gnome.SessionManager.ClientPrivate.xml spec-to-docbook.xsl
-	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
+	$(QUIET_GEN)$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
 org.gnome.SessionManager.Inhibitor.ref.xml : $(top_srcdir)/gnome-session/org.gnome.SessionManager.Inhibitor.xml spec-to-docbook.xsl
-	$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
+	$(QUIET_GEN)$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
 
 EXTRA_DIST =				\
 	spec-to-docbook.xsl		\

@@ -1,3 +1,5 @@
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
 INCLUDES =					\
 	$(WARN_CFLAGS)				\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
@@ -35,7 +37,7 @@ gnome_settings_daemon_helper_LDADD =		\
 @INTLTOOL_DESKTOP_RULE@
 
 %.desktop.in: %.desktop.in.in Makefile.am
-	sed -e 's,\@helperdir\@,$(helperdir),' \
+	$(QUIET_GEN)sed -e 's,\@helperdir\@,$(helperdir),' \
 		< $< > $@
 
 EXTRA_DIST =					\
