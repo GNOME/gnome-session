@@ -1790,7 +1790,7 @@ on_client_end_session_response (GsmClient  *client,
                 return;
         }
 
-        g_debug ("GsmManager: Response from end session request: is-ok=%d do-last=%d cancel=%d reason=%s", is_ok, do_last, cancel, reason);
+        g_debug ("GsmManager: Response from end session request: is-ok=%d do-last=%d cancel=%d reason=%s", is_ok, do_last, cancel, reason ? reason :"");
 
         if (cancel) {
                 cancel_end_session (manager);
