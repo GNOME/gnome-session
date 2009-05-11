@@ -1,4 +1,4 @@
-# translation of gnome-session.HEAD.te.po to Telugu
+# translation of te.po to Telugu
 # Telugu translation of gnome-session.
 # Copyright (C) 2007 Swecha Telugu Localisation team <localisation@swecha.org>
 # This file is distributed under the same license as the gnome-session package.
@@ -9,10 +9,10 @@
 # Krishna Babu K <kkrothap@redhat.com>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD.te\n"
+"Project-Id-Version: te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
 "POT-Creation-Date: 2009-02-13 22:26+0000\n"
-"PO-Revision-Date: 2009-03-11 13:29+0530\n"
+"PO-Revision-Date: 2009-05-11 14:07+0530\n"
 "Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
 "Language-Team: Telugu <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,18 +20,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 
 #: ../capplet/gsm-app-dialog.c:126
-#, fuzzy
 #| msgid "_Command:"
 msgid "Select Command"
-msgstr "ఆదేశం"
+msgstr "ఆదేశం యెంపికచేయుము"
 
 #: ../capplet/gsm-app-dialog.c:187
-#, fuzzy
 #| msgid "Edit Startup Program"
 msgid "Add Startup Program"
-msgstr "ప్రారంభ కార్యక్రమాన్ని సరిచేయు"
+msgstr "ప్రారంభ కార్యక్రమాన్ని జతచేయుము"
 
 #: ../capplet/gsm-app-dialog.c:191
 msgid "Edit Startup Program"
@@ -58,7 +57,6 @@ msgid "Enabled"
 msgstr "క్రియాశీలీకరించబడిన"
 
 #: ../capplet/gsm-properties-dialog.c:1292
-#, fuzzy
 #| msgid "Action"
 msgid "Icon"
 msgstr "ప్రతిమ"
@@ -69,7 +67,7 @@ msgstr "కార్యక్రమం"
 
 #: ../capplet/gsm-properties-dialog.c:1453
 msgid "Startup Applications Preferences"
-msgstr ""
+msgstr "ప్రారంభ అనువర్తనముల అభీష్టములు"
 
 #: ../capplet/main.c:37 ../gnome-session/main.c:525
 msgid "Version of this application"
@@ -91,29 +89,26 @@ msgstr "SPI రిజిస్ట్రీ వ్రాపర్ వద్ద"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
-msgstr ""
+msgstr "GNOME అమరికల డెమోన్ సహాయకి"
 
 #: ../data/gnome.desktop.in.h:1
-#, fuzzy
 #| msgid "NAME"
 msgid "GNOME"
-msgstr "గ్నోమ్"
+msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr ""
+msgstr "ఈ విభాగము GNOMEనకు లాగ్ చేస్తుంది"
 
 #: ../data/gnome-session.schemas.in.h:1
-#, fuzzy
 #| msgid "Kill session"
 msgid "Default session"
-msgstr "సమకూర్పును  చంపుము"
+msgstr "అప్రమేయ విభాగము"
 
 #: ../data/gnome-session.schemas.in.h:2
-#, fuzzy
 #| msgid "Window Manager"
 msgid "File Manager"
-msgstr "దస్త్రాల అభికర్త"
+msgstr "దస్త్ర నిర్వాహకి"
 
 #: ../data/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -128,10 +123,9 @@ msgstr ""
 "ఇచ్ఛాపూర్వకంగా దాచుతుంది. "
 
 #: ../data/gnome-session.schemas.in.h:5
-#, fuzzy
 #| msgid "The order in which applications are started in the session."
 msgid "List of applications that are part of the default session."
-msgstr "సమకూర్పులో  కార్యక్షేత్రాలు మొదలైన క్రమం."
+msgstr "అప్రమేయ విభాగమునందు భాగస్వామ్యం గలిగిన అనువర్తనముల జాబితా."
 
 #: ../data/gnome-session.schemas.in.h:6
 msgid ""
@@ -142,13 +136,18 @@ msgid ""
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
+"విభాగమునందు భాగముగా అవసరమైన మూలకముల(కాంపోనెంట్సు)ను జాబితా చేయుము. (ప్రతి "
+"మూలకము \"/desktop/gnome/session/required_components\" క్రింద వొక కీకు నామము "
+"వుంచుతుంది). ప్రారంభపు అనువర్తనముల ఆభీష్టాల సాధనం సాధారణంగా విభాగమునుండి "
+"అవసరమైన మూలకమును తీసివేయుటకు వినియోగదారులను అనుమతించదు, వొకవేళ వారు "
+"తీసివేసినట్లైతే విభాగపు నిర్వాహకి అవసరమైన మూలకాలను మరలా తిప్పి విభాగమునకు లాగిన్ "
+"సమయమందు స్వయంచాలకంగా జతచేస్తుంది."
 
 #: ../data/gnome-session.schemas.in.h:7
 msgid "Logout prompt"
 msgstr "నిష్క్రమణ ద్వారం"
 
 #: ../data/gnome-session.schemas.in.h:8
-#, fuzzy
 #| msgid "The Panel"
 msgid "Panel"
 msgstr "ప్యానల్"
@@ -159,7 +158,7 @@ msgstr "స్ప్లాష్ తెర  ప్రవేశానికి �
 
 #: ../data/gnome-session.schemas.in.h:10
 msgid "Required session components"
-msgstr ""
+msgstr "అవసరమైన విభాగపు మూలకములు"
 
 #: ../data/gnome-session.schemas.in.h:11
 msgid "Save sessions"
@@ -178,6 +177,8 @@ msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
+"దస్త్ర నిర్వాహిక డెస్కుటాప్ ప్రతిమలను అందిస్తుంది మరియు మీరు దాచిన దస్త్రములతో మీరు "
+"యింటరాక్టు అగుటకు అనుమతించును."
 
 #: ../data/gnome-session.schemas.in.h:15
 msgid "The number of minutes of inactivity before the session is considered idle."
@@ -188,12 +189,16 @@ msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
+"ఆ ప్యానల్ అనునది పైన కాని లేదా తెర క్రిందవైపున కాని పట్టీను అందిస్తుంది, అది మెనూలను, "
+"విండొ జాబితాను, స్థితి ప్రతిమలను, గడియారాన్ని, మొదలైనవి అందిస్తుంది."
 
 #: ../data/gnome-session.schemas.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
+"విండో నిర్వాహిక అనునది ప్రోగ్రామ్ అది శీర్షిక పట్టీని మరియు హద్దులను విండోలచూట్టూ గీస్తుంది, "
+"మరియు విండోను పునఃపరిమాణం చేయుటకు కదుల్చుటకు మిమ్ములను అనుమతిస్తుంది."
 
 #: ../data/gnome-session.schemas.in.h:18
 msgid ""
@@ -214,7 +219,7 @@ msgstr "గవాక్ష నిర్వాహకి"
 
 #: ../data/gsm-inhibit-dialog.glade.h:1
 msgid "<b>Some programs are still running:</b>"
-msgstr ""
+msgstr "<b>కొన్ని ప్రోగ్రామ్లు యింకనూ నడుచుచున్నవి:</b>"
 
 #: ../data/gsm-inhibit-dialog.glade.h:2
 #: ../gnome-session/gsm-inhibit-dialog.c:633
@@ -222,46 +227,44 @@ msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
 msgstr ""
+"ప్రోగ్రాము ముగింపు కొరకు వేచివుంది.  ప్రోగ్రామును ఆటంకపరచుట అనునది మీరు "
+"పనిని కొల్పోవుటకు కారణం కావచ్చును."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
-msgstr ""
+msgstr "మీరు లాగిన్ అయినప్పుడు ఏ అనువర్తనములు ప్రారంభము కావలెనో యెంచుకొనుము"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
-msgstr ""
+msgstr "ప్రారంభ అనువర్తనములు"
 
 #: ../data/session-properties.glade.h:1
 msgid "Additional startup _programs:"
 msgstr "అదనపు  ప్రారంభ కార్యక్రమాలు"
 
 #: ../data/session-properties.glade.h:2
-#, fuzzy
 #| msgid "_Browse..."
 msgid "Browse..."
-msgstr "అన్వేషణ..."
+msgstr "అన్వేషించుము..."
 
 #: ../data/session-properties.glade.h:3
-#, fuzzy
 #| msgid "_Command:"
 msgid "Co_mmand:"
 msgstr "ఆదేశం (_m):"
 
 #: ../data/session-properties.glade.h:4
-#, fuzzy
 #| msgid "Co_mment:"
 msgid "Comm_ent:"
-msgstr "వ్యాఖ్య"
+msgstr "వ్యాఖ్య (_e):"
 
 #: ../data/session-properties.glade.h:5
-#, fuzzy
 #| msgid "Session Options"
 msgid "Options"
-msgstr "ఇచ్ఛాపూర్వకాలు"
+msgstr "ఐచ్చికములు"
 
 #: ../data/session-properties.glade.h:6
 msgid "Sessions Preferences"
-msgstr ""
+msgstr "విభాగముల అభీష్టములు"
 
 #: ../data/session-properties.glade.h:7
 msgid "Startup Programs"
@@ -276,10 +279,9 @@ msgid "_Name:"
 msgstr "పేరు"
 
 #: ../data/session-properties.glade.h:10
-#, fuzzy
 #| msgid "_Remember currently running applications"
 msgid "_Remember Currently Running Application"
-msgstr "_ప్రస్తుతము నడుస్తున్న కార్యక్షేత్రాలను గుర్తుంచుకొనుము"
+msgstr "ప్రస్తుతము నడుస్తున్న అనువర్తనమును గుర్తుంచుకొనుము (_R)"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -292,7 +294,7 @@ msgid "Unrecognized desktop file Version '%s'"
 msgstr "గుర్తించబడని డెస్కుటాపు ఫైలు వర్షన్ '%s'"
 
 #: ../egg/eggdesktopfile.c:958
-#, fuzzy, c-format
+#, c-format
 #| msgid "Starting"
 msgid "Starting %s"
 msgstr "%s ప్రారంభిస్తోంది"
@@ -318,10 +320,9 @@ msgid "Not a launchable item"
 msgstr "దించదగిన అంశము కాదు"
 
 #: ../egg/eggsmclient.c:185
-#, fuzzy
 #| msgid "Could not connect to the session manager"
 msgid "Disable connection to session manager"
-msgstr "సెషన్ నిర్వాహికకు అనుసంధానమును అచేతనము చేయుము"
+msgstr "విభాగము నిర్వాహికకు అనుసంధానమును అచేతనము చేయుము"
 
 #: ../egg/eggsmclient.c:188
 msgid "Specify file containing saved configuration"
@@ -332,26 +333,23 @@ msgid "FILE"
 msgstr "FILE"
 
 #: ../egg/eggsmclient.c:191
-#, fuzzy
 #| msgid "Specify a session name to load"
 msgid "Specify session management ID"
-msgstr "సెషన్ నిర్వహణా IDను తెలుపుము"
+msgstr "విభాగము నిర్వహణా IDను తెలుపుము"
 
 #: ../egg/eggsmclient.c:191
 msgid "ID"
 msgstr "ఐడి"
 
 #: ../egg/eggsmclient.c:245
-#, fuzzy
 #| msgid "Session Options"
 msgid "Session Management Options"
-msgstr "సమకూర్పు ఇఛ్ఛాపూర్వకాలు"
+msgstr "విభాగము నిర్వహణా ఐచ్చికములు"
 
 #: ../egg/eggsmclient.c:246
-#, fuzzy
 #| msgid "Session Options"
 msgid "Show Session Management options"
-msgstr "సమకూర్పు ఇఛ్ఛాపూర్వకాలు"
+msgstr "విభాగము నిర్వహణా ఐచ్చికములను చూపుము"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -359,6 +357,8 @@ msgid ""
 "There is a problem with the configuration server.\n"
 "(%s exited with status %d)"
 msgstr ""
+"ఆకృతీకరణ సేవికతో అక్కడ కొంత సమస్యవుంది.\n"
+"(%s అనునది %d స్థితితో నిష్క్రమించినది)"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:256
 #, c-format
@@ -371,49 +371,47 @@ msgstr "అపరిచిత"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:632
 msgid "A program is still running:"
-msgstr ""
+msgstr "ఒక ప్రోగ్రామ్ యిప్పటికీ నడుచుచున్నది:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:636
 msgid "Some programs are still running:"
-msgstr ""
+msgstr "కొన్ని ప్రోగ్రాములు యిప్పటికి నడుచుచున్నవి:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:637
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr ""
+"ప్రాగ్రాముల ముగింపు కొరకు వేచివుంది.  ఈ ప్రోగ్రాములను ఆటంకపరచుట అనునది మీ పని "
+"కోల్పోవుటకు కారణం కావచ్చును."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:865
 msgid "Switch User Anyway"
-msgstr ""
+msgstr "ఏమైనప్పటికి వినియోగదారిని మార్చుము"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:868
-#, fuzzy
 #| msgid "Log in Anyway"
 msgid "Logout Anyway"
-msgstr "ఎలాగైనా ప్రవేశించుము"
+msgstr "ఎలాగైనా లాగ్అవుట్ అవ్వుము"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:871
 msgid "Suspend Anyway"
-msgstr ""
+msgstr "ఎలాగైనా అర్దాంతరముగా నిలిపివేయి"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:874
-#, fuzzy
 #| msgid "Log in Anyway"
 msgid "Hibernate Anyway"
-msgstr "ఎలాగైనా ప్రవేశించుము"
+msgstr "ఎలాగైనా హైబర్నేట్ చేయుము"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:877
-#, fuzzy
 #| msgid "Log in Anyway"
 msgid "Shutdown Anyway"
-msgstr "ఎలాగైనా ప్రవేశించుము"
+msgstr "ఎలాగైనా మూసివేయుము"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:880
-#, fuzzy
 #| msgid "Log in Anyway"
 msgid "Reboot Anyway"
-msgstr "ఎలాగైనా ప్రవేశించుము"
+msgstr "ఎలాగైనా పునఃప్రారంభించుము"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Lock Screen"
@@ -427,20 +425,20 @@ msgstr "రద్దు"
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "మీరు స్వయంచాలకంగా %d సేకనులో లాగ్అవుట్ అవుతారు."
+msgstr[1] "మీరు స్వయంచాలకంగా %d సెకనులలో లాగ్అవుట్ అవుతారు."
 
 #: ../gnome-session/gsm-logout-dialog.c:292
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "సిస్టమ్ స్వయంచాలకంగా %d సెకనులో మూసివేయబడుతుంది."
+msgstr[1] "సిస్టమ్ స్వయంచాలకంగా %d సెకనులలో మూసివేయబడుతుంది."
 
 #: ../gnome-session/gsm-logout-dialog.c:324
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr ""
+msgstr "మీరు ప్రస్తుతం \"%s\" వలె లాగై వున్నారు."
 
 #: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Log out of this system now?"
@@ -451,10 +449,9 @@ msgid "_Switch User"
 msgstr "వినియోగదారున్ని మార్చు(_S)"
 
 #: ../gnome-session/gsm-logout-dialog.c:404
-#, fuzzy
 #| msgid "_Log out"
 msgid "_Log Out"
-msgstr "_నిష్క్రమణ ద్వారం"
+msgstr "లాగ్అవుట్ (_L)"
 
 #: ../gnome-session/gsm-logout-dialog.c:410
 msgid "Shut down this system now?"
@@ -462,56 +459,56 @@ msgstr "ఈ సిస్టమ్ ను ఇప్పుడే మూసివ�
 
 #: ../gnome-session/gsm-logout-dialog.c:416
 msgid "S_uspend"
-msgstr ""
+msgstr "అర్ధాంతరంగానిలిపివేయి (_u)"
 
 #: ../gnome-session/gsm-logout-dialog.c:422
 msgid "_Hibernate"
-msgstr ""
+msgstr "షుప్తావస్థ (_H)"
 
 #: ../gnome-session/gsm-logout-dialog.c:428
-#, fuzzy
 #| msgid "Restart"
 msgid "_Restart"
-msgstr "_పున:ప్రారంభించు"
+msgstr "పునఃప్రారంభించు (_R)"
 
 #: ../gnome-session/gsm-logout-dialog.c:438
-#, fuzzy
 #| msgid "Sh_ut down"
 msgid "_Shut Down"
-msgstr "మూయడం"
+msgstr "మూసివేయి (_S)"
 
 #: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
 msgid "Not responding"
-msgstr ""
+msgstr "స్పందించుటలేదు"
 
 #: ../gnome-session/gsm-xsmp-client.c:989
 msgid "This program is blocking log out."
-msgstr ""
+msgstr "ఈ ప్రోగ్రామ్ లాగ్అవుట్‌ను నిరోధిస్తోంది."
 
 #: ../gnome-session/gsm-xsmp-server.c:234
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
+"కొత్త కక్షిదారి అనుసంధానమును తిరస్కరిస్తోంది యెంచేతంటే విభాగము అనునది ప్రస్తుతము "
+"మూసివేయబడుతోంది\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "ICE లిజనింగ్ సాకెట్‌ను సృష్టించలేక పోయింది: %s"
 
 #. Oh well, no X for you!
 #: ../gnome-session/gsm-util.c:143
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
+msgstr "లాగిన్ విభాగమును ప్రారంభించలేక పోయింది (మరియు X సేవికకు అనుసంధానము కాలేక పోయింది)"
 
 #: ../gnome-session/main.c:521
 msgid "Override standard autostart directories"
-msgstr ""
+msgstr "ప్రామాణిక స్వయంచాలక డైరెక్టరీలను తిరిగివ్రాయుము"
 
 #: ../gnome-session/main.c:522
 msgid "GConf key used to lookup default session"
-msgstr ""
+msgstr "అప్రమేయ సెషన్‌ను చూచుకొనుటకు GConf కీ వుపయోగించబడింది"
 
 #: ../gnome-session/main.c:523
 msgid "Enable debugging code"
@@ -519,23 +516,21 @@ msgstr "డీబగ్గింగ్ సంహిత ను చేతనంచ
 
 #: ../gnome-session/main.c:524
 msgid "Do not load user-specified applications"
-msgstr ""
+msgstr "వినియోగదారి-తెలిపిన అనువర్తనములను లోడుచేయలేక పోయింది"
 
 #: ../gnome-session/main.c:545
-#, fuzzy
 #| msgid "- Manage the GNOME session"
 msgid " - the GNOME session manager"
-msgstr "గ్నోమ్ సమకూర్పు ని నిర్వహించుము"
+msgstr " -GNOME సెషన్ నిర్వాహిక"
 
 #: ../splash/gnome-session-splash.c:315
-#, fuzzy
 #| msgid "Show the splash screen"
 msgid "- GNOME Splash Screen"
-msgstr "స్ప్లాష్ తెరను చూపుము"
+msgstr "- GNOME స్ప్లాష్ తెర"
 
 #: ../splash/gnome-session-splash.desktop.in.in.in.h:1
 msgid "GNOME Splash Screen"
-msgstr ""
+msgstr "GNOME స్ప్లాష్ తెర"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Set the current session name"
@@ -546,22 +541,21 @@ msgid "NAME"
 msgstr "పేరు"
 
 #: ../tools/gnome-session-save.c:66
-#, fuzzy
 #| msgid "_Log out"
 msgid "Log out"
 msgstr "లాగ్ అవుట్"
 
 #: ../tools/gnome-session-save.c:67
 msgid "Log out, ignoring any existing inhibitors"
-msgstr ""
+msgstr "లాగ్ అవుట్, వున్నటువంటి ఏ ఇన్హిబిటర్సునైనా వదిలివేయుచున్నది"
 
 #: ../tools/gnome-session-save.c:68
 msgid "Show logout dialog"
-msgstr ""
+msgstr "లాగ్అవుట్ డైలాగును చూపుము"
 
 #: ../tools/gnome-session-save.c:69
 msgid "Show shutdown dialog"
-msgstr ""
+msgstr "మూసివేత డైలాగును చూపుము"
 
 #: ../tools/gnome-session-save.c:70
 msgid "Kill session"
@@ -581,5 +575,5 @@ msgstr "సమకూర్పు నిర్వాహకి తో  బంధ�
 
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
-msgstr ""
+msgstr "విభేదిస్తున్న ఐచ్చికాలతో పిలువబడిన ప్రోగ్రామ్"
 
