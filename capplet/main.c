@@ -43,7 +43,35 @@ dialog_response (GsmPropertiesDialog *dialog,
                  guint                response_id,
                  gpointer             data)
 {
-        gtk_main_quit ();
+        GdkScreen *screen;
+        GError    *error;
+
+        if (response_id == GTK_RESPONSE_HELP) {
+                screen = gtk_widget_get_screen (GTK_WIDGET (dialog));
+
+                error = NULL;
+                gtk_show_uri (screen, "ghelp:user-guide?gosstartsession-2",
+                              gtk_get_current_event_time (), &error);
+
+                if (error != NULL) {
+                        GtkWidget *d;
+                        d = gtk_message_dialog_new (GTK_WINDOW (dialog),
+                                                    GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                    GTK_MESSAGE_ERROR,
+                                                    GTK_BUTTONS_CLOSE,
+                                                    "%s",
+                                                    _("Could not display help document"));
+                        gtk_message_dialog_format_secondary_text (
+                                                GTK_MESSAGE_DIALOG (d),
+                                                "%s", error->message);
+                        g_error_free (error);
+
+                        gtk_dialog_run (GTK_DIALOG (d));
+                        gtk_widget_destroy (d);
+                }
+        } else {
+                gtk_main_quit ();
+        }
 }
 
 int

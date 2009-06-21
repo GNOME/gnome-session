@@ -443,6 +443,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         static const GtkTargetEntry drag_targets[] = { { "text/uri-list", 0, 0 } };
 
         gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+                                GTK_STOCK_HELP, GTK_RESPONSE_HELP,
                                 GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
                                 NULL);
 
