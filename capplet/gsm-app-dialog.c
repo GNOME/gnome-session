@@ -24,13 +24,11 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include <glade/glade-xml.h>
-
 #include "gsm-util.h"
 
 #include "gsm-app-dialog.h"
 
-#define GLADE_XML_FILE "session-properties.glade"
+#define GTKBUILDER_FILE "session-properties.ui"
 
 #define CAPPLET_NAME_ENTRY_WIDGET_NAME    "session_properties_name_entry"
 #define CAPPLET_COMMAND_ENTRY_WIDGET_NAME "session_properties_command_entry"
@@ -153,19 +151,30 @@ on_entry_activate (GtkEntry     *entry,
 static void
 setup_dialog (GsmAppDialog *dialog)
 {
-        GtkWidget *widget;
-        GladeXML  *xml;
+        GtkWidget  *widget;
+        GtkBuilder *xml;
+        GError     *error;
 
-        xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
-                             "main-table",
-                             GETTEXT_PACKAGE);
-        g_assert (xml != NULL);
+        xml = gtk_builder_new ();
+        gtk_builder_set_translation_domain(xml, PACKAGE);
 
-        widget = glade_xml_get_widget (xml, "main-table");
+        error = NULL;
+        if (!gtk_builder_add_from_file (xml,
+                                        GTKBUILDER_DIR "/" GTKBUILDER_FILE,
+                                        &error)) {
+                if (error) {
+                        g_warning ("Could not load capplet UI file: %s",
+                                   error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Could not load capplet UI file.");
+                }
+        }
+
+        widget = GTK_WIDGET (gtk_builder_get_object (xml, "main-table"));
         gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
 
-        gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
-        gtk_container_set_border_width (GTK_CONTAINER (widget), 5);
+        gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");
 
@@ -189,7 +198,7 @@ setup_dialog (GsmAppDialog *dialog)
                                        GTK_STOCK_SAVE, GTK_RESPONSE_OK);
         }
 
-        dialog->priv->name_entry = glade_xml_get_widget (xml, CAPPLET_NAME_ENTRY_WIDGET_NAME);
+        dialog->priv->name_entry = GTK_WIDGET (gtk_builder_get_object (xml, CAPPLET_NAME_ENTRY_WIDGET_NAME));
         g_signal_connect (dialog->priv->name_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),
@@ -198,13 +207,13 @@ setup_dialog (GsmAppDialog *dialog)
                 gtk_entry_set_text (GTK_ENTRY (dialog->priv->name_entry), dialog->priv->name);
         }
 
-        dialog->priv->browse_button = glade_xml_get_widget (xml, CAPPLET_BROWSE_WIDGET_NAME);
+        dialog->priv->browse_button = GTK_WIDGET (gtk_builder_get_object (xml, CAPPLET_BROWSE_WIDGET_NAME));
         g_signal_connect (dialog->priv->browse_button,
                           "clicked",
                           G_CALLBACK (on_browse_button_clicked),
                           dialog);
 
-        dialog->priv->command_entry = glade_xml_get_widget (xml, CAPPLET_COMMAND_ENTRY_WIDGET_NAME);
+        dialog->priv->command_entry = GTK_WIDGET (gtk_builder_get_object (xml, CAPPLET_COMMAND_ENTRY_WIDGET_NAME));
         g_signal_connect (dialog->priv->command_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),
@@ -213,7 +222,7 @@ setup_dialog (GsmAppDialog *dialog)
                 gtk_entry_set_text (GTK_ENTRY (dialog->priv->command_entry), dialog->priv->command);
         }
 
-        dialog->priv->comment_entry = glade_xml_get_widget (xml, CAPPLET_COMMENT_ENTRY_WIDGET_NAME);
+        dialog->priv->comment_entry = GTK_WIDGET (gtk_builder_get_object (xml, CAPPLET_COMMENT_ENTRY_WIDGET_NAME));
         g_signal_connect (dialog->priv->comment_entry,
                           "activate",
                           G_CALLBACK (on_entry_activate),

@@ -31,7 +31,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
-#include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
 
 #include "gsm-inhibit-dialog.h"
@@ -49,7 +48,7 @@
 
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
-#define GLADE_XML_FILE "gsm-inhibit-dialog.glade"
+#define GTKBUILDER_FILE "gsm-inhibit-dialog.ui"
 
 #ifndef DEFAULT_ICON_SIZE
 #define DEFAULT_ICON_SIZE 32
@@ -63,7 +62,7 @@
 
 struct GsmInhibitDialogPrivate
 {
-        GladeXML          *xml;
+        GtkBuilder        *xml;
         int                action;
         gboolean           is_done;
         GsmStore          *inhibitors;
@@ -672,7 +671,8 @@ update_dialog_text (GsmInhibitDialog *dialog)
                 description_text = _("Waiting for programs to finish.  Interrupting these programs may cause you to lose work.");
         }
 
-        widget = glade_xml_get_widget (dialog->priv->xml, "header-label");
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     "header-label"));
         if (widget != NULL) {
                 char *markup;
                 markup = g_strdup_printf ("<b>%s</b>", header_text);
@@ -680,7 +680,8 @@ update_dialog_text (GsmInhibitDialog *dialog)
                 g_free (markup);
         }
 
-        widget = glade_xml_get_widget (dialog->priv->xml, "description-label");
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     "description-label"));
         if (widget != NULL) {
                 gtk_label_set_text (GTK_LABEL (widget), description_text);
         }
@@ -939,7 +940,8 @@ setup_dialog (GsmInhibitDialog *dialog)
                                                        G_TYPE_STRING,
                                                        G_TYPE_STRING);
 
-        treeview = glade_xml_get_widget (dialog->priv->xml, "inhibitors-treeview");
+        treeview = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                       "inhibitors-treeview"));
         gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
         gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
                                  GTK_TREE_MODEL (dialog->priv->list_store));
@@ -1087,19 +1089,31 @@ static void
 gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
 {
         GtkWidget *widget;
+        GError    *error;
 
         dialog->priv = GSM_INHIBIT_DIALOG_GET_PRIVATE (dialog);
 
-        dialog->priv->xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
-                                           "main-box",
-                                           PACKAGE);
-        g_assert (dialog->priv->xml != NULL);
+        dialog->priv->xml = gtk_builder_new ();
+        gtk_builder_set_translation_domain(dialog->priv->xml, PACKAGE);
 
-        widget = glade_xml_get_widget (dialog->priv->xml, "main-box");
+        error = NULL;
+        if (!gtk_builder_add_from_file (dialog->priv->xml,
+                                        GTKBUILDER_DIR "/" GTKBUILDER_FILE,
+                                        &error)) {
+                if (error) {
+                        g_warning ("Could not load inhibitor UI file: %s",
+                                   error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Could not load inhibitor UI file.");
+                }
+        }
+
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     "main-box"));
         gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
 
-        gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
-        gtk_container_set_border_width (GTK_CONTAINER (widget), 12);
+        gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "system-log-out");
         gtk_window_set_title (GTK_WINDOW (dialog), "");

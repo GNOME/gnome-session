@@ -23,7 +23,7 @@ INCLUDES =					\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
 	-DDBUS_LAUNCH=\"dbus-launch\"		\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
-	-DGLADEDIR=\""$(pkgdatadir)"\"		\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
@@ -144,7 +144,6 @@ CLEANFILES =					\
 	$(BUILT_SOURCES)
 
 EXTRA_DIST =						\
-	$(glade_DATA)					\
 	README						\
 	gsm-marshal.list        			\
 	org.gnome.SessionManager.xml			\

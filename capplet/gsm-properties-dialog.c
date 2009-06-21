@@ -27,7 +27,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include <glade/glade-xml.h>
 #include <gconf/gconf-client.h>
 
 #include "gsm-properties-dialog.h"
@@ -44,12 +43,9 @@
 #define REALLY_IDENTICAL_STRING(a, b)                   \
         ((a && b && !strcmp (a, b)) || (!a && !b))
 
-#define GLADE_XML_FILE "session-properties.glade"
+#define GTKBUILDER_FILE "session-properties.ui"
 
-#define CAPPLET_DIALOG_WIDGET_NAME        "session_properties_capplet"
 #define CAPPLET_TREEVIEW_WIDGET_NAME      "session_properties_treeview"
-#define CAPPLET_CLOSE_WIDGET_NAME         "session_properties_close_button"
-#define CAPPLET_HELP_WIDGET_NAME          "session_properties_help_button"
 #define CAPPLET_ADD_WIDGET_NAME           "session_properties_add_button"
 #define CAPPLET_DELETE_WIDGET_NAME        "session_properties_delete_button"
 #define CAPPLET_EDIT_WIDGET_NAME          "session_properties_edit_button"
@@ -63,7 +59,7 @@
 
 struct GsmPropertiesDialogPrivate
 {
-        GladeXML          *xml;
+        GtkBuilder        *xml;
         GtkListStore      *list_store;
         GtkTreeModel      *tree_filter;
 
@@ -466,7 +462,8 @@ setup_dialog (GsmPropertiesDialog *dialog)
         gtk_tree_model_filter_set_visible_column (GTK_TREE_MODEL_FILTER (tree_filter),
                                                   STORE_COL_VISIBLE);
 
-        treeview = GTK_TREE_VIEW (glade_xml_get_widget (dialog->priv->xml, CAPPLET_TREEVIEW_WIDGET_NAME));
+        treeview = GTK_TREE_VIEW (gtk_builder_get_object (dialog->priv->xml,
+                                                          CAPPLET_TREEVIEW_WIDGET_NAME));
         dialog->priv->treeview = treeview;
 
         gtk_tree_view_set_model (treeview, tree_filter);
@@ -542,21 +539,24 @@ setup_dialog (GsmPropertiesDialog *dialog)
                                               GTK_SORT_ASCENDING);
 
 
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_ADD_WIDGET_NAME);
+        button = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     CAPPLET_ADD_WIDGET_NAME));
         dialog->priv->add_button = button;
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_add_app_clicked),
                           dialog);
 
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_DELETE_WIDGET_NAME);
+        button = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     CAPPLET_DELETE_WIDGET_NAME));
         dialog->priv->delete_button = button;
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_delete_app_clicked),
                           dialog);
 
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_EDIT_WIDGET_NAME);
+        button = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     CAPPLET_EDIT_WIDGET_NAME));
         dialog->priv->edit_button = button;
         g_signal_connect (button,
                           "clicked",
@@ -564,7 +564,8 @@ setup_dialog (GsmPropertiesDialog *dialog)
                           dialog);
 
         client = gconf_client_get_default ();
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_REMEMBER_WIDGET_NAME);
+        button = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     CAPPLET_REMEMBER_WIDGET_NAME));
         dialog->priv->remember_toggle = button;
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
                                       gconf_client_get_bool (client, SPC_GCONF_AUTOSAVE_KEY, NULL));
@@ -581,7 +582,8 @@ setup_dialog (GsmPropertiesDialog *dialog)
                           G_CALLBACK (on_autosave_value_toggled),
                           dialog);
 
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_SAVE_WIDGET_NAME);
+        button = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     CAPPLET_SAVE_WIDGET_NAME));
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_save_session_clicked),
@@ -655,6 +657,7 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
 {
         GtkWidget   *widget;
         GConfClient *client;
+        GError      *error;
 
         dialog->priv = GSM_PROPERTIES_DIALOG_GET_PRIVATE (dialog);
 
@@ -664,16 +667,28 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
                               GCONF_CLIENT_PRELOAD_ONELEVEL,
                               NULL);
 
-        dialog->priv->xml = glade_xml_new (GLADEDIR "/" GLADE_XML_FILE,
-                                           "main-notebook",
-                                           GETTEXT_PACKAGE);
-        g_assert (dialog->priv->xml != NULL);
+        dialog->priv->xml = gtk_builder_new ();
+        gtk_builder_set_translation_domain(dialog->priv->xml, PACKAGE);
 
-        widget = glade_xml_get_widget (dialog->priv->xml, "main-notebook");
+        error = NULL;
+        if (!gtk_builder_add_from_file (dialog->priv->xml,
+                                        GTKBUILDER_DIR "/" GTKBUILDER_FILE,
+                                        &error)) {
+                if (error) {
+                        g_warning ("Could not load capplet UI file: %s",
+                                   error->message);
+                        g_error_free (error);
+                } else {
+                        g_warning ("Could not load capplet UI file.");
+                }
+        }
+
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
+                                                     "main-notebook"));
         gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
 
         gtk_window_set_resizable (GTK_WINDOW (dialog), TRUE);
-        gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+        gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "session-properties");

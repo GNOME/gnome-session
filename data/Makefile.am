@@ -1,10 +1,10 @@
 NULL =
 SUBDIRS = icons
 
-gladedir = $(pkgdatadir)
-glade_DATA = \
-	session-properties.glade	\
-	gsm-inhibit-dialog.glade	\
+uidir = $(pkgdatadir)
+ui_DATA = \
+	session-properties.ui	\
+	gsm-inhibit-dialog.ui	\
 	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@
@@ -41,7 +41,7 @@ EXTRA_DIST =					\
 	gnome-wm				\
 	$(xsession_in_files)			\
 	$(schemas_in_files)			\
-	$(glade_DATA)				\
+	$(ui_DATA)				\
 	$(pixmap_DATA)
 
 CLEANFILES =					\

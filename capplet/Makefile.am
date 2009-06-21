@@ -10,7 +10,7 @@ INCLUDES =						\
 	-I$(top_srcdir)/egg				\
 	-I$(top_srcdir)/gnome-session			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"		\
-	-DGLADEDIR=\""$(pkgdatadir)"\"		\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
 	$(NULL)
 
 gnome_session_properties_LDADD =			\
