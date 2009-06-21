@@ -23,15 +23,8 @@
 
 #include "config.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <glib/gstdio.h>
-#include <gio/gio.h>
 #include <gtk/gtk.h>
 
 #include <glade/glade-xml.h>
@@ -41,6 +34,8 @@
 #include "gsm-app-dialog.h"
 #include "eggdesktopfile.h"
 #include "gsm-util.h"
+#include "gsp-app.h"
+#include "gsp-app-manager.h"
 
 #define GSM_PROPERTIES_DIALOG_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_PROPERTIES_DIALOG, GsmPropertiesDialogPrivate))
 
@@ -70,18 +65,26 @@ struct GsmPropertiesDialogPrivate
 {
         GladeXML          *xml;
         GtkListStore      *list_store;
+        GtkTreeModel      *tree_filter;
+
+        GtkTreeView       *treeview;
+        GtkWidget         *add_button;
+        GtkWidget         *delete_button;
+        GtkWidget         *edit_button;
+
+        GtkWidget         *remember_toggle;
+
+        GspAppManager     *manager;
 };
 
 enum {
-        STORE_COL_ENABLED = 0,
+        STORE_COL_VISIBLE = 0,
+        STORE_COL_ENABLED,
         STORE_COL_ICON_NAME,
+        STORE_COL_GICON,
+        STORE_COL_PIXBUF,
         STORE_COL_DESCRIPTION,
-        STORE_COL_NAME,
-        STORE_COL_COMMAND,
-        STORE_COL_COMMENT,
-        STORE_COL_DESKTOP_FILE,
-        STORE_COL_ID,
-        STORE_COL_ACTIVATABLE,
+        STORE_COL_APP,
         NUMBER_OF_COLUMNS
 };
 
@@ -91,594 +94,157 @@ static void     gsm_properties_dialog_finalize    (GObject                  *obj
 
 G_DEFINE_TYPE (GsmPropertiesDialog, gsm_properties_dialog, GTK_TYPE_DIALOG)
 
-static void
-on_response (GsmPropertiesDialog *dialog,
-             gint                 response_id)
-
-{
-}
-
 static gboolean
-find_by_id (GtkListStore *store,
-            const char   *id)
+find_by_app (GtkTreeModel *model,
+             GtkTreeIter  *iter,
+             GspApp       *app)
 {
-        GtkTreeIter iter;
-        char       *iter_id = NULL;
+        GspApp *iter_app = NULL;
 
-        if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter)) {
+        if (!gtk_tree_model_get_iter_first (model, iter)) {
                 return FALSE;
         }
 
         do {
-                gtk_tree_model_get (GTK_TREE_MODEL (store), &iter,
-                                    STORE_COL_ID, &iter_id,
+                gtk_tree_model_get (model, iter,
+                                    STORE_COL_APP, &iter_app,
                                     -1);
 
-                if (!strcmp (iter_id, id)) {
+                if (iter_app == app) {
+                        g_object_unref (iter_app);
                         return TRUE;
                 }
-        } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter));
+        } while (gtk_tree_model_iter_next (model, iter));
 
         return FALSE;
 }
 
-static char *
-get_app_description (const char *name,
-                     const char *comment)
+static void
+_fill_iter_from_app (GtkListStore *list_store,
+                     GtkTreeIter  *iter,
+                     GspApp       *app)
 {
-        return g_markup_printf_escaped ("<b>%s</b>\n%s", name,
-                                        (!gsm_util_text_is_blank (comment) ?
-                                         comment : _("No description")));
-}
+        gboolean      hidden;
+        gboolean      enabled;
+        GIcon        *icon;
+        const char   *icon_name;
+        GdkPixbuf    *pixbuf;
+        const char   *description;
 
-static gboolean
-append_app (GsmPropertiesDialog *dialog,
-            EggDesktopFile      *desktop_file)
-{
-        GtkIconTheme *theme;
-        GtkTreeIter   iter;
-        GFile        *source;
-        char         *basename;
-        char         *description;
-        char         *name;
-        char         *comment;
-        char         *command;
-        char         *icon_name;
-        gboolean      enabled = TRUE;
+        hidden      = gsp_app_get_hidden (app);
+        enabled     = gsp_app_get_enabled (app);
+        icon_name   = gsp_app_get_icon_name (app);
+        pixbuf      = gsp_app_get_pixbuf (app);
+        description = gsp_app_get_description (app);
 
-        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
-
-        basename = g_file_get_basename (source);
-
-        if (egg_desktop_file_has_key (desktop_file,
-                                      G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL)) {
-                if (egg_desktop_file_get_boolean (desktop_file,
-                                                  G_KEY_FILE_DESKTOP_KEY_HIDDEN,
-                                                  NULL))
-                        return FALSE;
-        }
-
-        /* Check for duplicate apps */
-        if (find_by_id (dialog->priv->list_store, basename)) {
-                return TRUE;
-        }
-
-        name = egg_desktop_file_get_locale_string (desktop_file,
-                                                   G_KEY_FILE_DESKTOP_KEY_NAME,
-                                                   NULL, NULL);
-
-        comment = NULL;
-
-        if (egg_desktop_file_has_key (desktop_file,
-                                      "Comment", NULL)) {
-                comment =
-                        egg_desktop_file_get_locale_string (desktop_file,
-                                                            G_KEY_FILE_DESKTOP_KEY_COMMENT,
-                                                            NULL, NULL);
-        }
-
-        description = get_app_description (name, comment);
-
-        command = egg_desktop_file_get_string (desktop_file,
-                                               G_KEY_FILE_DESKTOP_KEY_EXEC,
-                                               NULL);
-
-        icon_name = NULL;
-
-        if (egg_desktop_file_has_key (desktop_file,
-                                      G_KEY_FILE_DESKTOP_KEY_ICON, NULL)) {
-                icon_name =
-                        egg_desktop_file_get_string (desktop_file,
-                                                     G_KEY_FILE_DESKTOP_KEY_ICON,
-                                                     NULL);
-        }
-
-        theme = gtk_icon_theme_get_default ();
-
-        if (icon_name == NULL || *icon_name == '\0' ||
-            !gtk_icon_theme_has_icon (theme, icon_name)) {
-                if (icon_name) {
-                        g_free (icon_name);
+        icon = NULL;
+        if (!pixbuf) {
+#if 1
+                GtkIconTheme *theme;
+                theme = gtk_icon_theme_get_default ();
+                if (icon_name == NULL ||
+                    !gtk_icon_theme_has_icon (theme, icon_name)) {
+                        icon_name = STARTUP_APP_ICON;
                 }
-
-                icon_name = g_strdup (STARTUP_APP_ICON);
+#else
+                /* the issue with this approach is that icons that live in
+                 * hicolor are ignored and STARTUP_APP_ICON is nearly always
+                 * used if it's in the main theme */
+                icon = g_themed_icon_new (STARTUP_APP_ICON);
+                if (icon_name != NULL) {
+                        g_themed_icon_prepend_name (G_THEMED_ICON (icon),
+                                                    icon_name);
+                }
+#endif
         }
 
-        if (egg_desktop_file_has_key (desktop_file,
-                                      "X-GNOME-Autostart-enabled", NULL)) {
-                enabled = egg_desktop_file_get_boolean (desktop_file,
-                                                        "X-GNOME-Autostart-enabled",
-                                                        NULL);
-        }
-
-        gtk_list_store_append (dialog->priv->list_store, &iter);
-
-        gtk_list_store_set (dialog->priv->list_store,
-                            &iter,
+        gtk_list_store_set (list_store, iter,
+                            STORE_COL_VISIBLE, !hidden,
                             STORE_COL_ENABLED, enabled,
                             STORE_COL_ICON_NAME, icon_name,
+                            STORE_COL_GICON, icon,
+                            STORE_COL_PIXBUF, pixbuf,
                             STORE_COL_DESCRIPTION, description,
-                            STORE_COL_NAME, name,
-                            STORE_COL_COMMAND, command,
-                            STORE_COL_COMMENT, comment,
-                            STORE_COL_DESKTOP_FILE, desktop_file,
-                            STORE_COL_ID, basename,
-                            STORE_COL_ACTIVATABLE, TRUE,
+                            STORE_COL_APP, app,
                             -1);
-
-        g_object_unref (source);
-        g_free (basename);
-        g_free (name);
-        g_free (comment);
-        g_free (description);
-        g_free (icon_name);
-
-        return TRUE;
-}
-
-static int
-compare_app (gconstpointer a,
-             gconstpointer b)
-{
-        if (!strcmp (a, b)) {
-                return 0;
-        }
-
-        return 1;
 }
 
 static void
-append_autostart_apps (GsmPropertiesDialog *dialog,
-                       const char          *path,
-                       GList              **removed_apps)
+_app_changed (GsmPropertiesDialog *dialog,
+              GspApp              *app)
 {
-        GDir       *dir;
-        const char *name;
+        GtkTreeIter iter;
 
-        dir = g_dir_open (path, 0, NULL);
-        if (!dir) {
+        if (!find_by_app (GTK_TREE_MODEL (dialog->priv->list_store),
+                          &iter, app)) {
                 return;
         }
 
-        while ((name = g_dir_read_name (dir))) {
-                EggDesktopFile *desktop_file;
-                GError         *error;
-                char           *desktop_file_path;
+        _fill_iter_from_app (dialog->priv->list_store, &iter, app);
+}
 
-                if (!g_str_has_suffix (name, ".desktop")) {
-                        continue;
-                }
+static void
+append_app (GsmPropertiesDialog *dialog,
+            GspApp              *app)
+{
+        GtkTreeIter   iter;
 
-                if (removed_apps &&
-                    g_list_find_custom (*removed_apps, name, compare_app)) {
-                        continue;
-                }
+        gtk_list_store_append (dialog->priv->list_store, &iter);
+        _fill_iter_from_app (dialog->priv->list_store, &iter, app);
 
-                desktop_file_path = g_build_filename (path, name, NULL);
+        g_signal_connect_swapped (app, "changed",
+                                  G_CALLBACK (_app_changed), dialog);
+}
 
-                error = NULL;
-                desktop_file = egg_desktop_file_new (desktop_file_path, &error);
-                if (error == NULL) {
-                        if (!append_app (dialog, desktop_file)) {
-                                if (removed_apps) {
-                                        *removed_apps = g_list_prepend (*removed_apps, g_strdup (name));
-                                }
-                        }
-                } else {
-                        g_warning ("could not read %s: %s\n", desktop_file_path, error->message);
+static void
+_app_added (GsmPropertiesDialog *dialog,
+            GspApp              *app,
+            GspAppManager       *manager)
+{
+        append_app (dialog, app);
+}
 
-                        g_error_free (error);
-                        error = NULL;
-                }
+static void
+_app_removed (GsmPropertiesDialog *dialog,
+              GspApp              *app,
+              GspAppManager       *manager)
+{
+        GtkTreeIter iter;
 
-                g_free (desktop_file_path);
+        if (!find_by_app (GTK_TREE_MODEL (dialog->priv->list_store),
+                          &iter, app)) {
+                return;
         }
 
-        g_dir_close (dir);
+        g_signal_handlers_disconnect_by_func (app,
+                                              _app_changed,
+                                              dialog);
+        gtk_list_store_remove (dialog->priv->list_store, &iter);
 }
 
 static void
 populate_model (GsmPropertiesDialog *dialog)
 {
-        GList        *removed_apps;
-        char        **autostart_dirs;
-        int           i;
+        GSList *apps;
+        GSList *l;
 
-        autostart_dirs = gsm_util_get_autostart_dirs ();
-
-        removed_apps = NULL;
-        for (i = 0; autostart_dirs[i]; i++) {
-                append_autostart_apps (dialog, autostart_dirs[i], &removed_apps);
+        apps = gsp_app_manager_get_apps (dialog->priv->manager);
+        for (l = apps; l != NULL; l = l->next) {
+                append_app (dialog, GSP_APP (l->data));
         }
-
-        g_strfreev (autostart_dirs);
-        g_list_foreach (removed_apps, (GFunc) g_free, NULL);
-        g_list_free (removed_apps);
+        g_slist_free (apps);
 }
 
 static void
 on_selection_changed (GtkTreeSelection    *selection,
                       GsmPropertiesDialog *dialog)
 {
-        GtkWidget *edit_button;
-        GtkWidget *delete_button;
-        gboolean   sel;
-
-        edit_button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_EDIT_WIDGET_NAME);
-        delete_button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_DELETE_WIDGET_NAME);
+        gboolean sel;
 
         sel = gtk_tree_selection_get_selected (selection, NULL, NULL);
 
-        if (edit_button) {
-                gtk_widget_set_sensitive (edit_button, sel);
-        }
-
-        if (delete_button) {
-                gtk_widget_set_sensitive (delete_button, sel);
-        }
-}
-
-
-static gboolean
-system_desktop_entry_exists (const char  *basename,
-                             char       **system_path)
-{
-        char *path;
-        char **autostart_dirs;
-        int i;
-
-        autostart_dirs = gsm_util_get_autostart_dirs ();
-
-        for (i = 0; autostart_dirs[i]; i++) {
-                path = g_build_filename (autostart_dirs[i], basename, NULL);
-
-                if (g_str_has_prefix (autostart_dirs[i], g_get_user_config_dir ())) {
-                        continue;
-                }
-
-                if (g_file_test (path, G_FILE_TEST_EXISTS)) {
-                        if (system_path) {
-                                *system_path = path;
-                        } else {
-                                g_free (path);
-                        }
-                        g_strfreev (autostart_dirs);
-
-                        return TRUE;
-                }
-
-                g_free (path);
-        }
-
-        g_strfreev (autostart_dirs);
-
-        return FALSE;
-}
-
-static void
-update_desktop_file (GtkListStore   *store,
-                     GtkTreeIter    *iter,
-                     EggDesktopFile *new_desktop_file)
-{
-        EggDesktopFile *old_desktop_file;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                            STORE_COL_DESKTOP_FILE, &old_desktop_file,
-                            -1);
-
-        egg_desktop_file_free (old_desktop_file);
-
-        gtk_list_store_set (store, iter,
-                            STORE_COL_DESKTOP_FILE, new_desktop_file,
-                            -1);
-}
-
-static void
-ensure_user_autostart_dir ()
-{
-        char *dir;
-
-        dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
-        g_mkdir_with_parents (dir, S_IRWXU);
-
-        g_free (dir);
-}
-
-static void
-key_file_set_locale_string (GKeyFile   *keyfile,
-                            const char *group,
-                            const char *key,
-                            const char *value)
-{
-        const char         *locale;
-        const char * const *langs_pointer;
-        int                 i;
-
-        g_assert (key != NULL);
-
-        if (value == NULL) {
-                value = "";
-        }
-
-        locale = NULL;
-        langs_pointer = g_get_language_names ();
-
-        for (i = 0; langs_pointer[i] != NULL; i++) {
-                /* Find first without encoding  */
-                if (strchr (langs_pointer[i], '.') == NULL) {
-                        locale = langs_pointer[i];
-                        break;
-                }
-        }
-
-        if (locale != NULL) {
-                g_key_file_set_locale_string (keyfile,
-                                              group,
-                                              key,
-                                              locale,
-                                              value);
-        } else {
-                g_key_file_set_string (keyfile,
-                                       G_KEY_FILE_DESKTOP_GROUP,
-                                       key, value);
-        }
-}
-
-static gboolean
-key_file_to_file (GKeyFile   *keyfile,
-                  const char *file,
-                  GError    **error)
-{
-        GError  *write_error;
-        char    *filename;
-        char    *data;
-        gsize    length;
-        gboolean res;
-
-        g_return_val_if_fail (keyfile != NULL, FALSE);
-        g_return_val_if_fail (file != NULL, FALSE);
-
-        write_error = NULL;
-
-        data = g_key_file_to_data (keyfile, &length, &write_error);
-
-        if (write_error) {
-                g_propagate_error (error, write_error);
-                return FALSE;
-        }
-
-        if (!g_path_is_absolute (file)) {
-                filename = g_filename_from_uri (file, NULL, &write_error);
-        } else {
-                filename = g_filename_from_utf8 (file, -1, NULL, NULL, &write_error);
-        }
-
-        if (write_error) {
-                g_propagate_error (error, write_error);
-                g_free (data);
-                return FALSE;
-        }
-
-        res = g_file_set_contents (filename, data, length, &write_error);
-
-        g_free (filename);
-
-        if (write_error) {
-                g_propagate_error (error, write_error);
-                g_free (data);
-                return FALSE;
-        }
-
-        g_free (data);
-
-        return res;
-}
-
-static void
-write_desktop_file (EggDesktopFile *desktop_file,
-                    GtkListStore   *store,
-                    GtkTreeIter    *iter,
-                    gboolean        enabled)
-{
-        GKeyFile *keyfile;
-        GFile    *source;
-        GError   *error;
-        char     *path;
-        char     *name;
-        char     *command;
-        char     *comment;
-        gboolean  path_changed = FALSE;
-
-        ensure_user_autostart_dir ();
-
-        keyfile = g_key_file_new ();
-
-        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
-
-        path = g_file_get_path (source);
-
-        error = NULL;
-        g_key_file_load_from_file (keyfile,
-                                   path,
-                                   G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS,
-                                   &error);
-        if (error != NULL) {
-                goto out;
-        }
-
-        if (!g_str_has_prefix (path, g_get_user_config_dir ())) {
-                /* It's a system-wide file, save it to the user's home */
-                char *basename;
-
-                basename = g_file_get_basename (source);
-
-                g_free (path);
-
-                path = g_build_filename (g_get_user_config_dir (),
-                                         "autostart", basename, NULL);
-
-                g_free (basename);
-
-                path_changed = TRUE;
-        }
-
-        gtk_tree_model_get (GTK_TREE_MODEL (store),
-                            iter,
-                            STORE_COL_NAME, &name,
-                            STORE_COL_COMMAND, &command,
-                            STORE_COL_COMMENT, &comment,
-                            -1);
-
-        key_file_set_locale_string (keyfile,
-                                    G_KEY_FILE_DESKTOP_GROUP,
-                                    G_KEY_FILE_DESKTOP_KEY_NAME,
-                                    name);
-
-        key_file_set_locale_string (keyfile,
-                                    G_KEY_FILE_DESKTOP_GROUP,
-                                    G_KEY_FILE_DESKTOP_KEY_COMMENT,
-                                    comment);
-
-        g_key_file_set_string (keyfile,
-                               G_KEY_FILE_DESKTOP_GROUP,
-                               G_KEY_FILE_DESKTOP_KEY_EXEC,
-                               command);
-
-        g_key_file_set_boolean (keyfile,
-                                G_KEY_FILE_DESKTOP_GROUP,
-                                "X-GNOME-Autostart-enabled",
-                                enabled);
-
-        if (!key_file_to_file (keyfile, path, &error)) {
-                goto out;
-        }
-
-        if (path_changed) {
-                EggDesktopFile *new_desktop_file;
-
-                new_desktop_file = egg_desktop_file_new (path, &error);
-
-                if (error) {
-                        goto out;
-                }
-
-                update_desktop_file (store, iter, new_desktop_file);
-        }
-
- out:
-        if (error != NULL) {
-                g_warning ("Error when writing desktop file %s: %s",
-                           path, error->message);
-
-                g_error_free (error);
-        }
-
-        g_free (path);
-        g_free (name);
-        g_free (comment);
-        g_free (command);
-        g_object_unref (source);
-        g_key_file_free (keyfile);
-}
-
-static gboolean
-toggle_app (GsmPropertiesDialog *dialog,
-            GtkTreeIter         *iter,
-            gboolean             enabled)
-{
-        EggDesktopFile *desktop_file;
-        GFile          *source;
-        char           *system_path;
-        char           *basename;
-        char           *path;
-        char           *name;
-        char           *comment;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->list_store),
-                            iter,
-                            STORE_COL_NAME, &name,
-                            STORE_COL_COMMENT, &comment,
-                            STORE_COL_DESKTOP_FILE, &desktop_file,
-                            -1);
-
-        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
-
-        path = g_file_get_path (source);
-
-        basename = g_file_get_basename (source);
-
-        if (system_desktop_entry_exists (basename, &system_path)) {
-                EggDesktopFile *system_desktop_file;
-                char           *original_name;
-                char           *original_comment;
-                gboolean        original_enabled;
-
-                system_desktop_file = egg_desktop_file_new (system_path, NULL);
-
-                original_name = egg_desktop_file_get_locale_string (system_desktop_file,
-                                                                    "Name", NULL, NULL);
-
-                original_comment = egg_desktop_file_get_locale_string (system_desktop_file,
-                                                                       "Comment", NULL, NULL);
-
-                if (egg_desktop_file_has_key (system_desktop_file,
-                                              "X-GNOME-Autostart-enabled", NULL)) {
-                        original_enabled = egg_desktop_file_get_boolean (system_desktop_file,
-                                                                         "X-GNOME-Autostart-enabled", NULL);
-                } else {
-                        original_enabled = TRUE;
-                }
-
-                if (REALLY_IDENTICAL_STRING (name, original_name) &&
-                    REALLY_IDENTICAL_STRING (comment, original_comment) &&
-                    (enabled == original_enabled)) {
-                        char *user_file =
-                                g_build_filename (g_get_user_config_dir (),
-                                                  "autostart", basename, NULL);
-
-                        if (g_file_test (user_file, G_FILE_TEST_EXISTS)) {
-                                g_remove (user_file);
-                        }
-
-                        g_free (user_file);
-
-                        update_desktop_file (dialog->priv->list_store, iter, system_desktop_file);
-                } else {
-                        write_desktop_file (desktop_file, dialog->priv->list_store, iter, enabled);
-                        egg_desktop_file_free (system_desktop_file);
-                }
-
-                g_free (original_name);
-                g_free (original_comment);
-        } else {
-                write_desktop_file (desktop_file, dialog->priv->list_store, iter, enabled);
-        }
-
-        g_free (name);
-        g_free (comment);
-        g_free (basename);
-
-        return TRUE;
+        gtk_widget_set_sensitive (dialog->priv->edit_button, sel);
+        gtk_widget_set_sensitive (dialog->priv->delete_button, sel);
 }
 
 static void
@@ -687,216 +253,27 @@ on_startup_enabled_toggled (GtkCellRendererToggle *cell_renderer,
                             GsmPropertiesDialog   *dialog)
 {
         GtkTreeIter iter;
-        char       *desktop_file_path;
+        GspApp     *app;
         gboolean    active;
 
-        if (!gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (dialog->priv->list_store),
+        if (!gtk_tree_model_get_iter_from_string (GTK_TREE_MODEL (dialog->priv->tree_filter),
                                                   &iter, path)) {
                 return;
         }
 
-        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->list_store),
+        app = NULL;
+        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->tree_filter),
                             &iter,
-                            STORE_COL_DESKTOP_FILE, &desktop_file_path,
+                            STORE_COL_APP, &app,
                             -1);
 
         active = gtk_cell_renderer_toggle_get_active (cell_renderer);
         active = !active;
-        gtk_cell_renderer_toggle_set_active (cell_renderer, active);
 
-        if (toggle_app (dialog, &iter, active)) {
-                gtk_list_store_set (dialog->priv->list_store,
-                                    &iter,
-                                    STORE_COL_ENABLED, active,
-                                    -1);
+        if (app) {
+                gsp_app_set_enabled (app, active);
+                g_object_unref (app);
         }
-}
-
-static void
-add_app (GtkListStore *store,
-         GtkTreeIter  *iter)
-{
-        EggDesktopFile *desktop_file;
-        GKeyFile       *keyfile;
-        char          **argv;
-        char           *basename;
-        char           *orig_filename;
-        char           *filename;
-        char           *name;
-        char           *command;
-        char           *comment;
-        char           *description;
-        char           *icon;
-        int             argc;
-        int             i = 2;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                            STORE_COL_NAME, &name,
-                            STORE_COL_COMMAND, &command,
-                            STORE_COL_COMMENT, &comment,
-                            STORE_COL_ICON_NAME, &icon,
-                            -1);
-
-        g_assert (command != NULL);
-        g_shell_parse_argv (command, &argc, &argv, NULL);
-
-        basename = g_path_get_basename (argv[0]);
-
-        orig_filename = g_build_filename (g_get_user_config_dir (),
-                                          "autostart", basename, NULL);
-
-        filename = g_strdup_printf ("%s.desktop", orig_filename);
-
-        while (g_file_test (filename, G_FILE_TEST_EXISTS)) {
-                char *tmp = g_strdup_printf ("%s-%d.desktop", orig_filename, i);
-
-                g_free (filename);
-                filename = tmp;
-
-                i++;
-        }
-
-        g_free (orig_filename);
-
-        ensure_user_autostart_dir ();
-
-        keyfile = g_key_file_new ();
-
-        g_key_file_set_string (keyfile,
-                               G_KEY_FILE_DESKTOP_GROUP,
-                               G_KEY_FILE_DESKTOP_KEY_TYPE,
-                               "Application");
-
-        g_key_file_set_string (keyfile,
-                               G_KEY_FILE_DESKTOP_GROUP,
-                               G_KEY_FILE_DESKTOP_KEY_NAME,
-                               name);
-
-        g_key_file_set_string (keyfile,
-                               G_KEY_FILE_DESKTOP_GROUP,
-                               G_KEY_FILE_DESKTOP_KEY_EXEC,
-                               command);
-
-        if (icon == NULL) {
-                icon = g_strdup (STARTUP_APP_ICON);
-        }
-
-        g_key_file_set_string (keyfile,
-                               G_KEY_FILE_DESKTOP_GROUP,
-                               G_KEY_FILE_DESKTOP_KEY_ICON,
-                               icon);
-
-        if (comment) {
-                g_key_file_set_string (keyfile,
-                                       G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_COMMENT,
-                                       comment);
-        }
-
-        description = get_app_description (name, comment);
-
-        if (!key_file_to_file (keyfile, filename, NULL)) {
-                g_warning ("Could not save %s file", filename);
-        }
-
-        desktop_file = egg_desktop_file_new_from_key_file (keyfile,
-                                                           filename,
-                                                           NULL);
-
-        g_free (basename);
-
-        basename = g_path_get_basename (filename);
-
-        gtk_list_store_set (store, iter,
-                            STORE_COL_ENABLED, TRUE,
-                            STORE_COL_ICON_NAME, icon,
-                            STORE_COL_DESKTOP_FILE, desktop_file,
-                            STORE_COL_ID, basename,
-                            STORE_COL_ACTIVATABLE, TRUE,
-                            -1);
-
-        g_key_file_free (keyfile);
-        g_strfreev (argv);
-        g_free (name);
-        g_free (command);
-        g_free (comment);
-        g_free (description);
-        g_free (basename);
-        g_free (icon);
-}
-
-static gboolean
-add_from_desktop_file (GtkTreeView *treeview,
-                       char        *filename)
-{
-        EggDesktopFile *desktop_file;
-        gboolean        success = FALSE;
-
-        /* Assume that the file is local */
-        GFile *file = g_file_new_for_uri (filename);
-        gchar *path = g_file_get_path (file);
-
-        if (path != NULL) {
-                desktop_file = egg_desktop_file_new (path, NULL);
-
-                if (desktop_file != NULL) {
-                        GtkTreeIter   iter;
-                        GtkTreeModel *model;
-                        const char   *name;
-                        char         *comment;
-                        char         *description;
-                        char         *command;
-                        char         *icon;
-
-                        model = gtk_tree_view_get_model (treeview);
-
-                        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-
-                        name = egg_desktop_file_get_name (desktop_file);
-
-                        comment = egg_desktop_file_get_locale_string (desktop_file,
-                                                                      EGG_DESKTOP_FILE_KEY_COMMENT,
-                                                                      NULL, NULL);
-                        if (comment == NULL) {
-                                comment = egg_desktop_file_get_string (desktop_file,
-                                                                       EGG_DESKTOP_FILE_KEY_COMMENT,
-                                                                       NULL);
-                        }
-
-                        description = get_app_description (name, comment);
-
-                        command = egg_desktop_file_get_string (desktop_file,
-                                                               EGG_DESKTOP_FILE_KEY_EXEC,
-                                                               NULL);
-
-                        icon = egg_desktop_file_get_string (desktop_file,
-                                                            EGG_DESKTOP_FILE_KEY_ICON,
-                                                            NULL);
-
-                        if (name && comment && description && command) {
-                                gtk_list_store_set (GTK_LIST_STORE (model), &iter,
-                                                    STORE_COL_DESCRIPTION, description,
-                                                    STORE_COL_NAME, name,
-                                                    STORE_COL_COMMAND, command,
-                                                    STORE_COL_COMMENT, comment,
-                                                    STORE_COL_ICON_NAME, icon,
-                                                    STORE_COL_DESKTOP_FILE, desktop_file,
-                                                    -1);
-
-                                add_app (GTK_LIST_STORE (model), &iter);
-                                success = TRUE;
-                        }
-
-                        g_free (comment);
-                        g_free (description);
-                        g_free (command);
-                        g_free (icon);
-                        egg_desktop_file_free (desktop_file);
-                }
-        }
-
-        g_free (path);
-        return success;
 }
 
 static gboolean
@@ -921,7 +298,7 @@ on_drag_data (GtkWidget           *widget,
                 for (i = 0; filenames[i] && filenames[i][0]; i++) {
                         /* Return success if at least one file succeeded */
                         gboolean file_success;
-                        file_success = add_from_desktop_file (GTK_TREE_VIEW (widget), filenames[i]);
+                        file_success = gsp_app_copy_desktop_file (filenames[i]);
                         dnd_success = dnd_success || file_success;
                 }
 
@@ -932,266 +309,77 @@ on_drag_data (GtkWidget           *widget,
         return TRUE;
 }
 
-static gboolean
-edit_app_dialog (GsmPropertiesDialog *dialog,
-                 GtkTreeIter         *iter)
-{
-        GtkWidget *dlg;
-        char      *c_name;
-        char      *c_command;
-        char      *c_comment;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->list_store),
-                            iter,
-                            STORE_COL_NAME, &c_name,
-                            STORE_COL_COMMAND, &c_command,
-                            STORE_COL_COMMENT, &c_comment,
-                            -1);
-
-        dlg = gsm_app_dialog_new (c_name, c_command, c_comment);
-        gtk_window_set_transient_for (GTK_WINDOW (dlg), GTK_WINDOW (dialog));
-        g_free (c_name);
-        g_free (c_command);
-        g_free (c_comment);
-
-        while (gtk_dialog_run (GTK_DIALOG (dlg)) == GTK_RESPONSE_OK) {
-                const char *name;
-                const char *command;
-                const char *comment;
-                const char *error_msg;
-                char      **argv;
-                char       *description;
-                int         argc;
-                GError     *error;
-
-                name = gsm_app_dialog_get_name (GSM_APP_DIALOG (dlg));
-                command = gsm_app_dialog_get_command (GSM_APP_DIALOG (dlg));
-                comment = gsm_app_dialog_get_comment (GSM_APP_DIALOG (dlg));
-                error = NULL;
-
-                error_msg = NULL;
-                if (gsm_util_text_is_blank (name)) {
-                        error_msg = _("The name of the startup program cannot be empty");
-                }
-
-                if (gsm_util_text_is_blank (command)) {
-                        error_msg = _("The startup command cannot be empty");
-                } else {
-                        if (!g_shell_parse_argv (command, &argc, &argv, &error)) {
-                                if (error != NULL) {
-                                        error_msg = error->message;
-                                } else {
-                                        error_msg = _("The startup command is not valid");
-                                }
-                        }
-                }
-
-                if (error_msg != NULL) {
-                        GtkWidget *msgbox;
-
-                        gtk_widget_show (dlg);
-
-                        msgbox = gtk_message_dialog_new (GTK_WINDOW (dlg),
-                                                         GTK_DIALOG_MODAL,
-                                                         GTK_MESSAGE_ERROR,
-                                                         GTK_BUTTONS_CLOSE,
-                                                         "%s", error_msg);
-
-                        if (error != NULL) {
-                                g_error_free (error);
-                        }
-
-                        gtk_dialog_run (GTK_DIALOG (msgbox));
-
-                        gtk_widget_destroy (msgbox);
-                } else {
-                        g_strfreev (argv);
-
-                        description = get_app_description (name, comment);
-
-                        gtk_list_store_set (GTK_LIST_STORE (dialog->priv->list_store), iter,
-                                            STORE_COL_DESCRIPTION, description,
-                                            STORE_COL_NAME, name,
-                                            STORE_COL_COMMAND, command,
-                                            STORE_COL_COMMENT, comment,
-                                            -1);
-
-                        g_free (description);
-
-                        gtk_widget_destroy (dlg);
-
-                        return TRUE;
-                }
-        }
-
-        gtk_widget_destroy (dlg);
-
-        return FALSE;
-}
-
-
 static void
 on_add_app_clicked (GtkWidget           *widget,
                     GsmPropertiesDialog *dialog)
 {
-        GtkTreeView      *view;
-        GtkTreeSelection *selection;
-        GtkTreeModel     *model;
-        GtkTreeIter       iter;
+        GtkWidget *add_dialog;
+        char       *name;
+        char       *exec;
+        char       *comment;
 
-        view = GTK_TREE_VIEW (glade_xml_get_widget (dialog->priv->xml,
-                                                    CAPPLET_TREEVIEW_WIDGET_NAME));
+        add_dialog = gsm_app_dialog_new (NULL, NULL, NULL);
+        gtk_window_set_transient_for (GTK_WINDOW (add_dialog),
+                                      GTK_WINDOW (dialog));
 
-        selection = gtk_tree_view_get_selection (view);
-        model = gtk_tree_view_get_model (view);
-
-        gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-
-        if (edit_app_dialog (dialog, &iter)) {
-                add_app (GTK_LIST_STORE (model), &iter);
-        } else {
-                gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+        if (gsm_app_dialog_run (GSM_APP_DIALOG (add_dialog),
+                                &name, &exec, &comment)) {
+                gsp_app_create (name, comment, exec);
+                g_free (name);
+                g_free (exec);
+                g_free (comment);
         }
-}
-
-static void
-delete_desktop_file (GtkListStore *store,
-                     GtkTreeIter  *iter)
-{
-        EggDesktopFile *desktop_file;
-        GFile          *source;
-        char           *basename;
-        char           *path;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                            STORE_COL_DESKTOP_FILE, &desktop_file,
-                            -1);
-
-        source = g_file_new_for_uri (egg_desktop_file_get_source (desktop_file));
-
-        path = g_file_get_path (source);
-        basename = g_file_get_basename (source);
-
-        if (g_str_has_prefix (path, g_get_user_config_dir ()) &&
-            !system_desktop_entry_exists (basename, NULL)) {
-                if (g_file_test (path, G_FILE_TEST_EXISTS))
-                        g_remove (path);
-        } else {
-                /* Two possible cases:
-                 * a) We want to remove a system wide startup desktop file.
-                 *    We can't do that, so we will create a user desktop file
-                 *    with the hidden flag set.
-                 * b) We want to remove a startup desktop file that is both
-                 *    system and user. So we have to mark it as hidden.
-                 */
-                GKeyFile *keyfile;
-                GError   *error;
-                char     *user_path;
-
-                ensure_user_autostart_dir ();
-
-                keyfile = g_key_file_new ();
-
-                error = NULL;
-
-                g_key_file_load_from_file (keyfile, path,
-                                           G_KEY_FILE_KEEP_COMMENTS|G_KEY_FILE_KEEP_TRANSLATIONS,
-                                           &error);
-
-                if (error) {
-                        g_error_free (error);
-                        g_key_file_free (keyfile);
-                }
-
-                g_key_file_set_boolean (keyfile,
-                                        G_KEY_FILE_DESKTOP_GROUP,
-                                        G_KEY_FILE_DESKTOP_KEY_HIDDEN,
-                                        TRUE);
-
-                user_path = g_build_filename (g_get_user_config_dir (),
-                                              "autostart", basename, NULL);
-
-                if (!key_file_to_file (keyfile, user_path, NULL)) {
-                        g_warning ("Could not save %s file", user_path);
-                }
-
-                g_key_file_free (keyfile);
-
-                g_free (user_path);
-        }
-
-        g_object_unref (source);
-        g_free (path);
-        g_free (basename);
-}
-
-static void
-delete_app (GtkListStore *store,
-            GtkTreeIter  *iter)
-{
-        delete_desktop_file (store, iter);
 }
 
 static void
 on_delete_app_clicked (GtkWidget           *widget,
                        GsmPropertiesDialog *dialog)
 {
-        GtkTreeView      *view;
         GtkTreeSelection *selection;
-        GtkTreeModel     *model;
         GtkTreeIter       iter;
+        GspApp           *app;
 
-        view = GTK_TREE_VIEW (glade_xml_get_widget (dialog->priv->xml,
-                                                    CAPPLET_TREEVIEW_WIDGET_NAME));
-
-        selection = gtk_tree_view_get_selection (view);
-        model = gtk_tree_view_get_model (view);
+        selection = gtk_tree_view_get_selection (dialog->priv->treeview);
 
         if (!gtk_tree_selection_get_selected (selection, NULL, &iter)) {
                 return;
         }
 
-        delete_app (GTK_LIST_STORE (model), &iter);
-
-        gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
-}
-
-static void
-update_app (GtkListStore *store,
-            GtkTreeIter *iter)
-{
-        EggDesktopFile *desktop_file;
-        gboolean        enabled;
-
-        gtk_tree_model_get (GTK_TREE_MODEL (store), iter,
-                            STORE_COL_ENABLED, &enabled,
-                            STORE_COL_DESKTOP_FILE, &desktop_file,
+        app = NULL;
+        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->tree_filter),
+                            &iter,
+                            STORE_COL_APP, &app,
                             -1);
 
-        write_desktop_file (desktop_file, store, iter, enabled);
+        if (app) {
+                gsp_app_delete (app);
+                g_object_unref (app);
+        }
 }
 
 static void
 on_edit_app_clicked (GtkWidget           *widget,
                      GsmPropertiesDialog *dialog)
 {
-        GtkTreeView      *view;
         GtkTreeSelection *selection;
-        GtkTreeModel     *model;
         GtkTreeIter       iter;
+        GspApp           *app;
 
-        view = GTK_TREE_VIEW (glade_xml_get_widget (dialog->priv->xml,
-                                                    CAPPLET_TREEVIEW_WIDGET_NAME));
-
-        selection = gtk_tree_view_get_selection (view);
-        model = gtk_tree_view_get_model (view);
+        selection = gtk_tree_view_get_selection (dialog->priv->treeview);
 
         if (!gtk_tree_selection_get_selected (selection, NULL, &iter)) {
                 return;
         }
 
-        if (edit_app_dialog (dialog, &iter)) {
-                update_app (GTK_LIST_STORE (model), &iter);
+        app = NULL;
+        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->tree_filter),
+                            &iter,
+                            STORE_COL_APP, &app,
+                            -1);
+
+        if (app) {
+                gsp_app_edit (app, GTK_WINDOW (dialog));
+                g_object_unref (app);
         }
 }
 
@@ -1212,18 +400,12 @@ on_autosave_value_notify (GConfClient         *client,
 {
         gboolean   gval;
         gboolean   bval;
-        GtkWidget *button;
-
-        button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_REMEMBER_WIDGET_NAME);
-        if (button == NULL) {
-                return;
-        }
 
         gval = gconf_value_get_bool (entry->value);
-        bval = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+        bval = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->priv->remember_toggle));
 
         if (bval != gval) {
-                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), gval);
+                gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->priv->remember_toggle), gval);
         }
 }
 
@@ -1255,8 +437,9 @@ on_save_session_clicked (GtkWidget           *widget,
 static void
 setup_dialog (GsmPropertiesDialog *dialog)
 {
-        GtkWidget         *treeview;
+        GtkTreeView       *treeview;
         GtkWidget         *button;
+        GtkTreeModel      *tree_filter;
         GtkTreeViewColumn *column;
         GtkCellRenderer   *renderer;
         GtkTreeSelection  *selection;
@@ -1266,32 +449,36 @@ setup_dialog (GsmPropertiesDialog *dialog)
         gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                                 GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
                                 NULL);
-        g_signal_connect (dialog,
-                          "response",
-                          G_CALLBACK (on_response),
-                          dialog);
 
         dialog->priv->list_store = gtk_list_store_new (NUMBER_OF_COLUMNS,
                                                        G_TYPE_BOOLEAN,
+                                                       G_TYPE_BOOLEAN,
                                                        G_TYPE_STRING,
+                                                       G_TYPE_ICON,
+                                                       GDK_TYPE_PIXBUF,
                                                        G_TYPE_STRING,
-                                                       G_TYPE_STRING,
-                                                       G_TYPE_STRING,
-                                                       G_TYPE_STRING,
-                                                       G_TYPE_POINTER,
-                                                       G_TYPE_STRING,
-                                                       G_TYPE_BOOLEAN);
+                                                       G_TYPE_OBJECT);
+        tree_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (dialog->priv->list_store),
+                                                 NULL);
+        g_object_unref (dialog->priv->list_store);
+        dialog->priv->tree_filter = tree_filter;
 
-        treeview = glade_xml_get_widget (dialog->priv->xml, CAPPLET_TREEVIEW_WIDGET_NAME);
-        gtk_tree_view_set_model (GTK_TREE_VIEW (treeview),
-                                 GTK_TREE_MODEL (dialog->priv->list_store));
-        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
+        gtk_tree_model_filter_set_visible_column (GTK_TREE_MODEL_FILTER (tree_filter),
+                                                  STORE_COL_VISIBLE);
+
+        treeview = GTK_TREE_VIEW (glade_xml_get_widget (dialog->priv->xml, CAPPLET_TREEVIEW_WIDGET_NAME));
+        dialog->priv->treeview = treeview;
+
+        gtk_tree_view_set_model (treeview, tree_filter);
+        g_object_unref (tree_filter);
+
+        gtk_tree_view_set_headers_visible (treeview, FALSE);
         g_signal_connect (treeview,
                           "row-activated",
                           G_CALLBACK (on_row_activated),
                           dialog);
 
-        selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
+        selection = gtk_tree_view_get_selection (treeview);
         gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
         g_signal_connect (selection,
                           "changed",
@@ -1303,9 +490,8 @@ setup_dialog (GsmPropertiesDialog *dialog)
         column = gtk_tree_view_column_new_with_attributes (_("Enabled"),
                                                            renderer,
                                                            "active", STORE_COL_ENABLED,
-                                                           "activatable", STORE_COL_ACTIVATABLE,
                                                            NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+        gtk_tree_view_append_column (treeview, column);
         g_signal_connect (renderer,
                           "toggled",
                           G_CALLBACK (on_startup_enabled_toggled),
@@ -1315,12 +501,14 @@ setup_dialog (GsmPropertiesDialog *dialog)
         renderer = gtk_cell_renderer_pixbuf_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Icon"),
                                                            renderer,
-                                                           "icon-name", STORE_COL_ICON_NAME,
+                                                           "icon_name", STORE_COL_ICON_NAME,
+                                                           "gicon", STORE_COL_GICON,
+                                                           "pixbuf", STORE_COL_PIXBUF,
                                                            NULL);
         g_object_set (renderer,
-                      "stock-size", GTK_ICON_SIZE_LARGE_TOOLBAR,
+                      "stock-size", GSM_PROPERTIES_ICON_SIZE,
                       NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+        gtk_tree_view_append_column (treeview, column);
 
         /* NAME COLUMN */
         renderer = gtk_cell_renderer_text_new ();
@@ -1331,14 +519,14 @@ setup_dialog (GsmPropertiesDialog *dialog)
         g_object_set (renderer,
                       "ellipsize", PANGO_ELLIPSIZE_END,
                       NULL);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+        gtk_tree_view_append_column (treeview, column);
 
 
-        gtk_tree_view_column_set_sort_column_id (column, STORE_COL_NAME);
-        gtk_tree_view_set_search_column (GTK_TREE_VIEW (treeview), STORE_COL_NAME);
-        gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (treeview), TRUE);
+        gtk_tree_view_column_set_sort_column_id (column, STORE_COL_DESCRIPTION);
+        gtk_tree_view_set_search_column (treeview, STORE_COL_DESCRIPTION);
+        gtk_tree_view_set_rules_hint (treeview, TRUE);
 
-        gtk_drag_dest_set (treeview,
+        gtk_drag_dest_set (GTK_WIDGET (treeview),
                            GTK_DEST_DEFAULT_ALL,
                            drag_targets,
                            G_N_ELEMENTS (drag_targets),
@@ -1350,23 +538,26 @@ setup_dialog (GsmPropertiesDialog *dialog)
                           dialog);
 
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (dialog->priv->list_store),
-                                              STORE_COL_NAME,
+                                              STORE_COL_DESCRIPTION,
                                               GTK_SORT_ASCENDING);
 
 
         button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_ADD_WIDGET_NAME);
+        dialog->priv->add_button = button;
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_add_app_clicked),
                           dialog);
 
         button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_DELETE_WIDGET_NAME);
+        dialog->priv->delete_button = button;
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_delete_app_clicked),
                           dialog);
 
         button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_EDIT_WIDGET_NAME);
+        dialog->priv->edit_button = button;
         g_signal_connect (button,
                           "clicked",
                           G_CALLBACK (on_edit_app_clicked),
@@ -1374,6 +565,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
 
         client = gconf_client_get_default ();
         button = glade_xml_get_widget (dialog->priv->xml, CAPPLET_REMEMBER_WIDGET_NAME);
+        dialog->priv->remember_toggle = button;
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button),
                                       gconf_client_get_bool (client, SPC_GCONF_AUTOSAVE_KEY, NULL));
         gconf_client_notify_add (client,
@@ -1395,6 +587,12 @@ setup_dialog (GsmPropertiesDialog *dialog)
                           G_CALLBACK (on_save_session_clicked),
                           dialog);
 
+        dialog->priv->manager = gsp_app_manager_get ();
+        gsp_app_manager_fill (dialog->priv->manager);
+        g_signal_connect_swapped (dialog->priv->manager, "added",
+                                  G_CALLBACK (_app_added), dialog);
+        g_signal_connect_swapped (dialog->priv->manager, "removed",
+                                  G_CALLBACK (_app_removed), dialog);
 
         populate_model (dialog);
 }
@@ -1426,6 +624,11 @@ gsm_properties_dialog_dispose (GObject *object)
         g_return_if_fail (GSM_IS_PROPERTIES_DIALOG (object));
 
         dialog = GSM_PROPERTIES_DIALOG (object);
+
+        if (dialog->priv->manager != NULL) {
+                g_object_unref (dialog->priv->manager);
+                dialog->priv->manager = NULL;
+        }
 
         if (dialog->priv->xml != NULL) {
                 g_object_unref (dialog->priv->xml);

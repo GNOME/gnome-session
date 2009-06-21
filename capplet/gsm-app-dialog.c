@@ -20,17 +20,13 @@
 
 #include "config.h"
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include <glade/glade-xml.h>
-#include <gconf/gconf-client.h>
+
+#include "gsm-util.h"
 
 #include "gsm-app-dialog.h"
 
@@ -446,4 +442,92 @@ gsm_app_dialog_new (const char *name,
                                NULL);
 
         return GTK_WIDGET (object);
+}
+
+gboolean
+gsm_app_dialog_run (GsmAppDialog  *dialog,
+                    char         **name_p,
+                    char         **command_p,
+                    char         **comment_p)
+{
+        gboolean retval;
+
+        retval = FALSE;
+
+        while (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_OK) {
+                const char *name;
+                const char *exec;
+                const char *comment;
+                const char *error_msg;
+                GError     *error;
+                char      **argv;
+                int         argc;
+                gboolean    changed;
+
+                name = gsm_app_dialog_get_name (GSM_APP_DIALOG (dialog));
+                exec = gsm_app_dialog_get_command (GSM_APP_DIALOG (dialog));
+                comment = gsm_app_dialog_get_comment (GSM_APP_DIALOG (dialog));
+
+                error = NULL;
+                error_msg = NULL;
+
+                if (gsm_util_text_is_blank (exec)) {
+                        error_msg = _("The startup command cannot be empty");
+                } else {
+                        if (!g_shell_parse_argv (exec, &argc, &argv, &error)) {
+                                if (error != NULL) {
+                                        error_msg = error->message;
+                                } else {
+                                        error_msg = _("The startup command is not valid");
+                                }
+                        }
+                }
+
+                if (error_msg != NULL) {
+                        GtkWidget *msgbox;
+
+                        msgbox = gtk_message_dialog_new (GTK_WINDOW (dialog),
+                                                         GTK_DIALOG_MODAL,
+                                                         GTK_MESSAGE_ERROR,
+                                                         GTK_BUTTONS_CLOSE,
+                                                         "%s", error_msg);
+
+                        if (error != NULL) {
+                                g_error_free (error);
+                        }
+
+                        gtk_dialog_run (GTK_DIALOG (msgbox));
+
+                        gtk_widget_destroy (msgbox);
+
+                        continue;
+                }
+
+                changed = FALSE;
+
+                if (gsm_util_text_is_blank (name)) {
+                        name = argv[0];
+                }
+
+                if (name_p) {
+                        *name_p = g_strdup (name);
+                }
+
+                g_strfreev (argv);
+
+                if (command_p) {
+                        *command_p = g_strdup (exec);
+                }
+
+                if (comment_p) {
+                        *comment_p = g_strdup (comment);
+                }
+
+                retval = TRUE;
+                break;
+        }
+
+        gtk_widget_destroy (GTK_WIDGET (dialog));
+
+        return retval;
 }

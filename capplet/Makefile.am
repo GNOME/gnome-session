@@ -26,6 +26,12 @@ gnome_session_properties_SOURCES =			\
 	gsm-properties-dialog.c				\
 	gsm-app-dialog.h				\
 	gsm-app-dialog.c				\
+	gsp-app.h					\
+	gsp-app.c					\
+	gsp-app-manager.h				\
+	gsp-app-manager.c				\
+	gsp-keyfile.h					\
+	gsp-keyfile.c					\
 	$(NULL)
 
 -include $(top_srcdir)/git.mk
