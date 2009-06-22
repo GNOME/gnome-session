@@ -791,8 +791,8 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                                                NULL,
                                                &local_error);
         if (command == NULL) {
-                g_warning ("Unable to parse command '%s': %s",
-                           command,
+                g_warning ("Unable to parse command from  '%s': %s",
+                           egg_desktop_file_get_source (app->priv->desktop_file),
                            local_error->message);
                 g_error_free (local_error);
         }
