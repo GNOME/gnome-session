@@ -286,11 +286,12 @@ on_drag_data (GtkWidget           *widget,
 
         dnd_success = FALSE;
 
-        if ((data != NULL) && (data->length >= 0)) {
+        if (data != NULL) {
                 char **filenames;
                 int    i;
 
-                filenames = g_strsplit ((char *)data->data, "\r\n", 0);
+                filenames = gtk_selection_data_get_uris (data);
+
                 for (i = 0; filenames[i] && filenames[i][0]; i++) {
                         /* Return success if at least one file succeeded */
                         gboolean file_success;
