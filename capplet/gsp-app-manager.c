@@ -280,6 +280,15 @@ _gsp_app_manager_handle_delete (GspAppManager *manager,
                 return;
         }
 
+        if (index < position) {
+                /* it got deleted, but in a position earlier than the current
+                 * one. This happens when the user file was changed and became
+                 * identical to the system file; in this case, the user file is
+                 * simply removed. */
+                 g_assert (index == 0);
+                 return;
+        }
+
         if (position == index &&
             (system_position == index || system_position == G_MAXUINT)) {
                 /* the file used by the user was deleted, and there's no other
