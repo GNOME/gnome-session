@@ -342,6 +342,7 @@ _gsp_app_user_equal_system (GspApp  *app,
                 g_key_file_free (keyfile);
                 return FALSE;
         }
+        g_free (str);
 
         str = gsp_key_file_get_locale_string (keyfile,
                                               G_KEY_FILE_DESKTOP_KEY_COMMENT);
@@ -351,6 +352,7 @@ _gsp_app_user_equal_system (GspApp  *app,
                 g_key_file_free (keyfile);
                 return FALSE;
         }
+        g_free (str);
 
         str = gsp_key_file_get_string (keyfile,
                                        G_KEY_FILE_DESKTOP_KEY_EXEC);
@@ -360,6 +362,7 @@ _gsp_app_user_equal_system (GspApp  *app,
                 g_key_file_free (keyfile);
                 return FALSE;
         }
+        g_free (str);
 
         str = gsp_key_file_get_locale_string (keyfile,
                                               G_KEY_FILE_DESKTOP_KEY_ICON);
@@ -369,6 +372,7 @@ _gsp_app_user_equal_system (GspApp  *app,
                 g_key_file_free (keyfile);
                 return FALSE;
         }
+        g_free (str);
 
         g_key_file_free (keyfile);
 
