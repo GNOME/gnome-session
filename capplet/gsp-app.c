@@ -361,6 +361,15 @@ _gsp_app_user_equal_system (GspApp  *app,
                 return FALSE;
         }
 
+        str = gsp_key_file_get_locale_string (keyfile,
+                                              G_KEY_FILE_DESKTOP_KEY_ICON);
+        if (!_gsp_str_equal (str, app->priv->icon)) {
+                g_free (str);
+                g_free (path);
+                g_key_file_free (keyfile);
+                return FALSE;
+        }
+
         g_key_file_free (keyfile);
 
         *system_path = path;
