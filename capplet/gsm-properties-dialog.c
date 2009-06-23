@@ -272,7 +272,7 @@ on_startup_enabled_toggled (GtkCellRendererToggle *cell_renderer,
         }
 }
 
-static gboolean
+static void
 on_drag_data (GtkWidget           *widget,
               GdkDragContext      *drag_context,
               gint                 x,
@@ -303,7 +303,7 @@ on_drag_data (GtkWidget           *widget,
         }
 
         gtk_drag_finish (drag_context, dnd_success, FALSE, time);
-        return TRUE;
+        g_signal_stop_emission_by_name (widget, "drag-data-received");
 }
 
 static void
