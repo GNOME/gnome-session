@@ -89,6 +89,7 @@ static guint gsp_app_signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (GspApp, gsp_app, G_TYPE_OBJECT)
 
+static void     gsp_app_dispose  (GObject *object);
 static void     gsp_app_finalize (GObject *object);
 static gboolean _gsp_app_save    (gpointer data);
 
@@ -118,6 +119,7 @@ gsp_app_class_init (GspAppClass *class)
 {
         GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
+        gobject_class->dispose  = gsp_app_dispose;
         gobject_class->finalize = gsp_app_finalize;
 
         gsp_app_signals[CHANGED] =
@@ -200,7 +202,7 @@ _gsp_app_free_reusable_data (GspApp *app)
 }
 
 static void
-gsp_app_finalize (GObject *object)
+gsp_app_dispose (GObject *object)
 {
         GspApp *app;
 
@@ -209,6 +211,7 @@ gsp_app_finalize (GObject *object)
 
         app = GSP_APP (object);
 
+        /* we save in dispose since we might need to reference GspAppManager */
         if (app->priv->save_timeout) {
                 g_source_remove (app->priv->save_timeout);
                 app->priv->save_timeout = 0;
@@ -216,6 +219,19 @@ gsp_app_finalize (GObject *object)
                 /* save now */
                 _gsp_app_save (app);
         }
+
+        G_OBJECT_CLASS (gsp_app_parent_class)->dispose (object);
+}
+
+static void
+gsp_app_finalize (GObject *object)
+{
+        GspApp *app;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSP_IS_APP (object));
+
+        app = GSP_APP (object);
 
         if (app->priv->basename) {
                 g_free (app->priv->basename);

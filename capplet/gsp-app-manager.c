@@ -55,6 +55,7 @@ static guint gsp_app_manager_signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (GspAppManager, gsp_app_manager, G_TYPE_OBJECT)
 
+static void     gsp_app_manager_dispose      (GObject       *object);
 static void     gsp_app_manager_finalize     (GObject       *object);
 static void     _gsp_app_manager_app_unref   (GspApp        *app,
                                               GspAppManager *manager);
@@ -98,6 +99,7 @@ gsp_app_manager_class_init (GspAppManagerClass *class)
 {
         GObjectClass *gobject_class = G_OBJECT_CLASS (class);
 
+        gobject_class->dispose  = gsp_app_manager_dispose;
         gobject_class->finalize = gsp_app_manager_finalize;
 
         gsp_app_manager_signals[ADDED] =
@@ -134,7 +136,7 @@ gsp_app_manager_init (GspAppManager *manager)
 }
 
 static void
-gsp_app_manager_finalize (GObject *object)
+gsp_app_manager_dispose (GObject *object)
 {
         GspAppManager *manager;
 
@@ -143,10 +145,25 @@ gsp_app_manager_finalize (GObject *object)
 
         manager = GSP_APP_MANAGER (object);
 
+        /* we unref GspApp objects in dispose since they might need to
+         * reference us during their dispose/finalize */
         g_slist_foreach (manager->priv->apps,
                          (GFunc) _gsp_app_manager_app_unref, manager);
         g_slist_free (manager->priv->apps);
         manager->priv->apps = NULL;
+
+        G_OBJECT_CLASS (gsp_app_manager_parent_class)->dispose (object);
+}
+
+static void
+gsp_app_manager_finalize (GObject *object)
+{
+        GspAppManager *manager;
+
+        g_return_if_fail (object != NULL);
+        g_return_if_fail (GSP_IS_APP_MANAGER (object));
+
+        manager = GSP_APP_MANAGER (object);
 
         g_slist_foreach (manager->priv->dirs,
                          (GFunc) _gsp_xdg_dir_free, NULL);

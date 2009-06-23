@@ -640,17 +640,20 @@ gsm_properties_dialog_dispose (GObject *object)
 
         dialog = GSM_PROPERTIES_DIALOG (object);
 
-        if (dialog->priv->manager != NULL) {
-                g_object_unref (dialog->priv->manager);
-                dialog->priv->manager = NULL;
-        }
-
         if (dialog->priv->xml != NULL) {
                 g_object_unref (dialog->priv->xml);
                 dialog->priv->xml = NULL;
         }
 
         G_OBJECT_CLASS (gsm_properties_dialog_parent_class)->dispose (object);
+
+        /* it's important to do this after chaining to the parent dispose
+         * method because we want to make sure the treeview has been disposed
+         * and removed all its references to GspApp objects */
+        if (dialog->priv->manager != NULL) {
+                g_object_unref (dialog->priv->manager);
+                dialog->priv->manager = NULL;
+        }
 }
 
 static void
