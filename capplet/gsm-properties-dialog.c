@@ -76,9 +76,7 @@ struct GsmPropertiesDialogPrivate
 enum {
         STORE_COL_VISIBLE = 0,
         STORE_COL_ENABLED,
-        STORE_COL_ICON_NAME,
         STORE_COL_GICON,
-        STORE_COL_PIXBUF,
         STORE_COL_DESCRIPTION,
         STORE_COL_APP,
         NUMBER_OF_COLUMNS
@@ -120,49 +118,49 @@ _fill_iter_from_app (GtkListStore *list_store,
                      GtkTreeIter  *iter,
                      GspApp       *app)
 {
-        gboolean      hidden;
-        gboolean      enabled;
-        GIcon        *icon;
-        const char   *icon_name;
-        GdkPixbuf    *pixbuf;
-        const char   *description;
+        gboolean    hidden;
+        gboolean    enabled;
+        GIcon      *icon;
+        const char *description;
 
         hidden      = gsp_app_get_hidden (app);
         enabled     = gsp_app_get_enabled (app);
-        icon_name   = gsp_app_get_icon_name (app);
-        pixbuf      = gsp_app_get_pixbuf (app);
+        icon        = gsp_app_get_icon (app);
         description = gsp_app_get_description (app);
 
-        icon = NULL;
-        if (!pixbuf) {
-#if 1
-                GtkIconTheme *theme;
+        if (G_IS_THEMED_ICON (icon)) {
+                GtkIconTheme       *theme;
+                const char * const *icon_names;
+
                 theme = gtk_icon_theme_get_default ();
-                if (icon_name == NULL ||
-                    !gtk_icon_theme_has_icon (theme, icon_name)) {
-                        icon_name = STARTUP_APP_ICON;
+                icon_names = g_themed_icon_get_names (G_THEMED_ICON (icon));
+                if (icon_names[0] == NULL ||
+                    !gtk_icon_theme_has_icon (theme, icon_names[0])) {
+                        g_object_unref (icon);
+                        icon = NULL;
                 }
-#else
-                /* the issue with this approach is that icons that live in
-                 * hicolor are ignored and STARTUP_APP_ICON is nearly always
-                 * used if it's in the main theme */
+        } else if (G_IS_FILE_ICON (icon)) {
+                GFile *iconfile;
+
+                iconfile = g_file_icon_get_file (G_FILE_ICON (icon));
+                if (!g_file_query_exists (iconfile, NULL)) {
+                        g_object_unref (icon);
+                        icon = NULL;
+                }
+        }
+
+        if (icon == NULL) {
                 icon = g_themed_icon_new (STARTUP_APP_ICON);
-                if (icon_name != NULL) {
-                        g_themed_icon_prepend_name (G_THEMED_ICON (icon),
-                                                    icon_name);
-                }
-#endif
         }
 
         gtk_list_store_set (list_store, iter,
                             STORE_COL_VISIBLE, !hidden,
                             STORE_COL_ENABLED, enabled,
-                            STORE_COL_ICON_NAME, icon_name,
                             STORE_COL_GICON, icon,
-                            STORE_COL_PIXBUF, pixbuf,
                             STORE_COL_DESCRIPTION, description,
                             STORE_COL_APP, app,
                             -1);
+        g_object_unref (icon);
 }
 
 static void
@@ -468,9 +466,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         dialog->priv->list_store = gtk_list_store_new (NUMBER_OF_COLUMNS,
                                                        G_TYPE_BOOLEAN,
                                                        G_TYPE_BOOLEAN,
-                                                       G_TYPE_STRING,
                                                        G_TYPE_ICON,
-                                                       GDK_TYPE_PIXBUF,
                                                        G_TYPE_STRING,
                                                        G_TYPE_OBJECT);
         tree_filter = gtk_tree_model_filter_new (GTK_TREE_MODEL (dialog->priv->list_store),
@@ -517,9 +513,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         renderer = gtk_cell_renderer_pixbuf_new ();
         column = gtk_tree_view_column_new_with_attributes (_("Icon"),
                                                            renderer,
-                                                           "icon_name", STORE_COL_ICON_NAME,
                                                            "gicon", STORE_COL_GICON,
-                                                           "pixbuf", STORE_COL_PIXBUF,
                                                            NULL);
         g_object_set (renderer,
                       "stock-size", GSM_PROPERTIES_ICON_SIZE,

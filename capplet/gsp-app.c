@@ -54,9 +54,9 @@ struct _GspAppPrivate {
         char         *name;
         char         *exec;
         char         *comment;
-        char         *icon_name;
+        char         *icon;
 
-        GdkPixbuf    *pixbuf;
+        GIcon        *gicon;
         char         *description;
 
         /* position of the directory in the XDG environment variable */
@@ -178,14 +178,14 @@ _gsp_app_free_reusable_data (GspApp *app)
                 app->priv->comment = NULL;
         }
 
-        if (app->priv->icon_name) {
-                g_free (app->priv->icon_name);
-                app->priv->icon_name = NULL;
+        if (app->priv->icon) {
+                g_free (app->priv->icon);
+                app->priv->icon = NULL;
         }
 
-        if (app->priv->pixbuf) {
-                g_object_unref (app->priv->pixbuf);
-                app->priv->pixbuf = NULL;
+        if (app->priv->gicon) {
+                g_object_unref (app->priv->gicon);
+                app->priv->gicon = NULL;
         }
 
         if (app->priv->description) {
@@ -552,20 +552,16 @@ gsp_app_get_comment (GspApp *app)
         return app->priv->comment;
 }
 
-const char *
-gsp_app_get_icon_name (GspApp *app)
+GIcon *
+gsp_app_get_icon (GspApp *app)
 {
         g_return_val_if_fail (GSP_IS_APP (app), NULL);
 
-        return app->priv->icon_name;
-}
-
-GdkPixbuf *
-gsp_app_get_pixbuf (GspApp *app)
-{
-        g_return_val_if_fail (GSP_IS_APP (app), NULL);
-
-        return app->priv->pixbuf;
+        if (app->priv->gicon) {
+                return g_object_ref (app->priv->gicon);
+        } else {
+                return NULL;
+        }
 }
 
 unsigned int
@@ -696,20 +692,6 @@ gsp_app_reload_at (GspApp       *app,
         gsp_app_new (path, xdg_position);
 }
 
-static GdkPixbuf *
-_gsp_app_load_pixbuf (const char *path)
-{
-        int width, height;
-
-        if (gtk_icon_size_lookup (GSM_PROPERTIES_ICON_SIZE,
-                                  &width, &height)) {
-                return gdk_pixbuf_new_from_file_at_size (path,
-                                                         width, height, NULL);
-        }
-
-        return NULL;
-}
-
 GspApp *
 gsp_app_new (const char   *path,
              unsigned int  xdg_position)
@@ -719,7 +701,6 @@ gsp_app_new (const char   *path,
         GKeyFile      *keyfile;
         char          *basename;
         gboolean       new;
-        char          *icon;
 
         basename = g_path_get_basename (path);
 
@@ -788,17 +769,22 @@ gsp_app_new (const char   *path,
                 app->priv->name = g_strdup (app->priv->exec);
         }
 
-        icon = gsp_key_file_get_locale_string (keyfile,
-                                               G_KEY_FILE_DESKTOP_KEY_ICON);
+        app->priv->icon = gsp_key_file_get_locale_string (keyfile,
+                                                          G_KEY_FILE_DESKTOP_KEY_ICON);
 
-        if (icon) {
+        if (app->priv->icon) {
                 /* look at icon and see if it's a themed icon or not */
-                if (g_path_is_absolute (icon)) {
-                        app->priv->pixbuf = _gsp_app_load_pixbuf (icon);
-                        g_free (icon);
+                if (g_path_is_absolute (app->priv->icon)) {
+                        GFile *iconfile;
+
+                        iconfile = g_file_new_for_path (app->priv->icon);
+                        app->priv->gicon = g_file_icon_new (iconfile);
+                        g_object_unref (iconfile);
                 } else {
-                        app->priv->icon_name = icon;
+                        app->priv->gicon = g_themed_icon_new (app->priv->icon);
                 }
+        } else {
+                app->priv->gicon = NULL;
         }
 
         g_key_file_free (keyfile);
@@ -921,9 +907,9 @@ gsp_app_create (const char *name,
         }
         app->priv->exec = g_strdup (exec);
         app->priv->comment = g_strdup (comment);
-        app->priv->icon_name = NULL;
+        app->priv->icon = NULL;
 
-        app->priv->pixbuf = NULL;
+        app->priv->gicon = NULL;
         _gsp_app_update_description (app);
 
         /* by definition */

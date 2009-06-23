@@ -25,7 +25,7 @@
 #define __GSP_APP_H
 
 #include <glib-object.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -83,8 +83,7 @@ const char      *gsp_app_get_exec          (GspApp       *app);
 const char      *gsp_app_get_comment       (GspApp       *app);
 
 const char      *gsp_app_get_description   (GspApp       *app);
-const char      *gsp_app_get_icon_name     (GspApp       *app);
-GdkPixbuf       *gsp_app_get_pixbuf        (GspApp       *app);
+GIcon           *gsp_app_get_icon          (GspApp       *app);
 
 /* private interface for GspAppManager only */
 
