@@ -58,17 +58,11 @@ struct _GspApp
 
 GType            gsp_app_get_type          (void);
 
-GspApp          *gsp_app_new               (const char   *path,
-                                            unsigned int  xdg_position);
 void             gsp_app_create            (const char   *name,
                                             const char   *comment,
                                             const char   *exec);
 
 gboolean         gsp_app_copy_desktop_file (const char   *uri);
-
-void             gsp_app_reload_at         (GspApp       *app,
-                                            const char   *path,
-                                            unsigned int  xdg_position);
 
 void             gsp_app_edit              (GspApp       *app,
                                             GtkWindow    *parent);
@@ -86,10 +80,19 @@ const char      *gsp_app_get_description   (GspApp       *app);
 const char      *gsp_app_get_icon_name     (GspApp       *app);
 GdkPixbuf       *gsp_app_get_pixbuf        (GspApp       *app);
 
-unsigned int     gsp_app_get_xdg_position  (GspApp       *app);
+/* private interface for GspAppManager only */
+
+GspApp          *gsp_app_new                      (const char   *path,
+                                                   unsigned int  xdg_position);
+
+void             gsp_app_reload_at                (GspApp       *app,
+                                                   const char   *path,
+                                                   unsigned int  xdg_position);
+
+unsigned int     gsp_app_get_xdg_position         (GspApp       *app);
 unsigned int     gsp_app_get_xdg_system_position  (GspApp       *app);
 void             gsp_app_set_xdg_system_position  (GspApp       *app,
-						   unsigned int  position);
+                                                   unsigned int  position);
 
 G_END_DECLS
 
