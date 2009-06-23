@@ -511,6 +511,14 @@ gsp_app_get_basename (GspApp *app)
         return app->priv->basename;
 }
 
+const char *
+gsp_app_get_path (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), NULL);
+
+        return app->priv->path;
+}
+
 gboolean
 gsp_app_get_hidden (GspApp *app)
 {

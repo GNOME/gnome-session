@@ -271,14 +271,14 @@ on_startup_enabled_toggled (GtkCellRendererToggle *cell_renderer,
 }
 
 static void
-on_drag_data (GtkWidget           *widget,
-              GdkDragContext      *drag_context,
-              gint                 x,
-              gint                 y,
-              GtkSelectionData    *data,
-              guint                info,
-              guint                time,
-              GsmPropertiesDialog *dialog)
+on_drag_data_received (GtkWidget           *widget,
+                       GdkDragContext      *drag_context,
+                       gint                 x,
+                       gint                 y,
+                       GtkSelectionData    *data,
+                       guint                info,
+                       guint                time,
+                       GsmPropertiesDialog *dialog)
 {
         gboolean dnd_success;
 
@@ -301,7 +301,59 @@ on_drag_data (GtkWidget           *widget,
         }
 
         gtk_drag_finish (drag_context, dnd_success, FALSE, time);
-        g_signal_stop_emission_by_name (widget, "drag-data-received");
+        g_signal_stop_emission_by_name (widget, "drag_data_received");
+}
+
+static void
+on_drag_begin (GtkWidget           *widget,
+               GdkDragContext      *context,
+               GsmPropertiesDialog *dialog)
+{
+        GtkTreePath *path;
+        GtkTreeIter  iter;
+        GspApp      *app;
+
+        gtk_tree_view_get_cursor (GTK_TREE_VIEW (widget), &path, NULL);
+        gtk_tree_model_get_iter (GTK_TREE_MODEL (dialog->priv->tree_filter),
+                                 &iter, path);
+        gtk_tree_path_free (path);
+
+        gtk_tree_model_get (GTK_TREE_MODEL (dialog->priv->tree_filter),
+                            &iter,
+                            STORE_COL_APP, &app,
+                            -1);
+
+        if (app) {
+                g_object_set_data_full (G_OBJECT (context), "gsp-app",
+                                        g_object_ref (app), g_object_unref);
+                g_object_unref (app);
+        }
+
+}
+
+static void
+on_drag_data_get (GtkWidget           *widget,
+                  GdkDragContext      *context,
+                  GtkSelectionData    *selection_data,
+                  guint                info,
+                  guint                time,
+                  GsmPropertiesDialog *dialog)
+{
+        GspApp *app;
+
+        app = g_object_get_data (G_OBJECT (context), "gsp-app");
+        if (app) {
+                const char *uris[2];
+                char       *uri;
+
+                uri = g_filename_to_uri (gsp_app_get_path (app), NULL, NULL);
+
+                uris[0] = uri;
+                uris[1] = NULL;
+                gtk_selection_data_set_uris (selection_data, (char **) uris);
+
+                g_free (uri);
+        }
 }
 
 static void
@@ -457,6 +509,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         GtkCellRenderer   *renderer;
         GtkTreeSelection  *selection;
         GConfClient       *client;
+        GtkTargetList     *targetlist;
 
         gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                                 GTK_STOCK_HELP, GTK_RESPONSE_HELP,
@@ -536,15 +589,39 @@ setup_dialog (GsmPropertiesDialog *dialog)
         gtk_tree_view_set_search_column (treeview, STORE_COL_DESCRIPTION);
         gtk_tree_view_set_rules_hint (treeview, TRUE);
 
+        gtk_tree_view_enable_model_drag_source (treeview,
+                                                GDK_BUTTON1_MASK|GDK_BUTTON2_MASK,
+                                                NULL, 0,
+                                                GDK_ACTION_COPY);
+        gtk_drag_source_add_uri_targets (GTK_WIDGET (treeview));
+
         gtk_drag_dest_set (GTK_WIDGET (treeview),
                            GTK_DEST_DEFAULT_ALL,
                            NULL, 0,
                            GDK_ACTION_COPY);
         gtk_drag_dest_add_uri_targets (GTK_WIDGET (treeview));
 
-        g_signal_connect (treeview,
-                          "drag-data-received",
-                          G_CALLBACK (on_drag_data),
+        /* we don't want to accept drags coming from this widget */
+        targetlist = gtk_drag_dest_get_target_list (GTK_WIDGET (treeview));
+        if (targetlist != NULL) {
+                GList *list;
+                list = targetlist->list;
+                while (list != NULL) {
+                        GtkTargetPair *targetpair;
+                        targetpair = list->data;
+                        targetpair->flags = GTK_TARGET_OTHER_WIDGET;
+                        list = list->next;
+                }
+        }
+
+        g_signal_connect (treeview, "drag_begin",
+                          G_CALLBACK (on_drag_begin),
+                          dialog);
+        g_signal_connect (treeview, "drag_data_get",
+                          G_CALLBACK (on_drag_data_get),
+                          dialog);
+        g_signal_connect (treeview, "drag_data_received",
+                          G_CALLBACK (on_drag_data_received),
                           dialog);
 
         gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (dialog->priv->list_store),

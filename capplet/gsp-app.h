@@ -71,6 +71,7 @@ gboolean         gsp_app_copy_desktop_file (const char   *uri);
 void             gsp_app_delete            (GspApp       *app);
 
 const char      *gsp_app_get_basename      (GspApp       *app);
+const char      *gsp_app_get_path          (GspApp       *app);
 
 gboolean         gsp_app_get_hidden        (GspApp       *app);
 
