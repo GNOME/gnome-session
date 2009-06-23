@@ -88,12 +88,12 @@ main (int argc, char *argv[])
         if (! gtk_init_with_args (&argc, &argv, " - GNOME Session Properties", options, GETTEXT_PACKAGE, &error)) {
                 g_warning ("Unable to start: %s", error->message);
                 g_error_free (error);
-                exit (1);
+                return 1;
         }
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
-                exit (1);
+                return 0;
         }
 
         dialog = gsm_properties_dialog_new ();
