@@ -1094,7 +1094,7 @@ gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
         dialog->priv = GSM_INHIBIT_DIALOG_GET_PRIVATE (dialog);
 
         dialog->priv->xml = gtk_builder_new ();
-        gtk_builder_set_translation_domain(dialog->priv->xml, PACKAGE);
+        gtk_builder_set_translation_domain (dialog->priv->xml, GETTEXT_PACKAGE);
 
         error = NULL;
         if (!gtk_builder_add_from_file (dialog->priv->xml,
