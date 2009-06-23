@@ -458,7 +458,6 @@ setup_dialog (GsmPropertiesDialog *dialog)
         GtkCellRenderer   *renderer;
         GtkTreeSelection  *selection;
         GConfClient       *client;
-        static const GtkTargetEntry drag_targets[] = { { "text/uri-list", 0, 0 } };
 
         gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                                 GTK_STOCK_HELP, GTK_RESPONSE_HELP,
@@ -544,9 +543,9 @@ setup_dialog (GsmPropertiesDialog *dialog)
 
         gtk_drag_dest_set (GTK_WIDGET (treeview),
                            GTK_DEST_DEFAULT_ALL,
-                           drag_targets,
-                           G_N_ELEMENTS (drag_targets),
+                           NULL, 0,
                            GDK_ACTION_COPY);
+        gtk_drag_dest_add_uri_targets (GTK_WIDGET (treeview));
 
         g_signal_connect (treeview,
                           "drag-data-received",
