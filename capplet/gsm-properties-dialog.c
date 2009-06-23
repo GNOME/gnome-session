@@ -567,6 +567,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         column = gtk_tree_view_column_new_with_attributes (_("Icon"),
                                                            renderer,
                                                            "gicon", STORE_COL_GICON,
+                                                           "sensitive", STORE_COL_ENABLED,
                                                            NULL);
         g_object_set (renderer,
                       "stock-size", GSM_PROPERTIES_ICON_SIZE,
@@ -578,6 +579,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         column = gtk_tree_view_column_new_with_attributes (_("Program"),
                                                            renderer,
                                                            "markup", STORE_COL_DESCRIPTION,
+                                                           "sensitive", STORE_COL_ENABLED,
                                                            NULL);
         g_object_set (renderer,
                       "ellipsize", PANGO_ELLIPSIZE_END,
