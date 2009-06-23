@@ -309,7 +309,7 @@ static void
 on_add_app_clicked (GtkWidget           *widget,
                     GsmPropertiesDialog *dialog)
 {
-        GtkWidget *add_dialog;
+        GtkWidget  *add_dialog;
         char       *name;
         char       *exec;
         char       *comment;
@@ -374,7 +374,25 @@ on_edit_app_clicked (GtkWidget           *widget,
                             -1);
 
         if (app) {
-                gsp_app_edit (app, GTK_WINDOW (dialog));
+                GtkWidget  *edit_dialog;
+                char       *name;
+                char       *exec;
+                char       *comment;
+
+                edit_dialog = gsm_app_dialog_new (gsp_app_get_name (app),
+                                                  gsp_app_get_exec (app),
+                                                  gsp_app_get_comment (app));
+                gtk_window_set_transient_for (GTK_WINDOW (edit_dialog),
+                                              GTK_WINDOW (dialog));
+
+                if (gsm_app_dialog_run (GSM_APP_DIALOG (edit_dialog),
+                                        &name, &exec, &comment)) {
+                        gsp_app_update (app, name, comment, exec);
+                        g_free (name);
+                        g_free (exec);
+                        g_free (comment);
+                }
+
                 g_object_unref (app);
         }
 }

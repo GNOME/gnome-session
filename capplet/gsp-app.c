@@ -529,6 +529,30 @@ gsp_app_set_enabled (GspApp   *app,
 }
 
 const char *
+gsp_app_get_name (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), NULL);
+
+        return app->priv->name;
+}
+
+const char *
+gsp_app_get_exec (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), NULL);
+
+        return app->priv->exec;
+}
+
+const char *
+gsp_app_get_comment (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), NULL);
+
+        return app->priv->comment;
+}
+
+const char *
 gsp_app_get_icon_name (GspApp *app)
 {
         g_return_val_if_fail (GSP_IS_APP (app), NULL);
@@ -582,61 +606,45 @@ gsp_app_get_description (GspApp *app)
  */
 
 void
-gsp_app_edit (GspApp    *app,
-              GtkWindow *parent)
+gsp_app_update (GspApp     *app,
+                const char *name,
+                const char *comment,
+                const char *exec)
 {
-        GtkWidget *dialog;
-        char       *name;
-        char       *exec;
-        char       *comment;
         gboolean    changed;
 
         g_return_if_fail (GSP_IS_APP (app));
 
-        dialog = gsm_app_dialog_new (app->priv->name,
-                                     app->priv->exec,
-                                     app->priv->comment);
-        gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+        changed = FALSE;
 
-        if (gsm_app_dialog_run (GSM_APP_DIALOG (dialog),
-                                &name, &exec, &comment)) {
-                changed = FALSE;
+        if (!_gsp_str_equal (name, app->priv->name)) {
+                changed = TRUE;
+                g_free (app->priv->name);
+                app->priv->name = g_strdup (name);
+                app->priv->save_mask |= GSP_ASP_SAVE_MASK_NAME;
+        }
 
-                if (!_gsp_str_equal (name, app->priv->name)) {
-                        changed = TRUE;
-                        g_free (app->priv->name);
-                        app->priv->name = name;
-                        app->priv->save_mask |= GSP_ASP_SAVE_MASK_NAME;
-                } else {
-                        g_free (name);
-                }
+        if (!_gsp_str_equal (comment, app->priv->comment)) {
+                changed = TRUE;
+                g_free (app->priv->comment);
+                app->priv->comment = g_strdup (comment);
+                app->priv->save_mask |= GSP_ASP_SAVE_MASK_COMMENT;
+        }
 
-                if (!_gsp_str_equal (comment, app->priv->comment)) {
-                        changed = TRUE;
-                        g_free (app->priv->comment);
-                        app->priv->comment = comment;
-                        app->priv->save_mask |= GSP_ASP_SAVE_MASK_COMMENT;
-                } else {
-                        g_free (comment);
-                }
+        if (changed) {
+                _gsp_app_update_description (app);
+        }
 
-                if (changed) {
-                        _gsp_app_update_description (app);
-                }
+        if (!_gsp_str_equal (exec, app->priv->exec)) {
+                changed = TRUE;
+                g_free (app->priv->exec);
+                app->priv->exec = g_strdup (exec);
+                app->priv->save_mask |= GSP_ASP_SAVE_MASK_EXEC;
+        }
 
-                if (!_gsp_str_equal (exec, app->priv->exec)) {
-                        changed = TRUE;
-                        g_free (app->priv->exec);
-                        app->priv->exec = exec;
-                        app->priv->save_mask |= GSP_ASP_SAVE_MASK_EXEC;
-                } else {
-                        g_free (exec);
-                }
-
-                if (changed) {
-                        _gsp_app_queue_save (app);
-                        _gsp_app_emit_changed (app);
-                }
+        if (changed) {
+                _gsp_app_queue_save (app);
+                _gsp_app_emit_changed (app);
         }
 }
 

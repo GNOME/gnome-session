@@ -25,7 +25,7 @@
 #define __GSP_APP_H
 
 #include <glib-object.h>
-#include <gtk/gtk.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
 
@@ -61,11 +61,13 @@ GType            gsp_app_get_type          (void);
 void             gsp_app_create            (const char   *name,
                                             const char   *comment,
                                             const char   *exec);
+void             gsp_app_update            (GspApp       *app,
+                                            const char   *name,
+                                            const char   *comment,
+                                            const char   *exec);
 
 gboolean         gsp_app_copy_desktop_file (const char   *uri);
 
-void             gsp_app_edit              (GspApp       *app,
-                                            GtkWindow    *parent);
 void             gsp_app_delete            (GspApp       *app);
 
 const char      *gsp_app_get_basename      (GspApp       *app);
@@ -75,6 +77,10 @@ gboolean         gsp_app_get_hidden        (GspApp       *app);
 gboolean         gsp_app_get_enabled       (GspApp       *app);
 void             gsp_app_set_enabled       (GspApp       *app,
                                             gboolean      enabled);
+
+const char      *gsp_app_get_name          (GspApp       *app);
+const char      *gsp_app_get_exec          (GspApp       *app);
+const char      *gsp_app_get_comment       (GspApp       *app);
 
 const char      *gsp_app_get_description   (GspApp       *app);
 const char      *gsp_app_get_icon_name     (GspApp       *app);
