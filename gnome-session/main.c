@@ -291,21 +291,18 @@ load_standard_apps (GsmManager *manager,
 
         autostart_dirs = gsm_util_get_autostart_dirs ();
 
-        append_default_apps (manager, default_session_key, autostart_dirs);
+        if (!failsafe) {
+                maybe_load_saved_session_apps (manager);
 
-        if (failsafe) {
-                goto out;
+                for (i = 0; autostart_dirs[i]; i++) {
+                        gsm_manager_add_autostart_apps_from_dir (manager,
+                                                                 autostart_dirs[i]);
+                }
         }
 
-        maybe_load_saved_session_apps (manager);
-
-        for (i = 0; autostart_dirs[i]; i++) {
-                gsm_manager_add_autostart_apps_from_dir (manager, autostart_dirs[i]);
-        }
-
- out:
         /* We do this at the end in case a saved session contains an
          * application that already provides one of the components. */
+        append_default_apps (manager, default_session_key, autostart_dirs);
         append_required_apps (manager);
 
         g_strfreev (autostart_dirs);
