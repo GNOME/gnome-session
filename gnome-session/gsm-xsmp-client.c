@@ -35,6 +35,7 @@
 #include "gsm-marshal.h"
 
 #include "gsm-util.h"
+#include "gsm-autostart-app.h"
 #include "gsm-manager.h"
 
 #define GsmDesktopFile "_GSM_DesktopFile"
@@ -663,7 +664,7 @@ xsmp_save (GsmClient *client,
 
         g_key_file_set_string (keyfile,
                                G_KEY_FILE_DESKTOP_GROUP,
-                               "X-GNOME-Autostart-startup-id",
+                               GSM_AUTOSTART_APP_STARTUP_ID_KEY,
                                startup_id);
 
         g_key_file_set_string (keyfile,
@@ -675,7 +676,7 @@ xsmp_save (GsmClient *client,
         if (exec_discard)
                 g_key_file_set_string (keyfile,
                                        G_KEY_FILE_DESKTOP_GROUP,
-                                       "X-GNOME-Autostart-discard-exec",
+                                       GSM_AUTOSTART_APP_DISCARD_KEY,
                                        exec_discard);
 
 out:

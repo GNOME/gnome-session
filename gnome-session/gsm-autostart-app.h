@@ -59,6 +59,16 @@ GType   gsm_autostart_app_get_type           (void) G_GNUC_CONST;
 
 GsmApp *gsm_autostart_app_new                (const char *desktop_file);
 
+#define GSM_AUTOSTART_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
+#define GSM_AUTOSTART_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
+#define GSM_AUTOSTART_APP_PROVIDES_KEY    "X-GNOME-Provides"
+#define GSM_AUTOSTART_APP_STARTUP_ID_KEY  "X-GNOME-Autostart-startup-id"
+#define GSM_AUTOSTART_APP_AUTORESTART_KEY "X-GNOME-AutoRestart"
+#define GSM_AUTOSTART_APP_DBUS_NAME_KEY   "X-GNOME-DBus-Name"
+#define GSM_AUTOSTART_APP_DBUS_PATH_KEY   "X-GNOME-DBus-Path"
+#define GSM_AUTOSTART_APP_DBUS_ARGS_KEY   "X-GNOME-DBus-Start-Arguments"
+#define GSM_AUTOSTART_APP_DISCARD_KEY     "X-GNOME-Autostart-discard-exec"
+
 G_END_DECLS
 
 #endif /* __GSM_AUTOSTART_APP_H__ */

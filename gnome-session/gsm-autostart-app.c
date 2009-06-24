@@ -105,12 +105,12 @@ is_disabled (GsmApp *app)
 
         priv = GSM_AUTOSTART_APP (app)->priv;
 
-        /* X-GNOME-Autostart-enabled key, used by old gnome-session */
+        /* GSM_AUTOSTART_APP_ENABLED_KEY key, used by old gnome-session */
         if (egg_desktop_file_has_key (priv->desktop_file,
-                                      "X-GNOME-Autostart-enabled", NULL) &&
+                                      GSM_AUTOSTART_APP_ENABLED_KEY, NULL) &&
             !egg_desktop_file_get_boolean (priv->desktop_file,
-                                           "X-GNOME-Autostart-enabled", NULL)) {
-                g_debug ("app %s is disabled by X-GNOME-Autostart-enabled",
+                                           GSM_AUTOSTART_APP_ENABLED_KEY, NULL)) {
+                g_debug ("app %s is disabled by " GSM_AUTOSTART_APP_ENABLED_KEY,
                          gsm_app_peek_id (app));
                 return TRUE;
         }
@@ -387,7 +387,7 @@ load_desktop_file (GsmAutostartApp *app)
         }
 
         phase_str = egg_desktop_file_get_string (app->priv->desktop_file,
-                                                 "X-GNOME-Autostart-Phase",
+                                                 GSM_AUTOSTART_APP_PHASE_KEY,
                                                  NULL);
         if (phase_str != NULL) {
                 if (strcmp (phase_str, "Initialization") == 0) {
@@ -408,7 +408,7 @@ load_desktop_file (GsmAutostartApp *app)
         }
 
         dbus_name = egg_desktop_file_get_string (app->priv->desktop_file,
-                                                 "X-GNOME-DBus-Name",
+                                                 GSM_AUTOSTART_APP_DBUS_NAME_KEY,
                                                  NULL);
         if (dbus_name != NULL) {
                 app->priv->launch_type = AUTOSTART_LAUNCH_ACTIVATE;
@@ -421,7 +421,7 @@ load_desktop_file (GsmAutostartApp *app)
         case AUTOSTART_LAUNCH_SPAWN:
                 startup_id =
                         egg_desktop_file_get_string (app->priv->desktop_file,
-                                                     "X-GNOME-Autostart-startup-id",
+                                                     GSM_AUTOSTART_APP_STARTUP_ID_KEY,
                                                      NULL);
 
                 if (startup_id == NULL) {
@@ -436,11 +436,11 @@ load_desktop_file (GsmAutostartApp *app)
         }
 
         res = egg_desktop_file_has_key (app->priv->desktop_file,
-                                        "X-GNOME-AutoRestart",
+                                        GSM_AUTOSTART_APP_AUTORESTART_KEY,
                                         NULL);
         if (res) {
                 app->priv->autorestart = egg_desktop_file_get_boolean (app->priv->desktop_file,
-                                                                       "X-GNOME-AutoRestart",
+                                                                       GSM_AUTOSTART_APP_AUTORESTART_KEY,
                                                                        NULL);
         } else {
                 app->priv->autorestart = FALSE;
@@ -875,7 +875,7 @@ autostart_app_start_activate (GsmAutostartApp  *app,
         g_assert (name != NULL);
 
         path = egg_desktop_file_get_string (app->priv->desktop_file,
-                                            "X-GNOME-DBus-Path",
+                                            GSM_AUTOSTART_APP_DBUS_PATH_KEY,
                                             NULL);
         if (path == NULL) {
                 /* just pick one? */
@@ -883,7 +883,7 @@ autostart_app_start_activate (GsmAutostartApp  *app,
         }
 
         arguments = egg_desktop_file_get_string (app->priv->desktop_file,
-                                                 "X-GNOME-DBus-Start-Arguments",
+                                                 GSM_AUTOSTART_APP_DBUS_ARGS_KEY,
                                                  NULL);
 
         app->priv->proxy = dbus_g_proxy_new_for_name (bus,
@@ -986,7 +986,7 @@ gsm_autostart_app_provides (GsmApp     *app,
         }
 
         provides = egg_desktop_file_get_string_list (aapp->priv->desktop_file,
-                                                     "X-GNOME-Provides",
+                                                     GSM_AUTOSTART_APP_PROVIDES_KEY,
                                                      &len, NULL);
         if (!provides) {
                 return FALSE;
@@ -1038,11 +1038,11 @@ gsm_autostart_app_get_autorestart (GsmApp *app)
         autorestart = FALSE;
 
         res = egg_desktop_file_has_key (GSM_AUTOSTART_APP (app)->priv->desktop_file,
-                                        "X-GNOME-AutoRestart",
+                                        GSM_AUTOSTART_APP_AUTORESTART_KEY,
                                         NULL);
         if (res) {
                 autorestart = egg_desktop_file_get_boolean (GSM_AUTOSTART_APP (app)->priv->desktop_file,
-                                                            "X-GNOME-AutoRestart",
+                                                            GSM_AUTOSTART_APP_AUTORESTART_KEY,
                                                             NULL);
         }
 
