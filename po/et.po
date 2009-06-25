@@ -15,9 +15,9 @@ msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-02-13 22:26+0000\n"
-"PO-Revision-Date: 2009-05-02 14:01+0300\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"POT-Creation-Date: 2009-06-21 23:16+0000\n"
+"PO-Revision-Date: 2009-06-25 01:14+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,19 +25,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Select Command"
-msgstr "Käsi valimine"
+msgstr "Käsu valimine"
 
 msgid "Add Startup Program"
 msgstr "Käivitusprogrammi lisamine"
 
 msgid "Edit Startup Program"
 msgstr "Käivitusprogrammi redigeerimine"
-
-msgid "No description"
-msgstr "Kirjeldus puudub"
-
-msgid "The name of the startup program cannot be empty"
-msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
 
 msgid "The startup command cannot be empty"
 msgstr "Käivituskäsku ei tohi tühjaks jätta"
@@ -58,7 +52,10 @@ msgid "Startup Applications Preferences"
 msgstr "Käivitatavate rakenduste eelistused"
 
 msgid "Version of this application"
-msgstr "Raknduse versioon"
+msgstr "Rakenduse versioon"
+
+msgid "Could not display help document"
+msgstr "Abidokumenti pole võimalik kuvada"
 
 msgid ""
 "Assistive technology support has been requested for this session, but the "
@@ -80,7 +77,7 @@ msgid "GNOME"
 msgstr "GNOME"
 
 msgid "This session logs you into GNOME"
-msgstr "Selle seansiga logitakse GNOME keskkonda"
+msgstr "Selle seansiga logitakse sind GNOME keskkonda sisse"
 
 msgid "Default session"
 msgstr "Vaikimisi seanss"
@@ -153,7 +150,7 @@ msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
-"Paneel tagab ekraani üla- või allosas oleva riba. Nendel ribadel võivad "
+"Paneel tekitab ekraani üla- või allosas oleva riba. Nendel ribadel võivad "
 "asuda menüüd, akende nimekiri, olekuikoonid, kell jms."
 
 msgid ""
@@ -173,7 +170,7 @@ msgstr ""
 "rakendub järgmisel seansil pärast sisselogimist."
 
 msgid "Time before session is considered idle"
-msgstr "Senasi jõudeoleku saavutamiseks kuluv aeg"
+msgstr "Seansi jõudeoleku saavutamiseks kuluv aeg"
 
 msgid "Window Manager"
 msgstr "Aknahaldur"
@@ -185,8 +182,8 @@ msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
 msgstr ""
-"Programmi lõpetamise järgi ootamine.  Programmi kõrvaldamine võib põhjustada "
-"tööde kadumist."
+"Programmi lõpetamise järel ootamine.  Programmi kõrvaldamine võib põhjustada "
+"tehtud töö kadumist."
 
 msgid "Choose what applications to start when you log in"
 msgstr "Sisselogimisel käivitatavate rakenduste valimine"
@@ -208,9 +205,6 @@ msgstr "Ko_mmentaar:"
 
 msgid "Options"
 msgstr "Valikud"
-
-msgid "Sessions Preferences"
-msgstr "Seansi eelistused"
 
 msgid "Startup Programs"
 msgstr "Käivitusprogrammid"
@@ -308,10 +302,10 @@ msgid "Logout Anyway"
 msgstr "Logi ikkagi välja"
 
 msgid "Suspend Anyway"
-msgstr "Peata ikkagi"
+msgstr "Alusta ikkagi uinakut"
 
 msgid "Hibernate Anyway"
-msgstr "Hiberneeri ikkagi"
+msgstr "Alusta ikkagi talveund"
 
 msgid "Shutdown Anyway"
 msgstr "Lülita ikkagi välja"
@@ -354,10 +348,10 @@ msgid "Shut down this system now?"
 msgstr "Kas jätta süsteem seisma?"
 
 msgid "S_uspend"
-msgstr "_Peata"
+msgstr "_Alusta uinakut"
 
 msgid "_Hibernate"
-msgstr "_Hiberneeri"
+msgstr "_Alusta talveund"
 
 msgid "_Restart"
 msgstr "_Taaskäivita"
@@ -403,19 +397,13 @@ msgid "Do not load user-specified applications"
 msgstr "Kasutaja määratud rakendusi ei laadita"
 
 msgid " - the GNOME session manager"
-msgstr "- GNOME seansihaldur"
+msgstr " - GNOME seansihaldur"
 
 msgid "- GNOME Splash Screen"
 msgstr "- GNOME tiitelkuva"
 
 msgid "GNOME Splash Screen"
 msgstr "GNOME tiitelkuva"
-
-msgid "Set the current session name"
-msgstr "Määra aktiivse seansi nimi"
-
-msgid "NAME"
-msgstr "NIMI"
 
 msgid "Log out"
 msgstr "Logi välja"
@@ -429,11 +417,18 @@ msgstr "Väljalogimisdialoogi näitamine"
 msgid "Show shutdown dialog"
 msgstr "Seiskamisdialoogi näitamine"
 
-msgid "Kill session"
-msgstr "Kõrvalda seanss"
-
 msgid "Use dialog boxes for errors"
 msgstr "Vigade jaoks dialoogiakna kasutamine"
+
+#. deprecated options
+msgid "Set the current session name"
+msgstr "Määra aktiivse seansi nimi"
+
+msgid "NAME"
+msgstr "NIMI"
+
+msgid "Kill session"
+msgstr "Kõrvalda seanss"
 
 msgid "Do not require confirmation"
 msgstr "Kinnitust pole vaja küsida"
@@ -443,3 +438,12 @@ msgstr "Seansihalduriga pole võimalik ühenduda"
 
 msgid "Program called with conflicting options"
 msgstr "Programm kutsuti välja vastuoluliste andmetega"
+
+#~ msgid "No description"
+#~ msgstr "Kirjeldus puudub"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Käivitusprogrammi nime ei tohi tühjaks jätta"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "Seansi eelistused"
