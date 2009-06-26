@@ -53,6 +53,7 @@ gnome_session_LDADD =				\
 	$(POLKIT_GNOME_LIBS)			\
 	$(XRENDER_LIBS)				\
 	$(XTEST_LIBS)				\
+	$(EXECINFO_LIBS)			\
 	$(NULL)
 
 gnome_session_SOURCES =				\

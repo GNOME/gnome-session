@@ -256,6 +256,14 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS(syslog.h tcpd.h sys/param.h)
 
 dnl ====================================================================
+dnl check for backtrace support
+dnl ====================================================================
+
+AC_CHECK_HEADERS(execinfo.h)
+AC_CHECK_LIB(execinfo, backtrace, [EXECINFO_LIBS="-lexecinfo"], [EXECINFO_LIBS=""])
+AC_SUBST(EXECINFO_LIBS)
+
+dnl ====================================================================
 dnl Check for newish X interface
 dnl ====================================================================
 oCFLAGS="$CFLAGS"
