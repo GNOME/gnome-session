@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-04-18 20:19+0000\n"
-"PO-Revision-Date: 2009-05-05 07:40+0200\n"
+"POT-Creation-Date: 2009-06-21 23:16+0000\n"
+"PO-Revision-Date: 2009-06-27 14:59+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,53 +28,49 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Seleccionar comando"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:192
 msgid "Add Startup Program"
 msgstr "Añadir programa al inicio"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:196
 msgid "Edit Startup Program"
 msgstr "Editar programa al inicio"
 
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "Sin descripción"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "El nombre del programa de inicio no puede estar vacío"
-
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "El comando de inicio no puede estar vacío"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "El comando de inicio no es válido"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:488
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../capplet/gsm-properties-dialog.c:1316
+#: ../capplet/gsm-properties-dialog.c:500
 msgid "Icon"
 msgstr "Icono"
 
-#: ../capplet/gsm-properties-dialog.c:1327
+#: ../capplet/gsm-properties-dialog.c:513
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:1477
+#: ../capplet/gsm-properties-dialog.c:696
 msgid "Startup Applications Preferences"
 msgstr "Preferencias de las aplicaciones al inicio"
 
 #: ../capplet/main.c:37 ../gnome-session/main.c:440
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "No se pudo mostrar el documento de ayuda"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -224,12 +220,11 @@ msgstr "Tiempo antes de que la sesión se considere inactiva"
 msgid "Window Manager"
 msgstr "Gestor de ventanas"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Algunos programas aún se están ejecutando:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:668
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -245,44 +240,40 @@ msgstr "Elija qué aplicaciones iniciar al iniciar la sesión"
 msgid "Startup Applications"
 msgstr "Aplicaciones al inicio"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_Programas adicionales para iniciar:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "Examinar..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "Co_mando:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "Com_entario:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Opciones"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Preferencias de la sesión"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "Programas al inicio"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
 "Recordar _automáticamente las aplicaciones en ejecución al salir de la sesión"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_Nombre:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "_Recordar las aplicaciones ejecutándose actualmente"
 
@@ -359,24 +350,24 @@ msgstr ""
 "Hay un problema con la configuración del servidor.\n"
 "(%s salió con el estado %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "No se encontró el icono «%s»"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:616
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "Aún se está ejecutando un programa:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "Aún se están ejecutando algunos programas:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:672
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -384,35 +375,35 @@ msgstr ""
 "Esperando a que los programas finalicen. Interrumpir estos programas puede "
 "causar pérdidas de datos."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Cambiar usuario de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "Salir de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:906
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "Suspender de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:909
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "Hibernar de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:912
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "Apagar de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:915
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "Reiniciar de todas formas"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:923
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "Bloquear pantalla"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:926
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -568,6 +559,15 @@ msgstr "No se pudo conectar con el gestor de sesiones"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Se llamó al programa con opciones en conflicto"
+
+#~ msgid "No description"
+#~ msgstr "Sin descripción"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "El nombre del programa de inicio no puede estar vacío"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "Preferencias de la sesión"
 
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Opción seleccionada en el diálogo de cierre de sesión"
