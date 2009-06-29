@@ -60,7 +60,7 @@ if [ -z "$WINDOW_MANAGER" ] ; then
 
   KNOWN_WM="sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm"
   if [ $IS_X_COMPOSITED -eq 0 ] ; then
-    KNOWN_WM="compiz beryl $KNOWN_WM"
+    KNOWN_WM="mutter compiz beryl $KNOWN_WM"
   fi
   # metacity is still the default wm in GNOME
   KNOWN_WM="metacity $KNOWN_WM"
@@ -97,7 +97,7 @@ OPT3=
 OPT4=
 if [ ! -z "$SMID" ] ; then
   case `basename $WINDOW_MANAGER` in
-    sawfish|sawmill|metacity)
+    sawfish|sawmill|metacity|mutter)
       OPT1=--sm-client-id=$SMID
       ;;
     openbox|enlightenment|e16)
