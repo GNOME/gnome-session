@@ -29,6 +29,7 @@
 #include <X11/extensions/sync.h>
 
 #ifdef HAVE_XTEST
+#include <X11/keysym.h>
 #include <X11/extensions/XTest.h>
 #endif /* HAVE_XTEST */
 
