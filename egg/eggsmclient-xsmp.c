@@ -795,14 +795,18 @@ save_state (EggSMClientXSMP *xsmp)
   if (desktop_file)
     {
       GKeyFile *merged_file;
+      char *desktop_file_path;
 
       merged_file = g_key_file_new ();
-      if (g_key_file_load_from_file (merged_file,
-				     egg_desktop_file_get_source (desktop_file),
+      desktop_file_path =
+	g_filename_from_uri (egg_desktop_file_get_source (desktop_file),
+			     NULL, NULL);
+      if (desktop_file_path &&
+	  g_key_file_load_from_file (merged_file, desktop_file_path,
 				     G_KEY_FILE_KEEP_COMMENTS |
 				     G_KEY_FILE_KEEP_TRANSLATIONS, NULL))
 	{
-	  int g, k, i;
+	  guint g, k, i;
 	  char **groups, **keys, *value, *exec;
 
 	  groups = g_key_file_get_groups (state_file, NULL);
@@ -841,8 +845,11 @@ save_state (EggSMClientXSMP *xsmp)
 				 EGG_DESKTOP_FILE_KEY_EXEC,
 				 exec);
 	  g_free (exec);
-
 	}
+      else
+	desktop_file = NULL;
+
+      g_free (desktop_file_path);
     }
 
   /* Now write state_file to disk. (We can't use mktemp(), because
@@ -1045,13 +1052,13 @@ generate_command (char **restart_command, const char *client_id,
 
   if (client_id)
     {
-      g_ptr_array_add (cmd, "--sm-client-id");
+      g_ptr_array_add (cmd, (char *)"--sm-client-id");
       g_ptr_array_add (cmd, (char *)client_id);
     }
 
   if (state_file)
     {
-      g_ptr_array_add (cmd, "--sm-client-state-file");
+      g_ptr_array_add (cmd, (char *)"--sm-client-state-file");
       g_ptr_array_add (cmd, (char *)state_file);
     }
 
@@ -1071,7 +1078,7 @@ set_properties (EggSMClientXSMP *xsmp, ...)
   GPtrArray *props;
   SmProp *prop;
   va_list ap;
-  int i;
+  guint i;
 
   props = g_ptr_array_new ();
 
@@ -1134,7 +1141,7 @@ array_prop (const char *name, ...)
 
   prop = g_new (SmProp, 1);
   prop->name = (char *)name;
-  prop->type = SmLISTofARRAY8;
+  prop->type = (char *)SmLISTofARRAY8;
 
   vals = g_array_new (FALSE, FALSE, sizeof (SmPropValue));
 
@@ -1164,11 +1171,11 @@ ptrarray_prop (const char *name, GPtrArray *values)
   SmProp *prop;
   SmPropValue pv;
   GArray *vals;
-  int i;
+  guint i;
 
   prop = g_new (SmProp, 1);
   prop->name = (char *)name;
-  prop->type = SmLISTofARRAY8;
+  prop->type = (char *)SmLISTofARRAY8;
 
   vals = g_array_new (FALSE, FALSE, sizeof (SmPropValue));
 
@@ -1198,7 +1205,7 @@ string_prop (const char *name, const char *value)
 
   prop = g_new (SmProp, 1);
   prop->name = (char *)name;
-  prop->type = SmARRAY8;
+  prop->type = (char *)SmARRAY8;
 
   prop->num_vals = 1;
   prop->vals = g_new (SmPropValue, 1);
@@ -1223,7 +1230,7 @@ card8_prop (const char *name, unsigned char value)
 
   prop = g_new (SmProp, 1);
   prop->name = (char *)name;
-  prop->type = SmCARD8;
+  prop->type = (char *)SmCARD8;
 
   prop->num_vals = 1;
   prop->vals = g_new (SmPropValue, 2);

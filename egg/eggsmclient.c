@@ -38,7 +38,7 @@ enum {
   LAST_SIGNAL
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[LAST_SIGNAL];
 
 struct _EggSMClientPrivate {
   GKeyFile *state_file;
@@ -178,23 +178,7 @@ egg_sm_client_class_init (EggSMClientClass *klass)
 static gboolean sm_client_disable = FALSE;
 static char *sm_client_state_file = NULL;
 static char *sm_client_id = NULL;
-
-static GOptionEntry entries[] = {
-  { "sm-client-disable", 0, 0,
-    G_OPTION_ARG_NONE, &sm_client_disable,
-    N_("Disable connection to session manager"), NULL },
-  { "sm-client-state-file", 0, 0,
-    G_OPTION_ARG_STRING, &sm_client_state_file,
-    N_("Specify file containing saved configuration"), N_("FILE") },
-  { "sm-client-id", 0, 0,
-    G_OPTION_ARG_STRING, &sm_client_id,
-    N_("Specify session management ID"), N_("ID") },
-  /* Compatibility options */
-  { "sm-disable", 0, G_OPTION_FLAG_HIDDEN,
-    G_OPTION_ARG_NONE, &sm_client_disable,
-    NULL, NULL },
-  { NULL }
-};
+static char *sm_config_prefix = NULL;
 
 static gboolean
 sm_client_post_parse_func (GOptionContext  *context,
@@ -235,6 +219,29 @@ sm_client_post_parse_func (GOptionContext  *context,
 GOptionGroup *
 egg_sm_client_get_option_group (void)
 {
+  const GOptionEntry entries[] = {
+    { "sm-client-disable", 0, 0,
+      G_OPTION_ARG_NONE, &sm_client_disable,
+      N_("Disable connection to session manager"), NULL },
+    { "sm-client-state-file", 0, 0,
+      G_OPTION_ARG_FILENAME, &sm_client_state_file,
+      N_("Specify file containing saved configuration"), N_("FILE") },
+    { "sm-client-id", 0, 0,
+      G_OPTION_ARG_STRING, &sm_client_id,
+      N_("Specify session management ID"), N_("ID") },
+    /* GnomeClient compatibility option */
+    { "sm-disable", 0, G_OPTION_FLAG_HIDDEN,
+      G_OPTION_ARG_NONE, &sm_client_disable,
+      NULL, NULL },
+    /* GnomeClient compatibility option. This is a dummy option that only
+     * exists so that sessions saved by apps with GnomeClient can be restored
+     * later when they've switched to EggSMClient. See bug #575308.
+     */
+    { "sm-config-prefix", 0, G_OPTION_FLAG_HIDDEN,
+      G_OPTION_ARG_STRING, &sm_config_prefix,
+      NULL, NULL },
+    { NULL }
+  };
   GOptionGroup *group;
 
   /* Use our own debug handler for the "EggSMClient" domain. */
@@ -242,8 +249,8 @@ egg_sm_client_get_option_group (void)
 		     egg_sm_client_debug_handler, NULL);
 
   group = g_option_group_new ("sm-client",
-			      _("Session Management Options"),
-			      _("Show Session Management options"),
+			      _("Session management options:"),
+			      _("Show session management options"),
 			      NULL, NULL);
   g_option_group_add_entries (group, entries);
   g_option_group_set_parse_hooks (group, NULL, sm_client_post_parse_func);
@@ -318,16 +325,16 @@ egg_sm_client_get (void)
 #elif defined (GDK_WINDOWING_QUARTZ)
 	  global_client = egg_sm_client_osx_new ();
 #else
-	  /* If both D-Bus and XSMP are compiled in, try D-Bus first
-	   * and fall back to XSMP if D-Bus session management isn't
-	   * available.
+	  /* If both D-Bus and XSMP are compiled in, try XSMP first
+	   * (since it supports state saving) and fall back to D-Bus
+	   * if XSMP isn't available.
 	   */
-# ifdef EGG_SM_CLIENT_BACKEND_DBUS
-	  global_client = egg_sm_client_dbus_new ();
-# endif
 # ifdef EGG_SM_CLIENT_BACKEND_XSMP
+	  global_client = egg_sm_client_xsmp_new ();
+# endif
+# ifdef EGG_SM_CLIENT_BACKEND_DBUS
 	  if (!global_client)
-	    global_client = egg_sm_client_xsmp_new ();
+	    global_client = egg_sm_client_dbus_new ();
 # endif
 #endif
 	}
