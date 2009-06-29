@@ -439,8 +439,8 @@ system_restart_auth_cb (PolKitAction  *action,
                 g_warning ("Unable to restart system: %s", local_error->message);
                 emit_restart_complete (manager, local_error->message);
                 g_error_free (local_error);
-
-                return;
+        } else {
+                emit_restart_complete (manager, NULL);
         }
 }
 
@@ -469,8 +469,8 @@ system_stop_auth_cb (PolKitAction  *action,
                 g_warning ("Unable to stop system: %s", local_error->message);
                 emit_stop_complete (manager, local_error);
                 g_error_free (local_error);
-
-                return;
+        } else {
+                emit_stop_complete (manager, NULL);
         }
 }
 
@@ -606,10 +606,13 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
                 if (dbus_g_error_has_name (error, "org.freedesktop.ConsoleKit.Manager.NotPrivileged")) {
                         request_restart_priv (manager, error);
                 } else {
+                        g_warning ("Unable to restart system: %s", error->message);
                         emit_restart_complete (manager, error->message);
                 }
 
                 g_error_free (error);
+        } else {
+                emit_restart_complete (manager, NULL);
         }
 }
 
@@ -631,14 +634,16 @@ gsm_consolekit_attempt_stop (GsmConsolekit *manager)
         res = try_system_stop (manager->priv->dbus_connection, &error);
 
         if (!res) {
-                g_warning ("Unable to stop system: %s", error->message);
                 if (dbus_g_error_has_name (error, "org.freedesktop.ConsoleKit.Manager.NotPrivileged")) {
                         request_stop_priv (manager, error);
                 } else {
+                        g_warning ("Unable to stop system: %s", error->message);
                         emit_stop_complete (manager, error);
                 }
 
                 g_error_free (error);
+        } else {
+                emit_stop_complete (manager, NULL);
         }
 }
 
