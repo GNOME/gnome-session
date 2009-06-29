@@ -595,6 +595,7 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
         if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
+                emit_restart_complete (manager, error);
                 g_error_free (error);
                 return;
         }
@@ -626,6 +627,7 @@ gsm_consolekit_attempt_stop (GsmConsolekit *manager)
         if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
+                emit_stop_complete (manager, error);
                 g_error_free (error);
                 return;
         }
