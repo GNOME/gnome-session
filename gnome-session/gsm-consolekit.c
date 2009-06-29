@@ -369,16 +369,16 @@ try_system_restart (DBusGConnection *connection,
 
 static void
 emit_restart_complete (GsmConsolekit *manager,
-                       const char    *error_message)
+                       GError        *error)
 {
         GError *call_error;
 
         call_error = NULL;
 
-        if (error_message != NULL) {
+        if (error != NULL) {
                 call_error = g_error_new_literal (GSM_CONSOLEKIT_ERROR,
                                                   GSM_CONSOLEKIT_ERROR_RESTARTING,
-                                                  error_message);
+                                                  error->message);
         }
 
         g_signal_emit (G_OBJECT (manager),
@@ -425,7 +425,7 @@ system_restart_auth_cb (PolKitAction  *action,
 
         if (!gained_privilege) {
                 if (error != NULL) {
-                        emit_restart_complete (manager, error->message);
+                        emit_restart_complete (manager, error);
                 }
 
                 return;
@@ -437,7 +437,7 @@ system_restart_auth_cb (PolKitAction  *action,
 
         if (!res) {
                 g_warning ("Unable to restart system: %s", local_error->message);
-                emit_restart_complete (manager, local_error->message);
+                emit_restart_complete (manager, local_error);
                 g_error_free (local_error);
         } else {
                 emit_restart_complete (manager, NULL);
@@ -511,7 +511,6 @@ request_restart_priv (GsmConsolekit *manager,
 #ifdef HAVE_POLKIT_GNOME
         PolKitAction *action;
         pid_t         pid;
-        char         *error_message = NULL;
         gboolean      res = FALSE;
         guint         xid;
         GError       *local_error;
@@ -531,14 +530,14 @@ request_restart_priv (GsmConsolekit *manager,
 
         polkit_action_unref (action);
 
-        if (local_error != NULL) {
-                error_message = g_strdup (local_error->message);
-                g_error_free (local_error);
-        }
-
         if (!res) {
-                emit_restart_complete (manager, error_message);
-                g_free (error_message);
+                if (local_error != NULL) {
+                        g_warning ("Unable to obtain auth to restart system: %s",
+                                   local_error->message);
+
+                        emit_restart_complete (manager, local_error);
+                        g_error_free (local_error);
+                }
         }
 #else
         g_assert_not_reached ();
@@ -607,7 +606,7 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
                         request_restart_priv (manager, error);
                 } else {
                         g_warning ("Unable to restart system: %s", error->message);
-                        emit_restart_complete (manager, error->message);
+                        emit_restart_complete (manager, error);
                 }
 
                 g_error_free (error);
