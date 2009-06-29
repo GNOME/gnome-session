@@ -12,8 +12,8 @@ INCLUDES =                               \
 	-DG_LOG_DOMAIN=\""EggSMClient"\" \
 	$(platform_defines)              \
 	$(EGG_SMCLIENT_CFLAGS)           \
-	$(SM_LIBS)			 \
-	$(ICE_LIBS)			 \
+	$(SM_CFLAGS)			 \
+	$(ICE_CFLAGS)			 \
 	$(WARN_CFLAGS)			 \
 	$(DISABLE_DEPRECATED_CFLAGS)
 
@@ -23,6 +23,8 @@ noinst_LTLIBRARIES =                     \
 
 libeggsmclient_la_LIBADD =               \
 	$(EGG_SMCLIENT_LIBS)             \
+	$(SM_LIBS)			 \
+	$(ICE_LIBS)			 \
 	$(platform_libs)
 
 libeggsmclient_la_SOURCES =              \
