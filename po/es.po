@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-06-21 23:16+0000\n"
-"PO-Revision-Date: 2009-06-27 14:59+0200\n"
+"POT-Creation-Date: 2009-06-29 20:59+0000\n"
+"PO-Revision-Date: 2009-06-30 20:32+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,23 +48,23 @@ msgstr "El comando de inicio no puede estar vacío"
 msgid "The startup command is not valid"
 msgstr "El comando de inicio no es válido"
 
-#: ../capplet/gsm-properties-dialog.c:488
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../capplet/gsm-properties-dialog.c:500
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Icono"
 
-#: ../capplet/gsm-properties-dialog.c:513
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:696
+#: ../capplet/gsm-properties-dialog.c:790
 msgid "Startup Applications Preferences"
 msgstr "Preferencias de las aplicaciones al inicio"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:440
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
@@ -308,38 +308,40 @@ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
 "No se pueden pasar los URI de documentos a entradas de escritorio Type=Link"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "No es un elemento lanzable"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Desactivar la conexión con el gestor de sesiones"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Especifique el archivo que contiene la configuración guardada"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "ARCHIVO"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Especifique el ID de gestión de la sesión"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Opciones de gestión de la sesión"
+#: ../egg/eggsmclient.c:252
+#| msgid "Session Management Options"
+msgid "Session management options:"
+msgstr "Opciones de gestión de sesión:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
-msgstr "Mostrar opciones de gestión de la sesión"
+#: ../egg/eggsmclient.c:253
+#| msgid "Show Session Management options"
+msgid "Show session management options"
+msgstr "Mostrar opciones de gestión de sesión"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -462,7 +464,7 @@ msgstr "_Apagar"
 msgid "Not responding"
 msgstr "No responde"
 
-#: ../gnome-session/gsm-xsmp-client.c:1195
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking log out."
 msgstr "Este programa está obstruyendo el registro de sucesos."
 
@@ -487,23 +489,23 @@ msgstr ""
 "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el "
 "servidor X)"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Sobreescribir los directorios de inicio automático estándar"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "Clave de GConf usada para buscar la sesión predeterminada"
 
-#: ../gnome-session/main.c:438
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: ../gnome-session/main.c:460
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
