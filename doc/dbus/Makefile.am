@@ -39,6 +39,8 @@ org.gnome.SessionManager.Inhibitor.ref.xml : $(top_srcdir)/gnome-session/org.gno
 org.gnome.SessionManager.Presence.ref.xml : $(top_srcdir)/gnome-session/org.gnome.SessionManager.Presence.xml spec-to-docbook.xsl
 	$(QUIET_GEN)$(XSLTPROC) $(top_srcdir)/doc/dbus/spec-to-docbook.xsl $< | tail -n +2 > $@
 
+CLEANFILES =				\
+	$(BUILT_SOURCES)
 
 EXTRA_DIST =				\
 	spec-to-docbook.xsl		\
