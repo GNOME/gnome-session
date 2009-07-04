@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2009-03-07 16:58+0000\n"
-"PO-Revision-Date: 2009-06-12 11:40+0200\n"
+"POT-Creation-Date: 2009-07-01 13:11+0000\n"
+"PO-Revision-Date: 2009-07-04 19:13+0200\n"
 "Last-Translator: Mark Krapivner <mark125@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,55 +18,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "בחר פקודה"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:192
 msgid "Add Startup Program"
 msgstr "הוסף תוכנית הפעלה"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:196
 msgid "Edit Startup Program"
 msgstr "ערוך תוכנית הפעלה"
 
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "ללא תיאור"
-
-#: ../capplet/gsm-properties-dialog.c:952
-msgid "The name of the startup program cannot be empty"
-msgstr "שם פקודת ההפעלה לא יכול להיות ריק"
-
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "מאופשר"
 
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "איקון"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "תוכנית"
 
-#: ../capplet/gsm-properties-dialog.c:1453
-#| msgid "Sessions Preferences"
+#: ../capplet/gsm-properties-dialog.c:790
 msgid "Startup Applications Preferences"
 msgstr "העדפות יישומי הפעלה"
 
 #: ../capplet/main.c:37
-#: ../gnome-session/main.c:525
+#: ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Version of this application"
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "Could not display help document"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
@@ -109,13 +104,6 @@ msgid "List of applications that are part of the default session."
 msgstr "List of applications that are part of the default session."
 
 #: ../data/gnome-session.schemas.in.h:6
-#| msgid ""
-#| "List of components that are required as part of the session. (Each "
-#| "element names a key under \"/desktop/gnome/session/required-components"
-#| "\".) The Session Preferences will not normally allow users to remove a "
-#| "required component from the session, and the session manager will "
-#| "automatically add the required components back to the session if they do "
-#| "get removed."
 msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
 msgstr "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
 
@@ -176,12 +164,12 @@ msgstr "Time before session is considered idle"
 msgid "Window Manager"
 msgstr "Window Manager"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>קיימות תוכניות שעדיין רצות::</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:667
 msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
 msgstr "ממתין לסיום תוכנית. הפרעה לתוכנית עלולה לגרום לאיבוד העבודה שלך."
 
@@ -193,43 +181,39 @@ msgstr "בחר אילו יישומים יופעלו בעת כניסת המשתמ
 msgid "Startup Applications"
 msgstr "יישומי ההפעלה"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_תוכניות הפעלה נוספות:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "דפדף..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "_פקודה:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "הע_רה:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "אפשרויות"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "העדפות הפעלה"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "תוכניות הפעלה"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "_זכור יישומים פעילים בזמן התנתקות"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_שם:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "זכור את היישומים הפועלים _כאת"
 
@@ -263,38 +247,40 @@ msgstr "אפשרות הרצה לא מזוהה: %d"
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "לא ניתן חהעביר כתובת מסמך לכניסת .desktop מסוג 'Type=link'"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "הפריט לא ניתן להרצה"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Disable connection to session manager"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Specify file containing saved configuration"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "FILE"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Specify session management ID"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Session Management Options"
+#: ../egg/eggsmclient.c:252
+#| msgid "Session Management Options"
+msgid "Session management options:"
+msgstr "Session management options:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
-msgstr "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+#| msgid "Show Session Management options"
+msgid "Show session management options"
+msgstr "Show session management options"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -305,116 +291,116 @@ msgstr ""
 "יש בעיה עם שרת ההגדרות.\n"
 "(‏%s יצא עם המצב %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "האיקון '%s' לא נמצא"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "קיימת תוכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "קיימות תוכניות שעדיין רצות:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "ממתין לסיום תוכניות. הפרעה לתוכניות עלולה לגרום לאיבוד העבודה שלך."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "_החלף משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "התנתק בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "השהה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "עבור למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "הכבה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "שתחל בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "נעל מסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:269
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "בעוד שניה אחת תנותק אוטומטית."
 msgstr[1] "אתה תנותק אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:277
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "בעוד שניה אחת המערכת תכבה אוטומטית."
 msgstr[1] "המערכת תכבה אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:309
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "אתה כרגע מחובר כ־\"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "להתנתק מהמערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_החלף משתמש"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "_התנתק"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "לכבות את המערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "_השהה"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "_מצב שינה"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "_אתחול"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_כבה"
 
-#: ../gnome-session/gsm-manager.c:943
-#: ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:1136
+#: ../gnome-session/gsm-manager.c:1828
 msgid "Not responding"
 msgstr "אין תגובה"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking log out."
 msgstr "תוכנית זאת מונעת את ההתנתקות"
 
@@ -428,28 +414,28 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Unable to start login session (and unable to connect to the X server)"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "GConf key used to lookup default session"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
-#: ../gnome-session/main.c:524
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
-#: ../gnome-session/main.c:545
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -462,38 +448,39 @@ msgid "GNOME Splash Screen"
 msgstr "GNOME Splash Screen"
 
 #: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "Set the current session name"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NAME"
-
-#: ../tools/gnome-session-save.c:66
 msgid "Log out"
 msgstr "Log out"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "Log out, ignoring any existing inhibitors"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "Show logout dialog"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "Show shutdown dialog"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "Kill session"
-
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "Use dialog boxes for errors"
 
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "Set the current session name"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "NAME"
+
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "Kill session"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "Do not require confirmation"
 
@@ -506,6 +493,12 @@ msgstr "לא ניתן להתחבר למנהל ההפעלה"
 msgid "Program called with conflicting options"
 msgstr "התוכנית נקראה עם אפשרויות סותרות"
 
+#~ msgid "No description"
+#~ msgstr "ללא תיאור"
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "שם פקודת ההפעלה לא יכול להיות ריק"
+#~ msgid "Sessions Preferences"
+#~ msgstr "העדפות הפעלה"
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Selected option in the log out dialog"
 #~ msgid ""
