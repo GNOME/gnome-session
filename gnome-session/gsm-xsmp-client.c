@@ -905,12 +905,12 @@ xsmp_get_restart_style_hint (GsmClient *client)
         GsmClientRestartStyle hint;
 
         g_debug ("GsmXSMPClient: getting restart style");
-        hint = GSM_CLIENT_RESTART_NEVER;
+        hint = GSM_CLIENT_RESTART_IF_RUNNING;
 
         prop = find_property (GSM_XSMP_CLIENT (client), SmRestartStyleHint, NULL);
 
         if (!prop || strcmp (prop->type, SmCARD8) != 0) {
-                return GSM_CLIENT_RESTART_NEVER;
+                return GSM_CLIENT_RESTART_IF_RUNNING;
         }
 
         switch (((unsigned char *)prop->vals[0].value)[0]) {
