@@ -627,10 +627,15 @@ create_client_key_file (GsmClient   *client,
         return keyfile;
 }
 
+static GsmClientRestartStyle
+xsmp_get_restart_style_hint (GsmClient *client);
+
 static GKeyFile *
 xsmp_save (GsmClient *client,
            GError   **error)
 {
+        GsmClientRestartStyle restart_style;
+
         GKeyFile *keyfile = NULL;
         char     *desktop_file_path = NULL;
         char     *exec_program = NULL;
@@ -642,6 +647,11 @@ xsmp_save (GsmClient *client,
                  gsm_client_peek_id (client));
 
         local_error = NULL;
+
+        restart_style = xsmp_get_restart_style_hint (client);
+        if (restart_style == GSM_CLIENT_RESTART_NEVER) {
+                goto out;
+        }
 
         exec_program = xsmp_get_restart_command (client);
         if (!exec_program) {
