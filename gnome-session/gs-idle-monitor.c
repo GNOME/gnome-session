@@ -189,7 +189,7 @@ handle_alarm_notify_event (GSIdleMonitor         *monitor,
         watch = find_watch_for_alarm (monitor, alarm_event->alarm);
 
         if (watch == NULL) {
-                g_warning ("Unable to find watch for alarm %d", (int)alarm_event->alarm);
+                g_debug ("Unable to find watch for alarm %d", (int)alarm_event->alarm);
                 return;
         }
 
