@@ -1,4 +1,44 @@
 ==============
+Version 2.27.4
+==============
+
+- Reduce GConf roundtrips (Matthias Clasen)
+- Use shave to improve build log readability (Vincent)
+- Fix a crash on Solaris (Ghee Teo)
+- Generate docs for the presence API (Matthias Clasen)
+- Rewrite a good part of the capplet. Some highlights:
+  - much cleaner code
+  - monitor autostart files
+  - autofill name field if needed
+  - add help button
+  - better handling of themed and non-themed application icons
+  - allow dragging from the application list
+  - make it more clear that applications are disabled
+  (Vincent)
+- Port to GtkBuilder (Vincent)
+- Improve debug message (Vincent)
+- Load default apps after saved and autostart apps (Vincent)
+- Build fixes for BSD (Daniel Macks, Alexis Ballier)
+- Update eggsmclient code to fix crash (Vincent)
+- Add mutter support to gnome-wm (Jon Nettleton)
+- Make gnome-session exit properly on reboot/shutdown (Bill Nottingham)
+- Avoid pointless warnings (Matthias Clasen)
+- Honour the SmRestartNever SmRestartStyleHint (Caolan McNamara)
+- Default clients to RESTART_IF_RUNNING instead of NEVER (Caolan McNamara)
+- Code cleanups (Vincent)
+
+Translations:
+- Updated ar: Khaled Hosny
+- Updated ca@valencia: David Planella
+- Updated da: Kenneth Nielsen
+- Updated de: Christian Kirbach
+- Updated es: Jorge González
+- Updated et: Ivar Smolin
+- Updated he: Mark Krapivner
+- Updated te: Krishna Babu K
+- Updated uk: Maxim Dziumanenko
+
+==============
 Version 2.26.1
 ==============
 
