@@ -6,79 +6,82 @@
 # Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.
 # Jayaradha N <jaya@pune.redhat.com>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
-# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009.
 # I. Felix <ifelix@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.ta\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2009-02-13 22:26+0000\n"
-"PO-Revision-Date: 2009-03-10 17:07+0530\n"
-"Last-Translator: I. Felix <ifelix@redhat.com>\n"
-"Language-Team: Tamil <fedora-trans-ta@redhat.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-07-18 21:36+0530\n"
+"PO-Revision-Date: 2009-07-18 21:38+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
+"Language-Team: Tamil <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\\n\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
-"X-Generator: KBabel 1.11.4\n"
+"\n"
+"X-Generator: Lokalize 0.3\n"
 
 # gsm/session-properties-capplet.c:292
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "கட்டளையை தேர்ந்தெடு"
 
 # gsm/startup-programs.c:391
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:192
 msgid "Add Startup Program"
 msgstr "துவக்க நிரலுக்கு சேர் "
 
 # gsm/startup-programs.c:391
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:196
 msgid "Edit Startup Program"
 msgstr "துவக்க நிரலை தொகு"
 
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "விவரணம் இல்லை"
-
 # gsm/startup-programs.c:333
-#: ../capplet/gsm-properties-dialog.c:952
-msgid "The name of the startup program cannot be empty"
-msgstr "துவக்க நிரல் பெயர் காலியாக இருக்க முடியாது"
-
-# gsm/startup-programs.c:333
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "துவக்க கட்டளை காலியாக இருக்க முடியாது"
 
 # gsm/startup-programs.c:333
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "துவக்க கட்டளை செல்லுபடியாகாதது"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "செயலாக்கப்பட்டது"
 
 # gsm/logout.c:240
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "சின்னம்"
 
 # gsm/gsm-client-list.c:112
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "நிரல்"
 
-#: ../capplet/gsm-properties-dialog.c:1453
-#| msgid "Sessions Preferences"
+#: ../capplet/gsm-properties-dialog.c:790
 msgid "Startup Applications Preferences"
 msgstr "துவக்க பயன்பாடுகள் விருப்பங்கள்"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:525
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "பெயர் இல்லை"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "விவரணம் இல்லை"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "இந்த பயன்பாட்டின் பதிப்பு "
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "உதவி ஆவணத்தை காட்ட இயலவில்லை"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -132,13 +135,6 @@ msgid "List of applications that are part of the default session."
 msgstr "முன்னிருப்பு அமர்வுக்கு பங்களிக்கும் பயன்பாடுகள்."
 
 #: ../data/gnome-session.schemas.in.h:6
-#| msgid ""
-#| "List of components that are required as part of the session. (Each "
-#| "element names a key under \"/desktop/gnome/session/required-components"
-#| "\".) The Session Preferences will not normally allow users to remove a "
-#| "required component from the session, and the session manager will "
-#| "automatically add the required components back to the session if they do "
-#| "get removed."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -230,12 +226,11 @@ msgstr "அமர்வுக்கு முன் வெறுமையாக 
 msgid "Window Manager"
 msgstr "சாளரமேலாளர்"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b> சில நிரல்கள் இன்னும் ஒடுகிறன</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -252,47 +247,43 @@ msgid "Startup Applications"
 msgstr "துவக்க பயன்பாடுகள்"
 
 # gsm/startup-programs.c:373
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "மேலும்சில தொடங்க _நிரல்கள்:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "உலாவு... "
 
 # gsm/session-properties-capplet.c:292
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "(_m) கட்டளை:"
 
 # gsm/session-properties-capplet.c:292
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "(_e) குறிப்புரை:"
 
 # gsm/session-properties-capplet.c:262
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "தேர்வுகள்"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "அமர்வுகள் விருப்பங்கள்"
-
 # gsm/session-properties-capplet.c:330
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "தொடங்கும் போது இயக்கும் நிரல்கள்"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "தானியங்கியாக வெளியேறும் போது இயங்கும் பயன்பாடுகளை நினைவில் கொள்க"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "பெயர்: (_N)"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "(_R) இப்போது இயங்கும் பயன்பாடுகளை நினைவில் கொள்க"
 
@@ -327,41 +318,41 @@ msgstr "இனம் காண இயலாத துவக்க தேர்�
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "'Type=Link' மேல்மேசை உள்ளீடுக்கு ஆவண யூஆர்ஐ ஐ கொடுக்க இயலாது."
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "தொடங்கக்கூடிய உருப்படி அல்ல."
 
 # gsm/save-session.c:93
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "அமர்வு மேலாளருடன் இணைப்பை விலக்கு"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "சேமித்த வடிவமைப்பு உள்ள  கோப்பை குறிப்பிடுக."
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "கோப்பு "
 
 # gsm/main.c:65
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "அமர்வின் அடையாளத்தை குறிப்பிடு"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "அடையாளம் "
 
 # gsm/session-properties-capplet.c:262
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "அமர்வின் மேலாண்மை தேர்வுகள்"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "அமர்வு மேலாண்மை தேர்வுகள்:"
 
 # gsm/session-properties-capplet.c:262
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
 msgstr "அமர்வு மேலாண்மை தேர்வுகளை காட்டுக"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -373,132 +364,120 @@ msgstr ""
 "வடிவமைப்பு சேவையகத்துடன் ஒரு பிரச்சினை உள்ளது\n"
 "(%s வெளியேறியது நிலை %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "'%s' சின்னம் காணப்படவில்லை"
 
 # gsm/gsm-client-row.c:45
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "தெரியாத"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "ஒரு நிரல் இன்னும்  ஒடுகிறது:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "நிரல்கள் சில இன்னும் ஒடுகின்றன:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr " காத்திருத்தல் க்கு  வரை முடி நிரல்கள் வரை."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "எப்படியும் பயனரை மாற்று"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "எப்படியும் இடை நிறுத்தம் செய்க"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "எப்படி இருந்தாலும் உள்நுழையவும்."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "எப்படி இருந்தாலும் கணினியை நிறுத்தவும்"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "எப்படி இருந்தாலும் மீள்துவக்கவும்"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "திரையைப் பூட்டுக."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "ரத்து செய்க"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:269
 #, c-format
-#| msgid ""
-#| "You are currently logged in as \"%s\".\n"
-#| "You will be automatically logged out in %d second."
-#| msgid_plural ""
-#| "You are currently logged in as \"%s\".\n"
-#| "You will be automatically logged out in %d seconds."
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "நீங்கள் தானாக %d வினாடியில் வெளியேற்றப்படுவீர்கள்."
 msgstr[1] "நீங்கள் தானாக %d வினாடிகளில் வெளியேற்றப்படுவீர்கள்."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:277
 #, c-format
-#| msgid ""
-#| "You are currently logged in as \"%s\".\n"
-#| "This system will be automatically shut down in %d second."
-#| msgid_plural ""
-#| "You are currently logged in as \"%s\".\n"
-#| "This system will be automatically shut down in %d seconds."
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "இந்த கணினி தானாக %d வினாடியில் பணி நிறுத்தம் செய்யும்."
 msgstr[1] "இந்த கணினி தானாக %d வினாடிகளில் பணி நிறுத்தம் செய்யும்."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:309
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "நீங்கள் தற்போது \"%s\" ஆக புகுபதிவு செய்துள்ளீர்கள்."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "கணினியிலிருந்து இப்போது வெளிச்செல்லவா? "
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "(_S) பயனரை மாற்றுக"
 
 # panel/logout.c:73 panel/menu.c:5339
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "(_L) விலகவும்"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "இப்போது இந்த கணினியை நிறுத்தவா? "
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "இடை நிறுத்தம் (_u)"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "செயலற்றிருத்தல் (_H)"
 
 # applets/tasklist/tasklist_menu.c:258
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "(_R) மீட்டமை"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "(_S) பணி நிறுத்தம் செய்யவும்"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
 msgid "Not responding"
 msgstr "பதிலளிக்க இல்லை"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "நிரல் வெளியேறுவதை தடுக்கிறது"
 
@@ -514,29 +493,29 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ஐஸ் கேட்கும் பொருத்துவாயை உருவாக்க முடியவில்லை : %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:354
 #, c-format
-#| msgid "Unable to start login session (and unable connect to the X server)"
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "உள்நுழைவு அமர்வை துவக்க முடியவில்லை ( மற்றும் எக்ஸ் சேவையகத்துடன் இணைக்க  இயலவில்லை)"
+msgstr ""
+"உள்நுழைவு அமர்வை துவக்க முடியவில்லை ( மற்றும் எக்ஸ் சேவையகத்துடன் இணைக்க  இயலவில்லை)"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "செந்தர தானியங்கி அடைவுகளை வலுவாக புறக்கணி"
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "முன்னிருப்பு அமர்வை காண ஜிகான்ஃப் விசை பயன்பட்டது "
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "பிழைத்திருத்த குறியீட்டை செயல்படுத்து."
 
-#: ../gnome-session/main.c:524
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "பயனர் குறித்த நிரல்களை ஏற்றாதே"
 
-#: ../gnome-session/main.c:545
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr "- க்னோம் அமர்வு மேலாலாளர்"
 
@@ -549,43 +528,44 @@ msgstr "க்னோம்  தொடக்க ஓவியம்"
 msgid "GNOME Splash Screen"
 msgstr "க்னோம் துவக்க திரை"
 
-# gsm/session-properties-capplet.c:206
-#: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "நடப்பு அமர்வு பெயரை அமைக்கவும்"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NAME"
-
 # panel/logout.c:73 panel/menu.c:5339
-#: ../tools/gnome-session-save.c:66
+#: ../tools/gnome-session-save.c:65
 msgid "Log out"
 msgstr "வெளியேறுக"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "உள்நுழை, ஏதாவது தடை வரின் அவற்றை உதாசீனம் செய்க"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "வெளியேற்ற உரையாடலை காட்டுக"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "கணினி நிறுத்த உரையாடலை காட்டுக"
 
-# gsm/save-session.c:43
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "அமர்வைக் கொல்"
-
 # gsm/save-session.c:44
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "பிழைகளுக்கு உரையாடல் பெட்டிகளை உபயோகி"
 
+# gsm/session-properties-capplet.c:206
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "நடப்பு அமர்வு பெயரை அமைக்கவும்"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "NAME"
+
+# gsm/save-session.c:43
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "அமர்வைக் கொல்"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "உறுதிபடுத்தல் தேவையில்லை"
 
@@ -598,3 +578,9 @@ msgstr "அமர்வு மேலாளருடன் இணைக்க ம
 msgid "Program called with conflicting options"
 msgstr "நிரல் முரணான தேர்வுகளை அழைத்தது"
 
+# gsm/startup-programs.c:333
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "துவக்க நிரல் பெயர் காலியாக இருக்க முடியாது"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "அமர்வுகள் விருப்பங்கள்"
