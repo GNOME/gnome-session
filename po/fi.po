@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 10:43+0300\n"
-"PO-Revision-Date: 2009-02-19 10:50+0300\n"
+"POT-Creation-Date: 2009-07-19 10:28+0300\n"
+"PO-Revision-Date: 2009-07-19 10:30+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,53 +20,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Valitse komento"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:192
 msgid "Add Startup Program"
 msgstr "Lisää käynnistyvä ohjelma"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:196
 msgid "Edit Startup Program"
 msgstr "Muokkaa käynnistyvää ohjelmaa"
 
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Ei kuvausta"
-
-#: ../capplet/gsm-properties-dialog.c:952
-msgid "The name of the startup program cannot be empty"
-msgstr "Käynnistyskomennon nimi ei voi olla tyhjä"
-
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "Käynnistyskomento ei voi olla tyhjä"
 
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "Käynnistyskomento ei ole kelvollinen"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Kuvake"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Ohjelma"
 
-#: ../capplet/gsm-properties-dialog.c:1453
+#: ../capplet/gsm-properties-dialog.c:790
 msgid "Startup Applications Preferences"
 msgstr "Aloitusohjelmien asetukset"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:525
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "Ei nimeä"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "Ei kuvausta"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "Ohjetta ei voitu näyttää"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -212,12 +216,11 @@ msgstr "Aikaviive, jonka jälkeen istunto tulkitaan joutenolevaksi"
 msgid "Window Manager"
 msgstr "Ikkunointiohjelma"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Joitakin ohjelmia on vielä käynnissä:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -233,43 +236,39 @@ msgstr "Valitse sisäänkirjauduttaessa käynnistettävät ohjelmat"
 msgid "Startup Applications"
 msgstr "Käynnistettävät ohjelmat"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Muut käynnistyvät _ohjelmat:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "Selaa..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "Ko_mento:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "Komm_entti:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Valinnat"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Istuntojen asetukset"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "Käynnistyvät ohjelmat"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "Muista käynnissä olevat ohjelmat kirjauduttaessa ulos"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_Nimi:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "Muista tällä hetkellä _käynnissä olevat ohjelmat"
 
@@ -303,37 +302,37 @@ msgstr "Tuntematon käynnistinvalitsin: %d"
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Asiakirja-URIa ei voida antaa \"Type=Link\"-työpöytäkohteelle"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "Kohde ei ole käynnistettävä"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Ota yhteys istunnonhallintaan pois käytöstä"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Anna tallennetut asetukset sisältävä tiedosto"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "TIEDOSTO"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Anna istunnonhallinnan tunniste (ID)"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Istunnonhallinnan valinnat"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Istunnonhallinnan valinnat:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
 msgstr "Näytä istunnonhallinnan valinnat"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -345,24 +344,24 @@ msgstr ""
 "Ongelma asetuspalvelimen kanssa.\n"
 "(%s poistui tila-arvolla %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Kuvaketta \"%s\" ei löydy"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "Ohjelma on vielä käynnissä:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "Joitakin ohjelmia on vielä käynnissä:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -370,94 +369,94 @@ msgstr ""
 "Odotetaan ohjelmien lopettamista. Ohjelmien suorituksen keskeyttäminen voi "
 "aiheuttaa töiden häviämistä."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Vaihda käyttäjää kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "Kirjaudu ulos kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "Siirry keskeytystilaan kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "Siirry lepotilaan kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "Sammuta kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "Käynnistä uudelleen kaikesta huolimatta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "Lukitse näyttö"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Peru"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:269
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Sinut kirjataan ulos automaattisesti %d sekunnin kuluttua."
 msgstr[1] "Sinut kirjataan ulos automaattisesti %d sekunnin kuluttua."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:277
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Järjestelmä sammuu automaattisesti %d sekunnin kuluttua."
 msgstr[1] "Järjestelmä sammuu automaattisesti %d sekunnin kuluttua."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:309
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Olet kirjautunut sisään käyttäjänä \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "Kirjaudu ulos järjestelmästä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_Vaihda käyttäjää"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "Kirjaudu _ulos"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "Sammuta järjestelmä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "_Keskeytystila"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "_Lepotila"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "Käynnistä _uudelleen"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_Sammuta"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "Tämä ohjelma estää kirjautumisen ulos"
 
@@ -475,29 +474,29 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistokette ei voi luoda: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Kirjautumisistuntoa ei voi käynnistää (eikä X-palvelimeen voitu yhdistää)"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "GConf-avain, josta oletusistuntoa etsitään"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
-#: ../gnome-session/main.c:524
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:545
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
@@ -510,38 +509,39 @@ msgid "GNOME Splash Screen"
 msgstr "Gnomen käynnistymisikkuna"
 
 #: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "Aseta nykyisen istunnon nimi"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NIMI"
-
-#: ../tools/gnome-session-save.c:66
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "Kirjaudu ulos, jättäen huomiotta mahdolliset esteet tälle"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "Näytä uloskirjautumisen valintaikkuna"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "Näytä sammuttamisen valintaikkuna"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "Tapa istunto"
-
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "Käytä valintaikkunoita virheille"
 
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "Aseta nykyisen istunnon nimi"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "NIMI"
+
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "Tapa istunto"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "Älä vaadi vahvistusta"
 
@@ -552,6 +552,12 @@ msgstr "Istunnonhallintaan ei syntynyt yhteyttä"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Käynnistyskomennon nimi ei voi olla tyhjä"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "Istuntojen asetukset"
 
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Valittu vaihtoehto uloskirjautumisen ikkunassa"
