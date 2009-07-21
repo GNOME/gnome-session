@@ -1,5 +1,4 @@
 NULL =
-QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
 
 SUBDIRS = icons
 
@@ -25,7 +24,7 @@ schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
 $(schemas_in_files): $(schemas_in_files).in Makefile
-	$(QUIET_GEN)sed \
+	$(AM_V_GEN)sed \
 	     -e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
 	     $< > $@
 

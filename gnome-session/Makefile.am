@@ -1,5 +1,4 @@
 NULL =
-QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
 
 bin_PROGRAMS = gnome-session
 
@@ -110,26 +109,26 @@ libgsmutil_la_SOURCES =				\
 	gsm-util.h
 
 gsm-marshal.c: gsm-marshal.list
-	$(QUIET_GEN)echo "#include \"gsm-marshal.h\"" > $@ && \
+	$(AM_V_GEN)echo "#include \"gsm-marshal.h\"" > $@ && \
 	@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --body >> $@
 
 gsm-marshal.h: gsm-marshal.list
-	$(QUIET_GEN)@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --header > $@
+	$(AM_V_GEN)@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --header > $@
 
 gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
-	$(QUIET_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml
+	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml
 
 gsm-client-glue.h: org.gnome.SessionManager.Client.xml Makefile.am
-	$(QUIET_GEN)dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/org.gnome.SessionManager.Client.xml
+	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/org.gnome.SessionManager.Client.xml
 
 gsm-app-glue.h: org.gnome.SessionManager.App.xml Makefile.am
-	$(QUIET_GEN)dbus-binding-tool --prefix=gsm_app --mode=glib-server --output=gsm-app-glue.h $(srcdir)/org.gnome.SessionManager.App.xml
+	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_app --mode=glib-server --output=gsm-app-glue.h $(srcdir)/org.gnome.SessionManager.App.xml
 
 gsm-inhibitor-glue.h: org.gnome.SessionManager.Inhibitor.xml Makefile.am
-	$(QUIET_GEN)dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/org.gnome.SessionManager.Inhibitor.xml
+	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/org.gnome.SessionManager.Inhibitor.xml
 
 gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
-	$(QUIET_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
+	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
 BUILT_SOURCES =			\
 	gsm-marshal.c           \

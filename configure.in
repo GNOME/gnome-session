@@ -2,9 +2,9 @@ AC_INIT([gnome-session], [2.27.5],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
 AC_CONFIG_SRCDIR([gnome-session])
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIR([m4])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AM_MAINTAINER_MODE
 
@@ -342,12 +342,8 @@ if test "x$enable_rebuilds" = "xyes" && \
 fi
 AC_SUBST(REBUILD)
 
-SHAVE_INIT([.], [enable])
-
 AC_OUTPUT([
 Makefile
-shave
-shave-libtool
 capplet/Makefile
 compat/Makefile
 compat/at-spi-registryd-wrapper.desktop.in.in
