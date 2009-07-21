@@ -19,7 +19,8 @@ xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 pixmapdir = $(datadir)/pixmaps/splash/
 pixmap_DATA = gnome-splash.png
 
-schemas_in_files = gnome-session.schemas.in
+schemas_in_in_files = gnome-session.schemas.in.in
+schemas_in_files = $(schemas_in_in_files:.schemas.in.in=.schemas.in)
 schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
@@ -49,14 +50,16 @@ endif
 EXTRA_DIST =					\
 	gnome-wm				\
 	$(xsession_in_files)			\
-	$(schemas_in_files)			\
+	$(schemas_in_in_files)			\
 	$(ui_DATA)				\
 	$(pixmap_DATA)
 
 CLEANFILES =					\
+	$(schemas_in_files)			\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
-	$(desktop_DATA)
+	$(desktop_DATA)				\
+	gnome-wm.desktop
 
 DISTCLEANFILES =				\
 	$(desktop_in_files)
