@@ -12,6 +12,8 @@ if ENABLE_SPLASH
 SUBDIRS += splash
 endif
 
+ACLOCAL_AMFLAGS = -I m4
+
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \
 	$(srcdir)/aclocal.m4 \
