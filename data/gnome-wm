@@ -45,6 +45,19 @@ if [ -z "$WINDOW_MANAGER" ] ; then
     WINDOW_MANAGER=`gconftool-2 --get /desktop/gnome/session/required_components/windowmanager 2> /dev/null`
 fi
 
+# Migrate compiz to compiz-manager if possible and needed
+if [ "x$WINDOW_MANAGER" = "xcompiz" -o "x$DEFWM" = "xcompiz" ]; then
+  which compiz-manager > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    if [ "x$WINDOW_MANAGER" = "xcompiz" ]; then
+      WINDOW_MANAGER="compiz-manager"
+    fi
+    if [ "x$DEFWM" = "xcompiz" ]; then
+      DEFWM="compiz-manager"
+    fi
+  fi
+fi
+
 # Avoid looping if the session configuration tells us to use gnome-wm or if
 # the user forces gnome-wm via WINDOW_MANAGER
 if [ "x$WINDOW_MANAGER" = "xgnome-wm" ]; then
@@ -60,23 +73,25 @@ if [ -z "$WINDOW_MANAGER" ] ; then
 
   KNOWN_WM="sawfish sawmill enlightenment icewm wmaker fvwm2 qvwm fvwm twm kwm"
   if [ $IS_X_COMPOSITED -eq 0 ] ; then
-    KNOWN_WM="mutter compiz beryl $KNOWN_WM"
+    KNOWN_WM="mutter compiz-manager compiz beryl $KNOWN_WM"
   fi
   # metacity is still the default wm in GNOME
   KNOWN_WM="metacity $KNOWN_WM"
 
   OLDIFS=$IFS
   if [ -z "$DEFWM" -o "x$DEFWM" = "xgnome-wm" ]; then
+
     for wm in $KNOWN_WM ; do
       IFS=":"
       for dir in $PATH ; do
-	if [ -x "$dir/$wm" ] ; then
-	  WINDOW_MANAGER="$dir/$wm"
-    	  break 2
-	fi
+        if [ -x "$dir/$wm" ] ; then
+          WINDOW_MANAGER="$dir/$wm"
+          break 2
+        fi
       done
       IFS=$OLDIFS
     done
+
   else
     WINDOW_MANAGER=$DEFWM
   fi
@@ -116,7 +131,7 @@ if [ ! -z "$SMID" ] ; then
       OPT1=-i
       OPT2=$SMID
       ;;
-    compiz)
+    compiz|compiz-manager)
       OPT1=--sm-client-id
       OPT2=$SMID
       ;;
