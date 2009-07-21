@@ -4,10 +4,13 @@ SUBDIRS =			\
 	capplet			\
 	tools			\
 	compat			\
-	splash			\
 	po			\
 	doc			\
 	data
+
+if ENABLE_SPLASH
+SUBDIRS += splash
+endif
 
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \
