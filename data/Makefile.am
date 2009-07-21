@@ -1,4 +1,6 @@
 NULL =
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
 SUBDIRS = icons
 
 uidir = $(pkgdatadir)
@@ -22,11 +24,19 @@ schemas_in_files = gnome-session.schemas.in
 schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
+$(schemas_in_files): $(schemas_in_files).in Makefile
+	$(QUIET_GEN)sed \
+	     -e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
+	     $< > $@
+
 bin_SCRIPTS = gnome-wm
 
-settingsdir = $(datadir)/applications
-settings_in_files = session-properties.desktop.in
-settings_DATA = $(settings_in_files:.desktop.in=.desktop)
+desktopdir = $(datadir)/applications
+desktop_in_files = session-properties.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+if USE_GNOME_WM
+desktop_in_files += gnome-wm.desktop.in
+endif
 
 install-data-local:
 if GCONF_SCHEMAS_INSTALL
@@ -47,9 +57,9 @@ EXTRA_DIST =					\
 CLEANFILES =					\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
-	$(settings_DATA)
+	$(desktop_DATA)
 
 DISTCLEANFILES =				\
-	$(settings_in_files)
+	$(desktop_in_files)
 
 -include $(top_srcdir)/git.mk

@@ -103,6 +103,18 @@ if test "x$have_polkit" = "xyes"; then
 fi
 
 dnl ====================================================================
+dnl Option to set the default window manager
+dnl ====================================================================
+AC_ARG_WITH(default-wm,
+              [AC_HELP_STRING([--with-default-wm],
+                              [Specify the default window manager @<:@default=metacity@:>@])],,
+                              [with_default_wm="metacity"])
+
+DEFAULT_WM=$with_default_wm
+AC_SUBST(DEFAULT_WM)
+AM_CONDITIONAL(USE_GNOME_WM, test x$with_default_wm = xgnome-wm)
+
+dnl ====================================================================
 dnl GConf Checks
 dnl ====================================================================
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
@@ -383,6 +395,7 @@ echo "
         cflags:	                  ${CFLAGS}
         Maintainer mode:          ${USE_MAINTAINER_MODE}
 
+        Default WM:               ${with_default_wm}
         PolicyKit support:        ${have_polkit}
         XRender support:          ${have_xrender}
         XSync support:            ${have_xsync}
