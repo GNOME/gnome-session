@@ -24,7 +24,8 @@ INCLUDES =					\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"	\
+	-DI_KNOW_THE_DEVICEKIT_POWER_API_IS_SUBJECT_TO_CHANGE
 
 test_inhibit_SOURCES = 	\
 	test-inhibit.c	\
@@ -74,8 +75,6 @@ gnome_session_SOURCES =				\
 	gsm-logout-dialog.c			\
 	gsm-inhibit-dialog.h			\
 	gsm-inhibit-dialog.c			\
-	gsm-power-manager.h			\
-	gsm-power-manager.c			\
 	gs-idle-monitor.h			\
 	gs-idle-monitor.c			\
 	gsm-presence.h				\
