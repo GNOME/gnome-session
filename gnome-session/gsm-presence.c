@@ -155,6 +155,10 @@ on_idle_timeout (GSIdleMonitor *monitor,
 static void
 reset_idle_watch (GsmPresence  *presence)
 {
+        if (presence->priv->idle_monitor != NULL) {
+                return;
+        }
+
         if (presence->priv->idle_watch_id > 0) {
                 g_debug ("GsmPresence: removing idle watch");
                 gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
@@ -449,10 +453,18 @@ gsm_presence_finalize (GObject *object)
         if (presence->priv->idle_watch_id > 0) {
                 gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
                                               presence->priv->idle_watch_id);
+                presence->priv->idle_watch_id = 0;
         }
 
-        g_free (presence->priv->status_text);
-        g_object_unref (presence->priv->idle_monitor);
+        if (presence->priv->status_text != NULL) {
+                g_free (presence->priv->status_text);
+                presence->priv->status_text = NULL;
+        }
+
+        if (presence->priv->idle_monitor != NULL) {
+                g_object_unref (presence->priv->idle_monitor);
+                presence->priv->idle_monitor = NULL;
+        }
 
         G_OBJECT_CLASS (gsm_presence_parent_class)->finalize (object);
 }
