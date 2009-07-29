@@ -16,7 +16,7 @@ helper_PROGRAMS =				\
 	gnome-session-splash			\
 	$(NULL)
 
-default_sessiondir = $(datadir)/gnome/autostart
+default_sessiondir = $(sysconfdir)/xdg/autostart
 default_session_in_in_files = gnome-session-splash.desktop.in.in
 default_session_in_files = $(default_session_in_in_files:.desktop.in.in=.desktop.in)
 default_session_DATA = $(default_session_in_files:.desktop.in=.desktop)
