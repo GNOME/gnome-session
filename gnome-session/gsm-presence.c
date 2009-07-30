@@ -155,7 +155,7 @@ on_idle_timeout (GSIdleMonitor *monitor,
 static void
 reset_idle_watch (GsmPresence  *presence)
 {
-        if (presence->priv->idle_monitor != NULL) {
+        if (presence->priv->idle_monitor == NULL) {
                 return;
         }
 
