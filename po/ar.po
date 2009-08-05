@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-18 22:12+0200\n"
-"PO-Revision-Date: 2009-04-18 22:18+0300\n"
+"POT-Creation-Date: 2009-08-05 21:06+0300\n"
+"PO-Revision-Date: 2009-08-05 21:09+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -20,55 +20,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.3.1\n"
+"X-Generator: Virtaal 0.4.0\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "اختر أمرا"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:192
 msgid "Add Startup Program"
 msgstr "أضِف برنامجا لبداية التشغيل"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:196
 msgid "Edit Startup Program"
 msgstr "حرّر برنامج بدء التشغيل"
 
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "بلا وصف"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "لا يمكن أن يكون اسم برنامج بدء التشغيل فارغًا"
-
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغًا"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "أمر بدء التشغيل غير سليم"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "مُفعّل"
 
-#: ../capplet/gsm-properties-dialog.c:1316
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "أيقونة"
 
-#: ../capplet/gsm-properties-dialog.c:1327
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "البرنامج"
 
-#: ../capplet/gsm-properties-dialog.c:1477
+#: ../capplet/gsm-properties-dialog.c:790
 msgid "Startup Applications Preferences"
 msgstr "تفضيلات برمجيات بدء التشغيل"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:440
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "بلا اسم"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "بلا وصف"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "إصدارة هذا التطبيق"
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "تعذّر عرض مستند المساعدة"
 
 #: ../compat/at-spi-registryd-wrapper.c:47
 msgid ""
@@ -96,19 +100,19 @@ msgstr "جنوم"
 msgid "This session logs you into GNOME"
 msgstr "تولجك هذه الجلسة في جنوم"
 
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "الجلسة المبدئية"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "مدير الملفات"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "إذا فُعِّل فستسأل gnome-session المستخدم قبل إنهاء جلسة."
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -116,11 +120,11 @@ msgstr ""
 "إذا فـُعّل فستحفظ gnome-session الجلسة آليا. في بقية الحالات سيكون لحوار تسجيل "
 "الخروج خيارا لحفظ الجلسة."
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "قائمة بالتطبيقات الموجودة في الجلسة المبدئية"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -129,52 +133,52 @@ msgid ""
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
-"قائمة بالمكونات المطلوبة كجزء من الجلسة. (كل عنصر يسمي مفتاحا تحت "
-"\"/desktop/gnome/session/required-components\".) عادة لن يسمح عنصر التحكم في "
-"الجلسات بحذف مكون مطلوب من الجلسة، وسيعيد مدير الجلسات أي عناصر مطلوبة تحذف."
+"قائمة بالمكونات المطلوبة كجزء من الجلسة. (كل عنصر يسمي مفتاحا تحت \"/desktop/"
+"gnome/session/required-components\".) عادة لن يسمح عنصر التحكم في الجلسات "
+"بحذف مكون مطلوب من الجلسة، وسيعيد مدير الجلسات أي عناصر مطلوبة تحذف."
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
 msgstr "محث الخروج"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "الشريط"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr ""
 "الصورة المحبذة التي ستستخدم في شاشة الترحيب عند تسجيل الدخول في مكتب جنوم"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "مكونات الجلسة المطلوبة"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "احفظ الجلسات"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "أظهر شاشة البدأ"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "أظهر شاشة البدأ عند بدأ الجلسة"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "يوفر مدير الملفات أيقونات سطح المكتب ويمكنك من التفاعل مع الملفات المحفوظة."
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "عدد الدقائق من السكون قبل اعتبار الجلسة ساكنة."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -182,7 +186,7 @@ msgstr ""
 "توفر اللوحة شريطا في قمة وقاع الشاشة تحتوي القوائم و قائمة التوافذ وأيقونات "
 "الحالة والساعة إلخ."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -190,7 +194,7 @@ msgstr ""
 "مدير النوافذ هو لالبرنامج الذي يرسم شريط عنوان وحدود النوافذ، ويمكنك من نقل "
 "وتحجيم النوافذ."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -199,20 +203,19 @@ msgstr ""
 "هذه قيمة مسار نسبية بناءً على الدليل $datadir/pixmaps/. الدلائل التحتية "
 "وأسماء الصور هي قيم صالحة. تغيير هذه القيمة سيؤثر على الجلسة التالية."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "مدة الانتظار قبل اعتبار الجلسة خاملة"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "مدير النوافذ"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ما زالت بعض البرامج تعمل:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:668
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -226,43 +229,39 @@ msgstr "اختر التطبيقات التي تريد تشغيلها عند ول
 msgid "Startup Applications"
 msgstr "تطبيقات بدء التشغيل"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "برامج بدء الت_شغيل الإضافية:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "تصفّح..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "الأ_مر:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "ال_تعليق:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "الخيارات"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "تفضيلات الجلسة"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "برامج بدء التشغيل"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "ت_ذكّر تلقائيا التطبيقات المشغلة عند تسجيل الخروج"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "الا_سم:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "_تذكّر التطبيقات المشغلة حاليًا"
 
@@ -296,37 +295,37 @@ msgstr "خيار إطلاق غير معروف: %Id"
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "تعذّر تمرير مسارات الملفات إلى مدخلة سطح مكتب 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "ليس عنصرا يمكن إطلاقه"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "عطّل الاتصال بمدير الجلسات"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "حدد ملفا يحتوي الاعدادات المحفوظة"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "ملف"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "حدد رقم معرّف إدارة الجلسات"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "معرّف"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "خيارات إدارة الجلسات"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "خيارات إدارة الجلسات:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
 msgstr "اعرض خيارات إدارة الجلسات"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -338,62 +337,62 @@ msgstr ""
 "هناك مشكلة مع خادوم الإعدادات.\n"
 "(%s خرج بالحالة %Id)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "الأيقونة '%s' غير موجودة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:616
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "ما زال أحد البرامج يعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "ما زالت بعض البرامج تعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:672
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "بانتظار انتهاء البرامج. مقاطعة هذه البرامج قد يتسبب في فقد بيانات."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "بدّل المستخدم بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "اخرج بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:906
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "علّق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:909
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "أسبِت بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:912
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "أغلق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:915
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "أعد التشغيل بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:923
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "أوصد الشاشة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:926
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "ألغ"
 
-#: ../gnome-session/gsm-logout-dialog.c:269
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -404,7 +403,7 @@ msgstr[3] "سيتم إخراجك خلال %Id ثوان."
 msgstr[4] "سيتم إخراجك خلال %Id ثانية."
 msgstr[5] "سيتم إخراجك خلال %Id ثانية."
 
-#: ../gnome-session/gsm-logout-dialog.c:277
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -415,48 +414,48 @@ msgstr[3] "سيتم إطفاء النظام خلال %Id ثوان."
 msgstr[4] "سيتم إطفاء النظام خلال %Id ثانية."
 msgstr[5] "سيتم إطفاء النظام خلال %Id ثوان."
 
-#: ../gnome-session/gsm-logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "حاليا أنت والج باسم \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:379
 msgid "Log out of this system now?"
 msgstr "أأخرج من هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:385
 msgid "_Switch User"
 msgstr "ب_دّل المستخدم"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:394
 msgid "_Log Out"
 msgstr "ا_خرج"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:400
 msgid "Shut down this system now?"
 msgstr "أأطفئ هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:406
 msgid "S_uspend"
 msgstr "_علّق"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:412
 msgid "_Hibernate"
 msgstr "أ_سبِت"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Restart"
 msgstr "أعِد الت_شغيل"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:428
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
-#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
+#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
 msgid "Not responding"
 msgstr "لا يستجيب"
 
-#: ../gnome-session/gsm-xsmp-client.c:1195
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "يعيق هذا البرنامج الخروج."
 
@@ -477,23 +476,23 @@ msgstr "تعذّر إنشاء مقبس استماع ICE: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "تعذّر بدء جلسة الولوج (وتعذّر الاتصال بالخادوم الرسومي)"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "تخطى مجلدات بدء التشغيل القياسية"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "مفتاح GConf المستخدم للبحث عن الجلسة الابتدائية"
 
-#: ../gnome-session/main.c:438
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "فعّل كود تتبع الأخطاء"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "لا تُحمّل التطبيقات التي حددها المستخدم"
 
-#: ../gnome-session/main.c:460
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr " - مدير جلسات جنوم"
 
@@ -549,6 +548,12 @@ msgstr "تعذّر الاتصال بمدير الجلسات"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "تم استدعاء البرنامج بخيارات متضاربة"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "لا يمكن أن يكون اسم برنامج بدء التشغيل فارغًا"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "تفضيلات الجلسة"
 
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "الخيار المنتقى في حوار تسجيل الخروج"
