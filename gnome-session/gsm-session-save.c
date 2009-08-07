@@ -223,7 +223,7 @@ gsm_session_clear_saved_session (const char *directory,
         gboolean    result = TRUE;
         GError     *error;
 
-        g_debug ("GsmSessionSave: clearing currectly saved session at %s",
+        g_debug ("GsmSessionSave: clearing currently saved session at %s",
                  directory);
 
         if (directory == NULL) {
