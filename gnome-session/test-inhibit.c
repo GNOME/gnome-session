@@ -154,7 +154,7 @@ on_widget_show (GtkWidget *dialog,
 {
         gboolean res;
 
-        res = do_inhibit_for_window (dialog->window);
+        res = do_inhibit_for_window (gtk_widget_get_window (dialog));
         if (! res) {
                 g_warning ("Unable to register client with session manager");
         }

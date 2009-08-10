@@ -130,6 +130,7 @@ splash_window_expose_event (GtkWidget      *widget,
 {
         GList *l;
         GdkRectangle exposed;
+        GtkStyle *style = gtk_widget_get_style (widget);
         GsmSplashWindow *splash = GSM_SPLASH_WINDOW (widget);
 
         if (!GTK_WIDGET_DRAWABLE (widget)) {
@@ -143,8 +144,8 @@ splash_window_expose_event (GtkWidget      *widget,
                                              &si->position,
                                              &exposed)) {
                         gdk_draw_pixbuf (
-                                widget->window,
-                                widget->style->black_gc,
+                                gtk_widget_get_window (widget),
+                                style->black_gc,
                                 si->scaled,
                                 exposed.x - si->position.x,
                                 exposed.y - si->position.y,
@@ -159,14 +160,14 @@ splash_window_expose_event (GtkWidget      *widget,
                 calc_text_box (splash);
                 if (gdk_rectangle_intersect (&event->area, &splash->text_box, &exposed)) {
                         /* drop shadow */
-                        gdk_draw_layout (widget->window,
-                                         widget->style->black_gc,
+                        gdk_draw_layout (gtk_widget_get_window (widget),
+                                         style->black_gc,
                                          splash->text_box.x + 1, splash->text_box.y + 1,
                                          splash->layout);
 
                         /* text */
-                        gdk_draw_layout (widget->window,
-                                         widget->style->white_gc,
+                        gdk_draw_layout (gtk_widget_get_window (widget),
+                                         style->white_gc,
                                          splash->text_box.x, splash->text_box.y,
                                          splash->layout);
                 }
@@ -182,13 +183,13 @@ splash_window_realize (GtkWidget *widget)
 
         GTK_WIDGET_CLASS (gsm_splash_window_parent_class)->realize (widget);
 
-        if (splash->background && widget->window) {
+        if (splash->background && gtk_widget_get_window (widget)) {
                 GdkPixmap   *pixmap = NULL;
                 GdkBitmap   *mask = NULL;
                 GdkColormap *colormap;
 
                 colormap = gtk_widget_get_colormap (widget);
-                pixmap = gdk_pixmap_new (widget->window,
+                pixmap = gdk_pixmap_new (gtk_widget_get_window (widget),
                                          gdk_pixbuf_get_width (splash->background),
                                          gdk_pixbuf_get_height (splash->background),
                                          -1);
@@ -201,7 +202,7 @@ splash_window_realize (GtkWidget *widget)
                                          0, 0, 0, 0, -1, -1,
                                          GDK_RGB_DITHER_MAX, 0, 0);
 
-                        style = gtk_style_copy (widget->style);
+                        style = gtk_widget_get_style (widget);
                         style->bg_pixmap[GTK_STATE_NORMAL] = pixmap;
 
                         gtk_widget_set_style (widget, style);
@@ -214,11 +215,13 @@ splash_window_realize (GtkWidget *widget)
                                                                         125);
 
                         if (mask) {
-                                gdk_window_shape_combine_mask (widget->window, mask, 0, 0);
+                                gdk_window_shape_combine_mask (gtk_widget_get_window (widget),
+                                                               mask, 0, 0);
                                 g_object_unref (mask);
                         }
 
-                        gtk_style_set_background (widget->style, widget->window,
+                        gtk_style_set_background (gtk_widget_get_style (widget),
+                                                  gtk_widget_get_window (widget),
                                                   GTK_STATE_NORMAL);
                 }
         }

@@ -355,6 +355,7 @@ gsm_get_dialog (GsmDialogLogoutType type,
                 guint32             activate_time)
 {
         GsmLogoutDialog *logout_dialog;
+        GtkWidget       *dialog_image;
         const char      *primary_text;
         const char      *icon_name;
 
@@ -433,7 +434,9 @@ gsm_get_dialog (GsmDialogLogoutType type,
                 g_assert_not_reached ();
         }
 
-        gtk_image_set_from_icon_name (GTK_IMAGE (GTK_MESSAGE_DIALOG (logout_dialog)->image),
+        dialog_image = gtk_message_dialog_get_image (GTK_MESSAGE_DIALOG (logout_dialog));
+
+        gtk_image_set_from_icon_name (GTK_IMAGE (dialog_image),
                                       icon_name, GTK_ICON_SIZE_DIALOG);
         gtk_window_set_icon_name (GTK_WINDOW (logout_dialog), icon_name);
         gtk_window_set_position (GTK_WINDOW (logout_dialog), GTK_WIN_POS_CENTER_ALWAYS);

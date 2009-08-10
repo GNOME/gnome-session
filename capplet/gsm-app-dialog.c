@@ -151,6 +151,7 @@ on_entry_activate (GtkEntry     *entry,
 static void
 setup_dialog (GsmAppDialog *dialog)
 {
+        GtkWidget  *content_area;
         GtkWidget  *widget;
         GtkBuilder *xml;
         GError     *error;
@@ -171,8 +172,9 @@ setup_dialog (GsmAppDialog *dialog)
                 }
         }
 
+        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         widget = GTK_WIDGET (gtk_builder_get_object (xml, "main-table"));
-        gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
+        gtk_container_add (GTK_CONTAINER (content_area), widget);
 
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);

@@ -1088,6 +1088,7 @@ gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
 static void
 gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
 {
+        GtkWidget *content_area;
         GtkWidget *widget;
         GError    *error;
 
@@ -1109,9 +1110,10 @@ gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
                 }
         }
 
+        content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
         widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
                                                      "main-box"));
-        gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox), widget);
+        gtk_container_add (GTK_CONTAINER (content_area), widget);
 
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
