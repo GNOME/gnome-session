@@ -4,17 +4,6 @@ special hardcoding in the shiny new future, but where some additional
 functionality needs to be added to the programs to take advantage of
 the new gnome-session features and make everything work.
 
-  * at-spi-registryd-wrapper: This is needed because at-spi-registryd
-    does not use XSMP to signal to the session manager that it's
-    ready. (Instead it uses a custom protocol involving a root window
-    property.) The wrapper watches for the root window property and
-    then exits with status 0 to signal that it has run successfully.
-
-    In the future, at-spi-registryd should just use XSMP (via
-    EggSMClient or its replacement) to signal when it's ready. Also,
-    it should register for XSMP auto-restart, so that if it crashes,
-    gnome-session will restart it.
-
   * gnome-settings-daemon-helper: This does two things that have
     traditionally been done by gnome-session, but which ought to be
     done by gnome-settings-daemon: setting the screen resolution, and

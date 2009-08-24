@@ -25,14 +25,6 @@ AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
 
 GNOME_MAINTAINER_MODE_DEFINES
 
-AC_ARG_WITH(at-spi-registryd-directory,
-              [AC_HELP_STRING([--with-at-spi-registryd-directory],
-                              [Specify the directory of at-spi-registryd @<:@default=libexecdir@:>@])],,
-                              [with_at_spi_registryd_directory="\${libexecdir}"])
-
-AT_SPI_REGISTRYD_DIR=$with_at_spi_registryd_directory
-AC_SUBST(AT_SPI_REGISTRYD_DIR)
-
 GNOME_COMPILE_WARNINGS(maximum)
 
 AC_ARG_ENABLE(deprecations,
@@ -343,7 +335,6 @@ AC_OUTPUT([
 Makefile
 capplet/Makefile
 compat/Makefile
-compat/at-spi-registryd-wrapper.desktop.in.in
 compat/gnome-settings-daemon-helper.desktop.in.in
 doc/Makefile
 doc/dbus/Makefile
