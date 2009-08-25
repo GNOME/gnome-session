@@ -1,3 +1,35 @@
+===============
+Version 2.27.91
+===============
+
+Note: this release contains a port of the PolicyKit code to PolicyKit 1, which
+is needed for gnome-session to work with newer ConsoleKit. However, because of
+limitations of the ConsoleKit API, there are some regressions that cannot be
+addressed. See http://bugzilla.gnome.org/show_bug.cgi?id=585614 for more
+details.
+
+- Install splash desktop file in $(sysconfdir)/xdg/autostart (Vincent)
+- Do not install gnome-splash.png unless --enable-splash is used (Vincent)
+- Fix idle watch not working (Vincent)
+- Fix typo in debug message (Oskar Wallgren)
+- Use GTK+ accessor functions instead direct access (Javier Jardón)
+- Remove deprecated Encoding key from desktop file (Frédéric Péters)
+- Port to PolicyKit 1 (Matthias Clasen)
+- Remove dependency on PolicyKit libraries (Matthias Clasen)
+
+Translations:
+- Updated ar: Khaled Hosny
+- Updated bg: Alexander Shopov
+- Updated ga: Seán de Búrca
+- Updated gl: Antón Méixome
+- Updated gu: Sweta Kothari
+- Updated it: Luca Ferretti
+- Updated ko: Changwoo Ryu
+- Updated nb: Kjartan Maraas
+- Updated or: Manoj Kumar Giri
+- Updated pt_BR: Djavan Fagundes
+- Updated th: Theppitak Karoonboonyanan
+
 ==============
 Version 2.27.5
 ==============
