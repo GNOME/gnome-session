@@ -31,10 +31,6 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#ifdef HAVE_POLKIT_GNOME
-#include <polkit-gnome/polkit-gnome.h>
-#endif
-
 #include "gsm-marshal.h"
 #include "gsm-consolekit.h"
 
@@ -465,177 +461,6 @@ emit_stop_complete (GsmConsolekit *manager,
         }
 }
 
-#ifdef HAVE_POLKIT_GNOME
-static void
-system_restart_auth_cb (PolKitAction  *action,
-                        gboolean       gained_privilege,
-                        GError        *error,
-                        GsmConsolekit *manager)
-{
-        GError  *local_error;
-        gboolean res;
-
-        if (!gained_privilege) {
-                if (error != NULL) {
-                        emit_restart_complete (manager, error);
-                }
-
-                return;
-        }
-
-        local_error = NULL;
-
-        res = try_system_restart (manager->priv->dbus_connection, &local_error);
-
-        if (!res) {
-                g_warning ("Unable to restart system: %s", local_error->message);
-                emit_restart_complete (manager, local_error);
-                g_error_free (local_error);
-        } else {
-                emit_restart_complete (manager, NULL);
-        }
-}
-
-static void
-system_stop_auth_cb (PolKitAction  *action,
-                     gboolean       gained_privilege,
-                     GError        *error,
-                     GsmConsolekit *manager)
-{
-        GError  *local_error;
-        gboolean res;
-
-        if (!gained_privilege) {
-                if (error != NULL) {
-                        emit_stop_complete (manager, error);
-                }
-
-                return;
-        }
-
-        local_error = NULL;
-
-        res = try_system_stop (manager->priv->dbus_connection, &local_error);
-
-        if (!res) {
-                g_warning ("Unable to stop system: %s", local_error->message);
-                emit_stop_complete (manager, local_error);
-                g_error_free (local_error);
-        } else {
-                emit_stop_complete (manager, NULL);
-        }
-}
-
-static PolKitAction *
-get_action_from_error (GError *error)
-{
-        PolKitAction *action;
-        char         *paction;
-
-        action = polkit_action_new ();
-
-        paction = NULL;
-        if (g_str_has_prefix (error->message, "Not privileged for action: ")) {
-                paction = g_strdup (error->message + strlen ("Not privileged for action: "));
-                if (paction != NULL) {
-                        char *p;
-
-                        /* after 0.2.10 the error also includes the PK results */
-                        p = strchr (paction, ' ');
-                        if (p != NULL) {
-                                *p = '\0';
-                        }
-                }
-        }
-
-        polkit_action_set_action_id (action, paction);
-
-        g_free (paction);
-
-        return action;
-}
-#endif /* HAVE_POLKIT_GNOME */
-
-static void
-request_restart_priv (GsmConsolekit *manager,
-                      GError        *error)
-{
-#ifdef HAVE_POLKIT_GNOME
-        PolKitAction *action;
-        pid_t         pid;
-        gboolean      res = FALSE;
-        guint         xid;
-        GError       *local_error;
-
-        action = get_action_from_error (error);
-
-        xid = 0;
-        pid = getpid ();
-
-        local_error = NULL;
-        res = polkit_gnome_auth_obtain (action,
-                                        xid,
-                                        pid,
-                                        (PolKitGnomeAuthCB) system_restart_auth_cb,
-                                        manager,
-                                        &local_error);
-
-        polkit_action_unref (action);
-
-        if (!res) {
-                if (local_error != NULL) {
-                        g_warning ("Unable to obtain auth to restart system: %s",
-                                   local_error->message);
-
-                        emit_restart_complete (manager, local_error);
-                        g_error_free (local_error);
-                }
-        }
-#else
-        g_assert_not_reached ();
-#endif /* HAVE POLKIT */
-}
-
-static void
-request_stop_priv (GsmConsolekit *manager,
-                   GError        *error)
-{
-#ifdef HAVE_POLKIT_GNOME
-        PolKitAction *action;
-        pid_t         pid;
-        gboolean      res = FALSE;
-        guint         xid;
-        GError       *local_error;
-
-        action = get_action_from_error (error);
-
-        xid = 0;
-        pid = getpid ();
-
-        local_error = NULL;
-        res = polkit_gnome_auth_obtain (action,
-                                        xid,
-                                        pid,
-                                        (PolKitGnomeAuthCB) system_stop_auth_cb,
-                                        manager,
-                                        &local_error);
-
-        polkit_action_unref (action);
-
-        if (!res) {
-                if (local_error != NULL) {
-                        g_warning ("Unable to obtain auth to stop system: %s",
-                                   local_error->message);
-
-                        emit_stop_complete (manager, local_error);
-                        g_error_free (local_error);
-                }
-        }
-#else
-        g_assert_not_reached ();
-#endif /* HAVE POLKIT */
-}
-
 void
 gsm_consolekit_attempt_restart (GsmConsolekit *manager)
 {
@@ -652,16 +477,16 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
                 return;
         }
 
-        res = try_system_restart (manager->priv->dbus_connection, &error);
+        res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
+                                              "Restart",
+                                              INT_MAX,
+                                              error,
+                                              G_TYPE_INVALID,
+                                              G_TYPE_INVALID);
 
         if (!res) {
-                if (dbus_g_error_has_name (error, "org.freedesktop.ConsoleKit.Manager.NotPrivileged")) {
-                        request_restart_priv (manager, error);
-                } else {
-                        g_warning ("Unable to restart system: %s", error->message);
-                        emit_restart_complete (manager, error);
-                }
-
+                g_warning ("Unable to restart system: %s", error->message);
+                emit_restart_complete (manager, error);
                 g_error_free (error);
         } else {
                 emit_restart_complete (manager, NULL);
@@ -684,16 +509,16 @@ gsm_consolekit_attempt_stop (GsmConsolekit *manager)
                 return;
         }
 
-        res = try_system_stop (manager->priv->dbus_connection, &error);
+        res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
+                                              "Stop",
+                                              INT_MAX,
+                                              error,
+                                              G_TYPE_INVALID,
+                                              G_TYPE_INVALID);
 
         if (!res) {
-                if (dbus_g_error_has_name (error, "org.freedesktop.ConsoleKit.Manager.NotPrivileged")) {
-                        request_stop_priv (manager, error);
-                } else {
-                        g_warning ("Unable to stop system: %s", error->message);
-                        emit_stop_complete (manager, error);
-                }
-
+                g_warning ("Unable to stop system: %s", error->message);
+                emit_stop_complete (manager, error);
                 g_error_free (error);
         } else {
                 emit_stop_complete (manager, NULL);
@@ -969,347 +794,78 @@ gsm_consolekit_can_switch_user (GsmConsolekit *manager)
         return ret;
 }
 
-#ifdef HAVE_POLKIT_GNOME
-static PolKitResult
-gsm_consolekit_get_result_for_action (GsmConsolekit *manager,
-                                      const char    *action_id)
-{
-        PolKitGnomeContext *gnome_context;
-        PolKitAction *action;
-        PolKitCaller *caller;
-        DBusError dbus_error;
-        PolKitError *error;
-        PolKitResult result;
-
-        gnome_context = polkit_gnome_context_get (NULL);
-
-        if (gnome_context == NULL) {
-                return POLKIT_RESULT_UNKNOWN;
-        }
-
-        if (gnome_context->pk_tracker == NULL) {
-                return POLKIT_RESULT_UNKNOWN;
-        }
-
-        dbus_error_init (&dbus_error);
-        caller = polkit_tracker_get_caller_from_pid (gnome_context->pk_tracker,
-                                                     getpid (),
-                                                     &dbus_error);
-        dbus_error_free (&dbus_error);
-
-        if (caller == NULL) {
-                return POLKIT_RESULT_UNKNOWN;
-        }
-
-        action = polkit_action_new ();
-        if (!polkit_action_set_action_id (action, action_id)) {
-                polkit_action_unref (action);
-                polkit_caller_unref (caller);
-                return POLKIT_RESULT_UNKNOWN;
-        }
-
-        error = NULL;
-        result = polkit_context_is_caller_authorized (gnome_context->pk_context,
-                                                      action, caller, FALSE,
-                                                      &error);
-        if (polkit_error_is_set (error)) {
-                polkit_error_free (error);
-        }
-        polkit_action_unref (action);
-        polkit_caller_unref (caller);
-
-        return result;
-}
-
-static gboolean
-gsm_consolekit_can_do_action (GsmConsolekit *manager,
-                              const char    *action_id)
-{
-        PolKitResult  result;
-        gboolean      res;
-        GError       *error;
-
-        error = NULL;
-        res = gsm_consolekit_ensure_ck_connection (manager, &error);
-        if (!res) {
-                g_warning ("Could not connect to ConsoleKit: %s",
-                           error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        result = gsm_consolekit_get_result_for_action (manager, action_id);
-
-        return result != POLKIT_RESULT_NO && result != POLKIT_RESULT_UNKNOWN;
-}
-
-static gboolean
-gsm_consolekit_is_session_for_other_user (GsmConsolekit *manager,
-                                          const char    *object_path,
-                                          unsigned int   current_uid)
-{
-        DBusGProxy    *proxy;
-        gboolean       res;
-        char          *type;
-        unsigned int   uid;
-
-        proxy = dbus_g_proxy_new_for_name (manager->priv->dbus_connection,
-                                           CK_NAME,
-                                           object_path,
-                                           CK_SESSION_INTERFACE);
-
-        res = dbus_g_proxy_call_with_timeout (proxy,
-                                              "GetUnixUser",
-                                              INT_MAX,
-                                              NULL,
-                                              /* parameters: */
-                                              G_TYPE_INVALID,
-                                              /* return values: */
-                                              G_TYPE_UINT, &uid,
-                                              G_TYPE_INVALID);
-
-        /* error is bad: we consider there's another user */
-        if (!res)
-                return TRUE;
-
-        if (uid == current_uid)
-                return FALSE;
-
-        /* filter out login sessions */
-        res = dbus_g_proxy_call_with_timeout (proxy,
-                                              "GetSessionType",
-                                              INT_MAX,
-                                              NULL,
-                                              /* parameters: */
-                                              G_TYPE_INVALID,
-                                              /* return values: */
-                                              G_TYPE_STRING, &type,
-                                              G_TYPE_INVALID);
-
-        /* error is bad: we consider there's another user */
-        if (!res)
-                return TRUE;
-
-        if (g_strcmp0 (type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0) {
-                g_free (type);
-                return FALSE;
-        }
-
-        g_free (type);
-
-        return TRUE;
-}
-
-static gboolean
-gsm_consolekit_is_single_user (GsmConsolekit *manager)
-{
-        DBusGProxy   *proxy;
-        GError       *error;
-        gboolean      res;
-        gboolean      single;
-        GPtrArray    *array;
-        unsigned int  current_uid;
-        int           i;
-
-        /* We use the same logic than the one used by ConsoleKit here -- it'd
-         * be nice to have a ConsoleKit API to help us, but well...
-         * If there's any error, we just assume it's multiple users. */
-
-        proxy = dbus_g_proxy_new_for_name (manager->priv->dbus_connection,
-                                           CK_NAME,
-                                           CK_MANAGER_PATH,
-                                           CK_MANAGER_INTERFACE);
-
-        error = NULL;
-        res = dbus_g_proxy_call_with_timeout (proxy,
-                                              "GetSessions",
-                                              INT_MAX,
-                                              &error,
-                                              /* parameters: */
-                                              G_TYPE_INVALID,
-                                              /* return values: */
-                                              dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH), &array,
-                                              G_TYPE_INVALID);
-
-        if (!res) {
-                g_warning ("Unable to list sessions: %s", error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        single = TRUE;
-        current_uid = getuid ();
-
-        for (i = 0; i < array->len; i++) {
-                char *object_path;
-
-                object_path = g_ptr_array_index (array, i);
-
-                if (gsm_consolekit_is_session_for_other_user (manager,
-                                                              object_path,
-                                                              current_uid)) {
-                        single = FALSE;
-                        break;
-                }
-        }
-
-        g_ptr_array_foreach (array, (GFunc) g_free, NULL);
-        g_ptr_array_free (array, TRUE);
-
-        return single;
-}
-
-static void
-obtain_privileges_cb (PolKitAction  *action,
-                      gboolean       gained_privilege,
-                      GError        *error,
-                      GsmConsolekit *manager)
-{
-        g_signal_emit (G_OBJECT (manager),
-                       signals [PRIVILEGES_COMPLETED],
-                       0, gained_privilege, FALSE, error);
-}
-
-static gboolean
-gsm_consolekit_obtain_privileges_for_action (GsmConsolekit *manager,
-                                             const char    *action_id)
-{
-        PolKitAction *action;
-        pid_t         pid;
-        guint         xid;
-        gboolean      res;
-
-        action = polkit_action_new ();
-        polkit_action_set_action_id (action, action_id);
-
-        xid = 0;
-        pid = getpid ();
-
-        res = polkit_gnome_auth_obtain (action,
-                                        xid,
-                                        pid,
-                                        (PolKitGnomeAuthCB) obtain_privileges_cb,
-                                        manager,
-                                        NULL);
-
-        polkit_action_unref (action);
-
-        return res;
-}
-
-static gboolean
-gsm_consolekit_get_privileges_for_actions (GsmConsolekit *manager,
-                                           const char    *single_action_id,
-                                           const char    *multiple_action_id)
-{
-        PolKitResult  result;
-        gboolean      res;
-        GError       *error;
-        const char   *action_id;
-
-        error = NULL;
-        res = gsm_consolekit_ensure_ck_connection (manager, &error);
-        if (!res) {
-                g_warning ("Could not connect to ConsoleKit: %s",
-                           error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        if (gsm_consolekit_is_single_user (manager)) {
-                action_id = single_action_id;
-        } else {
-                action_id = multiple_action_id;
-        }
-
-        result = gsm_consolekit_get_result_for_action (manager, action_id);
-
-        switch (result) {
-        case POLKIT_RESULT_UNKNOWN:
-        case POLKIT_RESULT_NO:
-                return FALSE;
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
-        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-                if (!gsm_consolekit_obtain_privileges_for_action (manager,
-                                                                  action_id)) {
-                        /* if the call doesn't work, then we were not even able
-                         * to do the call requesting the privileges: the setup
-                         * is likely broken */
-                        return FALSE;
-                }
-                break;
-        case POLKIT_RESULT_YES:
-                g_signal_emit (G_OBJECT (manager),
-                               signals [PRIVILEGES_COMPLETED],
-                               0, TRUE, FALSE, NULL);
-                break;
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
-        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
-                g_signal_emit (G_OBJECT (manager),
-                               signals [PRIVILEGES_COMPLETED],
-                               0, TRUE, TRUE, NULL);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        return TRUE;
-}
-#endif
-
 gboolean
 gsm_consolekit_get_restart_privileges (GsmConsolekit *manager)
 {
-#ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_get_privileges_for_actions (manager,
-                                                          "org.freedesktop.consolekit.system.restart",
-                                                          "org.freedesktop.consolekit.system.restart-multiple-users");
-#else
-        g_debug ("GsmConsolekit: built without PolicyKit-gnome support");
-        return FALSE;
-#endif
+	g_signal_emit (G_OBJECT (manager),
+		       signals [PRIVILEGES_COMPLETED],
+		       0, TRUE, TRUE, NULL);
+
+	return TRUE;
 }
 
 gboolean
 gsm_consolekit_get_stop_privileges (GsmConsolekit *manager)
 {
-#ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_get_privileges_for_actions (manager,
-                                                          "org.freedesktop.consolekit.system.stop",
-                                                          "org.freedesktop.consolekit.system.stop-multiple-users");
-#else
-        g_debug ("GsmConsolekit: built without PolicyKit-gnome support");
-        return FALSE;
-#endif
+	g_signal_emit (G_OBJECT (manager),
+		       signals [PRIVILEGES_COMPLETED],
+		       0, TRUE, TRUE, NULL);
+
+	return TRUE;
 }
 
 gboolean
 gsm_consolekit_can_restart (GsmConsolekit *manager)
 {
-#ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.restart") ||
-               gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.restart-multiple-users");
-#else
-        g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot restart system");
-        return FALSE;
-#endif
+        gboolean res;
+	gboolean can_restart;
+        GError  *error;
+
+        error = NULL;
+
+        if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
+                g_warning ("Could not connect to ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+                return;
+        }
+
+        res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
+                                              "CanRestart",
+                                              INT_MAX,
+                                              error,
+                                              G_TYPE_INVALID,
+                                              G_TYPE_BOOLEAN, &can_restart,
+                                              G_TYPE_INVALID);
+
+	return can_restart;
 }
 
 gboolean
 gsm_consolekit_can_stop (GsmConsolekit *manager)
 {
-#ifdef HAVE_POLKIT_GNOME
-        return gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.stop") ||
-               gsm_consolekit_can_do_action (manager, "org.freedesktop.consolekit.system.stop-multiple-users");
-#else
-        g_debug ("GsmConsolekit: built without PolicyKit-gnome support - cannot stop system");
-        return FALSE;
-#endif
+        gboolean res;
+	gboolean can_stop;
+        GError  *error;
+
+        error = NULL;
+
+        if (!gsm_consolekit_ensure_ck_connection (manager, &error)) {
+                g_warning ("Could not connect to ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+                return;
+        }
+
+        res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
+                                              "CanStop",
+                                              INT_MAX,
+                                              error,
+                                              G_TYPE_INVALID,
+                                              G_TYPE_BOOLEAN, &can_stop,
+                                              G_TYPE_INVALID);
+
+	return can_stop;
 }
 
 gchar *

@@ -16,7 +16,6 @@ INCLUDES =					\
 	$(ICE_CFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
-	$(POLKIT_GNOME_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
@@ -50,7 +49,6 @@ gnome_session_LDADD =				\
 	$(ICE_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
 	$(GCONF_LIBS)				\
-	$(POLKIT_GNOME_LIBS)			\
 	$(XRENDER_LIBS)				\
 	$(XTEST_LIBS)				\
 	$(EXECINFO_LIBS)			\
