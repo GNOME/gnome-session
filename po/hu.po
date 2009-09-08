@@ -2,91 +2,77 @@
 # Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
-# Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001, 2002.
-# Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
-# Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
-# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007, 2008, 2009.
-# Mate ORY <orymate at gmail d0t com>, 2006.
-# Mate Ory <orymate@gmail.com>, 2008.
+# Szabolcs Ban <shooby at gnome dot hu>, 1998, 1999, 2000, 2001, 2002.
+# Emese Kovacs <emese at gnome dot hu>, 2000, 2001, 2002.
+# Andras Timar <timar at gnome dot hu>, 2001, 2002, 2003.
+# Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2006, 2007, 2008, 2009.
+# Mate ORY <orymate at gmail d0t com>, 2006, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session.HEAD.hu\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2009-02-13 22:26+0000\n"
-"PO-Revision-Date: 2009-02-17 19:41+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
-"Language-Team: Hungarian <gnome@fsf.hu>\n"
+"Project-Id-Version: gnome-session master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-09 00:07+0200\n"
+"PO-Revision-Date: 2009-09-08 20:44+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Parancs kiválasztása"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Elindítandó program hozzáadása"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Elindítandó program szerkesztése"
 
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Nincs leírás"
-
-#: ../capplet/gsm-properties-dialog.c:952
-msgid "The name of the startup program cannot be empty"
-msgstr "Az elindítandó program neve nem lehet üres"
-
-#: ../capplet/gsm-properties-dialog.c:956
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "Az elindítandó parancs nem lehet üres"
 
-#: ../capplet/gsm-properties-dialog.c:962
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "Az elindítandó parancs nem érvényes"
 
-#: ../capplet/gsm-properties-dialog.c:1279
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Engedélyezve"
 
-#: ../capplet/gsm-properties-dialog.c:1292
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:1453
-#| msgid "Sessions Preferences"
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Indítópult beállításai"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:525
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "Névtelen"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "Nincs leírás"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"A munkamenethez akadálymentesítési technológiák támogatása lett kérve, de az "
-"akadálymentesítési nyilvántartás nem található. Győződjön meg róla, hogy az "
-"At-spi csomag telepítve van. A munkamenet az akadálymentesítési technológiák "
-"támogatása nélkül került elindításra."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "AT SPI nyilvántartás-átalakító"
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "A súgódokumentum nem jeleníthető meg"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -100,21 +86,21 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Bejelentkezés a GNOME környezetbe"
 
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "Alapértelmezett munkamenet"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "Fájlkezelő"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Ha engedélyezve van, a gnome-session megerősítést kér, mielőtt bezárja a "
 "munkamenetet."
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -123,18 +109,11 @@ msgstr ""
 "Egyébként a kijelentkezési párbeszédablakban lesz egy jelölőnégyzet a "
 "munkamenet mentéséről."
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "Az alapértelmezett munkamenet részét képező alkalmazások felsorolása."
 
-#: ../data/gnome-session.schemas.in.h:6
-#| msgid ""
-#| "List of components that are required as part of the session. (Each "
-#| "element names a key under \"/desktop/gnome/session/required-components"
-#| "\".) The Session Preferences will not normally allow users to remove a "
-#| "required component from the session, and the session manager will "
-#| "automatically add the required components back to the session if they do "
-#| "get removed."
+#: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -142,37 +121,42 @@ msgid ""
 "remove a required component from the session, and the session manager will "
 "automatically add the required components back to the session at login time "
 "if they do get removed."
-msgstr "Azon összetevők felsorolása, amelyek a munkamenet szükséges részét képezik. (Minden elem egy kulcsot nevez meg a „/desktop/gnome/session/required_components” útvonalról.) Az Indítópult alkalmazás nem fogja engedni az ilyen összetevők törlését, és ha mégis törlésre kerülnek, a munkamenet-kezelő bejelentkezéskor visszaveszi azokat a munkamenetbe."
+msgstr ""
+"Azon összetevők felsorolása, amelyek a munkamenet szükséges részét képezik. "
+"(Minden elem egy kulcsot nevez meg a „/desktop/gnome/session/"
+"required_components” útvonalról.) Az Indítópult alkalmazás nem fogja engedni "
+"az ilyen összetevők törlését, és ha mégis törlésre kerülnek, a munkamenet-"
+"kezelő bejelentkezéskor visszaveszi azokat a munkamenetbe."
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
 msgstr "Kijelentkezés megerősítése"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "Panel"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "A bejelentkezéskor megjelenítendő indulókép"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Szükséges munkamenet-összetevők"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "Munkamenetek mentése"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "Indulókép megjelenítése"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Indulókép megjelenítése a munkamenet kezdetekor"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -180,11 +164,14 @@ msgstr ""
 "A fájlkezelő biztosítja az asztali ikonokat, és lehetőséget ad a mentett "
 "fájlok kezelésére."
 
-#: ../data/gnome-session.schemas.in.h:15
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "Ennyi inaktívan töltött perc eltelte után a munkamenet üresjáratban lévővé válik."
+#: ../data/gnome-session.schemas.in.in.h:15
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"Ennyi inaktívan töltött perc eltelte után a munkamenet üresjáratban lévővé "
+"válik."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -192,7 +179,7 @@ msgstr ""
 "A panel biztosítja a képernyő alján és tetején lévő sávokat, amelyek "
 "tartalmazzák a menüket, ablaklistát, az értesítési területet és az órát."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -200,7 +187,7 @@ msgstr ""
 "Az ablakkezelő az a program, amely kirajzolja az ablakok címsávját, "
 "kereteit, és lehetővé teszi az ablakok mozgatását és méretezését."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -210,20 +197,19 @@ msgstr ""
 "alkönyvtár- és fájlnevek érvényes értékek. Ezen érték megváltoztatása a "
 "következő munkamenetbe való bejelentkezéskor lép életbe."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Üresjáratba kerülésig eltelő idő"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Ablakkezelő"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Néhány program még mindig fut:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -239,43 +225,39 @@ msgstr "A bejelentkezéskor elindítandó alkalmazások kiválasztása"
 msgid "Startup Applications"
 msgstr "Indítópult"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "További elindítandó _programok:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "Tallózás…"
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "_Parancs:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "_Megjegyzés:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Beállítások"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Munkamenet beállításai"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "Automatikusan elinduló programok"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_Név:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "_Jelenleg futó alkalmazások megjegyzése"
 
@@ -309,39 +291,39 @@ msgstr "Ismeretlen kapcsoló: %d"
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Nem adhatók dokumentum-URI címek egy „Type=Link” asztali bejegyzésnek"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "Nem futtatható elem"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "A munkamenet-kezelővel való kapcsolatfelvétel letiltása"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "A mentett beállításokat tartalmazó fájl megadása"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "FÁJL"
 
 # gnome-terminal/gnome-terminal.c:2562
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "A munkamenet-kezelési azonosító megadása"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "AZONOSÍTÓ"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Munkamenet-kezelés beállításai"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Munkamenet-kezelés kapcsolói:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
-msgstr "Munkamenet-kezelés beállításainak megjelenítése"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Munkamenet-kezelési kapcsolók megjelenítése"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -352,24 +334,24 @@ msgstr ""
 "Hiba történt a konfigurációs kiszolgálóval.\n"
 "(%s %d állapotkóddal lépett ki)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "A(z) „%s” ikon nem található"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "Egy program még fut:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "Néhány program még fut:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -377,106 +359,94 @@ msgstr ""
 "Várakozás a programok befejeződésére. A programok megszakítása adatok "
 "elvesztését okozhatja."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Felhasználóváltás mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "Kijelentkezés mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "Felfüggesztés mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "Hibernálás mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "Leállítás mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "Újraindítás mindenképp"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "Képernyő zárolása"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Mégse"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
-#| msgid ""
-#| "You are currently logged in as \"%s\".\n"
-#| "You will be automatically logged out in %d second."
-#| msgid_plural ""
-#| "You are currently logged in as \"%s\".\n"
-#| "You will be automatically logged out in %d seconds."
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Automatikusan ki fog jelentkezni %d másodperc múlva."
 msgstr[1] "Automatikusan ki fog jelentkezni %d másodperc múlva."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
-#| msgid ""
-#| "You are currently logged in as \"%s\".\n"
-#| "This system will be automatically shut down in %d second."
-#| msgid_plural ""
-#| "You are currently logged in as \"%s\".\n"
-#| "This system will be automatically shut down in %d seconds."
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "A rendszer %d másodperc múlva automatikusan le fog állni."
 msgstr[1] "A rendszer %d másodperc múlva automatikusan le fog állni."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Jelenleg „%s” néven van bejelentkezve."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "Log out of this system now?"
 msgstr "Kijelentkezik most?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
 msgstr "Felhasználó_váltás"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
 msgstr "_Kijelentkezés"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
 msgstr "Leállítja a rendszert?"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "S_uspend"
 msgstr "_Felfüggesztés"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Hibernate"
 msgstr "_Hibernálás"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:419
 msgid "_Restart"
 msgstr "Újr_aindítás"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:429
 msgid "_Shut Down"
 msgstr "_Leállítás"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
 msgid "Not responding"
 msgstr "Nem válaszol"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "Ez a program blokkolja a kijelentkezést."
 
@@ -492,31 +462,30 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nem hozható létre az ICE-figyelő foglalat: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:354
 #, c-format
-#| msgid "Unable to start login session (and unable connect to the X server)"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
-"A bejelentkező munkamenet indítása sikertelen (és sikertelen a csatlakozás az X-"
-"kiszolgálóhoz)"
+"A bejelentkező munkamenet indítása sikertelen (és sikertelen a csatlakozás "
+"az X-kiszolgálóhoz)"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Szabványos automatikus indítási könyvtárak felülbírálása"
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "Az alapértelmezett munkamenet kikeresésére használt GConf kulcs"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
-#: ../gnome-session/main.c:524
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "Ne töltsön be felhasználó által megadott alkalmazásokat"
 
-#: ../gnome-session/main.c:545
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr " – A GNOME munkamenet-kezelője"
 
@@ -529,38 +498,39 @@ msgid "GNOME Splash Screen"
 msgstr "GNOME indulókép"
 
 #: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "A jelenlegi munkamenet nevének beállítása"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NÉV"
-
-#: ../tools/gnome-session-save.c:66
 msgid "Log out"
 msgstr "Kijelentkezés"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "Kijelentkezés a meglévő korlátozók mellőzésével"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "Kijelentkezés párbeszédablak megjelenítése"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "Leállítás párbeszédablak megjelenítése"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "Munkamenet kilövése"
-
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "Párbeszédablakok használata hibákhoz"
 
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "A jelenlegi munkamenet nevének beállítása"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "NÉV"
+
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "Munkamenet kilövése"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "Ne kérjen megerősítést"
 
@@ -572,3 +542,16 @@ msgstr "Sikertelen kapcsolatfelvétel a munkamenet-kezelővel"
 msgid "Program called with conflicting options"
 msgstr "A program kapcsolói ütköznek"
 
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "A munkamenethez akadálymentesítési technológiák támogatása lett kérve, de "
+#~ "az akadálymentesítési nyilvántartás nem található. Győződjön meg róla, "
+#~ "hogy az At-spi csomag telepítve van. A munkamenet az akadálymentesítési "
+#~ "technológiák támogatása nélkül került elindításra."
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "AT SPI nyilvántartás-átalakító"
