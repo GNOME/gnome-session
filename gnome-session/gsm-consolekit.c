@@ -369,52 +369,6 @@ gsm_consolekit_new (void)
         return manager;
 }
 
-static gboolean
-try_system_stop (DBusGConnection *connection,
-                 GError         **error)
-{
-        DBusGProxy *proxy;
-        gboolean    res;
-
-        proxy = dbus_g_proxy_new_for_name (connection,
-                                           CK_NAME,
-                                           CK_MANAGER_PATH,
-                                           CK_MANAGER_INTERFACE);
-
-        res = dbus_g_proxy_call_with_timeout (proxy,
-                                              "Stop",
-                                              INT_MAX,
-                                              error,
-                                              /* parameters: */
-                                              G_TYPE_INVALID,
-                                              /* return values: */
-                                              G_TYPE_INVALID);
-        return res;
-}
-
-static gboolean
-try_system_restart (DBusGConnection *connection,
-                    GError           **error)
-{
-        DBusGProxy *proxy;
-        gboolean    res;
-
-        proxy = dbus_g_proxy_new_for_name (connection,
-                                           CK_NAME,
-                                           CK_MANAGER_PATH,
-                                           CK_MANAGER_INTERFACE);
-
-        res = dbus_g_proxy_call_with_timeout (proxy,
-                                              "Restart",
-                                              INT_MAX,
-                                              error,
-                                              /* parameters: */
-                                              G_TYPE_INVALID,
-                                              /* return values: */
-                                              G_TYPE_INVALID);
-        return res;
-}
-
 static void
 emit_restart_complete (GsmConsolekit *manager,
                        GError        *error)
@@ -480,7 +434,7 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
         res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
                                               "Restart",
                                               INT_MAX,
-                                              error,
+                                              &error,
                                               G_TYPE_INVALID,
                                               G_TYPE_INVALID);
 
@@ -512,7 +466,7 @@ gsm_consolekit_attempt_stop (GsmConsolekit *manager)
         res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
                                               "Stop",
                                               INT_MAX,
-                                              error,
+                                              &error,
                                               G_TYPE_INVALID,
                                               G_TYPE_INVALID);
 
@@ -827,13 +781,13 @@ gsm_consolekit_can_restart (GsmConsolekit *manager)
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
                 g_error_free (error);
-                return;
+                return FALSE;
         }
 
         res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
                                               "CanRestart",
                                               INT_MAX,
-                                              error,
+                                              &error,
                                               G_TYPE_INVALID,
                                               G_TYPE_BOOLEAN, &can_restart,
                                               G_TYPE_INVALID);
@@ -854,13 +808,13 @@ gsm_consolekit_can_stop (GsmConsolekit *manager)
                 g_warning ("Could not connect to ConsoleKit: %s",
                            error->message);
                 g_error_free (error);
-                return;
+                return FALSE;
         }
 
         res = dbus_g_proxy_call_with_timeout (manager->priv->ck_proxy,
                                               "CanStop",
                                               INT_MAX,
-                                              error,
+                                              &error,
                                               G_TYPE_INVALID,
                                               G_TYPE_BOOLEAN, &can_stop,
                                               G_TYPE_INVALID);
