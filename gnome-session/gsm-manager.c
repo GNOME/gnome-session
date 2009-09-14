@@ -83,6 +83,8 @@
 #define KEY_GNOME_SESSION_DIR     "/apps/gnome-session/options"
 #define KEY_AUTOSAVE              KEY_GNOME_SESSION_DIR "/auto_save_session"
 
+#define KEY_SLEEP_LOCK            "/apps/gnome-screensaver/lock_enabled"
+
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 typedef enum
@@ -924,6 +926,48 @@ manager_switch_user (GsmManager *manager)
         }
 }
 
+static gboolean
+sleep_lock_is_enabled (GsmManager *manager)
+{
+        GError   *error;
+        gboolean  enable_lock;
+
+        error = NULL;
+        enable_lock = gconf_client_get_bool (manager->priv->gconf_client,
+                                             KEY_SLEEP_LOCK, &error);
+
+        if (error) {
+                g_warning ("Error retrieving configuration key '%s': %s",
+                           KEY_SLEEP_LOCK, error->message);
+                g_error_free (error);
+
+                /* If we fail to query gconf key, just enable locking */
+                enable_lock = TRUE;
+        }
+
+        return enable_lock;
+}
+
+static void
+manager_perhaps_lock (GsmManager *manager)
+{
+        GError   *error;
+        gboolean  ret;
+
+        /* only lock if gnome-screensaver is set to lock */
+        if (!sleep_lock_is_enabled (manager)) {
+                return;
+        }
+
+        /* do this sync to ensure it's on the screen when we start suspending */
+        error = NULL;
+        ret = g_spawn_command_line_sync ("gnome-screensaver-command --lock", NULL, NULL, NULL, &error);
+        if (!ret) {
+                g_warning ("Couldn't lock screen: %s", error->message);
+                g_error_free (error);
+        }
+}
+
 static void
 manager_attempt_hibernate (GsmManager *manager)
 {
@@ -936,9 +980,12 @@ manager_attempt_hibernate (GsmManager *manager)
                       NULL);
 
         if (can_hibernate) {
+
+                /* lock the screen before we suspend */
+                manager_perhaps_lock (manager);
+
                 error = NULL;
                 ret = dkp_client_hibernate (manager->priv->dkp_client, &error);
-
                 if (!ret) {
                         g_warning ("Unexpected hibernate failure: %s",
                                    error->message);
@@ -959,9 +1006,12 @@ manager_attempt_suspend (GsmManager *manager)
                       NULL);
 
         if (can_suspend) {
+
+                /* lock the screen before we suspend */
+                manager_perhaps_lock (manager);
+
                 error = NULL;
                 ret = dkp_client_suspend (manager->priv->dkp_client, &error);
-
                 if (!ret) {
                         g_warning ("Unexpected suspend failure: %s",
                                    error->message);
