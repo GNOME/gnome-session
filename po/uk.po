@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-01 23:08+0300\n"
-"PO-Revision-Date: 2009-07-01 11:56+0300\n"
+"POT-Creation-Date: 2009-09-17 14:31+0300\n"
+"PO-Revision-Date: 2009-09-17 11:56+0300\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,19 +21,19 @@ msgstr ""
 msgid "Select Command"
 msgstr "Оберіть команду"
 
-#: ../capplet/gsm-app-dialog.c:192
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Додати програму, що запускається на початку"
 
-#: ../capplet/gsm-app-dialog.c:196
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Змінити програму"
 
-#: ../capplet/gsm-app-dialog.c:484
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "Початкова команда не може бути порожньою"
 
-#: ../capplet/gsm-app-dialog.c:490
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "Початкова команда некоректна"
 
@@ -49,9 +49,17 @@ msgstr "Значок"
 msgid "Program"
 msgstr "Програма"
 
-#: ../capplet/gsm-properties-dialog.c:790
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Параметри програм, що запускаються"
+
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "Без назви"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "Опис відсутній"
 
 #: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
@@ -60,21 +68,6 @@ msgstr "Версія цієї програми"
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Не вдається вивести довідку"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Для цього сеансу увімкнено підтримку допоміжних технологій, але не знайдено "
-"реєстр допоміжних технологій. Перевірте, що встановлено пакет AT-SPI. Ваш "
-"сеанс був запущений без підтримки допоміжних технологій."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "Обгортка реєстру AT SPI"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -88,21 +81,21 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Це - сеанс входу у GNOME"
 
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "Типовий сеанс"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "Файловий менеджер"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Якщо увімкнено, то gnome-session буде попереджувати користувача перед "
 "завершенням сеансу."
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -111,11 +104,11 @@ msgstr ""
 "діалозі завершення сеансу відображається відповідне поле для вмикання/"
 "вимикання збереження сеансу."
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "Список програм, які є частиною типового сеансу."
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -130,35 +123,35 @@ msgstr ""
 "системи, та менеджер сеансів автоматично додаватиме обов'язкові компоненти "
 "назад до сеансу, якщо вони будуть видалені."
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
 msgstr "Попередження про завершення сеансу"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "Панель"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "Зображення, що використовується як заставка входу у систему"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Обов'язкові компоненти сеансу"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "Зберігати сеанси"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "Показувати заставку"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Показувати заставку під час запуску сеансу"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -166,13 +159,13 @@ msgstr ""
 "Менеджер файлів надає значки робочого столу та дозволяє працювати із "
 "збереженими файлами."
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Проміжок часу у хвилинах, по закінченню якого сеанс вважатиметься неактивним."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -180,7 +173,7 @@ msgstr ""
 "Панель надає смугу згори та знизу екрану, що містять меню, список вікон, "
 "значки стану, годинник та т.і."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -188,7 +181,7 @@ msgstr ""
 "Менеджер вікон - це програма, яка малює заголовок та оформлення вікна, та "
 "дозволяє переміщувати вікна та змінювати їх розмір."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -198,12 +191,11 @@ msgstr ""
 "pixmaps/. Допустимі значення - підкаталоги та назви файлів зображень. Зміна "
 "цього параметра набере сили при наступному вході у сеанс."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
-msgstr ""
-"Проміжок часу, по закінченню якого сеанс буде вважатися неактивним"
+msgstr "Проміжок часу, по закінченню якого сеанс буде вважатися неактивним"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Віконний менеджер"
 
@@ -392,70 +384,64 @@ msgstr "Заблокувати екран"
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../gnome-session/gsm-logout-dialog.c:269
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] ""
-"Сеанс буде автоматично завершено через %d секунду."
-msgstr[1] ""
-"Сеанс буде автоматично завершено через %d секунди."
-msgstr[2] ""
-"Сеанс буде автоматично завершено через %d секунд."
+msgstr[0] "Сеанс буде автоматично завершено через %d секунду."
+msgstr[1] "Сеанс буде автоматично завершено через %d секунди."
+msgstr[2] "Сеанс буде автоматично завершено через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:277
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-"Систему буде вимкнено автоматично через %d секунду."
-msgstr[1] ""
-"Систему буде вимкнено автоматично через %d секунди."
-msgstr[2] ""
-"Систему буде вимкнено автоматично через %d секунд."
+msgstr[0] "Систему буде вимкнено автоматично через %d секунду."
+msgstr[1] "Систему буде вимкнено автоматично через %d секунди."
+msgstr[2] "Систему буде вимкнено автоматично через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Ви зареєстровані у системі як користувач «%s»."
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "Log out of this system now?"
 msgstr "Вийти з системи зараз?"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
 msgstr "_Перемикнути користувача"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
 msgstr "Вимкнути систему зараз?"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "S_uspend"
 msgstr "_Режим очікування"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Hibernate"
 msgstr "_Режим сну"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:419
 msgid "_Restart"
 msgstr "Пе_резавантажити"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:429
 msgid "_Shut Down"
 msgstr "_Вимкнути"
 
-#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
+#: ../gnome-session/gsm-manager.c:1208 ../gnome-session/gsm-manager.c:1900
 msgid "Not responding"
 msgstr "Не відповідає"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "Ця програма блокує вихід з системи."
 
@@ -550,8 +536,18 @@ msgstr "Не вдається з'єднатись із менеджером се
 msgid "Program called with conflicting options"
 msgstr "Програму запущено з несумісними параметрами"
 
-#~ msgid "No description"
-#~ msgstr "Опис відсутній"
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "Для цього сеансу увімкнено підтримку допоміжних технологій, але не "
+#~ "знайдено реєстр допоміжних технологій. Перевірте, що встановлено пакет AT-"
+#~ "SPI. Ваш сеанс був запущений без підтримки допоміжних технологій."
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "Обгортка реєстру AT SPI"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "Назва команди запуску не може бути порожньою"
