@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-23 15:41+0100\n"
-"PO-Revision-Date: 2009-02-22 19:49+0100\n"
+"POT-Creation-Date: 2009-09-20 19:39+0200\n"
+"PO-Revision-Date: 2009-09-19 20:02+0200\n"
 "Last-Translator: David Planella <david.planella@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,71 +19,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Selecciona una ordre"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Afegeix un programa d'inici"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Edita el programa d'inici"
 
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "Sense descripció"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "El nom del programa d'inici no pot ser buit"
-
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "L'ordre d'inici no pot ser buida"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "L'ordre d'inici no és vàlida"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Habilitat"
 
-#: ../capplet/gsm-properties-dialog.c:1316
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Icona"
 
-#: ../capplet/gsm-properties-dialog.c:1327
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:1477
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Preferències de les aplicacions d'inici"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:525
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "Sense nom"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "Sense descripció"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Versió d'aquesta aplicació"
 
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"S'ha indicat que es requereix tecnologia assistiva per a aquesta sessió, "
-"però no s'ha pogut trobar el registre d'accessibilitat. Assegureu-vos que el "
-"paquet AT-SPI estigui instal·lat. S'ha iniciat la sessió sense la tecnologia "
-"assistiva."
-
-# Ho he escurçat una mica -> Accessibility Technologies Service Provider 
-# Interface (dpm)
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "Embolcall del servei de registre de l'accessibilitat (AT SPI)"
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "No s'ha pogut mostrar el document de l'ajuda"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -97,21 +83,21 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Aquesta sessió us entra al GNOME"
 
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "Sessió predeterminada"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "Gestor de fitxers"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Si s'habilita, el gnome-session preguntarà a l'usuari abans de finalitzar "
 "una sessió."
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -119,11 +105,11 @@ msgstr ""
 "Si s'habilita, el gnome-session desarà la sessió automàticament. D'altra "
 "manera, el diàleg de sortida tindrà una opció per a desar la sessió."
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "Llista d'aplicacions que formen part de la sessió."
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -139,35 +125,35 @@ msgstr ""
 "elements necessaris de la sessió. El gestor de la sessió els hi tornarà a "
 "afegir automàticament en entrar en cas que s'hagin suprimit."
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
 msgstr "Indicador de sortida"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "Quadre"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "Imatge preferida per a emprar a la pantalla de presentació"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Components necessaris de la sessió"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "Desa les sessions"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "Mostra la pantalla de presentació"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Mostra la pantalla de presentació quan s'iniciï la sessió"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -175,14 +161,14 @@ msgstr ""
 "El gestor de fitxers proporciona les icones de l'escriptori i us permet "
 "interaccionar amb els fitxers desats."
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "El nombre de minuts d'inactivitat abans de considerar la sessió com a "
 "inactiva."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -191,7 +177,7 @@ msgstr ""
 "pantalla, la qual conté els menús, la llista de finestra, les icones "
 "d'estat, el rellotge, etc."
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -199,7 +185,7 @@ msgstr ""
 "El gestor de finestres és el programa que dibuixa la barra de títol i els "
 "costats de les finestres, i també us permet moure-les i canviar-ne la mida."
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -209,20 +195,19 @@ msgstr ""
 "subdirectoris i noms d'imatges són valors vàlids. El canvi d'aquest valor "
 "tindrà efecte a la següent entrada a la sessió."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Temps abans de considerar la sessió com a inactiva"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Gestor de finestres"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Hi ha alguns programes encara en execució:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -238,45 +223,41 @@ msgstr "Trieu quines aplicacions voleu que s'iniciïn en entrar"
 msgid "Startup Applications"
 msgstr "Aplicacions d'inici"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_Programes d'inici addicionals:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "Navega..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "_Ordre:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "Co_mentari:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Opcions"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Preferències de les sessions"
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "Programes d'inici"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
 "Recorda _automàticament les aplicacions que s'estan executant en sortir"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_Nom:"
 
 # FIXME [l10n-bug] (dpm)
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "_Recorda les aplicacions que s'estan executant actualment"
 
@@ -313,37 +294,37 @@ msgstr ""
 "No es poden passar URI de document a una entrada d'escriptori de tipus "
 "«Type=Link»"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "No és un element executable"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Inhabilita la connexió amb el gestor de sessions"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Especifiqueu el fitxer que conté la configuració desada"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "FITXER"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Especifiqueu l'identificador de gestió de la sessió"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "IDENTIFICADOR"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Opcions de gestió de la sessió"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Opcions de gestió de la sessió:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
 msgstr "Mostra les opcions de gestió de la sessió"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -355,24 +336,24 @@ msgstr ""
 "Hi ha un problema amb el servidor de la configuració.\n"
 "(%s ha sortit amb l'estat %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "No s'ha trobat la icona «%s»"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:581
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:632
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "Hi ha un programa que encara s'està executant:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "Hi ha alguns programes que encara s'estan executant:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:637
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -380,94 +361,94 @@ msgstr ""
 "S'està esperant que finalitzin alguns programes. Si els interrompeu és "
 "possible que perdeu les dades no desades."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:865
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Canvia d'usuari de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:868
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "Surt de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:871
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "Atura temporalment de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "Hiberna de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "Atura de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "Reinicia de totes maneres"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "Bloca la pantalla"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Sortireu automàticament d'aquí a %d segon."
 msgstr[1] "Sortireu automàticament d'aquí a %d segons."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Aquest sistema s'aturarà automàticament d'aquí a %d segon."
 msgstr[1] "Aquest sistema s'aturarà automàticament d'aquí a %d segons."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Heu entrat com a «%s»."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "Log out of this system now?"
 msgstr "Voleu sortir d'aquest sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
 msgstr "Canvia d'_usuari"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
 msgstr "_Surt"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
 msgstr "Voleu aturar aquest sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "S_uspend"
 msgstr "A_tura temporalment"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Hibernate"
 msgstr "_Hiberna"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:419
 msgid "_Restart"
 msgstr "_Reinicia"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:429
 msgid "_Shut Down"
 msgstr "_Atura l'ordinador"
 
-#: ../gnome-session/gsm-manager.c:943 ../gnome-session/gsm-manager.c:1571
+#: ../gnome-session/gsm-manager.c:1208 ../gnome-session/gsm-manager.c:1900
 msgid "Not responding"
 msgstr "No està responent"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "Aquest programa està blocant la sortida."
 
@@ -485,29 +466,29 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
+#: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "No s'ha pogut iniciar la sessió d'entrada (ni connectar amb el servidor X)"
 
-#: ../gnome-session/main.c:521
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Ignora els directoris estàndard d'inici automàtic"
 
-#: ../gnome-session/main.c:522
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "Clau del GConf utilitzada per a cercar la sessió predeterminada"
 
-#: ../gnome-session/main.c:523
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../gnome-session/main.c:524
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "No carreguis les aplicacions especificades per l'usuari"
 
-#: ../gnome-session/main.c:545
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
@@ -520,38 +501,39 @@ msgid "GNOME Splash Screen"
 msgstr "Pantalla de presentació del GNOME"
 
 #: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "Estableix el nom de la sessió actual"
-
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NOM"
-
-#: ../tools/gnome-session-save.c:66
 msgid "Log out"
 msgstr "Surt"
 
-#: ../tools/gnome-session-save.c:67
+#: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
 msgstr "Surt, ignorant qualsevol inhibidor existent"
 
-#: ../tools/gnome-session-save.c:68
+#: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
 msgstr "Mostra el diàleg de sortida"
 
-#: ../tools/gnome-session-save.c:69
+#: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
 msgstr "Mostra el diàleg d'aturada"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr "Mata la sessió"
-
-#: ../tools/gnome-session-save.c:71
+#: ../tools/gnome-session-save.c:69
 msgid "Use dialog boxes for errors"
 msgstr "Empra quadres de diàleg per als errors"
 
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "Estableix el nom de la sessió actual"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "NOM"
+
 #: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "Mata la sessió"
+
+#: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
 msgstr "No requereixis confirmació"
 
@@ -563,6 +545,28 @@ msgstr "No s'ha pogut connectar al gestor de sessions"
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "El nom del programa d'inici no pot ser buit"
+
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "S'ha indicat que es requereix tecnologia assistiva per a aquesta sessió, "
+#~ "però no s'ha pogut trobar el registre d'accessibilitat. Assegureu-vos que "
+#~ "el paquet AT-SPI estigui instal·lat. S'ha iniciat la sessió sense la "
+#~ "tecnologia assistiva."
+
+# Ho he escurçat una mica -> Accessibility Technologies Service Provider 
+# Interface (dpm)
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "Embolcall del servei de registre de l'accessibilitat (AT SPI)"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "Preferències de les sessions"
 
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Opció seleccionada al quadre de diàleg de sortida"
@@ -703,9 +707,6 @@ msgstr ""
 
 #~ msgid "The Settings Daemon restarted too many times."
 #~ msgstr "El dimoni de configuracions s'ha reiniciat massa vegades."
-
-#~ msgid "No Name"
-#~ msgstr "Sense nom"
 
 #~ msgid "List registered clients, then exit"
 #~ msgstr "Llista els clients registrats i després surt."
