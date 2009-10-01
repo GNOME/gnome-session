@@ -165,7 +165,7 @@ handle_end_session_response (GsmDBusClient *client,
                 raise_error (client->priv->connection,
                              message,
                              DBUS_ERROR_FAILED,
-                             "There is a syntax error in the invocation of the method EndSessionReponse");
+                             "There is a syntax error in the invocation of the method EndSessionResponse");
                 return;
         }
 
