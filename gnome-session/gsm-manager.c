@@ -513,6 +513,15 @@ app_registered (GsmApp     *app,
 }
 
 static gboolean
+_client_failed_to_stop (const char *id,
+                        GsmClient  *client,
+                        gpointer    user_data)
+{
+        g_debug ("GsmManager: client failed to stop: %s, %s", gsm_client_peek_id (client), gsm_client_peek_app_id (client));
+        return FALSE;
+}
+
+static gboolean
 on_phase_timeout (GsmManager *manager)
 {
         GSList *a;
@@ -539,6 +548,9 @@ on_phase_timeout (GsmManager *manager)
         case GSM_MANAGER_PHASE_END_SESSION:
                 break;
         case GSM_MANAGER_PHASE_EXIT:
+                gsm_store_foreach (manager->priv->clients,
+                                   (GsmStoreFunc)_client_failed_to_stop,
+                                   NULL);
                 break;
         default:
                 g_assert_not_reached ();
