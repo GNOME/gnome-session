@@ -70,6 +70,7 @@ dialog_response (GsmPropertiesDialog *dialog,
                         gtk_widget_destroy (d);
                 }
         } else {
+                gtk_widget_destroy (GTK_WIDGET (dialog));
                 gtk_main_quit ();
         }
 }
