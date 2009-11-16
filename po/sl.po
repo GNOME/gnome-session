@@ -4,172 +4,167 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2001-02-28 18:36+0200\n"
-"Last-Translator: Jaka Mocnik  <jaka.mocnik@kiss.uni-lj.si>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2009-04-17 09:52+0000\n"
+"PO-Revision-Date: 2009-11-14 10:15+0100\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gnome-session/gnome-session.schemas.in.h:1
+#: ../gnome-session/gnome-session.schemas.in.h:1
 msgid "Allow TCP connections"
 msgstr "Dovoli povezave TCP"
 
-#: gnome-session/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Zaradi varnostnih razlogov na platformah, ki imajo _IceTcpTransNoListen() "
-"(sistemi XFree86), gnome-session ne posluša na vratih TCP. Ta možnost bo "
-"omogočila povezave z (avtoriziranih) oddaljenih računalnikov. Da se možnost "
-"uveljavi je potrebno program gnome-session znova pognati."
+#: ../gnome-session/gnome-session.schemas.in.h:2
+msgid "For security reasons, on platforms which have _IceTcpTransNoListen() (XFree86 systems), gnome-session does not listen for connections on TCP ports. This option will allow connections from (authorized) remote hosts. gnome-session must be restarted for this to take effect."
+msgstr "Zaradi varnostnih razlogov na platformah, ki imajo _IceTcpTransNoListen() (sistemi XFree86), gnome-session ne posluša na vratih TCP. Ta možnost bo omogočila povezave z (avtoriziranih) oddaljenih računalnikov. Da se možnost uveljavi je potrebno program gnome-session znova pognati."
 
-#: gnome-session/gnome-session.schemas.in.h:3
+#: ../gnome-session/gnome-session.schemas.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Če je vključeno, bo gnome-session pred zaključkom seje vprašal uporabnika."
+msgstr "Če je vključeno, bo gnome-session pred zaključkom seje vprašal uporabnika."
 
-#: gnome-session/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Če je vključeno, bo gnome-session samodejno shranil sejo. Sicer bo imel "
-"odjavni dialog možnost za shranitev seje."
+#: ../gnome-session/gnome-session.schemas.in.h:4
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "Če je vključeno, bo gnome-session samodejno shranil sejo. Sicer bo imel odjavni dialog možnost za shranitev seje."
 
-#: gnome-session/gnome-session.schemas.in.h:5
+#: ../gnome-session/gnome-session.schemas.in.h:5
 msgid "Logout prompt"
 msgstr "Odjavni zaslon"
 
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
+#: ../gnome-session/gnome-session.schemas.in.h:6
+#| msgid ""
+#| "Preferred Image to use for the splash screen when logging in to the GNOME "
+#| "Desktop"
+msgid "Preferred Image to use for login splash screen"
 msgstr "Slika, ki naj se uporabi kot špica za prijavo v Namizje GNOME"
 
-#: gnome-session/gnome-session.schemas.in.h:7
+#: ../gnome-session/gnome-session.schemas.in.h:7
 msgid "Save sessions"
 msgstr "Shrani seje"
 
-#: gnome-session/gnome-session.schemas.in.h:8
+#: ../gnome-session/gnome-session.schemas.in.h:8
+msgid "Selected option in the log out dialog"
+msgstr "Izbrane možnosti pogovornega okna"
+
+#: ../gnome-session/gnome-session.schemas.in.h:9
 msgid "Show the splash screen"
 msgstr "Kaži špico"
 
-#: gnome-session/gnome-session.schemas.in.h:9
+#: ../gnome-session/gnome-session.schemas.in.h:10
 msgid "Show the splash screen when the session starts up"
 msgstr "Ob pričetku seje kaži špico"
 
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Slika špice"
+#: ../gnome-session/gnome-session.schemas.in.h:11
+msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
+msgstr "To je relativna pot"
 
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
+#: ../gnome-session/gnome-session.schemas.in.h:12
+msgid "This is the option that will be selected in the logout dialog, valid values are \"logout\" for logging out, \"shutdown\" for halting the system and \"restart\" for restarting the system."
+msgstr "Možnosti pogovornega okna; veljavne vrednosti so \"logout\" za odjavo, \"shutdown\" za izklop sistema in \"restart\" za ponoven zagon."
+
+#: ../gnome-session/gsm-client-editor.c:97
 msgid "_Order:"
 msgstr "V_rstni red: "
 
-#: gnome-session/gsm-client-editor.c:99
+#: ../gnome-session/gsm-client-editor.c:99
 msgid "The order in which applications are started in the session."
 msgstr "Vrstni red v katerem so programi pognani."
 
-#: gnome-session/gsm-client-editor.c:106
+#: ../gnome-session/gsm-client-editor.c:106
 msgid "What happens to the application when it exits."
 msgstr "Kaj se zgodi programu, ko se zaključi."
 
-#: gnome-session/gsm-client-editor.c:109
+#: ../gnome-session/gsm-client-editor.c:109
 msgid "_Style:"
 msgstr "_Slog: "
 
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
+#: ../gnome-session/gsm-client-list.c:150
 msgid "Order"
 msgstr "Vrstni red"
 
-#: gnome-session/gsm-client-list.c:155
+#: ../gnome-session/gsm-client-list.c:155
 msgid "Style"
 msgstr "Slog"
 
-#: gnome-session/gsm-client-list.c:160
+#: ../gnome-session/gsm-client-list.c:160
 msgid "State"
 msgstr "Stanje"
 
-#: gnome-session/gsm-client-list.c:165
+#: ../gnome-session/gsm-client-list.c:165
 msgid "Program"
 msgstr "Program"
 
-#: gnome-session/gsm-client-row.c:31
+#: ../gnome-session/gsm-client-row.c:31
 msgid "Inactive"
 msgstr "Nedejaven"
 
-#: gnome-session/gsm-client-row.c:32
+#: ../gnome-session/gsm-client-row.c:32
 msgid "Waiting to start or already finished."
 msgstr "Čaka na začetek ali pa je že končal."
 
-#: gnome-session/gsm-client-row.c:34
+#: ../gnome-session/gsm-client-row.c:34
 msgid "Starting"
 msgstr "Zaganjam"
 
-#: gnome-session/gsm-client-row.c:35
+#: ../gnome-session/gsm-client-row.c:35
 msgid "Started but has not yet reported state."
 msgstr "Pognan, a še ni sporočil stanja."
 
-#: gnome-session/gsm-client-row.c:37
+#: ../gnome-session/gsm-client-row.c:37
 msgid "Running"
 msgstr "Teče"
 
-#: gnome-session/gsm-client-row.c:38
+#: ../gnome-session/gsm-client-row.c:38
 msgid "A normal member of the session."
 msgstr "Običajen član seje."
 
-#: gnome-session/gsm-client-row.c:40
+#: ../gnome-session/gsm-client-row.c:40
 msgid "Saving"
 msgstr "Shranjujem"
 
-#: gnome-session/gsm-client-row.c:41
+#: ../gnome-session/gsm-client-row.c:41
 msgid "Saving session details."
 msgstr "Shranjujem podrobnosti seje."
 
-#: gnome-session/gsm-client-row.c:43
+#: ../gnome-session/gsm-client-row.c:43
 msgid "Unknown"
 msgstr "Neznan"
 
-#: gnome-session/gsm-client-row.c:44
+#: ../gnome-session/gsm-client-row.c:44
 msgid "State not reported within timeout."
 msgstr "Stanje ni bilo sporočeno znotraj časovne omejitve."
 
-#: gnome-session/gsm-client-row.c:50
+#: ../gnome-session/gsm-client-row.c:50
 msgid "Normal"
 msgstr "običajen"
 
-#: gnome-session/gsm-client-row.c:51
+#: ../gnome-session/gsm-client-row.c:51
 msgid "Unaffected by logouts but can die."
 msgstr "Neodvisen od odjave, a lahko umre."
 
-#: gnome-session/gsm-client-row.c:53
+#: ../gnome-session/gsm-client-row.c:53
 msgid "Restart"
 msgstr "Znova zaženi"
 
-#: gnome-session/gsm-client-row.c:54
+#: ../gnome-session/gsm-client-row.c:54
 msgid "Never allowed to die."
 msgstr "Ne sme umreti."
 
-#: gnome-session/gsm-client-row.c:56
+#: ../gnome-session/gsm-client-row.c:56
 msgid "Trash"
 msgstr "Smeti"
 
-#: gnome-session/gsm-client-row.c:57
+#: ../gnome-session/gsm-client-row.c:57
 msgid "Discarded on logout and can die."
 msgstr "Zavrže se ob odjavi in lahko umre."
 
-#: gnome-session/gsm-client-row.c:59
+#: ../gnome-session/gsm-client-row.c:59
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: gnome-session/gsm-client-row.c:60
+#: ../gnome-session/gsm-client-row.c:60
 msgid "Always started on every login."
 msgstr "Vedno se zažene pri vsaki prijavi."
 
@@ -181,19 +176,17 @@ msgstr "Vedno se zažene pri vsaki prijavi."
 #. *
 #. * for now, we just kill the old dialog and pop up a new one.
 #.
-#: gnome-session/gsm-gsd.c:41
+#: ../gnome-session/gsm-gsd.c:41
 msgid ""
 "There was an error starting the GNOME Settings Daemon.\n"
 "\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
+"Some things, such as themes, sounds, or background settings may not work correctly."
 msgstr ""
 "Ob zaganjanju daemona nastavitev GNOME se je zgodila napaka.\n"
 "\n"
-"Nekatere stvari, kot so teme, zvoki ali nastavitve ozadja ne bodo delovale "
-"pravilno."
+"Nekatere stvari, kot so teme, zvoki ali nastavitve ozadja ne bodo delovale pravilno."
 
-#: gnome-session/gsm-gsd.c:53
+#: ../gnome-session/gsm-gsd.c:53
 msgid ""
 "\n"
 "\n"
@@ -205,7 +198,7 @@ msgstr ""
 "Zadnje sporočilo o napaki je bilo:\n"
 "\n"
 
-#: gnome-session/gsm-gsd.c:58
+#: ../gnome-session/gsm-gsd.c:58
 msgid ""
 "\n"
 "\n"
@@ -213,62 +206,61 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"Bo naslednji prijavi bo GNOME vseeno poskušal znova zagnati daemona "
-"nastavitev."
+"Bo naslednji prijavi bo GNOME vseeno poskušal znova zagnati daemona nastavitev."
 
-#: gnome-session/gsm-gsd.c:115
+#: ../gnome-session/gsm-gsd.c:115
 msgid "There was an unknown activation error."
 msgstr "Zgodila se je neznana aktivacijska napaka."
 
-#: gnome-session/gsm-gsd.c:157
+#: ../gnome-session/gsm-gsd.c:157
 msgid "The Settings Daemon restarted too many times."
 msgstr "Daemon nastavitev se je prevečkrat znova zagnal."
 
-#: gnome-session/logout.c:355
+#: ../gnome-session/logout.c:404
 msgid "Are you sure you want to log out?"
 msgstr "Ste prepričani, da se želite odjaviti?"
 
-#: gnome-session/logout.c:372
+#: ../gnome-session/logout.c:421
 msgid "_Save current setup"
 msgstr "_Shrani trenutne nastavitve"
 
-#: gnome-session/logout.c:393
+#: ../gnome-session/logout.c:444
 msgid "Action"
 msgstr "Dejanje"
 
-#: gnome-session/logout.c:410
+#: ../gnome-session/logout.c:461
 msgid "_Log out"
 msgstr "_Odjava"
 
-#: gnome-session/logout.c:416
+#: ../gnome-session/logout.c:468
 msgid "Sh_ut down"
 msgstr "_Zaustavitev sistema"
 
-#: gnome-session/logout.c:423
+#: ../gnome-session/logout.c:476
 msgid "_Restart the computer"
 msgstr "_Znova zaženi računalnik"
 
-#: gnome-session/main.c:81
+#: ../gnome-session/main.c:82
 msgid "Specify a session name to load"
 msgstr "Navedi ime seje, ki naj se naloži"
 
-#: gnome-session/main.c:82
+#: ../gnome-session/main.c:83
 msgid "Only read saved sessions from the default.session file"
 msgstr "Preberi le shranjene seje iz default.session datoteke"
 
-#: gnome-session/main.c:83
+#: ../gnome-session/main.c:84
 msgid "Millisecond period spent waiting for clients to register (0=forever)"
 msgstr "Koliko milisekund naj čakam na registriranje odjemalcev (0=večno)"
 
-#: gnome-session/main.c:84
+#: ../gnome-session/main.c:85
 msgid "Millisecond period spent waiting for clients to respond (0=forever)"
 msgstr "Koliko milisekund naj čakam na odziv odjemalcev (0=večno)"
 
-#: gnome-session/main.c:85
+#: ../gnome-session/main.c:86
 msgid "Millisecond period spent waiting for clients to die (0=forever)"
 msgstr "Koliko milisekund naj čakam na smrt odjemalcev (0=večno)"
 
-#: gnome-session/main.c:265
+#: ../gnome-session/main.c:261
 #, c-format
 msgid ""
 "Could not look up internet address for %s.\n"
@@ -281,80 +273,90 @@ msgstr ""
 "Ta problem bi se mogoče odpravil, če se v datoteko\n"
 "datoteko /etc/hosts doda %s."
 
-#: gnome-session/main.c:272
+#: ../gnome-session/main.c:268
 msgid "Log in Anyway"
 msgstr "Vseeno se prijavi"
 
-#: gnome-session/main.c:273
+#: ../gnome-session/main.c:269
 msgid "Try Again"
 msgstr "Poskusi znova"
 
-#: gnome-session/manager.c:223
+#: ../gnome-session/manager.c:223
 msgid "Your session has been saved"
 msgstr "Vaša seja je bila shranjena"
 
-#: gnome-session/manager.c:527
+#: ../gnome-session/manager.c:527
 msgid "Wait abandoned due to conflict."
 msgstr "Čakanje razveljavljeno zaradi konflikta."
 
-#: gnome-session/manager.c:1035
+#: ../gnome-session/manager.c:1035
 #, c-format
 msgid "No response to the %s command."
 msgstr "Ni odziva na ukaz %s."
 
-#: gnome-session/manager.c:1036
+#: ../gnome-session/manager.c:1036
 msgid "The program may be slow, stopped or broken."
 msgstr "Program je lahko počasen, ustavljen ali pokvarjen."
 
-#: gnome-session/manager.c:1037
+#: ../gnome-session/manager.c:1037
 msgid "You may wait for it to respond or remove it."
 msgstr "Lahko čakate nanj ali pa ga odstranite."
 
-#: gnome-session/manager.c:1760
+#: ../gnome-session/manager.c:1760
 msgid "Restart abandoned due to failures."
 msgstr "Vnovični zagon razveljavljen zaradi napak."
 
-#: gnome-session/manager.c:1956
+#: ../gnome-session/manager.c:1956
 msgid "A session shutdown is in progress."
 msgstr "Seja se zapira."
 
-#: gnome-session/save-session.c:46
+#: ../gnome-session/save-session.c:46
 msgid "Set the current session"
 msgstr "Nastavi trenutno sejo"
 
-#: gnome-session/save-session.c:47
+#: ../gnome-session/save-session.c:47
 msgid "Kill session"
 msgstr "Ubij sejo"
 
-#: gnome-session/save-session.c:48
+#: ../gnome-session/save-session.c:48
 msgid "Use dialog boxes"
 msgstr "Uporabi dialoge"
 
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
+#: ../gnome-session/save-session.c:146
+#: ../gnome-session/save-session.c:179
 msgid "Could not connect to the session manager"
 msgstr "Ne morem se povezati z upravljalnikom sej"
 
-#: gnome-session/session-names.c:143
+#: ../gnome-session/session-names.c:143
 msgid "The session name cannot be empty"
 msgstr "Ime seje ne sme biti prazno"
 
-#: gnome-session/session-names.c:154
+#: ../gnome-session/session-names.c:154
 msgid "The session name already exists"
 msgstr "Ime seje že obstaja"
 
-#: gnome-session/session-names.c:188
+#: ../gnome-session/session-names.c:188
 msgid "Add a new session"
 msgstr "Dodaj novo sejo"
 
-#: gnome-session/session-names.c:218
+#: ../gnome-session/session-names.c:218
 msgid "Edit session name"
 msgstr "Uredi ime seje"
 
-#: gnome-session/session-properties-capplet.c:122
+#: ../gnome-session/session-properties-capplet.c:117
+msgid "Enable"
+msgstr "Omogoči"
+
+#: ../gnome-session/session-properties-capplet.c:123
+#: ../gnome-session/session-properties-capplet.c:464
+msgid "Disable"
+msgstr "Onemogoči"
+
+#: ../gnome-session/session-properties-capplet.c:145
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: gnome-session/session-properties-capplet.c:190
+#: ../gnome-session/session-properties-capplet.c:213
 msgid ""
 "Some changes are not saved.\n"
 "Is it still OK to exit?"
@@ -362,163 +364,149 @@ msgstr ""
 "Nekatere spremembe niso shranjene.\n"
 "Naj vseeno končam?"
 
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
+#: ../gnome-session/session-properties-capplet.c:263
+#: ../gnome-session/session-properties.desktop.in.in.h:2
 msgid "Sessions"
 msgstr "Seje"
 
-#: gnome-session/session-properties-capplet.c:273
+#: ../gnome-session/session-properties-capplet.c:296
 msgid "Show splash screen on _login"
 msgstr "Ob _prijavi kaži špico"
 
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
+#: ../gnome-session/session-properties-capplet.c:307
 msgid "As_k on logout"
 msgstr "_Vprašaj ob odjavi"
 
-#: gnome-session/session-properties-capplet.c:295
+#: ../gnome-session/session-properties-capplet.c:318
 msgid "Automatically save chan_ges to session"
 msgstr "Samodejno shrani _spremembe seje"
 
-#: gnome-session/session-properties-capplet.c:306
+#: ../gnome-session/session-properties-capplet.c:329
 msgid "_Sessions:"
 msgstr "_Seje:"
 
-#: gnome-session/session-properties-capplet.c:324
+#: ../gnome-session/session-properties-capplet.c:347
 msgid "Session Name"
 msgstr "Ime seje"
 
-#: gnome-session/session-properties-capplet.c:375
+#: ../gnome-session/session-properties-capplet.c:398
 msgid "Session Options"
 msgstr "Možnosti seje"
 
-#: gnome-session/session-properties-capplet.c:384
+#: ../gnome-session/session-properties-capplet.c:407
 msgid "Current Session"
 msgstr "Trenutna seja"
 
-#: gnome-session/session-properties-capplet.c:393
+#: ../gnome-session/session-properties-capplet.c:416
 msgid "Additional startup _programs:"
 msgstr "Dodatni programi ob _zagonu:"
 
-#: gnome-session/session-properties-capplet.c:414
+#: ../gnome-session/session-properties-capplet.c:435
 msgid "Command"
 msgstr "Ukaz"
 
-#: gnome-session/session-properties-capplet.c:446
+#: ../gnome-session/session-properties-capplet.c:475
 msgid "Startup Programs"
 msgstr "Programi ob začetku"
 
-#: gnome-session/session-properties.c:49
+#: ../gnome-session/session-properties.c:49
 msgid "Remove the currently selected client from the session."
 msgstr "S seje odstrani trenutno izbranega odjemalca."
 
-#: gnome-session/session-properties.c:55
+#: ../gnome-session/session-properties.c:55
 msgid "Apply changes to the current session"
 msgstr "Uveljavi spremembe na trenutni seji"
 
-#: gnome-session/session-properties.c:61
+#: ../gnome-session/session-properties.c:61
 msgid "The list of programs in the session."
 msgstr "Seznam programov v seji."
 
-#: gnome-session/session-properties.c:88
+#: ../gnome-session/session-properties.c:88
 msgid "Currently running _programs:"
 msgstr "Trenutno pognani _programi:"
 
-#: gnome-session/session-properties.c:104
+#: ../gnome-session/session-properties.c:104
 msgid "Initialize session settings"
 msgstr "Inicializiraj nastavitve seje"
 
-#: gnome-session/session-properties.desktop.in.in.h:1
+#: ../gnome-session/session-properties.desktop.in.in.h:1
 msgid "Configure your sessions"
 msgstr "Nastavi vašo sejo"
 
-#: gnome-session/splash-widget.c:43
+#: ../gnome-session/splash-widget.c:43
 msgid "Sawfish Window Manager"
 msgstr "Sawfish upravljalnik oken"
 
-#: gnome-session/splash-widget.c:44
+#: ../gnome-session/splash-widget.c:44
 msgid "Metacity Window Manager"
 msgstr "Upravljalnik oken Metacity"
 
-#: gnome-session/splash-widget.c:45
+#: ../gnome-session/splash-widget.c:45
 msgid "Window Manager"
 msgstr "Upravljalnik oken"
 
-#: gnome-session/splash-widget.c:46
+#: ../gnome-session/splash-widget.c:46
 msgid "The Panel"
 msgstr "Pult"
 
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Posrednik upravljalnika sej"
-
-#: gnome-session/splash-widget.c:48
+#: ../gnome-session/splash-widget.c:47
 msgid "Nautilus"
 msgstr "Nautilus"
 
-#: gnome-session/splash-widget.c:49
+#: ../gnome-session/splash-widget.c:48
 msgid "Desktop Settings"
 msgstr "Nastavitve namizja"
 
-#: gnome-session/startup-programs.c:292
+#: ../gnome-session/startup-programs.c:425
 msgid "_Startup Command:"
 msgstr "_Začetni ukaz:"
 
-#: gnome-session/startup-programs.c:298
+#: ../gnome-session/startup-programs.c:431
 msgid "Startup Command"
 msgstr "Začetni ukaz"
 
-#: gnome-session/startup-programs.c:347
+#: ../gnome-session/startup-programs.c:460
 msgid "The startup command cannot be empty"
 msgstr "Zagonski ukaz ne more biti prazen"
 
-#: gnome-session/startup-programs.c:384
+#: ../gnome-session/startup-programs.c:497
 msgid "Add Startup Program"
 msgstr "Dodaj začetni program"
 
-#: gnome-session/startup-programs.c:405
+#: ../gnome-session/startup-programs.c:535
 msgid "Edit Startup Program"
 msgstr "Uredi začetni program"
 
+#~ msgid "Splash Screen Image"
+#~ msgstr "Slika špice"
+#~ msgid "Session Manager Proxy"
+#~ msgstr "Posrednik upravljalnika sej"
 #~ msgid "Save Current Session"
 #~ msgstr "Shrani trenutno sejo"
-
 #~ msgid "Save current state of desktop"
 #~ msgstr "Shrani trenutno stanje namizja"
-
 #~ msgid "Audio Settings"
 #~ msgstr "Nastavitve zvoka"
-
 #~ msgid "Screensaver"
 #~ msgstr "Ohranjevalnik zaslona"
-
 #~ msgid "Background Settings"
 #~ msgstr "Nastavitve ozadja"
-
 #~ msgid "Mouse Settings"
 #~ msgstr "Nastavitve miši"
-
 #~ msgid "Keyboard Settings"
 #~ msgstr "Nastavitve tipkovnice"
-
 #~ msgid "GNOME Login"
 #~ msgstr "GNOME prijava"
-
 #~ msgid "Log In"
 #~ msgstr "Prijavi se"
-
 #~ msgid "Start with default programs"
 #~ msgstr "Začni s privzetimi programi"
-
 #~ msgid "Reset all user settings"
 #~ msgstr "Ponastavi vse uporabniške nastavitve"
-
 #~ msgid "Really reset all GNOME user settings for %s?"
 #~ msgstr "Resnično ponastavi vse GNOME uporabniške nastavitve za %s?"
-
 #~ msgid "No"
 #~ msgstr "Ne"
-
 #~ msgid ""
 #~ "The directory /tmp/orbit-%s is not owned\n"
 #~ "by the current user, %s.\n"
@@ -527,65 +515,46 @@ msgstr "Uredi začetni program"
 #~ "Imenik /tmp/orbit-%s ni v lasti\n"
 #~ "trenutnega uporabnika, %s.\n"
 #~ "Prosim popravi lastništvo imenika."
-
 #~ msgid "Respawn"
 #~ msgstr "Venomer znova pognan"
-
 #~ msgid "Really log out?"
 #~ msgstr "Resnična odjava?"
-
 #~ msgid "Reboot"
 #~ msgstr "Ponovni zagon sistema"
-
 #~ msgid "Session properties"
 #~ msgstr "Lastnosti seje"
-
 #~ msgid "Options"
 #~ msgstr "Možnosti"
-
 #~ msgid "<i>These changes take effect immediately</i>"
 #~ msgstr "<i>Te spremembe bodo takoj uveljavljene</i>"
-
 #~ msgid "Choose Current Session"
 #~ msgstr "Izberi trenutno sejo"
-
 #~ msgid "Add..."
 #~ msgstr "Dodaj..."
-
 #~ msgid "Delete"
 #~ msgstr "Zbriši"
-
 #~ msgid "Non-session-managed Startup Programs"
 #~ msgstr "Začetni programi, ki niso upravljani s sejo"
-
 #~ msgid "Priority"
 #~ msgstr "Prioriteta"
-
 #~ msgid "Session Properties & Startup Programs"
 #~ msgstr "Lastnosti seje in začetni programi"
-
 #~ msgid "Starting GNOME: %s"
 #~ msgstr "GNOME se zaganja: %s"
-
 #~ msgid "Starting GNOME: done"
 #~ msgstr "GNOME se zaganja: opravljeno"
-
 #~ msgid "GNOME"
 #~ msgstr "GNOME"
-
 #~ msgid "Starting GNOME"
 #~ msgstr "GNOME se zaganja"
-
 #~ msgid ""
 #~ "Programs with smaller values are started before programs with higher "
 #~ "values. The default value should be OK"
 #~ msgstr ""
 #~ "Programi z manjšimi vrednostmi so pognani pred programi z večjimi. "
 #~ "Privzeta vrednost bi morala ustrezati"
-
 #~ msgid "Continue"
 #~ msgstr "Nadaljuj"
-
 #~ msgid ""
 #~ "Your version of libICE has a bug which causes gnome-session\n"
 #~ "to not function correctly.\n"
@@ -606,48 +575,34 @@ msgstr "Uredi začetni program"
 #~ "za podatke o tem hrošču).\n"
 #~ "\n"
 #~ "Vaša seja GNOME bo končana po zaprtju tega dialoga."
-
 #~ msgid "Session Chooser"
 #~ msgstr "Izbirnik sej"
-
 #~ msgid "Start Session"
 #~ msgstr "Začni sejo"
-
 #~ msgid "Cancel Login"
 #~ msgstr "Prekliči prijavo"
-
 #~ msgid "Could not connect to gnome-session"
 #~ msgstr "Ne morem se povezati z gnome-session"
-
 #~ msgid "Session Properties"
 #~ msgstr "Lastnosti seje"
-
 #~ msgid "Current session managed programs"
 #~ msgstr "Trenutni programi, ki so upravljani s sejo"
-
 #~ msgid "Remove Program"
 #~ msgstr "Odstrani program"
-
 #~ msgid "Remove"
 #~ msgstr "Odstrani"
-
 #~ msgid "Try"
 #~ msgstr "Poskusi"
-
 #~ msgid "OK"
 #~ msgstr "V redu"
-
 #~ msgid "Cancel"
 #~ msgstr "Prekliči"
-
 #~ msgid "Help"
 #~ msgstr "Pomoč"
-
 #~ msgid "Enlightenment Window Manager"
 #~ msgstr "Enlightenment upravljalnik oken"
-
 #~ msgid "Keyboard Bell"
 #~ msgstr "Tipkovničin zvonec"
-
 #~ msgid "Desktop"
 #~ msgstr "Namizje"
+
