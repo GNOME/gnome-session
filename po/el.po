@@ -33,79 +33,69 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-29 23:59+0100\n"
-"PO-Revision-Date: 2009-03-29 12:48+0300\n"
-"Last-Translator: Jennie Petoumenou <epetoumenou@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2009-09-07 17:27+0000\n"
+"PO-Revision-Date: 2009-11-23 19:51+0200\n"
+"Last-Translator: nikosCharonitakis <nikosx@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Επιλογή εντολής"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Προσθήκη Προγραμμάτων Εκκίνησης"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Επεξεργασία προγραμμάτων εκκίνησης"
 
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "Χωρίς περιγραφή"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "Το όνομα του προγράμματος εκκίνησης δε μπορεί να είναι κενό"
-
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "Η εντολή εκκίνησης δε μπορεί να είναι κενή"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "Η εντολή εκκίνησης δεν είναι έγκυρη"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Ενεργό"
 
-#: ../capplet/gsm-properties-dialog.c:1316
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Εικονίδιο"
 
-#: ../capplet/gsm-properties-dialog.c:1327
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Πρόγραμμα"
 
-#: ../capplet/gsm-properties-dialog.c:1477
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Προτιμήσεις προγραμμάτων εκκίνησης "
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:440
+#: ../capplet/gsp-app.c:269
+#| msgid "_Name:"
+msgid "No name"
+msgstr "Χωρίς όνομα"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "Χωρίς περιγραφή"
+
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Έχει ζητηθεί υποστήριξη για βοηθητικές τεχνολογίες  για αυτή την συνεδρία, "
-"αλλά το μητρώο προσιτότητας δεν βρέθηκε. Βεβαιωθείτε ότι το πακέτο AT-SPI "
-"είναι εγκατεστημένο. Η συνεδρία έχει ξεκινήσει χωρίς υποστήριξη για "
-"βοηθητικές τεχνολογίες."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "AT SPI Registry Wrapper"
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "Δεν είναι δυνατή η προβολή του αρχείου βοήθειας"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -119,139 +109,95 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Αυτή η συνεδρία σας συνδέει στο GNOME"
 
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "Προεπιλεγμένη συνεδρία"
 
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "Διαχειριστής αρχείων"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Αν ενεργοποιηθεί, η συνεδρία του gnome θα ειδοποιεί το χρήστη πριν το τέλος "
-"της συνεδρίας."
+msgstr "Αν ενεργοποιηθεί, η συνεδρία του gnome θα ειδοποιεί το χρήστη πριν το τέλος της συνεδρίας."
 
-#: ../data/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Αν ενεργοποιηθεί, η συνεδρία του gnome θα αποθηκεύει τη συνεδρία αυτόματα. "
-"Αλλιώς, ο διάλογος αποσύνδεσης θα εμφανίζει μια επιλογή για την αποθήκευση "
-"της συνεδρίας."
+#: ../data/gnome-session.schemas.in.in.h:4
+msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
+msgstr "Αν ενεργοποιηθεί, η συνεδρία του gnome θα αποθηκεύει τη συνεδρία αυτόματα. Αλλιώς, ο διάλογος αποσύνδεσης θα εμφανίζει μια επιλογή για την αποθήκευση της συνεδρίας."
 
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "Λίστα με εφαρμογές που είναι μέρος της προεπιλεγμένης συνεδρίας."
 
-#: ../data/gnome-session.schemas.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Μια λίστα με στοιχεία που είναι απαραίτητα μέρη της συνεδρίας. (Κάθε "
-"στοιχείο ονομάζει ένα κλειδί στο \"/desktop/gnome/session/required_components"
-"\"). Οι Προτιμήσεις προγραμμάτων εκκίνησης κανονικά δεν επιτρέπουν στους "
-"χρήστες να αφαιρέσουν αυτά τα στοιχεία. Αν κάποια απαραίτητα στοιχεία "
-"αφαιρεθούν, ο διαχειριστής συνεδρίας θα τα προσθέσει ξανά κατά την επόμενη "
-"είσοδο."
+#: ../data/gnome-session.schemas.in.in.h:6
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
+msgstr "Μια λίστα με στοιχεία που είναι απαραίτητα μέρη της συνεδρίας. (Κάθε στοιχείο ονομάζει ένα κλειδί στο \"/desktop/gnome/session/required_components\"). Οι Προτιμήσεις προγραμμάτων εκκίνησης κανονικά δεν επιτρέπουν στους χρήστες να αφαιρέσουν αυτά τα στοιχεία. Αν κάποια απαραίτητα στοιχεία αφαιρεθούν, ο διαχειριστής συνεδρίας θα τα προσθέσει ξανά κατά την επόμενη είσοδο."
 
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
-msgstr "Ειδοποίηση Αποσύνδεσης"
+msgstr "Ειδοποίηση αποσύνδεσης"
 
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "Πίνακας εφαρμογών"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
-msgstr ""
-"Προτιμώμενη εικόνα που θα χρησιμοποιείται για την οθόνη έναρξης σύνδεσης"
+msgstr "Προτιμώμενη εικόνα που θα χρησιμοποιείται για την οθόνη έναρξης σύνδεσης"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Απαιτούμενα στοιχεία συνεδρίας"
 
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "Αποθήκευση συνεδριών"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "Εμφάνιση της οθόνης έναρξης"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "Προβολή της οθόνης έναρξης κατά την εκκίνηση της συνεδρίας"
 
-#: ../data/gnome-session.schemas.in.h:14
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Ο διαχειριστής αρχείων παρέχει τα εικονίδια της επιφάνειας εργασίας σας και "
-"σας επιτρέπει να διαχειρίζεστε τα αποθηκευμένα σας αρχεία."
+#: ../data/gnome-session.schemas.in.in.h:14
+msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
+msgstr "Ο διαχειριστής αρχείων παρέχει τα εικονίδια της επιφάνειας εργασίας σας και σας επιτρέπει να διαχειρίζεστε τα αποθηκευμένα σας αρχεία."
 
-#: ../data/gnome-session.schemas.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
+#: ../data/gnome-session.schemas.in.in.h:15
+msgid "The number of minutes of inactivity before the session is considered idle."
 msgstr "Ο αριθμός των λεπτών αδράνειας μέχρι να θεωρηθεί η συνεδρία αδρανής."
 
-#: ../data/gnome-session.schemas.in.h:16
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Ο πίνακας εφαρμογών παρέχει την μπάρα στο πάνω ή το κάτω μέρος της οθόνης "
-"που περιέχει τα μενού, τη λίστα παραθύρων, τα εικονίδια κατάστασης, το "
-"ρολόι, κτλ."
+#: ../data/gnome-session.schemas.in.in.h:16
+msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
+msgstr "Ο πίνακας εφαρμογών παρέχει την μπάρα στο πάνω ή το κάτω μέρος της οθόνης που περιέχει τα μενού, τη λίστα παραθύρων, τα εικονίδια κατάστασης, το ρολόι, κτλ."
 
-#: ../data/gnome-session.schemas.in.h:17
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Ο διαχειριστής παραθύρων είναι το πρόγραμμα εκείνο που σχεδιάζει την γραμμή "
-"τίτλων και τα περιγράμματα γύρω από τα παράθυρα, και σας επιτρέπει να "
-"μετακινείτε και να αλλάζετε το μέγεθος των παραθύρων."
+#: ../data/gnome-session.schemas.in.in.h:17
+msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
+msgstr "Ο διαχειριστής παραθύρων είναι το πρόγραμμα εκείνο που σχεδιάζει την γραμμή τίτλων και τα περιγράμματα γύρω από τα παράθυρα, και σας επιτρέπει να μετακινείτε και να αλλάζετε το μέγεθος των παραθύρων."
 
-#: ../data/gnome-session.schemas.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Αυτή είναι μια σχετική τιμή διαδρομής βασισμένη στον κατάλογο $datadir/"
-"pixmaps/. Οι υποκατάλογοι είναι ονόματα εικόνων και έγκυρες τιμές. Οι "
-"αλλαγές σε αυτήν την τιμή θα πραγματοποιηθούν στην επόμενη είσοδο."
+#: ../data/gnome-session.schemas.in.in.h:18
+msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
+msgstr "Αυτή είναι μια σχετική τιμή διαδρομής βασισμένη στον κατάλογο $datadir/pixmaps/. Οι υποκατάλογοι είναι ονόματα εικόνων και έγκυρες τιμές. Οι αλλαγές σε αυτήν την τιμή θα πραγματοποιηθούν στην επόμενη είσοδο."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Χρόνος μέχρι να θεωρηθεί η συνεδρία αδρανής"
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
-msgstr "Διαχειριστής Παραθύρων"
+msgstr "Διαχειριστής παραθύρων"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Μερικά προγράμματα εκτελούνται ακόμα:</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:668
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Αναμονή για το κλείσιμο του προγράμματος. Η διακοπή του προγράμματος μπορεί "
-"να προκαλέσει απώλεια δεδομένων."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:667
+msgid "Waiting for program to finish.  Interrupting program may cause you to lose work."
+msgstr "Αναμονή για το κλείσιμο του προγράμματος. Η διακοπή του προγράμματος μπορεί να προκαλέσει απώλεια δεδομένων."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -261,43 +207,39 @@ msgstr "Επιλέξτε τα προγράμματα που θα εκκινού�
 msgid "Startup Applications"
 msgstr "Προγράμματα εκκίνησης"
 
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Πρόσθετα _προγράμματα εκκίνησης:"
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "Περιήγηση..."
 
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "_Εντολή:"
 
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "_Σχόλιο:"
 
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Επιλογές"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Προτιμήσεις συνεδριών "
-
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "Εκκίνηση προγραμμάτων"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "_Αυτόματη απομνημόνευση εκτελούμενων εφαρμογών κατά την αποσύνδεση"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "_Όνομα:"
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "Α_πομνημόνευση εφαρμογών που εκτελούνται "
 
@@ -329,41 +271,41 @@ msgstr "Μη αναγνωρίσιμη επιλογή εκκίνησης: %d"
 #: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Δεν είναι δυνατό το πέρασμα URIs σε μια εγγραφή επιφάνειας εργασίας "
-"'Type=Link'"
+msgstr "Δεν είναι δυνατό το πέρασμα URIs σε μια εγγραφή επιφάνειας εργασίας 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "Δεν είναι ένα εκκινήσιμο αντικείμενο"
 
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "Απενεργοποίηση σύνδεσης με το διαχειριστή συνεδρίας"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "Καθορισμός αρχείου που περιέχει αποθηκευμένες ρυθμίσεις"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "FILE"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "Καθορίζει ένα όνομα συνεδρίας προς φόρτωση"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "Επιλογές διαχείρισης συνεδρίας"
+#: ../egg/eggsmclient.c:252
+#| msgid "Session Management Options"
+msgid "Session management options:"
+msgstr "Επιλογές διαχείρισης συνεδρίας:"
 
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+#| msgid "Show Session Management options"
+msgid "Show session management options"
 msgstr "Προβολή επιλογών διαχείρισης συνεδρίας"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -375,128 +317,122 @@ msgstr ""
 "Υπάρχει πρόβλημα με τον εξυπηρετητή ρυθμίσεων.\n"
 "(%s τερματίστηκε με κατάσταση %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Το εικονίδιο '%s'  δεν βρέθηκε "
 
-#: ../gnome-session/gsm-inhibit-dialog.c:616
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "Ένα πρόγραμμα εκτελείται ήδη:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "Μερικά προγράμματα εκτελούνται ακόμη:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:672
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Αναμονή για το κλείσιμο των προγραμμάτων. Η διακοπή αυτών των προγραμμάτων "
-"μπορεί να προκαλέσει απώλεια δεδομένων."
+#: ../gnome-session/gsm-inhibit-dialog.c:671
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Αναμονή για το κλείσιμο των προγραμμάτων. Η διακοπή αυτών των προγραμμάτων μπορεί να προκαλέσει απώλεια δεδομένων."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Αλλαγή χρήστη ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "Αποσύνδεση ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:906
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "Αναστολή ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:909
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "Αδρανοποίηση ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:912
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "Κλείσιμο ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:915
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "Επανεκκίνηση ούτως ή άλλως"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:923
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "Κλείδωμα οθόνης"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:926
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: ../gnome-session/gsm-logout-dialog.c:284
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Θα αποσυνδεθείτε αυτόματα σε %d δευτερόλεπτο."
 msgstr[1] "Θα αποσυνδεθείτε αυτόματα σε %d δευτερόλεπτα."
 
-#: ../gnome-session/gsm-logout-dialog.c:292
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Το σύστημα θα κλείσει αυτόματα σε %d δευτερόλεπτο."
 msgstr[1] "Το σύστημα θα κλείσει αυτόματα σε %d δευτερόλεπτα."
 
-#: ../gnome-session/gsm-logout-dialog.c:324
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Είστε συνδεδεμένος ως  \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "Log out of this system now?"
-msgstr "Να γίνει αποσύνδεση από το σύστημα τώρα?"
+msgstr "Να γίνει αποσύνδεση από το σύστημα τώρα;"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
 msgstr "Α_λλαγή χρήστη"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
 msgstr "Να κλείσει το σύστημα τώρα;"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "S_uspend"
 msgstr "Α_ναστολή"
 
-#: ../gnome-session/gsm-logout-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Hibernate"
 msgstr "Α_δρανοποίηση"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:419
 msgid "_Restart"
 msgstr "Επα_νεκκίνηση"
 
-#: ../gnome-session/gsm-logout-dialog.c:438
+#: ../gnome-session/gsm-logout-dialog.c:429
 msgid "_Shut Down"
 msgstr "Κ_λείσιμο συστήματος"
 
-#: ../gnome-session/gsm-manager.c:1068 ../gnome-session/gsm-manager.c:1767
+#: ../gnome-session/gsm-manager.c:1158
+#: ../gnome-session/gsm-manager.c:1850
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
-#: ../gnome-session/gsm-xsmp-client.c:1195
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "Αυτό το πρόγραμμα εμποδίζει την αποσύνδεση."
 
 #: ../gnome-session/gsm-xsmp-server.c:234
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"Άρνηση σύνδεσης νέου πελάτη επειδή το σύστημα τερματίζεται αυτή τη στιγμή\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Άρνηση σύνδεσης νέου πελάτη επειδή το σύστημα τερματίζεται αυτή τη στιγμή\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
@@ -507,28 +443,25 @@ msgstr "Αδυναμία δημιουργίας ICE listening socket: %s"
 #: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Αδυναμία εκκίνησης συνεδρίας με σύνδεση ( και αδυναμία σύνδεσης με "
-"εξυπηρετητή X)"
+msgstr "Αδυναμία εκκίνησης συνεδρίας με σύνδεση ( και αδυναμία σύνδεσης με εξυπηρετητή X)"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
-msgstr ""
-"Κλειδί GConf  που χρησιμοποιείται για την αναζήτηση προεπιλεγμένης συνεδρίας"
+msgstr "Κλειδί GConf  που χρησιμοποιείται για την αναζήτηση προεπιλεγμένης συνεδρίας"
 
-#: ../gnome-session/main.c:438
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα εκσφαλμάτωσης"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "Να μην φορτώνονται εφαρμογές καθορισμένες από τον χρήστη"
 
-#: ../gnome-session/main.c:460
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr "- Διαχείριση της συνεδρίας του GNOME"
 
@@ -577,7 +510,8 @@ msgstr "Τερματισμός συνεδρίας"
 msgid "Do not require confirmation"
 msgstr "Να μην απαιτείται επιβεβαίωση"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:120
+#: ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Αδύνατη η σύνδεση με το διαχειριστή συνεδρίας"
 
@@ -585,12 +519,26 @@ msgstr "Αδύνατη η σύνδεση με το διαχειριστή συν
 msgid "Program called with conflicting options"
 msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες επιλογές"
 
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "Το όνομα του προγράμματος εκκίνησης δε μπορεί να είναι κενό"
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "Έχει ζητηθεί υποστήριξη για βοηθητικές τεχνολογίες  για αυτή την "
+#~ "συνεδρία, αλλά το μητρώο προσιτότητας δεν βρέθηκε. Βεβαιωθείτε ότι το "
+#~ "πακέτο AT-SPI είναι εγκατεστημένο. Η συνεδρία έχει ξεκινήσει χωρίς "
+#~ "υποστήριξη για βοηθητικές τεχνολογίες."
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "AT SPI Registry Wrapper"
+#~ msgid "Sessions Preferences"
+#~ msgstr "Προτιμήσεις συνεδριών "
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "GNOME Keyring Daemon Wrapper"
-
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Επιθυμητή επιλογή στο διάλογο αποσύνδεσης"
-
 #~ msgid ""
 #~ "This is the option that will be selected in the logout dialog, valid "
 #~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
@@ -598,15 +546,12 @@ msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες �
 #~ msgstr ""
 #~ "Αυτή είναι η επιλογή που θα επιλέγεται στο διάλογο αποσύνδεσης. Έγκυρες "
 #~ "τιμές είναι\"αποσύνδεση\" , \"τερματισμός\" και \"επανεκκίνηση\"."
-
 #~ msgid "Configure your sessions"
 #~ msgstr "Ρύθμιση των συνεδριών σας"
-
 #~ msgid "Sessions"
 #~ msgstr "Συνεδρίες"
-
 #~ msgid "Session management"
 #~ msgstr "Διαχείριση συνεδρίας"
-
 #~ msgid "GNOME GUI Library + EggSMClient"
 #~ msgstr "GNOME GUI Library + EggSMClient"
+
