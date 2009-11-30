@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: gnome-session HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-04-09 15:14+0000\n"
-"PO-Revision-Date: 2009-04-06 01:02+0800\n"
-"Last-Translator: Ray Wang <wanglei1123@gmail.com>\n"
+"POT-Creation-Date: 2009-11-23 17:58+0000\n"
+"PO-Revision-Date: 2009-11-29 10:17+0100\n"
+"Last-Translator: Tao Wei <weitao1979@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,69 +21,59 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../capplet/gsm-app-dialog.c:126
+#: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "选择命令"
 
-#: ../capplet/gsm-app-dialog.c:187
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "添加启动程序"
 
-#: ../capplet/gsm-app-dialog.c:191
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "编辑启动程序"
 
-#: ../capplet/gsm-properties-dialog.c:131
-msgid "No description"
-msgstr "无描述"
-
-#: ../capplet/gsm-properties-dialog.c:974
-msgid "The name of the startup program cannot be empty"
-msgstr "启动程序的名称不能为空"
-
-#: ../capplet/gsm-properties-dialog.c:978
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "启动命令不能为空"
 
-#: ../capplet/gsm-properties-dialog.c:984
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "启动命令无效"
 
-#: ../capplet/gsm-properties-dialog.c:1303
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "启用"
 
 # gsm/logout.c:240
-#: ../capplet/gsm-properties-dialog.c:1316
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "图标"
 
 # applets/gkb/gkb.c:262
-#: ../capplet/gsm-properties-dialog.c:1327
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "程序"
 
-#: ../capplet/gsm-properties-dialog.c:1477
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "启动应用程序首选项"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:440
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "无名称"
+
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "无描述"
+
+#: ../capplet/main.c:37 ../gnome-session/main.c:437
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"此会话已请求辅助技术支持，但未找到辅助功能注册项。请确保您安装了 AT-SPI 包。"
-"您的会话已以不带辅助技术支持方式启动。"
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "AT SPI 注册表辅助程序"
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "不能显示帮助文档"
 
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
@@ -98,20 +88,20 @@ msgid "This session logs you into GNOME"
 msgstr "此会话将您登录到 GNOME"
 
 # gsm/save-session.c:41
-#: ../data/gnome-session.schemas.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
 msgstr "默认会话"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: ../data/gnome-session.schemas.in.h:2
+#: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
 msgstr "文件管理器"
 
-#: ../data/gnome-session.schemas.in.h:3
+#: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如果启用，gnome-session 将在结束会话之前提示。"
 
-#: ../data/gnome-session.schemas.in.h:4
+#: ../data/gnome-session.schemas.in.in.h:4
 msgid ""
 "If enabled, gnome-session will save the session automatically. Otherwise, "
 "the logout dialog will have an option to save the session."
@@ -120,11 +110,11 @@ msgstr ""
 "项。"
 
 # SUN NEW TRANSLATION
-#: ../data/gnome-session.schemas.in.h:5
+#: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "默认会话所包含的应用程序列表。"
 
-#: ../data/gnome-session.schemas.in.h:6
+#: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
@@ -133,59 +123,59 @@ msgid ""
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
-"列出会话所包含的必需组件。(每个元素代表了“/desktop/gnome/session/required_"
-"components”下的一个键。)启动应用程序首选项通常不允许用户从会话中删除所需组"
-"件，而会话管理器也会在所需组件被误删除时自动添加这些组件。"
+"列出会话所包含的必需组件。(每个元素代表了“/desktop/gnome/session/"
+"required_components”下的一个键。)启动应用程序首选项通常不允许用户从会话中删除"
+"所需组件，而会话管理器也会在所需组件被误删除时自动添加这些组件。"
 
 # gsm/logout.c:248
-#: ../data/gnome-session.schemas.in.h:7
+#: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
 msgstr "注销提示"
 
 # panel/menu.c:543
-#: ../data/gnome-session.schemas.in.h:8
+#: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "面板"
 
-#: ../data/gnome-session.schemas.in.h:9
+#: ../data/gnome-session.schemas.in.in.h:9
 msgid "Preferred Image to use for login splash screen"
 msgstr "登录启动画面的首选图像"
 
-#: ../data/gnome-session.schemas.in.h:10
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "所需的会话组件"
 
 # gsm/session-properties.c:264
-#: ../data/gnome-session.schemas.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid "Save sessions"
 msgstr "保存会话"
 
-#: ../data/gnome-session.schemas.in.h:12
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid "Show the splash screen"
 msgstr "显示启动画面"
 
-#: ../data/gnome-session.schemas.in.h:13
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid "Show the splash screen when the session starts up"
 msgstr "会话启动时显示启动画面"
 
-#: ../data/gnome-session.schemas.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr "文件管理器提供了桌面图标，并且允许您与已保存的文件进行交互。"
 
-#: ../data/gnome-session.schemas.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "会话被认为是空闲之前的不活跃分钟数。"
 
-#: ../data/gnome-session.schemas.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:16
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr "面板程序提供了屏幕上方或下方的菜单栏、窗口列表、状态图标、时钟等。"
 
-#: ../data/gnome-session.schemas.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:17
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -193,7 +183,7 @@ msgstr ""
 "窗口管理器程序用于绘制标题栏、窗口周围的边框，并允许您移动窗口和更改窗口大"
 "小。"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: ../data/gnome-session.schemas.in.in.h:18
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
@@ -202,21 +192,20 @@ msgstr ""
 "这是以 $datadir/pixmaps/ 目录出发的相对路径值。子目录及图像名称都是有效的值。"
 "对此值的更改将会在下次登录时生效。"
 
-#: ../data/gnome-session.schemas.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "会话被认为是空闲之前的时间"
 
 # applets/desk-guide/deskguide_applet.c:134
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "窗口管理器"
 
-#: ../data/gsm-inhibit-dialog.glade.h:1
+#: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>某些程序仍在运行中：</b>"
 
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:668
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
 "Waiting for program to finish.  Interrupting program may cause you to lose "
 "work."
@@ -231,47 +220,43 @@ msgid "Startup Applications"
 msgstr "启动应用程序"
 
 # applets/gkb/gkb.c:262
-#: ../data/session-properties.glade.h:1
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "额外的启动程序(_P)："
 
-#: ../data/session-properties.glade.h:2
+#: ../data/session-properties.ui.h:2
 msgid "Browse..."
 msgstr "浏览..."
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../data/session-properties.glade.h:3
+#: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
 msgstr "命令(_M)："
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../data/session-properties.glade.h:4
+#: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
 msgstr "注释(_E)："
 
 # panel/menu.c:3509
-#: ../data/session-properties.glade.h:5
+#: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "选项"
 
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "会话首选项"
-
 # applets/gkb/gkb.c:262
-#: ../data/session-properties.glade.h:7
+#: ../data/session-properties.ui.h:6
 msgid "Startup Programs"
 msgstr "启动程序"
 
-#: ../data/session-properties.glade.h:8
+#: ../data/session-properties.ui.h:7
 msgid "_Automatically remember running applications when logging out"
 msgstr "注销时自动记住正在运行的应用程序(_A)"
 
-#: ../data/session-properties.glade.h:9
+#: ../data/session-properties.ui.h:8
 msgid "_Name:"
 msgstr "名称(_N)："
 
-#: ../data/session-properties.glade.h:10
+#: ../data/session-properties.ui.h:9
 msgid "_Remember Currently Running Application"
 msgstr "记住目前正在运行的应用程序(_R)"
 
@@ -306,40 +291,40 @@ msgstr "无法识别的调用选项：%d"
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "无法将文档 URI 传送给“Type=Link”桌面项"
 
-#: ../egg/eggdesktopfile.c:1392
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "不是可调用项"
 
 # gsm/save-session.c:86
-#: ../egg/eggsmclient.c:185
+#: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
 msgstr "禁止连接到会话管理器"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
 msgstr "指定包含已保存配置的文件"
 
-#: ../egg/eggsmclient.c:188
+#: ../egg/eggsmclient.c:228
 msgid "FILE"
 msgstr "文件"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
 msgstr "指定会话管理 ID"
 
-#: ../egg/eggsmclient.c:191
+#: ../egg/eggsmclient.c:231
 msgid "ID"
 msgstr "ID"
 
 # panel/menu.c:3509
-#: ../egg/eggsmclient.c:245
-msgid "Session Management Options"
-msgstr "会话管理选项"
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "会话管理选项："
 
 # panel/menu.c:3509
-#: ../egg/eggsmclient.c:246
-msgid "Show Session Management options"
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
 msgstr "显示会话管理选项"
 
 #: ../gnome-session/gsm-gconf.c:106
@@ -351,117 +336,117 @@ msgstr ""
 "配置服务器有错。\n"
 "(%s 的退出状态为 %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:256
+#: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "图标“%s”未找到"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:616
+#: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
 msgstr "未知"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../gnome-session/gsm-inhibit-dialog.c:666
 msgid "A program is still running:"
 msgstr "程序仍在运行中："
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:670
 msgid "Some programs are still running:"
 msgstr "程序仍在运行中："
 
-#: ../gnome-session/gsm-inhibit-dialog.c:672
+#: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "正在等候程序完成。中断程序可能导致您的工作成果丢失。"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "强制切换用户"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
 msgstr "强制注销"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:906
+#: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
 msgstr "强制挂起"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:909
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Hibernate Anyway"
 msgstr "强制休眠"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:912
+#: ../gnome-session/gsm-inhibit-dialog.c:913
 msgid "Shutdown Anyway"
 msgstr "强制关机"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:915
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Reboot Anyway"
 msgstr "强制重新启动"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:923
+#: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
 msgstr "锁定屏幕"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:926
+#: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "取消"
 
-#: ../gnome-session/gsm-logout-dialog.c:269
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "您即将在 %d 秒后自动注销。"
 
-#: ../gnome-session/gsm-logout-dialog.c:277
+#: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "系统即将在 %d 秒后自动关闭。"
 
-#: ../gnome-session/gsm-logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:314
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "您目前以“%s”身份登录。"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "Log out of this system now?"
 msgstr "现在注销系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
 msgstr "现在关闭此系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "S_uspend"
 msgstr "挂起(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Hibernate"
 msgstr "休眠(_H)"
 
 # gmenu/edit.c:336 gsm/session-properties.c:167
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:419
 msgid "_Restart"
 msgstr "重启(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:429
 msgid "_Shut Down"
 msgstr "关闭系统(_S)"
 
-#: ../gnome-session/gsm-manager.c:1136 ../gnome-session/gsm-manager.c:1828
+#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
 msgid "Not responding"
 msgstr "无响应"
 
-#: ../gnome-session/gsm-xsmp-client.c:1195
+#: ../gnome-session/gsm-xsmp-client.c:1206
 msgid "This program is blocking log out."
 msgstr "程序禁止注销。"
 
@@ -482,23 +467,23 @@ msgstr "无法创建 ICE 监听套接字：%s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "无法启动登录会话(并且无法连接到 X 服务器)"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
 msgstr "用于查阅默认会话的 GConf 键"
 
-#: ../gnome-session/main.c:438
+#: ../gnome-session/main.c:435
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:436
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: ../gnome-session/main.c:460
+#: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
 msgstr "- GNOME 会话管理器"
 
@@ -558,6 +543,24 @@ msgstr "无法连接到会话管理器"
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
 
+#~ msgid "The name of the startup program cannot be empty"
+#~ msgstr "启动程序的名称不能为空"
+
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "此会话已请求辅助技术支持，但未找到辅助功能注册项。请确保您安装了 AT-SPI "
+#~ "包。您的会话已以不带辅助技术支持方式启动。"
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "AT SPI 注册表辅助程序"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "会话首选项"
+
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "GNOME 密钥环守护程序辅助程序"
 
@@ -574,13 +577,3 @@ msgstr "调用程序的选项互相冲突"
 
 #~ msgid "Configure your sessions"
 #~ msgstr "配置对话"
-
-# gsm/session-properties.c:264
-#~ msgid "Sessions"
-#~ msgstr "会话"
-
-#~ msgid "Session management"
-#~ msgstr "会话管理"
-
-#~ msgid "GNOME GUI Library + EggSMClient"
-#~ msgstr "GNOME GUI 库 + EggSMClient"
