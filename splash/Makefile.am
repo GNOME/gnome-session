@@ -11,7 +11,7 @@ LDADD =						\
 	$(top_builddir)/egg/libeggsmclient-gnome.la \
 	$(SPLASH_LIBS)
 
-helperdir = $(pkglibdir)/helpers
+helperdir = $(pkglibexecdir)/helpers
 helper_PROGRAMS =				\
 	gnome-session-splash			\
 	$(NULL)

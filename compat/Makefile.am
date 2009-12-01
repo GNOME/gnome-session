@@ -10,7 +10,7 @@ INCLUDES =					\
 LDADD =						\
 	$(COMPAT_LIBS)
 
-helperdir = $(pkglibdir)/helpers
+helperdir = $(pkglibexecdir)/helpers
 helper_PROGRAMS =				\
 	gnome-settings-daemon-helper
 
