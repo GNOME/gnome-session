@@ -51,7 +51,6 @@ struct GsmXSMPClientPrivate
         IceConn    ice_connection;
 
         guint      watch_id;
-        guint      protocol_timeout;
 
         char      *description;
         GPtrArray *props;
@@ -115,22 +114,6 @@ client_iochannel_watch (GIOChannel    *channel,
         return keep_going;
 }
 
-/* Called if too much time passes between the initial connection and
- * the XSMP protocol setup.
- */
-static gboolean
-_client_protocol_timeout (GsmXSMPClient *client)
-{
-        g_debug ("GsmXSMPClient: client_protocol_timeout for client '%s' in ICE status %d",
-                 client->priv->description,
-                 IceConnectionStatus (client->priv->ice_connection));
-
-        gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_FAILED);
-        gsm_client_disconnected (GSM_CLIENT (client));
-
-        return FALSE;
-}
-
 static SmProp *
 find_property (GsmXSMPClient *client,
                const char    *name,
@@ -192,10 +175,6 @@ setup_connection (GsmXSMPClient *client)
                                                  (GIOFunc)client_iochannel_watch,
                                                  client);
         g_io_channel_unref (channel);
-
-        client->priv->protocol_timeout = g_timeout_add_seconds (5,
-                                                                (GSourceFunc)_client_protocol_timeout,
-                                                                client);
 
         set_description (client);
 
@@ -869,10 +848,6 @@ gsm_xsmp_client_disconnect (GsmXSMPClient *client)
                 IceSetShutdownNegotiation (client->priv->ice_connection, FALSE);
                 IceCloseConnection (client->priv->ice_connection);
         }
-
-        if (client->priv->protocol_timeout > 0) {
-                g_source_remove (client->priv->protocol_timeout);
-        }
 }
 
 static void
@@ -1304,11 +1279,6 @@ gsm_xsmp_client_connect (GsmXSMPClient *client,
                          SmsCallbacks  *callbacks_ret)
 {
         client->priv->conn = conn;
-
-        if (client->priv->protocol_timeout) {
-                g_source_remove (client->priv->protocol_timeout);
-                client->priv->protocol_timeout = 0;
-        }
 
         g_debug ("GsmXSMPClient: Initializing client %s", client->priv->description);
 
