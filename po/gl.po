@@ -15,19 +15,21 @@
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Fran Dieguez <fran.dieguez@glug.es>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-19 16:21+0200\n"
-"PO-Revision-Date: 2009-08-18 12:16+0200\n"
-"Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
-"Language-Team: Galician <gnome@mancomun.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&component=general\n"
+"POT-Creation-Date: 2010-01-27 15:30+0000\n"
+"PO-Revision-Date: 2010-02-12 09:44+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
+"Language-Team: Gallician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: gl\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -48,7 +50,7 @@ msgstr "A orde de inicio non pode estar baleira"
 
 #: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
-msgstr "A orde do programa de inicio non é válido"
+msgstr "A orde do programa de inicio é incorrecta"
 
 #: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
@@ -82,36 +84,21 @@ msgstr "Versión deste aplicativo"
 msgid "Could not display help document"
 msgstr "Non foi posíbel mostrar o documento de axuda"
 
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Requiriuse un soporte de tecnoloxía adaptada para esta sesión, mais non se "
-"encontrou o rexistro de accesibilidade. Asegúrese de que o paquete AT-SPI "
-"está instalado. A súa sesión iniciouse sen soporte de tecnoloxía adaptada."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "Wrapper de rexistro AT SPI"
-
 #: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
 msgid "GNOME Settings Daemon Helper"
-msgstr "Asistente do Gnome Settings Daemon"
+msgstr "Asistente do GNOME Settings Daemon"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
-msgstr "Gnome"
+msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "Esta sesión será iniciada no Gnome"
+msgstr "Esta sesión iniciará en GNOME"
 
 #: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
-msgstr "Sesión predeterminada"
+msgstr "Sesión predefinida"
 
 #: ../data/gnome-session.schemas.in.in.h:2
 msgid "File Manager"
@@ -133,7 +120,7 @@ msgstr ""
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
-msgstr "Lista de aplicativos que forman parte da sesión predeterminada."
+msgstr "Lista de aplicativos que forman parte da sesión predefinida."
 
 #: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
@@ -207,7 +194,7 @@ msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
 msgstr ""
-"O xestor de xanelas é o programa que deseña a barra de título e os bordos "
+"O xestor de xanelas é o programa que debuxa a barra de título e os bordos "
 "das xanelas e que lle permite mover e redimensionar as xanelas."
 
 #: ../data/gnome-session.schemas.in.in.h:18
@@ -242,7 +229,7 @@ msgstr ""
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
-msgstr "Elixir que aplicativos se iniciarán coa sesión"
+msgstr "Seleccione que aplicativos se iniciarán coa sesión"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
@@ -258,7 +245,7 @@ msgstr "Buscar..."
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
-msgstr "Co_mando:"
+msgstr "Or_de:"
 
 #: ../data/session-properties.ui.h:4
 msgid "Comm_ent:"
@@ -287,7 +274,7 @@ msgstr "_Recordar o aplicativo que se está executando"
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr "O ficheiro non é un ficheiro .desktop válido"
+msgstr "O ficheiro non é un ficheiro .desktop correcto"
 
 #: ../egg/eggdesktopfile.c:188
 #, c-format
@@ -302,7 +289,7 @@ msgstr "Iniciando %s"
 #: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
-msgstr "O aplicativo non acepta os documentos na liña de ordes"
+msgstr "O aplicativo non acepta documentos na liña de ordes"
 
 #: ../egg/eggdesktopfile.c:1168
 #, c-format
@@ -327,7 +314,7 @@ msgstr "Desactivar a conexión para o xestor de sesión"
 
 #: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
-msgstr "Especificar o ficheiro que contén a configuración gardada"
+msgstr "Especifique o ficheiro que contén a configuración gardada"
 
 #: ../egg/eggsmclient.c:228
 msgid "FILE"
@@ -335,7 +322,7 @@ msgstr "FICHEIRO"
 
 #: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr "Especificar o ID de xestión de sesión"
+msgstr "Especifique o ID de xestión de sesión"
 
 #: ../egg/eggsmclient.c:231
 msgid "ID"
@@ -361,7 +348,7 @@ msgstr ""
 #: ../gnome-session/gsm-inhibit-dialog.c:255
 #, c-format
 msgid "Icon '%s' not found"
-msgstr "Non se encontrou a icona '%s'"
+msgstr "Non foi posíbel encontrar a icona '%s'"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:615
 msgid "Unknown"
@@ -389,7 +376,7 @@ msgstr "Cambiar de usuario de todas formas"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Logout Anyway"
-msgstr "Terminar a sesión de todas formas"
+msgstr "Saír da sesión de todas formas"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
@@ -440,11 +427,11 @@ msgstr "Quere terminar a sesión neste sistema agora?"
 
 #: ../gnome-session/gsm-logout-dialog.c:386
 msgid "_Switch User"
-msgstr "_cambiar de usuario"
+msgstr "_Cambiar de usuario"
 
 #: ../gnome-session/gsm-logout-dialog.c:395
 msgid "_Log Out"
-msgstr "_Terminar a sesión"
+msgstr "_Saír da sesión"
 
 #: ../gnome-session/gsm-logout-dialog.c:401
 msgid "Shut down this system now?"
@@ -466,11 +453,11 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Apagar"
 
-#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
+#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
 msgid "Not responding"
 msgstr "Non responde"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1214
 msgid "This program is blocking log out."
 msgstr "Este programa está bloqueando o fin da sesión."
 
@@ -485,14 +472,14 @@ msgstr ""
 #: ../gnome-session/gsm-xsmp-server.c:489
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "Non foi posíbel crear o conectador de escoita ICE: %s"
+msgstr "Non foi posíbel crear o socket de escoita ICE: %s"
 
 #. Oh well, no X for you!
 #: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
-"Non é posíbel iniciar de sesión (e non é posíbel conectar co servidor X)"
+"Non é posíbel iniciar a sesión (e non é posíbel conectar co servidor X)"
 
 #: ../gnome-session/main.c:433
 msgid "Override standard autostart directories"
@@ -500,7 +487,7 @@ msgstr "Ignorar os directorios de inicio automático estándares"
 
 #: ../gnome-session/main.c:434
 msgid "GConf key used to lookup default session"
-msgstr "A chave do GConf empregada para buscar a sesión predeterminada"
+msgstr "A chave do GConf empregada para buscar a sesión predefinida"
 
 #: ../gnome-session/main.c:435
 msgid "Enable debugging code"
@@ -512,23 +499,23 @@ msgstr "Non cargar os aplicativos especificados polo usuario"
 
 #: ../gnome-session/main.c:457
 msgid " - the GNOME session manager"
-msgstr "- o xestor de sesións do Gnome"
+msgstr "- o xestor de sesións do GNOME"
 
 #: ../splash/gnome-session-splash.c:315
 msgid "- GNOME Splash Screen"
-msgstr "- Pantalla de presentación do Gnome"
+msgstr "- Pantalla de presentación do GNOME"
 
 #: ../splash/gnome-session-splash.desktop.in.in.in.h:1
 msgid "GNOME Splash Screen"
-msgstr "Pantalla de presentación do Gnome"
+msgstr "Pantalla de presentación do GNOME"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
-msgstr "Terminar a sesión"
+msgstr "Saír da sesión"
 
 #: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
-msgstr "Terminar a sesión ignorando calquera inhibidor existente"
+msgstr "Saír da sesión ignorando calquera inhibidor existente"
 
 #: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
@@ -561,8 +548,22 @@ msgstr "Non requirir confirmación"
 
 #: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
-msgstr "Non se puido conectar co xestor de sesión"
+msgstr "Non foi posíbel conectar co xestor de sesión"
 
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Chamouse un programa con opcións en conflito"
+
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "Requiriuse un soporte de tecnoloxía adaptada para esta sesión, mais non "
+#~ "se encontrou o rexistro de accesibilidade. Asegúrese de que o paquete AT-"
+#~ "SPI está instalado. A súa sesión iniciouse sen soporte de tecnoloxía "
+#~ "adaptada."
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "Wrapper de rexistro AT SPI"
