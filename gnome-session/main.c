@@ -323,6 +323,7 @@ signal_cb (int      signo,
            gpointer data)
 {
         int ret;
+        GsmManager *manager;
 
         g_debug ("Got callback for signal %d", signo);
 
@@ -337,9 +338,12 @@ signal_cb (int      signo,
                 break;
         case SIGINT:
         case SIGTERM:
+                manager = (GsmManager *)data;
+                gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, NULL);
+
                 /* let the fatal signals interrupt us */
                 g_debug ("Caught signal %d, shutting down normally.", signo);
-                ret = FALSE;
+                ret = TRUE;
                 break;
         case SIGHUP:
                 g_debug ("Got HUP signal");
@@ -470,14 +474,6 @@ main (int argc, char **argv)
         gdm_log_init ();
         gdm_log_set_debug (debug);
 
-        signal_handler = gdm_signal_handler_new ();
-        gdm_signal_handler_add_fatal (signal_handler);
-        gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGFPE, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGHUP, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGUSR1, signal_cb, NULL);
-
         /* Set DISPLAY explicitly for all our children, in case --display
          * was specified on the command line.
          */
@@ -506,6 +502,13 @@ main (int argc, char **argv)
 
         manager = gsm_manager_new (client_store, failsafe);
 
+        signal_handler = gdm_signal_handler_new ();
+        gdm_signal_handler_add_fatal (signal_handler);
+        gdm_signal_handler_add (signal_handler, SIGFPE, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGHUP, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGUSR1, signal_cb, NULL);
+        gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, manager);
+        gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, manager);
         gdm_signal_handler_set_fatal_func (signal_handler, shutdown_cb, manager);
 
         if (override_autostart_dirs != NULL) {
