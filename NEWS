@@ -1,3 +1,25 @@
+===============
+Version 2.29.92
+===============
+
+Note for distributors: the log out on SIGTERM/SIGINT possibly create a
+misbehavior with old versions of the GDM greeter. It is recommended to use this
+release with GDM 2.29.92.
+
+Session Manager:
+- Log out on SIGTERM and SIGINT (Halton Huo)
+- Delay the creation of the GsmXSMPClient until it really exists, to fix
+  potential crashes on logout (Romain Perier)
+
+Misc:
+- Remove unneeded LIBGNOMEUI_REQUIRED from configure.in (Vincent)
+
+Translations:
+- Updated gl: Fran Diéguez
+- Updated ko: Changwoo Ryu
+- Updated nn: Torstein Adolf Winterseth
+- Updated pl: Piotr Drąg
+
 ==============
 Version 2.29.6
 ==============
