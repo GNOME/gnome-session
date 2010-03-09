@@ -29,7 +29,7 @@ GNOME_COMPILE_WARNINGS(maximum)
 
 AC_ARG_ENABLE(deprecations,
               [AC_HELP_STRING([--enable-deprecations],
-                              [warn about deprecated usages [default=no]])],,
+                              [warn about deprecated usages @<:@default=no@:>@])],,
               [enable_deprecations=no])
 
 if test "x$enable_deprecations" = "xyes"; then
@@ -97,7 +97,7 @@ dnl Option to enable the splash screen
 dnl ====================================================================
 AC_ARG_ENABLE(splash,
               [AC_HELP_STRING([--enable-splash],
-                              [enable splash screen [default=no]])],,
+                              [enable splash screen @<:@default=no@:>@])],,
               [enable_splash=no])
 
 AM_CONDITIONAL(ENABLE_SPLASH, test x$enable_splash = xyes)
