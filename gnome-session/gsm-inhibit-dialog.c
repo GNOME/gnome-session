@@ -664,7 +664,7 @@ update_dialog_text (GsmInhibitDialog *dialog)
         if (model_has_one_entry (GTK_TREE_MODEL (dialog->priv->list_store))) {
                 g_debug ("Found one entry in model");
                 header_text = _("A program is still running:");
-                description_text = _("Waiting for program to finish.  Interrupting program may cause you to lose work.");
+                description_text = _("Waiting for the program to finish.  Interrupting the program may cause you to lose work.");
         } else {
                 g_debug ("Found multiple entries (or none) in model");
                 header_text = _("Some programs are still running:");
@@ -901,7 +901,7 @@ setup_dialog (GsmInhibitDialog *dialog)
                 button_text = _("Switch User Anyway");
                 break;
         case GSM_LOGOUT_ACTION_LOGOUT:
-                button_text = _("Logout Anyway");
+                button_text = _("Log Out Anyway");
                 break;
         case GSM_LOGOUT_ACTION_SLEEP:
                 button_text = _("Suspend Anyway");
@@ -910,7 +910,7 @@ setup_dialog (GsmInhibitDialog *dialog)
                 button_text = _("Hibernate Anyway");
                 break;
         case GSM_LOGOUT_ACTION_SHUTDOWN:
-                button_text = _("Shutdown Anyway");
+                button_text = _("Shut Down Anyway");
                 break;
         case GSM_LOGOUT_ACTION_REBOOT:
                 button_text = _("Reboot Anyway");

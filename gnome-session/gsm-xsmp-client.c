@@ -1186,7 +1186,7 @@ interact_request_callback (SmsConn   conn,
 
         gsm_client_end_session_response (GSM_CLIENT (client),
                                          FALSE, FALSE, FALSE,
-                                         _("This program is blocking log out."));
+                                         _("This program is blocking logout."));
 
 #if 0
         /* Can't just call back with Interact because session client

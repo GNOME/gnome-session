@@ -435,7 +435,7 @@ main (int argc, char **argv)
         static char      *default_session_key = NULL;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
-                { "default-session-key", 0, 0, G_OPTION_ARG_STRING, &default_session_key, N_("GConf key used to lookup default session"), NULL },
+                { "default-session-key", 0, 0, G_OPTION_ARG_STRING, &default_session_key, N_("GConf key used to look up default session"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
