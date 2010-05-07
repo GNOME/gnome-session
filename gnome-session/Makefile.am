@@ -14,6 +14,7 @@ INCLUDES =					\
 	$(DISABLE_DEPRECATED_CFLAGS)		\
 	$(SM_CFLAGS)				\
 	$(ICE_CFLAGS)				\
+	$(XEXT_CFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(GCONF_CFLAGS)				\
 	-I$(top_srcdir)/egg			\
@@ -51,6 +52,7 @@ gnome_session_LDADD =				\
 	$(GCONF_LIBS)				\
 	$(XRENDER_LIBS)				\
 	$(XTEST_LIBS)				\
+	$(XEXT_LIBS)				\
 	$(EXECINFO_LIBS)			\
 	$(NULL)
 
