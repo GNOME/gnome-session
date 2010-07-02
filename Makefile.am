@@ -3,7 +3,6 @@ SUBDIRS =			\
 	gnome-session		\
 	capplet			\
 	tools			\
-	compat			\
 	po			\
 	doc			\
 	data
