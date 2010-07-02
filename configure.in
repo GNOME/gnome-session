@@ -67,10 +67,6 @@ PKG_CHECK_MODULES(SPLASH,
         libstartup-notification-1.0
         gconf-2.0)
 
-PKG_CHECK_MODULES(COMPAT,
-        gtk+-3.0 >= $GTK_REQUIRED
-        dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
-
 PKG_CHECK_MODULES(SM, sm)
 PKG_CHECK_MODULES(ICE, ice)
 PKG_CHECK_MODULES(XEXT, xext xau)
@@ -340,8 +336,6 @@ AC_SUBST(REBUILD)
 AC_OUTPUT([
 Makefile
 capplet/Makefile
-compat/Makefile
-compat/gnome-settings-daemon-helper.desktop.in.in
 doc/Makefile
 doc/dbus/Makefile
 doc/dbus/gnome-session.xml
