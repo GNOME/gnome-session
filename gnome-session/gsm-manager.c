@@ -38,7 +38,7 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include <devkit-power-gobject/devicekit-power.h>
+#include <upower.h>
 
 #include <gtk/gtk.h> /* for logout dialog */
 #include <gconf/gconf-client.h>
@@ -135,7 +135,7 @@ struct GsmManagerPrivate
         DBusGConnection        *connection;
 
         /* Interface with other parts of the system */
-        DkpClient              *dkp_client;
+        UpClient               *up_client;
 };
 
 enum {
@@ -987,17 +987,14 @@ manager_attempt_hibernate (GsmManager *manager)
         GError   *error;
         gboolean  ret;
 
-        g_object_get (manager->priv->dkp_client,
-                      "can-hibernate", &can_hibernate,
-                      NULL);
-
+        can_hibernate = up_client_get_can_hibernate (manager->priv->up_client);
         if (can_hibernate) {
 
                 /* lock the screen before we suspend */
                 manager_perhaps_lock (manager);
 
                 error = NULL;
-                ret = dkp_client_hibernate (manager->priv->dkp_client, &error);
+                ret = up_client_hibernate_sync (manager->priv->up_client, NULL, &error);
                 if (!ret) {
                         g_warning ("Unexpected hibernate failure: %s",
                                    error->message);
@@ -1013,17 +1010,14 @@ manager_attempt_suspend (GsmManager *manager)
         GError   *error;
         gboolean  ret;
 
-        g_object_get (manager->priv->dkp_client,
-                      "can-suspend", &can_suspend,
-                      NULL);
-
+        can_suspend = up_client_get_can_suspend (manager->priv->up_client);
         if (can_suspend) {
 
                 /* lock the screen before we suspend */
                 manager_perhaps_lock (manager);
 
                 error = NULL;
-                ret = dkp_client_suspend (manager->priv->dkp_client, &error);
+                ret = up_client_suspend_sync (manager->priv->up_client, NULL, &error);
                 if (!ret) {
                         g_warning ("Unexpected suspend failure: %s",
                                    error->message);
@@ -2202,9 +2196,9 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->gconf_client = NULL;
         }
 
-        if (manager->priv->dkp_client != NULL) {
-                g_object_unref (manager->priv->dkp_client);
-                manager->priv->dkp_client = NULL;
+        if (manager->priv->up_client != NULL) {
+                g_object_unref (manager->priv->up_client);
+                manager->priv->up_client = NULL;
         }
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
@@ -2435,7 +2429,7 @@ gsm_manager_init (GsmManager *manager)
                           G_CALLBACK (on_presence_status_changed),
                           manager);
 
-        manager->priv->dkp_client = dkp_client_new ();
+        manager->priv->up_client = up_client_new ();
 
         /* GConf setup */
         gconf_client_add_dir (manager->priv->gconf_client,
@@ -2959,7 +2953,7 @@ gsm_manager_can_shutdown (GsmManager *manager,
         gboolean can_suspend;
         gboolean can_hibernate;
 
-        g_object_get (manager->priv->dkp_client,
+        g_object_get (manager->priv->up_client,
                       "can-suspend", &can_suspend,
                       "can-hibernate", &can_hibernate,
                       NULL);

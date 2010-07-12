@@ -27,7 +27,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include <devkit-power-gobject/devicekit-power.h>
+#include <upower.h>
 
 #include "gsm-logout-dialog.h"
 #include "gsm-consolekit.h"
@@ -50,7 +50,7 @@ struct _GsmLogoutDialogPrivate
 {
         GsmDialogLogoutType  type;
 
-        DkpClient           *dkp_client;
+        UpClient            *up_client;
         GsmConsolekit       *consolekit;
 
         int                  timeout;
@@ -142,7 +142,7 @@ gsm_logout_dialog_init (GsmLogoutDialog *logout_dialog)
         gtk_window_set_keep_above (GTK_WINDOW (logout_dialog), TRUE);
         gtk_window_stick (GTK_WINDOW (logout_dialog));
 
-        logout_dialog->priv->dkp_client = dkp_client_new ();
+        logout_dialog->priv->up_client = up_client_new ();
 
         logout_dialog->priv->consolekit = gsm_get_consolekit ();
 
@@ -166,9 +166,9 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
                 logout_dialog->priv->timeout_id = 0;
         }
 
-        if (logout_dialog->priv->dkp_client) {
-                g_object_unref (logout_dialog->priv->dkp_client);
-                logout_dialog->priv->dkp_client = NULL;
+        if (logout_dialog->priv->up_client) {
+                g_object_unref (logout_dialog->priv->up_client);
+                logout_dialog->priv->up_client = NULL;
         }
 
         if (logout_dialog->priv->consolekit) {
@@ -182,21 +182,13 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
 static gboolean
 gsm_logout_supports_system_suspend (GsmLogoutDialog *logout_dialog)
 {
-        gboolean ret;
-        g_object_get (logout_dialog->priv->dkp_client,
-                      "can-suspend", &ret,
-                      NULL);
-        return ret;
+        return up_client_get_can_suspend (logout_dialog->priv->up_client);
 }
 
 static gboolean
 gsm_logout_supports_system_hibernate (GsmLogoutDialog *logout_dialog)
 {
-        gboolean ret;
-        g_object_get (logout_dialog->priv->dkp_client,
-                      "can-hibernate", &ret,
-                      NULL);
-        return ret;
+        return up_client_get_can_hibernate (logout_dialog->priv->up_client);
 }
 
 static gboolean
