@@ -1,15 +1,16 @@
 # Norwegian translation of gnome-session (bokmål dialect).
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2009.
+# Kjartan Maraas <kmaraas@gnome.org>, 1998-2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.25.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-02 23:58+0200\n"
-"PO-Revision-Date: 2009-08-03 00:06+0200\n"
+"POT-Creation-Date: 2010-07-13 15:15+0200\n"
+"PO-Revision-Date: 2010-07-13 15:16+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
+"Language: no\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,19 +20,19 @@ msgstr ""
 msgid "Select Command"
 msgstr "Velg kommando"
 
-#: ../capplet/gsm-app-dialog.c:192
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Legg til oppstartsprogram"
 
-#: ../capplet/gsm-app-dialog.c:196
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Rediger oppstartsprogram"
 
-#: ../capplet/gsm-app-dialog.c:484
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "Oppstartskommando kan ikke være tom"
 
-#: ../capplet/gsm-app-dialog.c:490
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "Oppstartskommandoen er ikke gyldig"
 
@@ -47,7 +48,7 @@ msgstr "Ikon"
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:790
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Brukervalg for oppstartsprogrammer"
 
@@ -59,32 +60,13 @@ msgstr "Uten navn"
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Kunne ikke vise hjelp"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"Hjelpeteknologi for tilgjengelighet er forespurt for denne sesjonen, men "
-"registeret for denne funksjonen ble ikke funnet. Vennligst sjekk at AT-SPI "
-"er installert. Sesjonen er startet uten hjelpeteknologi for tilgjengelighet."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "AT SPI register"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME innstillingstjeneste"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -191,14 +173,12 @@ msgstr ""
 "i tillegg til å la deg flytte og endre størrelse på vinduene."
 
 #: ../data/gnome-session.schemas.in.in.h:18
+#, fuzzy
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Dette er en relativ sti basert på katalogen $datadir/pixmaps. Underkataloger "
-"og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste "
-"innlogging."
+"affect the next session login."
+msgstr "Dette er en relativ sti basert på katalogen $datadir/pixmaps/. Underkataloger og bildenavn er gyldige verdier. Endringer vil tre i kraft ved neste innlogging."
 
 #: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
@@ -393,72 +373,72 @@ msgstr "Lås skjerm"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Du vil bli logget ut automatisk om %d sekund."
 msgstr[1] "Du vil bli logget ut automatisk om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Systemet vil bli slått av automatisk om %d sekund."
 msgstr[1] "Systemet vil bli slått automatisk av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Du er logget inn som «%s»"
 
-#: ../gnome-session/gsm-logout-dialog.c:379
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:385
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/gsm-logout-dialog.c:394
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:400
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:406
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:412
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/gsm-logout-dialog.c:428
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1189
 msgid "This program is blocking log out."
 msgstr "Dette programmet hindrer utlogging."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Nekter ny klient tilgang fordi sesjonen er i ferd med å avsluttes\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
@@ -469,23 +449,23 @@ msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Overstyr forvalgte kataloger for autostart"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:438
 msgid "GConf key used to lookup default session"
 msgstr "GConf-nøkkel som brukes til å finne forvalgt sesjon"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Aktiver feilsøkingskode"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "- GNOME sesjonshåndterer"
 
