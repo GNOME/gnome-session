@@ -1,19 +1,21 @@
+# Chinese (China) translation of gnome-session.
+# Copyright (C) 2009, 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-session package.
 # Dillion Chen <dillon.chen@turbolinux.com.cn>
 # Updated and QA by Wang Jian <lark@linux.net.cn>
 # Updated and QA by Jiang Xiong <jxiong@gwu.edu>
 # Updated and QA by Zipeco <zipeco@btamail.net.cn>
 # Updated by Funda Wang <fundawang@linux.net.cn>, 2003
 # Yang Zhang <zyangmath@gmail.com>, 2009.
-#
-#
+# Tao Wei <weitao1979@gmail.com>, 2009.
+# Aron Xu <aronxu@gnome.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&component=general\n"
-"POT-Creation-Date: 2009-11-23 17:58+0000\n"
-"PO-Revision-Date: 2009-11-29 10:17+0100\n"
-"Last-Translator: Tao Wei <weitao1979@gmail.com>\n"
+"Project-Id-Version: gnome-session master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-13 23:19+0800\n"
+"PO-Revision-Date: 2010-07-13 23:22+0800\n"
+"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,17 +69,13 @@ msgstr "无名称"
 msgid "No description"
 msgstr "无描述"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "不能显示帮助文档"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME 设置守护程序辅助程序"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -187,7 +185,7 @@ msgstr ""
 msgid ""
 "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
 "directories and image names are valid values. Changing this value will "
-"effect the next session login."
+"affect the next session login."
 msgstr ""
 "这是以 $datadir/pixmaps/ 目录出发的相对路径值。子目录及图像名称都是有效的值。"
 "对此值的更改将会在下次登录时生效。"
@@ -391,72 +389,72 @@ msgstr "锁定屏幕"
 msgid "Cancel"
 msgstr "取消"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "您即将在 %d 秒后自动注销。"
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "系统即将在 %d 秒后自动关闭。"
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "您目前以“%s”身份登录。"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "现在注销系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "现在关闭此系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "挂起(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "休眠(_H)"
 
 # gmenu/edit.c:336 gsm/session-properties.c:167
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "重启(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "关闭系统(_S)"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "无响应"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1189
 msgid "This program is blocking log out."
 msgstr "程序禁止注销。"
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
@@ -467,23 +465,23 @@ msgstr "无法创建 ICE 监听套接字：%s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "无法启动登录会话(并且无法连接到 X 服务器)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:438
 msgid "GConf key used to lookup default session"
 msgstr "用于查阅默认会话的 GConf 键"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "- GNOME 会话管理器"
 
@@ -542,6 +540,9 @@ msgstr "无法连接到会话管理器"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "GNOME 设置守护程序辅助程序"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "启动程序的名称不能为空"
