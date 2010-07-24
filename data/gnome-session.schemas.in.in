@@ -3,17 +3,6 @@
    <schemalist>
 
       <schema>
-         <key>/schemas/apps/gnome-session/options/show_splash_screen</key>
-         <applyto>/apps/gnome-session/options/show_splash_screen</applyto>
-         <owner>gnome</owner>
-         <type>bool</type>
-         <default>false</default>
-         <locale name="C">
-            <short>Show the splash screen</short>
-            <long>Show the splash screen when the session starts up</long>
-         </locale>
-      </schema>
-      <schema>
          <key>/schemas/apps/gnome-session/options/auto_save_session</key>
          <applyto>/apps/gnome-session/options/auto_save_session</applyto>
          <owner>gnome</owner>
@@ -33,17 +22,6 @@
          <locale name="C">
             <short>Logout prompt</short>
             <long>If enabled, gnome-session will prompt the user before ending a session.</long>
-         </locale>
-      </schema>
-      <schema>
-         <key>/schemas/apps/gnome-session/options/splash_image</key>
-         <applyto>/apps/gnome-session/options/splash_image</applyto>
-         <owner>gnome</owner>
-         <type>string</type>
-         <default>splash/gnome-splash.png</default>
-         <locale name="C">
-            <short>Preferred Image to use for login splash screen</short>
-            <long>This is a relative path value based off the $datadir/pixmaps/ directory.  Sub-directories and image names are valid values. Changing this value will affect the next session login.</long>
          </locale>
       </schema>
       <schema>
