@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-22 13:52+0200\n"
-"PO-Revision-Date: 2009-07-22 13:52+0100\n"
+"POT-Creation-Date: 2010-07-25 17:50+0200\n"
+"PO-Revision-Date: 2010-07-25 17:50+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -24,19 +24,19 @@ msgstr ""
 msgid "Select Command"
 msgstr "Välj kommando"
 
-#: ../capplet/gsm-app-dialog.c:192
+#: ../capplet/gsm-app-dialog.c:194
 msgid "Add Startup Program"
 msgstr "Lägg till uppstartsprogram"
 
-#: ../capplet/gsm-app-dialog.c:196
+#: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Redigera uppstartsprogram"
 
-#: ../capplet/gsm-app-dialog.c:484
+#: ../capplet/gsm-app-dialog.c:486
 msgid "The startup command cannot be empty"
 msgstr "Uppstartsprogrammets kommando får inte vara tomt"
 
-#: ../capplet/gsm-app-dialog.c:490
+#: ../capplet/gsm-app-dialog.c:492
 msgid "The startup command is not valid"
 msgstr "Uppstartsprogrammets kommando är inte giltigt"
 
@@ -52,7 +52,7 @@ msgstr "Ikon"
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:790
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Inställningar för uppstartsprogram"
 
@@ -65,25 +65,13 @@ msgid "No description"
 msgstr "Ingen beskrivning"
 
 #: ../capplet/main.c:37
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Version av detta program"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Kunde inte visa hjälpdokumentet"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid "Assistive technology support has been requested for this session, but the accessibility registry was not found. Please ensure that the AT-SPI package is installed. Your session has been started without assistive technology support."
-msgstr "Stöd för hjälpmedelsteknik har begärts för den här sessionen, men hjälpmedelsregistret hittades inte. Kontrollera att AT-SPI-paketet är installerat. Din session har startats utan stöd för hjälpmedelsteknik."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "Omslag för AT SPI-registret"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Hjälp för GNOME-inställningsdemon"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -93,8 +81,73 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Denna session loggar in dig i GNOME"
 
+#: ../data/gnome-session.schemas.in.in.h:1
+msgid "Default session"
+msgstr "Standardsession"
+
+#: ../data/gnome-session.schemas.in.in.h:2
+msgid "File Manager"
+msgstr "Filhanterare"
+
+#: ../data/gnome-session.schemas.in.in.h:3
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "Om detta är aktiverat kommer gnome-session att fråga användaren innan en session avslutas."
+
+#: ../data/gnome-session.schemas.in.in.h:4
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Om detta är aktiverat kommer gnome-session att spara sessionen automatiskt."
+
+# SUN NEW TRANSLATION
+#
+# Sun vill ha "applikationer" här
+# Jag vill ha "program"
+#
+#: ../data/gnome-session.schemas.in.in.h:5
+msgid "List of applications that are part of the default session."
+msgstr "Lista över program som är en del av standardsessionen."
+
+#: ../data/gnome-session.schemas.in.in.h:6
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
+msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required_components\".) Inställningsverktyget Uppstartsprogram kommer vanligtvis inte att tillåta användare att ta bort en nödvändig komponent från sessionen, och sessionshanterare kommer automatiskt att lägga tillbaka till de nödvändiga komponenterna till sessionen vid inloggning om de blir borttagna."
+
+#: ../data/gnome-session.schemas.in.in.h:7
+msgid "Logout prompt"
+msgstr "Utloggningsfråga"
+
+#: ../data/gnome-session.schemas.in.in.h:8
+msgid "Panel"
+msgstr "Panel"
+
+#: ../data/gnome-session.schemas.in.in.h:9
+msgid "Required session components"
+msgstr "Nödvändiga sessionskomponenter"
+
+#: ../data/gnome-session.schemas.in.in.h:10
+msgid "Save sessions"
+msgstr "Spara sessioner"
+
+#: ../data/gnome-session.schemas.in.in.h:11
+msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
+msgstr "Filhanteraren tillhandahåller skrivbordsikoner och låter dig interagera med dina sparade filer."
+
+#: ../data/gnome-session.schemas.in.in.h:12
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Antalet minuters inaktivitet innan sessionen anses vara overksam."
+
+#: ../data/gnome-session.schemas.in.in.h:13
+msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
+msgstr "Panelen tillhandahåller raden på övre eller nedre delen av skärmen och innehåller menyer, fönsterlistan, statusikoner, klockan, etc."
+
+#: ../data/gnome-session.schemas.in.in.h:14
+msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
+msgstr "Fönsterhanteraren är det program som ritar upp titellisten och ramar runt fönster samt låter dig flytta och ändra storlek på fönster."
+
+#: ../data/gnome-session.schemas.in.in.h:15
+msgid "Time before session is considered idle"
+msgstr "Tid innan sessionen anses vara overksam"
+
+#: ../data/gnome-session.schemas.in.in.h:16
 #: ../data/gnome-wm.desktop.in.in.h:1
-#: ../data/gnome-session.schemas.in.in.h:20
 msgid "Window Manager"
 msgstr "Fönsterhanterare"
 
@@ -276,71 +329,71 @@ msgstr "Lås skärmen"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../gnome-session/gsm-logout-dialog.c:269
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Du kommer automatiskt att loggas ut om %d sekund."
 msgstr[1] "Du kommer automatiskt att loggas ut om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:277
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Systemet kommer automatiskt att stängas av om %d sekund."
 msgstr[1] "Systemet kommer automatiskt att stängas av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:309
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Du är för närvarande inloggad som \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Logga ut ur detta system nu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Växla användare"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Stäng av detta system nu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "Vä_nteläge"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "Vilolä_ge"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "Starta _om"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "St_äng av"
 
-#: ../gnome-session/gsm-manager.c:1136
-#: ../gnome-session/gsm-manager.c:1828
+#: ../gnome-session/gsm-manager.c:1214
+#: ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Svarar inte"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1189
 msgid "This program is blocking log out."
 msgstr "Detta program blockerar en utloggning."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas av\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
@@ -351,33 +404,25 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:438
 msgid "GConf key used to lookup default session"
 msgstr "GConf-nyckeln som används för att slå upp standardsessionen"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME-startbild"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME-startbild"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -425,87 +470,44 @@ msgstr "Kunde inte ansluta till sessionshanteraren"
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Standardsession"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "Filhanterare"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Om detta är aktiverat kommer gnome-session att fråga användaren innan en session avslutas."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid "If enabled, gnome-session will save the session automatically. Otherwise, the logout dialog will have an option to save the session."
-msgstr "Om detta är aktiverat kommer gnome-session att spara sessionen automatiskt. Annars kommer utloggningsdialogen att ha ett alternativ för att spara sessionen."
-
-# SUN NEW TRANSLATION
-#
-# Sun vill ha "applikationer" här
-# Jag vill ha "program"
-#
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "Lista över program som är en del av standardsessionen."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
-msgstr "Lista över komponenter som är nödvändiga som en del av sessionen. (Varje element namnger en nyckel under \"/desktop/gnome/session/required_components\".) Inställningsverktyget Uppstartsprogram kommer vanligtvis inte att tillåta användare att ta bort en nödvändig komponent från sessionen, och sessionshanterare kommer automatiskt att lägga tillbaka till de nödvändiga komponenterna till sessionen vid inloggning om de blir borttagna."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Utloggningsfråga"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Panel"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Föredragen bild att använda som startbild vid inloggning"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Required session components"
-msgstr "Nödvändiga sessionskomponenter"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid "Save sessions"
-msgstr "Spara sessioner"
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Visa startbilden"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Visa startbilden då sessionen startar"
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
-msgstr "Filhanteraren tillhandahåller skrivbordsikoner och låter dig interagera med dina sparade filer."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid "The number of minutes of inactivity before the session is considered idle."
-msgstr "Antalet minuters inaktivitet innan sessionen anses vara overksam."
-
-#: ../data/gnome-session.schemas.in.in.h:16
-msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
-msgstr "Panelen tillhandahåller raden på övre eller nedre delen av skärmen och innehåller menyer, fönsterlistan, statusikoner, klockan, etc."
-
-#: ../data/gnome-session.schemas.in.in.h:17
-msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
-msgstr "Fönsterhanteraren är det program som ritar upp titellisten och ramar runt fönster samt låter dig flytta och ändra storlek på fönster."
-
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-directories and image names are valid values. Changing this value will effect the next session login."
-msgstr "Detta är en relativ sökväg som baseras på katalogen $datadir/pixmaps/. Giltiga värden är underkataloger och bildnamn. Att ändra detta värde kommer att påverka nästa sessionsinloggning."
-
-#: ../data/gnome-session.schemas.in.in.h:19
-msgid "Time before session is considered idle"
-msgstr "Tid innan sessionen anses vara overksam"
-
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "Hjälp för GNOME-inställningsdemon"
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "Om detta är aktiverat kommer gnome-session att spara sessionen "
+#~ "automatiskt. Annars kommer utloggningsdialogen att ha ett alternativ för "
+#~ "att spara sessionen."
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Föredragen bild att använda som startbild vid inloggning"
+#~ msgid "Show the splash screen"
+#~ msgstr "Visa startbilden"
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Visa startbilden då sessionen startar"
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "Detta är en relativ sökväg som baseras på katalogen $datadir/pixmaps/. "
+#~ "Giltiga värden är underkataloger och bildnamn. Att ändra detta värde "
+#~ "kommer att påverka nästa sessionsinloggning."
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- GNOME-startbild"
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME-startbild"
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "Stöd för hjälpmedelsteknik har begärts för den här sessionen, men "
+#~ "hjälpmedelsregistret hittades inte. Kontrollera att AT-SPI-paketet är "
+#~ "installerat. Din session har startats utan stöd för hjälpmedelsteknik."
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "Omslag för AT SPI-registret"
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "Namnet för uppstartsprogrammet får inte vara tomt"
 #~ msgid "Sessions Preferences"
