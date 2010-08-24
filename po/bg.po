@@ -1,11 +1,11 @@
 # Bulgarian translation of gnome-session po-file.
-# Copyright (C) 2001, 2002, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
-# Alexander Shopov <ash@contact.bg>, 2002, 2005, 2006, 2007, 2009.
-# Vladimir  Petkov <vpetkov@i-space.org>, 2004
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
+# Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004
-# Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2005.
 # Yavor Doganov <yavor@gnu.org>, 2008.
 #
 #
@@ -13,10 +13,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-14 08:19+0300\n"
-"PO-Revision-Date: 2009-08-14 08:19+0300\n"
-"Last-Translator: Alexander Shopov <ash@contact.bg>\n"
+"POT-Creation-Date: 2010-08-24 15:06+0300\n"
+"PO-Revision-Date: 2010-08-24 15:06+0300\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,32 +67,13 @@ msgstr "Без име"
 msgid "No description"
 msgstr "Без описание"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Версията на тази програма"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Документът от помощта не може да бъде показан"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"За тази сесия са поискани помощни технологии, но не е открит регистър за "
-"тях. Проверете дали пакетът AT-SPI е инсталиран. Сесията ви е стартирана без "
-"поддръжка на помощни технологии."
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "Обвивка на регистъра на AT SPI"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Помощна програма за демона на настройките на GNOME"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -114,13 +96,8 @@ msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Ако е включено, gnome-session ще предупреди преди да приключи сесия."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Ако е включено, gnome-session ще запазва сесията автоматично. В противен "
-"случай диалогът при излизане от средата ще дава възможност за запазване на "
-"сесията."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Ако е включено, gnome-session автоматично ще запазва сесията."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -150,27 +127,14 @@ msgid "Panel"
 msgstr "Панел"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr ""
-"Предпочитаното изображение, което да се показва при зареждането на GNOME."
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Необходими компоненти на сесията"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Запазване на сесиите"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Показване на изображение по време на зареждането на GNOME"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Показване на прозореца при зареждането в началото на сесията"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -178,14 +142,14 @@ msgstr ""
 "Файловият мениджър осигурява иконите на работната среда и позволява да "
 "взаимодействате със запазените файлове."
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Време на бездействие в минути, след което цялата сесията се счита за "
 "бездействаща."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -193,7 +157,7 @@ msgstr ""
 "Панелът осигурява лентите горе и долу на екрана, които съдържат менюта, "
 "списък с прозорци, икони за състояние, часовник и т.н."
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -201,21 +165,11 @@ msgstr ""
 "Мениджърът на прозорци е програмата, която рисува заглавната лента и рамките "
 "около прозорците и ви позволява да ги местите и оразмерявате."
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Това е относителен път на базата на папката $datadir/pixmaps/. Валидни имена "
-"са подпапки и имена на изображения. Промяната на тази стойност ще е валидна "
-"за следващото влизане в системата."
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "Време за обявяване на сесия за бездействаща"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Мениджър на прозорци"
 
@@ -405,66 +359,66 @@ msgstr "Заключване на екрана"
 msgid "Cancel"
 msgstr "Отказ"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Ще излезете от системата автоматично след %d секунда."
 msgstr[1] "Ще излезете от системата автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Компютърът ще се изключи автоматично след %d секунда."
 msgstr[1] "Компютърът ще се изключи автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "В момента сте влезли като „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Излизане от системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Изключване на системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Дълбоко приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_Рестартиране"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
-#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Не отговаря"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1189
 msgid "This program is blocking log out."
 msgstr "Тази програма блокира излизането."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -472,7 +426,7 @@ msgstr ""
 "Отхвърляне на свързванията с нови клиенти, защото тази сесия в момента се "
 "затваря\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Неуспех при създаването на гнездо на ICE за слушане: %s"
@@ -485,33 +439,25 @@ msgstr ""
 "Неуспех при стартирането на входната сесия (и неуспех при свързването с X "
 "сървъра)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:438
 msgid "GConf key used to lookup default session"
 msgstr "Ключ на GConf за стандартната сесия"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "— изображение по време на зареждане на GNOME"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "Изображение по време на зареждане на GNOME"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
