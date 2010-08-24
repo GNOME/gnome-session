@@ -6,16 +6,17 @@
 # Maintainer: Данило Шеган <danilo@gnome.org>
 # Reviewed on 2005-07-10 by Данило Шеган <danilo@gnome.org>
 # Translated on 2006-01-30 by: Слободан Д. Средојевић <slobo@akrep.be>
+# Милош Поповић <gpopac@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-12-14 20:30+0000\n"
-"PO-Revision-Date: 2010-03-22 23:47+0100\n"
-"Last-Translator: Горан Ракић <grakic@devbase.net>\n"
-"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
+"POT-Creation-Date: 2010-08-02 11:43+0000\n"
+"PO-Revision-Date: 2010-08-23 21:46+0200\n"
+"Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
+"Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,17 +67,13 @@ msgstr "Без имена"
 msgid "No description"
 msgstr "Без описа"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Издање овог програма"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Не могу да прикажем документ за помоћ"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Помоћник услужног програма за Гномове поставке"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -100,12 +97,10 @@ msgstr ""
 "Уколико је укључено, gnome-session ће питати корисника пре окончања сесије."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Уколико је укључено, gnome-session ће сам снимати сесију. Иначе, прозорче за "
-"одјаву ће садржати могућност снимања сесије."
+#| msgid ""
+#| "If enabled, gnome-session will prompt the user before ending a session."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Уколико је укључено, Гномова сесија ће бити сама сачувана."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -135,26 +130,14 @@ msgid "Panel"
 msgstr "Панел"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Слика која ће се приказивати при пријави"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Потребни делови сесије"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Сачувај сесије"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Прикажи поздравни екран при пријави"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Прикажи поздравни екран по покретању сесије"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -162,12 +145,12 @@ msgstr ""
 "Управник датотекама истиче иконице на радној површи и омогућава рад са "
 "сачуваним датотекама."
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Број минута након којих се сесија сматра неактивном."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -175,7 +158,7 @@ msgstr ""
 "Панел поставља линију на врх или дно радне површи која садржи меније, списак "
 "прозора, обавештајне иконице, сат и друго."
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -183,21 +166,11 @@ msgstr ""
 "Управник прозорима исцртава насловну линију и оквире прозора и омогућава "
 "померање и промену величине прозора."
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Ово је релативна путања у односу на директоријум $datadir/pixmaps/. "
-"Поддиректоријуми и имена слика су дозвољене вредности. Измена ове вредности "
-"ће утицати на наредну пријаву у сесију."
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "Време након кога је сесија неактивна"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Управник прозора"
 
@@ -389,7 +362,7 @@ msgstr "Закључај екран"
 msgid "Cancel"
 msgstr "Откажи"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -398,7 +371,7 @@ msgstr[1] "Бићете одјављени у року од %d секунде."
 msgstr[2] "Бићете одјављени у року од %d секунди."
 msgstr[3] "Бићете одјављени у року од %d секунде."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -407,58 +380,58 @@ msgstr[1] "Рачунар ће се сам искључити за %d секун
 msgstr[2] "Рачунар ће се сам искључити за %d секунди."
 msgstr[3] "Рачунар ће се сам искључити за једну секунду."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Пријављени сте као „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Да ли да се одјавим са система?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "Промени _корисника"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Одјави се"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Да ли да искључим рачунар?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Обустави рад"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Замрзни"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_Поново покрени"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Искључи"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Не даје одзив"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
+#: ../gnome-session/gsm-xsmp-client.c:1189
 msgid "This program is blocking log out."
 msgstr "Овај програм онемогућава одјаву."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Одбацујем везу са новим клијентом јер је у току гашење сесије.\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим ICE сокет: %s"
@@ -470,33 +443,25 @@ msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Не могу да покренем пријавну сесију (и не могу да се повежем на X сервер)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Заобиђи стандардне директоријуме са програмима по учитаваљу"
 
-#: ../gnome-session/main.c:434
+#: ../gnome-session/main.c:438
 msgid "GConf key used to lookup default session"
 msgstr "ГКонф кључ са поставком подразумеване сесије"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Омогући код за уклањање грешака"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Не учитавај програме које је задао корисник"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "— Гномов управник сесијама"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "— Гномов поздравни екран"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "Гномов поздравни екран"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -542,6 +507,40 @@ msgstr "Не може се повезати са управљачем сесиј
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Програм је позван са несагласним могућностима"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "Помоћник услужног програма за Гномове поставке"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "Уколико је укључено, gnome-session ће сам снимати сесију. Иначе, прозорче "
+#~ "за одјаву ће садржати могућност снимања сесије."
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Слика која ће се приказивати при пријави"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Прикажи поздравни екран при пријави"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Прикажи поздравни екран по покретању сесије"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "Ово је релативна путања у односу на директоријум $datadir/pixmaps/. "
+#~ "Поддиректоријуми и имена слика су дозвољене вредности. Измена ове "
+#~ "вредности ће утицати на наредну пријаву у сесију."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "— Гномов поздравни екран"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "Гномов поздравни екран"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "Име програма за покретање по пријави не може бити празно"
@@ -719,8 +718,8 @@ msgstr "Програм је позван са несагласним могућ�
 
 #~ msgid ""
 #~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
+#~ "GNOME bug. Please include this ICE failure message in the bug report:  "
+#~ "'%s'.  Meanwhile you could try logging in using the failsafe session."
 #~ msgstr ""
 #~ "Гномов управљач сесије не може исправно да се покрене.  Молим пријави ово "
 #~ "као грешку у Гному. Укључи и ову поруку о ICE грешци у извештају:  „%s“.У "
