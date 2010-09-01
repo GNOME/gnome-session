@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-25 17:39+0100\n"
+"POT-Creation-Date: 2010-09-01 09:29+0100\n"
 "PO-Revision-Date: 2009-02-23 19:20+0000\n"
 "Last-Translator: Philip Withnall <philip@tecnocode.co.uk>\n"
 "Language-Team: British English <en@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,10 +69,6 @@ msgstr "Version of this application"
 msgid "Could not display help document"
 msgstr "Could not display help document"
 
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME Settings Daemon Helper"
-
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
@@ -90,15 +87,12 @@ msgstr "File Manager"
 
 #: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"If enabled, gnome-session will prompt the user before ending a session."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialogue will have an option to save the session."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "If enabled, gnome-session will save the session automatically."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -129,70 +123,48 @@ msgid "Panel"
 msgstr "Panel"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Preferred Image to use for login splash screen"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Required session components"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Save sessions"
 
+#: ../data/gnome-session.schemas.in.in.h:11
+msgid ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+msgstr ""
+"The file manager provides the desktop icons and allows you to interact with "
+"your saved files."
+
 #: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Show the splash screen"
+msgid ""
+"The number of minutes of inactivity before the session is considered idle."
+msgstr ""
+"The number of minutes of inactivity before the session is considered idle."
 
 #: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Show the splash screen when the session starts up"
+msgid ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
+msgstr ""
+"The panel provides the bar at the top or bottom of the screen containing "
+"menus, the window list, status icons, the clock, etc."
 
 #: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 msgstr ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 
 #: ../data/gnome-session.schemas.in.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"The number of minutes of inactivity before the session is considered idle."
-
-#: ../data/gnome-session.schemas.in.in.h:16
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-
-#: ../data/gnome-session.schemas.in.in.h:17
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-
-#: ../data/gnome-session.schemas.in.in.h:19
 msgid "Time before session is considered idle"
 msgstr "Time before session is considered idle"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Window Manager"
 
@@ -202,8 +174,8 @@ msgstr "<b>Some programs are still running:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -221,7 +193,7 @@ msgid "Additional startup _programs:"
 msgstr "Additional startup _programs:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+msgid "Browse…"
 msgstr "Browse…"
 
 #: ../data/session-properties.ui.h:3
@@ -354,7 +326,7 @@ msgid "Switch User Anyway"
 msgstr "Switch User Anyway"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Log Out Anyway"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -366,7 +338,7 @@ msgid "Hibernate Anyway"
 msgstr "Hibernate Anyway"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Shut Down Anyway"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -381,63 +353,63 @@ msgstr "Lock Screen"
 msgid "Cancel"
 msgstr "Cancel"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "You will be automatically logged out in %d second."
 msgstr[1] "You will be automatically logged out in %d seconds."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "This system will be automatically shut down in %d second."
 msgstr[1] "This system will be automatically shut down in %d seconds."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "You are currently logged in as \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Log out of this system now?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Switch User"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Log Out"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Shut down this system now?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "S_uspend"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Hibernate"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_Restart"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Shut Down"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Not responding"
 
 #: ../gnome-session/gsm-xsmp-client.c:1189
-msgid "This program is blocking log out."
+msgid "This program is blocking logout."
 msgstr "This program is blocking logout."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
@@ -464,7 +436,7 @@ msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
 #: ../gnome-session/main.c:438
-msgid "GConf key used to lookup default session"
+msgid "GConf key used to look up default session"
 msgstr "GConf key used to look up default session"
 
 #: ../gnome-session/main.c:439
@@ -478,14 +450,6 @@ msgstr "Do not load user-specified applications"
 #: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME Splash Screen"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME Splash Screen"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -531,6 +495,47 @@ msgstr "Could not connect to the session manager"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Program called with conflicting options"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "GNOME Settings Daemon Helper"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialogue will have an option to save the session."
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Preferred Image to use for login splash screen"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Show the splash screen"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Show the splash screen when the session starts up"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Waiting for the program to finish.  Interrupting the program may cause "
+#~ "you to lose work."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- GNOME Splash Screen"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME Splash Screen"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "The name of the startup program cannot be empty"
@@ -714,12 +719,12 @@ msgstr "Program called with conflicting options"
 
 #~ msgid ""
 #~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
+#~ "GNOME bug. Please include this ICE failure message in the bug report:  "
+#~ "'%s'.  Meanwhile you could try logging in using the failsafe session."
 #~ msgstr ""
 #~ "The GNOME session manager cannot start properly.  Please report this as a "
-#~ "GNOME bug. Please include this ICE failure message in the bug report:  '%"
-#~ "s'.  Meanwhile you could try logging in using the failsafe session."
+#~ "GNOME bug. Please include this ICE failure message in the bug report:  "
+#~ "'%s'.  Meanwhile you could try logging in using the failsafe session."
 
 #~ msgid ""
 #~ "The GNOME session manager was unable to lock the file '%s'.  Please "
