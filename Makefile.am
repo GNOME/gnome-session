@@ -9,6 +9,10 @@ SUBDIRS =			\
 
 ACLOCAL_AMFLAGS = -I m4
 
+EXTRA_DIST =                    \
+        HACKING                 \
+        MAINTAINERS
+
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \
 	$(srcdir)/aclocal.m4 \
