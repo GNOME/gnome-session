@@ -7,7 +7,7 @@ test -z "$srcdir" && srcdir=.
 PKG_NAME="GNOME Desktop Session Manager"
 REQUIRED_AUTOMAKE_VERSION=1.9
 
-(test -f $srcdir/configure.in \
+(test -f $srcdir/configure.ac \
   && test -d $srcdir/gnome-session) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
