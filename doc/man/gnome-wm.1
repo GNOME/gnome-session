@@ -1,38 +1,51 @@
-.\" 
+.\"
 .\" gnome-wm manual page.
 .\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\" (C) 2009-2010 Vincent Untz (vuntz@gnome.org)
 .\"
 .TH GNOME-WM 1 "GNOME"
 .SH NAME
-gnome-wm \- Launches the user selected window manager for the GNOME
-session
+gnome-wm \- Start the window manager configured by the user
 .SH SYNOPSIS
 .PP
-.B gnome-wm [--default-wm windowmanager] [--sm-client-id id]
+.B gnome-wm [--default-wm=WINDOWMANAGER] [--sm-client-id=ID]
 .SH DESCRIPTION
-The \fIgnome-wm\fP script invokes the user selected window manager.
-If the user has not chosen a window manager it will launch a
+The \fIgnome-wm\fP program starts the window manager configured by the
+user. If the user has not chosen a window manager it will launch a
 GNOME compliant window manager.
 .PP
-The user can overwrite the selection of a window manager by setting
-the 
-.B WINDOW_MANAGER
-environment variable.  If a \fB--default-wm\fP option is given the script uses
-that window manager in case
-.B WINDOW_MANAGER
-is not set.
+The user can define his preferred window manager with the
+\fB/desktop/gnome/session/required_components/windowmanager\fP GConf
+key. The value of this key should be the name of the desktop file of the
+desired window manager, without its \fB.desktop\fP extension. If this
+key is set to \fIgnome-wm\fP, then \fIgnome-wm\fP will simply look for
+an appropriate window manager. The user can also override the selection
+of a window manager by setting the \fBWINDOW_MANAGER\fP environment
+variable.
 .PP
-The script takes the \fB--sm-client-id\fP option and translates the id to an
-appropriate option depending on which window manager was selected.
+If the \fB--default-wm\fP option is used, \fIgnome-wm\fP will use
+\fIWINDOWMANAGER\fP as window manager if the \fBWINDOW_MANAGER\fP
+environment variable is not set and if the
+\fB/desktop/gnome/session/required_components/windowmanager\fP GConf
+key does not define a specific window manager, or if the configured
+window manager cannot be found.
 .PP
-
+The \fB--sm-client-id\fP option is translated to an appropriate option
+depending on which window manager will be started.
+.SH OPTIONS
+The following options are supported:
+.TP
+.I --default-wm=WINDOWMANAGER
+Define the default window manager to start if no window manager is
+configured, or if the configured window manager cannot be found.
+.TP
+.I --sm-client-id=ID
+Specify the session management \fIID\fP when connecting to the session manager.
 .SH ENVIRONMENT
-The \fIgnome-wm\fP program uses the value of the
-.B WINDOW_MANAGER 
-environment variable to let the user override the configured window
-manager. 
-.SH SEE ALSO
-.BR gnome-session(1)
+\fIgnome-wm\fP uses the value of the \fBWINDOW_MANAGER\fP environment
+variable to let the user override the configured window manager.
 .SH BUGS
 If you find bugs in the \fIgnome-wm\fP program, please report
-these on http://bugzilla.gnome.org.
+these on https://bugzilla.gnome.org.
+.SH SEE ALSO
+.BR gnome-session(1)
