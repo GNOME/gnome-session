@@ -11,18 +11,18 @@
 # Jochen Skulj <jochen@jochenskulj.de>, 2006.
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Mario Blättermann <mariobl@gnome.org>, 2008, 2010.
-# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2009.
+# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2010-07-15 12:56+0000\n"
-"PO-Revision-Date: 2010-07-18 18:35+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"POT-Creation-Date: 2010-09-12 13:10+0000\n"
+"PO-Revision-Date: 2010-09-12 15:44+0200\n"
+"Last-Translator: Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
+"Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -112,8 +112,8 @@ msgstr "Liste der Anwendungen, die Teil der Standardsitzung sind."
 msgid ""
 "List of components that are required as part of the session. (Each element "
 "names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to remove "
-"a required component from the session, and the session manager will "
+"Startup Applications preferences tool will not normally allow users to "
+"remove a required component from the session, and the session manager will "
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
@@ -133,26 +133,14 @@ msgid "Panel"
 msgstr "Das Panel"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Bevorzugtes Bild für das Begrüßungsfenster nach dem Anmelden"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Benötigte Sitzungskomponenten"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Sitzungen speichern"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Den Begrüßungsbildschirm anzeigen"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Beim Sitzungsstart den Begrüßungsbildschirm anzeigen"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -161,12 +149,12 @@ msgstr ""
 "gespeicherte Dateien zu verwalten."
 
 # Übersetzung wie in gnome-screensaver
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "Die Anzahl inaktiver Minuten bis der Benutzer als untätig gilt."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -174,31 +162,21 @@ msgstr ""
 "Das Panel stellt die Leisten am oberen und unteren Bildschirmrand bereit, "
 "welche die Menüs, die Fensterliste, Statussymbole, die Uhr usw. beinhalten."
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
-"The window manager is the program that draws the title bar and borders around "
-"windows, and allows you to move and resize windows."
+"The window manager is the program that draws the title bar and borders "
+"around windows, and allows you to move and resize windows."
 msgstr ""
 "Der Fenstermanager ist das Programm, welches die Titelleiste und die Ränder "
 "der Fenster zeichnet, sowie das Bewegen und die Änderung der Größe der "
 "Fenster erlaubt."
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will affect "
-"the next session login."
-msgstr ""
-"Dies ist ein relativer Pfad basierend auf dem Ordner »$datadir/pixmaps/«. "
-"Unterordner und Bildnamen sind gültige Werte. Die Änderung dieses Werts wird "
-"bei der nächsten Sitzungsanmeldung wirksam."
-
 # Übersetzung wie in gnome-screensaver
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "Zeitdauer ab der die Sitzung als untätig gilt"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Fenstermanager"
 
@@ -208,15 +186,16 @@ msgstr "<b>Einige Anwendungen laufen noch:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
-"Warten auf das Beenden der Anwendung. Durch Abbruch der Anwendung könnten "
-"Änderungen verlorengehen."
+"Warten auf Beenden der Anwendung. Durch Abbruch der Anwendung könnten "
+"Änderungen verloren gehen."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
-msgstr "Wählen Sie, welche Anwendungen gestartet werden, wenn Sie sich anmelden"
+msgstr ""
+"Wählen Sie, welche Anwendungen gestartet werden, wenn Sie sich anmelden"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
@@ -227,7 +206,7 @@ msgid "Additional startup _programs:"
 msgstr "_Zusätzliche Startprogramme:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+msgid "Browse…"
 msgstr "Durchsuchen …"
 
 #: ../data/session-properties.ui.h:3
@@ -349,18 +328,18 @@ msgstr "Einige Anwendungen laufen noch:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:671
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you to "
-"lose work."
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
 msgstr ""
-"Warten auf das Beenden der Anwendungen. Durch Abbruch der Anwendungen könnten "
-"Änderungen verlorengehen."
+"Warten auf das Beenden der Anwendungen. Durch Abbruch der Anwendungen "
+"könnten Änderungen verlorengehen."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Trotzdem Benutzer wechseln"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Trotzdem abmelden"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -372,7 +351,7 @@ msgid "Hibernate Anyway"
 msgstr "Trotzdem in Ruhezustand gehen"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Trotzdem ausschalten"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -443,16 +422,16 @@ msgid "Not responding"
 msgstr "Keine Antwort"
 
 #: ../gnome-session/gsm-xsmp-client.c:1189
-msgid "This program is blocking log out."
-msgstr "Diese Anwendung blockiert die Abmeldung."
+msgid "This program is blocking logout."
+msgstr "Dieses Programm blockiert die Abmeldung."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"Neue Client-Verbindung wurde abgelehnt, weil die aktuelle Sitzung gegenwärtig "
-"beendet wird\n"
+"Neue Client-Verbindung wurde abgelehnt, weil die aktuelle Sitzung "
+"gegenwärtig beendet wird\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
@@ -471,8 +450,8 @@ msgid "Override standard autostart directories"
 msgstr "Überschreiben vorgegebener Autostart-Ordner"
 
 #: ../gnome-session/main.c:438
-msgid "GConf key used to lookup default session"
-msgstr "GConf-Schlüssel zum Neustart der Standardsitzung"
+msgid "GConf key used to look up default session"
+msgstr "GConf-Schlüssel zum Erfragen der Standardsitzung"
 
 #: ../gnome-session/main.c:439
 msgid "Enable debugging code"
@@ -485,14 +464,6 @@ msgstr "Keine benutzerspezifischen Anwendungen laden"
 #: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr " - Die GNOME-Sitzung verwalten"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- Den Begrüßungsbildschirm anzeigen"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME-Begrüßungsbildschirm"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -539,6 +510,37 @@ msgstr "Sitzungsmanager konnte nicht kontaktiert werden"
 msgid "Program called with conflicting options"
 msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Bevorzugtes Bild für das Begrüßungsfenster nach dem Anmelden"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Den Begrüßungsbildschirm anzeigen"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Beim Sitzungsstart den Begrüßungsbildschirm anzeigen"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will affect the next session login."
+#~ msgstr ""
+#~ "Dies ist ein relativer Pfad basierend auf dem Ordner »$datadir/pixmaps/«. "
+#~ "Unterordner und Bildnamen sind gültige Werte. Die Änderung dieses Werts "
+#~ "wird bei der nächsten Sitzungsanmeldung wirksam."
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Warten auf das Beenden der Anwendung. Durch Abbruch der Anwendung könnten "
+#~ "Änderungen verlorengehen."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- Den Begrüßungsbildschirm anzeigen"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME-Begrüßungsbildschirm"
+
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "GNOME-Einstellungen-Dienst-Helfer"
 
@@ -546,8 +548,8 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ "If enabled, gnome-session will save the session automatically. Otherwise, "
 #~ "the logout dialog will have an option to save the session."
 #~ msgstr ""
-#~ "Soll gnome-session die Sitzung automatisch speichern? Andernfalls wird dem "
-#~ "Abmeldedialog eine Option hinzugefügt, mit dem die Sitzung manuell "
+#~ "Soll gnome-session die Sitzung automatisch speichern? Andernfalls wird "
+#~ "dem Abmeldedialog eine Option hinzugefügt, mit dem die Sitzung manuell "
 #~ "gespeichert werden kann."
 
 #~ msgid "The name of the startup program cannot be empty"
@@ -575,8 +577,8 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 
 #~ msgid ""
 #~ "This is the option that will be selected in the logout dialog, valid "
-#~ "values are \"logout\" for logging out, \"shutdown\" for halting the system "
-#~ "and \"restart\" for restarting the system."
+#~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
+#~ "system and \"restart\" for restarting the system."
 #~ msgstr ""
 #~ "Dies ist die Option die automatisch im Abmeldedialog ausgewählt wird. "
 #~ "Gültige Werte sind »logout« (Benutzer abmelden), »shutdown« (Rechner "
@@ -620,9 +622,10 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ msgstr ""
 #~ "Aus Sicherheitsgründen horcht gnome-session auf Plattformen, die "
 #~ "»_IceTcpTransNoListen()« unterstützen (XFree86-Systeme) an TCP-Ports nicht "
-#~ "nach Verbindungen. Dieser Schlüssel legt fest, ob (legitimierten) Rechnern "
-#~ "dennoch der Verbindungsaufbau gestattet werden soll. gnome-session muss "
-#~ "neu gestartet werden, damit eine Änderung an diesem Schlüssel wirksam wird."
+#~ "nach Verbindungen. Dieser Schlüssel legt fest, ob (legitimierten) "
+#~ "Rechnern dennoch der Verbindungsaufbau gestattet werden soll. gnome-"
+#~ "session muss neu gestartet werden, damit eine Änderung an diesem "
+#~ "Schlüssel wirksam wird."
 
 #~ msgid "_Order:"
 #~ msgstr "_Reihenfolge: "
@@ -730,8 +733,8 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ msgstr "PROGRAMM …"
 
 #~ msgid ""
-#~ "You must specify at least one program to remove. You can list the programs "
-#~ "with --list.\n"
+#~ "You must specify at least one program to remove. You can list the "
+#~ "programs with --list.\n"
 #~ msgstr ""
 #~ "Sie müssen mindestens ein Programm angeben dass entfernt werden soll. Sie "
 #~ "können die Programme mit --list auflisten.\n"
@@ -752,14 +755,14 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ msgstr ""
 #~ "Die Sitzungsverwaltung von GNOME konnte nicht richtig gestartet werden. "
 #~ "Bitte melden Sie diesen GNOME-Fehler und schließen Sie die folgenden ICE-"
-#~ "Fehlermeldung in Ihren Fehlerbericht ein: »%s«. Bis auf weiteres können Sie "
-#~ "versuchen sich über die abgesicherte Sitzung anzumelden."
+#~ "Fehlermeldung in Ihren Fehlerbericht ein: »%s«. Bis auf weiteres können "
+#~ "Sie versuchen sich über die abgesicherte Sitzung anzumelden."
 
 #~ msgid ""
-#~ "The GNOME session manager was unable to lock the file '%s'.  Please report "
-#~ "this as a GNOME bug.  Sometimes this error may occur if the file's "
-#~ "directory is unwritable, you could try logging in via the failsafe session "
-#~ "and ensuring that it is."
+#~ "The GNOME session manager was unable to lock the file '%s'.  Please "
+#~ "report this as a GNOME bug.  Sometimes this error may occur if the file's "
+#~ "directory is unwritable, you could try logging in via the failsafe "
+#~ "session and ensuring that it is."
 #~ msgstr ""
 #~ "Die·Sitzungsverwaltung·von·GNOME·konnte·die Datei »%s« nicht sperren."
 #~ "·Bitte·melden·Sie·diesen·GNOME-Fehler. Manchmal tritt dieser Fehler auf, "
@@ -768,9 +771,9 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ "überprüfen ob das Verzeichnis schreibbar ist."
 
 #~ msgid ""
-#~ "The GNOME session manager was unable to read the file: '%s'.  If this file "
-#~ "exists it must be readable by you for GNOME to work properly.  Try logging "
-#~ "in with the failsafe session and removing this file."
+#~ "The GNOME session manager was unable to read the file: '%s'.  If this "
+#~ "file exists it must be readable by you for GNOME to work properly.  Try "
+#~ "logging in with the failsafe session and removing this file."
 #~ msgstr ""
 #~ "Die·Sitzungsverwaltung·von·GNOME·konnte die Datei »%s« nicht lesen. Falls "
 #~ "diese Datei existiert muss sie von Ihnen lesbar sein, damit GNOME "
@@ -782,10 +785,10 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ "GNOME to function properly.  Try logging in with the failsafe session and "
 #~ "removing this file.  Also make sure that the file's directory is writable."
 #~ msgstr ""
-#~ "Die Datei »%s« konnte nicht geschrieben werden. Diese Datei muss schreibbar "
-#~ "sein, damit GNOME ordnungsgemäß funktioniert. Versuchen Sie sich über die "
-#~ "abgesicherte Sitzung anzumelden und die Datei zu löschen. Stellen Sie "
-#~ "außerdem sicher, dass der Dateiordner schreibbar ist."
+#~ "Die Datei »%s« konnte nicht geschrieben werden. Diese Datei muss "
+#~ "schreibbar sein, damit GNOME ordnungsgemäß funktioniert. Versuchen Sie "
+#~ "sich über die abgesicherte Sitzung anzumelden und die Datei zu löschen. "
+#~ "Stellen Sie außerdem sicher, dass der Dateiordner schreibbar ist."
 
 #~ msgid "Are you sure you want to log out?"
 #~ msgstr "Sind Sie sicher, dass Sie sich abmelden wollen?"
@@ -839,7 +842,8 @@ msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
 #~ "Momentanes Datum: <b>%s</b>"
 
 #~ msgid "Failed to launch time configuration tool: %s"
-#~ msgstr "Werkzeug zum Konfigurieren der Uhr konnte nicht gestartet werden: %s"
+#~ msgstr ""
+#~ "Werkzeug zum Konfigurieren der Uhr konnte nicht gestartet werden: %s"
 
 #~ msgid "The computer clock appears to be wrong"
 #~ msgstr "Die Uhr des Computers scheint falsch eingestellt zu sein"
