@@ -18,10 +18,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-30 17:45+0200\n"
-"PO-Revision-Date: 2010-03-30 17:45+0200\n"
+"POT-Creation-Date: 2010-09-12 15:08+0200\n"
+"PO-Revision-Date: 2010-09-12 15:08+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,10 +80,6 @@ msgstr "Versie van deze toepassing"
 msgid "Could not display help document"
 msgstr "Kon hulpdocument niet weergeven"
 
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Hulptoepassing voor de Gnome-instellingenvoorziening"
-
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "Gnome"
@@ -106,13 +103,8 @@ msgstr ""
 "sessie te beëindigen."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Wanneer dit aanstaat zal gnome-sessie een sessie automatisch opslaan. Als "
-"dit uitstaat zal de gebruiker de mogelijkheid tot opslaan hebben in het "
-"afmeld-venster."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Indien ingeschakeld zal gnome-session de sessie automatisch opslaan."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -142,29 +134,15 @@ msgstr "Afmeldvenster"
 msgid "Panel"
 msgstr "Paneel"
 
-# vrij vertaald
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr ""
-"De afbeelding die gebruikt wordt voor het introvenster na het aanmelden"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Vereiste sessiecomponenten"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Sessies opslaan"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Introvenster tonen"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Introvenster tonen wanneer de sessie wordt gestart."
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -172,14 +150,14 @@ msgstr ""
 "Het bestandsbeheer zorgt voor de bureaubladpictogrammen en zorgt dat u met "
 "uw opgeslagen bestanden kunt werken."
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Het aantal minuten inactiviteit voordat de sessie als inactief beschouwd "
 "wordt."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -188,7 +166,7 @@ msgstr ""
 "vensterlijst, statuspictogrammen, de klok, etc."
 
 # een programma .. een titelbalk/het programma .. de titelbalk
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -196,22 +174,11 @@ msgstr ""
 "Het vensterbeheer is het programma dat de titelbalk en vensterranden tekent, "
 "waarmee u vensters kunt verplaatsen en kunt herschalen."
 
-# zijn ook geldig/mogen ook
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Dit is een relatief pad uitgaande van de map \"$datadir/pixmaps/\". "
-"Submappen en namen van afbeeldingen zijn ook geldig. Het wijzigen heeft pas "
-"effect bij de volgende keer dat u zich aanmeldt."
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "Tijd voordat de sessie als inactief beschouwd wordt"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Windowmanager"
 
@@ -221,8 +188,8 @@ msgstr "<b>Er zijn nog actieve toepassingen:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
 "Wachten totdat de toepassing geëindigd is. Het onderbreken van de toepassing "
 "kan er toe leiden dat er werk verloren gaat."
@@ -240,7 +207,7 @@ msgid "Additional startup _programs:"
 msgstr "Extra te starten _programma's:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+msgid "Browse…"
 msgstr "Bladeren…"
 
 #: ../data/session-properties.ui.h:3
@@ -380,7 +347,7 @@ msgid "Switch User Anyway"
 msgstr "Toch gebruiker _wisselen"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Toch afmelden"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -392,7 +359,7 @@ msgid "Hibernate Anyway"
 msgstr "Toch in _slaapstand"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Toch afsluiten"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -407,65 +374,65 @@ msgstr "Beeldscherm vergrendelen"
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Over %d seconde wordt u automatisch afgemeld."
 msgstr[1] "Over %d seconden wordt u automatisch afgemeld."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Over %d seconde wordt de computer automatisch afgesloten."
 msgstr[1] "Over %d seconden wordt de computer automatisch afgesloten."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "U bent momenteel aangemeld onder de naam ‘%s’."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Afmelden bij deze computer?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "Gebruiker _wisselen"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "Af_melden"
 
 # afsluiten/uitschakelen/uitzetten
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Deze computer uitzetten?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Pauzestand"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Slaapstand"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_Herstarten"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Uitzetten"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Reageert niet"
 
 #: ../gnome-session/gsm-xsmp-client.c:1189
-msgid "This program is blocking log out."
-msgstr "Deze toepassing verhindert het uitloggen."
+msgid "This program is blocking logout."
+msgstr "Deze toepassing verhindert het afmelden."
 
 # client-verbinding/verbinding/
 #: ../gnome-session/gsm-xsmp-server.c:325
@@ -493,7 +460,7 @@ msgid "Override standard autostart directories"
 msgstr "Map voor automatisch te starten toepassingen"
 
 #: ../gnome-session/main.c:438
-msgid "GConf key used to lookup default session"
+msgid "GConf key used to look up default session"
 msgstr "GConf-sleutel voor het opzoeken van de standaardsessie"
 
 #: ../gnome-session/main.c:439
@@ -507,14 +474,6 @@ msgstr "Geen toepassingen laden die door de gebruiker opgegeven zijn"
 #: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr " — het Gnome-sessiebeheer"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "— Gnome introvenster"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "Gnome-introvenster"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -561,6 +520,51 @@ msgstr "Kan geen verbinding maken met het sessiebeheer"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Toepassing aangeroepen met conflicterende opties"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "Hulptoepassing voor de Gnome-instellingenvoorziening"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "Wanneer dit aanstaat zal gnome-sessie een sessie automatisch opslaan. Als "
+#~ "dit uitstaat zal de gebruiker de mogelijkheid tot opslaan hebben in het "
+#~ "afmeld-venster."
+
+# vrij vertaald
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr ""
+#~ "De afbeelding die gebruikt wordt voor het introvenster na het aanmelden"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Introvenster tonen"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Introvenster tonen wanneer de sessie wordt gestart."
+
+# zijn ook geldig/mogen ook
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "Dit is een relatief pad uitgaande van de map \"$datadir/pixmaps/\". "
+#~ "Submappen en namen van afbeeldingen zijn ook geldig. Het wijzigen heeft "
+#~ "pas effect bij de volgende keer dat u zich aanmeldt."
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Wachten totdat de toepassing geëindigd is. Het onderbreken van de "
+#~ "toepassing kan er toe leiden dat er werk verloren gaat."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "— Gnome introvenster"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "Gnome-introvenster"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "De opstartopdracht mag niet leeg zijn"
