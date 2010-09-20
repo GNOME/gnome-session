@@ -1,24 +1,15 @@
-NULL =
-
 bin_PROGRAMS = gnome-session-properties
 
-INCLUDES =						\
-	$(WARN_CFLAGS)					\
-	$(DISABLE_DEPRECATED_CFLAGS)			\
+AM_CPPFLAGS =						\
 	$(SESSION_PROPERTIES_CFLAGS)			\
 	$(GCONF_CFLAGS)					\
 	-I$(top_srcdir)/egg				\
 	-I$(top_srcdir)/gnome-session			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"		\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
-	$(NULL)
+	$(DISABLE_DEPRECATED_CFLAGS)
 
-gnome_session_properties_LDADD =			\
-	$(SESSION_PROPERTIES_LIBS)			\
-	$(top_builddir)/egg/libeggdesktopfile.la 	\
-	$(top_builddir)/gnome-session/libgsmutil.la 	\
-	$(GCONF_LIBS)					\
-	$(NULL)
+AM_CFLAGS = $(WARN_CFLAGS)
 
 gnome_session_properties_SOURCES =			\
 	main.c						\
@@ -31,7 +22,12 @@ gnome_session_properties_SOURCES =			\
 	gsp-app-manager.h				\
 	gsp-app-manager.c				\
 	gsp-keyfile.h					\
-	gsp-keyfile.c					\
-	$(NULL)
+	gsp-keyfile.c
+
+gnome_session_properties_LDADD =			\
+	$(SESSION_PROPERTIES_LIBS)			\
+	$(top_builddir)/egg/libeggdesktopfile.la 	\
+	$(top_builddir)/gnome-session/libgsmutil.la 	\
+	$(GCONF_LIBS)
 
 -include $(top_srcdir)/git.mk

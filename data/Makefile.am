@@ -1,20 +1,25 @@
-NULL =
-
 SUBDIRS = icons
+
+bin_SCRIPTS = gnome-wm
 
 uidir = $(pkgdatadir)
 ui_DATA = \
 	session-properties.ui	\
-	gsm-inhibit-dialog.ui	\
-	$(NULL)
-
-@INTLTOOL_DESKTOP_RULE@
+	gsm-inhibit-dialog.ui
 
 xsessiondir = $(datadir)/xsessions
 xsession_in_files = gnome.desktop.in
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_SCHEMAS_RULE@
+desktopdir = $(datadir)/applications
+desktop_in_files = session-properties.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+
+if USE_GNOME_WM
+desktop_in_files += gnome-wm.desktop.in
+endif
+
+@INTLTOOL_DESKTOP_RULE@
 
 schemas_in_in_files = gnome-session.schemas.in.in
 schemas_in_files = $(schemas_in_in_files:.schemas.in.in=.schemas.in)
@@ -23,25 +28,22 @@ schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 
 $(schemas_in_files): $(schemas_in_files).in Makefile
 	$(AM_V_GEN)sed \
-	     -e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
-	     $< > $@
+		-e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
+		$< > $@
 
-bin_SCRIPTS = gnome-wm
+@INTLTOOL_SCHEMAS_RULE@
 
-desktopdir = $(datadir)/applications
-desktop_in_files = session-properties.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-if USE_GNOME_WM
-desktop_in_files += gnome-wm.desktop.in
-endif
-
-install-data-local:
 if GCONF_SCHEMAS_INSTALL
+install-data-local:
 	if test -z "$(DESTDIR)" ; then \
-	for p in $(schemas_DATA) ; do \
-	GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p >&1 > /dev/null; \
-	done \
+		for p in $(schemas_DATA) ; do \
+			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
+		done \
 	fi
+uninstall-local:
+	for p in $(schema_DATA) ; do \
+		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-uninstall-rule $(top_builddir)/data/$$p ; \
+	done
 endif
 
 EXTRA_DIST =					\

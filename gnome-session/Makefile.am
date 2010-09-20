@@ -1,60 +1,14 @@
-NULL =
-
 bin_PROGRAMS = gnome-session
-
 noinst_LTLIBRARIES = libgsmutil.la
-
 noinst_PROGRAMS = 		\
 	test-client-dbus	\
-	test-inhibit		\
-	$(NULL)
+	test-inhibit
 
-INCLUDES =					\
-	$(WARN_CFLAGS)				\
-	$(DISABLE_DEPRECATED_CFLAGS)		\
-	$(SM_CFLAGS)				\
-	$(ICE_CFLAGS)				\
-	$(XEXT_CFLAGS)				\
+AM_CPPFLAGS =					\
 	$(GNOME_SESSION_CFLAGS)			\
-	$(GCONF_CFLAGS)				\
-	-I$(top_srcdir)/egg			\
-	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
-	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
-	-DDBUS_LAUNCH=\"dbus-launch\"		\
-	-DLIBEXECDIR=\"$(libexecdir)\"		\
-	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
-	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"	\
-	-DI_KNOW_THE_DEVICEKIT_POWER_API_IS_SUBJECT_TO_CHANGE
+	$(DISABLE_DEPRECATED_CFLAGS)
 
-test_inhibit_SOURCES = 	\
-	test-inhibit.c	\
-	$(NULL)
-
-test_inhibit_LDADD =				\
-	$(GNOME_SESSION_LIBS)			\
-	$(NULL)
-
-test_client_dbus_SOURCES = 	\
-	test-client-dbus.c	\
-	$(NULL)
-
-test_client_dbus_LDADD =			\
-	$(DBUS_GLIB_LIBS)			\
-	$(NULL)
-
-gnome_session_LDADD =				\
-	libgsmutil.la 				\
-	$(top_builddir)/egg/libeggdesktopfile.la \
-	$(SM_LIBS)				\
-	$(ICE_LIBS)				\
-	$(GNOME_SESSION_LIBS)			\
-	$(GCONF_LIBS)				\
-	$(XRENDER_LIBS)				\
-	$(XTEST_LIBS)				\
-	$(XEXT_LIBS)				\
-	$(EXECINFO_LIBS)			\
-	$(NULL)
+AM_CFLAGS = $(WARN_CFLAGS)
 
 gnome_session_SOURCES =				\
 	gsm-app.h				\
@@ -97,22 +51,54 @@ gnome_session_SOURCES =				\
 	gsm-session-save.c			\
 	gsm-session-save.h			\
 	gsm-xsmp-server.c			\
-	gsm-xsmp-server.h			\
-	$(NULL)
+	gsm-xsmp-server.h
 
-libgsmutil_la_LIBADD = 				\
-	$(GNOME_SESSION_LIBS)
+gnome_session_CPPFLAGS =			\
+	$(AM_CPPFLAGS)				\
+	$(SM_CFLAGS)				\
+	$(ICE_CFLAGS)				\
+	$(XEXT_CFLAGS)				\
+	$(GCONF_CFLAGS)				\
+	-I$(top_srcdir)/egg			\
+	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
+	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
+	-DLIBEXECDIR=\"$(libexecdir)\"		\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
+	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"	\
+	-DI_KNOW_THE_DEVICEKIT_POWER_API_IS_SUBJECT_TO_CHANGE
+
+gnome_session_LDADD =				\
+	libgsmutil.la 				\
+	$(top_builddir)/egg/libeggdesktopfile.la \
+	$(SM_LIBS)				\
+	$(ICE_LIBS)				\
+	$(XRENDER_LIBS)				\
+	$(XTEST_LIBS)				\
+	$(XEXT_LIBS)				\
+	$(GNOME_SESSION_LIBS)			\
+	$(GCONF_LIBS)				\
+	$(EXECINFO_LIBS)
 
 libgsmutil_la_SOURCES =				\
 	gsm-util.c				\
 	gsm-util.h
 
+libgsmutil_la_LIBADD = 				\
+	$(GNOME_SESSION_LIBS)
+
+test_inhibit_SOURCES = test-inhibit.c
+test_inhibit_LDADD = $(GNOME_SESSION_LIBS)
+
+test_client_dbus_SOURCES = test-client-dbus.c
+test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)
+
 gsm-marshal.c: gsm-marshal.list
 	$(AM_V_GEN)echo "#include \"gsm-marshal.h\"" > $@ && \
-	@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --body >> $@
+	$(GLIB_GENMARSHAL) $< --prefix=gsm_marshal --body >> $@
 
 gsm-marshal.h: gsm-marshal.list
-	$(AM_V_GEN)@GLIB_GENMARSHAL@ $< --prefix=gsm_marshal --header > $@
+	$(AM_V_GEN)$(GLIB_GENMARSHAL) $< --prefix=gsm_marshal --header > $@
 
 gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml
@@ -130,31 +116,25 @@ gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
 BUILT_SOURCES =			\
-	gsm-marshal.c           \
-	gsm-marshal.h           \
+	gsm-marshal.c		\
+	gsm-marshal.h		\
 	gsm-manager-glue.h	\
 	gsm-presence-glue.h	\
 	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\
-	gsm-app-glue.h		\
-	$(NULL)
-
-CLEANFILES =					\
-	$(BUILT_SOURCES)
+	gsm-app-glue.h
 
 EXTRA_DIST =						\
 	README						\
-	gsm-marshal.list        			\
+	gsm-marshal.list				\
 	org.gnome.SessionManager.xml			\
 	org.gnome.SessionManager.App.xml		\
 	org.gnome.SessionManager.Client.xml		\
 	org.gnome.SessionManager.ClientPrivate.xml	\
 	org.gnome.SessionManager.Inhibitor.xml		\
-	org.gnome.SessionManager.Presence.xml		\
-	$(NULL)
+	org.gnome.SessionManager.Presence.xml
 
-MAINTAINERCLEANFILES =                  \
-        *~                              \
-        Makefile.in
+CLEANFILES =	\
+	$(BUILT_SOURCES)
 
 -include $(top_srcdir)/git.mk

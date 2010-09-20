@@ -3,15 +3,15 @@ SUBDIRS =			\
 	gnome-session		\
 	capplet			\
 	tools			\
-	po			\
+	data			\
 	doc			\
-	data
+	po
 
 ACLOCAL_AMFLAGS = -I m4
 
-EXTRA_DIST =                    \
-        HACKING                 \
-        MAINTAINERS
+EXTRA_DIST =		\
+	HACKING		\
+	MAINTAINERS
 
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \
