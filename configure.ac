@@ -45,7 +45,7 @@ AC_ARG_WITH([gtk],
      2.0|3.0) ;;
      *) AC_MSG_ERROR([invalid gtk version specified]) ;;
    esac],
-  [with_gtk=2.0])
+  [with_gtk=3.0])
 AC_MSG_RESULT([$with_gtk])
 
 GLIB_REQUIRED=2.16.0
