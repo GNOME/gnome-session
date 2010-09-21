@@ -1130,7 +1130,6 @@ gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
         gtk_container_add (GTK_CONTAINER (content_area), widget);
 
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
-        gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), "system-log-out");
         gtk_window_set_title (GTK_WINDOW (dialog), "");
         g_object_set (dialog,
