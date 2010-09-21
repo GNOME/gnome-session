@@ -389,7 +389,8 @@ pixbuf_get_from_pixmap (Pixmap xpixmap)
 }
 
 static Pixmap
-get_pixmap_for_window (Window window)
+get_pixmap_for_window (Display *display,
+                       Window   window)
 {
         XWindowAttributes        attr;
         XRenderPictureAttributes pa;
@@ -403,9 +404,9 @@ get_pixmap_for_window (Window window)
         int                      width;
         int                      height;
 
-        XGetWindowAttributes (GDK_DISPLAY (), window, &attr);
+        XGetWindowAttributes (display, window, &attr);
 
-        format = XRenderFindVisualFormat (GDK_DISPLAY (), attr.visual);
+        format = XRenderFindVisualFormat (display, attr.visual);
         has_alpha = (format->type == PictTypeDirect && format->direct.alphaMask);
         x = attr.x;
         y = attr.y;
@@ -414,15 +415,15 @@ get_pixmap_for_window (Window window)
 
         pa.subwindow_mode = IncludeInferiors; /* Don't clip child widgets */
 
-        src_picture = XRenderCreatePicture (GDK_DISPLAY (), window, format, CPSubwindowMode, &pa);
+        src_picture = XRenderCreatePicture (display, window, format, CPSubwindowMode, &pa);
 
-        pixmap = XCreatePixmap (GDK_DISPLAY (),
+        pixmap = XCreatePixmap (display,
                                 window,
                                 width, height,
                                 attr.depth);
 
-        dst_picture = XRenderCreatePicture (GDK_DISPLAY (), pixmap, format, 0, 0);
-        XRenderComposite (GDK_DISPLAY (),
+        dst_picture = XRenderCreatePicture (display, pixmap, format, 0, 0);
+        XRenderComposite (display,
                           has_alpha ? PictOpOver : PictOpSrc,
                           src_picture,
                           None,
@@ -438,17 +439,22 @@ get_pixmap_for_window (Window window)
 #endif /* HAVE_COMPOSITE */
 
 static GdkPixbuf *
-get_pixbuf_for_window (guint xid,
-                       int   width,
-                       int   height)
+get_pixbuf_for_window (GdkDisplay *gdkdisplay,
+                       guint       xid,
+                       int         width,
+                       int         height)
 {
         GdkPixbuf *pixbuf = NULL;
 #ifdef HAVE_XRENDER
+        Display   *display;
         Window     xwindow;
         Pixmap     xpixmap;
 
+        display = GDK_DISPLAY_XDISPLAY (gdkdisplay);
         xwindow = (Window) xid;
-        xpixmap = get_pixmap_for_window (xwindow);
+
+        xpixmap = get_pixmap_for_window (display, xwindow);
+
         if (xpixmap == None) {
                 g_debug ("GsmInhibitDialog: Unable to get window snapshot for %u", xid);
                 return NULL;
@@ -460,8 +466,8 @@ get_pixbuf_for_window (guint xid,
 
         if (xpixmap != None) {
                 gdk_error_trap_push ();
-                XFreePixmap (GDK_DISPLAY (), xpixmap);
-                gdk_display_sync (gdk_display_get_default ());
+                XFreePixmap (display, xpixmap);
+                gdk_display_sync (gdkdisplay);
                 gdk_error_trap_pop ();
         }
 
@@ -482,6 +488,7 @@ static void
 add_inhibitor (GsmInhibitDialog *dialog,
                GsmInhibitor     *inhibitor)
 {
+        GdkDisplay     *gdkdisplay;
         const char     *name;
         const char     *icon_name;
         const char     *app_id;
@@ -492,6 +499,8 @@ add_inhibitor (GsmInhibitDialog *dialog,
         char          **search_dirs;
         guint           xid;
         char           *freeme;
+
+        gdkdisplay = gtk_widget_get_display (GTK_WIDGET (dialog));
 
         /* FIXME: get info from xid */
 
@@ -513,7 +522,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         xid = gsm_inhibitor_peek_toplevel_xid (inhibitor);
         g_debug ("GsmInhibitDialog: inhibitor has XID %u", xid);
         if (xid > 0 && dialog->priv->have_xrender) {
-                pixbuf = get_pixbuf_for_window (xid, DEFAULT_SNAPSHOT_SIZE, DEFAULT_SNAPSHOT_SIZE);
+                pixbuf = get_pixbuf_for_window (gdkdisplay, xid, DEFAULT_SNAPSHOT_SIZE, DEFAULT_SNAPSHOT_SIZE);
                 if (pixbuf == NULL) {
                         g_debug ("GsmInhibitDialog: unable to read pixbuf from %u", xid);
                 }
@@ -982,21 +991,26 @@ gsm_inhibit_dialog_constructor (GType                  type,
                                 GObjectConstructParam *construct_properties)
 {
         GsmInhibitDialog *dialog;
+#ifdef HAVE_XRENDER
+        GdkDisplay *gdkdisplay;
+#endif /* HAVE_XRENDER */
 
         dialog = GSM_INHIBIT_DIALOG (G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->constructor (type,
                                                                                                                   n_construct_properties,
                                                                                                                   construct_properties));
 
 #ifdef HAVE_XRENDER
+        gdkdisplay = gdk_display_get_default ();
+
         gdk_error_trap_push ();
-        if (XRenderQueryExtension (GDK_DISPLAY (), &dialog->priv->xrender_event_base, &dialog->priv->xrender_error_base)) {
+        if (XRenderQueryExtension (GDK_DISPLAY_XDISPLAY (gdkdisplay), &dialog->priv->xrender_event_base, &dialog->priv->xrender_error_base)) {
                 g_debug ("GsmInhibitDialog: Initialized XRender extension");
                 dialog->priv->have_xrender = TRUE;
         } else {
                 g_debug ("GsmInhibitDialog: Unable to initialize XRender extension");
                 dialog->priv->have_xrender = FALSE;
         }
-        gdk_display_sync (gdk_display_get_default ());
+        gdk_display_sync (gdkdisplay);
         gdk_error_trap_pop ();
 #endif /* HAVE_XRENDER */
 
