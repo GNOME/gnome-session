@@ -10,17 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&component=general\n"
-"POT-Creation-Date: 2009-10-05 17:50+0000\n"
-"PO-Revision-Date: 2009-10-09 13:44+0400\n"
-"Last-Translator: Anisimov Victor <vicanis@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2010-09-21 19:47+0000\n"
+"PO-Revision-Date: 2010-09-24 08:27+0300\n"
+"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -66,17 +64,14 @@ msgstr "Нет имени"
 msgid "No description"
 msgstr "Нет описания"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Версия этого приложения"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
-msgstr "Не удается отобразить справку"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Помощник демона настроек GNOME"
+msgstr "Не удалось показать документацию"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -96,38 +91,21 @@ msgstr "Менеджер файлов"
 
 #: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Если этот ключ установлен, gnome-session будет спрашивать пользователя перед "
-"окончанием сеанса."
+msgstr "Если этот ключ установлен, gnome-session будет спрашивать пользователя перед окончанием сеанса."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Если этот ключ установлен, gnome-session будет сохранять сеанс "
-"автоматически. Иначе возможность сохранить сеанс будет предоставлена в "
-"диалоге завершения сеанса."
+#| msgid ""
+#| "If enabled, gnome-session will prompt the user before ending a session."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Если этот ключ установлен, gnome-session будет автоматически сохранять сеанс."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
 msgstr "Список приложений, являющихся частью сеанса по умолчанию."
 
 #: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Список компонентов, которые требуются запустить как часть этого сеанса. "
-"(каждый элемент соответствует ключу в поддереве «/desktop/gnome/session/"
-"required-components»). Приложение «Параметры запускаемых приложений», как "
-"правило, не позволяет пользователю удалять из сеанса требуемые компоненты, и "
-"менеджер сеансов автоматически добавит требуемые компоненты, если они были "
-"удалены."
+msgid "List of components that are required as part of the session. (Each element names a key under \"/desktop/gnome/session/required_components\"). The Startup Applications preferences tool will not normally allow users to remove a required component from the session, and the session manager will automatically add the required components back to the session at login time if they do get removed."
+msgstr "Список компонентов, которые требуются запустить как часть этого сеанса. (каждый элемент соответствует ключу в поддереве «/desktop/gnome/session/required-components»). Приложение «Параметры запускаемых приложений», как правило, не позволяет пользователю удалять из сеанса требуемые компоненты, и менеджер сеансов автоматически добавит требуемые компоненты, если они были удалены."
 
 #: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
@@ -138,72 +116,35 @@ msgid "Panel"
 msgstr "Панель"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Предпочитаемое изображение для экрана-заставки"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Требуемые компоненты сеанса"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Сохранять сеансы"
 
+#: ../data/gnome-session.schemas.in.in.h:11
+msgid "The file manager provides the desktop icons and allows you to interact with your saved files."
+msgstr "Менеджер файлов предоставляет значки рабочего стола и позволяет работать с сохранёнными файлами."
+
 #: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Показывать экран-заставку"
+msgid "The number of minutes of inactivity before the session is considered idle."
+msgstr "Промежуток времени в минутах, по истечении которого сеанс будет считаться неактивным."
 
 #: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Показывать экран-заставку при запуске сеанса"
+msgid "The panel provides the bar at the top or bottom of the screen containing menus, the window list, status icons, the clock, etc."
+msgstr "Панель предоставляет собой полосу вверху или внизу экрана, содержащую меню, список окон, значки состояния, часы и т.д."
 
 #: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Менеджер файлов предоставляет значки рабочего стола и позволяет работать с "
-"сохранёнными файлами."
+msgid "The window manager is the program that draws the title bar and borders around windows, and allows you to move and resize windows."
+msgstr "Менеджер окон - это программа, которая рисует заголовок и обрамление окна, и позволяет вам перемещать окна и менять их размер."
 
 #: ../data/gnome-session.schemas.in.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Промежуток времени в минутах, по истечении которого сеанс будет считаться "
-"неактивным."
+msgid "Time before session is considered idle"
+msgstr "Промежуток времени, по истечении которого сеанс будет считаться неактивным"
 
 #: ../data/gnome-session.schemas.in.in.h:16
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Панель предоставляет собой полосу вверху или внизу экрана, содержащую меню, "
-"список окон, значки состояния, часы и т.д."
-
-#: ../data/gnome-session.schemas.in.in.h:17
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Менеджер окон - это программа, которая рисует заголовок и обрамление окна, и "
-"позволяет вам перемещать окна и менять их размер."
-
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Этот ключ представляет собой путь относительно базового каталога $datadir/"
-"pixmaps/. Допустимые значения — подкаталоги и имена файлов изображений. "
-"Изменение этого параметра вступит в силу при входе в следующий сеанс."
-
-#: ../data/gnome-session.schemas.in.in.h:19
-msgid "Time before session is considered idle"
-msgstr ""
-"Промежуток времени, по истечении которого сеанс будет считаться неактивным"
-
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Менеджер окон"
 
@@ -211,13 +152,13 @@ msgstr "Менеджер окон"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Некоторые программы всё еще работают:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-"Ожидание завершения работы программы. Прерывание программы может привести к "
-"потере работы."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:667
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
+msgstr "Ожидание завершения работы программы.  Прерывание работы программы может привести к потере вашех данных."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -232,7 +173,8 @@ msgid "Additional startup _programs:"
 msgstr "Дополнительные _программы, запускаемые при старте:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+#| msgid "Browse..."
+msgid "Browse…"
 msgstr "Обзор..."
 
 #: ../data/session-properties.ui.h:3
@@ -353,19 +295,16 @@ msgid "Some programs are still running:"
 msgstr "Некоторые программы всё ещё работают:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:671
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Ожидание завершения работы программ.  Прерывание этих программ может "
-"привести к потере вашей работы."
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Ожидание завершения работы программ.  Прерывание этих программ может привести к потере вашей работы."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Всё равно переключить пользователя"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+#| msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Всё равно выйти из системы"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -377,7 +316,8 @@ msgid "Hibernate Anyway"
 msgstr "Всё равно перевести в режим сна"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+#| msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Всё равно выключить"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -392,7 +332,7 @@ msgstr "Заблокировать экран"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -400,7 +340,7 @@ msgstr[0] "Вы автоматически выйдете из системы ч
 msgstr[1] "Вы автоматически выйдете из системы через %d секунды."
 msgstr[2] "Вы автоматически выйдете из системы через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -408,60 +348,58 @@ msgstr[0] "Система будет выключена автоматическ
 msgstr[1] "Система будет выключена автоматически через %d секунды."
 msgstr[2] "Система будет выключена автоматически через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Вы вошли в систему как пользователь «%s»."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Выйти из системы сейчас?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Переключить пользователя"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Завершить сеанс"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Выключить систему сейчас?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Ждущий режим"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Спящий режим"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "Пе_резагрузить"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "В_ыключить"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214
+#: ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Не отвечает"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
-msgid "This program is blocking log out."
+#: ../gnome-session/gsm-xsmp-client.c:1189
+#| msgid "This program is blocking log out."
+msgid "This program is blocking logout."
 msgstr "Эта программа блокирует выход из системы."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"Новые клиентские подключения отклоняются, потому что сеанс сейчас "
-"завершается.\n"
+#: ../gnome-session/gsm-xsmp-server.c:325
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Новые клиентские подключения отклоняются, потому что сеанс сейчас завершается.\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не удалось создать сокет, слушающий ICE: %s"
@@ -472,33 +410,26 @@ msgstr "Не удалось создать сокет, слушающий ICE: %
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Не удалось запустить сеанс (и подключиться к X-серверу)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Игнорировать стандартные папки автозапуска"
 
-#: ../gnome-session/main.c:434
-msgid "GConf key used to lookup default session"
+#: ../gnome-session/main.c:438
+#| msgid "GConf key used to lookup default session"
+msgid "GConf key used to look up default session"
 msgstr "Ключ GConf, используемый для поиска сеанса по умолчанию"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Включить отладочный код"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Не загружать выбранные пользователем приложения"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "— менеджер сеансов GNOME"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- экран-заставка GNOME"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "Экран-заставка GNOME"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -537,7 +468,8 @@ msgstr "Убить сеанс"
 msgid "Do not require confirmation"
 msgstr "Не требовать подтверждение"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:120
+#: ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Не удалось соединиться с менеджером сеансов"
 
@@ -545,22 +477,3 @@ msgstr "Не удалось соединиться с менеджером се�
 msgid "Program called with conflicting options"
 msgstr "Программа была вызвана с конфликтующими параметрами"
 
-#~ msgid "The name of the startup program cannot be empty"
-#~ msgstr "Имя автоматически запускаемой программы не может быть пустым"
-
-#~ msgid ""
-#~ "Assistive technology support has been requested for this session, but the "
-#~ "accessibility registry was not found. Please ensure that the AT-SPI "
-#~ "package is installed. Your session has been started without assistive "
-#~ "technology support."
-#~ msgstr ""
-#~ "Для этого сеанса была запрошена поддержка вспомогательных технологий, но "
-#~ "регистр вспомогательных технологий найти не удалось. Убедитесь, что пакет "
-#~ "AT-SPI установлен. Ваш сеанс запущен без поддержки вспомогательных "
-#~ "технологий."
-
-#~ msgid "AT SPI Registry Wrapper"
-#~ msgstr "AT SPI Registry Wrapper"
-
-#~ msgid "Sessions Preferences"
-#~ msgstr "Параметры сеансов"
