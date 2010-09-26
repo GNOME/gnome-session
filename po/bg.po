@@ -7,15 +7,15 @@
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004
 # Yavor Doganov <yavor@gnu.org>, 2008.
-#
+# Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-24 15:06+0300\n"
-"PO-Revision-Date: 2010-08-24 15:06+0300\n"
-"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
+"POT-Creation-Date: 2010-09-26 17:52+0300\n"
+"PO-Revision-Date: 2010-09-26 17:51+0300\n"
+"Last-Translator: Damyan Ivanov <dam+gnome@ktnx.net>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -27,19 +27,19 @@ msgstr ""
 msgid "Select Command"
 msgstr "Избор на команда"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "Добавяне на програма стартираща при влизане"
 
-#: ../capplet/gsm-app-dialog.c:198
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "Редактиране на програмите стартиращи при влизане"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "Командата за програма стартираща при влизане не може да е празна"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "Командата за програма стартираща при влизане е неправилна"
 
@@ -55,7 +55,7 @@ msgstr "Икона"
 msgid "Program"
 msgstr "Програма"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:791
 msgid "Startup Applications Preferences"
 msgstr "Настройки за автоматично стартиране на програми"
 
@@ -177,10 +177,10 @@ msgstr "Мениджър на прозорци"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Някои програми все още работят:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:676
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
 "Изчакване на програмата да завърши. Прекъсването ѝ може да доведе до загуба "
 "на информация."
@@ -199,7 +199,7 @@ msgid "Additional startup _programs:"
 msgstr "_Допълнителни програми стартиращи при влизане:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+msgid "Browse…"
 msgstr "Избор…"
 
 #: ../data/session-properties.ui.h:3
@@ -307,19 +307,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Иконата „%s“ не е открита"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:624
 msgid "Unknown"
 msgstr "Непозната"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:675
 msgid "A program is still running:"
 msgstr "Все още работи програмата:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:679
 msgid "Some programs are still running:"
 msgstr "Все още работят програмите:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:680
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -327,35 +327,35 @@ msgstr ""
 "Изчакване на програмите да завършат. Прекъсването им може да доведе до "
 "загуба на информация."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:910
 msgid "Switch User Anyway"
 msgstr "Смяна на потребител"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
-msgstr "Изход"
+#: ../gnome-session/gsm-inhibit-dialog.c:913
+msgid "Log Out Anyway"
+msgstr "Изход въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:916
 msgid "Suspend Anyway"
 msgstr "Приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:919
 msgid "Hibernate Anyway"
 msgstr "Дълбоко приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
-msgstr "Спиране на компютъра"
+#: ../gnome-session/gsm-inhibit-dialog.c:922
+msgid "Shut Down Anyway"
+msgstr "Спиране въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:925
 msgid "Reboot Anyway"
 msgstr "Рестартиране на компютъра"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:933
 msgid "Lock Screen"
 msgstr "Заключване на екрана"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:936
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -415,7 +415,7 @@ msgid "Not responding"
 msgstr "Не отговаря"
 
 #: ../gnome-session/gsm-xsmp-client.c:1189
-msgid "This program is blocking log out."
+msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
@@ -444,7 +444,7 @@ msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
 #: ../gnome-session/main.c:438
-msgid "GConf key used to lookup default session"
+msgid "GConf key used to look up default session"
 msgstr "Ключ на GConf за стандартната сесия"
 
 #: ../gnome-session/main.c:439
