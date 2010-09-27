@@ -1,4 +1,4 @@
-AC_INIT([gnome-session], [2.31.90],
+AC_INIT([gnome-session], [2.32.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
 AC_CONFIG_SRCDIR([gnome-session])
 AC_CONFIG_HEADERS([config.h])
