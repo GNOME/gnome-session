@@ -30,6 +30,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
+#include <cairo-xlib.h>
 
 #include <gconf/gconf-client.h>
 
@@ -316,73 +317,34 @@ scale_pixbuf (GdkPixbuf *pixbuf,
 
 #ifdef HAVE_XRENDER
 
-/* adapted from metacity */
-static GdkColormap*
-get_cmap (GdkPixmap *pixmap)
-{
-        GdkColormap *cmap;
-
-        cmap = gdk_drawable_get_colormap (pixmap);
-        if (cmap) {
-                g_object_ref (G_OBJECT (cmap));
-        }
-
-        if (cmap == NULL) {
-                if (gdk_drawable_get_depth (pixmap) == 1) {
-                        g_debug ("Using NULL colormap for snapshotting bitmap\n");
-                        cmap = NULL;
-                } else {
-                        g_debug ("Using system cmap to snapshot pixmap\n");
-                        cmap = gdk_screen_get_system_colormap (gdk_drawable_get_screen (pixmap));
-
-                        g_object_ref (G_OBJECT (cmap));
-                }
-        }
-
-        /* Be sure we aren't going to blow up due to visual mismatch */
-        if (cmap &&
-            (gdk_visual_get_depth (gdk_colormap_get_visual (cmap)) !=
-             gdk_drawable_get_depth (pixmap))) {
-                cmap = NULL;
-                g_debug ("Switching back to NULL cmap because of depth mismatch\n");
-        }
-
-        return cmap;
-}
-
 static GdkPixbuf *
-pixbuf_get_from_pixmap (Pixmap xpixmap)
+pixbuf_get_from_pixmap (Display *display,
+                        Pixmap   xpixmap,
+                        int      width,
+                        int      height)
 {
-        GdkDrawable *drawable;
-        GdkPixbuf   *retval;
-        GdkColormap *cmap;
-        int          width;
-        int          height;
+        cairo_surface_t *surface;
+        GdkPixbuf       *retval;
+        Visual          *visual;
 
         retval = NULL;
-        cmap = NULL;
 
+        visual = DefaultVisual (display, 0);
         g_debug ("GsmInhibitDialog: getting foreign pixmap for %u", (guint)xpixmap);
-        drawable = gdk_pixmap_foreign_new (xpixmap);
-        if (GDK_IS_PIXMAP (drawable)) {
-                cmap = get_cmap (drawable);
-                gdk_drawable_get_size (drawable,
-                                       &width,
-                                       &height);
+        surface = cairo_xlib_surface_create (display,
+                                             xpixmap,
+                                             visual,
+                                             width,
+                                             height);
+        if (surface != NULL) {
                 g_debug ("GsmInhibitDialog: getting pixbuf w=%d h=%d", width, height);
+                retval = gdk_pixbuf_get_from_surface (surface,
+                                                      0, 0,
+                                                      width, height);
+        }
 
-                retval = gdk_pixbuf_get_from_drawable (NULL,
-                                                       drawable,
-                                                       cmap,
-                                                       0, 0,
-                                                       0, 0,
-                                                       width, height);
-        }
-        if (cmap) {
-                g_object_unref (G_OBJECT (cmap));
-        }
-        if (drawable) {
-                g_object_unref (G_OBJECT (drawable));
+        if (surface) {
+                cairo_surface_destroy (surface);
         }
 
         return retval;
@@ -390,7 +352,9 @@ pixbuf_get_from_pixmap (Pixmap xpixmap)
 
 static Pixmap
 get_pixmap_for_window (Display *display,
-                       Window   window)
+                       Window   window,
+                       int     *widthp,
+                       int     *heightp)
 {
         XWindowAttributes        attr;
         XRenderPictureAttributes pa;
@@ -432,6 +396,12 @@ get_pixmap_for_window (Display *display,
                           0, 0,
                           width, height);
 
+        if (widthp != NULL) {
+                *widthp = width;
+        }
+        if (heightp != NULL) {
+                *heightp = height;
+        }
 
         return pixmap;
 }
@@ -441,19 +411,21 @@ get_pixmap_for_window (Display *display,
 static GdkPixbuf *
 get_pixbuf_for_window (GdkDisplay *gdkdisplay,
                        guint       xid,
-                       int         width,
-                       int         height)
+                       int         thumb_width,
+                       int         thumb_height)
 {
         GdkPixbuf *pixbuf = NULL;
 #ifdef HAVE_XRENDER
         Display   *display;
         Window     xwindow;
         Pixmap     xpixmap;
+        int        width;
+        int        height;
 
         display = GDK_DISPLAY_XDISPLAY (gdkdisplay);
         xwindow = (Window) xid;
 
-        xpixmap = get_pixmap_for_window (display, xwindow);
+        xpixmap = get_pixmap_for_window (display, xwindow, &width, &height);
 
         if (xpixmap == None) {
                 g_debug ("GsmInhibitDialog: Unable to get window snapshot for %u", xid);
@@ -462,7 +434,7 @@ get_pixbuf_for_window (GdkDisplay *gdkdisplay,
                 g_debug ("GsmInhibitDialog: Got xpixmap %u", (guint)xpixmap);
         }
 
-        pixbuf = pixbuf_get_from_pixmap (xpixmap);
+        pixbuf = pixbuf_get_from_pixmap (display, xpixmap, width, height);
 
         if (xpixmap != None) {
                 gdk_error_trap_push ();
@@ -474,7 +446,7 @@ get_pixbuf_for_window (GdkDisplay *gdkdisplay,
         if (pixbuf != NULL) {
                 GdkPixbuf *scaled;
                 g_debug ("GsmInhibitDialog: scaling pixbuf to w=%d h=%d", width, height);
-                scaled = scale_pixbuf (pixbuf, width, height, TRUE);
+                scaled = scale_pixbuf (pixbuf, thumb_width, thumb_height, TRUE);
                 g_object_unref (pixbuf);
                 pixbuf = scaled;
         }
