@@ -8,11 +8,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2010-03-06 12:06+0900\n"
-"PO-Revision-Date: 2010-03-13 23:58+0900\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-09 05:18+0900\n"
+"PO-Revision-Date: 2010-10-09 05:20+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -62,17 +63,13 @@ msgstr "이름 없음"
 msgid "No description"
 msgstr "설명 없음"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "이 프로그램의 버전"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "도움말 문서를 표시할 수 없습니다"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "그놈 설정 데몬 래퍼"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -95,12 +92,8 @@ msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "참이면 gnome-session이 끝나기 전에 사용자에게 물어봅니다."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"참이면 gnome-session이 자동으로 세션을 저장합니다. 그렇지 않으면 로그아웃 대"
-"화상자에 세션 저장옵션이 보여질 것입니다."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "참이면 gnome-session이 세션을 자동으로 저장합니다."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -129,26 +122,14 @@ msgid "Panel"
 msgstr "패널"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "로그인 스플래시 화면에 사용할 그림"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "필요한 세션 컴포넌트"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "세션 저장"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "시작 화면 보이기"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "세션이 시작하는 화면을 봅니다"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -156,12 +137,12 @@ msgstr ""
 "파일 관리자에 바탕 화면 아이콘이 있어서 이 아이콘으로 저장한 파일을 이용할 "
 "수 있습니다."
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "세션이 중지 상태라고 판단할 입력이 없는 시간, 분 단위."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
@@ -169,7 +150,7 @@ msgstr ""
 "화면의 위와 아래에 있는 패널에 메뉴, 창 목록, 상태 아이콘, 시계 등이 있습니"
 "다."
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -177,21 +158,11 @@ msgstr ""
 "창 관리자는 창의 제목 표시줄과 창 테두리를 만들고, 창을 옮기고 창 크기를 바꾸"
 "는 데 사용하는 프로그램입니다."
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"$datadir/pixmaps/ 디렉터리에 대한 상대 경로입니다. 하위 디렉토리를 쓸 수도 있"
-"고 그림 파일 이름을 쓸 수도 있습니다. 이 값을 바꾸면 다음에 로그인할 때 적용"
-"됩니다."
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "세션에 입력이 없어 중지할 시간"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "창 관리자"
 
@@ -201,11 +172,11 @@ msgstr "<b>실행 중인 프로그램이 있습니다:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
-"프로그램이 끝나기를 기다립니다. 프로그램을 중단시키면 작업하던 내용을 잃어버"
-"릴 수 있습니다."
+"프로그램이 끝나기를 기다리는 중입니다. 이 프로그램을 중단하면 작업하던 내용"
+"을 잃어버릴 수도 있습니다."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -220,8 +191,8 @@ msgid "Additional startup _programs:"
 msgstr "시작 프로그램 추가(_P):"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
-msgstr "찾아보기..."
+msgid "Browse…"
+msgstr "찾아보기…"
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -353,7 +324,7 @@ msgid "Switch User Anyway"
 msgstr "그래도 사용자 바꾸기"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "그래도 로그아웃"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -365,7 +336,7 @@ msgid "Hibernate Anyway"
 msgstr "그래도 최대 절전"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "그래도 끄기"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -380,70 +351,70 @@ msgstr "화면 잠그기"
 msgid "Cancel"
 msgstr "취소"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 로그아웃합니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 시스템을 끕니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "\"%s\" 사용자로 로그인했습니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "지금 시스템에서 로그아웃하시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "사용자 바꾸기(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "로그아웃(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "지금 시스템을 끄시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "절전(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "최대 절전(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "다시 시작(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "끄기(_S)"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "응답 없음"
 
-#: ../gnome-session/gsm-xsmp-client.c:1214
-msgid "This program is blocking log out."
+#: ../gnome-session/gsm-xsmp-client.c:1189
+msgid "This program is blocking logout."
 msgstr "이 프로그램이 로그아웃을 막고 있습니다."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "지금 세션을 끝내는 중이므로 새 클라이언트 연결을 거부합니다.\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE 리스닝 소켓을 만들 수 없습니다: %s"
@@ -454,33 +425,25 @@ msgstr "ICE 리스닝 소켓을 만들 수 없습니다: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "로그인 세션을 시작할 수 없습니다 (X 서버에 연결할 수 없습니다)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "기본 자동 시작 디렉토리 대신 사용합니다"
 
-#: ../gnome-session/main.c:434
-msgid "GConf key used to lookup default session"
+#: ../gnome-session/main.c:438
+msgid "GConf key used to look up default session"
 msgstr "기본 세션을 찾아보는 데 사용할 GConf 키"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "디버깅 코드를 사용합니다"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "사용자가 지정한 프로그램을 읽어들이지 않습니다"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "- 그놈 세션 관리자"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- 그놈 스플래시 화면"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "그놈 스플래시 화면"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -526,6 +489,47 @@ msgstr "세션 관리자에 연결할 수 없습니다"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "함께 사용할 수 없는 옵션을 같이 사용했습니다"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "그놈 설정 데몬 래퍼"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "참이면 gnome-session이 자동으로 세션을 저장합니다. 그렇지 않으면 로그아웃 "
+#~ "대화상자에 세션 저장옵션이 보여질 것입니다."
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "로그인 스플래시 화면에 사용할 그림"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "시작 화면 보이기"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "세션이 시작하는 화면을 봅니다"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "$datadir/pixmaps/ 디렉터리에 대한 상대 경로입니다. 하위 디렉토리를 쓸 수"
+#~ "도 있고 그림 파일 이름을 쓸 수도 있습니다. 이 값을 바꾸면 다음에 로그인할 "
+#~ "때 적용됩니다."
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "프로그램이 끝나기를 기다립니다. 프로그램을 중단시키면 작업하던 내용을 잃어"
+#~ "버릴 수 있습니다."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- 그놈 스플래시 화면"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "그놈 스플래시 화면"
 
 #~ msgid ""
 #~ "Assistive technology support has been requested for this session, but the "
