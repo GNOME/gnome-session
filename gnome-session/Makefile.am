@@ -55,6 +55,8 @@ gnome_session_SOURCES =				\
 	gsm-session-fill.h			\
 	gsm-session-save.c			\
 	gsm-session-save.h			\
+	gsm-shell.c				\
+	gsm-shell.h				\
 	gsm-xsmp-server.c			\
 	gsm-xsmp-server.h
 
