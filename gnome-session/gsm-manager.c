@@ -164,6 +164,13 @@ static void     gsm_manager_finalize    (GObject         *object);
 static gboolean auto_save_is_enabled (GsmManager *manager);
 static void     maybe_save_session   (GsmManager *manager);
 
+static void     _handle_client_end_session_response (GsmManager *manager,
+                                                     GsmClient  *client,
+                                                     gboolean    is_ok,
+                                                     gboolean    do_last,
+                                                     gboolean    cancel,
+                                                     const char *reason);
+
 static gpointer manager_object = NULL;
 
 G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
@@ -1516,6 +1523,24 @@ _disconnect_client (GsmManager *manager,
                 }
         }
 
+        if (manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                /* Instead of answering our end session query, the client just exited.
+                 * Treat that as an "okay, end the session" answer.
+                 *
+                 * This call implicitly removes any inhibitors for the client, along
+                 * with removing the client from the pending query list.
+                 */
+                _handle_client_end_session_response (manager,
+                                                     client,
+                                                     TRUE,
+                                                     FALSE,
+                                                     FALSE,
+                                                     "Client exited in "
+                                                     "query end session phase "
+                                                     "instead of end session "
+                                                     "phase");
+        }
+
         if (app == NULL) {
                 g_debug ("GsmManager: unable to find application for client - not restarting");
                 goto out;
@@ -1862,12 +1887,12 @@ out:
 }
 
 static void
-on_client_end_session_response (GsmClient  *client,
-                                gboolean    is_ok,
-                                gboolean    do_last,
-                                gboolean    cancel,
-                                const char *reason,
-                                GsmManager *manager)
+_handle_client_end_session_response (GsmManager *manager,
+                                     GsmClient  *client,
+                                     gboolean    is_ok,
+                                     gboolean    do_last,
+                                     gboolean    cancel,
+                                     const char *reason)
 {
         /* just ignore if received outside of shutdown */
         if (manager->priv->phase < GSM_MANAGER_PHASE_QUERY_END_SESSION) {
@@ -1949,6 +1974,22 @@ on_client_end_session_response (GsmClient  *client,
                         end_phase (manager);
                 }
         }
+}
+
+static void
+on_client_end_session_response (GsmClient  *client,
+                                gboolean    is_ok,
+                                gboolean    do_last,
+                                gboolean    cancel,
+                                const char *reason,
+                                GsmManager *manager)
+{
+        _handle_client_end_session_response (manager,
+                                             client,
+                                             is_ok,
+                                             do_last,
+                                             cancel,
+                                             reason);
 }
 
 static void
