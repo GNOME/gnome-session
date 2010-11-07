@@ -1193,6 +1193,12 @@ _on_query_end_session_timeout (GsmManager *manager)
                 g_warning ("Client '%s' failed to reply before timeout",
                            gsm_client_peek_id (l->data));
 
+                /* Don't add "not responding" inhibitors if logout is forced
+                 */
+                if (manager->priv->forceful_logout) {
+                        continue;
+                }
+
                 /* Add JIT inhibit for unresponsive client */
                 if (GSM_IS_DBUS_CLIENT (l->data)) {
                         bus_name = gsm_dbus_client_get_bus_name (l->data);
@@ -1248,8 +1254,8 @@ do_phase_query_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
 
-        /* This phase doesn't time out. This separate timer is only used to
-         * show UI. */
+        /* This phase doesn't time out unless logout is forced. Typically, this
+         * separate timer is only used to show UI. */
         manager->priv->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)_on_query_end_session_timeout, manager);
 }
 
@@ -1877,7 +1883,7 @@ on_client_end_session_response (GsmClient  *client,
 
         manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
 
-        if (! is_ok) {
+        if (! is_ok && !manager->priv->forceful_logout) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
                 char         *app_id;
@@ -3171,6 +3177,18 @@ gsm_manager_inhibit (GsmManager            *manager,
                  app_id,
                  reason,
                  flags);
+
+        if (manager->priv->forceful_logout) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Forced logout cannot be inhibited");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                dbus_g_method_return_error (context, new_error);
+                g_error_free (new_error);
+                return FALSE;
+        }
 
         if (IS_STRING_EMPTY (app_id)) {
                 GError *new_error;
