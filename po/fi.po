@@ -6,19 +6,20 @@
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009
 # Mikko Piippo (https://launchpad.net/~piippo-cc), 2008
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2008-2010
-#
+# Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-06 15:04+0000\n"
-"PO-Revision-Date: 2010-09-17 18:28+0300\n"
-"Last-Translator: Jiri Grönroos <Unknown>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&component=general\n"
+"POT-Creation-Date: 2010-09-21 19:47+0000\n"
+"PO-Revision-Date: 2010-11-09 15:22+0200\n"
+"Last-Translator: Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -40,49 +41,31 @@ msgstr "Käynnistyskomento ei voi olla tyhjä"
 msgid "The startup command is not valid"
 msgstr "Käynnistyskomento ei ole kelvollinen"
 
-#: ../capplet/gsm-properties-dialog.c:530
-msgid "Your session has been saved."
-msgstr "Istunto on tallennettu."
-
-#: ../capplet/gsm-properties-dialog.c:532
-#: ../capplet/gsm-properties-dialog.c:559
-msgid "Failed to save session"
-msgstr "Istunnon tallentaminen epäonnistui"
-
-#: ../capplet/gsm-properties-dialog.c:547
-msgid "Could not connect to the session bus"
-msgstr "Istuntoväylään ei voi yhdistää"
-
-#: ../capplet/gsm-properties-dialog.c:553 ../tools/gnome-session-save.c:120
-#: ../tools/gnome-session-save.c:130
-msgid "Could not connect to the session manager"
-msgstr "Istunnonhallintaan ei saa yhteyttä"
-
-#: ../capplet/gsm-properties-dialog.c:618
+#: ../capplet/gsm-properties-dialog.c:555
 msgid "Enabled"
 msgstr "Käytössä"
 
-#: ../capplet/gsm-properties-dialog.c:630
+#: ../capplet/gsm-properties-dialog.c:567
 msgid "Icon"
 msgstr "Kuvake"
 
-#: ../capplet/gsm-properties-dialog.c:642
+#: ../capplet/gsm-properties-dialog.c:579
 msgid "Program"
 msgstr "Sovellus"
 
-#: ../capplet/gsm-properties-dialog.c:855
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Aloitusohjelmien asetukset"
 
-#: ../capplet/gsp-app.c:271
+#: ../capplet/gsp-app.c:269
 msgid "No name"
 msgstr "Ei nimeä"
 
-#: ../capplet/gsp-app.c:277
+#: ../capplet/gsp-app.c:275
 msgid "No description"
 msgstr "Ei kuvausta"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:443
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
@@ -91,20 +74,12 @@ msgid "Could not display help document"
 msgstr "Ohjetta ei voitu näyttää"
 
 #: ../data/gnome.desktop.in.h:1
-msgid "This session logs you into GNOME"
-msgstr "Tämä istunto kirjautuu Gnomeen"
+msgid "GNOME"
+msgstr "Gnome"
 
 #: ../data/gnome.desktop.in.h:2
-msgid "Ubuntu Desktop Edition"
-msgstr "Ubuntu työpöydille"
-
-#: ../data/gnome-failsafe.desktop.in.h:1
-msgid "This session logs you into GNOME without user applications"
-msgstr "Tämä istunto kirjautuu Gnomeen ilman käyttäjäsovelluksia"
-
-#: ../data/gnome-failsafe.desktop.in.h:2
-msgid "Ubuntu Desktop Edition (Safe Mode)"
-msgstr "Ubuntu työpöydille (turvallinen tila)"
+msgid "This session logs you into GNOME"
+msgstr "Tämä istunto kirjautuu Gnomeen"
 
 #: ../data/gnome-session.schemas.in.in.h:1
 msgid "Default session"
@@ -115,8 +90,7 @@ msgid "File Manager"
 msgstr "Tiedostonhallinta"
 
 #: ../data/gnome-session.schemas.in.in.h:3
-msgid ""
-"If enabled, gnome-session will prompt the user before ending a session."
+msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Jos käytössä, gnome-session kysyy käyttäjältä ennen istunnon lopettamista."
 
@@ -204,8 +178,8 @@ msgstr "<b>Joitakin ohjelmia on vielä käynnissä:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
 "Odotetaan ohjelman lopettamista. Ohjelman suorituksen keskeyttäminen voi "
 "aiheuttaa töiden häviämistä."
@@ -223,8 +197,8 @@ msgid "Additional startup _programs:"
 msgstr "Muut käynnistyvät _ohjelmat:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
-msgstr "Selaa..."
+msgid "Browse…"
+msgstr "Selaa…"
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -264,27 +238,27 @@ msgstr "Tiedosto ei ole kelvollinen .desktop-tiedosto"
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Tuntematon desktop-tiedoston versio \"%s\""
 
-#: ../egg/eggdesktopfile.c:968
+#: ../egg/eggdesktopfile.c:958
 #, c-format
 msgid "Starting %s"
 msgstr "%s käynnistyy"
 
-#: ../egg/eggdesktopfile.c:1110
+#: ../egg/eggdesktopfile.c:1100
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Sovellus ei hyväksy asiakirjoja komentoriviltä"
 
-#: ../egg/eggdesktopfile.c:1178
+#: ../egg/eggdesktopfile.c:1168
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Tuntematon käynnistinvalitsin: %d"
 
-#: ../egg/eggdesktopfile.c:1383
+#: ../egg/eggdesktopfile.c:1373
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Asiakirja-URIa ei voida antaa \"Type=Link\"-työpöytäkohteelle"
 
-#: ../egg/eggdesktopfile.c:1404
+#: ../egg/eggdesktopfile.c:1394
 #, c-format
 msgid "Not a launchable item"
 msgstr "Kohde ei ole käynnistettävä"
@@ -356,7 +330,7 @@ msgid "Switch User Anyway"
 msgstr "Vaihda käyttäjää kaikesta huolimatta"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Kirjaudu ulos kaikesta huolimatta"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -368,7 +342,7 @@ msgid "Hibernate Anyway"
 msgstr "Siirry lepotilaan kaikesta huolimatta"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Sammuta kaikesta huolimatta"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -383,98 +357,64 @@ msgstr "Lukitse näyttö"
 msgid "Cancel"
 msgstr "Peru"
 
-#: ../gnome-session/gsm-logout-dialog.c:228
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Sinut kirjataan ulos automaattisesti %d sekunnin kuluttua."
 msgstr[1] "Sinut kirjataan ulos automaattisesti %d sekunnin kuluttua."
 
-#: ../gnome-session/gsm-logout-dialog.c:236
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Järjestelmä sammuu automaattisesti %d sekunnin kuluttua."
 msgstr[1] "Järjestelmä sammuu automaattisesti %d sekunnin kuluttua."
 
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Olet kirjautunut sisään käyttäjänä \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:476
-msgid "Log Out of the Session"
-msgstr "Kirjaudu ulos istunnosta"
+#: ../gnome-session/gsm-logout-dialog.c:372
+msgid "Log out of this system now?"
+msgstr "Kirjaudutaanko ulos järjestelmästä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:482
-msgid "_Log Out"
-msgstr "Kirjaudu _ulos"
-
-#: ../gnome-session/gsm-logout-dialog.c:483
-msgid "Ends your session and logs you out."
-msgstr "Lopettaa istunnon ja kirjautuu ulos."
-
-#: ../gnome-session/gsm-logout-dialog.c:489
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Vaihda käyttäjää"
 
-#: ../gnome-session/gsm-logout-dialog.c:490
-msgid ""
-"Suspends your session, allowing another user to log in and use the computer."
-msgstr ""
-"Keskeyttää istunnon, mahdollistaen toisen käyttäjän kirjautumisen ja "
-"tietokoneen käytön."
+#: ../gnome-session/gsm-logout-dialog.c:387
+msgid "_Log Out"
+msgstr "Kirjaudu _ulos"
 
-#: ../gnome-session/gsm-logout-dialog.c:501
-msgid "Shut Down the Computer"
-msgstr "Sammuta tietokone"
+#: ../gnome-session/gsm-logout-dialog.c:393
+msgid "Shut down this system now?"
+msgstr "Sammutetaanko järjestelmä nyt?"
 
-#: ../gnome-session/gsm-logout-dialog.c:508
-msgid "_Shut Down"
-msgstr "_Sammuta"
-
-#: ../gnome-session/gsm-logout-dialog.c:509
-msgid "Ends your session and turns off the computer."
-msgstr "Lopettaa istunnon ja sammuttaa tietokoneen."
-
-#: ../gnome-session/gsm-logout-dialog.c:522
-msgid "_Restart"
-msgstr "Käynnistä _uudelleen"
-
-#: ../gnome-session/gsm-logout-dialog.c:523
-msgid "Ends your session and restarts the computer."
-msgstr "Lopettaa istunnon ja käynnistää tietokoneen uudelleen."
-
-#: ../gnome-session/gsm-logout-dialog.c:536
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "Valmi_ustila"
 
-#: ../gnome-session/gsm-logout-dialog.c:537
-msgid ""
-"Suspends your session quickly, using minimal power while the computer stands "
-"by."
-msgstr ""
-"Keskeyttää istunnon nopeasti. Tietokone käyttää hyvin vähän virtaa "
-"valmiustilassa."
+#: ../gnome-session/gsm-logout-dialog.c:405
+msgid "_Hibernate"
+msgstr "_Lepotila"
 
-#: ../gnome-session/gsm-logout-dialog.c:547
-msgid "Hiber_nate"
-msgstr "Lepotila"
+#: ../gnome-session/gsm-logout-dialog.c:411
+msgid "_Restart"
+msgstr "Käynnistä _uudelleen"
 
-#: ../gnome-session/gsm-logout-dialog.c:548
-msgid ""
-"Suspends your session, using no power until the computer is restarted."
-msgstr ""
-"Keskeyttää istunnon. Tietokone ei käytä virtaa lainkaan, kunnes tietokone "
-"kytketään jälleen päälle."
+#: ../gnome-session/gsm-logout-dialog.c:421
+msgid "_Shut Down"
+msgstr "_Sammuta"
 
-#: ../gnome-session/gsm-manager.c:1343 ../gnome-session/gsm-manager.c:2070
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-xsmp-client.c:1236
-msgid "This program is blocking log out."
-msgstr "Tämä ohjelma estää kirjautumisen ulos"
+#: ../gnome-session/gsm-xsmp-client.c:1189
+msgid "This program is blocking logout."
+msgstr "Tämä ohjelma estää kirjautumisen ulos."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
@@ -490,37 +430,29 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistoketta ei voi luoda: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:362
+#: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Kirjautumisistuntoa ei voi käynnistää (eikä X-palvelimeen voitu yhdistää)"
 
-#: ../gnome-session/gsm-util.c:568
-msgid "Cannot find help."
-msgstr "Ohjetta ei löydy."
-
-#: ../gnome-session/main.c:438
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:439
-msgid "GConf key used to lookup default session"
+#: ../gnome-session/main.c:438
+msgid "GConf key used to look up default session"
 msgstr "GConf-avain, josta oletusistuntoa etsitään"
 
-#: ../gnome-session/main.c:440
-msgid "Override name of the saved session"
-msgstr ""
-
-#: ../gnome-session/main.c:441
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
-#: ../gnome-session/main.c:442
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:463
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
@@ -561,9 +493,73 @@ msgstr "Tapa istunto"
 msgid "Do not require confirmation"
 msgstr "Älä vaadi vahvistusta"
 
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "Istunnonhallintaan ei saa yhteyttä"
+
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
+
+#~ msgid "Your session has been saved."
+#~ msgstr "Istunto on tallennettu."
+
+#~ msgid "Failed to save session"
+#~ msgstr "Istunnon tallentaminen epäonnistui"
+
+#~ msgid "Could not connect to the session bus"
+#~ msgstr "Istuntoväylään ei voi yhdistää"
+
+#~ msgid "Ubuntu Desktop Edition"
+#~ msgstr "Ubuntu työpöydille"
+
+#~ msgid "This session logs you into GNOME without user applications"
+#~ msgstr "Tämä istunto kirjautuu Gnomeen ilman käyttäjäsovelluksia"
+
+#~ msgid "Ubuntu Desktop Edition (Safe Mode)"
+#~ msgstr "Ubuntu työpöydille (turvallinen tila)"
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Odotetaan ohjelman lopettamista. Ohjelman suorituksen keskeyttäminen voi "
+#~ "aiheuttaa töiden häviämistä."
+
+#~ msgid "Ends your session and logs you out."
+#~ msgstr "Lopettaa istunnon ja kirjautuu ulos."
+
+#~ msgid ""
+#~ "Suspends your session, allowing another user to log in and use the "
+#~ "computer."
+#~ msgstr ""
+#~ "Keskeyttää istunnon, mahdollistaen toisen käyttäjän kirjautumisen ja "
+#~ "tietokoneen käytön."
+
+#~ msgid "Shut Down the Computer"
+#~ msgstr "Sammuta tietokone"
+
+#~ msgid "Ends your session and turns off the computer."
+#~ msgstr "Lopettaa istunnon ja sammuttaa tietokoneen."
+
+#~ msgid "Ends your session and restarts the computer."
+#~ msgstr "Lopettaa istunnon ja käynnistää tietokoneen uudelleen."
+
+#~ msgid ""
+#~ "Suspends your session quickly, using minimal power while the computer "
+#~ "stands by."
+#~ msgstr ""
+#~ "Keskeyttää istunnon nopeasti. Tietokone käyttää hyvin vähän virtaa "
+#~ "valmiustilassa."
+
+#~ msgid ""
+#~ "Suspends your session, using no power until the computer is restarted."
+#~ msgstr ""
+#~ "Keskeyttää istunnon. Tietokone ei käytä virtaa lainkaan, kunnes tietokone "
+#~ "kytketään jälleen päälle."
+
+#~ msgid "Cannot find help."
+#~ msgstr "Ohjetta ei löydy."
 
 #~ msgid "GNOME Splash Screen"
 #~ msgstr "Gnomen käynnistymisikkuna"
@@ -574,14 +570,11 @@ msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
 #~ msgid "- GNOME Splash Screen"
 #~ msgstr "- Gnomen käynnistymisikkuna"
 
-#~ msgid "GNOME"
-#~ msgstr "Gnome"
-
 #~ msgid ""
-#~ "This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-#~ "directories and image names are valid values. Changing this value will "
-#~ "effect the next session login."
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
 #~ msgstr ""
-#~ "Tämä on suhteellinen polku, joka saa arvonsa hakemistosta $datadir/pixmaps/. "
-#~ "Kelvollisia arvoja ovat alihakemistot ja kuvien nimet. Tämän arvon muutos "
-#~ "tulee voimaan vasta seuraavalla kirjautumiskerralla."
+#~ "Tämä on suhteellinen polku, joka saa arvonsa hakemistosta $datadir/"
+#~ "pixmaps/. Kelvollisia arvoja ovat alihakemistot ja kuvien nimet. Tämän "
+#~ "arvon muutos tulee voimaan vasta seuraavalla kirjautumiskerralla."
