@@ -2,20 +2,23 @@
 # Eddy Petrișor <eddy.petrisor@gmail.com>, 2006.
 # Adi Roiban https://launchpad.net/~adiroiban, 2008, 2009
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009
+# Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-09-07 17:27+0000\n"
-"PO-Revision-Date: 2009-09-13 22:30+0300\n"
-"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
-"Language-Team: Gnome Romanian Team <gnomero-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2010-11-09 13:35+0000\n"
+"PO-Revision-Date: 2010-11-10 16:57+0300\n"
+"Last-Translator: Daniel Șerbănescu <cyber19rider@gmail.com>\n"
+"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n == 1 ? 0: (((n % 100 > 19) || ((n % 100 "
-"== 0) && (n != 0))) ? 2: 1));\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Virtaal 0.6.1\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -25,6 +28,7 @@ msgstr "Alegere comandă"
 msgid "Add Startup Program"
 msgstr "Adaugă un program de pornit"
 
+#LG: aici e vorba de titlul unei ferestre.
 #: ../capplet/gsm-app-dialog.c:198
 msgid "Edit Startup Program"
 msgstr "Editare program de pornit"
@@ -61,17 +65,13 @@ msgstr "Fără nume"
 msgid "No description"
 msgstr "Fără descriere"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "Versiunea acestei aplicații"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "Nu se poate afișa documentul de ajutor"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "Ajutor serviciu configurări GNOME"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -92,20 +92,16 @@ msgstr "Administrator de fișiere"
 #: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Dacă este activat, gnome-session va întreba utilizatorul înainte de "
+"Dacă este activat, gnome-session va anunța utilizatorul înainte de "
 "terminarea sesiunii."
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Dacă este activat, gnome-session va salva sesiunea automat. Altfel, dialogul "
-"de ieșire va avea o opțiune pentru salvarea sesiunii."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Dacă este activat, gnome-session va salva sesiunea automat."
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
-msgstr "Lista aplicațiilor care sunt parte a sesiunii implicite."
+msgstr "Lista aplicațiilor care fac parte din sesiunea implicită."
 
 #: ../data/gnome-session.schemas.in.in.h:6
 msgid ""
@@ -116,42 +112,30 @@ msgid ""
 "automatically add the required components back to the session at login time "
 "if they do get removed."
 msgstr ""
-"Lista componenteleor care sunt necesare să fie parte din sesiune. (Fiecare "
-"element numește o cheie din „/desktop/gnome/session/required_components\".) "
-"Preferințele aplicațiile de la pornire nu vor permite în mod normal ca "
+"Lista componentelor care sunt necesare ca parte a sesiunii. (Fiecare element "
+"numește o cheie din „/desktop/gnome/session/required_components\".) "
+"Preferințele aplicațiilor de la pornire nu vor permite în mod normal ca "
 "utilizatorii să șteargă o componentă necesară din sesiune, iar "
 "administratorul sesiunii va adăuga automat componentele necesare în cazul în "
 "care vor fi șterse."
 
 #: ../data/gnome-session.schemas.in.in.h:7
 msgid "Logout prompt"
-msgstr "Întrebare ieșire"
+msgstr "Anunță ieșirea din sesiune"
 
 #: ../data/gnome-session.schemas.in.in.h:8
 msgid "Panel"
 msgstr "Panou"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Imaginea preferată afișată după autentificare"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "Componentele necesare sesiunii"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
 msgstr "Salvează sesiunile"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Arată imaginea de pornire"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Arată imaginea de pornire la intrarea în sesiune"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
@@ -159,22 +143,22 @@ msgstr ""
 "Administratorul de fișiere furnizează iconițele de pe desktop și permite "
 "interacțiunea cu fișierele salvate."
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr ""
 "Numărul de minute de inactivitate înainte ca sesiunea să fie considerată "
 "inactivă."
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 "Panoul furnizează bara de deasupra ori dedesubtul ecranului ce conține "
-"meniuri, lista cu ferestre, iconițe de stare, ceasul etc."
+"meniuri, lista cu ferestre, iconițele de stare, ceasul etc."
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -183,21 +167,11 @@ msgstr ""
 "marginile de jur împrejurul ferestrelor și permite mutarea sau "
 "redimensionarea acestora."
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Aceasta este o cale relativă bazată pe directorul $datadir/pixmaps/. Numele "
-"de subdirectoare și de imagini sunt valori valide. Efectul modificării "
-"acestei valori va fi vizibil la pornirea următoarei sesiuni."
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
-msgstr "Durata pâne ce sesiunea este considerată inactivă"
+msgstr "Durata până ce sesiunea este considerată inactivă"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Administrator de ferestre"
 
@@ -207,11 +181,11 @@ msgstr "<b>O parte din programe sunt încă în funcțiune:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
-"Se așteaptă ca programul să termine. Întreruperea acestuia poate duce la "
-"pierderea activității de până acum."
+"Se așteaptă ca programul să se închidă. Întreruperea lui poate duce la "
+"pierderea modificărilor efectuate."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -226,8 +200,8 @@ msgid "Additional startup _programs:"
 msgstr "_Programe suplimetare de pornit:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
-msgstr "Răsfoiește..."
+msgid "Browse…"
+msgstr "Navighează…"
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -307,7 +281,7 @@ msgstr "FIȘIER"
 
 #: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr "Specifică ID-ul de administrare a sesiunii"
+msgstr "Specifică ID-ul de administrare al sesiunii"
 
 #: ../egg/eggsmclient.c:231
 msgid "ID"
@@ -353,15 +327,15 @@ msgid ""
 "to lose work."
 msgstr ""
 "Se așteaptă ca programele să termine. Întreruperea acestora poate duce la "
-"pierderea activității."
+"pierderea modificărilor efectuate."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Switch User Anyway"
 msgstr "Schimbă oricum utilizatorul"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
-msgstr "Ieși oricum"
+msgid "Log Out Anyway"
+msgstr "Închide sesiunea oricum"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
 msgid "Suspend Anyway"
@@ -372,7 +346,7 @@ msgid "Hibernate Anyway"
 msgstr "Hibernează oricum"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Oprește oricum"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -381,84 +355,84 @@ msgstr "Repornește oricum"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:924
 msgid "Lock Screen"
-msgstr "Blocare ecran"
+msgstr "Blochează ecranul"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:927
 msgid "Cancel"
 msgstr "Renunță"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Sesiunea se va închide automat în %d secundă."
+msgstr[0] "Sesiunea se va închide automat într-o secundă."
 msgstr[1] "Sesiunea se va închide automat în %d secunde."
 msgstr[2] "Sesiunea se va închide automat în %d de secunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Sistemul va fi oprit automat în %d secundă."
+msgstr[0] "Sistemul va fi oprit automat într-o secundă."
 msgstr[1] "Sistemul va fi oprit automat în %d secunde."
 msgstr[2] "Sistemul va fi oprit automat în %d de secunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Sunteți autentificat ca „%s”."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Ieșiți de pe acest sistem acum?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Schimbă utilizator"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
-msgstr "_Ieșire"
+msgstr "_Ieșire din sesiune"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Opriți sistemul acum?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "S_uspendă"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
-msgstr "_Hibernare"
+msgstr "_Hibernează"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_Repornește"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
-msgstr "_Oprire"
+msgstr "_Oprește"
 
-#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "Nu răspunde"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
-msgid "This program is blocking log out."
-msgstr "Acest program blochează ieșirea."
+#: ../gnome-session/gsm-xsmp-client.c:1189
+msgid "This program is blocking logout."
+msgstr "Acest program blochează ieșirea din sesiune."
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Se refuză conexiunea noului client deoarece sesiunea este în curs de oprire\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "Nu s-a putut cree socket-ul de detectare ICE: %s"
+msgstr "Nu s-a putut crea socket-ul de monitorizare ICE: %s"
 
 #. Oh well, no X for you!
 #: ../gnome-session/gsm-util.c:354
@@ -468,45 +442,37 @@ msgstr ""
 "Nu s-a putut porni sesiunea de start (iar conexiunea la serverul X nu a "
 "putut fi realizată)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
-msgstr "Rescrie directoarele standard de pornire automată"
+msgstr "Rescrie dosarele standard de pornire automată"
 
-#: ../gnome-session/main.c:434
-msgid "GConf key used to lookup default session"
+#: ../gnome-session/main.c:438
+msgid "GConf key used to look up default session"
 msgstr "Cheia GConf folosită la căutarea sesiunii implicite"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "Activează codul pentru depanare"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "Nu încărca aplicațiile specificate de utilizator"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr " - Administrator de sesiune GNOME"
 
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- Imagine de pornire GNOME"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "Imagine pornire GNOME"
-
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
-msgstr "Ieșire"
+msgstr "Închide sesiunea"
 
 #: ../tools/gnome-session-save.c:66
 msgid "Log out, ignoring any existing inhibitors"
-msgstr "Ieși, ignorând orice inhibator existent"
+msgstr "Închide sesiunea, ignorând orice inhibator existent"
 
 #: ../tools/gnome-session-save.c:67
 msgid "Show logout dialog"
-msgstr "Afișează dialogul de ieșire"
+msgstr "Afișează dialogul de ieșire din sesiune"
 
 #: ../tools/gnome-session-save.c:68
 msgid "Show shutdown dialog"
@@ -541,3 +507,43 @@ msgstr "Nu s-a putut realiza conectarea la administratorul de sesiuni"
 msgid "Program called with conflicting options"
 msgstr "Program apelat cu opțiuni care întră în conflict"
 
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "Ajutor serviciu configurări GNOME"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "Dacă este activat, gnome-session va salva sesiunea automat. Altfel, "
+#~ "dialogul de ieșire va avea o opțiune pentru salvarea sesiunii."
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Imaginea preferată afișată după autentificare"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Arată imaginea de pornire"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Arată imaginea de pornire la intrarea în sesiune"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "Aceasta este o cale relativă bazată pe directorul $datadir/pixmaps/. "
+#~ "Numele de subdirectoare și de imagini sunt valori valide. Efectul "
+#~ "modificării acestei valori va fi vizibil la pornirea următoarei sesiuni."
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Se așteaptă ca programul să termine. Întreruperea acestuia poate duce la "
+#~ "pierderea activității de până acum."
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- Imagine de pornire GNOME"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "Imagine pornire GNOME"
