@@ -80,6 +80,7 @@ struct _GsmAppClass
 typedef enum
 {
         GSM_APP_ERROR_GENERAL = 0,
+        GSM_APP_ERROR_RESTART_LIMIT,
         GSM_APP_ERROR_START,
         GSM_APP_ERROR_STOP,
         GSM_APP_NUM_ERRORS

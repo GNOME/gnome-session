@@ -31,12 +31,15 @@
 
 #define GSM_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_APP, GsmAppPrivate))
 
+#define APP_RESTART_LIMIT 20
+
 struct _GsmAppPrivate
 {
         char            *id;
         char            *app_id;
         int              phase;
         char            *startup_id;
+        guint            restart_count;
         DBusGConnection *connection;
 };
 
@@ -414,7 +417,7 @@ gsm_app_start (GsmApp  *app,
                GError **error)
 {
         g_debug ("Starting app: %s", app->priv->id);
-
+        app->priv->restart_count = 0;
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
@@ -423,6 +426,15 @@ gsm_app_restart (GsmApp  *app,
                  GError **error)
 {
         g_debug ("Re-starting app: %s", app->priv->id);
+
+        app->priv->restart_count++;
+        if (app->priv->restart_count > APP_RESTART_LIMIT) {
+                g_set_error (error,
+                             GSM_APP_ERROR,
+                             GSM_APP_ERROR_RESTART_LIMIT,
+                             "Application restart limit reached");
+                return FALSE;
+        }
 
         return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }

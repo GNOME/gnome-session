@@ -1572,6 +1572,8 @@ _disconnect_client (GsmManager *manager,
         res = gsm_app_restart (app, &error);
         if (error != NULL) {
                 g_warning ("Error on restarting session managed app: %s", error->message);
+                /* FIXME: show an error dialog - particularly if this
+                   is a required component */
                 g_error_free (error);
         }
 
