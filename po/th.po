@@ -1,18 +1,18 @@
 # Thai translation for gnome-session.
-# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# Copyright (C) 2003-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2009
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2010
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2009-08-23 13:44+0700\n"
-"PO-Revision-Date: 2009-08-23 16:25+0700\n"
+"POT-Creation-Date: 2010-09-01 08:31+0000\n"
+"PO-Revision-Date: 2010-11-28 16:43+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -64,32 +64,13 @@ msgstr "ไม่มีชื่อ"
 msgid "No description"
 msgstr "ไม่มีคำบรรยาย"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:37 ../gnome-session/main.c:441
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
 #: ../capplet/main.c:63
 msgid "Could not display help document"
 msgstr "ไม่สามารถแสดงเอกสารวิธีใช้"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-"มีการร้องขอการรองรับเทคโนโลยีอำนวยความสะดวกในวาระนี้ "
-"แต่ไม่พบเรจิสตรีสำหรับระบบอำนวยความสะดวก กรุณาตรวจสอบให้แน่ใจ ว่าได้ติดตั้งแพกเกจ AT-SPI "
-"เรียบร้อย วาระนี้ของคุณจะเปิดโดยไม่มีการรองรับเทคโนโลยีอำนวยความสะดวก"
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr "โปรแกรมครอบเรจิสตรี AT SPI"
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "ตัวช่วยดีมอนค่าตั้ง GNOME"
 
 #: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -109,15 +90,11 @@ msgstr "โปรแกรมจัดการแฟ้ม"
 
 #: ../data/gnome-session.schemas.in.in.h:3
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "เลือกแล้ว gnome-session จะถามผู้ใช้ก่อนจะออกจากการใช้งาน"
+msgstr "ถ้าเลือก gnome-session จะถามผู้ใช้ก่อนจะออกจากการใช้งาน"
 
 #: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"เลือกแล้ว gnome-session จะบันทึกรายละเอียดวาระโดยอัตโนมัติ  "
-"มิฉะนั้นคุณจะถูกถามในหน้าต่างออกจากระบบว่าจะบันทึกวาระหรือไม่"
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "ถ้าเลือก gnome-session จะบันทึกวาระให้โดยอัตโนมัติ"
 
 #: ../data/gnome-session.schemas.in.in.h:5
 msgid "List of applications that are part of the default session."
@@ -146,45 +123,33 @@ msgid "Panel"
 msgstr "พาเนล"
 
 #: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "รูปไตเติลที่จะแสดงขณะกำลังเข้าสู่ระบบ"
-
-#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Required session components"
 msgstr "องค์ประกอบที่จำเป็นของวาระ"
 
-#: ../data/gnome-session.schemas.in.in.h:11
+#: ../data/gnome-session.schemas.in.in.h:10
 msgid "Save sessions"
-msgstr "รักษารายละเอียดวาระ"
+msgstr "บันทึกรายละเอียดวาระ"
 
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "แสดงรูปไตเติลเมื่อเริ่มระบบ"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "แสดงรูปไตเติลขณะที่กำลังเข้าสู่ระบบ"
-
-#: ../data/gnome-session.schemas.in.in.h:14
+#: ../data/gnome-session.schemas.in.in.h:11
 msgid ""
 "The file manager provides the desktop icons and allows you to interact with "
 "your saved files."
 msgstr ""
 "โปรแกรมจัดการแฟ้ม จะเตรียมไอคอนต่างๆ บนพื้นโต๊ะ และช่วยคุณโต้ตอบกับแฟ้มต่างๆ ที่เก็บไว้ในดิสก์"
 
-#: ../data/gnome-session.schemas.in.in.h:15
+#: ../data/gnome-session.schemas.in.in.h:12
 msgid ""
 "The number of minutes of inactivity before the session is considered idle."
 msgstr "จำนวนนาทีของช่วงไร้กิจกรรมที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
 
-#: ../data/gnome-session.schemas.in.in.h:16
+#: ../data/gnome-session.schemas.in.in.h:13
 msgid ""
 "The panel provides the bar at the top or bottom of the screen containing "
 "menus, the window list, status icons, the clock, etc."
 msgstr ""
 "พาเนลคือแถบที่ด้านบนหรือด้านล่างหน้าจอ บรรจุเมนู รายชื่อหน้าต่าง ไอคอนสถานะ นาฬิกา ฯลฯ"
 
-#: ../data/gnome-session.schemas.in.in.h:17
+#: ../data/gnome-session.schemas.in.in.h:14
 msgid ""
 "The window manager is the program that draws the title bar and borders "
 "around windows, and allows you to move and resize windows."
@@ -192,20 +157,11 @@ msgstr ""
 "โปรแกรมจัดการหน้าต่าง คือโปรแกรมที่วาดแถบหัวและกรอบรอบหน้าต่าง "
 "และให้คุณย้ายหรือปรับขนาดหน้าต่างได้"
 
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
-"โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
-
-#: ../data/gnome-session.schemas.in.in.h:19
+#: ../data/gnome-session.schemas.in.in.h:15
 msgid "Time before session is considered idle"
 msgstr "ระยะเวลาที่จะเริ่มถือว่าวาระไม่มีการใช้งาน"
 
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "โปรแกรมจัดการหน้าต่าง"
 
@@ -215,9 +171,9 @@ msgstr "<b>ยังมีบางโปรแกรมทำงานอยู
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
+msgstr "จะรอให้โปรแกรมนี้ทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้สูญเสียงานบางอย่างของคุณไป"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -232,8 +188,8 @@ msgid "Additional startup _programs:"
 msgstr "โ_ปรแกรมเริ่มวาระเพิ่มเติม:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
-msgstr "เรียกดู..."
+msgid "Browse…"
+msgstr "เรียกดู…"
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -363,7 +319,7 @@ msgid "Switch User Anyway"
 msgstr "ยืนยันการสลับผู้ใช้"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "ยืนยันการออกจากระบบ"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:907
@@ -375,7 +331,7 @@ msgid "Hibernate Anyway"
 msgstr "ยืนยันการจำศีลเครื่อง"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "ยืนยันการปิดเครื่อง"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:916
@@ -390,70 +346,70 @@ msgstr "ล็อคหน้าจอ"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "คุณจะออกจากระบบโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "ระบบจะปิดโดยอัตโนมัติภายใน %d วินาที"
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "คุณกำลังเข้าระบบในนาม \"%s\""
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "ออกจากระบบเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_สลับผู้ใช้"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "ปิดเครื่องเดี๋ยวนี้เลยหรือไม่?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_พักเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_จำศีลเครื่อง"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "_เปิดเครื่องใหม่"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "ปิ_ดเครื่อง"
 
-#: ../gnome-session/gsm-manager.c:1158 ../gnome-session/gsm-manager.c:1850
+#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
-msgid "This program is blocking log out."
-msgstr "โปรแกรมนี้ระงับการออกจากระบบอยู่"
+#: ../gnome-session/gsm-xsmp-client.c:1189
+msgid "This program is blocking logout."
+msgstr "โปรแกรมนี้ขัดขวางการออกจากระบบอยู่"
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "ไม่รับการเชื่อมต่อใหม่จากลูกข่าย เพราะวาระกำลังปิดตัว\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
@@ -464,33 +420,25 @@ msgstr "ไม่สามารถสร้างซ็อกเก็ตรอ
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "ไม่สามารถเริ่มวาระเข้าระบบ (และไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์เอ็กซ์)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:437
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:434
-msgid "GConf key used to lookup default session"
+#: ../gnome-session/main.c:438
+msgid "GConf key used to look up default session"
 msgstr "คีย์ GConf ที่ใช้เปิดหาวาระปริยาย"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:439
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:440
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:461
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- รูปไตเติลเริ่มระบบ GNOME"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "รูปไตเติลเริ่มระบบ GNOME"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -536,6 +484,57 @@ msgstr "ติดต่อโปรแกรมจัดการวาระไ
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
+
+#~ msgid ""
+#~ "Assistive technology support has been requested for this session, but the "
+#~ "accessibility registry was not found. Please ensure that the AT-SPI "
+#~ "package is installed. Your session has been started without assistive "
+#~ "technology support."
+#~ msgstr ""
+#~ "มีการร้องขอการรองรับเทคโนโลยีอำนวยความสะดวกในวาระนี้ "
+#~ "แต่ไม่พบเรจิสตรีสำหรับระบบอำนวยความสะดวก กรุณาตรวจสอบให้แน่ใจ ว่าได้ติดตั้งแพกเกจ AT-"
+#~ "SPI เรียบร้อย วาระนี้ของคุณจะเปิดโดยไม่มีการรองรับเทคโนโลยีอำนวยความสะดวก"
+
+#~ msgid "AT SPI Registry Wrapper"
+#~ msgstr "โปรแกรมครอบเรจิสตรี AT SPI"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "ตัวช่วยดีมอนค่าตั้ง GNOME"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "ถ้าเลือก gnome-session จะบันทึกรายละเอียดวาระโดยอัตโนมัติ  "
+#~ "มิฉะนั้นคุณจะถูกถามในหน้าต่างออกจากระบบว่าจะบันทึกวาระหรือไม่"
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "รูปไตเติลที่จะแสดงขณะกำลังเข้าสู่ระบบ"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "แสดงรูปไตเติลเมื่อเริ่มระบบ"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "แสดงรูปไตเติลขณะที่กำลังเข้าสู่ระบบ"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "ใช้ชื่อพาธเทียบกับไดเรกทอรี $datadir/pixmaps/ "
+#~ "โดยกำหนดเป็นไดเรกทอรีย่อยลงไปจนถึงชื่อแฟ้มรูป การเปลี่ยนค่านี้จะมีผลในการเข้าระบบครั้งหน้า"
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr "จะรอให้โปรแกรมทำงานจบ การขัดจังหวะโปรแกรมอาจทำให้เสียงานบางอย่างของคุณไป"
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- รูปไตเติลเริ่มระบบ GNOME"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "รูปไตเติลเริ่มระบบ GNOME"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "คำสั่งที่ให้เรียกเมื่อเริ่มวาระจะว่างไม่ได้"
