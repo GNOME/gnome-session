@@ -1738,6 +1738,14 @@ gsm_manager_set_failsafe (GsmManager *manager,
         manager->priv->failsafe = enabled;
 }
 
+gboolean
+gsm_manager_get_failsafe (GsmManager *manager)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+	return manager->priv->failsafe;
+}
+
 static gboolean
 _client_has_startup_id (const char *id,
                         GsmClient  *client,
