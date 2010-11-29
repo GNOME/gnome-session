@@ -784,6 +784,7 @@ gsm_properties_dialog_init (GsmPropertiesDialog *dialog)
                                                      "main-notebook"));
         gtk_box_pack_start (GTK_BOX (content_area), widget, TRUE, TRUE, 0);
 
+        gtk_window_set_default_size (GTK_WINDOW (dialog), -1, 450);
         gtk_window_set_resizable (GTK_WINDOW (dialog), TRUE);
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_box_set_spacing (GTK_BOX (content_area), 2);
