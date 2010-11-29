@@ -48,6 +48,8 @@ gnome_session_SOURCES =				\
 	gsm-inhibitor.c				\
 	gsm-manager.c				\
 	gsm-manager.h				\
+	gsm-session-fill.c			\
+	gsm-session-fill.h			\
 	gsm-session-save.c			\
 	gsm-session-save.h			\
 	gsm-xsmp-server.c			\
