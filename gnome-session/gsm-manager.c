@@ -467,6 +467,10 @@ end_phase (GsmManager *manager)
         g_slist_free (manager->priv->next_query_clients);
         manager->priv->next_query_clients = NULL;
 
+        if (manager->priv->query_timeout_id > 0) {
+                g_source_remove (manager->priv->query_timeout_id);
+                manager->priv->query_timeout_id = 0;
+        }
         if (manager->priv->phase_timeout_id > 0) {
                 g_source_remove (manager->priv->phase_timeout_id);
                 manager->priv->phase_timeout_id = 0;
