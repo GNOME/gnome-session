@@ -2,7 +2,8 @@ bin_PROGRAMS = gnome-session
 noinst_LTLIBRARIES = libgsmutil.la
 noinst_PROGRAMS = 		\
 	test-client-dbus	\
-	test-inhibit
+	test-inhibit		\
+	test-process-helper
 
 AM_CPPFLAGS =					\
 	$(GNOME_SESSION_CFLAGS)			\
@@ -48,6 +49,8 @@ gnome_session_SOURCES =				\
 	gsm-inhibitor.c				\
 	gsm-manager.c				\
 	gsm-manager.h				\
+	gsm-process-helper.c			\
+	gsm-process-helper.h			\
 	gsm-session-fill.c			\
 	gsm-session-fill.h			\
 	gsm-session-save.c			\
@@ -94,6 +97,9 @@ test_inhibit_LDADD = $(GNOME_SESSION_LIBS)
 
 test_client_dbus_SOURCES = test-client-dbus.c
 test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)
+
+test_process_helper_SOURCES = test-process-helper.c gsm-process-helper.c gsm-process-helper.h
+test_process_helper_LDADD = $(DBUS_GLIB_LIBS)
 
 gsm-marshal.c: gsm-marshal.list
 	$(AM_V_GEN)echo "#include \"gsm-marshal.h\"" > $@ && \

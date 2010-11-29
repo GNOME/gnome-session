@@ -25,13 +25,18 @@
 
 #include "gsm-consolekit.h"
 #include "gsm-manager.h"
+#include "gsm-process-helper.h"
 #include "gsm-util.h"
 
 #define GSM_DEFAULT_SESSION "gnome"
 
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
+#define GSM_KEYFILE_RUNNABLE_KEY "IsRunnableHelper"
+#define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
 #define GSM_KEYFILE_REQUIRED_KEY "Required"
 #define GSM_KEYFILE_DEFAULT_KEY "DefaultApps"
+
+#define GSM_RUNNABLE_HELPER_TIMEOUT 500 /* ms */
 
 /* This doesn't contain the required components, so we need to always
  * call append_required_apps() after a call to append_default_apps(). */
@@ -302,6 +307,48 @@ find_valid_session_keyfile (const char *session)
         return keyfile;
 }
 
+static GKeyFile *
+get_session_keyfile (const char *session)
+{
+        GKeyFile *keyfile;
+        gboolean  session_runnable;
+        char     *value;
+
+        g_debug ("fill: *** Getting session '%s'", session);
+
+        keyfile = find_valid_session_keyfile (session);
+
+        session_runnable = TRUE;
+
+        value = g_key_file_get_string (keyfile,
+                                       GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_RUNNABLE_KEY,
+                                       NULL);
+        if (!IS_STRING_EMPTY (value)) {
+                g_debug ("fill: *** Launching helper '%s' to know if session is runnable", value);
+                session_runnable = (gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT) == 0);
+        }
+        g_free (value);
+
+        if (session_runnable)
+                return keyfile;
+
+        g_debug ("fill: *** Session is not runnable");
+
+        /* We can't run this session, so try to use the fallback */
+        value = g_key_file_get_string (keyfile,
+                                       GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_FALLBACK_KEY,
+                                       NULL);
+
+        g_key_file_free (keyfile);
+        keyfile = NULL;
+
+        if (!IS_STRING_EMPTY (value))
+                keyfile = get_session_keyfile (value);
+        g_free (value);
+
+        return keyfile;
+}
+
 gboolean
 gsm_session_fill (GsmManager  *manager,
                   char       **override_autostart_dirs,
@@ -317,7 +364,7 @@ gsm_session_fill (GsmManager  *manager,
         if (IS_STRING_EMPTY (session))
                 session = GSM_DEFAULT_SESSION;
 
-        keyfile = find_valid_session_keyfile (session);
+        keyfile = get_session_keyfile (session);
 
         if (!keyfile)
                 return FALSE;
