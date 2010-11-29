@@ -271,10 +271,10 @@ main (int argc, char **argv)
         GsmXsmpServer    *xsmp_server;
         GdmSignalHandler *signal_handler;
         static char     **override_autostart_dirs = NULL;
-        static char      *default_session_key = NULL;
+        static char      *session_name = NULL;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), NULL },
-                { "default-session-key", 0, 0, G_OPTION_ARG_STRING, &default_session_key, N_("GConf key used to look up default session"), NULL },
+                { "session", 0, 0, G_OPTION_ARG_STRING, &session_name, N_("Session to use"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -350,9 +350,11 @@ main (int argc, char **argv)
         gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, manager);
         gdm_signal_handler_set_fatal_func (signal_handler, shutdown_cb, manager);
 
-        gsm_session_fill (manager,
-                          override_autostart_dirs,
-                          default_session_key);
+        if (!gsm_session_fill (manager,
+                               override_autostart_dirs,
+                               session_name)) {
+                gsm_util_init_error (TRUE, "%s", "No valid session found.");
+        }
 
         gsm_xsmp_server_start (xsmp_server);
         gsm_manager_start (manager);

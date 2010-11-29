@@ -24,114 +24,103 @@
 #include "gsm-session-fill.h"
 
 #include "gsm-consolekit.h"
-#include "gsm-gconf.h"
-#include "gsm-util.h"
 #include "gsm-manager.h"
+#include "gsm-util.h"
 
-#define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default_session"
-#define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required_components"
-#define GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY  "/desktop/gnome/session/required_components_list"
+#define GSM_DEFAULT_SESSION "gnome"
+
+#define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
+#define GSM_KEYFILE_REQUIRED_KEY "Required"
+#define GSM_KEYFILE_DEFAULT_KEY "DefaultApps"
 
 /* This doesn't contain the required components, so we need to always
  * call append_required_apps() after a call to append_default_apps(). */
 static void
 append_default_apps (GsmManager *manager,
-                     const char *default_session_key,
+                     GKeyFile   *keyfile,
                      char      **autostart_dirs)
 {
-        GSList      *default_apps;
-        GSList      *a;
-        GConfClient *client;
+        char **default_apps;
+        int    i;
 
-        g_debug ("main: *** Adding default apps");
+        g_debug ("fill: *** Adding default apps");
 
-        g_assert (default_session_key != NULL);
+        g_assert (keyfile != NULL);
         g_assert (autostart_dirs != NULL);
 
-        client = gconf_client_get_default ();
-        default_apps = gconf_client_get_list (client,
-                                              default_session_key,
-                                              GCONF_VALUE_STRING,
-                                              NULL);
-        g_object_unref (client);
+        default_apps = g_key_file_get_string_list (keyfile,
+                                                   GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_DEFAULT_KEY,
+                                                   NULL, NULL);
 
-        for (a = default_apps; a; a = a->next) {
+        if (!default_apps)
+                return;
+
+        for (i = 0; default_apps[i] != NULL; i++) {
                 char *app_path;
 
-                if (IS_STRING_EMPTY ((char *)a->data)) {
+                if (IS_STRING_EMPTY (default_apps[i]))
                         continue;
-                }
 
-                app_path = gsm_util_find_desktop_file_for_app_name (a->data, autostart_dirs);
+                app_path = gsm_util_find_desktop_file_for_app_name (default_apps[i], autostart_dirs);
                 if (app_path != NULL) {
                         gsm_manager_add_autostart_app (manager, app_path, NULL);
                         g_free (app_path);
                 }
         }
 
-        g_slist_foreach (default_apps, (GFunc) g_free, NULL);
-        g_slist_free (default_apps);
+        g_strfreev (default_apps);
 }
 
 static void
-append_required_apps (GsmManager *manager)
+append_required_apps (GsmManager *manager,
+                      GKeyFile   *keyfile)
 {
-        GSList      *required_components;
-        GSList      *r;
-        GConfClient *client;
+        char **required_components;
+        int    i;
 
-        g_debug ("main: *** Adding required apps");
+        g_debug ("fill: *** Adding required apps");
 
-        client = gconf_client_get_default ();
-        required_components = gconf_client_get_list (client,
-                                                     GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY,
-                                                     GCONF_VALUE_STRING,
-                                                     NULL);
+        required_components = g_key_file_get_string_list (keyfile,
+                                                          GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_REQUIRED_KEY,
+                                                          NULL, NULL);
+
         if (required_components == NULL) {
                 g_warning ("No required applications specified");
+                return;
         }
 
-        for (r = required_components; r != NULL; r = r->next) {
-                char       *path;
-                char       *default_provider;
-                const char *component;
+        for (i = 0; required_components[i] != NULL; i++) {
+                char *key;
+                char *value;
+                char *app_path;
 
-                if (IS_STRING_EMPTY ((char *)r->data)) {
+                key = g_strdup_printf ("%s-%s", GSM_KEYFILE_REQUIRED_KEY, required_components[i]);
+                value = g_key_file_get_string (keyfile,
+                                               GSM_KEYFILE_SESSION_GROUP, key,
+                                               NULL);
+                g_free (key);
+
+                if (IS_STRING_EMPTY (value)) {
+                        g_free (value);
                         continue;
                 }
 
-                component = r->data;
-
-                path = g_strdup_printf ("%s/%s",
-                                        GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY,
-                                        component);
-
-                default_provider = gconf_client_get_string (client, path, NULL);
-                g_debug ("main: %s looking for component: '%s'", path, default_provider);
-                if (default_provider != NULL) {
-                        char *app_path;
-
-                        app_path = gsm_util_find_desktop_file_for_app_name (default_provider, NULL);
-                        if (app_path != NULL) {
-                                gsm_manager_add_autostart_app (manager, app_path, component);
-                        } else {
-                                g_warning ("Unable to find provider '%s' of required component '%s'",
-                                           default_provider,
-                                           component);
-                        }
-                        g_free (app_path);
+                g_debug ("fill: %s looking for component: '%s'", required_components[i], value);
+                app_path = gsm_util_find_desktop_file_for_app_name (value, NULL);
+                if (app_path != NULL) {
+                        gsm_manager_add_autostart_app (manager, app_path, required_components[i]);
+                } else {
+                        g_warning ("Unable to find provider '%s' of required component '%s'",
+                                   value, required_components[i]);
                 }
+                g_free (app_path);
 
-                g_free (default_provider);
-                g_free (path);
+                g_free (value);
         }
 
-        g_debug ("main: *** Done adding required apps");
+        g_debug ("fill: *** Done adding required apps");
 
-        g_slist_foreach (required_components, (GFunc)g_free, NULL);
-        g_slist_free (required_components);
-
-        g_object_unref (client);
+        g_strfreev (required_components);
 }
 
 static void
@@ -153,7 +142,7 @@ maybe_load_saved_session_apps (GsmManager *manager)
 
 static void
 load_standard_apps (GsmManager *manager,
-                    const char *default_session_key)
+                    GKeyFile   *keyfile)
 {
         char **autostart_dirs;
         int    i;
@@ -171,8 +160,8 @@ load_standard_apps (GsmManager *manager,
 
         /* We do this at the end in case a saved session contains an
          * application that already provides one of the components. */
-        append_default_apps (manager, default_session_key, autostart_dirs);
-        append_required_apps (manager);
+        append_default_apps (manager, keyfile, autostart_dirs);
+        append_required_apps (manager, keyfile);
 
         g_strfreev (autostart_dirs);
 }
@@ -187,18 +176,155 @@ load_override_apps (GsmManager *manager,
         }
 }
 
-void
-gsm_session_fill (GsmManager  *manager,
-                  char       **override_autostart_dirs,
-                  char        *default_session_key)
+static GKeyFile *
+get_session_keyfile_if_valid (const char *path)
 {
-        if (override_autostart_dirs != NULL) {
-                load_override_apps (manager, override_autostart_dirs);
-        } else {
-                if (! IS_STRING_EMPTY (default_session_key)) {
-                        load_standard_apps (manager, default_session_key);
-                } else {
-                        load_standard_apps (manager, GSM_GCONF_DEFAULT_SESSION_KEY);
+        GKeyFile  *keyfile;
+        gsize      len;
+        char     **list;
+
+        g_debug ("fill: *** Looking if %s is a valid session file", path);
+
+        keyfile = g_key_file_new ();
+
+        if (!g_key_file_load_from_file (keyfile, path, G_KEY_FILE_NONE, NULL)) {
+                g_debug ("Cannot use session '%s': non-existing or invalid file.", path);
+                goto error;
+        }
+
+        if (!g_key_file_has_group (keyfile, GSM_KEYFILE_SESSION_GROUP)) {
+                g_warning ("Cannot use session '%s': no '%s' group.", path, GSM_KEYFILE_SESSION_GROUP);
+                goto error;
+        }
+
+        list = g_key_file_get_string_list (keyfile,
+                                           GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_REQUIRED_KEY,
+                                           &len, NULL);
+        if (list != NULL) {
+                int i;
+                char *key;
+                char *value;
+
+                for (i = 0; list[i] != NULL; i++) {
+                        key = g_strdup_printf ("%s-%s", GSM_KEYFILE_REQUIRED_KEY, list[i]);
+                        value = g_key_file_get_string (keyfile,
+                                                       GSM_KEYFILE_SESSION_GROUP, key,
+                                                       NULL);
+                        g_free (key);
+
+                        if (IS_STRING_EMPTY (value)) {
+                                g_free (value);
+                                break;
+                        }
+
+                        g_free (value);
+                }
+
+                if (list[i] != NULL) {
+                        g_warning ("Cannot use session '%s': required component '%s' is not defined.", path, list[i]);
+                        g_strfreev (list);
+                        goto error;
+                }
+
+                g_strfreev (list);
+        }
+
+        /* we don't want an empty session, so if there's no required app, check
+         * that we do have some default apps */
+        if (len == 0) {
+                list = g_key_file_get_string_list (keyfile,
+                                                   GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_DEFAULT_KEY,
+                                                   &len, NULL);
+                if (list)
+                        g_strfreev (list);
+                if (len == 0) {
+                        g_warning ("Cannot use session '%s': no application in the session.", path);
+                        goto error;
                 }
         }
+
+        return keyfile;
+
+error:
+        g_key_file_free (keyfile);
+        return NULL;
+}
+
+/**
+ * find_valid_session_keyfile:
+ * @session: name of session
+ *
+ * We look for the session file in XDG_CONFIG_HOME, XDG_CONFIG_DIRS and
+ * XDG_DATA_DIRS. This enables users and sysadmins to override a specific
+ * session that is shipped in XDG_DATA_DIRS.
+ */
+static GKeyFile *
+find_valid_session_keyfile (const char *session)
+{
+        GPtrArray          *dirs;
+        const char * const *system_config_dirs;
+        const char * const *system_data_dirs;
+        int                 i;
+        GKeyFile           *keyfile;
+        char               *basename;
+        char               *path;
+
+        dirs = g_ptr_array_new ();
+
+        g_ptr_array_add (dirs, (gpointer) g_get_user_config_dir ());
+
+        system_config_dirs = g_get_system_config_dirs ();
+        for (i = 0; system_config_dirs[i]; i++)
+                g_ptr_array_add (dirs, (gpointer) system_config_dirs[i]);
+
+        system_data_dirs = g_get_system_data_dirs ();
+        for (i = 0; system_data_dirs[i]; i++)
+                g_ptr_array_add (dirs, (gpointer) system_data_dirs[i]);
+
+        keyfile = NULL;
+        basename = g_strdup_printf ("%s.session", session);
+        path = NULL;
+
+        for (i = 0; i < dirs->len; i++) {
+                path = g_build_filename (dirs->pdata[i], "gnome-session", "sessions", basename, NULL);
+                keyfile = get_session_keyfile_if_valid (path);
+                if (keyfile != NULL)
+                        break;
+        }
+
+        if (dirs)
+                g_ptr_array_free (dirs, TRUE);
+        if (basename)
+                g_free (basename);
+        if (path)
+                g_free (path);
+
+        return keyfile;
+}
+
+gboolean
+gsm_session_fill (GsmManager  *manager,
+                  char       **override_autostart_dirs,
+                  const char  *session)
+{
+        GKeyFile *keyfile;
+
+        if (override_autostart_dirs != NULL) {
+                load_override_apps (manager, override_autostart_dirs);
+                return TRUE;
+        }
+
+        if (IS_STRING_EMPTY (session))
+                session = GSM_DEFAULT_SESSION;
+
+        keyfile = find_valid_session_keyfile (session);
+
+        if (!keyfile)
+                return FALSE;
+
+        load_standard_apps (manager, keyfile);
+
+        g_key_file_free (keyfile);
+
+        return TRUE;
 }

@@ -15,21 +15,28 @@ desktopdir = $(datadir)/applications
 desktop_in_files = session-properties.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
+sessiondir = $(datadir)/gnome-session/sessions
+session_in_in_files = gnome.session.desktop.in.in
+session_in_files = $(session_in_in_files:.session.desktop.in.in=.session.desktop.in)
+session_DATA = $(session_in_files:.session.desktop.in=.session)
+
+%.session.desktop.in: %.session.desktop.in.in Makefile
+	$(AM_V_GEN)sed \
+		-e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
+		-e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
+		$< > $@
+
+%.session: %.session.desktop.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@
+
 if USE_GNOME_WM
 desktop_in_files += gnome-wm.desktop.in
 endif
 
 @INTLTOOL_DESKTOP_RULE@
 
-schemas_in_in_files = gnome-session.schemas.in.in
-schemas_in_files = $(schemas_in_in_files:.schemas.in.in=.schemas.in)
+schemas_in_files = gnome-session.schemas.in
 schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
-
-$(schemas_in_files): $(schemas_in_files).in Makefile
-	$(AM_V_GEN)sed \
-		-e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
-		$< > $@
 
 @INTLTOOL_SCHEMAS_RULE@
 
@@ -49,15 +56,16 @@ endif
 EXTRA_DIST =					\
 	gnome-wm				\
 	$(xsession_in_files)			\
-	$(schemas_in_in_files)			\
+	$(session_in_in_files)			\
+	$(schemas_in_files)			\
 	$(ui_DATA)				\
 	$(pixmap_DATA_dist)
 
 CLEANFILES =					\
-	$(schemas_in_files)			\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
 	$(desktop_DATA)				\
+	$(session_DATA)				\
 	gnome-wm.desktop
 
 DISTCLEANFILES =				\

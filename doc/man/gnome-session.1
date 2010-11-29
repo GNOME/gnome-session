@@ -7,7 +7,7 @@
 .SH NAME
 gnome-session \- Start the GNOME desktop environment
 .SH SYNOPSIS
-.B gnome-session [\-\-autostart=DIR] [\-\-default-session-key=KEY] [\-\-failsafe|\-f] [\-\-debug]
+.B gnome-session [\-\-autostart=DIR] [\-\-session=SESSION] [\-\-failsafe|\-f] [\-\-debug]
 .SH DESCRIPTION
 The \fIgnome-session\fP program starts up the GNOME desktop
 environment. This command is typically executed by your login manager
@@ -16,8 +16,12 @@ either your saved session, or it will provide a default session for the
 user as defined by the system administrator (or the default GNOME
 installation on your system).
 .PP
-The default session is defined in the GConf keys under
-\fB/desktop/gnome/session\fP.
+The default session is defined in \fBgnome.session\fP, a .desktop-like
+file that is looked for in
+\fB$XDG_CONFIG_HOME/gnome-session/sessions\fP,
+\fB$XDG_CONFIG_DIRS/gnome-session/sessions\fP and
+\fB$XDG_DATA_DIRS/gnome-session/sessions\fP.
+.PP
 When saving a session, \fIgnome-session\fP saves the currently running
 applications in the \fB$XDG_CONFIG_HOME/gnome-session/saved-session\fP
 directory.
@@ -29,14 +33,12 @@ The following options are supported:
 .TP
 .I "--autostart=DIR"
 Start all applications defined in \fIDIR\fP, instead of starting the
-applications defined in \fB/desktop/gnome/session/default_session\fP,
-or via the \fI--default-session-key\fP option. Multiple
-\fI--autostart\fP options can be passed.
+applications defined in \fBgnome.session\fP, or via the \fI--session\fP
+option. Multiple \fI--autostart\fP options can be passed.
 .TP
-.I "--default-session-key=KEY"
-Set the GConf key from which applications running a default session
-should be read to \fIKEY\fP. If not specificed,
-\fB/desktop/gnome/session/default_session\fP will be used.
+.I "--session=SESSION"
+Use the applications defined in \fBSESSION.session\fP. If not specified,
+\fBgnome.session\fP will be used.
 .TP
 .I "--failsafe"
 Run in fail-safe mode. User-specified applications will not be started.
@@ -66,6 +68,13 @@ when gnome-session is invoked.
 .IP
 The applications defined in those directories will be started on login.
 \fIgnome-session-properties(1)\fP can be used to easily configure them.
+.PP
+.B $XDG_CONFIG_HOME/gnome-session/sessions
+.B $XDG_CONFIG_DIRS/gnome-session/sessions
+.B $XDG_DATA_DIRS/gnome-session/sessions
+.IP
+These directories contain the \fB.session\fP files that can be used
+with the \fI--session\fP option.
 .PP
 .B $XDG_CONFIG_HOME/gnome-session/saved-session
 .IP

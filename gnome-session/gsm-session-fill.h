@@ -26,9 +26,9 @@
 
 G_BEGIN_DECLS
 
-void gsm_session_fill (GsmManager  *manager,
-                       char       **override_autostart_dirs,
-                       char        *default_session_key);
+gboolean gsm_session_fill (GsmManager  *manager,
+                           char       **override_autostart_dirs,
+                           const char  *session);
 
 G_END_DECLS
 
