@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+
 char *      gsm_util_find_desktop_file_for_app_name (const char  *app_name,
                                                      char       **dirs);
 

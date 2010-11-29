@@ -21,17 +21,16 @@
 
 #include <config.h>
 
+#include "gsm-session-fill.h"
+
 #include "gsm-consolekit.h"
 #include "gsm-gconf.h"
 #include "gsm-util.h"
 #include "gsm-manager.h"
-#include "gsm-session-fill.h"
 
 #define GSM_GCONF_DEFAULT_SESSION_KEY           "/desktop/gnome/session/default_session"
 #define GSM_GCONF_REQUIRED_COMPONENTS_DIRECTORY "/desktop/gnome/session/required_components"
 #define GSM_GCONF_REQUIRED_COMPONENTS_LIST_KEY  "/desktop/gnome/session/required_components_list"
-
-#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 /* This doesn't contain the required components, so we need to always
  * call append_required_apps() after a call to append_default_apps(). */

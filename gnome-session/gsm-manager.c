@@ -85,8 +85,6 @@
 
 #define KEY_SLEEP_LOCK            "/apps/gnome-screensaver/lock_enabled"
 
-#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
-
 typedef enum
 {
         GSM_MANAGER_LOGOUT_NONE,

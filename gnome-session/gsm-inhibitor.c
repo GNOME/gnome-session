@@ -31,9 +31,9 @@
 #include "gsm-inhibitor.h"
 #include "gsm-inhibitor-glue.h"
 
-static guint32 inhibitor_serial = 1;
+#include "gsm-util.h"
 
-#define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
+static guint32 inhibitor_serial = 1;
 
 #define GSM_INHIBITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBITOR, GsmInhibitorPrivate))
 
