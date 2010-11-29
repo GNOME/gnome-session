@@ -87,6 +87,7 @@ PKG_CHECK_MODULES(GCONF, gconf-2.0)
 
 PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-$GTK_API_VERSION)
 
+PKG_CHECK_MODULES(GL_TEST, xcomposite gl)
 
 dnl ====================================================================
 dnl Option to set the default window manager
