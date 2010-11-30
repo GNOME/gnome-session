@@ -30,6 +30,7 @@ gnome_session_is_accelerated_CPPFLAGS =		\
 	$(GL_TEST_CFLAGS)
 
 gnome_session_is_accelerated_LDADD = 		\
-	$(GL_TEST_LIBS)
+	$(GL_TEST_LIBS)				\
+	$(X_LIBS)
 
 -include $(top_srcdir)/git.mk
