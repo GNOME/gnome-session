@@ -87,7 +87,7 @@ do_inhibit_for_window (GdkWindow *window)
         app_id = "nautilus";
         reason = "A file transfer is in progress.";
 #endif
-        toplevel_xid = GDK_DRAWABLE_XID (window);
+        toplevel_xid = gdk_x11_window_get_xid (window);
         flags = GSM_INHIBITOR_FLAG_LOGOUT
                 | GSM_INHIBITOR_FLAG_SWITCH_USER
                 | GSM_INHIBITOR_FLAG_SUSPEND;
