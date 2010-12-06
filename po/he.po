@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-02 17:57+0300\n"
-"PO-Revision-Date: 2010-09-02 18:00+0200\n"
+"POT-Creation-Date: 2010-12-06 14:37+0200\n"
+"PO-Revision-Date: 2010-12-06 14:38+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,19 +22,19 @@ msgstr ""
 msgid "Select Command"
 msgstr "בחירת פקודה"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "הוספת תכנית הפעלה"
 
-#: ../capplet/gsm-app-dialog.c:198
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "עריכת תכנית הפעלה"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
@@ -62,7 +62,7 @@ msgstr "ללא שם"
 msgid "No description"
 msgstr "ללא תיאור"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:441
+#: ../capplet/main.c:37 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -78,94 +78,7 @@ msgstr "‏GNOME"
 msgid "This session logs you into GNOME"
 msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Default session"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "File Manager"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"If enabled, gnome-session will prompt the user before ending a session."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "If enabled, gnome-session will save the session automatically."
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "List of applications that are part of the default session."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Logout prompt"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Panel"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Required session components"
-msgstr "Required session components"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Save sessions"
-msgstr "Save sessions"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"The number of minutes of inactivity before the session is considered idle."
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid "Time before session is considered idle"
-msgstr "Time before session is considered idle"
-
-#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Window Manager"
 
@@ -173,7 +86,7 @@ msgstr "Window Manager"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>קיימות תכניות שעדיין רצות:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -295,58 +208,58 @@ msgstr ""
 "יש בעיה עם שרת ההגדרות.\n"
 "(‏%s יצא עם המצב %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:254
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "האיקון '%s' לא נמצא"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:593
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "A program is still running:"
 msgstr "קיימת תוכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid "Some programs are still running:"
 msgstr "קיימות תוכניות שעדיין רצות:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:649
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "ממתין לסיום תוכניות. הפרעה לתוכניות עלולה לגרום לאיבוד העבודה שלך."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Switch User Anyway"
 msgstr "_החלף משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:882
 msgid "Log Out Anyway"
 msgstr "יציאה בכול מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:885
 msgid "Suspend Anyway"
 msgstr "השהה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Hibernate Anyway"
 msgstr "עבור למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Shut Down Anyway"
 msgstr "כיבוי בכול מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:894
 msgid "Reboot Anyway"
 msgstr "שתחל בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:902
 msgid "Lock Screen"
 msgstr "נעל מסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:905
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -401,11 +314,11 @@ msgstr "_אתחול"
 msgid "_Shut Down"
 msgstr "_כבה"
 
-#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
+#: ../gnome-session/gsm-manager.c:1229 ../gnome-session/gsm-manager.c:1949
 msgid "Not responding"
 msgstr "אין תגובה"
 
-#: ../gnome-session/gsm-xsmp-client.c:1189
+#: ../gnome-session/gsm-xsmp-client.c:1187
 msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
@@ -426,23 +339,23 @@ msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Unable to start login session (and unable to connect to the X server)"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:438
-msgid "GConf key used to look up default session"
-msgstr "GConf key used to look up default session"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr "הפעלה לשימוש"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
-#: ../gnome-session/main.c:440
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
-#: ../gnome-session/main.c:461
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -490,6 +403,82 @@ msgstr "לא ניתן להתחבר למנהל ההפעלה"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "התוכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid "Default session"
+#~ msgstr "Default session"
+
+#~ msgid "File Manager"
+#~ msgstr "File Manager"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "If enabled, gnome-session will save the session automatically."
+
+#~ msgid "List of applications that are part of the default session."
+#~ msgstr "List of applications that are part of the default session."
+
+#~ msgid ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+#~ msgstr ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+
+#~ msgid "Logout prompt"
+#~ msgstr "Logout prompt"
+
+#~ msgid "Panel"
+#~ msgstr "Panel"
+
+#~ msgid "Required session components"
+#~ msgstr "Required session components"
+
+#~ msgid "Save sessions"
+#~ msgstr "Save sessions"
+
+#~ msgid ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+#~ msgstr ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+
+#~ msgid ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+#~ msgstr ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+
+#~ msgid ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+#~ msgstr ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Time before session is considered idle"
+
+#~ msgid "GConf key used to look up default session"
+#~ msgstr "GConf key used to look up default session"
 
 #~ msgid "Preferred Image to use for login splash screen"
 #~ msgstr "Preferred Image to use for login splash screen"
@@ -563,9 +552,6 @@ msgstr "התוכנית נקראה עם אפשרויות סותרות"
 
 #~ msgid "Configure your sessions"
 #~ msgstr "הגדר את תצורות ההפעלה שלך"
-
-#~ msgid "Sessions"
-#~ msgstr "תצורות הפעלה"
 
 #~ msgid "Session management"
 #~ msgstr "ניהול תצורת ההפעלה"
