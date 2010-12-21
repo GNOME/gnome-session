@@ -1,533 +1,419 @@
 # Persian translation of gnome-session.
 # Copyright (C) 2002, 2003, 2005, 2006 Sharif FarsiWeb, Inc.
+# Copyright (C) Iranian Free Software Users Group (IFSUG.org)translation team, 2010.
 # This file is distributed under the same license as gnome-session package.
 # Roozbeh Pournader <roozbeh@farsiweb.info>, 2002, 2003.
 # Elnaz Sarbar <elnaz@farsiweb.info>, 2005, 2006.
 # Meelad Zakaria <meelad@farsiweb.info>, 2006.
+# Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-16 08:32+0100\n"
-"PO-Revision-Date: 2006-02-26 17:37+0330\n"
-"Last-Translator: Elnaz Sarbar <elnaz@farsiweb.info>\n"
-"Language-Team: Persian\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2010-12-08 17:01+0000\n"
+"PO-Revision-Date: 2010-12-21 13:56+0330\n"
+"Last-Translator: Mahyar Moghimi <mahyar.moqimi@gmail.com>\n"
+"Language-Team: Persian <translate@ifsug.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../gnome-session/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "اتصالات TCP مجازند"
+#: ../capplet/gsm-app-dialog.c:120
+msgid "Select Command"
+msgstr "انتخاب فرمان"
 
-#: ../gnome-session/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"به دلایل امنیتی، gnome-session در سیستم‌هایی که ‎_IceTcpTransNoListen()‎ دارند "
-"(سیستم‌های XFree86)، روی درگاه‌های TCP منتظر اتصال نمی‌ماند. این گزینه اتصال از "
-"میزبان‌های دوردست (مجاز) را ممکن می‌سازد. برای عمل کردن این گزینه gnome-"
-"session باید راه‌اندازی مجدد شود."
-
-#: ../gnome-session/gnome-session.schemas.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"اگر انتخاب شود، gnome-session قبل از تمام کردن نشست از کاربر تأیید می‌گیرد."
-
-#: ../gnome-session/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"اگر انتخاب شود، gnome-session به طور خودکار نشست را ذخیره می‌کند. در غیر این "
-"صورت محاوره‌ی خروج از سیستم گزینه‌ای برای ذخیره‌ی نشست خواهد داشت."
-
-#: ../gnome-session/gnome-session.schemas.in.h:5
-msgid "Logout prompt"
-msgstr "اعلان خروج از سیستم"
-
-#: ../gnome-session/gnome-session.schemas.in.h:6
-msgid "Preferred Image to use for login splash screen"
-msgstr "تصویری که ترجیح می‌دهید به عنوان صفحه‌ی راه‌اندازی به‌کار رود"
-
-#: ../gnome-session/gnome-session.schemas.in.h:7
-msgid "Save sessions"
-msgstr "ذخیره‌ی نشست‌ها"
-
-#: ../gnome-session/gnome-session.schemas.in.h:8
-msgid "Selected option in the log out dialog"
-msgstr ""
-
-#: ../gnome-session/gnome-session.schemas.in.h:9
-msgid "Show the splash screen"
-msgstr "نشان دادن صفحه‌ی راه‌اندازی"
-
-#: ../gnome-session/gnome-session.schemas.in.h:10
-msgid "Show the splash screen when the session starts up"
-msgstr "نشان دادن صفحه‌ی راه‌اندازی هنگام آغاز نشست‌ها"
-
-#: ../gnome-session/gnome-session.schemas.in.h:11
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"مسیری نسبی از شاخه‌ی ‎$datadir/pixmaps/‎ است. زیرشاخه‌ها و نام تصاویر مقادیر "
-"معتبر محسوب می‌شوند. تغییر این مقدار دفعه‌ی بعدی که وارد نشست می‌شوید تأثیر خود "
-"را نشان خواهد داد."
-
-#: ../gnome-session/gnome-session.schemas.in.h:12
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-
-#: ../gnome-session/gsm-client-editor.c:97
-msgid "_Order:"
-msgstr "_ترتیب:"
-
-#: ../gnome-session/gsm-client-editor.c:99
-msgid "The order in which applications are started in the session."
-msgstr "ترتیب آغاز شدن برنامه‌های در نشست."
-
-#: ../gnome-session/gsm-client-editor.c:106
-msgid "What happens to the application when it exits."
-msgstr "اتفاقی که بعد از خروج برای برنامه می‌افتد."
-
-#: ../gnome-session/gsm-client-editor.c:109
-msgid "_Style:"
-msgstr "_سبک:"
-
-#: ../gnome-session/gsm-client-list.c:150
-msgid "Order"
-msgstr "ترتیب"
-
-#: ../gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "سبک"
-
-#: ../gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "وضعیت"
-
-#: ../gnome-session/gsm-client-list.c:165
-msgid "Program"
-msgstr "برنامه"
-
-#: ../gnome-session/gsm-client-row.c:31
-msgid "Inactive"
-msgstr "غیرفعال"
-
-#: ../gnome-session/gsm-client-row.c:32
-msgid "Waiting to start or already finished."
-msgstr "در انتظار آغاز است یا قبلاً تمام شده است."
-
-#: ../gnome-session/gsm-client-row.c:34
-msgid "Starting"
-msgstr "در حال آغاز"
-
-#: ../gnome-session/gsm-client-row.c:35
-msgid "Started but has not yet reported state."
-msgstr "آغاز شده ولی هنوز وضعیت را گزارش نکرده است."
-
-#: ../gnome-session/gsm-client-row.c:37
-msgid "Running"
-msgstr "در حال اجرا"
-
-#: ../gnome-session/gsm-client-row.c:38
-msgid "A normal member of the session."
-msgstr "یک عضو عادیِ نشست."
-
-#: ../gnome-session/gsm-client-row.c:40
-msgid "Saving"
-msgstr "در حال ذخیره"
-
-#: ../gnome-session/gsm-client-row.c:41
-msgid "Saving session details."
-msgstr "در حال ذخیره کردن جزئیات نشست."
-
-#: ../gnome-session/gsm-client-row.c:43
-msgid "Unknown"
-msgstr "نامعلوم"
-
-#: ../gnome-session/gsm-client-row.c:44
-msgid "State not reported within timeout."
-msgstr "وضعیت در مدت منقضی گزارش نشد."
-
-#: ../gnome-session/gsm-client-row.c:50
-msgid "Normal"
-msgstr "عادی"
-
-#: ../gnome-session/gsm-client-row.c:51
-msgid "Unaffected by logouts but can die."
-msgstr "تحت تأثیر خروج از سیستم قرار نمی‌گیرد اما می‌تواند بمیرد."
-
-#: ../gnome-session/gsm-client-row.c:53
-msgid "Restart"
-msgstr "راه‌اندازی مجدد"
-
-#: ../gnome-session/gsm-client-row.c:54
-msgid "Never allowed to die."
-msgstr "هرگز اجازه‌ی مردن ندارد."
-
-#: ../gnome-session/gsm-client-row.c:56
-msgid "Trash"
-msgstr "زباله‌دان"
-
-#: ../gnome-session/gsm-client-row.c:57
-msgid "Discarded on logout and can die."
-msgstr "هنگام خروج از سیستم دور انداخته می‌شود و می‌تواند بمیرد."
-
-#: ../gnome-session/gsm-client-row.c:59
-msgid "Settings"
-msgstr "تنظیمات"
-
-#: ../gnome-session/gsm-client-row.c:60
-msgid "Always started on every login."
-msgstr "همیشه در هر ورود به سیستم آغاز می‌شود."
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:41
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"هنگام راه‌اندازی شبح تنظیمات گنوم خطایی پیش آمد.\n"
-"\n"
-"بعضی چیزها، مثل تم‌ها، صداها، یا تنظیمات پس‌زمینه ممکن است درست کار نکنند."
-
-#: ../gnome-session/gsm-gsd.c:53
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"آخرین پیغام خطا عبارت بود از:\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:58
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"گنوم همچنان سعی خواهد کرد در ورود بعدی شما به سیستم شبح تنظیمات را راه‌اندازی "
-"مجدد کند."
-
-#: ../gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "یک خطای فعال‌سازی نامعلوم رخ داد."
-
-#: ../gnome-session/gsm-gsd.c:157
-msgid "The Settings Daemon restarted too many times."
-msgstr "دفعات راه‌اندازی مجدد شبح تنظیمات بیش از اندازه بوده است."
-
-#: ../gnome-session/logout.c:408
-msgid "Are you sure you want to log out?"
-msgstr "آیا مطمئنید که می‌خواهید از سیستم خارج شوید؟"
-
-#: ../gnome-session/logout.c:425
-msgid "_Save current setup"
-msgstr "_ذخیره‌ی تنظیمات فعلی"
-
-#: ../gnome-session/logout.c:448
-msgid "Action"
-msgstr "کنش"
-
-#: ../gnome-session/logout.c:465
-msgid "_Log out"
-msgstr "_خروج از سیستم"
-
-#: ../gnome-session/logout.c:472
-msgid "Sh_ut down"
-msgstr "خامو_ش کردن"
-
-#: ../gnome-session/logout.c:480
-msgid "_Restart the computer"
-msgstr "_راه‌اندازی مجدد کامپیوتر"
-
-#: ../gnome-session/main.c:82
-msgid "Specify a session name to load"
-msgstr "نام یک نشست را برای بار کردن مشخص کنید"
-
-#: ../gnome-session/main.c:83
-msgid "Only read saved sessions from the default.session file"
-msgstr "فقط نشست‌های ذخیره‌شده از پرونده‌ی default.session خوانده شوند"
-
-#: ../gnome-session/main.c:84
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "دوره‌ی انتظار برای ثبت نام کارگیر به میلی‌ثانیه (۰ = تا ابد)"
-
-#: ../gnome-session/main.c:85
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "دوره‌ی انتظار برای پاسخ گرفتن از کارگیر به میلی‌ثانیه (۰ = تا ابد)"
-
-#: ../gnome-session/main.c:86
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr "دوره‌ی انتظار برای مردن کارگیر به میلی‌ثانیه (۰ = تا ابد)"
-
-#: ../gnome-session/main.c:266
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"گشتن به دنبال آدرس اینترنتی برای %s ممکن نیست.\n"
-"این مسأله از فعالیت صحیح گنوم جلوگیری می‌کند.\n"
-"ممکن است این مشکل با اضافه کردن %s به \n"
-"پرونده‌ی ‎/etc/hosts تصحیح شود."
-
-#: ../gnome-session/main.c:273
-msgid "Log in Anyway"
-msgstr "در هر حال ورود به سیستم صورت گیرد"
-
-#: ../gnome-session/main.c:274
-msgid "Try Again"
-msgstr "تلاش مجدد"
-
-#: ../gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "نشست شما ذخیره شد"
-
-#: ../gnome-session/manager.c:527
-msgid "Wait abandoned due to conflict."
-msgstr "انتظار به علت مغایرت متوقف شد."
-
-#: ../gnome-session/manager.c:1035
-#, c-format
-msgid "No response to the %s command."
-msgstr "هیچ پاسخی برای فرمان %s دریافت نشد."
-
-#: ../gnome-session/manager.c:1036
-msgid "The program may be slow, stopped or broken."
-msgstr "برنامه ممکن است کند باشد، متوقف‌شده یا از کار افتاده باشد."
-
-#: ../gnome-session/manager.c:1037
-msgid "You may wait for it to respond or remove it."
-msgstr "می‌توانید صبر کنید تا پاسخ بدهد یا حذفش کنید."
-
-#: ../gnome-session/manager.c:1760
-msgid "Restart abandoned due to failures."
-msgstr "راه‌اندازی مجدد به‌علت خرابی‌ها رها شد."
-
-#: ../gnome-session/manager.c:1956
-msgid "A session shutdown is in progress."
-msgstr "خاموش کردن نشست در حال انجام است."
-
-#: ../gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "تنظیم نشست فعلی"
-
-#: ../gnome-session/save-session.c:47
-msgid "Kill session"
-msgstr "کشتن نشست"
-
-#: ../gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "استفاده از جعبه‌های محاوره"
-
-#: ../gnome-session/save-session.c:146 ../gnome-session/save-session.c:179
-msgid "Could not connect to the session manager"
-msgstr "اتصال به مدیر نشست ممکن نیست"
-
-#: ../gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "نام نشست نمی‌تواند خالی باشد"
-
-#: ../gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "نام نشست از قبل وجود دارد"
-
-#: ../gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "اضافه کردن یک نشست جدید"
-
-#: ../gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "ویرایش نام نشست"
-
-#: ../gnome-session/session-properties-capplet.c:117
-msgid "Enable"
-msgstr ""
-
-#: ../gnome-session/session-properties-capplet.c:123
-#: ../gnome-session/session-properties-capplet.c:464
-msgid "Disable"
-msgstr ""
-
-#: ../gnome-session/session-properties-capplet.c:145
-msgid "_Edit"
-msgstr "_ویرایش"
-
-#: ../gnome-session/session-properties-capplet.c:213
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"بعضی تغییرات ذخیره نشده‌اند.\n"
-"با این وجود خارج می‌شوید؟"
-
-#: ../gnome-session/session-properties-capplet.c:263
-#: ../gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "نشست‌ها"
-
-#: ../gnome-session/session-properties-capplet.c:296
-msgid "Show splash screen on _login"
-msgstr "نشان دادن صفحه‌ی راه‌اندازی هنگام _ورود به سیستم"
-
-#: ../gnome-session/session-properties-capplet.c:307
-msgid "As_k on logout"
-msgstr "پر_سش هنگام خروج از سیستم"
-
-#: ../gnome-session/session-properties-capplet.c:318
-msgid "Automatically save chan_ges to session"
-msgstr "ذخیره‌ی خودکار تغییرات در نشست"
-
-#: ../gnome-session/session-properties-capplet.c:329
-msgid "_Sessions:"
-msgstr "_نشست‌ها:"
-
-#: ../gnome-session/session-properties-capplet.c:347
-msgid "Session Name"
-msgstr "نام نشست"
-
-#: ../gnome-session/session-properties-capplet.c:398
-msgid "Session Options"
-msgstr "گزینه‌های نشست"
-
-#: ../gnome-session/session-properties-capplet.c:407
-msgid "Current Session"
-msgstr "نشست فعلی"
-
-#: ../gnome-session/session-properties-capplet.c:416
-msgid "Additional startup _programs:"
-msgstr "برنامه‌های راه‌اندازی اضافی:"
-
-#: ../gnome-session/session-properties-capplet.c:435
-msgid "Command"
-msgstr "فرمان"
-
-#: ../gnome-session/session-properties-capplet.c:475
-msgid "Startup Programs"
-msgstr "برنامه‌های راه‌اندازی"
-
-#: ../gnome-session/session-properties.c:49
-msgid "Remove the currently selected client from the session."
-msgstr "حذف کارگیر انتخاب شده‌ی فعلی از نشست."
-
-#: ../gnome-session/session-properties.c:55
-msgid "Apply changes to the current session"
-msgstr "اعمال تغییرات به نشست فعلی"
-
-#: ../gnome-session/session-properties.c:61
-msgid "The list of programs in the session."
-msgstr "فهرست برنامه‌های این نشست."
-
-#: ../gnome-session/session-properties.c:88
-msgid "Currently running _programs:"
-msgstr "برنامه‌های فعلاً در حال اجرا:"
-
-#: ../gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "مقداردهی اولیه‌ی تنظیمات نشست"
-
-#: ../gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "نشست‌هایتان را پیکربندی کنید"
-
-#: ../gnome-session/splash-widget.c:43
-msgid "Sawfish Window Manager"
-msgstr "مدیر پنجره‌های سافیش"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Metacity Window Manager"
-msgstr "مدیر پنجره‌های متاسیتی"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Window Manager"
-msgstr "مدیر پنجره‌ها"
-
-#: ../gnome-session/splash-widget.c:46
-msgid "The Panel"
-msgstr "تابلو"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "Nautilus"
-msgstr "ناتیلوس"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Desktop Settings"
-msgstr "تنظیمات رومیزی"
-
-#: ../gnome-session/startup-programs.c:415
-msgid "_Startup Command:"
-msgstr "فرمان _راه‌اندازی:"
-
-#: ../gnome-session/startup-programs.c:421
-msgid "Startup Command"
-msgstr "فرمان راه‌اندازی"
-
-#: ../gnome-session/startup-programs.c:450
-msgid "The startup command cannot be empty"
-msgstr "فرمان راه‌اندازی نمی‌تواند خالی باشد"
-
-#: ../gnome-session/startup-programs.c:487
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
-msgstr "اضافه کردن برنامه‌ی راه‌اندازی"
+msgstr "افزودن برنامه‌ی راه‌اندازی"
 
-#: ../gnome-session/startup-programs.c:525
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "ویرایش برنامه‌ی راه‌اندازی"
 
-#~ msgid "Session Manager Proxy"
-#~ msgstr "پیشکار مدیر نشست"
+#: ../capplet/gsm-app-dialog.c:485
+msgid "The startup command cannot be empty"
+msgstr "فرمان راه‌اندازی نمی‌تواند خالی باشد"
 
-#~ msgid "Save Current Session"
-#~ msgstr "ذخیره نشست فعلی"
+#: ../capplet/gsm-app-dialog.c:491
+msgid "The startup command is not valid"
+msgstr "فرمان راه‌اندازی معتبر نیست"
 
-#~ msgid "Save current state of desktop"
-#~ msgstr "ذخیره‌ی وضعیت فعلی رومیزی"
+#: ../capplet/gsm-properties-dialog.c:555
+msgid "Enabled"
+msgstr "فعال"
 
-#~ msgid ""
-#~ "A list of desktop entries that have already been processed and possibly "
-#~ "added to the user's session"
-#~ msgstr ""
-#~ "فهرستی از مداخل رومیزی که قبلاً پردازش شده‌اند و ممکن است به نشست کاربر "
-#~ "اضافه شده باشند"
+#: ../capplet/gsm-properties-dialog.c:567
+msgid "Icon"
+msgstr "نقشک"
 
-#~ msgid "Processed Desktop Entries"
-#~ msgstr "مداخل پردازش شده‌ی رومیزی"
+#: ../capplet/gsm-properties-dialog.c:579
+msgid "Program"
+msgstr "برنامه"
 
-#~ msgid "Authentication Icon"
-#~ msgstr "شمایل تأیید هویت"
+#: ../capplet/gsm-properties-dialog.c:792
+msgid "Startup Applications Preferences"
+msgstr "ترجیحات برنامه‌های راه‌اندازی"
 
-#~ msgid "CD Device Handler"
-#~ msgstr "متصدی دستگاه سی‌دی"
+#: ../capplet/gsp-app.c:269
+msgid "No name"
+msgstr "بدون نام"
 
-#~ msgid "Red Hat Network Monitor"
-#~ msgstr "پایشگر شبکه‌ی رِدهت"
+#: ../capplet/gsp-app.c:275
+msgid "No description"
+msgstr "بدون شرح"
 
-#~ msgid "Print Monitor"
-#~ msgstr "پایشگر چاپ"
+#: ../capplet/main.c:37
+#: ../gnome-session/main.c:280
+msgid "Version of this application"
+msgstr "نسخه‌ی این برنامه"
+
+#: ../capplet/main.c:63
+msgid "Could not display help document"
+msgstr "نمی‌توان سند راهنما را نمایش داد"
+
+#: ../data/classic-gnome.session.desktop.in.in.h:1
+msgid "Classic GNOME"
+msgstr "گنوم کلاسیک"
+
+#: ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
+msgid "GNOME"
+msgstr "گنوم"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "این نشست شما را به گنوم وارد می‌کند."
+
+#: ../data/gnome-wm.desktop.in.in.h:1
+msgid "Window Manager"
+msgstr "مدیر پنجره"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1
+msgid "<b>Some programs are still running:</b>"
+msgstr "<b>هنوز برنامه‌هایی دارند اجرا می‌شوند:</b>"
+
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:645
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
+msgstr "در حال انتظار برای برنامه که به پایان برسد. وقفه انداختن در برنامه‌ها ممکن است باعث شود که کار شما از دست برود."
+
+#: ../data/session-properties.desktop.in.in.h:1
+msgid "Choose what applications to start when you log in"
+msgstr "انتخاب کنید که هنگام ورود به سیستم چه برنامه‌هایی آغاز شوند"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Startup Applications"
+msgstr "برنامه‌های راه‌اندازی"
+
+#: ../data/session-properties.ui.h:1
+msgid "Additional startup _programs:"
+msgstr "برنامه‌های راه‌اندازی اضافی:"
+
+#: ../data/session-properties.ui.h:2
+#| msgid "Browse..."
+msgid "Browse…"
+msgstr "مرور..."
+
+#: ../data/session-properties.ui.h:3
+msgid "Co_mmand:"
+msgstr "_فرمان:"
+
+#: ../data/session-properties.ui.h:4
+msgid "Comm_ent:"
+msgstr "_توضیح:"
+
+#: ../data/session-properties.ui.h:5
+msgid "Options"
+msgstr "گزینه‌ها"
+
+#: ../data/session-properties.ui.h:6
+msgid "Startup Programs"
+msgstr "برنامه‌های راه‌اندازی"
+
+#: ../data/session-properties.ui.h:7
+msgid "_Automatically remember running applications when logging out"
+msgstr "برنامه‌های جاری هنگام خروج از سیستم، _خودکار به خاطر سپرده شوند"
+
+#: ../data/session-properties.ui.h:8
+msgid "_Name:"
+msgstr "_نام:"
+
+#: ../data/session-properties.ui.h:9
+msgid "_Remember Currently Running Application"
+msgstr "برنامه‌های جاری  به خاطر _سپرده شوند"
+
+#: ../egg/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "پرونده یک پرونده‌ی .desktop معتبر نیست."
+
+#: ../egg/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "نسخه‌ی پرونده میزکار ناشناس «%s»"
+
+#: ../egg/eggdesktopfile.c:958
+#, c-format
+msgid "Starting %s"
+msgstr "در حال آغاز %s"
+
+#: ../egg/eggdesktopfile.c:1100
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "برنامه سند‌ها را در خط فرمان نمی‌پذیرد."
+
+#: ../egg/eggdesktopfile.c:1168
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "گزینه‌ی راه‌اندازی ناشناخته‌: %Id"
+
+#: ../egg/eggdesktopfile.c:1373
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "نشانی سند به یک ورودی میزکار «نوع=پیوند» گذر داده نمی‌شود."
+
+#: ../egg/eggdesktopfile.c:1394
+#, c-format
+msgid "Not a launchable item"
+msgstr "این، یک مورد قابل راه‌اندازی نیست"
+
+#: ../egg/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "از کار انداختن اتصال به مدیر نشست"
+
+#: ../egg/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "مشخص کردن پرونده‌ی شامل پیکربندی ذخیره شده"
+
+#: ../egg/eggsmclient.c:228
+msgid "FILE"
+msgstr "پرونده"
+
+#: ../egg/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "شناسه مدیریت نشست را مشخص کنید"
+
+#: ../egg/eggsmclient.c:231
+msgid "ID"
+msgstr "شناسه"
+
+#: ../egg/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "گزینه‌های مدیریت نشست:"
+
+#: ../egg/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "گزینه‌های مدیریت نشست نمایش داده شوند"
+
+#: ../gnome-session/gsm-gconf.c:106
+#, c-format
+msgid ""
+"There is a problem with the configuration server.\n"
+"(%s exited with status %d)"
+msgstr ""
+"مشکلی در کارگزار تنظیمات هست.\n"
+"(مورد %s با وضعیت %Id خارج شد)"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:254
+#, c-format
+msgid "Icon '%s' not found"
+msgstr "نقشک «%s» پیدا نشد"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:593
+msgid "Unknown"
+msgstr "ناشناخته"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:644
+msgid "A program is still running:"
+msgstr "یک برنامه همچنان در حال اجرا است:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:648
+msgid "Some programs are still running:"
+msgstr "چند برنامه همچنان در حال اجرا هستند:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:649
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "در حال انتظار برای برنامه‌ها که به پایان برسند. وقفه انداختن در این برنامه‌ها ممکن است باعث شود که کار شما از دست برود."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:879
+msgid "Switch User Anyway"
+msgstr "در هر حال، تعویض کاربر انجام شود"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:882
+#| msgid "Logout Anyway"
+msgid "Log Out Anyway"
+msgstr "در هر حال خروج از سیستم انجام شود"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:885
+msgid "Suspend Anyway"
+msgstr "در هر حال سیستم معلق شود"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:888
+msgid "Hibernate Anyway"
+msgstr "در هر حال خواب زمستانی انجام شود"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:891
+#| msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
+msgstr "در هر حال خاموش کردن سیستم صورت گیرد"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:894
+msgid "Reboot Anyway"
+msgstr "در هر حال راه‌اندازی مجدد سیستم صورت گیرد"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:902
+msgid "Lock Screen"
+msgstr "قفل کردن صفحه"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:905
+msgid "Cancel"
+msgstr "انصراف"
+
+#: ../gnome-session/gsm-logout-dialog.c:266
+#, c-format
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
+msgstr[1] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
+
+#: ../gnome-session/gsm-logout-dialog.c:274
+#, c-format
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
+msgstr[1] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "هم‌اکنون شما با عنوان «%s» وارد سیستم شده‌اید."
+
+#: ../gnome-session/gsm-logout-dialog.c:372
+msgid "Log out of this system now?"
+msgstr "هم‌اکنون از این سیستم خارج شویم؟"
+
+#: ../gnome-session/gsm-logout-dialog.c:378
+msgid "_Switch User"
+msgstr "_تعویض کاربر"
+
+#: ../gnome-session/gsm-logout-dialog.c:387
+msgid "_Log Out"
+msgstr "_خروج از سیستم"
+
+#: ../gnome-session/gsm-logout-dialog.c:393
+msgid "Shut down this system now?"
+msgstr "این سیستم هم‌اکنون خاموش شود؟"
+
+#: ../gnome-session/gsm-logout-dialog.c:399
+msgid "S_uspend"
+msgstr "_تعلیق"
+
+#: ../gnome-session/gsm-logout-dialog.c:405
+msgid "_Hibernate"
+msgstr "_خواب زمستانی"
+
+#: ../gnome-session/gsm-logout-dialog.c:411
+msgid "_Restart"
+msgstr "_راه‌اندازی مجدد"
+
+#: ../gnome-session/gsm-logout-dialog.c:421
+msgid "_Shut Down"
+msgstr "خامو_ش کردن"
+
+#: ../gnome-session/gsm-manager.c:1229
+#: ../gnome-session/gsm-manager.c:1949
+msgid "Not responding"
+msgstr "نا پاسخگو"
+
+#: ../gnome-session/gsm-xsmp-client.c:1187
+#| msgid "This program is blocking log out."
+msgid "This program is blocking logout."
+msgstr "این برنامه جلوی خروج از سیستم را گرفته است."
+
+#: ../gnome-session/gsm-xsmp-server.c:325
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "چون سیستم در حال خاموش شدن است درخواست اتصال کارگیر رَد می‌شود\n"
+
+#: ../gnome-session/gsm-xsmp-server.c:587
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "ایجاد سوکت گوش‌کننده‌ی ICE ممکن نشد: %s"
+
+#. Oh well, no X for you!
+#: ../gnome-session/gsm-util.c:354
+#, c-format
+msgid "Unable to start login session (and unable to connect to the X server)"
+msgstr "ناتوان در آغاز نشست ورود به سیستم (و ناتوان در اتصال به کارگزار ایکس)"
+
+#: ../gnome-session/main.c:276
+msgid "Override standard autostart directories"
+msgstr "شاخه‌های استاندارد آغاز خودکار، لغو شود"
+
+#: ../gnome-session/main.c:277
+#| msgid "Sessions"
+msgid "Session to use"
+msgstr "نشستی که استفاده شود"
+
+#: ../gnome-session/main.c:278
+msgid "Enable debugging code"
+msgstr "کد اشکال‌زدایی به کار انداخته شود"
+
+#: ../gnome-session/main.c:279
+msgid "Do not load user-specified applications"
+msgstr "برنامه‌های مشخص شده توسط کاربر اجرا نشوند"
+
+#: ../gnome-session/main.c:300
+msgid " - the GNOME session manager"
+msgstr " ـ مدیر نشست گنوم"
+
+#: ../tools/gnome-session-save.c:65
+msgid "Log out"
+msgstr "خروج از سیستم"
+
+#: ../tools/gnome-session-save.c:66
+msgid "Log out, ignoring any existing inhibitors"
+msgstr "خروج از سیستم، چشم‌پوشی از هرگونه بازدارنده‌ی موجود"
+
+#: ../tools/gnome-session-save.c:67
+msgid "Show logout dialog"
+msgstr "نمایش محاوره‌ی خروج از سیستم"
+
+#: ../tools/gnome-session-save.c:68
+msgid "Show shutdown dialog"
+msgstr "محاوره‌ی خاموش کردن سیستم نمایش داده شود"
+
+#: ../tools/gnome-session-save.c:69
+msgid "Use dialog boxes for errors"
+msgstr "استفاده از جعبه‌های محاوره برای خطاها"
+
+#. deprecated options
+#: ../tools/gnome-session-save.c:71
+msgid "Set the current session name"
+msgstr "تنظیم نام نشست جاری"
+
+#: ../tools/gnome-session-save.c:71
+msgid "NAME"
+msgstr "نام"
+
+#: ../tools/gnome-session-save.c:72
+msgid "Kill session"
+msgstr "کشتن نشست"
+
+#: ../tools/gnome-session-save.c:73
+msgid "Do not require confirmation"
+msgstr "به تایید نیازی نیست"
+
+#: ../tools/gnome-session-save.c:120
+#: ../tools/gnome-session-save.c:130
+msgid "Could not connect to the session manager"
+msgstr "اتصال به مدیر نشست ممکن نیست"
+
+#: ../tools/gnome-session-save.c:273
+msgid "Program called with conflicting options"
+msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
+
