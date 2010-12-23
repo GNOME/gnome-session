@@ -241,7 +241,7 @@ dnl Language Support
 dnl ====================================================================
 IT_PROG_INTLTOOL([0.40.0])
 
-GETTEXT_PACKAGE=gnome-session-2.0
+GETTEXT_PACKAGE=gnome-session-3.0
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
                    [The gettext translation domain])
 AC_SUBST(GETTEXT_PACKAGE)
