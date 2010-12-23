@@ -926,26 +926,28 @@ cancel_end_session (GsmManager *manager)
 static void
 manager_switch_user (GsmManager *manager)
 {
-        GAppInfo *app;
-        GAppLaunchContext *context;
         GError  *error;
         char    *command;
+        GAppLaunchContext *context;
+        GAppInfo *app;
 
         command = g_strdup_printf ("%s %s",
                                    GDM_FLEXISERVER_COMMAND,
                                    GDM_FLEXISERVER_ARGS);
 
         error = NULL;
-        context = (GAppLaunchContext*)gdk_app_launch_context_new ();
-        app = g_app_info_create_from_commandline (command, "gdmflexiserver", 0, &error);
-        if (app)
+        context = (GAppLaunchContext*) gdk_app_launch_context_new ();
+        app = g_app_info_create_from_commandline (command, GDM_FLEXISERVER_COMMAND, 0, &error);
+
+        if (app) {
                 g_app_info_launch (app, NULL, context, &error);
+                g_object_unref (app);
+        }
 
         g_free (command);
         g_object_unref (context);
-        g_object_unref (app);
 
-        if (! error) {
+        if (error) {
                 g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
                 g_error_free (error);
         }
