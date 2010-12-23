@@ -1,4 +1,56 @@
 ==============
+Version 2.91.4
+==============
+
+Note to distributors:
+ - the definition of the session started by gnome-session moved out of gconf
+   and is now living in .desktop-like files. The format of those files might
+   change in the future.
+ - two predefined sessions are shipped: GNOME (default), that will start GNOME
+   Shell, and Classic GNOME, that will start gnome-panel, metacity, etc. like in
+   GNOME 2.
+ - a small utility, gnome-session-is-accelerated, is used to determine if GNOME
+   Shell can be used. If this is not the case, Classic GNOME will be used.
+   Please send feedback on when this utility doesn't detect things properly.
+ - it is known that session saving doesn't work well with people moving from
+   one session to another at the moment. It can result in gnome-panel running
+   with GNOME Shell, for example.
+
+Session Manager:
+- Add autostart condition through GSettings (Bastien Nocera)
+- Don't ever show inhibitor dialog if logout is forced (Ray Strode)
+- Fix some issue tracking clients on logout (Ray Strode)
+- Add an application restart limit (William Jon McCann)
+- Move the definition of a session from gconf to .desktop-like files (Vincent)
+- Change default session to use GNOME Shell, with a fallback to classic GNOME
+  (Vincent)
+- Update for GTK+ 3 changes (Matthias Clasen)
+- Code cleanups (Vincent)
+
+Capplet:
+- Set NoDisplay=true (William Jon McCann)
+- Fix inline search (Ricardo Cruz)
+- Update for GTK+ 3 changes (Cosimo Cecchi, Vincent)
+
+Translations:
+- Updated ca@valencia: David Planella
+- Updated crh: Reşat SABIQ
+- Updated es: Jorge González
+- Updated et: Ivar Smolin
+- Updated fa: Mahyar Moghimi
+- Updated fi: Ville-Pekka Vainio
+- Updated fy: Sense Hofstede
+- Updated gl: Fran Diéguez
+- Updated he: Yaron Shahrabani
+- Updated ja: Yasumichi Akahoshi
+- Updated ko: Changwoo Ryu
+- Updated nb: Kjartan Maraas
+- Updated ro: Daniel Șerbănescu
+- Updated sl: Matej Urbančič
+- Updated th: Theppitak Karoonboonyanan
+- Updated ug: Sahran
+
+==============
 Version 2.91.0
 ==============
 
