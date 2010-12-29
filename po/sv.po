@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-29 14:50+0100\n"
+"POT-Creation-Date: 2010-12-29 15:51+0100\n"
 "PO-Revision-Date: 2010-12-29 15:38+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -65,8 +65,7 @@ msgstr "Inget namn"
 msgid "No description"
 msgstr "Ingen beskrivning"
 
-#: ../capplet/main.c:37
-#: ../gnome-session/main.c:280
+#: ../capplet/main.c:37 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Version av detta program"
 
@@ -78,8 +77,7 @@ msgstr "Kunde inte visa hjälpdokumentet"
 msgid "Classic GNOME"
 msgstr "Klassisk GNOME"
 
-#: ../data/gnome.session.desktop.in.in.h:1
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -95,10 +93,13 @@ msgstr "Fönsterhanterare"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Några program är fortfarande igång:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:645
-msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
-msgstr "Väntar på att programmet ska köras färdigt.  Avbryta programmet kan innebära att du förlorar data."
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
+msgid ""
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
+msgstr ""
+"Väntar på att programmet ska köras färdigt.  Avbryta programmet kan innebära "
+"att du förlorar data."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -234,8 +235,12 @@ msgid "Some programs are still running:"
 msgstr "Några program körs fortfarande:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:649
-msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
-msgstr "Väntar på att programmen ska köras färdigt.  Avbryta dessa program kan innebära att du förlorar data."
+msgid ""
+"Waiting for programs to finish.  Interrupting these programs may cause you "
+"to lose work."
+msgstr ""
+"Väntar på att programmen ska köras färdigt.  Avbryta dessa program kan "
+"innebära att du förlorar data."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Switch User Anyway"
@@ -320,8 +325,7 @@ msgstr "Starta _om"
 msgid "_Shut Down"
 msgstr "St_äng av"
 
-#: ../gnome-session/gsm-manager.c:1235
-#: ../gnome-session/gsm-manager.c:1955
+#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
 msgid "Not responding"
 msgstr "Svarar inte"
 
@@ -330,8 +334,12 @@ msgid "This program is blocking logout."
 msgstr "Detta program blockerar utloggningen."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
-msgid "Refusing new client connection because the session is currently being shut down\n"
-msgstr "Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas av\n"
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+"Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas "
+"av\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
@@ -342,7 +350,8 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 #: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
+msgstr ""
+"Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
 #: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
@@ -401,8 +410,7 @@ msgstr "Döda session"
 msgid "Do not require confirmation"
 msgstr "Kräv ingen bekräftelse"
 
-#: ../tools/gnome-session-save.c:120
-#: ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
 msgstr "Kunde inte ansluta till sessionshanteraren"
 
@@ -412,15 +420,17 @@ msgstr "Program anropat med motsägande flaggor"
 
 #~ msgid "Default session"
 #~ msgstr "Standardsession"
+
 #~ msgid "File Manager"
 #~ msgstr "Filhanterare"
+
 #~ msgid ""
 #~ "If enabled, gnome-session will prompt the user before ending a session."
 #~ msgstr ""
 #~ "Om detta är aktiverat kommer gnome-session att fråga användaren innan en "
 #~ "session avslutas."
+
 #~ msgid "If enabled, gnome-session will save the session automatically."
 #~ msgstr ""
 #~ "Om detta är aktiverat kommer gnome-session att spara sessionen "
 #~ "automatiskt."
-
