@@ -1,20 +1,23 @@
 # Norwegian translation of gnome-session (bokmål dialect).
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2010.
 #
+# Kjartan Maraas <kmaraas@gnome.org>, 1998-2010.
+# Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.92.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-12 22:02+0100\n"
-"PO-Revision-Date: 2010-12-12 22:02+0100\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
-"Language-Team: Norwegian <i18n-nb@lister.ping.uio.no>\n"
-"Language: no\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=gnome-session&component=general\n"
+"POT-Creation-Date: 2010-12-12 21:03+0000\n"
+"PO-Revision-Date: 2010-12-30 22:17+0100\n"
+"Last-Translator: Torstein Adolf Winterseth <kvikende@fsfe.org>\n"
+"Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: no\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -78,7 +81,7 @@ msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "Denne sesjonen logger inn i GNOME"
+msgstr "Denne økten logger inn i GNOME"
 
 #: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
@@ -177,7 +180,7 @@ msgstr "Ikke en startbar oppføring"
 
 #: ../egg/eggsmclient.c:225
 msgid "Disable connection to session manager"
-msgstr "Deaktiver kobling til sesjonshåndterer"
+msgstr "Deaktiver kobling til økthåndterer"
 
 #: ../egg/eggsmclient.c:228
 msgid "Specify file containing saved configuration"
@@ -189,7 +192,7 @@ msgstr "FIL"
 
 #: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr "Oppgi ID for sesjonshåndtering"
+msgstr "Oppgi ID for økthåndtering"
 
 #: ../egg/eggsmclient.c:231
 msgid "ID"
@@ -197,11 +200,11 @@ msgstr "ID"
 
 #: ../egg/eggsmclient.c:252
 msgid "Session management options:"
-msgstr "Alternativer for sesjonshåndtering:"
+msgstr "Alternativer for økthåndtering:"
 
 #: ../egg/eggsmclient.c:253
 msgid "Show session management options"
-msgstr "Vis alternativer for sesjonshåndtering"
+msgstr "Vis alternativer for økthåndtering"
 
 #: ../gnome-session/gsm-gconf.c:106
 #, c-format
@@ -332,7 +335,7 @@ msgstr "Dette programmet hindrer utlogging."
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "Nekter ny klient tilgang fordi sesjonen er i ferd med å avsluttes\n"
+msgstr "Nekter ny klient tilgang fordi økten er i ferd med å avsluttes\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
@@ -343,7 +346,7 @@ msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 #: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "Kan ikke starte påloggingssesjonen (kan ikke koble til X-tjeneren)"
+msgstr "Kan ikke starte påloggingsøkten (kan ikke koble til X-tjeneren)"
 
 #: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
@@ -351,7 +354,7 @@ msgstr "Overstyr forvalgte kataloger for autostart"
 
 #: ../gnome-session/main.c:277
 msgid "Session to use"
-msgstr "Sesjon som skal brukes"
+msgstr "Økt som skal brukes"
 
 #: ../gnome-session/main.c:278
 msgid "Enable debugging code"
@@ -363,7 +366,7 @@ msgstr "Ikke last brukerdefinerte programmer"
 
 #: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
-msgstr "- GNOME sesjonshåndterer"
+msgstr "- GNOME økthåndterer"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -388,7 +391,7 @@ msgstr "Bruk dialoger for feil"
 #. deprecated options
 #: ../tools/gnome-session-save.c:71
 msgid "Set the current session name"
-msgstr "Gi navn til denne sesjonen"
+msgstr "Gi navn til denne økten"
 
 #: ../tools/gnome-session-save.c:71
 msgid "NAME"
@@ -396,7 +399,7 @@ msgstr "NAVN"
 
 #: ../tools/gnome-session-save.c:72
 msgid "Kill session"
-msgstr "Terminer sesjon"
+msgstr "Terminer økt"
 
 #: ../tools/gnome-session-save.c:73
 msgid "Do not require confirmation"
@@ -404,8 +407,9 @@ msgstr "Ikke krev bekreftelse"
 
 #: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
 msgid "Could not connect to the session manager"
-msgstr "Kunne ikke koble til sesjonshåndterer"
+msgstr "Kunne ikke koble til økthåndterer"
 
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Programmet ble kalt med motstridende alternativer"
+
