@@ -890,7 +890,7 @@ setup_dialog (GsmInhibitDialog *dialog)
                 button_text = _("Shut Down Anyway");
                 break;
         case GSM_LOGOUT_ACTION_REBOOT:
-                button_text = _("Reboot Anyway");
+                button_text = _("Restart Anyway");
                 break;
         default:
                 g_assert_not_reached ();
