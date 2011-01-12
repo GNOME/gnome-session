@@ -1,9 +1,9 @@
 # Bulgarian translation of gnome-session po-file.
 # Copyright (C) 2001, 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
-# Copyright (C) 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
-# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010, 2011.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004
 # Yavor Doganov <yavor@gnu.org>, 2008.
@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-26 17:52+0300\n"
-"PO-Revision-Date: 2010-09-26 17:51+0300\n"
-"Last-Translator: Damyan Ivanov <dam+gnome@ktnx.net>\n"
+"POT-Creation-Date: 2011-01-12 23:32+0200\n"
+"PO-Revision-Date: 2011-01-12 23:32+0200\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr "Икона"
 msgid "Program"
 msgstr "Програма"
 
-#: ../capplet/gsm-properties-dialog.c:791
+#: ../capplet/gsm-properties-dialog.c:792
 msgid "Startup Applications Preferences"
 msgstr "Настройки за автоматично стартиране на програми"
 
@@ -67,7 +67,7 @@ msgstr "Без име"
 msgid "No description"
 msgstr "Без описание"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:441
+#: ../capplet/main.c:37 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Версията на тази програма"
 
@@ -75,7 +75,11 @@ msgstr "Версията на тази програма"
 msgid "Could not display help document"
 msgstr "Документът от помощта не може да бъде показан"
 
-#: ../data/gnome.desktop.in.h:1
+#: ../data/classic-gnome.session.desktop.in.in.h:1
+msgid "Classic GNOME"
+msgstr "Класически GNOME"
+
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -83,93 +87,7 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Влизане в GNOME"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Стандартна сесия"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "Файлов мениджър"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Ако е включено, gnome-session ще предупреди преди да приключи сесия."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ако е включено, gnome-session автоматично ще запазва сесията."
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "Списък с програми, които са част от стандартната сесия."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Списък с компоненти, които са необходими като част от сесията. (Всеки "
-"елемент е ключ от дървото „/desktop/gnome/session/required_components“.) "
-"Обикновено програмата за настройване на сесиите не позволява потребител да "
-"премахва необходими компоненти от сесията — управлението на сесии "
-"автоматично ще добави липсващите компоненти, ако те бъдат премахнати."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Питане при изход"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Панел"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Required session components"
-msgstr "Необходими компоненти на сесията"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Save sessions"
-msgstr "Запазване на сесиите"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Файловият мениджър осигурява иконите на работната среда и позволява да "
-"взаимодействате със запазените файлове."
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Време на бездействие в минути, след което цялата сесията се счита за "
-"бездействаща."
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Панелът осигурява лентите горе и долу на екрана, които съдържат менюта, "
-"списък с прозорци, икони за състояние, часовник и т.н."
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Мениджърът на прозорци е програмата, която рисува заглавната лента и рамките "
-"около прозорците и ви позволява да ги местите и оразмерявате."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid "Time before session is considered idle"
-msgstr "Време за обявяване на сесия за бездействаща"
-
-#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
+#: ../data/gnome-wm.desktop.in.in.h:1
 msgid "Window Manager"
 msgstr "Мениджър на прозорци"
 
@@ -177,7 +95,7 @@ msgstr "Мениджър на прозорци"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Някои програми все още работят:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:676
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -302,24 +220,24 @@ msgstr ""
 "Възникна проблем със сървъра за настройки.\n"
 "(%s спря със състояние %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:254
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Иконата „%s“ не е открита"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:624
+#: ../gnome-session/gsm-inhibit-dialog.c:593
 msgid "Unknown"
 msgstr "Непозната"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:675
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "A program is still running:"
 msgstr "Все още работи програмата:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:679
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid "Some programs are still running:"
 msgstr "Все още работят програмите:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:680
+#: ../gnome-session/gsm-inhibit-dialog.c:649
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -327,35 +245,35 @@ msgstr ""
 "Изчакване на програмите да завършат. Прекъсването им може да доведе до "
 "загуба на информация."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Switch User Anyway"
 msgstr "Смяна на потребител"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
+#: ../gnome-session/gsm-inhibit-dialog.c:882
 msgid "Log Out Anyway"
 msgstr "Изход въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:885
 msgid "Suspend Anyway"
 msgstr "Приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:919
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Hibernate Anyway"
 msgstr "Дълбоко приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:922
+#: ../gnome-session/gsm-inhibit-dialog.c:891
 msgid "Shut Down Anyway"
 msgstr "Спиране въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:925
+#: ../gnome-session/gsm-inhibit-dialog.c:894
 msgid "Reboot Anyway"
 msgstr "Рестартиране на компютъра"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:933
+#: ../gnome-session/gsm-inhibit-dialog.c:902
 msgid "Lock Screen"
 msgstr "Заключване на екрана"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:936
+#: ../gnome-session/gsm-inhibit-dialog.c:905
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -410,11 +328,11 @@ msgstr "_Рестартиране"
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
-#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
+#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
 msgid "Not responding"
 msgstr "Не отговаря"
 
-#: ../gnome-session/gsm-xsmp-client.c:1189
+#: ../gnome-session/gsm-xsmp-client.c:1187
 msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
@@ -439,23 +357,23 @@ msgstr ""
 "Неуспех при стартирането на входната сесия (и неуспех при свързването с X "
 "сървъра)"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: ../gnome-session/main.c:438
-msgid "GConf key used to look up default session"
-msgstr "Ключ на GConf за стандартната сесия"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr "Коя сесия да се ползва"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
-#: ../gnome-session/main.c:440
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
-#: ../gnome-session/main.c:461
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
 
