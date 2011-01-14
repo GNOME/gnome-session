@@ -144,8 +144,11 @@ _has_hardware_gl (Display *display)
 
         renderer = (const char *) glGetString (GL_RENDERER);
         /* The current Mesa software GL renderer string is
-         * "Software Rasterizer" */
-        if (strcasestr (renderer, "software rasterizer") != NULL)
+	 * "Software Rasterizer".
+	 * Gallium has softpipe and llvmpipe. */
+        if (strcasestr (renderer, "software rasterizer") != NULL ||
+            strcasestr (renderer, "softpipe") != NULL ||
+            strcasestr (renderer, "llvmpipe") != NULL)
                 goto out;
 
         /* we need to get the max texture size while we have a context,
