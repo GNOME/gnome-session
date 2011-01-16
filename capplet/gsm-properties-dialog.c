@@ -601,19 +601,24 @@ setup_dialog (GsmPropertiesDialog *dialog)
                            GTK_DEST_DEFAULT_ALL,
                            NULL, 0,
                            GDK_ACTION_COPY);
-        gtk_drag_dest_add_uri_targets (GTK_WIDGET (treeview));
 
+        gtk_drag_dest_add_uri_targets (GTK_WIDGET (treeview));
         /* we don't want to accept drags coming from this widget */
         targetlist = gtk_drag_dest_get_target_list (GTK_WIDGET (treeview));
         if (targetlist != NULL) {
-                GList *list;
-                list = targetlist->list;
-                while (list != NULL) {
-                        GtkTargetPair *targetpair;
-                        targetpair = list->data;
-                        targetpair->flags = GTK_TARGET_OTHER_WIDGET;
-                        list = list->next;
-                }
+                GtkTargetEntry *targets;
+                guint n_targets;
+                gint i;
+
+                targets = gtk_target_table_new_from_list (targetlist, &n_targets);
+                for (i = 0; i < n_targets; i++)
+                        targets[i].flags = GTK_TARGET_OTHER_WIDGET;
+
+                targetlist = gtk_target_list_new (targets, n_targets);
+                gtk_drag_dest_set_target_list (GTK_WIDGET (treeview), targetlist);
+                gtk_target_list_unref (targetlist);
+
+                gtk_target_table_free (targets, n_targets);
         }
 
         g_signal_connect (treeview, "drag_begin",
