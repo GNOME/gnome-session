@@ -235,6 +235,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
 AC_SUBST(GETTEXT_PACKAGE)
 
 AM_GLIB_GNU_GETTEXT
+GLIB_GSETTINGS
 
 dnl ====================================================================
 dnl Headers
@@ -336,6 +337,8 @@ doc/dbus/gnome-session.xml
 doc/man/Makefile
 data/Makefile
 data/session-properties.desktop.in
+data/org.gnome.SessionManager.gschema.xml
+data/org.gnome.desktop.session.gschema.xml
 data/icons/Makefile
 data/icons/16x16/Makefile
 data/icons/22x22/Makefile

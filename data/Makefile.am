@@ -27,40 +27,29 @@ session_DATA = $(session_in_files:.session.desktop.in=.session)
 %.session: %.session.desktop.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@
 
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_XML_NOMERGE_RULE@
 
-schemas_in_files = gnome-session.schemas.in
-schemasdir = $(GCONF_SCHEMA_FILE_DIR)
-schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
+gsettings_SCHEMAS = org.gnome.SessionManager.gschema.xml org.gnome.desktop.session.gschema.xml
+@GSETTINGS_RULES@
 
-@INTLTOOL_SCHEMAS_RULE@
-
-if GCONF_SCHEMAS_INSTALL
-install-data-local:
-	if test -z "$(DESTDIR)" ; then \
-		for p in $(schemas_DATA) ; do \
-			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/data/$$p ; \
-		done \
-	fi
-uninstall-local:
-	for p in $(schema_DATA) ; do \
-		GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-uninstall-rule $(top_builddir)/data/$$p ; \
-	done
-endif
+migrationdir = $(datadir)/GConf/gsettings
+dist_migration_DATA = org.gnome.SessionManager.gschema.migrate org.gnome.desktop.session.gschema.migrate
 
 EXTRA_DIST =					\
 	$(xsession_in_files)			\
 	$(session_in_in_files)			\
-	$(schemas_in_files)			\
+	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	$(ui_DATA)				\
 	$(pixmap_DATA_dist)
 
 CLEANFILES =					\
-	$(schemas_DATA)				\
+	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	$(xsession_DATA)			\
 	$(desktop_DATA)				\
 	$(session_DATA)
 
 DISTCLEANFILES =				\
+	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	$(desktop_in_files)
 
 -include $(top_srcdir)/git.mk

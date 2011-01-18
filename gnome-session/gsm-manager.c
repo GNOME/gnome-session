@@ -41,7 +41,6 @@
 #include <upower.h>
 
 #include <gtk/gtk.h> /* for logout dialog */
-#include <gconf/gconf-client.h>
 
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
@@ -72,18 +71,15 @@
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
 
+#define SESSION_SCHEMA            "org.gnome.desktop.session"
+#define KEY_IDLE_DELAY            "idle-delay"
 
-#define KEY_LOCKDOWN_DIR          "/desktop/gnome/lockdown"
-#define KEY_LOCK_DISABLE          KEY_LOCKDOWN_DIR "/disable_lock_screen"
-#define KEY_USER_SWITCH_DISABLE   KEY_LOCKDOWN_DIR "/disable_user_switching"
+#define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
+#define KEY_AUTOSAVE              "auto-save-session"
+#define KEY_LOGOUT_PROMPT         "logout-prompt"
 
-#define KEY_DESKTOP_DIR           "/desktop/gnome/session"
-#define KEY_IDLE_DELAY            KEY_DESKTOP_DIR "/idle_delay"
-
-#define KEY_GNOME_SESSION_DIR     "/apps/gnome-session/options"
-#define KEY_AUTOSAVE              KEY_GNOME_SESSION_DIR "/auto_save_session"
-
-#define KEY_SLEEP_LOCK            "/apps/gnome-screensaver/lock_enabled"
+#define SCREENSAVER_SCHEMA        "org.gnome.screensaver"
+#define KEY_SLEEP_LOCK            "lock-enabled"
 
 typedef enum
 {
@@ -125,9 +121,9 @@ struct GsmManagerPrivate
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
 
-        GConfClient            *gconf_client;
-        guint                   desktop_notify_id;
-        guint                   lockdown_notify_id;
+        GSettings              *settings;
+        GSettings              *session_settings;
+        GSettings              *screensaver_settings;
 
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
@@ -956,20 +952,17 @@ manager_switch_user (GsmManager *manager)
 static gboolean
 sleep_lock_is_enabled (GsmManager *manager)
 {
-        GError   *error;
         gboolean  enable_lock;
 
-        error = NULL;
-        enable_lock = gconf_client_get_bool (manager->priv->gconf_client,
-                                             KEY_SLEEP_LOCK, &error);
+        if (manager->priv->screensaver_settings == NULL) {
+                g_warning ("Unable to read screen lock configuration, "
+                           "unconditionally enabling screen locking");
 
-        if (error) {
-                g_warning ("Error retrieving configuration key '%s': %s",
-                           KEY_SLEEP_LOCK, error->message);
-                g_error_free (error);
-
-                /* If we fail to query gconf key, just enable locking */
+                /* If we fail to query the setting, just enable locking */
                 enable_lock = TRUE;
+        } else {
+                enable_lock = g_settings_get_boolean (manager->priv->screensaver_settings,
+                                                      KEY_SLEEP_LOCK);
         }
 
         return enable_lock;
@@ -1853,19 +1846,8 @@ auto_save_is_enabled (GsmManager *manager)
         gboolean  auto_save;
 
         error = NULL;
-        auto_save = gconf_client_get_bool (manager->priv->gconf_client,
-                                           KEY_AUTOSAVE,
-                                           &error);
-
-        if (error) {
-                g_warning ("Error retrieving configuration key '%s': %s",
-                           KEY_AUTOSAVE,
-                           error->message);
-                g_error_free (error);
-
-                /* If we fail to query gconf key, disable auto save */
-                auto_save = FALSE;
-        }
+        auto_save = g_settings_get_boolean (manager->priv->settings,
+                                            KEY_AUTOSAVE);
 
         return auto_save;
 }
@@ -2239,26 +2221,19 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->presence = NULL;
         }
 
-        if (manager->priv->gconf_client) {
-                if (manager->priv->desktop_notify_id != 0) {
-                        gconf_client_remove_dir (manager->priv->gconf_client,
-                                                 KEY_DESKTOP_DIR,
-                                                 NULL);
-                        gconf_client_notify_remove (manager->priv->gconf_client,
-                                                    manager->priv->desktop_notify_id);
-                        manager->priv->desktop_notify_id = 0;
-                }
-                if (manager->priv->lockdown_notify_id != 0) {
-                        gconf_client_remove_dir (manager->priv->gconf_client,
-                                                 KEY_LOCKDOWN_DIR,
-                                                 NULL);
-                        gconf_client_notify_remove (manager->priv->gconf_client,
-                                                    manager->priv->lockdown_notify_id);
-                        manager->priv->lockdown_notify_id = 0;
-                }
+        if (manager->priv->settings) {
+                g_object_unref (manager->priv->settings);
+                manager->priv->settings = NULL;
+        }
 
-                g_object_unref (manager->priv->gconf_client);
-                manager->priv->gconf_client = NULL;
+        if (manager->priv->session_settings) {
+                g_object_unref (manager->priv->session_settings);
+                manager->priv->session_settings = NULL;
+        }
+
+        if (manager->priv->screensaver_settings) {
+                g_object_unref (manager->priv->screensaver_settings);
+                manager->priv->screensaver_settings = NULL;
         }
 
         if (manager->priv->up_client != NULL) {
@@ -2374,83 +2349,26 @@ gsm_manager_class_init (GsmManagerClass *klass)
 }
 
 static void
-invalid_type_warning (const char *type)
+fetch_idle_delay_setting (GsmManager *manager)
 {
-        g_warning ("Error retrieving configuration key '%s': Invalid type",
-                   type);
-}
-
-static void
-load_idle_delay_from_gconf (GsmManager *manager)
-{
-        GError *error;
         glong   value;
 
-        error = NULL;
-        value = gconf_client_get_int (manager->priv->gconf_client,
-                                      KEY_IDLE_DELAY,
-                                      &error);
-        if (error == NULL) {
-                gsm_presence_set_idle_timeout (manager->priv->presence, value * 60000);
-        } else {
-                g_warning ("Error retrieving configuration key '%s': %s",
-                           KEY_IDLE_DELAY,
-                           error->message);
-                g_error_free (error);
-        }
-
+        value = g_settings_get_int (manager->priv->session_settings,
+                                    KEY_IDLE_DELAY);
+        gsm_presence_set_idle_timeout (manager->priv->presence, value * 60000);
 }
 
 static void
-on_gconf_key_changed (GConfClient *client,
-                      guint        cnxn_id,
-                      GConfEntry  *entry,
-                      GsmManager  *manager)
+on_setting_changed (GSettings  *settings,
+                    const char *key,
+                    GsmManager *manager)
 {
-        const char *key;
-        GConfValue *value;
-
-        key = gconf_entry_get_key (entry);
-
-        if (! g_str_has_prefix (key, KEY_DESKTOP_DIR)
-            && ! g_str_has_prefix (key, KEY_LOCKDOWN_DIR)) {
-                return;
-        }
-
-        value = gconf_entry_get_value (entry);
-
         if (strcmp (key, KEY_IDLE_DELAY) == 0) {
-                if (value->type == GCONF_VALUE_INT) {
-                        int delay;
+                int delay;
 
-                        delay = gconf_value_get_int (value);
+                delay = g_settings_get_int (settings, key);
 
-                        gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60000);
-                } else {
-                        invalid_type_warning (key);
-                }
-        } else if (strcmp (key, KEY_LOCK_DISABLE) == 0) {
-                if (value->type == GCONF_VALUE_BOOL) {
-                        gboolean disabled;
-
-                        disabled = gconf_value_get_bool (value);
-
-                        /* FIXME: handle this */
-                } else {
-                        invalid_type_warning (key);
-                }
-        } else if (strcmp (key, KEY_USER_SWITCH_DISABLE) == 0) {
-
-                if (value->type == GCONF_VALUE_BOOL) {
-                        gboolean disabled;
-
-                        disabled = gconf_value_get_bool (value);
-
-                        /* FIXME: handle this */
-                } else {
-                        invalid_type_warning (key);
-                }
-
+                gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60000);
         } else {
                 g_debug ("Config key not handled: %s", key);
         }
@@ -2474,7 +2392,9 @@ gsm_manager_init (GsmManager *manager)
 
         manager->priv = GSM_MANAGER_GET_PRIVATE (manager);
 
-        manager->priv->gconf_client = gconf_client_get_default ();
+        manager->priv->settings = g_settings_new (GSM_MANAGER_SCHEMA);
+        manager->priv->session_settings = g_settings_new (SESSION_SCHEMA);
+        manager->priv->screensaver_settings = g_settings_new (SCREENSAVER_SCHEMA);
 
         manager->priv->inhibitors = gsm_store_new ();
         g_signal_connect (manager->priv->inhibitors,
@@ -2496,26 +2416,12 @@ gsm_manager_init (GsmManager *manager)
 
         manager->priv->up_client = up_client_new ();
 
-        /* GConf setup */
-        gconf_client_add_dir (manager->priv->gconf_client,
-                              KEY_DESKTOP_DIR,
-                              GCONF_CLIENT_PRELOAD_RECURSIVE, NULL);
-        gconf_client_add_dir (manager->priv->gconf_client,
-                              KEY_LOCKDOWN_DIR,
-                              GCONF_CLIENT_PRELOAD_NONE, NULL);
+        g_signal_connect (manager->priv->session_settings,
+                          "changed",
+                          G_CALLBACK (on_setting_changed),
+                          manager);
 
-        manager->priv->desktop_notify_id = gconf_client_notify_add (manager->priv->gconf_client,
-                                                                    KEY_DESKTOP_DIR,
-                                                                    (GConfClientNotifyFunc)on_gconf_key_changed,
-                                                                    manager,
-                                                                    NULL, NULL);
-        manager->priv->lockdown_notify_id = gconf_client_notify_add (manager->priv->gconf_client,
-                                                                     KEY_LOCKDOWN_DIR,
-                                                                     (GConfClientNotifyFunc)on_gconf_key_changed,
-                                                                     manager,
-                                                                     NULL, NULL);
-
-        load_idle_delay_from_gconf (manager);
+        fetch_idle_delay_setting (manager);
 }
 
 static void
@@ -2955,10 +2861,8 @@ user_logout (GsmManager *manager,
                 return;
         }
 
-        logout_prompt =
-               gconf_client_get_bool (manager->priv->gconf_client,
-                                      "/apps/gnome-session/options/logout_prompt",
-                                      NULL);
+        logout_prompt = g_settings_get_boolean (manager->priv->settings,
+                                                KEY_LOGOUT_PROMPT);
 
         /* Global settings overides input parameter in order to disable confirmation
          * dialog accordingly. If we're shutting down, we always show the confirmation

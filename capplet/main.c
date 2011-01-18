@@ -27,8 +27,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include <gconf/gconf-client.h>
-
 #include "gsm-properties-dialog.h"
 
 static gboolean    show_version     = FALSE;

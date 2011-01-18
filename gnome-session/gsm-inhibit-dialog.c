@@ -32,8 +32,6 @@
 #include <gdk/gdkx.h>
 #include <cairo-xlib.h>
 
-#include <gconf/gconf-client.h>
-
 #include "gsm-inhibit-dialog.h"
 #include "gsm-store.h"
 #include "gsm-client.h"
