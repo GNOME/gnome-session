@@ -1,7 +1,5 @@
 SUBDIRS = icons
 
-bin_SCRIPTS = gnome-wm
-
 uidir = $(pkgdatadir)
 ui_DATA = \
 	session-properties.ui	\
@@ -28,10 +26,6 @@ session_DATA = $(session_in_files:.session.desktop.in=.session)
 
 %.session: %.session.desktop.in   $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*.po) ; LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@
 
-if USE_GNOME_WM
-desktop_in_files += gnome-wm.desktop.in
-endif
-
 @INTLTOOL_DESKTOP_RULE@
 
 schemas_in_files = gnome-session.schemas.in
@@ -54,7 +48,6 @@ uninstall-local:
 endif
 
 EXTRA_DIST =					\
-	gnome-wm				\
 	$(xsession_in_files)			\
 	$(session_in_in_files)			\
 	$(schemas_in_files)			\
@@ -65,8 +58,7 @@ CLEANFILES =					\
 	$(schemas_DATA)				\
 	$(xsession_DATA)			\
 	$(desktop_DATA)				\
-	$(session_DATA)				\
-	gnome-wm.desktop
+	$(session_DATA)
 
 DISTCLEANFILES =				\
 	$(desktop_in_files)

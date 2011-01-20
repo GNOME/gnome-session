@@ -90,18 +90,6 @@ PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-$GTK_API_VERSION)
 PKG_CHECK_MODULES(GL_TEST, xcomposite gl)
 
 dnl ====================================================================
-dnl Option to set the default window manager
-dnl ====================================================================
-AC_ARG_WITH(default-wm,
-              [AS_HELP_STRING([--with-default-wm],
-                              [Specify the default window manager @<:@default=metacity@:>@])],,
-              [with_default_wm="metacity"])
-
-DEFAULT_WM=$with_default_wm
-AC_SUBST(DEFAULT_WM)
-AM_CONDITIONAL(USE_GNOME_WM, test x$with_default_wm = xgnome-wm)
-
-dnl ====================================================================
 dnl GConf Checks
 dnl ====================================================================
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
@@ -347,7 +335,6 @@ doc/dbus/Makefile
 doc/dbus/gnome-session.xml
 doc/man/Makefile
 data/Makefile
-data/gnome-wm.desktop.in
 data/session-properties.desktop.in
 data/icons/Makefile
 data/icons/16x16/Makefile
@@ -386,7 +373,6 @@ echo "
         Use *_DISABLE_DEPRECATED: ${enable_deprecation_flags}
 
         GTK+ version:             ${with_gtk}
-        Default WM:               ${with_default_wm}
         IPv6 support:             ${have_full_ipv6}
         Backtrace support:        ${have_backtrace}
         XRender support:          ${have_xrender}
