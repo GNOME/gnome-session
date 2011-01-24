@@ -43,13 +43,13 @@ EXTRA_DIST =					\
 	$(pixmap_DATA_dist)
 
 CLEANFILES =					\
-	$(gsettings_SCHEMAS:.xml=.xml.in)	\
+	$(gsettings_SCHEMAS)			\
 	$(xsession_DATA)			\
 	$(desktop_DATA)				\
 	$(session_DATA)
 
 DISTCLEANFILES =				\
-	$(gsettings_SCHEMAS:.xml=.xml.in)	\
+	$(gsettings_SCHEMAS)			\
 	$(desktop_in_files)
 
 -include $(top_srcdir)/git.mk
