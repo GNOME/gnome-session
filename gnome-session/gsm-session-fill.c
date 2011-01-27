@@ -166,7 +166,7 @@ check_required_components (GKeyFile *keyfile)
                 app_path = gsm_util_find_desktop_file_for_app_name (value, NULL);
                 if (!app_path) {
                         g_warning ("Unable to find provider '%s' of required component '%s'",
-                                   required_components[i]);
+                                   value, required_components[i]);
                         result = FALSE;
                 }
                 g_free (app_path);
