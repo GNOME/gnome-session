@@ -128,6 +128,58 @@ append_required_apps (GsmManager *manager,
         g_strfreev (required_components);
 }
 
+static gboolean
+check_required_components (GKeyFile *keyfile)
+{
+        char **required_components;
+        int    i;
+        gboolean result;
+
+        g_debug ("fill: *** Checking required apps");
+
+        required_components = g_key_file_get_string_list (keyfile,
+                                                          GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_REQUIRED_KEY,
+                                                          NULL, NULL);
+
+        if (required_components == NULL) {
+                return TRUE;
+        }
+
+        result = TRUE;
+        for (i = 0; result && required_components[i] != NULL; i++) {
+                char *key;
+                char *value;
+                char *app_path;
+
+                key = g_strdup_printf ("%s-%s", GSM_KEYFILE_REQUIRED_KEY, required_components[i]);
+                value = g_key_file_get_string (keyfile,
+                                               GSM_KEYFILE_SESSION_GROUP, key,
+                                               NULL);
+                g_free (key);
+
+                if (IS_STRING_EMPTY (value)) {
+                        g_free (value);
+                        continue;
+                }
+
+                g_debug ("fill: %s looking for component: '%s'", required_components[i], value);
+                app_path = gsm_util_find_desktop_file_for_app_name (value, NULL);
+                if (!app_path) {
+                        g_warning ("Unable to find provider '%s' of required component '%s'",
+                                   required_components[i]);
+                        result = FALSE;
+                }
+                g_free (app_path);
+                g_free (value);
+        }
+
+        g_debug ("fill: *** Done checking required apps");
+
+        g_strfreev (required_components);
+
+        return result;
+}
+
 static void
 maybe_load_saved_session_apps (GsmManager *manager)
 {
@@ -318,6 +370,11 @@ get_session_keyfile (const char *session)
 
         keyfile = find_valid_session_keyfile (session);
 
+
+        if (!keyfile) {
+                return NULL;
+        }
+
         session_runnable = TRUE;
 
         value = g_key_file_get_string (keyfile,
@@ -328,6 +385,11 @@ get_session_keyfile (const char *session)
                 session_runnable = (gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT) == 0);
         }
         g_free (value);
+
+        if (session_runnable) {
+                g_debug ("fill: *** Checking required components");
+                session_runnable = check_required_components (keyfile);
+        }
 
         if (session_runnable)
                 return keyfile;
