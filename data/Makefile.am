@@ -20,7 +20,6 @@ session_DATA = $(session_in_files:.session.desktop.in=.session)
 
 %.session.desktop.in: %.session.desktop.in.in Makefile
 	$(AM_V_GEN)sed \
-		-e "s|\@DEFAULT_WM\@|$(DEFAULT_WM)|" \
 		-e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
 		$< > $@
 
