@@ -326,8 +326,8 @@ gsm_shell_init (GsmShell *shell)
         error = NULL;
 
         if (!gsm_shell_ensure_connection (shell, &error)) {
-                g_warning ("Could not connect to the shell: %s",
-                           error->message);
+                g_debug ("Could not connect to the shell: %s",
+                         error->message);
                 g_error_free (error);
         }
 }
