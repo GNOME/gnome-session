@@ -606,7 +606,7 @@ setup_dialog (GsmPropertiesDialog *dialog)
         targetlist = gtk_drag_dest_get_target_list (GTK_WIDGET (treeview));
         if (targetlist != NULL) {
                 GtkTargetEntry *targets;
-                guint n_targets;
+                gint n_targets;
                 gint i;
 
                 targets = gtk_target_table_new_from_list (targetlist, &n_targets);
