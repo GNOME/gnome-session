@@ -927,7 +927,8 @@ cancel_end_session (GsmManager *manager)
 
 
 static void
-manager_switch_user (GsmManager *manager)
+manager_switch_user (GdkDisplay *display,
+                     GsmManager *manager)
 {
         GError  *error;
         char    *command;
@@ -939,7 +940,7 @@ manager_switch_user (GsmManager *manager)
                                    GDM_FLEXISERVER_ARGS);
 
         error = NULL;
-        context = (GAppLaunchContext*) gdk_app_launch_context_new ();
+        context = (GAppLaunchContext*) gdk_display_get_app_launch_context (display);
         app = g_app_info_create_from_commandline (command, GDM_FLEXISERVER_COMMAND, 0, &error);
 
         if (app) {
@@ -1042,12 +1043,13 @@ manager_attempt_suspend (GsmManager *manager)
 }
 
 static void
-do_inhibit_dialog_action (GsmManager *manager,
+do_inhibit_dialog_action (GdkDisplay *display,
+                          GsmManager *manager,
                           int         action)
 {
         switch (action) {
         case GSM_LOGOUT_ACTION_SWITCH_USER:
-                manager_switch_user (manager);
+                manager_switch_user (display, manager);
                 break;
         case GSM_LOGOUT_ACTION_HIBERNATE:
                 manager_attempt_hibernate (manager);
@@ -1072,9 +1074,12 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
                          guint             response_id,
                          GsmManager       *manager)
 {
+        GdkDisplay *display;
         int action;
 
         g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
+
+        display = gtk_widget_get_display (GTK_WIDGET (dialog));
 
         /* must destroy dialog before cancelling since we'll
            remove JIT inhibitors and we don't want to trigger
@@ -1098,7 +1103,7 @@ inhibit_dialog_response (GsmInhibitDialog *dialog,
                 break;
         case GTK_RESPONSE_ACCEPT:
                 g_debug ("GsmManager: doing action %d", action);
-                do_inhibit_dialog_action (manager, action);
+                do_inhibit_dialog_action (display, manager, action);
                 break;
         default:
                 g_assert_not_reached ();
@@ -2810,12 +2815,13 @@ request_logout (GsmManager *manager,
 }
 
 static void
-request_switch_user (GsmManager *manager)
+request_switch_user (GdkDisplay *display,
+                     GsmManager *manager)
 {
         g_debug ("GsmManager: requesting user switch");
 
         if (! gsm_manager_is_switch_user_inhibited (manager)) {
-                manager_switch_user (manager);
+                manager_switch_user (display, manager);
                 return;
         }
 
@@ -2841,7 +2847,11 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                         guint            response_id,
                         GsmManager      *manager)
 {
+        GdkDisplay *display;
+
         g_debug ("GsmManager: Logout dialog response: %d", response_id);
+
+        display = gtk_widget_get_display (GTK_WIDGET (logout_dialog));
 
         gtk_widget_destroy (GTK_WIDGET (logout_dialog));
 
@@ -2854,7 +2864,7 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
         case GTK_RESPONSE_DELETE_EVENT:
                 break;
         case GSM_LOGOUT_RESPONSE_SWITCH_USER:
-                request_switch_user (manager);
+                request_switch_user (display, manager);
                 break;
         case GSM_LOGOUT_RESPONSE_HIBERNATE:
                 request_hibernate (manager);
