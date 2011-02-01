@@ -28,11 +28,11 @@ session_DATA = $(session_in_files:.session.desktop.in=.session)
 @INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_XML_NOMERGE_RULE@
 
-gsettings_SCHEMAS = org.gnome.SessionManager.gschema.xml org.gnome.desktop.session.gschema.xml
+gsettings_SCHEMAS = org.gnome.SessionManager.gschema.xml
 @GSETTINGS_RULES@
 
 migrationdir = $(datadir)/GConf/gsettings
-dist_migration_DATA = org.gnome.SessionManager.gschema.migrate org.gnome.desktop.session.gschema.migrate
+dist_migration_DATA = org.gnome.SessionManager.gschema.migrate
 
 EXTRA_DIST =					\
 	$(xsession_in_files)			\

@@ -338,7 +338,6 @@ doc/man/Makefile
 data/Makefile
 data/session-properties.desktop.in
 data/org.gnome.SessionManager.gschema.xml
-data/org.gnome.desktop.session.gschema.xml
 data/icons/Makefile
 data/icons/16x16/Makefile
 data/icons/22x22/Makefile
