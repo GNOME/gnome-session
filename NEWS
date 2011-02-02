@@ -1,4 +1,47 @@
 ==============
+Version 2.91.6
+==============
+
+Note to packagers: with the move to GSettings, gnome-session now depends on
+gsettings-desktop-schemas.
+
+Session Manager:
+- Fix build with latest GTK+ 3 (Matthias Clasen, Vincent)
+- Migrate to GSettings (Ray Strode)
+- Add support for shell logout/shutdown dialog (Ray Strode)
+- Use fallback session if required components are missing (Matthias Clasen)
+
+Defined Sessions:
+- Do not consider Gallium's softpipe and llvmpipe as accelerated (Vincent)
+- Do not run nautilus by default (Matthias Clasen)
+
+Capplet:
+- Migrate to GSettings (Ray Strode, Vincent)
+
+Misc:
+- Change GETTEXT_PACKAGE to gnome-session-3.0 (Vincent)
+- Drop gnome-wm script (Matthias Clasen)
+- Add a runtime dependency on gsettings-desktop-schemas
+
+Translations:
+- Updated ar: Khaled Hosny
+- Updated bg: Alexander Shopov
+- Updated ca: David Planella
+- Updated es: Jorge González
+- Updated et: Ivar Smolin
+- Updated gl: Fran Diéguez
+- Updated he: Yaron Shahrabani
+- Updated hu: Gabor Kelemen
+- Updated id: Andika Triwidada
+- Updated nb: Kjartan Maraas
+- Updated nl: Wouter Bolsterlee
+- Updated sl: Matej Urbančič
+- Updated sv: Daniel Nylander
+- Updated ug: Sahran
+- Updated zh_HK: Chao-Hsiung Liao
+- Updated zh_TW: Chao-Hsiung Liao
+
+==============
 Version 2.91.4
 ==============
 
