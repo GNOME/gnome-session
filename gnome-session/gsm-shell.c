@@ -323,17 +323,9 @@ gsm_shell_on_name_owner_changed (DBusGProxy    *bus_proxy,
 static void
 gsm_shell_init (GsmShell *shell)
 {
-        GError *error;
-
         shell->priv = GSM_SHELL_GET_PRIVATE (shell);
 
-        error = NULL;
-
-        if (!gsm_shell_ensure_connection (shell, &error)) {
-                g_debug ("GsmShell: Could not connect to the shell: %s",
-                         error->message);
-                g_error_free (error);
-        }
+        gsm_shell_ensure_connection (shell, NULL);
 }
 
 static void
