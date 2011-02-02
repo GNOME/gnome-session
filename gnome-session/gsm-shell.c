@@ -128,7 +128,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
 
         param_spec = g_param_spec_boolean ("is-running",
                                            "Is running",
-                                           "Whether the session is running to ConsoleKit",
+                                           "Whether GNOME Shell is running in the session",
                                            FALSE,
                                            G_PARAM_READABLE);
 
