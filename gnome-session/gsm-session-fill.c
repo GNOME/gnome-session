@@ -168,6 +168,7 @@ check_required_components (GKeyFile *keyfile)
                         g_warning ("Unable to find provider '%s' of required component '%s'",
                                    value, required_components[i]);
                         result = FALSE;
+                        break;
                 }
                 g_free (app_path);
                 g_free (value);
