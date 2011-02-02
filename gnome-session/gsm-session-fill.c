@@ -370,10 +370,8 @@ get_session_keyfile (const char *session)
 
         keyfile = find_valid_session_keyfile (session);
 
-
-        if (!keyfile) {
+        if (!keyfile)
                 return NULL;
-        }
 
         session_runnable = TRUE;
 
