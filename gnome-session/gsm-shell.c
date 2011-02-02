@@ -267,6 +267,8 @@ gsm_shell_ensure_connection (GsmShell  *shell,
                 }
         }
 
+        g_debug ("GsmShell: Connected to the shell");
+
         is_running = TRUE;
 
  out:
@@ -276,6 +278,8 @@ gsm_shell_ensure_connection (GsmShell  *shell,
         }
 
         if (!is_running) {
+                g_debug ("GsmShell: Not connected to the shell");
+
                 if (shell->priv->bus_connection == NULL) {
                         if (shell->priv->bus_proxy != NULL) {
                                 g_object_unref (shell->priv->bus_proxy);
@@ -326,7 +330,7 @@ gsm_shell_init (GsmShell *shell)
         error = NULL;
 
         if (!gsm_shell_ensure_connection (shell, &error)) {
-                g_debug ("Could not connect to the shell: %s",
+                g_debug ("GsmShell: Could not connect to the shell: %s",
                          error->message);
                 g_error_free (error);
         }
