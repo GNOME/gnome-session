@@ -2402,33 +2402,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
 }
 
 static void
-fetch_idle_delay_setting (GsmManager *manager)
-{
-        gint value;
-
-        value = g_settings_get_int (manager->priv->session_settings,
-                                    KEY_IDLE_DELAY);
-
-        gsm_presence_set_idle_timeout (manager->priv->presence, value * 60000);
-}
-
-static void
-on_setting_changed (GSettings  *settings,
-                    const char *key,
-                    GsmManager *manager)
-{
-        if (strcmp (key, KEY_IDLE_DELAY) == 0) {
-                int delay;
-
-                delay = g_settings_get_int (settings, key);
-
-                gsm_presence_set_idle_timeout (manager->priv->presence, delay * 60000);
-        } else {
-                g_debug ("Config key not handled: %s", key);
-        }
-}
-
-static void
 on_presence_status_changed (GsmPresence  *presence,
                             guint         status,
                             GsmManager   *manager)
@@ -2438,6 +2411,19 @@ on_presence_status_changed (GsmPresence  *presence,
         consolekit = gsm_get_consolekit ();
         gsm_consolekit_set_session_idle (consolekit,
                                          (status == GSM_PRESENCE_STATUS_IDLE));
+}
+
+static gboolean
+idle_timeout_get_mapping (GValue *value,
+                          GVariant *variant,
+                          gpointer user_data)
+{
+        guint32 idle_timeout;
+
+        idle_timeout = g_variant_get_uint32 (variant);
+        g_value_set_uint (value, idle_timeout * 60000);
+
+        return TRUE;
 }
 
 static void
@@ -2468,16 +2454,18 @@ gsm_manager_init (GsmManager *manager)
                           G_CALLBACK (on_presence_status_changed),
                           manager);
 
+        g_settings_bind_with_mapping (manager->priv->session_settings,
+                                      KEY_IDLE_DELAY,
+                                      manager->priv->presence,
+                                      "idle-timeout",
+                                      G_SETTINGS_BIND_GET,
+                                      idle_timeout_get_mapping,
+                                      NULL,
+                                      NULL, NULL);
+
         manager->priv->up_client = up_client_new ();
 
-        g_signal_connect (manager->priv->session_settings,
-                          "changed",
-                          G_CALLBACK (on_setting_changed),
-                          manager);
-
         manager->priv->shell = gsm_get_shell ();
-
-        fetch_idle_delay_setting (manager);
 }
 
 static void
