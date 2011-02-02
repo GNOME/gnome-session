@@ -960,20 +960,8 @@ manager_switch_user (GdkDisplay *display,
 static gboolean
 sleep_lock_is_enabled (GsmManager *manager)
 {
-        gboolean  enable_lock;
-
-        if (manager->priv->screensaver_settings == NULL) {
-                g_warning ("Unable to read screen lock configuration, "
-                           "unconditionally enabling screen locking");
-
-                /* If we fail to query the setting, just enable locking */
-                enable_lock = TRUE;
-        } else {
-                enable_lock = g_settings_get_boolean (manager->priv->screensaver_settings,
-                                                      KEY_SLEEP_LOCK);
-        }
-
-        return enable_lock;
+        return g_settings_get_boolean (manager->priv->screensaver_settings,
+                                       KEY_SLEEP_LOCK);
 }
 
 static void
@@ -1908,14 +1896,8 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 static gboolean
 auto_save_is_enabled (GsmManager *manager)
 {
-        GError   *error;
-        gboolean  auto_save;
-
-        error = NULL;
-        auto_save = g_settings_get_boolean (manager->priv->settings,
-                                            KEY_AUTOSAVE);
-
-        return auto_save;
+        return g_settings_get_boolean (manager->priv->settings,
+                                       KEY_AUTOSAVE);
 }
 
 static void
@@ -2422,10 +2404,11 @@ gsm_manager_class_init (GsmManagerClass *klass)
 static void
 fetch_idle_delay_setting (GsmManager *manager)
 {
-        glong   value;
+        gint value;
 
         value = g_settings_get_int (manager->priv->session_settings,
                                     KEY_IDLE_DELAY);
+
         gsm_presence_set_idle_timeout (manager->priv->presence, value * 60000);
 }
 
