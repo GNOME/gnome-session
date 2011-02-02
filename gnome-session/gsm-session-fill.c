@@ -385,7 +385,6 @@ get_session_keyfile (const char *session)
         g_free (value);
 
         if (session_runnable) {
-                g_debug ("fill: *** Checking required components");
                 session_runnable = check_required_components (keyfile);
         }
 
