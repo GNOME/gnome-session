@@ -79,7 +79,7 @@
 #define KEY_AUTOSAVE              "auto-save-session"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
 
-#define SCREENSAVER_SCHEMA        "org.gnome.screensaver"
+#define SCREENSAVER_SCHEMA        "org.gnome.desktop.screensaver"
 #define KEY_SLEEP_LOCK            "lock-enabled"
 
 typedef enum
