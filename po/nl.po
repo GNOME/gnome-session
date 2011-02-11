@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-08 18:45+0100\n"
-"PO-Revision-Date: 2011-01-08 18:45+0100\n"
+"POT-Creation-Date: 2011-02-11 23:10+0100\n"
+"PO-Revision-Date: 2011-02-11 23:11+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -48,19 +48,19 @@ msgstr "De opstartopdracht mag niet leeg zijn"
 msgid "The startup command is not valid"
 msgstr "De opstartopdracht is ongeldig"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Pictogram"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Programma"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Voorkeuren opstarttoepassingen"
 
@@ -72,17 +72,17 @@ msgstr "Naamloos"
 msgid "No description"
 msgstr "Geen beschrijving"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Kon hulpdocument niet weergeven"
 
-#: ../data/classic-gnome.session.desktop.in.in.h:1
-msgid "Classic GNOME"
-msgstr "Klassieke Gnome"
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "Gnome (terugval)"
 
 #: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
@@ -92,15 +92,11 @@ msgstr "Gnome"
 msgid "This session logs you into GNOME"
 msgstr "Deze sessie laat u in Gnome inloggen"
 
-#: ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Windowmanager"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Er zijn nog actieve toepassingen:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -231,24 +227,24 @@ msgstr ""
 "Er is een probleem met de configuratieserver.\n"
 "(%s is afgesloten met status %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:254
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Pictogram ‘%s’ niet gevonden"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:593
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "Er is nog een toepassing actief:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "Er zijn nog toepassingen actief:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:649
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -256,35 +252,35 @@ msgstr ""
 "Wachten totdat de toepassingen geëindigd zijn. Het onderbreken van "
 "toepassingen kan er toe leiden dat er werk verloren gaat."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "Toch gebruiker _wisselen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "Toch afmelden"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "Toch in pauzestand"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "Toch in _slaapstand"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "Toch afsluiten"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:894
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "Toch herstarten"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:902
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "Beeldscherm vergrendelen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:905
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -340,7 +336,7 @@ msgstr "_Herstarten"
 msgid "_Shut Down"
 msgstr "_Uitzetten"
 
-#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
+#: ../gnome-session/gsm-manager.c:1282 ../gnome-session/gsm-manager.c:1985
 msgid "Not responding"
 msgstr "Reageert niet"
 
@@ -434,6 +430,12 @@ msgstr "Kan geen verbinding maken met het sessiebeheer"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Toepassing aangeroepen met conflicterende opties"
+
+#~ msgid "Classic GNOME"
+#~ msgstr "Klassieke Gnome"
+
+#~ msgid "Window Manager"
+#~ msgstr "Windowmanager"
 
 #~ msgid "Default session"
 #~ msgstr "Standaar sessie"
