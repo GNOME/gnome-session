@@ -126,6 +126,11 @@ gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *
 
 void                gsm_manager_start                          (GsmManager     *manager);
 
+const char *        _gsm_manager_get_default_session           (GsmManager     *manager);
+
+void                _gsm_manager_set_is_fallback               (GsmManager     *manager,
+                                                                gboolean        is_fallback);
+
 
 /* exported methods */
 

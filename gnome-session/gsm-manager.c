@@ -74,6 +74,7 @@
 
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
+#define KEY_SESSION_NAME          "session-name"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_AUTOSAVE              "auto-save-session"
@@ -101,6 +102,8 @@ struct GsmManagerPrivate
         GsmStore               *inhibitors;
         GsmStore               *apps;
         GsmPresence            *presence;
+
+        gboolean                is_fallback_session : 1;
 
         /* Current status */
         GsmManagerPhase         phase;
@@ -141,6 +144,7 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
+        PROP_FALLBACK,
         PROP_FAILSAFE
 };
 
@@ -1431,6 +1435,21 @@ gsm_manager_start (GsmManager *manager)
         start_phase (manager);
 }
 
+const char *
+_gsm_manager_get_default_session (GsmManager     *manager)
+{
+        return g_settings_get_string (manager->priv->session_settings,
+                                      KEY_SESSION_NAME);
+}
+
+void
+_gsm_manager_set_is_fallback (GsmManager     *manager,
+                              gboolean        is_fallback)
+{
+        manager->priv->is_fallback_session = is_fallback;
+}
+
+
 static gboolean
 _app_has_app_id (const char   *id,
                  GsmApp       *app,
@@ -2179,6 +2198,9 @@ gsm_manager_get_property (GObject    *object,
         case PROP_FAILSAFE:
                 g_value_set_boolean (value, self->priv->failsafe);
                 break;
+        case PROP_FALLBACK:
+                g_value_set_boolean (value, self->priv->is_fallback_session);
+                break;
         case PROP_CLIENT_STORE:
                 g_value_set_object (value, self->priv->clients);
                 break;
@@ -2387,6 +2409,20 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        /**
+         * GsmManager::fallback
+         *
+         * If %TRUE, the current session is running in the "fallback" mode;
+         * this is distinct from whether or not it was configured as default.
+         */
+        g_object_class_install_property (object_class,
+                                         PROP_FALLBACK,
+                                         g_param_spec_boolean ("fallback",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_STORE,
                                          g_param_spec_object ("client-store",

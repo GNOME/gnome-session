@@ -28,8 +28,6 @@
 #include "gsm-process-helper.h"
 #include "gsm-util.h"
 
-#define GSM_DEFAULT_SESSION "gnome"
-
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
 #define GSM_KEYFILE_RUNNABLE_KEY "IsRunnableHelper"
 #define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
@@ -361,7 +359,8 @@ find_valid_session_keyfile (const char *session)
 }
 
 static GKeyFile *
-get_session_keyfile (const char *session)
+get_session_keyfile (const char *session,
+                     gboolean   *is_fallback)
 {
         GKeyFile *keyfile;
         gboolean  session_runnable;
@@ -389,8 +388,11 @@ get_session_keyfile (const char *session)
                 session_runnable = check_required_components (keyfile);
         }
 
-        if (session_runnable)
+        if (session_runnable) {
+                if (is_fallback)
+                        *is_fallback = FALSE;
                 return keyfile;
+        }
 
         g_debug ("fill: *** Session is not runnable");
 
@@ -402,8 +404,11 @@ get_session_keyfile (const char *session)
         g_key_file_free (keyfile);
         keyfile = NULL;
 
-        if (!IS_STRING_EMPTY (value))
-                keyfile = get_session_keyfile (value);
+        if (!IS_STRING_EMPTY (value)) {
+                if (is_fallback)
+                        *is_fallback = TRUE;
+                keyfile = get_session_keyfile (value, NULL);
+        }
         g_free (value);
 
         return keyfile;
@@ -415,6 +420,7 @@ gsm_session_fill (GsmManager  *manager,
                   const char  *session)
 {
         GKeyFile *keyfile;
+        gboolean is_fallback;
 
         if (override_autostart_dirs != NULL) {
                 load_override_apps (manager, override_autostart_dirs);
@@ -422,12 +428,15 @@ gsm_session_fill (GsmManager  *manager,
         }
 
         if (IS_STRING_EMPTY (session))
-                session = GSM_DEFAULT_SESSION;
+                session = _gsm_manager_get_default_session (manager);
 
-        keyfile = get_session_keyfile (session);
+        keyfile = get_session_keyfile (session, &is_fallback);
 
         if (!keyfile)
                 return FALSE;
+
+        if (is_fallback)
+                _gsm_manager_set_is_fallback (manager, TRUE);
 
         load_standard_apps (manager, keyfile);
 
