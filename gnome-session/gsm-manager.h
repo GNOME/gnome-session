@@ -128,9 +128,9 @@ void                gsm_manager_start                          (GsmManager     *
 
 const char *        _gsm_manager_get_default_session           (GsmManager     *manager);
 
-void                _gsm_manager_set_is_fallback               (GsmManager     *manager,
+void                _gsm_manager_set_active_session            (GsmManager     *manager,
+                                                                const char     *session_name,
                                                                 gboolean        is_fallback);
-
 
 /* exported methods */
 

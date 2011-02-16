@@ -360,11 +360,14 @@ find_valid_session_keyfile (const char *session)
 
 static GKeyFile *
 get_session_keyfile (const char *session,
+                     char      **actual_session,
                      gboolean   *is_fallback)
 {
         GKeyFile *keyfile;
         gboolean  session_runnable;
         char     *value;
+
+        *actual_session = NULL;
 
         g_debug ("fill: *** Getting session '%s'", session);
 
@@ -389,6 +392,7 @@ get_session_keyfile (const char *session,
         }
 
         if (session_runnable) {
+                *actual_session = g_strdup (session);
                 if (is_fallback)
                         *is_fallback = FALSE;
                 return keyfile;
@@ -407,7 +411,7 @@ get_session_keyfile (const char *session,
         if (!IS_STRING_EMPTY (value)) {
                 if (is_fallback)
                         *is_fallback = TRUE;
-                keyfile = get_session_keyfile (value, NULL);
+                keyfile = get_session_keyfile (value, actual_session, NULL);
         }
         g_free (value);
 
@@ -421,6 +425,7 @@ gsm_session_fill (GsmManager  *manager,
 {
         GKeyFile *keyfile;
         gboolean is_fallback;
+        char *actual_session;
 
         if (override_autostart_dirs != NULL) {
                 load_override_apps (manager, override_autostart_dirs);
@@ -430,13 +435,14 @@ gsm_session_fill (GsmManager  *manager,
         if (IS_STRING_EMPTY (session))
                 session = _gsm_manager_get_default_session (manager);
 
-        keyfile = get_session_keyfile (session, &is_fallback);
+        keyfile = get_session_keyfile (session, &actual_session, &is_fallback);
 
         if (!keyfile)
                 return FALSE;
 
-        if (is_fallback)
-                _gsm_manager_set_is_fallback (manager, TRUE);
+        _gsm_manager_set_active_session (manager, actual_session, is_fallback);
+
+        g_free (actual_session);
 
         load_standard_apps (manager, keyfile);
 

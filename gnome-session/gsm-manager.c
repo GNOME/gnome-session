@@ -103,6 +103,7 @@ struct GsmManagerPrivate
         GsmStore               *apps;
         GsmPresence            *presence;
 
+        char                   *session_name;
         gboolean                is_fallback_session : 1;
 
         /* Current status */
@@ -144,6 +145,7 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
+        PROP_SESSION_NAME,
         PROP_FALLBACK,
         PROP_FAILSAFE
 };
@@ -1443,12 +1445,14 @@ _gsm_manager_get_default_session (GsmManager     *manager)
 }
 
 void
-_gsm_manager_set_is_fallback (GsmManager     *manager,
-                              gboolean        is_fallback)
+_gsm_manager_set_active_session (GsmManager     *manager,
+                                 const char     *session_name,
+                                 gboolean        is_fallback)
 {
+        g_free (manager->priv->session_name);
+        manager->priv->session_name = g_strdup (session_name);
         manager->priv->is_fallback_session = is_fallback;
 }
-
 
 static gboolean
 _app_has_app_id (const char   *id,
@@ -2198,6 +2202,9 @@ gsm_manager_get_property (GObject    *object,
         case PROP_FAILSAFE:
                 g_value_set_boolean (value, self->priv->failsafe);
                 break;
+        case PROP_SESSION_NAME:
+                g_value_set_string (value, self->priv->session_name);
+                break;
         case PROP_FALLBACK:
                 g_value_set_boolean (value, self->priv->is_fallback_session);
                 break;
@@ -2409,6 +2416,21 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        /**
+         * GsmManager::session-name
+         *
+         * Then name of the currently active session, typically "gnome" or "gnome-fallback".
+         * This may be the name of the configured default session, or the name of a fallback
+         * session in case we fell back.
+         */
+        g_object_class_install_property (object_class,
+                                         PROP_SESSION_NAME,
+                                         g_param_spec_string ("session-name",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
         /**
          * GsmManager::fallback
          *
