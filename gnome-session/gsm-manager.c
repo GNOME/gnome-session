@@ -2180,7 +2180,7 @@ gsm_manager_set_property (GObject       *object,
                 gsm_manager_set_failsafe (self, g_value_get_boolean (value));
                 break;
          case PROP_FALLBACK:
-                _gsm_manager_set_is_fallback (self, g_value_get_boolean (value));
+                self->priv->is_fallback_session = g_value_get_boolean (value);
                 break;
          case PROP_CLIENT_STORE:
                 gsm_manager_set_client_store (self, g_value_get_object (value));
