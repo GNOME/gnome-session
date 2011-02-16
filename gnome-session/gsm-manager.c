@@ -2542,6 +2542,12 @@ gsm_manager_finalize (GObject *object)
 }
 
 GsmManager *
+gsm_manager_get (void)
+{
+        return manager_object;
+}
+
+GsmManager *
 gsm_manager_new (GsmStore *client_store,
                  gboolean  failsafe)
 {

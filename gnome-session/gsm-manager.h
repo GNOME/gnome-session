@@ -113,6 +113,7 @@ GType               gsm_manager_get_type                       (void);
 
 GsmManager *        gsm_manager_new                            (GsmStore       *client_store,
                                                                 gboolean        failsafe);
+GsmManager *        gsm_manager_get                            (void);
 
 gboolean            gsm_manager_get_failsafe                   (GsmManager     *manager);
 
