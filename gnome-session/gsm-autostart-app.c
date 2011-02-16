@@ -40,12 +40,14 @@ enum {
 };
 
 enum {
-        GSM_CONDITION_NONE          = 0,
-        GSM_CONDITION_IF_EXISTS     = 1,
-        GSM_CONDITION_UNLESS_EXISTS = 2,
-        GSM_CONDITION_GNOME         = 3,
-        GSM_CONDITION_GSETTINGS     = 4,
-        GSM_CONDITION_UNKNOWN       = 5
+        GSM_CONDITION_NONE           = 0,
+        GSM_CONDITION_IF_EXISTS      = 1,
+        GSM_CONDITION_UNLESS_EXISTS  = 2,
+        GSM_CONDITION_GNOME          = 3,
+        GSM_CONDITION_GSETTINGS      = 4,
+        GSM_CONDITION_IF_SESSION     = 5,
+        GSM_CONDITION_UNLESS_SESSION = 6,
+        GSM_CONDITION_UNKNOWN        = 7
 };
 
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
@@ -155,6 +157,8 @@ parse_condition_string (const char *condition_string,
                 key++;
         }
 
+        kind = GSM_CONDITION_UNKNOWN;
+
         if (!g_ascii_strncasecmp (condition_string, "if-exists", len) && key) {
                 kind = GSM_CONDITION_IF_EXISTS;
         } else if (!g_ascii_strncasecmp (condition_string, "unless-exists", len) && key) {
@@ -163,9 +167,23 @@ parse_condition_string (const char *condition_string,
                 kind = GSM_CONDITION_GNOME;
         } else if (!g_ascii_strncasecmp (condition_string, "GSettings", len)) {
                 kind = GSM_CONDITION_GSETTINGS;
-        } else {
+        } else if (!g_ascii_strncasecmp (condition_string, "GNOME3", len)) {
+                condition_string = key;
+                space = condition_string + strcspn (condition_string, " ");
+                len = space - condition_string;
+                key = space;
+                while (isspace ((unsigned char)*key)) {
+                        key++;
+                }
+                if (!g_ascii_strncasecmp (condition_string, "if-session", len) && key) {
+                        kind = GSM_CONDITION_IF_SESSION;
+                } else if (!g_ascii_strncasecmp (condition_string, "unless-session", len) && key) {
+                        kind = GSM_CONDITION_UNLESS_SESSION;
+                }
+        }
+
+        if (kind == GSM_CONDITION_UNKNOWN) {
                 key = NULL;
-                kind = GSM_CONDITION_UNKNOWN;
         }
 
         if (keyp != NULL) {
@@ -349,6 +367,78 @@ setup_gsettings_condition_monitor (GsmAutostartApp *app,
 }
 
 static void
+if_session_condition_cb (GObject    *object,
+                         GParamSpec *pspec,
+                         gpointer    user_data)
+{
+        GsmApp                 *app;
+        GsmAutostartAppPrivate *priv;
+        char                   *session_name;
+        char                   *key;
+        gboolean                condition;
+
+        g_return_if_fail (GSM_IS_APP (user_data));
+
+        app = GSM_APP (user_data);
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        parse_condition_string (priv->condition_string, NULL, &key);
+
+        g_object_get (object, "session-name", &session_name, NULL);
+        condition = strcmp (session_name, key) == 0;
+        g_free (session_name);
+
+        g_free (key);
+
+        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
+                 gsm_app_peek_id (app),
+                 condition);
+
+        /* Emit only if the condition actually changed */
+        if (condition != priv->condition) {
+                priv->condition = condition;
+                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        }
+}
+
+static void
+unless_session_condition_cb (GObject    *object,
+                             GParamSpec *pspec,
+                             gpointer    user_data)
+{
+        GsmApp                 *app;
+        GsmAutostartAppPrivate *priv;
+        char                   *session_name;
+        char                   *key;
+        gboolean                condition;
+
+        g_return_if_fail (GSM_IS_APP (user_data));
+
+        app = GSM_APP (user_data);
+
+        priv = GSM_AUTOSTART_APP (app)->priv;
+
+        parse_condition_string (priv->condition_string, NULL, &key);
+
+        g_object_get (object, "session-name", &session_name, NULL);
+        condition = strcmp (session_name, key) != 0;
+        g_free (session_name);
+
+        g_free (key);
+
+        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
+                 gsm_app_peek_id (app),
+                 condition);
+
+        /* Emit only if the condition actually changed */
+        if (condition != priv->condition) {
+                priv->condition = condition;
+                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
+        }
+}
+
+static void
 setup_condition_monitor (GsmAutostartApp *app)
 {
         guint    kind;
@@ -445,6 +535,36 @@ setup_condition_monitor (GsmAutostartApp *app)
                 g_object_unref (client);
         } else if (kind == GSM_CONDITION_GSETTINGS) {
                 disabled = !setup_gsettings_condition_monitor (app, key);
+        } else if (kind == GSM_CONDITION_IF_SESSION) {
+                GsmManager *manager;
+                char *session_name;
+
+                /* get the singleton */
+                manager = gsm_manager_new (NULL, FALSE);
+
+                g_object_get (manager, "session-name", &session_name, NULL);
+                disabled = strcmp (session_name, key) != 0;
+
+                g_signal_connect (manager, "notify::session-name",
+                                  G_CALLBACK (if_session_condition_cb), app);
+                g_free (session_name);
+
+                g_object_unref (manager);
+        } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
+                GsmManager *manager;
+                char *session_name;
+
+                /* get the singleton */
+                manager = gsm_manager_new (NULL, FALSE);
+
+                g_object_get (manager, "session-name", &session_name, NULL);
+                disabled = strcmp (session_name, key) == 0;
+
+                g_signal_connect (manager, "notify::session-name",
+                                  G_CALLBACK (unless_session_condition_cb), app);
+                g_free (session_name);
+
+                g_object_unref (manager);
         } else {
                 disabled = TRUE;
         }
@@ -739,6 +859,30 @@ is_conditionally_disabled (GsmApp *app)
                 elems = g_strsplit (key, " ", 2);
                 disabled = !g_settings_get_boolean (priv->condition_settings, elems[1]);
                 g_strfreev (elems);
+        } else if (kind == GSM_CONDITION_IF_SESSION) {
+                GsmManager *manager;
+                char *session_name;
+
+                /* get the singleton */
+                manager = gsm_manager_new (NULL, FALSE);
+
+                g_object_get (manager, "session-name", &session_name, NULL);
+                disabled = strcmp (session_name, key) != 0;
+                g_free (session_name);
+
+                g_object_unref (manager);
+        } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
+                GsmManager *manager;
+                char *session_name;
+
+                /* get the singleton */
+                manager = gsm_manager_new (NULL, FALSE);
+
+                g_object_get (manager, "session-name", &session_name, NULL);
+                disabled = strcmp (session_name, key) == 0;
+                g_free (session_name);
+
+                g_object_unref (manager);
         } else {
                 disabled = TRUE;
         }
