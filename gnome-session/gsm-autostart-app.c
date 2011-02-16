@@ -540,7 +540,7 @@ setup_condition_monitor (GsmAutostartApp *app)
                 char *session_name;
 
                 /* get the singleton */
-                manager = gsm_manager_new (NULL, FALSE);
+                manager = gsm_manager_get ();
 
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) != 0;
@@ -555,7 +555,7 @@ setup_condition_monitor (GsmAutostartApp *app)
                 char *session_name;
 
                 /* get the singleton */
-                manager = gsm_manager_new (NULL, FALSE);
+                manager = gsm_manager_get ();
 
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) == 0;
@@ -864,7 +864,7 @@ is_conditionally_disabled (GsmApp *app)
                 char *session_name;
 
                 /* get the singleton */
-                manager = gsm_manager_new (NULL, FALSE);
+                manager = gsm_manager_get ();
 
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) != 0;
@@ -876,7 +876,7 @@ is_conditionally_disabled (GsmApp *app)
                 char *session_name;
 
                 /* get the singleton */
-                manager = gsm_manager_new (NULL, FALSE);
+                manager = gsm_manager_get ();
 
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) == 0;
