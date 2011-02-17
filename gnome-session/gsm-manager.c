@@ -1216,7 +1216,7 @@ show_fallback_dialog (const char *title,
                                          GTK_BUTTONS_CLOSE,
                                          title);
 
-        pix = rsvg_pixbuf_from_file_at_size (DATA_DIR "/sad-computer.svg", 128, 128, NULL);
+        pix = rsvg_pixbuf_from_file_at_size (DATA_DIR "/sad-computer.svgz", 128, 128, NULL);
         if (pix != NULL) {
                 image = gtk_image_new_from_pixbuf (pix);
                 gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
