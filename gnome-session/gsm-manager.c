@@ -112,7 +112,7 @@ struct GsmManagerPrivate
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
         GSList                 *pending_apps;
-        gboolean                forceful_logout;
+        GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
         guint                   query_timeout_id;
         /* This is used for GSM_MANAGER_PHASE_END_SESSION only at the moment,
@@ -697,7 +697,7 @@ do_phase_end_session (GsmManager *manager)
         data.manager = manager;
         data.flags = 0;
 
-        if (manager->priv->forceful_logout) {
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
         if (auto_save_is_enabled (manager)) {
@@ -730,7 +730,7 @@ do_phase_end_session_part_2 (GsmManager *manager)
         data.manager = manager;
         data.flags = 0;
 
-        if (manager->priv->forceful_logout) {
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
         if (auto_save_is_enabled (manager)) {
@@ -925,7 +925,7 @@ cancel_end_session (GsmManager *manager)
                            NULL);
 
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_RUNNING);
-        manager->priv->forceful_logout = FALSE;
+        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
 
         manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
         gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
@@ -1056,7 +1056,7 @@ do_inhibit_dialog_action (GdkDisplay *display,
         case GSM_LOGOUT_ACTION_SHUTDOWN:
         case GSM_LOGOUT_ACTION_REBOOT:
         case GSM_LOGOUT_ACTION_LOGOUT:
-                manager->priv->forceful_logout = TRUE;
+                manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
                 end_phase (manager);
                 break;
         default:
@@ -1332,7 +1332,7 @@ _on_query_end_session_timeout (GsmManager *manager)
 
                 /* Don't add "not responding" inhibitors if logout is forced
                  */
-                if (manager->priv->forceful_logout) {
+                if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                         continue;
                 }
 
@@ -1378,7 +1378,7 @@ do_phase_query_end_session (GsmManager *manager)
         data.manager = manager;
         data.flags = 0;
 
-        if (manager->priv->forceful_logout) {
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
         /* We only query if an app is ready to log out, so we don't use
@@ -1386,7 +1386,10 @@ do_phase_query_end_session (GsmManager *manager)
          */
 
         debug_clients (manager);
-        g_debug ("GsmManager: sending query-end-session to clients forceful:%d", manager->priv->forceful_logout);
+        g_debug ("GsmManager: sending query-end-session to clients (logout mode: %s)",
+                 manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_NORMAL? "normal" :
+                 manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE? "forceful":
+                 "no confirmation");
         gsm_store_foreach (manager->priv->clients,
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
@@ -2049,7 +2052,7 @@ _handle_client_end_session_response (GsmManager *manager,
 
         manager->priv->query_clients = g_slist_remove (manager->priv->query_clients, client);
 
-        if (! is_ok && !manager->priv->forceful_logout) {
+        if (! is_ok && manager->priv->logout_mode != GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 guint         cookie;
                 GsmInhibitor *inhibitor;
                 char         *app_id;
@@ -2911,12 +2914,12 @@ request_hibernate (GsmManager *manager)
 
 
 static void
-request_logout (GsmManager *manager,
-                gboolean    forceful_logout)
+request_logout (GsmManager           *manager,
+                GsmManagerLogoutMode  mode)
 {
         g_debug ("GsmManager: requesting logout");
 
-        manager->priv->forceful_logout = forceful_logout;
+        manager->priv->logout_mode = mode;
         manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
 
         end_phase (manager);
@@ -2957,6 +2960,11 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
 {
         GdkDisplay *display;
 
+        /* We should only be here if mode has already have been set from
+         * show_fallback_shutdown/logout_dialog
+         */
+        g_assert (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_NORMAL);
+
         g_debug ("GsmManager: Logout dialog response: %d", response_id);
 
         display = gtk_widget_get_display (GTK_WIDGET (logout_dialog));
@@ -2987,7 +2995,14 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
                 request_reboot (manager);
                 break;
         case GSM_LOGOUT_RESPONSE_LOGOUT:
-                request_logout (manager, FALSE);
+                /* We've already gotten confirmation from the user so
+                 * initiate the logout in NO_CONFIRMATION mode.
+                 *
+                 * (it shouldn't matter whether we use NO_CONFIRMATION or stay
+                 * with NORMAL, unless the shell happens to start after the
+                 * user confirmed)
+                 */
+                request_logout (manager, GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION);
                 break;
         default:
                 g_assert_not_reached ();
@@ -3004,6 +3019,8 @@ show_fallback_shutdown_dialog (GsmManager *manager)
                 /* Already shutting down, nothing more to do */
                 return;
         }
+
+        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
 
         dialog = gsm_get_shutdown_dialog (gdk_screen_get_default (),
                                           gtk_get_current_event_time ());
@@ -3024,6 +3041,8 @@ show_fallback_logout_dialog (GsmManager *manager)
                 /* Already shutting down, nothing more to do */
                 return;
         }
+
+        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
 
         dialog = gsm_get_logout_dialog (gdk_screen_get_default (),
                                         gtk_get_current_event_time ());
@@ -3065,7 +3084,7 @@ static void
 on_shell_end_session_dialog_confirmed (GsmShell   *shell,
                                        GsmManager *manager)
 {
-        manager->priv->forceful_logout = TRUE;
+        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         end_phase (manager);
 
         manager->priv->shell_end_session_dialog_confirmed_id = 0;
@@ -3105,9 +3124,8 @@ show_shell_end_session_dialog (GsmManager                   *manager,
 }
 
 static void
-user_logout (GsmManager *manager,
-             gboolean    show_confirmation,
-             gboolean    forceful_logout)
+user_logout (GsmManager           *manager,
+             GsmManagerLogoutMode  mode)
 {
         gboolean logout_prompt;
         gboolean shell_running;
@@ -3121,18 +3139,17 @@ user_logout (GsmManager *manager,
         logout_prompt = g_settings_get_boolean (manager->priv->settings,
                                                 KEY_LOGOUT_PROMPT);
 
-        /* Global settings overides input parameter in order to disable confirmation
-         * dialog accordingly.  For the shell, we never show the confirmation dialog,
-         * since the dialog is merged with the inhibit dialog.
+        /* If the shell isn't running, and this isn't a non-interative logout request,
+         * and the user has their settings configured to show a confirmation dialog for
+         * logout, then go ahead and show the fallback confirmation dialog now.
          *
-         * If we're shutting down and the shell isn't running, we show the confirmation
-         * dialog */
-        logout_prompt = (logout_prompt && show_confirmation && !shell_running);
-
-        if (logout_prompt) {
+         * If the shell is running, then the confirmation dialog and inhibitor dialog are
+         * combined, so we'll show it at a later stage in the logout process.
+         */
+        if (!shell_running && mode == GSM_MANAGER_LOGOUT_MODE_NORMAL && logout_prompt) {
                 show_fallback_logout_dialog (manager);
         } else {
-                request_logout (manager, forceful_logout);
+                request_logout (manager, mode);
         }
 }
 
@@ -3228,15 +3245,9 @@ gsm_manager_logout (GsmManager *manager,
 
         switch (logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
-                user_logout (manager, TRUE, FALSE);
-                break;
-
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
-                user_logout (manager, FALSE, FALSE);
-                break;
-
         case GSM_MANAGER_LOGOUT_MODE_FORCE:
-                user_logout (manager, FALSE, TRUE);
+                user_logout (manager, logout_mode);
                 break;
 
         default:
@@ -3409,7 +3420,7 @@ gsm_manager_inhibit (GsmManager            *manager,
                  reason,
                  flags);
 
-        if (manager->priv->forceful_logout) {
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 GError *new_error;
 
                 new_error = g_error_new (GSM_MANAGER_ERROR,
