@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-23 14:38+0200\n"
-"PO-Revision-Date: 2011-01-23 14:38+0300\n"
+"POT-Creation-Date: 2011-02-17 19:42+0200\n"
+"PO-Revision-Date: 2011-02-17 19:42+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,19 +42,19 @@ msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغًا"
 msgid "The startup command is not valid"
 msgstr "أمر بدء التشغيل غير سليم"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "مُفعّل"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "أيقونة"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "البرنامج"
 
-#: ../capplet/gsm-properties-dialog.c:797
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "تفضيلات برمجيات بدء التشغيل"
 
@@ -66,11 +66,11 @@ msgstr "بلا اسم"
 msgid "No description"
 msgstr "بلا وصف"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "إصدارة هذا التطبيق"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "تعذّر عرض مستند المساعدة"
 
@@ -90,7 +90,7 @@ msgstr "تولجك هذه الجلسة في جنوم"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ما زالت بعض البرامج تعمل:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -212,58 +212,58 @@ msgstr ""
 "هناك مشكلة مع خادوم الإعدادات.\n"
 "(%s خرج بالحالة %Id)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:254
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "الأيقونة '%s' غير موجودة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:593
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "ما زال أحد البرامج يعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "ما زالت بعض البرامج تعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:649
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "بانتظار انتهاء البرامج. مقاطعة هذه البرامج قد يتسبب في فقد بيانات."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "بدّل المستخدم بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "اخرج بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "علّق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "أسبِت بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "أغلق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:894
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "أعد التشغيل بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:902
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "أوصد الشاشة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:905
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "ألغ"
 
@@ -326,7 +326,27 @@ msgstr "أعِد الت_شغيل"
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
-#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
+#: ../gnome-session/gsm-manager.c:1257
+msgid "GNOME 3 Failed to Load"
+msgstr "فشل بدء جنوم 3"
+
+#: ../gnome-session/gsm-manager.c:1258
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardwayre is not capable to run the "
+"full GNOME 3 experience"
+msgstr ""
+"للأسف فشل بدء جنوم 3 على الوجه الصحيح ودخلت إلى <i>الطور التقليدي</i>.\n"
+"\n"
+"غالبا ما يعني هذا أن عتادك لا يدعم تشغيل جنوم 3 كاملة."
+
+#: ../gnome-session/gsm-manager.c:1260
+msgid "Learn more about GNOME 3"
+msgstr "تعرّف أكثر على جنوم 3"
+
+#: ../gnome-session/gsm-manager.c:1357 ../gnome-session/gsm-manager.c:2078
 msgid "Not responding"
 msgstr "لا يستجيب"
 
