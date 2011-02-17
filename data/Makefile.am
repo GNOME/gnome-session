@@ -3,7 +3,8 @@ SUBDIRS = icons
 uidir = $(pkgdatadir)
 ui_DATA = \
 	session-properties.ui	\
-	gsm-inhibit-dialog.ui
+	gsm-inhibit-dialog.ui	\
+	sad-computer.svg
 
 xsessiondir = $(datadir)/xsessions
 xsession_in_files = gnome.desktop.in

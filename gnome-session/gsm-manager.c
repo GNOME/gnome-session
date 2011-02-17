@@ -37,6 +37,7 @@
 #include <glib-object.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
+#include <librsvg/rsvg.h>
 
 #include <upower.h>
 
@@ -75,6 +76,7 @@
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
 #define KEY_SESSION_NAME          "session-name"
+#define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_AUTOSAVE              "auto-save-session"
@@ -1201,6 +1203,73 @@ end_session_or_show_shell_dialog (GsmManager *manager)
 }
 
 static void
+show_fallback_dialog (const char *title,
+                      const char *description,
+                      const char *link_text,
+                      const char *uri)
+{
+        GtkWidget *dialog, *image, *link, *hbox;
+        GdkPixbuf *pix;
+
+        dialog = gtk_message_dialog_new (NULL, 0,
+                                         GTK_MESSAGE_WARNING,
+                                         GTK_BUTTONS_CLOSE,
+                                         title);
+
+        pix = rsvg_pixbuf_from_file_at_size (DATA_DIR "/sad-computer.svg", 128, 128, NULL);
+        if (pix != NULL) {
+                image = gtk_image_new_from_pixbuf (pix);
+                gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
+                g_object_unref (pix);
+        }
+
+        if (description) {
+                gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
+                                                            description);
+        }
+
+        hbox = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
+
+        if (uri) {
+                if (link_text) {
+                        link = gtk_link_button_new_with_label (uri, link_text);
+                } else {
+                        link = gtk_link_button_new (uri);
+                }
+                gtk_box_pack_start (GTK_BOX (hbox), link, FALSE, FALSE, 0);
+        }
+
+        gtk_widget_show_all (dialog);
+
+        g_signal_connect (dialog,
+                          "response",
+                          G_CALLBACK (gtk_widget_destroy),
+                          NULL);
+}
+
+static void
+possibly_show_fallback_dialog (GsmManager *manager)
+{
+        if (manager->priv->is_fallback_session &&
+            strcmp (manager->priv->session_name, "gnome-fallback") == 0 &&
+            g_settings_get_boolean (manager->priv->settings,
+                                    KEY_SHOW_FALLBACK_WARNING)) {
+                show_fallback_dialog (_("GNOME 3 Failed to Load"),
+                                      _("Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n\n"
+                                        "This most likely means your graphics hardwayre is not capable to run the full GNOME 3 experience"),
+                                      _("Learn more about GNOME 3"),
+                                      "http://www.gnome3.org");
+                g_settings_set_boolean (manager->priv->settings,
+                                        KEY_SHOW_FALLBACK_WARNING, FALSE);
+        } else if (strcmp (manager->priv->session_name, "gnome") == 0 &&
+                   g_settings_get_boolean (manager->priv->settings,
+                                           KEY_SHOW_FALLBACK_WARNING)) {
+                /* Reset the setting if we ever manage to log into gnome 3 */
+                g_settings_reset (manager->priv->settings, KEY_SHOW_FALLBACK_WARNING);
+        }
+}
+
+static void
 query_end_session_complete (GsmManager *manager)
 {
 
@@ -1371,6 +1440,7 @@ start_phase (GsmManager *manager)
                 do_phase_startup (manager);
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
+                possibly_show_fallback_dialog (manager);
                 g_signal_emit (manager, signals[SESSION_RUNNING], 0);
                 update_idle (manager);
                 break;
