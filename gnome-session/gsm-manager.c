@@ -3071,12 +3071,8 @@ show_fallback_logout_dialog (GsmManager *manager)
 }
 
 static void
-on_shell_end_session_dialog_canceled (GsmShell   *shell,
-                                      GsmManager *manager)
+disconnect_shell_dialog_signals (GsmManager *manager)
 {
-        cancel_end_session (manager);
-        manager->priv->shell_end_session_dialog_canceled_id = 0;
-
         if (manager->priv->shell_end_session_dialog_canceled_id != 0) {
                 g_signal_handler_disconnect (manager->priv->shell,
                                              manager->priv->shell_end_session_dialog_canceled_id);
@@ -3097,26 +3093,25 @@ on_shell_end_session_dialog_canceled (GsmShell   *shell,
 }
 
 static void
+on_shell_end_session_dialog_canceled (GsmShell   *shell,
+                                      GsmManager *manager)
+{
+        cancel_end_session (manager);
+        disconnect_shell_dialog_signals (manager);
+}
+
+static void
 on_shell_end_session_dialog_confirmed (GsmShell   *shell,
                                        GsmManager *manager)
 {
         manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         end_phase (manager);
-
-        manager->priv->shell_end_session_dialog_confirmed_id = 0;
+        disconnect_shell_dialog_signals (manager);
 }
 
 static void
-show_shell_end_session_dialog (GsmManager                   *manager,
-                               GsmShellEndSessionDialogType  type)
+connect_shell_dialog_signals (GsmManager *manager)
 {
-        if (!gsm_shell_is_running (manager->priv->shell))
-                return;
-
-        gsm_shell_open_end_session_dialog (manager->priv->shell,
-                                           type,
-                                           manager->priv->inhibitors,
-                                           manager->priv->clients);
         if (manager->priv->shell_end_session_dialog_canceled_id != 0)
                 return;
 
@@ -3137,6 +3132,20 @@ show_shell_end_session_dialog (GsmManager                   *manager,
                                   "end-session-dialog-confirmed",
                                   G_CALLBACK (on_shell_end_session_dialog_confirmed),
                                   manager);
+}
+
+static void
+show_shell_end_session_dialog (GsmManager                   *manager,
+                               GsmShellEndSessionDialogType  type)
+{
+        if (!gsm_shell_is_running (manager->priv->shell))
+                return;
+
+        gsm_shell_open_end_session_dialog (manager->priv->shell,
+                                           type,
+                                           manager->priv->inhibitors,
+                                           manager->priv->clients);
+        connect_shell_dialog_signals (manager);
 }
 
 static void
