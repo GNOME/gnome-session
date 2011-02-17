@@ -2502,7 +2502,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               NULL,
                                                               NULL,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READABLE));
 
         /**
          * GsmManager::fallback
