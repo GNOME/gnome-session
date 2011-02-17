@@ -3157,8 +3157,7 @@ show_shell_end_session_dialog (GsmManager                   *manager,
 
         gsm_shell_open_end_session_dialog (manager->priv->shell,
                                            type,
-                                           manager->priv->inhibitors,
-                                           manager->priv->clients);
+                                           manager->priv->inhibitors);
         connect_shell_dialog_signals (manager);
 }
 

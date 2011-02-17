@@ -478,8 +478,7 @@ on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
 gboolean
 gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmShellEndSessionDialogType type,
-                                   GsmStore *inhibitors,
-                                   GsmStore *clients)
+                                   GsmStore *inhibitors)
 {
         DBusGProxyCall  *call;
         GPtrArray *inhibitor_array;
