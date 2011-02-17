@@ -1112,6 +1112,11 @@ end_session_or_show_fallback_dialog (GsmManager *manager)
 {
         GsmLogoutAction action;
 
+        if (! gsm_manager_is_logout_inhibited (manager)) {
+                end_phase (manager);
+                return;
+        }
+
         if (manager->priv->inhibit_dialog != NULL) {
                 g_debug ("GsmManager: inhibit dialog already up");
                 gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
@@ -1137,11 +1142,6 @@ end_session_or_show_fallback_dialog (GsmManager *manager)
                            manager->priv->logout_type);
                 action = GSM_LOGOUT_ACTION_LOGOUT;
                 break;
-        }
-
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                end_phase (manager);
-                return;
         }
 
         /* Note: GSM_LOGOUT_ACTION_SHUTDOWN and GSM_LOGOUT_ACTION_REBOOT are
