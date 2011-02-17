@@ -1162,7 +1162,9 @@ end_session_or_show_fallback_dialog (GsmManager *manager)
 static void
 end_session_or_show_shell_dialog (GsmManager *manager)
 {
+        gboolean logout_prompt;
         GsmShellEndSessionDialogType type;
+        gboolean logout_inhibited;
 
         switch (manager->priv->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
@@ -1185,21 +1187,35 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 break;
         }
 
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                gboolean logout_prompt;
+        logout_inhibited = gsm_manager_is_logout_inhibited (manager);
+        logout_prompt = g_settings_get_boolean (manager->priv->settings,
+                                                KEY_LOGOUT_PROMPT);
 
-                logout_prompt = g_settings_get_boolean (manager->priv->settings,
-                                                        KEY_LOGOUT_PROMPT);
-                if (logout_prompt) {
+        switch (manager->priv->logout_mode) {
+        case GSM_MANAGER_LOGOUT_MODE_NORMAL:
+                if (logout_inhibited || logout_prompt) {
                         show_shell_end_session_dialog (manager, type);
-                        return;
                 } else {
                         end_phase (manager);
                 }
-                return;
+                break;
+
+        case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
+                if (logout_inhibited) {
+                        show_shell_end_session_dialog (manager, type);
+                } else {
+                        end_phase (manager);
+                }
+                break;
+
+        case GSM_MANAGER_LOGOUT_MODE_FORCE:
+                end_phase (manager);
+                break;
+        default:
+                g_assert_not_reached ();
+                break;
         }
 
-        show_shell_end_session_dialog (manager, type);
 }
 
 static void
