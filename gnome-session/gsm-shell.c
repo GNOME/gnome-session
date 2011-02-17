@@ -54,11 +54,14 @@ struct _GsmShellPrivate
         DBusGProxy      *bus_proxy;
         DBusGProxy      *proxy;
         DBusGProxy      *end_session_dialog_proxy;
+        GsmStore        *inhibitors;
 
         guint32          is_running : 1;
 
         DBusGProxyCall  *end_session_open_call;
         GsmShellEndSessionDialogType end_session_dialog_type;
+
+        guint            update_idle_id;
 };
 
 enum {
@@ -363,6 +366,8 @@ gsm_shell_finalize (GObject *object)
 
         parent_class = G_OBJECT_CLASS (gsm_shell_parent_class);
 
+        g_object_unref (shell->priv->inhibitors);
+
         gsm_shell_disconnect_from_bus (shell);
 
         if (parent_class->finalize != NULL) {
@@ -442,6 +447,11 @@ on_open_finished (DBusGProxy     *proxy,
                                      G_TYPE_INVALID);
         shell->priv->end_session_open_call = NULL;
 
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
         if (!res) {
                 g_warning ("Unable to open shell end session dialog");
                 g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
@@ -455,6 +465,11 @@ static void
 on_end_session_dialog_canceled (DBusGProxy *proxy,
                                 GsmShell   *shell)
 {
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CANCELED], 0);
 }
 
@@ -462,6 +477,11 @@ static void
 on_end_session_dialog_confirmed (DBusGProxy *proxy,
                                  GsmShell   *shell)
 {
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED], 0);
 }
 
@@ -473,6 +493,25 @@ on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
                 g_object_unref (shell->priv->proxy);
                 shell->priv->end_session_dialog_proxy = NULL;
         }
+}
+
+static gboolean
+on_need_end_session_dialog_update (GsmShell *shell)
+{
+        gsm_shell_open_end_session_dialog (shell,
+                                           shell->priv->end_session_dialog_type,
+                                           shell->priv->inhibitors);
+        return FALSE;
+}
+
+static void
+queue_end_session_dialog_update (GsmShell *shell)
+{
+        if (shell->priv->update_idle_id != 0)
+                return;
+
+        shell->priv->update_idle_id = g_idle_add ((GSourceFunc) on_need_end_session_dialog_update,
+                                                  shell);
 }
 
 gboolean
@@ -556,6 +595,15 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                 g_warning ("Unable to make Open call");
                 return FALSE;
         }
+
+        shell->priv->inhibitors = g_object_ref (inhibitors);
+        g_signal_connect_swapped (inhibitors, "added",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
+
+        g_signal_connect_swapped (inhibitors, "removed",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
 
         shell->priv->end_session_open_call = call;
         shell->priv->end_session_dialog_type = type;
