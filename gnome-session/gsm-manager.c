@@ -3104,6 +3104,20 @@ static void
 on_shell_end_session_dialog_confirmed (GsmShell   *shell,
                                        GsmManager *manager)
 {
+        /* Note we're checking for END_SESSION here and
+         * QUERY_END_SESSION in the fallback cases elsewhere.
+         *
+         * That's because they run at different times in the logout
+         * process. The shell combines the inhibit and
+         * confirmation dialogs, so it gets displayed after we've collected
+         * inhibitors. The fallback code has two distinct dialogs, once of
+         * which we can (and do show) before collecting the inhibitors.
+         */
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_END_SESSION) {
+                /* Already shutting down, nothing more to do */
+                return;
+        }
+
         manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         end_phase (manager);
         disconnect_shell_dialog_signals (manager);
