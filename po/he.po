@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-23 02:54+0200\n"
-"PO-Revision-Date: 2011-01-23 02:59+0200\n"
+"POT-Creation-Date: 2011-02-21 09:27+0200\n"
+"PO-Revision-Date: 2011-02-21 09:29+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -38,19 +38,19 @@ msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "מאופשר"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "סמל"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "תכנית"
 
-#: ../capplet/gsm-properties-dialog.c:797
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "העדפות יישומי הפעלה"
 
@@ -62,11 +62,11 @@ msgstr "ללא שם"
 msgid "No description"
 msgstr "ללא תיאור"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Version of this application"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Could not display help document"
 
@@ -86,7 +86,7 @@ msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>קיימות תכניות שעדיין רצות:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -208,58 +208,58 @@ msgstr ""
 "יש בעיה עם שרת ההגדרות.\n"
 "(‏%s יצא עם המצב %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:254
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "הסמל '%s' לא נמצא"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:593
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "ישנה תכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "ישנן תכניות שעדיין רצות:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:649
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרום לאיבוד העבודה שלך."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "ה_חלפת משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "יציאה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "השהייה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "מעבר למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "כיבוי בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:894
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "הפעלה מחדש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:902
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "נעילת המסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:905
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -314,7 +314,28 @@ msgstr "הפעלה מ_חדש"
 msgid "_Shut Down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr "טעינת GNOME 3 נכשלה"
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardwayre is not capable to run the "
+"full GNOME 3 experience"
+msgstr ""
+"לרוע המזל הפעלת GNOME 3 כראוי נכשלה ובמקום זאת הופעל <b>מצב השחזור</b>.\n"
+"\n"
+"תקלה זו אירעה כפי הנראה עקב חומרת גרפיקה שאינה מסוגלת להפעיל את חווית GNOME "
+"3 במלואה"
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr "מידע נוסף על אודות GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "אין תגובה"
 
