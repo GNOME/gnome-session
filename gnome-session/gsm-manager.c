@@ -1267,7 +1267,7 @@ static void
 possibly_show_fallback_dialog (GsmManager *manager)
 {
         if (manager->priv->is_fallback_session &&
-            strcmp (manager->priv->session_name, "gnome-fallback") == 0 &&
+            g_strcmp0 (manager->priv->session_name, "gnome-fallback") == 0 &&
             g_settings_get_boolean (manager->priv->settings,
                                     KEY_SHOW_FALLBACK_WARNING)) {
                 show_fallback_dialog (_("GNOME 3 Failed to Load"),
@@ -1277,7 +1277,7 @@ possibly_show_fallback_dialog (GsmManager *manager)
                                       "http://www.gnome3.org");
                 g_settings_set_boolean (manager->priv->settings,
                                         KEY_SHOW_FALLBACK_WARNING, FALSE);
-        } else if (strcmp (manager->priv->session_name, "gnome") == 0 &&
+        } else if (g_strcmp0 (manager->priv->session_name, "gnome") == 0 &&
                    g_settings_get_boolean (manager->priv->settings,
                                            KEY_SHOW_FALLBACK_WARNING)) {
                 /* Reset the setting if we ever manage to log into gnome 3 */
