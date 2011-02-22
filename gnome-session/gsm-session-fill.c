@@ -432,9 +432,6 @@ gsm_session_fill (GsmManager  *manager,
                 return TRUE;
         }
 
-        if (IS_STRING_EMPTY (session))
-                session = _gsm_manager_get_default_session (manager);
-
         keyfile = get_session_keyfile (session, &actual_session, &is_fallback);
 
         if (!keyfile)

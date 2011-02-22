@@ -350,10 +350,13 @@ main (int argc, char **argv)
         gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, manager);
         gdm_signal_handler_set_fatal_func (signal_handler, shutdown_cb, manager);
 
+        if (IS_STRING_EMPTY (session_name))
+                session_name = _gsm_manager_get_default_session (manager);
+
         if (!gsm_session_fill (manager,
                                override_autostart_dirs,
                                session_name)) {
-                gsm_util_init_error (TRUE, "%s", "No valid session found.");
+                gsm_util_init_error (TRUE, "Failed to load session \"%s\"", session_name ? session_name : "(null)");
         }
 
         gsm_xsmp_server_start (xsmp_server);
