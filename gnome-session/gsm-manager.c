@@ -76,11 +76,11 @@
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
 #define KEY_SESSION_NAME          "session-name"
-#define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_AUTOSAVE              "auto-save-session"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
+#define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 
 #define SCREENSAVER_SCHEMA        "org.gnome.desktop.screensaver"
 #define KEY_SLEEP_LOCK            "lock-enabled"
