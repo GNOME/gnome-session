@@ -1,0 +1,25 @@
+.\"
+.\" gnome-session-quit manual page.
+.\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+.\" (C) 2009-2010 Vincent Untz (vuntz@gnome.org)
+.\"
+.TH GNOME-SESSION-QUIT 1 "GNOME"
+.SH NAME
+gnome-session-quit \- End the current GNOME session
+.SH SYNOPSIS
+.B gnome-session-quit [\-\-logout] [\-\-power-off] [\-\-no-prompt]
+.SH DESCRIPTION
+The \fIgnome-session-quit\fP program can be used to end a GNOME session.
+.PP
+If called with the \fB\-\-logout\fP option the user will be prompted
+to confirm logout.  The \fB\-\-no\-prompt\fP option can be used to end
+the session without user interaction.
+.PP
+When the \fB\-\-power\-off\fP option is given the user will be
+prompted to confirm system power off.  The \fB\-\-no\-prompt\fP option
+can be used to power off without user interaction.
+.SH BUGS
+If you find bugs in the \fIgnome-session-quit\fP program, please report
+these on https://bugzilla.gnome.org.
+.SH SEE ALSO
+.BR gnome-session(1)

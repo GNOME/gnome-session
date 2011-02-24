@@ -1,14 +1,14 @@
-bin_PROGRAMS = gnome-session-save
+bin_PROGRAMS = gnome-session-quit
 libexec_PROGRAMS = gnome-session-is-accelerated
 
 AM_CPPFLAGS =
 
 AM_CFLAGS = $(WARN_CFLAGS)
 
-gnome_session_save_SOURCES =			\
-	gnome-session-save.c
+gnome_session_quit_SOURCES =			\
+	gnome-session-quit.c
 
-gnome_session_save_CPPFLAGS =			\
+gnome_session_quit_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(DBUS_GLIB_CFLAGS)			\
@@ -16,7 +16,7 @@ gnome_session_save_CPPFLAGS =			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
-gnome_session_save_LDADD =			\
+gnome_session_quit_LDADD =			\
 	$(SM_LIBS)				\
 	$(ICE_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
