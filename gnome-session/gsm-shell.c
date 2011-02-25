@@ -57,6 +57,7 @@ struct _GsmShellPrivate
         GsmStore        *inhibitors;
 
         guint32          is_running : 1;
+        guint32          has_open_dialog : 1;
 
         DBusGProxyCall  *end_session_open_call;
         GsmShellEndSessionDialogType end_session_dialog_type;
@@ -458,6 +459,7 @@ on_open_finished (DBusGProxy     *proxy,
                 return;
         }
 
+        shell->priv->has_open_dialog = TRUE;
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPENED], 0);
 }
 
@@ -470,6 +472,7 @@ on_end_session_dialog_canceled (DBusGProxy *proxy,
                 shell->priv->update_idle_id = 0;
         }
 
+        shell->priv->has_open_dialog = FALSE;
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CANCELED], 0);
 }
 
@@ -482,6 +485,7 @@ on_end_session_dialog_confirmed (DBusGProxy *proxy,
                 shell->priv->update_idle_id = 0;
         }
 
+        shell->priv->has_open_dialog = FALSE;
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED], 0);
 }
 
@@ -498,6 +502,17 @@ on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
 static gboolean
 on_need_end_session_dialog_update (GsmShell *shell)
 {
+        /* No longer need an update */
+        if (shell->priv->update_idle_id == 0)
+                return FALSE;
+
+        shell->priv->update_idle_id = 0;
+
+        if (!shell->priv->has_open_dialog)
+                return FALSE;
+
+        shell->priv->has_open_dialog = FALSE;
+
         gsm_shell_open_end_session_dialog (shell,
                                            shell->priv->end_session_dialog_type,
                                            shell->priv->inhibitors);
