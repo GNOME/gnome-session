@@ -12,15 +12,16 @@
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2010, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&component=general\n"
-"POT-Creation-Date: 2011-02-17 12:37+0000\n"
-"PO-Revision-Date: 2011-02-19 12:43+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"POT-Creation-Date: 2011-02-24 22:56+0000\n"
+"PO-Revision-Date: 2011-02-26 11:53+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -330,29 +331,35 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Apagar"
 
-#: ../gnome-session/gsm-manager.c:1257
+#: ../gnome-session/gsm-manager.c:1273
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 falló al cargar"
 
-#: ../gnome-session/gsm-manager.c:1258
+#: ../gnome-session/gsm-manager.c:1274
+#| msgid ""
+#| "Unfortunately GNOME 3 failed to start properly and started in the "
+#| "<i>fallback mode</i>.\n"
+#| "\n"
+#| "This most likely means your graphics hardwayre is not capable to run the "
+#| "full GNOME 3 experience"
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
 "\n"
-"This most likely means your graphics hardwayre is not capable to run the "
-"full GNOME 3 experience"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
 msgstr ""
 "Desafortunadamente GNOME 3 falló al iniciar y se inició en el <i>modo "
 "alternativo</i>.\n"
 "\n"
 "Probablemente significa que sus hardware gráfico no es capaz de ejecutar la "
-"experiencia GNOME 3 completa."
+"experiencia GNOME 3 completa"
 
-#: ../gnome-session/gsm-manager.c:1260
+#: ../gnome-session/gsm-manager.c:1276
 msgid "Learn more about GNOME 3"
 msgstr "Aprenda más acerca de GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1357 ../gnome-session/gsm-manager.c:2078
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "No responde"
 
@@ -401,50 +408,49 @@ msgstr "No cargar las aplicaciones especificadas por el usuario"
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Cerrar la sesión"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Cerrar la sesión, ignorando cualquier inhibidor existente"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Apagar"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Mostrar el diálogo de fin de sesión"
+#: ../tools/gnome-session-quit.c:54
+#| msgid "Log out, ignoring any existing inhibitors"
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorando cualquier inhibidor existente"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Mostrar el diálogo de apagado"
+#: ../tools/gnome-session-quit.c:55
+#| msgid "Do not require confirmation"
+msgid "Don't prompt for user confirmation"
+msgstr "No requerir confirmación del usuario"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Usar cajas de diálogo para los errores"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Establecer el nombre de la sesión actual"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NOMBRE"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Terminar la sesión"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "No requerir confirmación"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "No se pudo conectar con el gestor de sesiones"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Se llamó al programa con opciones en conflicto"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Mostrar el diálogo de fin de sesión"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Mostrar el diálogo de apagado"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Usar cajas de diálogo para los errores"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Establecer el nombre de la sesión actual"
+
+#~ msgid "NAME"
+#~ msgstr "NOMBRE"
+
+#~ msgid "Kill session"
+#~ msgstr "Terminar la sesión"
 
 #~ msgid "Window Manager"
 #~ msgstr "Gestor de ventanas"
