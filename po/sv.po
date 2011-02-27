@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-22 14:15+0100\n"
-"PO-Revision-Date: 2010-12-29 15:38+0100\n"
+"POT-Creation-Date: 2011-02-27 17:51+0100\n"
+"PO-Revision-Date: 2011-02-27 17:54+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -41,19 +41,19 @@ msgstr "Uppstartsprogrammets kommando får inte vara tomt"
 msgid "The startup command is not valid"
 msgstr "Uppstartsprogrammets kommando är inte giltigt"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Aktiverat"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:797
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Inställningar för uppstartsprogram"
 
@@ -65,19 +65,21 @@ msgstr "Inget namn"
 msgid "No description"
 msgstr "Ingen beskrivning"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:280
+#: ../capplet/main.c:35
+#: ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Version av detta program"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Kunde inte visa hjälpdokumentet"
 
 #: ../data/gnome-fallback.session.desktop.in.in.h:1
 msgid "GNOME fallback"
-msgstr ""
+msgstr "Fall tillbaka på GNOME"
 
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -89,13 +91,10 @@ msgstr "Denna session loggar in dig i GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Några program är fortfarande igång:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Väntar på att programmet ska köras färdigt.  Avbryta programmet kan innebära "
-"att du förlorar data."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
+msgstr "Väntar på att programmet ska köras färdigt.  Avbryta programmet kan innebära att du förlorar data."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -213,60 +212,56 @@ msgstr ""
 "Det finns ett problem med konfigurationsservern.\n"
 "(%s avslutades med status %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:254
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Ikonen \"%s\" hittades inte"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:593
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "Okänt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "Ett program körs fortfarande:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "Några program körs fortfarande:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:649
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Väntar på att programmen ska köras färdigt.  Avbryta dessa program kan "
-"innebära att du förlorar data."
+#: ../gnome-session/gsm-inhibit-dialog.c:647
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Väntar på att programmen ska köras färdigt.  Avbryta dessa program kan innebära att du förlorar data."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "Växla användare ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "Logga ut ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "Försätt i vänteläge ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "Försätt i viloläge ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "Stäng av ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:894
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "Starta om ändå"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:902
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "Lås skärmen"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:905
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -321,7 +316,26 @@ msgstr "Starta _om"
 msgid "_Shut Down"
 msgstr "St_äng av"
 
-#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr "GNOME 3 kunde inte läsas in"
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardware is not capable to run the full GNOME 3 experience"
+msgstr ""
+"Tyvärr gick inte GNOME 3 att starta korrekt och startas därför i <i>fallback-läge</i>.\n"
+"\n"
+"Detta betyder oftast att din grafikmaskinvara inte kan dra nytta av den kompletta GNOME 3-upplevelsen"
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr "Lär dig mer om GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1373
+#: ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "Svarar inte"
 
@@ -330,12 +344,8 @@ msgid "This program is blocking logout."
 msgstr "Detta program blockerar utloggningen."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas "
-"av\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas av\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
@@ -346,8 +356,7 @@ msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 #: ../gnome-session/gsm-util.c:354
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
+msgstr "Kunde inte starta inloggningssession (och kan inte ansluta till X-servern)"
 
 #: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
@@ -369,70 +378,58 @@ msgstr "Läs inte in användarspecifika program"
 msgid " - the GNOME session manager"
 msgstr "- GNOME-sessionshanteraren"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Logga ut"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Logga ut, ignorera allt som förhindrar det"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Stäng av"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Visa utloggningsdialogrutan"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorera allt som förhindrar det"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Visa avstängningsdialogrutan"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Fråga inte efter användarbekräftelse"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Använd dialogrutor för fel"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Ange det aktuella sessionsnamnet"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAMN"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Döda session"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Kräv ingen bekräftelse"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89
+#: ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Kunde inte ansluta till sessionshanteraren"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
 
+#~ msgid "Show logout dialog"
+#~ msgstr "Visa utloggningsdialogrutan"
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Visa avstängningsdialogrutan"
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Använd dialogrutor för fel"
+#~ msgid "Set the current session name"
+#~ msgstr "Ange det aktuella sessionsnamnet"
+#~ msgid "NAME"
+#~ msgstr "NAMN"
+#~ msgid "Kill session"
+#~ msgstr "Döda session"
 #~ msgid "Classic GNOME"
 #~ msgstr "Klassisk GNOME"
-
 #~ msgid "Window Manager"
 #~ msgstr "Fönsterhanterare"
-
 #~ msgid "Default session"
 #~ msgstr "Standardsession"
-
 #~ msgid "File Manager"
 #~ msgstr "Filhanterare"
-
 #~ msgid ""
 #~ "If enabled, gnome-session will prompt the user before ending a session."
 #~ msgstr ""
 #~ "Om detta är aktiverat kommer gnome-session att fråga användaren innan en "
 #~ "session avslutas."
-
 #~ msgid "If enabled, gnome-session will save the session automatically."
 #~ msgstr ""
 #~ "Om detta är aktiverat kommer gnome-session att spara sessionen "
 #~ "automatiskt."
+
