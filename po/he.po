@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-21 09:27+0200\n"
-"PO-Revision-Date: 2011-02-21 09:29+0200\n"
+"POT-Creation-Date: 2011-02-27 23:06+0200\n"
+"PO-Revision-Date: 2011-02-27 23:07+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -323,13 +323,13 @@ msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
 "\n"
-"This most likely means your graphics hardwayre is not capable to run the "
-"full GNOME 3 experience"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
 msgstr ""
 "לרוע המזל הפעלת GNOME 3 כראוי נכשלה ובמקום זאת הופעל <b>מצב השחזור</b>.\n"
 "\n"
-"תקלה זו אירעה כפי הנראה עקב חומרת גרפיקה שאינה מסוגלת להפעיל את חווית GNOME "
-"3 במלואה"
+"תקלה זו אירעה כפי הנראה עקב חומרת הגרפיקה שלך שאינה מסוגלת להפעיל את חווית "
+"GNOME 3 במלואה"
 
 #: ../gnome-session/gsm-manager.c:1276
 msgid "Learn more about GNOME 3"
@@ -380,50 +380,47 @@ msgstr "Do not load user-specified applications"
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Log out"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Log out, ignoring any existing inhibitors"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "כיבוי"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Show logout dialog"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "תוך התעלמות ממעקבים קיימים"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Show shutdown dialog"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "אין לבקש אישור מהמשתמש"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Use dialog boxes for errors"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Set the current session name"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAME"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Kill session"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Do not require confirmation"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "לא ניתן להתחבר למנהל ההפעלה"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "התכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Show logout dialog"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Show shutdown dialog"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Use dialog boxes for errors"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Set the current session name"
+
+#~ msgid "NAME"
+#~ msgstr "NAME"
+
+#~ msgid "Kill session"
+#~ msgstr "Kill session"
 
 #~ msgid "Classic GNOME"
 #~ msgstr "GNOME קלסי"
