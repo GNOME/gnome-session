@@ -47,6 +47,10 @@ dnl Dependency Checks
 dnl ====================================================================
 PKG_PROG_PKG_CONFIG()
 
+dnl Standard vertical stacks
+PKG_CHECK_MODULES(GIO, gio-2.0)
+PKG_CHECK_MODULES(GTK3, gtk+-3.0 >= $GTK3_REQUIRED)
+
 PKG_CHECK_MODULES(GNOME_SESSION,
         glib-2.0 >= $GLIB_REQUIRED
         gio-2.0 >= $GLIB_REQUIRED

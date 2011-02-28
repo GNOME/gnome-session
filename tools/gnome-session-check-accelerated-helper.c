@@ -83,7 +83,7 @@ static int max_texture_size = 0;
 static inline void
 _print_error (const char *str)
 {
-        fprintf (stderr, "%s\n", str);
+        fprintf (stderr, "gnome-session-is-accelerated: %s\n", str);
 }
 
 static int
