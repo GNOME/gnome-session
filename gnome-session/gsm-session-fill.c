@@ -34,7 +34,8 @@
 #define GSM_KEYFILE_REQUIRED_KEY "Required"
 #define GSM_KEYFILE_DEFAULT_KEY "DefaultApps"
 
-#define GSM_RUNNABLE_HELPER_TIMEOUT 500 /* ms */
+/* See https://bugzilla.gnome.org/show_bug.cgi?id=641992 for discussion */
+#define GSM_RUNNABLE_HELPER_TIMEOUT 3000 /* ms */
 
 /* This doesn't contain the required components, so we need to always
  * call append_required_apps() after a call to append_default_apps(). */
