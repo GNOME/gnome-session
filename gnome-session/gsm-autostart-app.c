@@ -548,8 +548,6 @@ setup_condition_monitor (GsmAutostartApp *app)
                 g_signal_connect (manager, "notify::session-name",
                                   G_CALLBACK (if_session_condition_cb), app);
                 g_free (session_name);
-
-                g_object_unref (manager);
         } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
                 GsmManager *manager;
                 char *session_name;
@@ -563,8 +561,6 @@ setup_condition_monitor (GsmAutostartApp *app)
                 g_signal_connect (manager, "notify::session-name",
                                   G_CALLBACK (unless_session_condition_cb), app);
                 g_free (session_name);
-
-                g_object_unref (manager);
         } else {
                 disabled = TRUE;
         }
@@ -869,8 +865,6 @@ is_conditionally_disabled (GsmApp *app)
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) != 0;
                 g_free (session_name);
-
-                g_object_unref (manager);
         } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
                 GsmManager *manager;
                 char *session_name;
@@ -881,8 +875,6 @@ is_conditionally_disabled (GsmApp *app)
                 g_object_get (manager, "session-name", &session_name, NULL);
                 disabled = strcmp (session_name, key) == 0;
                 g_free (session_name);
-
-                g_object_unref (manager);
         } else {
                 disabled = TRUE;
         }
