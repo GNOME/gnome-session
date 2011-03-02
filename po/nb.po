@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.92.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-20 12:12+0100\n"
-"PO-Revision-Date: 2011-02-17 14:03+0100\n"
+"POT-Creation-Date: 2011-03-02 20:30+0100\n"
+"PO-Revision-Date: 2011-03-02 20:32+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: no\n"
@@ -327,8 +327,8 @@ msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
 "\n"
-"This most likely means your graphics hardwayre is not capable to run the "
-"full GNOME 3 experience"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
 msgstr ""
 "GNOME 3 klarte dessverre ikke å starte korrekt og startet i "
 "<i>Reserveløsningsmodus</i>.\n"
@@ -385,47 +385,26 @@ msgstr "Ikke last brukerdefinerte programmer"
 msgid " - the GNOME session manager"
 msgstr "- GNOME økthåndterer"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Logg ut"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Logg ut og overse eventuelle hindringer"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Slå av"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Vis logg ut-dialog"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Overser eventuelle hindringer"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Vis slå av-dialog"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Ikke spør etter bekreftelse fra bruker"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Bruk dialoger for feil"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Gi navn til denne økten"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAVN"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Terminer økt"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Ikke krev bekreftelse"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke koble til økthåndterer"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Programmet ble kalt med motstridende alternativer"
