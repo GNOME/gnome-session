@@ -33,7 +33,7 @@ gsettings_SCHEMAS = org.gnome.SessionManager.gschema.xml
 @GSETTINGS_RULES@
 
 migrationdir = $(datadir)/GConf/gsettings
-dist_migration_DATA = org.gnome.SessionManager.gschema.migrate
+dist_migration_DATA = gnome-session.convert
 
 EXTRA_DIST =					\
 	$(xsession_in_files)			\
