@@ -5,41 +5,41 @@
 # P�eris Krij�is <peterisk@apollo.lv>, 2000.
 # Artis Trops <hornet@navigators.lv>, 2000.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2009.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2010-05-26 17:45+0000\n"
-"PO-Revision-Date: 2010-06-13 11:52+0300\n"
+"POT-Creation-Date: 2011-01-20 18:24+0000\n"
+"PO-Revision-Date: 2011-02-08 18:34+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
-"Language-Team: Latviešu <kde-i18n-doc@kde.org>\n"
+"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 "X-Launchpad-Export-Date: 2009-02-19 16:24+0000\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "Izvēlieties komandu"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "Pievienot starta programmu"
 
-#: ../capplet/gsm-app-dialog.c:198
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "Rediģēt starta programmu"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "Starta komanda nevar būt tukša"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "Starta komanda nav derīga"
 
@@ -55,12 +55,11 @@ msgstr "Ikona"
 msgid "Program"
 msgstr "Programma"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:797
 msgid "Startup Applications Preferences"
 msgstr "Starta programmu iestatījumi"
 
 #: ../capplet/gsp-app.c:269
-#| msgid "_Name:"
 msgid "No name"
 msgstr "Nav nosaukuma"
 
@@ -68,7 +67,7 @@ msgstr "Nav nosaukuma"
 msgid "No description"
 msgstr "Nav apraksta"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:441
+#: ../capplet/main.c:37 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Lietotnes versija"
 
@@ -76,11 +75,11 @@ msgstr "Lietotnes versija"
 msgid "Could not display help document"
 msgstr "Nevar parādīt palīdzības dokumentu"
 
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME iestatījumu dēmona palīgs"
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "GNOME atkāpšanās"
 
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -88,134 +87,20 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Šī sesija piesaka jūs GNOME videi"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Noklusētā sesija"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "Failu pārvaldnieks"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Ja aktivizēts, gnome-session pārvaicās lietotājam, pirms sesijas beigšanas."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Ja aktivizēts, gnome-session saglabās sesiju automātiski. Citā gadījumā, "
-"atteikšanās dialogā būs opcija saglabāt sesiju."
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "Noklusētās sesijas programmu saraksts."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Saraksts ar komponentēm, kuras ir šīs sesijas nepieciešama daļā. (Katrs "
-"elements "
-"izveido atslēgu zem \"/desktop/gnome/session/required_components\"). Starta"
-"lietotņu izvēles rīks parasti neļauj lietotājam no sesijas izņemt "
-"nepieciešamu "
-"komponenti, un sesijas pārvaldnieks pieteikšanās laikā automātiski pieliks "
-"nepieciešamo komponenti atpakaļ, ja tā tomēr tiks izņemta."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Atteikšanās uzvedne"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Panelis"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "Vēlamais attēls, ko lietot pieteikšanās ekrānam"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Required session components"
-msgstr "Nepieciešamie sesijas komponenti"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid "Save sessions"
-msgstr "Saglabāt sesijas"
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "Rādīt uzplaiksnījuma ekrānu"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "Rādīt uzplaiksnījuma ekrānu, kad palaižas sesija"
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Failu pārlūks nodrošina darbvirsmas ikonas un ļauj jums mijiedarboties ar "
-"saglabātajiem failiem."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr "Bezdarbības minūšu skaits pirms sesija tiek uzskatīta kā neaktīva."
-
-#: ../data/gnome-session.schemas.in.in.h:16
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Panelis nodrošina joslu ekrāna augšpusē vai apakšpusē uz kuras ir pieejamas "
-"izvēlnes, logu saraksts, statusa ikonas, pulkstenis, u.c."
-
-#: ../data/gnome-session.schemas.in.in.h:17
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Logu pārvaldnieks ir programma, kas zīmē logu virsrakstus un robežas ap "
-"tiem, kā arī ļauj jums pārvietot logus un mainīt to izmērus."
-
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Šī ir relatīva ceļa vērtība, kas balstās uz $datadir/pixmaps/ mapi. "
-"Apakšmapes un attēlu nosaukumi ir korektas vērtības. Šīs vērtības "
-"izmaiņas būs redzamas nākamo reizi piesakoties."
-
-#: ../data/gnome-session.schemas.in.in.h:19
-msgid "Time before session is considered idle"
-msgstr "Laiks pirms sesija tiek uzskatīta par neaktīvu"
-
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Logu pārvaldnieks"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Dažas programmas joprojām darbojas:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:645
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
-"Gaida programmu darbības beigas. Programmu darbības pārtraukšana var novest "
-"pie jūsu datu zaudējuma."
+"Gaida programmu darbības beigas. Programmu pārtraukšana var novest pie jūsu "
+"darba rezultātu zaudēšanas."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -230,7 +115,8 @@ msgid "Additional startup _programs:"
 msgstr "Papildus starta _programmas:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
+#| msgid "Browse..."
+msgid "Browse…"
 msgstr "Pārlūkot..."
 
 #: ../data/session-properties.ui.h:3
@@ -317,12 +203,10 @@ msgid "ID"
 msgstr "ID"
 
 #: ../egg/eggsmclient.c:252
-#| msgid "Session Management Options"
 msgid "Session management options:"
 msgstr "Sesijas vadības opcijas:"
 
 #: ../egg/eggsmclient.c:253
-#| msgid "Show Session Management options"
 msgid "Show session management options"
 msgstr "Rādīt sesijas vadības opcijas"
 
@@ -335,24 +219,24 @@ msgstr ""
 "Ir problēmas ar konfigurācijas serveri.\n"
 "(%s izgāja ar statusu %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:254
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Ikona '%s' netika atrasta"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:593
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "A program is still running:"
 msgstr "Programma joprojām darbojas:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid "Some programs are still running:"
 msgstr "Dažas programmas joprojām darbojas:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:649
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -360,39 +244,41 @@ msgstr ""
 "Gaida programmu darbības beigas. Programmu pārtraukšana var novest pie jūsu "
 "darba rezultātu zaudēšanas."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:879
 msgid "Switch User Anyway"
 msgstr "Tomēr nomainīt lietotāju"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
+#: ../gnome-session/gsm-inhibit-dialog.c:882
+#| msgid "Logout Anyway"
+msgid "Log Out Anyway"
 msgstr "Tomēr atteikties"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:885
 msgid "Suspend Anyway"
 msgstr "Tomēr iesnaudināt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:888
 msgid "Hibernate Anyway"
 msgstr "Tomēr sastindzināt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
+#: ../gnome-session/gsm-inhibit-dialog.c:891
+#| msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
 msgstr "Tomēr izslēgt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:894
 msgid "Reboot Anyway"
 msgstr "Tomēr pārstartēt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:902
 msgid "Lock Screen"
 msgstr "Noslēgt ekrānu"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:905
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -400,7 +286,7 @@ msgstr[0] "Jūsu sesija tiks automātiski atteikta pēc %d sekundes."
 msgstr[1] "Jūsu sesija tiks automātiski atteikta pēc %d sekundēm."
 msgstr[2] "Jūsu sesija tiks automātiski atteikta pēc %d sekundēm."
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -408,49 +294,50 @@ msgstr[0] "Sistēma tiks automātiski izslēgta pēc %d sekundes."
 msgstr[1] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
 msgstr[2] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Šobrīd jūs esat pieteicies kā \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Atteikties no šīs sistēmas tagad?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Nomainīt lietotāju"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Log Out"
 msgstr "_Atteikties"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Izslēgt datoru tagad?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Iesnaudināt"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "S_astindzināt"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:411
 msgid "_Restart"
 msgstr "Pā_rstartēt"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "Iz_slēgt"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-manager.c:1235 ../gnome-session/gsm-manager.c:1955
 msgid "Not responding"
 msgstr "Neatbild"
 
-#: ../gnome-session/gsm-xsmp-client.c:1189
-msgid "This program is blocking log out."
+#: ../gnome-session/gsm-xsmp-client.c:1187
+#| msgid "This program is blocking log out."
+msgid "This program is blocking logout."
 msgstr "Programma bloķē atteikšanos."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
@@ -470,33 +357,25 @@ msgstr "Nevar izveidot ICE saraksta ligzdu: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Nevar pieteikties sesijai (nevar savienoties ar X serveri)"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Aizstāt standarta automātiskā starta mapes"
 
-#: ../gnome-session/main.c:438
-msgid "GConf key used to lookup default session"
-msgstr "Noklusētās sesijas atrašanai izmantotā GConf atslēga"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr "Sesija, ko izmantot"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "Aktivizēt atkļūdošanas kodu"
 
-#: ../gnome-session/main.c:440
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "Neielādēt lietotāja norādītās lietotnes"
 
-#: ../gnome-session/main.c:461
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr " - GNOME sesiju pārvaldnieks"
-
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME uzplaiksnījuma ekrāns"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME uzplaiksnījuma ekrāns"
 
 #: ../tools/gnome-session-save.c:65
 msgid "Log out"
@@ -542,6 +421,123 @@ msgstr "Nevar savienoties ar sesiju pārvaldnieku"
 #: ../tools/gnome-session-save.c:273
 msgid "Program called with conflicting options"
 msgstr "Programma izsaukta ar konfliktējošām opcijām"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "GNOME iestatījumu dēmona palīgs"
+
+#~ msgid "Default session"
+#~ msgstr "Noklusētā sesija"
+
+#~ msgid "File Manager"
+#~ msgstr "Failu pārvaldnieks"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr ""
+#~ "Ja aktivizēts, gnome-session pārvaicās lietotājam, pirms sesijas "
+#~ "beigšanas."
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "Ja aktivizēts, gnome-session saglabās sesiju automātiski. Citā gadījumā, "
+#~ "atteikšanās dialogā būs opcija saglabāt sesiju."
+
+#~ msgid "List of applications that are part of the default session."
+#~ msgstr "Noklusētās sesijas programmu saraksts."
+
+#~ msgid ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+#~ msgstr ""
+#~ "Saraksts ar komponentēm, kuras ir šīs sesijas nepieciešama daļā. (Katrs "
+#~ "elements izveido atslēgu zem \"/desktop/gnome/session/required_components"
+#~ "\"). Startalietotņu izvēles rīks parasti neļauj lietotājam no sesijas "
+#~ "izņemt nepieciešamu komponenti, un sesijas pārvaldnieks pieteikšanās "
+#~ "laikā automātiski pieliks nepieciešamo komponenti atpakaļ, ja tā tomēr "
+#~ "tiks izņemta."
+
+#~ msgid "Logout prompt"
+#~ msgstr "Atteikšanās uzvedne"
+
+#~ msgid "Panel"
+#~ msgstr "Panelis"
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "Vēlamais attēls, ko lietot pieteikšanās ekrānam"
+
+#~ msgid "Required session components"
+#~ msgstr "Nepieciešamie sesijas komponenti"
+
+#~ msgid "Save sessions"
+#~ msgstr "Saglabāt sesijas"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Rādīt uzplaiksnījuma ekrānu"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Rādīt uzplaiksnījuma ekrānu, kad palaižas sesija"
+
+#~ msgid ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+#~ msgstr ""
+#~ "Failu pārlūks nodrošina darbvirsmas ikonas un ļauj jums mijiedarboties ar "
+#~ "saglabātajiem failiem."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "Bezdarbības minūšu skaits pirms sesija tiek uzskatīta kā neaktīva."
+
+#~ msgid ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+#~ msgstr ""
+#~ "Panelis nodrošina joslu ekrāna augšpusē vai apakšpusē uz kuras ir "
+#~ "pieejamas izvēlnes, logu saraksts, statusa ikonas, pulkstenis, u.c."
+
+#~ msgid ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+#~ msgstr ""
+#~ "Logu pārvaldnieks ir programma, kas zīmē logu virsrakstus un robežas ap "
+#~ "tiem, kā arī ļauj jums pārvietot logus un mainīt to izmērus."
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "Šī ir relatīva ceļa vērtība, kas balstās uz $datadir/pixmaps/ mapi. "
+#~ "Apakšmapes un attēlu nosaukumi ir korektas vērtības. Šīs vērtības "
+#~ "izmaiņas būs redzamas nākamo reizi piesakoties."
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Laiks pirms sesija tiek uzskatīta par neaktīvu"
+
+#~ msgid "Window Manager"
+#~ msgstr "Logu pārvaldnieks"
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "Gaida programmu darbības beigas. Programmu darbības pārtraukšana var "
+#~ "novest pie jūsu datu zaudējuma."
+
+#~ msgid "GConf key used to lookup default session"
+#~ msgstr "Noklusētās sesijas atrašanai izmantotā GConf atslēga"
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- GNOME uzplaiksnījuma ekrāns"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME uzplaiksnījuma ekrāns"
 
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "Starta programmas nosaukums nedrīkst būt tukšs"
