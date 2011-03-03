@@ -31,20 +31,12 @@
 typedef struct {
         const char *command_line;
         GPid        pid;
-        gboolean    proper_exit;
+        gboolean    timed_out;
         int         status;
         GMainLoop  *loop;
         guint       child_id;
         guint       timeout_id;
 } GsmProcessHelper;
-
-static void
-on_child_exited_simple (GPid     pid,
-                        gint     status,
-                        gpointer data)
-{
-        g_spawn_close_pid (pid);
-}
 
 static void
 on_child_exited (GPid     pid,
@@ -53,7 +45,7 @@ on_child_exited (GPid     pid,
 {
         GsmProcessHelper *helper = data;
 
-        helper->proper_exit = TRUE;
+        helper->timed_out = FALSE;
         helper->status = status;
 
         g_spawn_close_pid (pid);
@@ -66,26 +58,24 @@ on_child_timeout (gpointer data)
         GsmProcessHelper *helper = data;
 
         kill (helper->pid, SIGTERM);
-        g_warning ("Had to kill '%s' helper", helper->command_line);
-
-        helper->proper_exit = FALSE;
+        helper->timed_out = TRUE;
         g_main_loop_quit (helper->loop);
 
         return FALSE;
 }
 
-int
+gboolean
 gsm_process_helper (const char   *command_line,
-                    unsigned int  timeout)
+                    unsigned int  timeout,
+                    GError      **error)
 {
         GsmProcessHelper *helper;
         gchar **argv = NULL;
         GPid pid;
         gboolean ret;
-        int exit_status = -1;
 
-        if (!g_shell_parse_argv (command_line, NULL, &argv, NULL))
-                return -1;
+        if (!g_shell_parse_argv (command_line, NULL, &argv, error))
+                return FALSE;
 
         ret = g_spawn_async (NULL,
                              argv,
@@ -94,18 +84,20 @@ gsm_process_helper (const char   *command_line,
                              NULL,
                              NULL,
                              &pid,
-                             NULL);
+                             error);
 
         g_strfreev (argv);
 
         if (!ret)
-                return -1;
+                return FALSE;
+
+        ret = FALSE;
 
         helper = g_slice_new0 (GsmProcessHelper);
 
         helper->command_line = command_line;
         helper->pid = pid;
-        helper->proper_exit = FALSE;
+        helper->timed_out = FALSE;
         helper->status = -1;
 
         helper->loop = g_main_loop_new (NULL, FALSE);
@@ -114,11 +106,31 @@ gsm_process_helper (const char   *command_line,
 
         g_main_loop_run (helper->loop);
 
-        if (helper->proper_exit && WIFEXITED (helper->status))
-                exit_status = WEXITSTATUS (helper->status);
-        else if (!helper->proper_exit) {
-                /* we'll need to call g_spawn_close_pid when the helper exits */
-                g_child_watch_add (pid, on_child_exited_simple, NULL);
+        if (helper->timed_out) {
+                g_set_error_literal (error,
+                                     G_IO_CHANNEL_ERROR,
+                                     G_IO_CHANNEL_ERROR_FAILED,
+                                     "Timed out");
+        } else {
+                if (WIFEXITED (helper->status)) {
+                        if (WEXITSTATUS (helper->status) == 0)
+                                ret = TRUE;
+                        else
+                                g_set_error (error,
+                                             G_IO_CHANNEL_ERROR,
+                                             G_IO_CHANNEL_ERROR_FAILED,
+                                             "Exited with code %d", WEXITSTATUS (helper->status));
+                } else if (WIFSIGNALED (helper->status)) {
+                        g_set_error (error,
+                                     G_IO_CHANNEL_ERROR,
+                                     G_IO_CHANNEL_ERROR_FAILED,
+                                     "Killed by signal %d", WTERMSIG (helper->status));
+                } else if (WIFSTOPPED (helper->status)) {
+                        g_set_error (error,
+                                     G_IO_CHANNEL_ERROR,
+                                     G_IO_CHANNEL_ERROR_FAILED,
+                                     "Stopped by signal %d", WSTOPSIG (helper->status));
+                }
         }
 
         if (helper->loop) {
@@ -138,5 +150,5 @@ gsm_process_helper (const char   *command_line,
 
         g_slice_free (GsmProcessHelper, helper);
 
-        return exit_status;
+        return ret;
 }

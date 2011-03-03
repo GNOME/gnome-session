@@ -367,6 +367,7 @@ get_session_keyfile (const char *session,
         GKeyFile *keyfile;
         gboolean  session_runnable;
         char     *value;
+        GError *error = NULL;
 
         *actual_session = NULL;
 
@@ -384,7 +385,11 @@ get_session_keyfile (const char *session,
                                        NULL);
         if (!IS_STRING_EMPTY (value)) {
                 g_debug ("fill: *** Launching helper '%s' to know if session is runnable", value);
-                session_runnable = (gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT) == 0);
+                session_runnable = gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT, &error);
+                if (!session_runnable) {
+                        g_warning ("Session '%s' runnable check failed:", error->message);
+                        g_clear_error (&error);
+                }
         }
         g_free (value);
 

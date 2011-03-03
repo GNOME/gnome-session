@@ -29,9 +29,9 @@ int
 main (int   argc,
       char *argv[])
 {
-        int   ret;
         char *command_line = "xeyes";
         int   timeout = 500;
+        GError *error = NULL;
 
         if (argc > 3) {
                 g_printerr ("Too many arguments.\n");
@@ -47,12 +47,12 @@ main (int   argc,
                         timeout = i;
         }
 
-        ret = gsm_process_helper (command_line, timeout);
-
-        if (ret < 0)
-                g_print ("Command did not succeed (or takes too much time).\n");
-        else
-                g_print ("Command returned %d.\n", ret);
+        if (!gsm_process_helper (command_line, timeout, &error)) {
+                g_warning ("%s", error->message);
+                g_clear_error (&error);
+        } else {
+                g_print ("Command exited successfully.\n");
+        }
 
         return 0;
 }
