@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-12 00:24+0100\n"
-"PO-Revision-Date: 2011-02-12 00:24+0100\n"
+"POT-Creation-Date: 2011-03-06 22:21+0100\n"
+"PO-Revision-Date: 2011-03-05 09:22+0100\n"
 "Last-Translator: David Planella <david.planella@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -325,7 +325,29 @@ msgstr "_Reinicia"
 msgid "_Shut Down"
 msgstr "_Atura l'ordinador"
 
-#: ../gnome-session/gsm-manager.c:1282 ../gnome-session/gsm-manager.c:1985
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr "Ha fallat la càrrega del GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
+msgstr ""
+"El GNOME 3 no s'ha pogut iniciar correctament i ha arrencat en <i>mode "
+"clàssic</i>.\n"
+"\n"
+"Això vol dir que segurament el vostre maquinari gràfic no podrà executar el "
+"GNOME 3 a la seva màxima capacitat"
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr "Descobriu més coses sobre el GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "No està responent"
 
@@ -373,51 +395,48 @@ msgstr "No carreguis les aplicacions especificades per l'usuari"
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Surt"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Surt, ignorant qualsevol inhibidor existent"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Atura"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Mostra el diàleg de sortida"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorant qualsevol inhibidor existent"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Mostra el diàleg d'aturada"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "No demanis la confirmació de l'usuari"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Empra quadres de diàleg per als errors"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Estableix el nom de la sessió actual"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NOM"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Mata la sessió"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "No requereixis confirmació"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "No s'ha pogut connectar al gestor de sessions"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Mostra el diàleg de sortida"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Mostra el diàleg d'aturada"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Empra quadres de diàleg per als errors"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Estableix el nom de la sessió actual"
+
+#~ msgid "NAME"
+#~ msgstr "NOM"
+
+#~ msgid "Kill session"
+#~ msgstr "Mata la sessió"
 
 #~ msgid "Classic GNOME"
 #~ msgstr "GNOME clàssic"
