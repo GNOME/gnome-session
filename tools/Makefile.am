@@ -42,6 +42,7 @@ gnome_session_check_accelerated_CPPFLAGS =      \
 	$(GTK3_CFLAGS)
 
 gnome_session_check_accelerated_LDADD =         \
-	$(GTK3_LIBS)
+	$(GTK3_LIBS)				\
+	$(X_LIBS)
 
 -include $(top_srcdir)/git.mk
