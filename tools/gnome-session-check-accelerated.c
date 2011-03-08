@@ -99,5 +99,5 @@ main (int argc, char **argv)
 
         gdk_display_sync (display);
 
-        return is_accelerated;
+        return is_accelerated ? 0 : 1;
 }
