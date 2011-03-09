@@ -45,7 +45,7 @@ main (int argc, char **argv)
         GdkDisplay *display = NULL;
         int estatus;
         Atom is_accelerated_atom;
-        char *child_argv[] = {LIBEXECDIR "/gnome-session-check-accelerated-helper"};
+        char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-helper", NULL };
         Window rootwin;
         glong is_accelerated;
         GError *error = NULL;
