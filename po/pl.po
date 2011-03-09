@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-04 19:41+0200\n"
-"PO-Revision-Date: 2010-09-04 19:40+0100\n"
-"Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 20:24+0100\n"
+"PO-Revision-Date: 2011-03-09 20:25+0100\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Poedit-Language: Polish\n"
@@ -25,35 +25,35 @@ msgstr ""
 msgid "Select Command"
 msgstr "Wybór polecenia"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "Nowy program startowy"
 
-#: ../capplet/gsm-app-dialog.c:198
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "Modyfikacja programu startowego"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "Polecenie startowe nie może być puste"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "Polecenie startowe jest nieprawidłowe"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Włączone"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Preferencje programów startowych"
 
@@ -65,15 +65,19 @@ msgstr "Bez nazwy"
 msgid "No description"
 msgstr "Brak opisu"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:441
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Wersja tego programu"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Nie można wyświetlić dokumentu pomocy"
 
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "Tryb zastępczy GNOME"
+
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -81,103 +85,11 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Ta sesja loguje użytkownika do środowiska GNOME"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Domyślna sesja"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "Menedżer plików"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Określa, czy przed zakończeniem sesji należy poprosić użytkownika o "
-"potwierdzenie."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Określa, czy przed zakończeniem sesji automatycznie ją zapisać."
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "Lista programów będących częścią domyślnej sesji."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Lista składników wymaganych jako części sesji (każdy element występuje pod "
-"własnym kluczem w \"/desktop/gnome/session/required-components\"). Narzędzie "
-"preferencji programów startowych nie pozwala użytkownikom na usuwanie "
-"wymaganych składników z sesji, a menedżer sesji automatycznie doda z "
-"powrotem wymagane składniki do sesji podczas logowania, jeśli zostaną "
-"usunięte."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Potwierdzanie wylogowania"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Panel"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Required session components"
-msgstr "Lista wymaganych składników"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Save sessions"
-msgstr "Zapis sesji"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Menedżer plików wyświetla ikony na pulpicie i pozwala na interakcje z "
-"zapisanymi plikami."
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Liczba minut nieaktywności, po których sesja jest uznawana za bezczynną."
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Panel wyświetla paski na górze i na dole ekranu, które zawierają menu, listę "
-"okien, ikony stanu, zegar, itp."
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Menedżer okien jest programem wyświetlającym paski tytułowe i krawędzie "
-"wokół okien oraz pozwala na przenoszenie i zmianę rozmiaru okien."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid "Time before session is considered idle"
-msgstr "Czas, po którym sesja jest uznawana za bezczynną"
-
-#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Menedżer okien"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Niektóre programy są nadal uruchomione:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -303,24 +215,24 @@ msgstr ""
 "Wystąpił problem z serwerem konfiguracji.\n"
 "(%s zakończył działanie ze stanem %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Nie odnaleziono ikony \"%s\""
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "Nieznany"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "Program jest nadal uruchomiony:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "Niektóre programy są nadal uruchomione:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -328,35 +240,35 @@ msgstr ""
 "Oczekiwanie na zakończenie działania programów. Przerwanie działania "
 "programów może spowodować utratę niezapisanych wyników pracy."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "Przełącz użytkownika mimo to"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "Wyloguj mimo to"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "Uśpij mimo to"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "Zahibernuj mimo to"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "Shut Down Anyway"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "Uruchom ponownie mimo to"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "Zablokuj ekran"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -413,11 +325,33 @@ msgstr "_Uruchom ponownie"
 msgid "_Shut Down"
 msgstr "_Wyłącz komputer"
 
-#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr "Wczytanie środowiska GNOME 3 się nie powiodło"
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
+msgstr ""
+"Uruchomienie środowiska GNOME 3 się nie powiodło, więc uruchomiono <i>tryb "
+"zastępczy</i>.\n"
+"\n"
+"Prawdopodobnie oznacza to, że sprzęt graficzny nie obsługuje środowiska "
+"GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr "Dowiedz się więcej o środowisku GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
-#: ../gnome-session/gsm-xsmp-client.c:1189
+#: ../gnome-session/gsm-xsmp-client.c:1187
 msgid "This program is blocking logout."
 msgstr "Ten program uniemożliwia wylogowanie."
 
@@ -440,67 +374,46 @@ msgstr ""
 "Nie można uruchomić sesji logowania (oraz nie można się połączyć z serwerem "
 "X)"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Obejście standardowych katalogów automatycznego uruchamiania"
 
-#: ../gnome-session/main.c:438
-msgid "GConf key used to look up default session"
-msgstr "Klucz GConf używany do sprawdzenia domyślnej sesji"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr "Sesja do użycia"
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "Uruchomienie kodu do debugowania"
 
-#: ../gnome-session/main.c:440
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "Bez wczytywania programów określonych przez użytkownika"
 
-#: ../gnome-session/main.c:461
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr " - menedżer sesji środowiska GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Wylogowanie"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Wylogowanie, ignorując istniejące mechanizmy wstrzymujące"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Wyłączenie"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Wyświetlenie okna wylogowania"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorowanie istniejących mechanizmów wstrzymujących"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Wyświetlenie okna wyłączenia komputera"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Bez pytania o potwierdzenie użytkownika"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Wykorzystanie okien dialogowych dla błędów"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Ustawia nazwę bieżącej sesji"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAZWA"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Usunięcie sesji"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Nie wymaga potwierdzenia"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Nie można połączyć się z menedżerem sesji"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Wywołano program ze sprzecznymi opcjami"
