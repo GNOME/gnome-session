@@ -22,6 +22,8 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-client.c			\
 	gsm-dbus-client.h			\
 	gsm-dbus-client.c			\
+	gsm-fail-whale-dialog.h			\
+	gsm-fail-whale-dialog.c			\
 	gsm-marshal.h				\
 	gsm-marshal.c				\
 	gsm-consolekit.c			\

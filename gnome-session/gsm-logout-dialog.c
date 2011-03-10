@@ -36,6 +36,7 @@
 #define GSM_LOGOUT_DIALOG_GET_PRIVATE(o)                                \
         (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_LOGOUT_DIALOG, GsmLogoutDialogPrivate))
 
+/* Shared with gsm-fail-whale-dialog.c */
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
 #define GSM_ICON_LOGOUT   "system-log-out"
@@ -263,6 +264,7 @@ gsm_logout_dialog_timeout (gpointer data)
 
         switch (logout_dialog->priv->type) {
         case GSM_DIALOG_LOGOUT_TYPE_LOGOUT:
+                /* This string is shared with gsm-fail-whale-dialog.c */
                 seconds_warning = ngettext ("You will be automatically logged "
                                             "out in %d second.",
                                             "You will be automatically logged "
