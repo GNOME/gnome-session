@@ -387,7 +387,8 @@ get_session_keyfile (const char *session,
                 g_debug ("fill: *** Launching helper '%s' to know if session is runnable", value);
                 session_runnable = gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT, &error);
                 if (!session_runnable) {
-                        g_warning ("Session '%s' runnable check failed:", error->message);
+                        g_warning ("Session '%s' runnable check failed: %s", session,
+                                   error->message);
                         g_clear_error (&error);
                 }
         }
