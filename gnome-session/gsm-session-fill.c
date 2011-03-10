@@ -112,7 +112,7 @@ append_required_apps (GsmManager *manager,
                 g_debug ("fill: %s looking for component: '%s'", required_components[i], value);
                 app_path = gsm_util_find_desktop_file_for_app_name (value, NULL);
                 if (app_path != NULL) {
-                        gsm_manager_add_autostart_app (manager, app_path, required_components[i]);
+                        gsm_manager_add_required_app (manager, app_path, required_components[i]);
                 } else {
                         g_warning ("Unable to find provider '%s' of required component '%s'",
                                    value, required_components[i]);

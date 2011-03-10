@@ -59,6 +59,7 @@
 #include "gsm-util.h"
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
+#include "gsm-fail-whale-dialog.h"
 #include "gsm-inhibit-dialog.h"
 #include "gsm-consolekit.h"
 #include "gsm-session-save.h"
@@ -84,6 +85,8 @@
 
 #define SCREENSAVER_SCHEMA        "org.gnome.desktop.screensaver"
 #define KEY_SLEEP_LOCK            "lock-enabled"
+
+static void app_registered (GsmApp     *app, GsmManager *manager);
 
 typedef enum
 {
@@ -111,6 +114,7 @@ struct GsmManagerPrivate
         /* Current status */
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
+        GSList                 *required_apps;
         GSList                 *pending_apps;
         GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
@@ -220,6 +224,28 @@ gsm_manager_error_get_type (void)
 
         return etype;
 }
+
+static gboolean
+is_app_required (GsmManager *manager,
+                 GsmApp     *app)
+{
+        return g_slist_find (manager->priv->required_apps, app) != NULL;
+}
+
+static void
+on_required_app_failure (GsmManager  *manager,
+                         GsmApp      *app,
+                         const char  *msg)
+{
+        char *full_msg;
+        full_msg = g_strdup_printf ("Component '%s': %s",
+                                    gsm_app_peek_app_id (app),
+                                    msg);
+        gsm_fail_whale_dialog_we_failed (GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_FATAL,
+                                         full_msg);
+        g_free (full_msg);
+}
+
 
 static gboolean
 _debug_client (const char *id,
@@ -516,9 +542,28 @@ end_phase (GsmManager *manager)
 }
 
 static void
+app_died (GsmApp     *app,
+          GsmManager *manager)
+{
+        manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
+        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
+
+        g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
+        if (is_app_required (manager, app))
+                on_required_app_failure (manager, app, "Killed by signal");                
+        /* For now, we don't do anything with crashes from non-required apps;
+         * practically speaking they will be caught by ABRT/apport type
+         * infrastructure, and it'd be better to pick up the crash from
+         * there and do something un-intrusive about it generically.
+         */
+}
+
+static void
 app_registered (GsmApp     *app,
                 GsmManager *manager)
 {
+        g_debug ("App %s registered", gsm_app_peek_app_id (app));
+
         manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
 
@@ -556,10 +601,12 @@ on_phase_timeout (GsmManager *manager)
         case GSM_MANAGER_PHASE_DESKTOP:
         case GSM_MANAGER_PHASE_APPLICATION:
                 for (a = manager->priv->pending_apps; a; a = a->next) {
+                        GsmApp *app = a->data;
                         g_warning ("Application '%s' failed to register before timeout",
-                                   gsm_app_peek_app_id (a->data));
-                        g_signal_handlers_disconnect_by_func (a->data, app_registered, manager);
-                        /* FIXME: what if the app was filling in a required slot? */
+                                   gsm_app_peek_app_id (app));
+                        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
+                        if (is_app_required (manager, app))
+                                on_required_app_failure (manager, app, _("Timed out"));
                 }
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -637,6 +684,10 @@ _start_app (const char *id,
                 g_signal_connect (app,
                                   "registered",
                                   G_CALLBACK (app_registered),
+                                  manager);
+                g_signal_connect (app,
+                                  "died",
+                                  G_CALLBACK (app_died),
                                   manager);
                 manager->priv->pending_apps = g_slist_prepend (manager->priv->pending_apps, app);
         }
@@ -2382,6 +2433,9 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->apps = NULL;
         }
 
+        g_slist_free (manager->priv->required_apps);
+        manager->priv->required_apps = NULL;
+
         if (manager->priv->inhibitors != NULL) {
                 g_signal_handlers_disconnect_by_func (manager->priv->inhibitors,
                                                       on_store_inhibitor_added,
@@ -3684,7 +3738,8 @@ gsm_manager_is_autostart_condition_handled (GsmManager *manager,
 
 static void
 append_app (GsmManager *manager,
-            GsmApp     *app)
+            GsmApp     *app,
+            gboolean    is_required)
 {
         const char *id;
         const char *app_id;
@@ -3715,12 +3770,17 @@ append_app (GsmManager *manager,
         }
 
         gsm_store_add (manager->priv->apps, id, G_OBJECT (app));
+        if (is_required) {
+                g_debug ("GsmManager: adding required app %s", gsm_app_peek_app_id (app));
+                manager->priv->required_apps = g_slist_prepend (manager->priv->required_apps, app);
+        }
 }
 
-gboolean
-gsm_manager_add_autostart_app (GsmManager *manager,
-                               const char *path,
-                               const char *provides)
+static gboolean
+add_autostart_app_internal (GsmManager *manager,
+                            const char *path,
+                            const char *provides,
+                            gboolean    is_required)
 {
         GsmApp *app;
 
@@ -3747,11 +3807,45 @@ gsm_manager_add_autostart_app (GsmManager *manager,
         }
 
         g_debug ("GsmManager: read %s", path);
-        append_app (manager, app);
+        append_app (manager, app, is_required);
         g_object_unref (app);
 
         return TRUE;
 }
+
+gboolean
+gsm_manager_add_autostart_app (GsmManager *manager,
+                               const char *path,
+                               const char *provides)
+{
+        return add_autostart_app_internal (manager,
+                                           path,
+                                           provides,
+                                           FALSE);
+}
+
+/**
+ * gsm_manager_add_required_app:
+ * @manager: a #GsmManager
+ * @path: Path to desktop file
+ * @provides: What the component provides, as a space separated list
+ *
+ * Similar to gsm_manager_add_autostart_app(), except marks the
+ * component as being required; we then try harder to ensure
+ * it's running and inform the user if we can't.
+ *
+ */
+gboolean
+gsm_manager_add_required_app (GsmManager *manager,
+                              const char *path,
+                              const char *provides)
+{
+        return add_autostart_app_internal (manager,
+                                           path,
+                                           provides,
+                                           TRUE);
+}
+
 
 gboolean
 gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
