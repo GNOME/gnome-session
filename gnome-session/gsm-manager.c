@@ -621,6 +621,15 @@ _start_app (const char *id,
         }
 
         if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
+                /* Historical note - apparently,
+                 * e.g. gnome-settings-daemon used to "daemonize", and
+                 * so gnome-session assumes process exit means "ok
+                 * we're done".  Of course this is broken, we don't
+                 * even distinguish between exit code 0 versus not-0,
+                 * nor do we have any metadata which tells us a
+                 * process is going to "daemonize" or not (and
+                 * basically nothing should be anyways).
+                 */
                 g_signal_connect (app,
                                   "exited",
                                   G_CALLBACK (app_registered),
