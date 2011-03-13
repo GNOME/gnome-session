@@ -226,6 +226,23 @@ gsm_manager_error_get_type (void)
 }
 
 static gboolean
+start_app_or_warn (GsmManager *manager,
+                   GsmApp     *app)
+{
+        gboolean res;
+        GError *error = NULL;
+
+        g_debug ("GsmManager: starting app '%s'", gsm_app_peek_id (app));
+
+        res = gsm_app_start (app, &error);
+        if (error != NULL) {
+                g_warning ("Failed start app: %s", error->message);
+                g_clear_error (&error);
+        }
+        return res;
+}
+
+static gboolean
 is_app_required (GsmManager *manager,
                  GsmApp     *app)
 {
@@ -241,7 +258,7 @@ on_required_app_failure (GsmManager  *manager,
         full_msg = g_strdup_printf ("Component '%s': %s",
                                     gsm_app_peek_app_id (app),
                                     msg);
-        gsm_fail_whale_dialog_we_failed (GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_FATAL,
+        gsm_fail_whale_dialog_we_failed (GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_RECOVERABLE,
                                          full_msg);
         g_free (full_msg);
 }
@@ -329,18 +346,7 @@ app_condition_changed (GsmApp     *app,
 
         if (condition) {
                 if (!gsm_app_is_running (app) && client == NULL) {
-                        GError  *error;
-                        gboolean res;
-
-                        g_debug ("GsmManager: starting app '%s'", gsm_app_peek_id (app));
-
-                        error = NULL;
-                        res = gsm_app_start (app, &error);
-                        if (error != NULL) {
-                                g_warning ("Not able to start app from its condition: %s",
-                                           error->message);
-                                g_error_free (error);
-                        }
+                        start_app_or_warn (manager, app);
                 } else {
                         g_debug ("GsmManager: not starting - app still running '%s'", gsm_app_peek_id (app));
                 }
@@ -634,7 +640,6 @@ _start_app (const char *id,
             GsmApp     *app,
             GsmManager *manager)
 {
-        GError  *error;
         gboolean res;
 
         if (gsm_app_peek_phase (app) != manager->priv->phase) {
@@ -654,18 +659,8 @@ _start_app (const char *id,
                 goto out;
         }
 
-        error = NULL;
-        res = gsm_app_start (app, &error);
-        if (!res) {
-                if (error != NULL) {
-                        g_warning ("Could not launch application '%s': %s",
-                                   gsm_app_peek_app_id (app),
-                                   error->message);
-                        g_error_free (error);
-                        error = NULL;
-                }
+        if (!start_app_or_warn (manager, app))
                 goto out;
-        }
 
         if (manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
                 /* Historical note - apparently,
@@ -3362,6 +3357,28 @@ gsm_manager_logout (GsmManager *manager,
         }
 
         return TRUE;
+}
+
+/**
+ * gsm_manager_try_recovery:
+ * @manager: a #GsmManager
+ *
+ * Attempt to restart any required components which aren't running.
+ */
+void
+gsm_manager_try_recovery (GsmManager     *manager)
+{
+        GSList *iter;
+        
+        g_debug ("trying recovery");
+
+        for (iter = manager->priv->required_apps; iter; iter = iter->next) {
+                GsmApp *app = iter->data;
+
+                if (gsm_app_is_running (app))
+                        continue;
+                start_app_or_warn (manager, app);
+        }
 }
 
 gboolean

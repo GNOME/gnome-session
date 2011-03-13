@@ -52,6 +52,12 @@ struct _GsmFailWhaleDialogPrivate
 
 static GsmFailWhaleDialog *current_dialog = NULL;
 
+static void gsm_fail_whale_dialog_get_preferred_width (GtkWidget *widget,
+                                                       gint      *minimum_size,
+                                                       gint      *natural_size);
+static void gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
+                                                        gint      *minimum_size,
+                                                        gint      *natural_size);
 static void gsm_fail_whale_dialog_destroy  (GsmFailWhaleDialog *fail_dialog,
                                             gpointer         data);
 
@@ -104,10 +110,14 @@ static void
 gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
 {
         GObjectClass *gobject_class;
-
+        GtkWidgetClass *widget_class;
+        
         gobject_class = G_OBJECT_CLASS (klass);
+        widget_class = GTK_WIDGET_CLASS (klass);
         gobject_class->set_property = gsm_fail_whale_dialog_set_property;
         gobject_class->get_property = gsm_fail_whale_dialog_get_property;
+        widget_class->get_preferred_width = gsm_fail_whale_dialog_get_preferred_width;
+        widget_class->get_preferred_height = gsm_fail_whale_dialog_get_preferred_height;
 
         g_type_class_add_private (klass, sizeof (GsmFailWhaleDialogPrivate));
 }
@@ -129,6 +139,34 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
                           "destroy",
                           G_CALLBACK (gsm_fail_whale_dialog_destroy),
                           NULL);
+}
+
+static void 
+gsm_fail_whale_dialog_get_preferred_width (GtkWidget *widget,
+                                           gint      *minimum_size,
+                                           gint      *natural_size)
+{
+        GTK_WIDGET_CLASS (gsm_fail_whale_dialog_parent_class)->get_preferred_width (widget,
+                                                              minimum_size,
+                                                              natural_size);
+        if (minimum_size && *minimum_size < 640)
+                *minimum_size = 640;
+        if (natural_size && *natural_size < 640)
+                *natural_size = 640;
+}
+
+static void 
+gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
+                                            gint      *minimum_size,
+                                            gint      *natural_size)
+{
+        GTK_WIDGET_CLASS (gsm_fail_whale_dialog_parent_class)->get_preferred_height (widget,
+                                                                                     minimum_size,
+                                                                                     natural_size);
+        if (minimum_size && *minimum_size < 640)
+                *minimum_size = 480;
+        if (natural_size && *natural_size < 640)
+                *natural_size = 480;
 }
 
 static void
@@ -193,7 +231,14 @@ gsm_fail_whale_dialog_on_response (GsmFailWhaleDialog *fail_dialog,
                                     GSM_MANAGER_LOGOUT_MODE_FORCE,
                                     NULL);
                 break;
+        case GSM_FAIL_WHALE_DIALOG_RESPONSE_TRY_RECOVERY:
+                gsm_manager_try_recovery (gsm_manager_get ());
+                break;
+        default:
+                g_warning ("gsm-fail-whale-dialog: invalid response");
+                break;
         }
+        gtk_widget_destroy (GTK_WIDGET (fail_dialog));
 }
 
 void
@@ -223,10 +268,6 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
 
-        gtk_dialog_add_button (GTK_DIALOG (fail_dialog),
-                               _("_Log Out"),
-                               GSM_FAIL_WHALE_DIALOG_RESPONSE_LOG_OUT);
-
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), "gtk-error");
         gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
         
@@ -235,7 +276,7 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
                 gtk_dialog_add_button (GTK_DIALOG (fail_dialog),
                                        _("Try _Recovery"),
                                        GSM_FAIL_WHALE_DIALOG_RESPONSE_TRY_RECOVERY);
-                primary_text = g_strdup_printf (_("A non-fatal system error has occurred: %s"), additional_text);
+                primary_text = g_strdup_printf (_("A system error has occurred: %s"), additional_text);
                 break;
         case GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_FATAL:
                 primary_text = g_strdup_printf (_("A fatal system error has occurred: %s"), additional_text);
@@ -244,6 +285,11 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
                 g_assert_not_reached ();
                 return;
         }
+
+        gtk_dialog_add_button (GTK_DIALOG (fail_dialog),
+                               _("_Log Out"),
+                               GSM_FAIL_WHALE_DIALOG_RESPONSE_LOG_OUT);
+
         gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (fail_dialog),
                                        primary_text);
         gtk_dialog_set_default_response (GTK_DIALOG (fail_dialog),
@@ -262,6 +308,8 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
         g_signal_connect (fail_dialog, "response",
                           G_CALLBACK (gsm_fail_whale_dialog_on_response),
                           fail_dialog);
+        /* A minimum size to ensure we're seen */
+        gtk_window_set_default_size (GTK_WINDOW (fail_dialog), 640, 480);
         gtk_widget_show (GTK_WIDGET (fail_dialog));
 }
 
