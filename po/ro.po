@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&component=general\n"
-"POT-Creation-Date: 2010-11-09 13:35+0000\n"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-14 10:45+0000\n"
 "PO-Revision-Date: 2010-11-10 16:57+0300\n"
 "Last-Translator: Daniel Șerbănescu <cyber19rider@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -24,36 +24,36 @@ msgstr ""
 msgid "Select Command"
 msgstr "Alegere comandă"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "Adaugă un program de pornit"
 
-#LG: aici e vorba de titlul unei ferestre.
-#: ../capplet/gsm-app-dialog.c:198
+# LG: aici e vorba de titlul unei ferestre.
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "Editare program de pornit"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "Comanda de pornire nu poate fi nulă"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "Comanda de start nu este validă"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Activat"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Iconiță"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Preferințe aplicații pornire"
 
@@ -65,15 +65,19 @@ msgstr "Fără nume"
 msgid "No description"
 msgstr "Fără descriere"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:441
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Versiunea acestei aplicații"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Nu se poate afișa documentul de ajutor"
 
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr ""
+
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -81,105 +85,11 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Această sesiune vă va autentifica în GNOME"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "Sesiune implicită"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "Administrator de fișiere"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Dacă este activat, gnome-session va anunța utilizatorul înainte de "
-"terminarea sesiunii."
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Dacă este activat, gnome-session va salva sesiunea automat."
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "Lista aplicațiilor care fac parte din sesiunea implicită."
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"Lista componentelor care sunt necesare ca parte a sesiunii. (Fiecare element "
-"numește o cheie din „/desktop/gnome/session/required_components\".) "
-"Preferințele aplicațiilor de la pornire nu vor permite în mod normal ca "
-"utilizatorii să șteargă o componentă necesară din sesiune, iar "
-"administratorul sesiunii va adăuga automat componentele necesare în cazul în "
-"care vor fi șterse."
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "Anunță ieșirea din sesiune"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "Panou"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Required session components"
-msgstr "Componentele necesare sesiunii"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Save sessions"
-msgstr "Salvează sesiunile"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"Administratorul de fișiere furnizează iconițele de pe desktop și permite "
-"interacțiunea cu fișierele salvate."
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr ""
-"Numărul de minute de inactivitate înainte ca sesiunea să fie considerată "
-"inactivă."
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"Panoul furnizează bara de deasupra ori dedesubtul ecranului ce conține "
-"meniuri, lista cu ferestre, iconițele de stare, ceasul etc."
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"Administratorul de ferestre este programul care afișează bara de titlu și "
-"marginile de jur împrejurul ferestrelor și permite mutarea sau "
-"redimensionarea acestora."
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid "Time before session is considered idle"
-msgstr "Durata până ce sesiunea este considerată inactivă"
-
-#: ../data/gnome-session.schemas.in.in.h:16 ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Administrator de ferestre"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>O parte din programe sunt încă în funcțiune:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -304,24 +214,24 @@ msgstr ""
 "Există o problemă cu serverul de configurare.\n"
 "(%s a ieșit cu starea %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Iconița „%s” nu a fost găsită"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "Un program este încă în funcțiune:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "Unele programe sunt încă în funcțiune:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -329,35 +239,35 @@ msgstr ""
 "Se așteaptă ca programele să termine. Întreruperea acestora poate duce la "
 "pierderea modificărilor efectuate."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "Schimbă oricum utilizatorul"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "Închide sesiunea oricum"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "Suspendă oricum"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "Hibernează oricum"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "Oprește oricum"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "Repornește oricum"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "Blochează ecranul"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "Renunță"
 
@@ -414,11 +324,28 @@ msgstr "_Repornește"
 msgid "_Shut Down"
 msgstr "_Oprește"
 
-#: ../gnome-session/gsm-manager.c:1214 ../gnome-session/gsm-manager.c:1906
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr ""
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your system (graphics hardware or driver) is not "
+"capable of delivering the full GNOME 3 experience."
+msgstr ""
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr ""
+
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "Nu răspunde"
 
-#: ../gnome-session/gsm-xsmp-client.c:1189
+#: ../gnome-session/gsm-xsmp-client.c:1187
 msgid "This program is blocking logout."
 msgstr "Acest program blochează ieșirea din sesiune."
 
@@ -442,70 +369,153 @@ msgstr ""
 "Nu s-a putut porni sesiunea de start (iar conexiunea la serverul X nu a "
 "putut fi realizată)"
 
-#: ../gnome-session/main.c:437
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Rescrie dosarele standard de pornire automată"
 
-#: ../gnome-session/main.c:438
-msgid "GConf key used to look up default session"
-msgstr "Cheia GConf folosită la căutarea sesiunii implicite"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr ""
 
-#: ../gnome-session/main.c:439
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "Activează codul pentru depanare"
 
-#: ../gnome-session/main.c:440
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "Nu încărca aplicațiile specificate de utilizator"
 
-#: ../gnome-session/main.c:461
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr " - Administrator de sesiune GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Închide sesiunea"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr ""
+
+#: ../tools/gnome-session-quit.c:54
+#, fuzzy
+#| msgid "Log out, ignoring any existing inhibitors"
+msgid "Ignoring any existing inhibitors"
 msgstr "Închide sesiunea, ignorând orice inhibator existent"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Afișează dialogul de ieșire din sesiune"
-
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Afișează dialogul de oprire"
-
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Folosește casete de dialog pentru erori"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Definește numele sesiunii curente"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NUME"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Închide forțat sesiunea"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
+#: ../tools/gnome-session-quit.c:55
+#, fuzzy
+#| msgid "Do not require confirmation"
+msgid "Don't prompt for user confirmation"
 msgstr "Nu cere confirmare"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Nu s-a putut realiza conectarea la administratorul de sesiuni"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Program apelat cu opțiuni care întră în conflict"
+
+#~ msgid "Default session"
+#~ msgstr "Sesiune implicită"
+
+#~ msgid "File Manager"
+#~ msgstr "Administrator de fișiere"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr ""
+#~ "Dacă este activat, gnome-session va anunța utilizatorul înainte de "
+#~ "terminarea sesiunii."
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "Dacă este activat, gnome-session va salva sesiunea automat."
+
+#~ msgid "List of applications that are part of the default session."
+#~ msgstr "Lista aplicațiilor care fac parte din sesiunea implicită."
+
+#~ msgid ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+#~ msgstr ""
+#~ "Lista componentelor care sunt necesare ca parte a sesiunii. (Fiecare "
+#~ "element numește o cheie din „/desktop/gnome/session/required_components"
+#~ "\".) Preferințele aplicațiilor de la pornire nu vor permite în mod normal "
+#~ "ca utilizatorii să șteargă o componentă necesară din sesiune, iar "
+#~ "administratorul sesiunii va adăuga automat componentele necesare în cazul "
+#~ "în care vor fi șterse."
+
+#~ msgid "Logout prompt"
+#~ msgstr "Anunță ieșirea din sesiune"
+
+#~ msgid "Panel"
+#~ msgstr "Panou"
+
+#~ msgid "Required session components"
+#~ msgstr "Componentele necesare sesiunii"
+
+#~ msgid "Save sessions"
+#~ msgstr "Salvează sesiunile"
+
+#~ msgid ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+#~ msgstr ""
+#~ "Administratorul de fișiere furnizează iconițele de pe desktop și permite "
+#~ "interacțiunea cu fișierele salvate."
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "Numărul de minute de inactivitate înainte ca sesiunea să fie considerată "
+#~ "inactivă."
+
+#~ msgid ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+#~ msgstr ""
+#~ "Panoul furnizează bara de deasupra ori dedesubtul ecranului ce conține "
+#~ "meniuri, lista cu ferestre, iconițele de stare, ceasul etc."
+
+#~ msgid ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+#~ msgstr ""
+#~ "Administratorul de ferestre este programul care afișează bara de titlu și "
+#~ "marginile de jur împrejurul ferestrelor și permite mutarea sau "
+#~ "redimensionarea acestora."
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "Durata până ce sesiunea este considerată inactivă"
+
+#~ msgid "Window Manager"
+#~ msgstr "Administrator de ferestre"
+
+#~ msgid "GConf key used to look up default session"
+#~ msgstr "Cheia GConf folosită la căutarea sesiunii implicite"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Afișează dialogul de ieșire din sesiune"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Afișează dialogul de oprire"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Folosește casete de dialog pentru erori"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Definește numele sesiunii curente"
+
+#~ msgid "NAME"
+#~ msgstr "NUME"
+
+#~ msgid "Kill session"
+#~ msgstr "Închide forțat sesiunea"
 
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "Ajutor serviciu configurări GNOME"
