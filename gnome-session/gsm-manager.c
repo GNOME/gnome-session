@@ -1272,7 +1272,7 @@ possibly_show_fallback_dialog (GsmManager *manager)
                                     KEY_SHOW_FALLBACK_WARNING)) {
                 show_fallback_dialog (_("GNOME 3 Failed to Load"),
                                       _("Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n\n"
-                                        "This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience"),
+                                        "This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."),
                                       _("Learn more about GNOME 3"),
                                       "http://www.gnome3.org");
                 g_settings_set_boolean (manager->priv->settings,
