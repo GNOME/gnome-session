@@ -29,6 +29,17 @@
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 
+/* Wait up to this long for a running check to finish */
+#define PROPERTY_CHANGE_TIMEOUT 5000
+
+/* Values used for the _GNOME_SESSION_ACCELERATED root window property */
+#define NO_ACCEL            0
+#define HAVE_ACCEL          1
+#define ACCEL_CHECK_RUNNING 2
+
+static Atom is_accelerated_atom;
+static gboolean property_changed;
+
 static void
 exit_1_message (const char *msg) G_GNUC_NORETURN;
 
@@ -39,12 +50,57 @@ exit_1_message (const char *msg)
   exit (1);
 }
 
+static gboolean
+on_property_notify_timeout (gpointer data)
+{
+        gtk_main_quit ();
+        return FALSE;
+}
+
+static GdkFilterReturn
+property_notify_filter (GdkXEvent *xevent,
+                        GdkEvent  *event,
+                        gpointer   data)
+{
+        XPropertyEvent *ev = xevent;
+
+        if (ev->type == PropertyNotify && ev->atom == is_accelerated_atom) {
+                property_changed = TRUE;
+                gtk_main_quit ();
+        }
+
+        return GDK_FILTER_CONTINUE;
+}
+
+static gboolean
+wait_for_property_notify (void)
+{
+        GdkDisplay *display = NULL;
+        GdkScreen *screen;
+        GdkWindow *root;
+        Window rootwin;
+
+        property_changed = FALSE;
+
+        display = gdk_display_get_default ();
+        screen = gdk_display_get_default_screen (display);
+        root = gdk_screen_get_root_window (screen);
+        rootwin = gdk_x11_window_get_xid (root);
+
+        XSelectInput (GDK_DISPLAY_XDISPLAY (display), rootwin, PropertyChangeMask);
+        gdk_window_add_filter (root, property_notify_filter, NULL);
+        g_timeout_add (PROPERTY_CHANGE_TIMEOUT, on_property_notify_timeout, NULL);
+
+        gtk_main ();
+
+        return property_changed;
+}
+
 int
 main (int argc, char **argv)
 {
         GdkDisplay *display = NULL;
         int estatus;
-        Atom is_accelerated_atom;
         char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-helper", NULL };
         Window rootwin;
         glong is_accelerated;
@@ -64,6 +120,7 @@ main (int argc, char **argv)
                 gulong bytes_after;
                 guchar *data;
 
+ read:
                 gdk_x11_display_error_trap_push (display);
                 XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), rootwin,
                                     is_accelerated_atom,
@@ -73,12 +130,31 @@ main (int argc, char **argv)
 
                 if (type == XA_CARDINAL) {
                         glong *is_accelerated_ptr = (glong*) data;
-                        /* Exit 1 if the property is 0 (false) */
-                        return (*is_accelerated_ptr == 0) ? 1 : 0;
+
+                        if (*is_accelerated_ptr == ACCEL_CHECK_RUNNING) {
+                                /* Test in progress, wait */
+                                if (wait_for_property_notify ())
+                                        goto read;
+                                /* else fall through and do the check ourselves */
+
+                        } else {
+                                return (*is_accelerated_ptr == 0 ? 1 : 0);
+                        }
                 }
         }
 
-        /* We don't have the property or it's the wrong type.  Try to compute it now. */
+        /* We don't have the property or it's the wrong type.
+         * Try to compute it now.
+         */
+
+        /* First indicate that a test is in progress */
+        is_accelerated = ACCEL_CHECK_RUNNING;
+        XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
+                         rootwin,
+                         is_accelerated_atom,
+                         XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_accelerated, 1);
+
+        gdk_display_sync (display);
 
         estatus = 1;
         if (!g_spawn_sync (NULL, (char**)child_argv, NULL, 0,
