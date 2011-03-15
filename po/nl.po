@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-11 23:10+0100\n"
-"PO-Revision-Date: 2011-02-11 23:11+0100\n"
+"POT-Creation-Date: 2011-03-15 22:23+0100\n"
+"PO-Revision-Date: 2011-03-15 22:23+0100\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -336,7 +336,29 @@ msgstr "_Herstarten"
 msgid "_Shut Down"
 msgstr "_Uitzetten"
 
-#: ../gnome-session/gsm-manager.c:1282 ../gnome-session/gsm-manager.c:1985
+#: ../gnome-session/gsm-manager.c:1273
+msgid "GNOME 3 Failed to Load"
+msgstr "Gnome 3 kon niet geladen worden"
+
+#: ../gnome-session/gsm-manager.c:1274
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your graphics hardware is not capable to run the full "
+"GNOME 3 experience"
+msgstr ""
+"Helaas kon Gnome 3 niet correct opgestart worden en daarom is de <i>fallback-"
+"modus</i> opgestart.\n"
+"\n"
+"Dit wordt waarschijnlijk veroorzaakt door een grafische kaart die niet in "
+"staat is de complete Gnome 3-omgeving te draaien."
+
+#: ../gnome-session/gsm-manager.c:1276
+msgid "Learn more about GNOME 3"
+msgstr "Kom meer over Gnome 3 te weten"
+
+#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
 msgid "Not responding"
 msgstr "Reageert niet"
 
@@ -385,51 +407,48 @@ msgstr "Geen toepassingen laden die door de gebruiker opgegeven zijn"
 msgid " - the GNOME session manager"
 msgstr " — het Gnome-sessiebeheer"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Afmelden"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Uitloggen, ongeacht actieve verhindering door toepassingen"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Computer uitzetten"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Afmeldvenster tonen"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Actieve verhindering door toepassingen negeren"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Afsluitvenster tonen"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Geen bevestiging van gebruiker vragen"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Gebruik dialoogvensters voor foutmeldingen"
-
-# geef de huidige sessie een naam
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "De huidige sessienaam instellen"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAAM"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Sessie beëindigen"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Geen bevestiging vereisen"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Kan geen verbinding maken met het sessiebeheer"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Toepassing aangeroepen met conflicterende opties"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Afmeldvenster tonen"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Afsluitvenster tonen"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Gebruik dialoogvensters voor foutmeldingen"
+
+# geef de huidige sessie een naam
+#~ msgid "Set the current session name"
+#~ msgstr "De huidige sessienaam instellen"
+
+#~ msgid "NAME"
+#~ msgstr "NAAM"
+
+#~ msgid "Kill session"
+#~ msgstr "Sessie beëindigen"
 
 #~ msgid "Classic GNOME"
 #~ msgstr "Klassieke Gnome"
