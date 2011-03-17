@@ -2571,7 +2571,7 @@ idle_timeout_get_mapping (GValue *value,
         guint32 idle_timeout;
 
         idle_timeout = g_variant_get_uint32 (variant);
-        g_value_set_uint (value, idle_timeout * 60000);
+        g_value_set_uint (value, idle_timeout * 1000);
 
         return TRUE;
 }
