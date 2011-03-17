@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-14 14:21+0200\n"
-"PO-Revision-Date: 2011-03-14 14:27+0300\n"
+"POT-Creation-Date: 2011-03-17 22:49+0200\n"
+"PO-Revision-Date: 2011-03-17 22:50+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -267,7 +267,8 @@ msgstr "أوصد الشاشة"
 msgid "Cancel"
 msgstr "ألغ"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -278,7 +279,7 @@ msgstr[3] "سيتم إخراجك خلال %Id ثوان."
 msgstr[4] "سيتم إخراجك خلال %Id ثانية."
 msgstr[5] "سيتم إخراجك خلال %Id ثانية."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -289,48 +290,54 @@ msgstr[3] "سيتم إطفاء النظام خلال %Id ثوان."
 msgstr[4] "سيتم إطفاء النظام خلال %Id ثانية."
 msgstr[5] "سيتم إطفاء النظام خلال %Id ثوان."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "حاليا أنت والج باسم \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "أأخرج من هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "ب_دّل المستخدم"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "ا_خرج"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "أأطفئ هذا النظام الآن؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "_علّق"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "أ_سبِت"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "أعِد الت_شغيل"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
-#: ../gnome-session/gsm-manager.c:1273
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:617
+msgid "Timed out"
+msgstr "انتهت المهلة"
+
+#: ../gnome-session/gsm-manager.c:1330
 msgid "GNOME 3 Failed to Load"
 msgstr "فشل بدء جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1331
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -340,14 +347,14 @@ msgid ""
 msgstr ""
 "للأسف فشل بدء جنوم 3 على الوجه الصحيح ودخلت إلى <i>الطور التقليدي</i>.\n"
 "\n"
-"غالبا ما يعني هذا أن نظامك (عتاد الرسوميات أو المُشغّل) ليس مؤهلا لتشغيل "
-"جنوم 3 بكامل طاقتها."
+"غالبا ما يعني هذا أن نظامك (عتاد الرسوميات أو المُشغّل) ليس مؤهلا لتشغيل جنوم "
+"3 بكامل طاقتها."
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1333
 msgid "Learn more about GNOME 3"
 msgstr "تعرّف أكثر على جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1430 ../gnome-session/gsm-manager.c:2154
 msgid "Not responding"
 msgstr "لا يستجيب"
 
