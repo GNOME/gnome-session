@@ -612,6 +612,8 @@ on_phase_timeout (GsmManager *manager)
                                    gsm_app_peek_app_id (app));
                         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
                         if (is_app_required (manager, app))
+                        /* Translators: "Timed out" refers to a non-responsive application not answering.
+                        In case the string is problematic it might be translated to the noun "Timeout". */
                                 on_required_app_failure (manager, app, _("Timed out"));
                 }
                 break;
