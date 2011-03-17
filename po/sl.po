@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-15 04:50+0000\n"
-"PO-Revision-Date: 2011-03-15 09:56+0100\n"
-"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
+"POT-Creation-Date: 2011-03-17 18:03+0000\n"
+"PO-Revision-Date: 2011-03-17 19:50+0100\n"
+"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -266,7 +266,8 @@ msgstr "Zakleni zaslon"
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -275,7 +276,7 @@ msgstr[1] "Samodejno boste odjavljeni čez %d sekundo."
 msgstr[2] "Samodejno boste odjavljeni čez %d sekundi."
 msgstr[3] "Samodejno boste odjavljeni čez %d sekunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -284,48 +285,52 @@ msgstr[1] "Sistem se bo samodejno izklopil čez %d sekundo."
 msgstr[2] "Sistem se bo samodejno izklopil čez %d sekundi."
 msgstr[3] "Sistem se bo samodejno izklopil čez %d sekunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Trenutno ste prijavljeni kot \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "Ali se želite odjaviti iz sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_Preklop uporabnika"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "Ali želite izklopiti računalnik?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "V _pripravljenost"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "V _mirovanje"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "_Ponoven zagon"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_Izklopi"
 
-#: ../gnome-session/gsm-manager.c:1273
+#: ../gnome-session/gsm-manager.c:615
+msgid "Timed out"
+msgstr "Časovno poteklo"
+
+#: ../gnome-session/gsm-manager.c:1328
 msgid "GNOME 3 Failed to Load"
 msgstr "Nalaganje namizja GNOME 3 je spodletelo"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1329
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -335,12 +340,12 @@ msgstr ""
 "\n"
 "Napaka običajno pomeni, da grafična strojna oprema ali gonilnik ni primeren za zagon namizja GNOME 3 v polnem grafičnem načinu."
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1331
 msgid "Learn more about GNOME 3"
 msgstr "Več podrobnosti o namizju GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1373
-#: ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1428
+#: ../gnome-session/gsm-manager.c:2152
 msgid "Not responding"
 msgstr "Ni odziva"
 
