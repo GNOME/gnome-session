@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-17 18:03+0000\n"
-"PO-Revision-Date: 2011-03-17 19:50+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"POT-Creation-Date: 2011-03-18 19:36+0000\n"
+"PO-Revision-Date: 2011-03-18 21:17+0100\n"
+"Last-Translator: Andrej Žnidaršič <andrej.znidarsic@gmail.com>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -267,7 +267,9 @@ msgid "Cancel"
 msgstr "Prekliči"
 
 #. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
 #: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -299,6 +301,7 @@ msgid "_Switch User"
 msgstr "_Preklop uporabnika"
 
 #: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "_Odjava"
 
@@ -322,15 +325,57 @@ msgstr "_Ponoven zagon"
 msgid "_Shut Down"
 msgstr "_Izklopi"
 
-#: ../gnome-session/gsm-manager.c:615
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Poskusi z _obnovo"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "Prišlo je do napake sistema: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "Prišlo je do usodne sistemske napake: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Končano s kodo %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Uničeno s signalom %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Zaustavljeno s signalom %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "Sestavni del '%s': %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "Uničeno s signalom"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:619
 msgid "Timed out"
 msgstr "Časovno poteklo"
 
-#: ../gnome-session/gsm-manager.c:1328
+#: ../gnome-session/gsm-manager.c:1332
 msgid "GNOME 3 Failed to Load"
 msgstr "Nalaganje namizja GNOME 3 je spodletelo"
 
-#: ../gnome-session/gsm-manager.c:1329
+#: ../gnome-session/gsm-manager.c:1333
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -340,12 +385,12 @@ msgstr ""
 "\n"
 "Napaka običajno pomeni, da grafična strojna oprema ali gonilnik ni primeren za zagon namizja GNOME 3 v polnem grafičnem načinu."
 
-#: ../gnome-session/gsm-manager.c:1331
+#: ../gnome-session/gsm-manager.c:1335
 msgid "Learn more about GNOME 3"
 msgstr "Več podrobnosti o namizju GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1428
-#: ../gnome-session/gsm-manager.c:2152
+#: ../gnome-session/gsm-manager.c:1432
+#: ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "Ni odziva"
 
