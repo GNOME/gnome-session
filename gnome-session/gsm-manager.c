@@ -236,7 +236,7 @@ start_app_or_warn (GsmManager *manager,
 
         res = gsm_app_start (app, &error);
         if (error != NULL) {
-                g_warning ("Failed start app: %s", error->message);
+                g_warning ("Failed to start app: %s", error->message);
                 g_clear_error (&error);
         }
         return res;
@@ -556,7 +556,7 @@ app_died (GsmApp     *app,
 
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
         if (is_app_required (manager, app))
-                on_required_app_failure (manager, app, "Killed by signal");                
+                on_required_app_failure (manager, app, "Killed by signal");
         /* For now, we don't do anything with crashes from non-required apps;
          * practically speaking they will be caught by ABRT/apport type
          * infrastructure, and it'd be better to pick up the crash from
@@ -3371,8 +3371,8 @@ void
 gsm_manager_try_recovery (GsmManager     *manager)
 {
         GSList *iter;
-        
-        g_debug ("trying recovery");
+
+        g_debug ("Trying recovery");
 
         for (iter = manager->priv->required_apps; iter; iter = iter->next) {
                 GsmApp *app = iter->data;

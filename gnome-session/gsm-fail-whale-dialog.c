@@ -111,7 +111,7 @@ gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
 {
         GObjectClass *gobject_class;
         GtkWidgetClass *widget_class;
-        
+
         gobject_class = G_OBJECT_CLASS (klass);
         widget_class = GTK_WIDGET_CLASS (klass);
         gobject_class->set_property = gsm_fail_whale_dialog_set_property;
@@ -141,7 +141,7 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
                           NULL);
 }
 
-static void 
+static void
 gsm_fail_whale_dialog_get_preferred_width (GtkWidget *widget,
                                            gint      *minimum_size,
                                            gint      *natural_size)
@@ -155,7 +155,7 @@ gsm_fail_whale_dialog_get_preferred_width (GtkWidget *widget,
                 *natural_size = 640;
 }
 
-static void 
+static void
 gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
                                             gint      *minimum_size,
                                             gint      *natural_size)
@@ -263,14 +263,14 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG,
                                     "fail-type", fail_type,
                                     NULL);
-        
+
         current_dialog = fail_dialog;
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
 
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), "gtk-error");
         gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
-        
+
         switch (fail_type) {
         case GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_RECOVERABLE:
                 gtk_dialog_add_button (GTK_DIALOG (fail_dialog),
