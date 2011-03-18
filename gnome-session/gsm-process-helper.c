@@ -25,6 +25,7 @@
 #include <signal.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include "gsm-process-helper.h"
 
@@ -119,17 +120,17 @@ gsm_process_helper (const char   *command_line,
                                 g_set_error (error,
                                              G_IO_CHANNEL_ERROR,
                                              G_IO_CHANNEL_ERROR_FAILED,
-                                             "Exited with code %d", WEXITSTATUS (helper->status));
+                                             _("Exited with code %d"), WEXITSTATUS (helper->status));
                 } else if (WIFSIGNALED (helper->status)) {
                         g_set_error (error,
                                      G_IO_CHANNEL_ERROR,
                                      G_IO_CHANNEL_ERROR_FAILED,
-                                     "Killed by signal %d", WTERMSIG (helper->status));
+                                     _("Killed by signal %d"), WTERMSIG (helper->status));
                 } else if (WIFSTOPPED (helper->status)) {
                         g_set_error (error,
                                      G_IO_CHANNEL_ERROR,
                                      G_IO_CHANNEL_ERROR_FAILED,
-                                     "Stopped by signal %d", WSTOPSIG (helper->status));
+                                     _("Stopped by signal %d"), WSTOPSIG (helper->status));
                 }
         }
 

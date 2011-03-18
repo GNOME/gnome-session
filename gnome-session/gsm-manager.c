@@ -255,7 +255,9 @@ on_required_app_failure (GsmManager  *manager,
                          const char  *msg)
 {
         char *full_msg;
-        full_msg = g_strdup_printf ("Component '%s': %s",
+        /* Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+         * It is admittedly mostly technical goop. */
+        full_msg = g_strdup_printf (_("Component '%s': %s"),
                                     gsm_app_peek_app_id (app),
                                     msg);
         gsm_fail_whale_dialog_we_failed (GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_RECOVERABLE,
@@ -556,7 +558,7 @@ app_died (GsmApp     *app,
 
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
         if (is_app_required (manager, app))
-                on_required_app_failure (manager, app, "Killed by signal");
+                on_required_app_failure (manager, app, _("Killed by signal"));
         /* For now, we don't do anything with crashes from non-required apps;
          * practically speaking they will be caught by ABRT/apport type
          * infrastructure, and it'd be better to pick up the crash from
