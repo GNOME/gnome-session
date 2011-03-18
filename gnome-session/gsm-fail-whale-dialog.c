@@ -163,9 +163,9 @@ gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
         GTK_WIDGET_CLASS (gsm_fail_whale_dialog_parent_class)->get_preferred_height (widget,
                                                                                      minimum_size,
                                                                                      natural_size);
-        if (minimum_size && *minimum_size < 640)
+        if (minimum_size && *minimum_size < 480)
                 *minimum_size = 480;
-        if (natural_size && *natural_size < 640)
+        if (natural_size && *natural_size < 480)
                 *natural_size = 480;
 }
 
