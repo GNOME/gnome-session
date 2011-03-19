@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 19:57+0200\n"
-"PO-Revision-Date: 2011-03-17 19:58+0300\n"
+"POT-Creation-Date: 2011-03-19 10:29+0200\n"
+"PO-Revision-Date: 2011-03-19 10:37+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
@@ -269,7 +269,9 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
 #: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -299,6 +301,7 @@ msgid "_Switch User"
 msgstr "_Перемикнути користувача"
 
 #: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
@@ -322,15 +325,57 @@ msgstr "Пере_завантажити"
 msgid "_Shut Down"
 msgstr "_Вимкнути"
 
-#: ../gnome-session/gsm-manager.c:615
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Спробувати від_новити"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "Трапилась системна помилка: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "Трапилась критична помилка: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Завершено з кодом %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Вбито сигналом %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Зупинено сигналом %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "Компонент «%s»: %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "Вбито сигналом"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:619
 msgid "Timed out"
 msgstr "Вичерпано"
 
-#: ../gnome-session/gsm-manager.c:1328
+#: ../gnome-session/gsm-manager.c:1332
 msgid "GNOME 3 Failed to Load"
 msgstr "Не вдалось завантажити GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1329
+#: ../gnome-session/gsm-manager.c:1333
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -344,11 +389,11 @@ msgstr ""
 "Найімовірніше, це означає, що ваша система (графічне обладнання або "
 "відеодрайвер) не підтримує роботу всіх можливостей GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1331
+#: ../gnome-session/gsm-manager.c:1335
 msgid "Learn more about GNOME 3"
 msgstr "Докладніше про GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1428 ../gnome-session/gsm-manager.c:2152
+#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "Не відповідає"
 
