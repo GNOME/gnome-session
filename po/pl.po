@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 14:00+0100\n"
-"PO-Revision-Date: 2011-03-15 14:01+0100\n"
+"POT-Creation-Date: 2011-03-19 16:22+0100\n"
+"PO-Revision-Date: 2011-03-19 16:23+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -272,7 +272,10 @@ msgstr "Zablokuj ekran"
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -280,7 +283,7 @@ msgstr[0] "Automatyczne wylogowanie nastąpi za %d sekundę."
 msgstr[1] "Automatyczne wylogowanie nastąpi za %d sekundy."
 msgstr[2] "Automatyczne wylogowanie nastąpi za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -288,48 +291,95 @@ msgstr[0] "Automatyczne wyłączenie komputera nastąpi za %d sekundę."
 msgstr[1] "Automatyczne wyłączenie komputera nastąpi za %d sekundy."
 msgstr[2] "Automatyczne wyłączenie komputera nastąpi za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Użytkownik jest zalogowany jako \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "Wylogować się z systemu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_Przełącz użytkownika"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "_Wyloguj"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "Wyłączyć komputer?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "_Uśpij"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "Za_hibernuj"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "_Uruchom ponownie"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_Wyłącz komputer"
 
-#: ../gnome-session/gsm-manager.c:1273
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Spróbuj p_rzywrócić"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "Wystąpił błąd systemu: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "Wystąpił krytyczny błąd systemu: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Zakończono z kodem %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Usunięte z pamięci przez sygnał %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Zatrzymane przez sygnał %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "Składnik \"%s\": %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "Usunięte z pamięci przez sygnał"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:619
+msgid "Timed out"
+msgstr "Przekroczono czas oczekiwania"
+
+#: ../gnome-session/gsm-manager.c:1332
 msgid "GNOME 3 Failed to Load"
 msgstr "Wczytanie środowiska GNOME 3 się nie powiodło"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1333
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -343,11 +393,11 @@ msgstr ""
 "Prawdopodobnie oznacza to, że komputer (sprzęt graficzny lub sterownik) nie "
 "obsługuje środowiska GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1335
 msgid "Learn more about GNOME 3"
 msgstr "Dowiedz się więcej o środowisku GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
