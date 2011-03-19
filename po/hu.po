@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 17:21+0100\n"
-"PO-Revision-Date: 2011-03-18 17:22+0100\n"
+"POT-Creation-Date: 2011-03-19 02:46+0100\n"
+"PO-Revision-Date: 2011-03-19 02:46+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "Language: \n"
@@ -274,7 +274,9 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
 #: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -302,6 +304,7 @@ msgid "_Switch User"
 msgstr "Felhasználó_váltás"
 
 #: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "_Kijelentkezés"
 
@@ -325,17 +328,57 @@ msgstr "Újr_aindítás"
 msgid "_Shut Down"
 msgstr "_Leállítás"
 
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Kísérlet _helyreállításra"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "Rendszerhiba történt: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "Végzetes rendszerhiba történt: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Kilépett ezzel a kóddal: %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Kilőve ezzel a szignállal: %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Megállítva ezzel a szignállal: %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "„%s” összetevő: %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "Kilőve egy szignállal"
+
 #. Translators: "Timed out" refers to a non-responsive application not answering.
 #. In case the string is problematic it might be translated to the noun "Timeout".
-#: ../gnome-session/gsm-manager.c:617
+#: ../gnome-session/gsm-manager.c:619
 msgid "Timed out"
 msgstr "Időkorlát túllépve"
 
-#: ../gnome-session/gsm-manager.c:1330
+#: ../gnome-session/gsm-manager.c:1332
 msgid "GNOME 3 Failed to Load"
 msgstr "A GNOME 3 betöltése meghiúsult"
 
-#: ../gnome-session/gsm-manager.c:1331
+#: ../gnome-session/gsm-manager.c:1333
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -349,11 +392,11 @@ msgstr ""
 "Ez valószínűleg azt jelenti, hogy a rendszere (a grafikus hardver vagy annak "
 "illesztőprogramja) nem képes a GNOME 3 környezet megfelelő működtetésére."
 
-#: ../gnome-session/gsm-manager.c:1333
+#: ../gnome-session/gsm-manager.c:1335
 msgid "Learn more about GNOME 3"
 msgstr "Tudjon meg többet a GNOME 3-ról"
 
-#: ../gnome-session/gsm-manager.c:1430 ../gnome-session/gsm-manager.c:2154
+#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "Nem válaszol"
 
@@ -423,4 +466,3 @@ msgstr "Sikertelen kapcsolatfelvétel a munkamenet-kezelővel"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "A program kapcsolói ütköznek"
-
