@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 22:49+0200\n"
-"PO-Revision-Date: 2011-03-17 22:50+0300\n"
+"POT-Creation-Date: 2011-03-19 02:46+0200\n"
+"PO-Revision-Date: 2011-03-19 02:46+0300\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
-"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -268,7 +268,9 @@ msgid "Cancel"
 msgstr "ألغ"
 
 #. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
 #: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -304,6 +306,7 @@ msgid "_Switch User"
 msgstr "ب_دّل المستخدم"
 
 #: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "ا_خرج"
 
@@ -327,17 +330,57 @@ msgstr "أعِد الت_شغيل"
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "حاوِل ال_تعافي"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "حدث عُطل في النظام: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "حدث عُطل أساسي في النظام: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "خَرَجَ مع الرمز %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "قًتِل بإشارة %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "أُوقِف بإشارة %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "المكون '%s': ‏%s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "قًتِل بإشارة"
+
 #. Translators: "Timed out" refers to a non-responsive application not answering.
 #. In case the string is problematic it might be translated to the noun "Timeout".
-#: ../gnome-session/gsm-manager.c:617
+#: ../gnome-session/gsm-manager.c:619
 msgid "Timed out"
 msgstr "انتهت المهلة"
 
-#: ../gnome-session/gsm-manager.c:1330
+#: ../gnome-session/gsm-manager.c:1332
 msgid "GNOME 3 Failed to Load"
 msgstr "فشل بدء جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1331
+#: ../gnome-session/gsm-manager.c:1333
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -350,11 +393,11 @@ msgstr ""
 "غالبا ما يعني هذا أن نظامك (عتاد الرسوميات أو المُشغّل) ليس مؤهلا لتشغيل جنوم "
 "3 بكامل طاقتها."
 
-#: ../gnome-session/gsm-manager.c:1333
+#: ../gnome-session/gsm-manager.c:1335
 msgid "Learn more about GNOME 3"
 msgstr "تعرّف أكثر على جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1430 ../gnome-session/gsm-manager.c:2154
+#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "لا يستجيب"
 
