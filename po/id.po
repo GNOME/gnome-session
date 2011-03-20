@@ -3,24 +3,24 @@
 # This file is distributed under the same license as the gnome-session package.
 #
 # Mohammad DAMT <mdamt@bisnisweb.com>, 2005.
-# Dirgita <dirgitadevina@yahoo.co.id>, 2010.
-# Dirgita <dirgitadevina@gmail.com>, 2010.
-# Andika Triwidada <andika@gmail.com>, 2010-2011.
+# Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
+# Andika Triwidada <andika@gmail.com>, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&component=general\n"
-"POT-Creation-Date: 2010-12-08 17:01+0000\n"
-"PO-Revision-Date: 2011-01-11 15:31+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-18 19:36+0000\n"
+"PO-Revision-Date: 2011-03-20 17:32+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Indonesian\n"
 "X-Poedit-Country: Indonesia\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -42,19 +42,19 @@ msgstr "Perintah awalan tidak boleh kosong"
 msgid "The startup command is not valid"
 msgstr "Perintah awalan tidak sah"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Diaktifkan"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Preferensi Aplikasi Awalan"
 
@@ -66,18 +66,18 @@ msgstr "Tanpa nama"
 msgid "No description"
 msgstr "Tanpa deskripsi"
 
-#: ../capplet/main.c:37
+#: ../capplet/main.c:35
 #: ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Tidak dapat membuka dokumen bantuan"
 
-#: ../data/classic-gnome.session.desktop.in.in.h:1
-msgid "Classic GNOME"
-msgstr "GNOME Klasik"
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "Pengalasan GNOME"
 
 #: ../data/gnome.session.desktop.in.in.h:1
 #: ../data/gnome.desktop.in.h:1
@@ -88,16 +88,12 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Sesi ini melogkan Anda ke dalam GNOME"
 
-#: ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Manajer Jendela"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Beberapa program masih berjalan:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:645
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
 msgstr "Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda kehilangan hasil pekerjaan."
 
@@ -115,7 +111,7 @@ msgstr "_Program awalan lain:"
 
 #: ../data/session-properties.ui.h:2
 msgid "Browse…"
-msgstr "Ramban…"
+msgstr "Telusur..."
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -218,110 +214,184 @@ msgstr ""
 "Terjadi masalah dengan server konfigurasi\n"
 "(%s keluar dengan status%d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:254
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Tidak menemukan ikon '%s'"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:593
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "Tak dikenal"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "Sebuah program masih berjalan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "Beberapa program masih berjalan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:649
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda kehilangan hasil pekerjaan."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "Tetap Ganti Pengguna"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Log Out Anyway"
 msgstr "Tetap Keluar"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "Tetap Suspensi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:888
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "Tetap Hibernasi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:891
+#: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Shut Down Anyway"
 msgstr "Tetap Matikan"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:894
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "Tetap Boot Ulang"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:902
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "Kunci Layar"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:905
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Anda akan keluar otomatis dalam %d detik.\t\t"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Sistem ini akan mati otomatis dalam %d detik."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Anda saat ini masuk sebagai \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "Keluar dari sistem ini sekarang?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_Ganti Pengguna"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "Matikan sistem ini sekarang?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "S_uspensi"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "_Hibernasi"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "H_idupkan Ulang"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_Matikan"
 
-#: ../gnome-session/gsm-manager.c:1229
-#: ../gnome-session/gsm-manager.c:1949
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Coba _Pulihkan"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "Telah terjadi galat sistem: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "Telah terjadi galat sistem yang fatal: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Keluar dengan kode %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Dimatikan oleh sinyal %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Dihentikan oleh sinyal %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "Komponen '%s': %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "Dimatikan oleh sinyal"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:619
+msgid "Timed out"
+msgstr "Habis waktu"
+
+#: ../gnome-session/gsm-manager.c:1332
+msgid "GNOME 3 Failed to Load"
+msgstr "GNOME 3 Gagal Dimuat"
+
+#: ../gnome-session/gsm-manager.c:1333
+#| msgid ""
+#| "Unfortunately GNOME 3 failed to start properly and started in the "
+#| "<i>fallback mode</i>.\n"
+#| "\n"
+#| "This most likely means your graphics hardware is not capable to run the "
+#| "full GNOME 3 experience"
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
+"\n"
+"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
+msgstr ""
+"GNOME 3 gagal dijalankan dengan baik dan kini berada pada <i>mode jatuh balik</i>.\n"
+"\n"
+"Ini berarti sistem Anda (perangkat keras grafik atau penggerak) tidak mampu menyajikan pengalaman GNOME 3 secara penuh."
+
+#: ../gnome-session/gsm-manager.c:1335
+msgid "Learn more about GNOME 3"
+msgstr "Mengenal lebih jauh GNOME 3"
+
+#: ../gnome-session/gsm-manager.c:1432
+#: ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "Tidak merespon"
 
@@ -354,7 +424,7 @@ msgstr "Sesi yang dipakai"
 
 #: ../gnome-session/main.c:278
 msgid "Enable debugging code"
-msgstr "Mengangktifkan debug kode"
+msgstr "Mengaktifkan kode debug"
 
 #: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
@@ -364,126 +434,29 @@ msgstr "Tidak memuat aplikasi yang ditentukan oleh pengguna"
 msgid " - the GNOME session manager"
 msgstr " - manajer sesi GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Keluar"
 
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Matikan"
+
 # Keterangan untuk opsi force-logout.
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "Keluar, mengabaikan sembarang pencegah (keluar paksa)"
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Mengabaikan sembarang pencegah"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Menampilkan dialog keluar sesi"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Jangan tanyakan konfirmasi pengguna"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Menampilkan dialog mematikan mesin"
-
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Menggunakan dialog untuk pesan galat"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Menamai sesi yang saat ini berjalan"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAMA"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Mematikan sesi"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "Tidak perlu konfirmasi"
-
-#: ../tools/gnome-session-save.c:120
-#: ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89
+#: ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Tidak dapat terhubung dengan manajer sesi"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Program dipanggil dengan opsi yang bertentangan"
 
-#~ msgid "Default session"
-#~ msgstr "Sesi utama"
-
-#~ msgid "File Manager"
-#~ msgstr "Manajer Berkas"
-
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Apabila diaktifkan, gnome-session akan menanyai pengguna sebelum "
-#~ "mengakhiri sesi."
-
-#~ msgid "If enabled, gnome-session will save the session automatically."
-#~ msgstr ""
-#~ "Apabila diaktifkan, gnome-session akan menyimpan sesi secara otomatis."
-
-#~ msgid "List of applications that are part of the default session."
-#~ msgstr "Daftar aplikasi yang menjadi bagian sesi utama."
-
-#~ msgid ""
-#~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
-#~ msgstr ""
-#~ "Daftar komponen yang diperlukan sebagai bagian sesi. (Setiap elemen akan "
-#~ "menamai suatu kunci yang terdapat pada \"/desktop/gnome/session/"
-#~ "required_components\"). Perkakas preferensi Aplikasi Awalan biasanya tak "
-#~ "mengizinkan pengguna menghapus suatu komponen yang penting dari sesi, dan "
-#~ "manajer sesi akan otomatis menambahkan kembali komponen tersebut saat log "
-#~ "masuk apabila dihapus."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Konfirmasi log keluar"
-
-#~ msgid "Panel"
-#~ msgstr "Panel"
-
-#~ msgid "Required session components"
-#~ msgstr "Komponen sesi yang diperlukan"
-
-#~ msgid "Save sessions"
-#~ msgstr "Simpan sesi"
-
-#~ msgid ""
-#~ "The file manager provides the desktop icons and allows you to interact "
-#~ "with your saved files."
-#~ msgstr ""
-#~ "Manajer berkas menyediakan ikon-ikon desktop dan memungkinkan Anda "
-#~ "berinteraksi terhadap berkas-berkas Anda yang simpan."
-
-#~ msgid ""
-#~ "The number of minutes of inactivity before the session is considered idle."
-#~ msgstr ""
-#~ "Lama waktu tanpa aktivitas sebelum sesi dianggap menganggur (dalam menit)."
-
-#~ msgid ""
-#~ "The panel provides the bar at the top or bottom of the screen containing "
-#~ "menus, the window list, status icons, the clock, etc."
-#~ msgstr ""
-#~ "Panel menyediakan objek berupa bilah yang terdapat pada bagian atas dan "
-#~ "bawah layar, serta terdiri atas menu, daftar jendela, ikon status, jam, "
-#~ "dan lain sebagainya."
-
-#~ msgid ""
-#~ "The window manager is the program that draws the title bar and borders "
-#~ "around windows, and allows you to move and resize windows."
-#~ msgstr ""
-#~ "Manajer jendela adalah program yang menggambar baris judul serta bingkai "
-#~ "di sekeliling jendela aplikasi, selain itu juga memungkinkan Anda untuk "
-#~ "memindah dan mengubah ukuran jendela tersebut."
-
-#~ msgid "Time before session is considered idle"
-#~ msgstr "Waktu sebelum sesi dianggap menganggur"
