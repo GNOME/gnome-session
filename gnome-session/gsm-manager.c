@@ -86,6 +86,9 @@
 #define SCREENSAVER_SCHEMA        "org.gnome.desktop.screensaver"
 #define KEY_SLEEP_LOCK            "lock-enabled"
 
+#define LOCKDOWN_SCHEMA           "org.gnome.desktop.lockdown"
+#define KEY_DISABLE_LOG_OUT       "disable-log-out"
+
 static void app_registered (GsmApp     *app, GsmManager *manager);
 
 typedef enum
@@ -135,6 +138,7 @@ struct GsmManagerPrivate
         GSettings              *settings;
         GSettings              *session_settings;
         GSettings              *screensaver_settings;
+        GSettings              *lockdown_settings;
 
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
@@ -214,6 +218,7 @@ gsm_manager_error_get_type (void)
                         ENUM_ENTRY (GSM_MANAGER_ERROR_ALREADY_REGISTERED, "AlreadyRegistered"),
                         ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_REGISTERED, "NotRegistered"),
                         ENUM_ENTRY (GSM_MANAGER_ERROR_INVALID_OPTION, "InvalidOption"),
+                        ENUM_ENTRY (GSM_MANAGER_ERROR_LOCKED_DOWN, "LockedDown"),
                         { 0, 0, 0 }
                 };
 
@@ -2467,6 +2472,11 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->screensaver_settings = NULL;
         }
 
+        if (manager->priv->lockdown_settings) {
+                g_object_unref (manager->priv->lockdown_settings);
+                manager->priv->lockdown_settings = NULL;
+        }
+
         if (manager->priv->up_client != NULL) {
                 g_object_unref (manager->priv->up_client);
                 manager->priv->up_client = NULL;
@@ -2647,6 +2657,7 @@ gsm_manager_init (GsmManager *manager)
         manager->priv->settings = g_settings_new (GSM_MANAGER_SCHEMA);
         manager->priv->session_settings = g_settings_new (SESSION_SCHEMA);
         manager->priv->screensaver_settings = g_settings_new (SCREENSAVER_SCHEMA);
+        manager->priv->lockdown_settings = g_settings_new (LOCKDOWN_SCHEMA);
 
         manager->priv->inhibitors = gsm_store_new ();
         g_signal_connect (manager->priv->inhibitors,
@@ -3269,6 +3280,13 @@ gsm_manager_set_phase (GsmManager      *manager,
         return (TRUE);
 }
 
+static gboolean
+_log_out_is_locked_down (GsmManager *manager)
+{
+        return g_settings_get_boolean (manager->priv->lockdown_settings,
+                                       KEY_DISABLE_LOG_OUT);
+}
+
 gboolean
 gsm_manager_shutdown (GsmManager *manager,
                       GError    **error)
@@ -3340,6 +3358,14 @@ gsm_manager_logout (GsmManager *manager,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
                              "Shutdown interface is only available during the Running phase");
+                return FALSE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_LOCKED_DOWN,
+                             "Logout has been locked down");
                 return FALSE;
         }
 
