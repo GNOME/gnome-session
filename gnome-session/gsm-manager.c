@@ -151,7 +151,9 @@ struct GsmManagerPrivate
         GsmShell               *shell;
         guint                   shell_end_session_dialog_canceled_id;
         guint                   shell_end_session_dialog_open_failed_id;
-        guint                   shell_end_session_dialog_confirmed_id;
+        guint                   shell_end_session_dialog_confirmed_logout_id;
+        guint                   shell_end_session_dialog_confirmed_shutdown_id;
+        guint                   shell_end_session_dialog_confirmed_reboot_id;
 };
 
 enum {
@@ -3086,10 +3088,22 @@ disconnect_shell_dialog_signals (GsmManager *manager)
                 manager->priv->shell_end_session_dialog_canceled_id = 0;
         }
 
-        if (manager->priv->shell_end_session_dialog_confirmed_id != 0) {
+        if (manager->priv->shell_end_session_dialog_confirmed_logout_id != 0) {
                 g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_confirmed_id);
-                manager->priv->shell_end_session_dialog_confirmed_id = 0;
+                                             manager->priv->shell_end_session_dialog_confirmed_logout_id);
+                manager->priv->shell_end_session_dialog_confirmed_logout_id = 0;
+        }
+
+        if (manager->priv->shell_end_session_dialog_confirmed_shutdown_id != 0) {
+                g_signal_handler_disconnect (manager->priv->shell,
+                                             manager->priv->shell_end_session_dialog_confirmed_shutdown_id);
+                manager->priv->shell_end_session_dialog_confirmed_shutdown_id = 0;
+        }
+
+        if (manager->priv->shell_end_session_dialog_confirmed_reboot_id != 0) {
+                g_signal_handler_disconnect (manager->priv->shell,
+                                             manager->priv->shell_end_session_dialog_confirmed_reboot_id);
+                manager->priv->shell_end_session_dialog_confirmed_reboot_id = 0;
         }
 
         if (manager->priv->shell_end_session_dialog_open_failed_id != 0) {
@@ -3108,8 +3122,8 @@ on_shell_end_session_dialog_canceled (GsmShell   *shell,
 }
 
 static void
-on_shell_end_session_dialog_confirmed (GsmShell   *shell,
-                                       GsmManager *manager)
+_handle_end_session_dialog_response (GsmManager           *manager,
+                                     GsmManagerLogoutType  logout_type)
 {
         /* Note we're checking for END_SESSION here and
          * QUERY_END_SESSION in the fallback cases elsewhere.
@@ -3126,7 +3140,31 @@ on_shell_end_session_dialog_confirmed (GsmShell   *shell,
         }
 
         manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
+        manager->priv->logout_type = logout_type;
         end_phase (manager);
+}
+
+static void
+on_shell_end_session_dialog_confirmed_logout (GsmShell   *shell,
+                                              GsmManager *manager)
+{
+        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_LOGOUT);
+        disconnect_shell_dialog_signals (manager);
+}
+
+static void
+on_shell_end_session_dialog_confirmed_shutdown (GsmShell   *shell,
+                                                GsmManager *manager)
+{
+        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_SHUTDOWN);
+        disconnect_shell_dialog_signals (manager);
+}
+
+static void
+on_shell_end_session_dialog_confirmed_reboot (GsmShell   *shell,
+                                              GsmManager *manager)
+{
+        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_REBOOT);
         disconnect_shell_dialog_signals (manager);
 }
 
@@ -3148,10 +3186,22 @@ connect_shell_dialog_signals (GsmManager *manager)
                                   G_CALLBACK (on_shell_end_session_dialog_canceled),
                                   manager);
 
-        manager->priv->shell_end_session_dialog_confirmed_id =
+        manager->priv->shell_end_session_dialog_confirmed_logout_id =
                 g_signal_connect (manager->priv->shell,
-                                  "end-session-dialog-confirmed",
-                                  G_CALLBACK (on_shell_end_session_dialog_confirmed),
+                                  "end-session-dialog-confirmed-logout",
+                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_logout),
+                                  manager);
+
+        manager->priv->shell_end_session_dialog_confirmed_shutdown_id =
+                g_signal_connect (manager->priv->shell,
+                                  "end-session-dialog-confirmed-shutdown",
+                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_shutdown),
+                                  manager);
+
+        manager->priv->shell_end_session_dialog_confirmed_reboot_id =
+                g_signal_connect (manager->priv->shell,
+                                  "end-session-dialog-confirmed-reboot",
+                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_reboot),
                                   manager);
 }
 

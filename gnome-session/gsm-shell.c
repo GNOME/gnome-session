@@ -74,7 +74,9 @@ enum {
         END_SESSION_DIALOG_OPEN_FAILED,
         END_SESSION_DIALOG_CLOSED,
         END_SESSION_DIALOG_CANCELED,
-        END_SESSION_DIALOG_CONFIRMED,
+        END_SESSION_DIALOG_CONFIRMED_LOGOUT,
+        END_SESSION_DIALOG_CONFIRMED_SHUTDOWN,
+        END_SESSION_DIALOG_CONFIRMED_REBOOT,
         NUMBER_OF_SIGNALS
 };
 
@@ -180,11 +182,31 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               g_cclosure_marshal_VOID__VOID,
                               G_TYPE_NONE, 0);
 
-        signals [END_SESSION_DIALOG_CONFIRMED] =
-                g_signal_new ("end-session-dialog-confirmed",
+        signals [END_SESSION_DIALOG_CONFIRMED_LOGOUT] =
+                g_signal_new ("end-session-dialog-confirmed-logout",
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed),
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_logout),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0);
+
+        signals [END_SESSION_DIALOG_CONFIRMED_SHUTDOWN] =
+                g_signal_new ("end-session-dialog-confirmed-shutdown",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_shutdown),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0);
+
+        signals [END_SESSION_DIALOG_CONFIRMED_REBOOT] =
+                g_signal_new ("end-session-dialog-confirmed-reboot",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
@@ -497,10 +519,39 @@ on_end_session_dialog_canceled (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_confirmed (DBusGProxy *proxy,
-                                 GsmShell   *shell)
+on_end_session_dialog_confirmed_logout (DBusGProxy *proxy,
+                                        GsmShell   *shell)
 {
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED], 0);
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
+        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_LOGOUT], 0);
+}
+
+static void
+on_end_session_dialog_confirmed_shutdown (DBusGProxy *proxy,
+                                          GsmShell   *shell)
+{
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
+        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_SHUTDOWN], 0);
+}
+
+static void
+on_end_session_dialog_confirmed_reboot (DBusGProxy *proxy,
+                                        GsmShell   *shell)
+{
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
+        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_REBOOT], 0);
 }
 
 static void
@@ -591,14 +642,24 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                              "Canceled",
                                              G_CALLBACK (on_end_session_dialog_canceled),
                                              shell, NULL);
-
                 dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "Confirmed", G_TYPE_INVALID);
+                                         "ConfirmedLogout", G_TYPE_INVALID);
                 dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "Confirmed",
-                                             G_CALLBACK (on_end_session_dialog_confirmed),
+                                             "ConfirmedLogout",
+                                             G_CALLBACK (on_end_session_dialog_confirmed_logout),
                                              shell, NULL);
-
+                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
+                                         "ConfirmedShutdown", G_TYPE_INVALID);
+                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
+                                             "ConfirmedShutdown",
+                                             G_CALLBACK (on_end_session_dialog_confirmed_shutdown),
+                                             shell, NULL);
+                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
+                                         "ConfirmedReboot", G_TYPE_INVALID);
+                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
+                                             "ConfirmedReboot",
+                                             G_CALLBACK (on_end_session_dialog_confirmed_reboot),
+                                             shell, NULL);
         }
 
         inhibitor_array = get_array_from_store (inhibitors);
