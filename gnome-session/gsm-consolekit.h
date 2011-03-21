@@ -55,11 +55,6 @@ struct _GsmConsolekitClass
 
         void (* request_completed) (GsmConsolekit *manager,
                                     GError        *error);
-
-        void (* privileges_completed) (GsmConsolekit *manager,
-                                       gboolean       success,
-                                       gboolean       ask_later,
-                                       GError        *error);
 };
 
 enum _GsmConsolekitError {
@@ -76,10 +71,6 @@ GQuark           gsm_consolekit_error_quark     (void);
 GsmConsolekit   *gsm_consolekit_new             (void) G_GNUC_MALLOC;
 
 gboolean         gsm_consolekit_can_switch_user (GsmConsolekit *manager);
-
-gboolean         gsm_consolekit_get_restart_privileges (GsmConsolekit *manager);
-
-gboolean         gsm_consolekit_get_stop_privileges    (GsmConsolekit *manager);
 
 gboolean         gsm_consolekit_can_stop        (GsmConsolekit *manager);
 

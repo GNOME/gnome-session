@@ -2828,133 +2828,28 @@ gsm_manager_is_suspend_inhibited (GsmManager *manager)
 }
 
 static void
-request_reboot_privileges_completed (GsmConsolekit *consolekit,
-                                     gboolean       success,
-                                     gboolean       ask_later,
-                                     GError        *error,
-                                     GsmManager    *manager)
-{
-        /* make sure we disconnect the signal handler so that it's not called
-         * again next time the event is fired -- this can happen if the reboot
-         * is cancelled. */
-        g_signal_handlers_disconnect_by_func (consolekit,
-                                              request_reboot_privileges_completed,
-                                              manager);
-
-        g_object_unref (consolekit);
-
-        if (success) {
-                if (ask_later) {
-                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
-                } else {
-                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT;
-                }
-
-                end_phase (manager);
-        }
-}
-
-static void
 request_reboot (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
-        gboolean       success;
-
         g_debug ("GsmManager: requesting reboot");
 
-        /* We request the privileges before doing anything. There are a few
-         * different cases here:
+        /* FIXME: We need to support a more structured shutdown here,
+         * but that's blocking on an improved ConsoleKit api.
          *
-         *   - no ConsoleKit: we fallback on GDM
-         *   - no password required: everything is fine
-         *   - password asked once: we ask for it now. If the user enters it
-         *     fine, then all is great. If the user doesn't enter it fine, we
-         *     don't do anything (so no logout).
-         *   - password asked each time: we don't ask it for now since we don't
-         *     want to ask for it twice. Instead we'll ask for it at the very
-         *     end. If the user will enter it fine, then all is great again. If
-         *     the user doesn't enter it fine, then we'll just fallback to GDM.
-         *
-         * The last case (password asked each time) is a bit broken, but
-         * there's really nothing we can do about it. Generally speaking,
-         * though, the password will only be asked once (unless the system is
-         * configured in paranoid mode), and most probably only if there are
-         * more than one user connected. So the general case is that it will
-         * just work fine.
+         * See https://bugzilla.gnome.org/show_bug.cgi?id=585614
          */
-
-        consolekit = gsm_get_consolekit ();
-        g_signal_connect (consolekit,
-                          "privileges-completed",
-                          G_CALLBACK (request_reboot_privileges_completed),
-                          manager);
-        success = gsm_consolekit_get_restart_privileges (consolekit);
-
-        if (!success) {
-                g_signal_handlers_disconnect_by_func (consolekit,
-                                                      request_reboot_privileges_completed,
-                                                      manager);
-                g_object_unref (consolekit);
-
-                manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_GDM;
-                end_phase (manager);
-        }
-}
-
-static void
-request_shutdown_privileges_completed (GsmConsolekit *consolekit,
-                                       gboolean       success,
-                                       gboolean       ask_later,
-                                       GError        *error,
-                                       GsmManager    *manager)
-{
-        /* make sure we disconnect the signal handler so that it's not called
-         * again next time the event is fired -- this can happen if the reboot
-         * is cancelled. */
-        g_signal_handlers_disconnect_by_func (consolekit,
-                                              request_shutdown_privileges_completed,
-                                              manager);
-
-        g_object_unref (consolekit);
-
-        if (success) {
-                if (ask_later) {
-                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
-                } else {
-                        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN;
-                }
-
-                end_phase (manager);
-        }
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
+        end_phase (manager);
 }
 
 static void
 request_shutdown (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
-        gboolean       success;
-
         g_debug ("GsmManager: requesting shutdown");
 
-        /* See the comment in request_reboot() for some more details about how
-         * this works. */
-
-        consolekit = gsm_get_consolekit ();
-        g_signal_connect (consolekit,
-                          "privileges-completed",
-                          G_CALLBACK (request_shutdown_privileges_completed),
-                          manager);
-        success = gsm_consolekit_get_stop_privileges (consolekit);
-
-        if (!success) {
-                g_signal_handlers_disconnect_by_func (consolekit,
-                                                      request_shutdown_privileges_completed,
-                                                      manager);
-                g_object_unref (consolekit);
-
-                manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_GDM;
-                end_phase (manager);
-        }
+        /* See the comment in request_reboot() for some more details about
+         * what work needs to be done here. */
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
+        end_phase (manager);
 }
 
 static void

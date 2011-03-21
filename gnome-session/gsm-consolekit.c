@@ -61,7 +61,6 @@ enum {
 
 enum {
         REQUEST_COMPLETED = 0,
-        PRIVILEGES_COMPLETED,
         LAST_SIGNAL
 };
 
@@ -136,17 +135,6 @@ gsm_consolekit_class_init (GsmConsolekitClass *manager_class)
                               g_cclosure_marshal_VOID__POINTER,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
-
-        signals [PRIVILEGES_COMPLETED] =
-                g_signal_new ("privileges-completed",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmConsolekitClass, privileges_completed),
-                              NULL,
-                              NULL,
-                              gsm_marshal_VOID__BOOLEAN_BOOLEAN_POINTER,
-                              G_TYPE_NONE,
-                              3, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_POINTER);
 
         g_type_class_add_private (manager_class, sizeof (GsmConsolekitPrivate));
 }
@@ -746,26 +734,6 @@ gsm_consolekit_can_switch_user (GsmConsolekit *manager)
         g_free (seat_id);
 
         return ret;
-}
-
-gboolean
-gsm_consolekit_get_restart_privileges (GsmConsolekit *manager)
-{
-	g_signal_emit (G_OBJECT (manager),
-		       signals [PRIVILEGES_COMPLETED],
-		       0, TRUE, TRUE, NULL);
-
-	return TRUE;
-}
-
-gboolean
-gsm_consolekit_get_stop_privileges (GsmConsolekit *manager)
-{
-	g_signal_emit (G_OBJECT (manager),
-		       signals [PRIVILEGES_COMPLETED],
-		       0, TRUE, TRUE, NULL);
-
-	return TRUE;
 }
 
 gboolean
