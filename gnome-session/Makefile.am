@@ -30,6 +30,7 @@ gnome_session_SOURCES =				\
 	gsm-consolekit.h			\
 	gsm-logout-dialog.h			\
 	gsm-logout-dialog.c			\
+	gsm-icon-names.h			\
 	gsm-inhibit-dialog.h			\
 	gsm-inhibit-dialog.c			\
 	gs-idle-monitor.h			\
