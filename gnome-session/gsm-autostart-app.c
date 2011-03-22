@@ -1231,6 +1231,24 @@ gsm_autostart_app_provides (GsmApp     *app,
         return FALSE;
 }
 
+static char **
+gsm_autostart_app_get_provides (GsmApp *app)
+{
+        GsmAutostartApp *aapp;
+
+        g_return_val_if_fail (GSM_IS_APP (app), NULL);
+
+        aapp = GSM_AUTOSTART_APP (app);
+
+        if (aapp->priv->desktop_file == NULL) {
+                return NULL;
+        }
+
+        return egg_desktop_file_get_string_list (aapp->priv->desktop_file,
+                                                 GSM_AUTOSTART_APP_PROVIDES_KEY,
+                                                 NULL, NULL);
+}
+
 static gboolean
 gsm_autostart_app_has_autostart_condition (GsmApp     *app,
                                            const char *condition)
@@ -1334,6 +1352,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_restart = gsm_autostart_app_restart;
         app_class->impl_stop = gsm_autostart_app_stop;
         app_class->impl_provides = gsm_autostart_app_provides;
+        app_class->impl_get_provides = gsm_autostart_app_get_provides;
         app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
         app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
         app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
