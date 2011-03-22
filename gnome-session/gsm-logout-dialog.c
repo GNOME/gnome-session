@@ -40,6 +40,9 @@
 /* Shared with gsm-fail-whale-dialog.c */
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
+#define LOCKDOWN_SCHEMA            "org.gnome.desktop.lockdown"
+#define KEY_DISABLE_USER_SWITCHING "disable-user-switching"
+
 typedef enum {
         GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
         GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN
@@ -193,9 +196,16 @@ gsm_logout_supports_system_hibernate (GsmLogoutDialog *logout_dialog)
 static gboolean
 gsm_logout_supports_switch_user (GsmLogoutDialog *logout_dialog)
 {
-        gboolean ret;
+        GSettings *settings;
+        gboolean   ret;
 
-        ret = gsm_consolekit_can_switch_user (logout_dialog->priv->consolekit);
+        settings = g_settings_new (LOCKDOWN_SCHEMA);
+        if (g_settings_get_boolean (settings, KEY_DISABLE_USER_SWITCHING))
+                ret = FALSE;
+        g_object_unref (settings);
+
+        if (ret)
+                ret = gsm_consolekit_can_switch_user (logout_dialog->priv->consolekit);
 
         return ret;
 }
@@ -219,7 +229,6 @@ gsm_logout_supports_shutdown (GsmLogoutDialog *logout_dialog)
         gboolean ret;
 
         ret = gsm_consolekit_can_stop (logout_dialog->priv->consolekit);
-
         if (!ret) {
                 ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
         }
