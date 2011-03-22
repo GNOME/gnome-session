@@ -1297,19 +1297,17 @@ show_fallback_dialog (const char *title,
                       const char *uri)
 {
         GtkWidget *dialog, *image, *link, *hbox;
-        GdkPixbuf *pix;
 
         dialog = gtk_message_dialog_new (NULL, 0,
                                          GTK_MESSAGE_WARNING,
                                          GTK_BUTTONS_CLOSE,
                                          title);
 
-        pix = rsvg_pixbuf_from_file_at_size (DATA_DIR "/sad-computer.svgz", 128, 128, NULL);
-        if (pix != NULL) {
-                image = gtk_image_new_from_pixbuf (pix);
-                gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
-                g_object_unref (pix);
-        }
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), "computer-fail");
+
+        image = gtk_image_new_from_icon_name ("computer-fail",
+                                              gsm_util_get_computer_fail_icon_size ());
+        gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
 
         if (description) {
                 gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),

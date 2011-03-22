@@ -495,3 +495,14 @@ gsm_util_setenv (const char *variable,
                 g_error_free (bus_error);
         }
 }
+
+GtkIconSize
+gsm_util_get_computer_fail_icon_size (void)
+{
+        static GtkIconSize icon_size = 0;
+
+        if (icon_size == 0)
+                icon_size = gtk_icon_size_register ("gnome-session-computer-fail", 128, 128);
+
+        return icon_size;
+}

@@ -21,6 +21,7 @@
 #define __GSM_UTIL_H__
 
 #include <glib.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -50,6 +51,8 @@ char *      gsm_util_generate_startup_id            (void);
 
 void        gsm_util_setenv                         (const char *variable,
                                                      const char *value);
+
+GtkIconSize gsm_util_get_computer_fail_icon_size    (void);
 
 G_END_DECLS
 
