@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.92.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 09:58+0100\n"
-"PO-Revision-Date: 2011-03-17 09:59+0100\n"
+"POT-Creation-Date: 2011-03-22 10:52+0100\n"
+"PO-Revision-Date: 2011-03-22 10:53+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: no\n"
@@ -267,62 +267,112 @@ msgstr "Lås skjerm"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Du vil bli logget ut automatisk om %d sekund."
 msgstr[1] "Du vil bli logget ut automatisk om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Systemet vil bli slått av automatisk om %d sekund."
 msgstr[1] "Systemet vil bli slått automatisk av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Du er logget inn som «%s»"
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-manager.c:1273
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "Prøv gjenopp_retting"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "En systemfeil har oppstått: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "En fatal systemfeil har oppstått: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Avsluttet med kode %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Terminert av signal %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Stoppet av signal %d"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:267
+#, c-format
+msgid "Component '%s': %s"
+msgstr "Komponent «%s»: %s"
+
+#: ../gnome-session/gsm-manager.c:577
+msgid "Killed by signal"
+msgstr "Terminert av signal"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:635
+msgid "Timed out"
+msgstr "Tidsavbrudd"
+
+#: ../gnome-session/gsm-manager.c:1348
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 kunne ikke starte"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1349
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -330,15 +380,17 @@ msgid ""
 "This most likely means your system (graphics hardware or driver) is not "
 "capable of delivering the full GNOME 3 experience."
 msgstr ""
-"GNOME 3 klarte dessverre ikke å starte korrekt og startet i <i>Reserveløsningsmodus</i>.\n"
+"GNOME 3 klarte dessverre ikke å starte korrekt og startet i "
+"<i>Reserveløsningsmodus</i>.\n"
 "\n"
-"Dette betyr mest sannsynlig at systemet, grafikkmaskinvaren eller driveren, ikke støtter å kjøre GNOME 3"
+"Dette betyr mest sannsynlig at systemet, grafikkmaskinvaren eller driveren, "
+"ikke støtter å kjøre GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1351
 msgid "Learn more about GNOME 3"
 msgstr "Lær mer om GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1448 ../gnome-session/gsm-manager.c:2172
 msgid "Not responding"
 msgstr "Svarer ikke"
 
