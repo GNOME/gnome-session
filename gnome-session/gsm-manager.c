@@ -3701,6 +3701,7 @@ gsm_manager_is_autostart_condition_handled (GsmManager *manager,
 static void
 append_app (GsmManager *manager,
             GsmApp     *app,
+            const char *provides,
             gboolean    is_required)
 {
         const char *id;
@@ -3728,6 +3729,16 @@ append_app (GsmManager *manager,
         dup = find_app_for_app_id (manager, app_id);
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: app-id '%s' already exists", app_id);
+
+                if (provides && GSM_IS_AUTOSTART_APP (dup))
+                        gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (dup), provides);
+
+                if (is_required &&
+                    !g_slist_find (manager->priv->required_apps, dup)) {
+                        g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
+                        manager->priv->required_apps = g_slist_prepend (manager->priv->required_apps, dup);
+                }
+
                 return;
         }
 
@@ -3795,11 +3806,14 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
+        /* Note: all changes we do to app need to be done for dup in
+         * append_app(), in case the app-id already exists */
+
         if (provides)
                 gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (app), provides);
 
         g_debug ("GsmManager: read %s", path);
-        append_app (manager, app, is_required);
+        append_app (manager, app, provides, is_required);
         g_object_unref (app);
 
         return TRUE;
