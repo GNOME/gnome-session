@@ -547,8 +547,7 @@ end_phase (GsmManager *manager)
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
-                if (auto_save_is_enabled (manager))
-                        maybe_save_session (manager);
+                maybe_save_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 start_next_phase = FALSE;
@@ -2103,6 +2102,10 @@ maybe_save_session (GsmManager *manager)
          * logging out */
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING &&
             manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
+                goto out;
+        }
+
+        if (!auto_save_is_enabled (manager)) {
                 goto out;
         }
 
