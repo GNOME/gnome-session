@@ -102,7 +102,7 @@ gsm_gconf_check (void)
 
                 if (!WIFEXITED (status) || WEXITSTATUS (status) != 0) {
                         /* FIXME: capture gconf-sanity-check's stderr */
-                        gsm_util_init_error (TRUE,
+                        gsm_util_init_error (FALSE,
                                              _("There is a problem with the configuration server.\n"
                                                "(%s exited with status %d)"),
                                              GCONF_SANITY_CHECK, status);
