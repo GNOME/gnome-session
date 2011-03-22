@@ -206,7 +206,7 @@ gsm_session_clear_one_client (const char *filename,
                 if (!discard_exec)
                         goto out;
 
-                if (g_hash_table_lookup (discard_hash, discard_exec))
+                if (discard_hash && g_hash_table_lookup (discard_hash, discard_exec))
                         goto out;
 
                 if (!g_shell_parse_argv (discard_exec, &argc, &argv, NULL))
@@ -268,4 +268,20 @@ gsm_session_clear_saved_session (const char *directory,
         g_dir_close (dir);
 
         return result;
+}
+
+void
+gsm_session_save_clear (void)
+{
+        const char *save_dir;
+
+        g_debug ("GsmSessionSave: Clearing saved session");
+
+        save_dir = gsm_util_get_saved_session_dir ();
+        if (save_dir == NULL) {
+                g_warning ("GsmSessionSave: cannot create saved session directory");
+                return;
+        }
+
+	gsm_session_clear_saved_session (save_dir, NULL);
 }
