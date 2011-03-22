@@ -58,6 +58,8 @@ struct _GsmAutostartAppPrivate {
         char                 *startup_id;
 
         EggDesktopFile       *desktop_file;
+        /* provides defined in session definition */
+        GSList               *session_provides;
 
         /* desktop file state */
         char                 *condition_string;
@@ -745,6 +747,11 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->startup_id = NULL;
         }
 
+        if (priv->session_provides) {
+                g_slist_free_full (priv->session_provides, g_free);
+                priv->session_provides = NULL;
+        }
+
         if (priv->condition_string) {
                 g_free (priv->condition_string);
                 priv->condition_string = NULL;
@@ -1203,6 +1210,7 @@ gsm_autostart_app_provides (GsmApp     *app,
         char           **provides;
         gsize            len;
         gsize            i;
+        GSList          *l;
         GsmAutostartApp *aapp;
 
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
@@ -1211,6 +1219,11 @@ gsm_autostart_app_provides (GsmApp     *app,
 
         if (aapp->priv->desktop_file == NULL) {
                 return FALSE;
+        }
+
+        for (l = aapp->priv->session_provides; l != NULL; l = l->next) {
+                if (!strcmp (l->data, service))
+                        return TRUE;
         }
 
         provides = egg_desktop_file_get_string_list (aapp->priv->desktop_file,
@@ -1228,13 +1241,20 @@ gsm_autostart_app_provides (GsmApp     *app,
         }
 
         g_strfreev (provides);
+
         return FALSE;
 }
 
 static char **
 gsm_autostart_app_get_provides (GsmApp *app)
 {
-        GsmAutostartApp *aapp;
+        GsmAutostartApp  *aapp;
+        char            **provides;
+        gsize             provides_len;
+        char            **result;
+        gsize             result_len;
+        int               i;
+        GSList           *l;
 
         g_return_val_if_fail (GSM_IS_APP (app), NULL);
 
@@ -1244,9 +1264,38 @@ gsm_autostart_app_get_provides (GsmApp *app)
                 return NULL;
         }
 
-        return egg_desktop_file_get_string_list (aapp->priv->desktop_file,
-                                                 GSM_AUTOSTART_APP_PROVIDES_KEY,
-                                                 NULL, NULL);
+        provides = egg_desktop_file_get_string_list (aapp->priv->desktop_file,
+                                                     GSM_AUTOSTART_APP_PROVIDES_KEY,
+                                                     &provides_len, NULL);
+
+        if (!aapp->priv->session_provides)
+                return provides;
+
+        result_len = provides_len + g_slist_length (aapp->priv->session_provides);
+	result = g_new (char *, result_len + 1); /* including last NULL */
+
+        for (i = 0; provides[i] != NULL; i++)
+                result[i] = provides[i];
+        g_free (provides);
+
+        for (l = aapp->priv->session_provides; l != NULL; l = l->next, i++)
+                result[i] = g_strdup (l->data);
+
+        result[i] = NULL;
+
+        g_assert (i == result_len);
+
+        return result;
+}
+
+void
+gsm_autostart_app_add_provides (GsmAutostartApp *aapp,
+                                const char      *provides)
+{
+        g_return_if_fail (GSM_IS_AUTOSTART_APP (aapp));
+
+        aapp->priv->session_provides = g_slist_prepend (aapp->priv->session_provides,
+                                                        g_strdup (provides));
 }
 
 static gboolean

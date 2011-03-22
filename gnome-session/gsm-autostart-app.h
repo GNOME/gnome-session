@@ -59,6 +59,9 @@ GType   gsm_autostart_app_get_type           (void) G_GNUC_CONST;
 
 GsmApp *gsm_autostart_app_new                (const char *desktop_file);
 
+void    gsm_autostart_app_add_provides       (GsmAutostartApp *aapp,
+                                              const char      *provides);
+
 #define GSM_AUTOSTART_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
 #define GSM_AUTOSTART_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
 #define GSM_AUTOSTART_APP_PROVIDES_KEY    "X-GNOME-Provides"

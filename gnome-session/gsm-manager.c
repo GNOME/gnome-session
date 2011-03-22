@@ -3795,6 +3795,9 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
+        if (provides)
+                gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (app), provides);
+
         g_debug ("GsmManager: read %s", path);
         append_app (manager, app, is_required);
         g_object_unref (app);
