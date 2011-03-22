@@ -228,12 +228,18 @@ static void
 load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
-        char **autostart_dirs;
-        int    i;
-
-        autostart_dirs = gsm_util_get_autostart_dirs ();
+        g_debug ("fill: *** Adding required components");
+        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
+                                    append_required_components_helper, manager);
+        g_debug ("fill: *** Done adding required components");
 
         if (!gsm_manager_get_failsafe (manager)) {
+                char **autostart_dirs;
+                int    i;
+
+                autostart_dirs = gsm_util_get_autostart_dirs ();
+
+
                 maybe_load_saved_session_apps (manager);
 
                 for (i = 0; autostart_dirs[i]; i++) {
@@ -241,20 +247,13 @@ load_standard_apps (GsmManager *manager,
                                                                  autostart_dirs[i]);
                 }
 
+                g_strfreev (autostart_dirs);
         }
 
-        /* We do this at the end in case a saved session contains an
-         * application that already provides one of the components. */
-        g_debug ("fill: *** Adding required components and providers");
-
+        g_debug ("fill: *** Adding default providers");
         handle_default_providers (keyfile, !gsm_manager_get_failsafe (manager),
                                   append_required_providers_helper, manager);
-        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
-                                    append_required_components_helper, manager);
-
-        g_debug ("fill: *** Done adding required components and providers");
-
-        g_strfreev (autostart_dirs);
+        g_debug ("fill: *** Done adding default providers");
 }
 
 static void
