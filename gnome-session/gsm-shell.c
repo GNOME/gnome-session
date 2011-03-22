@@ -73,6 +73,7 @@ enum {
 enum {
         END_SESSION_DIALOG_OPENED = 0,
         END_SESSION_DIALOG_OPEN_FAILED,
+        END_SESSION_DIALOG_CLOSED,
         END_SESSION_DIALOG_CANCELED,
         END_SESSION_DIALOG_CONFIRMED,
         NUMBER_OF_SIGNALS
@@ -95,6 +96,7 @@ static void     gsm_shell_on_name_owner_changed (DBusGProxy *bus_proxy,
                                                  const char *prev_owner,
                                                  const char *new_owner,
                                                  GsmShell   *shell);
+static void     queue_end_session_dialog_update (GsmShell *shell);
 
 G_DEFINE_TYPE (GsmShell, gsm_shell, G_TYPE_OBJECT);
 
@@ -154,6 +156,16 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_open_failed),
+                              NULL,
+                              NULL,
+                              g_cclosure_marshal_VOID__VOID,
+                              G_TYPE_NONE, 0);
+
+        signals [END_SESSION_DIALOG_CLOSED] =
+                g_signal_new ("end-session-dialog-closed",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_closed),
                               NULL,
                               NULL,
                               g_cclosure_marshal_VOID__VOID,
@@ -464,15 +476,26 @@ on_open_finished (DBusGProxy     *proxy,
 }
 
 static void
-on_end_session_dialog_canceled (DBusGProxy *proxy,
-                                GsmShell   *shell)
+on_end_session_dialog_closed (DBusGProxy *proxy,
+                              GsmShell   *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
                 shell->priv->update_idle_id = 0;
         }
 
+        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                              G_CALLBACK (queue_end_session_dialog_update),
+                                              shell);
         shell->priv->has_open_dialog = FALSE;
+
+        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CLOSED], 0);
+}
+
+static void
+on_end_session_dialog_canceled (DBusGProxy *proxy,
+                                GsmShell   *shell)
+{
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CANCELED], 0);
 }
 
@@ -480,12 +503,6 @@ static void
 on_end_session_dialog_confirmed (DBusGProxy *proxy,
                                  GsmShell   *shell)
 {
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        shell->priv->has_open_dialog = FALSE;
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED], 0);
 }
 
@@ -570,6 +587,13 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   shell);
 
                 dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
+                                         "Closed", G_TYPE_INVALID);
+                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
+                                             "Closed",
+                                             G_CALLBACK (on_end_session_dialog_closed),
+                                             shell, NULL);
+
+                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
                                          "Canceled", G_TYPE_INVALID);
                 dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
                                              "Canceled",
@@ -611,24 +635,24 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                 return FALSE;
         }
 
-        if (inhibitors != shell->priv->inhibitors) {
-                if (shell->priv->inhibitors != NULL) {
-                        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                                              G_CALLBACK (queue_end_session_dialog_update),
-                                                              shell);
-                        g_object_unref (shell->priv->inhibitors);
-                }
+        g_object_ref (inhibitors);
 
-                shell->priv->inhibitors = g_object_ref (inhibitors);
-
-                g_signal_connect_swapped (inhibitors, "added",
-                                          G_CALLBACK (queue_end_session_dialog_update),
-                                          shell);
-
-                g_signal_connect_swapped (inhibitors, "removed",
-                                          G_CALLBACK (queue_end_session_dialog_update),
-                                          shell);
+        if (shell->priv->inhibitors != NULL) {
+                g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                                      G_CALLBACK (queue_end_session_dialog_update),
+                                                      shell);
+                g_object_unref (shell->priv->inhibitors);
         }
+
+        shell->priv->inhibitors = inhibitors;
+
+        g_signal_connect_swapped (inhibitors, "added",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
+
+        g_signal_connect_swapped (inhibitors, "removed",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
 
         shell->priv->end_session_open_call = call;
         shell->priv->end_session_dialog_type = type;
