@@ -660,8 +660,6 @@ _start_app (const char *id,
             GsmApp     *app,
             GsmManager *manager)
 {
-        gboolean res;
-
         if (gsm_app_peek_phase (app) != manager->priv->phase) {
                 goto out;
         }
