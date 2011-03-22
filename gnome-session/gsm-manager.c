@@ -574,12 +574,16 @@ app_died (GsmApp     *app,
                          gsm_app_peek_app_id (app));
                 return;
         }
-        
+
         if (!gsm_app_restart (app, &error)) {
                 if (is_app_required (manager, app)) {
                         on_required_app_failure (manager, app);
+                } else {
+                        g_warning ("Error on restarting session managed app: %s", error->message);
                 }
+                g_clear_error (&error);
         }
+
         /* For now, we don't do anything with crashes from
          * non-required apps after they hit the restart limit.
          *
@@ -1827,8 +1831,6 @@ _disconnect_client (GsmManager *manager,
                         on_required_app_failure (manager, app);
                 } else {
                         g_warning ("Error on restarting session managed app: %s", error->message);
-                        /* FIXME: show an error dialog - particularly if this
-                           is a required component */
                 }
                 g_clear_error (&error);
         }

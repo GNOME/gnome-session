@@ -38,17 +38,33 @@
 
 struct _GsmFailWhaleDialogPrivate
 {
-        GtkWidget           *button_box;
-        GtkWidget           *message_label;
-        GdkRectangle         geometry;
+        GdkRectangle geometry;
 };
 
-static GsmFailWhaleDialog *current_dialog = NULL;
-
-static void gsm_fail_whale_dialog_destroy  (GsmFailWhaleDialog *fail_dialog,
-                                            gpointer         data);
-
 G_DEFINE_TYPE (GsmFailWhaleDialog, gsm_fail_whale_dialog, GTK_TYPE_WINDOW);
+
+/* derived from tomboy */
+static void
+_window_override_user_time (GsmFailWhaleDialog *window)
+{
+        guint32 ev_time = gtk_get_current_event_time ();
+
+        if (ev_time == 0) {
+                gint ev_mask = gtk_widget_get_events (GTK_WIDGET (window));
+                if (!(ev_mask & GDK_PROPERTY_CHANGE_MASK)) {
+                        gtk_widget_add_events (GTK_WIDGET (window),
+                                               GDK_PROPERTY_CHANGE_MASK);
+                }
+
+                /*
+                 * NOTE: Last resort for D-BUS or other non-interactive
+                 *       openings.  Causes roundtrip to server.  Lame.
+                 */
+                ev_time = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+        }
+
+        gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), ev_time);
+}
 
 /* copied from panel-toplevel.c */
 static void
@@ -101,32 +117,9 @@ update_geometry (GsmFailWhaleDialog *fail_dialog)
 
 static void
 on_screen_size_changed (GdkScreen          *screen,
-                        GsmFailWhaleDialog *dialog)
+                        GsmFailWhaleDialog *fail_dialog)
 {
-        gtk_widget_queue_resize (GTK_WIDGET (dialog));
-}
-
-/* derived from tomboy */
-static void
-_window_override_user_time (GsmFailWhaleDialog *window)
-{
-        guint32 ev_time = gtk_get_current_event_time ();
-
-        if (ev_time == 0) {
-                gint ev_mask = gtk_widget_get_events (GTK_WIDGET (window));
-                if (!(ev_mask & GDK_PROPERTY_CHANGE_MASK)) {
-                        gtk_widget_add_events (GTK_WIDGET (window),
-                                               GDK_PROPERTY_CHANGE_MASK);
-                }
-
-                /*
-                 * NOTE: Last resort for D-BUS or other non-interactive
-                 *       openings.  Causes roundtrip to server.  Lame.
-                 */
-                ev_time = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
-        }
-
-        gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), ev_time);
+        gtk_widget_queue_resize (GTK_WIDGET (fail_dialog));
 }
 
 static void
@@ -162,39 +155,43 @@ static void
 gsm_fail_whale_dialog_size_request (GtkWidget      *widget,
                                     GtkRequisition *requisition)
 {
-        GsmFailWhaleDialog *window;
+        GsmFailWhaleDialog *fail_dialog;
         GtkBin        *bin;
         GdkRectangle   old_geometry;
         int            position_changed = FALSE;
         int            size_changed = FALSE;
 
-        window = GSM_FAIL_WHALE_DIALOG (widget);
+        fail_dialog = GSM_FAIL_WHALE_DIALOG (widget);
         bin = GTK_BIN (widget);
 
-        if (gtk_bin_get_child (bin) && gtk_widget_get_visible (gtk_bin_get_child (bin))) {
+        if (gtk_bin_get_child (bin) &&
+            gtk_widget_get_visible (gtk_bin_get_child (bin))) {
                 gtk_widget_size_request (gtk_bin_get_child (bin), requisition);
         }
 
-        update_geometry (window);
+        old_geometry = fail_dialog->priv->geometry;
 
-        requisition->width  = window->priv->geometry.width;
-        requisition->height = window->priv->geometry.height;
+        update_geometry (fail_dialog);
+
+        requisition->width  = fail_dialog->priv->geometry.width;
+        requisition->height = fail_dialog->priv->geometry.height;
 
         if (!gtk_widget_get_realized (widget)) {
                 return;
         }
 
-        if (old_geometry.width  != window->priv->geometry.width ||
-            old_geometry.height != window->priv->geometry.height) {
+        if (old_geometry.width  != fail_dialog->priv->geometry.width ||
+            old_geometry.height != fail_dialog->priv->geometry.height) {
                 size_changed = TRUE;
         }
 
-        if (old_geometry.x != window->priv->geometry.x ||
-            old_geometry.y != window->priv->geometry.y) {
+        if (old_geometry.x != fail_dialog->priv->geometry.x ||
+            old_geometry.y != fail_dialog->priv->geometry.y) {
                 position_changed = TRUE;
         }
 
-        _window_move_resize_window (window, position_changed, size_changed);
+        _window_move_resize_window (fail_dialog,
+                                    position_changed, size_changed);
 }
 
 static void
@@ -256,6 +253,8 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GtkWidget *box;
         GtkWidget *image;
         GtkWidget *label;
+        GtkWidget *message_label;
+        GtkWidget *button_box;
         GtkWidget *button;
         char *markup;
 
@@ -268,7 +267,8 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_widget_show (box);
         gtk_container_add (GTK_CONTAINER (alignment), box);
 
-        image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL, gsm_util_get_computer_fail_icon_size ());
+        image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL,
+                                              gsm_util_get_computer_fail_icon_size ());
         gtk_widget_show (image);
         gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
 
@@ -280,22 +280,25 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 
         /* make this changable at some point */
-        fail_dialog->priv->message_label = gtk_label_new (_("A problem has occured and the system can't recover.\nPlease log out and try again."));
-        gtk_label_set_justify (GTK_LABEL (fail_dialog->priv->message_label), GTK_JUSTIFY_CENTER);
-        gtk_label_set_line_wrap (GTK_LABEL (fail_dialog->priv->message_label), TRUE);
+        message_label = gtk_label_new (_("A problem has occured and the system can't recover.\nPlease log out and try again."));
+        gtk_label_set_justify (GTK_LABEL (message_label), GTK_JUSTIFY_CENTER);
+        gtk_label_set_line_wrap (GTK_LABEL (message_label), TRUE);
+        gtk_widget_show (message_label);
+        gtk_box_pack_start (GTK_BOX (box),
+                            message_label, FALSE, FALSE, 0);
 
-        gtk_widget_show (fail_dialog->priv->message_label);
-        gtk_box_pack_start (GTK_BOX (box), fail_dialog->priv->message_label, FALSE, FALSE, 0);
-
-        fail_dialog->priv->button_box = gtk_hbutton_box_new ();
-        gtk_container_set_border_width (GTK_CONTAINER (fail_dialog->priv->button_box), 20);
-        gtk_widget_show (fail_dialog->priv->button_box);
-        gtk_box_pack_end (GTK_BOX (box), fail_dialog->priv->button_box, FALSE, FALSE, 0);
+        button_box = gtk_hbutton_box_new ();
+        gtk_container_set_border_width (GTK_CONTAINER (button_box), 20);
+        gtk_widget_show (button_box);
+        gtk_box_pack_end (GTK_BOX (box),
+                          button_box, FALSE, FALSE, 0);
 
         button = gtk_button_new_with_mnemonic (_("_Log Out"));
         gtk_widget_show (button);
-        gtk_box_pack_end (GTK_BOX (fail_dialog->priv->button_box), button, FALSE, FALSE, 0);
-        g_signal_connect (button, "clicked", G_CALLBACK (on_logout_clicked), fail_dialog);
+        gtk_box_pack_end (GTK_BOX (button_box),
+                          button, FALSE, FALSE, 0);
+        g_signal_connect (button, "clicked",
+                          G_CALLBACK (on_logout_clicked), fail_dialog);
 }
 
 static void
@@ -313,32 +316,26 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
         gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
 
         setup_window (fail_dialog);
-
-        g_signal_connect (fail_dialog,
-                          "destroy",
-                          G_CALLBACK (gsm_fail_whale_dialog_destroy),
-                          NULL);
-}
-
-static void
-gsm_fail_whale_dialog_destroy (GsmFailWhaleDialog *fail_dialog,
-                               gpointer         data)
-{
-        g_assert (current_dialog != NULL);
-        current_dialog = NULL;
 }
 
 void
 gsm_fail_whale_dialog_we_failed (void)
 {
-        GsmFailWhaleDialog *fail_dialog;
+        static GsmFailWhaleDialog *current_dialog = NULL;
+        GsmFailWhaleDialog        *fail_dialog;
 
         if (current_dialog != NULL) {
                 return;
         }
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
+
         current_dialog = fail_dialog;
+        g_signal_connect (current_dialog,
+                          "destroy",
+                          G_CALLBACK (gtk_widget_destroyed),
+                          &current_dialog);
+
         gtk_widget_show (GTK_WIDGET (fail_dialog));
 }
 
