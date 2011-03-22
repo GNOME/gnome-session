@@ -31,6 +31,7 @@
 
 #include "gsm-logout-dialog.h"
 #include "gsm-consolekit.h"
+#include "gsm-icon-names.h"
 #include "gdm.h"
 
 #define GSM_LOGOUT_DIALOG_GET_PRIVATE(o)                                \
@@ -38,9 +39,6 @@
 
 /* Shared with gsm-fail-whale-dialog.c */
 #define AUTOMATIC_ACTION_TIMEOUT 60
-
-#define GSM_ICON_LOGOUT   "system-log-out"
-#define GSM_ICON_SHUTDOWN "system-shutdown"
 
 typedef enum {
         GSM_DIALOG_LOGOUT_TYPE_LOGOUT,

@@ -36,6 +36,7 @@
 
 #include "gsm-util.h"
 #include "gsm-autostart-app.h"
+#include "gsm-icon-names.h"
 #include "gsm-manager.h"
 
 #define GsmDesktopFile "_GSM_DesktopFile"
@@ -562,7 +563,7 @@ set_desktop_file_keys_from_client (GsmClient *client,
         g_key_file_set_string (keyfile,
                                G_KEY_FILE_DESKTOP_GROUP,
                                G_KEY_FILE_DESKTOP_KEY_ICON,
-                               "system-run");
+                               GSM_ICON_XSMP_DEFAULT);
 
         g_key_file_set_string (keyfile,
                                G_KEY_FILE_DESKTOP_GROUP,

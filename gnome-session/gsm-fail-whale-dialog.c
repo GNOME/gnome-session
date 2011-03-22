@@ -23,10 +23,12 @@
 
 #include <config.h>
 
-#include "gsm-fail-whale-dialog.h"
-#include "gsm-manager.h"
-
 #include <glib/gi18n.h>
+
+#include "gsm-fail-whale-dialog.h"
+
+#include "gsm-icon-names.h"
+#include "gsm-manager.h"
 
 #define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
         (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogPrivate))
@@ -268,7 +270,7 @@ gsm_fail_whale_dialog_we_failed (GsmFailWhaleDialogFailType fail_type,
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
 
-        gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), "gtk-error");
+        gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
         gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
 
         switch (fail_type) {

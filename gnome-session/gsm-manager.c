@@ -60,6 +60,7 @@
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
 #include "gsm-fail-whale-dialog.h"
+#include "gsm-icon-names.h"
 #include "gsm-inhibit-dialog.h"
 #include "gsm-consolekit.h"
 #include "gsm-session-save.h"
@@ -1303,9 +1304,9 @@ show_fallback_dialog (const char *title,
                                          GTK_BUTTONS_CLOSE,
                                          title);
 
-        gtk_window_set_icon_name (GTK_WINDOW (dialog), "computer-fail");
+        gtk_window_set_icon_name (GTK_WINDOW (dialog), GSM_ICON_COMPUTER_FAIL);
 
-        image = gtk_image_new_from_icon_name ("computer-fail",
+        image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL,
                                               gsm_util_get_computer_fail_icon_size ());
         gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
 
