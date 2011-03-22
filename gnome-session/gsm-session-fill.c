@@ -47,10 +47,10 @@ typedef void (*GsmFillHandleComponent) (const char *component,
                                         gpointer    user_data);
 
 static void
-handle_default_providers (GKeyFile               *keyfile,
-                          char                  **autostart_dirs,
-                          GsmFillHandleProvider   callback,
-                          gpointer                user_data)
+handle_default_providers (GKeyFile              *keyfile,
+                          gboolean               look_in_saved_session,
+                          GsmFillHandleProvider  callback,
+                          gpointer               user_data)
 {
         char **default_providers;
         int    i;
@@ -89,7 +89,8 @@ handle_default_providers (GKeyFile               *keyfile,
 
                 g_debug ("fill: provider '%s' looking for component: '%s'",
                          default_providers[i], value);
-                app_path = gsm_util_find_desktop_file_for_app_name (value, autostart_dirs);
+                app_path = gsm_util_find_desktop_file_for_app_name (value,
+                                                                    look_in_saved_session, TRUE);
 
                 callback (default_providers[i], value, app_path, user_data);
                 g_free (app_path);
@@ -101,10 +102,10 @@ handle_default_providers (GKeyFile               *keyfile,
 }
 
 static void
-handle_required_components (GKeyFile                *keyfile,
-                            char                   **autostart_dirs,
-                            GsmFillHandleComponent   callback,
-                            gpointer                 user_data)
+handle_required_components (GKeyFile               *keyfile,
+                            gboolean                look_in_saved_session,
+                            GsmFillHandleComponent  callback,
+                            gpointer                user_data)
 {
         char **required_components;
         int    i;
@@ -123,7 +124,8 @@ handle_required_components (GKeyFile                *keyfile,
         for (i = 0; required_components[i] != NULL; i++) {
                 char *app_path;
 
-                app_path = gsm_util_find_desktop_file_for_app_name (required_components[i], autostart_dirs);
+                app_path = gsm_util_find_desktop_file_for_app_name (required_components[i],
+                                                                    look_in_saved_session, TRUE);
                 callback (required_components[i], app_path, user_data);
                 g_free (app_path);
         }
@@ -162,21 +164,16 @@ check_required_components_helper (const char *component,
 static gboolean
 check_required (GKeyFile *keyfile)
 {
-        char **autostart_dirs;
         gboolean error = FALSE;
-
-        autostart_dirs = gsm_util_get_autostart_dirs ();
 
         g_debug ("fill: *** Checking required components and providers");
 
-        handle_default_providers (keyfile, autostart_dirs,
+        handle_default_providers (keyfile, FALSE,
                                   check_required_providers_helper, &error);
-        handle_required_components (keyfile, autostart_dirs,
+        handle_required_components (keyfile, FALSE,
                                     check_required_components_helper, &error);
 
         g_debug ("fill: *** Done checking required components and providers");
-
-        g_strfreev (autostart_dirs);
 
         return !error;
 }
@@ -250,9 +247,9 @@ load_standard_apps (GsmManager *manager,
          * application that already provides one of the components. */
         g_debug ("fill: *** Adding required components and providers");
 
-        handle_default_providers (keyfile, autostart_dirs,
+        handle_default_providers (keyfile, !gsm_manager_get_failsafe (manager),
                                   append_required_providers_helper, manager);
-        handle_required_components (keyfile, autostart_dirs,
+        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
                                     append_required_components_helper, manager);
 
         g_debug ("fill: *** Done adding required components and providers");

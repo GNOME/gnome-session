@@ -496,7 +496,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         }
 
         if (desktop_filename != NULL) {
-                search_dirs = gsm_util_get_desktop_dirs ();
+                search_dirs = gsm_util_get_desktop_dirs (TRUE, FALSE);
 
                 if (g_path_is_absolute (desktop_filename)) {
                         char *basename;

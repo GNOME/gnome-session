@@ -26,8 +26,9 @@ G_BEGIN_DECLS
 
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
-char *      gsm_util_find_desktop_file_for_app_name (const char  *app_name,
-                                                     char       **dirs);
+char *      gsm_util_find_desktop_file_for_app_name (const char *app_name,
+                                                     gboolean    look_in_saved_session,
+                                                     gboolean    autostart_first);
 
 gchar      *gsm_util_get_empty_tmp_session_dir      (void);
 
@@ -37,7 +38,8 @@ gchar**     gsm_util_get_app_dirs                   (void);
 
 gchar**     gsm_util_get_autostart_dirs             (void);
 
-gchar **    gsm_util_get_desktop_dirs               (void);
+gchar **    gsm_util_get_desktop_dirs               (gboolean include_saved_session,
+                                                     gboolean autostart_first);
 
 gboolean    gsm_util_text_is_blank                  (const char *str);
 

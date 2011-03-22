@@ -505,7 +505,6 @@ get_desktop_file_path (GsmXSMPClient *client)
 {
         SmProp     *prop;
         char       *desktop_file_path = NULL;
-        char      **dirs;
         const char *program_name;
 
         /* XSMP clients using eggsmclient defines a special property
@@ -524,13 +523,9 @@ get_desktop_file_path (GsmXSMPClient *client)
         prop = find_property (client, SmProgram, NULL);
         program_name = prop->vals[0].value;
 
-        dirs = gsm_util_get_autostart_dirs ();
-
         desktop_file_path =
                 gsm_util_find_desktop_file_for_app_name (program_name,
-                                                         dirs);
-
-        g_strfreev (dirs);
+                                                         TRUE, FALSE);
 
 out:
         g_debug ("GsmXSMPClient: desktop file for client %s is %s",

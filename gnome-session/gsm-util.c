@@ -40,7 +40,8 @@ static gchar *_saved_session_dir = NULL;
 
 char *
 gsm_util_find_desktop_file_for_app_name (const char *name,
-                                         char      **autostart_dirs)
+                                         gboolean    look_in_saved_session,
+                                         gboolean    autostart_first)
 {
         char     *app_path;
         char    **app_dirs;
@@ -50,7 +51,7 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
 
         app_path = NULL;
 
-        app_dirs = gsm_util_get_app_dirs ();
+        app_dirs = gsm_util_get_desktop_dirs (look_in_saved_session, autostart_first);
 
         key_file = g_key_file_new ();
 
@@ -70,23 +71,10 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
                                    NULL);
 
         if (app_path != NULL) {
-                g_debug ("GsmUtil: found in XDG app dirs: '%s'", app_path);
+                g_debug ("GsmUtil: found in XDG dirs: '%s'", app_path);
         }
 
-        if (app_path == NULL && autostart_dirs != NULL) {
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) autostart_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("GsmUtil: found in autostart dirs: '%s'", app_path);
-                }
-
-        }
-
-        /* look for gnome vender prefix */
+        /* look for gnome vendor prefix */
         if (app_path == NULL) {
                 g_free (desktop_file);
                 desktop_file = g_strdup_printf ("gnome-%s.desktop", name);
@@ -98,19 +86,7 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
                                            G_KEY_FILE_NONE,
                                            NULL);
                 if (app_path != NULL) {
-                        g_debug ("GsmUtil: found in XDG app dirs: '%s'", app_path);
-                }
-        }
-
-        if (app_path == NULL && autostart_dirs != NULL) {
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) autostart_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("GsmUtil: found in autostart dirs: '%s'", app_path);
+                        g_debug ("GsmUtil: found in XDG dirs: '%s'", app_path);
                 }
         }
 
@@ -268,7 +244,8 @@ gsm_util_get_app_dirs ()
 }
 
 char **
-gsm_util_get_desktop_dirs ()
+gsm_util_get_desktop_dirs (gboolean include_saved_session,
+                           gboolean autostart_first)
 {
 	char **apps;
 	char **autostart;
@@ -282,24 +259,39 @@ gsm_util_get_desktop_dirs ()
 	size = 0;
 	for (i = 0; apps[i] != NULL; i++) { size++; }
 	for (i = 0; autostart[i] != NULL; i++) { size++; }
-	size += 2; /* saved session + last NULL */
+        if (include_saved_session)
+                size += 1;
 
-	result = g_new (char *, size + 1);
+	result = g_new (char *, size + 1); /* including last NULL */
 
-	for (i = 0; apps[i] != NULL; i++) {
-		result[i] = apps[i];
-	}
+        size = 0;
+
+        if (autostart_first) {
+                if (include_saved_session)
+                        result[size++] = g_strdup (gsm_util_get_saved_session_dir ());
+
+                for (i = 0; autostart[i] != NULL; i++, size++) {
+                        result[size] = autostart[i];
+                }
+                for (i = 0; apps[i] != NULL; i++, size++) {
+                        result[size] = apps[i];
+                }
+        } else {
+                for (i = 0; apps[i] != NULL; i++, size++) {
+                        result[size] = apps[i];
+                }
+                for (i = 0; autostart[i] != NULL; i++, size++) {
+                        result[size] = autostart[i];
+                }
+
+                if (include_saved_session)
+                        result[size++] = g_strdup (gsm_util_get_saved_session_dir ());
+        }
+
 	g_free (apps);
-	size = i;
-
-	for (i = 0; autostart[i] != NULL; i++) {
-		result[size + i] = autostart[i];
-	}
 	g_free (autostart);
-	size = size + i;
 
-	result[size] = g_strdup (gsm_util_get_saved_session_dir ());
-	result[size + 1] = NULL;
+	result[size] = NULL;
 
 	return result;
 }
