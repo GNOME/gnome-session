@@ -3727,7 +3727,7 @@ append_app (GsmManager *manager,
 
         dup = find_app_for_app_id (manager, app_id);
         if (dup != NULL) {
-                g_debug ("GsmManager: not adding app: app-id already exists");
+                g_debug ("GsmManager: not adding app: app-id '%s' already exists", app_id);
                 return;
         }
 
