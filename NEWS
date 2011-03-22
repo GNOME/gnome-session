@@ -1,3 +1,62 @@
+===============
+Version 2.91.92
+===============
+
+Note to packagers: if you are using your own .session files, please update them
+as the format has changed.
+
+Session Manager:
+- Better fatal error handling in general, including specific handling when
+  required components fail (Colin Walters, William Jon McCann, Vincent)
+- Improve wording of fallback dialog (Matthias Clasen)
+- Avoid double-checking between gdm and gnome-session in
+  gnome-session-check-accelerated-helper (Matthias Clasen)
+- Switch to using seconds for idle time (William Jon McCann)
+- Honor disable-log-out and disable-user-switching lockdown settings (Ray
+  Strode, Vincent)
+- Change format of .session files in a incompatible way; this is now documented
+  in the gnome-session man page (Vincent)
+- Update gnome-session-quit man page (Vincent)
+- Enforce the use of required components in the session (Vincent)
+- Deal with conflicts between Provides in different applications by only having
+  one provider running; this was only working well for Provides defined in the
+  session definition (Vincent)
+- Use app-id when saving session instead of startup-id for .desktop (Vincent)
+- Explicitly require gnome-shell/gnome-panel in .session files, instead of
+  using providers (Vincent)
+- Clean up saved session on logout if session is not getting saved (Vincent)
+- Use "computer-fail" icon from theme instead of our own sad-computer (Vincent)
+- Fix some gnome-shell/gnome-session interaction issue on logout, when a third
+  application cancels logout (Ray Strode)
+- Code cleanups (Ray Strode, Vincent)
+
+Translations:
+- Updated ar: Khaled Hosny
+- Updated as: Nilamdyuti Goswami
+- Updated en_GB: Bruce Cowan
+- Updated es: Jorge González
+- Updated et: Ivar Smolin
+- Updated fr: Bruno Brouard
+- Updated fy: Sense Hofstede
+- Updated gl: Fran Diéguez
+- Updated he: Yaron Shahrabani
+- Updated hu: Gabor Kelemen
+- Updated id: Andika Triwidada
+- Updated ko: Changwoo Ryu
+- Updated lv: Rudolfs
+- Updated nb: Kjartan Maraas
+- Updated nl: Wouter Bolsterlee
+- Updated pl: Piotr Drąg
+- Updated pt: Duarte Loreto
+- Updated pt_BR: Flamarion Jorge
+- Updated ro: Lucian Adrian Grijincu
+- Updated ru: Yuri Myaseodov
+- Updated sl: Andrej Žnidaršič
+- Updated sr: Милош Поповић
+- Updated sr@latin: Miloš Popović
+- Updated sv: Daniel Nylander
+- Updated uk: Korostil Daniel
+
 =================
 Version 2.91.91.3
 =================
