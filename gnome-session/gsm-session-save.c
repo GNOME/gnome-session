@@ -45,6 +45,7 @@ save_one_client (char            *id,
 {
         GsmClient  *client;
         GKeyFile   *keyfile;
+        const char *app_id;
         char       *path = NULL;
         char       *filename = NULL;
         char       *contents = NULL;
@@ -68,10 +69,26 @@ save_one_client (char            *id,
                 goto out;
         }
 
-        filename = g_strdup_printf ("%s.desktop",
-                                    gsm_client_peek_startup_id (client));
+        app_id = gsm_client_peek_app_id (client);
+        if (!IS_STRING_EMPTY (app_id)) {
+                if (g_str_has_suffix (app_id, ".desktop"))
+                        filename = g_strdup (app_id);
+                else
+                        filename = g_strdup_printf ("%s.desktop", app_id);
 
-        path = g_build_filename (data->dir, filename, NULL);
+                path = g_build_filename (data->dir, filename, NULL);
+        }
+
+        if (!path || g_file_test (path, G_FILE_TEST_EXISTS)) {
+                if (filename)
+                        g_free (filename);
+                if (path)
+                        g_free (path);
+
+                filename = g_strdup_printf ("%s.desktop",
+                                            gsm_client_peek_startup_id (client));
+                path = g_build_filename (data->dir, filename, NULL);
+        }
 
         g_file_set_contents (path,
                              contents,
