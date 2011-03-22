@@ -31,8 +31,8 @@
 
 #define GSM_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_APP, GsmAppPrivate))
 
-/* This number was apparently picked mostly arbitrarily */
-#define APP_RESTART_LIMIT 20
+/* If a component crashes twice within a minute, we count that as a fatal error */
+#define _GSM_APP_RESPAWN_RATELIMIT_SECONDS 60
 
 struct _GsmAppPrivate
 {
@@ -40,7 +40,7 @@ struct _GsmAppPrivate
         char            *app_id;
         int              phase;
         char            *startup_id;
-        guint            restart_count;
+        GTimeVal         last_start_time;
         DBusGConnection *connection;
 };
 
@@ -428,7 +428,7 @@ gsm_app_start (GsmApp  *app,
                GError **error)
 {
         g_debug ("Starting app: %s", app->priv->id);
-        app->priv->restart_count = 0;
+        g_get_current_time (&(app->priv->last_start_time));
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
@@ -436,16 +436,20 @@ gboolean
 gsm_app_restart (GsmApp  *app,
                  GError **error)
 {
+        GTimeVal current_time;
         g_debug ("Re-starting app: %s", app->priv->id);
 
-        app->priv->restart_count++;
-        if (app->priv->restart_count > APP_RESTART_LIMIT) {
+        g_get_current_time (&current_time);
+        if ((current_time.tv_sec - app->priv->last_start_time.tv_sec) < _GSM_APP_RESPAWN_RATELIMIT_SECONDS) {
+                g_warning ("App '%s' respawning too quickly", gsm_app_peek_app_id (app));
                 g_set_error (error,
                              GSM_APP_ERROR,
                              GSM_APP_ERROR_RESTART_LIMIT,
-                             "Application restart limit reached");
+                             "Component '%s' crashing too quickly",
+                             gsm_app_peek_app_id (app));
                 return FALSE;
         }
+        app->priv->last_start_time = current_time;
 
         return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }

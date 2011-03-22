@@ -171,8 +171,6 @@ gboolean            gsm_manager_logout                         (GsmManager     *
                                                                 guint           logout_mode,
                                                                 GError        **error);
 
-void                gsm_manager_try_recovery                   (GsmManager     *manager);
-
 gboolean            gsm_manager_setenv                         (GsmManager     *manager,
                                                                 const char     *variable,
                                                                 const char     *value,

@@ -39,27 +39,21 @@ typedef struct _GsmFailWhaleDialog         GsmFailWhaleDialog;
 typedef struct _GsmFailWhaleDialogClass    GsmFailWhaleDialogClass;
 typedef struct _GsmFailWhaleDialogPrivate  GsmFailWhaleDialogPrivate;
 
-typedef enum {
-        GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_RECOVERABLE,
-        GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_FATAL
-} GsmFailWhaleDialogFailType;
-
 struct _GsmFailWhaleDialog
 {
-        GtkMessageDialog        parent;
+        GtkWindow                  parent;
 
         GsmFailWhaleDialogPrivate *priv;
 };
 
 struct _GsmFailWhaleDialogClass
 {
-        GtkMessageDialogClass  parent_class;
+        GtkWindowClass  parent_class;
 };
 
 GType        gsm_fail_whale_dialog_get_type   (void) G_GNUC_CONST;
 
-void         gsm_fail_whale_dialog_we_failed  (GsmFailWhaleDialogFailType fail_type,
-                                               const char *additional_text);
+void         gsm_fail_whale_dialog_we_failed  (void);
 
 G_END_DECLS
 

@@ -264,15 +264,7 @@ on_required_app_failure (GsmManager  *manager,
                          GsmApp      *app,
                          const char  *msg)
 {
-        char *full_msg;
-        /* Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
-         * It is admittedly mostly technical goop. */
-        full_msg = g_strdup_printf (_("Component '%s': %s"),
-                                    gsm_app_peek_app_id (app),
-                                    msg);
-        gsm_fail_whale_dialog_we_failed (GSM_FAIL_WHALE_DIALOG_FAIL_TYPE_RECOVERABLE,
-                                         full_msg);
-        g_free (full_msg);
+        gsm_fail_whale_dialog_we_failed ();
 }
 
 
@@ -571,16 +563,25 @@ static void
 app_died (GsmApp     *app,
           GsmManager *manager)
 {
+        GError *error = NULL;
+
         manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
 
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
-        if (is_app_required (manager, app))
-                on_required_app_failure (manager, app, _("Killed by signal"));
-        /* For now, we don't do anything with crashes from non-required apps;
-         * practically speaking they will be caught by ABRT/apport type
-         * infrastructure, and it'd be better to pick up the crash from
-         * there and do something un-intrusive about it generically.
+        
+        if (!gsm_app_restart (app, &error)) {
+                if (is_app_required (manager, app)) {
+                        on_required_app_failure (manager, app, _("Killed by signal"));
+                }
+        }
+        /* For now, we don't do anything with crashes from
+         * non-required apps after they hit the restart limit.
+         *
+         * Note that both required and not-required apps will be
+         * caught by ABRT/apport type infrastructure, and it'd be
+         * better to pick up the crash from there and do something
+         * un-intrusive about it generically.
          */
 }
 
@@ -3327,28 +3328,6 @@ gsm_manager_logout (GsmManager *manager,
         }
 
         return TRUE;
-}
-
-/**
- * gsm_manager_try_recovery:
- * @manager: a #GsmManager
- *
- * Attempt to restart any required components which aren't running.
- */
-void
-gsm_manager_try_recovery (GsmManager     *manager)
-{
-        GSList *iter;
-
-        g_debug ("Trying recovery");
-
-        for (iter = manager->priv->required_apps; iter; iter = iter->next) {
-                GsmApp *app = iter->data;
-
-                if (gsm_app_is_running (app))
-                        continue;
-                start_app_or_warn (manager, app);
-        }
 }
 
 gboolean
