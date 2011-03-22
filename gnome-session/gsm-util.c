@@ -331,9 +331,10 @@ void
 gsm_util_init_error (gboolean    fatal,
                      const char *format, ...)
 {
-        GtkWidget *dialog;
-        char      *msg;
-        va_list    args;
+        GtkButtonsType  buttons;
+        GtkWidget      *dialog;
+        char           *msg;
+        va_list         args;
 
         va_start (args, format);
         msg = g_strdup_vprintf (format, args);
@@ -349,8 +350,17 @@ gsm_util_init_error (gboolean    fatal,
                 }
         }
 
+        if (fatal)
+                buttons = GTK_BUTTONS_NONE;
+        else
+                buttons = GTK_BUTTONS_CLOSE;
+
         dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
-                                         GTK_BUTTONS_CLOSE, "%s", msg);
+                                         buttons, "%s", msg);
+
+        if (fatal)
+                gtk_dialog_add_button (GTK_DIALOG (dialog),
+                                       _("_Log Out"), GTK_RESPONSE_CLOSE);
 
         g_free (msg);
 
