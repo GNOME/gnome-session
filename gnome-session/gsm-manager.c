@@ -3759,6 +3759,12 @@ add_autostart_app_internal (GsmManager *manager,
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         g_return_val_if_fail (path != NULL, FALSE);
 
+        /* Note: if we cannot add the app because its service is already
+         * provided, because its app-id is taken, or because of any other
+         * reason meaning there is already an app playing its role, then we
+         * should make sure that relevant properties (like
+         * provides/is_required) are set in the pre-existing app if needed. */
+
         /* first check to see if service is already provided */
         if (provides != NULL) {
                 GsmApp *dup;
@@ -3768,6 +3774,13 @@ add_autostart_app_internal (GsmManager *manager,
                                                 (char *)provides);
                 if (dup != NULL) {
                         g_debug ("GsmManager: service '%s' is already provided", provides);
+
+                        if (is_required &&
+                            !g_slist_find (manager->priv->required_apps, dup)) {
+                                g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
+                                manager->priv->required_apps = g_slist_prepend (manager->priv->required_apps, dup);
+                        }
+
                         return FALSE;
                 }
         }
@@ -3791,6 +3804,13 @@ add_autostart_app_internal (GsmManager *manager,
                                                         (char *)internal_provides[i]);
                         if (dup != NULL) {
                                 g_debug ("GsmManager: service '%s' is already provided", internal_provides[i]);
+
+                                if (is_required &&
+                                    !g_slist_find (manager->priv->required_apps, dup)) {
+                                        g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
+                                        manager->priv->required_apps = g_slist_prepend (manager->priv->required_apps, dup);
+                                }
+
                                 provided = TRUE;
                                 break;
                         }
@@ -3803,9 +3823,6 @@ add_autostart_app_internal (GsmManager *manager,
                         return FALSE;
                 }
         }
-
-        /* Note: all changes we do to app need to be done for dup in
-         * append_app(), in case the app-id already exists */
 
         if (provides)
                 gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (app), provides);
