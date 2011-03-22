@@ -3744,7 +3744,8 @@ add_autostart_app_internal (GsmManager *manager,
                             const char *provides,
                             gboolean    is_required)
 {
-        GsmApp *app;
+        GsmApp  *app;
+        char   **internal_provides;
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         g_return_val_if_fail (path != NULL, FALSE);
@@ -3766,6 +3767,32 @@ add_autostart_app_internal (GsmManager *manager,
         if (app == NULL) {
                 g_warning ("could not read %s", path);
                 return FALSE;
+        }
+
+        internal_provides = gsm_app_get_provides (app);
+        if (internal_provides) {
+                int i;
+                gboolean provided = FALSE;
+
+                for (i = 0; internal_provides[i] != NULL; i++) {
+                        GsmApp *dup;
+
+                        dup = (GsmApp *)gsm_store_find (manager->priv->apps,
+                                                        (GsmStoreFunc)_find_app_provides,
+                                                        (char *)internal_provides[i]);
+                        if (dup != NULL) {
+                                g_debug ("GsmManager: service '%s' is already provided", internal_provides[i]);
+                                provided = TRUE;
+                                break;
+                        }
+                }
+
+                g_strfreev (internal_provides);
+
+                if (provided) {
+                        g_object_unref (app);
+                        return FALSE;
+                }
         }
 
         g_debug ("GsmManager: read %s", path);
