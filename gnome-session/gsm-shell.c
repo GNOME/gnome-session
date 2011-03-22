@@ -611,14 +611,24 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                 return FALSE;
         }
 
-        shell->priv->inhibitors = g_object_ref (inhibitors);
-        g_signal_connect_swapped (inhibitors, "added",
-                                  G_CALLBACK (queue_end_session_dialog_update),
-                                  shell);
+        if (inhibitors != shell->priv->inhibitors) {
+                if (shell->priv->inhibitors != NULL) {
+                        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                                              G_CALLBACK (queue_end_session_dialog_update),
+                                                              shell);
+                        g_object_unref (shell->priv->inhibitors);
+                }
 
-        g_signal_connect_swapped (inhibitors, "removed",
-                                  G_CALLBACK (queue_end_session_dialog_update),
-                                  shell);
+                shell->priv->inhibitors = g_object_ref (inhibitors);
+
+                g_signal_connect_swapped (inhibitors, "added",
+                                          G_CALLBACK (queue_end_session_dialog_update),
+                                          shell);
+
+                g_signal_connect_swapped (inhibitors, "removed",
+                                          G_CALLBACK (queue_end_session_dialog_update),
+                                          shell);
+        }
 
         shell->priv->end_session_open_call = call;
         shell->priv->end_session_dialog_type = type;
