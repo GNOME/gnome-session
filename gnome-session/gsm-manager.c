@@ -261,8 +261,7 @@ is_app_required (GsmManager *manager,
 
 static void
 on_required_app_failure (GsmManager  *manager,
-                         GsmApp      *app,
-                         const char  *msg)
+                         GsmApp      *app)
 {
         gsm_fail_whale_dialog_we_failed ();
 }
@@ -569,10 +568,16 @@ app_died (GsmApp     *app,
         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
 
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
+
+        if (gsm_app_peek_autorestart (app)) {
+                g_debug ("Component '%s' is autorestart, ignoring died signal",
+                         gsm_app_peek_app_id (app));
+                return;
+        }
         
         if (!gsm_app_restart (app, &error)) {
                 if (is_app_required (manager, app)) {
-                        on_required_app_failure (manager, app, _("Killed by signal"));
+                        on_required_app_failure (manager, app);
                 }
         }
         /* For now, we don't do anything with crashes from
@@ -633,9 +638,7 @@ on_phase_timeout (GsmManager *manager)
                                    gsm_app_peek_app_id (app));
                         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
                         if (is_app_required (manager, app))
-                        /* Translators: "Timed out" refers to a non-responsive application not answering.
-                        In case the string is problematic it might be translated to the noun "Timeout". */
-                                on_required_app_failure (manager, app, _("Timed out"));
+                                on_required_app_failure (manager, app);
                 }
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -1820,10 +1823,14 @@ _disconnect_client (GsmManager *manager,
         error = NULL;
         res = gsm_app_restart (app, &error);
         if (error != NULL) {
-                g_warning ("Error on restarting session managed app: %s", error->message);
-                /* FIXME: show an error dialog - particularly if this
-                   is a required component */
-                g_error_free (error);
+                if (is_app_required (manager, app)) {
+                        on_required_app_failure (manager, app);
+                } else {
+                        g_warning ("Error on restarting session managed app: %s", error->message);
+                        /* FIXME: show an error dialog - particularly if this
+                           is a required component */
+                }
+                g_clear_error (&error);
         }
 
  out:

@@ -40,7 +40,8 @@ struct _GsmAppPrivate
         char            *app_id;
         int              phase;
         char            *startup_id;
-        GTimeVal         last_start_time;
+        gboolean         ever_started;
+        GTimeVal         last_restart_time;
         DBusGConnection *connection;
 };
 
@@ -428,7 +429,6 @@ gsm_app_start (GsmApp  *app,
                GError **error)
 {
         g_debug ("Starting app: %s", app->priv->id);
-        g_get_current_time (&(app->priv->last_start_time));
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
@@ -440,7 +440,8 @@ gsm_app_restart (GsmApp  *app,
         g_debug ("Re-starting app: %s", app->priv->id);
 
         g_get_current_time (&current_time);
-        if ((current_time.tv_sec - app->priv->last_start_time.tv_sec) < _GSM_APP_RESPAWN_RATELIMIT_SECONDS) {
+        if (app->priv->last_restart_time.tv_sec > 0
+            && (current_time.tv_sec - app->priv->last_restart_time.tv_sec) < _GSM_APP_RESPAWN_RATELIMIT_SECONDS) {
                 g_warning ("App '%s' respawning too quickly", gsm_app_peek_app_id (app));
                 g_set_error (error,
                              GSM_APP_ERROR,
@@ -449,7 +450,7 @@ gsm_app_restart (GsmApp  *app,
                              gsm_app_peek_app_id (app));
                 return FALSE;
         }
-        app->priv->last_start_time = current_time;
+        app->priv->last_restart_time = current_time;
 
         return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }
