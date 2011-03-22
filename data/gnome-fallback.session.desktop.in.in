@@ -1,7 +1,7 @@
 [GNOME Session]
 _Name=GNOME fallback
-Required=windowmanager;panel;notifications;
-Required-windowmanager=metacity
-Required-panel=gnome-panel
-Required-notifications=notification-daemon
-DefaultApps=gnome-settings-daemon;
+RequiredComponents=gnome-settings-daemon;
+RequiredProviders=windowmanager;panel;notifications;
+DefaultProvider-windowmanager=metacity
+DefaultProvider-panel=gnome-panel
+DefaultProvider-notifications=notification-daemon
