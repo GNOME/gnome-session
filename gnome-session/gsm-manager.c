@@ -3273,7 +3273,7 @@ gsm_manager_logout (GsmManager *manager,
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Shutdown interface is only available during the Running phase");
+                             "Logout interface is only available during the Running phase");
                 return FALSE;
         }
 
