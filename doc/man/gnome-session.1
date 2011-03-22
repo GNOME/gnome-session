@@ -45,6 +45,38 @@ Run in fail-safe mode. User-specified applications will not be started.
 .TP
 .I "--debug"
 Enable debugging code.
+.SH SESSION DEFINITION
+Sessions are defined in \fB.session\fP files, that are using a .desktop-like
+format, with the following keys in the \fBGNOME Session\fP group:
+.TP
+.I Name
+Name of the session. This can be localized.
+.TP
+.I RequiredComponents
+List of component identifiers (desktop files) that are required by the session. The required components will always run in the session.
+.TP
+.I RequiredProviders
+List of task providers that are required by the session. A default provider for each task has to be defined with a \fIDefaultProvider-TASK\fP key; the provider can be overridden by required components, the saved session or autostart applications. The task providers will always run in the session.
+.TP
+.I DefaultProvider-TASK
+Identifier (desktop file) of the default provider for \fBTASK\fP. If no provider for \fBTASK\fP is found in the required components, the saved session and in the autostart applications, the default provider will be started.
+.PP
+Here is an example of a session definition:
+.PP
+.in +4n
+.nf
+[GNOME Session]
+Name=GNOME fallback
+RequiredComponents=gnome-panel;metacity;gnome-settings-daemon;
+RequiredProviders=notifications;
+DefaultProvider-notifications=notification-daemon
+.in
+.fi
+.PP
+The \fB.session\fP files are looked for in
+\fB$XDG_CONFIG_HOME/gnome-session/sessions\fP,
+\fB$XDG_CONFIG_DIRS/gnome-session/sessions\fP and
+\fB$XDG_DATA_DIRS/gnome-session/sessions\fP.
 .SH ENVIRONMENT
 \fIgnome-session\fP sets several environment variables for the use of
 its child processes:
