@@ -3,19 +3,20 @@
 # Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
-# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010, 2011.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004
 # Yavor Doganov <yavor@gnu.org>, 2008.
 # Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010, 2011.
+# Krasimir Chonov <mk2616@abv.bg>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-23 07:50+0200\n"
-"PO-Revision-Date: 2011-02-23 07:50+0200\n"
-"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
+"POT-Creation-Date: 2011-03-23 11:29+0200\n"
+"PO-Revision-Date: 2011-03-23 11:29+0200\n"
+"Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +92,7 @@ msgstr "Влизане в GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Някои програми все още работят:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -216,24 +217,24 @@ msgstr ""
 "Възникна проблем със сървъра за настройки.\n"
 "(%s спря със състояние %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:252
+#: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Иконата „%s“ не е открита"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:591
+#: ../gnome-session/gsm-inhibit-dialog.c:592
 msgid "Unknown"
 msgstr "Непозната"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:642
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "A program is still running:"
 msgstr "Все още работи програмата:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:646
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid "Some programs are still running:"
 msgstr "Все още работят програмите:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -241,115 +242,146 @@ msgstr ""
 "Изчакване на програмите да завършат. Прекъсването им може да доведе до "
 "загуба на информация."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:878
 msgid "Switch User Anyway"
 msgstr "Смяна на потребител"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:881
 msgid "Log Out Anyway"
 msgstr "Изход въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:884
 msgid "Suspend Anyway"
 msgstr "Приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Hibernate Anyway"
 msgstr "Дълбоко приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Shut Down Anyway"
 msgstr "Спиране въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:892
+#: ../gnome-session/gsm-inhibit-dialog.c:893
 msgid "Reboot Anyway"
 msgstr "Рестартиране на компютъра"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Lock Screen"
 msgstr "Заключване на екрана"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Cancel"
 msgstr "Отказ"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:275
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Ще излезете от системата автоматично след %d секунда."
 msgstr[1] "Ще излезете от системата автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Компютърът ще се изключи автоматично след %d секунда."
 msgstr[1] "Компютърът ще се изключи автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:315
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "В момента сте влезли като „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:381
 msgid "Log out of this system now?"
 msgstr "Излизане от системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
 msgstr "Изключване на системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
 msgstr "_Приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:414
 msgid "_Hibernate"
 msgstr "_Дълбоко приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Restart"
 msgstr "_Рестартиране"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:430
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
-#: ../gnome-session/gsm-manager.c:1273
+#: ../gnome-session/gsm-fail-whale-dialog.c:276
+msgid "Oh no!  Something has gone wrong."
+msgstr "О, не! Нещо се обърка."
+
+#. make this changable at some point
+#: ../gnome-session/gsm-fail-whale-dialog.c:283
+msgid ""
+"A problem has occured and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"Възникна проблем и системата не може да се справи.\n"
+"Излезте от системата и опитайте отново."
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "Изход с код %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "Прекратен от сигнала %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "Спрян от сигнала %d"
+
+#: ../gnome-session/gsm-manager.c:1362
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 не се зареди"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1363
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
 "\n"
-"This most likely means your graphics hardwayre is not capable to run the "
-"full GNOME 3 experience"
+"This most likely means your system (graphics hardware or driver) is not "
+"capable of delivering the full GNOME 3 experience."
 msgstr ""
 "За жалост GNOME 3 не успя да се зареди. Стартира <i>резервният режим</i>.\n"
 "\n"
-"Най-вероятната причина е, че графичната ви карта не покрива изискванията на "
-"GNOME 3"
+"Най-вероятната причина е, че системата ви (графичната карта и/или драйверът) "
+"не покрива изискванията на GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1365
 msgid "Learn more about GNOME 3"
 msgstr "Научете повече за GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1462 ../gnome-session/gsm-manager.c:2193
 msgid "Not responding"
 msgstr "Не отговаря"
 
-#: ../gnome-session/gsm-xsmp-client.c:1187
+#: ../gnome-session/gsm-xsmp-client.c:1183
 msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
@@ -367,7 +399,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Неуспех при създаването на гнездо на ICE за слушане: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:354
+#: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
@@ -394,47 +426,26 @@ msgstr "Да не се зареждат програми, зададени от 
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
 
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "Изход"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "Изключване"
+
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
 msgstr "Изход въпреки блокиращите програми"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "Показване на диалога за изход"
-
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "Показване на диалога за изключване"
-
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "Да се ползват диалогови кутии за грешките"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "Задаване на име на текущата  сесия"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "ИМЕ"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "Убиване на сесия"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
 msgstr "Без потвърждаване"
 
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Не може да се изгради връзка към управлението на сесии"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Програмата е стартирана с противоречащи си опции"
