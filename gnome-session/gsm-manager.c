@@ -70,7 +70,15 @@
 #define GSM_MANAGER_DBUS_PATH "/org/gnome/SessionManager"
 #define GSM_MANAGER_DBUS_NAME "org.gnome.SessionManager"
 
-#define GSM_MANAGER_PHASE_TIMEOUT 10 /* seconds */
+/* Probably about the longest amount of time someone could reasonably
+ * want to wait, at least for something happening more than once.
+ * We can get deployed on very slow media though like CDROM devices,
+ * often with complex stacking/compressing filesystems on top, which
+ * is not a recipie for speed.   Particularly now that we throw up
+ * a fail whale if required components don't show up quickly enough,
+ * let's make this fairly long.
+ *
+#define GSM_MANAGER_PHASE_TIMEOUT 30 /* seconds */
 
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
