@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.92.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-22 10:52+0100\n"
-"PO-Revision-Date: 2011-03-22 10:53+0100\n"
+"POT-Creation-Date: 2011-03-25 14:35+0100\n"
+"PO-Revision-Date: 2011-03-25 14:37+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: no\n"
@@ -86,7 +86,7 @@ msgstr "Denne økten logger inn i GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Noen programmer kjører fremdeles:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -210,24 +210,24 @@ msgstr ""
 "Det er problemer med konfigurasjonstjeneren.\n"
 "(%s avsluttet med status %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:252
+#: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Ikon «%s» ikke funnet"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:591
+#: ../gnome-session/gsm-inhibit-dialog.c:592
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:642
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "A program is still running:"
 msgstr "Et program kjører fremdeles:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:646
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid "Some programs are still running:"
 msgstr "Noen programmer kjører fremdeles:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -235,106 +235,104 @@ msgstr ""
 "Venter på at programmer skal avsluttes. Hvis du avbryter disse programmene "
 "kan du miste data."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:878
 msgid "Switch User Anyway"
 msgstr "Bytt bruker likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:881
 msgid "Log Out Anyway"
 msgstr "Logg ut likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:884
 msgid "Suspend Anyway"
 msgstr "Gå i hvilemodus likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Hibernate Anyway"
 msgstr "Gå i dvalemodus likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Shut Down Anyway"
 msgstr "Slå av likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:892
+#: ../gnome-session/gsm-inhibit-dialog.c:893
 msgid "Reboot Anyway"
 msgstr "Start på nytt likevel"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Lock Screen"
 msgstr "Lås skjerm"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Cancel"
 msgstr "Avbryt"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#. This string is shared with gsm-logout-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:268
-#: ../gnome-session/gsm-fail-whale-dialog.c:209
+#: ../gnome-session/gsm-logout-dialog.c:275
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Du vil bli logget ut automatisk om %d sekund."
 msgstr[1] "Du vil bli logget ut automatisk om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:276
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Systemet vil bli slått av automatisk om %d sekund."
 msgstr[1] "Systemet vil bli slått automatisk av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:308
+#: ../gnome-session/gsm-logout-dialog.c:315
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Du er logget inn som «%s»"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:381
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
-#: ../gnome-session/gsm-fail-whale-dialog.c:290
+#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:414
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:430
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:277
-msgid "Try _Recovery"
-msgstr "Prøv gjenopp_retting"
+#: ../gnome-session/gsm-fail-whale-dialog.c:276
+msgid "Oh no!  Something has gone wrong."
+msgstr "Å nei! Noe har gått galt."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:279
-#, c-format
-msgid "A system error has occurred: %s"
-msgstr "En systemfeil har oppstått: %s"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:282
-#, c-format
-msgid "A fatal system error has occurred: %s"
-msgstr "En fatal systemfeil har oppstått: %s"
+#. make this changable at some point
+#: ../gnome-session/gsm-fail-whale-dialog.c:283
+msgid ""
+"A problem has occured and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"Et problem har oppstått og systemet kan ikke gjenopprettes.\n"
+"Vennligst logg ut og prøv igjen."
 
 #: ../gnome-session/gsm-process-helper.c:123
 #, c-format
@@ -351,28 +349,11 @@ msgstr "Terminert av signal %d"
 msgid "Stopped by signal %d"
 msgstr "Stoppet av signal %d"
 
-#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
-#. * It is admittedly mostly technical goop.
-#: ../gnome-session/gsm-manager.c:267
-#, c-format
-msgid "Component '%s': %s"
-msgstr "Komponent «%s»: %s"
-
-#: ../gnome-session/gsm-manager.c:577
-msgid "Killed by signal"
-msgstr "Terminert av signal"
-
-#. Translators: "Timed out" refers to a non-responsive application not answering.
-#. In case the string is problematic it might be translated to the noun "Timeout".
-#: ../gnome-session/gsm-manager.c:635
-msgid "Timed out"
-msgstr "Tidsavbrudd"
-
-#: ../gnome-session/gsm-manager.c:1348
+#: ../gnome-session/gsm-manager.c:1364
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 kunne ikke starte"
 
-#: ../gnome-session/gsm-manager.c:1349
+#: ../gnome-session/gsm-manager.c:1365
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -386,15 +367,15 @@ msgstr ""
 "Dette betyr mest sannsynlig at systemet, grafikkmaskinvaren eller driveren, "
 "ikke støtter å kjøre GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1351
+#: ../gnome-session/gsm-manager.c:1367
 msgid "Learn more about GNOME 3"
 msgstr "Lær mer om GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1448 ../gnome-session/gsm-manager.c:2172
+#: ../gnome-session/gsm-manager.c:1464 ../gnome-session/gsm-manager.c:2195
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: ../gnome-session/gsm-xsmp-client.c:1187
+#: ../gnome-session/gsm-xsmp-client.c:1183
 msgid "This program is blocking logout."
 msgstr "Dette programmet hindrer utlogging."
 
@@ -410,7 +391,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:354
+#: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kan ikke starte påloggingsøkten (kan ikke koble til X-tjeneren)"
