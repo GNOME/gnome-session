@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-16 17:01+0200\n"
-"PO-Revision-Date: 2011-03-16 17:02+0200\n"
+"POT-Creation-Date: 2011-03-26 01:08+0200\n"
+"PO-Revision-Date: 2011-03-26 01:10+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>קיימות תכניות שעדיין רצות:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -208,117 +208,148 @@ msgstr ""
 "יש בעיה עם שרת ההגדרות.\n"
 "(‏%s יצא עם המצב %d)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:252
+#: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "הסמל '%s' לא נמצא"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:591
+#: ../gnome-session/gsm-inhibit-dialog.c:592
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:642
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "A program is still running:"
 msgstr "ישנה תכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:646
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid "Some programs are still running:"
 msgstr "ישנן תכניות שעדיין רצות:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרום לאיבוד העבודה שלך."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:878
 msgid "Switch User Anyway"
 msgstr "ה_חלפת משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:881
 msgid "Log Out Anyway"
 msgstr "יציאה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:884
 msgid "Suspend Anyway"
 msgstr "השהייה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Hibernate Anyway"
 msgstr "מעבר למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Shut Down Anyway"
 msgstr "כיבוי בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:892
+#: ../gnome-session/gsm-inhibit-dialog.c:893
 msgid "Reboot Anyway"
 msgstr "הפעלה מחדש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Lock Screen"
 msgstr "נעילת המסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Cancel"
 msgstr "ביטול"
 
-#: ../gnome-session/gsm-logout-dialog.c:266
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:275
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "בעוד שנייה אחת יתרחש ניתוק אוטומטי."
 msgstr[1] "בעוד %d שניות יתרחש ניתוק אוטומטי."
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "בעוד שנייה אחת המערכת תכבה אוטומטית."
 msgstr[1] "המערכת תכבה אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:315
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "כרגע נכנסת תחת השם \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:381
 msgid "Log out of this system now?"
 msgstr "האם להתנתק מהמערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
 msgstr "ה_חלפת משתמש"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "_ניתוק"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
 msgstr "האם לכבות את המערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
 msgstr "ה_שהייה"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:414
 msgid "_Hibernate"
 msgstr "מ_צב שינה"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:430
 msgid "_Shut Down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/gsm-manager.c:1273
+#: ../gnome-session/gsm-fail-whale-dialog.c:276
+msgid "Oh no!  Something has gone wrong."
+msgstr "אבוי!  משהו השתבש."
+
+#. make this changable at some point
+#: ../gnome-session/gsm-fail-whale-dialog.c:283
+msgid ""
+"A problem has occured and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה.\n"
+"נא לצאת ולנסות שוב."
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "יציאה עם הקוד %d"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "חוסל על ידי האות %d"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "נעצר על ידי האות %d"
+
+#: ../gnome-session/gsm-manager.c:1364
 msgid "GNOME 3 Failed to Load"
 msgstr "טעינת GNOME 3 נכשלה"
 
-#: ../gnome-session/gsm-manager.c:1274
+#: ../gnome-session/gsm-manager.c:1365
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -331,15 +362,15 @@ msgstr ""
 "תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה "
 "שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
 
-#: ../gnome-session/gsm-manager.c:1276
+#: ../gnome-session/gsm-manager.c:1367
 msgid "Learn more about GNOME 3"
 msgstr "מידע נוסף על אודות GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1373 ../gnome-session/gsm-manager.c:2097
+#: ../gnome-session/gsm-manager.c:1464 ../gnome-session/gsm-manager.c:2195
 msgid "Not responding"
 msgstr "אין תגובה"
 
-#: ../gnome-session/gsm-xsmp-client.c:1187
+#: ../gnome-session/gsm-xsmp-client.c:1183
 msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
@@ -355,7 +386,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:354
+#: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Unable to start login session (and unable to connect to the X server)"
