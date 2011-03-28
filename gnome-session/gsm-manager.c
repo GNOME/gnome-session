@@ -77,7 +77,7 @@
  * is not a recipie for speed.   Particularly now that we throw up
  * a fail whale if required components don't show up quickly enough,
  * let's make this fairly long.
- *
+ */
 #define GSM_MANAGER_PHASE_TIMEOUT 30 /* seconds */
 
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
