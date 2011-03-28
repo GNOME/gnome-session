@@ -1,5 +1,5 @@
 AC_INIT([gnome-session],
-        [3.0.0],
+        [2.91.94],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
 
 AC_CONFIG_SRCDIR([gnome-session])
@@ -57,7 +57,7 @@ PKG_CHECK_MODULES(GNOME_SESSION,
         gtk+-3.0 >= $GTK3_REQUIRED
         dbus-glib-1 >= $DBUS_GLIB_REQUIRED
         upower-glib >= $UPOWER_REQUIRED
-	librsvg-2.0
+        librsvg-2.0
 )
 
 PKG_CHECK_MODULES(SESSION_PROPERTIES,
