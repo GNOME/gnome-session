@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-18 19:36+0000\n"
-"PO-Revision-Date: 2011-03-19 23:14+0900\n"
+"POT-Creation-Date: 2011-03-26 00:31+0000\n"
+"PO-Revision-Date: 2011-04-02 19:49+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "이 세션을 사용하면 그놈에 로그인합니다"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>실행 중인 프로그램이 있습니다:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -212,24 +212,24 @@ msgstr ""
 "설정 서버에 문제가 있습니다.\n"
 "(%s 프로그램이 %d번 상태로 끝났습니다)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:252
+#: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "'%s' 아이콘이 없습니다"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:591
+#: ../gnome-session/gsm-inhibit-dialog.c:592
 msgid "Unknown"
 msgstr "모름"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:642
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "A program is still running:"
 msgstr "한 프로그램이 실행 중입니다:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:646
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid "Some programs are still running:"
 msgstr "프로그램이 실행 중입니다:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:648
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -237,104 +237,102 @@ msgstr ""
 "프로그램이 끝나기를 기다리는 중입니다. 이 프로그램을 중단하면 작업하던 내용"
 "을 잃어버릴 수도 있습니다."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:878
 msgid "Switch User Anyway"
 msgstr "그래도 사용자 바꾸기"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:881
 msgid "Log Out Anyway"
 msgstr "그래도 로그아웃"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:884
 msgid "Suspend Anyway"
 msgstr "그래도 절전"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:887
 msgid "Hibernate Anyway"
 msgstr "그래도 최대 절전"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:890
 msgid "Shut Down Anyway"
 msgstr "그래도 끄기"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:892
+#: ../gnome-session/gsm-inhibit-dialog.c:893
 msgid "Reboot Anyway"
 msgstr "그래도 다시 시작"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:901
 msgid "Lock Screen"
 msgstr "화면 잠그기"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:903
+#: ../gnome-session/gsm-inhibit-dialog.c:904
 msgid "Cancel"
 msgstr "취소"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#. This string is shared with gsm-logout-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:268
-#: ../gnome-session/gsm-fail-whale-dialog.c:209
+#: ../gnome-session/gsm-logout-dialog.c:275
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 로그아웃합니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:276
+#: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 시스템을 끕니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:308
+#: ../gnome-session/gsm-logout-dialog.c:315
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "\"%s\" 사용자로 로그인했습니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:381
 msgid "Log out of this system now?"
 msgstr "지금 시스템에서 로그아웃하시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
 msgstr "사용자 바꾸기(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
-#: ../gnome-session/gsm-fail-whale-dialog.c:290
+#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "로그아웃(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
 msgstr "지금 시스템을 끄시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
 msgstr "절전(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:414
 msgid "_Hibernate"
 msgstr "최대 절전(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Restart"
 msgstr "다시 시작(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:430
 msgid "_Shut Down"
 msgstr "끄기(_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:277
-msgid "Try _Recovery"
-msgstr "복구 시도(_R)"
+#: ../gnome-session/gsm-fail-whale-dialog.c:276
+msgid "Oh no!  Something has gone wrong."
+msgstr "아, 뭔가 문제가 생겼습니다."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:279
-#, c-format
-msgid "A system error has occurred: %s"
-msgstr "시스템 오류가 발생했습니다: %s"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:282
-#, c-format
-msgid "A fatal system error has occurred: %s"
-msgstr "치명적 시스템 오류가 발생했습니다: %s"
+#. make this changable at some point
+#: ../gnome-session/gsm-fail-whale-dialog.c:283
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"문제가 발생했지만 복구하지 못했습니다.\n"
+"로그아웃하고 다시 시도하십시오."
 
 #: ../gnome-session/gsm-process-helper.c:123
 #, c-format
@@ -351,28 +349,11 @@ msgstr "시그널 %d번으로 강제 종료되었습니다"
 msgid "Stopped by signal %d"
 msgstr "시그널 %d번으로 중지되었습니다"
 
-#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
-#. * It is admittedly mostly technical goop.
-#: ../gnome-session/gsm-manager.c:260
-#, c-format
-msgid "Component '%s': %s"
-msgstr "구성 요소 '%s': %s"
-
-#: ../gnome-session/gsm-manager.c:561
-msgid "Killed by signal"
-msgstr "시그널로 강제 종료되었습니다"
-
-#. Translators: "Timed out" refers to a non-responsive application not answering.
-#. In case the string is problematic it might be translated to the noun "Timeout".
-#: ../gnome-session/gsm-manager.c:619
-msgid "Timed out"
-msgstr "제한 시간 초과"
-
-#: ../gnome-session/gsm-manager.c:1332
+#: ../gnome-session/gsm-manager.c:1364
 msgid "GNOME 3 Failed to Load"
 msgstr "그놈 3 읽어들이기 실패했습니다"
 
-#: ../gnome-session/gsm-manager.c:1333
+#: ../gnome-session/gsm-manager.c:1365
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -382,17 +363,18 @@ msgid ""
 msgstr ""
 "그놈 3 시작이 실패해서 <i>대체 모드</i>로 시작합니다.\n"
 "\n"
-"보통 이 경우 완전한 그놈 3 기능을 사용하기에는 시스템 (그래픽 하드웨어 또는 드라이버) 기능이 부족한 경우입니다."
+"보통 이 경우 완전한 그놈 3 기능을 사용하기에는 시스템 (그래픽 하드웨어 또는 "
+"드라이버) 기능이 부족한 경우입니다."
 
-#: ../gnome-session/gsm-manager.c:1335
+#: ../gnome-session/gsm-manager.c:1367
 msgid "Learn more about GNOME 3"
 msgstr "그놈 3에 대해 좀 더 알고 싶으면"
 
-#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
+#: ../gnome-session/gsm-manager.c:1464 ../gnome-session/gsm-manager.c:2195
 msgid "Not responding"
 msgstr "응답 없음"
 
-#: ../gnome-session/gsm-xsmp-client.c:1187
+#: ../gnome-session/gsm-xsmp-client.c:1183
 msgid "This program is blocking logout."
 msgstr "이 프로그램이 로그아웃을 막고 있습니다."
 
@@ -408,7 +390,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ICE 리스닝 소켓을 만들 수 없습니다: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:354
+#: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "로그인 세션을 시작할 수 없습니다 (X 서버에 연결할 수 없습니다)"
@@ -456,3 +438,21 @@ msgstr "세션 관리자에 연결할 수 없습니다"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "함께 사용할 수 없는 옵션을 같이 사용했습니다"
+
+#~ msgid "Try _Recovery"
+#~ msgstr "복구 시도(_R)"
+
+#~ msgid "A system error has occurred: %s"
+#~ msgstr "시스템 오류가 발생했습니다: %s"
+
+#~ msgid "A fatal system error has occurred: %s"
+#~ msgstr "치명적 시스템 오류가 발생했습니다: %s"
+
+#~ msgid "Component '%s': %s"
+#~ msgstr "구성 요소 '%s': %s"
+
+#~ msgid "Killed by signal"
+#~ msgstr "시그널로 강제 종료되었습니다"
+
+#~ msgid "Timed out"
+#~ msgstr "제한 시간 초과"
