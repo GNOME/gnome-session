@@ -32,16 +32,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-22 20:02+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-02 17:37+0300\n"
 "PO-Revision-Date: 2011-03-23 20:46+0300\n"
 "Last-Translator: Michael Kotsarinis <mk73628@gmail.com>\n"
 "Language-Team: Greek team\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.5.2\n"
 
@@ -326,6 +325,7 @@ msgstr "Α_λλαγή χρήστη"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
 #: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
@@ -356,10 +356,10 @@ msgstr "Ωχ όχι! Κάτι πήγε στραβά."
 #. make this changable at some point
 #: ../gnome-session/gsm-fail-whale-dialog.c:283
 msgid ""
-"A problem has occured and the system can't recover.\n"
+"A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr ""
-"Προέκυψε ένα πρόβλημα και το σύστημα δεν μπορεί να ανακάμψει.\n"
+"Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει.\n"
 "Παρακαλώ αποσυνδεθείτε και δοκιμάστε ξανά."
 
 #: ../gnome-session/gsm-process-helper.c:123
@@ -377,11 +377,11 @@ msgstr "Τερματίστηκε από το σήμα %d"
 msgid "Stopped by signal %d"
 msgstr "Σταμάτησε από το σήμα %d"
 
-#: ../gnome-session/gsm-manager.c:1362
+#: ../gnome-session/gsm-manager.c:1372
 msgid "GNOME 3 Failed to Load"
 msgstr "Αποτυχία φόρτωσης GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1363
+#: ../gnome-session/gsm-manager.c:1373
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -395,11 +395,11 @@ msgstr ""
 "Αυτό πιθανότατα σημαίνει ότι το σύστημά σας (το σύστημα γραφικών ή ο οδηγός) "
 "δεν μπορεί να αποδώσει την πλήρη εμπειρία του GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1365
+#: ../gnome-session/gsm-manager.c:1375
 msgid "Learn more about GNOME 3"
 msgstr "Μάθετε περισσότερα για το GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1462 ../gnome-session/gsm-manager.c:2193
+#: ../gnome-session/gsm-manager.c:1472 ../gnome-session/gsm-manager.c:2203
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
@@ -420,7 +420,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Αδυναμία δημιουργίας ICE listening socket: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:346
+#: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
@@ -432,7 +432,6 @@ msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
 #: ../gnome-session/main.c:277
-#| msgid "Sessions"
 msgid "Session to use"
 msgstr "Συνεδρία για χρήση"
 
@@ -457,12 +456,10 @@ msgid "Power off"
 msgstr "Σβήσιμο"
 
 #: ../tools/gnome-session-quit.c:54
-#| msgid "Log out, ignoring any existing inhibitors"
 msgid "Ignoring any existing inhibitors"
 msgstr "Αγνοώντας όποιους υπάρχοντες αναστολείς"
 
 #: ../tools/gnome-session-quit.c:55
-#| msgid "Do not require confirmation"
 msgid "Don't prompt for user confirmation"
 msgstr "Να μη ζητείται επιβεβαίωση από το χρήστη"
 
