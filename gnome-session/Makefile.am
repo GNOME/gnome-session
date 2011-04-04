@@ -37,8 +37,6 @@ gnome_session_SOURCES =				\
 	gs-idle-monitor.c			\
 	gsm-presence.h				\
 	gsm-presence.c				\
-	gsm-gconf.c				\
-	gsm-gconf.h				\
 	gdm.h					\
 	gdm.c					\
 	gdm-signal-handler.h			\

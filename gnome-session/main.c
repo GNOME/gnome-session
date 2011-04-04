@@ -40,7 +40,6 @@
 #include "gdm-signal-handler.h"
 #include "gdm-log.h"
 
-#include "gsm-gconf.h"
 #include "gsm-util.h"
 #include "gsm-manager.h"
 #include "gsm-session-fill.h"
@@ -336,16 +335,8 @@ main (int argc, char **argv)
 
         client_store = gsm_store_new ();
 
-
-        /* Start up gconfd if not already running. */
-        gsm_gconf_init ();
-
         xsmp_server = gsm_xsmp_server_new (client_store);
 
-        /* Now make sure they succeeded. (They'll call
-         * gsm_util_init_error() if they failed.)
-         */
-        gsm_gconf_check ();
         acquire_name ();
 
         manager = gsm_manager_new (client_store, failsafe);
@@ -385,8 +376,6 @@ main (int argc, char **argv)
         if (client_store != NULL) {
                 g_object_unref (client_store);
         }
-
-        gsm_gconf_shutdown ();
 
         gdm_log_shutdown ();
 
