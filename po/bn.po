@@ -1,62 +1,60 @@
 # Bengali translation of gnome-session.
 # Copyright (C) 2003, 2006, 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
-#
 # Taneem Ahmed <taneem@bengalinux.org>, 2003.
 # Khandakar Mujahidul Islam <suzan229@yahoo.com>, 2003-2005.
 # Runa Bhattacharjee <runab@fedoraproject.org>, 2008.
 # Runa Bhattacharjee <runab@redhat.com>, 2008, 2009.
 # Loba Yeasmeen <loba@ankur.org.bd>, 2009.
 # Israt Jahan <israt@ankur.org.bd>, 2010.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&component=general\n"
-"POT-Creation-Date: 2009-12-14 20:30+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-18 19:36+0000\n"
 "PO-Revision-Date: 2010-03-24 17:40+0600\n"
 "Last-Translator: Israt Jahan <israt@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"X-Language: bn_BD\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
 msgstr "কমান্ড নির্বাচন করুন"
 
-#: ../capplet/gsm-app-dialog.c:194
+#: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
 msgstr "স্টার্টআপ প্রোগ্রাম যোগ করুন"
 
-#: ../capplet/gsm-app-dialog.c:198
+#: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
 msgstr "স্টার্টআপ কমান্ড সম্পাদন করুন"
 
-#: ../capplet/gsm-app-dialog.c:486
+#: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
 msgstr "স্টার্টআপ কমান্ড ফাঁকা থাকবে না"
 
-#: ../capplet/gsm-app-dialog.c:492
+#: ../capplet/gsm-app-dialog.c:491
 msgid "The startup command is not valid"
 msgstr "স্টার্টআপ কমান্ডটি কার্যকর নয়"
 
-#: ../capplet/gsm-properties-dialog.c:555
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "সক্রিয়"
 
-#: ../capplet/gsm-properties-dialog.c:567
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "আইকন"
 
-#: ../capplet/gsm-properties-dialog.c:579
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "প্রোগ্রাম"
 
-#: ../capplet/gsm-properties-dialog.c:792
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "স্টার্টআপ অ্যাপ্লিকেশনের পছন্দসমূহ"
 
@@ -68,19 +66,19 @@ msgstr "নাম নেই"
 msgid "No description"
 msgstr "কোন বর্ণনা নেই"
 
-#: ../capplet/main.c:37 ../gnome-session/main.c:437
+#: ../capplet/main.c:35 ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "এই অ্যাপ্লিকেশনের সংস্করণ"
 
-#: ../capplet/main.c:63
+#: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "সহায়তা নথি প্রদর্শন করতে ব্যর্থ"
 
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr "GNOME সেটিং ডেমন সহায়তাকারী"
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "জিনোম ফলব্যাক"
 
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -88,130 +86,20 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "এই সেশনের মাধ্যমে GNOME-এ লগ-ইন করা যাবে"
 
-#: ../data/gnome-session.schemas.in.in.h:1
-msgid "Default session"
-msgstr "ডিফল্ট সেশন"
-
-#: ../data/gnome-session.schemas.in.in.h:2
-msgid "File Manager"
-msgstr "ফাইল ম্যানেজার"
-
-#: ../data/gnome-session.schemas.in.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "সক্রিয় থাকলে, সেশন সমাপ্ত করার পূর্বে gnome-সেশন ব্যবহারকারী প্রম্পট করবে"
-
-#: ../data/gnome-session.schemas.in.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"সক্রিয় থাকলে, gnome-সেশন দ্বারা স্বয়ংক্রিয়ভাবে সেশন সংরক্ষণ করা হবে। অন্যথায়, সেশন "
-"সংরক্ষণের জন্য লগ-আউট ডায়ালগটির একটি অপশন থাকবে।"
-
-#: ../data/gnome-session.schemas.in.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr "অ্যাপ্লিকেশনের তালিকা যা ডিফল্ট সেশনের একটি অংশ।"
-
-#: ../data/gnome-session.schemas.in.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required_components\"). The "
-"Startup Applications preferences tool will not normally allow users to "
-"remove a required component from the session, and the session manager will "
-"automatically add the required components back to the session at login time "
-"if they do get removed."
-msgstr ""
-"সেশনের একটি অংশ হিসেবে আবশ্যক উপাদানের তালিকা। (প্রতিটি এলিমেন্ট \"/desktop/"
-"gnome/session/required-components\"-র অধীন একটি কী এর নাম প্রদান করা হবে)। "
-"স্টার্টআপ অ্যাপ্লিকেশনের পছন্দসমূহের টুল ব্যবহারকারীকে সাধারণত সেশন থেকে একটি "
-"প্রয়োজনীয় উপাদান অপসারণ অনুমোদন করবে এবং কোনো উপাদান অপসারিত হলে, সেশন "
-"ম্যানেজার দ্বারা তা স্বয়ংক্রিয়ভাবে পুনরায় যোগ করা হবে।"
-
-#: ../data/gnome-session.schemas.in.in.h:7
-msgid "Logout prompt"
-msgstr "লগ-আউট প্রম্পট"
-
-#: ../data/gnome-session.schemas.in.in.h:8
-msgid "Panel"
-msgstr "প্যানেল"
-
-#: ../data/gnome-session.schemas.in.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr "লগ-ইন স্প্ল্যাশ স্ক্রিনের জন্য ব্যবহার করতে পছন্দসই ছবি"
-
-#: ../data/gnome-session.schemas.in.in.h:10
-msgid "Required session components"
-msgstr "প্রয়োজনীয় সেশন কম্পোনেন্ট"
-
-#: ../data/gnome-session.schemas.in.in.h:11
-msgid "Save sessions"
-msgstr "সেশন সংরক্ষণ করা হবে"
-
-#: ../data/gnome-session.schemas.in.in.h:12
-msgid "Show the splash screen"
-msgstr "স্প্ল্যাশ স্ক্রিন প্রদর্শন করা হবে"
-
-#: ../data/gnome-session.schemas.in.in.h:13
-msgid "Show the splash screen when the session starts up"
-msgstr "সেশনের শুরুতে স্প্ল্যাশ স্ক্রিন প্রদর্শন করা হবে"
-
-#: ../data/gnome-session.schemas.in.in.h:14
-msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
-msgstr ""
-"ফাইল ম্যানেজারের মাধ্যমে ডেক্সটপ আইকন সরবরাহ করা হয় এবং আপনার সংরক্ষিত ফাইলগুলির "
-"মধ্যে যোগাযোগ অনুমোদন করে।"
-
-#: ../data/gnome-session.schemas.in.in.h:15
-msgid ""
-"The number of minutes of inactivity before the session is considered idle."
-msgstr "সেশনকে নিষ্ক্রিয় হিসেবে নির্ধারণ করার পূর্বে নিষ্ক্রিয়তার সময়ের পরিমান।"
-
-#: ../data/gnome-session.schemas.in.in.h:16
-msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
-msgstr ""
-"পর্দার উপর অথবা নীচের অংশে মেনু, উইন্ডো তালিকা, অবস্থাসূচক আইকন, ঘড়ি প্রভৃতি "
-"প্যানেলের বারে বিদ্যমান থাকে।"
-
-#: ../data/gnome-session.schemas.in.in.h:17
-msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
-msgstr ""
-"উইন্ডো ম্যানেজারের সাহায্যে শিরোনাম বার ও উইন্ডোর চারপাশে সীমানা নির্ধারণ করা হয় "
-"এবং উইন্ডোর অবস্থান ও মাপ পরিবর্তন করা সম্ভব হয়।"
-
-#: ../data/gnome-session.schemas.in.in.h:18
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"$datadir/pixmaps/ ডিরেক্টরি অনুযায়ী এটি আপেক্ষিক পাথ। সাব-ডিরেক্টরি ও ছবির নাম "
-"হলো বৈধ মান। এই মান পরিবর্তন করা হলে পরবর্তী সেশনের উপর তার প্রভাব পরবে।"
-
-#: ../data/gnome-session.schemas.in.in.h:19
-msgid "Time before session is considered idle"
-msgstr "সেশন নিষ্ক্রিয় হিসেবে নির্ধারন করার পূর্বের সময়"
-
-#: ../data/gnome-session.schemas.in.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "উইন্ডো ম্যানেজার"
-
 #: ../data/gsm-inhibit-dialog.ui.h:1
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>কিছু প্রোগ্রাম এখনো চলছে:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:667
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:643
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
 msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
+"Waiting for the program to finish.  Interrupting the program may cause you "
+"to lose work."
 msgstr ""
-"প্রোগ্রাম সমাপ্তির অপেক্ষা করা হচ্ছে। প্রোগ্রাম বিঘ্নিত হলে আপনার কাজের ক্ষতি হতে "
-"পারে।"
+"প্রোগ্রাম সমাপ্তির জন্য অপেক্ষা করা হচ্ছে। প্রোগ্রাম বিঘ্নিত হলে আপনার কাজের "
+"ব্যাঘাত ঘটতে পারে।"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -226,8 +114,9 @@ msgid "Additional startup _programs:"
 msgstr "অতিরিক্ত startup _programs:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse..."
-msgstr "ব্রাউজ করুন..."
+#| msgid "Browse..."
+msgid "Browse…"
+msgstr "ব্রাউজ…"
 
 #: ../data/session-properties.ui.h:3
 msgid "Co_mmand:"
@@ -330,24 +219,24 @@ msgstr ""
 "সার্ভার কনফিগারেশন সংক্রান্ত কিছু সমস্যা রয়েছে।\n"
 "(%s প্রস্থানকালে %d অবস্থায় থাকে)"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:255
+#: ../gnome-session/gsm-inhibit-dialog.c:252
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "'%s' আইকন খুঁজে পাওয়া যায়নি"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:615
+#: ../gnome-session/gsm-inhibit-dialog.c:591
 msgid "Unknown"
 msgstr "অজানা"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:666
+#: ../gnome-session/gsm-inhibit-dialog.c:642
 msgid "A program is still running:"
 msgstr "একটি প্রোগ্রাম এখনও চলছে:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:670
+#: ../gnome-session/gsm-inhibit-dialog.c:646
 msgid "Some programs are still running:"
 msgstr "কয়েকটি প্রোগ্রাম এখনও চলছে:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:671
+#: ../gnome-session/gsm-inhibit-dialog.c:647
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -355,98 +244,171 @@ msgstr ""
 "প্রোগ্রাম সমাপ্তির জন্য অপেক্ষা করা হচ্ছে। প্রোগ্রাম বিঘ্নিত হলে আপনার কাজের ব্যাঘাত  "
 "ঘটতে পারে।"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Switch User Anyway"
 msgstr "তথাপি ব্যবহারকারী পরিবর্তন করা হবে"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Logout Anyway"
-msgstr "তথাপি লগ-আউট করা হবে"
+#: ../gnome-session/gsm-inhibit-dialog.c:880
+#| msgid "Logout Anyway"
+msgid "Log Out Anyway"
+msgstr "যেকোনোভাবে লগ-আউট"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:907
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Suspend Anyway"
 msgstr "তথাপি স্থগিত করা হবে"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:910
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Hibernate Anyway"
 msgstr "তথাপি হাইবারনেট করা হবে"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:913
-msgid "Shutdown Anyway"
-msgstr "তথাপি বন্ধ করা হবে"
+#: ../gnome-session/gsm-inhibit-dialog.c:889
+#| msgid "Shutdown Anyway"
+msgid "Shut Down Anyway"
+msgstr "যেকোনোভাবে বন্ধ"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:916
+#: ../gnome-session/gsm-inhibit-dialog.c:892
 msgid "Reboot Anyway"
 msgstr "তথাপি পুনরায় বুট করা হবে"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:924
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Lock Screen"
 msgstr "পর্দা লক করুন"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:927
+#: ../gnome-session/gsm-inhibit-dialog.c:903
 msgid "Cancel"
 msgstr "বাতিল"
 
-#: ../gnome-session/gsm-logout-dialog.c:274
+#. This string is shared with gsm-fail-whale-dialog.c
+#. This string is shared with gsm-logout-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:268
+#: ../gnome-session/gsm-fail-whale-dialog.c:209
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d সেকেন্ড অতিক্রান্ত হলে স্বয়ংক্রিয়ভাবে আপনাকে লগ-আউট করা হবে।"
 msgstr[1] "%d সেকেন্ড অতিক্রান্ত হলে স্বয়ংক্রিয়ভাবে আপনাকে লগ-আউট করা হবে।"
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:276
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "%d সেকেন্ড অতিক্রান্ত হলে স্বয়ংক্রিয়ভাবে সিস্টেম বন্ধ করা হবে।"
 msgstr[1] "%d সেকেন্ড অতিক্রান্ত হলে স্বয়ংক্রিয়ভাবে সিস্টেম বন্ধ করা হবে।"
 
-#: ../gnome-session/gsm-logout-dialog.c:314
+#: ../gnome-session/gsm-logout-dialog.c:308
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "বর্তমানে আপনি \"%s\" নামে লগ-ইন করে আছেন।"
 
-#: ../gnome-session/gsm-logout-dialog.c:380
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "Log out of this system now?"
 msgstr "এখনই সিস্টেম থেকে লগ-আউট করা হবে কি?"
 
-#: ../gnome-session/gsm-logout-dialog.c:386
+#: ../gnome-session/gsm-logout-dialog.c:380
 msgid "_Switch User"
 msgstr "ব্যবহারকারী পরিবর্তন করুন (_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-fail-whale-dialog.c:290
 msgid "_Log Out"
 msgstr "লগ আউট (_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "Shut down this system now?"
 msgstr "এখনই সিস্টেম বন্ধ করা হবে কি?"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "S_uspend"
 msgstr "স্থগিত করা (_u)"
 
-#: ../gnome-session/gsm-logout-dialog.c:413
+#: ../gnome-session/gsm-logout-dialog.c:407
 msgid "_Hibernate"
 msgstr "সুপ্ত করা (_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:419
+#: ../gnome-session/gsm-logout-dialog.c:413
 msgid "_Restart"
 msgstr "পুনরায় চালু করা (_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:429
+#: ../gnome-session/gsm-logout-dialog.c:423
 msgid "_Shut Down"
 msgstr "বন্ধ করা (_S)"
 
-#: ../gnome-session/gsm-manager.c:1220 ../gnome-session/gsm-manager.c:1912
+#: ../gnome-session/gsm-fail-whale-dialog.c:277
+msgid "Try _Recovery"
+msgstr "পুনরূদ্ধারের চেষ্টা (_R)"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:279
+#, c-format
+msgid "A system error has occurred: %s"
+msgstr "সিস্টেম ত্রুটি ঘটেছে: %s"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:282
+#, c-format
+msgid "A fatal system error has occurred: %s"
+msgstr "মারাত্মক সিস্টেম ত্রুটি ঘটেছে: %s"
+
+#: ../gnome-session/gsm-process-helper.c:123
+#, c-format
+msgid "Exited with code %d"
+msgstr "কোড %d সহ বিদ্যমান"
+
+#: ../gnome-session/gsm-process-helper.c:128
+#, c-format
+msgid "Killed by signal %d"
+msgstr "সিগন্যাল %d দ্বারা কিল করা হয়েছে"
+
+#: ../gnome-session/gsm-process-helper.c:133
+#, c-format
+msgid "Stopped by signal %d"
+msgstr "সিগন্যাল %d দ্বারা বন্ধ করা হয়েছে"
+
+#. Translators: This will look like: Component 'gnome-shell.desktop': Killed by signal 9.
+#. * It is admittedly mostly technical goop.
+#: ../gnome-session/gsm-manager.c:260
+#, c-format
+msgid "Component '%s': %s"
+msgstr "কম্পোনেন্ট '%s': %s"
+
+#: ../gnome-session/gsm-manager.c:561
+msgid "Killed by signal"
+msgstr "সিগন্যাল দ্বারা কিল করা হয়েছে"
+
+#. Translators: "Timed out" refers to a non-responsive application not answering.
+#. In case the string is problematic it might be translated to the noun "Timeout".
+#: ../gnome-session/gsm-manager.c:619
+msgid "Timed out"
+msgstr "সময় শেষ"
+
+#: ../gnome-session/gsm-manager.c:1332
+msgid "GNOME 3 Failed to Load"
+msgstr "জিনোম 3 লোড করতে ব্যর্থ"
+
+#: ../gnome-session/gsm-manager.c:1333
+msgid ""
+"Unfortunately GNOME 3 failed to start properly and started in the "
+"<i>fallback mode</i>.\n"
+"\n"
+"This most likely means your system (graphics hardware or driver) is not "
+"capable of delivering the full GNOME 3 experience."
+msgstr ""
+"দুর্ভাগ্যবশত জিনোম 3 ঠিকভাবে শুরু করতে ব্যর্থ এবং <i>ফলব্যাক মোড</i> এ শুরু "
+"হয়।\n\nএ থেকে বুঝা যায় যে, আপনার সিস্টেম (গ্রাফিক্স হার্ডওয়ার বা ড্রাইভার) "
+"সম্পূর্ণ জিনোম 3 পরিবেশ ডেলিভার করতে সমর্থ নয়।"
+
+#: ../gnome-session/gsm-manager.c:1335
+msgid "Learn more about GNOME 3"
+msgstr "জিনোম 3 সম্পর্কে আরও জানুন"
+
+#: ../gnome-session/gsm-manager.c:1432 ../gnome-session/gsm-manager.c:2156
 msgid "Not responding"
 msgstr "সাড়া দিচ্ছে না"
 
-#: ../gnome-session/gsm-xsmp-client.c:1206
-msgid "This program is blocking log out."
+#: ../gnome-session/gsm-xsmp-client.c:1187
+#| msgid "This program is blocking log out."
+msgid "This program is blocking logout."
 msgstr "এই প্রোগ্রাম দ্বারা লগ-আউট ব্লক করা হচ্ছে।"
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#: ../gnome-session/gsm-xsmp-server.c:325
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -454,7 +416,7 @@ msgstr ""
 "সেশনটি বর্তমানে বন্ধ করা হচ্ছে এবং এ কারনে নতুন ক্লায়েন্ট সংযোগ প্রত্যাখ্যান করা "
 "হচ্ছে।\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE লিসেন সকেট তৈরি করতে ব্যর্থ: %s"
@@ -465,78 +427,182 @@ msgstr "ICE লিসেন সকেট তৈরি করতে ব্যর�
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "লগ-ইন সেশন শুরু করতে ব্যর্থ (X সার্ভারের সাথে সংযোগ স্থাপনে ব্যর্থ)"
 
-#: ../gnome-session/main.c:433
+#: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "আদর্শ স্বয়ংক্রিয়ভাবে শুরু ডিরেক্টরি উপেক্ষা করা হবে"
 
-#: ../gnome-session/main.c:434
-msgid "GConf key used to lookup default session"
-msgstr "ডিফল্ট সেশন অনুসন্ধানের জন্য ব্যবহৃত GConf কী"
+#: ../gnome-session/main.c:277
+msgid "Session to use"
+msgstr "যে সেশন ব্যবহার করা হবে"
 
-#: ../gnome-session/main.c:435
+#: ../gnome-session/main.c:278
 msgid "Enable debugging code"
 msgstr "কোড ডিবাগ ব্যবস্থা সক্রিয় করুন"
 
-#: ../gnome-session/main.c:436
+#: ../gnome-session/main.c:279
 msgid "Do not load user-specified applications"
 msgstr "ব্যবহারকারী দ্বারা নির্ধারিত অ্যাপ্লিকেশন লোড করা হবে না"
 
-#: ../gnome-session/main.c:457
+#: ../gnome-session/main.c:300
 msgid " - the GNOME session manager"
 msgstr "- GNOME সেশন ম্যানেজার"
 
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME-র স্প্ল্যাশ স্ক্রিন"
-
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME-র স্প্ল্যাশ স্ক্রিন"
-
-#: ../tools/gnome-session-save.c:65
+#: ../tools/gnome-session-quit.c:52
 msgid "Log out"
 msgstr "লগ-আউট"
 
-#: ../tools/gnome-session-save.c:66
-msgid "Log out, ignoring any existing inhibitors"
-msgstr "কোনো উপস্থিত নিবৃত্তকারক অগ্রাহ্য করে লগ-আউট করা হবে"
+#: ../tools/gnome-session-quit.c:53
+msgid "Power off"
+msgstr "পাওয়ার বন্ধ"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Show logout dialog"
-msgstr "লগ-আউট ডায়ালগ বাক্স প্রদর্শন করা হবে"
+#: ../tools/gnome-session-quit.c:54
+#| msgid "Log out, ignoring any existing inhibitors"
+msgid "Ignoring any existing inhibitors"
+msgstr "যেকোনো উপস্থিত ইনহিবিটরকে উপেক্ষা"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show shutdown dialog"
-msgstr "বন্ধ করার ডায়ালগ বাক্স প্রদর্শন করা হবে"
+#: ../tools/gnome-session-quit.c:55
+#| msgid "Do not require confirmation"
+msgid "Don't prompt for user confirmation"
+msgstr "ব্যবহারকারীর নিশ্চিতকরণ প্রয়োজন নেই"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Use dialog boxes for errors"
-msgstr "ত্রুটির ডায়ালগ বাক্স ব্যবহার করুন"
-
-#. deprecated options
-#: ../tools/gnome-session-save.c:71
-msgid "Set the current session name"
-msgstr "বর্তমান সেশনের নাম নির্ধারণ করুন"
-
-#: ../tools/gnome-session-save.c:71
-msgid "NAME"
-msgstr "NAME"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Kill session"
-msgstr "সেশন কিল করুন"
-
-#: ../tools/gnome-session-save.c:73
-msgid "Do not require confirmation"
-msgstr "নিশ্চিতকরণ প্রয়োজন নেই"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "সেশন ম্যানেজারের সাথে সংযোগ স্থাপনে ব্যর্থ"
 
-#: ../tools/gnome-session-save.c:273
+#: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "দ্বন্দ্বযুক্ত অপশন সহ প্রোগ্রাম কল করা হয়েছে"
+
+#~ msgid "GNOME Settings Daemon Helper"
+#~ msgstr "GNOME সেটিং ডেমন সহায়তাকারী"
+
+#~ msgid "Default session"
+#~ msgstr "ডিফল্ট সেশন"
+
+#~ msgid "File Manager"
+#~ msgstr "ফাইল ম্যানেজার"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr "সক্রিয় থাকলে, সেশন সমাপ্ত করার পূর্বে gnome-সেশন ব্যবহারকারী প্রম্পট করবে"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
+#~ "the logout dialog will have an option to save the session."
+#~ msgstr ""
+#~ "সক্রিয় থাকলে, gnome-সেশন দ্বারা স্বয়ংক্রিয়ভাবে সেশন সংরক্ষণ করা হবে। অন্যথায়, "
+#~ "সেশন সংরক্ষণের জন্য লগ-আউট ডায়ালগটির একটি অপশন থাকবে।"
+
+#~ msgid "List of applications that are part of the default session."
+#~ msgstr "অ্যাপ্লিকেশনের তালিকা যা ডিফল্ট সেশনের একটি অংশ।"
+
+#~ msgid ""
+#~ "List of components that are required as part of the session. (Each "
+#~ "element names a key under \"/desktop/gnome/session/required_components"
+#~ "\"). The Startup Applications preferences tool will not normally allow "
+#~ "users to remove a required component from the session, and the session "
+#~ "manager will automatically add the required components back to the "
+#~ "session at login time if they do get removed."
+#~ msgstr ""
+#~ "সেশনের একটি অংশ হিসেবে আবশ্যক উপাদানের তালিকা। (প্রতিটি এলিমেন্ট \"/desktop/"
+#~ "gnome/session/required-components\"-র অধীন একটি কী এর নাম প্রদান করা হবে)। "
+#~ "স্টার্টআপ অ্যাপ্লিকেশনের পছন্দসমূহের টুল ব্যবহারকারীকে সাধারণত সেশন থেকে একটি "
+#~ "প্রয়োজনীয় উপাদান অপসারণ অনুমোদন করবে এবং কোনো উপাদান অপসারিত হলে, সেশন "
+#~ "ম্যানেজার দ্বারা তা স্বয়ংক্রিয়ভাবে পুনরায় যোগ করা হবে।"
+
+#~ msgid "Logout prompt"
+#~ msgstr "লগ-আউট প্রম্পট"
+
+#~ msgid "Panel"
+#~ msgstr "প্যানেল"
+
+#~ msgid "Preferred Image to use for login splash screen"
+#~ msgstr "লগ-ইন স্প্ল্যাশ স্ক্রিনের জন্য ব্যবহার করতে পছন্দসই ছবি"
+
+#~ msgid "Required session components"
+#~ msgstr "প্রয়োজনীয় সেশন কম্পোনেন্ট"
+
+#~ msgid "Save sessions"
+#~ msgstr "সেশন সংরক্ষণ করা হবে"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "স্প্ল্যাশ স্ক্রিন প্রদর্শন করা হবে"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "সেশনের শুরুতে স্প্ল্যাশ স্ক্রিন প্রদর্শন করা হবে"
+
+#~ msgid ""
+#~ "The file manager provides the desktop icons and allows you to interact "
+#~ "with your saved files."
+#~ msgstr ""
+#~ "ফাইল ম্যানেজারের মাধ্যমে ডেক্সটপ আইকন সরবরাহ করা হয় এবং আপনার সংরক্ষিত "
+#~ "ফাইলগুলির মধ্যে যোগাযোগ অনুমোদন করে।"
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr "সেশনকে নিষ্ক্রিয় হিসেবে নির্ধারণ করার পূর্বে নিষ্ক্রিয়তার সময়ের পরিমান।"
+
+#~ msgid ""
+#~ "The panel provides the bar at the top or bottom of the screen containing "
+#~ "menus, the window list, status icons, the clock, etc."
+#~ msgstr ""
+#~ "পর্দার উপর অথবা নীচের অংশে মেনু, উইন্ডো তালিকা, অবস্থাসূচক আইকন, ঘড়ি প্রভৃতি "
+#~ "প্যানেলের বারে বিদ্যমান থাকে।"
+
+#~ msgid ""
+#~ "The window manager is the program that draws the title bar and borders "
+#~ "around windows, and allows you to move and resize windows."
+#~ msgstr ""
+#~ "উইন্ডো ম্যানেজারের সাহায্যে শিরোনাম বার ও উইন্ডোর চারপাশে সীমানা নির্ধারণ করা "
+#~ "হয় এবং উইন্ডোর অবস্থান ও মাপ পরিবর্তন করা সম্ভব হয়।"
+
+#~ msgid ""
+#~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
+#~ "Sub-directories and image names are valid values. Changing this value "
+#~ "will effect the next session login."
+#~ msgstr ""
+#~ "$datadir/pixmaps/ ডিরেক্টরি অনুযায়ী এটি আপেক্ষিক পাথ। সাব-ডিরেক্টরি ও ছবির "
+#~ "নাম হলো বৈধ মান। এই মান পরিবর্তন করা হলে পরবর্তী সেশনের উপর তার প্রভাব পরবে।"
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "সেশন নিষ্ক্রিয় হিসেবে নির্ধারন করার পূর্বের সময়"
+
+#~ msgid "Window Manager"
+#~ msgstr "উইন্ডো ম্যানেজার"
+
+#~ msgid ""
+#~ "Waiting for program to finish.  Interrupting program may cause you to "
+#~ "lose work."
+#~ msgstr ""
+#~ "প্রোগ্রাম সমাপ্তির অপেক্ষা করা হচ্ছে। প্রোগ্রাম বিঘ্নিত হলে আপনার কাজের ক্ষতি হতে "
+#~ "পারে।"
+
+#~ msgid "GConf key used to lookup default session"
+#~ msgstr "ডিফল্ট সেশন অনুসন্ধানের জন্য ব্যবহৃত GConf কী"
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- GNOME-র স্প্ল্যাশ স্ক্রিন"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME-র স্প্ল্যাশ স্ক্রিন"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "লগ-আউট ডায়ালগ বাক্স প্রদর্শন করা হবে"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "বন্ধ করার ডায়ালগ বাক্স প্রদর্শন করা হবে"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "ত্রুটির ডায়ালগ বাক্স ব্যবহার করুন"
+
+#~ msgid "Set the current session name"
+#~ msgstr "বর্তমান সেশনের নাম নির্ধারণ করুন"
+
+#~ msgid "NAME"
+#~ msgstr "NAME"
+
+#~ msgid "Kill session"
+#~ msgstr "সেশন কিল করুন"
 
 #~ msgid ""
 #~ "Assistive technology support has been requested for this session, but the "
