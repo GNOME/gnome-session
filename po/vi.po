@@ -6,11 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.25.90\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-26 00:31+0000\n"
-"PO-Revision-Date: 2011-03-27 15:48+0700\n"
-"Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-27 08:51+0000\n"
+"PO-Revision-Date: 2011-04-16 20:47+0700\n"
+"Last-Translator: Lê Trường An <xinemdungkhoc1@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,11 +23,11 @@ msgstr "Chọn câu lệnh"
 
 #: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
-msgstr "Thêm chương trình khởi động"
+msgstr "Thêm chương trình chạy lúc khởi động"
 
 #: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
-msgstr "Sửa chương trình khởi động"
+msgstr "Sửa chương trình chạy lúc khởi động"
 
 #: ../capplet/gsm-app-dialog.c:485
 msgid "The startup command cannot be empty"
@@ -53,7 +52,7 @@ msgstr "Chương trình"
 #: ../capplet/gsm-properties-dialog.c:745
 #| msgid "Startup Applications"
 msgid "Startup Applications Preferences"
-msgstr "Tuỳ thích ứng dụng khởi chạy"
+msgstr "Tuỳ chọn ứng dụng khởi chạy"
 
 #: ../capplet/gsp-app.c:269
 #| msgid "_Name:"
@@ -152,7 +151,7 @@ msgstr "Tập tin không phải là một tập tin .desktop hợp lệ"
 #: ../egg/eggdesktopfile.c:188
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "Không nhận ra tập tin màn hình nền phiên bản « %s »"
+msgstr "Không nhận ra tập tin màn hình nền phiên bản '%s'"
 
 #: ../egg/eggdesktopfile.c:958
 #, c-format
@@ -195,11 +194,11 @@ msgstr "TẬP_TIN"
 
 #: ../egg/eggsmclient.c:231
 msgid "Specify session management ID"
-msgstr "Xác định mã số quản lý phiên chạy"
+msgstr "Xác định ID quản lý phiên chạy"
 
 #: ../egg/eggsmclient.c:231
 msgid "ID"
-msgstr "MÃ_SỐ"
+msgstr "ID"
 
 #: ../egg/eggsmclient.c:252
 #| msgid "Session Management Options"
@@ -227,7 +226,7 @@ msgstr "Không thấy biểu tượng '%s'"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:592
 msgid "Unknown"
-msgstr "Không biết"
+msgstr "Chưa xác định"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "A program is still running:"
@@ -284,7 +283,7 @@ msgstr "Thôi"
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Bạn sẽ bị tự động đăng xuất trong vòng %d giây."
+msgstr[0] "Sẽ tự động đăng xuất trong vòng %d giây."
 
 #: ../gnome-session/gsm-logout-dialog.c:283
 #, c-format
@@ -295,7 +294,7 @@ msgstr[0] "Hệ thống này sẽ bị tự động tắt trong vòng %d giây."
 #: ../gnome-session/gsm-logout-dialog.c:315
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr "Bạn đã đăng nhập dưới « %s »"
+msgstr "Hiện bạn đăng nhập với tên \"%s\""
 
 #: ../gnome-session/gsm-logout-dialog.c:381
 msgid "Log out of this system now?"
@@ -303,7 +302,7 @@ msgstr "Đăng xuất ra hệ thống này ngay bây giờ ?"
 
 #: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
-msgstr "Chu_yển đổi người dùng"
+msgstr "Đổ_i người dùng"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
 #: ../gnome-session/gsm-fail-whale-dialog.c:296
@@ -313,7 +312,7 @@ msgstr "Đăng _xuất"
 
 #: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
-msgstr "Tắt hệ thống này ngày bây giờ ?"
+msgstr "Tắt hệ thống này ngày bây giờ?"
 
 #: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
@@ -333,7 +332,7 @@ msgstr "_Tắt máy"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:276
 msgid "Oh no!  Something has gone wrong."
-msgstr "Ồ không!  Có cái gì đó bị hư rồi."
+msgstr "Ồ không!  Có cái gì đó bị hỏng rồi."
 
 #. make this changable at some point
 #: ../gnome-session/gsm-fail-whale-dialog.c:283
@@ -365,13 +364,11 @@ msgstr "Lỗi nạp GNOME 3"
 
 #: ../gnome-session/gsm-manager.c:1365
 msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
 msgstr ""
-"Rất tiếc không thể khởi động GNOME 3. Chạy trong <i>chế độ phòng bị</i>.\n"
+"Rất tiếc không thể khởi động GNOME 3 nên đang chạy trong <i>chế độ phòng bị</i>.\n"
 "\n"
 "Nhiều khả năng hệ thống của bạn (phần cứng đồ hoạ hoặc trình điều khiển) không đủ khả năng chạy GNOME 3."
 
@@ -403,9 +400,7 @@ msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 #: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Không thể khởi chạy buổi hợp đăng nhập (và không thể kết nối đến trình phục "
-"vụ X)"
+msgstr "Không thể khởi chạy phiên đăng nhập (và không thể kết nối đến X server)"
 
 #: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
