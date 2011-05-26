@@ -522,8 +522,12 @@ get_desktop_file_path (GsmXSMPClient *client)
         /* If we can't get desktop file from GsmDesktopFile then we
          * try to find the desktop file from its program name */
         prop = find_property (client, SmProgram, NULL);
-        program_name = prop->vals[0].value;
 
+        if (!prop) {
+                goto out;
+        }
+
+        program_name = prop->vals[0].value;
         desktop_file_path =
                 gsm_util_find_desktop_file_for_app_name (program_name,
                                                          TRUE, FALSE);
@@ -545,7 +549,15 @@ set_desktop_file_keys_from_client (GsmClient *client,
         char   *comment;
 
         prop = find_property (GSM_XSMP_CLIENT (client), SmProgram, NULL);
-        name = g_strdup (prop->vals[0].value);
+        if (prop) {
+                name = g_strdup (prop->vals[0].value);
+        } else {
+                /* It'd be really surprising to reach this code: if we're here,
+                 * then the XSMP client already has set several XSMP
+                 * properties. But it could still be that SmProgram is not set.
+                 */
+                name = g_strdup (_("Remembered Application"));
+        }
 
         comment = g_strdup_printf ("Client %s which was automatically saved",
                                    gsm_client_peek_startup_id (client));
@@ -633,6 +645,7 @@ xsmp_save (GsmClient *client,
 
         desktop_file_path = get_desktop_file_path (GSM_XSMP_CLIENT (client));
 
+        /* this can accept desktop_file_path == NULL */
         keyfile = create_client_key_file (client,
                                           desktop_file_path,
                                           &local_error);
@@ -772,10 +785,12 @@ static char *
 xsmp_get_app_name (GsmClient *client)
 {
         SmProp *prop;
-        char   *name;
+        char   *name = NULL;
 
         prop = find_property (GSM_XSMP_CLIENT (client), SmProgram, NULL);
-        name = prop_to_command (prop);
+        if (prop) {
+                name = prop_to_command (prop);
+        }
 
         return name;
 }
