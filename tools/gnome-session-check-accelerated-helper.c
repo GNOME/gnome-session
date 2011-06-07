@@ -266,6 +266,11 @@ main (int argc, char **argv)
                 goto out;
         }
 
+        if (ScreenCount (display) > 1) {
+                _print_error ("Zaphod mode not supported.");
+                goto out;
+        }
+
         if (_has_composite (display) != 0) {
                 _print_error ("No composite extension.");
                 goto out;
