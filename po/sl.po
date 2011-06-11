@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-core 1.2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-22 20:36+0000\n"
-"PO-Revision-Date: 2011-03-22 21:53+0100\n"
+"POT-Creation-Date: 2011-06-09 12:46+0000\n"
+"PO-Revision-Date: 2011-06-11 09:06+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
@@ -58,11 +58,11 @@ msgstr "Program"
 msgid "Startup Applications Preferences"
 msgstr "Možnosti začetnih programov"
 
-#: ../capplet/gsp-app.c:269
+#: ../capplet/gsp-app.c:273
 msgid "No name"
 msgstr "Brez imena"
 
-#: ../capplet/gsp-app.c:275
+#: ../capplet/gsp-app.c:279
 msgid "No description"
 msgstr "Brez opisa"
 
@@ -146,61 +146,66 @@ msgstr "_Zapomni si trenutno zagnane programe"
 msgid "File is not a valid .desktop file"
 msgstr "Datoteka ni veljavna .desktop datoteka"
 
-#: ../egg/eggdesktopfile.c:188
+#. translators: 'Version' is from a desktop file, and
+#. * should not be translated. '%s' would probably be a
+#. * version number.
+#: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Neznana različica datoteke namizja '%s'"
 
-#: ../egg/eggdesktopfile.c:958
+#: ../egg/eggdesktopfile.c:974
 #, c-format
 msgid "Starting %s"
 msgstr "Začenjanje %s"
 
-#: ../egg/eggdesktopfile.c:1100
+#: ../egg/eggdesktopfile.c:1116
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Program ne sprejme dokumentov preko ukazne vrstice"
 
-#: ../egg/eggdesktopfile.c:1168
+#: ../egg/eggdesktopfile.c:1184
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Nepoznana možnost zagona: %d"
 
-#: ../egg/eggdesktopfile.c:1373
+#. translators: The 'Type=Link' string is found in a
+#. * desktop file, and should not be translated.
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta namizja"
 
-#: ../egg/eggdesktopfile.c:1394
+#: ../egg/eggdesktopfile.c:1412
 #, c-format
 msgid "Not a launchable item"
 msgstr "Predmet ni izvedljiv"
 
-#: ../egg/eggsmclient.c:225
+#: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "Onemogoči povezavo z upravljalnikom seje"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "Določitev datoteke s shranjenimi nastavitvami"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "FILE"
 msgstr "DATOTEKA"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "Določi ID upravljanja seje"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:252
+#: ../egg/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "Možnosti upravljanja seje:"
 
-#: ../egg/eggsmclient.c:253
+#: ../egg/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "Pokaži možnosti upravljanja seje"
 
@@ -255,7 +260,7 @@ msgid "Shut Down Anyway"
 msgstr "Vseeno izklopi računalnik"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
+msgid "Restart Anyway"
 msgstr "Vseeno ponovno zaženi"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:901
@@ -352,11 +357,11 @@ msgstr "Uničeno s signalom %d"
 msgid "Stopped by signal %d"
 msgstr "Zaustavljeno s signalom %d"
 
-#: ../gnome-session/gsm-manager.c:1362
+#: ../gnome-session/gsm-manager.c:1372
 msgid "GNOME 3 Failed to Load"
 msgstr "Nalaganje namizja GNOME 3 je spodletelo"
 
-#: ../gnome-session/gsm-manager.c:1363
+#: ../gnome-session/gsm-manager.c:1373
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -366,16 +371,24 @@ msgstr ""
 "\n"
 "Napaka običajno pomeni, da grafična strojna oprema ali gonilnik ni primeren za zagon namizja GNOME 3 v polnem grafičnem načinu."
 
-#: ../gnome-session/gsm-manager.c:1365
+#: ../gnome-session/gsm-manager.c:1375
 msgid "Learn more about GNOME 3"
 msgstr "Več podrobnosti o namizju GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1462
-#: ../gnome-session/gsm-manager.c:2193
+#: ../gnome-session/gsm-manager.c:1472
+#: ../gnome-session/gsm-manager.c:2203
 msgid "Not responding"
 msgstr "Ni odziva"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:559
+msgid "Remembered Application"
+msgstr "Zapomnjeni programi"
+
+#: ../gnome-session/gsm-xsmp-client.c:1197
 msgid "This program is blocking logout."
 msgstr "Program zavira postopek odjave."
 
@@ -441,45 +454,64 @@ msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
 
 #~ msgid "Try _Recovery"
 #~ msgstr "Poskusi z _obnovo"
+
 #~ msgid "A system error has occurred: %s"
 #~ msgstr "Prišlo je do napake sistema: %s"
+
 #~ msgid "A fatal system error has occurred: %s"
 #~ msgstr "Prišlo je do usodne sistemske napake: %s"
+
 #~ msgid "Component '%s': %s"
 #~ msgstr "Sestavni del '%s': %s"
+
 #~ msgid "Killed by signal"
 #~ msgstr "Uničeno s signalom"
+
 #~ msgid "Timed out"
 #~ msgstr "Časovno poteklo"
+
 #~ msgid "Show logout dialog"
 #~ msgstr "Pokaži sporočila med odjavljanjem"
+
 #~ msgid "Show shutdown dialog"
 #~ msgstr "Pokaži sporočila med izklapljanjem"
+
 #~ msgid "Use dialog boxes for errors"
 #~ msgstr "Uporabi pogovorna okna za prikaz napak"
+
 #~ msgid "Set the current session name"
 #~ msgstr "Nastavi ime trenutne seje"
+
 #~ msgid "NAME"
 #~ msgstr "IME"
+
 #~ msgid "Kill session"
 #~ msgstr "Uniči sejo"
+
 #~ msgid "Classic GNOME"
 #~ msgstr "Običajni Gnome"
+
 #~ msgid "Window Manager"
 #~ msgstr "Upravljalnik oken"
+
 #~ msgid "Default session"
 #~ msgstr "Privzeta seja"
+
 #~ msgid "File Manager"
 #~ msgstr "Upravljalnik datotek"
+
 #~ msgid ""
 #~ "If enabled, gnome-session will prompt the user before ending a session."
 #~ msgstr ""
 #~ "Izbrana možnost omogoča, da bo program seje pred končanjem seje o nameri "
 #~ "vprašal uporabnika."
+
 #~ msgid "If enabled, gnome-session will save the session automatically."
 #~ msgstr "Izbrana možnost omogoča samodejno shranjevanje seje."
+
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "Seznam programov, ki so del privzete seje."
+
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
 #~ "element names a key under \"/desktop/gnome/session/required_components"
@@ -493,45 +525,59 @@ msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
 #~ "običajno ne dovoli uporabnikom odstraniti zahtevanih predmetov, "
 #~ "upravljalnik seje pa bo pomembne izbrisane predmete samodejno vpisal "
 #~ "nazaj na seznam."
+
 #~ msgid "Logout prompt"
 #~ msgstr "Odjavni zaslon"
+
 #~ msgid "Panel"
 #~ msgstr "Pult"
+
 #~ msgid "Required session components"
 #~ msgstr "Zahtevani sestavni deli seje"
+
 #~ msgid "Save sessions"
 #~ msgstr "Shrani seje"
+
 #~ msgid ""
 #~ "The file manager provides the desktop icons and allows you to interact "
 #~ "with your saved files."
 #~ msgstr ""
 #~ "Upravljalnik datotek prikaže ikone namizja, s katerimi lahko upravljate s "
 #~ "shranjenimi datotekami."
+
 #~ msgid ""
 #~ "The number of minutes of inactivity before the session is considered idle."
 #~ msgstr "Čas nedejavnosti v minutah, preden se seja obravnava kot nedejavna."
+
 #~ msgid ""
 #~ "The panel provides the bar at the top or bottom of the screen containing "
 #~ "menus, the window list, status icons, the clock, etc."
 #~ msgstr ""
 #~ "Pult omogoča vrstico na vrhu ali na dnu zaslona z meniji, seznamom oken, "
 #~ "ikonami stanja, uro in drugimi uporabnimi možnostmi."
+
 #~ msgid ""
 #~ "The window manager is the program that draws the title bar and borders "
 #~ "around windows, and allows you to move and resize windows."
 #~ msgstr ""
 #~ "Upravljalnik oken je program, ki izriše naslovno vrstico in robove okoli "
 #~ "oken ter omogoča njihovo premikanje in spreminjanje velikosti."
+
 #~ msgid "Time before session is considered idle"
 #~ msgstr "Čas preden se seja obravnava kot nedejavna."
+
 #~ msgid "GConf key used to look up default session"
 #~ msgstr "GConf ključ za pogled privzete seje"
+
 #~ msgid "Preferred Image to use for login splash screen"
 #~ msgstr "Pozdravna slika, ki naj bo uporabljena v uvodnem zaslonu"
+
 #~ msgid "Show the splash screen"
 #~ msgstr "Pokaži uvodni zaslon"
+
 #~ msgid "Show the splash screen when the session starts up"
 #~ msgstr "Pri zagonu seje prikaži uvodni zaslon"
+
 #~ msgid ""
 #~ "This is a relative path value based off the $datadir/pixmaps/ directory. "
 #~ "Sub-directories and image names are valid values. Changing this value "
@@ -540,16 +586,20 @@ msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
 #~ "To je relativna pot s korenom na mapi $datadir/pixmaps/. Veljavne "
 #~ "vrednosti so podrejene mape in imena slik. Spremenjene vrednosti se bodo "
 #~ "uveljavile ob naslednjem zagonu seje."
+
 #~ msgid ""
 #~ "Waiting for program to finish.  Interrupting program may cause you to "
 #~ "lose work."
 #~ msgstr ""
 #~ "Čakanje na konec izvajanja programa. Prekinitev izvajanja lahko povzroči "
 #~ "izgubo vaših podatkov."
+
 #~ msgid "- GNOME Splash Screen"
 #~ msgstr "- pozdravno okno GNOME"
+
 #~ msgid "GNOME Splash Screen"
 #~ msgstr "Pozdravno okno GNOME"
+
 #~ msgid ""
 #~ "If enabled, gnome-session will save the session automatically. Otherwise, "
 #~ "the logout dialog will have an option to save the session."
@@ -557,22 +607,30 @@ msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
 #~ "Izbrana možnost omogoča, da bo program samodejno shranil sejo. V "
 #~ "nasprotnem primeru bo imelo odjavno pogovorno okno možnost za "
 #~ "shranjevanje."
+
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "Ozadnji program GNOME pomoči nastavitev"
+
 #~ msgid "The name of the startup program cannot be empty"
 #~ msgstr "Polje z imenom programa mora biti izpolnjeno"
+
 #~ msgid "Sessions Preferences"
 #~ msgstr "Možnosti seje"
+
 #~ msgid "Selected option in the log out dialog"
 #~ msgstr "Izbrana možnost v odjavnem pogovornem oknu"
+
 #~ msgid "GNOME Keyring Daemon Wrapper"
 #~ msgstr "Ozadnji program GNOME zbirke ključev"
+
 #~ msgid "Session management"
 #~ msgstr "Upravljalnik seje"
+
 #~ msgid "GNOME GUI Library + EggSMClient"
 #~ msgstr "GNOME GUI knjižnica + EggSMClient"
+
 #~ msgid "Play logout sound instead of login"
 #~ msgstr "Predvajaj zvok odjave namesto prijave"
+
 #~ msgid "- GNOME login/logout sound"
 #~ msgstr "- zvok GNOME prijave in odjave"
-
