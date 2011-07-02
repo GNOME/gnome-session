@@ -88,6 +88,11 @@ on_client_query_end_session (DBusGProxy     *proxy,
                                  G_TYPE_STRING, reason,
                                  G_TYPE_INVALID,
                                  G_TYPE_INVALID);
+
+        if (! res) {
+                g_warning ("Failed to respond to EndSession: %s", error->message);
+                g_error_free (error);
+        }
 }
 
 static void

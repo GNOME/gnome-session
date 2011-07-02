@@ -360,8 +360,6 @@ get_pixmap_for_window (Display *display,
         Picture                  src_picture;
         Picture                  dst_picture;
         gboolean                 has_alpha;
-        int                      x;
-        int                      y;
         int                      width;
         int                      height;
 
@@ -369,8 +367,6 @@ get_pixmap_for_window (Display *display,
 
         format = XRenderFindVisualFormat (display, attr.visual);
         has_alpha = (format->type == PictTypeDirect && format->direct.alphaMask);
-        x = attr.x;
-        y = attr.y;
         width = attr.width;
         height = attr.height;
 

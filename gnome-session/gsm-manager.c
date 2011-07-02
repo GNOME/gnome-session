@@ -377,7 +377,7 @@ app_condition_changed (GsmApp     *app,
 
                         error = NULL;
                         res = gsm_client_stop (client, &error);
-                        if (error != NULL) {
+                        if (! res) {
                                 g_warning ("Not able to stop app client from its condition: %s",
                                            error->message);
                                 g_error_free (error);
@@ -388,7 +388,7 @@ app_condition_changed (GsmApp     *app,
                         /* If we don't have a client then we should try to kill the app */
                         error = NULL;
                         res = gsm_app_stop (app, &error);
-                        if (error != NULL) {
+                        if (! res) {
                                 g_warning ("Not able to stop app from its condition: %s",
                                            error->message);
                                 g_error_free (error);
@@ -1835,7 +1835,7 @@ _disconnect_client (GsmManager *manager,
 
         error = NULL;
         res = gsm_app_restart (app, &error);
-        if (error != NULL) {
+        if (! res) {
                 if (is_app_required (manager, app)) {
                         on_required_app_failure (manager, app);
                 } else {

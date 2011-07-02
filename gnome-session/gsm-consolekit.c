@@ -760,6 +760,13 @@ gsm_consolekit_can_restart (GsmConsolekit *manager)
                                               G_TYPE_BOOLEAN, &can_restart,
                                               G_TYPE_INVALID);
 
+        if (!res) {
+                g_warning ("Could not query CanRestart from ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+                return FALSE;
+        }
+
 	return can_restart;
 }
 
@@ -787,6 +794,12 @@ gsm_consolekit_can_stop (GsmConsolekit *manager)
                                               G_TYPE_BOOLEAN, &can_stop,
                                               G_TYPE_INVALID);
 
+        if (!res) {
+                g_warning ("Could not query CanStop from ConsoleKit: %s",
+                           error->message);
+                g_error_free (error);
+                return FALSE;
+        }
 	return can_stop;
 }
 

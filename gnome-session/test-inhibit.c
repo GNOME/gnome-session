@@ -73,13 +73,11 @@ do_inhibit_for_window (GdkWindow *window)
 {
         GError     *error;
         gboolean    res;
-        const char *startup_id;
         const char *app_id;
         const char *reason;
         guint       toplevel_xid;
         guint       flags;
 
-        startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
 #if 1
         app_id = "nautilus-cd-burner";
         reason = "A CD burn is in progress.";
