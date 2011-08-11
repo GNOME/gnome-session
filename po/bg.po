@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-23 11:29+0200\n"
-"PO-Revision-Date: 2011-03-23 11:29+0200\n"
-"Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
+"POT-Creation-Date: 2011-08-11 22:31+0300\n"
+"PO-Revision-Date: 2011-08-11 22:31+0300\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -36,11 +36,11 @@ msgstr "Добавяне на програма стартираща при вл�
 msgid "Edit Startup Program"
 msgstr "Редактиране на програмите стартиращи при влизане"
 
-#: ../capplet/gsm-app-dialog.c:485
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "Командата за програма стартираща при влизане не може да е празна"
 
-#: ../capplet/gsm-app-dialog.c:491
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "Командата за програма стартираща при влизане е неправилна"
 
@@ -60,11 +60,11 @@ msgstr "Програма"
 msgid "Startup Applications Preferences"
 msgstr "Настройки за автоматично стартиране на програми"
 
-#: ../capplet/gsp-app.c:269
+#: ../capplet/gsp-app.c:273
 msgid "No name"
 msgstr "Без име"
 
-#: ../capplet/gsp-app.c:275
+#: ../capplet/gsp-app.c:279
 msgid "No description"
 msgstr "Без описание"
 
@@ -92,7 +92,7 @@ msgstr "Влизане в GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Някои програми все още работят:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -150,61 +150,66 @@ msgstr "_Запомняне на стартираните програми пр�
 msgid "File is not a valid .desktop file"
 msgstr "Файлът не е във формат .desktop"
 
-#: ../egg/eggdesktopfile.c:188
+#. translators: 'Version' is from a desktop file, and
+#. * should not be translated. '%s' would probably be a
+#. * version number.
+#: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Непозната версия на файла: %s"
 
-#: ../egg/eggdesktopfile.c:958
+#: ../egg/eggdesktopfile.c:974
 #, c-format
 msgid "Starting %s"
 msgstr "Стартиране на %s"
 
-#: ../egg/eggdesktopfile.c:1100
+#: ../egg/eggdesktopfile.c:1116
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Програмата не приема документи през командния ред"
 
-#: ../egg/eggdesktopfile.c:1168
+#: ../egg/eggdesktopfile.c:1184
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Непозната опция при стартиране „%d“"
 
-#: ../egg/eggdesktopfile.c:1373
+#. translators: The 'Type=Link' string is found in a
+#. * desktop file, and should not be translated.
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "В обекти от вида „Type=Link“ не може да се подават адреси на документи"
 
-#: ../egg/eggdesktopfile.c:1394
+#: ../egg/eggdesktopfile.c:1412
 #, c-format
 msgid "Not a launchable item"
 msgstr "Не е обект за стартиране"
 
-#: ../egg/eggsmclient.c:225
+#: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "Изключване на връзката с управлението на сесиите"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "Указване на файла със запазените настройки"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "FILE"
 msgstr "ФАЙЛ"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "Указване на идентификатор за управлението на сесиите"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "ID"
 msgstr "ИДЕНТИФИКАТОР"
 
-#: ../egg/eggsmclient.c:252
+#: ../egg/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "Настройки на управлението на сесии:"
 
-#: ../egg/eggsmclient.c:253
+#: ../egg/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "Показване на настройките за управлението на сесиите"
 
@@ -222,19 +227,19 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Иконата „%s“ не е открита"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:592
+#: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
 msgstr "Непозната"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
 msgstr "Все още работи програмата:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "Some programs are still running:"
 msgstr "Все още работят програмите:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -242,35 +247,35 @@ msgstr ""
 "Изчакване на програмите да завършат. Прекъсването им може да доведе до "
 "загуба на информация."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:878
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Switch User Anyway"
 msgstr "Смяна на потребител"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:881
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Log Out Anyway"
 msgstr "Изход въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:884
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Suspend Anyway"
 msgstr "Приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Hibernate Anyway"
 msgstr "Дълбоко приспиване"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Shut Down Anyway"
 msgstr "Спиране въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
-msgstr "Рестартиране на компютъра"
+#: ../gnome-session/gsm-inhibit-dialog.c:889
+msgid "Restart Anyway"
+msgstr "Рестартиране въпреки всичко"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:897
 msgid "Lock Screen"
 msgstr "Заключване на екрана"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Cancel"
 msgstr "Отказ"
 
@@ -303,7 +308,7 @@ msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-fail-whale-dialog.c:294
 #: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "_Изход"
@@ -328,12 +333,12 @@ msgstr "_Рестартиране"
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:276
+#: ../gnome-session/gsm-fail-whale-dialog.c:274
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не! Нещо се обърка."
 
 #. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:281
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -356,11 +361,11 @@ msgstr "Прекратен от сигнала %d"
 msgid "Stopped by signal %d"
 msgstr "Спрян от сигнала %d"
 
-#: ../gnome-session/gsm-manager.c:1362
+#: ../gnome-session/gsm-manager.c:1371
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 не се зареди"
 
-#: ../gnome-session/gsm-manager.c:1363
+#: ../gnome-session/gsm-manager.c:1372
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -373,15 +378,23 @@ msgstr ""
 "Най-вероятната причина е, че системата ви (графичната карта и/или драйверът) "
 "не покрива изискванията на GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1365
+#: ../gnome-session/gsm-manager.c:1374
 msgid "Learn more about GNOME 3"
 msgstr "Научете повече за GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1462 ../gnome-session/gsm-manager.c:2193
+#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
 msgid "Not responding"
 msgstr "Не отговаря"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:559
+msgid "Remembered Application"
+msgstr "Запомнена програма"
+
+#: ../gnome-session/gsm-xsmp-client.c:1197
 msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
@@ -410,9 +423,17 @@ msgstr ""
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
+#: ../gnome-session/main.c:276
+msgid "AUTOSTART_DIR"
+msgstr "ПАПКА_ЗА_АВТОМАТИЧНО_СТАРТИРАНЕ"
+
 #: ../gnome-session/main.c:277
 msgid "Session to use"
 msgstr "Коя сесия да се ползва"
+
+#: ../gnome-session/main.c:277
+msgid "SESSION_NAME"
+msgstr "ИМЕ_НА_СЕСИЯ"
 
 #: ../gnome-session/main.c:278
 msgid "Enable debugging code"
