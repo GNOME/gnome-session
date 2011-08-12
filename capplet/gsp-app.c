@@ -54,6 +54,7 @@ struct _GspAppPrivate {
 
         gboolean      hidden;
         gboolean      enabled;
+        gboolean      shown;
 
         char         *name;
         char         *exec;
@@ -332,7 +333,9 @@ _gsp_app_user_equal_system (GspApp  *app,
                                       FALSE) != app->priv->hidden ||
             gsp_key_file_get_boolean (keyfile,
                                       GSP_KEY_FILE_DESKTOP_KEY_AUTOSTART_ENABLED,
-                                      TRUE) != app->priv->enabled) {
+                                      TRUE) != app->priv->enabled ||
+            gsp_key_file_get_shown (keyfile,
+                                    gsm_util_get_current_desktop ()) != app->priv->shown) {
                 g_free (path);
                 g_key_file_free (keyfile);
                 return FALSE;
@@ -569,6 +572,14 @@ gsp_app_set_enabled (GspApp   *app,
         _gsp_app_emit_changed (app);
 }
 
+gboolean
+gsp_app_get_shown (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), FALSE);
+
+        return app->priv->shown;
+}
+
 const char *
 gsp_app_get_name (GspApp *app)
 {
@@ -797,6 +808,8 @@ gsp_app_new (const char   *path,
         app->priv->enabled = gsp_key_file_get_boolean (keyfile,
                                                        GSP_KEY_FILE_DESKTOP_KEY_AUTOSTART_ENABLED,
                                                        TRUE);
+        app->priv->shown = gsp_key_file_get_shown (keyfile,
+                                                   gsm_util_get_current_desktop ());
 
         app->priv->name = gsp_key_file_get_locale_string (keyfile,
                                                           G_KEY_FILE_DESKTOP_KEY_NAME);
@@ -940,6 +953,7 @@ gsp_app_create (const char *name,
 
         app->priv->hidden = FALSE;
         app->priv->enabled = TRUE;
+        app->priv->shown = TRUE;
 
         if (!gsm_util_text_is_blank (name)) {
                 app->priv->name = g_strdup (name);

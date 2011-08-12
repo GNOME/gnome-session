@@ -94,6 +94,58 @@ gsp_key_file_get_boolean (GKeyFile    *keyfile,
         return retval;
 }
 
+gboolean
+gsp_key_file_get_shown (GKeyFile   *keyfile,
+                        const char *current_desktop)
+{
+        char     **only_show_in, **not_show_in;
+        gboolean   found;
+        int        i;
+
+        if (!current_desktop)
+                return TRUE;
+
+        only_show_in = g_key_file_get_string_list (keyfile, G_KEY_FILE_DESKTOP_GROUP,
+                                                   G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN,
+                                                   NULL, NULL);
+
+        if (only_show_in) {
+                found = FALSE;
+                for (i = 0; only_show_in[i] != NULL; i++) {
+                        if (g_strcmp0 (current_desktop, only_show_in[i]) == 0) {
+                                found = TRUE;
+                                break;
+                        }
+                }
+
+                g_strfreev (only_show_in);
+
+                if (!found)
+                        return FALSE;
+        }
+
+        not_show_in = g_key_file_get_string_list (keyfile, G_KEY_FILE_DESKTOP_GROUP,
+                                                  G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN,
+                                                  NULL, NULL);
+
+        if (not_show_in) {
+                found = FALSE;
+                for (i = 0; not_show_in[i] != NULL; i++) {
+                        if (g_strcmp0 (current_desktop, not_show_in[i]) == 0) {
+                                found = TRUE;
+                                break;
+                        }
+                }
+
+                g_strfreev (not_show_in);
+
+                if (found)
+                        return FALSE;
+        }
+
+        return TRUE;
+}
+
 void
 gsp_key_file_set_locale_string (GKeyFile    *keyfile,
                                 const gchar *key,

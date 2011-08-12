@@ -42,6 +42,8 @@ gboolean  gsp_key_file_to_file         (GKeyFile       *keyfile,
 gboolean gsp_key_file_get_boolean      (GKeyFile       *keyfile,
                                         const gchar    *key,
                                         gboolean        default_value);
+gboolean gsp_key_file_get_shown        (GKeyFile       *keyfile,
+                                        const char     *current_desktop);
 #define gsp_key_file_get_string(key_file, key) \
          g_key_file_get_string (key_file, G_KEY_FILE_DESKTOP_GROUP, key, NULL)
 #define gsp_key_file_get_locale_string(key_file, key) \

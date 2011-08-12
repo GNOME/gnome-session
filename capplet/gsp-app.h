@@ -79,6 +79,8 @@ gboolean         gsp_app_get_enabled       (GspApp       *app);
 void             gsp_app_set_enabled       (GspApp       *app,
                                             gboolean      enabled);
 
+gboolean         gsp_app_get_shown         (GspApp       *app);
+
 const char      *gsp_app_get_name          (GspApp       *app);
 const char      *gsp_app_get_exec          (GspApp       *app);
 const char      *gsp_app_get_comment       (GspApp       *app);
