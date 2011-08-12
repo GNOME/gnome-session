@@ -3,7 +3,6 @@ bin_PROGRAMS = gnome-session-properties
 AM_CPPFLAGS =						\
 	$(SESSION_PROPERTIES_CFLAGS)			\
 	$(GCONF_CFLAGS)					\
-	-I$(top_srcdir)/egg				\
 	-I$(top_srcdir)/gnome-session			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"		\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"		\
@@ -26,7 +25,6 @@ gnome_session_properties_SOURCES =			\
 
 gnome_session_properties_LDADD =			\
 	$(SESSION_PROPERTIES_LIBS)			\
-	$(top_builddir)/egg/libeggdesktopfile.la 	\
 	$(top_builddir)/gnome-session/libgsmutil.la 	\
 	$(GCONF_LIBS)
 
