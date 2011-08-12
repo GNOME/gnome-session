@@ -108,6 +108,7 @@ static gboolean
 is_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
+        const char *current_desktop;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
 
@@ -130,9 +131,14 @@ is_disabled (GsmApp *app)
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
-        if (!egg_desktop_file_can_launch (priv->desktop_file, "GNOME")) {
-                g_debug ("app %s not installed or not for GNOME",
-                         gsm_app_peek_id (app));
+        current_desktop = gsm_util_get_current_desktop ();
+        if (!egg_desktop_file_can_launch (priv->desktop_file, current_desktop)) {
+                if (current_desktop) {
+                        g_debug ("app %s not installed or not for %s",
+                                 gsm_app_peek_id (app), current_desktop);
+                } else {
+                        g_debug ("app %s not installed", gsm_app_peek_id (app));
+                }
                 return TRUE;
         }
 

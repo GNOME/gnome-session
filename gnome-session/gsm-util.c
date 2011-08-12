@@ -182,7 +182,6 @@ gsm_util_get_saved_session_dir (void)
         return _saved_session_dir;
 }
 
-
 char **
 gsm_util_get_autostart_dirs ()
 {
@@ -294,6 +293,33 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
 	result[size] = NULL;
 
 	return result;
+}
+
+const char *
+gsm_util_get_current_desktop ()
+{
+        static char *current_desktop = NULL;
+
+        /* Support XDG_CURRENT_DESKTOP environment variable; this can be used
+         * to abuse gnome-session in non-GNOME desktops. */
+        if (!current_desktop) {
+                const char *desktop;
+
+                desktop = g_getenv ("XDG_CURRENT_DESKTOP");
+
+                /* Note: if XDG_CURRENT_DESKTOP is set but empty, do as if it
+                 * was not set */
+                if (!desktop || desktop[0] == '\0')
+                        current_desktop = g_strdup ("GNOME");
+                else
+                        current_desktop = g_strdup (desktop);
+        }
+
+        /* Using "*" means skipping desktop-related checks */
+        if (g_strcmp0 (current_desktop, "*") == 0)
+                return NULL;
+
+        return current_desktop;
 }
 
 gboolean
