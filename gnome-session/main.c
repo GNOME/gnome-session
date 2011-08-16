@@ -46,12 +46,14 @@
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
 #include "gsm-xsmp-server.h"
+#include "gsm-fail-whale-dialog.h"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
+static gboolean please_fail = FALSE;
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
@@ -278,6 +280,7 @@ main (int argc, char **argv)
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
+                { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
 
@@ -307,6 +310,12 @@ main (int argc, char **argv)
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
+                exit (1);
+        }
+
+        if (please_fail) {
+                gsm_fail_whale_dialog_we_failed ();
+                gtk_main ();
                 exit (1);
         }
 
