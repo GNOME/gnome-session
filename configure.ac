@@ -36,6 +36,7 @@ GLIB_REQUIRED=2.28.0
 GTK3_REQUIRED=2.90.7
 DBUS_GLIB_REQUIRED=0.76
 UPOWER_REQUIRED=0.9.0
+JSON_GLIB_REQUIRED=0.10
 
 dnl ====================================================================
 dnl Dependency Checks
@@ -51,6 +52,7 @@ PKG_CHECK_MODULES(GNOME_SESSION,
         gtk+-3.0 >= $GTK3_REQUIRED
         dbus-glib-1 >= $DBUS_GLIB_REQUIRED
         upower-glib >= $UPOWER_REQUIRED
+        json-glib-1.0 >= $JSON_GLIB_REQUIRED
 )
 
 PKG_CHECK_MODULES(SESSION_PROPERTIES,
