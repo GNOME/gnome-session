@@ -272,7 +272,7 @@ static void
 on_required_app_failure (GsmManager  *manager,
                          GsmApp      *app)
 {
-        gsm_fail_whale_dialog_we_failed ();
+        gsm_fail_whale_dialog_we_failed (FALSE);
 }
 
 

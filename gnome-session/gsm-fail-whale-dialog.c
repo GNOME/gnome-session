@@ -38,6 +38,7 @@
 
 struct _GsmFailWhaleDialogPrivate
 {
+        gboolean debug_mode;
         GdkRectangle geometry;
 };
 
@@ -77,6 +78,9 @@ _window_move_resize_window (GsmFailWhaleDialog *window,
         widget = GTK_WIDGET (window);
 
         g_assert (gtk_widget_get_realized (widget));
+
+        if (window->priv->debug_mode)
+                return;
 
         g_debug ("Move and/or resize window x=%d y=%d w=%d h=%d",
                  window->priv->geometry.x,
@@ -221,8 +225,10 @@ gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
 static void
 gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
 {
+        GObjectClass   *object_class;
         GtkWidgetClass *widget_class;
 
+        object_class = G_OBJECT_CLASS (klass);
         widget_class = GTK_WIDGET_CLASS (klass);
 
         widget_class->realize = gsm_fail_whale_dialog_realize;
@@ -237,11 +243,15 @@ static void
 on_logout_clicked (GtkWidget          *button,
                    GsmFailWhaleDialog *fail_dialog)
 {
-        gsm_manager_logout (gsm_manager_get (),
-                            GSM_MANAGER_LOGOUT_MODE_FORCE,
-                            NULL);
+        if (fail_dialog->priv->debug_mode) {
+                gtk_main_quit ();
+        } else {
+                gsm_manager_logout (gsm_manager_get (),
+                                    GSM_MANAGER_LOGOUT_MODE_FORCE,
+                                    NULL);
 
-        gtk_widget_destroy (GTK_WIDGET (fail_dialog));
+                gtk_widget_destroy (GTK_WIDGET (fail_dialog));
+        }
 }
 
 static void
@@ -255,6 +265,18 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GtkWidget *button_box;
         GtkWidget *button;
         char *markup;
+
+        gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
+        gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
+
+        if (!fail_dialog->priv->debug_mode) {
+                gtk_window_set_skip_taskbar_hint (GTK_WINDOW (fail_dialog), TRUE);
+                gtk_window_set_keep_above (GTK_WINDOW (fail_dialog), TRUE);
+                gtk_window_stick (GTK_WINDOW (fail_dialog));
+                gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
+                /* only works if there is a window manager which is unlikely */
+                gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
+        }
 
         alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
         gtk_widget_show (alignment);
@@ -303,21 +325,10 @@ static void
 gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
 {
         fail_dialog->priv = GSM_FAIL_WHALE_DIALOG_GET_PRIVATE (fail_dialog);
-
-        gtk_window_set_skip_taskbar_hint (GTK_WINDOW (fail_dialog), TRUE);
-        gtk_window_set_keep_above (GTK_WINDOW (fail_dialog), TRUE);
-        gtk_window_stick (GTK_WINDOW (fail_dialog));
-        gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
-        gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
-        gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
-        /* only works if there is a window manager which is unlikely */
-        gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
-
-        setup_window (fail_dialog);
 }
 
 void
-gsm_fail_whale_dialog_we_failed (void)
+gsm_fail_whale_dialog_we_failed (gboolean debug_mode)
 {
         static GsmFailWhaleDialog *current_dialog = NULL;
         GsmFailWhaleDialog        *fail_dialog;
@@ -327,6 +338,8 @@ gsm_fail_whale_dialog_we_failed (void)
         }
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
+        fail_dialog->priv->debug_mode = debug_mode;
+        setup_window (fail_dialog);
 
         current_dialog = fail_dialog;
         g_signal_connect (current_dialog,

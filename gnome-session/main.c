@@ -314,7 +314,7 @@ main (int argc, char **argv)
         }
 
         if (please_fail) {
-                gsm_fail_whale_dialog_we_failed ();
+                gsm_fail_whale_dialog_we_failed (TRUE);
                 gtk_main ();
                 exit (1);
         }
