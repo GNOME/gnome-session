@@ -32,6 +32,7 @@
 #include "gsm-icon-names.h"
 #include "gsm-manager.h"
 #include "gsm-util.h"
+#include "gsm-shell-extensions.h"
 
 #define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
         (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogPrivate))
@@ -40,6 +41,8 @@ struct _GsmFailWhaleDialogPrivate
 {
         gboolean debug_mode;
         GdkRectangle geometry;
+        GsmShellExtensions *extensions;
+        GtkWidget *extensions_box;
 };
 
 G_DEFINE_TYPE (GsmFailWhaleDialog, gsm_fail_whale_dialog, GTK_TYPE_WINDOW);
@@ -124,6 +127,18 @@ on_screen_size_changed (GdkScreen          *screen,
                         GsmFailWhaleDialog *fail_dialog)
 {
         gtk_widget_queue_resize (GTK_WIDGET (fail_dialog));
+}
+
+static void
+gsm_fail_whale_dialog_finalize (GObject *object)
+{
+        GsmFailWhaleDialog *fail_dialog = GSM_FAIL_WHALE_DIALOG (object);
+        GsmFailWhaleDialogPrivate *priv = fail_dialog->priv;
+
+        if (priv->extensions != NULL) {
+                g_object_unref (priv->extensions);
+                priv->extensions = NULL;
+        }
 }
 
 static void
@@ -229,6 +244,8 @@ gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
         GtkWidgetClass *widget_class;
 
         object_class = G_OBJECT_CLASS (klass);
+        object_class->finalize = gsm_fail_whale_dialog_finalize;
+
         widget_class = GTK_WIDGET_CLASS (klass);
 
         widget_class->realize = gsm_fail_whale_dialog_realize;
@@ -255,6 +272,61 @@ on_logout_clicked (GtkWidget          *button,
 }
 
 static void
+on_extension_switched (GObject            *object,
+                       GParamSpec         *spec,
+                       GsmFailWhaleDialog *fail_dialog)
+{
+        gchar *uuid;
+        gboolean enabled;
+
+        uuid = g_object_get_data (object, "uuid");
+        g_object_get (object, "active", &enabled, NULL);
+
+        gsm_shell_extensions_set_enabled (fail_dialog->priv->extensions,
+                                          uuid,
+                                          enabled);
+}
+
+static void
+build_extension_toggle (GsmShellExtensions *extensions,
+                        GsmShellExtension  *extension,
+                        gpointer            data)
+{
+        GsmFailWhaleDialog *fail_dialog = GSM_FAIL_WHALE_DIALOG (data);
+        GtkWidget *hbox;
+        GtkWidget *label;
+        GtkWidget *sw;
+
+        hbox = gtk_hbox_new (FALSE, 0);
+        gtk_widget_set_size_request (hbox, 600, -1);
+        gtk_widget_set_halign (hbox, GTK_ALIGN_CENTER);
+        gtk_widget_show (hbox);
+        gtk_box_pack_start (GTK_BOX (fail_dialog->priv->extensions_box),
+                            hbox, FALSE, FALSE, 0);
+
+        label = gtk_label_new (gsm_shell_extension_get_name (extension));
+
+        gtk_widget_show (label);
+        gtk_widget_set_halign (label, GTK_ALIGN_START);
+        gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+
+        sw = gtk_switch_new ();
+        gtk_switch_set_active (GTK_SWITCH (sw),
+                               gsm_shell_extension_get_is_enabled (extension));
+
+        g_object_set_data (G_OBJECT (sw),
+                           "uuid",
+                           gsm_shell_extension_get_uuid (extension));
+        g_signal_connect (G_OBJECT (sw),
+                          "notify::active",
+                          G_CALLBACK (on_extension_switched),
+                          fail_dialog);
+        gtk_widget_set_halign (label, GTK_ALIGN_END);
+        gtk_widget_show (sw);
+        gtk_box_pack_end (GTK_BOX (hbox), sw, FALSE, FALSE, 0);
+}
+
+static void
 setup_window (GsmFailWhaleDialog *fail_dialog)
 {
         GtkWidget *alignment;
@@ -264,7 +336,12 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GtkWidget *message_label;
         GtkWidget *button_box;
         GtkWidget *button;
+        GtkWidget *extensions_scroll;
+        GtkWidget *extensions_vbox;
         char *markup;
+        GsmShellExtensions *extensions;
+
+        extensions = fail_dialog->priv->extensions;
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
@@ -299,13 +376,33 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_widget_show (label);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 
-        /* make this changable at some point */
-        message_label = gtk_label_new (_("A problem has occurred and the system can't recover.\nPlease log out and try again."));
+        if (priv->show_extensions && gsm_shell_extensions_n_extensions (priv->extensions) > 0)
+                message_label = gtk_label_new (_("A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\nPlease try disabling some of these, and then log out and try again."));
+        else
+                message_label = gtk_label_new (_("A problem has occurred and the system can't recover.\nPlease log out and try again."));
+
         gtk_label_set_justify (GTK_LABEL (message_label), GTK_JUSTIFY_CENTER);
         gtk_label_set_line_wrap (GTK_LABEL (message_label), TRUE);
         gtk_widget_show (message_label);
         gtk_box_pack_start (GTK_BOX (box),
                             message_label, FALSE, FALSE, 0);
+
+        extensions_vbox = gtk_vbox_new (TRUE, 6);
+        gtk_widget_show (extensions_vbox);
+        fail_dialog->priv->extensions_box = extensions_vbox;
+
+        extensions_scroll = gtk_scrolled_window_new (NULL, NULL);
+        gtk_widget_show (extensions_scroll);
+
+        gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (extensions_scroll),
+                                               extensions_vbox);
+
+        gtk_box_pack_start (GTK_BOX (box),
+                            extensions_scroll, FALSE, FALSE, 0);
+
+        gsm_shell_extensions_foreach (extensions,
+                                      build_extension_toggle,
+                                      (gpointer) fail_dialog);
 
         button_box = gtk_hbutton_box_new ();
         gtk_container_set_border_width (GTK_CONTAINER (button_box), 20);
@@ -325,6 +422,7 @@ static void
 gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
 {
         fail_dialog->priv = GSM_FAIL_WHALE_DIALOG_GET_PRIVATE (fail_dialog);
+        fail_dialog->priv->extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
 }
 
 void
