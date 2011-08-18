@@ -8,11 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-28 21:07+0000\n"
-"PO-Revision-Date: 2011-03-27 10:39+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-22 16:19+0000\n"
+"PO-Revision-Date: 2011-08-18 14:59+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,11 +34,11 @@ msgstr "Tambah Program Awalan"
 msgid "Edit Startup Program"
 msgstr "Sunting Program Awalan"
 
-#: ../capplet/gsm-app-dialog.c:485
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "Perintah awalan tidak boleh kosong"
 
-#: ../capplet/gsm-app-dialog.c:491
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "Perintah awalan tidak sah"
 
@@ -59,15 +58,16 @@ msgstr "Program"
 msgid "Startup Applications Preferences"
 msgstr "Preferensi Aplikasi Awalan"
 
-#: ../capplet/gsp-app.c:269
+#: ../capplet/gsp-app.c:273
 msgid "No name"
 msgstr "Tanpa nama"
 
-#: ../capplet/gsp-app.c:275
+#: ../capplet/gsp-app.c:279
 msgid "No description"
 msgstr "Tanpa deskripsi"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35
+#: ../gnome-session/main.c:280
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
@@ -79,7 +79,8 @@ msgstr "Tidak dapat membuka dokumen bantuan"
 msgid "GNOME fallback"
 msgstr "Pengalasan GNOME"
 
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -91,13 +92,10 @@ msgstr "Sesi ini melogkan Anda ke dalam GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Beberapa program masih berjalan:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda "
-"kehilangan hasil pekerjaan."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:640
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
+msgstr "Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda kehilangan hasil pekerjaan."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
@@ -149,61 +147,66 @@ msgid "File is not a valid .desktop file"
 msgstr "Ini bukan berkas .desktop yang sah"
 
 # %s adalah versi.
-#: ../egg/eggdesktopfile.c:188
+#. translators: 'Version' is from a desktop file, and
+#. * should not be translated. '%s' would probably be a
+#. * version number.
+#: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "Berkas desktop Versi '%s' tak dikenal"
 
-#: ../egg/eggdesktopfile.c:958
+#: ../egg/eggdesktopfile.c:974
 #, c-format
 msgid "Starting %s"
 msgstr "Memulai %s"
 
-#: ../egg/eggdesktopfile.c:1100
+#: ../egg/eggdesktopfile.c:1116
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "Aplikasi tidak menerima dokumen pada baris perintah"
 
-#: ../egg/eggdesktopfile.c:1168
+#: ../egg/eggdesktopfile.c:1184
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "Opsi peluncuran tak dikenal: %d"
 
-#: ../egg/eggdesktopfile.c:1373
+#. translators: The 'Type=Link' string is found in a
+#. * desktop file, and should not be translated.
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "Tidak dapat melewatkan URI dokumen pada entri desktop 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1394
+#: ../egg/eggdesktopfile.c:1412
 #, c-format
 msgid "Not a launchable item"
 msgstr "Bukan objek yang dapat dieksekusi"
 
-#: ../egg/eggsmclient.c:225
+#: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "Menonaktifkan koneksi ke manajer sesi"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "Menentukan berkas yang memuat konfigurasi"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "FILE"
 msgstr "BERKAS"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "Menentukan ID manajemen sesi"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "ID"
 msgstr "ID"
 
-#: ../egg/eggsmclient.c:252
+#: ../egg/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "Opsi manajemen sesi:"
 
-#: ../egg/eggsmclient.c:253
+#: ../egg/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "Menampilkan opsi manajemen sesi"
 
@@ -221,55 +224,52 @@ msgstr ""
 msgid "Icon '%s' not found"
 msgstr "Tidak menemukan ikon '%s'"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:592
+#: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
 msgstr "Tak dikenal"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
 msgstr "Sebuah program masih berjalan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "Some programs are still running:"
 msgstr "Beberapa program masih berjalan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda "
-"kehilangan hasil pekerjaan."
+#: ../gnome-session/gsm-inhibit-dialog.c:644
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Menunggu program selesai. Menginterupsi program dapat menyebabkan Anda kehilangan hasil pekerjaan."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:878
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Switch User Anyway"
 msgstr "Tetap Ganti Pengguna"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:881
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Log Out Anyway"
 msgstr "Tetap Keluar"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:884
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Suspend Anyway"
 msgstr "Tetap Suspensi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Hibernate Anyway"
 msgstr "Tetap Hibernasi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Shut Down Anyway"
 msgstr "Tetap Matikan"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
-msgstr "Tetap Boot Ulang"
+#: ../gnome-session/gsm-inhibit-dialog.c:889
+#| msgid "Reboot Anyway"
+msgid "Restart Anyway"
+msgstr "Tetap Start Ulang"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:897
 msgid "Lock Screen"
 msgstr "Kunci Layar"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Cancel"
 msgstr "Batal"
 
@@ -300,7 +300,7 @@ msgid "_Switch User"
 msgstr "_Ganti Pengguna"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-fail-whale-dialog.c:294
 #: ../gnome-session/gsm-util.c:363
 msgid "_Log Out"
 msgstr "Ke_luar"
@@ -325,12 +325,12 @@ msgstr "H_idupkan Ulang"
 msgid "_Shut Down"
 msgstr "_Matikan"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:276
+#: ../gnome-session/gsm-fail-whale-dialog.c:274
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, Tidak! Sesuatu yang tidak diinginkan telah terjadi."
 
 #. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:281
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -353,43 +353,45 @@ msgstr "Dimatikan oleh sinyal %d"
 msgid "Stopped by signal %d"
 msgstr "Dihentikan oleh sinyal %d"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1371
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 Gagal Dimuat"
 
-#: ../gnome-session/gsm-manager.c:1373
+#: ../gnome-session/gsm-manager.c:1372
 msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
 msgstr ""
-"GNOME 3 gagal dijalankan dengan baik dan kini berada pada <i>mode jatuh "
-"balik</i>.\n"
+"GNOME 3 gagal dijalankan dengan baik dan kini berada pada <i>mode jatuh balik</i>.\n"
 "\n"
-"Ini berarti sistem Anda (perangkat keras grafik atau penggerak) tidak mampu "
-"menyajikan pengalaman GNOME 3 secara penuh."
+"Ini berarti sistem Anda (perangkat keras grafik atau penggerak) tidak mampu menyajikan pengalaman GNOME 3 secara penuh."
 
-#: ../gnome-session/gsm-manager.c:1375
+#: ../gnome-session/gsm-manager.c:1374
 msgid "Learn more about GNOME 3"
 msgstr "Mengenal lebih jauh GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1472 ../gnome-session/gsm-manager.c:2203
+#: ../gnome-session/gsm-manager.c:1471
+#: ../gnome-session/gsm-manager.c:2202
 msgid "Not responding"
 msgstr "Tidak merespon"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:559
+#| msgid "_Remember Currently Running Application"
+msgid "Remembered Application"
+msgstr "Aplikasi Yang Diingat"
+
+#: ../gnome-session/gsm-xsmp-client.c:1197
 msgid "This program is blocking logout."
 msgstr "Program ini menghalangi log keluar."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"Menolak sambungan dari klien baru, karena sesi sedang dalam proses "
-"dimatikan\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Menolak sambungan dari klien baru, karena sesi sedang dalam proses dimatikan\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
@@ -400,17 +402,23 @@ msgstr "Tidak dapat membuat soket pendengar ICE: %s"
 #: ../gnome-session/gsm-util.c:347
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Tidak dapat menjalankan sesi log masuk (serta tidak dapat menyambung ke "
-"server X)"
+msgstr "Tidak dapat menjalankan sesi log masuk (serta tidak dapat menyambung ke server X)"
 
 #: ../gnome-session/main.c:276
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
+#: ../gnome-session/main.c:276
+msgid "AUTOSTART_DIR"
+msgstr "DIR_MULAI_OTOMATIS"
+
 #: ../gnome-session/main.c:277
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
+
+#: ../gnome-session/main.c:277
+msgid "SESSION_NAME"
+msgstr "NAMA_SESI"
 
 #: ../gnome-session/main.c:278
 msgid "Enable debugging code"
@@ -441,7 +449,8 @@ msgstr "Mengabaikan sembarang pencegah"
 msgid "Don't prompt for user confirmation"
 msgstr "Jangan tanyakan konfirmasi pengguna"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:89
+#: ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "Tidak dapat terhubung dengan manajer sesi"
 
@@ -449,20 +458,3 @@ msgstr "Tidak dapat terhubung dengan manajer sesi"
 msgid "Program called with conflicting options"
 msgstr "Program dipanggil dengan opsi yang bertentangan"
 
-#~ msgid "Try _Recovery"
-#~ msgstr "Coba _Pulihkan"
-
-#~ msgid "A system error has occurred: %s"
-#~ msgstr "Telah terjadi galat sistem: %s"
-
-#~ msgid "A fatal system error has occurred: %s"
-#~ msgstr "Telah terjadi galat sistem yang fatal: %s"
-
-#~ msgid "Component '%s': %s"
-#~ msgstr "Komponen '%s': %s"
-
-#~ msgid "Killed by signal"
-#~ msgstr "Dimatikan oleh sinyal"
-
-#~ msgid "Timed out"
-#~ msgstr "Habis waktu"
