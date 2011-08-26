@@ -53,7 +53,8 @@ struct _GsmFailWhaleDialogClass
 
 GType        gsm_fail_whale_dialog_get_type   (void) G_GNUC_CONST;
 
-void         gsm_fail_whale_dialog_we_failed  (gboolean debug_mode);
+void         gsm_fail_whale_dialog_we_failed  (gboolean debug_mode,
+                                               gboolean show_extensions);
 
 G_END_DECLS
 
