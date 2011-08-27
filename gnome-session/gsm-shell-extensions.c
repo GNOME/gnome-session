@@ -21,6 +21,8 @@
  *      Jasper St. Pierre <jstpierre@mecheye.net>
  */
 
+#include <config.h>
+
 #include <glib.h>
 #include <gio/gio.h>
 #include <json-glib/json-glib.h>
