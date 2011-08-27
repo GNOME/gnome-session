@@ -192,6 +192,9 @@ gboolean            gsm_manager_is_autostart_condition_handled (GsmManager     *
                                                                 GError        **error);
 gboolean            gsm_manager_set_phase                      (GsmManager     *manager,
                                                                 GsmManagerPhase phase);
+gboolean            gsm_manager_is_session_running             (GsmManager     *manager,
+                                                                gboolean       *running,
+                                                                GError        **error);
 
 G_END_DECLS
 
