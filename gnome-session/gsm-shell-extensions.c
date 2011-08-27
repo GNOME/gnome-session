@@ -249,7 +249,7 @@ gsm_shell_extensions_scan (GsmShellExtensions *self)
 static void
 gsm_shell_extensions_init (GsmShellExtensions *self)
 {
-  gchar * const * schemas;
+  const gchar * const * schemas;
 
   self->priv = SHELL_EXTENSIONS_PRIVATE (self);
 
