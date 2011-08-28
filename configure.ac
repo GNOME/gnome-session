@@ -12,6 +12,7 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 # Check for programs
 AC_PROG_CC
+AM_PROG_CC_C_O
 AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
 PKG_PROG_PKG_CONFIG()
 
