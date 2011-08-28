@@ -274,13 +274,15 @@ on_required_app_failure (GsmManager  *manager,
 {
         const gchar *app_id;
         gboolean want_extensions_ui;
+        gboolean allow_logout;
 
         app_id = gsm_app_peek_app_id (app);
         want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
+        allow_logout = !_log_out_is_locked_down (manager);
         gsm_fail_whale_dialog_we_failed (FALSE,
+                                         allow_logout,
                                          want_extensions_ui);
 }
-
 
 static gboolean
 _debug_client (const char *id,

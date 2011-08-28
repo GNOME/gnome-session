@@ -40,6 +40,7 @@
 struct _GsmFailWhaleDialogPrivate
 {
         gboolean debug_mode;
+        gboolean allow_logout;
         GdkRectangle geometry;
         gboolean show_extensions;
         GsmShellExtensions *extensions;
@@ -377,7 +378,9 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_widget_show (label);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 
-        if (priv->show_extensions && gsm_shell_extensions_n_extensions (priv->extensions) > 0)
+        if (!priv->allow_logout)
+                message_label = gtk_label_new (_("A problem has occurred and the system can't recover. Please contact a system administrator"));
+        else if (priv->show_extensions && gsm_shell_extensions_n_extensions (priv->extensions) > 0)
                 message_label = gtk_label_new (_("A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\nPlease try disabling some of these, and then log out and try again."));
         else
                 message_label = gtk_label_new (_("A problem has occurred and the system can't recover.\nPlease log out and try again."));
@@ -388,7 +391,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_start (GTK_BOX (box),
                             message_label, FALSE, FALSE, 0);
 
-        if (priv->show_extensions) {
+        if (priv->allow_logout && priv->show_extensions) {
                 extensions_vbox = gtk_vbox_new (TRUE, 6);
                 gtk_widget_show (extensions_vbox);
                 fail_dialog->priv->extensions_box = extensions_vbox;
@@ -413,12 +416,14 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_end (GTK_BOX (box),
                           button_box, FALSE, FALSE, 0);
 
-        button = gtk_button_new_with_mnemonic (_("_Log Out"));
-        gtk_widget_show (button);
-        gtk_box_pack_end (GTK_BOX (button_box),
-                          button, FALSE, FALSE, 0);
-        g_signal_connect (button, "clicked",
-                          G_CALLBACK (on_logout_clicked), fail_dialog);
+        if (priv->allow_logout) {
+                button = gtk_button_new_with_mnemonic (_("_Log Out"));
+                gtk_widget_show (button);
+                gtk_box_pack_end (GTK_BOX (button_box),
+                                  button, FALSE, FALSE, 0);
+                g_signal_connect (button, "clicked",
+                                  G_CALLBACK (on_logout_clicked), fail_dialog);
+        }
 }
 
 static void
@@ -430,7 +435,9 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
 
 void
 gsm_fail_whale_dialog_we_failed (gboolean debug_mode,
+                                 gboolean allow_logout,
                                  gboolean show_extensions)
+
 {
         static GsmFailWhaleDialog *current_dialog = NULL;
         GsmFailWhaleDialog        *fail_dialog;
@@ -441,6 +448,7 @@ gsm_fail_whale_dialog_we_failed (gboolean debug_mode,
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
         fail_dialog->priv->debug_mode = debug_mode;
+        fail_dialog->priv->allow_logout = allow_logout;
         fail_dialog->priv->show_extensions = show_extensions;
         setup_window (fail_dialog);
 
