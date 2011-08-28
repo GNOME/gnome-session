@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 3.1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-10 15:20+0200\n"
-"PO-Revision-Date: 2011-08-10 15:20+0200\n"
+"POT-Creation-Date: 2011-08-28 19:21+0200\n"
+"PO-Revision-Date: 2011-08-28 19:23+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: no\n"
@@ -38,31 +38,31 @@ msgstr "Oppstartskommando kan ikke være tom"
 msgid "The startup command is not valid"
 msgstr "Oppstartskommandoen er ikke gyldig"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "Aktivert"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "Brukervalg for oppstartsprogrammer"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "Uten navn"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
@@ -301,8 +301,8 @@ msgid "_Switch User"
 msgstr "_Bytt bruker"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:416
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Logg ut"
 
@@ -326,12 +326,20 @@ msgstr "Sta_rt på nytt"
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:374
 msgid "Oh no!  Something has gone wrong."
 msgstr "Å nei! Noe har gått galt."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:381
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Et problem har oppstått og systemet kan ikke gjenopprettes. Noen av utvidelsene under kan ha forårsaket dette.\n"
+"Prøv å slå av noen av disse og logg ut for å prøve igjen."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:383
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -354,11 +362,11 @@ msgstr "Terminert av signal %d"
 msgid "Stopped by signal %d"
 msgstr "Stoppet av signal %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1377
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 kunne ikke starte"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1378
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -372,11 +380,11 @@ msgstr ""
 "Dette betyr mest sannsynlig at systemet, grafikkmaskinvaren eller driveren, "
 "ikke støtter å kjøre GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1380
 msgid "Learn more about GNOME 3"
 msgstr "Lær mer om GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1477 ../gnome-session/gsm-manager.c:2208
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -404,36 +412,40 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Kan ikke starte påloggingsøkten (kan ikke koble til X-tjeneren)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Overstyr forvalgte kataloger for autostart"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Økt som skal brukes"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Aktiver feilsøkingskode"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: ../gnome-session/main.c:300
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "Vis feildialog for testing"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr "- GNOME økthåndterer"
 
