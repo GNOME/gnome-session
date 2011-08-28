@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 19:10+0200\n"
-"PO-Revision-Date: 2011-08-16 19:10+0200\n"
+"POT-Creation-Date: 2011-08-28 18:04+0200\n"
+"PO-Revision-Date: 2011-08-28 18:05+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -77,7 +77,7 @@ msgstr "Sen nome"
 msgid "No description"
 msgstr "Sen descrición"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Versión deste aplicativo"
 
@@ -318,7 +318,7 @@ msgid "_Switch User"
 msgstr "_Cambiar de usuario"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
+#: ../gnome-session/gsm-fail-whale-dialog.c:416
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Saír da sesión"
@@ -343,12 +343,21 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Apagar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:374
 msgid "Oh no!  Something has gone wrong."
 msgstr "Recoido! Algo foi mal."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:381
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Produciuse un problema e non se pode recuperar o sistema. Algunhas das "
+"extensións de embaixo puideron causar isto.\n"
+"Desactive algunhas delas, saia da sesión e ténteo de novo."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:383
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -371,11 +380,11 @@ msgstr "Matado co sinal %d"
 msgid "Stopped by signal %d"
 msgstr "Detido co sinal %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1377
 msgid "GNOME 3 Failed to Load"
 msgstr "Produciuse un fallo ao cargar GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1378
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -389,11 +398,11 @@ msgstr ""
 "Probabelmente significa que o seu sistema (hardware gráfico ou controlador) "
 "non é capaz de executar a experiencia GNOME 3 completa."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1380
 msgid "Learn more about GNOME 3"
 msgstr "Aprenda máis sobre o GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1477 ../gnome-session/gsm-manager.c:2208
 msgid "Not responding"
 msgstr "Non responde"
 
@@ -429,31 +438,35 @@ msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Non é posíbel iniciar a sesión (e non é posíbel conectar co servidor X)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Ignorar os directorios de inicio automático estándares"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "CARTAFO_DE_AUTOINICIO"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Sesión a usar"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "NOME_DA_SESIÓN"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "Non cargar os aplicativos especificados polo usuario"
 
-#: ../gnome-session/main.c:300
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "Mostrar o diálogo da balea de fallos"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións do GNOME"
 
