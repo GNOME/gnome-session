@@ -7,25 +7,25 @@
 # Ismael Olea <olea@hispafuentes.com> 2000
 # Manuel de Vega Barreiro <barreiro@arrakis.es> 2000
 # Juan Manuel García Molina <juanma_gm@wanadoo.es> 2001-2002.
-#
+# 
 # Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx> 1998.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2010, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-22 16:19+0000\n"
-"PO-Revision-Date: 2011-07-23 14:25+0200\n"
+"POT-Creation-Date: 2011-08-27 04:41+0000\n"
+"PO-Revision-Date: 2011-08-27 11:43Centra\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -49,31 +49,31 @@ msgstr "El comando de inicio no puede estar vacío"
 msgid "The startup command is not valid"
 msgstr "El comando de inicio no es válido"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "Activado"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "Icono"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "Preferencias de las aplicaciones al inicio"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "Sin nombre"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "Sin descripción"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
@@ -314,8 +314,8 @@ msgid "_Switch User"
 msgstr "Ca_mbiar usuario"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:416
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "Ce_rrar la sesión"
 
@@ -339,12 +339,21 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Apagar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:374
 msgid "Oh no!  Something has gone wrong."
 msgstr "Algo salió mal."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:381
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Ocurrió un problema y el sistema no se puede recuperar. Algunas de las "
+"extensiones de abajo pueden haber causado el problema.\n"
+"Desactive algunas de ellas y después cierre la sesión e inténtelo de nuevo."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:383
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -367,11 +376,11 @@ msgstr "Matado por la señal %d"
 msgid "Stopped by signal %d"
 msgstr "Detenido por la señal %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1377
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 falló al cargar"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1378
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -385,11 +394,11 @@ msgstr ""
 "Probablemente significa que su sistema (hardware gráfico o controlador) no "
 "es capaz de ejecutar la experiencia GNOME 3 completa."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1380
 msgid "Learn more about GNOME 3"
 msgstr "Aprenda más acerca de GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1477 ../gnome-session/gsm-manager.c:2208
 msgid "Not responding"
 msgstr "No responde"
 
@@ -419,38 +428,42 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "No se pudo crear el socket de escucha ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el "
 "servidor X)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Sobreescribir los directorios de inicio automático estándar"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "CARPETA_DE_AUTOINICIO"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Sesión que usar"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "NOMBRE_DE_LA_SESIÓN"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: ../gnome-session/main.c:300
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "Mostrar el diálogo de la ballena de pruebas"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
