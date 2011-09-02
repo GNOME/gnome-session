@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-24 19:21+0300\n"
-"PO-Revision-Date: 2011-07-24 19:19+0300\n"
+"POT-Creation-Date: 2011-09-02 21:14+0300\n"
+"PO-Revision-Date: 2011-09-02 21:19+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -36,31 +36,31 @@ msgstr "Загад аўтазапуску не можа быць пустым"
 msgid "The startup command is not valid"
 msgstr "Хібны загад аўтазапуску"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "Уключана"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "Значок"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "Праграма"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "Настройкі праграм аўтазапуску"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "Няма назвы"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "Няма апісання"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Версія гэтай праграмы"
 
@@ -205,15 +205,6 @@ msgstr "Опцыі для кіравання сеансам:"
 msgid "Show session management options"
 msgstr "Паказаць опцыі для кіравання сеансам"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Сервер канфігурацыі напаткаў праблему.\n"
-"(%s скончыў працу з кодам стану %d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -301,8 +292,8 @@ msgid "_Switch User"
 msgstr "Пераключыць _карыстальніка"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Выйсці"
 
@@ -326,12 +317,28 @@ msgstr "Пера_запусціць камп'ютар"
 msgid "_Shut Down"
 msgstr "В_ыключыць камп'ютар"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:375
 msgid "Oh no!  Something has gone wrong."
 msgstr "Нешта пайшло не так, як мае быць!"
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:382
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. "
+"Звярніцеся да вашага сістэмнага адміністратара."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. Магчыма, прычынай праблемы з'яўляецца адно з ніжэй пералічаных пашырэнняў.\n"
+"Паспрабуйце выключыць некаторыя з іх, выйсці з сеанса і паўтарыць спробу."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -354,11 +361,11 @@ msgstr "Працэс забіты сігналам %d"
 msgid "Stopped by signal %d"
 msgstr "Працэс спынены сігналам %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1379
 msgid "GNOME 3 Failed to Load"
 msgstr "Няўдалы запуск GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1380
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -373,11 +380,11 @@ msgstr ""
 "драйвер) не могуць задаволіць усіх патрабаванняў для належнай працы ўсіх "
 "частак GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1382
 msgid "Learn more about GNOME 3"
 msgstr "Даведацца больш аб GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
 msgid "Not responding"
 msgstr "Не адказвае"
 
@@ -405,38 +412,42 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Не ўдалося стварыць ICE-сокет праслухоўвання: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Не ўдалося запусціць сеанс для ўваходу (таксама не ўдалося злучыцца з X-"
 "серверам)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Засланіць звычайныя каталогі аўтазапуску"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АЎТАЗАПУСКУ"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Патрэбны сеанс"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "НАЗВА_СЕАНСА"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Уключыць адладачны код"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Не запускаць праграм, вызначаных карыстальнікам"
 
-#: ../gnome-session/main.c:300
+#: ../gnome-session/main.c:282
+msgid "Show the fail whale dialog for testing"
+msgstr ""
+
+#: ../gnome-session/main.c:302
 msgid " - the GNOME session manager"
 msgstr " - кіраўнік сеансаў GNOME"
 
@@ -463,3 +474,10 @@ msgstr "Не ўдалося злучыцца з кіраўніком сеанс�
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Праграма запушчана з несумяшчальнымі опцыямі"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Сервер канфігурацыі напаткаў праблему.\n"
+#~ "(%s скончыў працу з кодам стану %d)"
