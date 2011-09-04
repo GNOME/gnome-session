@@ -279,6 +279,7 @@ main (int argc, char **argv)
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
+                /* Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong */
                 { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
