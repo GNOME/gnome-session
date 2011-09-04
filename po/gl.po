@@ -15,22 +15,22 @@
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
-# Fran Dieguez <frandieguez@ubuntu.com>, 2009, 2010.
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
+# Fran Dieguez <frandieguez@gnome.org>, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-28 18:04+0200\n"
-"PO-Revision-Date: 2011-08-28 18:05+0200\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"POT-Creation-Date: 2011-09-04 19:58+0200\n"
+"PO-Revision-Date: 2011-09-04 19:59+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: Galego <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 1.2\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -77,7 +77,7 @@ msgstr "Sen nome"
 msgid "No description"
 msgstr "Sen descrición"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:282
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versión deste aplicativo"
 
@@ -223,15 +223,6 @@ msgstr "Opcións de xestión de sesión:"
 msgid "Show session management options"
 msgstr "Mostrar as opcións de xestión de sesión"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Hai un problema co servidor de configuración.\n"
-"(%s saíu co estado %d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -318,7 +309,7 @@ msgid "_Switch User"
 msgstr "_Cambiar de usuario"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:416
+#: ../gnome-session/gsm-fail-whale-dialog.c:420
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Saír da sesión"
@@ -343,11 +334,19 @@ msgstr "_Reiniciar"
 msgid "_Shut Down"
 msgstr "_Apagar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:374
+#: ../gnome-session/gsm-fail-whale-dialog.c:375
 msgid "Oh no!  Something has gone wrong."
 msgstr "Recoido! Algo foi mal."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:381
+#: ../gnome-session/gsm-fail-whale-dialog.c:382
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Produciuse un problema e non se pode recuperar o sistema. Contacte co "
+"administrador do sistema"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
 msgid ""
 "A problem has occurred and the system can't recover. Some of the extensions "
 "below may have caused this.\n"
@@ -357,7 +356,7 @@ msgstr ""
 "extensións de embaixo puideron causar isto.\n"
 "Desactive algunhas delas, saia da sesión e ténteo de novo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -380,11 +379,11 @@ msgstr "Matado co sinal %d"
 msgid "Stopped by signal %d"
 msgstr "Detido co sinal %d"
 
-#: ../gnome-session/gsm-manager.c:1377
+#: ../gnome-session/gsm-manager.c:1379
 msgid "GNOME 3 Failed to Load"
 msgstr "Produciuse un fallo ao cargar GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1378
+#: ../gnome-session/gsm-manager.c:1380
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -398,11 +397,11 @@ msgstr ""
 "Probabelmente significa que o seu sistema (hardware gráfico ou controlador) "
 "non é capaz de executar a experiencia GNOME 3 completa."
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1382
 msgid "Learn more about GNOME 3"
 msgstr "Aprenda máis sobre o GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1477 ../gnome-session/gsm-manager.c:2208
+#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
 msgid "Not responding"
 msgstr "Non responde"
 
@@ -438,35 +437,35 @@ msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Non é posíbel iniciar a sesión (e non é posíbel conectar co servidor X)"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Ignorar os directorios de inicio automático estándares"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "CARTAFO_DE_AUTOINICIO"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sesión a usar"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NOME_DA_SESIÓN"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Non cargar os aplicativos especificados polo usuario"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:282
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar o diálogo da balea de fallos"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:302
 msgid " - the GNOME session manager"
 msgstr "- o xestor de sesións do GNOME"
 
@@ -493,6 +492,13 @@ msgstr "Non foi posíbel conectar co xestor de sesión"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Chamouse un programa con opcións en conflito"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Hai un problema co servidor de configuración.\n"
+#~ "(%s saíu co estado %d)"
 
 #~ msgid "Try _Recovery"
 #~ msgstr "Tentar _recuperar"
