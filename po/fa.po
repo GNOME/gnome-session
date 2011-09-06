@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-26 00:31+0000\n"
-"PO-Revision-Date: 2011-04-23 20:50+0330\n"
+"POT-Creation-Date: 2011-08-29 14:42+0000\n"
+"PO-Revision-Date: 2011-09-06 23:25+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian <translate@ifsug.org>\n"
 "MIME-Version: 1.0\n"
@@ -36,40 +36,40 @@ msgstr "افزودن برنامه‌ی راه‌اندازی"
 msgid "Edit Startup Program"
 msgstr "ویرایش برنامه‌ی راه‌اندازی"
 
-#: ../capplet/gsm-app-dialog.c:485
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "فرمان راه‌اندازی نمی‌تواند خالی باشد"
 
-#: ../capplet/gsm-app-dialog.c:491
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "فرمان راه‌اندازی معتبر نیست"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "فعال"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "نقشک"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "برنامه"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "ترجیحات برنامه‌های راه‌اندازی"
 
-#: ../capplet/gsp-app.c:269
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "بدون نام"
 
-#: ../capplet/gsp-app.c:275
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "بدون شرح"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "نسخه‌ی این برنامه"
 
@@ -95,7 +95,7 @@ msgid "<b>Some programs are still running:</b>"
 msgstr "<b>هنوز برنامه‌هایی دارند اجرا می‌شوند:</b>"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:640
 msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
 msgstr "در حال انتظار برای برنامه که به پایان برسد. وقفه انداختن در برنامه‌ها ممکن است باعث شود که کار شما از دست برود."
 
@@ -148,123 +148,120 @@ msgstr "برنامه‌های جاری  به خاطر _سپرده شوند"
 msgid "File is not a valid .desktop file"
 msgstr "پرونده یک پرونده‌ی .desktop معتبر نیست."
 
-#: ../egg/eggdesktopfile.c:188
+#. translators: 'Version' is from a desktop file, and
+#. * should not be translated. '%s' would probably be a
+#. * version number.
+#: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "نسخه‌ی پرونده میزکار ناشناس «%s»"
 
-#: ../egg/eggdesktopfile.c:958
+#: ../egg/eggdesktopfile.c:974
 #, c-format
 msgid "Starting %s"
 msgstr "در حال آغاز %s"
 
-#: ../egg/eggdesktopfile.c:1100
+#: ../egg/eggdesktopfile.c:1116
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "برنامه سند‌ها را در خط فرمان نمی‌پذیرد."
 
-#: ../egg/eggdesktopfile.c:1168
+#: ../egg/eggdesktopfile.c:1184
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "گزینه‌ی راه‌اندازی ناشناخته‌: %Id"
 
-#: ../egg/eggdesktopfile.c:1373
+#. translators: The 'Type=Link' string is found in a
+#. * desktop file, and should not be translated.
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "نشانی سند به یک ورودی میزکار «نوع=پیوند» گذر داده نمی‌شود."
 
-#: ../egg/eggdesktopfile.c:1394
+#: ../egg/eggdesktopfile.c:1412
 #, c-format
 msgid "Not a launchable item"
 msgstr "این، یک مورد قابل راه‌اندازی نیست"
 
-#: ../egg/eggsmclient.c:225
+#: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "از کار انداختن اتصال به مدیر نشست"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "مشخص کردن پرونده‌ی شامل پیکربندی ذخیره شده"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "FILE"
 msgstr "پرونده"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "شناسه مدیریت نشست را مشخص کنید"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "ID"
 msgstr "شناسه"
 
-#: ../egg/eggsmclient.c:252
+#: ../egg/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "گزینه‌های مدیریت نشست:"
 
-#: ../egg/eggsmclient.c:253
+#: ../egg/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "گزینه‌های مدیریت نشست نمایش داده شوند"
-
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"مشکلی در کارگزار تنظیمات هست.\n"
-"(مورد %s با وضعیت %Id خارج شد)"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "نقشک «%s» پیدا نشد"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:592
+#: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
 msgstr "ناشناخته"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
 msgstr "یک برنامه همچنان در حال اجرا است:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "Some programs are still running:"
 msgstr "چند برنامه همچنان در حال اجرا هستند:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "در حال انتظار برای برنامه‌ها که به پایان برسند. وقفه انداختن در این برنامه‌ها ممکن است باعث شود که کار شما از دست برود."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:878
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Switch User Anyway"
 msgstr "در هر حال، تعویض کاربر انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:881
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Log Out Anyway"
 msgstr "در هر حال خروج از سیستم انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:884
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Suspend Anyway"
 msgstr "در هر حال سیستم معلق شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Hibernate Anyway"
 msgstr "در هر حال خواب زمستانی انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Shut Down Anyway"
 msgstr "در هر حال خاموش کردن سیستم صورت گیرد"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
-msgstr "در هر حال راه‌اندازی مجدد سیستم صورت گیرد"
+#: ../gnome-session/gsm-inhibit-dialog.c:889
+#| msgid "Reboot Anyway"
+msgid "Restart Anyway"
+msgstr "در هر حال سیستم مجددا راه‌اندازی شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:897
 msgid "Lock Screen"
 msgstr "قفل کردن صفحه"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Cancel"
 msgstr "انصراف"
 
@@ -297,8 +294,8 @@ msgid "_Switch User"
 msgstr "_تعویض کاربر"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_خروج از سیستم"
 
@@ -322,12 +319,29 @@ msgstr "_راه‌اندازی مجدد"
 msgid "_Shut Down"
 msgstr "خامو_ش کردن"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:276
+#: ../gnome-session/gsm-fail-whale-dialog.c:375
 msgid "Oh no!  Something has gone wrong."
 msgstr "اُخ نه! یک چیزی اشتباه شد."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:382
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
+msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
+msgstr "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. لطفا با یک مدیر سیستم تماس بگیرید"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. تعدادی از افزونه‌های زیر ممکن است باعث این شده باشند.\n"
+"لطفا سعی کنید تعدادی از آنها را غیرفعال کنید، سپس از سیستم خارج و مجددا تلاش کنید."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -350,11 +364,11 @@ msgstr "با سیگنال %Id کشته شد"
 msgid "Stopped by signal %d"
 msgstr "با سیگنال %Id متوقف شد"
 
-#: ../gnome-session/gsm-manager.c:1364
+#: ../gnome-session/gsm-manager.c:1379
 msgid "GNOME 3 Failed to Load"
 msgstr "بارگیری گنوم ۳ شکست خورد"
 
-#: ../gnome-session/gsm-manager.c:1365
+#: ../gnome-session/gsm-manager.c:1380
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -364,16 +378,25 @@ msgstr ""
 "\n"
 "این موضوع اکثرا به این علت است که سیستم شما (سخت‌افزار گرافیکی یا راه‌انداز) قابلیت ارائه‌ی کامل گنوم ۳ را ندارد."
 
-#: ../gnome-session/gsm-manager.c:1367
+#: ../gnome-session/gsm-manager.c:1382
 msgid "Learn more about GNOME 3"
 msgstr "اطلاعات بیشتر در مورد گنوم ۳"
 
-#: ../gnome-session/gsm-manager.c:1464
-#: ../gnome-session/gsm-manager.c:2195
+#: ../gnome-session/gsm-manager.c:1479
+#: ../gnome-session/gsm-manager.c:2210
 msgid "Not responding"
 msgstr "نا پاسخگو"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:559
+#| msgid "_Remember Currently Running Application"
+msgid "Remembered Application"
+msgstr "بخاطر سپردن برنامه"
+
+#: ../gnome-session/gsm-xsmp-client.c:1197
 msgid "This program is blocking logout."
 msgstr "این برنامه جلوی خروج از سیستم را گرفته است."
 
@@ -387,28 +410,40 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "ایجاد سوکت گوش‌کننده‌ی ICE ممکن نشد: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "ناتوان در آغاز نشست ورود به سیستم (و ناتوان در اتصال به کارگزار ایکس)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "شاخه‌های استاندارد آغاز خودکار، لغو شود"
 
 #: ../gnome-session/main.c:277
+msgid "AUTOSTART_DIR"
+msgstr "AUTOSTART_DIR"
+
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "نشستی که استفاده شود"
 
 #: ../gnome-session/main.c:278
+msgid "SESSION_NAME"
+msgstr "SESSION_NAME"
+
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "کد اشکال‌زدایی به کار انداخته شود"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "برنامه‌های مشخص شده توسط کاربر اجرا نشوند"
 
-#: ../gnome-session/main.c:300
+#: ../gnome-session/main.c:282
+msgid "Show the fail whale dialog for testing"
+msgstr "نمایش بالن محاوره شکست جهت آزمایش کردن"
+
+#: ../gnome-session/main.c:302
 msgid " - the GNOME session manager"
 msgstr " ـ مدیر نشست گنوم"
 
@@ -421,12 +456,10 @@ msgid "Power off"
 msgstr "خاموش کردن"
 
 #: ../tools/gnome-session-quit.c:54
-#| msgid "Log out, ignoring any existing inhibitors"
 msgid "Ignoring any existing inhibitors"
 msgstr "هرگونه مهارکننده‌های خروج را نادیده بگیر"
 
 #: ../tools/gnome-session-quit.c:55
-#| msgid "Do not require confirmation"
 msgid "Don't prompt for user confirmation"
 msgstr "برای تصدیق هویت کاربر هشدار نده"
 
@@ -438,6 +471,13 @@ msgstr "اتصال به مدیر نشست ممکن نیست"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "مشکلی در کارگزار تنظیمات هست.\n"
+#~ "(مورد %s با وضعیت %Id خارج شد)"
 
 #~ msgid "Classic GNOME"
 #~ msgstr "گنوم کلاسیک"
