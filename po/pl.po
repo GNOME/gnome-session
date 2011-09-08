@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 22:21+0200\n"
-"PO-Revision-Date: 2011-08-11 22:22+0200\n"
+"POT-Creation-Date: 2011-09-08 22:25+0200\n"
+"PO-Revision-Date: 2011-09-08 22:26+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -41,31 +41,31 @@ msgstr "Polecenie startowe nie może być puste"
 msgid "The startup command is not valid"
 msgstr "Polecenie startowe jest nieprawidłowe"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "Włączone"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "Preferencje programów startowych"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "Bez nazwy"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "Brak opisu"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Wersja tego programu"
 
@@ -211,15 +211,6 @@ msgstr "Opcje zarządzania sesją:"
 msgid "Show session management options"
 msgstr "Wyświetla opcje zarządzania sesją"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Wystąpił problem z serwerem konfiguracji.\n"
-"(%s zakończył działanie ze stanem %d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -308,8 +299,8 @@ msgid "_Switch User"
 msgstr "_Przełącz użytkownika"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Wyloguj"
 
@@ -333,12 +324,30 @@ msgstr "_Uruchom ponownie"
 msgid "_Shut Down"
 msgstr "_Wyłącz komputer"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:375
 msgid "Oh no!  Something has gone wrong."
 msgstr "Coś poszło źle."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:382
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Wystąpił problem i nie można przywrócić systemu. Proszę skontaktować się z "
+"jego administratorem"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Wystąpił problem i nie można przywrócić systemu. Mogło to być spowodowane "
+"przez jedno z poniższych rozszerzeń.\n"
+"Proszę spróbować wyłączyć niektóre z nich, a następnie się wylogować i "
+"spróbować ponownie."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -361,11 +370,11 @@ msgstr "Usunięte z pamięci przez sygnał %d"
 msgid "Stopped by signal %d"
 msgstr "Zatrzymane przez sygnał %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1379
 msgid "GNOME 3 Failed to Load"
 msgstr "Wczytanie środowiska GNOME 3 się nie powiodło"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1380
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -379,11 +388,11 @@ msgstr ""
 "Prawdopodobnie oznacza to, że komputer (sprzęt graficzny lub sterownik) nie "
 "obsługuje środowiska GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1382
 msgid "Learn more about GNOME 3"
 msgstr "Dowiedz się więcej o środowisku GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
@@ -411,38 +420,44 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nie można utworzyć gniazda nasłuchującego ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "Nie można uruchomić sesji logowania (oraz nie można się połączyć z serwerem "
 "X)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Obejście standardowych katalogów automatycznego uruchamiania"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "KATALOG_AUTOMATYCZNEGO_URUCHAMIANIA"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sesja do użycia"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NAZWA_SESJI"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Uruchomienie kodu do debugowania"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Bez wczytywania programów określonych przez użytkownika"
 
-#: ../gnome-session/main.c:300
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr ""
+"Wyświetla okno niepowodzenia uruchomienia środowiska w celach testowych"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - menedżer sesji środowiska GNOME"
 
