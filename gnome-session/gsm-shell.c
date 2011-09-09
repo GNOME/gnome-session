@@ -228,7 +228,8 @@ gsm_shell_bus_filter (DBusConnection *connection,
                                     DBUS_INTERFACE_LOCAL, "Disconnected") &&
             strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
                 gsm_shell_disconnect_from_bus (shell);
-                return DBUS_HANDLER_RESULT_HANDLED;
+                /* let other filters get this disconnected signal, so that they
+                 * can handle it too */
         }
 
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
