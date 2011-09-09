@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-06 15:53+0300\n"
-"PO-Revision-Date: 2011-08-06 15:53+0200\n"
+"POT-Creation-Date: 2011-09-09 13:17+0300\n"
+"PO-Revision-Date: 2011-09-09 13:19+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -39,31 +39,31 @@ msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "מאופשר"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "סמל"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "תכנית"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "העדפות יישומי הפעלה"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "ללא שם"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "ללא תיאור"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -205,15 +205,6 @@ msgstr "Session management options:"
 msgid "Show session management options"
 msgstr "Show session management options"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"יש בעיה עם שרת ההגדרות.\n"
-"(‏%s יצא עם המצב %d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -298,8 +289,8 @@ msgid "_Switch User"
 msgstr "ה_חלפת משתמש"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_ניתוק"
 
@@ -323,12 +314,28 @@ msgstr "הפעלה מ_חדש"
 msgid "_Shut Down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:375
 msgid "Oh no!  Something has gone wrong."
 msgstr "אבוי!  משהו השתבש."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:382
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. נא ליצור קשר עם מנהל המערכת."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. כמה מההרחבות שלהלן עלולות היו "
+"לגרום לכך.\n"
+"נא לצאת ולנסות שוב."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -351,11 +358,11 @@ msgstr "חוסל על ידי האות %d"
 msgid "Stopped by signal %d"
 msgstr "נעצר על ידי האות %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1380
 msgid "GNOME 3 Failed to Load"
 msgstr "טעינת GNOME 3 נכשלה"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1381
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -368,11 +375,11 @@ msgstr ""
 "תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה "
 "שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1383
 msgid "Learn more about GNOME 3"
 msgstr "מידע נוסף על אודות GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471 ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1480 ../gnome-session/gsm-manager.c:2259
 msgid "Not responding"
 msgstr "אין תגובה"
 
@@ -400,36 +407,41 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Unable to start login session (and unable to connect to the X server)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "הפעלה לשימוש"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
-#: ../gnome-session/main.c:300
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "הצגת דו־שיח הלווייתן הכושל לבדיקה"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -456,6 +468,13 @@ msgstr "לא ניתן להתחבר למנהל ההפעלה"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "התכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "יש בעיה עם שרת ההגדרות.\n"
+#~ "(‏%s יצא עם המצב %d)"
 
 #~ msgid "Show logout dialog"
 #~ msgstr "Show logout dialog"
