@@ -276,10 +276,22 @@ on_required_app_failure (GsmManager  *manager,
         const gchar *app_id;
         gboolean want_extensions_ui;
         gboolean allow_logout;
+        GsmConsolekit *consolekit;
+        char *session_type;
 
         app_id = gsm_app_peek_app_id (app);
         want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
-        allow_logout = !_log_out_is_locked_down (manager);
+
+        consolekit = gsm_get_consolekit ();
+        session_type = gsm_consolekit_get_current_session_type (consolekit);
+        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0) {
+                allow_logout = FALSE;
+        } else {
+                allow_logout = !_log_out_is_locked_down (manager);
+        }
+        g_object_unref (consolekit);
+        g_free (session_type);
+
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
                                          want_extensions_ui);
