@@ -141,6 +141,8 @@ gsm_fail_whale_dialog_finalize (GObject *object)
                 g_object_unref (priv->extensions);
                 priv->extensions = NULL;
         }
+
+        G_OBJECT_CLASS (gsm_fail_whale_dialog_parent_class)->finalize (object);
 }
 
 static void
