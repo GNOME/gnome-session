@@ -11,24 +11,24 @@
 # Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx> 1998.
 # Francisco Javier F. Serrador <serrador@arrakis.es>, 2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011.
 # 
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009, 2010, 2011., 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011., 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-28 20:48+0000\n"
-"PO-Revision-Date: 2011-08-29 12:59+0200\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-08-29 14:42+0000\n"
+"PO-Revision-Date: 2011-09-14 17:38+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -74,7 +74,7 @@ msgstr "Sin nombre"
 msgid "No description"
 msgstr "Sin descripción"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:282
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
@@ -220,15 +220,6 @@ msgstr "Opciones de gestión de sesión:"
 msgid "Show session management options"
 msgstr "Mostrar opciones de gestión de sesión"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Hay un problema con la configuración del servidor.\n"
-"(%s salió con el estado %d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -345,9 +336,6 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "Algo salió mal."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:382
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -447,35 +435,35 @@ msgstr ""
 "No se pudo iniciar el inicio de sesión (y fue imposible conectar con el "
 "servidor X)"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
-msgstr "Sobreescribir los directorios de inicio automático estándar"
+msgstr "Sobreescribir las carpetas de inicio automático estándar"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "CARPETA_DE_AUTOINICIO"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sesión que usar"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NOMBRE_DE_LA_SESIÓN"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:282
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar el diálogo de la ballena de pruebas"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:302
 msgid " - the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
@@ -502,6 +490,13 @@ msgstr "No se pudo conectar con el gestor de sesiones"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Se llamó al programa con opciones en conflicto"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Hay un problema con la configuración del servidor.\n"
+#~ "(%s salió con el estado %d)"
 
 #~ msgid "Try _Recovery"
 #~ msgstr "Intentar _recuperar"
