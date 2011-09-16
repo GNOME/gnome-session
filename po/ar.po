@@ -6,21 +6,24 @@
 # Anas Husseini <linux.anas@gmail.com>, 2007.
 # Anas Afif Emad <anas.e87@gmail.com>, 2008.
 # Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007, 2008, 2009, 2010, 2011.
+# Anass Ahmed <anass.1430@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 17:49+0200\n"
-"PO-Revision-Date: 2011-03-26 17:49+0300\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-09-13 13:31+0000\n"
+"PO-Revision-Date: 2011-09-05 13:35+0200\n"
+"Last-Translator: Anass Ahmed <anass.1430@gmail.com>\n"
+"Language-Team: Arabeyes\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -34,39 +37,39 @@ msgstr "أضِف برنامجا لبداية التشغيل"
 msgid "Edit Startup Program"
 msgstr "حرّر برنامج بدء التشغيل"
 
-#: ../capplet/gsm-app-dialog.c:485
+#: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
 msgstr "لا يمكن أن يكون أمر بدء التشغيل فارغًا"
 
-#: ../capplet/gsm-app-dialog.c:491
+#: ../capplet/gsm-app-dialog.c:490
 msgid "The startup command is not valid"
 msgstr "أمر بدء التشغيل غير سليم"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "مُفعّل"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "أيقونة"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "البرنامج"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "تفضيلات برمجيات بدء التشغيل"
 
-#: ../capplet/gsp-app.c:269
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "بلا اسم"
 
-#: ../capplet/gsp-app.c:275
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "بلا وصف"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
+#: ../capplet/main.c:35 ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "إصدارة هذا التطبيق"
 
@@ -90,7 +93,7 @@ msgstr "تولجك هذه الجلسة في جنوم"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>ما زالت بعض البرامج تعمل:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
@@ -145,125 +148,121 @@ msgstr "_تذكّر التطبيقات المشغلة حاليًا"
 msgid "File is not a valid .desktop file"
 msgstr "ليس هذا ملف .desktop سليم"
 
-#: ../egg/eggdesktopfile.c:188
+#. translators: 'Version' is from a desktop file, and
+#. * should not be translated. '%s' would probably be a
+#. * version number.
+#: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
 msgstr "إصدارة ملف سطح مكتب غير معروفة: '%s'"
 
-#: ../egg/eggdesktopfile.c:958
+#: ../egg/eggdesktopfile.c:974
 #, c-format
 msgid "Starting %s"
 msgstr "يجري بدء %s"
 
-#: ../egg/eggdesktopfile.c:1100
+#: ../egg/eggdesktopfile.c:1116
 #, c-format
 msgid "Application does not accept documents on command line"
 msgstr "لا يقبل التطبيق مستندات في سطر الأوامر"
 
-#: ../egg/eggdesktopfile.c:1168
+#: ../egg/eggdesktopfile.c:1184
 #, c-format
 msgid "Unrecognized launch option: %d"
 msgstr "خيار إطلاق غير معروف: %Id"
 
-#: ../egg/eggdesktopfile.c:1373
+#. translators: The 'Type=Link' string is found in a
+#. * desktop file, and should not be translated.
+#: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr "تعذّر تمرير مسارات الملفات إلى مدخلة سطح مكتب 'Type=Link'"
 
-#: ../egg/eggdesktopfile.c:1394
+#: ../egg/eggdesktopfile.c:1412
 #, c-format
 msgid "Not a launchable item"
 msgstr "ليس عنصرا يمكن إطلاقه"
 
-#: ../egg/eggsmclient.c:225
+#: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
 msgstr "عطّل الاتصال بمدير الجلسات"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
 msgstr "حدد ملفا يحتوي الاعدادات المحفوظة"
 
-#: ../egg/eggsmclient.c:228
+#: ../egg/eggsmclient.c:229
 msgid "FILE"
 msgstr "ملف"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
 msgstr "حدد رقم معرّف إدارة الجلسات"
 
-#: ../egg/eggsmclient.c:231
+#: ../egg/eggsmclient.c:232
 msgid "ID"
 msgstr "معرّف"
 
-#: ../egg/eggsmclient.c:252
+#: ../egg/eggsmclient.c:253
 msgid "Session management options:"
 msgstr "خيارات إدارة الجلسات:"
 
-#: ../egg/eggsmclient.c:253
+#: ../egg/eggsmclient.c:254
 msgid "Show session management options"
 msgstr "اعرض خيارات إدارة الجلسات"
-
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"هناك مشكلة مع خادوم الإعدادات.\n"
-"(%s خرج بالحالة %Id)"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "الأيقونة '%s' غير موجودة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:592
+#: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
 msgstr "ما زال أحد البرامج يعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:647
+#: ../gnome-session/gsm-inhibit-dialog.c:643
 msgid "Some programs are still running:"
 msgstr "ما زالت بعض البرامج تعمل:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:648
+#: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
 msgstr "بانتظار انتهاء البرامج. مقاطعة هذه البرامج قد يتسبب في فقد بيانات."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:878
+#: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Switch User Anyway"
 msgstr "بدّل المستخدم بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:881
+#: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Log Out Anyway"
 msgstr "اخرج بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:884
+#: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Suspend Anyway"
 msgstr "علّق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:887
+#: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Hibernate Anyway"
 msgstr "أسبِت بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:890
+#: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Shut Down Anyway"
 msgstr "أغلق بالرغم من هذا"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
-msgstr "أعد التشغيل بالرغم من هذا"
+#: ../gnome-session/gsm-inhibit-dialog.c:889
+msgid "Restart Anyway"
+msgstr "أعد التشغيل على أي حال"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:901
+#: ../gnome-session/gsm-inhibit-dialog.c:897
 msgid "Lock Screen"
 msgstr "أوصد الشاشة"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:904
+#: ../gnome-session/gsm-inhibit-dialog.c:900
 msgid "Cancel"
 msgstr "ألغ"
 
@@ -304,8 +303,8 @@ msgid "_Switch User"
 msgstr "ب_دّل المستخدم"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "ا_خرج"
 
@@ -329,12 +328,27 @@ msgstr "أعِد الت_شغيل"
 msgid "_Shut Down"
 msgstr "أ_طفئ"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:276
+#: ../gnome-session/gsm-fail-whale-dialog.c:377
 msgid "Oh no!  Something has gone wrong."
 msgstr "لا! ثمة مشكلة."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr "حدثت مشكلة وتعذّر تعافي النظام. حاول الاتصال بمدير النظام."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"حدثت مشكلة وتعذّر تعافي النظام. قد تكون أحد الامتدادات بالأسفل قد تسببت في "
+"هذا.\n"
+"حاول تعطيل بعضها ثم لج مجددا."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:388
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -357,11 +371,11 @@ msgstr "قًتِل بإشارة %d"
 msgid "Stopped by signal %d"
 msgstr "أُوقِف بإشارة %d"
 
-#: ../gnome-session/gsm-manager.c:1364
+#: ../gnome-session/gsm-manager.c:1392
 msgid "GNOME 3 Failed to Load"
 msgstr "فشل بدء جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1365
+#: ../gnome-session/gsm-manager.c:1393
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -374,15 +388,23 @@ msgstr ""
 "غالبا ما يعني هذا أن نظامك (عتاد الرسوميات أو المُشغّل) ليس مؤهلا لتشغيل جنوم "
 "3 بكامل طاقتها."
 
-#: ../gnome-session/gsm-manager.c:1367
+#: ../gnome-session/gsm-manager.c:1395
 msgid "Learn more about GNOME 3"
 msgstr "تعرّف أكثر على جنوم 3"
 
-#: ../gnome-session/gsm-manager.c:1464 ../gnome-session/gsm-manager.c:2195
+#: ../gnome-session/gsm-manager.c:1492 ../gnome-session/gsm-manager.c:2271
 msgid "Not responding"
 msgstr "لا يستجيب"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:559
+msgid "Remembered Application"
+msgstr "التطبيقات المتذكرة"
+
+#: ../gnome-session/gsm-xsmp-client.c:1197
 msgid "This program is blocking logout."
 msgstr "يعيق هذا البرنامج الخروج."
 
@@ -398,28 +420,41 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "تعذّر إنشاء مقبس استماع ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "تعذّر بدء جلسة الولوج (وتعذّر الاتصال بالخادوم الرسومي)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "تخطى مجلدات بدء التشغيل القياسية"
 
 #: ../gnome-session/main.c:277
+msgid "AUTOSTART_DIR"
+msgstr "AUTOSTART_DIR"
+
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "الجلسة التي ستُستخدم"
 
 #: ../gnome-session/main.c:278
+msgid "SESSION_NAME"
+msgstr "SESSION_NAME"
+
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "فعّل كود تتبع الأخطاء"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "لا تُحمّل التطبيقات التي حددها المستخدم"
 
-#: ../gnome-session/main.c:300
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "أظهر حوار الفشل للاختبار"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - مدير جلسات جنوم"
 
@@ -446,6 +481,13 @@ msgstr "تعذّر الاتصال بمدير الجلسات"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "تم استدعاء البرنامج بخيارات متضاربة"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "هناك مشكلة مع خادوم الإعدادات.\n"
+#~ "(%s خرج بالحالة %Id)"
 
 #~ msgid "Try _Recovery"
 #~ msgstr "حاوِل ال_تعافي"
