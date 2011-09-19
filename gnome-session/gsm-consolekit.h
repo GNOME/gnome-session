@@ -87,6 +87,8 @@ gchar           *gsm_consolekit_get_current_session_type (GsmConsolekit *manager
 
 GsmConsolekit   *gsm_get_consolekit             (void);
 
+gboolean         gsm_consolekit_is_current_session_login (void);
+
 G_END_DECLS
 
 #endif /* __GSM_CONSOLEKIT_H__ */

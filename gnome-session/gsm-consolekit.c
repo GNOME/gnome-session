@@ -883,3 +883,21 @@ gsm_get_consolekit (void)
 
         return g_object_ref (manager);
 }
+
+gboolean
+gsm_consolekit_is_current_session_login (void)
+{
+        GsmConsolekit *consolekit;
+        char *session_type;
+        gboolean ret;
+
+        consolekit = gsm_get_consolekit ();
+        session_type = gsm_consolekit_get_current_session_type (consolekit);
+
+        ret = (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0);
+
+        g_object_unref (consolekit);
+        g_free (session_type);
+
+        return ret;
+}

@@ -276,21 +276,15 @@ on_required_app_failure (GsmManager  *manager,
         const gchar *app_id;
         gboolean want_extensions_ui;
         gboolean allow_logout;
-        GsmConsolekit *consolekit;
-        char *session_type;
 
         app_id = gsm_app_peek_app_id (app);
         want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
 
-        consolekit = gsm_get_consolekit ();
-        session_type = gsm_consolekit_get_current_session_type (consolekit);
-        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0) {
+        if (gsm_consolekit_is_current_session_login ()) {
                 allow_logout = FALSE;
         } else {
                 allow_logout = !_log_out_is_locked_down (manager);
         }
-        g_object_unref (consolekit);
-        g_free (session_type);
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
@@ -2184,27 +2178,21 @@ auto_save_is_enabled (GsmManager *manager)
 static void
 maybe_save_session (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
-        char *session_type;
         GError *error;
 
-        consolekit = gsm_get_consolekit ();
-        session_type = gsm_consolekit_get_current_session_type (consolekit);
-
-        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0) {
-                goto out;
-        }
+        if (gsm_consolekit_is_current_session_login ())
+                return;
 
         /* We only allow session saving when session is running or when
          * logging out */
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING &&
             manager->priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
-                goto out;
+                return;
         }
 
         if (!auto_save_is_enabled (manager)) {
                 gsm_session_save_clear ();
-                goto out;
+                return;
         }
 
         error = NULL;
@@ -2214,10 +2202,6 @@ maybe_save_session (GsmManager *manager)
                 g_warning ("Error saving session: %s", error->message);
                 g_error_free (error);
         }
-
-out:
-        g_object_unref (consolekit);
-        g_free (session_type);
 }
 
 static void
