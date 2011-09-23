@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-19 08:37+0300\n"
-"PO-Revision-Date: 2011-07-19 08:43+0300\n"
+"POT-Creation-Date: 2011-09-23 16:49+0300\n"
+"PO-Revision-Date: 2011-09-23 16:49+0300\n"
 "Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -182,15 +182,6 @@ msgstr "Istunnonhallinnan valinnat:"
 msgid "Show session management options"
 msgstr "Näytä istunnonhallinnan valinnat"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Ongelma asetuspalvelimen kanssa.\n"
-"(%s poistui tila-arvolla %d)"
-
 #, c-format
 msgid "Icon '%s' not found"
 msgstr "Kuvaketta ”%s” ei löydy"
@@ -279,7 +270,22 @@ msgstr "_Sammuta"
 msgid "Oh no!  Something has gone wrong."
 msgstr "Voi ei! Jotain meni pieleen."
 
-#. make this changable at some point
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Esiintyi ongelma ja järjestelmä ei pysty palautumaan. Ota yhteyttä "
+"järjestelmän ylläpitäjään"
+
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions "
+"below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Esiintyi ongelma ja järjestelmä ei pysty palautumaan. Jokin alla mainituista "
+"laajennuksista on saattanut aiheuttaa tämän.\n"
+"Kokeile ottaa ne pois käytöstä sekä kirjaudu ulos ja yritä uudelleen, kiitos."
+
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -309,9 +315,11 @@ msgid ""
 "This most likely means your system (graphics hardware or driver) is not "
 "capable of delivering the full GNOME 3 experience."
 msgstr ""
-"Valitettavasti Gnome 3 täysi käynnistys epäonnistui ja se käynnistettiin <i>varatilassa</i>.\n"
+"Valitettavasti Gnome 3 täysi käynnistys epäonnistui ja se käynnistettiin "
+"<i>varatilassa</i>.\n"
 "\n"
-"Tämä yleensä tarkoittaa, että järjestelmäsi (grafiikkalaitteisto tai -ajuri) ei pysty tarjoamaan täyttä Gnome 3 -kokemusta."
+"Tämä yleensä tarkoittaa, että järjestelmäsi (grafiikkalaitteisto tai -ajuri) "
+"ei pysty tarjoamaan täyttä Gnome 3 -kokemusta."
 
 msgid "Learn more about GNOME 3"
 msgstr "Opi lisää GNOME 3 -työpöydästä"
@@ -351,14 +359,24 @@ msgstr ""
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
+msgid "AUTOSTART_DIR"
+msgstr "AUTOKÄYN_HAK"
+
 msgid "Session to use"
 msgstr "Käytettävä istunto"
+
+msgid "SESSION_NAME"
+msgstr "ISTUNTONIMI"
 
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
+
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+msgid "Show the fail whale dialog for testing"
+msgstr "Näytä musta virheikkuna testausta varten"
 
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
@@ -380,6 +398,13 @@ msgstr "Istunnonhallintaan ei saa yhteyttä"
 
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Ongelma asetuspalvelimen kanssa.\n"
+#~ "(%s poistui tila-arvolla %d)"
 
 #~ msgid "Default session"
 #~ msgstr "Oletusistunto"
