@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-22 16:19+0000\n"
-"PO-Revision-Date: 2011-08-18 14:59+0700\n"
+"POT-Creation-Date: 2011-09-24 12:39+0000\n"
+"PO-Revision-Date: 2011-09-25 15:28+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,32 +42,32 @@ msgstr "Perintah awalan tidak boleh kosong"
 msgid "The startup command is not valid"
 msgstr "Perintah awalan tidak sah"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
 msgstr "Diaktifkan"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:542
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:746
 msgid "Startup Applications Preferences"
 msgstr "Preferensi Aplikasi Awalan"
 
-#: ../capplet/gsp-app.c:273
+#: ../capplet/gsp-app.c:274
 msgid "No name"
 msgstr "Tanpa nama"
 
-#: ../capplet/gsp-app.c:279
+#: ../capplet/gsp-app.c:280
 msgid "No description"
 msgstr "Tanpa deskripsi"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
@@ -210,15 +210,6 @@ msgstr "Opsi manajemen sesi:"
 msgid "Show session management options"
 msgstr "Menampilkan opsi manajemen sesi"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Terjadi masalah dengan server konfigurasi\n"
-"(%s keluar dengan status%d)"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
@@ -261,7 +252,6 @@ msgid "Shut Down Anyway"
 msgstr "Tetap Matikan"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:889
-#| msgid "Reboot Anyway"
 msgid "Restart Anyway"
 msgstr "Tetap Start Ulang"
 
@@ -300,8 +290,8 @@ msgid "_Switch User"
 msgstr "_Ganti Pengguna"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:294
-#: ../gnome-session/gsm-util.c:363
+#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "Ke_luar"
 
@@ -325,12 +315,23 @@ msgstr "H_idupkan Ulang"
 msgid "_Shut Down"
 msgstr "_Matikan"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:377
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, Tidak! Sesuatu yang tidak diinginkan telah terjadi."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
+msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
+msgstr "Terjadi masalah dan sistem tidak dapat dipulihkan. Silakan kontak administrator sistem"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
+msgid ""
+"A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\n"
+"Please try disabling some of these, and then log out and try again."
+msgstr ""
+"Terjadi masalah dan sistem tidak dapat dipulihkan. Beberapa dari perluasn di bawah mungkin menyebabkan hal ini.\n"
+"Silakan coba mematikan beberapa diantaranya, lalu log keluar dan coba lagi."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:388
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -353,11 +354,11 @@ msgstr "Dimatikan oleh sinyal %d"
 msgid "Stopped by signal %d"
 msgstr "Dihentikan oleh sinyal %d"
 
-#: ../gnome-session/gsm-manager.c:1371
+#: ../gnome-session/gsm-manager.c:1386
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 Gagal Dimuat"
 
-#: ../gnome-session/gsm-manager.c:1372
+#: ../gnome-session/gsm-manager.c:1387
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -367,12 +368,12 @@ msgstr ""
 "\n"
 "Ini berarti sistem Anda (perangkat keras grafik atau penggerak) tidak mampu menyajikan pengalaman GNOME 3 secara penuh."
 
-#: ../gnome-session/gsm-manager.c:1374
+#: ../gnome-session/gsm-manager.c:1389
 msgid "Learn more about GNOME 3"
 msgstr "Mengenal lebih jauh GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1471
-#: ../gnome-session/gsm-manager.c:2202
+#: ../gnome-session/gsm-manager.c:1486
+#: ../gnome-session/gsm-manager.c:2255
 msgid "Not responding"
 msgstr "Tidak merespon"
 
@@ -381,7 +382,6 @@ msgstr "Tidak merespon"
 #. * properties. But it could still be that SmProgram is not set.
 #.
 #: ../gnome-session/gsm-xsmp-client.c:559
-#| msgid "_Remember Currently Running Application"
 msgid "Remembered Application"
 msgstr "Aplikasi Yang Diingat"
 
@@ -399,36 +399,41 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Tidak dapat membuat soket pendengar ICE: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Tidak dapat menjalankan sesi log masuk (serta tidak dapat menyambung ke server X)"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "DIR_MULAI_OTOMATIS"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NAMA_SESI"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Tidak memuat aplikasi yang ditentukan oleh pengguna"
 
-#: ../gnome-session/main.c:300
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
+msgid "Show the fail whale dialog for testing"
+msgstr "Tampilkan dialog paus gagal untul pengujian"
+
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - manajer sesi GNOME"
 
