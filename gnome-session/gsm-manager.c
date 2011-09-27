@@ -1344,7 +1344,7 @@ show_fallback_dialog (const char *title,
         dialog = gtk_message_dialog_new (NULL, 0,
                                          GTK_MESSAGE_WARNING,
                                          GTK_BUTTONS_CLOSE,
-                                         title);
+                                         "%s", title);
 
         gtk_window_set_icon_name (GTK_WINDOW (dialog), GSM_ICON_COMPUTER_FAIL);
 
@@ -1354,7 +1354,7 @@ show_fallback_dialog (const char *title,
 
         if (description) {
                 gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
-                                                            description);
+                                                            "%s", description);
         }
 
         hbox = gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog));
