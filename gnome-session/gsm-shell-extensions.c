@@ -256,7 +256,7 @@ gsm_shell_extensions_init (GsmShellExtensions *self)
   /* Unfortunately, gsettings does not have a way to test
    * for the existance of a schema, so hack around it. */
   schemas = g_settings_list_schemas ();
-  while (schemas != '\0')
+  while (schemas != NULL)
     {
       if (g_str_equal (*schemas, SHELL_SCHEMA))
         {
