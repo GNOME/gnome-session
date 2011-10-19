@@ -70,7 +70,9 @@
 /* for strcasestr */
 #define _GNU_SOURCE
 
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include <X11/Xlib.h>
@@ -84,6 +86,54 @@ static inline void
 _print_error (const char *str)
 {
         fprintf (stderr, "gnome-session-is-accelerated: %s\n", str);
+}
+
+static int
+_parse_kcmdline (void)
+{
+        FILE *kcmdline;
+        char *line = NULL;
+        size_t line_len = 0;
+        int ret = -1;
+
+        kcmdline = fopen("/proc/cmdline", "r");
+        if (kcmdline == NULL)
+                return ret;
+
+        while (getline (&line, &line_len, kcmdline) != -1) {
+                const char *arg;
+                const char *str;
+                int key_len = strlen ("gnome.fallback=");
+
+                if (line == NULL)
+                        break;
+
+                /* don't break if we found the argument once: last mention wins */
+
+                str = line;
+                do {
+                        arg = strstr (str, "gnome.fallback=");
+                        str = arg + key_len;
+
+                        if (arg &&
+                                        (arg == line || isspace (arg[-1])) && /* gnome.fallback= is really the beginning of an argument */
+                                        (isdigit (arg[key_len]))) { /* the first character of the value of this argument is an integer */
+                                if ((arg[key_len+1] == '\0' || isspace (arg[key_len+1]))) /* the value of this argument is only one character long */
+                                        ret = arg[key_len] - '0';
+                                else /* invalid value */
+                                        ret = 0xDEAD;
+
+                        }
+                } while (arg != NULL);
+
+                free (line);
+                line = NULL;
+                line_len = 0;
+        }
+
+        fclose (kcmdline);
+
+        return ret;
 }
 
 static int
@@ -257,8 +307,22 @@ _is_max_texture_size_big_enough (Display *display)
 int
 main (int argc, char **argv)
 {
+        int      kcmdline_parsed;
         Display *display = NULL;
         int      ret = 1;
+
+        kcmdline_parsed = _parse_kcmdline ();
+        if (kcmdline_parsed >= 0) {
+                if (kcmdline_parsed == 0) {
+                        _print_error ("Non-fallback mode forced by kernel command line.");
+                        ret = 0;
+                        goto out;
+                } else if (kcmdline_parsed == 1) {
+                        _print_error ("Fallback mode forced by kernel command line.");
+                        goto out;
+                } else
+                        _print_error ("Invalid value for gnome.fallback passed in kernel command line.");
+        }
 
         display = XOpenDisplay (NULL);
         if (!display) {
