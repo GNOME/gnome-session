@@ -26,7 +26,8 @@ gnome_session_quit_LDADD =			\
 gnome_session_check_accelerated_helper_SOURCES = 		\
 	gnome-session-check-accelerated-helper.c
 
-gnome_session_check_accelerated_helper_CPPFLAGS =		\
+gnome_session_check_accelerated_helper_CPPFLAGS =	\
+	-DPKGDATADIR=\""$(pkgdatadir)"\"		\
 	$(GL_TEST_CFLAGS)
 
 gnome_session_check_accelerated_helper_LDADD = 		\

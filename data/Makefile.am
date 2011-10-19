@@ -5,6 +5,9 @@ ui_DATA = \
 	session-properties.ui	\
 	gsm-inhibit-dialog.ui
 
+hwcompatdir = $(pkgdatadir)
+hwcompat_DATA = hardware-compatibility
+
 xsessiondir = $(datadir)/xsessions
 xsession_in_files = gnome.desktop.in
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
@@ -39,7 +42,7 @@ EXTRA_DIST =					\
 	$(session_in_in_files)			\
 	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	$(ui_DATA)				\
-	$(pixmap_DATA_dist)
+	$(hwcompat_DATA)
 
 CLEANFILES =					\
 	$(gsettings_SCHEMAS)			\

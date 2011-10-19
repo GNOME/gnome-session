@@ -75,6 +75,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <regex.h>
+
 #include <X11/Xlib.h>
 #include <X11/extensions/Xcomposite.h>
 #include <GL/gl.h>
@@ -148,6 +150,92 @@ _has_composite (Display *display)
 }
 
 static int
+_is_comment (const char *line)
+{
+        while (*line && isspace(*line))
+                line++;
+
+        if (*line == '#' || *line == '\0')
+                return 0;
+        else
+                return 1;
+}
+
+static int
+_is_gl_renderer_blacklisted (const char *renderer)
+{
+        FILE *blacklist;
+        char *line = NULL;
+        size_t line_len = 0;
+        int ret = 1;
+
+        blacklist = fopen(PKGDATADIR "/hardware-compatibility", "r");
+        if (blacklist == NULL)
+                goto out;
+
+        while (getline (&line, &line_len, blacklist) != -1) {
+                int whitelist = 0;
+                const char *re_str;
+                regex_t re;
+                int status;
+
+                if (line == NULL)
+                        break;
+
+                /* Drop trailing \n */
+                line[strlen(line) - 1] = '\0';
+
+                if (_is_comment (line) == 0) {
+                        free (line);
+                        line = NULL;
+                        continue;
+                }
+
+                if (line[0] == '+')
+                        whitelist = 1;
+                else if (line[0] == '-')
+                        whitelist = 0;
+                else {
+                        _print_error ("Invalid syntax in this line for hardware compatibility:");
+                        _print_error (line);
+                        free (line);
+                        line = NULL;
+                        continue;
+                }
+
+                re_str = line + 1;
+
+                if (regcomp (&re, re_str, REG_EXTENDED|REG_ICASE|REG_NOSUB) != 0) {
+                        _print_error ("Cannot use this regular expression for hardware compatibility:");
+                        _print_error (re_str);
+                } else {
+                        status = regexec (&re, renderer, 0, NULL, 0);
+                        regfree(&re);
+
+                        if (status == 0) {
+                                if (whitelist)
+                                        ret = 0;
+                                goto out;
+                        }
+                }
+
+                free (line);
+                line = NULL;
+        }
+
+        ret = 0;
+
+out:
+        if (line != NULL)
+                free (line);
+
+        if (blacklist != NULL)
+                fclose (blacklist);
+
+        return ret;
+}
+
+static int
 _has_hardware_gl (Display *display)
 {
         int screen;
@@ -193,12 +281,7 @@ _has_hardware_gl (Display *display)
                 goto out;
 
         renderer = (const char *) glGetString (GL_RENDERER);
-        /* The current Mesa software GL renderer string is
-	 * "Software Rasterizer".
-	 * Gallium has softpipe and llvmpipe. */
-        if (strcasestr (renderer, "software rasterizer") != NULL ||
-            strcasestr (renderer, "softpipe") != NULL ||
-            strcasestr (renderer, "llvmpipe") != NULL)
+        if (_is_gl_renderer_blacklisted (renderer) != 0)
                 goto out;
 
         /* we need to get the max texture size while we have a context,
