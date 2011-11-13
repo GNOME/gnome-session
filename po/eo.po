@@ -15,19 +15,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.6.2\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-26 15:04+0000\n"
-"PO-Revision-Date: 2011-09-30 18:04+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-10-25 19:38+0000\n"
+"PO-Revision-Date: 2011-11-13 16:42+0100\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eo\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Virtaal 0.7.0\n"
-"X-Launchpad-Export-Date: 2011-04-27 15:32+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Launchpad-Export-Date: 2011-11-13 15:32+0000\n"
+"X-Generator: Launchpad (build 14277)\n"
 "X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -74,7 +73,8 @@ msgstr "Neniu nomo"
 msgid "No description"
 msgstr "Neniu priskribo"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35
+#: ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versio de ĉi tiu aplikaĵo"
 
@@ -84,9 +84,10 @@ msgstr "Ne eblis montri helpdokumenton"
 
 #: ../data/gnome-fallback.session.desktop.in.in.h:1
 msgid "GNOME fallback"
-msgstr "Retropaŝa GNOME"
+msgstr "Retropaŝa GNOME-reĝimo"
 
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -98,17 +99,14 @@ msgstr "Ĉi tiu seanco ensalutas vin en GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>Kelkaj programoj ankoraŭ rulas:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Atendanta ĝis la programo finiĝi. Se vi interrompas ĉi tiun programon, via "
-"laboro povus perdiĝi."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:640
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
+msgstr "Atendante ĝis la programo finiĝi. Se vi interrompas ĉi tiun programon, via laboro povus perdiĝi."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Choose what applications to start when you log in"
-msgstr "Elektu kiujn aplikaĵojn lanĉigi kiam vi ensalutas"
+msgstr "Elektu kiujn aplikaĵojn startigi kiam vi ensalutas"
 
 #: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
@@ -161,7 +159,7 @@ msgstr "Dosiero ne estas valida .desktop-dosiero"
 #: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "Nerekonata de labortablodosiero versio '%s'"
+msgstr "Nerekonata versio '%s' de labortabla dosiero"
 
 #: ../egg/eggdesktopfile.c:974
 #, c-format
@@ -183,8 +181,7 @@ msgstr "Nerekonata lanĉo-opcio: %d"
 #: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Ne eblas transdoni dokumento-URI-ojn al labortabla elemento 'Type=Link'"
+msgstr "Ne eblas transdoni dokumento-URI-ojn al labortabla elemento 'Type=Link'"
 
 #: ../egg/eggdesktopfile.c:1412
 #, c-format
@@ -193,11 +190,11 @@ msgstr "Nelanĉebla ero"
 
 #: ../egg/eggsmclient.c:226
 msgid "Disable connection to session manager"
-msgstr "Elŝalti la konekton de seancoadministrilo"
+msgstr "Elŝalti la konekton al la seancoadministrilo"
 
 #: ../egg/eggsmclient.c:229
 msgid "Specify file containing saved configuration"
-msgstr "Specifi la dosieron kiu enhavas agordaron konservitan"
+msgstr "Specifi dosieron kiu enhavas konservitan agordon"
 
 #: ../egg/eggsmclient.c:229
 msgid "FILE"
@@ -226,7 +223,7 @@ msgstr "Piktogramo '%s' ne trovita"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
-msgstr "Nekonata"
+msgstr "Nekonate"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
@@ -237,16 +234,12 @@ msgid "Some programs are still running:"
 msgstr "Iuj programoj ankoraŭ rulas:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Atendas ĝis programoj finiĝas.  Vian laboran povus perdigota se vi "
-"interrompas ĉi tiuj programoj."
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Atendas ĝis programoj finiĝas.  Vian laboran povus perdigota se vi interrompas ĉi tiuj programoj."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:874
 msgid "Switch User Anyway"
-msgstr "Ŝanĝi uzanton tamen"
+msgstr "Ŝanĝi uzanton ĉiukaze"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:877
 msgid "Log Out Anyway"
@@ -254,19 +247,19 @@ msgstr "Elsaluti tamen"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:880
 msgid "Suspend Anyway"
-msgstr "Dormeti tamen"
+msgstr "Prokrasti ĉiukaze"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:883
 msgid "Hibernate Anyway"
-msgstr "Pasivumigi tamen"
+msgstr "Pasivumigi ĉiukaze"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:886
 msgid "Shut Down Anyway"
-msgstr "Elŝalti tamen"
+msgstr "Elŝalti ĉiukaze"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:889
 msgid "Restart Anyway"
-msgstr "Restarti tamen"
+msgstr "Restartigi ĉiukaze"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:897
 msgid "Lock Screen"
@@ -302,7 +295,7 @@ msgstr "Ĉu elsaluti el la sistemo nun?"
 
 #: ../gnome-session/gsm-logout-dialog.c:387
 msgid "_Switch User"
-msgstr "Ŝangi _uzanton"
+msgstr "Ŝangi la _uzanton"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
 #: ../gnome-session/gsm-fail-whale-dialog.c:422
@@ -312,7 +305,7 @@ msgstr "E_lsaluti"
 
 #: ../gnome-session/gsm-logout-dialog.c:402
 msgid "Shut down this system now?"
-msgstr "Ĉu elŝalt tiun sistemon nun?"
+msgstr "Ĉu elŝalti ĉi tiun sistemon nun?"
 
 #: ../gnome-session/gsm-logout-dialog.c:408
 msgid "S_uspend"
@@ -324,7 +317,7 @@ msgstr "_Pasivumigi"
 
 #: ../gnome-session/gsm-logout-dialog.c:420
 msgid "_Restart"
-msgstr "_Restarti"
+msgstr "_Restartigi"
 
 #: ../gnome-session/gsm-logout-dialog.c:430
 msgid "_Shut Down"
@@ -332,24 +325,18 @@ msgstr "_Elŝalti"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:377
 msgid "Oh no!  Something has gone wrong."
-msgstr "Tute ne! Io okazis erare."
+msgstr "Ho ne! Io fiaskis."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:384
-msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
-"administrator"
-msgstr ""
-"Problemo okazis kaj la sistemo ne povis retrovi. Bonvole kontaktu "
-"sistemadministranton"
+msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
+msgstr "Problemo okazis kaj la sistemo ne eblis retrovi. Bonvole kontaktu sistemadministranton"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
+"A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\n"
 "Please try disabling some of these, and then log out and try again."
 msgstr ""
-"Problemo okazis kaj la sistemo ne povis retrovi.  Iuj kromprogramoj kiuj "
-"subitajestus kaŭzito de ĉi tiu.\n"
+"Problemo okazis kaj la sistemo ne eblis retrovi.  Iuj kromprogramoj kiuj subitajestus kaŭzito de ĉi tiu.\n"
 "Bonvole provu elŝalti iujn de la kromprogramoj kaj provu denove."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:388
@@ -357,18 +344,18 @@ msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr ""
-"Problemo okazis kaj la sistemo ne povis retrovi. Bonvole elsalutu kaj provu "
-"denove."
+"Problemo okazis kaj la sistemo ne eblas restaŭri.\n"
+"Bonvolu elsaluti kaj provi denove."
 
 #: ../gnome-session/gsm-process-helper.c:123
 #, c-format
 msgid "Exited with code %d"
-msgstr "Elira kodo %d"
+msgstr "Elirate kun kodo %d"
 
 #: ../gnome-session/gsm-process-helper.c:128
 #, c-format
 msgid "Killed by signal %d"
-msgstr "Ĉesigis per signalo %d"
+msgstr "Mortigis per signalo %d"
 
 #: ../gnome-session/gsm-process-helper.c:133
 #, c-format
@@ -377,26 +364,24 @@ msgstr "Haltigis per signalo %d"
 
 #: ../gnome-session/gsm-manager.c:1386
 msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 malsukcesis ŝargi"
+msgstr "Ŝargo de GNOME 3 fiaskis"
 
 #: ../gnome-session/gsm-manager.c:1387
 msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
 msgstr ""
-"GNOME 3 lanĉis en la <i>fallback mode</i> (retropaŝa reĝimo).\n"
+"Bedaŭrinde korekta startado de GNOME 3 fiaskis kaj startis per la <i>fallback mode</i> (retropaŝa reĝimo).\n"
 "\n"
-"La kompleta sperto de GNOME 3 ne disponeblas por via sistemo. (La grafika "
-"aparato aŭ pelilo ne kapablaj lanĉi la plena GNOME 3)"
+"La kompleta sperto de GNOME 3 ne disponeblas por via sistemo. (La grafika aparato aŭ pelilo ne kapablas lanĉi la plenan GNOME 3)."
 
 #: ../gnome-session/gsm-manager.c:1389
 msgid "Learn more about GNOME 3"
 msgstr "Lernu plu pri GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1486 ../gnome-session/gsm-manager.c:2255
+#: ../gnome-session/gsm-manager.c:1486
+#: ../gnome-session/gsm-manager.c:2255
 msgid "Not responding"
 msgstr "Ne respondas"
 
@@ -413,22 +398,19 @@ msgid "This program is blocking logout."
 msgstr "Ĉi tiu programaro blokas ensaluton."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Rifuzas novan klientkonekton ĉar la seanco estas nun elsalutata.\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "Ne povis krei ICE-aŭskultantan kontaktoskatolon: %s"
+msgstr "Ne eblis krei ICE-aŭskultantan kontaktoskatolon: %s"
 
 #. Oh well, no X for you!
 #: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Ne eblas lanĉi ensalutan seancon (kaj ne povas konekti al la X-servilo)"
+msgstr "Ne eblas lanĉi ensalutan seancon (kaj ne eblas konekti al la X-servilo)"
 
 #: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
@@ -473,16 +455,122 @@ msgstr "Elŝalti"
 
 #: ../tools/gnome-session-quit.c:54
 msgid "Ignoring any existing inhibitors"
-msgstr "Ignoranta ĉiuj aktualaj inhibiciiloj"
+msgstr "Ignori ĉiujn ajn ekzistantajn malebligilojn"
 
 #: ../tools/gnome-session-quit.c:55
 msgid "Don't prompt for user confirmation"
 msgstr "Ne postuli konfirmon de la uzanto"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:89
+#: ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
-msgstr "Ne povis konekti al la seancoadministrilo"
+msgstr "Ne eblis konekti al la seancoadministrilo"
 
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Programo vokata kun konfliktaj parametroj"
+
+
+#~ msgid ""
+#~ "Suspends your session, using no power until the computer is restarted."
+#~ msgstr ""
+#~ "Interrompas vian seancon, uzante neniun elektron ĝis kiam la komputilo "
+#~ "estas restartigata."
+
+#~ msgid ""
+#~ "Suspends your session quickly, using minimal power while the computer "
+#~ "stands by."
+#~ msgstr ""
+#~ "Rapide interrompas vian seancon, uzante minimuman elektron dum kiam la "
+#~ "komputilo atendas."
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Ekzistas problemo pri la konfigura servilo.\n"
+#~ "(%s eliris kun stato %d)"
+
+#~ msgid "Window Manager"
+#~ msgstr "Fenestradministrilo"
+
+#~ msgid "NAME"
+#~ msgstr "NOMO"
+
+#~ msgid "Save sessions"
+#~ msgstr "Konservi seancojn"
+
+#~ msgid "Log Out of the Session"
+#~ msgstr "Elsaluti el la seanco"
+
+#~ msgid "Ends your session and logs you out."
+#~ msgstr "Finas vian seancon kaj elsalutas vin."
+
+#~ msgid "Hiber_nate"
+#~ msgstr "_Pasivumigi"
+
+#~ msgid "Shut Down the Computer"
+#~ msgstr "Elŝalti la komputilon"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Uzi dialogkestojn por eraroj"
+
+#~ msgid ""
+#~ "Suspends your session, allowing another user to log in and use the "
+#~ "computer."
+#~ msgstr ""
+#~ "Interrompas vian seancon, permesante al alia uzanto ensaluti kaj uzi la "
+#~ "komputilon."
+
+#~ msgid "Ends your session and turns off the computer."
+#~ msgstr "Finas vian seancon kaj elŝaltas la komputilon."
+
+#~ msgid "Ends your session and restarts the computer."
+#~ msgstr "Finas vian seancon kaj restartigas la komputilon."
+
+#~ msgid "Logout prompt"
+#~ msgstr "Elsalut-demando"
+
+#~ msgid ""
+#~ "If enabled, gnome-session will prompt the user before ending a session."
+#~ msgstr ""
+#~ "Se enŝaltite, gnome-session demandos la uzanton antaŭ ol fini seancon."
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "Se aktivigita, gnome-session konservos la sesion aŭtomate."
+
+#~ msgid "This session logs you into GNOME without user applications"
+#~ msgstr "Ĉi tiu seanco ensalutas vin en GNOMEon sen uzantaj apliakĵoj"
+
+#~ msgid ""
+#~ "The number of minutes of inactivity before the session is considered idle."
+#~ msgstr ""
+#~ "La nombro da minutoj de senaktiveco antaŭ ol konsideri la seancon kiel "
+#~ "senokupe."
+
+#~ msgid "Time before session is considered idle"
+#~ msgstr "La tempo antaŭ ol konsideri la seancon senokupe"
+
+#~ msgid "Unable to connect to the X server"
+#~ msgstr "Ne eblas konekti al la X-servilo"
+
+#~ msgid "Cannot find help."
+#~ msgstr "Ne eblas trovi helpon."
+
+#~ msgid "Do not require confirmation"
+#~ msgstr "Ne postulas konfirmon"
+
+#~ msgid "Kill session"
+#~ msgstr "Mortigi la seancon"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Montri la elŝaltodialogon"
+
+#~ msgid "Show logout dialog"
+#~ msgstr "Montri la elsalutdialogon"
+
+#~ msgid "Log out, ignoring any existing inhibitors"
+#~ msgstr "Elsaluti ignorante ĉiujn ajn ekzistantajn preventojn"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Agordi la aktualansenaconomon"
