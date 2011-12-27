@@ -249,7 +249,6 @@ gsm_logout_dialog_timeout (gpointer data)
         char            *seconds_warning;
         char            *secondary_text;
         int              seconds_to_show;
-        static char     *session_type = NULL;
 
         logout_dialog = (GsmLogoutDialog *) data;
 
@@ -291,15 +290,7 @@ gsm_logout_dialog_timeout (gpointer data)
                 g_assert_not_reached ();
         }
 
-        if (session_type == NULL) {
-		GsmConsolekit *consolekit;
-
-                consolekit = gsm_get_consolekit ();
-                session_type = gsm_consolekit_get_current_session_type (consolekit);
-                g_object_unref (consolekit);
-        }
-
-        if (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) != 0) {
+        if (!gsm_consolekit_is_current_session_login ()) {
                 char *name, *tmp;
 
                 name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);

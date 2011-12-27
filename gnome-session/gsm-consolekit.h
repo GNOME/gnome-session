@@ -62,8 +62,6 @@ enum _GsmConsolekitError {
         GSM_CONSOLEKIT_ERROR_STOPPING
 };
 
-#define GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW "LoginWindow"
-
 GType            gsm_consolekit_get_type        (void);
 
 GQuark           gsm_consolekit_error_quark     (void);
@@ -82,8 +80,6 @@ void             gsm_consolekit_attempt_restart (GsmConsolekit *manager);
 
 void             gsm_consolekit_set_session_idle (GsmConsolekit *manager,
                                                   gboolean       is_idle);
-
-gchar           *gsm_consolekit_get_current_session_type (GsmConsolekit *manager);
 
 GsmConsolekit   *gsm_get_consolekit             (void);
 

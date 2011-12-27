@@ -43,6 +43,8 @@
 #define CK_SEAT_INTERFACE    "org.freedesktop.ConsoleKit.Seat"
 #define CK_SESSION_INTERFACE "org.freedesktop.ConsoleKit.Session"
 
+#define GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW "LoginWindow"
+
 #define GSM_CONSOLEKIT_GET_PRIVATE(o)                                   \
         (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_CONSOLEKIT, GsmConsolekitPrivate))
 
@@ -804,7 +806,7 @@ gsm_consolekit_can_stop (GsmConsolekit *manager)
 	return can_stop;
 }
 
-gchar *
+static gchar *
 gsm_consolekit_get_current_session_type (GsmConsolekit *manager)
 {
         GError *gerror;
