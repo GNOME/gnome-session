@@ -2727,6 +2727,7 @@ on_presence_status_changed (GsmPresence  *presence,
         consolekit = gsm_get_consolekit ();
         gsm_consolekit_set_session_idle (consolekit,
                                          (status == GSM_PRESENCE_STATUS_IDLE));
+        g_object_unref (consolekit);
 }
 
 static gboolean
