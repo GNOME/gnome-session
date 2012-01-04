@@ -1,7 +1,6 @@
 # Turkish translation of gnome-session.
 # Copyright (C) 2001-2003, 2004, 2008, 2011 Free Software Foundation, Inc.
 #
-#
 # Sinan İmamoğlu <sinan@myrealbox.com>, 2002-2003.
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
 # Fatih Demir <kabalak@kabalak.net>, 2000.
@@ -9,14 +8,14 @@
 # Arman Aksoy <armish@linux-sevenler.de>, 2003.
 # Baris Cicek <baris@teamforce.name.tr>, 2004, 2008, 2009.
 # Muhammed Eken <gnome@m-eken.com>, 2011.
-# Muhammet Kara <muhammet.k@gmail.com>, 2011.
+# Muhammet Kara <muhammet.k@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-29 14:42+0000\n"
-"PO-Revision-Date: 2011-10-24 21:39+0300\n"
+"POT-Creation-Date: 2011-12-26 16:06+0000\n"
+"PO-Revision-Date: 2012-01-04 10:10+0000\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -298,7 +297,7 @@ msgid "_Switch User"
 msgstr "_Kullanıcı Değiştir"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-fail-whale-dialog.c:422
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "Çı_kış"
@@ -323,14 +322,11 @@ msgstr "_Yeniden Başlat"
 msgid "_Shut Down"
 msgstr "_Kapat"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:377
 msgid "Oh no!  Something has gone wrong."
 msgstr "Hay aksi!  Birşeyler ters gitti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: ../gnome-session/gsm-fail-whale-dialog.c:384
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -338,22 +334,18 @@ msgstr ""
 "Bir sorun oluştu ve sistem kurtarılamıyor. Lütfen bir sistem yöneticisine "
 "başvurun"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: ../gnome-session/gsm-fail-whale-dialog.c:386
 msgid ""
 "A problem has occurred and the system can't recover. Some of the extensions "
 "below may have caused this.\n"
 "Please try disabling some of these, and then log out and try again."
 msgstr ""
 "Bir sorun oluştu ve sistem kurtarılamıyor. Aşağıdaki uzantılardan bazıları "
-"buna "
-"sebep olmuş olabilir.\n"
-"Lütfen bunlardan bazılarını devre dışı bırakmayı deneyin ve sonra çıkış yapıp "
-"tekrar deneyin."
+"buna sebep olmuş olabilir.\n"
+"Lütfen bunlardan bazılarını devre dışı bırakmayı deneyin ve sonra çıkış "
+"yapıp tekrar deneyin."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:388
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -376,11 +368,11 @@ msgstr "%d sinyali ile öldürüldü"
 msgid "Stopped by signal %d"
 msgstr "%d sinyali ile durduruldu"
 
-#: ../gnome-session/gsm-manager.c:1379
+#: ../gnome-session/gsm-manager.c:1386
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3'ün Yüklenmesi Başarısız Oldu"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1387
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -394,11 +386,11 @@ msgstr ""
 "Büyük olasılıkla sisteminiz (grafik donanımı veya sürücüsü) tam GNOME 3 "
 "deneyimi sunmak için yeterli değil."
 
-#: ../gnome-session/gsm-manager.c:1382
+#: ../gnome-session/gsm-manager.c:1389
 msgid "Learn more about GNOME 3"
 msgstr "GNOME 3 hakkında daha fazlasını öğren"
 
-#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
+#: ../gnome-session/gsm-manager.c:1486 ../gnome-session/gsm-manager.c:2255
 msgid "Not responding"
 msgstr "Cevap vermiyor"
 
@@ -455,11 +447,12 @@ msgstr "Hata ayıklama kodunu etkinleştir"
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: ../gnome-session/main.c:282
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
-msgstr ""
+msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: ../gnome-session/main.c:302
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr "- GNOME oturum yöneticisi"
 
