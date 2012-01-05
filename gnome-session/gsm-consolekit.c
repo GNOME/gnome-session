@@ -53,12 +53,6 @@ struct _GsmConsolekitPrivate
         DBusGConnection *dbus_connection;
         DBusGProxy      *bus_proxy;
         DBusGProxy      *ck_proxy;
-        guint32          is_connected : 1;
-};
-
-enum {
-        PROP_0,
-        PROP_IS_CONNECTED
 };
 
 enum {
@@ -87,45 +81,13 @@ static void     gsm_consolekit_on_name_owner_changed (DBusGProxy        *bus_pro
 G_DEFINE_TYPE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT);
 
 static void
-gsm_consolekit_get_property (GObject    *object,
-                             guint       prop_id,
-                             GValue     *value,
-                             GParamSpec *pspec)
-{
-        GsmConsolekit *manager = GSM_CONSOLEKIT (object);
-
-        switch (prop_id) {
-        case PROP_IS_CONNECTED:
-                g_value_set_boolean (value,
-                                     manager->priv->is_connected);
-                break;
-
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object,
-                                                   prop_id,
-                                                   pspec);
-        }
-}
-
-static void
 gsm_consolekit_class_init (GsmConsolekitClass *manager_class)
 {
         GObjectClass *object_class;
-        GParamSpec   *param_spec;
 
         object_class = G_OBJECT_CLASS (manager_class);
 
         object_class->finalize = gsm_consolekit_finalize;
-        object_class->get_property = gsm_consolekit_get_property;
-
-        param_spec = g_param_spec_boolean ("is-connected",
-                                           "Is connected",
-                                           "Whether the session is connected to ConsoleKit",
-                                           FALSE,
-                                           G_PARAM_READABLE);
-
-        g_object_class_install_property (object_class, PROP_IS_CONNECTED,
-                                         param_spec);
 
         signals [REQUEST_COMPLETED] =
                 g_signal_new ("request-completed",
@@ -234,11 +196,6 @@ gsm_consolekit_ensure_ck_connection (GsmConsolekit  *manager,
         is_connected = TRUE;
 
  out:
-        if (manager->priv->is_connected != is_connected) {
-                manager->priv->is_connected = is_connected;
-                g_object_notify (G_OBJECT (manager), "is-connected");
-        }
-
         if (!is_connected) {
                 if (manager->priv->dbus_connection == NULL) {
                         if (manager->priv->bus_proxy != NULL) {
