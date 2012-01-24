@@ -61,7 +61,7 @@
 #include "gsm-fail-whale-dialog.h"
 #include "gsm-icon-names.h"
 #include "gsm-inhibit-dialog.h"
-#include "gsm-consolekit.h"
+#include "gsm-system.h"
 #include "gsm-session-save.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
@@ -276,18 +276,18 @@ on_required_app_failure (GsmManager  *manager,
         const gchar *app_id;
         gboolean want_extensions_ui;
         gboolean allow_logout;
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
 
         app_id = gsm_app_peek_app_id (app);
         want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
 
-        consolekit = gsm_get_consolekit ();
-        if (gsm_consolekit_is_login_session (consolekit)) {
+        system = gsm_get_system ();
+        if (gsm_system_is_login_session (system)) {
                 allow_logout = FALSE;
         } else {
                 allow_logout = !_log_out_is_locked_down (manager);
         }
-        g_object_unref (consolekit);
+        g_object_unref (system);
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
@@ -462,9 +462,9 @@ phase_num_to_name (guint phase)
 static void start_phase (GsmManager *manager);
 
 static void
-quit_request_completed (GsmConsolekit *consolekit,
-                        GError        *error,
-                        gpointer       user_data)
+quit_request_completed (GsmSystem *system,
+                        GError    *error,
+                        gpointer   user_data)
 {
         GdmLogoutAction fallback_action = GPOINTER_TO_INT (user_data);
 
@@ -472,7 +472,7 @@ quit_request_completed (GsmConsolekit *consolekit,
                 gdm_set_logout_action (fallback_action);
         }
 
-        g_object_unref (consolekit);
+        g_object_unref (system);
 
         gtk_main_quit ();
 }
@@ -480,7 +480,7 @@ quit_request_completed (GsmConsolekit *consolekit,
 static void
 gsm_manager_quit (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
 
         /* See the comment in request_reboot() for some more details about how
          * this works. */
@@ -493,12 +493,12 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
 
-                consolekit = gsm_get_consolekit ();
-                g_signal_connect (consolekit,
+                system = gsm_get_system ();
+                g_signal_connect (system,
                                   "request-completed",
                                   G_CALLBACK (quit_request_completed),
                                   GINT_TO_POINTER (GDM_LOGOUT_ACTION_REBOOT));
-                gsm_consolekit_attempt_restart (consolekit);
+                gsm_system_attempt_restart (system);
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
@@ -508,12 +508,12 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
 
-                consolekit = gsm_get_consolekit ();
-                g_signal_connect (consolekit,
+                system = gsm_get_system ();
+                g_signal_connect (system,
                                   "request-completed",
                                   G_CALLBACK (quit_request_completed),
                                   GINT_TO_POINTER (GDM_LOGOUT_ACTION_SHUTDOWN));
-                gsm_consolekit_attempt_stop (consolekit);
+                gsm_system_attempt_stop (system);
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
@@ -2181,13 +2181,13 @@ auto_save_is_enabled (GsmManager *manager)
 static void
 maybe_save_session (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
         GError *error;
         gboolean is_login;
 
-        consolekit = gsm_get_consolekit ();
-        is_login = gsm_consolekit_is_login_session (consolekit);
-        g_object_unref (consolekit);
+        system = gsm_get_system ();
+        is_login = gsm_system_is_login_session (system);
+        g_object_unref (system);
         if (is_login)
                 return;
 
@@ -2730,12 +2730,12 @@ on_presence_status_changed (GsmPresence  *presence,
                             guint         status,
                             GsmManager   *manager)
 {
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
 
-        consolekit = gsm_get_consolekit ();
-        gsm_consolekit_set_session_idle (consolekit,
-                                         (status == GSM_PRESENCE_STATUS_IDLE));
-        g_object_unref (consolekit);
+        system = gsm_get_system ();
+        gsm_system_set_session_idle (system,
+                                     (status == GSM_PRESENCE_STATUS_IDLE));
+        g_object_unref (system);
 }
 
 static gboolean
@@ -3389,7 +3389,7 @@ gsm_manager_can_shutdown (GsmManager *manager,
                           gboolean   *shutdown_available,
                           GError    **error)
 {
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
         gboolean can_suspend;
         gboolean can_hibernate;
 
@@ -3402,13 +3402,13 @@ gsm_manager_can_shutdown (GsmManager *manager,
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
-        consolekit = gsm_get_consolekit ();
+        system = gsm_get_system ();
         *shutdown_available = !_log_out_is_locked_down (manager) &&
-                              (gsm_consolekit_can_stop (consolekit)
-                               || gsm_consolekit_can_restart (consolekit)
+                              (gsm_system_can_stop (system)
+                               || gsm_system_can_restart (system)
                                || can_suspend
                                || can_hibernate);
-        g_object_unref (consolekit);
+        g_object_unref (system);
 
         return TRUE;
 }

@@ -30,7 +30,7 @@
 #include <upower.h>
 
 #include "gsm-logout-dialog.h"
-#include "gsm-consolekit.h"
+#include "gsm-system.h"
 #include "gsm-icon-names.h"
 #include "gdm.h"
 
@@ -53,7 +53,7 @@ struct _GsmLogoutDialogPrivate
         GsmDialogLogoutType  type;
 
         UpClient            *up_client;
-        GsmConsolekit       *consolekit;
+        GsmSystem           *system;
 
         int                  timeout;
         unsigned int         timeout_id;
@@ -146,7 +146,7 @@ gsm_logout_dialog_init (GsmLogoutDialog *logout_dialog)
 
         logout_dialog->priv->up_client = up_client_new ();
 
-        logout_dialog->priv->consolekit = gsm_get_consolekit ();
+        logout_dialog->priv->system = gsm_get_system ();
 
         g_signal_connect (logout_dialog,
                           "destroy",
@@ -173,10 +173,7 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
                 logout_dialog->priv->up_client = NULL;
         }
 
-        if (logout_dialog->priv->consolekit) {
-                g_object_unref (logout_dialog->priv->consolekit);
-                logout_dialog->priv->consolekit = NULL;
-        }
+        g_clear_object (&logout_dialog->priv->system);
 
         current_dialog = NULL;
 }
@@ -205,7 +202,7 @@ gsm_logout_supports_switch_user (GsmLogoutDialog *logout_dialog)
         g_object_unref (settings);
 
         if (ret)
-                ret = gsm_consolekit_can_switch_user (logout_dialog->priv->consolekit);
+                ret = gsm_system_can_switch_user (logout_dialog->priv->system);
 
         return ret;
 }
@@ -215,7 +212,7 @@ gsm_logout_supports_reboot (GsmLogoutDialog *logout_dialog)
 {
         gboolean ret;
 
-        ret = gsm_consolekit_can_restart (logout_dialog->priv->consolekit);
+        ret = gsm_system_can_restart (logout_dialog->priv->system);
         if (!ret) {
                 ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
         }
@@ -228,7 +225,7 @@ gsm_logout_supports_shutdown (GsmLogoutDialog *logout_dialog)
 {
         gboolean ret;
 
-        ret = gsm_consolekit_can_stop (logout_dialog->priv->consolekit);
+        ret = gsm_system_can_stop (logout_dialog->priv->system);
         if (!ret) {
                 ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
         }
@@ -290,7 +287,7 @@ gsm_logout_dialog_timeout (gpointer data)
                 g_assert_not_reached ();
         }
 
-        if (!gsm_consolekit_is_login_session (logout_dialog->priv->consolekit)) {
+        if (!gsm_system_is_login_session (logout_dialog->priv->system)) {
                 char *name, *tmp;
 
                 name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);

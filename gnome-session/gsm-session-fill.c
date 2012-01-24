@@ -23,7 +23,7 @@
 
 #include "gsm-session-fill.h"
 
-#include "gsm-consolekit.h"
+#include "gsm-system.h"
 #include "gsm-manager.h"
 #include "gsm-process-helper.h"
 #include "gsm-util.h"
@@ -181,12 +181,12 @@ check_required (GKeyFile *keyfile)
 static void
 maybe_load_saved_session_apps (GsmManager *manager)
 {
-        GsmConsolekit *consolekit;
+        GsmSystem *system;
         gboolean is_login;
 
-        consolekit = gsm_get_consolekit ();
-        is_login = gsm_consolekit_is_login_session (consolekit);
-        g_object_unref (consolekit);
+        system = gsm_get_system ();
+        is_login = gsm_system_is_login_session (system);
+        g_object_unref (system);
 
         if (is_login)
                 return;
