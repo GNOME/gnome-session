@@ -73,6 +73,45 @@ PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-3.0)
 PKG_CHECK_MODULES(GL_TEST, xcomposite gl)
 
 dnl ====================================================================
+dnl Check for systemd
+dnl ====================================================================
+AC_ARG_ENABLE([systemd],
+              AS_HELP_STRING([--enable-systemd], [Use systemd]),
+              [enable_systemd=$enableval],
+              [enable_systemd=auto])
+
+PKG_CHECK_MODULES(SYSTEMD,
+                  [libsystemd-login libsystemd-daemon polkit-gobject-1],
+                  [have_systemd=yes], [have_systemd=no])
+
+AC_MSG_CHECKING([whether to use systemd])
+
+if test x$enable_systemd = xauto ; then
+        if test x$have_systemd = xno ; then
+                enable_systemd=no
+        else
+                enable_systemd=yes
+        fi
+fi
+
+AC_MSG_RESULT($enable_systemd)
+
+if test x$enable_systemd = xyes; then
+        if test x$have_systemd = xno; then
+                AC_MSG_ERROR([Systemd support explicitly required, but systemd not found])
+        fi
+        AC_DEFINE(HAVE_SYSTEMD, 1, [Define if systemd is used for session tracking])
+        session_tracking=systemd
+else
+        session_tracking=ConsoleKit
+fi
+
+AC_SUBST(SYSTEMD_CFLAGS)
+AC_SUBST(SYSTEMD_LIBS)
+
+AM_CONDITIONAL(HAVE_SYSTEMD, [test "$with_systemd" = "yes"], [Using systemd])
+
+dnl ====================================================================
 dnl X development libraries check
 dnl ====================================================================
 
@@ -314,6 +353,7 @@ echo "
         Maintainer mode:          ${USE_MAINTAINER_MODE}
         Use *_DISABLE_DEPRECATED: ${enable_deprecation_flags}
 
+        Session tracking:         ${session_tracking}
         IPv6 support:             ${have_full_ipv6}
         Backtrace support:        ${have_backtrace}
         XRender support:          ${have_xrender}
