@@ -290,7 +290,7 @@ gsm_logout_dialog_timeout (gpointer data)
                 g_assert_not_reached ();
         }
 
-        if (!gsm_consolekit_is_current_session_login ()) {
+        if (!gsm_consolekit_is_login_session (logout_dialog->priv->consolekit)) {
                 char *name, *tmp;
 
                 name = g_locale_to_utf8 (g_get_real_name (), -1, NULL, NULL, NULL);

@@ -276,15 +276,18 @@ on_required_app_failure (GsmManager  *manager,
         const gchar *app_id;
         gboolean want_extensions_ui;
         gboolean allow_logout;
+        GsmConsolekit *consolekit;
 
         app_id = gsm_app_peek_app_id (app);
         want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
 
-        if (gsm_consolekit_is_current_session_login ()) {
+        consolekit = gsm_get_consolekit ();
+        if (gsm_consolekit_is_login_session (consolekit)) {
                 allow_logout = FALSE;
         } else {
                 allow_logout = !_log_out_is_locked_down (manager);
         }
+        g_object_unref (consolekit);
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
@@ -2178,9 +2181,14 @@ auto_save_is_enabled (GsmManager *manager)
 static void
 maybe_save_session (GsmManager *manager)
 {
+        GsmConsolekit *consolekit;
         GError *error;
+        gboolean is_login;
 
-        if (gsm_consolekit_is_current_session_login ())
+        consolekit = gsm_get_consolekit ();
+        is_login = gsm_consolekit_is_login_session (consolekit);
+        g_object_unref (consolekit);
+        if (is_login)
                 return;
 
         /* We only allow session saving when session is running or when

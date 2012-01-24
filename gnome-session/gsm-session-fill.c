@@ -181,7 +181,14 @@ check_required (GKeyFile *keyfile)
 static void
 maybe_load_saved_session_apps (GsmManager *manager)
 {
-        if (gsm_consolekit_is_current_session_login ())
+        GsmConsolekit *consolekit;
+        gboolean is_login;
+
+        consolekit = gsm_get_consolekit ();
+        is_login = gsm_consolekit_is_login_session (consolekit);
+        g_object_unref (consolekit);
+
+        if (is_login)
                 return;
 
         gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());

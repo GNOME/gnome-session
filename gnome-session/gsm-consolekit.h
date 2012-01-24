@@ -83,7 +83,7 @@ void             gsm_consolekit_set_session_idle (GsmConsolekit *manager,
 
 GsmConsolekit   *gsm_get_consolekit             (void);
 
-gboolean         gsm_consolekit_is_current_session_login (void);
+gboolean         gsm_consolekit_is_login_session (GsmConsolekit *manager);
 
 G_END_DECLS
 

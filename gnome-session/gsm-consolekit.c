@@ -844,18 +844,15 @@ gsm_get_consolekit (void)
 }
 
 gboolean
-gsm_consolekit_is_current_session_login (void)
+gsm_consolekit_is_login_session (GsmConsolekit *manager)
 {
-        GsmConsolekit *consolekit;
         char *session_type;
         gboolean ret;
 
-        consolekit = gsm_get_consolekit ();
-        session_type = gsm_consolekit_get_current_session_type (consolekit);
+        session_type = gsm_consolekit_get_current_session_type (manager);
 
         ret = (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0);
 
-        g_object_unref (consolekit);
         g_free (session_type);
 
         return ret;
