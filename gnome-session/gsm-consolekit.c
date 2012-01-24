@@ -31,7 +31,7 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include "gsm-marshal.h"
+#include "gsm-system.h"
 #include "gsm-consolekit.h"
 
 #define CK_NAME      "org.freedesktop.ConsoleKit"
@@ -55,13 +55,6 @@ struct _GsmConsolekitPrivate
         DBusGProxy      *ck_proxy;
 };
 
-enum {
-        REQUEST_COMPLETED = 0,
-        LAST_SIGNAL
-};
-
-static guint signals[LAST_SIGNAL] = { 0 };
-
 static void     gsm_consolekit_class_init   (GsmConsolekitClass *klass);
 static void     gsm_consolekit_init         (GsmConsolekit      *ck);
 static void     gsm_consolekit_finalize     (GObject            *object);
@@ -78,7 +71,11 @@ static void     gsm_consolekit_on_name_owner_changed (DBusGProxy        *bus_pro
                                                       const char        *new_owner,
                                                       GsmConsolekit   *manager);
 
-G_DEFINE_TYPE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT);
+static void gsm_consolekit_system_init (GsmSystemInterface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
+                                                gsm_consolekit_system_init))
 
 static void
 gsm_consolekit_class_init (GsmConsolekitClass *manager_class)
@@ -88,17 +85,6 @@ gsm_consolekit_class_init (GsmConsolekitClass *manager_class)
         object_class = G_OBJECT_CLASS (manager_class);
 
         object_class->finalize = gsm_consolekit_finalize;
-
-        signals [REQUEST_COMPLETED] =
-                g_signal_new ("request-completed",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmConsolekitClass, request_completed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__POINTER,
-                              G_TYPE_NONE,
-                              1, G_TYPE_POINTER);
 
         g_type_class_add_private (manager_class, sizeof (GsmConsolekitPrivate));
 }
@@ -295,28 +281,6 @@ gsm_consolekit_finalize (GObject *object)
         }
 }
 
-GQuark
-gsm_consolekit_error_quark (void)
-{
-        static GQuark error_quark = 0;
-
-        if (error_quark == 0) {
-                error_quark = g_quark_from_static_string ("gsm-consolekit-error");
-        }
-
-        return error_quark;
-}
-
-GsmConsolekit *
-gsm_consolekit_new (void)
-{
-        GsmConsolekit *manager;
-
-        manager = g_object_new (GSM_TYPE_CONSOLEKIT, NULL);
-
-        return manager;
-}
-
 static void
 emit_restart_complete (GsmConsolekit *manager,
                        GError        *error)
@@ -326,14 +290,13 @@ emit_restart_complete (GsmConsolekit *manager,
         call_error = NULL;
 
         if (error != NULL) {
-                call_error = g_error_new_literal (GSM_CONSOLEKIT_ERROR,
-                                                  GSM_CONSOLEKIT_ERROR_RESTARTING,
+                call_error = g_error_new_literal (GSM_SYSTEM_ERROR,
+                                                  GSM_SYSTEM_ERROR_RESTARTING,
                                                   error->message);
         }
 
-        g_signal_emit (G_OBJECT (manager),
-                       signals [REQUEST_COMPLETED],
-                       0, call_error);
+        g_signal_emit_by_name (G_OBJECT (manager),
+                               "request_completed", call_error);
 
         if (call_error != NULL) {
                 g_error_free (call_error);
@@ -349,23 +312,23 @@ emit_stop_complete (GsmConsolekit *manager,
         call_error = NULL;
 
         if (error != NULL) {
-                call_error = g_error_new_literal (GSM_CONSOLEKIT_ERROR,
-                                                  GSM_CONSOLEKIT_ERROR_STOPPING,
+                call_error = g_error_new_literal (GSM_SYSTEM_ERROR,
+                                                  GSM_SYSTEM_ERROR_STOPPING,
                                                   error->message);
         }
 
-        g_signal_emit (G_OBJECT (manager),
-                       signals [REQUEST_COMPLETED],
-                       0, call_error);
+        g_signal_emit_by_name (G_OBJECT (manager),
+                               "request_completed", call_error);
 
         if (call_error != NULL) {
                 g_error_free (call_error);
         }
 }
 
-void
-gsm_consolekit_attempt_restart (GsmConsolekit *manager)
+static void
+gsm_consolekit_attempt_restart (GsmSystem *system)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gboolean res;
         GError  *error;
 
@@ -395,9 +358,10 @@ gsm_consolekit_attempt_restart (GsmConsolekit *manager)
         }
 }
 
-void
-gsm_consolekit_attempt_stop (GsmConsolekit *manager)
+static void
+gsm_consolekit_attempt_stop (GsmSystem *system)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gboolean res;
         GError  *error;
 
@@ -555,10 +519,11 @@ get_current_seat_id (DBusConnection *connection)
         return seat_id;
 }
 
-void
-gsm_consolekit_set_session_idle (GsmConsolekit *manager,
-                                 gboolean       is_idle)
+static void
+gsm_consolekit_set_session_idle (GsmSystem *system,
+                                 gboolean   is_idle)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gboolean        res;
         GError         *error;
         char           *session_id;
@@ -667,9 +632,10 @@ seat_can_activate_sessions (DBusConnection *connection,
         return can_activate;
 }
 
-gboolean
-gsm_consolekit_can_switch_user (GsmConsolekit *manager)
+static gboolean
+gsm_consolekit_can_switch_user (GsmSystem *system)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         GError  *error;
         char    *seat_id;
         gboolean ret;
@@ -696,9 +662,10 @@ gsm_consolekit_can_switch_user (GsmConsolekit *manager)
         return ret;
 }
 
-gboolean
-gsm_consolekit_can_restart (GsmConsolekit *manager)
+static gboolean
+gsm_consolekit_can_restart (GsmSystem *system)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gboolean res;
 	gboolean can_restart;
         GError  *error;
@@ -730,9 +697,10 @@ gsm_consolekit_can_restart (GsmConsolekit *manager)
 	return can_restart;
 }
 
-gboolean
-gsm_consolekit_can_stop (GsmConsolekit *manager)
+static gboolean
+gsm_consolekit_can_stop (GsmSystem *system)
 {
+        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gboolean res;
 	gboolean can_stop;
         GError  *error;
@@ -830,30 +798,40 @@ out:
 	return ret;
 }
 
-
-GsmConsolekit *
-gsm_get_consolekit (void)
+static gboolean
+gsm_consolekit_is_login_session (GsmSystem *system)
 {
-        static GsmConsolekit *manager = NULL;
-
-        if (manager == NULL) {
-                manager = gsm_consolekit_new ();
-        }
-
-        return g_object_ref (manager);
-}
-
-gboolean
-gsm_consolekit_is_login_session (GsmConsolekit *manager)
-{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
         char *session_type;
         gboolean ret;
 
-        session_type = gsm_consolekit_get_current_session_type (manager);
+        session_type = gsm_consolekit_get_current_session_type (consolekit);
 
         ret = (g_strcmp0 (session_type, GSM_CONSOLEKIT_SESSION_TYPE_LOGIN_WINDOW) == 0);
 
         g_free (session_type);
 
         return ret;
+}
+
+static void
+gsm_consolekit_system_init (GsmSystemInterface *iface)
+{
+        iface->can_switch_user = gsm_consolekit_can_switch_user;
+        iface->can_stop = gsm_consolekit_can_stop;
+        iface->can_restart = gsm_consolekit_can_restart;
+        iface->attempt_stop = gsm_consolekit_attempt_stop;
+        iface->attempt_restart = gsm_consolekit_attempt_restart;
+        iface->set_session_idle = gsm_consolekit_set_session_idle;
+        iface->is_login_session = gsm_consolekit_is_login_session;
+}
+
+GsmConsolekit *
+gsm_consolekit_new (void)
+{
+        GsmConsolekit *manager;
+
+        manager = g_object_new (GSM_TYPE_CONSOLEKIT, NULL);
+
+        return manager;
 }

@@ -35,12 +35,10 @@ G_BEGIN_DECLS
 #define GSM_IS_CONSOLEKIT(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSM_TYPE_CONSOLEKIT))
 #define GSM_IS_CONSOLEKIT_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GSM_TYPE_CONSOLEKIT))
 #define GSM_CONSOLEKIT_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS((obj), GSM_TYPE_CONSOLEKIT, GsmConsolekitClass))
-#define GSM_CONSOLEKIT_ERROR            (gsm_consolekit_error_quark ())
 
 typedef struct _GsmConsolekit        GsmConsolekit;
 typedef struct _GsmConsolekitClass   GsmConsolekitClass;
 typedef struct _GsmConsolekitPrivate GsmConsolekitPrivate;
-typedef enum   _GsmConsolekitError   GsmConsolekitError;
 
 struct _GsmConsolekit
 {
@@ -52,38 +50,11 @@ struct _GsmConsolekit
 struct _GsmConsolekitClass
 {
         GObjectClass parent_class;
-
-        void (* request_completed) (GsmConsolekit *manager,
-                                    GError        *error);
-};
-
-enum _GsmConsolekitError {
-        GSM_CONSOLEKIT_ERROR_RESTARTING = 0,
-        GSM_CONSOLEKIT_ERROR_STOPPING
 };
 
 GType            gsm_consolekit_get_type        (void);
 
-GQuark           gsm_consolekit_error_quark     (void);
-
 GsmConsolekit   *gsm_consolekit_new             (void) G_GNUC_MALLOC;
-
-gboolean         gsm_consolekit_can_switch_user (GsmConsolekit *manager);
-
-gboolean         gsm_consolekit_can_stop        (GsmConsolekit *manager);
-
-gboolean         gsm_consolekit_can_restart     (GsmConsolekit *manager);
-
-void             gsm_consolekit_attempt_stop    (GsmConsolekit *manager);
-
-void             gsm_consolekit_attempt_restart (GsmConsolekit *manager);
-
-void             gsm_consolekit_set_session_idle (GsmConsolekit *manager,
-                                                  gboolean       is_idle);
-
-GsmConsolekit   *gsm_get_consolekit             (void);
-
-gboolean         gsm_consolekit_is_login_session (GsmConsolekit *manager);
 
 G_END_DECLS
 
