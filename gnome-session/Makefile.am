@@ -26,6 +26,8 @@ gnome_session_SOURCES =				\
 	gsm-fail-whale-dialog.c			\
 	gsm-marshal.h				\
 	gsm-marshal.c				\
+	gsm-system.h				\
+	gsm-system.c				\
 	gsm-consolekit.c			\
 	gsm-consolekit.h			\
 	gsm-logout-dialog.h			\
