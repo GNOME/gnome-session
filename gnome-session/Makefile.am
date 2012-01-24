@@ -30,6 +30,8 @@ gnome_session_SOURCES =				\
 	gsm-system.c				\
 	gsm-consolekit.c			\
 	gsm-consolekit.h			\
+	gsm-systemd.h				\
+	gsm-systemd.c				\
 	gsm-logout-dialog.h			\
 	gsm-logout-dialog.c			\
 	gsm-icon-names.h			\
@@ -71,6 +73,7 @@ gnome_session_CPPFLAGS =			\
 	$(ICE_CFLAGS)				\
 	$(XEXT_CFLAGS)				\
 	$(GCONF_CFLAGS)				\
+	$(SYSTEMD_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
@@ -90,6 +93,7 @@ gnome_session_LDADD =				\
 	$(XEXT_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
 	$(GCONF_LIBS)				\
+	$(SYSTEMD_LIBS)				\
 	$(EXECINFO_LIBS)
 
 libgsmutil_la_SOURCES =				\

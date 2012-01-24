@@ -25,6 +25,7 @@
 
 #include "gsm-system.h"
 #include "gsm-consolekit.h"
+#include "gsm-systemd.h"
 
 enum {
         REQUEST_COMPLETED = 0,
@@ -111,7 +112,16 @@ gsm_get_system (void)
         static GsmSystem *system = NULL;
 
         if (system == NULL) {
+                system = GSM_SYSTEM (gsm_systemd_new ());
+                if (system != NULL) {
+                        g_debug ("Using systemd for session tracking");
+                }
+        }
+        if (system == NULL) {
                 system = GSM_SYSTEM (gsm_consolekit_new ());
+                if (system != NULL) {
+                        g_debug ("Using ConsoleKit for session tracking");
+                }
         }
 
         return g_object_ref (system);
