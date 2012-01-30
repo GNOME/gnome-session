@@ -357,12 +357,17 @@ static gboolean
 gsm_systemd_is_login_session (GsmSystem *system)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
+        int res;
         gboolean ret;
-        gchar *service;
+        gchar *service = NULL;
 
         ret = FALSE;
 
-        sd_session_get_service (manager->priv->session_id, &service);
+        res = sd_session_get_service (manager->priv->session_id, &service);
+        if (res < 0) {
+                g_warning ("could not get pam service: %s", strerror (-ret));
+                return FALSE;
+        }
         ret = (g_strcmp0 (service, "gdm-welcome") == 0);
         free (service);
 
