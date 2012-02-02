@@ -101,7 +101,7 @@ if test x$enable_systemd = xyes; then
                 AC_MSG_ERROR([Systemd support explicitly required, but systemd not found])
         fi
         AC_DEFINE(HAVE_SYSTEMD, 1, [Define if systemd is used for session tracking])
-        session_tracking=systemd
+        session_tracking="systemd (with fallback to ConsoleKit)"
 else
         session_tracking=ConsoleKit
 fi
