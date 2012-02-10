@@ -81,7 +81,7 @@ gsm_system_can_restart (GsmSystem *system)
         return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);
 }
 
-Jvoid
+void
 gsm_system_attempt_stop (GsmSystem *system)
 {
         GSM_SYSTEM_GET_IFACE (system)->attempt_stop (system);
