@@ -34,7 +34,7 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_INTERFACE (GsmSystem, gsm_system, G_TYPE_INTERFACE);
+G_DEFINE_INTERFACE (GsmSystem, gsm_system, G_TYPE_OBJECT)
 
 static void
 gsm_system_default_init (GsmSystemInterface *iface)
@@ -81,7 +81,7 @@ gsm_system_can_restart (GsmSystem *system)
         return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);
 }
 
-void
+Jvoid
 gsm_system_attempt_stop (GsmSystem *system)
 {
         GSM_SYSTEM_GET_IFACE (system)->attempt_stop (system);
