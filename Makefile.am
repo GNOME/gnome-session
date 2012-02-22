@@ -28,4 +28,5 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/m4/intltool.m4 \
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
+GITIGNOREFILES = $(PACKAGE)-\*.tar.{gz,bz2,xz}
 -include $(top_srcdir)/git.mk
