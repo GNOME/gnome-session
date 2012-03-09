@@ -194,7 +194,7 @@ gsm_shell_extensions_scan_dir (GsmShellExtensions *self,
 
       metadata_root = json_node_get_object (json_parser_get_root (metadata_parser));
 
-      metadata_uuid = g_strdup (json_object_get_string_member (metadata_root, "uuid"));
+      metadata_uuid = json_object_get_string_member (metadata_root, "uuid");
       if (!g_str_equal (metadata_uuid, extension->uuid))
         {
           g_warning ("Extension with dirname '%s' does not match metadata's UUID of '%s'. Skipping.",
