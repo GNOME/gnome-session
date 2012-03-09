@@ -365,7 +365,7 @@ gsm_systemd_is_login_session (GsmSystem *system)
 
         res = sd_session_get_service (manager->priv->session_id, &service);
         if (res < 0) {
-                g_warning ("could not get pam service: %s", strerror (-ret));
+                g_warning ("could not get pam service: %s", strerror (-res));
                 return FALSE;
         }
         ret = (g_strcmp0 (service, "gdm-welcome") == 0);
