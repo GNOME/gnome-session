@@ -26,6 +26,8 @@
 
 #include <gtk/gtk.h>
 
+#include "gsm-shell-extensions.h"
+
 G_BEGIN_DECLS
 
 #define GSM_TYPE_FAIL_WHALE_DIALOG         (gsm_fail_whale_dialog_get_type ())
@@ -53,9 +55,9 @@ struct _GsmFailWhaleDialogClass
 
 GType        gsm_fail_whale_dialog_get_type   (void) G_GNUC_CONST;
 
-void         gsm_fail_whale_dialog_we_failed  (gboolean debug_mode,
-                                               gboolean allow_logout,
-                                               gboolean show_extensions);
+void         gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
+                                               gboolean            allow_logout,
+                                               GsmShellExtensions *extensions);
 
 G_END_DECLS
 

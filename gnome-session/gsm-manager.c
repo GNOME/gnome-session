@@ -63,6 +63,7 @@
 #include "gsm-inhibit-dialog.h"
 #include "gsm-system.h"
 #include "gsm-session-save.h"
+#include "gsm-shell-extensions.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
 
@@ -274,12 +275,18 @@ on_required_app_failure (GsmManager  *manager,
                          GsmApp      *app)
 {
         const gchar *app_id;
-        gboolean want_extensions_ui;
         gboolean allow_logout;
         GsmSystem *system;
+        GsmShellExtensions *extensions;
 
         app_id = gsm_app_peek_app_id (app);
-        want_extensions_ui = g_str_equal (app_id, "gnome-shell.desktop");
+
+        if (g_str_equal (app_id, "gnome-shell.desktop")) {
+                extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
+                gsm_shell_extensions_disable_all (extensions);
+        } else {
+                extensions = NULL;
+        }
 
         system = gsm_get_system ();
         if (gsm_system_is_login_session (system)) {
@@ -291,7 +298,7 @@ on_required_app_failure (GsmManager  *manager,
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
-                                         want_extensions_ui);
+                                         extensions);
 }
 
 static gboolean

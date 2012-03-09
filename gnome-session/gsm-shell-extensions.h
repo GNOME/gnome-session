@@ -28,14 +28,6 @@
 
 G_BEGIN_DECLS
 
-/* Opaque struct to represent one shell extension. */
-typedef struct _GsmShellExtension GsmShellExtension;
-
-gchar * gsm_shell_extension_get_uuid (GsmShellExtension *extension);
-gchar * gsm_shell_extension_get_name (GsmShellExtension *extension);
-gchar * gsm_shell_extension_get_description (GsmShellExtension *extension);
-gboolean gsm_shell_extension_get_is_enabled (GsmShellExtension *extension);
-
 #define GSM_TYPE_SHELL_EXTENSIONS            (gsm_shell_extensions_get_type ())
 #define GSM_SHELL_EXTENSIONS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_SHELL_EXTENSIONS, GsmShellExtensions))
 #define GSM_SHELL_EXTENSIONS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GSM_TYPE_SHELL_EXTENSIONS, GsmShellExtensionsClass))
@@ -46,10 +38,6 @@ gboolean gsm_shell_extension_get_is_enabled (GsmShellExtension *extension);
 typedef struct _GsmShellExtensions        GsmShellExtensions;
 typedef struct _GsmShellExtensionsClass   GsmShellExtensionsClass;
 typedef struct _GsmShellExtensionsPrivate GsmShellExtensionsPrivate;
-
-typedef void (* GsmShellExtensionFunc) (GsmShellExtensions *extensions,
-                                        GsmShellExtension  *extension,
-                                        gpointer            user_data);
 
 struct _GsmShellExtensions
 {
@@ -66,18 +54,9 @@ struct _GsmShellExtensionsClass
 
 GType gsm_shell_extensions_get_type                   (void) G_GNUC_CONST;
 
-gboolean gsm_shell_extensions_set_enabled             (GsmShellExtensions *self,
-                                                       gchar              *uuid,
-                                                       gboolean            value);
-
-void gsm_shell_extensions_foreach                     (GsmShellExtensions    *self,
-                                                       GsmShellExtensionFunc  func,
-                                                       gpointer               user_data);
+gboolean gsm_shell_extensions_disable_all             (GsmShellExtensions *self);
 
 guint gsm_shell_extensions_n_extensions               (GsmShellExtensions *self);
-
-GsmShellExtension * gsm_shell_extensions_get_for_uuid (GsmShellExtensions *self,
-                                                       gchar              *uuid);
 
 G_END_DECLS
 
