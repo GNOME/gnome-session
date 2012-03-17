@@ -177,18 +177,11 @@ gsm_fail_whale_dialog_size_request (GtkWidget      *widget,
                                     GtkRequisition *requisition)
 {
         GsmFailWhaleDialog *fail_dialog;
-        GtkBin        *bin;
         GdkRectangle   old_geometry;
         int            position_changed = FALSE;
         int            size_changed = FALSE;
 
         fail_dialog = GSM_FAIL_WHALE_DIALOG (widget);
-        bin = GTK_BIN (widget);
-
-        if (gtk_bin_get_child (bin) &&
-            gtk_widget_get_visible (gtk_bin_get_child (bin))) {
-                gtk_widget_size_request (gtk_bin_get_child (bin), requisition);
-        }
 
         old_geometry = fail_dialog->priv->geometry;
 
@@ -305,7 +298,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_container_add (GTK_CONTAINER (fail_dialog), alignment);
         g_object_set (alignment, "valign", GTK_ALIGN_CENTER, NULL);
 
-        box = gtk_vbox_new (FALSE, 10);
+        box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 10);
         gtk_widget_show (box);
         gtk_container_add (GTK_CONTAINER (alignment), box);
 
@@ -334,7 +327,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_start (GTK_BOX (box),
                             message_label, FALSE, FALSE, 0);
 
-        button_box = gtk_hbutton_box_new ();
+        button_box = gtk_button_box_new (GTK_ORIENTATION_HORIZONTAL);
         gtk_container_set_border_width (GTK_CONTAINER (button_box), 20);
         gtk_widget_show (button_box);
         gtk_box_pack_end (GTK_BOX (box),
