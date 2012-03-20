@@ -1971,7 +1971,6 @@ static void
 remove_inhibitors_for_connection (GsmManager *manager,
                                   const char *service_name)
 {
-        guint            n_removed;
         RemoveClientData data;
 
         data.service_name = service_name;
@@ -1979,9 +1978,9 @@ remove_inhibitors_for_connection (GsmManager *manager,
 
         debug_inhibitors (manager);
 
-        n_removed = gsm_store_foreach_remove (manager->priv->inhibitors,
-                                              (GsmStoreFunc)inhibitor_has_bus_name,
-                                              &data);
+        gsm_store_foreach_remove (manager->priv->inhibitors,
+                                  (GsmStoreFunc)inhibitor_has_bus_name,
+                                  &data);
 }
 
 static void
