@@ -16,13 +16,14 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-16 13:15+0000\n"
-"PO-Revision-Date: 2011-09-16 21:30+0800\n"
-"Last-Translator: Wylmer Wang <wantinghard@gmail.com>\n"
+"POT-Creation-Date: 2012-03-23 13:00+0000\n"
+"PO-Revision-Date: 2012-03-23 21:10+0800\n"
+"Last-Translator: tuhaihe <wangdianjin@linuxdeepin.com>\n"
 "Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
@@ -103,53 +104,53 @@ msgid ""
 msgstr "正在等候程序完成。中断程序可能导致您的工作成果丢失。"
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "选择登录时要启动的应用程序"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "启动应用程序"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "选择登录时要启动的应用程序"
 
 # applets/gkb/gkb.c:262
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "额外的启动程序(_P)："
 
+# applets/gkb/gkb.c:262
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "浏览..."
+msgid "Startup Programs"
+msgstr "启动程序"
 
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "命令(_M)："
+msgid "_Automatically remember running applications when logging out"
+msgstr "注销时自动记住正在运行的应用程序(_A)"
 
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "注释(_E)："
+msgid "_Remember Currently Running Application"
+msgstr "记住目前正在运行的应用程序(_R)"
 
 # panel/menu.c:3509
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "选项"
 
-# applets/gkb/gkb.c:262
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "启动程序"
+msgid "Browse…"
+msgstr "浏览..."
 
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "注销时自动记住正在运行的应用程序(_A)"
+msgid "Comm_ent:"
+msgstr "注释(_E)："
 
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "名称(_N)："
+msgid "Co_mmand:"
+msgstr "命令(_M)："
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "记住目前正在运行的应用程序(_R)"
+msgid "_Name:"
+msgstr "名称(_N)："
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -279,79 +280,76 @@ msgid "Cancel"
 msgstr "取消"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "您即将在 %d 秒后自动注销。"
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "系统即将在 %d 秒后自动关闭。"
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "您目前以“%s”身份登录。"
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "现在注销系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "切换用户(_S)"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "现在关闭此系统吗？"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "挂起(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "休眠(_H)"
 
 # gmenu/edit.c:336 gsm/session-properties.c:167
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "重启(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "关机(_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:377
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "糟糕！出错啦！"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
-msgstr "系统出错并无法恢复。请联系系统管理员。"
+msgstr "系统出错且无法恢复。请联系系统管理员。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
-msgstr ""
-"系统出错并无法恢复。这可能是下面的一些扩展导致的。\n"
-"请尝试禁用一些，并注销重试。"
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr "系统出错且无法恢复。为预防起见，已禁用了所有扩展。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:388
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -372,11 +370,11 @@ msgstr "被信号 %d 杀死"
 msgid "Stopped by signal %d"
 msgstr "被信号 %d 停止"
 
-#: ../gnome-session/gsm-manager.c:1392
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 加载失败"
 
-#: ../gnome-session/gsm-manager.c:1393
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -388,11 +386,11 @@ msgstr ""
 "\n"
 "这可能是因为您的显卡硬件或驱动不足以完全运行 GNOME 3。"
 
-#: ../gnome-session/gsm-manager.c:1395
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "进一步了解 GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1492 ../gnome-session/gsm-manager.c:2271
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "无响应"
 
@@ -483,6 +481,14 @@ msgstr "无法连接到会话管理器"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "系统出错并无法恢复。这可能是下面的一些扩展导致的。\n"
+#~ "请尝试禁用一些，并注销重试。"
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
