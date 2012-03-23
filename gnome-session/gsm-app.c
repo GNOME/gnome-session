@@ -283,9 +283,9 @@ gsm_app_class_init (GsmAppClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmAppClass, exited),
                               NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__UCHAR,
                               G_TYPE_NONE,
-                              0);
+                              1, G_TYPE_UCHAR);
         signals[DIED] =
                 g_signal_new ("died",
                               G_OBJECT_CLASS_TYPE (object_class),
@@ -471,11 +471,12 @@ gsm_app_registered (GsmApp *app)
 }
 
 void
-gsm_app_exited (GsmApp *app)
+gsm_app_exited (GsmApp *app,
+                guchar  exit_code)
 {
         g_return_if_fail (GSM_IS_APP (app));
 
-        g_signal_emit (app, signals[EXITED], 0);
+        g_signal_emit (app, signals[EXITED], 0, exit_code);
 }
 
 void

@@ -654,6 +654,16 @@ app_died (GsmApp     *app,
 }
 
 static void
+app_exited (GsmApp     *app,
+            guchar      exit_code,
+            GsmManager *manager)
+{
+        g_debug ("App %s exited with %d", gsm_app_peek_app_id (app), exit_code);
+
+        app_event_during_startup (manager, app);
+}
+
+static void
 app_registered (GsmApp     *app,
                 GsmManager *manager)
 {
@@ -750,7 +760,7 @@ _start_app (const char *id,
                  */
                 g_signal_connect (app,
                                   "exited",
-                                  G_CALLBACK (app_registered),
+                                  G_CALLBACK (app_exited),
                                   manager);
                 g_signal_connect (app,
                                   "registered",

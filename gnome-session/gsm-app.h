@@ -54,7 +54,8 @@ struct _GsmAppClass
         GObjectClass parent_class;
 
         /* signals */
-        void        (*exited)       (GsmApp *app);
+        void        (*exited)       (GsmApp *app,
+                                     guchar  exit_code);
         void        (*died)         (GsmApp *app);
         void        (*registered)   (GsmApp *app);
 
@@ -109,7 +110,8 @@ gboolean         gsm_app_stop                           (GsmApp     *app,
                                                          GError    **error);
 gboolean         gsm_app_is_running                     (GsmApp     *app);
 
-void             gsm_app_exited                         (GsmApp     *app);
+void             gsm_app_exited                         (GsmApp     *app,
+                                                         guchar      exit_code);
 void             gsm_app_died                           (GsmApp     *app);
 
 gboolean         gsm_app_provides                       (GsmApp     *app,

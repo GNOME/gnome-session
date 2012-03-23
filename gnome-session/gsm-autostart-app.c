@@ -919,7 +919,7 @@ app_exited (GPid             pid,
         app->priv->child_watch_id = 0;
 
         if (WIFEXITED (status)) {
-                gsm_app_exited (GSM_APP (app));
+                gsm_app_exited (GSM_APP (app), WEXITSTATUS (status));
         } else if (WIFSIGNALED (status)) {
                 gsm_app_died (GSM_APP (app));
         }
