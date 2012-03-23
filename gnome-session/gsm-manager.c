@@ -633,8 +633,6 @@ static void
 app_died (GsmApp     *app,
           GsmManager *manager)
 {
-        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
-
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
 
         if (gsm_app_peek_autorestart (app)) {
@@ -691,7 +689,6 @@ on_phase_timeout (GsmManager *manager)
                         GsmApp *app = a->data;
                         g_warning ("Application '%s' failed to register before timeout",
                                    gsm_app_peek_app_id (app));
-                        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
                         if (is_app_required (manager, app))
                                 on_required_app_failure (manager, app);
                 }
