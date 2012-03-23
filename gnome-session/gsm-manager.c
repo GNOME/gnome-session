@@ -631,9 +631,10 @@ _restart_app (GsmManager *manager,
 
 static void
 app_died (GsmApp     *app,
+          int         signal,
           GsmManager *manager)
 {
-        g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
+        g_warning ("Application '%s' killed by signal %d", gsm_app_peek_app_id (app), signal);
 
         if (gsm_app_peek_autorestart (app)) {
                 g_debug ("Component '%s' is autorestart, ignoring died signal",

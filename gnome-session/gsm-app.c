@@ -292,9 +292,9 @@ gsm_app_class_init (GsmAppClass *klass)
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmAppClass, died),
                               NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              g_cclosure_marshal_VOID__INT,
                               G_TYPE_NONE,
-                              0);
+                              1, G_TYPE_INT);
 
         signals[REGISTERED] =
                 g_signal_new ("registered",
@@ -480,11 +480,12 @@ gsm_app_exited (GsmApp *app,
 }
 
 void
-gsm_app_died (GsmApp *app)
+gsm_app_died (GsmApp *app,
+              int     signal)
 {
         g_return_if_fail (GSM_IS_APP (app));
 
-        g_signal_emit (app, signals[DIED], 0);
+        g_signal_emit (app, signals[DIED], 0, signal);
 }
 
 gboolean

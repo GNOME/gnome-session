@@ -56,7 +56,8 @@ struct _GsmAppClass
         /* signals */
         void        (*exited)       (GsmApp *app,
                                      guchar  exit_code);
-        void        (*died)         (GsmApp *app);
+        void        (*died)         (GsmApp *app,
+                                     int     signal);
         void        (*registered)   (GsmApp *app);
 
         /* virtual methods */
@@ -112,7 +113,8 @@ gboolean         gsm_app_is_running                     (GsmApp     *app);
 
 void             gsm_app_exited                         (GsmApp     *app,
                                                          guchar      exit_code);
-void             gsm_app_died                           (GsmApp     *app);
+void             gsm_app_died                           (GsmApp     *app,
+                                                         int         signal);
 
 gboolean         gsm_app_provides                       (GsmApp     *app,
                                                          const char *service);

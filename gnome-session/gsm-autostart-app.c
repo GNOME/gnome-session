@@ -921,7 +921,7 @@ app_exited (GPid             pid,
         if (WIFEXITED (status)) {
                 gsm_app_exited (GSM_APP (app), WEXITSTATUS (status));
         } else if (WIFSIGNALED (status)) {
-                gsm_app_died (GSM_APP (app));
+                gsm_app_died (GSM_APP (app), WTERMSIG (status));
         }
 }
 
