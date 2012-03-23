@@ -612,20 +612,10 @@ app_event_during_startup (GsmManager *manager,
 }
 
 static void
-app_died (GsmApp     *app,
-          GsmManager *manager)
+_restart_app (GsmManager *manager,
+              GsmApp     *app)
 {
         GError *error = NULL;
-
-        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
-
-        g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
-
-        if (gsm_app_peek_autorestart (app)) {
-                g_debug ("Component '%s' is autorestart, ignoring died signal",
-                         gsm_app_peek_app_id (app));
-                return;
-        }
 
         if (!gsm_app_restart (app, &error)) {
                 if (is_app_required (manager, app)) {
@@ -637,6 +627,23 @@ app_died (GsmApp     *app,
 
                 app_event_during_startup (manager, app);
         }
+}
+
+static void
+app_died (GsmApp     *app,
+          GsmManager *manager)
+{
+        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
+
+        g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
+
+        if (gsm_app_peek_autorestart (app)) {
+                g_debug ("Component '%s' is autorestart, ignoring died signal",
+                         gsm_app_peek_app_id (app));
+                return;
+        }
+
+        _restart_app (manager, app);
 
         /* For now, we don't do anything with crashes from
          * non-required apps after they hit the restart limit.
@@ -1779,8 +1786,6 @@ _disconnect_client (GsmManager *manager,
 {
         gboolean              is_condition_client;
         GsmApp               *app;
-        GError               *error;
-        gboolean              res;
         const char           *app_id;
         const char           *startup_id;
         gboolean              app_restart;
@@ -1873,18 +1878,7 @@ _disconnect_client (GsmManager *manager,
 
         g_debug ("GsmManager: restarting app");
 
-        error = NULL;
-        res = gsm_app_restart (app, &error);
-        if (! res) {
-                if (is_app_required (manager, app)) {
-                        on_required_app_failure (manager, app);
-                } else {
-                        g_warning ("Error on restarting session managed app: %s", error->message);
-                }
-                g_clear_error (&error);
-
-                app_event_during_startup (manager, app);
-        }
+        _restart_app (manager, app);
 
  out:
         g_object_unref (client);
