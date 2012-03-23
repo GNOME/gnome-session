@@ -593,12 +593,30 @@ end_phase (GsmManager *manager)
 }
 
 static void
+app_event_during_startup (GsmManager *manager,
+                          GsmApp     *app)
+{
+        if (!(manager->priv->phase < GSM_MANAGER_PHASE_APPLICATION))
+                return;
+
+        manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
+
+        if (manager->priv->pending_apps == NULL) {
+                if (manager->priv->phase_timeout_id > 0) {
+                        g_source_remove (manager->priv->phase_timeout_id);
+                        manager->priv->phase_timeout_id = 0;
+                }
+
+                end_phase (manager);
+        }
+}
+
+static void
 app_died (GsmApp     *app,
           GsmManager *manager)
 {
         GError *error = NULL;
 
-        manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
         g_signal_handlers_disconnect_by_func (app, app_registered, manager);
 
         g_warning ("Application '%s' killed by signal", gsm_app_peek_app_id (app));
@@ -616,6 +634,8 @@ app_died (GsmApp     *app,
                         g_warning ("Error on restarting session managed app: %s", error->message);
                 }
                 g_clear_error (&error);
+
+                app_event_during_startup (manager, app);
         }
 
         /* For now, we don't do anything with crashes from
@@ -634,17 +654,7 @@ app_registered (GsmApp     *app,
 {
         g_debug ("App %s registered", gsm_app_peek_app_id (app));
 
-        manager->priv->pending_apps = g_slist_remove (manager->priv->pending_apps, app);
-        g_signal_handlers_disconnect_by_func (app, app_registered, manager);
-
-        if (manager->priv->pending_apps == NULL) {
-                if (manager->priv->phase_timeout_id > 0) {
-                        g_source_remove (manager->priv->phase_timeout_id);
-                        manager->priv->phase_timeout_id = 0;
-                }
-
-                end_phase (manager);
-        }
+        app_event_during_startup (manager, app);
 }
 
 static gboolean
@@ -1872,6 +1882,8 @@ _disconnect_client (GsmManager *manager,
                         g_warning ("Error on restarting session managed app: %s", error->message);
                 }
                 g_clear_error (&error);
+
+                app_event_during_startup (manager, app);
         }
 
  out:
