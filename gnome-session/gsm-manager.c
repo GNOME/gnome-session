@@ -352,9 +352,9 @@ _find_by_cookie (const char   *id,
 }
 
 static gboolean
-_find_by_startup_id (const char *id,
-                     GsmClient  *client,
-                     const char *startup_id_a)
+_client_has_startup_id (const char *id,
+                        GsmClient  *client,
+                        const char *startup_id_a)
 {
         const char *startup_id_b;
 
@@ -378,7 +378,7 @@ app_condition_changed (GsmApp     *app,
                  condition);
 
         client = (GsmClient *)gsm_store_find (manager->priv->clients,
-                                              (GsmStoreFunc)_find_by_startup_id,
+                                              (GsmStoreFunc)_client_has_startup_id,
                                               (char *)gsm_app_peek_startup_id (app));
 
         if (condition) {
@@ -2096,22 +2096,6 @@ gsm_manager_get_failsafe (GsmManager *manager)
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
 	return manager->priv->failsafe;
-}
-
-static gboolean
-_client_has_startup_id (const char *id,
-                        GsmClient  *client,
-                        const char *startup_id_a)
-{
-        const char *startup_id_b;
-
-        startup_id_b = gsm_client_peek_startup_id (client);
-
-        if (IS_STRING_EMPTY (startup_id_b)) {
-                return FALSE;
-        }
-
-        return (strcmp (startup_id_a, startup_id_b) == 0);
 }
 
 static void
