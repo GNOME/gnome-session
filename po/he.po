@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-09 13:21+0300\n"
-"PO-Revision-Date: 2011-09-09 13:22+0200\n"
+"POT-Creation-Date: 2012-03-24 19:33+0200\n"
+"PO-Revision-Date: 2012-03-24 19:33+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -63,7 +63,8 @@ msgstr "ללא שם"
 msgid "No description"
 msgstr "ללא תיאור"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35
+#: ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -75,7 +76,8 @@ msgstr "Could not display help document"
 msgid "GNOME fallback"
 msgstr "רשת הביטחון של GNOME"
 
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
 msgid "GNOME"
 msgstr "‏GNOME"
 
@@ -87,10 +89,9 @@ msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 msgid "<b>Some programs are still running:</b>"
 msgstr "<b>קיימות תכניות שעדיין רצות:</b>"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
+#: ../data/gsm-inhibit-dialog.ui.h:2
+#: ../gnome-session/gsm-inhibit-dialog.c:640
+msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
 msgstr "בהמתנה לסיום התכנית. הפרעה לתכנית עלולה לגרום לאבדן העבודה שלך."
 
 #: ../data/session-properties.desktop.in.in.h:1
@@ -223,9 +224,7 @@ msgid "Some programs are still running:"
 msgstr "ישנן תכניות שעדיין רצות:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרום לאיבוד העבודה שלך."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:874
@@ -261,81 +260,72 @@ msgid "Cancel"
 msgstr "ביטול"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "בעוד שנייה אחת יתרחש ניתוק אוטומטי."
 msgstr[1] "בעוד %d שניות יתרחש ניתוק אוטומטי."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "בעוד שנייה אחת המערכת תכבה אוטומטית."
 msgstr[1] "המערכת תכבה אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "כרגע נכנסת תחת השם \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "האם להתנתק מהמערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "ה_חלפת משתמש"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_ניתוק"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "האם לכבות את המערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "ה_שהייה"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "מ_צב שינה"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "אבוי!  משהו השתבש."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
-msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
-"administrator"
-msgstr ""
-"אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. נא ליצור קשר עם מנהל המערכת."
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
+msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
+msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. נא ליצור קשר עם מנהל המערכת."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
-msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
-msgstr ""
-"אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. כמה מההרחבות שלהלן עלולות היו "
-"לגרום לכך.\n"
-"נא לצאת ולנסות שוב."
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
+msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. ליתר ביטחון נוטרלו כל ההרחבות."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -358,28 +348,26 @@ msgstr "חוסל על ידי האות %d"
 msgid "Stopped by signal %d"
 msgstr "נעצר על ידי האות %d"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "טעינת GNOME 3 נכשלה"
 
-#: ../gnome-session/gsm-manager.c:1381
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
+"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
 msgstr ""
 "לרוע המזל הפעלת GNOME 3 כראוי נכשלה ובמקום זאת הופעל <b>מצב השחזור</b>.\n"
 "\n"
-"תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה "
-"שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
+"תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
 
-#: ../gnome-session/gsm-manager.c:1383
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "מידע נוסף על אודות GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1480 ../gnome-session/gsm-manager.c:2259
+#: ../gnome-session/gsm-manager.c:1496
+#: ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "אין תגובה"
 
@@ -396,9 +384,7 @@ msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
 #: ../gnome-session/gsm-xsmp-server.c:325
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "מסרב לחיבור לקוח חדש מכיון שההפעלה נמצאת במהלך כיבוי\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:587
@@ -461,13 +447,23 @@ msgstr "תוך התעלמות ממעקבים קיימים"
 msgid "Don't prompt for user confirmation"
 msgstr "אין לבקש אישור מהמשתמש"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:89
+#: ../tools/gnome-session-quit.c:99
 msgid "Could not connect to the session manager"
 msgstr "לא ניתן להתחבר למנהל ההפעלה"
 
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "התכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. כמה מההרחבות שלהלן עלולות היו "
+#~ "לגרום לכך.\n"
+#~ "נא לצאת ולנסות שוב."
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
