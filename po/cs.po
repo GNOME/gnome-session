@@ -2,6 +2,7 @@
 # Copyright (C) 1999, 2003, 2007, 2008, 2009, 2010, 2011 the author(s) of gnome-session.
 # Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # This file is distributed under the same license as the gnome-session package.
+#
 # GIS <gis@academy.cas.cz>, 1999.
 # David Šauer <davids@penguin.cz>, 1999.
 # George Lebl <jirka@5z.com>, 2000, 2001.
@@ -10,18 +11,21 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2007, 2008, 2009, 2010, 2011.
+# Marek Černocký <marek@manet.cz>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-26 00:34+0200\n"
-"PO-Revision-Date: 2011-09-26 00:33+0200\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-03-23 09:50+0000\n"
+"PO-Revision-Date: 2012-03-24 09:05+0100\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.2\n"
 
@@ -102,48 +106,48 @@ msgstr ""
 "rozdělané práce."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "Vybere aplikace, které se mají spouštět při přihlášení"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Aplikace spouštěné při přihlášení"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Vybere aplikace, které se mají spouštět při přihlášení"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_Další programy při přihlášení:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Procházet..."
+msgid "Startup Programs"
+msgstr "Programy při přihlášení"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_Příkaz:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "Při odhlašování si _automaticky pamatovat běžící aplikace"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "_Komentář:"
+msgid "_Remember Currently Running Application"
+msgstr "Zapa_matovat si aktuálně běžící aplikaci"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Možnosti"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Programy při přihlášení"
+msgid "Browse…"
+msgstr "Procházet…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "Při odhlašování si _automaticky pamatovat běžící aplikace"
+msgid "Comm_ent:"
+msgstr "_Komentář:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Název:"
+msgid "Co_mmand:"
+msgstr "_Příkaz:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "Zapa_matovat si aktuálně běžící aplikaci"
+msgid "_Name:"
+msgstr "_Název:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -156,7 +160,7 @@ msgstr "Soubor není platným souborem .desktop"
 #: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "Nerozpoznaná verze \"%s\" souboru pracovní plochy"
+msgstr "Nerozpoznaná verze „%s“ souboru pracovní plochy"
 
 #: ../egg/eggdesktopfile.c:974
 #, c-format
@@ -178,7 +182,7 @@ msgstr "Nerozpoznaná spouštěcí volba: %d"
 #: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "URI dokumentu nelze postoupit položce pracovní plochy \"Type=Link\""
+msgstr "URI dokumentu nelze postoupit položce pracovní plochy „Type=Link“"
 
 #: ../egg/eggdesktopfile.c:1412
 #, c-format
@@ -216,7 +220,7 @@ msgstr "Zobrazit volby správy sezení"
 #: ../gnome-session/gsm-inhibit-dialog.c:253
 #, c-format
 msgid "Icon '%s' not found"
-msgstr "Ikona \"%s\" nenalezena"
+msgstr "Ikona „%s“ nenalezena"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:588
 msgid "Unknown"
@@ -271,7 +275,7 @@ msgid "Cancel"
 msgstr "Zrušit"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -279,7 +283,7 @@ msgstr[0] "Budete automaticky odhlášeni za %d sekundu."
 msgstr[1] "Budete automaticky odhlášeni za %d sekundy."
 msgstr[2] "Budete automaticky odhlášeni za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -287,50 +291,50 @@ msgstr[0] "Systém bude automaticky vypnut za %d sekundu."
 msgstr[1] "Systém bude automaticky vypnut za %d sekundy."
 msgstr[2] "Systém bude automaticky vypnut za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr "Aktuálně jste přihlášeni jako \"%s\"."
+msgstr "Aktuálně jste přihlášeni jako „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Odhlásit se nyní z tohoto systému?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Přepnout uživatele"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Odhlásit se"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Vypnout nyní tento systém?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_Uspat do paměti"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "Uspat na _disk"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "_Restartovat"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Vypnout"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:377
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jejda! Něco se pokazilo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -338,17 +342,15 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Kontaktujte prosím "
 "správce systému"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"Došlo ke komplikacím a systém se nepodařilo obnovit. Důvodem komplikací "
-"mohla být některá z rozšíření níže.\n"
-"Zkuste prosím některá rozšíření vypnout, odhlaste se a zkuste to znovu."
+"Došlo ke komplikacím a systém se nepodařilo obnovit. Všechna rozšíření byla "
+"preventivně zakázána."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:388
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -371,11 +373,11 @@ msgstr "Zabito signálem %d"
 msgid "Stopped by signal %d"
 msgstr "Zastaveno signálem %d"
 
-#: ../gnome-session/gsm-manager.c:1386
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "Nelze načíst GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1387
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -389,11 +391,11 @@ msgstr ""
 "Příčinou je patrně váš systém (grafický hardware nebo ovladač), na kterém "
 "není možné provozovat GNOME 3 se všemi jeho vlastnostmi."
 
-#: ../gnome-session/gsm-manager.c:1389
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "Poznejte lépe GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1486 ../gnome-session/gsm-manager.c:2255
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "Neodpovídá"
 
@@ -458,7 +460,7 @@ msgstr "Zobrazit dialogové okno černé barvy pro testování"
 
 #: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
-msgstr " - správce sezení GNOME"
+msgstr " – správce sezení GNOME"
 
 #: ../tools/gnome-session-quit.c:52
 msgid "Log out"
@@ -483,10 +485,3 @@ msgstr "Nelze se spojit se správcem sezení"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Program volán s kolidujícími volbami"
-
-#~ msgid ""
-#~ "There is a problem with the configuration server.\n"
-#~ "(%s exited with status %d)"
-#~ msgstr ""
-#~ "Se serverem nastavení nastal problém.\n"
-#~ "(%s se ukončil se stavem %d)"
