@@ -2,13 +2,13 @@
 # Copyright (C) 1999-2002 Free Software Foundation, Inc.
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999-2002.
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2002-2008
-# Korostil Daniel <ted.korostiled@gmail.com>, 2011.
+# Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-20 15:15+0300\n"
-"PO-Revision-Date: 2011-09-20 15:22+0300\n"
+"POT-Creation-Date: 2012-03-24 09:55+0200\n"
+"PO-Revision-Date: 2012-03-24 09:59+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -96,48 +97,48 @@ msgstr ""
 "до втрати вашої напрацювань."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "Виберіть програми, що запускаються при вході в сеанс"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Початкові програми"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Виберіть програми, що запускаються при вході в сеанс"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Додаткові по_чаткові програми для запуску:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Огляд…"
+msgid "Startup Programs"
+msgstr "Початкові програми"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_Команда:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Автоматично запам'ятовувати запущені програми при завершенні"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "Ко_ментар:"
+msgid "_Remember Currently Running Application"
+msgstr "_Запам'ятати запущені програми"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Параметри"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Початкові програми"
+msgid "Browse…"
+msgstr "Огляд…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Автоматично запам'ятовувати запущені програми при завершенні"
+msgid "Comm_ent:"
+msgstr "Ко_ментар:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Назва:"
+msgid "Co_mmand:"
+msgstr "_Команда:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "_Запам'ятати запущені програми"
+msgid "_Name:"
+msgstr "_Назва:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -265,7 +266,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -273,7 +274,7 @@ msgstr[0] "Сеанс буде автоматично завершено чер�
 msgstr[1] "Сеанс буде автоматично завершено через %d секунди."
 msgstr[2] "Сеанс буде автоматично завершено через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -281,50 +282,50 @@ msgstr[0] "Систему буде вимкнено автоматично че�
 msgstr[1] "Систему буде вимкнено автоматично через %d секунди."
 msgstr[2] "Систему буде вимкнено автоматично через %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Ви зареєстровані у системі як користувач «%s»."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Вийти з системи зараз?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Перемикнути користувача"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Вимкнути систему зараз?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "П_ризупинити"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "При_спати"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "Пере_завантажити"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Вимкнути"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:377
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "Отакої!  Щось не так."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -332,17 +333,15 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити. Будь ласка, зв'яжіться з "
 "системним адміністратором"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"Виникла помилка і систему неможливо відновити. Деякі з розширень нижче "
-"можуть бути причиною цього.\n"
-"Будь ласка, спробуйте вимкнути деякі з них, тоді вийти і спробувати знову."
+"Виникла помилка і систему неможливо відновити. Всі розширення вимкнуло як "
+"запобіжний засіб."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:388
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -365,11 +364,11 @@ msgstr "Вбито сигналом %d"
 msgid "Stopped by signal %d"
 msgstr "Зупинено сигналом %d"
 
-#: ../gnome-session/gsm-manager.c:1386
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "Не вдалось завантажити GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1387
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -383,11 +382,11 @@ msgstr ""
 "Найімовірніше, це означає, що ваша система (графічне обладнання або "
 "відеодрайвер) не підтримує роботу всіх можливостей GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1389
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "Докладніше про GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1486 ../gnome-session/gsm-manager.c:2255
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "Не відповідає"
 
@@ -476,6 +475,15 @@ msgstr "Не вдалось з'єднатись із менеджером сеа
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Програму запущено з несумісними параметрами"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "Виникла помилка і систему неможливо відновити. Деякі з розширень нижче "
+#~ "можуть бути причиною цього.\n"
+#~ "Будь ласка, спробуйте вимкнути деякі з них, тоді вийти і спробувати знову."
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
