@@ -14,15 +14,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-18 10:51+0300\n"
-"PO-Revision-Date: 2011-09-18 10:51+0300\n"
+"POT-Creation-Date: 2012-03-25 19:20+0300\n"
+"PO-Revision-Date: 2012-03-25 19:20+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -101,49 +101,49 @@ msgstr ""
 "на информация."
 
 #: ../data/session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Автоматично стартирани програми"
+
+#: ../data/session-properties.desktop.in.in.h:2
 msgid "Choose what applications to start when you log in"
 msgstr ""
 "Изберете програмите, които да се стартират при влизането ви в системата"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Startup Applications"
-msgstr "Автоматично стартирани програми"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_Допълнителни програми стартиращи при влизане:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Избор…"
+msgid "Startup Programs"
+msgstr "Програми стартиращи при влизане"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_Команда:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Автоматично запомняне на стартираните програми при изход от системата"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "Ко_ментар:"
+msgid "_Remember Currently Running Application"
+msgstr "_Запомняне на стартираните програми при изход от системата"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Опции"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Програми стартиращи при влизане"
+msgid "Browse…"
+msgstr "Избор…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Автоматично запомняне на стартираните програми при изход от системата"
+msgid "Comm_ent:"
+msgstr "Ко_ментар:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Име:"
+msgid "Co_mmand:"
+msgstr "_Команда:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "_Запомняне на стартираните програми при изход от системата"
+msgid "_Name:"
+msgstr "_Име:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -271,64 +271,64 @@ msgid "Cancel"
 msgstr "Отказ"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Ще излезете от системата автоматично след %d секунда."
 msgstr[1] "Ще излезете от системата автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Компютърът ще се изключи автоматично след %d секунда."
 msgstr[1] "Компютърът ще се изключи автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "В момента сте влезли като „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Излизане от системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Изключване на системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_Приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_Дълбоко приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "_Рестартиране"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:377
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не! Нещо се обърка."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -336,18 +336,15 @@ msgstr ""
 "Възникна проблем и системата не може да се справи. Свържете се със системен "
 "администратор"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"Възникна проблем и системата не може да се справи. Някое от разширенията "
-"показани отдолу може да е причината.\n"
-"Пробвайте се да оправите проблема като изключите част от тях, излезете от "
-"системата и отново влезете в нея."
+"Възникна проблем и системата не може да се справи. За всеки случай всички "
+"разширения са изключени."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:388
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -370,11 +367,11 @@ msgstr "Прекратен от сигнала %d"
 msgid "Stopped by signal %d"
 msgstr "Спрян от сигнала %d"
 
-#: ../gnome-session/gsm-manager.c:1392
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 не се зареди"
 
-#: ../gnome-session/gsm-manager.c:1393
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -387,11 +384,11 @@ msgstr ""
 "Най-вероятната причина е, че системата ви (графичната карта и/или драйверът) "
 "не покрива изискванията на GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1395
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "Научете повече за GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1492 ../gnome-session/gsm-manager.c:2271
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "Не отговаря"
 
