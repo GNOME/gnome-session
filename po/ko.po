@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-29 14:42+0000\n"
-"PO-Revision-Date: 2011-09-23 05:14+0900\n"
+"POT-Creation-Date: 2012-03-23 09:50+0000\n"
+"PO-Revision-Date: 2012-03-27 01:33+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -97,48 +97,48 @@ msgstr ""
 "을 잃어버릴 수도 있습니다."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "로그인할 때 어떤 프로그램을 시작할 지 고릅니다"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr " 시작 프로그램"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "로그인할 때 어떤 프로그램을 시작할 지 고릅니다"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "시작 프로그램 추가(_P):"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "찾아보기…"
+msgid "Startup Programs"
+msgstr "시작 프로그램"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "명령(_M):"
+msgid "_Automatically remember running applications when logging out"
+msgstr "로그아웃할 때 자동으로 실행 중인 프로그램 기억(_A)"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "설명(_E):"
+msgid "_Remember Currently Running Application"
+msgstr "현재 실행 중인 프로그램 기억(_R)"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "옵션"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "시작 프로그램"
+msgid "Browse…"
+msgstr "찾아보기…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "로그아웃할 때 자동으로 실행 중인 프로그램 기억(_A)"
+msgid "Comm_ent:"
+msgstr "설명(_E):"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "이름(_N):"
+msgid "Co_mmand:"
+msgstr "명령(_M):"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "현재 실행 중인 프로그램 기억(_R)"
+msgid "_Name:"
+msgstr "이름(_N):"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -266,77 +266,74 @@ msgid "Cancel"
 msgstr "취소"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 로그아웃합니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "%d초 뒤에 자동으로 시스템을 끕니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "\"%s\" 사용자로 로그인했습니다."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "지금 시스템에서 로그아웃하시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "사용자 바꾸기(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "로그아웃(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "지금 시스템을 끄시겠습니까?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "절전(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "최대 절전(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "다시 시작(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "끄기(_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "아, 뭔가 문제가 생겼습니다."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr "문제가 발생했지만 복구하지 못했습니다. 시스템 관리자에게 문의하십시오"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
-msgstr ""
-"문제가 발생했지만 복구하지 못했습니다. 아래의 확장 기능이 문제를 일으켰을 수도 있습니다.\n"
-"아래 확장 기능을 사용하지 않게 한 다음, 로그아웃하고 다시 시도하십시오."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr "문제가 발생했지만 복구하지 못했습니다. 안전을 위해 모든 확장 기능을 사용하지 않도록 만듭니다."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -359,11 +356,11 @@ msgstr "시그널 %d번으로 강제 종료되었습니다"
 msgid "Stopped by signal %d"
 msgstr "시그널 %d번으로 중지되었습니다"
 
-#: ../gnome-session/gsm-manager.c:1379
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "그놈 3 읽어들이기 실패했습니다"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -376,11 +373,11 @@ msgstr ""
 "보통 이 경우 완전한 그놈 3 기능을 사용하기에는 시스템 (그래픽 하드웨어 또는 "
 "드라이버) 기능이 부족한 경우입니다."
 
-#: ../gnome-session/gsm-manager.c:1382
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "그놈 3에 대해 좀 더 알고 싶으면"
 
-#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "응답 없음"
 
@@ -437,11 +434,12 @@ msgstr "디버깅 코드를 사용합니다"
 msgid "Do not load user-specified applications"
 msgstr "사용자가 지정한 프로그램을 읽어들이지 않습니다"
 
-#: ../gnome-session/main.c:282
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "테스트 용도로 고래 표시"
 
-#: ../gnome-session/main.c:302
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr "- 그놈 세션 관리자"
 
@@ -468,6 +466,15 @@ msgstr "세션 관리자에 연결할 수 없습니다"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "함께 사용할 수 없는 옵션을 같이 사용했습니다"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "문제가 발생했지만 복구하지 못했습니다. 아래의 확장 기능이 문제를 일으켰을 "
+#~ "수도 있습니다.\n"
+#~ "아래 확장 기능을 사용하지 않게 한 다음, 로그아웃하고 다시 시도하십시오."
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
