@@ -3,14 +3,14 @@
 # MagNet <magnet@magnet-i.com>, 2004.
 # Ankit Patel <ankit@redhat.com>, 2004, 2005, 2007, 2009.
 # Ankit Patel <ankit644@yahoo.com>, 2006.
-# Sweta Kothari <swkothar@redhat.com>, 2009, 2010, 2011.
+# Sweta Kothari <swkothar@redhat.com>, 2009, 2010, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-29 14:42+0000\n"
-"PO-Revision-Date: 2011-09-22 14:26+0000\n"
+"POT-Creation-Date: 2012-03-23 09:50+0000\n"
+"PO-Revision-Date: 2012-03-26 17:10+0530\n"
 "Last-Translator: \n"
 "Language-Team: gu_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -113,53 +113,53 @@ msgstr ""
 "ગુમાવવાનું કારણ બની શકે છે."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "જ્યારે તમે પ્રવેશો તો શરૂ કરવા માટે ક્યા કાર્યક્મો જોઇએ છે તેને પસંદ કરો"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "શરૂઆતી કાર્યક્રમો"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "જ્યારે તમે પ્રવેશો તો શરૂ કરવા માટે ક્યા કાર્યક્મો જોઇએ છે તેને પસંદ કરો"
 
 # gnome-session/startup-programs.c:372
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "વધારાનો પ્રારંભીક કાર્યક્રમ (_p):"
 
+# gnome-session/session-properties-capplet.c:399
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "બ્રાઉઝ કરો..."
+msgid "Startup Programs"
+msgstr "શુરુઆતી કાર્યક્રમો"
 
-# gnome-session/session-properties-capplet.c:362
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "આદેશ (_m):"
+msgid "_Automatically remember running applications when logging out"
+msgstr "જ્યારે બહાર નીકળી રહ્યા હોય ત્યારે ચાલી રહેલ કાર્યક્રમો આપોઆપ યાદ રાખો (_A)"
 
-# gnome-session/session-properties-capplet.c:362
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "ટિપ્પણી (_e):"
+msgid "_Remember Currently Running Application"
+msgstr "વર્તમાનમાં ચાલી રહેલ કાર્યક્રમો યાદ રાખો (_R)"
 
 # gnome-session/session-properties-capplet.c:332
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "વિકલ્પો"
 
-# gnome-session/session-properties-capplet.c:399
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "શુરુઆતી કાર્યક્રમો"
+msgid "Browse…"
+msgstr "બ્રાઉઝ કરો..."
 
+# gnome-session/session-properties-capplet.c:362
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "જ્યારે બહાર નીકળી રહ્યા હોય ત્યારે ચાલી રહેલ કાર્યક્રમો આપોઆપ યાદ રાખો (_A)"
+msgid "Comm_ent:"
+msgstr "ટિપ્પણી (_e):"
 
+# gnome-session/session-properties-capplet.c:362
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "નામ (_N):"
+msgid "Co_mmand:"
+msgstr "આદેશ (_m):"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "વર્તમાનમાં ચાલી રહેલ કાર્યક્રમો યાદ રાખો (_R)"
+msgid "_Name:"
+msgstr "નામ (_N):"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -281,7 +281,6 @@ msgid "Shut Down Anyway"
 msgstr "કોઈ પણ રીતે બંધ કરો"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:889
-#| msgid "Reboot Anyway"
 msgid "Restart Anyway"
 msgstr "કોઈ પણ રીતે ફરી શરૂ કરો"
 
@@ -294,92 +293,92 @@ msgid "Cancel"
 msgstr "રદ કરો"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "તમે %d સેકન્ડમાં આપમેળે બહાર નીકળી જશો."
 msgstr[1] "તમે %d સેકન્ડોમાં આપમેળે બહાર નીકળી જશો."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "આ સિસ્ટમ એ %d સેકન્ડમાં આપમેળે બહાર નીકળી જશે."
 msgstr[1] "આ સિસ્ટમ એ %d સેકન્ડોમાં આપમેળે બહાર નીકળી જશે."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "\"%s\" તરીકે તમે હાલમાં પ્રવેશેલ છો."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "હવે આ સિસ્ટમની બહાર નીકળો?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "વપરાશકર્તા ને બદલો (_S)"
 
 # gnome-session/logout.c:274
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "બહાર નીકળો (_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "હવે આ સિસ્ટમ ને બંધ કરો?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "અટકાવો (_u)"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "હાઇબરનેટ (_H)"
 
 # gnome-session/session-properties.c:173
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "ફરીથી શરુ કરો (_R)"
 
 # gnome-session/logout.c:277
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "બંધ કરો (_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "અરે નહિં! કંઇક ખોટુ થઇ ગયુ."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
-"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શક્યા નહિં. મહેરબાની કરીને સિસ્ટમ "
-"સંચાલકનો સંપર્ક કરો"
+"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શક્યા નહિં. મહેરબાની કરીને સિસ્ટમ સંચાલકનો સંપર્ક "
+"કરો"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શકતા નથી. નીચે અમુક એક્સટેન્શનો આ કારણે "
-"હોઇ શકે છે.\n"
-"મહેરબાની કરીને આમાંના અમુકને નિષ્ક્રિય કરવાનો પ્રયત્ન કરો, અને પછી બહાર નીકળો અને "
-"ફરીથી પ્રયત્ન કરો."
+"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શક્યા નહિં. બધા એક્સટેન્શન એક સાવચેતી તરીકે "
+"નિષ્ક્રિય છે."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr ""
-"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શક્યા નહિં.\n "
-"મહેરબાની કરીને બહાર નીકળો અને ફરીથી પ્રયત્ન કરો."
+"સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શક્યા નહિં.\n"
+" મહેરબાની કરીને બહાર નીકળો અને ફરીથી પ્રયત્ન કરો."
 
 #: ../gnome-session/gsm-process-helper.c:123
 #, c-format
@@ -396,11 +395,11 @@ msgstr "સંકેત %d દ્દારા મારેલ છે"
 msgid "Stopped by signal %d"
 msgstr "સંકેત %d દ્દારા બંધ થયેલ છે"
 
-#: ../gnome-session/gsm-manager.c:1379
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "લાવવા માટે GNOME 3 નિષ્ફળ"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -408,17 +407,17 @@ msgid ""
 "This most likely means your system (graphics hardware or driver) is not "
 "capable of delivering the full GNOME 3 experience."
 msgstr ""
-"કમનસીબે GNOME 3 યોગ્ય રીતે શરૂ કરવામાં નિષ્ફળતા અને <i>ફોલબેક સ્થિતિ</i> માં શરૂ "
-"થયેલ છે.\n"
+"કમનસીબે GNOME 3 યોગ્ય રીતે શરૂ કરવામાં નિષ્ફળતા અને <i>ફોલબેક સ્થિતિ</i> માં શરૂ થયેલ "
+"છે.\n"
 "\n"
 "આનો મતલબ એ કે તમારી સિસ્ટમ (ગ્રાફિકલ હાર્ડવેર અથવા ડ્રાઇવર) સંપૂર્ણ GNOME 3 અનુભવને "
 "મોકલવા માટે સક્ષમ નથી."
 
-#: ../gnome-session/gsm-manager.c:1382
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "GNOME 3 વિશે વધારે શીખો"
 
-#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
+#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "જવાબ આપતુ નથી"
 
@@ -427,7 +426,6 @@ msgstr "જવાબ આપતુ નથી"
 #. * properties. But it could still be that SmProgram is not set.
 #.
 #: ../gnome-session/gsm-xsmp-client.c:559
-#| msgid "_Remember Currently Running Application"
 msgid "Remembered Application"
 msgstr "યાદ રાખેલ કાર્યક્રમ"
 
@@ -476,11 +474,12 @@ msgstr "ડિબગીંગ કોડ ને સક્રિય કરો"
 msgid "Do not load user-specified applications"
 msgstr "વપરાશકર્તા-સ્પષ્ટ થયેલ કાર્યક્રમો ને લોડ કરાતા નથી"
 
-#: ../gnome-session/main.c:282
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "પરીક્ષણ માટે નિષ્ફળ વ્હેલ સંવાદ બતાવો"
 
-#: ../gnome-session/main.c:302
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " - જીનોમ સત્ર વ્યવસ્થાપક"
 
@@ -494,12 +493,10 @@ msgid "Power off"
 msgstr "પાવર બંધ"
 
 #: ../tools/gnome-session-quit.c:54
-#| msgid "Log out, ignoring any existing inhibitors"
 msgid "Ignoring any existing inhibitors"
 msgstr "કોઈપણ વર્તમાન ઇન્હિબિટર્સ અવગણી રહ્યા છે"
 
 #: ../tools/gnome-session-quit.c:55
-#| msgid "Do not require confirmation"
 msgid "Don't prompt for user confirmation"
 msgstr "વપરાશકર્તા ખાતરી માટે પૂછશો નહિં"
 
@@ -511,6 +508,16 @@ msgstr "સત્ર સંચાલક સાથે સંપર્ક થઈ �
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "તકરાતા વિકલ્પો સાથે કાર્યક્રમ બોલાવવામાં આવ્યો"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "સમસ્યા ઉદ્ભવી અને સિસ્ટમને પુન:પ્રાપ્ત કરી શકતા નથી. નીચે અમુક એક્સટેન્શનો આ કારણે હોઇ "
+#~ "શકે છે.\n"
+#~ "મહેરબાની કરીને આમાંના અમુકને નિષ્ક્રિય કરવાનો પ્રયત્ન કરો, અને પછી બહાર નીકળો અને "
+#~ "ફરીથી પ્રયત્ન કરો."
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
