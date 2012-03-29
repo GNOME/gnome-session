@@ -1,14 +1,14 @@
-# Norwegian translation of gnome-session (bokmål dialect).
+# Norwegian bokmål translation of gnome-session.
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
 #
-# Kjartan Maraas <kmaraas@gnome.org>, 1998-2011.
+# Kjartan Maraas <kmaraas@gnome.org>, 1998-2012.
 # Torstein Adolf Winterseth <kvikende@fsfe.org>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 3.1.x\n"
+"Project-Id-Version: gnome-session 3.4.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-01 08:07+0200\n"
-"PO-Revision-Date: 2011-09-01 08:08+0200\n"
+"POT-Creation-Date: 2012-03-29 09:50+0200\n"
+"PO-Revision-Date: 2012-03-29 09:51+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: no\n"
@@ -95,48 +95,48 @@ msgstr ""
 "miste data."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "Velg programmer som skal startes når du logger inn"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Oppstartsprogrammer"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Velg programmer som skal startes når du logger inn"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Flere oppstarts_programmer:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Bla gjennom …"
+msgid "Startup Programs"
+msgstr "Oppstartsprogrammer"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "Ko_mmando:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "Husk kjørende programmer _automatisk når du logger ut"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "Komm_entar:"
+msgid "_Remember Currently Running Application"
+msgstr "Husk kjø_rende program"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Alternativer"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Oppstartsprogrammer"
+msgid "Browse…"
+msgstr "Bla gjennom …"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "Husk kjørende programmer _automatisk når du logger ut"
+msgid "Comm_ent:"
+msgstr "Komm_entar:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Navn:"
+msgid "Co_mmand:"
+msgstr "Ko_mmando:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "Husk kjø_rende program"
+msgid "_Name:"
+msgstr "_Navn:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -264,80 +264,78 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Du vil bli logget ut automatisk om %d sekund."
 msgstr[1] "Du vil bli logget ut automatisk om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Systemet vil bli slått av automatisk om %d sekund."
 msgstr[1] "Systemet vil bli slått automatisk av om %d sekunder."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Du er logget inn som «%s»"
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Logg ut av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Bytt bruker"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Slå av dette systemet nå?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "H_vilemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_Dvalemodus"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Slå av"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "Å nei! Noe har gått galt."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
-msgstr "Et problem har oppstått og systemet kan ikke gjenopprettes. Vennligst kontakt en systemadmininstrator"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
-msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
 msgstr ""
-"Et problem har oppstått og systemet kan ikke gjenopprettes. Noen av "
-"utvidelsene under kan ha forårsaket dette.\n"
-"Prøv å slå av noen av disse og logg ut for å prøve igjen."
+"Et problem har oppstått og systemet kan ikke gjenopprettes. Vennligst "
+"kontakt en systemadmininstrator"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr "Et problem har oppstått og systemet kan ikke gjenopprettes. Alle utvidelser er slått av som følge av dette."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -360,11 +358,11 @@ msgstr "Terminert av signal %d"
 msgid "Stopped by signal %d"
 msgstr "Stoppet av signal %d"
 
-#: ../gnome-session/gsm-manager.c:1379
+#: ../gnome-session/gsm-manager.c:1421
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 kunne ikke starte"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1422
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -378,11 +376,11 @@ msgstr ""
 "Dette betyr mest sannsynlig at systemet, grafikkmaskinvaren eller driveren, "
 "ikke støtter å kjøre GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1382
+#: ../gnome-session/gsm-manager.c:1424
 msgid "Learn more about GNOME 3"
 msgstr "Lær mer om GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1479 ../gnome-session/gsm-manager.c:2210
+#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -439,11 +437,12 @@ msgstr "Aktiver feilsøkingskode"
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: ../gnome-session/main.c:282
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis feildialog for testing"
 
-#: ../gnome-session/main.c:302
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr "- GNOME økthåndterer"
 
