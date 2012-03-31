@@ -6,16 +6,16 @@
 # Elnaz Sarbar <elnaz@farsiweb.info>, 2005, 2006.
 # Meelad Zakaria <meelad@farsiweb.info>, 2006.
 # Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2010.
-# Arash Mousavi <mousavi.arash@gmail.com>, 2011.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-29 14:42+0000\n"
-"PO-Revision-Date: 2011-09-06 23:25+0330\n"
+"POT-Creation-Date: 2012-03-23 09:50+0000\n"
+"PO-Revision-Date: 2012-03-31 15:56+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
-"Language-Team: Persian <translate@ifsug.org>\n"
+"Language-Team: Persian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -100,48 +100,48 @@ msgid "Waiting for the program to finish.  Interrupting the program may cause yo
 msgstr "در حال انتظار برای برنامه که به پایان برسد. وقفه انداختن در برنامه‌ها ممکن است باعث شود که کار شما از دست برود."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "انتخاب کنید که هنگام ورود به سیستم چه برنامه‌هایی آغاز شوند"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "برنامه‌های راه‌اندازی"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "انتخاب کنید که هنگام ورود به سیستم چه برنامه‌هایی آغاز شوند"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "برنامه‌های راه‌اندازی اضافی:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "مرور..."
+msgid "Startup Programs"
+msgstr "برنامه‌های راه‌اندازی"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_فرمان:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "برنامه‌های جاری هنگام خروج از سیستم، _خودکار به خاطر سپرده شوند"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "_توضیح:"
+msgid "_Remember Currently Running Application"
+msgstr "برنامه‌های جاری  به خاطر _سپرده شوند"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "گزینه‌ها"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "برنامه‌های راه‌اندازی"
+msgid "Browse…"
+msgstr "مرور..."
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "برنامه‌های جاری هنگام خروج از سیستم، _خودکار به خاطر سپرده شوند"
+msgid "Comm_ent:"
+msgstr "_توضیح:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_نام:"
+msgid "Co_mmand:"
+msgstr "_فرمان:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "برنامه‌های جاری  به خاطر _سپرده شوند"
+msgid "_Name:"
+msgstr "_نام:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -253,7 +253,6 @@ msgid "Shut Down Anyway"
 msgstr "در هر حال خاموش کردن سیستم صورت گیرد"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:889
-#| msgid "Reboot Anyway"
 msgid "Restart Anyway"
 msgstr "در هر حال سیستم مجددا راه‌اندازی شود"
 
@@ -266,82 +265,75 @@ msgid "Cancel"
 msgstr "انصراف"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
 msgstr[1] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
 msgstr[1] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "هم‌اکنون شما با عنوان «%s» وارد سیستم شده‌اید."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "هم‌اکنون از این سیستم خارج شویم؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_تعویض کاربر"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_خروج از سیستم"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "این سیستم هم‌اکنون خاموش شود؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_تعلیق"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_خواب زمستانی"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "_راه‌اندازی مجدد"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "خامو_ش کردن"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "اُخ نه! یک چیزی اشتباه شد."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. لطفا با یک مدیر سیستم تماس بگیرید"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 #| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
-msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
-msgstr ""
-"یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. تعدادی از افزونه‌های زیر ممکن است باعث این شده باشند.\n"
-"لطفا سعی کنید تعدادی از آنها را غیرفعال کنید، سپس از سیستم خارج و مجددا تلاش کنید."
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
+msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
+msgstr "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. تمام افزونه‌ها جهت احتیاط غیرفعال شده‌اند."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -364,11 +356,11 @@ msgstr "با سیگنال %Id کشته شد"
 msgid "Stopped by signal %d"
 msgstr "با سیگنال %Id متوقف شد"
 
-#: ../gnome-session/gsm-manager.c:1379
+#: ../gnome-session/gsm-manager.c:1396
 msgid "GNOME 3 Failed to Load"
 msgstr "بارگیری گنوم ۳ شکست خورد"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1397
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -378,12 +370,12 @@ msgstr ""
 "\n"
 "این موضوع اکثرا به این علت است که سیستم شما (سخت‌افزار گرافیکی یا راه‌انداز) قابلیت ارائه‌ی کامل گنوم ۳ را ندارد."
 
-#: ../gnome-session/gsm-manager.c:1382
+#: ../gnome-session/gsm-manager.c:1399
 msgid "Learn more about GNOME 3"
 msgstr "اطلاعات بیشتر در مورد گنوم ۳"
 
-#: ../gnome-session/gsm-manager.c:1479
-#: ../gnome-session/gsm-manager.c:2210
+#: ../gnome-session/gsm-manager.c:1496
+#: ../gnome-session/gsm-manager.c:2269
 msgid "Not responding"
 msgstr "نا پاسخگو"
 
@@ -392,7 +384,6 @@ msgstr "نا پاسخگو"
 #. * properties. But it could still be that SmProgram is not set.
 #.
 #: ../gnome-session/gsm-xsmp-client.c:559
-#| msgid "_Remember Currently Running Application"
 msgid "Remembered Application"
 msgstr "بخاطر سپردن برنامه"
 
@@ -439,11 +430,12 @@ msgstr "کد اشکال‌زدایی به کار انداخته شود"
 msgid "Do not load user-specified applications"
 msgstr "برنامه‌های مشخص شده توسط کاربر اجرا نشوند"
 
-#: ../gnome-session/main.c:282
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "نمایش بالن محاوره شکست جهت آزمایش کردن"
 
-#: ../gnome-session/main.c:302
+#: ../gnome-session/main.c:303
 msgid " - the GNOME session manager"
 msgstr " ـ مدیر نشست گنوم"
 
@@ -472,33 +464,3 @@ msgstr "اتصال به مدیر نشست ممکن نیست"
 msgid "Program called with conflicting options"
 msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
 
-#~ msgid ""
-#~ "There is a problem with the configuration server.\n"
-#~ "(%s exited with status %d)"
-#~ msgstr ""
-#~ "مشکلی در کارگزار تنظیمات هست.\n"
-#~ "(مورد %s با وضعیت %Id خارج شد)"
-
-#~ msgid "Classic GNOME"
-#~ msgstr "گنوم کلاسیک"
-
-#~ msgid "Window Manager"
-#~ msgstr "مدیر پنجره"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "نمایش محاوره‌ی خروج از سیستم"
-
-#~ msgid "Show shutdown dialog"
-#~ msgstr "محاوره‌ی خاموش کردن سیستم نمایش داده شود"
-
-#~ msgid "Use dialog boxes for errors"
-#~ msgstr "استفاده از جعبه‌های محاوره برای خطاها"
-
-#~ msgid "Set the current session name"
-#~ msgstr "تنظیم نام نشست جاری"
-
-#~ msgid "NAME"
-#~ msgstr "نام"
-
-#~ msgid "Kill session"
-#~ msgstr "کشتن نشست"
