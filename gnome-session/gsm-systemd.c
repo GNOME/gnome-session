@@ -208,9 +208,8 @@ restart_done (GObject      *source,
                 g_error_free (error);
         } else {
                 emit_restart_complete (manager, NULL);
+                g_variant_unref (res);
         }
-
-        g_variant_unref (res);
 }
 
 static void
@@ -225,7 +224,7 @@ gsm_systemd_attempt_restart (GsmSystem *system)
                            G_MAXINT,
                            NULL,
                            restart_done,
-                           NULL);
+                           manager);
 }
 
 static void
@@ -246,9 +245,8 @@ stop_done (GObject      *source,
                 g_error_free (error);
         } else {
                 emit_stop_complete (manager, NULL);
+                g_variant_unref (res);
         }
-
-        g_variant_unref (res);
 }
 
 static void
@@ -263,7 +261,7 @@ gsm_systemd_attempt_stop (GsmSystem *system)
                            G_MAXINT,
                            NULL,
                            stop_done,
-                           NULL);
+                           manager);
 }
 
 static void
