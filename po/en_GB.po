@@ -2,13 +2,13 @@
 # Copyright (C) 1999-2000 Free Software Foundation, Inc.
 # Robert Brady <robert@susu.org.uk>, 1999-2000.
 # Philip Withnall <philip@tecnocode.co.uk>, 2009, 2010.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2011.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.24\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-09 13:01+0100\n"
-"PO-Revision-Date: 2011-09-09 13:02+0100\n"
+"POT-Creation-Date: 2012-04-13 13:23+0100\n"
+"PO-Revision-Date: 2012-04-13 13:23+0100\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1-beta1\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -96,48 +96,48 @@ msgstr ""
 "to lose work."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "Choose what applications to start when you log in"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Startup Applications"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Choose what applications to start when you log in"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Additional startup _programs:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Browse…"
+msgid "Startup Programs"
+msgstr "Startup Programs"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "Co_mmand:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Automatically remember running applications when logging out"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "Comm_ent:"
+msgid "_Remember Currently Running Application"
+msgstr "_Remember Currently Running Application"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Options"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Startup Programs"
+msgid "Browse…"
+msgstr "Browse…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Automatically remember running applications when logging out"
+msgid "Comm_ent:"
+msgstr "Comm_ent:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Name:"
+msgid "Co_mmand:"
+msgstr "Co_mmand:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "_Remember Currently Running Application"
+msgid "_Name:"
+msgstr "_Name:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -265,64 +265,64 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "You will be automatically logged out in %d second."
 msgstr[1] "You will be automatically logged out in %d seconds."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "This system will be automatically shut down in %d second."
 msgstr[1] "This system will be automatically shut down in %d seconds."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "You are currently logged in as \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Log out of this system now?"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Switch User"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Log Out"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Shut down this system now?"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "S_uspend"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_Hibernate"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "_Restart"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Shut Down"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:375
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh no!  Something has gone wrong."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:382
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -330,17 +330,16 @@ msgstr ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#, fuzzy
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -363,11 +362,11 @@ msgstr "Killed by signal %d"
 msgid "Stopped by signal %d"
 msgstr "Stopped by signal %d"
 
-#: ../gnome-session/gsm-manager.c:1380
+#: ../gnome-session/gsm-manager.c:1421
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 Failed to Load"
 
-#: ../gnome-session/gsm-manager.c:1381
+#: ../gnome-session/gsm-manager.c:1422
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -381,11 +380,11 @@ msgstr ""
 "This most likely means your system (graphics hardware or driver) is not "
 "capable of delivering the full GNOME 3 experience."
 
-#: ../gnome-session/gsm-manager.c:1383
+#: ../gnome-session/gsm-manager.c:1424
 msgid "Learn more about GNOME 3"
 msgstr "Learn more about GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1480 ../gnome-session/gsm-manager.c:2259
+#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
 msgid "Not responding"
 msgstr "Not responding"
 
@@ -476,6 +475,15 @@ msgstr "Could not connect to the session manager"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "Program called with conflicting options"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
 
 #~ msgid ""
 #~ "There is a problem with the configuration server.\n"
