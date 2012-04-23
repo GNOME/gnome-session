@@ -9,7 +9,7 @@
 # Ryoichi INAGAKI <ryo1@bc.wakwak.com>, 2002.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 1999-2002, 2009-2011.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 1999-2002, 2009-2012.
 # Yasumichi Akahoshi <yasumichi@vinelinux.org>, 2010.
 # Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012.
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
@@ -19,9 +19,9 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-01-16 13:03+0000\n"
-"PO-Revision-Date: 2012-01-19 22:17+0900\n"
-"Last-Translator: Hideki Yamane <henrich@debian.org>\n"
+"POT-Creation-Date: 2012-04-16 17:19+0000\n"
+"PO-Revision-Date: 2012-04-23 21:20+0900\n"
+"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,48 +106,48 @@ msgstr ""
 "作業内容を失うことになるかもしれません。"
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "ログインした後に起動するアプリケーションを選択します"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "自動起動するアプリケーション"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "ログインした後に起動するアプリケーションを選択します"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "自動的に起動するプログラムの追加(_P):"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "参照…"
+msgid "Startup Programs"
+msgstr "自動起動するプログラム"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "コマンド(_M):"
+msgid "_Automatically remember running applications when logging out"
+msgstr "ログアウト時に実行中のアプリケーションを自動的に記憶しておく(_A)"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "説明(_E):"
+msgid "_Remember Currently Running Application"
+msgstr "現在実行中のアプリケーションを記憶しておく(_R)"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "オプション"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "自動起動するプログラム"
+msgid "Browse…"
+msgstr "参照…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "ログアウト時に実行中のアプリケーションを自動的に記憶しておく(_A)"
+msgid "Comm_ent:"
+msgstr "説明(_E):"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "名前(_N):"
+msgid "Co_mmand:"
+msgstr "コマンド(_M):"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "現在実行中のアプリケーションを記憶しておく(_R)"
+msgid "_Name:"
+msgstr "名前(_N):"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -275,79 +275,77 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:274
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "残り%d秒で自動的にログアウトします。"
 
-#: ../gnome-session/gsm-logout-dialog.c:282
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "このシステムは残り%d秒で自動的にシャットダウンします。"
 
-#: ../gnome-session/gsm-logout-dialog.c:306
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "あなたは現在 \"%s\" としてログインしています。"
 
-#: ../gnome-session/gsm-logout-dialog.c:372
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "このシステムから今すぐログアウトしますか?"
 
-#: ../gnome-session/gsm-logout-dialog.c:378
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "ユーザーを切り替える(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
-#: ../gnome-session/gsm-fail-whale-dialog.c:422
+#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: ../gnome-session/gsm-logout-dialog.c:393
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "このシステムを今すぐシャットダウンしますか?"
 
-#: ../gnome-session/gsm-logout-dialog.c:399
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "サスペンド(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:405
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "休止状態(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:408
 msgid "_Restart"
 msgstr "再起動(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:421
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "シャットダウン(_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:377
+#: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "あれっ! 何かおかしいです。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:318
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
 "問題が発生して、システムの復帰ができません。システム管理者に連絡してください"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:386
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
-"問題が発生して、システムの復帰ができません。これは以下の拡張のどれかが引き起"
-"こした可能性があります。\n"
-"これらのどれかを無効にして、ログアウトして再度試してください。"
+"問題が発生して、システムの復帰ができません。念のため、すべての拡張を無効にし"
+"ました。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:388
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -370,11 +368,11 @@ msgstr "シグナル %d で終了させられました"
 msgid "Stopped by signal %d"
 msgstr "シグナル %d で停止させられました"
 
-#: ../gnome-session/gsm-manager.c:1386
+#: ../gnome-session/gsm-manager.c:1421
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 を読み込むのに失敗しました"
 
-#: ../gnome-session/gsm-manager.c:1387
+#: ../gnome-session/gsm-manager.c:1422
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -388,11 +386,11 @@ msgstr ""
 "おそらく、このシステム (グラフィックのハードウェアやドライバー) は GNOME 3 を"
 "満足に動かすことができないようです。"
 
-#: ../gnome-session/gsm-manager.c:1389
+#: ../gnome-session/gsm-manager.c:1424
 msgid "Learn more about GNOME 3"
 msgstr "GNOME 3 について詳しく知る"
 
-#: ../gnome-session/gsm-manager.c:1486 ../gnome-session/gsm-manager.c:2255
+#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
 msgid "Not responding"
 msgstr "応答なし"
 
@@ -483,3 +481,12 @@ msgstr "セッションマネージャーに接続できませんでした"
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "同時には適用できないオプションを指定しました"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "問題が発生して、システムの復帰ができません。これは以下の拡張のどれかが引き"
+#~ "起こした可能性があります。\n"
+#~ "これらのどれかを無効にして、ログアウトして再度試してください。"
