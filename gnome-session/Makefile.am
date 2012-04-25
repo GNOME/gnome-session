@@ -80,8 +80,7 @@ gnome_session_CPPFLAGS =			\
 	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"	\
-	-DI_KNOW_THE_DEVICEKIT_POWER_API_IS_SUBJECT_TO_CHANGE
+	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
 gnome_session_LDADD =				\
 	libgsmutil.la 				\
