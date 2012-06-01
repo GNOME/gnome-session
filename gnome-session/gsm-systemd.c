@@ -32,7 +32,6 @@
 #include <sys/types.h>
 #include <pwd.h>
 
-#include <polkit/polkit.h>
 #include <systemd/sd-login.h>
 #include <systemd/sd-daemon.h>
 
@@ -55,8 +54,6 @@ struct _GsmSystemdPrivate
         GDBusProxy      *sd_proxy;
         gchar           *session_id;
         gchar           *session_path;
-        PolkitAuthority *authority;
-        PolkitSubject   *subject;
 };
 
 static void gsm_systemd_system_init (GsmSystemInterface *iface);
@@ -72,8 +69,6 @@ gsm_systemd_finalize (GObject *object)
         GsmSystemd *systemd = GSM_SYSTEMD (object);
 
         g_clear_object (&systemd->priv->sd_proxy);
-        g_clear_object (&systemd->priv->authority);
-        g_clear_object (&systemd->priv->subject);
         g_free (systemd->priv->session_id);
         g_free (systemd->priv->session_path);
 
@@ -129,9 +124,6 @@ gsm_systemd_init (GsmSystemd *manager)
 
                 g_object_unref (bus);
         }
-
-        manager->priv->authority = polkit_authority_get_sync (NULL, NULL);
-        manager->priv->subject = polkit_unix_session_new_for_process_sync (getpid (), NULL, NULL);
 
         sd_pid_get_session (getpid (), &manager->priv->session_id);
 
@@ -303,24 +295,24 @@ static gboolean
 gsm_systemd_can_restart (GsmSystem *system)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
-        PolkitAuthorizationResult *res;
+        gchar *rv;
+        GVariant *res;
         gboolean can_restart;
 
-        res = polkit_authority_check_authorization_sync (manager->priv->authority,
-                                                         manager->priv->subject,
-                                                         "org.freedesktop.login1.reboot",
-                                                         NULL,
-                                                         POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE,
-                                                         NULL,
-                                                         NULL);
-        if (res == NULL) {
-                return FALSE;
-        }
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanReboot",
+                                      NULL,
+                                      0,
+                                      G_MAXINT,
+                                      NULL,
+                                      NULL);
+        g_variant_get (res, "(s)", &rv);
+        g_variant_unref (res);
 
-        can_restart = polkit_authorization_result_get_is_authorized (res) ||
-                      polkit_authorization_result_get_is_challenge (res);
+        can_restart = g_strcmp0 (rv, "yes") == 0 ||
+                      g_strcmp0 (rv, "challenge") == 0;
 
-        g_object_unref (res);
+        g_free (rv);
 
         return can_restart;
 }
@@ -329,24 +321,24 @@ static gboolean
 gsm_systemd_can_stop (GsmSystem *system)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
-        PolkitAuthorizationResult *res;
+        gchar *rv;
+        GVariant *res;
         gboolean can_stop;
 
-        res = polkit_authority_check_authorization_sync (manager->priv->authority,
-                                                         manager->priv->subject,
-                                                         "org.freedesktop.login1.power-off",
-                                                         NULL,
-                                                         POLKIT_CHECK_AUTHORIZATION_FLAGS_NONE,
-                                                         NULL,
-                                                         NULL);
-        if (res == NULL) {
-                return FALSE;
-        }
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanPowerOff",
+                                      NULL,
+                                      0,
+                                      G_MAXINT,
+                                      NULL,
+                                      NULL);
+        g_variant_get (res, "(s)", &rv);
+        g_variant_unref (res);
 
-        can_stop = polkit_authorization_result_get_is_authorized (res) ||
-                   polkit_authorization_result_get_is_challenge (res);
+        can_stop = g_strcmp0 (rv, "yes") == 0 ||
+                   g_strcmp0 (rv, "challenge") == 0;
 
-        g_object_unref (res);
+        g_free (rv);
 
         return can_stop;
 }
