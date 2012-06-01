@@ -81,6 +81,18 @@ gsm_system_can_restart (GsmSystem *system)
         return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);
 }
 
+gboolean
+gsm_system_can_suspend (GsmSystem *system)
+{
+        return GSM_SYSTEM_GET_IFACE (system)->can_suspend (system);
+}
+
+gboolean
+gsm_system_can_hibernate (GsmSystem *system)
+{
+        return GSM_SYSTEM_GET_IFACE (system)->can_hibernate (system);
+}
+
 void
 gsm_system_attempt_stop (GsmSystem *system)
 {
@@ -91,6 +103,18 @@ void
 gsm_system_attempt_restart (GsmSystem *system)
 {
         GSM_SYSTEM_GET_IFACE (system)->attempt_restart (system);
+}
+
+void
+gsm_system_suspend (GsmSystem *system)
+{
+        GSM_SYSTEM_GET_IFACE (system)->suspend (system);
+}
+
+void
+gsm_system_hibernate (GsmSystem *system)
+{
+        GSM_SYSTEM_GET_IFACE (system)->hibernate (system);
 }
 
 void

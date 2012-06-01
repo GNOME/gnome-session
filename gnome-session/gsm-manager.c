@@ -38,8 +38,6 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include <upower.h>
-
 #include <gtk/gtk.h> /* for logout dialog */
 
 #include "gsm-manager.h"
@@ -150,12 +148,10 @@ struct GsmManagerPrivate
         GSettings              *screensaver_settings;
         GSettings              *lockdown_settings;
 
+        GsmSystem              *system;
         DBusGProxy             *bus_proxy;
         DBusGConnection        *connection;
         gboolean                dbus_disconnected : 1;
-
-        /* Interface with other parts of the system */
-        UpClient               *up_client;
 
         GsmShell               *shell;
         guint                   shell_end_session_dialog_canceled_id;
@@ -276,7 +272,6 @@ on_required_app_failure (GsmManager  *manager,
 {
         const gchar *app_id;
         gboolean allow_logout;
-        GsmSystem *system;
         GsmShellExtensions *extensions;
 
         app_id = gsm_app_peek_app_id (app);
@@ -288,13 +283,11 @@ on_required_app_failure (GsmManager  *manager,
                 extensions = NULL;
         }
 
-        system = gsm_get_system ();
-        if (gsm_system_is_login_session (system)) {
+        if (gsm_system_is_login_session (manager->priv->system)) {
                 allow_logout = FALSE;
         } else {
                 allow_logout = !_log_out_is_locked_down (manager);
         }
-        g_object_unref (system);
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
@@ -479,16 +472,12 @@ quit_request_completed (GsmSystem *system,
                 gdm_set_logout_action (fallback_action);
         }
 
-        g_object_unref (system);
-
         gtk_main_quit ();
 }
 
 static void
 gsm_manager_quit (GsmManager *manager)
 {
-        GsmSystem *system;
-
         /* See the comment in request_reboot() for some more details about how
          * this works. */
 
@@ -500,12 +489,11 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
 
-                system = gsm_get_system ();
-                g_signal_connect (system,
+                g_signal_connect (manager->priv->system,
                                   "request-completed",
                                   G_CALLBACK (quit_request_completed),
                                   GINT_TO_POINTER (GDM_LOGOUT_ACTION_REBOOT));
-                gsm_system_attempt_restart (system);
+                gsm_system_attempt_restart (manager->priv->system);
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
@@ -515,12 +503,11 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
 
-                system = gsm_get_system ();
-                g_signal_connect (system,
+                g_signal_connect (manager->priv->system,
                                   "request-completed",
                                   G_CALLBACK (quit_request_completed),
                                   GINT_TO_POINTER (GDM_LOGOUT_ACTION_SHUTDOWN));
-                gsm_system_attempt_stop (system);
+                gsm_system_attempt_stop (manager->priv->system);
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
@@ -1156,46 +1143,20 @@ manager_perhaps_lock (GsmManager *manager)
 static void
 manager_attempt_hibernate (GsmManager *manager)
 {
-        gboolean  can_hibernate;
-        GError   *error;
-        gboolean  ret;
-
-        can_hibernate = up_client_get_can_hibernate (manager->priv->up_client);
-        if (can_hibernate) {
-
+        if (gsm_system_can_hibernate (manager->priv->system)) {
                 /* lock the screen before we suspend */
                 manager_perhaps_lock (manager);
-
-                error = NULL;
-                ret = up_client_hibernate_sync (manager->priv->up_client, NULL, &error);
-                if (!ret) {
-                        g_warning ("Unexpected hibernate failure: %s",
-                                   error->message);
-                        g_error_free (error);
-                }
+                gsm_system_hibernate (manager->priv->system);
         }
 }
 
 static void
 manager_attempt_suspend (GsmManager *manager)
 {
-        gboolean  can_suspend;
-        GError   *error;
-        gboolean  ret;
-
-        can_suspend = up_client_get_can_suspend (manager->priv->up_client);
-        if (can_suspend) {
-
+        if (gsm_system_can_suspend (manager->priv->system)) {
                 /* lock the screen before we suspend */
                 manager_perhaps_lock (manager);
-
-                error = NULL;
-                ret = up_client_suspend_sync (manager->priv->up_client, NULL, &error);
-                if (!ret) {
-                        g_warning ("Unexpected suspend failure: %s",
-                                   error->message);
-                        g_error_free (error);
-                }
+                gsm_system_suspend (manager->priv->system);
         }
 }
 
@@ -2196,14 +2157,9 @@ auto_save_is_enabled (GsmManager *manager)
 static void
 maybe_save_session (GsmManager *manager)
 {
-        GsmSystem *system;
         GError *error;
-        gboolean is_login;
 
-        system = gsm_get_system ();
-        is_login = gsm_system_is_login_session (system);
-        g_object_unref (system);
-        if (is_login)
+        if (gsm_system_is_login_session (manager->priv->system))
                 return;
 
         /* We only allow session saving when session is running or when
@@ -2594,9 +2550,9 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->lockdown_settings = NULL;
         }
 
-        if (manager->priv->up_client != NULL) {
-                g_object_unref (manager->priv->up_client);
-                manager->priv->up_client = NULL;
+        if (manager->priv->system != NULL) {
+                g_object_unref (manager->priv->system);
+                manager->priv->system = NULL;
         }
 
         if (manager->priv->shell != NULL) {
@@ -2804,7 +2760,7 @@ gsm_manager_init (GsmManager *manager)
                                       NULL,
                                       NULL, NULL);
 
-        manager->priv->up_client = up_client_new ();
+        manager->priv->system = gsm_get_system ();
 
         manager->priv->shell = gsm_get_shell ();
 }
@@ -3444,26 +3400,15 @@ gsm_manager_can_shutdown (GsmManager *manager,
                           gboolean   *shutdown_available,
                           GError    **error)
 {
-        GsmSystem *system;
-        gboolean can_suspend;
-        gboolean can_hibernate;
-
-        g_object_get (manager->priv->up_client,
-                      "can-suspend", &can_suspend,
-                      "can-hibernate", &can_hibernate,
-                      NULL);
-
         g_debug ("GsmManager: CanShutdown called");
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
-        system = gsm_get_system ();
         *shutdown_available = !_log_out_is_locked_down (manager) &&
-                              (gsm_system_can_stop (system)
-                               || gsm_system_can_restart (system)
-                               || can_suspend
-                               || can_hibernate);
-        g_object_unref (system);
+                              (gsm_system_can_stop (manager->priv->system)
+                               || gsm_system_can_restart (manager->priv->system)
+                               || gsm_system_can_suspend (manager->priv->system)
+                               || gsm_system_can_hibernate (manager->priv->system));
 
         return TRUE;
 }

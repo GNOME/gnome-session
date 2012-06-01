@@ -50,8 +50,12 @@ struct _GsmSystemInterface
         gboolean (* can_switch_user)  (GsmSystem *system);
         gboolean (* can_stop)         (GsmSystem *system);
         gboolean (* can_restart)      (GsmSystem *system);
+        gboolean (* can_suspend)      (GsmSystem *system);
+        gboolean (* can_hibernate)    (GsmSystem *system);
         void     (* attempt_stop)     (GsmSystem *system);
         void     (* attempt_restart)  (GsmSystem *system);
+        void     (* suspend)          (GsmSystem *system);
+        void     (* hibernate)        (GsmSystem *system);
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
         gboolean (* is_login_session) (GsmSystem *system);
@@ -74,9 +78,17 @@ gboolean   gsm_system_can_stop         (GsmSystem *system);
 
 gboolean   gsm_system_can_restart      (GsmSystem *system);
 
+gboolean   gsm_system_can_suspend      (GsmSystem *system);
+
+gboolean   gsm_system_can_hibernate    (GsmSystem *system);
+
 void       gsm_system_attempt_stop     (GsmSystem *system);
 
 void       gsm_system_attempt_restart  (GsmSystem *system);
+
+void       gsm_system_suspend          (GsmSystem *system);
+
+void       gsm_system_hibernate        (GsmSystem *system);
 
 void       gsm_system_set_session_idle (GsmSystem *system,
                                         gboolean   is_idle);

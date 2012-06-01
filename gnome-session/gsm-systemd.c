@@ -364,14 +364,140 @@ gsm_systemd_is_login_session (GsmSystem *system)
         return ret;
 }
 
+static gboolean
+gsm_systemd_can_suspend (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        gchar *rv;
+        GVariant *res;
+        gboolean can_suspend;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanSuspend",
+                                      NULL,
+                                      0,
+                                      G_MAXINT,
+                                      NULL,
+                                      NULL);
+        g_variant_get (res, "(s)", &rv);
+        g_variant_unref (res);
+
+        can_suspend = g_strcmp0 (rv, "yes") == 0 ||
+                      g_strcmp0 (rv, "challenge") == 0;
+
+        g_free (rv);
+
+        return can_suspend;
+}
+
+static gboolean
+gsm_systemd_can_hibernate (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        gchar *rv;
+        GVariant *res;
+        gboolean can_hibernate;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanHibernate",
+                                      NULL,
+                                      0,
+                                      G_MAXINT,
+                                      NULL,
+                                      NULL);
+        g_variant_get (res, "(s)", &rv);
+        g_variant_unref (res);
+
+        can_hibernate = g_strcmp0 (rv, "yes") == 0 ||
+                        g_strcmp0 (rv, "challenge") == 0;
+
+        g_free (rv);
+
+        return can_hibernate;
+}
+
+static void
+suspend_done (GObject      *source,
+              GAsyncResult *result,
+              gpointer      user_data)
+{
+        GDBusProxy *proxy = G_DBUS_PROXY (source);
+        GsmSystemd *manager = user_data;
+        GError *error = NULL;
+        GVariant *res;
+
+        res = g_dbus_proxy_call_finish (proxy, result, &error);
+
+        if (!res) {
+                g_warning ("Unable to suspend system: %s", error->message);
+                g_error_free (error);
+        } else {
+                g_variant_unref (res);
+        }
+}
+
+static void
+hibernate_done (GObject      *source,
+                GAsyncResult *result,
+              gpointer      user_data)
+{
+        GDBusProxy *proxy = G_DBUS_PROXY (source);
+        GsmSystemd *manager = user_data;
+        GError *error = NULL;
+        GVariant *res;
+
+        res = g_dbus_proxy_call_finish (proxy, result, &error);
+
+        if (!res) {
+                g_warning ("Unable to hibernate system: %s", error->message);
+                g_error_free (error);
+        } else {
+                g_variant_unref (res);
+        }
+}
+
+static void
+gsm_systemd_suspend (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+
+        g_dbus_proxy_call (manager->priv->sd_proxy,
+                           "Suspend",
+                           g_variant_new ("(b)", TRUE),
+                           0,
+                           G_MAXINT,
+                           NULL,
+                           hibernate_done,
+                           manager);
+}
+
+static void
+gsm_systemd_hibernate (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+
+        g_dbus_proxy_call (manager->priv->sd_proxy,
+                           "Hibernate",
+                           g_variant_new ("(b)", TRUE),
+                           0,
+                           G_MAXINT,
+                           NULL,
+                           suspend_done,
+                           manager);
+}
+
 static void
 gsm_systemd_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_systemd_can_switch_user;
         iface->can_stop = gsm_systemd_can_stop;
         iface->can_restart = gsm_systemd_can_restart;
+        iface->can_suspend = gsm_systemd_can_suspend;
+        iface->can_hibernate = gsm_systemd_can_hibernate;
         iface->attempt_stop = gsm_systemd_attempt_stop;
         iface->attempt_restart = gsm_systemd_attempt_restart;
+        iface->suspend = gsm_systemd_suspend;
+        iface->hibernate = gsm_systemd_hibernate;
         iface->set_session_idle = gsm_systemd_set_session_idle;
         iface->is_login_session = gsm_systemd_is_login_session;
 }

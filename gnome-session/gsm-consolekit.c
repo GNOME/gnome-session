@@ -31,6 +31,8 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#include <upower.h>
+
 #include "gsm-system.h"
 #include "gsm-consolekit.h"
 
@@ -53,6 +55,7 @@ struct _GsmConsolekitPrivate
         DBusGConnection *dbus_connection;
         DBusGProxy      *bus_proxy;
         DBusGProxy      *ck_proxy;
+        UpClient        *up_client;
 };
 
 static void     gsm_consolekit_class_init   (GsmConsolekitClass *klass);
@@ -215,12 +218,12 @@ gsm_consolekit_on_name_owner_changed (DBusGProxy    *bus_proxy,
                 return;
         }
 
-        if (manager->priv->ck_proxy != NULL) {
-                g_object_unref (manager->priv->ck_proxy);
-                manager->priv->ck_proxy = NULL;
-        }
+        g_clear_object (&manager->priv->ck_proxy);
+        g_clear_object (&manager->priv->up_client);
 
         gsm_consolekit_ensure_ck_connection (manager, NULL);
+        manager->priv->up_client = up_client_new ();
+
 }
 
 static void
@@ -242,15 +245,9 @@ gsm_consolekit_init (GsmConsolekit *manager)
 static void
 gsm_consolekit_free_dbus (GsmConsolekit *manager)
 {
-        if (manager->priv->bus_proxy != NULL) {
-                g_object_unref (manager->priv->bus_proxy);
-                manager->priv->bus_proxy = NULL;
-        }
-
-        if (manager->priv->ck_proxy != NULL) {
-                g_object_unref (manager->priv->ck_proxy);
-                manager->priv->ck_proxy = NULL;
-        }
+        g_clear_object (&manager->priv->bus_proxy);
+        g_clear_object (&manager->priv->ck_proxy);
+        g_clear_object (&manager->priv->up_client);
 
         if (manager->priv->dbus_connection != NULL) {
                 DBusConnection *connection;
@@ -814,14 +811,62 @@ gsm_consolekit_is_login_session (GsmSystem *system)
         return ret;
 }
 
+static gboolean
+gsm_consolekit_can_suspend (GsmSystem *system)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+
+        return up_client_get_can_suspend (consolekit->priv->up_client);
+}
+
+static gboolean
+gsm_consolekit_can_hibernate (GsmSystem *system)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+
+        return up_client_get_can_hibernate (consolekit->priv->up_client);
+}
+
+static void
+gsm_consolekit_suspend (GsmSystem *system)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+        GError *error = NULL;
+        gboolean ret;
+
+        ret = up_client_suspend_sync (consolekit->priv->up_client, NULL, &error);
+        if (!ret) {
+                g_warning ("Unexpected suspend failure: %s", error->message);
+                g_error_free (error);
+        }
+}
+
+static void
+gsm_consolekit_hibernate (GsmSystem *system)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+        GError *error = NULL;
+        gboolean ret;
+
+        ret = up_client_hibernate_sync (consolekit->priv->up_client, NULL, &error);
+        if (!ret) {
+                g_warning ("Unexpected hibernate failure: %s", error->message);
+                g_error_free (error);
+        }
+}
+
 static void
 gsm_consolekit_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_consolekit_can_switch_user;
         iface->can_stop = gsm_consolekit_can_stop;
         iface->can_restart = gsm_consolekit_can_restart;
+        iface->can_suspend = gsm_consolekit_can_suspend;
+        iface->can_hibernate = gsm_consolekit_can_hibernate;
         iface->attempt_stop = gsm_consolekit_attempt_stop;
         iface->attempt_restart = gsm_consolekit_attempt_restart;
+        iface->suspend = gsm_consolekit_suspend;
+        iface->hibernate = gsm_consolekit_hibernate;
         iface->set_session_idle = gsm_consolekit_set_session_idle;
         iface->is_login_session = gsm_consolekit_is_login_session;
 }
