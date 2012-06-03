@@ -38,6 +38,12 @@ enum
         GSM_LOGOUT_RESPONSE_SLEEP
 };
 
+typedef enum {
+        GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
+        GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN,
+        GSM_DIALOG_LOGOUT_TYPE_REBOOT
+} GsmDialogLogoutType;
+
 #define GSM_TYPE_LOGOUT_DIALOG         (gsm_logout_dialog_get_type ())
 #define GSM_LOGOUT_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_LOGOUT_DIALOG, GsmLogoutDialog))
 #define GSM_LOGOUT_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_LOGOUT_DIALOG, GsmLogoutDialogClass))
@@ -66,7 +72,8 @@ GType        gsm_logout_dialog_get_type   (void) G_GNUC_CONST;
 GtkWidget   *gsm_get_logout_dialog        (GdkScreen           *screen,
                                            guint32              activate_time);
 GtkWidget   *gsm_get_shutdown_dialog      (GdkScreen           *screen,
-                                           guint32              activate_time);
+                                           guint32              activate_time,
+                                           GsmDialogLogoutType  type);
 
 G_END_DECLS
 

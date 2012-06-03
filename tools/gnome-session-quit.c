@@ -45,12 +45,14 @@ enum {
 
 static gboolean logout = FALSE;
 static gboolean power_off = FALSE;
+static gboolean reboot = FALSE;
 static gboolean no_prompt = FALSE;
 static gboolean force = FALSE;
 
 static GOptionEntry options[] = {
         {"logout", '\0', 0, G_OPTION_ARG_NONE, &logout, N_("Log out"), NULL},
         {"power-off", '\0', 0, G_OPTION_ARG_NONE, &power_off, N_("Power off"), NULL},
+        {"reboot", '\0', 0, G_OPTION_ARG_NONE, &reboot, N_("Reboot"), NULL},
         {"force", '\0', 0, G_OPTION_ARG_NONE, &force, N_("Ignoring any existing inhibitors"), NULL},
         {"no-prompt", '\0', 0, G_OPTION_ARG_NONE, &no_prompt, N_("Don't prompt for user confirmation"), NULL},
         {NULL}
@@ -139,7 +141,7 @@ do_logout (unsigned int mode)
 }
 
 static void
-do_power_off (void)
+do_power_off (const char *action)
 {
         DBusGProxy *sm_proxy;
         GError     *error;
@@ -152,18 +154,18 @@ do_power_off (void)
 
         error = NULL;
         res = dbus_g_proxy_call (sm_proxy,
-                                 "Shutdown",
+                                 action,
                                  &error,
                                  G_TYPE_INVALID,
                                  G_TYPE_INVALID);
 
         if (!res) {
                 if (error != NULL) {
-                        g_warning ("Failed to call shutdown: %s",
-                                   error->message);
+                        g_warning ("Failed to call %s: %s",
+                                   action, error->message);
                         g_error_free (error);
                 } else {
-                        g_warning ("Failed to call shutdown");
+                        g_warning ("Failed to call %s", action);
                 }
         }
 
@@ -195,11 +197,15 @@ main (int argc, char *argv[])
                 conflicting_options++;
         if (power_off)
                 conflicting_options++;
+        if (reboot)
+                conflicting_options++;
         if (conflicting_options > 1)
                 display_error (_("Program called with conflicting options"));
 
         if (power_off) {
-                do_power_off ();
+                do_power_off ("Shutdown");
+        } else if (reboot) {
+                do_power_off ("Reboot");
         } else {
                 /* default to logout */
 

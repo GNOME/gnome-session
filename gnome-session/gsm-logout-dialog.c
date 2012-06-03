@@ -43,11 +43,6 @@
 #define LOCKDOWN_SCHEMA            "org.gnome.desktop.lockdown"
 #define KEY_DISABLE_USER_SWITCHING "disable-user-switching"
 
-typedef enum {
-        GSM_DIALOG_LOGOUT_TYPE_LOGOUT,
-        GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN
-} GsmDialogLogoutType;
-
 struct _GsmLogoutDialogPrivate
 {
         GsmDialogLogoutType  type;
@@ -283,6 +278,14 @@ gsm_logout_dialog_timeout (gpointer data)
                                             seconds_to_show);
                 break;
 
+        case GSM_DIALOG_LOGOUT_TYPE_REBOOT:
+                seconds_warning = ngettext ("This system will be automatically "
+                                            "restarted in %d second.",
+                                            "This system will be automatically "
+                                            "restarted in %d seconds.",
+                                            seconds_to_show);
+                break;
+
         default:
                 g_assert_not_reached ();
         }
@@ -419,6 +422,22 @@ gsm_get_dialog (GsmDialogLogoutType type,
                                                GSM_LOGOUT_RESPONSE_SHUTDOWN);
                 }
                 break;
+        case GSM_DIALOG_LOGOUT_TYPE_REBOOT:
+                icon_name    = GSM_ICON_SHUTDOWN;
+                primary_text = _("Restart this system now?");
+
+                logout_dialog->priv->default_response = GSM_LOGOUT_RESPONSE_REBOOT;
+
+                gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                                       GTK_STOCK_CANCEL,
+                                       GTK_RESPONSE_CANCEL);
+
+                if (gsm_logout_supports_reboot (logout_dialog)) {
+                        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+                                               _("_Restart"),
+                                               GSM_LOGOUT_RESPONSE_REBOOT);
+                }
+                break;
         default:
                 g_assert_not_reached ();
         }
@@ -440,10 +459,11 @@ gsm_get_dialog (GsmDialogLogoutType type,
 }
 
 GtkWidget *
-gsm_get_shutdown_dialog (GdkScreen *screen,
-                         guint32    activate_time)
+gsm_get_shutdown_dialog (GdkScreen           *screen,
+                         guint32              activate_time,
+                         GsmDialogLogoutType  type)
 {
-        return gsm_get_dialog (GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN,
+        return gsm_get_dialog (type,
                                screen,
                                activate_time);
 }

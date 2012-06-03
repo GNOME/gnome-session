@@ -3120,7 +3120,8 @@ logout_dialog_response (GsmLogoutDialog *logout_dialog,
 }
 
 static void
-show_fallback_shutdown_dialog (GsmManager *manager)
+show_fallback_shutdown_dialog (GsmManager *manager,
+                               gboolean    is_reboot)
 {
         GtkWidget *dialog;
 
@@ -3132,7 +3133,10 @@ show_fallback_shutdown_dialog (GsmManager *manager)
         manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
 
         dialog = gsm_get_shutdown_dialog (gdk_screen_get_default (),
-                                          gtk_get_current_event_time ());
+                                          gtk_get_current_event_time (),
+                                          is_reboot ?
+                                          GSM_DIALOG_LOGOUT_TYPE_REBOOT :
+                                          GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN);
 
         g_signal_connect (dialog,
                           "response",
@@ -3390,14 +3394,50 @@ gsm_manager_shutdown (GsmManager *manager,
 
         shell_running = gsm_shell_is_running (manager->priv->shell);
 
-        if (!shell_running) {
-                show_fallback_shutdown_dialog (manager);
-        } else {
+        if (!shell_running)
+                show_fallback_shutdown_dialog (manager, FALSE);
+        else
                 request_shutdown (manager);
-        }
 
         return TRUE;
 }
+
+gboolean
+gsm_manager_reboot (GsmManager  *manager,
+                    GError     **error)
+{
+        gboolean shell_running;
+
+        g_debug ("GsmManager: Reboot called");
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                             "Reboot interface is only available during the Running phase");
+                return FALSE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_LOCKED_DOWN,
+                             "Logout has been locked down");
+                return FALSE;
+        }
+
+        shell_running = gsm_shell_is_running (manager->priv->shell);
+
+        if (!shell_running)
+                show_fallback_shutdown_dialog (manager, TRUE);
+        else
+                request_reboot (manager);
+
+        return TRUE;
+}
+
 
 gboolean
 gsm_manager_can_shutdown (GsmManager *manager,
