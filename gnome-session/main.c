@@ -141,7 +141,7 @@ acquire_name (void)
                 gsm_util_init_error (TRUE,
                                      "Could not connect to session bus: %s",
                                      error->message);
-                /* not reached */
+                return FALSE;
         }
 
         bus_proxy = dbus_g_proxy_new_for_name_owner (connection,
@@ -153,7 +153,7 @@ acquire_name (void)
                 gsm_util_init_error (TRUE,
                                      "Could not connect to session bus: %s",
                                      error->message);
-                /* not reached */
+                return FALSE;
         }
 
         g_signal_connect_swapped (bus_proxy,
@@ -165,7 +165,7 @@ acquire_name (void)
                 gsm_util_init_error (TRUE,
                                      "%s",
                                      "Could not acquire name on session bus");
-                /* not reached */
+                return FALSE;
         }
 
         return TRUE;
@@ -351,7 +351,11 @@ main (int argc, char **argv)
 
         xsmp_server = gsm_xsmp_server_new (client_store);
 
-        acquire_name ();
+        if (!acquire_name ()) {
+                gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
+                gtk_main ();
+                exit (1);
+        }
 
         manager = gsm_manager_new (client_store, failsafe);
 
