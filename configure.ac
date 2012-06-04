@@ -1,5 +1,5 @@
 AC_INIT([gnome-session],
-        [3.4.3],
+        [3.5.2],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
 
 AC_CONFIG_SRCDIR([gnome-session])
