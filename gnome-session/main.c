@@ -54,6 +54,10 @@ static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 static gboolean please_fail = FALSE;
 
+static DBusGProxy *bus_proxy = NULL;
+
+static void shutdown_cb (gpointer data);
+
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
                   const char *name,
@@ -128,7 +132,6 @@ acquire_name_on_proxy (DBusGProxy *bus_proxy,
 static gboolean
 acquire_name (void)
 {
-        DBusGProxy      *bus_proxy;
         GError          *error;
         DBusGConnection *connection;
 
@@ -141,10 +144,22 @@ acquire_name (void)
                 /* not reached */
         }
 
-        bus_proxy = dbus_g_proxy_new_for_name (connection,
-                                               DBUS_SERVICE_DBUS,
-                                               DBUS_PATH_DBUS,
-                                               DBUS_INTERFACE_DBUS);
+        bus_proxy = dbus_g_proxy_new_for_name_owner (connection,
+                                                     DBUS_SERVICE_DBUS,
+                                                     DBUS_PATH_DBUS,
+                                                     DBUS_INTERFACE_DBUS,
+                                                     &error);
+        if (error != NULL) {
+                gsm_util_init_error (TRUE,
+                                     "Could not connect to session bus: %s",
+                                     error->message);
+                /* not reached */
+        }
+
+        g_signal_connect_swapped (bus_proxy,
+                                  "destroy",
+                                  G_CALLBACK (shutdown_cb),
+                                  NULL);
 
         if (! acquire_name_on_proxy (bus_proxy, GSM_DBUS_NAME) ) {
                 gsm_util_init_error (TRUE,
@@ -152,8 +167,6 @@ acquire_name (void)
                                      "Could not acquire name on session bus");
                 /* not reached */
         }
-
-        g_object_unref (bus_proxy);
 
         return TRUE;
 }
@@ -376,6 +389,10 @@ main (int argc, char **argv)
 
         if (client_store != NULL) {
                 g_object_unref (client_store);
+        }
+
+        if (bus_proxy != NULL) {
+                g_object_unref (bus_proxy);
         }
 
         gdm_log_shutdown ();
