@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -438,13 +439,20 @@ update_iceauthority (GsmXsmpServer *server,
         GSList           *entries;
         GSList           *e;
         int               i;
+        int               ret;
         gboolean          ok = FALSE;
 
         filename = IceAuthFileName ();
-        if (IceLockAuthFile (filename,
-                             GSM_ICE_AUTH_RETRIES,
-                             GSM_ICE_AUTH_INTERVAL,
-                             GSM_ICE_AUTH_LOCK_TIMEOUT) != IceAuthLockSuccess) {
+        do {
+                ret = IceLockAuthFile (filename,
+                                       GSM_ICE_AUTH_RETRIES,
+                                       GSM_ICE_AUTH_INTERVAL,
+                                       GSM_ICE_AUTH_LOCK_TIMEOUT);
+
+        } while (ret != IceAuthLockSuccess && errno == EINTR);
+
+        if (ret != IceAuthLockSuccess) {
+                g_warning ("IceLockAuthFile failed: %m");
                 return FALSE;
         }
 
