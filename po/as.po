@@ -6,12 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-23 09:50+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-05-15 17:25+0000\n"
 "PO-Revision-Date: 2012-03-23 18:28+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
-"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
-msgstr "কমান্ড নিৰ্বাচন কৰক"
+msgstr "কমান্ড বাছক"
 
 #: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
@@ -84,9 +84,9 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "এই অধিবেশনে আপোনাক GNOME ত লগিন কৰায়"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>কিছুমান প্ৰগ্ৰাম এতিয়াও চলি আছে:</b>"
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "কিছুমান প্ৰগ্ৰাম চলি আছে:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
@@ -94,7 +94,7 @@ msgid ""
 "to lose work."
 msgstr ""
 "প্ৰগ্ৰাম সমাপ্ত হোৱাৰ অপেক্ষা কৰা হৈছে। প্ৰগ্ৰাম বিঘ্নিত হ'লে সঞ্চালিত কামৰ ফল "
-"আঁতৰুৱাৰ সম্ভাৱনা আছে ।"
+"আঁতৰুৱাৰ সম্ভাৱনা আছে।"
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -146,7 +146,7 @@ msgstr "নাম (_N):"
 #: ../egg/eggdesktopfile.c:165
 #, c-format
 msgid "File is not a valid .desktop file"
-msgstr "নথিপত্ৰটো বৈধ .desktop নথিপত্ৰ নহয়"
+msgstr "নথিপত্ৰটো এটা বৈধ .desktop নথিপত্ৰ নহয়"
 
 #. translators: 'Version' is from a desktop file, and
 #. * should not be translated. '%s' would probably be a
@@ -154,7 +154,7 @@ msgstr "নথিপত্ৰটো বৈধ .desktop নথিপত্ৰ ন
 #: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "ডেস্কট'প নথিপত্ৰৰ অজ্ঞাত সংস্কৰণ '%s'"
+msgstr "ডেস্কটপ নথিপত্ৰৰ অজ্ঞাত সংস্কৰণ '%s'"
 
 #: ../egg/eggdesktopfile.c:974
 #, c-format
@@ -176,7 +176,7 @@ msgstr "অপৰিচিত লঞ্চ বিকল্প: %d"
 #: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "'Type=Link' ডেস্কট'প প্ৰবিষ্টিৰ ক্ষেত্ৰত দস্তাবেজৰ URI প্ৰেৰণ কৰিব নোৱাৰি"
+msgstr "'Type=Link' ডেস্কটপ প্ৰবিষ্টিৰ ক্ষেত্ৰত দস্তাবেজৰ URI প্ৰেৰণ কৰিব নোৱাৰি"
 
 #: ../egg/eggdesktopfile.c:1412
 #, c-format
@@ -228,10 +228,6 @@ msgstr "অজ্ঞাত"
 #: ../gnome-session/gsm-inhibit-dialog.c:639
 msgid "A program is still running:"
 msgstr "এটা প্ৰগ্ৰাম বৰ্তমানে চলি আছে:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "কিছুমান প্ৰগ্ৰাম চলি আছে:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
@@ -293,16 +289,16 @@ msgstr[1] "%d ছেকেণ্ডৰ পিছত স্বচালিতভ�
 #: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr "বৰ্তমানে আপুনি \"%s\" হিচাপে লগিন কৰিছে ।"
+msgstr "বৰ্তমানে আপুনি \"%s\" হিচাপে লগিন কৰিছে।"
 
 #: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
-msgstr "এতিয়াই চিস্টেমৰ পৰা লগআউট কৰক ?"
+msgstr "এতিয়াই চিস্টেমৰ পৰা লগআউট কৰিব নে ?"
 
 #
 #: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
-msgstr "ব্যৱহাৰকাৰী সলনি কৰক (_S)"
+msgstr "ব্যৱহাৰকাৰী পৰিবৰ্তন কৰক (_S)"
 
 #
 #: ../gnome-session/gsm-logout-dialog.c:384
@@ -314,7 +310,7 @@ msgstr "লগআউট কৰক (_L)"
 #
 #: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
-msgstr "এই মুহূৰ্তে চিস্টেম বন্ধ কৰক ?"
+msgstr "এই মুহূৰ্তে চিস্টেম বন্ধ কৰিব নে ?"
 
 #: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
@@ -346,16 +342,12 @@ msgstr ""
 "প্ৰশাসকক যোগাযোগ কৰক"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "এটা সমস্যা দেখা দিছে আৰু চিস্টেমটো উদ্ধাৰ হব পৰা নাই। সকলো সম্প্ৰসাৰন এটা সাৱধানতা "
-"হিচাপে "
-"অসামৰ্থবান কৰা হৈছে।"
+"হিচাপে অসামৰ্থবান কৰা হৈছে।"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
@@ -368,7 +360,7 @@ msgstr ""
 #: ../gnome-session/gsm-process-helper.c:123
 #, c-format
 msgid "Exited with code %d"
-msgstr "%d কোডৰ সৈতে প্ৰস্থান কৰা হৈছে"
+msgstr "%d ক'ডৰ সৈতে প্ৰস্থান কৰা হৈছে"
 
 #: ../gnome-session/gsm-process-helper.c:128
 #, c-format
@@ -380,11 +372,11 @@ msgstr "%d সঙ্কেত দ্বাৰা কিল কৰা হৈছ�
 msgid "Stopped by signal %d"
 msgstr "%d সঙ্কেত দ্বাৰা বন্ধ কৰা হৈছে"
 
-#: ../gnome-session/gsm-manager.c:1396
+#: ../gnome-session/gsm-manager.c:1421
 msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 লোড হ'বলৈ ব্যৰ্থ"
+msgstr "GNOME 3 ল'ড হ'বলৈ ব্যৰ্থ"
 
-#: ../gnome-session/gsm-manager.c:1397
+#: ../gnome-session/gsm-manager.c:1422
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -398,11 +390,11 @@ msgstr ""
 "এইটোৱে খুব সম্ভব এয়া বুজায় যে আপোনাৰ চিস্টেম (গ্ৰাফিক্স হাৰ্ডওৱেৰ বা ড্ৰাইভাৰ) পূৰ্ণ "
 "GNOME 3 অনুভুতি চলাবলে সক্ষম নহয়।"
 
-#: ../gnome-session/gsm-manager.c:1399
+#: ../gnome-session/gsm-manager.c:1424
 msgid "Learn more about GNOME 3"
-msgstr "GNOME 3 -ৰ বিষয়ে অধিক জানক"
+msgstr "GNOME 3 ৰ বিষয়ে অধিক জানক"
 
-#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
 msgid "Not responding"
 msgstr "কোনো প্ৰতিক্ৰিয়া নাই"
 
@@ -456,11 +448,11 @@ msgstr "SESSION_NAME"
 #
 #: ../gnome-session/main.c:279
 msgid "Enable debugging code"
-msgstr "কোড ডিবাগিং সামৰ্থবান কৰক"
+msgstr "ক'ড ডিবাগিং সামৰ্থবান কৰক"
 
 #: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
-msgstr "ব্যৱহাৰকাৰী দ্বাৰা নিৰ্ধাৰিত অনুপ্ৰয়োগসমূহ লোড নকৰিব"
+msgstr "ব্যৱহাৰকাৰী দ্বাৰা নিৰ্ধাৰিত অনুপ্ৰয়োগসমূহ ল'ড নকৰিব"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
 #: ../gnome-session/main.c:283
@@ -495,6 +487,9 @@ msgstr "অধিবেশন ব্যৱস্থাপনাৰ সৈতে 
 #: ../tools/gnome-session-quit.c:199
 msgid "Program called with conflicting options"
 msgstr "দ্বন্দ্বযুক্ত বিকল্প সহ প্ৰগ্ৰামক কল কৰা হৈছে"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>কিছুমান প্ৰগ্ৰাম এতিয়াও চলি আছে:</b>"
 
 #~| msgid ""
 #~| "A problem has occurred and the system can't recover.\n"
