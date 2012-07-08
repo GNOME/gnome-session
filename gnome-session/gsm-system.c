@@ -124,6 +124,21 @@ gsm_system_set_session_idle (GsmSystem *system,
         GSM_SYSTEM_GET_IFACE (system)->set_session_idle (system, is_idle);
 }
 
+void
+gsm_system_add_inhibitor (GsmSystem        *system,
+                          const gchar      *id,
+                          GsmInhibitorFlag  flag)
+{
+        GSM_SYSTEM_GET_IFACE (system)->add_inhibitor (system, id, flag);
+}
+
+void
+gsm_system_remove_inhibitor (GsmSystem   *system,
+                             const gchar *id)
+{
+        GSM_SYSTEM_GET_IFACE (system)->remove_inhibitor (system, id);
+}
+
 gboolean
 gsm_system_is_login_session (GsmSystem *system)
 {

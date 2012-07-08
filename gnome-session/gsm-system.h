@@ -27,6 +27,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
+#include "gsm-inhibitor.h"
+
 G_BEGIN_DECLS
 
 #define GSM_TYPE_SYSTEM             (gsm_system_get_type ())
@@ -59,6 +61,11 @@ struct _GsmSystemInterface
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
         gboolean (* is_login_session) (GsmSystem *system);
+        void     (* add_inhibitor)    (GsmSystem        *system,
+                                       const gchar      *id,
+                                       GsmInhibitorFlag  flags);
+        void     (* remove_inhibitor) (GsmSystem        *system,
+                                       const gchar      *id);
 };
 
 enum _GsmSystemError {
@@ -94,6 +101,13 @@ void       gsm_system_set_session_idle (GsmSystem *system,
                                         gboolean   is_idle);
 
 gboolean   gsm_system_is_login_session (GsmSystem *system);
+
+void       gsm_system_add_inhibitor    (GsmSystem        *system,
+                                        const gchar      *id,
+                                        GsmInhibitorFlag  flags);
+
+void       gsm_system_remove_inhibitor (GsmSystem        *system,
+                                        const gchar      *id);
 
 G_END_DECLS
 

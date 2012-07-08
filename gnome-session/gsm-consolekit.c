@@ -856,6 +856,19 @@ gsm_consolekit_hibernate (GsmSystem *system)
 }
 
 static void
+gsm_consolekit_add_inhibitor (GsmSystem        *system,
+                              const gchar      *id,
+                              GsmInhibitorFlag  flag)
+{
+}
+
+static void
+gsm_consolekit_remove_inhibitor (GsmSystem   *system,
+                                 const gchar *id)
+{
+}
+
+static void
 gsm_consolekit_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_consolekit_can_switch_user;
@@ -869,6 +882,8 @@ gsm_consolekit_system_init (GsmSystemInterface *iface)
         iface->hibernate = gsm_consolekit_hibernate;
         iface->set_session_idle = gsm_consolekit_set_session_idle;
         iface->is_login_session = gsm_consolekit_is_login_session;
+        iface->add_inhibitor = gsm_consolekit_add_inhibitor;
+        iface->remove_inhibitor = gsm_consolekit_remove_inhibitor;
 }
 
 GsmConsolekit *

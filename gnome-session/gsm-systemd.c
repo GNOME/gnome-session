@@ -39,6 +39,7 @@
 #include <glib-object.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
+#include <gio/gunixfdlist.h>
 
 #include "gsm-marshal.h"
 #include "gsm-system.h"
@@ -54,6 +55,9 @@ struct _GsmSystemdPrivate
         GDBusProxy      *sd_proxy;
         gchar           *session_id;
         gchar           *session_path;
+
+        GSList          *inhibitors;
+        gint             inhibit_fd;
 };
 
 static void gsm_systemd_system_init (GsmSystemInterface *iface);
@@ -71,6 +75,11 @@ gsm_systemd_finalize (GObject *object)
         g_clear_object (&systemd->priv->sd_proxy);
         g_free (systemd->priv->session_id);
         g_free (systemd->priv->session_path);
+
+        if (systemd->priv->inhibitors != NULL) {
+                g_slist_free_full (systemd->priv->inhibitors, g_free);
+                close (systemd->priv->inhibit_fd);
+        }
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
 }
@@ -422,7 +431,6 @@ suspend_done (GObject      *source,
               gpointer      user_data)
 {
         GDBusProxy *proxy = G_DBUS_PROXY (source);
-        GsmSystemd *manager = user_data;
         GError *error = NULL;
         GVariant *res;
 
@@ -442,7 +450,6 @@ hibernate_done (GObject      *source,
               gpointer      user_data)
 {
         GDBusProxy *proxy = G_DBUS_PROXY (source);
-        GsmSystemd *manager = user_data;
         GError *error = NULL;
         GVariant *res;
 
@@ -487,6 +494,85 @@ gsm_systemd_hibernate (GsmSystem *system)
 }
 
 static void
+inhibit_done (GObject      *source,
+              GAsyncResult *result,
+              gpointer      user_data)
+{
+        GDBusProxy *proxy = G_DBUS_PROXY (source);
+        GsmSystemd *manager = GSM_SYSTEMD (user_data);
+        GError *error = NULL;
+        GVariant *res;
+        GUnixFDList *fd_list = NULL;
+        gint idx;
+
+        res = g_dbus_proxy_call_with_unix_fd_list_finish (proxy, &fd_list, result, &error);
+
+        if (!res) {
+                g_warning ("Unable to inhibit system: %s", error->message);
+                g_error_free (error);
+        } else {
+                g_variant_get (res, "(h)", &idx);
+                manager->priv->inhibit_fd = g_unix_fd_list_get (fd_list, idx, &error);
+                if (manager->priv->inhibit_fd == -1) {
+                        g_warning ("Failed to receive system inhibitor fd: %s", error->message);
+                        g_error_free (error);
+                }
+                g_debug ("System inhibitor fd is %d", manager->priv->inhibit_fd);
+                g_object_unref (fd_list);
+                g_variant_unref (res);
+        }
+}
+
+static void
+gsm_systemd_add_inhibitor (GsmSystem        *system,
+                           const gchar      *id,
+                           GsmInhibitorFlag  flag)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+
+        if ((flag & GSM_INHIBITOR_FLAG_SUSPEND) == 0)
+                return;
+
+        if (manager->priv->inhibitors == NULL) {
+                g_debug ("Adding system inhibitor");
+                g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
+                                                     "Inhibit",
+                                                     g_variant_new ("(ssss)",
+                                                                    "sleep:shutdown",
+                                                                    g_get_user_name (),
+                                                                    "user session inhibited",
+                                                                    "block"),
+                                                     0,
+                                                     G_MAXINT,
+                                                     NULL,
+                                                     NULL,
+                                                     inhibit_done,
+                                                     manager);
+        }
+        manager->priv->inhibitors = g_slist_prepend (manager->priv->inhibitors, g_strdup (id));
+}
+
+static void
+gsm_systemd_remove_inhibitor (GsmSystem   *system,
+                              const gchar *id)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        GSList *l;
+
+        l = g_slist_find_custom (manager->priv->inhibitors, id, (GCompareFunc)g_strcmp0);
+        if (l == NULL)
+                return;
+
+        g_free (l->data);
+        manager->priv->inhibitors = g_slist_delete_link (manager->priv->inhibitors, l);
+        if (manager->priv->inhibitors == NULL) {
+                        g_debug ("Dropping system inhibitor");
+                        close (manager->priv->inhibit_fd);
+                        manager->priv->inhibit_fd = -1;
+        }
+}
+
+static void
 gsm_systemd_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_systemd_can_switch_user;
@@ -500,6 +586,8 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->hibernate = gsm_systemd_hibernate;
         iface->set_session_idle = gsm_systemd_set_session_idle;
         iface->is_login_session = gsm_systemd_is_login_session;
+        iface->add_inhibitor = gsm_systemd_add_inhibitor;
+        iface->remove_inhibitor = gsm_systemd_remove_inhibitor;
 }
 
 GsmSystemd *

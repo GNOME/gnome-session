@@ -2472,7 +2472,14 @@ on_store_inhibitor_added (GsmStore   *store,
                           const char *id,
                           GsmManager *manager)
 {
+        GsmInhibitor *i;
+
         g_debug ("GsmManager: Inhibitor added: %s", id);
+
+        i = GSM_INHIBITOR (gsm_store_lookup (store, id));
+        gsm_system_add_inhibitor (manager->priv->system, id,
+                                  gsm_inhibitor_peek_flags (i));
+
         g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
         update_idle (manager);
 }
@@ -2483,6 +2490,9 @@ on_store_inhibitor_removed (GsmStore   *store,
                             GsmManager *manager)
 {
         g_debug ("GsmManager: Inhibitor removed: %s", id);
+
+        gsm_system_remove_inhibitor (manager->priv->system, id);
+
         g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
         update_idle (manager);
 }
