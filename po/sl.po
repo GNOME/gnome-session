@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-23 16:45+0000\n"
-"PO-Revision-Date: 2012-03-23 18:41+0100\n"
+"POT-Creation-Date: 2012-07-09 13:13+0000\n"
+"PO-Revision-Date: 2012-07-10 08:26+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -67,7 +67,7 @@ msgid "No description"
 msgstr "Brez opisa"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Različica programa"
 
@@ -89,8 +89,9 @@ msgid "This session logs you into GNOME"
 msgstr "Seja vas prijavi v GNOME namizje"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Nekateri programi so še vedno zagnani:</b>"
+#: ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Nekateri programi so še vedno zagnani:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
 #: ../gnome-session/gsm-inhibit-dialog.c:640
@@ -222,10 +223,6 @@ msgstr "Neznano"
 msgid "A program is still running:"
 msgstr "Program je še vedno zagnan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Nekateri programi so še vedno zagnani:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "Čakanje na konec izvajanja programov. Prekinitev izvajanja lahko povzroči izgubo vaših podatkov."
@@ -263,7 +260,7 @@ msgid "Cancel"
 msgstr "Prekliči"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -272,7 +269,7 @@ msgstr[1] "Samodejno boste odjavljeni čez %d sekundo."
 msgstr[2] "Samodejno boste odjavljeni čez %d sekundi."
 msgstr[3] "Samodejno boste odjavljeni čez %d sekunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -281,44 +278,58 @@ msgstr[1] "Sistem se bo samodejno izklopil čez %d sekundo."
 msgstr[2] "Sistem se bo samodejno izklopil čez %d sekundi."
 msgstr[3] "Sistem se bo samodejno izklopil čez %d sekunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Sistem se bo samodejno ponovno zagnal čez %s sekund."
+msgstr[1] "Sistem se bo samodejno ponovno zagnal čez %d sekundo."
+msgstr[2] "Sistem se bo samodejno ponovno zagnal čez %d sekundi."
+msgstr[3] "Sistem se bo samodejno ponovno zagnal čez %d sekunde."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Trenutno ste prijavljeni kot \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Ali se želite odjaviti iz sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Preklop uporabnika"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Ali želite izklopiti računalnik?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "V _pripravljenost"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "V _mirovanje"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "_Ponoven zagon"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Izklopi"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+msgid "Restart this system now?"
+msgstr "Ali naj se sistem ponovno zažene?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -357,11 +368,11 @@ msgstr "Uničeno s signalom %d"
 msgid "Stopped by signal %d"
 msgstr "Zaustavljeno s signalom %d"
 
-#: ../gnome-session/gsm-manager.c:1396
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "Nalaganje namizja GNOME 3 je spodletelo"
 
-#: ../gnome-session/gsm-manager.c:1397
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -371,12 +382,12 @@ msgstr ""
 "\n"
 "Napaka običajno pomeni, da grafična strojna oprema ali gonilnik ni primeren za zagon namizja GNOME 3 v polnem grafičnem načinu."
 
-#: ../gnome-session/gsm-manager.c:1399
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Več podrobnosti o namizju GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1496
-#: ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1493
+#: ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Ni odziva"
 
@@ -392,11 +403,11 @@ msgstr "Zapomnjeni programi"
 msgid "This program is blocking logout."
 msgstr "Program zavira postopek odjave."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti ICE vtiča za poslušanje: %s"
@@ -407,61 +418,67 @@ msgstr "Ni mogoče ustvariti ICE vtiča za poslušanje: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Ni mogoče začeti prijavne seje (in ni se mogoče povezati s strežnikom X)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "Pokaži pogovorno okno napak med preizkušanjem."
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr "- upravljalnik seje GNOME"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Odjava"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Izključi"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Ponovni zagon"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Prezri obstoječe oviralnike dejavnosti"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Ne zahtevaj potrditve uporabnika"
 
-#: ../tools/gnome-session-quit.c:89
-#: ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91
+#: ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Ni se mogoče povezati z upravljalnikom sej"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
 
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>Nekateri programi so še vedno zagnani:</b>"
