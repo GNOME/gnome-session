@@ -113,25 +113,8 @@ gsm_process_helper (const char   *command_line,
                                      G_IO_CHANNEL_ERROR_FAILED,
                                      "Timed out");
         } else {
-                if (WIFEXITED (helper->status)) {
-                        if (WEXITSTATUS (helper->status) == 0)
-                                ret = TRUE;
-                        else
-                                g_set_error (error,
-                                             G_IO_CHANNEL_ERROR,
-                                             G_IO_CHANNEL_ERROR_FAILED,
-                                             _("Exited with code %d"), WEXITSTATUS (helper->status));
-                } else if (WIFSIGNALED (helper->status)) {
-                        g_set_error (error,
-                                     G_IO_CHANNEL_ERROR,
-                                     G_IO_CHANNEL_ERROR_FAILED,
-                                     _("Killed by signal %d"), WTERMSIG (helper->status));
-                } else if (WIFSTOPPED (helper->status)) {
-                        g_set_error (error,
-                                     G_IO_CHANNEL_ERROR,
-                                     G_IO_CHANNEL_ERROR_FAILED,
-                                     _("Stopped by signal %d"), WSTOPSIG (helper->status));
-                }
+                if (g_spawn_check_exit_status (helper->status, error))
+                        ret = TRUE;
         }
 
         if (helper->loop) {
