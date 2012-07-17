@@ -648,10 +648,10 @@ app_exited (GsmApp     *app,
 {
         g_debug ("App %s exited with %d", gsm_app_peek_app_id (app), exit_code);
 
-        /* Consider that "exit = 1" means "crash" for required components */
-        if (exit_code == 1 && is_app_required (manager, app)) {
+        /* Consider that non-success exit status means "crash" for required components */
+        if (exit_code != 0 && is_app_required (manager, app)) {
                 if (gsm_app_peek_autorestart (app)) {
-                        g_debug ("Component '%s' is autorestart, ignoring exited(1) signal",
+                        g_debug ("Component '%s' is autorestart, ignoring non-successful exit",
                                  gsm_app_peek_app_id (app));
                         return;
                 }
