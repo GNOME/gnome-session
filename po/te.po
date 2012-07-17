@@ -9,14 +9,15 @@
 # Krishna Babu K <kkrothap@redhat.com>, 2009.
 # Praveen Illa <mail2ipn@gmail.com>, 2011.
 # Sasi Bhushan Boddepalli <sasi@swecha.net>, 2012.
-# GVS.Giri (Swecha Team)<gvs.giri947@gmail.com>,2012.
+# GVS.Giri <gvs.giri947@gmail.com>,2012, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-07 16:14+0000\n"
-"PO-Revision-Date: 2012-07-09 12:57+0530\n"
+"POT-Creation-Date: 2012-07-17 02:00+0000\n"
+"PO-Revision-Date: 2012-07-17 17:26+0530\n"
 "Last-Translator: GVS.Giri <gvs.giri947@gmail.com>\n"
 "Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "Language: \n"
@@ -126,8 +127,9 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "నిష్క్రమించేటప్పుడు నడుస్తున్న కార్యక్షేత్రాలని స్వయంచాలకంగా గుర్తుంచుకొనుము (_A)"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
-msgstr "ప్రస్తుతము నడుస్తున్న అనువర్తనమును గుర్తుంచుకొనుము (_R)"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
+msgstr "ప్రస్తుతం నడుస్తున్న అనువర్తనాలు గుర్తుంచుకో (_R)"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
@@ -287,8 +289,6 @@ msgstr[1] "ఈ వ్యవస్థ %d సెకనులలో స్వయం
 
 #: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
-#| msgid "This system will be automatically shut down in %d second."
-#| msgid_plural "This system will be automatically shut down in %d seconds."
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
 msgstr[0] "ఈ వ్యవస్థ స్వయంచాలకంగా% d సెకను లో పునఃప్రారంబించ చేయబడుతుంది."
@@ -335,7 +335,6 @@ msgid "_Shut Down"
 msgstr "మూసివేయి (_S)"
 
 #: ../gnome-session/gsm-logout-dialog.c:427
-#| msgid "Shut down this system now?"
 msgid "Restart this system now?"
 msgstr "ఈ వ్యవస్థను ఇప్పుడు పునఃప్రారంభంచండి?"
 
@@ -366,26 +365,11 @@ msgstr ""
 "ఒక సమస్య ఎదురయింది మరియు వ్యవస్థ దానినుండి కోలుకోలేదు.\n"
 "దయచేసి నిష్క్రమించి మరలా ప్రయత్నించండి."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "%d కోడ్ తో నిష్క్రమించింది"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "%d సిగ్నల్ చే అంతముచేయబడింది"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "%d సిగ్నల్‌తో ఆపివేయబడింది"
-
-#: ../gnome-session/gsm-manager.c:1432
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "గ్నోమ్ 3 లోడుచేయుటలో విఫలమైంది"
 
-#: ../gnome-session/gsm-manager.c:1433
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -399,11 +383,11 @@ msgstr ""
 "మీ వ్యవస్థ (గ్రాఫిక్స్ హార్డ్‍వేర్ లేదా డ్రైవర్) గ్నోమ్ 3 యొక్క పూర్తి అనుభవాన్ని ఇచ్చుటకు తగిన శక్తి "
 "సామర్ధ్యాలను కలిగిలేదు."
 
-#: ../gnome-session/gsm-manager.c:1435
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "గ్నోమ్ 3 గురించి మరింత తెలుసుకోండి"
 
-#: ../gnome-session/gsm-manager.c:1532 ../gnome-session/gsm-manager.c:2278
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "స్పందించుటలేదు"
 
@@ -497,6 +481,15 @@ msgstr "సెషన్ నిర్వాహకానికి అనుసం�
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "విభేదిస్తున్న ఐచ్చికాలతో పిలువబడే ప్రోగ్రామ్"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "%d కోడ్ తో నిష్క్రమించింది"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "%d సిగ్నల్ చే అంతముచేయబడింది"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "%d సిగ్నల్‌తో ఆపివేయబడింది"
 
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>కొన్ని ప్రోగ్రామ్లు యింకనూ నడుచుచున్నవి:</b>"
