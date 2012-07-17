@@ -516,6 +516,15 @@ static void
 on_end_session_dialog_canceled (DBusGProxy *proxy,
                                 GsmShell   *shell)
 {
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
+        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                              G_CALLBACK (queue_end_session_dialog_update),
+                                              shell);
+
         g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CANCELED], 0);
 }
 
