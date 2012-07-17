@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-07 16:14+0000\n"
-"PO-Revision-Date: 2012-07-16 14:36+0200\n"
+"POT-Creation-Date: 2012-07-17 02:00+0000\n"
+"PO-Revision-Date: 2012-07-17 10:54+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -129,7 +129,8 @@ msgstr ""
 "Recordar _automáticamente las aplicaciones en ejecución al salir de la sesión"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "_Recordar las aplicaciones ejecutándose actualmente"
 
 #: ../data/session-properties.ui.h:5
@@ -291,8 +292,6 @@ msgstr[1] "El sistema se apagará automáticamente en %d segundos."
 
 #: ../gnome-session/gsm-logout-dialog.c:282
 #, c-format
-#| msgid "This system will be automatically shut down in %d second."
-#| msgid_plural "This system will be automatically shut down in %d seconds."
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
 msgstr[0] "El sistema se reiniciará automáticamente en %d segundo."
@@ -339,7 +338,6 @@ msgid "_Shut Down"
 msgstr "_Apagar"
 
 #: ../gnome-session/gsm-logout-dialog.c:427
-#| msgid "Shut down this system now?"
 msgid "Restart this system now?"
 msgstr "¿Reiniciar este sistema ahora?"
 
@@ -371,26 +369,11 @@ msgstr ""
 "Ocurrió un problema y el sistema no se puede recuperar.\n"
 "cierre la sesión e inténtelo de nuevo."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Salió con el código %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Matado por la señal %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Detenido por la señal %d"
-
-#: ../gnome-session/gsm-manager.c:1432
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 falló al cargar"
 
-#: ../gnome-session/gsm-manager.c:1433
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -404,11 +387,11 @@ msgstr ""
 "Probablemente significa que su sistema (hardware gráfico o controlador) no "
 "es capaz de ejecutar la experiencia GNOME 3 completa."
 
-#: ../gnome-session/gsm-manager.c:1435
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Aprenda más acerca de GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1532 ../gnome-session/gsm-manager.c:2278
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "No responde"
 
@@ -505,6 +488,15 @@ msgstr "No se pudo conectar con el gestor de sesiones"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Se llamó al programa con opciones en conflicto"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "Salió con el código %d"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "Matado por la señal %d"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "Detenido por la señal %d"
 
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>Algunos programas aún se están ejecutando:</b>"
