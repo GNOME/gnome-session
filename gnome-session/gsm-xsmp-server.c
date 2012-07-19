@@ -494,7 +494,7 @@ update_iceauthority (GsmXsmpServer *server,
         } else {
                 int fd;
 
-                if (errno != EEXIST) {
+                if (errno != ENOENT) {
                         g_warning ("Unable to read ICE authority file %s: %m", filename);
                         goto cleanup;
                 }
