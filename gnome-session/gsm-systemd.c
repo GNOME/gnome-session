@@ -136,6 +136,12 @@ gsm_systemd_init (GsmSystemd *manager)
 
         sd_pid_get_session (getpid (), &manager->priv->session_id);
 
+        if (manager->priv->session_id == NULL) {
+                g_warning ("Could not get session id for session. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return;
+        }
+
         res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
                                       "GetSession",
                                       g_variant_new ("(s)", manager->priv->session_id),
@@ -361,6 +367,10 @@ gsm_systemd_is_login_session (GsmSystem *system)
         gchar *service = NULL;
 
         ret = FALSE;
+
+        if (manager->priv->session_id == NULL) {
+                return ret;
+        }
 
         res = sd_session_get_service (manager->priv->session_id, &service);
         if (res < 0) {
