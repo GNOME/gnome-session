@@ -33,14 +33,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-15 17:25+0000\n"
-"PO-Revision-Date: 2012-06-29 01:03+0200\n"
+"POT-Creation-Date: 2012-07-18 11:32+0000\n"
+"PO-Revision-Date: 2012-07-24 12:01+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: Greek team\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.5.2\n"
 
@@ -89,7 +89,7 @@ msgid "No description"
 msgstr "Χωρίς περιγραφή"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
@@ -141,7 +141,8 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Αυτόματη απομνημόνευση εκτελούμενων εφαρμογών κατά την αποσύνδεση"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "Α_πομνημόνευση εφαρμογών που εκτελούνται "
 
 #: ../data/session-properties.ui.h:5
@@ -270,7 +271,6 @@ msgid "Shut Down Anyway"
 msgstr "Κλείσιμο ούτως ή άλλως"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:889
-#| msgid "Reboot Anyway"
 msgid "Restart Anyway"
 msgstr "Επανεκκίνηση οπωσδήποτε"
 
@@ -283,74 +283,83 @@ msgid "Cancel"
 msgstr "Ακύρωση"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Θα αποσυνδεθείτε αυτόματα σε %d δευτερόλεπτο."
 msgstr[1] "Θα αποσυνδεθείτε αυτόματα σε %d δευτερόλεπτα."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Το σύστημα θα κλείσει αυτόματα σε %d δευτερόλεπτο."
 msgstr[1] "Το σύστημα θα κλείσει αυτόματα σε %d δευτερόλεπτα."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+#| msgid "This system will be automatically shut down in %d second."
+#| msgid_plural "This system will be automatically shut down in %d seconds."
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Το σύστημα θα επανεκκινηθεί αυτόματα σε %d δευτερόλεπτο."
+msgstr[1] "Το σύστημα θα επανεκκινηθεί αυτόματα σε %d δευτερόλεπτα."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Είστε συνδεδεμένος ως  \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Να γίνει αποσύνδεση από το σύστημα τώρα;"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "Α_λλαγή χρήστη"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Να κλείσει το σύστημα τώρα;"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "Α_ναστολή"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "Α_δρανοποίηση"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "Επα_νεκκίνηση"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "Κ_λείσιμο συστήματος"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+#| msgid "Shut down this system now?"
+msgid "Restart this system now?"
+msgstr "Να επανεκκινηθεί το σύστημα τώρα;"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ωχ όχι! Κάτι πήγε στραβά."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:318
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Παρακαλώ επικοινωνήστε με τον διαχειριστή του συστήματος"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Έχουν απενεργοποιηθεί όλες οι επεκτάσεις για λόγους προφύλαξης."
 
@@ -362,26 +371,11 @@ msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει.\n"
 "Παρακαλώ αποσυνδεθείτε και δοκιμάστε ξανά."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Έξοδος με τιμή %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Τερματίστηκε από το σήμα %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Σταμάτησε από το σήμα %d"
-
-#: ../gnome-session/gsm-manager.c:1421
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "Αποτυχία φόρτωσης GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1422
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -391,12 +385,12 @@ msgstr ""
 "\n"
 "Αυτό πιθανότατα σημαίνει ότι το σύστημά σας (το σύστημα γραφικών ή ο οδηγός) δεν μπορεί να αποδώσει την πλήρη εμπειρία του GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1424
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Μάθετε περισσότερα για το GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1521
-#: ../gnome-session/gsm-manager.c:2267
+#: ../gnome-session/gsm-manager.c:1493
+#: ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
@@ -405,7 +399,6 @@ msgstr "Δεν ανταποκρίνεται"
 #. * properties. But it could still be that SmProgram is not set.
 #.
 #: ../gnome-session/gsm-xsmp-client.c:559
-#| msgid "_Remember Currently Running Application"
 msgid "Remembered Application"
 msgstr "Απομνημόνευση εφαρμογών"
 
@@ -413,11 +406,11 @@ msgstr "Απομνημόνευση εφαρμογών"
 msgid "This program is blocking logout."
 msgstr "Αυτό το πρόγραμμα εμποδίζει την αποσύνδεση."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Άρνηση σύνδεσης νέου πελάτη επειδή το σύστημα τερματίζεται αυτή τη στιγμή\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Αδυναμία δημιουργίας ICE listening socket: %s"
@@ -428,63 +421,76 @@ msgstr "Αδυναμία δημιουργίας ICE listening socket: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Αδυναμία εκκίνησης συνεδρίας με σύνδεση ( και αδυναμία σύνδεσης με εξυπηρετητή X)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Συνεδρία για χρήση"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα εκσφαλμάτωσης"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Να μην φορτώνονται εφαρμογές καθορισμένες από τον χρήστη"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "Εμφάνιση του διαλόγου fail whale για δοκιμή"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr "- Διαχείριση της συνεδρίας του GNOME"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Αποσύνδεση"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Σβήσιμο"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Επανεκκίνηση"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Αγνοώντας όποιους υπάρχοντες αναστολείς"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Να μη ζητείται επιβεβαίωση από το χρήστη"
 
-#: ../tools/gnome-session-quit.c:89
-#: ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91
+#: ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Αδύνατη η σύνδεση με το διαχειριστή συνεδρίας"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες επιλογές"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "Έξοδος με τιμή %d"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "Τερματίστηκε από το σήμα %d"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "Σταμάτησε από το σήμα %d"
 
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>Μερικά προγράμματα εκτελούνται ακόμα:</b>"
