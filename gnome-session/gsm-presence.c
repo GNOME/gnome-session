@@ -51,6 +51,7 @@ struct GsmPresencePrivate
         char             *status_text;
         gboolean          idle_enabled;
         GnomeIdleMonitor *idle_monitor;
+        guint             idle_became_active_id;
         guint             idle_watch_id;
         guint             idle_timeout;
         gboolean          screensaver_active;
@@ -137,18 +138,20 @@ set_session_idle (GsmPresence   *presence,
         }
 }
 
-static gboolean
-on_idle_timeout (GnomeIdleMonitor *monitor,
-                 guint             id,
-                 gboolean          condition,
-                 GsmPresence      *presence)
+static void
+idle_became_idle_cb (GnomeIdleMonitor *idle_monitor,
+                     guint             id,
+                     gpointer          user_data)
 {
-        gboolean handled;
+        GsmPresence *presence = user_data;
+        set_session_idle (presence, TRUE);
+}
 
-        handled = TRUE;
-        set_session_idle (presence, condition);
-
-        return handled;
+static void
+idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
+                       GsmPresence      *presence)
+{
+        set_session_idle (presence, FALSE);
 }
 
 static void
@@ -165,6 +168,12 @@ reset_idle_watch (GsmPresence  *presence)
                 presence->priv->idle_watch_id = 0;
         }
 
+        if (presence->priv->idle_became_active_id > 0) {
+                g_signal_handler_disconnect (presence->priv->idle_monitor,
+                                             presence->priv->idle_became_active_id);
+                presence->priv->idle_became_active_id = 0;
+        }
+
         if (! presence->priv->screensaver_active
             && presence->priv->idle_enabled
             && presence->priv->idle_timeout > 0) {
@@ -172,9 +181,11 @@ reset_idle_watch (GsmPresence  *presence)
 
                 presence->priv->idle_watch_id = gnome_idle_monitor_add_watch (presence->priv->idle_monitor,
                                                                               presence->priv->idle_timeout,
-                                                                              (GnomeIdleMonitorWatchFunc)on_idle_timeout,
+                                                                              idle_became_idle_cb,
                                                                               presence,
                                                                               NULL);
+                presence->priv->idle_watch_id = g_signal_connect (presence->priv->idle_monitor, "became-active",
+                                                                  G_CALLBACK (idle_became_active_cb), presence);
         }
 }
 
