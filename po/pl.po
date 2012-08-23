@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-23 16:14+0100\n"
-"PO-Revision-Date: 2012-03-23 16:15+0100\n"
+"POT-Creation-Date: 2012-08-23 03:40+0200\n"
+"PO-Revision-Date: 2012-08-23 03:42+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -65,7 +65,7 @@ msgstr "Bez nazwy"
 msgid "No description"
 msgstr "Brak opisu"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35 ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Wersja tego programu"
 
@@ -85,9 +85,9 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Ta sesja loguje użytkownika do środowiska GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Niektóre programy są nadal uruchomione:</b>"
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Niektóre programy są nadal uruchomione:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
@@ -118,7 +118,7 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "Z_apamiętanie uruchomionych programów podczas wylogowywania"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "_Zapamiętaj uruchomione programy"
 
 #: ../data/session-properties.ui.h:5
@@ -224,10 +224,6 @@ msgstr "Nieznany"
 msgid "A program is still running:"
 msgstr "Program jest nadal uruchomiony:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Niektóre programy są nadal uruchomione:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
@@ -269,7 +265,7 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -277,7 +273,7 @@ msgstr[0] "Automatyczne wylogowanie nastąpi za %d sekundę."
 msgstr[1] "Automatyczne wylogowanie nastąpi za %d sekundy."
 msgstr[2] "Automatyczne wylogowanie nastąpi za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -285,44 +281,57 @@ msgstr[0] "Automatyczne wyłączenie komputera nastąpi za %d sekundę."
 msgstr[1] "Automatyczne wyłączenie komputera nastąpi za %d sekundy."
 msgstr[2] "Automatyczne wyłączenie komputera nastąpi za %d sekund."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Automatyczne ponowne uruchomienie komputera nastąpi za %d sekundę."
+msgstr[1] "Automatyczne ponowne uruchomienie komputera nastąpi za %d sekundy."
+msgstr[2] "Automatyczne ponowne uruchomienie komputera nastąpi za %d sekund."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Użytkownik jest zalogowany jako \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Wylogować z systemu?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Przełącz użytkownika"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Wyloguj"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Wyłączyć komputer?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Uśpij"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
-msgstr "Za_hibernuj"
+msgstr "_Hibernuj"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
-msgstr "_Uruchom ponownie"
+msgstr "U_ruchom ponownie"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Wyłącz komputer"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+msgid "Restart this system now?"
+msgstr "Uruchomić ponownie komputer?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -352,26 +361,11 @@ msgstr ""
 "Wystąpił problem i nie można przywrócić systemu.\n"
 "Proszę się wylogować i spróbować ponownie."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Zakończono z kodem %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Usunięte z pamięci przez sygnał %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Zatrzymane przez sygnał %d"
-
-#: ../gnome-session/gsm-manager.c:1396
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "Wczytanie środowiska GNOME 3 się nie powiodło"
 
-#: ../gnome-session/gsm-manager.c:1397
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -385,11 +379,11 @@ msgstr ""
 "Prawdopodobnie oznacza to, że komputer (sprzęt graficzny lub sterownik) nie "
 "obsługuje środowiska GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1399
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Dowiedz się więcej o środowisku GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
@@ -405,13 +399,13 @@ msgstr "Zapamiętany program"
 msgid "This program is blocking logout."
 msgstr "Ten program uniemożliwia wylogowanie."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Odmowa połączenia nowego klienta z powodu trwającego zamykania sesji\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nie można utworzyć gniazda nasłuchującego ICE: %s"
@@ -424,60 +418,64 @@ msgstr ""
 "Nie można uruchomić sesji logowania (oraz nie można się połączyć z serwerem "
 "X)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Obejście standardowych katalogów automatycznego uruchamiania"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "KATALOG_AUTOMATYCZNEGO_URUCHAMIANIA"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Sesja do użycia"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "NAZWA_SESJI"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Uruchomienie kodu do debugowania"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Bez wczytywania programów określonych przez użytkownika"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr ""
 "Wyświetla okno niepowodzenia uruchomienia środowiska w celach testowych"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr " - menedżer sesji środowiska GNOME"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Wylogowanie"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Wyłączenie"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Ponowne uruchomienie"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignorowanie istniejących mechanizmów wstrzymujących"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Bez pytania o potwierdzenie użytkownika"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Nie można połączyć się z menedżerem sesji"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Wywołano program ze sprzecznymi opcjami"
