@@ -1,6 +1,6 @@
 # Vietnamese Translation for GNOME Session.
 # Copyright © 2008 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2012-07-17 02:00+0000\n"
-"PO-Revision-Date: 2012-08-23 13:05+0700\n"
+"PO-Revision-Date: 2012-08-23 13:06+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -116,7 +116,6 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
 
 #: ../data/session-properties.ui.h:4
-#, fuzzy
 #| msgid "_Remember Currently Running Application"
 msgid "_Remember Currently Running Applications"
 msgstr "_Nhớ ứng dụng đang chạy"
@@ -269,21 +268,21 @@ msgstr "Thôi"
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Sẽ tự động đăng xuất trong vòng %d giây."
+msgstr[0] "Sẽ tự động đăng xuất trong %d giây."
 
 #: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Hệ thống này sẽ bị tự động tắt trong vòng %d giây."
+msgstr[0] "Hệ thống này sẽ bị tự động tắt trong %d giây."
 
 #: ../gnome-session/gsm-logout-dialog.c:282
-#, fuzzy, c-format
+#, c-format
 #| msgid "This system will be automatically shut down in %d second."
 #| msgid_plural "This system will be automatically shut down in %d seconds."
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Hệ thống này sẽ bị tự động tắt trong vòng %d giây."
+msgstr[0] "Hệ thống này sẽ bị tự động khởi động lại trong %d giây."
 
 #: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
@@ -306,7 +305,7 @@ msgstr "Đăng _xuất"
 
 #: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
-msgstr "Tắt hệ thống này ngày bây giờ?"
+msgstr "Tắt hệ thống này ngay bây giờ?"
 
 #: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
@@ -326,10 +325,9 @@ msgid "_Shut Down"
 msgstr "_Tắt máy"
 
 #: ../gnome-session/gsm-logout-dialog.c:427
-#, fuzzy
 #| msgid "Shut down this system now?"
 msgid "Restart this system now?"
-msgstr "Tắt hệ thống này ngày bây giờ?"
+msgstr "Khởi động lại hệ thống này ngay bây giờ?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -457,7 +455,7 @@ msgstr "Tắt máy"
 
 #: ../tools/gnome-session-quit.c:55
 msgid "Reboot"
-msgstr ""
+msgstr "Khởi động lại"
 
 #: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
