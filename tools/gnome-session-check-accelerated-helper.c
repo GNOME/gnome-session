@@ -79,6 +79,7 @@
 #include <regex.h>
 
 #include <X11/Xlib.h>
+#include <X11/Xatom.h>
 #include <X11/extensions/Xcomposite.h>
 #include <GL/gl.h>
 #include <GL/glx.h>
@@ -86,6 +87,7 @@
 #define SIZE_UNSET 0
 #define SIZE_ERROR -1
 static int max_texture_size = SIZE_UNSET;
+static int max_renderbuffer_size = SIZE_UNSET;
 
 static inline void
 _print_error (const char *str)
@@ -287,11 +289,16 @@ _has_hardware_gl (Display *display)
         if (_is_gl_renderer_blacklisted (renderer))
                 goto out;
 
-        /* we need to get the max texture size while we have a context,
-         * but we'll check its value later */
+        /* we need to get the max texture and renderbuffer sizes while we have
+         * a context, but we'll check their values later */
+
         glGetIntegerv (GL_MAX_TEXTURE_SIZE, &max_texture_size);
         if (glGetError() != GL_NO_ERROR)
                 max_texture_size = SIZE_ERROR;
+
+        glGetIntegerv (GL_MAX_RENDERBUFFER_SIZE_EXT, &max_renderbuffer_size);
+        if (glGetError() != GL_NO_ERROR)
+                max_renderbuffer_size = SIZE_ERROR;
 
         ret = TRUE;
 
@@ -377,15 +384,37 @@ out:
         return ret;
 }
 
+static void
+_set_max_screen_size_property (Display *display, int screen, int size)
+{
+        Atom max_screen_size_atom;
+
+        max_screen_size_atom = XInternAtom (display, "_GNOME_MAX_SCREEN_SIZE",
+                                            False);
+
+        /* Will be read by gnome-settings-daemon and
+         * gnome-control-center to avoid display configurations where 3D
+         * is not available (and would break gnome-shell) */
+        XChangeProperty (display, RootWindow(display, screen),
+                         max_screen_size_atom,
+                         XA_CARDINAL, 32, PropModeReplace,
+                         (unsigned char *)&size, 1);
+
+        XSync(display, False);
+}
+
 static gboolean
 _is_max_texture_size_big_enough (Display *display)
 {
-        int screen;
+        int screen, size;
 
         screen = DefaultScreen (display);
-        if (max_texture_size < DisplayWidth (display, screen) ||
-            max_texture_size < DisplayHeight (display, screen))
+        size = MIN(max_renderbuffer_size, max_texture_size);
+        if (size < DisplayWidth (display, screen) ||
+            size < DisplayHeight (display, screen))
                 return FALSE;
+
+        _set_max_screen_size_property (display, screen, size);
 
         return TRUE;
 }
@@ -433,7 +462,7 @@ main (int argc, char **argv)
         }
 
         if (!_is_max_texture_size_big_enough (display)) {
-                _print_error ("GL_MAX_TEXTURE_SIZE is too small.");
+                _print_error ("GL_MAX_{TEXTURE,RENDERBUFFER}_SIZE is too small.");
                 goto out;
         }
 
