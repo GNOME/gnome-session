@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-23 09:50+0000\n"
-"PO-Revision-Date: 2012-03-26 22:38+0300\n"
+"POT-Creation-Date: 2012-07-17 02:00+0000\n"
+"PO-Revision-Date: 2012-08-29 23:08+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
@@ -65,7 +65,7 @@ msgid "No description"
 msgstr "Nėra aprašymo"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Programos versija"
 
@@ -87,8 +87,9 @@ msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Kai kurios programos vis dar veikia:</b>"
+#: ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Kai kurios programos vis dar veikia:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
 #: ../gnome-session/gsm-inhibit-dialog.c:640
@@ -116,7 +117,8 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Atsijungiant, automatiškai atsiminti paleistas programas"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "_Atsiminti dabar veikiančias programas"
 
 #: ../data/session-properties.ui.h:5
@@ -220,10 +222,6 @@ msgstr "Nežinoma"
 msgid "A program is still running:"
 msgstr "Programa vis dar veikia:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Kai kurios programos vis dar veikia:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "Laukiama, kol programos baigs darbą. Šias programas nutraukus gali būti prarasta informacija."
@@ -261,7 +259,7 @@ msgid "Cancel"
 msgstr "Atsisakyti"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -269,7 +267,7 @@ msgstr[0] "Būsite automatiškai atjungti po %d sekundės."
 msgstr[1] "Būsite automatiškai atjungti po %d sekundžių."
 msgstr[2] "Būsite automatiškai atjungti po %d sekundžių."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -277,44 +275,60 @@ msgstr[0] "Sistema automatiškai išsijungs po %d sekundės."
 msgstr[1] "Sistema automatiškai išsijungs po %d sekundžių."
 msgstr[2] "Sistema automatiškai išsijungs po %d sekundžių."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+#| msgid "This system will be automatically shut down in %d second."
+#| msgid_plural "This system will be automatically shut down in %d seconds."
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Sistema automatiškai bus įkelta iš naujo po %d sekundės."
+msgstr[1] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
+msgstr[2] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Esate prisijungę kaip „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Atsijungti dabar?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Keisti naudotoją"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Išjungti sistemą dabar?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Užmigdyti"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Hibernuoti"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "Įkelti iš _naujo"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "Išj_ungti"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+#| msgid "Shut down this system now?"
+msgid "Restart this system now?"
+msgstr "Įkelti sistemą iš naujo dabar?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -325,9 +339,6 @@ msgid "A problem has occurred and the system can't recover. Please contact a sys
 msgstr "Įvyko klaida ir sistema negali atsistatyti. Susisiekite su sistemos administratoriumi"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "Įvyko klaida ir sistema negali atsistatyti. Kaip atsargos priemonė visi plėtiniai buvo išjungti."
 
@@ -339,26 +350,11 @@ msgstr ""
 "Įvyko klaida ir sistema negali atsistatyti.\n"
 "Atsijunkite ir prisijunkite iš naujo."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Išėjo su kodu %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Nutraukta signalu %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Sustabdyta signalu %d"
-
-#: ../gnome-session/gsm-manager.c:1396
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 nepavyko pakrauti"
 
-#: ../gnome-session/gsm-manager.c:1397
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
 "\n"
@@ -368,12 +364,12 @@ msgstr ""
 "\n"
 "Greičiausiai tai reiškia, kad Jūsų sistema (grafikos techninė įranga arba tvarkyklė) negali pilnai vykdyti GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1399
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Sužinoti daugiau apie GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1496
-#: ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1493
+#: ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Neatsako"
 
@@ -389,11 +385,11 @@ msgstr "Atsiminti programą"
 msgid "This program is blocking logout."
 msgstr "Ši programa neleidžia atsijungti."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
@@ -404,61 +400,65 @@ msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "Nepavyko paleisti prisijungimo seanso (taip pat nepavyko prisijungti prie X serverio)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr " – GNOME seanso valdyklė"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Atsijungti"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Išjungti"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Įkelti iš naujo"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignoruojami trukdžiai"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Nereikalauti naudotojo patvirtinimo"
 
-#: ../tools/gnome-session-quit.c:89
-#: ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91
+#: ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Nepavyko prisijungti prie seansų valdyklės"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Programa iškviesta naudojant konfliktuojančias parinktis"
 
