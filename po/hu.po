@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-04 15:43+0200\n"
-"PO-Revision-Date: 2012-04-04 15:44+0200\n"
+"POT-Creation-Date: 2012-09-04 15:38+0200\n"
+"PO-Revision-Date: 2012-09-04 15:38+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: \n"
@@ -67,7 +67,7 @@ msgstr "Névtelen"
 msgid "No description"
 msgstr "Nincs leírás"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35 ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
@@ -87,9 +87,9 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Bejelentkezés a GNOME környezetbe"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Néhány program még mindig fut:</b>"
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Néhány program még fut:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
@@ -100,48 +100,48 @@ msgstr ""
 "elvesztését okozhatja."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "A bejelentkezéskor elindítandó alkalmazások kiválasztása"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Indítópult"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "A bejelentkezéskor elindítandó alkalmazások kiválasztása"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "További elindítandó _programok:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Tallózás…"
+msgid "Startup Programs"
+msgstr "Automatikusan elinduló programok"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_Parancs:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "_Megjegyzés:"
+msgid "_Remember Currently Running Applications"
+msgstr "_Jelenleg futó alkalmazások megjegyzése"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Beállítások"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Automatikusan elinduló programok"
+msgid "Browse…"
+msgstr "Tallózás…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
+msgid "Comm_ent:"
+msgstr "_Megjegyzés:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_Név:"
+msgid "Co_mmand:"
+msgstr "_Parancs:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "_Jelenleg futó alkalmazások megjegyzése"
+msgid "_Name:"
+msgstr "_Név:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -225,10 +225,6 @@ msgstr "Ismeretlen"
 msgid "A program is still running:"
 msgstr "Egy program még fut:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Néhány program még fut:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
@@ -270,58 +266,70 @@ msgid "Cancel"
 msgstr "Mégse"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Automatikusan ki fog jelentkezni %d másodperc múlva."
 msgstr[1] "Automatikusan ki fog jelentkezni %d másodperc múlva."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "A rendszer %d másodperc múlva automatikusan le fog állni."
 msgstr[1] "A rendszer %d másodperc múlva automatikusan le fog állni."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "A rendszer %d másodperc múlva automatikusan újra fog indulni."
+msgstr[1] "A rendszer %d másodperc múlva automatikusan újra fog indulni."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Jelenleg „%s” néven van bejelentkezve."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Kijelentkezik most?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "Felhasználó_váltás"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Kijelentkezés"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Leállítja a rendszert?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Felfüggesztés"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Hibernálás"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "Újr_aindítás"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Leállítás"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+msgid "Restart this system now?"
+msgstr "Újraindítja a rendszert?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -339,7 +347,9 @@ msgstr ""
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
-msgstr "Hiba történt, és a rendszer nem képes helyreállni. Elővigyázatosságból minden kiterjesztés letiltásra került."
+msgstr ""
+"Hiba történt, és a rendszer nem képes helyreállni. Elővigyázatosságból "
+"minden kiterjesztés letiltásra került."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
@@ -349,26 +359,11 @@ msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni.\n"
 "Jelentkezzen ki, és próbálja újra."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Kilépett ezzel a kóddal: %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Kilőve ezzel a szignállal: %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Megállítva ezzel a szignállal: %d"
-
-#: ../gnome-session/gsm-manager.c:1421
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "A GNOME 3 betöltése meghiúsult"
 
-#: ../gnome-session/gsm-manager.c:1422
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -382,11 +377,11 @@ msgstr ""
 "Ez valószínűleg azt jelenti, hogy a rendszere (a grafikus hardver vagy annak "
 "illesztőprogramja) nem képes a GNOME 3 környezet megfelelő működtetésére."
 
-#: ../gnome-session/gsm-manager.c:1424
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Tudjon meg többet a GNOME 3-ról"
 
-#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Nem válaszol"
 
@@ -402,13 +397,13 @@ msgstr "Megjegyzett alkalmazás"
 msgid "This program is blocking logout."
 msgstr "Ez a program blokkolja a kijelentkezést."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Új ügyfélkapcsolatok visszautasítása, mivel a rendszer éppen leáll\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nem hozható létre az ICE-figyelő foglalat: %s"
@@ -421,76 +416,64 @@ msgstr ""
 "A bejelentkező munkamenet indítása sikertelen (és sikertelen a csatlakozás "
 "az X-kiszolgálóhoz)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Szabványos automatikus indítási könyvtárak felülbírálása"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "AUTO_INDÍTÁS_KVT"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Használandó munkamenet"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "MUNKAMENET_NEVE"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Ne töltsön be felhasználó által megadott alkalmazásokat"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "A hibaképernyő megjelenítése teszteléshez"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr " – A GNOME munkamenet-kezelője"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Kijelentkezés"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Kikapcsolás"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Újraindítás"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "A meglévő korlátozók mellőzése"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Ne kérjen felhasználói megerősítést"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Sikertelen kapcsolatfelvétel a munkamenet-kezelővel"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "A program kapcsolói ütköznek"
-
-#~ msgid ""
-#~ "A problem has occurred and the system can't recover. Some of the "
-#~ "extensions below may have caused this.\n"
-#~ "Please try disabling some of these, and then log out and try again."
-#~ msgstr ""
-#~ "Hiba történt, és a rendszer nem képes helyreállni. Ezt az alábbi "
-#~ "kiterjesztések valamelyike okozhatta.\n"
-#~ "Próbálja meg letiltani ezeket, majd jelentkezzen ki, és próbálja újra."
-
-#~ msgid ""
-#~ "There is a problem with the configuration server.\n"
-#~ "(%s exited with status %d)"
-#~ msgstr ""
-#~ "Hiba történt a konfigurációs kiszolgálóval.\n"
-#~ "(%s %d állapotkóddal lépett ki)"
 
