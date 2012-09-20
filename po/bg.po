@@ -1,21 +1,23 @@
 # Bulgarian translation of gnome-session po-file.
 # Copyright (C) 2001, 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
+# Copyright (C) 2012 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004
 # Yavor Doganov <yavor@gnu.org>, 2008.
 # Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
-# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010, 2011.
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
+# Alexander Shopov <ash@kambanaria.org>, 2011, 2012.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-25 19:20+0300\n"
-"PO-Revision-Date: 2012-03-25 19:20+0300\n"
+"POT-Creation-Date: 2012-09-20 05:56+0300\n"
+"PO-Revision-Date: 2012-09-20 05:55+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -68,7 +70,7 @@ msgstr "Без име"
 msgid "No description"
 msgstr "Без описание"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35 ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Версията на тази програма"
 
@@ -88,9 +90,9 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Влизане в GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Някои програми все още работят:</b>"
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Все още работят програмите:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
@@ -122,8 +124,8 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Автоматично запомняне на стартираните програми при изход от системата"
 
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
-msgstr "_Запомняне на стартираните програми при изход от системата"
+msgid "_Remember Currently Running Applications"
+msgstr "_Запомняне на стартираните програми"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
@@ -226,10 +228,6 @@ msgstr "Непозната"
 msgid "A program is still running:"
 msgstr "Все още работи програмата:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Все още работят програмите:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
@@ -271,58 +269,70 @@ msgid "Cancel"
 msgstr "Отказ"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Ще излезете от системата автоматично след %d секунда."
 msgstr[1] "Ще излезете от системата автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Компютърът ще се изключи автоматично след %d секунда."
 msgstr[1] "Компютърът ще се изключи автоматично след %d секунди."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Компютърът ще се рестартира автоматично след %d секунда."
+msgstr[1] "Компютърът ще се рестартира автоматично след %d секунди."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "В момента сте влезли като „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Излизане от системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "_Смяна на потребител"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
 #: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Изключване на системата?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "_Приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Дълбоко приспиване"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "_Рестартиране"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "Изключване на _компютъра"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+msgid "Restart this system now?"
+msgstr "Рестартиране на системата?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -352,26 +362,11 @@ msgstr ""
 "Възникна проблем и системата не може да се справи.\n"
 "Излезте от системата и опитайте отново."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "Изход с код %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Прекратен от сигнала %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Спрян от сигнала %d"
-
-#: ../gnome-session/gsm-manager.c:1396
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 не се зареди"
 
-#: ../gnome-session/gsm-manager.c:1397
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -384,11 +379,11 @@ msgstr ""
 "Най-вероятната причина е, че системата ви (графичната карта и/или драйверът) "
 "не покрива изискванията на GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1399
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Научете повече за GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "Не отговаря"
 
@@ -404,7 +399,7 @@ msgstr "Запомнена програма"
 msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -412,7 +407,7 @@ msgstr ""
 "Отхвърляне на свързванията с нови клиенти, защото тази сесия в момента се "
 "затваря\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Неуспех при създаването на гнездо на ICE за слушане: %s"
@@ -425,59 +420,63 @@ msgstr ""
 "Неуспех при стартирането на входната сесия (и неуспех при свързването с X "
 "сървъра)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "ПАПКА_ЗА_АВТОМАТИЧНО_СТАРТИРАНЕ"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Коя сесия да се ползва"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "ИМЕ_НА_СЕСИЯ"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "Показване на черния екран за грешка с тестови цели"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Изход"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Изключване"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Рестартиране"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Изход въпреки блокиращите програми"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Без потвърждаване"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Не може да се изгради връзка към управлението на сесии"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Програмата е стартирана с противоречащи си опции"
