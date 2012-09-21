@@ -364,7 +364,7 @@ gsm_systemd_is_login_session (GsmSystem *system)
         GsmSystemd *manager = GSM_SYSTEMD (system);
         int res;
         gboolean ret;
-        gchar *service = NULL;
+        gchar *session_class = NULL;
 
         ret = FALSE;
 
@@ -372,13 +372,13 @@ gsm_systemd_is_login_session (GsmSystem *system)
                 return ret;
         }
 
-        res = sd_session_get_service (manager->priv->session_id, &service);
+        res = sd_session_get_class (manager->priv->session_id, &session_class);
         if (res < 0) {
-                g_warning ("could not get pam service: %s", strerror (-res));
+                g_warning ("could not get session class: %s", strerror (-res));
                 return FALSE;
         }
-        ret = (g_strcmp0 (service, "gdm-welcome") == 0);
-        free (service);
+        ret = (g_strcmp0 (session_class, "greeter") == 0);
+        free (session_class);
 
         return ret;
 }
