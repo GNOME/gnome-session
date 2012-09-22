@@ -27,7 +27,6 @@
 G_BEGIN_DECLS
 
 gboolean gsm_session_fill (GsmManager  *manager,
-                           char       **override_autostart_dirs,
                            const char  *session);
 
 G_END_DECLS

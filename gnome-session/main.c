@@ -371,9 +371,9 @@ main (int argc, char **argv)
         if (IS_STRING_EMPTY (session_name))
                 session_name = _gsm_manager_get_default_session (manager);
 
-        if (!gsm_session_fill (manager,
-                               override_autostart_dirs,
-                               session_name)) {
+        gsm_util_set_autostart_dirs (override_autostart_dirs);
+
+        if (!gsm_session_fill (manager, session_name)) {
                 gsm_util_init_error (TRUE, "Failed to load session \"%s\"", session_name ? session_name : "(null)");
         }
 

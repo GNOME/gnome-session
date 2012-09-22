@@ -238,7 +238,6 @@ load_standard_apps (GsmManager *manager,
 
                 autostart_dirs = gsm_util_get_autostart_dirs ();
 
-
                 maybe_load_saved_session_apps (manager);
 
                 for (i = 0; autostart_dirs[i]; i++) {
@@ -253,16 +252,6 @@ load_standard_apps (GsmManager *manager,
         handle_default_providers (keyfile, !gsm_manager_get_failsafe (manager),
                                   append_required_providers_helper, manager);
         g_debug ("fill: *** Done adding default providers");
-}
-
-static void
-load_override_apps (GsmManager *manager,
-                    char      **override_autostart_dirs)
-{
-        int i;
-        for (i = 0; override_autostart_dirs[i]; i++) {
-                gsm_manager_add_autostart_apps_from_dir (manager, override_autostart_dirs[i]);
-        }
 }
 
 static GKeyFile *
@@ -462,17 +451,11 @@ get_session_keyfile (const char *session,
 
 gboolean
 gsm_session_fill (GsmManager  *manager,
-                  char       **override_autostart_dirs,
                   const char  *session)
 {
         GKeyFile *keyfile;
         gboolean is_fallback;
         char *actual_session;
-
-        if (override_autostart_dirs != NULL) {
-                load_override_apps (manager, override_autostart_dirs);
-                return TRUE;
-        }
 
         keyfile = get_session_keyfile (session, &actual_session, &is_fallback);
 
