@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gnome-session MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-25 12:42+0000\n"
-"PO-Revision-Date: 2012-03-25 16:13+0300\n"
+"POT-Creation-Date: 2012-09-22 18:12+0000\n"
+"PO-Revision-Date: 2012-09-23 09:54+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -74,8 +74,8 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Selle seansiga logitakse sind GNOME keskkonda sisse"
 
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Mõned rakendused töötavad ikka veel:</b>"
+msgid "Some programs are still running:"
+msgstr "Mõned rakendused töötavad ikka veel:"
 
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
@@ -99,7 +99,7 @@ msgstr "Automaatselt käivituvad rakendused"
 msgid "_Automatically remember running applications when logging out"
 msgstr "Väljalogimisel _jäetakse töötavad rakendused meelde"
 
-msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "_Jäta hetkel töötavad rakendused meelde"
 
 msgid "Options"
@@ -182,9 +182,6 @@ msgstr "Tundmatu"
 msgid "A program is still running:"
 msgstr "Üks rakendus töötab ikka veel:"
 
-msgid "Some programs are still running:"
-msgstr "Mõned rakendused töötavad ikka veel:"
-
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
@@ -230,6 +227,12 @@ msgstr[0] "See arvuti lülitatakse %d sekundi pärast automaatselt välja."
 msgstr[1] "See arvuti lülitatakse %d sekundi pärast automaatselt välja."
 
 #, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "See arvuti taaskäivitatakse %d sekundi pärast automaatselt."
+msgstr[1] "See arvuti taaskäivitatakse %d sekundi pärast automaatselt."
+
+#, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Sa oled sisse logitud kasutajana \"%s\"."
 
@@ -257,6 +260,9 @@ msgstr "_Taaskäivita"
 msgid "_Shut Down"
 msgstr "Lülita _välja"
 
+msgid "Restart this system now?"
+msgstr "Kas taaskäivitada arvuti kohe?"
+
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oo ei! Miski läks nihu."
 
@@ -280,18 +286,6 @@ msgid ""
 msgstr ""
 "Esines viga ja süsteem ei suuda taastuda.\n"
 "Logi välja ja proovi uuesti."
-
-#, c-format
-msgid "Exited with code %d"
-msgstr "Väljus koodiga %d"
-
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Protsess tapeti signaaliga %d"
-
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Protsess peatati signaaliga %d"
 
 msgid "GNOME 3 Failed to Load"
 msgstr "GNOME 3 laadimine nurjus"
@@ -375,6 +369,9 @@ msgstr "Väljalogimine"
 msgid "Power off"
 msgstr "Väljalülitamine"
 
+msgid "Reboot"
+msgstr "Taaskäivita"
+
 msgid "Ignoring any existing inhibitors"
 msgstr "Kõiki olemasolevaid piiranguid eiratakse"
 
@@ -386,12 +383,3 @@ msgstr "Seansihalduriga pole võimalik ühenduda"
 
 msgid "Program called with conflicting options"
 msgstr "Rakendus kutsuti välja vastuoluliste parameetritega"
-
-#~ msgid ""
-#~ "A problem has occurred and the system can't recover. Some of the "
-#~ "extensions below may have caused this.\n"
-#~ "Please try disabling some of these, and then log out and try again."
-#~ msgstr ""
-#~ "Esines viga ja süsteem ei suuda taastuda. Seda võisid põhjustada mõned "
-#~ "järgnevaist laiendustest.\n"
-#~ "Lülita need laiendused välja, logi välja ja proovi uuesti."
