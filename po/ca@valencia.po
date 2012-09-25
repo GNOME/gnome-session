@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-10 23:23+0200\n"
+"POT-Creation-Date: 2012-09-26 01:30+0200\n"
 "PO-Revision-Date: 2012-03-24 01:40+0100\n"
 "Last-Translator: David Planella <david.planella@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -65,7 +65,7 @@ msgstr "Sense nom"
 msgid "No description"
 msgstr "Sense descripció"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35 ../gnome-session/main.c:294
 msgid "Version of this application"
 msgstr "Versió d'esta aplicació"
 
@@ -85,9 +85,9 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Esta sessió vos entra al GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Hi ha alguns programes encara en execució:</b>"
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+msgid "Some programs are still running:"
+msgstr "Hi ha alguns programes que encara s'estan executant:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
 msgid ""
@@ -119,7 +119,7 @@ msgstr "Recorda _automàticament les aplicacions que s'estan executant en eixir"
 
 # FIXME [l10n-bug] (dpm)
 #: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
 msgstr "_Recorda les aplicacions que s'estan executant actualment"
 
 #: ../data/session-properties.ui.h:5
@@ -226,10 +226,6 @@ msgstr "Desconegut"
 msgid "A program is still running:"
 msgstr "Hi ha un programa que encara s'està executant:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Hi ha alguns programes que encara s'estan executant:"
-
 #: ../gnome-session/gsm-inhibit-dialog.c:644
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
@@ -271,58 +267,70 @@ msgid "Cancel"
 msgstr "Cancel·la"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:266
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Eixireu automàticament d'ací a %d segon."
 msgstr[1] "Eixireu automàticament d'ací a %d segons."
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:274
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Este sistema es pararà automàticament d'ací a %d segon."
 msgstr[1] "Este sistema es pararà automàticament d'ací a %d segons."
 
-#: ../gnome-session/gsm-logout-dialog.c:303
+#: ../gnome-session/gsm-logout-dialog.c:282
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Es reiniciarà el sistema automàticament d'ací a %d segon."
+msgstr[1] "Es reiniciarà el sistema automàticament d'ací a %d segons."
+
+#: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Heu entrat com a «%s»."
 
-#: ../gnome-session/gsm-logout-dialog.c:369
+#: ../gnome-session/gsm-logout-dialog.c:372
 msgid "Log out of this system now?"
 msgstr "Voleu eixir d'este sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:375
+#: ../gnome-session/gsm-logout-dialog.c:378
 msgid "_Switch User"
 msgstr "Canvia d'_usuari"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:389
+#: ../gnome-session/gsm-util.c:428
 msgid "_Log Out"
 msgstr "I_x"
 
-#: ../gnome-session/gsm-logout-dialog.c:390
+#: ../gnome-session/gsm-logout-dialog.c:393
 msgid "Shut down this system now?"
 msgstr "Voleu parar este sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
+#: ../gnome-session/gsm-logout-dialog.c:399
 msgid "S_uspend"
 msgstr "A_tura temporalment"
 
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:405
 msgid "_Hibernate"
 msgstr "_Hiberna"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:411
+#: ../gnome-session/gsm-logout-dialog.c:437
 msgid "_Restart"
 msgstr "_Reinicia"
 
-#: ../gnome-session/gsm-logout-dialog.c:418
+#: ../gnome-session/gsm-logout-dialog.c:421
 msgid "_Shut Down"
 msgstr "_Atura l'ordinador"
+
+#: ../gnome-session/gsm-logout-dialog.c:427
+msgid "Restart this system now?"
+msgstr "Voleu reiniciar el sistema ara?"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:311
 msgid "Oh no!  Something has gone wrong."
@@ -352,26 +360,11 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar.\n"
 "Eixiu i torneu-ho a provar."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "S'ha eixit amb codi %d"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "S'ha matat per la senyal %d"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "S'ha parat per la senyal %d"
-
-#: ../gnome-session/gsm-manager.c:1421
+#: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
 msgstr "Ha fallat la càrrega del GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1422
+#: ../gnome-session/gsm-manager.c:1394
 msgid ""
 "Unfortunately GNOME 3 failed to start properly and started in the "
 "<i>fallback mode</i>.\n"
@@ -385,11 +378,11 @@ msgstr ""
 "Això vol dir que segurament el vostre sistema (maquinari gràfic o "
 "controlador) no podrà proporcionar el GNOME 3 a la seua màxima capacitat."
 
-#: ../gnome-session/gsm-manager.c:1424
+#: ../gnome-session/gsm-manager.c:1396
 msgid "Learn more about GNOME 3"
 msgstr "Descobriu més coses sobre el GNOME 3"
 
-#: ../gnome-session/gsm-manager.c:1521 ../gnome-session/gsm-manager.c:2267
+#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
 msgid "Not responding"
 msgstr "No està responent"
 
@@ -405,7 +398,7 @@ msgstr "Aplicació recordada"
 msgid "This program is blocking logout."
 msgstr "Este programa està blocant l'eixida."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:326
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -413,75 +406,91 @@ msgstr ""
 "Es refusarà la connexió de client nova perquè la sessió s'està parant\n"
 
 # Nota: ICE -> Inter-Client Exchange (http://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture#Inter-client_communication)
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:595
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
+#: ../gnome-session/gsm-util.c:412
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr ""
 "No s'ha pogut iniciar la sessió d'entrada (ni connectar amb el servidor X)"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "Override standard autostart directories"
 msgstr "Ignora els directoris estàndard d'inici automàtic"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:290
 msgid "AUTOSTART_DIR"
 msgstr "DIRECTORI_INICI_AUTOMÀTIC"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "Session to use"
 msgstr "Sessió que s'utilitzarà"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:291
 msgid "SESSION_NAME"
 msgstr "NOM_DE_SESSIÓ"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:292
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:293
 msgid "Do not load user-specified applications"
 msgstr "No carreguis les aplicacions especificades per l'usuari"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:296
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostra el diàleg de la balena per fer proves"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:316
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Ix"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Para"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Reinicia"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "S'està ignorant qualsevol inhibidor existent"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "No demanes la confirmació de l'usuari"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "No s'ha pogut connectar al gestor de sessions"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>Hi ha alguns programes encara en execució:</b>"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "S'ha sortit amb codi %d"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "S'ha matat per la senyal %d"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "S'ha aturat per la senyal %d"
 
 #~ msgid ""
 #~ "A problem has occurred and the system can't recover. Some of the "
