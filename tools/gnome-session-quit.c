@@ -43,18 +43,18 @@ enum {
         GSM_LOGOUT_MODE_FORCE
 };
 
-static gboolean logout = FALSE;
-static gboolean power_off = FALSE;
-static gboolean reboot = FALSE;
-static gboolean no_prompt = FALSE;
-static gboolean force = FALSE;
+static gboolean opt_logout = FALSE;
+static gboolean opt_power_off = FALSE;
+static gboolean opt_reboot = FALSE;
+static gboolean opt_no_prompt = FALSE;
+static gboolean opt_force = FALSE;
 
 static GOptionEntry options[] = {
-        {"logout", '\0', 0, G_OPTION_ARG_NONE, &logout, N_("Log out"), NULL},
-        {"power-off", '\0', 0, G_OPTION_ARG_NONE, &power_off, N_("Power off"), NULL},
-        {"reboot", '\0', 0, G_OPTION_ARG_NONE, &reboot, N_("Reboot"), NULL},
-        {"force", '\0', 0, G_OPTION_ARG_NONE, &force, N_("Ignoring any existing inhibitors"), NULL},
-        {"no-prompt", '\0', 0, G_OPTION_ARG_NONE, &no_prompt, N_("Don't prompt for user confirmation"), NULL},
+        {"logout", '\0', 0, G_OPTION_ARG_NONE, &opt_logout, N_("Log out"), NULL},
+        {"power-off", '\0', 0, G_OPTION_ARG_NONE, &opt_power_off, N_("Power off"), NULL},
+        {"reboot", '\0', 0, G_OPTION_ARG_NONE, &opt_reboot, N_("Reboot"), NULL},
+        {"force", '\0', 0, G_OPTION_ARG_NONE, &opt_force, N_("Ignoring any existing inhibitors"), NULL},
+        {"no-prompt", '\0', 0, G_OPTION_ARG_NONE, &opt_no_prompt, N_("Don't prompt for user confirmation"), NULL},
         {NULL}
 };
 
@@ -193,25 +193,25 @@ main (int argc, char *argv[])
         }
 
         conflicting_options = 0;
-        if (logout)
+        if (opt_logout)
                 conflicting_options++;
-        if (power_off)
+        if (opt_power_off)
                 conflicting_options++;
-        if (reboot)
+        if (opt_reboot)
                 conflicting_options++;
         if (conflicting_options > 1)
                 display_error (_("Program called with conflicting options"));
 
-        if (power_off) {
+        if (opt_power_off) {
                 do_power_off ("Shutdown");
-        } else if (reboot) {
+        } else if (opt_reboot) {
                 do_power_off ("Reboot");
         } else {
                 /* default to logout */
 
-                if (force)
+                if (opt_force)
                         do_logout (GSM_LOGOUT_MODE_FORCE);
-                else if (no_prompt)
+                else if (opt_no_prompt)
                         do_logout (GSM_LOGOUT_MODE_NO_CONFIRMATION);
                 else
                         do_logout (GSM_LOGOUT_MODE_NORMAL);
