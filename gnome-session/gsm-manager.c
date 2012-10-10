@@ -28,6 +28,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
+#include <locale.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -2795,6 +2796,56 @@ gsm_manager_setenv (GsmManager  *manager,
         }
 
         gsm_util_setenv (variable, value);
+
+        return TRUE;
+}
+
+static gboolean
+is_valid_category (int category)
+{
+	int categories[] = {
+		LC_CTYPE,
+		LC_NUMERIC,
+		LC_TIME,
+		LC_COLLATE,
+		LC_MONETARY,
+		LC_MESSAGES,
+		LC_ALL,
+		LC_PAPER,
+		LC_NAME,
+		LC_ADDRESS,
+		LC_TELEPHONE,
+		LC_MEASUREMENT,
+		LC_IDENTIFICATION
+	};
+	guint i;
+
+	for (i = 0; i < G_N_ELEMENTS(categories); i++)
+		if (categories[i] == category)
+			return TRUE;
+
+	return FALSE;
+}
+
+gboolean
+gsm_manager_get_locale (GsmManager  *manager,
+                        int          category,
+                        const char **value,
+                        GError     **error)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        if (!is_valid_category (category)) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_INVALID_OPTION,
+                             "GetLocale doesn't support locale category '%d'", category);
+                return FALSE;
+        }
+
+        *value = g_strdup (setlocale (category, NULL));
+        if (*value == NULL)
+                *value = g_strdup ("");
 
         return TRUE;
 }

@@ -177,6 +177,10 @@ gboolean            gsm_manager_setenv                         (GsmManager     *
                                                                 const char     *variable,
                                                                 const char     *value,
                                                                 GError        **error);
+gboolean            gsm_manager_get_locale                     (GsmManager     *manager,
+                                                                int             category,
+                                                                const char    **value,
+                                                                GError        **error);
 gboolean            gsm_manager_initialization_error           (GsmManager     *manager,
                                                                 const char     *message,
                                                                 gboolean        fatal,

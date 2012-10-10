@@ -23,6 +23,24 @@
       </doc:doc>
     </method>
 
+    <method name="GetLocale">
+      <arg name="category" type="i" direction="in">
+        <doc:doc>
+          <doc:summary>The locale category</doc:summary>
+        </doc:doc>
+      </arg>
+      <arg name="value" type="s" direction="out">
+        <doc:doc>
+          <doc:summary>The value</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Reads the current state of the specific locale category.</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
+
     <method name="InitializationError">
       <arg name="message" type="s" direction="in">
         <doc:doc>
