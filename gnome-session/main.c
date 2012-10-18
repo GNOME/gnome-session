@@ -317,6 +317,10 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
 
+        /* We want to use the GNOME menus which has the designed categories.
+         */
+        gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
+
         client_store = gsm_store_new ();
 
         /* Talk to logind before acquiring a name, since it does synchronous
