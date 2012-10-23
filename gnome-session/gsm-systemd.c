@@ -66,6 +66,15 @@ G_DEFINE_TYPE_WITH_CODE (GsmSystemd, gsm_systemd, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
                                                 gsm_systemd_system_init))
 
+static void
+drop_system_inhibitor (GsmSystemd *manager)
+{
+        if (manager->priv->inhibit_fd != -1) {
+                g_debug ("Dropping system inhibitor");
+                close (manager->priv->inhibit_fd);
+                manager->priv->inhibit_fd = -1;
+        }
+}
 
 static void
 gsm_systemd_finalize (GObject *object)
@@ -78,8 +87,8 @@ gsm_systemd_finalize (GObject *object)
 
         if (systemd->priv->inhibitors != NULL) {
                 g_slist_free_full (systemd->priv->inhibitors, g_free);
-                close (systemd->priv->inhibit_fd);
         }
+        drop_system_inhibitor (systemd);
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
 }
@@ -106,6 +115,8 @@ gsm_systemd_init (GsmSystemd *manager)
         manager->priv = G_TYPE_INSTANCE_GET_PRIVATE (manager,
                                                      GSM_TYPE_SYSTEMD,
                                                      GsmSystemdPrivate);
+
+        manager->priv->inhibit_fd = -1;
 
         error = NULL;
 
@@ -531,6 +542,10 @@ inhibit_done (GObject      *source,
                 g_object_unref (fd_list);
                 g_variant_unref (res);
         }
+
+        if (manager->priv->inhibitors == NULL) {
+                drop_system_inhibitor (manager);
+        }
 }
 
 static void
@@ -576,9 +591,7 @@ gsm_systemd_remove_inhibitor (GsmSystem   *system,
         g_free (l->data);
         manager->priv->inhibitors = g_slist_delete_link (manager->priv->inhibitors, l);
         if (manager->priv->inhibitors == NULL) {
-                        g_debug ("Dropping system inhibitor");
-                        close (manager->priv->inhibit_fd);
-                        manager->priv->inhibit_fd = -1;
+                drop_system_inhibitor (manager);
         }
 }
 
