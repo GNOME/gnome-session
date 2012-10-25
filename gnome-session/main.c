@@ -32,12 +32,13 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include <glib-unix.h>
+
 #include <dbus/dbus.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#include "gdm-signal-handler.h"
 #include "gdm-log.h"
 
 #include "gsm-util.h"
@@ -172,49 +173,23 @@ acquire_name (void)
 }
 
 static gboolean
-signal_cb (int      signo,
-           gpointer data)
+term_or_int_signal_cb (gpointer data)
 {
-        int ret;
-        GsmManager *manager;
+        GsmManager *manager = (GsmManager *)data;
 
-        g_debug ("Got callback for signal %d", signo);
+        /* let the fatal signals interrupt us */
+        g_debug ("Caught SIGINT/SIGTERM, shutting down normally.");
 
-        ret = TRUE;
+        gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, NULL);
 
-        switch (signo) {
-        case SIGFPE:
-        case SIGPIPE:
-                /* let the fatal signals interrupt us */
-                g_debug ("Caught signal %d, shutting down abnormally.", signo);
-                ret = FALSE;
-                break;
-        case SIGINT:
-        case SIGTERM:
-                manager = (GsmManager *)data;
-                gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, NULL);
+        return FALSE;
+}
 
-                /* let the fatal signals interrupt us */
-                g_debug ("Caught signal %d, shutting down normally.", signo);
-                ret = TRUE;
-                break;
-        case SIGHUP:
-                g_debug ("Got HUP signal");
-                ret = TRUE;
-                break;
-        case SIGUSR1:
-                g_debug ("Got USR1 signal");
-                ret = TRUE;
-                gdm_log_toggle_debug ();
-                break;
-        default:
-                g_debug ("Caught unhandled signal %d", signo);
-                ret = TRUE;
-
-                break;
-        }
-
-        return ret;
+static gboolean
+sigusr1_cb (gpointer data)
+{
+        gdm_log_toggle_debug ();
+        return TRUE;
 }
 
 static void
@@ -277,13 +252,11 @@ require_dbus_session (int      argc,
 int
 main (int argc, char **argv)
 {
-        struct sigaction  sa;
         GError           *error;
         char             *display_str;
         GsmManager       *manager;
         GsmStore         *client_store;
         GsmXsmpServer    *xsmp_server;
-        GdmSignalHandler *signal_handler;
         static char     **override_autostart_dirs = NULL;
         static char      *session_name = NULL;
         static GOptionEntry entries[] = {
@@ -305,11 +278,6 @@ main (int argc, char **argv)
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
-
-        sa.sa_handler = SIG_IGN;
-        sa.sa_flags = 0;
-        sigemptyset (&sa.sa_mask);
-        sigaction (SIGPIPE, &sa, 0);
 
         error = NULL;
         gtk_init_with_args (&argc, &argv,
@@ -359,14 +327,9 @@ main (int argc, char **argv)
 
         manager = gsm_manager_new (client_store, failsafe);
 
-        signal_handler = gdm_signal_handler_new ();
-        gdm_signal_handler_add_fatal (signal_handler);
-        gdm_signal_handler_add (signal_handler, SIGFPE, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGHUP, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGUSR1, signal_cb, NULL);
-        gdm_signal_handler_add (signal_handler, SIGTERM, signal_cb, manager);
-        gdm_signal_handler_add (signal_handler, SIGINT, signal_cb, manager);
-        gdm_signal_handler_set_fatal_func (signal_handler, shutdown_cb, manager);
+        g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
+        g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
+        g_unix_signal_add (SIGUSR1, sigusr1_cb, manager);
 
         if (IS_STRING_EMPTY (session_name))
                 session_name = _gsm_manager_get_default_session (manager);

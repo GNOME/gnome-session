@@ -43,8 +43,6 @@ gnome_session_SOURCES =				\
 	gsm-presence.c				\
 	gdm.h					\
 	gdm.c					\
-	gdm-signal-handler.h			\
-	gdm-signal-handler.c			\
 	gdm-log.h				\
 	gdm-log.c				\
 	main.c					\
