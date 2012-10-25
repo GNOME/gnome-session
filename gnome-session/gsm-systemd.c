@@ -41,7 +41,6 @@
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
 
-#include "gsm-marshal.h"
 #include "gsm-system.h"
 
 #define SD_NAME              "org.freedesktop.login1"

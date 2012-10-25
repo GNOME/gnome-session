@@ -32,7 +32,6 @@
 #include <glib/gi18n.h>
 
 #include "gsm-xsmp-client.h"
-#include "gsm-marshal.h"
 
 #include "gsm-util.h"
 #include "gsm-autostart-app.h"
@@ -1000,7 +999,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
                               G_STRUCT_OFFSET (GsmXSMPClientClass, register_request),
                               _boolean_handled_accumulator,
                               NULL,
-                              gsm_marshal_BOOLEAN__POINTER,
+                              NULL,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_POINTER);
         signals[LOGOUT_REQUEST] =
@@ -1010,7 +1009,7 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
                               G_STRUCT_OFFSET (GsmXSMPClientClass, logout_request),
                               NULL,
                               NULL,
-                              g_cclosure_marshal_VOID__BOOLEAN,
+                              NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_BOOLEAN);
 

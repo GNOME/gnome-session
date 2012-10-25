@@ -339,9 +339,7 @@ gsm_store_class_init (GsmStoreClass *klass)
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmStoreClass, added),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__STRING,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
         signals [REMOVED] =
@@ -349,9 +347,7 @@ gsm_store_class_init (GsmStoreClass *klass)
                               G_TYPE_FROM_CLASS (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmStoreClass, removed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__STRING,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
         g_object_class_install_property (object_class,

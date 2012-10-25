@@ -282,8 +282,7 @@ gsm_app_class_init (GsmAppClass *klass)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmAppClass, exited),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__UCHAR,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_UCHAR);
         signals[DIED] =
@@ -291,8 +290,7 @@ gsm_app_class_init (GsmAppClass *klass)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmAppClass, died),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__INT,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_INT);
 
@@ -301,8 +299,7 @@ gsm_app_class_init (GsmAppClass *klass)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmAppClass, registered),
-                              NULL, NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
 

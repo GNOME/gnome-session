@@ -24,8 +24,6 @@ gnome_session_SOURCES =				\
 	gsm-dbus-client.c			\
 	gsm-fail-whale-dialog.h			\
 	gsm-fail-whale-dialog.c			\
-	gsm-marshal.h				\
-	gsm-marshal.c				\
 	gsm-system.h				\
 	gsm-system.c				\
 	gsm-consolekit.c			\
@@ -109,13 +107,6 @@ test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)
 test_process_helper_SOURCES = test-process-helper.c gsm-process-helper.c gsm-process-helper.h
 test_process_helper_LDADD = $(DBUS_GLIB_LIBS)
 
-gsm-marshal.c: gsm-marshal.list
-	$(AM_V_GEN)echo "#include \"gsm-marshal.h\"" > $@ && \
-	$(GLIB_GENMARSHAL) $< --prefix=gsm_marshal --body >> $@
-
-gsm-marshal.h: gsm-marshal.list
-	$(AM_V_GEN)$(GLIB_GENMARSHAL) $< --prefix=gsm_marshal --header > $@
-
 gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml
 
@@ -132,8 +123,6 @@ gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
 BUILT_SOURCES =			\
-	gsm-marshal.c		\
-	gsm-marshal.h		\
 	gsm-manager-glue.h	\
 	gsm-presence-glue.h	\
 	gsm-inhibitor-glue.h	\
@@ -142,7 +131,6 @@ BUILT_SOURCES =			\
 
 EXTRA_DIST =						\
 	README						\
-	gsm-marshal.list				\
 	org.gnome.SessionManager.xml			\
 	org.gnome.SessionManager.App.xml		\
 	org.gnome.SessionManager.Client.xml		\

@@ -44,9 +44,7 @@ gsm_system_default_init (GsmSystemInterface *iface)
                               GSM_TYPE_SYSTEM,
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmSystemInterface, request_completed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__POINTER,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
 }

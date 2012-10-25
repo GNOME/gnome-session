@@ -147,9 +147,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_opened),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_OPEN_FAILED] =
@@ -157,9 +155,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_open_failed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_CLOSED] =
@@ -167,9 +163,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_closed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_CANCELED] =
@@ -177,9 +171,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_canceled),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_CONFIRMED_LOGOUT] =
@@ -187,9 +179,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_logout),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_CONFIRMED_SHUTDOWN] =
@@ -197,9 +187,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_shutdown),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_CONFIRMED_REBOOT] =
@@ -207,9 +195,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__VOID,
+                              NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
         g_type_class_add_private (shell_class, sizeof (GsmShellPrivate));
