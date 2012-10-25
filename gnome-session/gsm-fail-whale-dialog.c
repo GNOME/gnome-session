@@ -135,10 +135,7 @@ gsm_fail_whale_dialog_finalize (GObject *object)
         GsmFailWhaleDialog *fail_dialog = GSM_FAIL_WHALE_DIALOG (object);
         GsmFailWhaleDialogPrivate *priv = fail_dialog->priv;
 
-        if (priv->extensions != NULL) {
-                g_object_unref (priv->extensions);
-                priv->extensions = NULL;
-        }
+        g_clear_object (&priv->extensions);
 
         G_OBJECT_CLASS (gsm_fail_whale_dialog_parent_class)->finalize (object);
 }

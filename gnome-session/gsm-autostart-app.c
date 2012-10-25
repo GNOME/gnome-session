@@ -760,35 +760,17 @@ gsm_autostart_app_dispose (GObject *object)
 
         priv = GSM_AUTOSTART_APP (object)->priv;
 
-        if (priv->startup_id) {
-                g_free (priv->startup_id);
-                priv->startup_id = NULL;
-        }
+        g_clear_pointer (&priv->startup_id, g_free);
 
         if (priv->session_provides) {
                 g_slist_free_full (priv->session_provides, g_free);
                 priv->session_provides = NULL;
         }
 
-        if (priv->condition_string) {
-                g_free (priv->condition_string);
-                priv->condition_string = NULL;
-        }
-
-        if (priv->condition_settings) {
-                g_object_unref (priv->condition_settings);
-                priv->condition_settings = NULL;
-        }
-
-        if (priv->desktop_file) {
-                egg_desktop_file_free (priv->desktop_file);
-                priv->desktop_file = NULL;
-        }
-
-        if (priv->desktop_id) {
-                g_free (priv->desktop_id);
-                priv->desktop_id = NULL;
-        }
+        g_clear_pointer (&priv->condition_string, g_free);
+        g_clear_object (&priv->condition_settings);
+        g_clear_pointer (&priv->desktop_file, (GDestroyNotify) egg_desktop_file_free);
+        g_clear_pointer (&priv->desktop_id, g_free);
 
         if (priv->child_watch_id > 0) {
                 g_source_remove (priv->child_watch_id);
@@ -800,10 +782,7 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->proxy_call = NULL;
         }
 
-        if (priv->proxy != NULL) {
-                g_object_unref (priv->proxy);
-                priv->proxy = NULL;
-        }
+        g_clear_object (&priv->proxy);
 
         if (priv->condition_monitor) {
                 g_file_monitor_cancel (priv->condition_monitor);
@@ -1161,8 +1140,7 @@ autostart_app_start_activate (GsmAutostartApp  *app,
                                                          G_TYPE_STRING, arguments,
                                                          G_TYPE_INVALID);
         if (app->priv->proxy_call == NULL) {
-                g_object_unref (app->priv->proxy);
-                app->priv->proxy = NULL;
+                g_clear_object (&app->priv->proxy);
                 g_set_error (error,
                              GSM_APP_ERROR,
                              GSM_APP_ERROR_START,

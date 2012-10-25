@@ -2515,11 +2515,7 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->clients = NULL;
         }
 
-        if (manager->priv->apps != NULL) {
-                g_object_unref (manager->priv->apps);
-                manager->priv->apps = NULL;
-        }
-
+        g_clear_object (&manager->priv->apps);
         g_slist_free (manager->priv->required_apps);
         manager->priv->required_apps = NULL;
 
@@ -2535,40 +2531,13 @@ gsm_manager_dispose (GObject *object)
                 manager->priv->inhibitors = NULL;
         }
 
-        if (manager->priv->presence != NULL) {
-                g_object_unref (manager->priv->presence);
-                manager->priv->presence = NULL;
-        }
-
-        if (manager->priv->settings) {
-                g_object_unref (manager->priv->settings);
-                manager->priv->settings = NULL;
-        }
-
-        if (manager->priv->session_settings) {
-                g_object_unref (manager->priv->session_settings);
-                manager->priv->session_settings = NULL;
-        }
-
-        if (manager->priv->screensaver_settings) {
-                g_object_unref (manager->priv->screensaver_settings);
-                manager->priv->screensaver_settings = NULL;
-        }
-
-        if (manager->priv->lockdown_settings) {
-                g_object_unref (manager->priv->lockdown_settings);
-                manager->priv->lockdown_settings = NULL;
-        }
-
-        if (manager->priv->system != NULL) {
-                g_object_unref (manager->priv->system);
-                manager->priv->system = NULL;
-        }
-
-        if (manager->priv->shell != NULL) {
-                g_object_unref (manager->priv->shell);
-                manager->priv->shell = NULL;
-        }
+        g_clear_object (&manager->priv->presence);
+        g_clear_object (&manager->priv->settings);
+        g_clear_object (&manager->priv->session_settings);
+        g_clear_object (&manager->priv->screensaver_settings);
+        g_clear_object (&manager->priv->lockdown_settings);
+        g_clear_object (&manager->priv->system);
+        g_clear_object (&manager->priv->shell);
 
         G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
 }

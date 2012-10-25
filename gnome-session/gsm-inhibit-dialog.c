@@ -608,12 +608,8 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
         g_free (desktop_filename);
         g_free (freeme);
-        if (pixbuf != NULL) {
-                g_object_unref (pixbuf);
-        }
-        if (desktop_file != NULL) {
-                egg_desktop_file_free (desktop_file);
-        }
+        g_clear_object (&pixbuf);
+        g_clear_pointer (&desktop_file, egg_desktop_file_free);
 }
 
 static gboolean
@@ -1000,10 +996,7 @@ gsm_inhibit_dialog_dispose (GObject *object)
 
         g_debug ("GsmInhibitDialog: dispose called");
 
-        if (dialog->priv->list_store != NULL) {
-                g_object_unref (dialog->priv->list_store);
-                dialog->priv->list_store = NULL;
-        }
+        g_clear_object (&dialog->priv->list_store);
 
         if (dialog->priv->inhibitors != NULL) {
                 g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
@@ -1013,14 +1006,10 @@ gsm_inhibit_dialog_dispose (GObject *object)
                                                       on_store_inhibitor_removed,
                                                       dialog);
 
-                g_object_unref (dialog->priv->inhibitors);
-                dialog->priv->inhibitors = NULL;
+                g_clear_object (&dialog->priv->inhibitors);
         }
 
-        if (dialog->priv->xml != NULL) {
-                g_object_unref (dialog->priv->xml);
-                dialog->priv->xml = NULL;
-        }
+        g_clear_object (&dialog->priv->xml);
 
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->dispose (object);
 }

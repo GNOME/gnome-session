@@ -544,9 +544,7 @@ gsm_util_update_activation_environment (const char  *variable,
 
  out:
 
-        if (bus_proxy != NULL) {
-                g_object_unref (bus_proxy);
-        }
+        g_clear_object (&bus_proxy);
 
         if (environment != NULL) {
                 g_hash_table_destroy (environment);

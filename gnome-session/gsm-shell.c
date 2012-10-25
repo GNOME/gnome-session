@@ -319,20 +319,10 @@ gsm_shell_ensure_connection (GsmShell  *shell,
                 g_debug ("GsmShell: Not connected to the shell");
 
                 if (shell->priv->bus_connection == NULL) {
-                        if (shell->priv->bus_proxy != NULL) {
-                                g_object_unref (shell->priv->bus_proxy);
-                                shell->priv->bus_proxy = NULL;
-                        }
-
-                        if (shell->priv->proxy != NULL) {
-                                g_object_unref (shell->priv->proxy);
-                                shell->priv->proxy = NULL;
-                        }
+                        g_clear_object (&shell->priv->bus_proxy);
+                        g_clear_object (&shell->priv->proxy);
                 } else if (shell->priv->bus_proxy == NULL) {
-                        if (shell->priv->proxy != NULL) {
-                                g_object_unref (shell->priv->proxy);
-                                shell->priv->proxy = NULL;
-                        }
+                        g_clear_object (&shell->priv->proxy);
                 }
         }
 
@@ -350,10 +340,7 @@ gsm_shell_on_name_owner_changed (DBusGProxy    *bus_proxy,
                 return;
         }
 
-        if (shell->priv->proxy != NULL) {
-                g_object_unref (shell->priv->proxy);
-                shell->priv->proxy = NULL;
-        }
+        g_clear_object (&shell->priv->proxy);
 
         gsm_shell_ensure_connection (shell, NULL);
 }
@@ -369,15 +356,8 @@ gsm_shell_init (GsmShell *shell)
 static void
 gsm_shell_disconnect_from_bus (GsmShell *shell)
 {
-        if (shell->priv->bus_proxy != NULL) {
-                g_object_unref (shell->priv->bus_proxy);
-                shell->priv->bus_proxy = NULL;
-        }
-
-        if (shell->priv->proxy != NULL) {
-                g_object_unref (shell->priv->proxy);
-                shell->priv->proxy = NULL;
-        }
+        g_clear_object (&shell->priv->bus_proxy);
+        g_clear_object (&shell->priv->proxy);
 
         if (shell->priv->bus_connection != NULL) {
                 DBusConnection *connection;
@@ -568,6 +548,7 @@ static void
 on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
                                        GsmShell   *shell)
 {
+        /* FIXME - is this right? */
         if (shell->priv->end_session_dialog_proxy != NULL) {
                 g_object_unref (shell->priv->proxy);
                 shell->priv->end_session_dialog_proxy = NULL;

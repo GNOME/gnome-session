@@ -135,9 +135,7 @@ do_logout (unsigned int mode)
                 }
         }
 
-        if (sm_proxy != NULL) {
-                g_object_unref (sm_proxy);
-        }
+        g_clear_object (&sm_proxy);
 }
 
 static void
@@ -169,9 +167,7 @@ do_power_off (const char *action)
                 }
         }
 
-        if (sm_proxy != NULL) {
-                g_object_unref (sm_proxy);
-        }
+        g_clear_object (&sm_proxy);
 }
 
 int

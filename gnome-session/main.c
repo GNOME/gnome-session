@@ -345,22 +345,10 @@ main (int argc, char **argv)
 
         gtk_main ();
 
-        if (xsmp_server != NULL) {
-                g_object_unref (xsmp_server);
-        }
-
-        if (manager != NULL) {
-                g_debug ("Unreffing manager");
-                g_object_unref (manager);
-        }
-
-        if (client_store != NULL) {
-                g_object_unref (client_store);
-        }
-
-        if (bus_proxy != NULL) {
-                g_object_unref (bus_proxy);
-        }
+        g_clear_object (&xsmp_server);
+        g_clear_object (&manager);
+        g_clear_object (&client_store);
+        g_clear_object (&bus_proxy);
 
         gdm_log_shutdown ();
 

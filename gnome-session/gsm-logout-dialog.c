@@ -163,11 +163,7 @@ gsm_logout_dialog_destroy (GsmLogoutDialog *logout_dialog,
                 logout_dialog->priv->timeout_id = 0;
         }
 
-        if (logout_dialog->priv->up_client) {
-                g_object_unref (logout_dialog->priv->up_client);
-                logout_dialog->priv->up_client = NULL;
-        }
-
+        g_clear_object (&logout_dialog->priv->up_client);
         g_clear_object (&logout_dialog->priv->system);
 
         current_dialog = NULL;

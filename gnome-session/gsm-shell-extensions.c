@@ -55,11 +55,7 @@ gsm_shell_extensions_finalize (GObject *object)
   GsmShellExtensions *extensions = GSM_SHELL_EXTENSIONS (object);
   GsmShellExtensionsPrivate *priv = extensions->priv;
 
-  if (priv->settings != NULL)
-    {
-      g_object_unref (priv->settings);
-      priv->settings = NULL;
-    }
+  g_clear_object (&priv->settings);
 
   G_OBJECT_CLASS (gsm_shell_extensions_parent_class)->finalize (object);
 }
