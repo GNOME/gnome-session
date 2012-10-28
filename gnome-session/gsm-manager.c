@@ -40,6 +40,13 @@
 
 #include <gtk/gtk.h> /* for logout dialog */
 
+#ifdef HAVE_SYS_PRCTL_H
+#include <sys/prctl.h>
+#ifndef PR_SET_CHILD_SUBREAPER
+#define PR_SET_CHILD_SUBREAPER 35
+#endif
+#endif
+
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
 
@@ -136,6 +143,8 @@ struct GsmManagerPrivate
         GSList                 *next_query_clients;
         /* This is the action that will be done just before we exit */
         GsmManagerLogoutType    logout_type;
+
+        GSource                *catchall_child_watch_source;
 
         GtkWidget              *inhibit_dialog;
 
@@ -2688,6 +2697,47 @@ idle_timeout_get_mapping (GValue *value,
         return TRUE;
 }
 
+#ifdef HAVE_SYS_PRCTL_H
+
+/* On Linux, this makes gnome-session act as a kind of "sub-init" process.
+ * There are two consequences to this:
+ * 1) "ps auxwf" looks prettier
+ * 2) We can in theory do more monitoring of these double-forked children,
+ *    (e.g. parse /proc/<pid>/exe and notice it's an atk-foo process, and
+ *     associate it with an "atk" group), but in practice, we really
+ *    need to patch things to not daemonize anyways.
+ */
+static void
+catchall_child_watch_cb (GPid      pid,
+                         gint      status,
+                         gpointer  user_data)
+{
+        GError *tmp_error = NULL;
+
+        if (!g_spawn_check_exit_status (status, &tmp_error)) {
+                g_warning ("PID %ld: %s", (long) pid, tmp_error->message);
+                g_clear_error (&tmp_error);
+        }
+}
+
+static void
+init_subreaper (GsmManager  *manager)
+{
+        if (prctl (PR_SET_CHILD_SUBREAPER, 1) < 0) {
+                if (errno != EINVAL) {
+                        g_warning ("Failed to invoke PR_SET_CHILD_SUBREAPER: %s",
+                                   g_strerror (errno));
+                }
+                return;
+        }
+        manager->catchall_child_watch_source = g_child_watch_source_new (-1);
+        g_source_set_callback (manager->catchall_child_watch_source,
+                               (GSourceFunc) catchall_child_watch_cb,
+                               manager, NULL);
+        g_source_attach (NULL, manager->catchall_child_watch_source);
+}
+#endif
+
 static void
 gsm_manager_init (GsmManager *manager)
 {
@@ -2729,6 +2779,10 @@ gsm_manager_init (GsmManager *manager)
         manager->priv->system = gsm_get_system ();
 
         manager->priv->shell = gsm_get_shell ();
+
+#ifdef HAVE_SYS_PRCTL_H
+        init_subreaper ();
+#endif
 }
 
 static void

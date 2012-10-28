@@ -258,7 +258,7 @@ dnl ====================================================================
 dnl Headers
 dnl ====================================================================
 AC_HEADER_STDC
-AC_CHECK_HEADERS(syslog.h tcpd.h sys/param.h)
+AC_CHECK_HEADERS(syslog.h tcpd.h sys/param.h, sys/prctl.h)
 
 dnl ====================================================================
 dnl check for backtrace support
