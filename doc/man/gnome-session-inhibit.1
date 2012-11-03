@@ -1,0 +1,70 @@
+'\" t
+.\"     Title: gnome-session-inhibit
+.\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
+.\" Generator: DocBook XSL Stylesheets v1.77.1 <http://docbook.sf.net/>
+.\"      Date: 11/03/2012
+.\"    Manual: User Commands
+.\"    Source: gnome-session
+.\"  Language: English
+.\"
+.TH "GNOME\-SESSION\-INHI" "1" "11/03/2012" "gnome-session" "User Commands"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+gnome-session-inhibit \- inhibit gnome\-session functionality
+.SH "SYNOPSIS"
+.HP \w'\fBgnome\-session\-inhibit\fR\ 'u
+\fBgnome\-session\-inhibit\fR [OPTION...] {COMMAND}
+.SH "DESCRIPTION"
+.PP
+\fBgnome\-session\-inhibit\fR
+can inhibit certain gnome\-session functionality while executing the given COMMAND\&. To achieve this, it calls the Inhibit() method of the gnome\-session D\-Bus API and creates an inhibitor\&. The inhibitor is automatically removed when gnome\-session\-inhibit exits\&.
+.PP
+A typical use case is to prevent the session from going idle (and thus locking the screen) while a movie player is running\&.
+.SH "OPTIONS"
+.PP
+\fB\-h\fR, \fB\-\-help\fR
+.RS 4
+print help and exit
+.RE
+.PP
+\fB\-\-version\fR
+.RS 4
+print version information and exit
+.RE
+.PP
+\fB\-\-app\-id\fR ID
+.RS 4
+The application id to use when calling the gnome\-session Inhibit() method\&. If this option is not specified, "unknown" is used\&.
+.RE
+.PP
+\fB\-\-reason\fR REASON
+.RS 4
+A human\-readable reason to pass along when calling the gnome\-session Inhibit() method\&. If this option is not specified, "not specified" is used\&.
+.RE
+.PP
+\fB\-\-inhibit\fR ARG
+.RS 4
+ARG specifies the things to inhibit, as a colon\-separated list\&. The possible values are logout, switch\-user, suspend, idle, automount\&. If this option is used more than once, the values are combined\&. If this option is not specified, "idle" is assumed\&.
+.RE
+.SH "SEE ALSO"
+.PP
+
+\fBsystemd-inhibit\fR(1)

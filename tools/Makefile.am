@@ -1,4 +1,4 @@
-bin_PROGRAMS = gnome-session-quit
+bin_PROGRAMS = gnome-session-quit gnome-session-inhibit
 libexec_PROGRAMS = gnome-session-check-accelerated gnome-session-check-accelerated-helper
 
 AM_CPPFLAGS =
@@ -22,6 +22,18 @@ gnome_session_quit_LDADD =			\
 	$(GNOME_SESSION_LIBS)			\
 	$(DBUS_GLIB_LIBS)			\
 	$(GCONF_LIBS)
+
+gnome_session_inhibit_SOURCES =			\
+	gnome-session-inhibit.c
+
+gnome_session_inhibit_CPPFLAGS =			\
+	$(AM_CPPFLAGS)				\
+	$(GNOME_SESSION_CFLAGS)			\
+	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
+	$(DISABLE_DEPRECATED_CFLAGS)
+
+gnome_session_inhibit_LDADD =			\
+	$(GNOME_SESSION_LIBS)
 
 gnome_session_check_accelerated_helper_SOURCES = 		\
 	gnome-session-check-accelerated-helper.c
