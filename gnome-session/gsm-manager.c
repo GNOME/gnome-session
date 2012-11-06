@@ -165,6 +165,7 @@ enum {
         PROP_0,
         PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
+        PROP_SESSION_IS_ACTIVE,
         PROP_FALLBACK,
         PROP_FAILSAFE
 };
@@ -2434,6 +2435,9 @@ gsm_manager_get_property (GObject    *object,
         case PROP_SESSION_NAME:
                 g_value_set_string (value, self->priv->session_name);
                 break;
+        case PROP_SESSION_IS_ACTIVE:
+                g_value_set_boolean (value, gsm_system_is_active (self->priv->system));
+                break;
         case PROP_FALLBACK:
                 g_value_set_boolean (value, self->priv->is_fallback_session);
                 break;
@@ -2633,6 +2637,20 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READABLE));
+        /**
+
+         * GsmManager::session-is-active
+         *
+         * If true, the current session is in the foreground and
+         * available for user input.
+         */
+        g_object_class_install_property (object_class,
+                                         PROP_SESSION_IS_ACTIVE,
+                                         g_param_spec_boolean ("session-is-active",
+                                                               NULL,
+                                                               NULL,
+                                                               TRUE,
+                                                               G_PARAM_READABLE));
 
         /**
          * GsmManager::fallback
@@ -2673,6 +2691,53 @@ on_presence_status_changed (GsmPresence  *presence,
         gsm_system_set_session_idle (system,
                                      (status == GSM_PRESENCE_STATUS_IDLE));
         g_object_unref (system);
+}
+
+static void
+on_gsm_system_active_changed (GsmSystem  *system,
+                              GParamSpec *pspec,
+                              GsmManager *self)
+{
+        DBusGConnection *gconnection;
+        DBusConnection *connection;
+        DBusMessage *message;
+        DBusMessageIter iter;
+        DBusMessageIter subiter;
+        DBusMessageIter dict_iter;
+        DBusMessageIter v_iter;
+        dbus_bool_t is_active;
+        const char *prop_name = "SessionIsActive";
+
+        g_object_notify ((GObject*)self, "session-is-active");
+
+        /* Now, the following bits emit the PropertiesChanged signal
+         * that GDBus expects.  This code should just die in a port to
+         * GDBus.
+         */
+        gconnection = dbus_g_bus_get (DBUS_BUS_SYSTEM, NULL);
+        g_assert (gconnection);
+        connection = dbus_g_connection_get_connection (gconnection);
+        is_active = gsm_system_is_active (self->priv->system);
+        message = dbus_message_new_signal (GSM_MANAGER_DBUS_PATH, "org.freedesktop.DBus.Properties",
+                                           "PropertiesChanged");
+        g_assert (message != NULL);
+        dbus_message_iter_init_append (message, &iter);
+        /* changed */
+        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "{sv}", &subiter);
+         dbus_message_iter_open_container (&subiter, DBUS_TYPE_DICT_ENTRY, NULL, &dict_iter);
+          dbus_message_iter_append_basic (&dict_iter, DBUS_TYPE_STRING, &prop_name);
+          dbus_message_iter_open_container (&dict_iter, DBUS_TYPE_VARIANT, "b", &v_iter);
+           dbus_message_iter_append_basic (&v_iter, DBUS_TYPE_BOOLEAN, &is_active);
+          dbus_message_iter_close_container (&dict_iter, &v_iter);
+         dbus_message_iter_close_container (&subiter, &dict_iter);
+        dbus_message_iter_close_container (&iter, &subiter);
+        /* invalidated */
+        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "s", &subiter);
+        dbus_message_iter_close_container (&iter, &subiter);
+
+        g_printerr ("SESSION: EMIT ACTIVE CHANGED %d\n", is_active);
+        dbus_connection_send (connection, message, NULL);
+        dbus_message_unref (message);
 }
 
 static gboolean
@@ -2727,6 +2792,8 @@ gsm_manager_init (GsmManager *manager)
                                       NULL, NULL);
 
         manager->priv->system = gsm_get_system ();
+        g_signal_connect (manager->priv->system, "notify::active",
+                          G_CALLBACK (on_gsm_system_active_changed), manager);
 
         manager->priv->shell = gsm_get_shell ();
 }

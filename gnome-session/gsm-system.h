@@ -102,6 +102,8 @@ void       gsm_system_set_session_idle (GsmSystem *system,
 
 gboolean   gsm_system_is_login_session (GsmSystem *system);
 
+gboolean   gsm_system_is_active        (GsmSystem *system);
+
 void       gsm_system_add_inhibitor    (GsmSystem        *system,
                                         const gchar      *id,
                                         GsmInhibitorFlag  flags);

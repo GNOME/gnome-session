@@ -56,6 +56,13 @@ struct _GsmConsolekitPrivate
         DBusGProxy      *bus_proxy;
         DBusGProxy      *ck_proxy;
         UpClient        *up_client;
+
+        gboolean         is_active;
+};
+
+enum {
+        PROP_0,
+        PROP_ACTIVE
 };
 
 static void     gsm_consolekit_class_init   (GsmConsolekitClass *klass);
@@ -81,13 +88,52 @@ G_DEFINE_TYPE_WITH_CODE (GsmConsolekit, gsm_consolekit, G_TYPE_OBJECT,
                                                 gsm_consolekit_system_init))
 
 static void
+gsm_consolekit_set_property (GObject      *object,
+                             guint         prop_id,
+                             const GValue *value,
+                             GParamSpec   *pspec)
+{
+        GsmConsolekit *self = GSM_CONSOLEKIT (object);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                self->priv->is_active = g_value_get_boolean (value);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        }
+}
+
+static void
+gsm_consolekit_get_property (GObject    *object,
+                             guint       prop_id,
+                             GValue     *value,
+                             GParamSpec *pspec)
+{
+        GsmConsolekit *self = GSM_CONSOLEKIT (object);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                g_value_set_boolean (value, self->priv->is_active);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
 gsm_consolekit_class_init (GsmConsolekitClass *manager_class)
 {
         GObjectClass *object_class;
 
         object_class = G_OBJECT_CLASS (manager_class);
 
+        object_class->get_property = gsm_consolekit_get_property;
+        object_class->set_property = gsm_consolekit_set_property;
         object_class->finalize = gsm_consolekit_finalize;
+
+        g_object_class_override_property (object_class, PROP_ACTIVE, "active");
 
         g_type_class_add_private (manager_class, sizeof (GsmConsolekitPrivate));
 }
@@ -110,6 +156,41 @@ gsm_consolekit_dbus_filter (DBusConnection *connection,
         }
 
         return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+static void
+is_active_cb (DBusGProxy     *proxy,
+              DBusGProxyCall *call,
+              gpointer        data)
+{
+        GsmConsolekit *self = data;
+        GError *local_error = NULL;
+        gboolean is_active;
+
+        if (!dbus_g_proxy_end_call (proxy, call, &local_error,
+                                    G_TYPE_BOOLEAN, &is_active,
+                                    G_TYPE_INVALID)) {
+                g_warning ("Failed isActive call to ConsoleKit: %s",
+                           local_error->message);
+                g_clear_error (&local_error);
+                return;
+        }
+
+        if (is_active != self->priv->is_active) {
+                self->priv->is_active = is_active;
+                g_object_notify ((GObject*) self, "active");
+        }
+}
+
+static void
+on_active_changed (DBusGProxy   *proxy,
+                   gboolean      is_active,
+                   GsmConsolekit *self)
+{
+        if (is_active != self->priv->is_active) {
+                self->priv->is_active = is_active;
+                g_object_notify ((GObject*) self, "active");
+        }
 }
 
 static gboolean
@@ -180,6 +261,15 @@ gsm_consolekit_ensure_ck_connection (GsmConsolekit  *manager,
                         is_connected = FALSE;
                         goto out;
                 }
+                
+                dbus_g_proxy_begin_call (manager->priv->ck_proxy,
+                                         "IsActive",
+                                         is_active_cb, g_object_ref (manager),
+                                         (GDestroyNotify)g_object_unref,
+                                         G_TYPE_INVALID);
+                dbus_g_proxy_add_signal (manager->priv->ck_proxy, "ActiveChanged", G_TYPE_BOOLEAN, G_TYPE_INVALID);
+                dbus_g_proxy_connect_signal (manager->priv->ck_proxy, "ActiveChanged",
+                                             G_CALLBACK (on_active_changed), manager, NULL);
         }
 
         is_connected = TRUE;

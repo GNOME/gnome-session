@@ -32,6 +32,11 @@ enum {
         LAST_SIGNAL
 };
 
+enum {
+        PROP_0,
+        PROP_ACTIVE
+};
+
 static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_INTERFACE (GsmSystem, gsm_system, G_TYPE_OBJECT)
@@ -39,6 +44,7 @@ G_DEFINE_INTERFACE (GsmSystem, gsm_system, G_TYPE_OBJECT)
 static void
 gsm_system_default_init (GsmSystemInterface *iface)
 {
+        GParamSpec *pspec;
         signals [REQUEST_COMPLETED] =
                 g_signal_new ("request-completed",
                               GSM_TYPE_SYSTEM,
@@ -47,6 +53,12 @@ gsm_system_default_init (GsmSystemInterface *iface)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
+        pspec = g_param_spec_boolean ("active",
+                                      "Active",
+                                      "Whether or not session is active",
+                                      TRUE,
+                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+        g_object_interface_install_property (iface, pspec);
 }
 
 GQuark
@@ -141,6 +153,20 @@ gboolean
 gsm_system_is_login_session (GsmSystem *system)
 {
         return GSM_SYSTEM_GET_IFACE (system)->is_login_session (system);
+}
+
+/**
+ * gsm_system_is_active:
+ *
+ * Returns: %TRUE if the current session is in the foreground
+ * Since: 3.8
+ */
+gboolean
+gsm_system_is_active (GsmSystem *system)
+{
+        gboolean is_active;
+        g_object_get ((GObject*)system, "active", &is_active, NULL);
+        return is_active;
 }
 
 GsmSystem *
