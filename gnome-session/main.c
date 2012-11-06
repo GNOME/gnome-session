@@ -45,6 +45,7 @@
 #include "gsm-manager.h"
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
+#include "gsm-system.h"
 #include "gsm-xsmp-server.h"
 #include "gsm-fail-whale-dialog.h"
 
@@ -316,6 +317,13 @@ main (int argc, char **argv)
         gsm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
 
         client_store = gsm_store_new ();
+
+        /* Talk to logind before acquiring a name, since it does synchronous
+         * calls at initialization time that invoke a main loop and if we
+         * already owned a name, then we would service too early during
+         * that main loop.
+         */
+        g_object_unref (gsm_get_system ());
 
         xsmp_server = gsm_xsmp_server_new (client_store);
 
