@@ -24,6 +24,8 @@
 #include <glib-object.h>
 #include <sys/types.h>
 
+#include "gsm-inhibitor-flag.h"
+
 G_BEGIN_DECLS
 
 #define GSM_TYPE_INHIBITOR            (gsm_inhibitor_get_type ())
@@ -48,14 +50,6 @@ struct _GsmInhibitorClass
 {
         GObjectClass parent_class;
 };
-
-typedef enum {
-        GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
-        GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
-        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
-        GSM_INHIBITOR_FLAG_IDLE        = 1 << 3,
-        GSM_INHIBITOR_FLAG_AUTOMOUNT   = 1 << 4
-} GsmInhibitorFlag;
 
 typedef enum
 {

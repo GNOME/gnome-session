@@ -48,6 +48,7 @@ gnome_session_SOURCES =				\
 	gsm-store.c				\
 	gsm-inhibitor.h				\
 	gsm-inhibitor.c				\
+	gsm-inhibitor-flag.h			\
 	gsm-manager.c				\
 	gsm-manager.h				\
 	gsm-process-helper.c			\
