@@ -1,3 +1,14 @@
+XSLTPROC_FLAGS = \
+        --nonet \
+        --stringparam man.output.quietly 1 \
+        --stringparam funcsynopsis.style ansi \
+        --stringparam man.th.extra1.suppress 1 \
+        --stringparam man.authors.section.enabled 0 \
+        --stringparam man.copyright.section.enabled 0
+
+gnome-session-inhibit.1: gnome-session-inhibit.xml
+	$(AM_V_GEN) $(XSLTPROC) $(XSLTPROC_FLAGS) http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+
 man_MANS =				\
 	gnome-session.1			\
 	gnome-session-properties.1	\
@@ -5,7 +16,7 @@ man_MANS =				\
 	gnome-session-inhibit.1
 
 EXTRA_DIST =				\
-	gnome-session-inhibit.xml 	\
+	gnome-session-inhibit.xml	\
 	$(man_MANS)
 
 -include $(top_srcdir)/git.mk
