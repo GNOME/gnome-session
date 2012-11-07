@@ -26,7 +26,8 @@ gnome_session_quit_LDADD =			\
 gnome_session_inhibit_SOURCES =			\
 	gnome-session-inhibit.c
 
-gnome_session_inhibit_CPPFLAGS =			\
+gnome_session_inhibit_CPPFLAGS =		\
+	-I$(top_srcdir)/			\
 	$(AM_CPPFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
