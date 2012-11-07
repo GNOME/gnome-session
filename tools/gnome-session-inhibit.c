@@ -127,6 +127,41 @@ static void version (void)
   g_print ("%s %s\n", g_get_prgname (), PACKAGE_VERSION);
 }
 
+static void
+wait_for_child_app (char **argv)
+{
+  pid_t pid;
+  int status;
+
+  pid = fork ();
+  if (pid < 0)
+    {
+      g_print ("fork failed\n");
+      exit (1);
+    }
+
+  if (pid == 0)
+    {
+      execvp (*argv, argv + 1);
+      g_print (_("Failed to execute %s\n"), *argv);
+      exit (1);
+    }
+
+  do
+    {
+      if (waitpid (pid, &status, 0) == -1)
+        {
+          g_print ("waitpid failed\n");
+          exit (1);
+        }
+
+      if (WIFEXITED (status))
+        exit (WEXITSTATUS (status));
+
+    } while (!WIFEXITED (status) && ! WIFSIGNALED(status));
+
+}
+
 int main (int argc, char *argv[])
 {
   gchar *prgname;
@@ -134,8 +169,6 @@ int main (int argc, char *argv[])
   gboolean show_help = FALSE;
   gboolean show_version = FALSE;
   gint i;
-  pid_t pid;
-  int status;
   const gchar *app_id = "unknown";
   const gchar *reason = "not specified";
 
@@ -206,32 +239,7 @@ int main (int argc, char *argv[])
 
   inhibit (app_id, reason, inhibit_flags);
 
-  pid = fork ();
-  if (pid < 0)
-    {
-      g_print ("fork failed\n");
-      exit (1);
-    }
-
-  if (pid == 0)
-    {
-      execvp (argv[i], argv + i);
-      g_print (_("Failed to execute %s\n"), argv[i]);
-      exit (1);
-    }
-
-  do
-    {
-      if (waitpid (pid, &status, 0) == -1)
-        {
-          g_print ("waitpid failed\n");
-          exit (1);
-        }
-
-      if (WIFEXITED (status))
-        exit (WEXITSTATUS (status));
-
-    } while (!WIFEXITED (status) && ! WIFSIGNALED(status));
+  wait_for_child_app (argv + i);
 
   return 0;
 }
