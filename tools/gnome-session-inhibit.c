@@ -249,7 +249,8 @@ int main (int argc, char *argv[])
   if (inhibit_flags == 0)
     inhibit_flags = GSM_INHIBITOR_FLAG_IDLE;
 
-  inhibit (app_id, reason, inhibit_flags);
+  if (inhibit (app_id, reason, inhibit_flags) == FALSE)
+    return 1;
 
   if (!no_launch)
     wait_for_child_app (argv + i);
