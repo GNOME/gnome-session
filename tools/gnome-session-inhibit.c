@@ -30,17 +30,11 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 
-typedef enum {
-        GSM_INHIBITOR_FLAG_LOGOUT      = 1 << 0,
-        GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
-        GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
-        GSM_INHIBITOR_FLAG_IDLE        = 1 << 3,
-        GSM_INHIBITOR_FLAG_AUTOMOUNT   = 1 << 4
-} GsmInhibitorFlags;
+#include "gnome-session/gsm-inhibitor-flag.h"
 
-static GsmInhibitorFlags parse_flags (const gchar *arg)
+static GsmInhibitorFlag parse_flags (const gchar *arg)
 {
-  GsmInhibitorFlags flags;
+  GsmInhibitorFlag flags;
   gchar **args;
   gint i;
 
@@ -70,7 +64,7 @@ static GsmInhibitorFlags parse_flags (const gchar *arg)
 
 static gboolean inhibit (const gchar       *app_id,
                          const gchar       *reason,
-                         GsmInhibitorFlags flags)
+                         GsmInhibitorFlag flags)
 {
   GDBusConnection *bus;
   GVariant *ret;
@@ -136,7 +130,7 @@ static void version (void)
 int main (int argc, char *argv[])
 {
   gchar *prgname;
-  GsmInhibitorFlags inhibit_flags = 0;
+  GsmInhibitorFlag inhibit_flags = 0;
   gboolean show_help = FALSE;
   gboolean show_version = FALSE;
   gint i;
