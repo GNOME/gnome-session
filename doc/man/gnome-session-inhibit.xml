@@ -20,7 +20,7 @@
 <cmdsynopsis>
 <command>gnome-session-inhibit</command>
 <arg choice="opt" rep="repeat">OPTION</arg>
-<arg choice="req">COMMAND</arg>
+<arg choice="opt">COMMAND</arg>
 </cmdsynopsis>
 </refsynopsisdiv>
 
@@ -78,6 +78,13 @@ ARG specifies the things to inhibit, as a colon-separated list. The
 possible values are logout, switch-user, suspend, idle, automount.
 If this option is used more than once, the values are combined.
 If this option is not specified, "idle" is assumed.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>--inhibit-only</option></term>
+<listitem><para>
+Do not launch COMMAND and wait forever instead
 </para></listitem>
 </varlistentry>
 

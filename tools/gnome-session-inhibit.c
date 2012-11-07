@@ -24,6 +24,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 #include <locale.h>
 
 #include <glib.h>
@@ -117,6 +118,7 @@ static void usage (void)
              "  --reason REASON   The reason for inhibiting (optional)\n"
              "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
              "                    logout, switch-user, suspend, idle, automount\n"
+             "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
              "\n"
              "If no --inhibit option is specified, idle is assumed.\n"),
            g_get_prgname ());
@@ -159,7 +161,14 @@ wait_for_child_app (char **argv)
         exit (WEXITSTATUS (status));
 
     } while (!WIFEXITED (status) && ! WIFSIGNALED(status));
+}
 
+static void
+wait_forever (void)
+{
+  g_print ("Inhibiting until Ctrl+C is pressed...\n");
+  while (1)
+    sleep (UINT32_MAX);
 }
 
 int main (int argc, char *argv[])
@@ -168,6 +177,7 @@ int main (int argc, char *argv[])
   GsmInhibitorFlag inhibit_flags = 0;
   gboolean show_help = FALSE;
   gboolean show_version = FALSE;
+  gboolean no_launch = FALSE;
   gint i;
   const gchar *app_id = "unknown";
   const gchar *reason = "not specified";
@@ -188,6 +198,8 @@ int main (int argc, char *argv[])
         show_help = TRUE;
       else if (strcmp (argv[i], "--version") == 0)
         show_version = TRUE;
+      else if (strcmp (argv[i], "--inhibit-only") == 0)
+        no_launch = TRUE;
       else if (strcmp (argv[i], "--app-id") == 0)
         {
           i++;
@@ -228,7 +240,7 @@ int main (int argc, char *argv[])
       return 0;
     }
 
-  if (show_help || i == argc)
+  if (show_help || (i == argc && !no_launch))
     {
       usage ();
       return 0;
@@ -239,7 +251,10 @@ int main (int argc, char *argv[])
 
   inhibit (app_id, reason, inhibit_flags);
 
-  wait_for_child_app (argv + i);
+  if (!no_launch)
+    wait_for_child_app (argv + i);
+  else
+    wait_forever ();
 
   return 0;
 }
