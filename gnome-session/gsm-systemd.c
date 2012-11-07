@@ -53,7 +53,7 @@
 struct _GsmSystemdPrivate
 {
         GDBusProxy      *sd_proxy;
-        gchar           *session_id;
+        char            *session_id;
         gchar           *session_path;
 
         GSList          *inhibitors;
@@ -82,7 +82,7 @@ gsm_systemd_finalize (GObject *object)
         GsmSystemd *systemd = GSM_SYSTEMD (object);
 
         g_clear_object (&systemd->priv->sd_proxy);
-        g_free (systemd->priv->session_id);
+        free (systemd->priv->session_id);
         g_free (systemd->priv->session_path);
 
         if (systemd->priv->inhibitors != NULL) {
