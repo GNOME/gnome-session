@@ -259,10 +259,11 @@ main (int argc, char **argv)
         GsmStore         *client_store;
         GsmXsmpServer    *xsmp_server;
         static char     **override_autostart_dirs = NULL;
-        static char      *session_name = NULL;
+        static char      *opt_session_name = NULL;
+        const char       *session_name;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
-                { "session", 0, 0, G_OPTION_ARG_STRING, &session_name, N_("Session to use"), N_("SESSION_NAME") },
+                { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -339,8 +340,10 @@ main (int argc, char **argv)
         g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
         g_unix_signal_add (SIGUSR1, sigusr1_cb, manager);
 
-        if (IS_STRING_EMPTY (session_name))
+        if (IS_STRING_EMPTY (opt_session_name))
                 session_name = _gsm_manager_get_default_session (manager);
+        else
+                session_name = opt_session_name;
 
         gsm_util_set_autostart_dirs (override_autostart_dirs);
 

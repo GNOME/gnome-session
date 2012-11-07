@@ -587,7 +587,9 @@ setup_condition_monitor (GsmAutostartApp *app)
 
         g_free (key);
 
-        /* FIXME: cache the disabled value? */
+        if (disabled) {
+                /* FIXME: cache the disabled value? */
+        }
 }
 
 static gboolean

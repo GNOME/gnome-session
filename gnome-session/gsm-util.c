@@ -191,7 +191,7 @@ gsm_util_set_autostart_dirs (char ** dirs)
 }
 
 static char **
-gsm_util_get_standard_autostart_dirs ()
+gsm_util_get_standard_autostart_dirs (void)
 {
         GPtrArray          *dirs;
         const char * const *system_config_dirs;
