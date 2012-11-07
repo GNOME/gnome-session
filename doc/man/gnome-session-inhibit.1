@@ -2,12 +2,12 @@
 .\"     Title: gnome-session-inhibit
 .\"    Author: [FIXME: author] [see http://docbook.sf.net/el/author]
 .\" Generator: DocBook XSL Stylesheets v1.77.1 <http://docbook.sf.net/>
-.\"      Date: 11/03/2012
+.\"      Date: 11/07/2012
 .\"    Manual: User Commands
 .\"    Source: gnome-session
 .\"  Language: English
 .\"
-.TH "GNOME\-SESSION\-INHI" "1" "11/03/2012" "gnome-session" "User Commands"
+.TH "GNOME\-SESSION\-INHI" "1" "11/07/2012" "gnome-session" "User Commands"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -31,7 +31,7 @@
 gnome-session-inhibit \- inhibit gnome\-session functionality
 .SH "SYNOPSIS"
 .HP \w'\fBgnome\-session\-inhibit\fR\ 'u
-\fBgnome\-session\-inhibit\fR [OPTION...] {COMMAND}
+\fBgnome\-session\-inhibit\fR [OPTION...] [COMMAND]
 .SH "DESCRIPTION"
 .PP
 \fBgnome\-session\-inhibit\fR
@@ -63,6 +63,11 @@ A human\-readable reason to pass along when calling the gnome\-session Inhibit()
 \fB\-\-inhibit\fR ARG
 .RS 4
 ARG specifies the things to inhibit, as a colon\-separated list\&. The possible values are logout, switch\-user, suspend, idle, automount\&. If this option is used more than once, the values are combined\&. If this option is not specified, "idle" is assumed\&.
+.RE
+.PP
+\fB\-\-inhibit\-only\fR
+.RS 4
+Do not launch COMMAND and wait forever instead
 .RE
 .SH "SEE ALSO"
 .PP
