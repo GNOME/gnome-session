@@ -51,12 +51,20 @@
 
 struct _GsmSystemdPrivate
 {
+        GSource         *sd_source;
         GDBusProxy      *sd_proxy;
         char            *session_id;
         gchar           *session_path;
 
         GSList          *inhibitors;
         gint             inhibit_fd;
+
+        gboolean         is_active;
+};
+
+enum {
+        PROP_0,
+        PROP_ACTIVE
 };
 
 static void gsm_systemd_system_init (GsmSystemInterface *iface);
@@ -84,6 +92,10 @@ gsm_systemd_finalize (GObject *object)
         free (systemd->priv->session_id);
         g_free (systemd->priv->session_path);
 
+        if (systemd->priv->sd_source) {
+                g_source_destroy (systemd->priv->sd_source);
+        }
+
         if (systemd->priv->inhibitors != NULL) {
                 g_slist_free_full (systemd->priv->inhibitors, g_free);
         }
@@ -93,21 +105,156 @@ gsm_systemd_finalize (GObject *object)
 }
 
 static void
+gsm_systemd_set_property (GObject      *object,
+                          guint         prop_id,
+                          const GValue *value,
+                          GParamSpec   *pspec)
+{
+        GsmSystemd *self = GSM_SYSTEMD (object);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                self->priv->is_active = g_value_get_boolean (value);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        }
+}
+
+static void
+gsm_systemd_get_property (GObject    *object,
+                          guint       prop_id,
+                          GValue     *value,
+                          GParamSpec *pspec)
+{
+        GsmSystemd *self = GSM_SYSTEMD (object);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                g_value_set_boolean (value, self->priv->is_active);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
 gsm_systemd_class_init (GsmSystemdClass *manager_class)
 {
         GObjectClass *object_class;
 
         object_class = G_OBJECT_CLASS (manager_class);
 
+        object_class->get_property = gsm_systemd_get_property;
+        object_class->set_property = gsm_systemd_set_property;
         object_class->finalize = gsm_systemd_finalize;
 
+        g_object_class_override_property (object_class, PROP_ACTIVE, "active");
+
         g_type_class_add_private (manager_class, sizeof (GsmSystemdPrivate));
+}
+
+typedef struct
+{
+        GSource source;
+        GPollFD pollfd;
+        sd_login_monitor *monitor;
+} SdSource;
+
+static gboolean
+sd_source_prepare (GSource *source,
+                   gint    *timeout)
+{
+        *timeout = -1;
+        return FALSE;
+}
+
+static gboolean
+sd_source_check (GSource *source)
+{
+        SdSource *sd_source = (SdSource *)source;
+
+        return sd_source->pollfd.revents != 0;
+}
+
+static gboolean
+sd_source_dispatch (GSource     *source,
+                    GSourceFunc  callback,
+                    gpointer     user_data)
+
+{
+        SdSource *sd_source = (SdSource *)source;
+        gboolean ret;
+
+        g_warn_if_fail (callback != NULL);
+
+        ret = (*callback) (user_data);
+
+        sd_login_monitor_flush (sd_source->monitor);
+        return ret;
+}
+
+static void
+sd_source_finalize (GSource *source)
+{
+        SdSource *sd_source = (SdSource*)source;
+
+        sd_login_monitor_unref (sd_source->monitor);
+}
+
+static GSourceFuncs sd_source_funcs = {
+        sd_source_prepare,
+        sd_source_check,
+        sd_source_dispatch,
+        sd_source_finalize
+};
+
+static GSource *
+sd_source_new (void)
+{
+        GSource *source;
+        SdSource *sd_source;
+        int ret;
+
+        source = g_source_new (&sd_source_funcs, sizeof (SdSource));
+        sd_source = (SdSource *)source;
+
+        if ((ret = sd_login_monitor_new (NULL, &sd_source->monitor)) < 0) {
+                g_warning ("Error getting login monitor: %d", ret);
+        } else {
+                sd_source->pollfd.fd = sd_login_monitor_get_fd (sd_source->monitor);
+                sd_source->pollfd.events = G_IO_IN;
+                g_source_add_poll (source, &sd_source->pollfd);
+        }
+
+        return source;
+}
+
+static gboolean
+on_sd_source_changed (gpointer user_data)
+{
+        GsmSystemd *self = user_data;
+        int active_r;
+        gboolean active;
+
+        active_r = sd_session_is_active (self->priv->session_id);
+        if (active_r < 0)
+                active = FALSE;
+        else
+                active = active_r;
+        if (active != self->priv->is_active) {
+                self->priv->is_active = active;
+                g_object_notify (G_OBJECT (self), "active");
+        }
+        
+        return TRUE;
 }
 
 static void
 gsm_systemd_init (GsmSystemd *manager)
 {
-        GError *error;
+        GError *error = NULL;
         GDBusConnection *bus;
         GVariant *res;
 
@@ -117,32 +264,25 @@ gsm_systemd_init (GsmSystemd *manager)
 
         manager->priv->inhibit_fd = -1;
 
-        error = NULL;
-
         bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
-        if (bus == NULL) {
-                g_warning ("Failed to connect to system bus: %s",
+        if (bus == NULL)
+                g_error ("Failed to connect to system bus: %s",
+                         error->message);
+        manager->priv->sd_proxy =
+                g_dbus_proxy_new_sync (bus,
+                                       0,
+                                       NULL,
+                                       SD_NAME,
+                                       SD_PATH,
+                                       SD_INTERFACE,
+                                       NULL,
+                                       &error);
+        if (manager->priv->sd_proxy == NULL) {
+                g_warning ("Failed to connect to systemd: %s",
                            error->message);
-                g_error_free (error);
-        } else {
-                manager->priv->sd_proxy =
-                        g_dbus_proxy_new_sync (bus,
-                                               0,
-                                               NULL,
-                                               SD_NAME,
-                                               SD_PATH,
-                                               SD_INTERFACE,
-                                               NULL,
-                                               &error);
-
-                if (manager->priv->sd_proxy == NULL) {
-                        g_warning ("Failed to connect to systemd: %s",
-                                   error->message);
-                        g_error_free (error);
-                }
-
-                g_object_unref (bus);
+                g_clear_error (&error);
         }
+
 
         sd_pid_get_session (getpid (), &manager->priv->session_id);
 
@@ -161,6 +301,14 @@ gsm_systemd_init (GsmSystemd *manager)
                                       NULL);
         g_variant_get (res, "(o)", &manager->priv->session_path);
         g_variant_unref (res);
+
+        manager->priv->sd_source = sd_source_new ();
+        g_source_set_callback (manager->priv->sd_source, on_sd_source_changed, manager, NULL);
+        g_source_attach (manager->priv->sd_source, NULL);
+
+        on_sd_source_changed (manager);
+
+        g_object_unref (bus);
 }
 
 static void
