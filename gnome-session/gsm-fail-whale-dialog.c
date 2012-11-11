@@ -39,8 +39,8 @@ struct _GsmFailWhaleDialogPrivate
 {
         gboolean debug_mode;
         gboolean allow_logout;
+        gboolean extensions;
         GdkRectangle geometry;
-        GsmShellExtensions *extensions;
 };
 
 G_DEFINE_TYPE (GsmFailWhaleDialog, gsm_fail_whale_dialog, GTK_TYPE_WINDOW);
@@ -130,11 +130,6 @@ on_screen_size_changed (GdkScreen          *screen,
 static void
 gsm_fail_whale_dialog_finalize (GObject *object)
 {
-        GsmFailWhaleDialog *fail_dialog = GSM_FAIL_WHALE_DIALOG (object);
-        GsmFailWhaleDialogPrivate *priv = fail_dialog->priv;
-
-        g_clear_object (&priv->extensions);
-
         G_OBJECT_CLASS (gsm_fail_whale_dialog_parent_class)->finalize (object);
 }
 
@@ -317,7 +312,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
 
         if (!priv->allow_logout)
                 message_label = gtk_label_new (_("A problem has occurred and the system can't recover. Please contact a system administrator"));
-        else if (priv->extensions != NULL && gsm_shell_extensions_n_extensions (priv->extensions) > 0)
+        else if (priv->extensions)
                 message_label = gtk_label_new (_("A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."));
         else
                 message_label = gtk_label_new (_("A problem has occurred and the system can't recover.\nPlease log out and try again."));
@@ -366,7 +361,7 @@ gsm_fail_whale_dialog_we_failed (gboolean            debug_mode,
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
         fail_dialog->priv->debug_mode = debug_mode;
         fail_dialog->priv->allow_logout = allow_logout;
-        fail_dialog->priv->extensions = extensions;
+        fail_dialog->priv->extensions = extensions != NULL && gsm_shell_extensions_n_extensions (extensions) > 0;
 
         setup_window (fail_dialog);
 
