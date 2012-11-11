@@ -1360,7 +1360,7 @@ show_fallback_dialog (const char *title,
         gtk_window_set_icon_name (GTK_WINDOW (dialog), GSM_ICON_COMPUTER_FAIL);
 
         image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL,
-                                              gsm_util_get_computer_fail_icon_size ());
+                                              GTK_ICON_SIZE_DIALOG);
         gtk_message_dialog_set_image (GTK_MESSAGE_DIALOG (dialog), image);
 
         if (description) {
