@@ -36,7 +36,6 @@
 #include "gsm-store.h"
 #include "gsm-client.h"
 #include "gsm-icon-names.h"
-#include "gsm-inhibitor.h"
 #include "eggdesktopfile.h"
 #include "gsm-util.h"
 
@@ -62,9 +61,10 @@ struct GsmInhibitDialogPrivate
 {
         GtkBuilder        *xml;
         int                action;
+        int                timeout;
+        guint              timeout_id;
         gboolean           is_done;
-        GsmStore          *inhibitors;
-        GsmStore          *clients;
+        const char *const *inhibitor_paths;
         GtkListStore      *list_store;
         gboolean           have_xrender;
         int                xrender_event_base;
@@ -74,8 +74,8 @@ struct GsmInhibitDialogPrivate
 enum {
         PROP_0,
         PROP_ACTION,
-        PROP_INHIBITOR_STORE,
-        PROP_CLIENT_STORE
+        PROP_TIMEOUT,
+        PROP_INHIBITOR_PATHS
 };
 
 enum {
@@ -83,6 +83,7 @@ enum {
         INHIBIT_NAME_COLUMN,
         INHIBIT_REASON_COLUMN,
         INHIBIT_ID_COLUMN,
+        INHIBIT_PROXY_COLUMN,
         NUMBER_OF_COLUMNS
 };
 
@@ -132,6 +133,21 @@ gsm_inhibit_dialog_set_action (GsmInhibitDialog *dialog,
         dialog->priv->action = action;
 }
 
+static void
+gsm_inhibit_dialog_set_timeout (GsmInhibitDialog *dialog,
+                                int               timeout)
+{
+        dialog->priv->timeout = timeout;
+}
+
+static void
+gsm_inhibit_dialog_set_inhibitor_paths (GsmInhibitDialog  *dialog,
+                                        const char *const *paths)
+{
+        dialog->priv->inhibitor_paths = (const char *const*)g_strdupv ((gchar **)paths);
+}
+
+#if 0
 static gboolean
 find_inhibitor (GsmInhibitDialog *dialog,
                 const char       *id,
@@ -166,6 +182,7 @@ find_inhibitor (GsmInhibitDialog *dialog,
 
         return found_item;
 }
+#endif
 
 /* copied from gnome-panel panel-util.c */
 static char *
@@ -448,14 +465,70 @@ get_pixbuf_for_window (GdkDisplay *gdkdisplay,
         return pixbuf;
 }
 
+static gchar *
+inhibitor_get_app_id (GDBusProxy *proxy)
+{
+        GError *error = NULL;
+        GVariant *res;
+        gchar *app_id;
+
+        res = g_dbus_proxy_call_sync (proxy, "GetAppId", NULL, 0, G_MAXINT, NULL, &error);
+        if (res == NULL) {
+                g_warning ("Failed to get Inhibitor app id: %s", error->message);
+                g_error_free (error);
+                return NULL;
+        }
+        g_variant_get (res, "(s)", &app_id);
+        g_variant_unref (res);
+
+        return app_id;
+}
+
+static gchar *
+inhibitor_get_reason (GDBusProxy *proxy)
+{
+        GError *error = NULL;
+        GVariant *res;
+        gchar *reason;
+
+        res = g_dbus_proxy_call_sync (proxy, "GetReason", NULL, 0, G_MAXINT, NULL, &error);
+        if (res == NULL) {
+                g_warning ("Failed to get Inhibitor reason: %s", error->message);
+                g_error_free (error);
+                return NULL;
+        }
+        g_variant_get (res, "(s)", &reason);
+        g_variant_unref (res);
+
+        return reason;
+}
+
+static guint
+inhibitor_get_xid (GDBusProxy *proxy)
+{
+        GError *error = NULL;
+        GVariant *res;
+        guint xid;
+
+        res = g_dbus_proxy_call_sync (proxy, "GetToplevelXid", NULL, 0, G_MAXINT, NULL, &error);
+        if (res == NULL) {
+                g_warning ("Failed to get Inhibitor xid: %s", error->message);
+                g_error_free (error);
+                return 0;
+        }
+        g_variant_get (res, "(u)", &xid);
+        g_variant_unref (res);
+
+        return xid;
+}
 static void
 add_inhibitor (GsmInhibitDialog *dialog,
-               GsmInhibitor     *inhibitor)
+               GDBusProxy       *inhibitor)
 {
         GdkDisplay     *gdkdisplay;
         const char     *name;
         const char     *icon_name;
-        const char     *app_id;
+        char           *app_id;
         char           *desktop_filename;
         GdkPixbuf      *pixbuf;
         EggDesktopFile *desktop_file;
@@ -463,6 +536,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         char          **search_dirs;
         guint           xid;
         char           *freeme;
+        gchar          *reason;
 
         gdkdisplay = gtk_widget_get_display (GTK_WIDGET (dialog));
 
@@ -473,7 +547,9 @@ add_inhibitor (GsmInhibitDialog *dialog,
         pixbuf = NULL;
         freeme = NULL;
 
-        app_id = gsm_inhibitor_peek_app_id (inhibitor);
+        app_id = inhibitor_get_app_id (inhibitor);
+        reason = inhibitor_get_reason (inhibitor);
+        xid = inhibitor_get_xid (inhibitor);
 
         if (IS_STRING_EMPTY (app_id)) {
                 desktop_filename = NULL;
@@ -483,7 +559,6 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 desktop_filename = g_strdup (app_id);
         }
 
-        xid = gsm_inhibitor_peek_toplevel_xid (inhibitor);
         g_debug ("GsmInhibitDialog: inhibitor has XID %u", xid);
         if (xid > 0 && dialog->priv->have_xrender) {
                 pixbuf = get_pixbuf_for_window (gdkdisplay, xid, DEFAULT_SNAPSHOT_SIZE, DEFAULT_SNAPSHOT_SIZE);
@@ -567,20 +642,6 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 }
         }
 
-        /* try client info */
-        if (name == NULL) {
-                const char *client_id;
-                client_id = gsm_inhibitor_peek_client_id (inhibitor);
-                if (! IS_STRING_EMPTY (client_id)) {
-                        GsmClient *client;
-                        client = GSM_CLIENT (gsm_store_lookup (dialog->priv->clients, client_id));
-                        if (client != NULL) {
-                                freeme = gsm_client_get_app_name (client);
-                                name = freeme;
-                        }
-                }
-        }
-
         if (name == NULL) {
                 if (! IS_STRING_EMPTY (app_id)) {
                         name = app_id;
@@ -602,66 +663,142 @@ add_inhibitor (GsmInhibitDialog *dialog,
                                            NULL, 0,
                                            INHIBIT_IMAGE_COLUMN, pixbuf,
                                            INHIBIT_NAME_COLUMN, name,
-                                           INHIBIT_REASON_COLUMN, gsm_inhibitor_peek_reason (inhibitor),
-                                           INHIBIT_ID_COLUMN, gsm_inhibitor_peek_id (inhibitor),
+                                           INHIBIT_REASON_COLUMN, reason,
+                                           INHIBIT_ID_COLUMN, g_dbus_proxy_get_object_path (inhibitor),
+                                           INHIBIT_PROXY_COLUMN, inhibitor,
                                            -1);
 
         g_free (desktop_filename);
         g_free (freeme);
         g_clear_object (&pixbuf);
         g_clear_pointer (&desktop_file, egg_desktop_file_free);
+
+        g_free (app_id);
+        g_free (reason);
 }
 
 static gboolean
-model_has_one_entry (GtkTreeModel *model)
+model_is_empty (GtkTreeModel *model)
 {
-        guint n_rows;
+        gint n;
 
-        n_rows = gtk_tree_model_iter_n_children (model, NULL);
-        g_debug ("Model has %d rows", n_rows);
-
-        return (n_rows > 0 && n_rows < 2);
+        n = gtk_tree_model_iter_n_children (model, NULL);
+        g_print ("model rows: %d\n", n);
+        return n == 0;
 }
+
+static void gsm_inhibit_dialog_start_timer (GsmInhibitDialog *dialog);
+static void gsm_inhibit_dialog_stop_timer (GsmInhibitDialog *dialog);
 
 static void
 update_dialog_text (GsmInhibitDialog *dialog)
 {
-        const char *description_text;
         const char *header_text;
+        gchar *description_text;
         GtkWidget  *widget;
+        gchar *title;
+        const gchar *user;
+        gchar *markup;
+        gboolean inhibited;
+        gint seconds;
 
-        if (model_has_one_entry (GTK_TREE_MODEL (dialog->priv->list_store))) {
-                g_debug ("Found one entry in model");
-                header_text = _("A program is still running:");
-                description_text = _("Waiting for the program to finish.  Interrupting the program may cause you to lose work.");
-        } else {
-                g_debug ("Found multiple entries (or none) in model");
-                header_text = _("Some programs are still running:");
-                description_text = _("Waiting for programs to finish.  Interrupting these programs may cause you to lose work.");
+        user = g_get_real_name ();
+        inhibited = !model_is_empty (GTK_TREE_MODEL (dialog->priv->list_store));
+
+        g_print ("update dialog text: inhibited %d\n", inhibited);
+
+        if (inhibited) {
+                gsm_inhibit_dialog_stop_timer (dialog);
+        }
+        else {
+                gsm_inhibit_dialog_start_timer (dialog);
         }
 
-        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
-                                                     "header-label"));
-        if (widget != NULL) {
-                char *markup;
+        if (dialog->priv->timeout <= 30) {
+                seconds = dialog->priv->timeout;
+        } else {
+                seconds = (dialog->priv->timeout / 10) * 10;
+                if (dialog->priv->timeout % 10) {
+                        seconds += 10;
+                }
+        }
+
+        if (dialog->priv->action == GSM_LOGOUT_ACTION_LOGOUT) {
+                title = g_strdup_printf (_("Log Out %s"), user);
+                if (inhibited) {
+                        header_text = _("Some applications are still running:");
+                        description_text = g_strdup (_("Click Log Out to quit these applications and log out of the system."));
+                } else {
+                        header_text = NULL;
+                        description_text = g_strdup_printf (ngettext ("%s will be logged out automatically in %d second.",
+                                                                      "%s will be logged out automatically in %d seconds.", seconds), user, seconds);
+                }
+        } else if (dialog->priv->action == GSM_LOGOUT_ACTION_SHUTDOWN) {
+                title = g_strdup_printf (_("Power Off"));
+                if (inhibited) {
+                        header_text = _("Some applications are still running:");
+                        description_text = g_strdup (_("Click Power Off to quit these applications and power off the system."));
+                } else {
+                        header_text = NULL;
+                        description_text = g_strdup_printf (ngettext ("The system will power off automatically in %d second.",
+                                                                      "The system will power off automatically in %d seconds.", seconds), seconds);
+                }
+        } else if (dialog->priv->action == GSM_LOGOUT_ACTION_REBOOT) {
+                title = g_strdup_printf (_("Restart"));
+                if (inhibited) {
+                        header_text = _("Some applications are still running:");
+                        description_text = g_strdup (_("Click Restart to quit these applications and restart the system."));
+                } else {
+                        header_text = NULL;
+                        description_text = g_strdup_printf (ngettext ("The system will restart automatically in %d second.",
+                                                                      "The system will restart automatically in %d seconds.", seconds), seconds);
+                }
+        }
+        else {
+                title = g_strdup ("");
+                if (inhibited) {
+                        header_text = _("Some applications are still running:");
+                        description_text = g_strdup (_("Waiting for these application to finish.  Interrupting them can lead to loss of data."));
+
+                } else {
+                        header_text = NULL;
+                        description_text = g_strdup_printf (ngettext ("The action will proceed automatically in %d second.",
+                                                                      "The action will proceed automatically in %d seconds.", seconds), seconds);
+                }
+        }
+
+        gtk_window_set_title (GTK_WINDOW (dialog), title);
+
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml, "header-label"));
+        if (header_text) {
                 markup = g_strdup_printf ("<b>%s</b>", header_text);
                 gtk_label_set_markup (GTK_LABEL (widget), markup);
                 g_free (markup);
+                gtk_widget_show (widget);
+        } else {
+                gtk_widget_hide (widget);
         }
 
-        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
-                                                     "description-label"));
-        if (widget != NULL) {
-                gtk_label_set_text (GTK_LABEL (widget), description_text);
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml, "scrolledwindow1"));
+        if (inhibited) {
+                gtk_widget_show (widget);
+        } else {
+                gtk_widget_hide (widget);
         }
+
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml, "description-label"));
+        gtk_label_set_text (GTK_LABEL (widget), description_text);
+
+        g_free (description_text);
+        g_free (title);
 }
 
+#if 0
 static void
 on_store_inhibitor_added (GsmStore          *store,
                           const char        *id,
                           GsmInhibitDialog  *dialog)
 {
-        GsmInhibitor *inhibitor;
         GtkTreeIter   iter;
 
         g_debug ("GsmInhibitDialog: inhibitor added: %s", id);
@@ -704,61 +841,7 @@ on_store_inhibitor_removed (GsmStore          *store,
                 gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
         }
 }
-
-static void
-gsm_inhibit_dialog_set_inhibitor_store (GsmInhibitDialog *dialog,
-                                        GsmStore         *store)
-{
-        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
-
-        if (store != NULL) {
-                g_object_ref (store);
-        }
-
-        if (dialog->priv->inhibitors != NULL) {
-                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                                      on_store_inhibitor_added,
-                                                      dialog);
-                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                                      on_store_inhibitor_removed,
-                                                      dialog);
-
-                g_object_unref (dialog->priv->inhibitors);
-        }
-
-
-        g_debug ("GsmInhibitDialog: setting store %p", store);
-
-        dialog->priv->inhibitors = store;
-
-        if (dialog->priv->inhibitors != NULL) {
-                g_signal_connect (dialog->priv->inhibitors,
-                                  "added",
-                                  G_CALLBACK (on_store_inhibitor_added),
-                                  dialog);
-                g_signal_connect (dialog->priv->inhibitors,
-                                  "removed",
-                                  G_CALLBACK (on_store_inhibitor_removed),
-                                  dialog);
-        }
-}
-
-static void
-gsm_inhibit_dialog_set_client_store (GsmInhibitDialog *dialog,
-                                     GsmStore         *store)
-{
-        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (dialog));
-
-        if (store != NULL) {
-                g_object_ref (store);
-        }
-
-        if (dialog->priv->clients != NULL) {
-                g_object_unref (dialog->priv->clients);
-        }
-
-        dialog->priv->clients = store;
-}
+#endif
 
 static void
 gsm_inhibit_dialog_set_property (GObject        *object,
@@ -772,11 +855,11 @@ gsm_inhibit_dialog_set_property (GObject        *object,
         case PROP_ACTION:
                 gsm_inhibit_dialog_set_action (dialog, g_value_get_int (value));
                 break;
-        case PROP_INHIBITOR_STORE:
-                gsm_inhibit_dialog_set_inhibitor_store (dialog, g_value_get_object (value));
+        case PROP_TIMEOUT:
+                gsm_inhibit_dialog_set_timeout (dialog, g_value_get_int (value));
                 break;
-        case PROP_CLIENT_STORE:
-                gsm_inhibit_dialog_set_client_store (dialog, g_value_get_object (value));
+        case PROP_INHIBITOR_PATHS:
+                gsm_inhibit_dialog_set_inhibitor_paths (dialog, g_value_get_boxed (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -796,11 +879,11 @@ gsm_inhibit_dialog_get_property (GObject        *object,
         case PROP_ACTION:
                 g_value_set_int (value, dialog->priv->action);
                 break;
-        case PROP_INHIBITOR_STORE:
-                g_value_set_object (value, dialog->priv->inhibitors);
+        case PROP_TIMEOUT:
+                g_value_set_int (value, dialog->priv->action);
                 break;
-        case PROP_CLIENT_STORE:
-                g_value_set_object (value, dialog->priv->clients);
+        case PROP_INHIBITOR_PATHS:
+                g_value_set_boxed (value, dialog->priv->inhibitor_paths);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -839,21 +922,40 @@ name_cell_data_func (GtkTreeViewColumn *tree_column,
         g_free (markup);
 }
 
-static gboolean
-add_to_model (const char       *id,
-              GsmInhibitor     *inhibitor,
-              GsmInhibitDialog *dialog)
+static void
+on_inhibitor_created (GObject *source, GAsyncResult *res, gpointer user_data)
 {
-        add_inhibitor (dialog, inhibitor);
-        return FALSE;
+        GsmInhibitDialog *dialog = user_data;
+        GError *error = NULL;
+        GDBusProxy *proxy;
+
+        proxy = g_dbus_proxy_new_for_bus_finish (res, &error);
+        if (proxy == NULL) {
+                g_warning ("Failed to create Inhibitor proxy: %s", error->message);
+                g_error_free (error);
+                return;
+        }
+
+        add_inhibitor (dialog, proxy);
+
+        g_object_unref (proxy);
 }
 
 static void
 populate_model (GsmInhibitDialog *dialog)
 {
-        gsm_store_foreach_remove (dialog->priv->inhibitors,
-                                  (GsmStoreFunc)add_to_model,
-                                  dialog);
+        gint i;
+        for (i = 0; dialog->priv->inhibitor_paths && dialog->priv->inhibitor_paths[i]; i++) {
+                g_dbus_proxy_new_for_bus (G_BUS_TYPE_SESSION,
+                                          0,
+                                          NULL,
+                                          "org.gnome.SessionManager",
+                                          dialog->priv->inhibitor_paths[i],
+                                          "org.gnome.SessionManager.Inhibitor",
+                                          NULL,
+                                          on_inhibitor_created,
+                                          dialog);
+        }
         update_dialog_text (dialog);
 }
 
@@ -865,24 +967,25 @@ setup_dialog (GsmInhibitDialog *dialog)
         GtkTreeViewColumn *column;
         GtkCellRenderer   *renderer;
 
+        g_print ("setting up dialog\n");
         switch (dialog->priv->action) {
         case GSM_LOGOUT_ACTION_SWITCH_USER:
-                button_text = _("Switch User Anyway");
+                button_text = _("Switch User");
                 break;
         case GSM_LOGOUT_ACTION_LOGOUT:
-                button_text = _("Log Out Anyway");
+                button_text = _("Log Out");
                 break;
         case GSM_LOGOUT_ACTION_SLEEP:
-                button_text = _("Suspend Anyway");
+                button_text = _("Suspend");
                 break;
         case GSM_LOGOUT_ACTION_HIBERNATE:
-                button_text = _("Hibernate Anyway");
+                button_text = _("Hibernate");
                 break;
         case GSM_LOGOUT_ACTION_SHUTDOWN:
-                button_text = _("Shut Down Anyway");
+                button_text = _("Power Off");
                 break;
         case GSM_LOGOUT_ACTION_REBOOT:
-                button_text = _("Restart Anyway");
+                button_text = _("Restart");
                 break;
         default:
                 g_assert_not_reached ();
@@ -907,7 +1010,9 @@ setup_dialog (GsmInhibitDialog *dialog)
                                                        GDK_TYPE_PIXBUF,
                                                        G_TYPE_STRING,
                                                        G_TYPE_STRING,
-                                                       G_TYPE_STRING);
+                                                       G_TYPE_STRING,
+                                                       G_TYPE_OBJECT);
+        g_print ("empty model: %d\n", gtk_tree_model_iter_n_children (GTK_TREE_MODEL (dialog->priv->list_store), NULL));
 
         treeview = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
                                                        "inhibitors-treeview"));
@@ -979,7 +1084,7 @@ gsm_inhibit_dialog_constructor (GType                  type,
 
         setup_dialog (dialog);
 
-        gtk_widget_show_all (GTK_WIDGET (dialog));
+        gtk_widget_show (GTK_WIDGET (dialog));
 
         return G_OBJECT (dialog);
 }
@@ -987,43 +1092,71 @@ gsm_inhibit_dialog_constructor (GType                  type,
 static void
 gsm_inhibit_dialog_dispose (GObject *object)
 {
-        GsmInhibitDialog *dialog;
+        GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (object);
 
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (object));
-
-        dialog = GSM_INHIBIT_DIALOG (object);
-
-        g_debug ("GsmInhibitDialog: dispose called");
+        gsm_inhibit_dialog_stop_timer (dialog);
 
         g_clear_object (&dialog->priv->list_store);
-
-        if (dialog->priv->inhibitors != NULL) {
-                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                                      on_store_inhibitor_added,
-                                                      dialog);
-                g_signal_handlers_disconnect_by_func (dialog->priv->inhibitors,
-                                                      on_store_inhibitor_removed,
-                                                      dialog);
-
-                g_clear_object (&dialog->priv->inhibitors);
-        }
-
         g_clear_object (&dialog->priv->xml);
 
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->dispose (object);
+}
+
+static gboolean
+gsm_inhibit_dialog_timeout (GsmInhibitDialog *dialog)
+{
+        if (dialog->priv->timeout == 0) {
+                gtk_dialog_response (GTK_DIALOG (dialog), GTK_RESPONSE_ACCEPT);
+                return G_SOURCE_REMOVE;
+        }
+
+        update_dialog_text (dialog);
+
+        dialog->priv->timeout--;
+
+        return G_SOURCE_CONTINUE;
+}
+
+static void
+gsm_inhibit_dialog_start_timer (GsmInhibitDialog *dialog)
+{
+        if (dialog->priv->timeout_id == 0) {
+                dialog->priv->timeout_id = g_timeout_add (1000, (GSourceFunc)gsm_inhibit_dialog_timeout, dialog);
+        }
+}
+
+static void
+gsm_inhibit_dialog_stop_timer (GsmInhibitDialog *dialog)
+{
+        if (dialog->priv->timeout_id != 0) {
+                g_source_remove (dialog->priv->timeout_id);
+                dialog->priv->timeout_id = 0;
+        }
+}
+
+static void
+gsm_inhibit_dialog_show (GtkWidget *widget)
+{
+        GsmInhibitDialog *dialog = GSM_INHIBIT_DIALOG (widget);
+
+        GTK_WIDGET_CLASS (gsm_inhibit_dialog_parent_class)->show (widget);
+
+        update_dialog_text (dialog);
 }
 
 static void
 gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+        GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
         object_class->get_property = gsm_inhibit_dialog_get_property;
         object_class->set_property = gsm_inhibit_dialog_set_property;
         object_class->constructor = gsm_inhibit_dialog_constructor;
         object_class->dispose = gsm_inhibit_dialog_dispose;
         object_class->finalize = gsm_inhibit_dialog_finalize;
+
+        widget_class->show = gsm_inhibit_dialog_show;
 
         g_object_class_install_property (object_class,
                                          PROP_ACTION,
@@ -1035,19 +1168,21 @@ gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
                                                            -1,
                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
-                                         PROP_INHIBITOR_STORE,
-                                         g_param_spec_object ("inhibitor-store",
-                                                              NULL,
-                                                              NULL,
-                                                              GSM_TYPE_STORE,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                         PROP_TIMEOUT,
+                                         g_param_spec_int ("timeout",
+                                                           "timeout",
+                                                           "timeout",
+                                                           -1,
+                                                           G_MAXINT,
+                                                           -1,
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
-                                         PROP_CLIENT_STORE,
-                                         g_param_spec_object ("client-store",
-                                                              NULL,
-                                                              NULL,
-                                                              GSM_TYPE_STORE,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                         PROP_INHIBITOR_PATHS,
+                                         g_param_spec_boxed ("inhibitor-paths",
+                                                             "inhibitor-paths",
+                                                             "inhibitor-paths",
+                                                             G_TYPE_STRV,
+                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmInhibitDialogPrivate));
 }
@@ -1078,46 +1213,33 @@ gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
         }
 
         content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml,
-                                                     "main-box"));
+        widget = GTK_WIDGET (gtk_builder_get_object (dialog->priv->xml, "main-box"));
         gtk_container_add (GTK_CONTAINER (content_area), widget);
 
         gtk_container_set_border_width (GTK_CONTAINER (dialog), 6);
         gtk_window_set_icon_name (GTK_WINDOW (dialog), GSM_ICON_LOGOUT);
         gtk_window_set_title (GTK_WINDOW (dialog), "");
-        g_object_set (dialog,
-                      "resizable", FALSE,
-                      NULL);
+        g_object_set (dialog, "resizable", FALSE, NULL);
+
 }
 
 static void
 gsm_inhibit_dialog_finalize (GObject *object)
 {
-        GsmInhibitDialog *dialog;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (object));
-
-        dialog = GSM_INHIBIT_DIALOG (object);
-
-        g_return_if_fail (dialog->priv != NULL);
-
-        g_debug ("GsmInhibitDialog: finalizing");
-
         G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->finalize (object);
 }
 
 GtkWidget *
-gsm_inhibit_dialog_new (GsmStore *inhibitors,
-                        GsmStore *clients,
-                        int       action)
+gsm_inhibit_dialog_new (int action,
+                        int seconds,
+                        const char *const *inhibitor_paths)
 {
         GObject *object;
 
         object = g_object_new (GSM_TYPE_INHIBIT_DIALOG,
                                "action", action,
-                               "inhibitor-store", inhibitors,
-                               "client-store", clients,
+                               "timeout", seconds,
+                               "inhibitor-paths", inhibitor_paths,
                                NULL);
 
         return GTK_WIDGET (object);

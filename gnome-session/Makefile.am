@@ -1,5 +1,5 @@
 bin_PROGRAMS = gnome-session
-libexec_PROGRAMS = gnome-session-failed
+libexec_PROGRAMS = gnome-session-failed gnome-session-end-dialog
 noinst_LTLIBRARIES = libgsmutil.la
 noinst_PROGRAMS = 		\
 	test-client-dbus	\
@@ -69,8 +69,8 @@ gnome_session_CPPFLAGS =			\
 	$(SYSTEMD_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
+	-DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
-	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
@@ -88,8 +88,7 @@ gnome_session_LDADD =				\
 	$(EXECINFO_LIBS)
 
 libgsmutil_la_CPPFLAGS =			\
-	$(AM_CPPFLAGS)				\
-	-DLIBEXECDIR=\"$(libexecdir)\"
+	$(AM_CPPFLAGS)
 
 libgsmutil_la_SOURCES =				\
 	gsm-util.c				\
@@ -108,6 +107,25 @@ gnome_session_failed_CPPFLAGS = \
 	-DLOCALE_DIR=\""$(datadir)/locale"\"
 
 gnome_session_failed_LDADD = 	\
+	$(GTK3_LIBS)
+
+gnome_session_end_dialog_SOURCES = \
+	gsm-inhibit-dialog.c \
+	gsm-inhibit-dialog.h \
+	gsm-end-session-dialog-generated.c \
+	gsm-end-session-dialog-generated.h \
+	gsm-end-session-dialog.c
+
+gnome_session_end_dialog_CPPFLAGS = \
+	-I$(top_srcdir)/egg			\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
+	$(XRENDER_CFLAGS)			\
+	$(GTK3_CFLAGS)
+
+gnome_session_end_dialog_LDADD = \
+	libgsmutil.la 				\
+	$(top_builddir)/egg/libeggdesktopfile.la \
+	$(XRENDER_LIBS)				 \
 	$(GTK3_LIBS)
 
 test_inhibit_SOURCES = test-inhibit.c
@@ -134,12 +152,22 @@ gsm-inhibitor-glue.h: org.gnome.SessionManager.Inhibitor.xml Makefile.am
 gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
+gsm-end-session-dialog-generated.h:
+gsm-end-session-dialog-generated.c: org.gnome.SessionManager.EndSessionDialog.xml Makefile.am
+	$(AM_V_GEN) gdbus-codegen \
+		--interface-prefix=org.gnome.SessionManager \
+		--generate-c-code gsm-end-session-dialog-generated \
+		--c-namespace Gsm \
+		org.gnome.SessionManager.EndSessionDialog.xml
+
 BUILT_SOURCES =			\
 	gsm-manager-glue.h	\
 	gsm-presence-glue.h	\
 	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\
-	gsm-app-glue.h
+	gsm-app-glue.h		\
+	gsm-end-session-dialog-generated.h \
+	gsm-end-session-dialog-generated.c
 
 EXTRA_DIST =						\
 	README						\
