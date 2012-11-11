@@ -30,7 +30,6 @@
 #include "gsm-fail-whale-dialog.h"
 
 #include "gsm-icon-names.h"
-#include "gsm-manager.h"
 #include "gsm-shell-extensions.h"
 
 #define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
@@ -251,15 +250,10 @@ static void
 on_logout_clicked (GtkWidget          *button,
                    GsmFailWhaleDialog *fail_dialog)
 {
-        if (fail_dialog->priv->debug_mode) {
-                gtk_main_quit ();
-        } else {
-                gsm_manager_logout (gsm_manager_get (),
-                                    GSM_MANAGER_LOGOUT_MODE_FORCE,
-                                    NULL);
-
-                gtk_widget_destroy (GTK_WIDGET (fail_dialog));
+        if (!fail_dialog->priv->debug_mode) {
+                g_spawn_command_line_async ("gnome-session-quit --force", NULL);
         }
+        gtk_main_quit ();
 }
 
 static GtkIconSize
