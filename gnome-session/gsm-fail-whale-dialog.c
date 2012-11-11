@@ -31,7 +31,6 @@
 
 #include "gsm-icon-names.h"
 #include "gsm-manager.h"
-#include "gsm-util.h"
 #include "gsm-shell-extensions.h"
 
 #define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
@@ -261,6 +260,17 @@ on_logout_clicked (GtkWidget          *button,
 
                 gtk_widget_destroy (GTK_WIDGET (fail_dialog));
         }
+}
+
+static GtkIconSize
+gsm_util_get_computer_fail_icon_size (void)
+{
+        static GtkIconSize icon_size = 0;
+
+        if (icon_size == 0)
+                icon_size = gtk_icon_size_register ("gnome-session-computer-fail", 128, 128);
+
+        return icon_size;
 }
 
 static void
