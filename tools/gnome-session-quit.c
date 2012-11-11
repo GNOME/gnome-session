@@ -27,8 +27,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <glib.h>
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
 
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
@@ -175,6 +175,7 @@ main (int argc, char *argv[])
 {
         GError *error;
         int     conflicting_options;
+        GOptionContext *ctx;
 
         /* Initialize the i18n stuff */
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
@@ -182,11 +183,14 @@ main (int argc, char *argv[])
         textdomain (GETTEXT_PACKAGE);
 
         error = NULL;
-        if (! gtk_init_with_args (&argc, &argv, NULL, options, NULL, &error)) {
+        ctx = g_option_context_new ("");
+        g_option_context_add_main_entries (ctx, options, GETTEXT_PACKAGE);
+        if (! g_option_context_parse (ctx, &argc, &argv, &error)) {
                 g_warning ("Unable to start: %s", error->message);
                 g_error_free (error);
                 exit (1);
         }
+        g_option_context_free (ctx);
 
         conflicting_options = 0;
         if (opt_logout)
