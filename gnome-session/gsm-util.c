@@ -30,7 +30,6 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
-#include <gtk/gtk.h>
 
 #include <dbus/dbus-glib.h>
 
@@ -396,49 +395,34 @@ void
 gsm_util_init_error (gboolean    fatal,
                      const char *format, ...)
 {
-        GtkButtonsType  buttons;
-        GtkWidget      *dialog;
         char           *msg;
         va_list         args;
+        gchar          *argv[13];
 
         va_start (args, format);
         msg = g_strdup_vprintf (format, args);
         va_end (args);
 
-        /* If option parsing failed, Gtk won't have been initialized... */
-        if (!gdk_display_get_default ()) {
-                if (!gtk_init_check (NULL, NULL)) {
-                        /* Oh well, no X for you! */
-                        g_printerr (_("Unable to start login session (and unable to connect to the X server)"));
-                        g_printerr ("%s", msg);
-                        exit (1);
-                }
-        }
+        argv[0] = "zenity";
+        argv[1] = "--error";
+        argv[2] = "--class";
+        argv[3] = "mutter-dialog";
+        argv[4] = "--title";
+        argv[5] = "\"\"";
+        argv[6] = "--text";
+        argv[7] = msg;
+        argv[8] = "--icon-name";
+        argv[9] = "face-sad-symbolic";
+        argv[10] = "--ok-label";
+        argv[11] = _("_Log out");
+        argv[12] = NULL;
 
-        if (fatal)
-                buttons = GTK_BUTTONS_NONE;
-        else
-                buttons = GTK_BUTTONS_CLOSE;
-
-        dialog = gtk_message_dialog_new (NULL, 0, GTK_MESSAGE_ERROR,
-                                         buttons, "%s", msg);
-
-        if (fatal)
-                gtk_dialog_add_button (GTK_DIALOG (dialog),
-                                       _("_Log Out"), GTK_RESPONSE_CLOSE);
+        g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
         g_free (msg);
 
-        gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER);
-        gtk_dialog_run (GTK_DIALOG (dialog));
-
-        gtk_widget_destroy (dialog);
-
         if (fatal) {
-                if (gtk_main_level () > 0)
-                        gtk_main_quit ();
-                else
-                        exit (1);
+                exit (1);
         }
 }
 
