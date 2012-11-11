@@ -23,6 +23,7 @@
 
 #include <config.h>
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 
 #include <gtk/gtkx.h>
@@ -30,7 +31,6 @@
 #include "gsm-fail-whale-dialog.h"
 
 #include "gsm-icon-names.h"
-#include "gsm-shell-extensions.h"
 
 #define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
         (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogPrivate))
@@ -246,7 +246,7 @@ on_logout_clicked (GtkWidget          *button,
                    GsmFailWhaleDialog *fail_dialog)
 {
         if (!fail_dialog->priv->debug_mode) {
-                g_spawn_command_line_async ("gnome-session-quit --force");
+                g_spawn_command_line_async ("gnome-session-quit --force", NULL);
         }
         gtk_main_quit ();
 }
@@ -280,14 +280,12 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
 
-        if (!fail_dialog->priv->debug_mode) {
-                gtk_window_set_skip_taskbar_hint (GTK_WINDOW (fail_dialog), TRUE);
-                gtk_window_set_keep_above (GTK_WINDOW (fail_dialog), TRUE);
-                gtk_window_stick (GTK_WINDOW (fail_dialog));
-                gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
-                /* only works if there is a window manager which is unlikely */
-                gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
-        }
+        gtk_window_set_skip_taskbar_hint (GTK_WINDOW (fail_dialog), TRUE);
+        gtk_window_set_keep_above (GTK_WINDOW (fail_dialog), TRUE);
+        gtk_window_stick (GTK_WINDOW (fail_dialog));
+        gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
+        /* only works if there is a window manager which is unlikely */
+        gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
 
         alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
         gtk_widget_show (alignment);
@@ -345,32 +343,43 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
         fail_dialog->priv = GSM_FAIL_WHALE_DIALOG_GET_PRIVATE (fail_dialog);
 }
 
-void
-gsm_fail_whale_dialog_we_failed (gboolean            debug_mode,
-                                 gboolean            allow_logout,
-                                 GsmShellExtensions *extensions)
+static gboolean debug_mode = FALSE;
+static gboolean allow_logout = FALSE;
+static gboolean extensions = FALSE;
 
+int main (int argc, char *argv[])
 {
-        static GsmFailWhaleDialog *current_dialog = NULL;
+        GOptionEntry entries[] = {
+                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug_mode, N_("Enable debugging code"), NULL },
+                 { "allow-logout", 0, 0, G_OPTION_ARG_NONE, &allow_logout, N_("Allow logout"), NULL },
+                 { "extensions", 0, 0, G_OPTION_ARG_NONE, &extensions, N_("Show extension warning"), NULL },
+                { NULL, 0, 0, 0, NULL, NULL, NULL }
+        };
         GsmFailWhaleDialog        *fail_dialog;
+        GError *error = NULL;
 
-        if (current_dialog != NULL) {
-                return;
-        }
+        gtk_init_with_args (&argc, &argv,
+                            " - fail whale",
+                            entries, GETTEXT_PACKAGE,
+                            &error);
+         if (error != NULL) {
+                 g_warning ("%s", error->message);
+                 exit (1);
+         }
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
         fail_dialog->priv->debug_mode = debug_mode;
         fail_dialog->priv->allow_logout = allow_logout;
-        fail_dialog->priv->extensions = extensions != NULL && gsm_extensions_n_extensions (extensions) > 0;
+        fail_dialog->priv->extensions = extensions;
 
         setup_window (fail_dialog);
 
-        current_dialog = fail_dialog;
-        g_signal_connect (current_dialog,
-                          "destroy",
-                          G_CALLBACK (gtk_widget_destroyed),
-                          &current_dialog);
+        g_signal_connect (fail_dialog, "destroy",
+                          G_CALLBACK (gtk_main_quit), NULL);
 
         gtk_widget_show (GTK_WIDGET (fail_dialog));
-}
 
+        gtk_main ();
+
+        return 0;
+}

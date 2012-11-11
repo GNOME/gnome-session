@@ -63,6 +63,7 @@
 #include "gsm-system.h"
 #include "gsm-session-save.h"
 #include "gsm-shell-extensions.h"
+#include "gsm-fail-whale.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
 
