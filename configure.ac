@@ -46,6 +46,7 @@ dnl ====================================================================
 dnl Standard vertical stacks
 PKG_CHECK_MODULES(GIO, gio-2.0)
 PKG_CHECK_MODULES(GTK3, gtk+-3.0 >= $GTK3_REQUIRED)
+PKG_CHECK_MODULES(GIOUNIX, gio-unix-2.0 >= $GLIB_REQUIRED)
 
 PKG_CHECK_MODULES(GNOME_SESSION,
         glib-2.0 >= $GLIB_REQUIRED

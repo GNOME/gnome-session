@@ -120,13 +120,14 @@ gnome_session_end_dialog_CPPFLAGS = \
 	-I$(top_srcdir)/egg			\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
 	$(XRENDER_CFLAGS)			\
-	$(GTK3_CFLAGS)
+	$(GTK3_CFLAGS)				\
+	$(GIOUNIX_CFLAGS)
 
 gnome_session_end_dialog_LDADD = \
 	libgsmutil.la 				\
-	$(top_builddir)/egg/libeggdesktopfile.la \
 	$(XRENDER_LIBS)				 \
-	$(GTK3_LIBS)
+	$(GTK3_LIBS)				\
+	$(GIOUNIX_LIBS)
 
 test_inhibit_SOURCES = test-inhibit.c
 test_inhibit_LDADD = $(GNOME_SESSION_LIBS)
