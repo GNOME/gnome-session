@@ -71,7 +71,7 @@ struct GsmXsmpServerPrivate
         IceListenObj   *xsmp_sockets;
         int             num_xsmp_sockets;
         int             num_local_xsmp_sockets;
-
+        gboolean        stopping;
 };
 
 enum {
@@ -248,6 +248,14 @@ gsm_xsmp_server_start (GsmXsmpServer *server)
         }
 }
 
+void
+gsm_xsmp_server_stop_accepting_new_clients (GsmXsmpServer *server)
+{
+        g_return_if_fail (GSM_IS_XSMP_SERVER (server));
+        g_debug ("gsm_xsmp_server_stop_accepting_new_clients");
+        server->priv->stopping = TRUE;
+}
+
 static void
 gsm_xsmp_server_set_client_store (GsmXsmpServer *xsmp_server,
                                   GsmStore      *store)
@@ -319,8 +327,7 @@ accept_xsmp_connection (SmsConn        sms_conn,
         GsmClient             *client;
         GsmIceConnectionWatch *data;
 
-        /* FIXME: what about during shutdown but before gsm_xsmp_shutdown? */
-        if (server->priv->xsmp_sockets == NULL) {
+        if (server->priv->stopping) {
                 g_debug ("GsmXsmpServer: In shutdown, rejecting new client");
 
                 *failure_reason_ret = strdup (_("Refusing new client connection because the session is currently being shut down\n"));
