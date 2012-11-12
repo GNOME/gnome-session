@@ -37,18 +37,26 @@ gsettings_SCHEMAS = org.gnome.SessionManager.gschema.xml
 migrationdir = $(datadir)/GConf/gsettings
 dist_migration_DATA = gnome-session.convert
 
+servicedir= $(datadir)/dbus-1/services
+service_DATA = endsessiondialog.service
+
+%.service: %.service.in Makefile
+	$(AM_V_GEN)sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $< > $@
+
 EXTRA_DIST =					\
 	$(xsession_in_files)			\
 	$(session_in_in_files)			\
 	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	$(ui_DATA)				\
-	$(hwcompat_DATA)
+	$(hwcompat_DATA)			\
+	$(service_data:.service=.service.in)
 
 CLEANFILES =					\
 	$(gsettings_SCHEMAS)			\
 	$(xsession_DATA)			\
 	$(desktop_DATA)				\
-	$(session_DATA)
+	$(session_DATA)				\
+	$(service_DATA)
 
 DISTCLEANFILES =				\
 	$(gsettings_SCHEMAS)			\
