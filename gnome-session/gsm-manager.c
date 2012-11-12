@@ -56,7 +56,6 @@
 
 #include "gsm-util.h"
 #include "gdm.h"
-#include "gsm-logout-dialog.h"
 #include "gsm-fail-whale-dialog.h"
 #include "gsm-icon-names.h"
 #include "gsm-system.h"
