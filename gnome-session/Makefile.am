@@ -83,7 +83,6 @@ gnome_session_CPPFLAGS =			\
 
 gnome_session_LDADD =				\
 	libgsmutil.la 				\
-	$(top_builddir)/egg/libeggdesktopfile.la \
 	$(SM_LIBS)				\
 	$(ICE_LIBS)				\
 	$(XRENDER_LIBS)				\
