@@ -46,7 +46,6 @@
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
 #include "gsm-system.h"
-#include "gsm-xsmp-server.h"
 #include "gsm-fail-whale-dialog.h"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
@@ -257,7 +256,6 @@ main (int argc, char **argv)
         char             *display_str;
         GsmManager       *manager;
         GsmStore         *client_store;
-        GsmXsmpServer    *xsmp_server;
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *session_name;
@@ -326,8 +324,6 @@ main (int argc, char **argv)
          */
         g_object_unref (gsm_get_system ());
 
-        xsmp_server = gsm_xsmp_server_new (client_store);
-
         if (!acquire_name ()) {
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
                 gtk_main ();
@@ -351,12 +347,10 @@ main (int argc, char **argv)
                 gsm_util_init_error (TRUE, "Failed to load session \"%s\"", session_name ? session_name : "(null)");
         }
 
-        gsm_xsmp_server_start (xsmp_server);
         gsm_manager_start (manager);
 
         gtk_main ();
 
-        g_clear_object (&xsmp_server);
         g_clear_object (&manager);
         g_clear_object (&client_store);
         g_clear_object (&bus_proxy);

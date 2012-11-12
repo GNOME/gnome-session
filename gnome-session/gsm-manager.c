@@ -49,6 +49,7 @@
 #include "gsm-presence.h"
 #include "gsm-shell.h"
 
+#include "gsm-xsmp-server.h"
 #include "gsm-xsmp-client.h"
 #include "gsm-dbus-client.h"
 
@@ -119,6 +120,7 @@ struct GsmManagerPrivate
         GsmStore               *inhibitors;
         GsmStore               *apps;
         GsmPresence            *presence;
+        GsmXsmpServer          *xsmp_server;
 
         char                   *session_name;
         gboolean                is_fallback_session : 1;
@@ -1586,6 +1588,7 @@ start_phase (GsmManager *manager)
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                gsm_xsmp_server_stop_accepting_new_clients (manager->priv->xsmp_server);
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
@@ -1643,6 +1646,7 @@ gsm_manager_start (GsmManager *manager)
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
+        gsm_xsmp_server_start (manager->priv->xsmp_server);
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
@@ -2382,6 +2386,11 @@ gsm_manager_set_client_store (GsmManager *manager,
         manager->priv->clients = store;
 
         if (manager->priv->clients != NULL) {
+                if (manager->priv->xsmp_server)
+                        g_object_unref (manager->priv->xsmp_server);
+
+                manager->priv->xsmp_server = gsm_xsmp_server_new (store);
+
                 g_signal_connect (manager->priv->clients,
                                   "added",
                                   G_CALLBACK (on_store_client_added),
@@ -2508,6 +2517,8 @@ gsm_manager_dispose (GObject *object)
         GsmManager *manager = GSM_MANAGER (object);
 
         g_debug ("GsmManager: disposing manager");
+
+        g_clear_object (&manager->priv->xsmp_server);
 
         if (manager->priv->clients != NULL) {
                 g_signal_handlers_disconnect_by_func (manager->priv->clients,
