@@ -1,4 +1,16 @@
 =============
+Version 3.6.2
+=============
+
+ Session Manager
+
+	* initialize systemd client before acquiring name.  Fixes logind race.
+	* Add SessionName property to introspection. Fixes gdbus errors
+	* drop system inhibitor when necessary. Fixes logind leak.
+	* fix malloc/g_free mismatch in systemd code
+	* Updated translations
+
+=============
 Version 3.6.1
 =============
 
