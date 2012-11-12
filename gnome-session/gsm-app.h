@@ -25,7 +25,6 @@
 #include <glib-object.h>
 #include <sys/types.h>
 
-#include "eggdesktopfile.h"
 
 #include "gsm-manager.h"
 #include "gsm-client.h"
