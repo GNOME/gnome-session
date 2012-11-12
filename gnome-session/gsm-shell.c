@@ -38,6 +38,8 @@
 #define SHELL_PATH      "/org/gnome/Shell"
 #define SHELL_INTERFACE "org.gnome.Shell"
 
+#define END_SESSION_DIALOG_NAME "org.gnome.SessionManager.EndSessionDialog"
+
 #define SHELL_END_SESSION_DIALOG_PATH      "/org/gnome/SessionManager/EndSessionDialog"
 #define SHELL_END_SESSION_DIALOG_INTERFACE "org.gnome.SessionManager.EndSessionDialog"
 
@@ -574,13 +576,17 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
         DBusGProxyCall  *call;
         GPtrArray *inhibitor_array;
         GError *error;
+        gboolean have_shell;
 
         error = NULL;
         if (!gsm_shell_ensure_connection (shell, &error)) {
                 g_warning ("Could not connect to the shell: %s",
                            error->message);
                 g_error_free (error);
-                return FALSE;
+                have_shell = FALSE;
+        }
+        else {
+                have_shell = TRUE;
         }
 
         if (shell->priv->end_session_open_call != NULL) {
@@ -593,11 +599,17 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
         if (shell->priv->end_session_dialog_proxy == NULL) {
                 DBusGProxy *proxy;
 
-                proxy = dbus_g_proxy_new_for_name (shell->priv->bus_connection,
-                                                   SHELL_NAME,
-                                                   SHELL_END_SESSION_DIALOG_PATH,
-                                                   SHELL_END_SESSION_DIALOG_INTERFACE);
-
+                if (have_shell) {
+                        proxy = dbus_g_proxy_new_for_name (shell->priv->bus_connection,
+                                                           SHELL_NAME,
+                                                           SHELL_END_SESSION_DIALOG_PATH,
+                                                           SHELL_END_SESSION_DIALOG_INTERFACE);
+                } else {
+                        proxy = dbus_g_proxy_new_for_name (shell->priv->bus_connection,
+                                                           END_SESSION_DIALOG_NAME,
+                                                           SHELL_END_SESSION_DIALOG_PATH,
+                                                           SHELL_END_SESSION_DIALOG_INTERFACE);
+                }
                 g_assert (proxy != NULL);
 
                 shell->priv->end_session_dialog_proxy = proxy;
