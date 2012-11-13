@@ -318,43 +318,33 @@ static gboolean
 _has_extension (const char *extension_list,
                 const char *extension)
 {
-        int s = 0, e = 0;
-        int ext_len;
+        char **extensions;
+        guint i;
+        gboolean ret;
+
+        g_return_val_if_fail (extension != NULL, TRUE);
 
         /* Extension_list is one big string, containing extensions
-         * separated by spaces. We could use strstr, except that we
-         * can't know for sure that there's no extension that starts
-         * with the same string... */
-
-        if (!extension_list || extension_list[0] == 0)
+         * separated by spaces. */
+        if (extension_list == NULL)
                 return FALSE;
-        if (!extension || extension[0] == 0)
-                return TRUE;
 
-        ext_len = strlen (extension);
+        ret = FALSE;
 
-        while (1) {
-                if (extension_list[e] != ' ' && extension_list[e] != 0) {
-                        e++;
-                        continue;
-                }
+        extensions = g_strsplit (extension_list, " ", -1);
+        if (extensions == NULL)
+                return FALSE;
 
-                /* End of a word. Was is the extension we're looking for? */
-                if ((e - s) == ext_len &&
-                    strncmp (&extension_list[s], extension, ext_len) == 0) {
-                        return TRUE;
-                }
-
-                /* was it the end of the string? */
-                if (extension_list[e] == 0)
+        for (i = 0; extensions[i] != NULL; i++) {
+                if (g_str_equal (extensions[i], extension)) {
+                        ret = TRUE;
                         break;
-
-                /* skip the space and start looking at the next word */
-                e++;
-                s = e;
+                }
         }
 
-        return FALSE;
+        g_strfreev (extensions);
+
+        return ret;
 }
 
 static gboolean
