@@ -235,6 +235,17 @@ if test x$enable_docbook_docs = xyes; then
 fi
 AM_CONDITIONAL(DOCBOOK_DOCS_ENABLED, test x$enable_docbook_docs = xyes)
 AC_MSG_RESULT($enable_docbook_docs)
+AC_ARG_ENABLE(man,
+              [AS_HELP_STRING([--enable-man],
+                              [generate man pages [default=yes]])],,
+              enable_man=yes)
+if test "$enable_man" != no; then
+  AC_PATH_PROG([XSLTPROC], [xsltproc])
+  if test -z "$XSLTPROC"; then
+    AC_MSG_ERROR([xsltproc is required for --enable-man])
+  fi
+fi
+AM_CONDITIONAL(ENABLE_MAN, test "$enable_man" != no)
 
 dnl ====================================================================
 dnl Check for xsltproc
@@ -379,6 +390,7 @@ echo "
         XRender support:          ${have_xrender}
         XSync support:            ${have_xsync}
         XTest support:            ${have_xtest}
-        Build documentation:      ${enable_docbook_docs}
+        Build Docbook:            ${enable_docbook_docs}
+        Build manpages:           ${enable_man}
 
 "
