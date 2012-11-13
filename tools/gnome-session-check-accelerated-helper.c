@@ -139,36 +139,32 @@ _parse_kcmdline (void)
         return ret;
 }
 
-static int
+static gboolean
 _has_composite (Display *display)
 {
         int dummy1, dummy2;
 
-        if (XCompositeQueryExtension (display, &dummy1, &dummy2))
-                return 0;
-
-        return 1;
+        return XCompositeQueryExtension (display, &dummy1, &dummy2);
 }
 
-static int
+static gboolean
 _is_comment (const char *line)
 {
         while (*line && isspace(*line))
                 line++;
 
         if (*line == '#' || *line == '\0')
-                return 0;
-        else
-                return 1;
+                return TRUE;
+        return FALSE;
 }
 
-static int
+static gboolean
 _is_gl_renderer_blacklisted (const char *renderer)
 {
         FILE *blacklist;
         char *line = NULL;
         size_t line_len = 0;
-        int ret = 1;
+        gboolean ret = TRUE;
 
         blacklist = fopen(PKGDATADIR "/hardware-compatibility", "r");
         if (blacklist == NULL)
@@ -186,7 +182,7 @@ _is_gl_renderer_blacklisted (const char *renderer)
                 /* Drop trailing \n */
                 line[strlen(line) - 1] = '\0';
 
-                if (_is_comment (line) == 0) {
+                if (_is_comment (line)) {
                         free (line);
                         line = NULL;
                         continue;
@@ -215,7 +211,7 @@ _is_gl_renderer_blacklisted (const char *renderer)
 
                         if (status == 0) {
                                 if (whitelist)
-                                        ret = 0;
+                                        ret = FALSE;
                                 goto out;
                         }
                 }
@@ -224,7 +220,7 @@ _is_gl_renderer_blacklisted (const char *renderer)
                 line = NULL;
         }
 
-        ret = 0;
+        ret = FALSE;
 
 out:
         if (line != NULL)
@@ -236,7 +232,7 @@ out:
         return ret;
 }
 
-static int
+static gboolean
 _has_hardware_gl (Display *display)
 {
         int screen;
@@ -246,7 +242,7 @@ _has_hardware_gl (Display *display)
         XSetWindowAttributes cwa = { 0 };
         Window window = None;
         const char *renderer;
-        int ret = 1;
+        gboolean ret = FALSE;
 
         int attrlist[] = {
                 GLX_RGBA,
@@ -282,7 +278,7 @@ _has_hardware_gl (Display *display)
                 goto out;
 
         renderer = (const char *) glGetString (GL_RENDERER);
-        if (_is_gl_renderer_blacklisted (renderer) != 0)
+        if (_is_gl_renderer_blacklisted (renderer))
                 goto out;
 
         /* we need to get the max texture size while we have a context,
@@ -291,7 +287,7 @@ _has_hardware_gl (Display *display)
         if (glGetError() != GL_NO_ERROR)
                 max_texture_size = -1;
 
-        ret = 0;
+        ret = TRUE;
 
 out:
         glXMakeCurrent (display, None, None);
@@ -305,7 +301,7 @@ out:
         return ret;
 }
 
-static int
+static gboolean
 _has_extension (const char *extension_list,
                 const char *extension)
 {
@@ -318,9 +314,9 @@ _has_extension (const char *extension_list,
          * with the same string... */
 
         if (!extension_list || extension_list[0] == 0)
-                return 1;
+                return FALSE;
         if (!extension || extension[0] == 0)
-                return 0;
+                return TRUE;
 
         ext_len = strlen (extension);
 
@@ -333,7 +329,7 @@ _has_extension (const char *extension_list,
                 /* End of a word. Was is the extension we're looking for? */
                 if ((e - s) == ext_len &&
                     strncmp (&extension_list[s], extension, ext_len) == 0) {
-                        return 0;
+                        return TRUE;
                 }
 
                 /* was it the end of the string? */
@@ -345,37 +341,37 @@ _has_extension (const char *extension_list,
                 s = e;
         }
 
-        return 1;
+        return FALSE;
 }
 
-static int
+static gboolean
 _has_texture_from_pixmap (Display *display)
 {
         int screen;
         const char *server_extensions;
         const char *client_extensions;
-        int ret = 1;
+        gboolean ret = FALSE;
 
         screen = DefaultScreen (display);
 
         server_extensions = glXQueryServerString (display, screen,
                                                   GLX_EXTENSIONS);
-        if (_has_extension (server_extensions,
-                            "GLX_EXT_texture_from_pixmap") != 0)
+        if (!_has_extension (server_extensions,
+                            "GLX_EXT_texture_from_pixmap"))
                 goto out;
 
         client_extensions = glXGetClientString (display, GLX_EXTENSIONS);
-        if (_has_extension (client_extensions,
-                            "GLX_EXT_texture_from_pixmap") != 0)
+        if (!_has_extension (client_extensions,
+                            "GLX_EXT_texture_from_pixmap"))
                 goto out;
 
-        ret = 0;
+        ret = TRUE;
 
 out:
         return ret;
 }
 
-static int
+static gboolean
 _is_max_texture_size_big_enough (Display *display)
 {
         int screen;
@@ -383,9 +379,9 @@ _is_max_texture_size_big_enough (Display *display)
         screen = DefaultScreen (display);
         if (max_texture_size < DisplayWidth (display, screen) ||
             max_texture_size < DisplayHeight (display, screen))
-                return 1;
+                return FALSE;
 
-        return 0;
+        return TRUE;
 }
 
 int
@@ -414,22 +410,22 @@ main (int argc, char **argv)
                 goto out;
         }
 
-        if (_has_composite (display) != 0) {
+        if (!_has_composite (display)) {
                 _print_error ("No composite extension.");
                 goto out;
         }
 
-        if (_has_hardware_gl (display) != 0) {
+        if (!_has_hardware_gl (display)) {
                 _print_error ("No hardware 3D support.");
                 goto out;
         }
 
-        if (_has_texture_from_pixmap (display) != 0) {
+        if (!_has_texture_from_pixmap (display)) {
                 _print_error ("No GLX_EXT_texture_from_pixmap support.");
                 goto out;
         }
 
-        if (_is_max_texture_size_big_enough (display) != 0) {
+        if (!_is_max_texture_size_big_enough (display)) {
                 _print_error ("GL_MAX_TEXTURE_SIZE is too small.");
                 goto out;
         }
