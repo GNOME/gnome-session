@@ -83,7 +83,9 @@
 #include <GL/gl.h>
 #include <GL/glx.h>
 
-static int max_texture_size = 0;
+#define SIZE_UNSET 0
+#define SIZE_ERROR -1
+static int max_texture_size = SIZE_UNSET;
 
 static inline void
 _print_error (const char *str)
@@ -289,7 +291,7 @@ _has_hardware_gl (Display *display)
          * but we'll check its value later */
         glGetIntegerv (GL_MAX_TEXTURE_SIZE, &max_texture_size);
         if (glGetError() != GL_NO_ERROR)
-                max_texture_size = -1;
+                max_texture_size = SIZE_ERROR;
 
         ret = TRUE;
 
