@@ -182,6 +182,9 @@ gsm_consolekit_ensure_ck_connection (GsmConsolekit  *manager,
                 }
         }
 
+        g_clear_object (&manager->priv->up_client);
+        manager->priv->up_client = up_client_new ();
+
         is_connected = TRUE;
 
  out:
@@ -219,10 +222,8 @@ gsm_consolekit_on_name_owner_changed (DBusGProxy    *bus_proxy,
         }
 
         g_clear_object (&manager->priv->ck_proxy);
-        g_clear_object (&manager->priv->up_client);
 
         gsm_consolekit_ensure_ck_connection (manager, NULL);
-        manager->priv->up_client = up_client_new ();
 
 }
 
