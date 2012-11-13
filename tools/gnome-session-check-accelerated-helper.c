@@ -91,13 +91,17 @@ _print_error (const char *str)
         fprintf (stderr, "gnome-session-is-accelerated: %s\n", str);
 }
 
+#define CMDLINE_UNSET -1
+#define CMDLINE_NON_FALLBACK_FORCED 0
+#define CMDLINE_FALLBACK_FORCED 1
+
 static int
 _parse_kcmdline (void)
 {
         FILE *kcmdline;
         char *line = NULL;
         size_t line_len = 0;
-        int ret = -1;
+        int ret = CMDLINE_UNSET;
 
         kcmdline = fopen("/proc/cmdline", "r");
         if (kcmdline == NULL)
@@ -392,16 +396,17 @@ main (int argc, char **argv)
         int      ret = 1;
 
         kcmdline_parsed = _parse_kcmdline ();
-        if (kcmdline_parsed >= 0) {
-                if (kcmdline_parsed == 0) {
+        if (kcmdline_parsed > CMDLINE_UNSET) {
+                if (kcmdline_parsed == CMDLINE_NON_FALLBACK_FORCED) {
                         _print_error ("Non-fallback mode forced by kernel command line.");
                         ret = 0;
                         goto out;
-                } else if (kcmdline_parsed == 1) {
+                } else if (kcmdline_parsed == CMDLINE_FALLBACK_FORCED) {
                         _print_error ("Fallback mode forced by kernel command line.");
                         goto out;
-                } else
-                        _print_error ("Invalid value for gnome.fallback passed in kernel command line.");
+                } else {
+                        fprintf (stderr, "gnome-session-is-accelerated: Invalid value '%d' for gnome.fallback passed in kernel command line.\n", kcmdline_parsed);
+                }
         }
 
         display = XOpenDisplay (NULL);
