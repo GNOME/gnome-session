@@ -28,7 +28,8 @@
 
 #include <dbus/dbus-glib.h>
 
-#include "gs-idle-monitor.h"
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <libgnome-desktop/gnome-idle-monitor.h>
 
 #include "gsm-presence.h"
 #include "gsm-presence-glue.h"
@@ -45,17 +46,17 @@
 
 struct GsmPresencePrivate
 {
-        guint            status;
-        guint            saved_status;
-        char            *status_text;
-        gboolean         idle_enabled;
-        GSIdleMonitor   *idle_monitor;
-        guint            idle_watch_id;
-        guint            idle_timeout;
-        gboolean         screensaver_active;
-        DBusGConnection *bus_connection;
-        DBusGProxy      *bus_proxy;
-        DBusGProxy      *screensaver_proxy;
+        guint             status;
+        guint             saved_status;
+        char             *status_text;
+        gboolean          idle_enabled;
+        GnomeIdleMonitor *idle_monitor;
+        guint             idle_watch_id;
+        guint             idle_timeout;
+        gboolean          screensaver_active;
+        DBusGConnection  *bus_connection;
+        DBusGProxy       *bus_proxy;
+        DBusGProxy       *screensaver_proxy;
 };
 
 enum {
@@ -137,10 +138,10 @@ set_session_idle (GsmPresence   *presence,
 }
 
 static gboolean
-on_idle_timeout (GSIdleMonitor *monitor,
-                 guint          id,
-                 gboolean       condition,
-                 GsmPresence   *presence)
+on_idle_timeout (GnomeIdleMonitor *monitor,
+                 guint             id,
+                 gboolean          condition,
+                 GsmPresence      *presence)
 {
         gboolean handled;
 
@@ -159,8 +160,8 @@ reset_idle_watch (GsmPresence  *presence)
 
         if (presence->priv->idle_watch_id > 0) {
                 g_debug ("GsmPresence: removing idle watch");
-                gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
-                                              presence->priv->idle_watch_id);
+                gnome_idle_monitor_remove_watch (presence->priv->idle_monitor,
+                                                 presence->priv->idle_watch_id);
                 presence->priv->idle_watch_id = 0;
         }
 
@@ -169,10 +170,11 @@ reset_idle_watch (GsmPresence  *presence)
             && presence->priv->idle_timeout > 0) {
                 g_debug ("GsmPresence: adding idle watch");
 
-                presence->priv->idle_watch_id = gs_idle_monitor_add_watch (presence->priv->idle_monitor,
-                                                                           presence->priv->idle_timeout,
-                                                                           (GSIdleMonitorWatchFunc)on_idle_timeout,
-                                                                           presence);
+                presence->priv->idle_watch_id = gnome_idle_monitor_add_watch (presence->priv->idle_monitor,
+                                                                              presence->priv->idle_timeout,
+                                                                              (GnomeIdleMonitorWatchFunc)on_idle_timeout,
+                                                                              presence,
+                                                                              NULL);
         }
 }
 
@@ -313,7 +315,7 @@ gsm_presence_init (GsmPresence *presence)
 {
         presence->priv = GSM_PRESENCE_GET_PRIVATE (presence);
 
-        presence->priv->idle_monitor = gs_idle_monitor_new ();
+        presence->priv->idle_monitor = gnome_idle_monitor_new ();
 }
 
 void
@@ -450,8 +452,8 @@ gsm_presence_finalize (GObject *object)
         GsmPresence *presence = (GsmPresence *) object;
 
         if (presence->priv->idle_watch_id > 0) {
-                gs_idle_monitor_remove_watch (presence->priv->idle_monitor,
-                                              presence->priv->idle_watch_id);
+                gnome_idle_monitor_remove_watch (presence->priv->idle_monitor,
+                                                 presence->priv->idle_watch_id);
                 presence->priv->idle_watch_id = 0;
         }
 

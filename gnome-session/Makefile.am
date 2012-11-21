@@ -35,8 +35,6 @@ gnome_session_SOURCES =				\
 	gsm-icon-names.h			\
 	gsm-inhibit-dialog.h			\
 	gsm-inhibit-dialog.c			\
-	gs-idle-monitor.h			\
-	gs-idle-monitor.c			\
 	gsm-presence.h				\
 	gsm-presence.c				\
 	gdm.h					\
