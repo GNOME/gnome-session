@@ -69,6 +69,7 @@ gnome_session_CPPFLAGS =			\
 	$(XEXT_CFLAGS)				\
 	$(GCONF_CFLAGS)				\
 	$(SYSTEMD_CFLAGS)			\
+	$(GIOUNIX_CFLAGS)			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
@@ -88,6 +89,7 @@ gnome_session_LDADD =				\
 	$(GNOME_SESSION_LIBS)			\
 	$(GCONF_LIBS)				\
 	$(SYSTEMD_LIBS)				\
+	$(GIOUNIX_LIBS)				\
 	$(EXECINFO_LIBS)
 
 libgsmutil_la_SOURCES =				\

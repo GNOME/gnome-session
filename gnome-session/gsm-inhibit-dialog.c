@@ -28,6 +28,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
+#include <gio/gdesktopappinfo.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <cairo-xlib.h>
@@ -37,7 +38,6 @@
 #include "gsm-client.h"
 #include "gsm-icon-names.h"
 #include "gsm-inhibitor.h"
-#include "eggdesktopfile.h"
 #include "gsm-util.h"
 
 #ifdef HAVE_XRENDER
@@ -166,112 +166,6 @@ find_inhibitor (GsmInhibitDialog *dialog,
 
         return found_item;
 }
-
-/* copied from gnome-panel panel-util.c */
-static char *
-_util_icon_remove_extension (const char *icon)
-{
-        char *icon_no_extension;
-        char *p;
-
-        icon_no_extension = g_strdup (icon);
-        p = strrchr (icon_no_extension, '.');
-        if (p &&
-            (strcmp (p, ".png") == 0 ||
-             strcmp (p, ".xpm") == 0 ||
-             strcmp (p, ".svg") == 0)) {
-            *p = 0;
-        }
-
-        return icon_no_extension;
-}
-
-/* copied from gnome-panel panel-util.c */
-static char *
-_find_icon (GtkIconTheme  *icon_theme,
-            const char    *icon_name,
-            gint           size)
-{
-        GtkIconInfo *info;
-        char        *retval;
-        char        *icon_no_extension;
-
-        if (icon_name == NULL || strcmp (icon_name, "") == 0)
-                return NULL;
-
-        if (g_path_is_absolute (icon_name)) {
-                if (g_file_test (icon_name, G_FILE_TEST_EXISTS)) {
-                        return g_strdup (icon_name);
-                } else {
-                        char *basename;
-
-                        basename = g_path_get_basename (icon_name);
-                        retval = _find_icon (icon_theme, basename,
-                                             size);
-                        g_free (basename);
-
-                        return retval;
-                }
-        }
-
-        /* This is needed because some .desktop files have an icon name *and*
-         * an extension as icon */
-        icon_no_extension = _util_icon_remove_extension (icon_name);
-
-        info = gtk_icon_theme_lookup_icon (icon_theme, icon_no_extension,
-                                           size, 0);
-
-        g_free (icon_no_extension);
-
-        if (info) {
-                retval = g_strdup (gtk_icon_info_get_filename (info));
-                gtk_icon_info_free (info);
-        } else
-                retval = NULL;
-
-        return retval;
-}
-
-/* copied from gnome-panel panel-util.c */
-static GdkPixbuf *
-_load_icon (GtkIconTheme  *icon_theme,
-            const char    *icon_name,
-            int            size,
-            int            desired_width,
-            int            desired_height,
-            char         **error_msg)
-{
-        GdkPixbuf *retval;
-        char      *file;
-        GError    *error;
-
-        g_return_val_if_fail (error_msg == NULL || *error_msg == NULL, NULL);
-
-        file = _find_icon (icon_theme, icon_name, size);
-        if (!file) {
-                if (error_msg)
-                        *error_msg = g_strdup_printf (_("Icon '%s' not found"),
-                                                      icon_name);
-
-                return NULL;
-        }
-
-        error = NULL;
-        retval = gdk_pixbuf_new_from_file_at_size (file,
-                                                   desired_width,
-                                                   desired_height,
-                                                   &error);
-        if (error) {
-                if (error_msg)
-                        *error_msg = g_strdup (error->message);
-                g_error_free (error);
-        }
-
-        g_free (file);
-
-        return retval;
-}
-
 
 static GdkPixbuf *
 scale_pixbuf (GdkPixbuf *pixbuf,
@@ -454,12 +348,12 @@ add_inhibitor (GsmInhibitDialog *dialog,
 {
         GdkDisplay     *gdkdisplay;
         const char     *name;
-        const char     *icon_name;
         const char     *app_id;
         char           *desktop_filename;
         GdkPixbuf      *pixbuf;
-        EggDesktopFile *desktop_file;
-        GError         *error;
+        GDesktopAppInfo *app_info;
+        GKeyFile        *keyfile;
+        GIcon           *gicon;
         char          **search_dirs;
         guint           xid;
         char           *freeme;
@@ -468,7 +362,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
 
         /* FIXME: get info from xid */
 
-        desktop_file = NULL;
+        app_info = NULL;
         name = NULL;
         pixbuf = NULL;
         freeme = NULL;
@@ -498,18 +392,10 @@ add_inhibitor (GsmInhibitDialog *dialog,
                 if (g_path_is_absolute (desktop_filename)) {
                         char *basename;
 
-                        error = NULL;
-                        desktop_file = egg_desktop_file_new (desktop_filename,
-                                                             &error);
-                        if (desktop_file == NULL) {
-                                if (error) {
-                                        g_warning ("Unable to load desktop file '%s': %s",
-                                                   desktop_filename, error->message);
-                                        g_error_free (error);
-                                } else {
-                                        g_warning ("Unable to load desktop file '%s'",
-                                                   desktop_filename);
-                                }
+                        app_info = g_desktop_app_info_new_from_filename (desktop_filename);
+                        if (app_info == NULL) {
+                                g_warning ("Unable to load desktop file '%s'",
+                                            desktop_filename);
 
                                 basename = g_path_get_basename (desktop_filename);
                                 g_free (desktop_filename);
@@ -517,52 +403,41 @@ add_inhibitor (GsmInhibitDialog *dialog,
                         }
                 }
 
-                if (desktop_file == NULL) {
-                        error = NULL;
-                        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
-                                                                       (const char **)search_dirs,
-                                                                       &error);
+                if (app_info == NULL) {
+                        keyfile = g_key_file_new ();
+                        if (g_key_file_load_from_dirs (keyfile, desktop_filename, (const gchar **)search_dirs, NULL, 0, NULL))
+                                app_info = g_desktop_app_info_new_from_keyfile (keyfile);
+                        g_key_file_free (keyfile);
                 }
 
                 /* look for a file with a vendor prefix */
-                if (desktop_file == NULL) {
-                        if (error) {
-                                g_warning ("Unable to find desktop file '%s': %s",
-                                           desktop_filename, error->message);
-                                g_error_free (error);
-                        } else {
-                                g_warning ("Unable to find desktop file '%s'",
-                                           desktop_filename);
-                        }
+                if (app_info == NULL) {
+                        g_warning ("Unable to find desktop file '%s'",
+                                   desktop_filename);
                         g_free (desktop_filename);
                         desktop_filename = g_strdup_printf ("gnome-%s.desktop", app_id);
-                        error = NULL;
-                        desktop_file = egg_desktop_file_new_from_dirs (desktop_filename,
-                                                                       (const char **)search_dirs,
-                                                                       &error);
+                        keyfile = g_key_file_new ();
+                        if (g_key_file_load_from_dirs (keyfile, desktop_filename, (const gchar **)search_dirs, NULL, 0, NULL))
+                                app_info = g_desktop_app_info_new_from_keyfile (keyfile);
+                        g_key_file_free (keyfile);
                 }
                 g_strfreev (search_dirs);
 
-                if (desktop_file == NULL) {
-                        if (error) {
-                                g_warning ("Unable to find desktop file '%s': %s",
-                                           desktop_filename, error->message);
-                                g_error_free (error);
-                        } else {
-                                g_warning ("Unable to find desktop file '%s'",
-                                           desktop_filename);
-                        }
+                if (app_info == NULL) {
+                        g_warning ("Unable to find desktop file '%s'",
+                                   desktop_filename);
                 } else {
-                        name = egg_desktop_file_get_name (desktop_file);
-                        icon_name = egg_desktop_file_get_icon (desktop_file);
+                        name = g_app_info_get_name (G_APP_INFO (app_info));
+                        gicon = g_app_info_get_icon (G_APP_INFO (app_info));
 
                         if (pixbuf == NULL) {
-                                pixbuf = _load_icon (gtk_icon_theme_get_default (),
-                                                     icon_name,
-                                                     DEFAULT_ICON_SIZE,
-                                                     DEFAULT_ICON_SIZE,
-                                                     DEFAULT_ICON_SIZE,
-                                                     NULL);
+                                GtkIconInfo *info;
+                                info = gtk_icon_theme_lookup_by_gicon (gtk_icon_theme_get_default (),
+                                                                       gicon,
+                                                                       DEFAULT_ICON_SIZE,
+                                                                       0);
+                                pixbuf = gtk_icon_info_load_icon (info, NULL);
+                                gtk_icon_info_free (info);
                         }
                 }
         }
@@ -590,12 +465,13 @@ add_inhibitor (GsmInhibitDialog *dialog,
         }
 
         if (pixbuf == NULL) {
-                pixbuf = _load_icon (gtk_icon_theme_get_default (),
-                                     GSM_ICON_INHIBITOR_DEFAULT,
-                                     DEFAULT_ICON_SIZE,
-                                     DEFAULT_ICON_SIZE,
-                                     DEFAULT_ICON_SIZE,
-                                     NULL);
+                GtkIconInfo *info;
+                info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (),
+                                                   GSM_ICON_INHIBITOR_DEFAULT,
+                                                   DEFAULT_ICON_SIZE,
+                                                   0);
+                pixbuf = gtk_icon_info_load_icon (info, NULL);
+                gtk_icon_info_free (info);
         }
 
         gtk_list_store_insert_with_values (dialog->priv->list_store,
@@ -609,7 +485,7 @@ add_inhibitor (GsmInhibitDialog *dialog,
         g_free (desktop_filename);
         g_free (freeme);
         g_clear_object (&pixbuf);
-        g_clear_pointer (&desktop_file, egg_desktop_file_free);
+        g_clear_object (&app_info);
 }
 
 static gboolean
