@@ -528,7 +528,7 @@ end_phase (GsmManager *manager)
 {
         gboolean start_next_phase = TRUE;
 
-        g_debug ("GsmManager: ending phase %s\n",
+        g_debug ("GsmManager: ending phase %s",
                  phase_num_to_name (manager->priv->phase));
 
         g_slist_free (manager->priv->pending_apps);
