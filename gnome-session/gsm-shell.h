@@ -82,6 +82,7 @@ gboolean         gsm_shell_is_running         (GsmShell *shell);
 gboolean         gsm_shell_open_end_session_dialog (GsmShell *shell,
                                                     GsmShellEndSessionDialogType type,
                                                     GsmStore *inhibitors);
+void             gsm_shell_close_end_session_dialog (GsmShell *shell);
 
 G_END_DECLS
 

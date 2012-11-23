@@ -689,3 +689,12 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
 
         return TRUE;
 }
+
+void
+gsm_shell_close_end_session_dialog (GsmShell *shell)
+{
+        if (!shell->priv->end_session_dialog_proxy)
+                return;
+
+        dbus_g_proxy_call_no_reply (shell->priv->end_session_dialog_proxy, "Close", G_TYPE_INVALID);
+}

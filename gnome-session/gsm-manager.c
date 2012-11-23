@@ -523,6 +523,9 @@ gsm_manager_quit (GsmManager *manager)
         }
 }
 
+static gboolean do_query_end_session_exit (GsmManager *manager);
+static void     do_end_session_exit       (GsmManager *manager);
+
 static void
 end_phase (GsmManager *manager)
 {
@@ -564,9 +567,12 @@ end_phase (GsmManager *manager)
                 }
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                if (!do_query_end_session_exit (manager))
+                        start_next_phase = FALSE;
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
                 maybe_save_session (manager);
+                do_end_session_exit (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 start_next_phase = FALSE;
@@ -4079,3 +4085,64 @@ gsm_manager_is_session_running (GsmManager *manager,
         return TRUE;
 }
 
+static void
+on_shutdown_prepared (GsmSystem  *system,
+                      gboolean    success,
+                      GsmManager *manager)
+{
+        g_debug ("GsmManager: on_shutdown_prepared, success: %d", success);
+        g_signal_handlers_disconnect_by_func (system, on_shutdown_prepared, manager);
+
+        if (success) {
+                /* move to end-session phase */
+                end_phase (manager);
+        } else {
+                disconnect_shell_dialog_signals (manager);
+                gsm_shell_close_end_session_dialog (manager->priv->shell);
+                /* back to running phase */
+                cancel_end_session (manager);
+        }
+}
+
+static gboolean
+do_query_end_session_exit (GsmManager *manager)
+{
+        int action;
+
+        switch (manager->priv->logout_type) {
+        case GSM_MANAGER_LOGOUT_LOGOUT:
+                action = GSM_LOGOUT_ACTION_LOGOUT;
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT:
+        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
+                action = GSM_LOGOUT_ACTION_REBOOT;
+                break;
+        case GSM_MANAGER_LOGOUT_SHUTDOWN:
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
+        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
+                action = GSM_LOGOUT_ACTION_SHUTDOWN;
+                break;
+        default:
+                g_warning ("Unexpected logout type %d in do_query_end_session_exit()",
+                           manager->priv->logout_type);
+                action = GSM_LOGOUT_ACTION_LOGOUT;
+                break;
+        }
+
+        if (action == GSM_LOGOUT_ACTION_REBOOT ||
+            action == GSM_LOGOUT_ACTION_SHUTDOWN) {
+                g_signal_connect (manager->priv->system, "shutdown-prepared",
+                                  G_CALLBACK (on_shutdown_prepared), manager);
+                gsm_system_prepare_shutdown (manager->priv->system, action == GSM_LOGOUT_ACTION_REBOOT);
+                return FALSE; /* don't leave query end session yet */
+        }
+
+        return TRUE; /* go to end session phase */
+}
+
+static void
+do_end_session_exit (GsmManager *manager)
+{
+        gsm_system_complete_shutdown (manager->priv->system);
+}

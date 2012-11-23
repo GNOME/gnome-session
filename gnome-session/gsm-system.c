@@ -28,7 +28,8 @@
 #include "gsm-systemd.h"
 
 enum {
-        REQUEST_COMPLETED = 0,
+        REQUEST_COMPLETED,
+        SHUTDOWN_PREPARED,
         LAST_SIGNAL
 };
 
@@ -53,6 +54,14 @@ gsm_system_default_init (GsmSystemInterface *iface)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_POINTER);
+        signals[SHUTDOWN_PREPARED] =
+                 g_signal_new ("shutdown-prepared",
+                               GSM_TYPE_SYSTEM,
+                               G_SIGNAL_RUN_LAST,
+                               G_STRUCT_OFFSET (GsmSystemInterface, shutdown_prepared),
+                               NULL, NULL, NULL,
+                               G_TYPE_NONE,
+                               1, G_TYPE_BOOLEAN);
         pspec = g_param_spec_boolean ("active",
                                       "Active",
                                       "Whether or not session is active",
@@ -167,6 +176,19 @@ gsm_system_is_active (GsmSystem *system)
         gboolean is_active;
         g_object_get ((GObject*)system, "active", &is_active, NULL);
         return is_active;
+}
+
+void
+gsm_system_prepare_shutdown  (GsmSystem *system,
+                              gboolean   restart)
+{
+        GSM_SYSTEM_GET_IFACE (system)->prepare_shutdown (system, restart);
+}
+
+void
+gsm_system_complete_shutdown (GsmSystem *system)
+{
+        GSM_SYSTEM_GET_IFACE (system)->complete_shutdown (system);
 }
 
 GsmSystem *

@@ -58,6 +58,7 @@ struct _GsmConsolekitPrivate
         UpClient        *up_client;
 
         gboolean         is_active;
+        gboolean         restarting;
 };
 
 enum {
@@ -960,6 +961,27 @@ gsm_consolekit_remove_inhibitor (GsmSystem   *system,
 }
 
 static void
+gsm_consolekit_prepare_shutdown (GsmSystem *system,
+                                 gboolean   restart)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+
+        consolekit->priv->restarting = restart;
+        g_signal_emit_by_name (system, "shutdown-prepared", TRUE);
+}
+
+static void
+gsm_consolekit_complete_shutdown (GsmSystem *system)
+{
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
+
+        if (consolekit->priv->restarting)
+                gsm_consolekit_attempt_restart (system);
+        else
+                gsm_consolekit_attempt_stop (system);
+}
+
+static void
 gsm_consolekit_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_consolekit_can_switch_user;
@@ -975,6 +997,8 @@ gsm_consolekit_system_init (GsmSystemInterface *iface)
         iface->is_login_session = gsm_consolekit_is_login_session;
         iface->add_inhibitor = gsm_consolekit_add_inhibitor;
         iface->remove_inhibitor = gsm_consolekit_remove_inhibitor;
+        iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
+        iface->complete_shutdown = gsm_consolekit_complete_shutdown;
 }
 
 GsmConsolekit *

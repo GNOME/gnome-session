@@ -49,6 +49,9 @@ struct _GsmSystemInterface
         void (* request_completed)    (GsmSystem *system,
                                        GError    *error);
 
+        void (* shutdown_prepared)    (GsmSystem *system,
+                                       gboolean   success);
+
         gboolean (* can_switch_user)  (GsmSystem *system);
         gboolean (* can_stop)         (GsmSystem *system);
         gboolean (* can_restart)      (GsmSystem *system);
@@ -66,6 +69,9 @@ struct _GsmSystemInterface
                                        GsmInhibitorFlag  flags);
         void     (* remove_inhibitor) (GsmSystem        *system,
                                        const gchar      *id);
+        void     (* prepare_shutdown) (GsmSystem   *system,
+                                       gboolean     restart);
+        void     (* complete_shutdown)(GsmSystem   *system);
 };
 
 enum _GsmSystemError {
@@ -110,6 +116,11 @@ void       gsm_system_add_inhibitor    (GsmSystem        *system,
 
 void       gsm_system_remove_inhibitor (GsmSystem        *system,
                                         const gchar      *id);
+void       gsm_system_prepare_shutdown  (GsmSystem  *system,
+                                         gboolean    restart);
+void       gsm_system_complete_shutdown (GsmSystem  *system);
+
+
 
 G_END_DECLS
 

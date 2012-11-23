@@ -60,6 +60,9 @@ struct _GsmSystemdPrivate
         gint             inhibit_fd;
 
         gboolean         is_active;
+
+        gint             delay_inhibit_fd;
+        gboolean         prepare_for_shutdown_expected;
 };
 
 enum {
@@ -77,9 +80,19 @@ static void
 drop_system_inhibitor (GsmSystemd *manager)
 {
         if (manager->priv->inhibit_fd != -1) {
-                g_debug ("Dropping system inhibitor");
+                g_debug ("GsmSystemd: Dropping system inhibitor");
                 close (manager->priv->inhibit_fd);
                 manager->priv->inhibit_fd = -1;
+        }
+}
+
+static void
+drop_delay_inhibitor (GsmSystemd *manager)
+{
+        if (manager->priv->delay_inhibit_fd != -1) {
+                g_debug ("GsmSystemd: Dropping delay inhibitor");
+                close (manager->priv->delay_inhibit_fd);
+                manager->priv->delay_inhibit_fd = -1;
         }
 }
 
@@ -100,6 +113,7 @@ gsm_systemd_finalize (GObject *object)
                 g_slist_free_full (systemd->priv->inhibitors, g_free);
         }
         drop_system_inhibitor (systemd);
+        drop_delay_inhibitor (systemd);
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
 }
@@ -247,9 +261,15 @@ on_sd_source_changed (gpointer user_data)
                 self->priv->is_active = active;
                 g_object_notify (G_OBJECT (self), "active");
         }
-        
+
         return TRUE;
 }
+
+static void sd_proxy_signal_cb (GDBusProxy  *proxy,
+                                const gchar *sender_name,
+                                const gchar *signal_name,
+                                GVariant    *parameters,
+                                gpointer     user_data);
 
 static void
 gsm_systemd_init (GsmSystemd *manager)
@@ -263,6 +283,7 @@ gsm_systemd_init (GsmSystemd *manager)
                                                      GsmSystemdPrivate);
 
         manager->priv->inhibit_fd = -1;
+        manager->priv->delay_inhibit_fd = -1;
 
         bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
         if (bus == NULL)
@@ -283,6 +304,8 @@ gsm_systemd_init (GsmSystemd *manager)
                 g_clear_error (&error);
         }
 
+        g_signal_connect (manager->priv->sd_proxy, "g-signal",
+                          G_CALLBACK (sd_proxy_signal_cb), manager);
 
         sd_pid_get_session (getpid (), &manager->priv->session_id);
 
@@ -532,7 +555,7 @@ gsm_systemd_is_login_session (GsmSystem *system)
 
         res = sd_session_get_class (manager->priv->session_id, &session_class);
         if (res < 0) {
-                g_warning ("could not get session class: %s", strerror (-res));
+                g_warning ("Could not get session class: %s", strerror (-res));
                 return FALSE;
         }
         ret = (g_strcmp0 (session_class, "greeter") == 0);
@@ -743,6 +766,95 @@ gsm_systemd_remove_inhibitor (GsmSystem   *system,
 }
 
 static void
+reboot_or_poweroff_done (GObject      *source,
+                         GAsyncResult *res,
+                         gpointer      user_data)
+{
+        GsmSystemd *systemd = user_data;
+        GVariant *result;
+        GError *error = NULL;
+
+        result = g_dbus_proxy_call_finish (G_DBUS_PROXY (source),
+                                           res,
+                                           &error);
+
+        if (result == NULL) {
+                if (!g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED)) {
+                        g_warning ("Shutdown failed: %s", error->message);
+                }
+                g_error_free (error);
+                drop_delay_inhibitor (systemd);
+                g_debug ("GsmSystemd: shutdown preparation failed");
+                systemd->priv->prepare_for_shutdown_expected = FALSE;
+                g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
+        } else {
+                g_variant_unref (result);
+        }
+}
+
+static void
+gsm_systemd_prepare_shutdown (GsmSystem *system,
+                              gboolean   restart)
+{
+        GsmSystemd *systemd = GSM_SYSTEMD (system);
+        GUnixFDList *fd_list;
+        GVariant *res;
+        GError *error = NULL;
+        gint idx;
+
+        g_debug ("GsmSystemd: prepare shutdown");
+
+        res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->priv->sd_proxy,
+                                                        "Inhibit",
+                                                        g_variant_new ("(ssss)",
+                                                                       "shutdown",
+                                                                       g_get_user_name (),
+                                                                       "Preparing to end the session",
+                                                                       "delay"),
+                                                        0,
+                                                        G_MAXINT,
+                                                        NULL,
+                                                        &fd_list,
+                                                        NULL,
+                                                        &error);
+        if (res == NULL) {
+                g_warning ("Failed to get delay inhibitor: %s", error->message);
+                g_error_free (error);
+                g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
+                return;
+        }
+
+        g_variant_get (res, "(h)", &idx);
+
+        systemd->priv->delay_inhibit_fd = g_unix_fd_list_get (fd_list, idx, NULL);
+
+        g_debug ("GsmSystemd: got delay inhibitor, fd = %d", systemd->priv->delay_inhibit_fd);
+
+        g_variant_unref (res);
+        g_object_unref (fd_list);
+
+        systemd->priv->prepare_for_shutdown_expected = TRUE;
+
+        g_dbus_proxy_call (systemd->priv->sd_proxy,
+                           restart ? "Reboot" : "PowerOff",
+                           g_variant_new ("(b)", TRUE),
+                           0,
+                           G_MAXINT,
+                           NULL,
+                           reboot_or_poweroff_done,
+                           systemd);
+}
+
+static void
+gsm_systemd_complete_shutdown (GsmSystem *system)
+{
+        GsmSystemd *systemd = GSM_SYSTEMD (system);
+
+        /* remove delay inhibitor, if any */
+        drop_delay_inhibitor (systemd);
+}
+
+static void
 gsm_systemd_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_systemd_can_switch_user;
@@ -758,6 +870,8 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->is_login_session = gsm_systemd_is_login_session;
         iface->add_inhibitor = gsm_systemd_add_inhibitor;
         iface->remove_inhibitor = gsm_systemd_remove_inhibitor;
+        iface->prepare_shutdown = gsm_systemd_prepare_shutdown;
+        iface->complete_shutdown = gsm_systemd_complete_shutdown;
 }
 
 GsmSystemd *
@@ -773,6 +887,36 @@ gsm_systemd_new (void)
         return manager;
 }
 
+static void
+sd_proxy_signal_cb (GDBusProxy  *proxy,
+                    const gchar *sender_name,
+                    const gchar *signal_name,
+                    GVariant    *parameters,
+                    gpointer     user_data)
+{
+        GsmSystemd *systemd = user_data;
+        gboolean is_about_to_shutdown;
+
+        g_debug ("GsmSystemd: received logind signal: %s", signal_name);
+
+        if (g_strcmp0 (signal_name, "PrepareForShutdown") != 0) {
+                g_debug ("GsmSystemd: ignoring %s signal", signal_name);
+                return;
+        }
+
+        g_variant_get (parameters, "(b)", &is_about_to_shutdown);
+        if (!is_about_to_shutdown) {
+                g_debug ("GsmSystemd: ignoring %s signal since about-to-shutdown is FALSE", signal_name);
+                return;
+        }
+
+        if (systemd->priv->prepare_for_shutdown_expected) {
+                g_debug ("GsmSystemd: shutdown successfully prepared");
+                g_signal_emit_by_name (systemd, "shutdown-prepared", TRUE);
+                systemd->priv->prepare_for_shutdown_expected = FALSE;
+        }
+}
+
 #else
 
 GsmSystemd *
@@ -782,3 +926,4 @@ gsm_systemd_new (void)
 }
 
 #endif
+
