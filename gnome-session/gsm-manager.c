@@ -58,12 +58,12 @@
 #include "gsm-util.h"
 #include "gdm.h"
 #include "gsm-logout-dialog.h"
-#include "gsm-fail-whale-dialog.h"
 #include "gsm-icon-names.h"
 #include "gsm-inhibit-dialog.h"
 #include "gsm-system.h"
 #include "gsm-session-save.h"
 #include "gsm-shell-extensions.h"
+#include "gsm-fail-whale.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
 

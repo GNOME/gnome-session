@@ -46,7 +46,7 @@
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
 #include "gsm-system.h"
-#include "gsm-fail-whale-dialog.h"
+#include "gsm-fail-whale.h"
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 

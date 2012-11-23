@@ -1,4 +1,5 @@
 bin_PROGRAMS = gnome-session
+libexec_PROGRAMS = gnome-session-failed
 noinst_LTLIBRARIES = libgsmutil.la
 noinst_PROGRAMS = 		\
 	test-client-dbus	\
@@ -22,8 +23,8 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-client.c			\
 	gsm-dbus-client.h			\
 	gsm-dbus-client.c			\
-	gsm-fail-whale-dialog.h			\
-	gsm-fail-whale-dialog.c			\
+	gsm-fail-whale.h			\
+	gsm-fail-whale.c			\
 	gsm-system.h				\
 	gsm-system.c				\
 	gsm-consolekit.c			\
@@ -32,7 +33,6 @@ gnome_session_SOURCES =				\
 	gsm-systemd.c				\
 	gsm-logout-dialog.h			\
 	gsm-logout-dialog.c			\
-	gsm-icon-names.h			\
 	gsm-inhibit-dialog.h			\
 	gsm-inhibit-dialog.c			\
 	gsm-presence.h				\
@@ -72,7 +72,7 @@ gnome_session_CPPFLAGS =			\
 	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
-	-DLIBEXECDIR=\"$(libexecdir)\"		\
+        -DLIBEXECDIR=\"$(libexecdir)\"		\
 	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
@@ -94,8 +94,23 @@ libgsmutil_la_SOURCES =				\
 	gsm-util.c				\
 	gsm-util.h
 
+libgsmutil_la_CPPFLAGS =                       \
+       $(AM_CPPFLAGS)
+
 libgsmutil_la_LIBADD = 				\
 	$(GNOME_SESSION_LIBS)
+
+gnome_session_failed_SOURCES =         \
+       gsm-fail-whale-dialog.c \
+       gsm-fail-whale-dialog.h \
+       gsm-icon-names.h
+
+gnome_session_failed_CPPFLAGS = \
+       $(GTK3_CFLAGS)          \
+       -DLOCALE_DIR=\""$(datadir)/locale"\"
+
+gnome_session_failed_LDADD =   \
+       $(GTK3_LIBS)
 
 test_inhibit_SOURCES = test-inhibit.c
 test_inhibit_LDADD = $(GNOME_SESSION_LIBS)
