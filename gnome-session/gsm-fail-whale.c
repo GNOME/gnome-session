@@ -44,6 +44,4 @@ gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
         argv[i++] = NULL;
 
         g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
-
-        return 0;
 }
