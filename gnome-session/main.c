@@ -327,10 +327,11 @@ main (int argc, char **argv)
 
         manager = gsm_manager_new (client_store, failsafe);
 
-        g_signal_connect_swapped (bus_proxy,
-                                  "destroy",
-                                  G_CALLBACK (shutdown_cb),
-                                  manager);
+        g_signal_connect_object (bus_proxy,
+                                 "destroy",
+                                 G_CALLBACK (shutdown_cb),
+                                 manager,
+                                 G_CONNECT_SWAPPED);
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
         g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
