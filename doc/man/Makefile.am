@@ -19,4 +19,7 @@ EXTRA_DIST =				\
 	gnome-session-inhibit.xml	\
 	$(man_MANS)
 
+CLEANFILES =				\
+	gnome-session-inhibit.1
+
 -include $(top_srcdir)/git.mk
