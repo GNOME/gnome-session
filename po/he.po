@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 12:57+0200\n"
-"PO-Revision-Date: 2012-11-09 12:57+0200\n"
+"POT-Creation-Date: 2012-11-30 14:25+0200\n"
+"PO-Revision-Date: 2012-11-30 14:25+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -64,7 +64,7 @@ msgid "No description"
 msgstr "ללא תיאור"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:269
+#: ../gnome-session/main.c:262
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -86,12 +86,12 @@ msgid "GNOME fallback"
 msgstr "רשת הביטחון של GNOME"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1
-#: ../gnome-session/gsm-inhibit-dialog.c:639
+#: ../gnome-session/gsm-inhibit-dialog.c:515
 msgid "Some programs are still running:"
 msgstr "ישנן תכניות שעדיין רצות:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:636
+#: ../gnome-session/gsm-inhibit-dialog.c:512
 msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
 msgstr "בהמתנה לסיום התכנית. הפרעה לתכנית עלולה לגרום לאבדן העבודה שלך."
 
@@ -207,19 +207,19 @@ msgstr "Session management options:"
 msgid "Show session management options"
 msgstr "Show session management options"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid "Oh no!  Something has gone wrong."
 msgstr "אבוי!  משהו השתבש."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. נא ליצור קשר עם מנהל המערכת."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:315
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. ליתר ביטחון נוטרלו כל ההרחבות."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:319
+#: ../gnome-session/gsm-fail-whale-dialog.c:317
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -227,58 +227,65 @@ msgstr ""
 "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה.\n"
 "נא לצאת ולנסות שוב."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:334
+#: ../gnome-session/gsm-fail-whale-dialog.c:332
 #: ../gnome-session/gsm-logout-dialog.c:383
-#: ../gnome-session/gsm-util.c:428
 msgid "_Log Out"
 msgstr "_ניתוק"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "הסמל '%s' לא נמצא"
+#: ../gnome-session/gsm-fail-whale-dialog.c:354
+#: ../gnome-session/main.c:260
+msgid "Enable debugging code"
+msgstr "Enable debugging code"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:588
+#: ../gnome-session/gsm-fail-whale-dialog.c:355
+msgid "Allow logout"
+msgstr "לאפשר יציאה"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:356
+msgid "Show extension warning"
+msgstr "הצגת אזהרת הרחבות"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:463
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:635
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid "A program is still running:"
 msgstr "ישנה תכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:640
+#: ../gnome-session/gsm-inhibit-dialog.c:516
 msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
 msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרום לאיבוד העבודה שלך."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:870
+#: ../gnome-session/gsm-inhibit-dialog.c:746
 msgid "Switch User Anyway"
 msgstr "ה_חלפת משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:873
+#: ../gnome-session/gsm-inhibit-dialog.c:749
 msgid "Log Out Anyway"
 msgstr "יציאה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:876
+#: ../gnome-session/gsm-inhibit-dialog.c:752
 msgid "Suspend Anyway"
 msgstr "השהייה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:879
+#: ../gnome-session/gsm-inhibit-dialog.c:755
 msgid "Hibernate Anyway"
 msgstr "מעבר למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:882
+#: ../gnome-session/gsm-inhibit-dialog.c:758
 msgid "Shut Down Anyway"
 msgstr "כיבוי בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:885
+#: ../gnome-session/gsm-inhibit-dialog.c:761
 msgid "Restart Anyway"
 msgstr "הפעלה מחדש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:893
+#: ../gnome-session/gsm-inhibit-dialog.c:769
 msgid "Lock Screen"
 msgstr "נעילת המסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:896
+#: ../gnome-session/gsm-inhibit-dialog.c:772
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -342,34 +349,14 @@ msgstr "_כיבוי"
 msgid "Restart this system now?"
 msgstr "האם להפעיל את המערכת מחדש כעת?"
 
-#: ../gnome-session/gsm-manager.c:1394
-msgid "GNOME 3 Failed to Load"
-msgstr "טעינת GNOME 3 נכשלה"
-
-#: ../gnome-session/gsm-manager.c:1395
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
-msgstr ""
-"לרוע המזל הפעלת GNOME 3 כראוי נכשלה ובמקום זאת הופעל <b>מצב השחזור</b>.\n"
-"\n"
-"תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
-
-#: ../gnome-session/gsm-manager.c:1397
-msgid "Learn more about GNOME 3"
-msgstr "מידע נוסף על אודות GNOME 3"
-
-#: ../gnome-session/gsm-manager.c:1494
-#: ../gnome-session/gsm-manager.c:2235
+#: ../gnome-session/gsm-manager.c:1438
+#: ../gnome-session/gsm-manager.c:2180
 msgid "Not responding"
 msgstr "אין תגובה"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:412
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "Unable to start login session (and unable to connect to the X server)"
+#: ../gnome-session/gsm-util.c:417
+msgid "_Log out"
+msgstr "י_ציאה"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
@@ -383,45 +370,41 @@ msgstr "יישום השמור בזיכרון"
 msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
-#: ../gnome-session/gsm-xsmp-server.c:326
+#: ../gnome-session/gsm-xsmp-server.c:333
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "מסרב לחיבור לקוח חדש מכיון שההפעלה נמצאת במהלך כיבוי\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:595
+#: ../gnome-session/gsm-xsmp-server.c:602
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:258
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:258
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:259
 msgid "Session to use"
 msgstr "הפעלה לשימוש"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:259
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:267
-msgid "Enable debugging code"
-msgstr "Enable debugging code"
-
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:261
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:264
 msgid "Show the fail whale dialog for testing"
 msgstr "הצגת דו־שיח 'לוויתן הכשל'  לבדיקה"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:279
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -495,9 +478,35 @@ msgstr "אין לבקש אישור מהמשתמש"
 msgid "Could not connect to the session manager"
 msgstr "לא ניתן להתחבר למנהל ההפעלה"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "התכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "הסמל '%s' לא נמצא"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "טעינת GNOME 3 נכשלה"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "לרוע המזל הפעלת GNOME 3 כראוי נכשלה ובמקום זאת הופעל <b>מצב השחזור</b>.\n"
+#~ "\n"
+#~ "תקלה זו אירעה כפי הנראה כיוון שהמערכת שלך (או מנהל ההתקן של חומרת הגרפיקה "
+#~ "שלך) אינה מסוגלת להפעיל את חווית GNOME 3 במלואה."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "מידע נוסף על אודות GNOME 3"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr ""
+#~ "Unable to start login session (and unable to connect to the X server)"
 
 #~ msgid "Exited with code %d"
 #~ msgstr "יציאה עם הקוד %d"
@@ -998,9 +1007,6 @@ msgstr "התכנית נקראה עם אפשרויות סותרות"
 
 #~ msgid "Show splash screen on _login"
 #~ msgstr "הצג מסך פתיחה בה_תחברות"
-
-#~ msgid "As_k on logout"
-#~ msgstr "_שאל בהתנתקות"
 
 #~ msgid "_Sessions:"
 #~ msgstr "_תצורות הפעלה:"
