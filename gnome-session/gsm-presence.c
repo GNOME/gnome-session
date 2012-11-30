@@ -184,8 +184,8 @@ reset_idle_watch (GsmPresence  *presence)
                                                                               idle_became_idle_cb,
                                                                               presence,
                                                                               NULL);
-                presence->priv->idle_watch_id = g_signal_connect (presence->priv->idle_monitor, "became-active",
-                                                                  G_CALLBACK (idle_became_active_cb), presence);
+                presence->priv->idle_became_active_id = g_signal_connect (presence->priv->idle_monitor, "became-active",
+                                                                          G_CALLBACK (idle_became_active_cb), presence);
         }
 }
 
