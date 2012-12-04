@@ -492,12 +492,7 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-
-                g_signal_connect (manager->priv->system,
-                                  "request-completed",
-                                  G_CALLBACK (quit_request_completed),
-                                  GINT_TO_POINTER (GDM_LOGOUT_ACTION_REBOOT));
-                gsm_system_attempt_restart (manager->priv->system);
+                gsm_system_complete_shutdown (manager->priv->system);
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
@@ -506,12 +501,7 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
-
-                g_signal_connect (manager->priv->system,
-                                  "request-completed",
-                                  G_CALLBACK (quit_request_completed),
-                                  GINT_TO_POINTER (GDM_LOGOUT_ACTION_SHUTDOWN));
-                gsm_system_attempt_stop (manager->priv->system);
+                gsm_system_complete_shutdown (manager->priv->system);
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
                 gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
@@ -524,7 +514,6 @@ gsm_manager_quit (GsmManager *manager)
 }
 
 static gboolean do_query_end_session_exit (GsmManager *manager);
-static void     do_end_session_exit       (GsmManager *manager);
 
 static void
 end_phase (GsmManager *manager)
@@ -572,7 +561,6 @@ end_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
                 maybe_save_session (manager);
-                do_end_session_exit (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 start_next_phase = FALSE;
@@ -4141,10 +4129,4 @@ do_query_end_session_exit (GsmManager *manager)
         }
 
         return TRUE; /* go to end session phase */
-}
-
-static void
-do_end_session_exit (GsmManager *manager)
-{
-        gsm_system_complete_shutdown (manager->priv->system);
 }
