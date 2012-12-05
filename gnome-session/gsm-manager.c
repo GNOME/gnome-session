@@ -4095,7 +4095,9 @@ on_shutdown_prepared (GsmSystem  *system,
 
         if (success) {
                 /* move to end-session phase */
-                end_phase (manager);
+                g_assert (manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION);
+                manager->priv->phase++;
+                start_phase (manager);
         } else {
                 disconnect_shell_dialog_signals (manager);
                 gsm_shell_close_end_session_dialog (manager->priv->shell);
