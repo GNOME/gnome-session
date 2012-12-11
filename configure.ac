@@ -57,6 +57,7 @@ PKG_CHECK_MODULES(GNOME_SESSION,
         upower-glib >= $UPOWER_REQUIRED
         json-glib-1.0 >= $JSON_GLIB_REQUIRED
         gnome-desktop-3.0 >= $GNOME_DESKTOP_REQUIRED
+        libnotify
 )
 
 PKG_CHECK_MODULES(SESSION_PROPERTIES,
