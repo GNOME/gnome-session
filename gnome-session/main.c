@@ -288,7 +288,7 @@ main (int argc, char **argv)
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
-                exit (1);
+                exit (0);
         }
 
         if (please_fail) {
