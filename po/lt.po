@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-17 02:00+0000\n"
-"PO-Revision-Date: 2012-08-29 23:08+0300\n"
+"POT-Creation-Date: 2012-12-12 16:40+0000\n"
+"PO-Revision-Date: 2012-12-20 23:40+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -65,7 +65,7 @@ msgid "No description"
 msgstr "Nėra aprašymo"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:294
+#: ../gnome-session/main.c:264
 msgid "Version of this application"
 msgstr "Programos versija"
 
@@ -73,12 +73,8 @@ msgstr "Programos versija"
 msgid "Could not display help document"
 msgstr "Nepavyko parodyti žinyno dokumento"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME atsarginė veiksena"
-
-#: ../data/gnome.session.desktop.in.in.h:1
 #: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -86,13 +82,17 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
 
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "GNOME atsarginė veiksena"
+
 #: ../data/gsm-inhibit-dialog.ui.h:1
-#: ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../gnome-session/gsm-inhibit-dialog.c:515
 msgid "Some programs are still running:"
 msgstr "Kai kurios programos vis dar veikia:"
 
 #: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:640
+#: ../gnome-session/gsm-inhibit-dialog.c:512
 msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
 msgstr "Laukiama, kol programa baigs darbą. Nutraukus programos darbą galite prarasti neįrašytų duomenų."
 
@@ -117,7 +117,6 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Atsijungiant, automatiškai atsiminti paleistas programas"
 
 #: ../data/session-properties.ui.h:4
-#| msgid "_Remember Currently Running Application"
 msgid "_Remember Currently Running Applications"
 msgstr "_Atsiminti dabar veikiančias programas"
 
@@ -209,140 +208,19 @@ msgstr "Seanso valdymo parinktys:"
 msgid "Show session management options"
 msgstr "Rodyti seanso valdymo parinktis"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "Piktograma „%s“ nerasta"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:588
-msgid "Unknown"
-msgstr "Nežinoma"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:639
-msgid "A program is still running:"
-msgstr "Programa vis dar veikia:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:644
-msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
-msgstr "Laukiama, kol programos baigs darbą. Šias programas nutraukus gali būti prarasta informacija."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:874
-msgid "Switch User Anyway"
-msgstr "Vis tiek keisti naudotoją"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:877
-msgid "Log Out Anyway"
-msgstr "Vis tiek atsijungti"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:880
-msgid "Suspend Anyway"
-msgstr "Vis tiek užmigdyti"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:883
-msgid "Hibernate Anyway"
-msgstr "Vis tiek hibernuoti"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:886
-msgid "Shut Down Anyway"
-msgstr "Vis tiek išjungti"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:889
-msgid "Restart Anyway"
-msgstr "Vis tiek įkelti iš naujo"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:897
-msgid "Lock Screen"
-msgstr "Užrakinti ekraną"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:900
-msgid "Cancel"
-msgstr "Atsisakyti"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:266
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Būsite automatiškai atjungti po %d sekundės."
-msgstr[1] "Būsite automatiškai atjungti po %d sekundžių."
-msgstr[2] "Būsite automatiškai atjungti po %d sekundžių."
-
-#: ../gnome-session/gsm-logout-dialog.c:274
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Sistema automatiškai išsijungs po %d sekundės."
-msgstr[1] "Sistema automatiškai išsijungs po %d sekundžių."
-msgstr[2] "Sistema automatiškai išsijungs po %d sekundžių."
-
-#: ../gnome-session/gsm-logout-dialog.c:282
-#, c-format
-#| msgid "This system will be automatically shut down in %d second."
-#| msgid_plural "This system will be automatically shut down in %d seconds."
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Sistema automatiškai bus įkelta iš naujo po %d sekundės."
-msgstr[1] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
-msgstr[2] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
-
-#: ../gnome-session/gsm-logout-dialog.c:306
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Esate prisijungę kaip „%s“."
-
-#: ../gnome-session/gsm-logout-dialog.c:372
-msgid "Log out of this system now?"
-msgstr "Atsijungti dabar?"
-
-#: ../gnome-session/gsm-logout-dialog.c:378
-msgid "_Switch User"
-msgstr "_Keisti naudotoją"
-
-#: ../gnome-session/gsm-logout-dialog.c:387
-#: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:389
-msgid "_Log Out"
-msgstr "_Atsijungti"
-
-#: ../gnome-session/gsm-logout-dialog.c:393
-msgid "Shut down this system now?"
-msgstr "Išjungti sistemą dabar?"
-
-#: ../gnome-session/gsm-logout-dialog.c:399
-msgid "S_uspend"
-msgstr "_Užmigdyti"
-
-#: ../gnome-session/gsm-logout-dialog.c:405
-msgid "_Hibernate"
-msgstr "_Hibernuoti"
-
-#: ../gnome-session/gsm-logout-dialog.c:411
-#: ../gnome-session/gsm-logout-dialog.c:437
-msgid "_Restart"
-msgstr "Įkelti iš _naujo"
-
-#: ../gnome-session/gsm-logout-dialog.c:421
-msgid "_Shut Down"
-msgstr "Išj_ungti"
-
-#: ../gnome-session/gsm-logout-dialog.c:427
-#| msgid "Shut down this system now?"
-msgid "Restart this system now?"
-msgstr "Įkelti sistemą iš naujo dabar?"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:311
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid "Oh no!  Something has gone wrong."
 msgstr "O ne! Nutiko kažkas negera."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:318
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "Įvyko klaida ir sistema negali atsistatyti. Susisiekite su sistemos administratoriumi"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: ../gnome-session/gsm-fail-whale-dialog.c:315
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "Įvyko klaida ir sistema negali atsistatyti. Kaip atsargos priemonė visi plėtiniai buvo išjungti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: ../gnome-session/gsm-fail-whale-dialog.c:317
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -350,88 +228,272 @@ msgstr ""
 "Įvyko klaida ir sistema negali atsistatyti.\n"
 "Atsijunkite ir prisijunkite iš naujo."
 
-#: ../gnome-session/gsm-manager.c:1393
-msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 nepavyko pakrauti"
+#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-logout-dialog.c:383
+msgid "_Log Out"
+msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-manager.c:1394
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the <i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not capable of delivering the full GNOME 3 experience."
-msgstr ""
-"Deja, GNOME 3 nepavyko sėkmingai paleisti, dabar aktyvi <i>atsarginė veiksena</i>.\n"
-"\n"
-"Greičiausiai tai reiškia, kad Jūsų sistema (grafikos techninė įranga arba tvarkyklė) negali pilnai vykdyti GNOME 3."
+#: ../gnome-session/gsm-fail-whale-dialog.c:354
+#: ../gnome-session/main.c:262
+msgid "Enable debugging code"
+msgstr "Įjungti derinimo kodą"
 
-#: ../gnome-session/gsm-manager.c:1396
-msgid "Learn more about GNOME 3"
-msgstr "Sužinoti daugiau apie GNOME 3"
+#: ../gnome-session/gsm-fail-whale-dialog.c:355
+msgid "Allow logout"
+msgstr "Leisti atsijungimą"
 
-#: ../gnome-session/gsm-manager.c:1493
-#: ../gnome-session/gsm-manager.c:2234
+#: ../gnome-session/gsm-fail-whale-dialog.c:356
+msgid "Show extension warning"
+msgstr "Rodyti plėtinio įspėjimą"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:463
+msgid "Unknown"
+msgstr "Nežinoma"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:511
+msgid "A program is still running:"
+msgstr "Programa vis dar veikia:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:516
+msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
+msgstr "Laukiama, kol programos baigs darbą. Šias programas nutraukus gali būti prarasta informacija."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:746
+msgid "Switch User Anyway"
+msgstr "Vis tiek keisti naudotoją"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:749
+msgid "Log Out Anyway"
+msgstr "Vis tiek atsijungti"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:752
+msgid "Suspend Anyway"
+msgstr "Vis tiek užmigdyti"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:755
+msgid "Hibernate Anyway"
+msgstr "Vis tiek hibernuoti"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:758
+msgid "Shut Down Anyway"
+msgstr "Vis tiek išjungti"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:761
+msgid "Restart Anyway"
+msgstr "Vis tiek įkelti iš naujo"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:769
+msgid "Lock Screen"
+msgstr "Užrakinti ekraną"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:772
+msgid "Cancel"
+msgstr "Atsisakyti"
+
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:262
+#, c-format
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Būsite automatiškai atjungti po %d sekundės."
+msgstr[1] "Būsite automatiškai atjungti po %d sekundžių."
+msgstr[2] "Būsite automatiškai atjungti po %d sekundžių."
+
+#: ../gnome-session/gsm-logout-dialog.c:270
+#, c-format
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Sistema automatiškai išsijungs po %d sekundės."
+msgstr[1] "Sistema automatiškai išsijungs po %d sekundžių."
+msgstr[2] "Sistema automatiškai išsijungs po %d sekundžių."
+
+#: ../gnome-session/gsm-logout-dialog.c:278
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Sistema automatiškai bus įkelta iš naujo po %d sekundės."
+msgstr[1] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
+msgstr[2] "Sistema automatiškai bus įkelta iš naujo po %d sekundžių."
+
+#: ../gnome-session/gsm-logout-dialog.c:302
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Esate prisijungę kaip „%s“."
+
+#: ../gnome-session/gsm-logout-dialog.c:368
+msgid "Log out of this system now?"
+msgstr "Atsijungti dabar?"
+
+#: ../gnome-session/gsm-logout-dialog.c:374
+msgid "_Switch User"
+msgstr "_Keisti naudotoją"
+
+#: ../gnome-session/gsm-logout-dialog.c:389
+msgid "Shut down this system now?"
+msgstr "Išjungti sistemą dabar?"
+
+#: ../gnome-session/gsm-logout-dialog.c:395
+msgid "S_uspend"
+msgstr "_Užmigdyti"
+
+#: ../gnome-session/gsm-logout-dialog.c:401
+msgid "_Hibernate"
+msgstr "_Hibernuoti"
+
+#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:433
+msgid "_Restart"
+msgstr "Įkelti iš _naujo"
+
+#: ../gnome-session/gsm-logout-dialog.c:417
+msgid "_Shut Down"
+msgstr "Išj_ungti"
+
+#: ../gnome-session/gsm-logout-dialog.c:423
+msgid "Restart this system now?"
+msgstr "Įkelti sistemą iš naujo dabar?"
+
+#: ../gnome-session/gsm-manager.c:1443
+#: ../gnome-session/gsm-manager.c:2185
 msgid "Not responding"
 msgstr "Neatsako"
+
+#: ../gnome-session/gsm-manager.c:2798
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d valanda"
+msgstr[1] "%d valandos"
+msgstr[2] "%d valandų"
+
+#: ../gnome-session/gsm-manager.c:2799
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minutė"
+msgstr[1] "%d minutės"
+msgstr[2] "%d minučių"
+
+#: ../gnome-session/gsm-manager.c:2800
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekundė"
+msgstr[1] "%d sekundės"
+msgstr[2] "%d sekundžių"
+
+#: ../gnome-session/gsm-manager.c:2809
+msgid "0 seconds"
+msgstr "0 sekundžių"
+
+#: ../gnome-session/gsm-manager.c:2834
+#, c-format
+msgid "Automatic logout in %s"
+msgstr "Automatinis atsijungimas po %s"
+
+#: ../gnome-session/gsm-manager.c:2835
+msgid "This session is configured to automatically log out after a period of inactivity."
+msgstr "Šis seansas yra nustatytas automatiniam atsijungimui po tam tikro neaktyvaus intervalo."
+
+#: ../gnome-session/gsm-util.c:417
+#| msgid "Log out"
+msgid "_Log out"
+msgstr "_Atsijungti"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:558
 msgid "Remembered Application"
 msgstr "Atsiminti programą"
 
-#: ../gnome-session/gsm-xsmp-client.c:1197
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking logout."
 msgstr "Ši programa neleidžia atsijungti."
 
-#: ../gnome-session/gsm-xsmp-server.c:326
+#: ../gnome-session/gsm-xsmp-server.c:333
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:595
+#: ../gnome-session/gsm-xsmp-server.c:602
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "Nepavyko paleisti prisijungimo seanso (taip pat nepavyko prisijungti prie X serverio)"
-
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:260
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:260
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:261
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:261
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:292
-msgid "Enable debugging code"
-msgstr "Įjungti derinimo kodą"
-
-#: ../gnome-session/main.c:293
+#: ../gnome-session/main.c:263
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:296
+#: ../gnome-session/main.c:266
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:316
+#: ../gnome-session/main.c:281
 msgid " - the GNOME session manager"
 msgstr " – GNOME seanso valdyklė"
+
+#: ../tools/gnome-session-inhibit.c:110
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [PARINKTIS...] KOMANDA\n"
+"\n"
+"Vykdyti KOMANDĄ, tuo tarpu kliudant daliai seanso funkcionalumo.\n"
+"\n"
+"  -h, --help        Rodyti šią pagalbą\n"
+"  --version         Rodyti programos versiją\n"
+"  --app-id ID       Naudotinas programos id\n"
+"                    kliudant (neprivaloma)\n"
+"  --reason REASON   Kliudimo priežastis (neprivaloma)\n"
+"  --inhibit ARG     Kliudomi dalykai, dvitaškiai skiriamas sąrašas iš šių:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Nepaleisti KOMANDOS ir vietoj to neribotai laukti\n"
+"\n"
+"Jei nėra parametro --inhibit, naudojama idle.\n"
+
+#: ../tools/gnome-session-inhibit.c:148
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Nepavyko paleisti %s\n"
+
+#: ../tools/gnome-session-inhibit.c:208
+#: ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:228
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s reikalauja argumento\n"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
