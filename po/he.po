@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-30 14:25+0200\n"
-"PO-Revision-Date: 2012-11-30 14:25+0200\n"
+"POT-Creation-Date: 2012-12-20 16:24+0200\n"
+"PO-Revision-Date: 2012-12-20 16:25+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -64,7 +64,7 @@ msgid "No description"
 msgstr "ללא תיאור"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:262
+#: ../gnome-session/main.c:264
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -233,7 +233,7 @@ msgid "_Log Out"
 msgstr "_ניתוק"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:354
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:262
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
@@ -349,10 +349,44 @@ msgstr "_כיבוי"
 msgid "Restart this system now?"
 msgstr "האם להפעיל את המערכת מחדש כעת?"
 
-#: ../gnome-session/gsm-manager.c:1438
-#: ../gnome-session/gsm-manager.c:2180
+#: ../gnome-session/gsm-manager.c:1443
+#: ../gnome-session/gsm-manager.c:2185
 msgid "Not responding"
 msgstr "אין תגובה"
+
+#: ../gnome-session/gsm-manager.c:2798
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "שעה אחת"
+msgstr[1] "%d שעות"
+
+#: ../gnome-session/gsm-manager.c:2799
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "דקה אחת"
+msgstr[1] "%d דקות"
+
+#: ../gnome-session/gsm-manager.c:2800
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "שנייה אחת"
+msgstr[1] "%d שניות"
+
+#: ../gnome-session/gsm-manager.c:2809
+msgid "0 seconds"
+msgstr "0 שניות"
+
+#: ../gnome-session/gsm-manager.c:2834
+#, c-format
+msgid "Automatic logout in %s"
+msgstr "יציאה אוטומטית בעוד %s"
+
+#: ../gnome-session/gsm-manager.c:2835
+msgid "This session is configured to automatically log out after a period of inactivity."
+msgstr "הפעלה זו מוגדרת לצאת אוטומטית לאחר פרק זמן של חוסר פעילות."
 
 #: ../gnome-session/gsm-util.c:417
 msgid "_Log out"
@@ -379,32 +413,32 @@ msgstr "מסרב לחיבור לקוח חדש מכיון שההפעלה נמצא
 msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
-#: ../gnome-session/main.c:258
+#: ../gnome-session/main.c:260
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:258
+#: ../gnome-session/main.c:260
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:259
+#: ../gnome-session/main.c:261
 msgid "Session to use"
 msgstr "הפעלה לשימוש"
 
-#: ../gnome-session/main.c:259
+#: ../gnome-session/main.c:261
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:263
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:264
+#: ../gnome-session/main.c:266
 msgid "Show the fail whale dialog for testing"
 msgstr "הצגת דו־שיח 'לוויתן הכשל'  לבדיקה"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
