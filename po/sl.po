@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-session package.
 #
 # Andraž Tori <andraz.tori1@guest.arnes.si> 2000.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2012.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-11-23 18:20+0000\n"
-"PO-Revision-Date: 2012-11-26 21:00+0100\n"
+"POT-Creation-Date: 2013-01-06 14:28+0000\n"
+"PO-Revision-Date: 2013-01-09 15:16+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -67,7 +67,7 @@ msgstr "Brez imena"
 msgid "No description"
 msgstr "Brez opisa"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:262
+#: ../capplet/main.c:35 ../gnome-session/main.c:264
 msgid "Version of this application"
 msgstr "Različica programa"
 
@@ -246,7 +246,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:260
+#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
@@ -372,9 +372,51 @@ msgstr "_Izklopi"
 msgid "Restart this system now?"
 msgstr "Ali naj se sistem ponovno zažene?"
 
-#: ../gnome-session/gsm-manager.c:1438 ../gnome-session/gsm-manager.c:2180
+#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
 msgid "Not responding"
 msgstr "Ni odziva"
+
+#: ../gnome-session/gsm-manager.c:2798
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d ur"
+msgstr[1] "%d ura"
+msgstr[2] "%d uri"
+msgstr[3] "%d ure"
+
+#: ../gnome-session/gsm-manager.c:2799
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d minut"
+msgstr[1] "%d minuta"
+msgstr[2] "%d minuti"
+msgstr[3] "%d minute"
+
+#: ../gnome-session/gsm-manager.c:2800
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunda"
+msgstr[2] "%d sekundi"
+msgstr[3] "%d sekunde"
+
+#: ../gnome-session/gsm-manager.c:2809
+msgid "0 seconds"
+msgstr "0 sekund"
+
+#: ../gnome-session/gsm-manager.c:2834
+#, c-format
+msgid "Automatic logout in %s"
+msgstr "Do samodejne odjave je še %s"
+
+#: ../gnome-session/gsm-manager.c:2835
+msgid ""
+"This session is configured to automatically log out after a period of "
+"inactivity."
+msgstr "Seja je nastavljena za samodejno odjavo po daljšem času nedejavnosti."
 
 #: ../gnome-session/gsm-util.c:417
 msgid "_Log out"
@@ -403,32 +445,32 @@ msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti ICE vtiča za poslušanje: %s"
 
-#: ../gnome-session/main.c:258
+#: ../gnome-session/main.c:260
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: ../gnome-session/main.c:258
+#: ../gnome-session/main.c:260
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: ../gnome-session/main.c:259
+#: ../gnome-session/main.c:261
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: ../gnome-session/main.c:259
+#: ../gnome-session/main.c:261
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:263
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:264
+#: ../gnome-session/main.c:266
 msgid "Show the fail whale dialog for testing"
 msgstr "Pokaži pogovorno okno napak med preizkušanjem."
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid " - the GNOME session manager"
 msgstr "- upravljalnik seje GNOME"
 
