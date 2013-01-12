@@ -7,12 +7,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-26 23:01+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-01-06 14:25+0000\n"
 "PO-Revision-Date: 2011-08-09 10:45+0600\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr "قوزغىلىش بۇيرۇقى ئىناۋەتسىز"
 
 #: ../capplet/gsm-properties-dialog.c:518
 msgid "Enabled"
-msgstr "قوزغىتىلغان"
+msgstr "ئىناۋەتلىك قىلىنغان"
 
 #: ../capplet/gsm-properties-dialog.c:530
 msgid "Icon"
@@ -64,7 +64,7 @@ msgstr "ئاتسىز"
 msgid "No description"
 msgstr "چۈشەندۈرۈش يوق"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:282
+#: ../capplet/main.c:35 ../gnome-session/main.c:264
 msgid "Version of this application"
 msgstr "بۇ پروگراممىنىڭ نەشرى"
 
@@ -72,73 +72,72 @@ msgstr "بۇ پروگراممىنىڭ نەشرى"
 msgid "Could not display help document"
 msgstr "ياردەم پۈتۈكىنى كۆرسەتكىلى بولمىدى"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME زاپاس ھالىتى"
-
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "بۇ قېتىمقى ئەڭگىمە سىزنى GNOME غا ئەكىرىدۇ."
+msgstr "بۇ ئەڭگىمە سىزنى گىنومغا ئەكىرىدۇ."
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>بەزى پروگراممىلار يەنىلا ئىجرا قىلىنىۋاتىدۇ:</b>"
+#: ../data/gnome-fallback.session.desktop.in.in.h:1
+msgid "GNOME fallback"
+msgstr "گىنوم زاپاس ھالىتى"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+msgid "Some programs are still running:"
+msgstr "بەزى پروگراممىلار يەنىلا ئىجرا قىلىنىۋاتىدۇ:"
+
+#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:512
 msgid ""
 "Waiting for the program to finish.  Interrupting the program may cause you "
 "to lose work."
-msgstr ""
-"پروگرامما تاماملىنىشنى كۈتۈۋاتىدۇ. پروگرامما توختىتىلسا خىزمەت نەتىجىڭىزنىڭ "
-"يوقىلىشىنى كەلتۈرۈپ چىقىرىدۇ."
+msgstr "پروگرامما تاماملىنىشنى كۈتۈۋاتىدۇ. پروگرامما توختىتىلسا خىزمەت نەتىجىڭىزنىڭ يوقىلىشىنى كەلتۈرۈپ چىقىرىدۇ."
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "سىز تىزىمغا كىرگەندىن كېيىن قوزغىتىدىغان پروگراممىنى تاللاڭ"
+msgid "Startup Applications"
+msgstr "قوزغىتىش(باشلانغاندا ئىجرا بولىدىغان) پروگراممىلىرى"
 
 #: ../data/session-properties.desktop.in.in.h:2
-msgid "Startup Applications"
-msgstr "قوزغىتىش پروگراممىلىرى"
+msgid "Choose what applications to start when you log in"
+msgstr "سىز تىزىمغا كىرگەندىن كېيىن قوزغىتىدىغان پروگراممىنى تاللاڭ"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "قوشۇمچە قوزغىلىش پروگراممىلىرى(_P):"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "كۆز يۈگۈرت…"
+msgid "Startup Programs"
+msgstr "قوزغىلىش پروگراممىسى"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "بۇيرۇق(_M):"
+msgid "_Automatically remember running applications when logging out"
+msgstr "تىزىمدىن چىققاندا ئىجرا قىلغان پروگراممىنى ئۆزلۈكىدىن ئەستە تۇت(_A)"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "ئىزاھات(_E):"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
+msgstr "نۆۋەتتە ئىجرا قىلىنغان پروگراممىلارنى ئەستە تۇت(_R)"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "تاللانما"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "قوزغىلىش پروگراممىسى"
+msgid "Browse…"
+msgstr "كۆز يۈگۈرت…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "تىزىمدىن چىققاندا ئىجرا قىلغان پروگراممىنى ئۆزلۈكىدىن ئەستە تۇت(_A)"
+msgid "Comm_ent:"
+msgstr "ئىزاھات(_E):"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "ئاتى(_N):"
+msgid "Co_mmand:"
+msgstr "بۇيرۇق(_M):"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "نۆۋەتتە ئىجرا قىلىنغان پروگراممىنى ئەستە تۇت(_R)"
+msgid "_Name:"
+msgstr "ئاتى(_N):"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -151,7 +150,7 @@ msgstr "ھۆججەت ئىناۋەتلىك .desktop ھۆججىتى ئەمەس."
 #: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "تونۇيالمىغان ئۈستەلئۈستى ھۆججەت نەشرى '%s'"
+msgstr "تونۇيالمىغان ئۈستەلئۈستى ھۆججەت نەشرى ‹%s›"
 
 #: ../egg/eggdesktopfile.c:974
 #, c-format
@@ -190,7 +189,7 @@ msgstr "سەپلىمە ساقلانغان ھۆججەتنى بەلگىلە"
 
 #: ../egg/eggsmclient.c:229
 msgid "FILE"
-msgstr "ھۆججەت"
+msgstr "FILE"
 
 #: ../egg/eggsmclient.c:232
 msgid "Specify session management ID"
@@ -202,282 +201,373 @@ msgstr "ID"
 
 #: ../egg/eggsmclient.c:253
 msgid "Session management options:"
-msgstr "ئەڭگىمە باشقۇرغۇچ تاللانمىلىرى:"
+msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى:"
 
 #: ../egg/eggsmclient.c:254
 msgid "Show session management options"
-msgstr "ئەڭگىمە باشقۇرغۇچ تاللانمىلىرىنى كۆرسەت"
+msgstr "ئەڭگىمە باشقۇرغۇ تاللانمىلىرى كۆرسەت"
 
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
+msgid "Oh no!  Something has gone wrong."
+msgstr "ئاپلا! خاتالىق كۆرۈلدى."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"مۇلازىمېتىر سەپلەشتە خاتالىق بار.\n"
-"(%s نىڭ چېكىنىش ھالىتى %d)"
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr "كاشىلا كۆرۈلدى، سىستېمىنى ئەسلىگە كەلتۈرگىلى بولمايدۇ. سىستېما باشقۇرغۇچىسى بىلەن ئالاقە قىلىڭ."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "'%s' سىنبەلگىنى تاپالمىدى"
+#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr "سىستېمىدا مەسىلە كۆرۈلۈپ، ئەسلىگە كەلتۈرگىلى بولمىدى. ھەر ئېھتىمالغا قارىشى، بارلىق كېڭەيتىلمىلەر ئىناۋەتسىز قىلىندى."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:588
+#: ../gnome-session/gsm-fail-whale-dialog.c:317
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
+msgstr "كاشىلا كۆرۈلدى سىستېمىنى ئەسلىگە كەلتۈرەلمەيدۇ.\n"
+"تىزىمدىن چىقىپ قايتا سىناڭ."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-logout-dialog.c:383
+msgid "_Log Out"
+msgstr "تىزىمدىن چىق(_L)"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+msgid "Enable debugging code"
+msgstr "سازلاش كودىنى قوزغات"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#| msgid "Show logout dialog"
+msgid "Allow logout"
+msgstr "چىقىشقا ئىجازەت"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:356
+msgid "Show extension warning"
+msgstr "كېڭەيتىلمە ئاگاھلاندۇرۇشىنى كۆرسەتسۇن"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:463
 msgid "Unknown"
-msgstr "يوچۇن"
+msgstr "نامەلۇم"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:639
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid "A program is still running:"
 msgstr "پروگرامما يەنىلا ئىجرا قىلىنىۋاتىدۇ:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "بەزى پروگراممىلار يەنىلا ئىجرا قىلىنىۋاتىدۇ:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:516
 msgid ""
 "Waiting for programs to finish.  Interrupting these programs may cause you "
 "to lose work."
-msgstr ""
-"پروگرامما تاماملىنىشنى كۈتۈۋاتىدۇ. بۇ پروگراممىنى ئۈزۈش خىزمەت نەتىجىڭىزنىڭ "
-"يوقىلىشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن."
+msgstr "پروگرامما تاماملىنىشنى كۈتۈۋاتىدۇ. بۇ پروگراممىنى ئۈزۈش خىزمەت نەتىجىڭىزنىڭ يوقىلىشىنى كەلتۈرۈپ چىقىرىشى مۇمكىن."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:746
 msgid "Switch User Anyway"
 msgstr "ئىشلەتكۈچىنى مەجبۇرىي ئالماشتۇر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:749
 msgid "Log Out Anyway"
 msgstr "تىزىمدىن چىقىۋەر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:752
 msgid "Suspend Anyway"
 msgstr "توڭلىتىۋەر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:755
 msgid "Hibernate Anyway"
 msgstr "ئۈچەككە كىرىۋەر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:758
 msgid "Shut Down Anyway"
 msgstr "تاقاۋەر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:761
 msgid "Restart Anyway"
 msgstr "قايتا قوزغىتىۋەر"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:897
+#: ../gnome-session/gsm-inhibit-dialog.c:769
 msgid "Lock Screen"
-msgstr "ئېكراننى قۇلۇپلا"
+msgstr "ئېكراننى قۇلۇپلاش"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:772
 msgid "Cancel"
-msgstr "ۋاز كەچ"
+msgstr "ئەمەلدىن قالدۇر"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
+#: ../gnome-session/gsm-logout-dialog.c:262
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "%d سېكۇنتتىن كېيىن ئۆزلۈكىدىن تىزىمدىن چىقىسىز."
+msgstr[0] "%d سېكۇنتتىن كېيىن ئۆزلۈكىدىن تىزىمدىن چىقىدۇ."
 
-#: ../gnome-session/gsm-logout-dialog.c:283
+#: ../gnome-session/gsm-logout-dialog.c:270
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "بۇ سىستېما %d سېكۇنتتىن كېيىن ئۆزلۈكىدىن تاقىلىدۇ."
 
-#: ../gnome-session/gsm-logout-dialog.c:315
+#: ../gnome-session/gsm-logout-dialog.c:278
+#, c-format
+#| msgid "This system will be automatically shut down in %d second."
+#| msgid_plural "This system will be automatically shut down in %d seconds."
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "سىستېما يەنە %d سېكۇنتتىن كېيىن قايتا قوزغىلىدۇ."
+
+#: ../gnome-session/gsm-logout-dialog.c:302
 #, c-format
 msgid "You are currently logged in as \"%s\"."
-msgstr "نۆۋەتتە \"%s\" سۈپىتىدە كىردىڭىز."
+msgstr "نۆۋەتتە «%s» سۈپىتىدە تىزىمغا كىردىڭىز."
 
-#: ../gnome-session/gsm-logout-dialog.c:381
+#: ../gnome-session/gsm-logout-dialog.c:368
 msgid "Log out of this system now?"
-msgstr "بۇ سىستېمىدىن ھازىر تىزىمدىن چىقامسىز؟"
+msgstr "سىستېمىدىن ھازىرلا چىقسۇنمۇ؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:387
+#: ../gnome-session/gsm-logout-dialog.c:374
 msgid "_Switch User"
 msgstr "ئىشلەتكۈچى ئالماشتۇر(_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:416
-#: ../gnome-session/gsm-util.c:389
-msgid "_Log Out"
-msgstr "تىزىمدىن چىق(_L)"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
+#: ../gnome-session/gsm-logout-dialog.c:389
 msgid "Shut down this system now?"
 msgstr "بۇ سىستېمىنى ھازىر تاقامسىز؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:395
 msgid "S_uspend"
 msgstr "توڭلات(_U)"
 
-#: ../gnome-session/gsm-logout-dialog.c:414
+#: ../gnome-session/gsm-logout-dialog.c:401
 msgid "_Hibernate"
 msgstr "ئۈچەككە كىر(_H)"
 
-#: ../gnome-session/gsm-logout-dialog.c:420
+#: ../gnome-session/gsm-logout-dialog.c:407
+#: ../gnome-session/gsm-logout-dialog.c:433
 msgid "_Restart"
 msgstr "قايتا قوزغات(_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:430
+#: ../gnome-session/gsm-logout-dialog.c:417
 msgid "_Shut Down"
 msgstr "تاقا(_S)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:374
-msgid "Oh no!  Something has gone wrong."
-msgstr "ئاپلا! خاتالىق كۆرۈلدى."
+#: ../gnome-session/gsm-logout-dialog.c:423
+#| msgid "Shut down this system now?"
+msgid "Restart this system now?"
+msgstr "سىستېمىنى ھازىرلا قايتا قوزغاتسۇنمۇ؟"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:381
-#, fuzzy
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
-msgid ""
-"A problem has occurred and the system can't recover. Some of the extensions "
-"below may have caused this.\n"
-"Please try disabling some of these, and then log out and try again."
-msgstr ""
-"كاشىلا كۆرۈلدى سىستېمىنى ئەسلىگە كەلتۈرەلمەيدۇ.\n"
-"تىزىمدىن چىقىپ قايتا سىناڭ."
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:383
-msgid ""
-"A problem has occurred and the system can't recover.\n"
-"Please log out and try again."
-msgstr ""
-"كاشىلا كۆرۈلدى سىستېمىنى ئەسلىگە كەلتۈرەلمەيدۇ.\n"
-"تىزىمدىن چىقىپ قايتا سىناڭ."
-
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "%d كودى ئىلە چېكىندى"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "سىگنال %d تەرىپىدىن ئۆلتۈرۈلدى"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "سىگنال %d تەرىپىدىن توختىتىلدى"
-
-#: ../gnome-session/gsm-manager.c:1377
-msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 نى يۈكلىيەلمىدى"
-
-#: ../gnome-session/gsm-manager.c:1378
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
-msgstr ""
-"ناھايىتى ئەپسۇس GNOME 3 نى توغرا يۈكلىيەلمىدى، <i>زاپاس ھالەت</i>تە قوزغاتتى."
-
-#: ../gnome-session/gsm-manager.c:1380
-msgid "Learn more about GNOME 3"
-msgstr "GNOME 3 ھەققىدە تېخىمۇ كۆپ ئۇچۇر"
-
-#: ../gnome-session/gsm-manager.c:1477 ../gnome-session/gsm-manager.c:2208
+#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
 msgid "Not responding"
 msgstr "ئىنكاس يوق"
+
+#: ../gnome-session/gsm-manager.c:2798
+#, c-format
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d سائەت"
+
+#: ../gnome-session/gsm-manager.c:2799
+#, c-format
+msgid "%d minute"
+msgid_plural "%d minutes"
+msgstr[0] "%d مىنۇت"
+
+#: ../gnome-session/gsm-manager.c:2800
+#, c-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d سېكۇنت"
+
+#: ../gnome-session/gsm-manager.c:2809
+msgid "0 seconds"
+msgstr "0 سېكۇنت"
+
+#: ../gnome-session/gsm-manager.c:2834
+#, c-format
+msgid "Automatic logout in %s"
+msgstr "ئاپتوماتىك چىقىپ كېتىش ۋاقتى %s"
+
+#: ../gnome-session/gsm-manager.c:2835
+msgid ""
+"This session is configured to automatically log out after a period of "
+"inactivity."
+msgstr "مەزكۇر ئەڭگىمە، ئەگەر مەلۇم مەزگىل مەشغۇلات قىلىنمىسا ئاپتوماتىك چىقىپ كېتىدىغان قىلىپ سەپلەنگەن."
+
+#: ../gnome-session/gsm-util.c:417
+#| msgid "Log out"
+msgid "_Log out"
+msgstr "چىق(_L)"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:558
 msgid "Remembered Application"
 msgstr "پروگراممىنى ئەستە تۇت"
 
-#: ../gnome-session/gsm-xsmp-client.c:1197
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking logout."
 msgstr "بۇ پروگرامما تىزىمدىن چىقىشنى چەكلەيدۇ."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:333
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "يېڭى ئىشلەتكۈچى باغلانىشى رەت قىلىندى. چۈنكى ئەڭگىمە تاقىلىۋاتىدۇ\n"
+msgstr "يېڭى ئىشلەتكۈچى باغلىنىشى رەت قىلىندى. چۈنكى ئەڭگىمە تاقىلىۋاتىدۇ\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:602
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE تىڭشاش روزېتكىسى قۇرالمىدى: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "كىرىش ئەڭگىمەسىنى قوزغىتالمىدى (X مۇلازىمېتىرىغا باغلىنالمىدى)"
-
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:260
 msgid "Override standard autostart directories"
 msgstr "كۆڭۈلدىكى ئۆزلۈكىدىن قوزغىلىش مۇندەرىجىسىنىڭ ئورنىنى ئىگىلىيەلمىدى"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:260
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:261
 msgid "Session to use"
 msgstr "ئىشلىتىدىغان ئەڭگىمە"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:261
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:280
-msgid "Enable debugging code"
-msgstr "سازلاش كودىنى قوزغات"
-
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:263
 msgid "Do not load user-specified applications"
 msgstr "ئىشلەتكۈچى بەلگىلىگەن پروگراممىنى يۈكلىمە"
 
-#: ../gnome-session/main.c:283
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:266
 msgid "Show the fail whale dialog for testing"
+msgstr "سىناش ئۈچۈن fail whale سۆزلەشكۈسىنى كۆرسىتىڭ"
+
+#: ../gnome-session/main.c:281
+msgid " - the GNOME session manager"
+msgstr " گىنوم(GNOME) ئەڭگىمە باشقۇرغۇچ"
+
+#: ../tools/gnome-session-inhibit.c:110
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 
-#: ../gnome-session/main.c:303
-msgid " - the GNOME session manager"
-msgstr " GNOME ئەڭگىمە باشقۇرغۇچ"
+#: ../tools/gnome-session-inhibit.c:148
+#, c-format
+#| msgid "Failed to save session"
+msgid "Failed to execute %s\n"
+msgstr "%s نى ئىجرا قىلىش مەغلۇپ بولدى\n"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:228
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s ئۈچۈن بىر پارامېتىر كېرەك\n"
+
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "تىزىمدىن چىق"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "توكنى ئۈز"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "قايتا قوزغات"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "نۆۋەتتىكى چەكلىمە ئامىللىرىغا پەرۋا قىلما"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "ئىشلەتكۈچى جەزملەشنى كۆرسەتمە"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "ئەڭگىمە باشقۇرغۇچقا  باغلىنالمىدى"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "چاقىرغان پروگراممىنىڭ تاللانمىسى ئۆز ئارا توقۇنۇشىدۇ"
 
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>بەزى پروگراممىلار يەنىلا ئىجرا قىلىنىۋاتىدۇ:</b>"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "مۇلازىمېتىر سەپلەشتە خاتالىق بار.\n"
+#~ "(%s نىڭ چېكىنىش ھالىتى %d)"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "'%s' سىنبەلگىنى تاپالمىدى"
+
+#~| msgid ""
+#~| "A problem has occurred and the system can't recover.\n"
+#~| "Please log out and try again."
+#~ msgid ""
+#~ "A problem has occurred and the system can't recover. Some of the "
+#~ "extensions below may have caused this.\n"
+#~ "Please try disabling some of these, and then log out and try again."
+#~ msgstr ""
+#~ "كاشىلا كۆرۈلدى سىستېمىنى ئەسلىگە كەلتۈرەلمەيدۇ.\n"
+#~ "تىزىمدىن چىقىپ قايتا سىناڭ."
+
+#~ msgid "Exited with code %d"
+#~ msgstr "%d كودى ئىلە چېكىندى"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "سىگنال %d تەرىپىدىن ئۆلتۈرۈلدى"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "سىگنال %d تەرىپىدىن توختىتىلدى"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "GNOME 3 نى يۈكلىيەلمىدى"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "ناھايىتى ئەپسۇس GNOME 3 نى توغرا يۈكلىيەلمىدى، <i>زاپاس ھالەت</i>تە "
+#~ "قوزغاتتى."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "GNOME 3 ھەققىدە تېخىمۇ كۆپ ئۇچۇر"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr "كىرىش ئەڭگىمەسىنى قوزغىتالمىدى (X مۇلازىمېتىرىغا باغلىنالمىدى)"
+
 #~ msgid "Window Manager"
 #~ msgstr "كۆزنەك باشقۇرغۇچ"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "تىزىمدىن چىقىش سۆزلەشكۈسىنى كۆرسەت"
 
 #~ msgid "Show shutdown dialog"
 #~ msgstr "يېپىش سۆزلەشكۈسىنى كۆرسەت"
@@ -578,9 +668,6 @@ msgstr "چاقىرغان پروگراممىنىڭ تاللانمىسى ئۆز ئ
 
 #~ msgid "Your session has been saved."
 #~ msgstr "ئەڭگىمە ساقلاندى."
-
-#~ msgid "Failed to save session"
-#~ msgstr "ئەڭگىمەنى ساقلاش مەغلۇپ بولدى"
 
 #~ msgid "Could not connect to the session bus"
 #~ msgstr "ئەڭگىمە باش لىنىيىسىگە باغلىنالمىدى"
