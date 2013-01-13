@@ -57,22 +57,14 @@ Name of the session. This can be localized.
 .TP
 .I RequiredComponents
 List of component identifiers (desktop files) that are required by the session. The required components will always run in the session.
-.TP
-.I RequiredProviders
-List of task providers that are required by the session. A default provider for each task has to be defined with a \fIDefaultProvider-TASK\fP key; the provider can be overridden by required components, the saved session or autostart applications. The task providers will always run in the session.
-.TP
-.I DefaultProvider-TASK
-Identifier (desktop file) of the default provider for \fBTASK\fP. If no provider for \fBTASK\fP is found in the required components, the saved session and in the autostart applications, the default provider will be started.
 .PP
 Here is an example of a session definition:
 .PP
 .in +4n
 .nf
 [GNOME Session]
-Name=GNOME fallback
-RequiredComponents=gnome-panel;metacity;gnome-settings-daemon;
-RequiredProviders=notifications;
-DefaultProvider-notifications=notification-daemon
+Name=GNOME
+RequiredComponents=gnome-shell;gnome-settings-daemon;
 .in
 .fi
 .PP
