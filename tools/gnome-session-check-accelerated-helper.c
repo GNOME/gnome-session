@@ -102,47 +102,35 @@ _print_error (const char *str)
 static int
 _parse_kcmdline (void)
 {
-        FILE *kcmdline;
-        char *line = NULL;
-        size_t line_len = 0;
         int ret = CMDLINE_UNSET;
+        GRegex *regex;
+        GMatchInfo *match;
+        char *contents;
+        char *word;
+        const char *arg;
 
-        kcmdline = fopen("/proc/cmdline", "r");
-        if (kcmdline == NULL)
+        if (!g_file_get_contents ("/proc/cmdline", &contents, NULL, NULL))
                 return ret;
 
-        while (getline (&line, &line_len, kcmdline) != -1) {
-                const char *arg;
-                const char *str;
-                int key_len = strlen ("gnome.fallback=");
+        regex = g_regex_new ("gnome.fallback=(\\S+)", 0, G_REGEX_MATCH_NOTEMPTY, NULL);
+        if (!g_regex_match (regex, contents, G_REGEX_MATCH_NOTEMPTY, &match))
+                goto out;
 
-                if (line == NULL)
-                        break;
+        word = g_match_info_fetch (match, 0);
+        g_debug ("Found command-line match '%s'", word);
+        arg = word + strlen ("gnome.fallback=");
+        if (*arg != '0' && *arg != '1')
+                fprintf (stderr, "gnome-session-is-accelerated: Invalid value '%s' for gnome.fallback passed in kernel command line.\n", arg);
+        else
+                ret = atoi (arg);
+        g_free (word);
 
-                /* don't break if we found the argument once: last mention wins */
+out:
+        g_match_info_free (match);
+        g_regex_unref (regex);
+        g_free (contents);
 
-                str = line;
-                do {
-                        arg = strstr (str, "gnome.fallback=");
-                        str = arg + key_len;
-
-                        if (arg &&
-                                        (arg == line || isspace (arg[-1])) && /* gnome.fallback= is really the beginning of an argument */
-                                        (isdigit (arg[key_len]))) { /* the first character of the value of this argument is an integer */
-                                if ((arg[key_len+1] == '\0' || isspace (arg[key_len+1]))) /* the value of this argument is only one character long */
-                                        ret = arg[key_len] - '0';
-                                else /* invalid value */
-                                        ret = 0xDEAD;
-
-                        }
-                } while (arg != NULL);
-
-                free (line);
-                line = NULL;
-                line_len = 0;
-        }
-
-        fclose (kcmdline);
+        g_debug ("Command-line parsed to %d", ret);
 
         return ret;
 }
@@ -425,8 +413,6 @@ main (int argc, char **argv)
                 } else if (kcmdline_parsed == CMDLINE_FALLBACK_FORCED) {
                         _print_error ("Fallback mode forced by kernel command line.");
                         goto out;
-                } else {
-                        fprintf (stderr, "gnome-session-is-accelerated: Invalid value '%d' for gnome.fallback passed in kernel command line.\n", kcmdline_parsed);
                 }
         }
 
