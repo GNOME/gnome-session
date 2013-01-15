@@ -1,3 +1,4 @@
+NULL =
 bin_PROGRAMS = gnome-session
 libexec_PROGRAMS = gnome-session-failed
 noinst_LTLIBRARIES = libgsmutil.la
@@ -100,7 +101,8 @@ libgsmutil_la_CPPFLAGS =                       \
        $(AM_CPPFLAGS)
 
 libgsmutil_la_LIBADD = 				\
-	$(GNOME_SESSION_LIBS)
+	$(GNOME_SESSION_LIBS)			\
+	$(NULL)
 
 gnome_session_failed_SOURCES =         \
        gsm-fail-whale-dialog.c \

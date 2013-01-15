@@ -46,6 +46,10 @@
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
 
+#ifdef HAVE_SYSTEMD
+#include <systemd/sd-journal.h>
+#endif
+
 #include "gsm-store.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
@@ -68,6 +72,10 @@
 #include "gsm-fail-whale.h"
 
 #define GSM_MANAGER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_MANAGER, GsmManagerPrivate))
+
+/* UUIDs for log messages */
+#define GSM_MANAGER_STARTUP_SUCCEEDED_MSGID     "0ce153587afa4095832d233c17a88001"
+#define GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID "10dd2dc188b54a5e98970f56499d1f73"
 
 #define GSM_MANAGER_DBUS_PATH "/org/gnome/SessionManager"
 #define GSM_MANAGER_DBUS_NAME "org.gnome.SessionManager"
@@ -309,6 +317,13 @@ on_required_app_failure (GsmManager  *manager,
         } else {
                 allow_logout = !_log_out_is_locked_down (manager);
         }
+
+#ifdef HAVE_SYSTEMD
+        sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
+                         "PRIORITY=%d", 3,
+                         "MESSAGE=Unrecoverable failure in required component %s", app_id,
+                         NULL);
+#endif
 
         gsm_fail_whale_dialog_we_failed (FALSE,
                                          allow_logout,
@@ -1529,6 +1544,12 @@ start_phase (GsmManager *manager)
                 do_phase_startup (manager);
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
+#ifdef HAVE_SYSTEMD                
+                sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_STARTUP_SUCCEEDED_MSGID,
+                                 "PRIORITY=%d", 5,
+                                 "MESSAGE=Entering running state",
+                                 NULL);
+#endif
                 g_signal_emit (manager, signals[SESSION_RUNNING], 0);
                 update_idle (manager);
                 break;
