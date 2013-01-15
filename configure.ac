@@ -132,7 +132,7 @@ fi
 AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
-AM_CONDITIONAL(HAVE_SYSTEMD, [test "$with_systemd" = "yes"], [Using systemd])
+AM_CONDITIONAL(HAVE_SYSTEMD, [test "$enable_systemd" = "yes"], [Using systemd])
 
 dnl ====================================================================
 dnl X development libraries check
