@@ -24,6 +24,8 @@
 #include <glib-object.h>
 #include <sys/types.h>
 
+#include "gsm-presence-flag.h"
+
 G_BEGIN_DECLS
 
 #define GSM_TYPE_PRESENCE            (gsm_presence_get_type ())
@@ -54,13 +56,6 @@ struct _GsmPresenceClass
                                                  const char      *status_text);
 
 };
-
-typedef enum {
-        GSM_PRESENCE_STATUS_AVAILABLE = 0,
-        GSM_PRESENCE_STATUS_INVISIBLE,
-        GSM_PRESENCE_STATUS_BUSY,
-        GSM_PRESENCE_STATUS_IDLE,
-} GsmPresenceStatus;
 
 typedef enum
 {

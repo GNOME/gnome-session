@@ -37,6 +37,7 @@ gnome_session_SOURCES =				\
 	gsm-inhibit-dialog.h			\
 	gsm-inhibit-dialog.c			\
 	gsm-presence.h				\
+	gsm-presence-flag.h			\
 	gsm-presence.c				\
 	gdm.h					\
 	gdm.c					\
