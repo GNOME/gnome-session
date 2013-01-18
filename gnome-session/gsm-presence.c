@@ -110,6 +110,10 @@ gsm_presence_error_get_type (void)
         return etype;
 }
 
+static void idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
+                                   guint             id,
+                                   gpointer          user_data);
+
 static void
 set_session_idle (GsmPresence   *presence,
                   gboolean       is_idle)
@@ -125,6 +129,11 @@ set_session_idle (GsmPresence   *presence,
                 /* save current status */
                 presence->priv->saved_status = presence->priv->status;
                 gsm_presence_set_status (presence, GSM_PRESENCE_STATUS_IDLE, NULL);
+
+                gnome_idle_monitor_add_user_active_watch (presence->priv->idle_monitor,
+                                                          idle_became_active_cb,
+                                                          presence,
+                                                          NULL);
         } else {
                 if (presence->priv->status != GSM_PRESENCE_STATUS_IDLE) {
                         g_debug ("GsmPresence: already not idle, ignoring");
@@ -152,8 +161,10 @@ idle_became_idle_cb (GnomeIdleMonitor *idle_monitor,
 
 static void
 idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
-                       GsmPresence      *presence)
+                       guint             id,
+                       gpointer          user_data)
 {
+        GsmPresence *presence = user_data;
         /* We can only be non-idle if the screensaver is gone */
         if (!presence->priv->screensaver_active)
                 set_session_idle (presence, FALSE);
@@ -171,11 +182,11 @@ reset_idle_watch (GsmPresence  *presence)
 
         if (presence->priv->idle_enabled
             && presence->priv->idle_timeout > 0) {
-                presence->priv->idle_watch_id = gnome_idle_monitor_add_watch (presence->priv->idle_monitor,
-                                                                              presence->priv->idle_timeout,
-                                                                              idle_became_idle_cb,
-                                                                              presence,
-                                                                              NULL);
+                presence->priv->idle_watch_id = gnome_idle_monitor_add_idle_watch (presence->priv->idle_monitor,
+                                                                                   presence->priv->idle_timeout,
+                                                                                   idle_became_idle_cb,
+                                                                                   presence,
+                                                                                   NULL);
                 g_debug ("GsmPresence: adding idle watch (%i) for %d secs",
                          presence->priv->idle_watch_id,
                          presence->priv->idle_timeout / 1000);
