@@ -535,7 +535,7 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                                                             "idle timeout",
                                                             0,
                                                             G_MAXINT,
-                                                            300000,
+                                                            120000,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         dbus_g_object_type_install_info (GSM_TYPE_PRESENCE, &dbus_glib_gsm_presence_object_info);
