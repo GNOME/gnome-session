@@ -183,6 +183,13 @@ term_or_int_signal_cb (gpointer data)
 }
 
 static gboolean
+sigusr2_cb (gpointer data)
+{
+        g_debug ("-------- MARK --------");
+        return TRUE;
+}
+
+static gboolean
 sigusr1_cb (gpointer data)
 {
         gdm_log_toggle_debug ();
@@ -340,6 +347,7 @@ main (int argc, char **argv)
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
         g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
         g_unix_signal_add (SIGUSR1, sigusr1_cb, manager);
+        g_unix_signal_add (SIGUSR2, sigusr2_cb, manager);
 
         if (IS_STRING_EMPTY (opt_session_name))
                 session_name = _gsm_manager_get_default_session (manager);
