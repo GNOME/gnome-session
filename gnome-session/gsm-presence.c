@@ -51,7 +51,6 @@ struct GsmPresencePrivate
         char             *status_text;
         gboolean          idle_enabled;
         GnomeIdleMonitor *idle_monitor;
-        guint             idle_became_active_id;
         guint             idle_watch_id;
         guint             idle_timeout;
         gboolean          screensaver_active;
@@ -168,12 +167,6 @@ reset_idle_watch (GsmPresence  *presence)
                 presence->priv->idle_watch_id = 0;
         }
 
-        if (presence->priv->idle_became_active_id > 0) {
-                g_signal_handler_disconnect (presence->priv->idle_monitor,
-                                             presence->priv->idle_became_active_id);
-                presence->priv->idle_became_active_id = 0;
-        }
-
         if (! presence->priv->screensaver_active
             && presence->priv->idle_enabled
             && presence->priv->idle_timeout > 0) {
@@ -184,8 +177,6 @@ reset_idle_watch (GsmPresence  *presence)
                                                                               idle_became_idle_cb,
                                                                               presence,
                                                                               NULL);
-                presence->priv->idle_became_active_id = g_signal_connect (presence->priv->idle_monitor, "became-active",
-                                                                          G_CALLBACK (idle_became_active_cb), presence);
         }
 }
 
@@ -327,6 +318,8 @@ gsm_presence_init (GsmPresence *presence)
         presence->priv = GSM_PRESENCE_GET_PRIVATE (presence);
 
         presence->priv->idle_monitor = gnome_idle_monitor_new ();
+        g_signal_connect (presence->priv->idle_monitor, "became-active",
+                          G_CALLBACK (idle_became_active_cb), presence);
 }
 
 void
