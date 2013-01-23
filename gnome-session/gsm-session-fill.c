@@ -185,10 +185,8 @@ get_session_keyfile_if_valid (const char *path)
                                                    &len, NULL);
                 if (list)
                         g_strfreev (list);
-                if (len == 0) {
-                        g_warning ("Cannot use session '%s': no component in the session.", path);
-                        goto error;
-                }
+                if (len == 0)
+                        g_warning ("Session '%s': no component in the session.", path);
         }
 
         return keyfile;
