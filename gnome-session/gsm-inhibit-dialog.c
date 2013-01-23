@@ -88,7 +88,6 @@ enum {
 
 static void     gsm_inhibit_dialog_class_init  (GsmInhibitDialogClass *klass);
 static void     gsm_inhibit_dialog_init        (GsmInhibitDialog      *inhibit_dialog);
-static void     gsm_inhibit_dialog_finalize    (GObject               *object);
 
 G_DEFINE_TYPE (GsmInhibitDialog, gsm_inhibit_dialog, GTK_TYPE_DIALOG)
 
@@ -899,7 +898,6 @@ gsm_inhibit_dialog_class_init (GsmInhibitDialogClass *klass)
         object_class->set_property = gsm_inhibit_dialog_set_property;
         object_class->constructor = gsm_inhibit_dialog_constructor;
         object_class->dispose = gsm_inhibit_dialog_dispose;
-        object_class->finalize = gsm_inhibit_dialog_finalize;
 
         g_object_class_install_property (object_class,
                                          PROP_ACTION,
@@ -964,23 +962,6 @@ gsm_inhibit_dialog_init (GsmInhibitDialog *dialog)
         g_object_set (dialog,
                       "resizable", FALSE,
                       NULL);
-}
-
-static void
-gsm_inhibit_dialog_finalize (GObject *object)
-{
-        GsmInhibitDialog *dialog;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GSM_IS_INHIBIT_DIALOG (object));
-
-        dialog = GSM_INHIBIT_DIALOG (object);
-
-        g_return_if_fail (dialog->priv != NULL);
-
-        g_debug ("GsmInhibitDialog: finalizing");
-
-        G_OBJECT_CLASS (gsm_inhibit_dialog_parent_class)->finalize (object);
 }
 
 GtkWidget *
