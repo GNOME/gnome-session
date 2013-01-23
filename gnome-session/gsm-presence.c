@@ -156,10 +156,6 @@ idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
 static void
 reset_idle_watch (GsmPresence  *presence)
 {
-        if (presence->priv->idle_monitor == NULL) {
-                return;
-        }
-
         if (presence->priv->idle_watch_id > 0) {
                 g_debug ("GsmPresence: removing idle watch");
                 gnome_idle_monitor_remove_watch (presence->priv->idle_monitor,
