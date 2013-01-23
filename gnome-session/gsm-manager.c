@@ -41,8 +41,6 @@
 
 #include <gtk/gtk.h> /* for logout dialog */
 
-#include <libnotify/notify.h>
-
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
 
@@ -95,8 +93,6 @@
 
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
-#define KEY_MAX_IDLE_TIME         "max-idle-time"
-#define KEY_MAX_IDLE_ACTION       "max-idle-action"
 #define KEY_SESSION_NAME          "session-name"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
@@ -145,13 +141,6 @@ struct GsmManagerPrivate
         GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
         guint                   query_timeout_id;
-
-        guint                   max_idle_timeout_id;
-        guint                   max_idle_warning_timeout_id;
-        guint                   max_idle_time_secs;
-        int                     max_idle_action;
-        NotifyNotification     *max_idle_notification;
-
         /* This is used for GSM_MANAGER_PHASE_END_SESSION only at the moment,
          * since it uses a sublist of all running client that replied in a
          * specific way */
@@ -204,12 +193,6 @@ enum {
 };
 
 static guint signals [LAST_SIGNAL] = { 0 };
-
-typedef enum {
-        ACTION_NONE = 0,
-        ACTION_LOGOUT,
-        ACTION_FORCED_LOGOUT,
-} IdleActionType;
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
@@ -2484,16 +2467,6 @@ gsm_manager_dispose (GObject *object)
 
         g_debug ("GsmManager: disposing manager");
 
-        g_clear_object (&manager->priv->max_idle_notification);
-        if (manager->priv->max_idle_warning_timeout_id) {
-                g_source_remove (manager->priv->max_idle_warning_timeout_id);
-                manager->priv->max_idle_warning_timeout_id = 0;
-        }
-        if (manager->priv->max_idle_timeout_id) {
-                g_source_remove (manager->priv->max_idle_timeout_id);
-                manager->priv->max_idle_timeout_id = 0;
-        }
-
         g_clear_object (&manager->priv->xsmp_server);
 
         if (manager->priv->clients != NULL) {
@@ -2668,8 +2641,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
         dbus_g_error_domain_register (GSM_MANAGER_ERROR, NULL, GSM_MANAGER_TYPE_ERROR);
 }
 
-static void reset_max_idle_timer (GsmManager  *manager);
-
 static void
 on_presence_status_changed (GsmPresence  *presence,
                             guint         status,
@@ -2681,8 +2652,6 @@ on_presence_status_changed (GsmPresence  *presence,
         gsm_system_set_session_idle (system,
                                      (status == GSM_PRESENCE_STATUS_IDLE));
         g_object_unref (system);
-
-        reset_max_idle_timer (manager);
 }
 
 static void
@@ -2749,260 +2718,6 @@ idle_timeout_get_mapping (GValue *value,
 }
 
 static void
-request_logout (GsmManager           *manager,
-                GsmManagerLogoutMode  mode)
-{
-        g_debug ("GsmManager: requesting logout");
-
-        manager->priv->logout_mode = mode;
-        manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
-
-        end_phase (manager);
-}
-
-static gboolean
-_on_max_idle_time_timeout (GsmManager *manager)
-{
-        manager->priv->max_idle_timeout_id = 0;
-        g_debug ("GsmManager: max idle time reached");
-
-        if (manager->priv->max_idle_warning_timeout_id > 0) {
-                g_source_remove (manager->priv->max_idle_warning_timeout_id);
-                manager->priv->max_idle_warning_timeout_id = 0;
-        }
-
-        switch (manager->priv->max_idle_action) {
-        case ACTION_LOGOUT:
-                g_debug ("GsmManager: max idle action: logout");
-                /* begin non-forceful logout */
-                request_logout (manager, FALSE);
-                break;
-        case ACTION_FORCED_LOGOUT:
-                g_debug ("GsmManager: max idle action: force-logout");
-                /* begin forceful logout */
-                request_logout (manager, TRUE);
-                break;
-        case ACTION_NONE:
-                g_debug ("GsmManager: no max idle action specified");
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        return FALSE;
-}
-
-static void
-on_max_idle_notification_closed (NotifyNotification *notification,
-                                 GsmManager         *manager)
-{
-        if (manager->priv->max_idle_notification != NULL) {
-                g_object_unref (manager->priv->max_idle_notification);
-                manager->priv->max_idle_notification = NULL;
-        }
-}
-
-/* Adapted from totem_time_to_string_text */
-static char *
-time_to_string_text (long time)
-{
-        char *secs, *mins, *hours, *string;
-        int sec, min, hour;
-
-        sec = time % 60;
-        time = time - sec;
-        min = (time % (60 * 60)) / 60;
-        time = time - (min * 60);
-        hour = time / (60 * 60);
-
-        hours = g_strdup_printf (ngettext ("%d hour", "%d hours", hour), hour);
-        mins = g_strdup_printf (ngettext ("%d minute", "%d minutes", min), min);
-        secs = g_strdup_printf (ngettext ("%d second", "%d seconds", sec), sec);
-
-        if (hour > 0) {
-                string = g_strdup_printf ("%s %s %s", hours, mins, secs);
-        } else if (min > 0) {
-                string = g_strdup_printf ("%s %s", mins, secs);
-        } else if (sec > 0) {
-                string = g_strdup_printf ("%s", secs);
-        } else {
-                string = g_strdup (_("0 seconds"));
-        }
-
-        g_free (hours);
-        g_free (mins);
-        g_free (secs);
-
-        return string;
-}
-
-static void
-update_max_idle_notification (GsmManager *manager,
-                              long        secs_remaining)
-{
-        char *summary;
-        char *body;
-        char *remaining;
-
-        remaining = time_to_string_text (secs_remaining);
-        summary = NULL;
-        body = NULL;
-
-        switch (manager->priv->max_idle_action) {
-        case ACTION_LOGOUT:
-        case ACTION_FORCED_LOGOUT:
-                summary = g_strdup_printf (_("Automatic logout in %s"), remaining);
-                body = g_strdup (_("This session is configured to automatically log out after a period of inactivity."));
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        g_free (remaining);
-
-        if (manager->priv->max_idle_notification != NULL) {
-                notify_notification_update (manager->priv->max_idle_notification,
-                                            summary,
-                                            body,
-                                            NULL);
-        } else {
-                manager->priv->max_idle_notification
-                        = notify_notification_new (summary, body, NULL);
-                notify_notification_set_timeout (manager->priv->max_idle_notification,
-                                                 NOTIFY_EXPIRES_NEVER);
-
-                g_signal_connect (manager->priv->max_idle_notification,
-                                  "closed",
-                                  G_CALLBACK (on_max_idle_notification_closed),
-                                  manager);
-        }
-
-        notify_notification_show (manager->priv->max_idle_notification, NULL);
-
-        g_free (body);
-        g_free (summary);
-}
-
-static gboolean
-_on_max_idle_warning_2_timeout (GsmManager *manager)
-{
-        manager->priv->max_idle_warning_timeout_id = 0;
-
-        g_debug ("Note: will perform idle action in %f seconds",
-                 0.02 * manager->priv->max_idle_time_secs);
-        update_max_idle_notification (manager, 0.02 * manager->priv->max_idle_time_secs);
-
-        return FALSE;
-}
-
-static gboolean
-_on_max_idle_warning_5_timeout (GsmManager *manager)
-{
-        long warn_secs;
-
-        warn_secs = 0.03 * manager->priv->max_idle_time_secs;
-        manager->priv->max_idle_warning_timeout_id
-                = g_timeout_add_seconds (warn_secs,
-                                         (GSourceFunc)_on_max_idle_warning_2_timeout,
-                                         manager);
-        g_debug ("Note: will perform idle action in %f seconds",
-                 0.05 * manager->priv->max_idle_time_secs);
-        update_max_idle_notification (manager, 0.05 * manager->priv->max_idle_time_secs);
-
-        return FALSE;
-}
-
-static gboolean
-_on_max_idle_warning_10_timeout (GsmManager *manager)
-{
-        long warn_secs;
-
-        warn_secs = 0.05 * manager->priv->max_idle_time_secs;
-        manager->priv->max_idle_warning_timeout_id
-                = g_timeout_add_seconds (warn_secs,
-                                         (GSourceFunc)_on_max_idle_warning_5_timeout,
-                                         manager);
-        g_debug ("Note: will perform idle action in %f seconds",
-                 0.1 * manager->priv->max_idle_time_secs);
-        update_max_idle_notification (manager, 0.1 * manager->priv->max_idle_time_secs);
-
-        return FALSE;
-}
-
-static gboolean
-_on_max_idle_warning_20_timeout (GsmManager *manager)
-{
-        long warn_secs;
-
-        warn_secs = 0.1 * manager->priv->max_idle_time_secs;
-        manager->priv->max_idle_warning_timeout_id
-                = g_timeout_add_seconds (warn_secs,
-                                         (GSourceFunc)_on_max_idle_warning_10_timeout,
-                                         manager);
-        g_debug ("Note: will perform idle action in %f seconds",
-                 0.2 * manager->priv->max_idle_time_secs);
-
-        update_max_idle_notification (manager, 0.2 * manager->priv->max_idle_time_secs);
-
-        return FALSE;
-}
-
-static void
-reset_max_idle_timer (GsmManager  *manager)
-{
-        int status;
-
-        g_object_get (manager->priv->presence, "status", &status, NULL);
-
-        g_debug ("Resetting max idle timer status=%d action=%d time=%ds",
-                 status, manager->priv->max_idle_action, manager->priv->max_idle_time_secs);
-        if (manager->priv->max_idle_timeout_id > 0) {
-                g_source_remove (manager->priv->max_idle_timeout_id);
-                manager->priv->max_idle_timeout_id = 0;
-        }
-        if (manager->priv->max_idle_warning_timeout_id > 0) {
-                g_source_remove (manager->priv->max_idle_warning_timeout_id);
-                manager->priv->max_idle_warning_timeout_id = 0;
-        }
-
-        if (status == GSM_PRESENCE_STATUS_IDLE &&
-            manager->priv->max_idle_action != ACTION_NONE) {
-                long warn_secs;
-
-                /* start counting now.  probably isn't quite
-                   right if we're handling a configuration
-                   value change but it may not matter */
-
-                manager->priv->max_idle_timeout_id
-                        = g_timeout_add_seconds (manager->priv->max_idle_time_secs,
-                                                 (GSourceFunc)_on_max_idle_time_timeout,
-                                                 manager);
-
-                /* start warning at 80% of the way through the idle */
-                warn_secs = 0.8 * manager->priv->max_idle_time_secs;
-                manager->priv->max_idle_warning_timeout_id
-                        = g_timeout_add_seconds (warn_secs,
-                                                 (GSourceFunc)_on_max_idle_warning_20_timeout,
-                                                 manager);
-        }
-}
-
-static void
-settings_changed (GSettings   *settings,
-                  const gchar *key,
-                  GsmManager  *manager)
-{
-        manager->priv->max_idle_time_secs
-                = 60 * g_settings_get_uint (manager->priv->settings, KEY_MAX_IDLE_TIME);
-        manager->priv->max_idle_action
-                = g_settings_get_enum (manager->priv->settings, KEY_MAX_IDLE_ACTION);
-
-        reset_max_idle_timer (manager);
-}
-
-static void
 gsm_manager_init (GsmManager *manager)
 {
 
@@ -3039,10 +2754,6 @@ gsm_manager_init (GsmManager *manager)
                                       idle_timeout_get_mapping,
                                       NULL,
                                       NULL, NULL);
-
-        settings_changed (manager->priv->settings, NULL, manager);
-        g_signal_connect (manager->priv->settings, "changed",
-                          G_CALLBACK (settings_changed), manager);
 
         manager->priv->system = gsm_get_system ();
         g_signal_connect (manager->priv->system, "notify::active",
@@ -3304,6 +3015,19 @@ request_hibernate (GsmManager *manager)
                           G_CALLBACK (inhibit_dialog_response),
                           manager);
         gtk_widget_show (manager->priv->inhibit_dialog);
+}
+
+
+static void
+request_logout (GsmManager           *manager,
+                GsmManagerLogoutMode  mode)
+{
+        g_debug ("GsmManager: requesting logout");
+
+        manager->priv->logout_mode = mode;
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
+
+        end_phase (manager);
 }
 
 static void
