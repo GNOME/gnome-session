@@ -196,7 +196,6 @@ static guint signals [LAST_SIGNAL] = { 0 };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
-static void     gsm_manager_finalize    (GObject         *object);
 
 static gboolean auto_save_is_enabled (GsmManager *manager);
 static void     maybe_save_session   (GsmManager *manager);
@@ -2501,7 +2500,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
         object_class->get_property = gsm_manager_get_property;
         object_class->set_property = gsm_manager_set_property;
         object_class->constructor = gsm_manager_constructor;
-        object_class->finalize = gsm_manager_finalize;
         object_class->dispose = gsm_manager_dispose;
 
         signals [PHASE_CHANGED] =
@@ -2746,21 +2744,6 @@ gsm_manager_init (GsmManager *manager)
                           G_CALLBACK (on_gsm_system_active_changed), manager);
 
         manager->priv->shell = gsm_get_shell ();
-}
-
-static void
-gsm_manager_finalize (GObject *object)
-{
-        GsmManager *manager;
-
-        g_return_if_fail (object != NULL);
-        g_return_if_fail (GSM_IS_MANAGER (object));
-
-        manager = GSM_MANAGER (object);
-
-        g_return_if_fail (manager->priv != NULL);
-
-        G_OBJECT_CLASS (gsm_manager_parent_class)->finalize (object);
 }
 
 GsmManager *
