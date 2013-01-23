@@ -179,6 +179,15 @@ reset_idle_watch (GsmPresence  *presence)
                 g_debug ("GsmPresence: adding idle watch (%i) for %d secs",
                          presence->priv->idle_watch_id,
                          presence->priv->idle_timeout / 1000);
+
+                /* If the idle-delay is really short, we might end up with
+                 * the idletime already being past the timeout */
+                if (presence->priv->idle_timeout < gnome_idle_monitor_get_idletime (presence->priv->idle_monitor)) {
+                        g_debug ("Idle time %i already expired, triggering idle", presence->priv->idle_timeout);
+                        idle_became_idle_cb (presence->priv->idle_monitor,
+                                             presence->priv->idle_watch_id,
+                                             presence);
+                }
         }
 }
 
