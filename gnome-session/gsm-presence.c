@@ -144,14 +144,19 @@ idle_became_idle_cb (GnomeIdleMonitor *idle_monitor,
                      gpointer          user_data)
 {
         GsmPresence *presence = user_data;
-        set_session_idle (presence, TRUE);
+        /* We should already be idle,
+         * see on_screensaver_active_changed() */
+        if (!presence->priv->screensaver_active)
+                set_session_idle (presence, TRUE);
 }
 
 static void
 idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
                        GsmPresence      *presence)
 {
-        set_session_idle (presence, FALSE);
+        /* We can only be non-idle if the screensaver is gone */
+        if (!presence->priv->screensaver_active)
+                set_session_idle (presence, FALSE);
 }
 
 static void
@@ -164,8 +169,7 @@ reset_idle_watch (GsmPresence  *presence)
                 presence->priv->idle_watch_id = 0;
         }
 
-        if (! presence->priv->screensaver_active
-            && presence->priv->idle_enabled
+        if (presence->priv->idle_enabled
             && presence->priv->idle_timeout > 0) {
                 presence->priv->idle_watch_id = gnome_idle_monitor_add_watch (presence->priv->idle_monitor,
                                                                               presence->priv->idle_timeout,
@@ -186,7 +190,6 @@ on_screensaver_active_changed (DBusGProxy  *proxy,
         g_debug ("screensaver status changed: %d", is_active);
         if (presence->priv->screensaver_active != is_active) {
                 presence->priv->screensaver_active = is_active;
-                reset_idle_watch (presence);
                 set_session_idle (presence, is_active);
         }
 }
@@ -200,7 +203,6 @@ on_screensaver_proxy_destroy (GObject     *proxy,
         presence->priv->screensaver_proxy = NULL;
         presence->priv->screensaver_active = FALSE;
         set_session_idle (presence, FALSE);
-        reset_idle_watch (presence);
 }
 
 static void
