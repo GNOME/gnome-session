@@ -129,12 +129,6 @@ on_screen_size_changed (GdkScreen          *screen,
 }
 
 static void
-gsm_fail_whale_dialog_finalize (GObject *object)
-{
-        G_OBJECT_CLASS (gsm_fail_whale_dialog_parent_class)->finalize (object);
-}
-
-static void
 gsm_fail_whale_dialog_realize (GtkWidget *widget)
 {
         if (GTK_WIDGET_CLASS (gsm_fail_whale_dialog_parent_class)->realize) {
@@ -226,11 +220,7 @@ gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
 static void
 gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
 {
-        GObjectClass   *object_class;
         GtkWidgetClass *widget_class;
-
-        object_class = G_OBJECT_CLASS (klass);
-        object_class->finalize = gsm_fail_whale_dialog_finalize;
 
         widget_class = GTK_WIDGET_CLASS (klass);
 
