@@ -481,20 +481,6 @@ phase_num_to_name (guint phase)
 static void start_phase (GsmManager *manager);
 
 static void
-quit_request_completed (GsmSystem *system,
-                        GError    *error,
-                        gpointer   user_data)
-{
-        GdmLogoutAction fallback_action = GPOINTER_TO_INT (user_data);
-
-        if (error != NULL) {
-                gdm_set_logout_action (fallback_action);
-        }
-
-        gtk_main_quit ();
-}
-
-static void
 gsm_manager_quit (GsmManager *manager)
 {
         /* See the comment in request_reboot() for some more details about how
