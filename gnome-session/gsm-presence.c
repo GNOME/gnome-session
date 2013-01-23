@@ -457,15 +457,8 @@ gsm_presence_finalize (GObject *object)
                 presence->priv->idle_watch_id = 0;
         }
 
-        if (presence->priv->status_text != NULL) {
-                g_free (presence->priv->status_text);
-                presence->priv->status_text = NULL;
-        }
-
-        if (presence->priv->idle_monitor != NULL) {
-                g_object_unref (presence->priv->idle_monitor);
-                presence->priv->idle_monitor = NULL;
-        }
+        g_clear_pointer (&presence->priv->status_text, g_free);
+        g_clear_object (&presence->priv->idle_monitor);
 
         G_OBJECT_CLASS (gsm_presence_parent_class)->finalize (object);
 }
