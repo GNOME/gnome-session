@@ -479,9 +479,9 @@ dbus_client_get_unix_process_id (GsmClient *client)
 }
 
 static gboolean
-dbus_client_query_end_session (GsmClient *client,
-                               guint      flags,
-                               GError   **error)
+dbus_client_query_end_session (GsmClient                *client,
+                               GsmClientEndSessionFlag   flags,
+                               GError                  **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;
@@ -541,9 +541,9 @@ dbus_client_query_end_session (GsmClient *client,
 }
 
 static gboolean
-dbus_client_end_session (GsmClient *client,
-                         guint      flags,
-                         GError   **error)
+dbus_client_end_session (GsmClient                *client,
+                         GsmClientEndSessionFlag   flags,
+                         GError                  **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
         DBusMessage    *message;

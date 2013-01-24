@@ -83,10 +83,10 @@ struct _GsmClientClass
         GsmClientRestartStyle (*impl_get_restart_style_hint) (GsmClient *client);
         guint                 (*impl_get_unix_process_id)    (GsmClient *client);
         gboolean              (*impl_query_end_session)      (GsmClient *client,
-                                                              guint      flags,
+                                                              GsmClientEndSessionFlag flags,
                                                               GError   **error);
         gboolean              (*impl_end_session)            (GsmClient *client,
-                                                              guint      flags,
+                                                              GsmClientEndSessionFlag flags,
                                                               GError   **error);
         gboolean              (*impl_cancel_end_session)     (GsmClient *client,
                                                               GError   **error);

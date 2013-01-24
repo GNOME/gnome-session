@@ -711,9 +711,9 @@ xsmp_stop (GsmClient *client,
 }
 
 static gboolean
-xsmp_query_end_session (GsmClient *client,
-                        guint      flags,
-                        GError   **error)
+xsmp_query_end_session (GsmClient                *client,
+                        GsmClientEndSessionFlag   flags,
+                        GError                  **error)
 {
         gboolean allow_interact;
         int      save_type;
@@ -740,9 +740,9 @@ xsmp_query_end_session (GsmClient *client,
 }
 
 static gboolean
-xsmp_end_session (GsmClient *client,
-                  guint      flags,
-                  GError   **error)
+xsmp_end_session (GsmClient                *client,
+                  GsmClientEndSessionFlag   flags,
+                  GError                  **error)
 {
         gboolean phase2;
 

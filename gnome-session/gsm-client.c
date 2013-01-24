@@ -488,9 +488,9 @@ gsm_client_cancel_end_session (GsmClient *client,
 
 
 gboolean
-gsm_client_query_end_session (GsmClient *client,
-                              guint      flags,
-                              GError   **error)
+gsm_client_query_end_session (GsmClient                *client,
+                              GsmClientEndSessionFlag   flags,
+                              GError                  **error)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
@@ -498,9 +498,9 @@ gsm_client_query_end_session (GsmClient *client,
 }
 
 gboolean
-gsm_client_end_session (GsmClient *client,
-                        guint      flags,
-                        GError   **error)
+gsm_client_end_session (GsmClient                *client,
+                        GsmClientEndSessionFlag   flags,
+                        GError                  **error)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
