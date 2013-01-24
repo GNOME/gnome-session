@@ -51,6 +51,7 @@ gnome_session_SOURCES =				\
 	gsm-inhibitor-flag.h			\
 	gsm-manager.c				\
 	gsm-manager.h				\
+	gsm-manager-logout-mode.h		\
 	gsm-process-helper.c			\
 	gsm-process-helper.h			\
 	gsm-session-fill.c			\

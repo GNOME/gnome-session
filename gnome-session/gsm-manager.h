@@ -26,6 +26,7 @@
 #include <dbus/dbus-glib.h>
 
 #include "gsm-store.h"
+#include "gsm-manager-logout-mode.h"
 
 G_BEGIN_DECLS
 
@@ -99,12 +100,6 @@ typedef enum
 } GsmManagerError;
 
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
-
-typedef enum {
-        GSM_MANAGER_LOGOUT_MODE_NORMAL = 0,
-        GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION,
-        GSM_MANAGER_LOGOUT_MODE_FORCE
-} GsmManagerLogoutMode;
 
 GType               gsm_manager_error_get_type                 (void);
 #define GSM_MANAGER_TYPE_ERROR (gsm_manager_error_get_type ())
