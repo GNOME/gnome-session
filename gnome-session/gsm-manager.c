@@ -126,6 +126,7 @@ struct GsmManagerPrivate
         gboolean                failsafe;
         GsmStore               *clients;
         GsmStore               *inhibitors;
+        GsmInhibitorFlag        inhibited_actions;
         GsmStore               *apps;
         GsmPresence            *presence;
         GsmXsmpServer          *xsmp_server;
@@ -175,6 +176,7 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
+        PROP_INHIBITED_ACTIONS,
         PROP_SESSION_NAME,
         PROP_SESSION_IS_ACTIVE,
         PROP_FALLBACK,
@@ -2388,6 +2390,9 @@ gsm_manager_get_property (GObject    *object,
         case PROP_CLIENT_STORE:
                 g_value_set_object (value, self->priv->clients);
                 break;
+        case PROP_INHIBITED_ACTIONS:
+                g_value_set_uint (value, self->priv->inhibited_actions);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -2416,11 +2421,61 @@ gsm_manager_constructor (GType                  type,
 }
 
 static void
+update_inhibited_actions (GsmManager *manager,
+                          GsmInhibitorFlag new_inhibited_actions)
+{
+        DBusGConnection *gconnection;
+        DBusConnection *connection;
+        DBusMessage *message;
+        DBusMessageIter iter;
+        DBusMessageIter subiter;
+        DBusMessageIter dict_iter;
+        DBusMessageIter v_iter;
+        const char *iface_name = GSM_MANAGER_DBUS_NAME;
+        const char *prop_name = "InhibitedActions";
+
+        if (manager->priv->inhibited_actions == new_inhibited_actions)
+                return;
+
+        manager->priv->inhibited_actions = new_inhibited_actions;
+        g_object_notify (G_OBJECT (manager), "inhibited-for");
+
+        /* Now, the following bits emit the PropertiesChanged signal
+         * that GDBus expects.  This code should just die in a port to
+         * GDBus.
+         */
+        gconnection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);
+        g_assert (gconnection);
+        connection = dbus_g_connection_get_connection (gconnection);
+        message = dbus_message_new_signal (GSM_MANAGER_DBUS_PATH, "org.freedesktop.DBus.Properties",
+                                           "PropertiesChanged");
+        g_assert (message != NULL);
+        dbus_message_iter_init_append (message, &iter);
+        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &iface_name);
+        /* changed */
+        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "{sv}", &subiter);
+        dbus_message_iter_open_container (&subiter, DBUS_TYPE_DICT_ENTRY, NULL, &dict_iter);
+        dbus_message_iter_append_basic (&dict_iter, DBUS_TYPE_STRING, &prop_name);
+        dbus_message_iter_open_container (&dict_iter, DBUS_TYPE_VARIANT, "u", &v_iter);
+        dbus_message_iter_append_basic (&v_iter, DBUS_TYPE_UINT32, &new_inhibited_actions);
+        dbus_message_iter_close_container (&dict_iter, &v_iter);
+        dbus_message_iter_close_container (&subiter, &dict_iter);
+        dbus_message_iter_close_container (&iter, &subiter);
+        /* invalidated */
+        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "s", &subiter);
+        dbus_message_iter_close_container (&iter, &subiter);
+
+        dbus_connection_send (connection, message, NULL);
+        dbus_message_unref (message);
+}
+
+static void
 on_store_inhibitor_added (GsmStore   *store,
                           const char *id,
                           GsmManager *manager)
 {
         GsmInhibitor *i;
+        GsmInhibitorFlag new_inhibited_actions;
 
         g_debug ("GsmManager: Inhibitor added: %s", id);
 
@@ -2428,8 +2483,24 @@ on_store_inhibitor_added (GsmStore   *store,
         gsm_system_add_inhibitor (manager->priv->system, id,
                                   gsm_inhibitor_peek_flags (i));
 
+        new_inhibited_actions = manager->priv->inhibited_actions | gsm_inhibitor_peek_flags (i);
+        update_inhibited_actions (manager, new_inhibited_actions);
+
         g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
+
         update_idle (manager);
+}
+
+static gboolean
+collect_inhibition_flags (const char *id,
+                          GObject    *object,
+                          gpointer    user_data)
+{
+        GsmInhibitorFlag *new_inhibited_actions = user_data;
+
+        *new_inhibited_actions |= gsm_inhibitor_peek_flags (GSM_INHIBITOR (object));
+
+        return FALSE;
 }
 
 static void
@@ -2437,11 +2508,20 @@ on_store_inhibitor_removed (GsmStore   *store,
                             const char *id,
                             GsmManager *manager)
 {
+        GsmInhibitorFlag new_inhibited_actions;
+
         g_debug ("GsmManager: Inhibitor removed: %s", id);
 
         gsm_system_remove_inhibitor (manager->priv->system, id);
 
+        new_inhibited_actions = 0;
+        gsm_store_foreach (manager->priv->inhibitors,
+                           collect_inhibition_flags,
+                           &new_inhibited_actions);
+        update_inhibited_actions (manager, new_inhibited_actions);
+
         g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
+
         update_idle (manager);
 }
 
@@ -2568,6 +2648,22 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+        /**
+         * GsmManager::inhibited-actions
+         *
+         * A bitmask of flags to indicate which actions are inhibited. See the Inhibit()
+         * function's description for a list of possible values.
+         */
+        g_object_class_install_property (object_class,
+                                         PROP_INHIBITED_ACTIONS,
+                                         g_param_spec_uint ("inhibited-actions",
+                                                            NULL,
+                                                            NULL,
+                                                            0,
+                                                            G_MAXUINT,
+                                                            0,
+                                                            G_PARAM_READABLE));
         /**
          * GsmManager::session-name
          *
