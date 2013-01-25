@@ -353,7 +353,7 @@ main (int argc, char **argv)
         gsm_util_set_autostart_dirs (override_autostart_dirs);
 
         if (!gsm_session_fill (manager, session_name)) {
-                gsm_util_init_error (TRUE, "Failed to load session \"%s\"", session_name ? session_name : "(null)");
+                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
         }
 
         gsm_manager_start (manager);
