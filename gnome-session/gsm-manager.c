@@ -2438,7 +2438,7 @@ update_inhibited_actions (GsmManager *manager,
                 return;
 
         manager->priv->inhibited_actions = new_inhibited_actions;
-        g_object_notify (G_OBJECT (manager), "inhibited-for");
+        g_object_notify (G_OBJECT (manager), "inhibited-actions");
 
         /* Now, the following bits emit the PropertiesChanged signal
          * that GDBus expects.  This code should just die in a port to
