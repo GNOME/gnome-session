@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-06 14:28+0000\n"
-"PO-Revision-Date: 2013-01-09 15:16+0100\n"
+"POT-Creation-Date: 2013-01-25 18:12+0000\n"
+"PO-Revision-Date: 2013-01-26 20:00+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -67,7 +67,7 @@ msgstr "Brez imena"
 msgid "No description"
 msgstr "Brez opisa"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:264
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "Različica programa"
 
@@ -87,17 +87,9 @@ msgstr "Seja vas prijavi v GNOME namizje"
 msgid "GNOME fallback"
 msgstr "Povratni nabor GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "Nekateri programi so še vedno zagnani:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:512
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Čakanje na konec izvajanja programov. Prekinitev izvajanja lahko povzroči "
-"izgubo vaših podatkov."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -213,11 +205,11 @@ msgstr "Možnosti upravljanja seje:"
 msgid "Show session management options"
 msgstr "Pokaži možnosti upravljanja seje"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:296
 msgid "Oh no!  Something has gone wrong."
 msgstr "Prišlo je do nepričakovane napake."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:303
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -225,7 +217,7 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti.\n"
 "Stopite v stik s skrbnikom."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:305
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -233,7 +225,7 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti. Priporočljivo je "
 "onemogočiti vse razširitve, dokler se napaka ne razreši."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:307
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -241,68 +233,76 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti.\n"
 "Odjavite se in poskusite znova."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 #: ../gnome-session/gsm-logout-dialog.c:383
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:344 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Allow logout"
 msgstr "Dovoli odjavo"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Show extension warning"
 msgstr "Pokaži opozorila razširitev"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "Program je še vedno zagnan:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
+msgstr ""
+"Čakanje na konec izvajanja programa. Prekinitev izvajanja lahko povzroči "
+"izgubo vaših podatkov."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
 msgstr ""
 "Čakanje na konec izvajanja programov. Prekinitev izvajanja lahko povzroči "
 "izgubo vaših podatkov."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "Vseeno preklopi uporabnika"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "Vseeno se odjavi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "Vseeno postavi v pripravljenost"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "Vseeno postavi v mirovanje"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "Vseeno izklopi računalnik"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "Vseeno ponovno zaženi"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "Zakleni zaslon"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "Prekliči"
 
@@ -372,51 +372,9 @@ msgstr "_Izklopi"
 msgid "Restart this system now?"
 msgstr "Ali naj se sistem ponovno zažene?"
 
-#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1428 ../gnome-session/gsm-manager.c:2176
 msgid "Not responding"
 msgstr "Ni odziva"
-
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d ur"
-msgstr[1] "%d ura"
-msgstr[2] "%d uri"
-msgstr[3] "%d ure"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minuta"
-msgstr[2] "%d minuti"
-msgstr[3] "%d minute"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekunda"
-msgstr[2] "%d sekundi"
-msgstr[3] "%d sekunde"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "0 sekund"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "Do samodejne odjave je še %s"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr "Seja je nastavljena za samodejno odjavo po daljšem času nedejavnosti."
 
 #: ../gnome-session/gsm-util.c:417
 msgid "_Log out"
@@ -445,32 +403,32 @@ msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti ICE vtiča za poslušanje: %s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "Pokaži pogovorno okno napak med preizkušanjem."
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr "- upravljalnik seje GNOME"
 
@@ -548,6 +506,39 @@ msgstr "Ni se mogoče povezati z upravljalnikom sej"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d ur"
+#~ msgstr[1] "%d ura"
+#~ msgstr[2] "%d uri"
+#~ msgstr[3] "%d ure"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minut"
+#~ msgstr[1] "%d minuta"
+#~ msgstr[2] "%d minuti"
+#~ msgstr[3] "%d minute"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d sekund"
+#~ msgstr[1] "%d sekunda"
+#~ msgstr[2] "%d sekundi"
+#~ msgstr[3] "%d sekunde"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 sekund"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "Do samodejne odjave je še %s"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr ""
+#~ "Seja je nastavljena za samodejno odjavo po daljšem času nedejavnosti."
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "Ikone '%s' ni mogoče najti"
