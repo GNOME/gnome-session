@@ -100,14 +100,8 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
 static gboolean
 ensure_dir_exists (const char *dir)
 {
-        if (g_file_test (dir, G_FILE_TEST_IS_DIR))
-                return TRUE;
-
         if (g_mkdir_with_parents (dir, 0755) == 0)
                 return TRUE;
-
-        if (errno == EEXIST)
-                return g_file_test (dir, G_FILE_TEST_IS_DIR);
 
         g_warning ("GsmSessionSave: Failed to create directory %s: %s", dir, strerror (errno));
 

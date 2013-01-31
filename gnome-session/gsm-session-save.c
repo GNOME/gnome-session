@@ -33,7 +33,7 @@ static gboolean gsm_session_clear_saved_session (const char *directory,
                                                  GHashTable *discard_hash);
 
 typedef struct {
-        char        *dir;
+        const char  *dir;
         GHashTable  *discard_hash;
         GError     **error;
 } SessionSaveData;
@@ -135,7 +135,6 @@ gsm_session_save (GsmStore  *client_store,
                   GError   **error)
 {
         const char      *save_dir;
-        char            *tmp_dir;
         SessionSaveData  data;
 
         g_debug ("GsmSessionSave: Saving session");
@@ -146,41 +145,18 @@ gsm_session_save (GsmStore  *client_store,
                 return;
         }
 
-        tmp_dir = gsm_util_get_empty_tmp_session_dir ();
-        if (tmp_dir == NULL) {
-                g_warning ("GsmSessionSave: cannot create new saved session directory");
-                return;
-        }
-
-        /* save the session in a temp directory, and remember the discard
-         * commands */
-        data.dir = tmp_dir;
+        data.dir = save_dir;
         data.discard_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                    g_free, NULL);
+        /* remove old saved session */
+        gsm_session_clear_saved_session (save_dir, data.discard_hash);
         data.error = error;
 
         gsm_store_foreach (client_store,
                            (GsmStoreFunc) save_one_client,
                            &data);
 
-        if (!*error) {
-                /* remove the old saved session */
-                gsm_session_clear_saved_session (save_dir, data.discard_hash);
-
-                /* rename the temp session dir */
-                if (g_file_test (save_dir, G_FILE_TEST_IS_DIR))
-                        g_rmdir (save_dir);
-                g_rename (tmp_dir, save_dir);
-        } else {
-                g_warning ("GsmSessionSave: error saving session: %s", (*error)->message);
-                /* FIXME: we should create a hash table filled with the discard
-                 * commands that are in desktop files from save_dir. */
-                gsm_session_clear_saved_session (tmp_dir, NULL);
-                g_rmdir (tmp_dir);
-        }
-
         g_hash_table_destroy (data.discard_hash);
-        g_free (tmp_dir);
 }
 
 static gboolean
