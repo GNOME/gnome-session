@@ -3,13 +3,19 @@ SUBDIRS = icons
 uidir = $(pkgdatadir)
 ui_DATA = \
 	session-properties.ui	\
-	gsm-inhibit-dialog.ui
+	gsm-inhibit-dialog.ui 	\
+	session-selector.ui
 
 hwcompatdir = $(pkgdatadir)
 hwcompat_DATA = hardware-compatibility
 
 xsessiondir = $(datadir)/xsessions
 xsession_in_files = gnome.desktop.in
+
+if BUILD_SESSION_SELECTOR
+xsession_in_files += gnome-custom-session.desktop.in
+endif
+
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 
 desktopdir = $(datadir)/applications

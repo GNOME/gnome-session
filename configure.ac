@@ -40,6 +40,17 @@ UPOWER_REQUIRED=0.9.0
 JSON_GLIB_REQUIRED=0.10
 GNOME_DESKTOP_REQUIRED=3.7.3
 
+AC_ARG_ENABLE(session-selector, AS_HELP_STRING([--enable-session-selector],
+                                               [enable building a custom session selector dialog]),
+                                                enable_session_selector=$enableval,enable_session_selector=no)
+
+AM_CONDITIONAL(BUILD_SESSION_SELECTOR,
+               [test "$enable_session_selector" = yes])
+
+if test "$enable_session_selector" = yes; then
+        PKG_CHECK_MODULES(SESSION_SELECTOR, gtk+-2.0 >= 2.18 gio-2.0)
+fi
+
 dnl ====================================================================
 dnl Dependency Checks
 dnl ====================================================================

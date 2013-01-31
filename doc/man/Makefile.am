@@ -6,17 +6,19 @@ XSLTPROC_FLAGS = \
         --stringparam man.authors.section.enabled 0 \
         --stringparam man.copyright.section.enabled 0
 
-gnome-session-inhibit.1: gnome-session-inhibit.xml
+.xml.1:
 	$(AM_V_GEN) $(XSLTPROC) $(XSLTPROC_FLAGS) http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 
 man_MANS =				\
 	gnome-session.1			\
 	gnome-session-properties.1	\
 	gnome-session-quit.1		\
-	gnome-session-inhibit.1
+	gnome-session-inhibit.1		\
+	gnome-session-selector.1
 
 EXTRA_DIST =				\
 	gnome-session-inhibit.xml	\
+	gnome-session-selector.xml	\
 	$(man_MANS)
 
 CLEANFILES =				\

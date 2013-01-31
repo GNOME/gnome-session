@@ -1,6 +1,11 @@
 bin_PROGRAMS = gnome-session-quit gnome-session-inhibit
 libexec_PROGRAMS = gnome-session-check-accelerated gnome-session-check-accelerated-helper
 
+if BUILD_SESSION_SELECTOR
+bin_PROGRAMS += gnome-session-selector
+dist_bin_SCRIPTS = gnome-session-custom-session
+endif
+
 AM_CPPFLAGS =
 
 AM_CFLAGS = $(WARN_CFLAGS)
@@ -58,5 +63,21 @@ gnome_session_check_accelerated_CPPFLAGS =      \
 gnome_session_check_accelerated_LDADD =         \
 	$(GTK3_LIBS)				\
 	$(X_LIBS)
+
+if BUILD_SESSION_SELECTOR
+gnome_session_selector_CPPFLAGS =		\
+	$(AM_CPPFLAGS)				\
+	$(GNOME_SESSION_CFLAGS)			\
+	$(DBUS_GLIB_CFLAGS)			\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
+	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
+	$(DISABLE_DEPRECATED_CFLAGS)
+
+gnome_session_selector_LDADD = 			\
+	$(SESSION_SELECTOR_LIBS)
+
+gnome_session_selector_SOURCES = 		\
+	gnome-session-selector.c
+endif
 
 -include $(top_srcdir)/git.mk
