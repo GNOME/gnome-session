@@ -22,12 +22,17 @@
 
 #include <glib.h>
 #include <glib/gstdio.h>
+#include <gio/gio.h>
 
 #include "gsm-util.h"
 #include "gsm-autostart-app.h"
 #include "gsm-client.h"
 
 #include "gsm-session-save.h"
+
+#define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
+#define KEY_AUTOSAVE_ONE_SHOT     "auto-save-session-one-shot"
+
 
 static gboolean gsm_session_clear_saved_session (const char *directory,
                                                  GHashTable *discard_hash);
@@ -134,10 +139,18 @@ void
 gsm_session_save (GsmStore  *client_store,
                   GError   **error)
 {
+        GSettings       *settings;
         const char      *save_dir;
         SessionSaveData  data;
 
         g_debug ("GsmSessionSave: Saving session");
+
+        /* Clear one shot key autosave in the event its set (so that it's actually
+         * one shot only)
+         */
+        settings = g_settings_new (GSM_MANAGER_SCHEMA);
+        g_settings_set_boolean (settings, KEY_AUTOSAVE_ONE_SHOT, FALSE);
+        g_object_unref (settings);
 
         save_dir = gsm_util_get_saved_session_dir ();
         if (save_dir == NULL) {

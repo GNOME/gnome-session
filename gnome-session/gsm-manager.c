@@ -97,6 +97,7 @@
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_AUTOSAVE              "auto-save-session"
+#define KEY_AUTOSAVE_ONE_SHOT     "auto-save-session-one-shot"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
 #define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 
@@ -2092,8 +2093,8 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
 static gboolean
 auto_save_is_enabled (GsmManager *manager)
 {
-        return g_settings_get_boolean (manager->priv->settings,
-                                       KEY_AUTOSAVE);
+        return g_settings_get_boolean (manager->priv->settings, KEY_AUTOSAVE_ONE_SHOT)
+            || g_settings_get_boolean (manager->priv->settings, KEY_AUTOSAVE);
 }
 
 static void
