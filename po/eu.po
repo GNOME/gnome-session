@@ -3,14 +3,14 @@
 # Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2007, 2013.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013.
 # Julen Ruiz Aizpuru <julenx@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-30 21:37+0100\n"
-"PO-Revision-Date: 2013-01-30 21:38+0100\n"
+"POT-Creation-Date: 2013-02-02 12:01+0100\n"
+"PO-Revision-Date: 2013-02-02 12:05+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "Language: eu\n"
@@ -80,6 +80,38 @@ msgstr "GNOME"
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Saio honek GNOMEn sartuko zaitu"
+
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Pertsonalizatua"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Sarrera honek gordetako saio bat hautatzea uzten dizu"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Saio pertsonalizatua"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Hautatu saio pertsonalizatua exekutatzeko"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "Saio _berria"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_Kendu saioa"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "_Aldatu saioaren izena"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Jarraitu"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
@@ -358,11 +390,11 @@ msgstr "_Itzali"
 msgid "Restart this system now?"
 msgstr "Berrabiarazi sistema orain?"
 
-#: ../gnome-session/gsm-manager.c:1428 ../gnome-session/gsm-manager.c:2176
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
 msgid "Not responding"
 msgstr "Ez du erantzuten"
 
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "_Amaitu saioa"
 
@@ -464,6 +496,30 @@ msgstr "Huts egin du %s exekutatzean\n"
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s(e)k argumentu bat behar du\n"
+
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "%d saio"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Saioen izenak ezin dute '.' karakterearekin hasi, edo '/' karakterea eduki"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Saioen izenak ezin dute '.' karakterearekin hasi"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Saioen izenak ezin dute '/' karakterea eduki"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "'%s' izeneko saioa badago lehendik ere"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
