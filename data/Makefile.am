@@ -3,8 +3,11 @@ SUBDIRS = icons
 uidir = $(pkgdatadir)
 ui_DATA = \
 	session-properties.ui	\
-	gsm-inhibit-dialog.ui 	\
-	session-selector.ui
+	gsm-inhibit-dialog.ui
+
+if BUILD_SESSION_SELECTOR
+ui_DATA += session-selector.ui
+endif
 
 hwcompatdir = $(pkgdatadir)
 hwcompat_DATA = hardware-compatibility

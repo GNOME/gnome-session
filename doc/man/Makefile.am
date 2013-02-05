@@ -13,8 +13,11 @@ man_MANS =				\
 	gnome-session.1			\
 	gnome-session-properties.1	\
 	gnome-session-quit.1		\
-	gnome-session-inhibit.1		\
-	gnome-session-selector.1
+	gnome-session-inhibit.1
+
+if BUILD_SESSION_SELECTOR
+man_MANS += gnome-session-selector.1
+endif
 
 EXTRA_DIST =				\
 	gnome-session-inhibit.xml	\
