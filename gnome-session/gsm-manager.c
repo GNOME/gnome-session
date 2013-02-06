@@ -1521,6 +1521,7 @@ start_phase (GsmManager *manager)
                                  "MESSAGE=Entering running state",
                                  NULL);
 #endif
+                gsm_xsmp_server_start_accepting_new_clients (manager->priv->xsmp_server);
                 g_signal_emit (manager, signals[SESSION_RUNNING], 0);
                 update_idle (manager);
                 break;

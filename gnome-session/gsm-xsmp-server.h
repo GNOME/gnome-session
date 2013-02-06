@@ -53,6 +53,7 @@ GType               gsm_xsmp_server_get_type                       (void);
 GsmXsmpServer *     gsm_xsmp_server_new                            (GsmStore      *client_store);
 void                gsm_xsmp_server_start                          (GsmXsmpServer *server);
 void                gsm_xsmp_server_stop_accepting_new_clients     (GsmXsmpServer *server);
+void                gsm_xsmp_server_start_accepting_new_clients    (GsmXsmpServer *server);
 
 G_END_DECLS
 

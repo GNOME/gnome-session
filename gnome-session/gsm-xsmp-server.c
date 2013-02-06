@@ -256,6 +256,14 @@ gsm_xsmp_server_stop_accepting_new_clients (GsmXsmpServer *server)
         server->priv->stopping = TRUE;
 }
 
+void
+gsm_xsmp_server_start_accepting_new_clients (GsmXsmpServer *server)
+{
+        g_return_if_fail (GSM_IS_XSMP_SERVER (server));
+        g_debug ("gsm_xsmp_server_start");
+        server->priv->stopping = FALSE;
+}
+
 static void
 gsm_xsmp_server_set_client_store (GsmXsmpServer *xsmp_server,
                                   GsmStore      *store)
