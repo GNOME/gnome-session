@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-27 18:11+0100\n"
-"PO-Revision-Date: 2013-01-27 18:12+0200\n"
+"POT-Creation-Date: 2013-02-06 17:38+0100\n"
+"PO-Revision-Date: 2013-02-06 17:42+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -86,6 +86,38 @@ msgstr "GNOME"
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Esta sesión iniciará en GNOME"
+
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Personalizada"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Esta entrada permítelle selecciona unha sesión gardada"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Sesión personalizada"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Seleccione unha sesión personalizada para executar"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "_Nova sesión"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_Quitar sesión"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Reno_mear sesión"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Continuar"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
@@ -366,11 +398,11 @@ msgstr "_Apagar"
 msgid "Restart this system now?"
 msgstr "Desexa reiniciar o sistema agora?"
 
-#: ../gnome-session/gsm-manager.c:1428 ../gnome-session/gsm-manager.c:2176
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
 msgid "Not responding"
 msgstr "Non responde"
 
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "_Saír da sesión"
 
@@ -471,6 +503,29 @@ msgstr "Produciuse un erro ao executar %s\n"
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s require un argumento\n"
+
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "Sesión %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "Os nomes de sesións non poden comezar con «.» ou conter caracteres «/»"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Os nomes das sesións non poden comezar por «.»"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Os nomes de sesións non poden conter caracteres «/»"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Xa existe unha sesión co nome «%s»"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
