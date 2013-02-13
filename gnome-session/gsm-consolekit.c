@@ -31,6 +31,7 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
+#define UPOWER_ENABLE_DEPRECATED 1
 #include <upower.h>
 
 #include "gsm-system.h"

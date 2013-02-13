@@ -27,6 +27,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#define UPOWER_ENABLE_DEPRECATED 1
 #include <upower.h>
 
 #include "gsm-logout-dialog.h"
