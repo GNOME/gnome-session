@@ -289,6 +289,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
 
         image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL,
                                               gsm_util_get_computer_fail_icon_size ());
+        g_object_set (image, "use-fallback", TRUE, NULL);
         gtk_widget_show (image);
         gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
 

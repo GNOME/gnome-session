@@ -21,7 +21,7 @@
 #ifndef __GSM_ICON_NAMES_H__
 #define __GSM_ICON_NAMES_H__
 
-#define GSM_ICON_COMPUTER_FAIL       "computer-fail"
+#define GSM_ICON_COMPUTER_FAIL       "computer-fail-symbolic"
 #define GSM_ICON_INHIBITOR_DEFAULT   "gnome-windows"
 #define GSM_ICON_LOGOUT              "system-log-out"
 #define GSM_ICON_SHUTDOWN            "system-shutdown"
