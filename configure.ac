@@ -38,7 +38,7 @@ GTK3_REQUIRED=2.90.7
 DBUS_GLIB_REQUIRED=0.76
 UPOWER_REQUIRED=0.9.0
 JSON_GLIB_REQUIRED=0.10
-GNOME_DESKTOP_REQUIRED=3.7.3
+GNOME_DESKTOP_REQUIRED=3.7.90
 
 AC_ARG_ENABLE(session-selector, AS_HELP_STRING([--enable-session-selector],
                                                [enable building a custom session selector dialog]),
