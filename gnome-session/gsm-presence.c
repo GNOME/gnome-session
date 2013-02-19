@@ -341,8 +341,6 @@ gsm_presence_init (GsmPresence *presence)
         presence->priv = GSM_PRESENCE_GET_PRIVATE (presence);
 
         presence->priv->idle_monitor = gnome_idle_monitor_new ();
-        g_signal_connect (presence->priv->idle_monitor, "became-active",
-                          G_CALLBACK (idle_became_active_cb), presence);
 }
 
 void
