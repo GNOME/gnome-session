@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-20 16:24+0200\n"
-"PO-Revision-Date: 2012-12-20 16:25+0200\n"
+"POT-Creation-Date: 2013-02-21 23:40+0200\n"
+"PO-Revision-Date: 2013-02-22 00:01+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -25,11 +25,11 @@ msgstr "בחירת פקודה"
 
 #: ../capplet/gsm-app-dialog.c:193
 msgid "Add Startup Program"
-msgstr "הוספת תכנית הפעלה"
+msgstr "הוספת תכנית עם ההפעלה"
 
 #: ../capplet/gsm-app-dialog.c:197
 msgid "Edit Startup Program"
-msgstr "עריכת תכנית הפעלה"
+msgstr "עריכת תכנית עם ההפעלה"
 
 #: ../capplet/gsm-app-dialog.c:484
 msgid "The startup command cannot be empty"
@@ -39,19 +39,19 @@ msgstr "פקודת ההפעלה לא יכולה להיות ריקה"
 msgid "The startup command is not valid"
 msgstr "פקודת ההפעלה אינה תקינה"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "מאופשר"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "סמל"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "תכנית"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "העדפות יישומי הפעלה"
 
@@ -64,7 +64,7 @@ msgid "No description"
 msgstr "ללא תיאור"
 
 #: ../capplet/main.c:35
-#: ../gnome-session/main.c:264
+#: ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "Version of this application"
 
@@ -81,19 +81,47 @@ msgstr "‏GNOME"
 msgid "This session logs you into GNOME"
 msgstr "הפעלה זאת מחברת אותך לשולחן העבודה GNOME"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "רשת הביטחון של GNOME"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "התאמה אישית"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "רשומה זו מאפשרת לך לבחור בהפעלה שנשמרה"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "מדומה של GNOME"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "הפעלה מותאמת אישית"
+
+#: ../data/session-selector.ui.h:2
+#: ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "נא לבחור הפעלה מותאמת אישית להרצה"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "הפעלה _חדשה"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "ה_סרת הפעלה"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "_שינוי שם ההפעלה"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "להמ_שיך"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1
-#: ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "ישנן תכניות שעדיין רצות:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:512
-msgid "Waiting for the program to finish.  Interrupting the program may cause you to lose work."
-msgstr "בהמתנה לסיום התכנית. הפרעה לתכנית עלולה לגרום לאבדן העבודה שלך."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -207,19 +235,19 @@ msgstr "Session management options:"
 msgid "Show session management options"
 msgstr "Show session management options"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "אבוי!  משהו השתבש."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. נא ליצור קשר עם מנהל המערכת."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה. ליתר ביטחון נוטרלו כל ההרחבות."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -227,168 +255,138 @@ msgstr ""
 "אירעה שגיאה והמערכת אינה יכולה להשתקם ממנה.\n"
 "נא לצאת ולנסות שוב."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "_ניתוק"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354
-#: ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "לאפשר יציאה"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
 msgstr "הצגת אזהרת הרחבות"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "ישנה תכנית שעדיין רצה:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
-msgid "Waiting for programs to finish.  Interrupting these programs may cause you to lose work."
-msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרום לאיבוד העבודה שלך."
+#: ../gnome-session/gsm-inhibit-dialog.c:511
+msgid "Waiting for the program to finish. Interrupting the program may cause you to lose work."
+msgstr "בהמתנה לסיום התכנית. הפרעה לתכנית עלולה לגרור אבדן החומר שעבדת עליו."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+msgid "Waiting for programs to finish. Interrupting these programs may cause you to lose work."
+msgstr "בהמתנה לסיום התכניות. הפרעה לתכניות עלולה לגרור לאבדן החומר שעבדת עליו."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "ה_חלפת משתמש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "יציאה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "השהייה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "מעבר למצב שינה בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "כיבוי בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "הפעלה מחדש בכל מקרה"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "נעילת המסך"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "ביטול"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "בעוד שנייה אחת יתרחש ניתוק אוטומטי."
 msgstr[1] "בעוד %d שניות יתרחש ניתוק אוטומטי."
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "בעוד שנייה אחת המערכת תכבה אוטומטית."
 msgstr[1] "המערכת תכבה אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
 msgstr[0] "בעוד שנייה אחת המערכת תופעל מחדש אוטומטית."
 msgstr[1] "המערכת תופעל מחדש אוטומטית בעוד %d שניות."
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "כרגע נכנסת תחת השם \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "האם להתנתק מהמערכת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "ה_חלפת משתמש"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "האם לכבות את המערכת כעת?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "ה_שהייה"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "מ_צב שינה"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_כיבוי"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "האם להפעיל את המערכת מחדש כעת?"
 
-#: ../gnome-session/gsm-manager.c:1443
-#: ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1429
+#: ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "אין תגובה"
 
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "שעה אחת"
-msgstr[1] "%d שעות"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "דקה אחת"
-msgstr[1] "%d דקות"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "שנייה אחת"
-msgstr[1] "%d שניות"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "0 שניות"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "יציאה אוטומטית בעוד %s"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid "This session is configured to automatically log out after a period of inactivity."
-msgstr "הפעלה זו מוגדרת לצאת אוטומטית לאחר פרק זמן של חוסר פעילות."
-
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "י_ציאה"
 
@@ -404,41 +402,41 @@ msgstr "יישום השמור בזיכרון"
 msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "מסרב לחיבור לקוח חדש מכיון שההפעלה נמצאת במהלך כיבוי\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "הפעלה לשימוש"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "הצגת דו־שיח 'לוויתן הכשל'  לבדיקה"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr " - the GNOME session manager"
 
@@ -487,6 +485,28 @@ msgstr "Failed to execute %s\n"
 msgid "%s requires an argument\n"
 msgstr "%s requires an argument\n"
 
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "הפעלה %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "אסור ששמות ההפעלות יתחילו בתו ‘.’ או יכילו את התו ‘/’"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "אסור ששמות ההפעלות יתחילו בתו ‘.’"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "אסור ששמות ההפעלות יכילו את התו ‘/’"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "כבר קיימת הפעלה בשם ‘%s’"
+
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Log out"
@@ -515,6 +535,38 @@ msgstr "לא ניתן להתחבר למנהל ההפעלה"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "התכנית נקראה עם אפשרויות סותרות"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "רשת הביטחון של GNOME"
+
+#~ msgid "%d hour"
+
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "שעה אחת"
+#~ msgstr[1] "%d שעות"
+
+#~ msgid "%d minute"
+
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "דקה אחת"
+#~ msgstr[1] "%d דקות"
+
+#~ msgid "%d second"
+
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "שנייה אחת"
+#~ msgstr[1] "%d שניות"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 שניות"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "יציאה אוטומטית בעוד %s"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr "הפעלה זו מוגדרת לצאת אוטומטית לאחר פרק זמן של חוסר פעילות."
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "הסמל '%s' לא נמצא"
@@ -634,9 +686,6 @@ msgstr "התכנית נקראה עם אפשרויות סותרות"
 
 #~ msgid "Required session components"
 #~ msgstr "Required session components"
-
-#~ msgid "Save sessions"
-#~ msgstr "Save sessions"
 
 #~ msgid ""
 #~ "The file manager provides the desktop icons and allows you to interact "
@@ -969,9 +1018,6 @@ msgstr "התכנית נקראה עם אפשרויות סותרות"
 #~ msgid "_Close without Saving"
 #~ msgstr "_סגור מבלי לשמור"
 
-#~ msgid "Current Session"
-#~ msgstr "תצורת הפעלה נוכחית"
-
 #~ msgid "Your session has been saved."
 #~ msgstr "תצורת ההפעלה שלך נשמרה."
 
@@ -1017,9 +1063,6 @@ msgstr "התכנית נקראה עם אפשרויות סותרות"
 #~ msgid "The session name cannot be empty"
 #~ msgstr "שם תצורת ההפעלה לא יכול להיות ריק"
 
-#~ msgid "The session name already exists"
-#~ msgstr "שם תצורת ההפעלה כבר קיים"
-
 #~ msgid "Add a new session"
 #~ msgstr "הוסף תצורת הפעלה חדשה"
 
@@ -1041,9 +1084,6 @@ msgstr "התכנית נקראה עם אפשרויות סותרות"
 
 #~ msgid "Show splash screen on _login"
 #~ msgstr "הצג מסך פתיחה בה_תחברות"
-
-#~ msgid "_Sessions:"
-#~ msgstr "_תצורות הפעלה:"
 
 #~ msgid "Initialize session settings"
 #~ msgstr "אתחל הגדרות תצורת הפעלה"
