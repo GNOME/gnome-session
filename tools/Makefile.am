@@ -50,7 +50,7 @@ gnome_session_check_accelerated_helper_CPPFLAGS =	\
 
 gnome_session_check_accelerated_helper_LDADD = 		\
 	$(GL_TEST_LIBS)				\
-	$(X_LIBS)
+	$(X11_LIBS)
 
 gnome_session_check_accelerated_SOURCES =       \
 	gnome-session-check-accelerated.c
@@ -62,7 +62,7 @@ gnome_session_check_accelerated_CPPFLAGS =      \
 
 gnome_session_check_accelerated_LDADD =         \
 	$(GTK3_LIBS)				\
-	$(X_LIBS)
+	$(X11_LIBS)
 
 if BUILD_SESSION_SELECTOR
 gnome_session_selector_CPPFLAGS =		\

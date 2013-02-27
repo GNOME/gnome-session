@@ -67,6 +67,7 @@ gnome_session_SOURCES =				\
 
 gnome_session_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\
+	$(X11_CFLAGS)				\
 	$(SM_CFLAGS)				\
 	$(ICE_CFLAGS)				\
 	$(XEXT_CFLAGS)				\
@@ -83,6 +84,7 @@ gnome_session_CPPFLAGS =			\
 
 gnome_session_LDADD =				\
 	libgsmutil.la 				\
+	$(X11_LIBS)				\
 	$(SM_LIBS)				\
 	$(ICE_LIBS)				\
 	$(XRENDER_LIBS)				\
