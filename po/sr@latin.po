@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-31 21:57+0000\n"
-"PO-Revision-Date: 2013-02-15 10:23+0200\n"
+"POT-Creation-Date: 2013-02-23 07:03+0000\n"
+"PO-Revision-Date: 2013-03-01 10:35+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -43,19 +43,19 @@ msgstr "Naredba početnog programa se mora uneti"
 msgid "The startup command is not valid"
 msgstr "Naredba početnog programa nije ispravna"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Uključen"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Ikonica"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Postavke početnih programa"
 
@@ -90,6 +90,11 @@ msgstr "Proizvoljno"
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
 msgstr "Ova stavka vam dopušta da izaberete sačuvanu sesiju"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "Gnomov lažnjak"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -231,11 +236,11 @@ msgstr "Mogućnosti upravljanja sesijom:"
 msgid "Show session management options"
 msgstr "Prikazuje mogućnosti upravljanja sesijom"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "O, ne!  Nešto je pošlo naopako!"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:303
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -243,7 +248,7 @@ msgstr ""
 "Došlo je do problema i sistem ne može da se oporavi. Molim obratite se "
 "administratoru sistema"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:305
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -251,7 +256,7 @@ msgstr ""
 "Došlo je do problema i sistem ne može da se oporavi. Sva proširenja su "
 "isključena zarad predostrožnosti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -259,20 +264,20 @@ msgstr ""
 "Došlo je do problema i sistem ne može da se oporavi.\n"
 "Molim odjavite se i pokušajte opet."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "_Odjavi me"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "Uključuje kod za ispravljanje grešaka"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "Dozvoljava odjavljivanje"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
 msgstr "Prikazuje upozorenje proširenja"
 
@@ -335,7 +340,7 @@ msgid "Cancel"
 msgstr "Otkaži"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -344,7 +349,7 @@ msgstr[1] "Bićete odjavljeni u roku od %d sekunde."
 msgstr[2] "Bićete odjavljeni u roku od %d sekundi."
 msgstr[3] "Bićete odjavljeni u roku od jedne sekunde."
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -353,7 +358,7 @@ msgstr[1] "Računar će se sam isključiti za %d sekunde."
 msgstr[2] "Računar će se sam isključiti za %d sekundi."
 msgstr[3] "Računar će se sam isključiti za jednu sekundu."
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
@@ -362,45 +367,45 @@ msgstr[1] "Računar će se sam ponovo pokrenuti za %d sekunde."
 msgstr[2] "Računar će se sam ponovo pokrenuti za %d sekundi."
 msgstr[3] "Računar će se sam ponovo pokrenuti za jednu sekundu."
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Trenutno ste prijavljeni kao „%s“."
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Da li da se odjavim sa sistema?"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_Promeni korisnika"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Da li da isključim računar?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_Obustavi"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_Zamrzni"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "_Ponovo pokreni"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Isključi"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "Da li da ponovo pokrenem računar?"
 
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "Ne daje odziv"
 
@@ -420,13 +425,13 @@ msgstr "Zapamćeni program"
 msgid "This program is blocking logout."
 msgstr "Ovaj program onemogućava odjavu."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Odbacujem vezu sa novim klijentom jer je u toku gašenje sesije\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ne mogu da napravim priključak ICE osluškivanja: %s"
@@ -509,7 +514,6 @@ msgstr "„%s“ zahteva argument\n"
 
 #: ../tools/gnome-session-selector.c:62
 #, c-format
-#| msgid "Session to use"
 msgid "Session %d"
 msgstr "Sesija „%d“"
 
