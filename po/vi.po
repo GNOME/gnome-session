@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-session 2.25.90\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-17 02:00+0000\n"
-"PO-Revision-Date: 2012-08-23 13:06+0700\n"
+"POT-Creation-Date: 2013-02-19 18:36+0000\n"
+"PO-Revision-Date: 2013-03-02 09:39+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -39,19 +39,19 @@ msgstr "Không cho phép tạo lệnh khởi động rỗng"
 msgid "The startup command is not valid"
 msgstr "Lệnh khởi động không hợp lệ"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Bật"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Biểu tượng"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Chương trình"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Tuỳ chọn ứng dụng khởi chạy"
 
@@ -63,7 +63,7 @@ msgstr "Không tên"
 msgid "No description"
 msgstr "Không mô tả"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:294
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "Phiên bản của ứng dụng"
 
@@ -71,11 +71,7 @@ msgstr "Phiên bản của ứng dụng"
 msgid "Could not display help document"
 msgstr "Không thể hiện tài liệu trợ giúp"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME phòng bị"
-
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -83,17 +79,55 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Phiên chạy này sẽ đăng nhập bạn vào GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr ""
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr ""
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#, fuzzy
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "GNOME"
+
+#: ../data/session-selector.ui.h:1
+#, fuzzy
+#| msgid "Default session"
+msgid "Custom Session"
+msgstr "Phiên chạy mặc định"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr ""
+
+#: ../data/session-selector.ui.h:3
+#, fuzzy
+#| msgid "Save sessions"
+msgid "_New Session"
+msgstr "Lưu các phiên chạy"
+
+#: ../data/session-selector.ui.h:4
+#, fuzzy
+#| msgid "Save sessions"
+msgid "_Remove Session"
+msgstr "Lưu các phiên chạy"
+
+#: ../data/session-selector.ui.h:5
+#, fuzzy
+#| msgid "Save sessions"
+msgid "Rena_me Session"
+msgstr "Lưu các phiên chạy"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr ""
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "Vài chương trình vẫn đang chạy:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
-"mất dữ liệu."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -116,7 +150,6 @@ msgid "_Automatically remember running applications when logging out"
 msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
 
 #: ../data/session-properties.ui.h:4
-#| msgid "_Remember Currently Running Application"
 msgid "_Remember Currently Running Applications"
 msgstr "_Nhớ ứng dụng đang chạy"
 
@@ -210,137 +243,18 @@ msgstr "Tùy chọn quản lý phiên chạy:"
 msgid "Show session management options"
 msgstr "Hiện tùy chọn quản lý phiên chạy"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "Không thấy biểu tượng '%s'"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:588
-msgid "Unknown"
-msgstr "Chưa xác định"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:639
-msgid "A program is still running:"
-msgstr "Một chương trình vẫn đang chạy:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
-"mất dữ liệu."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:874
-msgid "Switch User Anyway"
-msgstr "Vẫn chuyển đổi người dùng"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:877
-msgid "Log Out Anyway"
-msgstr "Vẫn đăng xuất"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:880
-msgid "Suspend Anyway"
-msgstr "Vẫn Ngưng"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:883
-msgid "Hibernate Anyway"
-msgstr "Vẫn Ngủ đông"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:886
-msgid "Shut Down Anyway"
-msgstr "Vẫn tắt máy"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:889
-msgid "Restart Anyway"
-msgstr "Vẫn cứ khởi động lại"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:897
-msgid "Lock Screen"
-msgstr "Khoá màn hình"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:900
-msgid "Cancel"
-msgstr "Thôi"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:266
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Sẽ tự động đăng xuất trong %d giây."
-
-#: ../gnome-session/gsm-logout-dialog.c:274
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Hệ thống này sẽ bị tự động tắt trong %d giây."
-
-#: ../gnome-session/gsm-logout-dialog.c:282
-#, c-format
-#| msgid "This system will be automatically shut down in %d second."
-#| msgid_plural "This system will be automatically shut down in %d seconds."
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Hệ thống này sẽ bị tự động khởi động lại trong %d giây."
-
-#: ../gnome-session/gsm-logout-dialog.c:306
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Hiện bạn đăng nhập với tên \"%s\""
-
-#: ../gnome-session/gsm-logout-dialog.c:372
-msgid "Log out of this system now?"
-msgstr "Đăng xuất ra hệ thống này ngay bây giờ ?"
-
-#: ../gnome-session/gsm-logout-dialog.c:378
-msgid "_Switch User"
-msgstr "Đổ_i người dùng"
-
-#: ../gnome-session/gsm-logout-dialog.c:387
-#: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:389
-msgid "_Log Out"
-msgstr "Đăng _xuất"
-
-#: ../gnome-session/gsm-logout-dialog.c:393
-msgid "Shut down this system now?"
-msgstr "Tắt hệ thống này ngay bây giờ?"
-
-#: ../gnome-session/gsm-logout-dialog.c:399
-msgid "S_uspend"
-msgstr "N_gưng"
-
-#: ../gnome-session/gsm-logout-dialog.c:405
-msgid "_Hibernate"
-msgstr "_Ngủ đông"
-
-#: ../gnome-session/gsm-logout-dialog.c:411
-#: ../gnome-session/gsm-logout-dialog.c:437
-msgid "_Restart"
-msgstr "_Khởi chạy lại"
-
-#: ../gnome-session/gsm-logout-dialog.c:421
-msgid "_Shut Down"
-msgstr "_Tắt máy"
-
-#: ../gnome-session/gsm-logout-dialog.c:427
-#| msgid "Shut down this system now?"
-msgid "Restart this system now?"
-msgstr "Khởi động lại hệ thống này ngay bây giờ?"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:311
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ồ không!  Có cái gì đó bị hỏng rồi."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:318
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi. Vui lòng liên lạc quản trị hệ thống."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -348,7 +262,7 @@ msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi. Mọi phần mở rộng đã bị tắt để đề "
 "phòng."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -356,94 +270,261 @@ msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi.\n"
 "Hãy đăng xuất và thử lại."
 
-#: ../gnome-session/gsm-manager.c:1393
-msgid "GNOME 3 Failed to Load"
-msgstr "Lỗi nạp GNOME 3"
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
+msgid "_Log Out"
+msgstr "Đăng _xuất"
 
-#: ../gnome-session/gsm-manager.c:1394
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+msgid "Enable debugging code"
+msgstr "Bật mã hỗ trợ tìm lỗi"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#, fuzzy
+#| msgid "Show logout dialog"
+msgid "Allow logout"
+msgstr "Hiện hộp thoại đăng xuất"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
+msgid "Show extension warning"
 msgstr ""
-"Rất tiếc không thể khởi động GNOME 3 nên đang chạy trong <i>chế độ phòng bị</"
-"i>.\n"
-"\n"
-"Nhiều khả năng hệ thống của bạn (phần cứng đồ hoạ hoặc trình điều khiển) "
-"không đủ khả năng chạy GNOME 3."
 
-#: ../gnome-session/gsm-manager.c:1396
-msgid "Learn more about GNOME 3"
-msgstr "Tìm hiểu thêm về GNOME 3"
+#: ../gnome-session/gsm-inhibit-dialog.c:462
+msgid "Unknown"
+msgstr "Chưa xác định"
 
-#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
+#: ../gnome-session/gsm-inhibit-dialog.c:510
+msgid "A program is still running:"
+msgstr "Một chương trình vẫn đang chạy:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:511
+#, fuzzy
+#| msgid ""
+#| "Waiting for the program to finish.  Interrupting the program may cause "
+#| "you to lose work."
+msgid ""
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
+msgstr ""
+"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
+"mất dữ liệu."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+#, fuzzy
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
+msgstr ""
+"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
+"mất dữ liệu."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:745
+msgid "Switch User Anyway"
+msgstr "Vẫn chuyển đổi người dùng"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:748
+msgid "Log Out Anyway"
+msgstr "Vẫn đăng xuất"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:751
+msgid "Suspend Anyway"
+msgstr "Vẫn Ngưng"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:754
+msgid "Hibernate Anyway"
+msgstr "Vẫn Ngủ đông"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:757
+msgid "Shut Down Anyway"
+msgstr "Vẫn tắt máy"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:760
+msgid "Restart Anyway"
+msgstr "Vẫn cứ khởi động lại"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:768
+msgid "Lock Screen"
+msgstr "Khoá màn hình"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:771
+msgid "Cancel"
+msgstr "Thôi"
+
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:263
+#, c-format
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Sẽ tự động đăng xuất trong %d giây."
+
+#: ../gnome-session/gsm-logout-dialog.c:271
+#, c-format
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Hệ thống này sẽ bị tự động tắt trong %d giây."
+
+#: ../gnome-session/gsm-logout-dialog.c:279
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Hệ thống này sẽ bị tự động khởi động lại trong %d giây."
+
+#: ../gnome-session/gsm-logout-dialog.c:303
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Hiện bạn đăng nhập với tên \"%s\""
+
+#: ../gnome-session/gsm-logout-dialog.c:369
+msgid "Log out of this system now?"
+msgstr "Đăng xuất ra hệ thống này ngay bây giờ ?"
+
+#: ../gnome-session/gsm-logout-dialog.c:375
+msgid "_Switch User"
+msgstr "Đổ_i người dùng"
+
+#: ../gnome-session/gsm-logout-dialog.c:390
+msgid "Shut down this system now?"
+msgstr "Tắt hệ thống này ngay bây giờ?"
+
+#: ../gnome-session/gsm-logout-dialog.c:396
+msgid "S_uspend"
+msgstr "N_gưng"
+
+#: ../gnome-session/gsm-logout-dialog.c:402
+msgid "_Hibernate"
+msgstr "_Ngủ đông"
+
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
+msgid "_Restart"
+msgstr "_Khởi chạy lại"
+
+#: ../gnome-session/gsm-logout-dialog.c:418
+msgid "_Shut Down"
+msgstr "_Tắt máy"
+
+#: ../gnome-session/gsm-logout-dialog.c:424
+msgid "Restart this system now?"
+msgstr "Khởi động lại hệ thống này ngay bây giờ?"
+
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
 msgid "Not responding"
 msgstr "Không trả lời"
+
+#: ../gnome-session/gsm-util.c:411
+#, fuzzy
+#| msgid "Log out"
+msgid "_Log out"
+msgstr "Đăng xuất"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:558
 msgid "Remembered Application"
 msgstr "Ứng dụng đã nhớ"
 
-#: ../gnome-session/gsm-xsmp-client.c:1197
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking logout."
 msgstr "Chương trình này đang ngăn cản đăng xuất."
 
-#: ../gnome-session/gsm-xsmp-server.c:326
+#: ../gnome-session/gsm-xsmp-server.c:333
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Đang từ chối kết nối khách mới vì phiên chạy đang bị tắt\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:595
+#: ../gnome-session/gsm-xsmp-server.c:602
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Không thể khởi chạy phiên đăng nhập (và không thể kết nối đến X server)"
-
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "Đè thư mục autostart chuẩn"
 
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "Phiên làm việc cần dùng"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:292
-msgid "Enable debugging code"
-msgstr "Bật mã hỗ trợ tìm lỗi"
-
-#: ../gnome-session/main.c:293
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "Đừng nạp ứng dụng do người dùng xác định"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:296
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
 
-#: ../gnome-session/main.c:316
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr " — Bộ Quản lý Phiên chạy GNOME"
+
+#: ../tools/gnome-session-inhibit.c:110
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+
+#: ../tools/gnome-session-inhibit.c:148
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr ""
+
+#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:228
+#, c-format
+msgid "%s requires an argument\n"
+msgstr ""
+
+#: ../tools/gnome-session-selector.c:62
+#, fuzzy, c-format
+#| msgid "Session to use"
+msgid "Session %d"
+msgstr "Phiên làm việc cần dùng"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr ""
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr ""
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr ""
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
@@ -472,6 +553,36 @@ msgstr "Không thể kết nối với trình quản lý phiên chạy"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Chương trình được gọi với tuỳ chọn xung đột"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME phòng bị"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "Không thấy biểu tượng '%s'"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "Lỗi nạp GNOME 3"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "Rất tiếc không thể khởi động GNOME 3 nên đang chạy trong <i>chế độ phòng "
+#~ "bị</i>.\n"
+#~ "\n"
+#~ "Nhiều khả năng hệ thống của bạn (phần cứng đồ hoạ hoặc trình điều khiển) "
+#~ "không đủ khả năng chạy GNOME 3."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "Tìm hiểu thêm về GNOME 3"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr ""
+#~ "Không thể khởi chạy phiên đăng nhập (và không thể kết nối đến X server)"
 
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>Vài chương trình vẫn đang hoạt đọng:</b>"
@@ -514,9 +625,6 @@ msgstr "Chương trình được gọi với tuỳ chọn xung đột"
 
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "Trình bổ trợ Trình nền Thiết lập GNOME"
-
-#~ msgid "Default session"
-#~ msgstr "Phiên chạy mặc định"
 
 #~ msgid "File Manager"
 #~ msgstr "Bộ Quản lý Tập tin"
@@ -567,9 +675,6 @@ msgstr "Chương trình được gọi với tuỳ chọn xung đột"
 
 #~ msgid "Required session components"
 #~ msgstr "Thành phần phiên chạy đòi hỏi"
-
-#~ msgid "Save sessions"
-#~ msgstr "Lưu các phiên chạy"
 
 #~ msgid "Show the splash screen"
 #~ msgstr "Hiển thị màn hình giật gân"
@@ -639,9 +744,6 @@ msgstr "Chương trình được gọi với tuỳ chọn xung đột"
 
 #~ msgid "NAME"
 #~ msgstr "TÊN"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "Hiện hộp thoại đăng xuất"
 
 #~ msgid "Show shutdown dialog"
 #~ msgstr "Hiện hộp thoại tắt máy"
