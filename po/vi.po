@@ -1,6 +1,6 @@
 # Vietnamese Translation for GNOME Session.
 # Copyright © 2008 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2012.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2013-02-19 18:36+0000\n"
-"PO-Revision-Date: 2013-03-02 09:39+0700\n"
+"PO-Revision-Date: 2013-03-02 09:44+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -81,49 +81,39 @@ msgstr "Phiên chạy này sẽ đăng nhập bạn vào GNOME"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
-msgstr ""
+msgstr "Tự chọn"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
-msgstr ""
+msgstr "Mục này cho phép bạn chọn phiên làm việc đã lưu"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
-#, fuzzy
-#| msgid "GNOME"
 msgid "GNOME dummy"
-msgstr "GNOME"
+msgstr "GNOME giả"
 
 #: ../data/session-selector.ui.h:1
-#, fuzzy
-#| msgid "Default session"
 msgid "Custom Session"
-msgstr "Phiên chạy mặc định"
+msgstr "Phiên chạy tự chọn"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
 msgid "Please select a custom session to run"
-msgstr ""
+msgstr "Vui lòng chọn phiên làm việc tự chọn cần chạy"
 
 #: ../data/session-selector.ui.h:3
-#, fuzzy
-#| msgid "Save sessions"
 msgid "_New Session"
-msgstr "Lưu các phiên chạy"
+msgstr "Phiên chạy _mới"
 
 #: ../data/session-selector.ui.h:4
-#, fuzzy
-#| msgid "Save sessions"
 msgid "_Remove Session"
-msgstr "Lưu các phiên chạy"
+msgstr "Phiên chạy ở _xa"
 
 #: ../data/session-selector.ui.h:5
-#, fuzzy
-#| msgid "Save sessions"
 msgid "Rena_me Session"
-msgstr "Lưu các phiên chạy"
+msgstr "Đổi _tên phiên chạy"
 
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
-msgstr ""
+msgstr "_Tiếp tục"
 
 #: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
@@ -280,14 +270,12 @@ msgid "Enable debugging code"
 msgstr "Bật mã hỗ trợ tìm lỗi"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:346
-#, fuzzy
-#| msgid "Show logout dialog"
 msgid "Allow logout"
-msgstr "Hiện hộp thoại đăng xuất"
+msgstr "Cho phép đăng xuất"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
-msgstr ""
+msgstr "Hiện cảnh báo phần mở rộng"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
@@ -298,28 +286,19 @@ msgid "A program is still running:"
 msgstr "Một chương trình vẫn đang chạy:"
 
 #: ../gnome-session/gsm-inhibit-dialog.c:511
-#, fuzzy
-#| msgid ""
-#| "Waiting for the program to finish.  Interrupting the program may cause "
-#| "you to lose work."
 msgid ""
 "Waiting for the program to finish. Interrupting the program may cause you to "
 "lose work."
 msgstr ""
-"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
-"mất dữ liệu."
+"Đang chờ chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất dữ liệu."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:515
-#, fuzzy
-#| msgid ""
-#| "Waiting for programs to finish.  Interrupting these programs may cause "
-#| "you to lose work."
 msgid ""
 "Waiting for programs to finish. Interrupting these programs may cause you to "
 "lose work."
 msgstr ""
-"Đang chờ chương trình kết thúc. Ngắt những chương trình này có thể dẫn đến "
-"mất dữ liệu."
+"Đang chờ các chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất dữ "
+"liệu."
 
 #: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
@@ -415,10 +394,8 @@ msgid "Not responding"
 msgstr "Không trả lời"
 
 #: ../gnome-session/gsm-util.c:411
-#, fuzzy
-#| msgid "Log out"
 msgid "_Log out"
-msgstr "Đăng xuất"
+msgstr "Đăng _xuất"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
@@ -494,37 +471,36 @@ msgstr ""
 #: ../tools/gnome-session-inhibit.c:148
 #, c-format
 msgid "Failed to execute %s\n"
-msgstr ""
+msgstr "Lỗi chạy %s\n"
 
 #: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
 #: ../tools/gnome-session-inhibit.c:228
 #, c-format
 msgid "%s requires an argument\n"
-msgstr ""
+msgstr "%s cần một đối số\n"
 
 #: ../tools/gnome-session-selector.c:62
-#, fuzzy, c-format
-#| msgid "Session to use"
+#, c-format
 msgid "Session %d"
-msgstr "Phiên làm việc cần dùng"
+msgstr "Phiên làm việc %d"
 
 #: ../tools/gnome-session-selector.c:108
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr ""
+msgstr "Tên phiên chạy không thể bắt đầu với ký tự ‘.’ hoặc ‘/’"
 
 #: ../tools/gnome-session-selector.c:112
 msgid "Session names are not allowed to start with ‘.’"
-msgstr ""
+msgstr "Tên phiên chạy không thể bắt đầu với ký tự ‘.’"
 
 #: ../tools/gnome-session-selector.c:116
 msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr ""
+msgstr "Tên phiên chạy không thể chứa ký tự ‘/’"
 
 #: ../tools/gnome-session-selector.c:124
 #, c-format
 msgid "A session named ‘%s’ already exists"
-msgstr ""
+msgstr "Đã có phiên chạy tên ‘%s’"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
