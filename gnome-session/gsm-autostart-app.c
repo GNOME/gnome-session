@@ -679,8 +679,6 @@ static void
 gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
                                         const char      *desktop_filename)
 {
-        GError *error;
-
         if (app->priv->app_info != NULL) {
                 g_clear_object (&app->priv->app_info);
                 g_free (app->priv->desktop_id);
@@ -692,11 +690,9 @@ gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
 
         app->priv->desktop_id = g_path_get_basename (desktop_filename);
 
-        error = NULL;
         app->priv->app_info = g_desktop_app_info_new_from_filename (desktop_filename);
         if (app->priv->app_info == NULL) {
                 g_warning ("Could not parse desktop file %s or it references a not found TryExec binary", desktop_filename);
-                g_error_free (error);
                 return;
         }
 }
