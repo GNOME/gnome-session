@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-13 18:57+0000\n"
-"PO-Revision-Date: 2013-01-16 13:05+0530\n"
+"POT-Creation-Date: 2013-02-23 07:03+0000\n"
+"PO-Revision-Date: 2013-03-05 18:57+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as_IN\n"
@@ -39,20 +39,20 @@ msgstr "আৰম্ভৰ কমান্ড ৰিক্ত থাকিব �
 msgid "The startup command is not valid"
 msgstr "আৰম্ভৰ কমান্ড অবৈধ"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "সামৰ্থবান"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "আইকন"
 
 #
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "প্ৰগ্ৰাম"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "আৰম্ভৰ এপ্লিকেচন পছন্দসমূহ"
 
@@ -65,7 +65,7 @@ msgid "No description"
 msgstr "বিৱৰণ নাই"
 
 #
-#: ../capplet/main.c:35 ../gnome-session/main.c:264
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "এই এপ্লিকেচনৰ সংস্কৰণ"
 
@@ -81,11 +81,44 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "এই অধিবেশনে আপোনাক GNOME ত লগিন কৰায়"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME ফলবেক"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "স্বনিৰ্বাচিত"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "এই প্ৰৱিষ্টিয়ে আপোনাক এটা সংৰক্ষিত অধিবেশন নিৰ্বাচন কৰাত সহায় কৰে"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "GNOME ডামি"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "স্বনিৰ্বাচিত অধিবেশন"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "অনুগ্ৰহ কৰি চলাবলে এটা স্বনিৰ্বাচিত অধিবেশন বাছক"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "নতুন অধিবেশন (_N)"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "অধিবেশন আতৰাওক (_R)"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "অধিবেশন পুনৰ নামকৰণ কৰক (_m)"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "অব্যাহত ৰাখক (_C)"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "কিছুমান প্ৰগ্ৰাম চলি আছে:"
 
@@ -209,11 +242,11 @@ msgstr "অধিবেশন ব্যৱস্থাপনা বিকল্�
 msgid "Show session management options"
 msgstr "অধিবেশন ব্যৱস্থাপনা বিকল্পসমূহ দেখুৱাওক"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "ইচচ! কিবা এটা ভুল হৈছে।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -221,7 +254,7 @@ msgstr ""
 "এটা সমস্যা দেখা দিছে আৰু চিস্টেমটো উদ্ধাৰ হব পৰা নাই। অনুগ্ৰহ কৰি এজন চিস্টেম "
 "প্ৰশাসকক যোগাযোগ কৰক"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -230,7 +263,7 @@ msgstr ""
 "সাৱধানতা "
 "হিচাপে অসামৰ্থবান কৰা হৈছে।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -239,195 +272,153 @@ msgstr ""
 "অনুগ্ৰহ কৰি লগআউট কৰক আৰু পুনৰ চেষ্টা কৰক।"
 
 #
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "লগআউট কৰক (_L)"
 
 #
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "ক'ড ডিবাগিং সামৰ্থবান কৰক"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "লগআউটৰ অনুমতি দিয়ক"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
 msgstr "সম্প্ৰসাৰনৰ সতৰ্কবাৰ্তা দেখুৱাওক"
 
 #
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "অজ্ঞাত"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "এটা প্ৰগ্ৰাম বৰ্তমানে চলি আছে:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:512
-#| msgid ""
-#| "Waiting for the program to finish.  Interrupting the program may cause "
-#| "you to lose work."
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid ""
 "Waiting for the program to finish. Interrupting the program may cause you to "
 "lose work."
 msgstr ""
 "প্ৰগ্ৰাম সমাপ্ত হোৱাৰ অপেক্ষা কৰা হৈছে। প্ৰগ্ৰাম বিঘ্নিত হ'লে আপুনি কাৰ্য্য "
-"হেৰুৱাব পাৰে।"
+"হেৰুৱাব "
+"পাৰে।"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
-#| msgid ""
-#| "Waiting for programs to finish.  Interrupting these programs may cause "
-#| "you to lose work."
+#: ../gnome-session/gsm-inhibit-dialog.c:515
 msgid ""
 "Waiting for programs to finish. Interrupting these programs may cause you to "
 "lose work."
 msgstr ""
 "প্ৰগ্ৰামসমূহ সমাপ্ত হোৱাৰ বাবে অপেক্ষা কৰা হৈছে। প্ৰগ্ৰামসমূহ বিঘ্নিত হ'লে "
-"আপুনি কাৰ্য্য হেৰুৱাব পাৰে।"
+"আপুনি কাৰ্য্য "
+"হেৰুৱাব পাৰে।"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "তথাপিও ব্যৱহাৰকাৰী পৰিবৰ্তন কৰক"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "তথাপিও লগআউট কৰক"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "তথাপিও স্থগিত কৰক"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "তথাপিও হাইবাৰনেইট কৰক"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "তথাপিও বন্ধ কৰক"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "তথাপিও পুনৰাম্ভ কৰক"
 
 #
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "পৰ্দা লক কৰক"
 
 #
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "বাতিল কৰক"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে আপোনাক লগআউট কৰা হব।"
 msgstr[1] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে আপোনাক লগআউট কৰা হব।"
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে চিস্টেম বন্ধ কৰা হব।"
 msgstr[1] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে চিস্টেম বন্ধ কৰা হব।"
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
 msgstr[0] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে চিস্টেম পুনাৰম্ভ কৰা হব।"
 msgstr[1] "%d ছেকেণ্ডৰ পিছত স্বচালিতভাৱে চিস্টেম পুনাৰম্ভ কৰা হব।"
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "বৰ্তমানে আপুনি \"%s\" হিচাপে লগিন কৰিছে।"
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "এতিয়াই চিস্টেমৰ পৰা লগআউট কৰিব নে?"
 
 #
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "ব্যৱহাৰকাৰী পৰিবৰ্তন কৰক (_S)"
 
 #
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "এই মুহূৰ্তে চিস্টেম বন্ধ কৰিব নে?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "স্থগিত কৰক (_u)"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "হাইবাৰনেইট কৰক (_H)"
 
 #
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "পুনৰাম্ভ কৰক (_R)"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "বন্ধ কৰক (_S)"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "এই চিস্টেম এতিয়া পুনৰাম্ভ কৰিব নে?"
 
-#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "কোনো প্ৰতিক্ৰিয়া নাই"
 
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d ঘন্টা"
-msgstr[1] "%d ঘন্টা"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d মিনিট"
-msgstr[1] "%d মিনিট"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d ছেকেণ্ড"
-msgstr[1] "%d ছেকেণ্ড"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "0 ছেকেণ্ড"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "%s ত স্বচালিতভাৱে লগআউট কৰা হব"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr ""
-"এই অধিবেশন নিষ্ক্ৰিয়তাৰ এটা অৱধিৰ পিছত স্বচালিতভাৱে লগ আউট কৰিবলে সংৰূপণ কৰা "
-"আছে।"
-
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "লগআউট কৰক (_L)"
 
@@ -443,7 +434,7 @@ msgstr "মনত ৰখা এপ্লিকেচন"
 msgid "This program is blocking logout."
 msgstr "এই প্ৰগ্ৰামে লগআউট অবৰোধ কৰি আছে।"
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -452,37 +443,37 @@ msgstr ""
 "সংযোগ "
 "স্থাপনৰ অনুৰোধ প্ৰত্যাখ্যান কৰা হৈছে।\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE অপেক্ষাৰ ছ'কেট নিৰ্মাণ কৰিবলৈ ব্যৰ্থ: %s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "প্ৰামাণিক স্বআৰম্ভ ডাইৰেকটৰিসমূহ অভাৰৰাইড কৰক"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "ব্যৱহাৰ হ'ব লগিয়া অধিবেশন"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "ব্যৱহাৰকাৰী দ্বাৰা নিৰ্ধাৰিত এপ্লিকেচনসমূহ ল'ড নকৰিব"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "পৰিক্ষণৰ বাবে ব্যৰ্থ হোৱেইল ডাইলগ দেখুৱাওক"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr "- GNOME অধিবেশন ব্যৱস্থাপক"
 
@@ -530,6 +521,32 @@ msgstr "%s এক্সিকিউট কৰিবলে ব্যৰ্থ\n"
 msgid "%s requires an argument\n"
 msgstr "%s ৰ এটা তৰ্কৰ প্ৰয়োজন\n"
 
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+#| msgid "Session to use"
+msgid "Session %d"
+msgstr "অধিবেশন %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"অধিবেশন নামসমূহ ‘.’ ৰ সৈতে আৰম্ভ হোৱাৰ অথবা ‘/’ আখৰসমূহ অন্তৰ্ভুক্ত কৰাৰ "
+"অনুমতি নাই"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "অধিবেশন নামসমূহ ‘.’ ৰ সৈতে আৰম্ভ হোৱাৰ অনুমতি নাই"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "অধিবেশন নামসমূহ ‘/’ আখৰসমূহ অন্তৰ্ভুক্ত কৰাৰ অনুমতি নাই"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "‘%s’ নামৰ এটা অধিবেশন ইতিমধ্যে অস্তিত্ববান"
+
 #
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
@@ -558,6 +575,37 @@ msgstr "অধিবেশন ব্যৱস্থাপকৰ সৈতে স
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "দ্বন্দ্বযুক্ত বিকল্প সহ প্ৰগ্ৰামক কল কৰা হৈছে"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME ফলবেক"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d ঘন্টা"
+#~ msgstr[1] "%d ঘন্টা"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d মিনিট"
+#~ msgstr[1] "%d মিনিট"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d ছেকেণ্ড"
+#~ msgstr[1] "%d ছেকেণ্ড"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 ছেকেণ্ড"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "%s ত স্বচালিতভাৱে লগআউট কৰা হব"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr ""
+#~ "এই অধিবেশন নিষ্ক্ৰিয়তাৰ এটা অৱধিৰ পিছত স্বচালিতভাৱে লগ আউট কৰিবলে সংৰূপণ কৰা "
+#~ "আছে।"
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "'%s' আইকন পোৱা নগল"
