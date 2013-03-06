@@ -251,16 +251,31 @@ require_dbus_session (int      argc,
         return TRUE;
 }
 
+static gboolean
+check_gl (GError **error)
+{
+        int status;
+        char *argv[] = { LIBEXECDIR "/gnome-session-check-accelerated", NULL };
+
+        if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL, NULL, NULL,
+                           &status, error)) {
+                return FALSE;
+        }
+
+        return g_spawn_check_exit_status (status, error);
+}
+
 int
 main (int argc, char **argv)
 {
-        GError           *error;
+        GError           *error = NULL;
         char             *display_str;
         GsmManager       *manager;
         GsmStore         *client_store;
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *session_name;
+        gboolean          gl_failed = FALSE;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
@@ -275,6 +290,25 @@ main (int argc, char **argv)
         /* Make sure that we have a session bus */
         if (!require_dbus_session (argc, argv, &error)) {
                 gsm_util_init_error (TRUE, "%s", error->message);
+        }
+
+        /* Check GL, if it doesn't work out then force software fallback */
+        if (!check_gl (&error)) {
+                gl_failed = TRUE;
+
+                g_debug ("hardware acceleration check failed: %s",
+                         error? error->message : "");
+                g_clear_error (&error);
+                if (g_getenv ("LIBGL_ALWAYS_SOFTWARE") == NULL) {
+                        g_setenv ("LIBGL_ALWAYS_SOFTWARE", "1", TRUE);
+                        if (!check_gl (&error)) {
+                                g_warning ("software acceleration check failed: %s",
+                                           error? error->message : "");
+                                g_clear_error (&error);
+                        } else {
+                                gl_failed = FALSE;
+                        }
+                }
         }
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
@@ -294,6 +328,12 @@ main (int argc, char **argv)
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (0);
+        }
+
+        if (gl_failed) {
+                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
+                gtk_main ();
+                exit (1);
         }
 
         if (please_fail) {
