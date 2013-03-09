@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-26 17:28+0000\n"
-"PO-Revision-Date: 2013-01-06 19:49+0600\n"
+"POT-Creation-Date: 2013-02-23 07:03+0000\n"
+"PO-Revision-Date: 2013-03-08 17:23+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -39,19 +39,19 @@ msgstr "Іске қосылатын команда бос болмауы тиі�
 msgid "The startup command is not valid"
 msgstr "Іске қосылатын команда дұрыс емес"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Іске қосулы"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Таңбаша"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Бағдарлама"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Іске қосылатын қолданба баптаулары"
 
@@ -63,7 +63,7 @@ msgstr "Аты жоқ"
 msgid "No description"
 msgstr "Анықтамасы жоқ"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:264
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "Осы қолданбаның нұсқасы"
 
@@ -79,21 +79,46 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Бұл сессия арқылы GNOME-ға кіресіз"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME қауіпсіз сессиясы"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Таңдауыңызша"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Бұл элемент сізге сақталып тұрған сессияны таңдауға рұқсат етеді"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "GNOME жалған сессиясы"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Таңдауыңызша сесия"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Жөнелту үшін таңдауыңызша сессияны таңдаңыз"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "Ж_аңа сессия"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "Сессияны ө_шіру"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Сессия атауын өз_герту"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "Жалға_стыру"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "Кейбір бағдарламалар әлі де орындалып жатыр:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:512
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Бағдарламалар өз жұмысын аяқтауды күту. Бағдарламаларды мәжбүрлетіп жабу "
-"жұмыс нәтижелерін жоғалтуға әкеп соғуы мүмкін."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -209,11 +234,11 @@ msgstr "Сессияны басқару опциялары:"
 msgid "Show session management options"
 msgstr "Сессия басқарушысы опцияларын көрсету"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "Қап! Бір нәрсе қате кетті."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -221,7 +246,7 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады. Жүйелік әкімшіңізге "
 "хабарласыңыз"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -229,7 +254,7 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады. Барлық кеңейтулер сақтық "
 "мақсатында сөндірілген."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -237,167 +262,147 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады.\n"
 "Жүйеден шығып, қайталап көріңіз."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "Жүйеден шығуды рұқсат ету"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "Белгісіз"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "Бағдарлама әлі орындалып жатыр:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
+#: ../gnome-session/gsm-inhibit-dialog.c:511
+#| msgid ""
+#| "Waiting for the program to finish.  Interrupting the program may cause "
+#| "you to lose work."
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
+msgstr ""
+"Бағдарлама өз жұмысын аяқтауды күту. Бағдарламаны мәжбүрлетіп жабу жұмыс "
+"нәтижелерін жоғалтуға әкеп соғуы мүмкін."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
 msgstr ""
 "Бағдарламалардың өз жұмысын аяқтауды күту. Бұл бағдарламаларды мәжбүрлетіп "
 "жабу жұмыс нәтижелерін жоғалтуға әкеп соғуы мүмкін."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "Сонда да пайдаланушыны ауыстыру"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "Сонда да жүйеден шығу"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "Сонда да ұйықтату"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "Сонда да гибернациялау"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "Сонда да сөндіру"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "Сонда да қайта іске қосу"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "Экранды блоктау"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "Бас тарту"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "Сіз жүйеден автоматты түрде %d секундтан кейін шығасыз."
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Жүйе автоматты түрде %d секундтан кейін сөндіріледі."
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
 msgstr[0] "Жүйе автоматты түрде %d секундтан кейін қайта қосылады."
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Сіз жүйеге \"%s\" ретінде кірдіңіз."
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Бұл жүйеден қазір шығу керек пе?"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "Па_йдаланушыны ауыстыру"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Бұл жүйені қазір сөндіру керек пе?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "Ұ_йықтату"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "Г_ибернация"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "Қа_йта қосу"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "_Сөндіру"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "Бұл жүйені қазір қайта қосу керек пе?"
 
-#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "Жауап бермейді"
 
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d сағат"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d минут"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунд"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "0 секунд"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "Автоматты шығуға дейін %s"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr ""
-"Бұл сессия белсенді емес біраз уақыттан кейін автоматты шығуға бапталған."
-
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "Жүйеден _шығу"
 
@@ -413,43 +418,43 @@ msgstr "Есте сақталған қолданбалар"
 msgid "This program is blocking logout."
 msgstr "Бұл бағдарлама жүйеден шығуды болдырмай тұр."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Жаңа клиенттік байланысын тайдыру, өйткені жүйе қазір сөндірілуде\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE тындаушы сокетін жасау мүмкін емес: %s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "Стандартты іске қосылу бумалардың орнына басқаларды қолдану"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "АВТОІСКЕҚОСЫЛУ_БУМАСЫ"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "Қолдану үшін сессия"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "СЕССИЯ_АТЫ"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "Пайдаланушыға тән қолданбаларды жөнелтпеу"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "Сынау үшін \"fail whale\" сұхбатын көрсету"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr " - GNOME сессиялар басқарушысы"
 
@@ -499,6 +504,32 @@ msgstr "%s жөнелту сәтсіз\n"
 msgid "%s requires an argument\n"
 msgstr "%s аргументті талап етеді\n"
 
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+#| msgid "Session to use"
+msgid "Session %d"
+msgstr "Сессия %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Сессия атауы ‘.’ таңбасынан басталмауы және құрамында ‘/’ таңбасы болмауы "
+"тиіс"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Сессия атауы ‘.’ таңбасынан басталмауы тиіс"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Сессия атауында ‘/’ таңбасы болмауы тиіс"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "‘%s’ атауы бар сессия бар болып тұр"
+
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Жүйеден шығу"
@@ -526,3 +557,30 @@ msgstr "Сессиялар басқарушысына байланысты ор�
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Бағдарлама өазара ерегісетін опциялармен шақырылды"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME қауіпсіз сессиясы"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d сағат"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d минут"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d секунд"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 секунд"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "Автоматты шығуға дейін %s"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr ""
+#~ "Бұл сессия белсенді емес біраз уақыттан кейін автоматты шығуға бапталған."
