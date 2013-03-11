@@ -20,7 +20,7 @@
 # Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
 # Peter Bach <bach.peter@gmail.com>, 2007.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
-# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009.
+# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009, 2013.
 # M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
 # Kris Thomsen <lakristho@gmail.com>, 2011.
 # flemming christensen <fc@stromata.dk>, 2011.
@@ -29,9 +29,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-16 13:29+0200\n"
-"PO-Revision-Date: 2012-09-16 03:37+0200\n"
-"Last-Translator: flemming christensen <fc@stromata.dk>\n"
+"POT-Creation-Date: 2013-03-11 23:28+0100\n"
+"PO-Revision-Date: 2013-03-11 23:27+0100\n"
+"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -60,19 +60,19 @@ msgstr "Startkommandoen kan ikke være tom"
 msgid "The startup command is not valid"
 msgstr "Startkommandoen er ugyldig"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Aktiveret"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Ikon"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Indstillinger for opstartsprogrammer"
 
@@ -84,7 +84,7 @@ msgstr "Intet navn"
 msgid "No description"
 msgstr "Ingen beskrivelse"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:294
+#: ../capplet/main.c:35 ../gnome-session/main.c:284
 msgid "Version of this application"
 msgstr "Version af dette program"
 
@@ -92,11 +92,7 @@ msgstr "Version af dette program"
 msgid "Could not display help document"
 msgstr "Kunne ikke vise hjælpedokument"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME-tilbagefaldstilstand"
-
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -104,17 +100,45 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Denne session logger dig ind i GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:643
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Dette indtastningsfelt lader dig vælge en gemt session"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME-attrap"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Tilpasset session"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Vælg venligst en tilpasset session at køre"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "_Ny session"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_Fjern session"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "_Omdøb session"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Fortsæt"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "Nogle programmer kører stadigvæk:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Venter på at programmet afslutter. At afbryde dette program kan føre til at "
-"du mister data."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -228,130 +252,11 @@ msgstr "Sessionshåndtering-indstillinger:"
 msgid "Show session management options"
 msgstr "Vis tilvalg for sessionshåndtering"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "Ikon \"%s\" kunne ikke findes"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:588
-msgid "Unknown"
-msgstr "Ukendt"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:639
-msgid "A program is still running:"
-msgstr "Et program kører stadigvæk:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Venter på at programmer afslutter. At afbryde disse programmer kan føre til "
-"at du mister data."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:874
-msgid "Switch User Anyway"
-msgstr "Skift bruger alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:877
-msgid "Log Out Anyway"
-msgstr "Log ud alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:880
-msgid "Suspend Anyway"
-msgstr "Gå i standby alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:883
-msgid "Hibernate Anyway"
-msgstr "Gå i dvale alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:886
-msgid "Shut Down Anyway"
-msgstr "Sluk alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:889
-msgid "Restart Anyway"
-msgstr "Genstart alligevel"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:897
-msgid "Lock Screen"
-msgstr "Lås skærmen"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:900
-msgid "Cancel"
-msgstr "Annullér"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:266
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Du vil automatisk blive logget ud om %d sekund."
-msgstr[1] "Du vil automatisk blive logget ud om %d sekunder."
-
-#: ../gnome-session/gsm-logout-dialog.c:274
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Dette system vil automatisk lukke ned om %d sekund."
-msgstr[1] "Dette system vil automatisk lukke ned om %d sekunder."
-
-#: ../gnome-session/gsm-logout-dialog.c:282
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Dette system vil automatisk genstarte om %d sekund."
-msgstr[1] "Dette system vil automatisk genstarte om %d sekunder."
-
-#: ../gnome-session/gsm-logout-dialog.c:306
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Du er på nuværende tidspunkt logget ind som \"%s\"."
-
-#: ../gnome-session/gsm-logout-dialog.c:372
-msgid "Log out of this system now?"
-msgstr "Log ud af dette system nu?"
-
-#: ../gnome-session/gsm-logout-dialog.c:378
-msgid "_Switch User"
-msgstr "_Skift bruger"
-
-#: ../gnome-session/gsm-logout-dialog.c:387
-#: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:389
-msgid "_Log Out"
-msgstr "_Log ud"
-
-#: ../gnome-session/gsm-logout-dialog.c:393
-msgid "Shut down this system now?"
-msgstr "Sluk dette system nu?"
-
-#: ../gnome-session/gsm-logout-dialog.c:399
-msgid "S_uspend"
-msgstr "S_tandby"
-
-#: ../gnome-session/gsm-logout-dialog.c:405
-msgid "_Hibernate"
-msgstr "_Dvale"
-
-#: ../gnome-session/gsm-logout-dialog.c:411
-#: ../gnome-session/gsm-logout-dialog.c:437
-msgid "_Restart"
-msgstr "_Genstart"
-
-#: ../gnome-session/gsm-logout-dialog.c:421
-msgid "_Shut Down"
-msgstr "_Sluk"
-
-#: ../gnome-session/gsm-logout-dialog.c:427
-msgid "Restart this system now?"
-msgstr "Genstart dette system nu?"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:311
+#: ../gnome-session/gsm-fail-whale-dialog.c:286
 msgid "Oh no!  Something has gone wrong."
 msgstr "Åh nej!  Noget er gået galt."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:318
+#: ../gnome-session/gsm-fail-whale-dialog.c:293
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -359,7 +264,7 @@ msgstr ""
 "Der er opstået et problem og systemet kan ikke gendannes.\n"
 "Henvend dig venligst til en systemadministrator"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -367,7 +272,7 @@ msgstr ""
 "Der er opstået et problem, og systemet kan ikke gendannes. Alle udvidelser "
 "er blevet deaktiveret for en sikkerheds skyld."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -375,95 +280,266 @@ msgstr ""
 "Et problem er opstået og systemet kan ikke gendannes.\n"
 "Log venligst ud og prøv igen."
 
-#: ../gnome-session/gsm-manager.c:1393
-msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 kunne ikke indlæses"
+#: ../gnome-session/gsm-fail-whale-dialog.c:312
+#: ../gnome-session/gsm-logout-dialog.c:384
+msgid "_Log Out"
+msgstr "_Log ud"
 
-#: ../gnome-session/gsm-manager.c:1394
+#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+msgid "Enable debugging code"
+msgstr "Aktivér fejlfindingskode"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:335
+msgid "Allow logout"
+msgstr "Tillad log ud"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:336
+msgid "Show extension warning"
+msgstr "Vis udvidelsesfejl"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:462
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:510
+msgid "A program is still running:"
+msgstr "Et program kører stadigvæk:"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
 msgstr ""
-"Desværre er det mislykkedes for GNOME 3 at starte rigtigt og startede derfor "
-"i <i>tilbagefaldstilstand</i>.\n"
-"\n"
-"Dette betyder højst sandsynligt at dit system (grafik-hardware eller -"
-"driver) ikke er i stand til at levere den fulde GNOME 3-oplevelse."
+"Venter på at programmet afslutter. At afbryde dette program kan føre til, at "
+"du mister data."
 
-#: ../gnome-session/gsm-manager.c:1396
-msgid "Learn more about GNOME 3"
-msgstr "Lær mere om GNOME 3"
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
+msgstr ""
+"Venter på at programmer afslutter. At afbryde disse programmer kan føre til, "
+"at du mister data."
 
-#: ../gnome-session/gsm-manager.c:1493 ../gnome-session/gsm-manager.c:2234
+#: ../gnome-session/gsm-inhibit-dialog.c:745
+msgid "Switch User Anyway"
+msgstr "Skift bruger alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:748
+msgid "Log Out Anyway"
+msgstr "Log ud alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:751
+msgid "Suspend Anyway"
+msgstr "Gå i standby alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:754
+msgid "Hibernate Anyway"
+msgstr "Gå i dvale alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:757
+msgid "Shut Down Anyway"
+msgstr "Sluk alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:760
+msgid "Restart Anyway"
+msgstr "Genstart alligevel"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:768
+msgid "Lock Screen"
+msgstr "Lås skærmen"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:771
+msgid "Cancel"
+msgstr "Annullér"
+
+#. This string is shared with gsm-fail-whale-dialog.c
+#: ../gnome-session/gsm-logout-dialog.c:263
+#, c-format
+msgid "You will be automatically logged out in %d second."
+msgid_plural "You will be automatically logged out in %d seconds."
+msgstr[0] "Du vil automatisk blive logget ud om %d sekund."
+msgstr[1] "Du vil automatisk blive logget ud om %d sekunder."
+
+#: ../gnome-session/gsm-logout-dialog.c:271
+#, c-format
+msgid "This system will be automatically shut down in %d second."
+msgid_plural "This system will be automatically shut down in %d seconds."
+msgstr[0] "Dette system vil automatisk lukke ned om %d sekund."
+msgstr[1] "Dette system vil automatisk lukke ned om %d sekunder."
+
+#: ../gnome-session/gsm-logout-dialog.c:279
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Dette system vil automatisk genstarte om %d sekund."
+msgstr[1] "Dette system vil automatisk genstarte om %d sekunder."
+
+#: ../gnome-session/gsm-logout-dialog.c:303
+#, c-format
+msgid "You are currently logged in as \"%s\"."
+msgstr "Du er på nuværende tidspunkt logget ind som \"%s\"."
+
+#: ../gnome-session/gsm-logout-dialog.c:369
+msgid "Log out of this system now?"
+msgstr "Log ud af dette system nu?"
+
+#: ../gnome-session/gsm-logout-dialog.c:375
+msgid "_Switch User"
+msgstr "_Skift bruger"
+
+#: ../gnome-session/gsm-logout-dialog.c:390
+msgid "Shut down this system now?"
+msgstr "Sluk dette system nu?"
+
+#: ../gnome-session/gsm-logout-dialog.c:396
+msgid "S_uspend"
+msgstr "S_tandby"
+
+#: ../gnome-session/gsm-logout-dialog.c:402
+msgid "_Hibernate"
+msgstr "_Dvale"
+
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
+msgid "_Restart"
+msgstr "_Genstart"
+
+#: ../gnome-session/gsm-logout-dialog.c:418
+msgid "_Shut Down"
+msgstr "_Sluk"
+
+#: ../gnome-session/gsm-logout-dialog.c:424
+msgid "Restart this system now?"
+msgstr "Genstart dette system nu?"
+
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "Svarer ikke"
+
+#: ../gnome-session/gsm-util.c:411
+msgid "_Log out"
+msgstr "_Log ud"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:558
 msgid "Remembered Application"
 msgstr "Husket program"
 
-#: ../gnome-session/gsm-xsmp-client.c:1197
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking logout."
 msgstr "Dette program blokerer log ud."
 
-#: ../gnome-session/gsm-xsmp-server.c:326
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Nægter ny klientforbindelse fordi sessionen er ved at blive lukket ned\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:595
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Kunne ikke starte logind-session (og kunne ikke forbinde til X-serveren)"
-
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:280
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: ../gnome-session/main.c:290
+#: ../gnome-session/main.c:280
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:281
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: ../gnome-session/main.c:291
+#: ../gnome-session/main.c:281
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: ../gnome-session/main.c:292
-msgid "Enable debugging code"
-msgstr "Aktivér fejlfindingskode"
-
-#: ../gnome-session/main.c:293
+#: ../gnome-session/main.c:283
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:296
+#: ../gnome-session/main.c:286
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: ../gnome-session/main.c:316
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - GNOME-sessionshåndteringen"
+
+#: ../tools/gnome-session-inhibit.c:110
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [TILVALG...] KOMMANDO\n"
+"\n"
+"Kør KOMMANDO mens nogen sessionsfunktionalitet hindres.\n"
+"\n"
+"  -h, --help        Vis denne hjælp\n"
+"  --version         Vis programversionen\n"
+"  --app-id ID       Det program-id der skal bruges\n"
+"                    ved hindring (valgfrit)\n"
+"  --reason GRUND    Grunden til hindring (valgfri)\n"
+"  --inhibit ARG     Ting som skal hindres. Kolonsepareret list af:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Start ikke kommandoen og vent i stedet for altid\n"
+"\n"
+"Hvis intet --inhibit tilvalg er angivet, vil \"idle\" bliver antaget.\n"
+
+#: ../tools/gnome-session-inhibit.c:148
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Kunne ikke køre %s\n"
+
+#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:228
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s kræver et argument\n"
+
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "Session %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "Sessionnavne må ikke starte med \".\" eller indeholde \"/\"-tegn"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Sessionsnavne må ikke starte med \".\""
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Sessionsnavne må ikke indeholde \"/\"-tegn"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Der findes allerede en session med navnet \"%s\""
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
@@ -493,6 +569,36 @@ msgstr "Kunne ikke tilkoble til sessionshåndteringen"
 msgid "Program called with conflicting options"
 msgstr "Program blev kaldt med selvmodsigende tilvalg"
 
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME-tilbagefaldstilstand"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "Ikon \"%s\" kunne ikke findes"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "GNOME 3 kunne ikke indlæses"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "Desværre er det mislykkedes for GNOME 3 at starte rigtigt og startede "
+#~ "derfor i <i>tilbagefaldstilstand</i>.\n"
+#~ "\n"
+#~ "Dette betyder højst sandsynligt at dit system (grafik-hardware eller -"
+#~ "driver) ikke er i stand til at levere den fulde GNOME 3-oplevelse."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "Lær mere om GNOME 3"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr ""
+#~ "Kunne ikke starte logind-session (og kunne ikke forbinde til X-serveren)"
+
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>Nogle programmer kører stadigvæk:</b>"
 
@@ -520,9 +626,6 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr ""
 #~ "Der er et problem med konfigurationsserveren.\n"
 #~ "(%s afsluttede med status %d)"
-
-#~ msgid "Default session"
-#~ msgstr "Standardsession"
 
 #~ msgid "File Manager"
 #~ msgstr "Filhåndtering"
@@ -562,9 +665,6 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgid "Required session components"
 #~ msgstr "Nødvendige sessionskomponenter"
 
-#~ msgid "Save sessions"
-#~ msgstr "Gem sessioner"
-
 #~ msgid ""
 #~ "The file manager provides the desktop icons and allows you to interact "
 #~ "with your saved files."
@@ -600,9 +700,6 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 
 #~ msgid "GConf key used to look up default session"
 #~ msgstr "GConf-nøgle brugt til at finde standardsession"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "Vis log ud-dialog"
 
 #~ msgid "Show shutdown dialog"
 #~ msgstr "Vis sluk-dialog"
