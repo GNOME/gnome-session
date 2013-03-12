@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 01:22+0100\n"
-"PO-Revision-Date: 2012-03-24 01:40+0100\n"
+"POT-Creation-Date: 2013-03-12 22:53+0100\n"
+"PO-Revision-Date: 2013-03-02 19:39+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
@@ -66,7 +66,7 @@ msgstr "Sense nom"
 msgid "No description"
 msgstr "Sense descripció"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:284
 msgid "Version of this application"
 msgstr "Versió d'esta aplicació"
 
@@ -84,35 +84,35 @@ msgstr "Esta sessió vos entra al GNOME"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
-msgstr ""
+msgstr "Personalitzada"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
-msgstr ""
+msgstr "Esta entrada vos permet seleccionar una sessió guardada"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME de prova"
 
 #: ../data/session-selector.ui.h:1
-#, fuzzy
 msgid "Custom Session"
-msgstr "Sessió actual"
+msgstr "Sessió personalitzada"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
 msgid "Please select a custom session to run"
-msgstr ""
+msgstr "Seleccioneu quina sessió personalitzada voleu"
 
 #: ../data/session-selector.ui.h:3
-#, fuzzy
 msgid "_New Session"
-msgstr "_Sessions:"
+msgstr "Sessió _nova"
 
 #: ../data/session-selector.ui.h:4
-#, fuzzy
 msgid "_Remove Session"
-msgstr "Guarda les sessions"
+msgstr "_Suprimeix la sessió"
 
 #: ../data/session-selector.ui.h:5
-#, fuzzy
 msgid "Rena_me Session"
-msgstr "Sessió actual"
+msgstr "_Canvia el nom de la sessió"
 
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
@@ -238,11 +238,11 @@ msgstr "Opcions de gestió de la sessió:"
 msgid "Show session management options"
 msgstr "Mostra les opcions de gestió de la sessió"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:286
 msgid "Oh no!  Something has gone wrong."
 msgstr "Alguna cosa ha fallat."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:293
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -250,7 +250,7 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar. Contacteu amb "
 "l'administrador del sistema"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -258,7 +258,7 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar. Com a mètode de "
 "precaució s'han inhabilitat totes les extensions."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -266,20 +266,20 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar.\n"
 "Eixiu i torneu-ho a provar."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-fail-whale-dialog.c:312
 #: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "I_x"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:335
 msgid "Allow logout"
 msgstr "Permet eixir"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:336
 msgid "Show extension warning"
 msgstr "Mostra l'avís de l'extensió"
 
@@ -399,7 +399,7 @@ msgstr "_Atura l'ordinador"
 msgid "Restart this system now?"
 msgstr "Voleu reiniciar el sistema ara?"
 
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "No està responent"
 
@@ -419,7 +419,7 @@ msgstr "Aplicació recordada"
 msgid "This program is blocking logout."
 msgstr "Este programa està blocant l'eixida."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -427,37 +427,37 @@ msgstr ""
 "Es refusarà la connexió de client nova perquè la sessió s'està parant\n"
 
 # Nota: ICE -> Inter-Client Exchange (http://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture#Inter-client_communication)
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:280
 msgid "Override standard autostart directories"
 msgstr "Ignora els directoris estàndard d'inici automàtic"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:280
 msgid "AUTOSTART_DIR"
 msgstr "DIRECTORI_INICI_AUTOMÀTIC"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:281
 msgid "Session to use"
 msgstr "Sessió que s'utilitzarà"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:281
 msgid "SESSION_NAME"
 msgstr "NOM_DE_SESSIÓ"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:283
 msgid "Do not load user-specified applications"
 msgstr "No carreguis les aplicacions especificades per l'usuari"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:286
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostra el diàleg de la balena per fer proves"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
@@ -505,7 +505,7 @@ msgstr "No s'ha pogut executar %s\n"
 #: ../tools/gnome-session-inhibit.c:228
 #, c-format
 msgid "%s requires an argument\n"
-msgstr "%s requreix un argument\n"
+msgstr "%s requereix un argument\n"
 
 #: ../tools/gnome-session-selector.c:62
 #, c-format
@@ -516,19 +516,20 @@ msgstr "Sessió %d"
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr ""
+"Els noms de sessió no poden començar amb els caràcters «.» ni contindre «/»"
 
 #: ../tools/gnome-session-selector.c:112
 msgid "Session names are not allowed to start with ‘.’"
-msgstr ""
+msgstr "Els noms de sessió no poden començar amb el caràcter «.»"
 
 #: ../tools/gnome-session-selector.c:116
 msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr ""
+msgstr "Els noms de sessió no poden contindre el caràcter «/»"
 
 #: ../tools/gnome-session-selector.c:124
-#, fuzzy, c-format
+#, c-format
 msgid "A session named ‘%s’ already exists"
-msgstr "El nom de la sessió ja existeix"
+msgstr "Ja existeix una sessió amb el nom «%s»"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
