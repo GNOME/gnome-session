@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gnome-session MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-16 19:53+0000\n"
-"PO-Revision-Date: 2012-12-18 17:48+0300\n"
+"POT-Creation-Date: 2013-03-12 13:31+0000\n"
+"PO-Revision-Date: 2013-03-12 16:21+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -71,18 +71,36 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Selle seansiga logitakse sind GNOME keskkonda sisse"
 
-msgid "GNOME fallback"
-msgstr "GNOME varurežiim"
+msgid "Custom"
+msgstr "Kohandatud"
+
+msgid "This entry lets you select a saved session"
+msgstr "Selle abil saab valida salvestatud seansi"
+
+#, fuzzy
+msgid "GNOME dummy"
+msgstr "GNOME"
+
+msgid "Custom Session"
+msgstr "Kohandatud seanss"
+
+msgid "Please select a custom session to run"
+msgstr "Palun vali kohandatud seanss, mida käivitada"
+
+msgid "_New Session"
+msgstr "_Uus seanss"
+
+msgid "_Remove Session"
+msgstr "_Eemalda seanss"
+
+msgid "Rena_me Session"
+msgstr "_Muuda seansi nime"
+
+msgid "_Continue"
+msgstr "_Jätka"
 
 msgid "Some programs are still running:"
 msgstr "Mõned rakendused töötavad ikka veel:"
-
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Oodatakse rakenduse töö lõpetamist.  Rakenduse katkestamine võib põhjustada "
-"Sinu (salvestamata) tööde kaotsimineku."
 
 msgid "Startup Applications"
 msgstr "Automaatselt käivitatavad rakendused"
@@ -215,11 +233,18 @@ msgid "A program is still running:"
 msgstr "Üks rakendus töötab ikka veel:"
 
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
 msgstr ""
-"Rakenduse töö lõpetamise järel ootamine.  Nende rakenduste katkestamine võib "
-"põhjustada (salvestamata) tööde kaotsimineku."
+"Rakenduse töö lõpetamise järel ootamine.  Rakenduse katkestamine võib "
+"põhjustada sinu töö kaotsimineku."
+
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
+msgstr ""
+"Rakenduse töö lõpetamise järel ootamine. Rakenduste katkestamine võib "
+"põhjustada sinu töö kaotsimineku."
 
 msgid "Switch User Anyway"
 msgstr "Vaheta ikkagi kasutajat"
@@ -294,38 +319,6 @@ msgstr "Kas taaskäivitada arvuti kohe?"
 
 msgid "Not responding"
 msgstr "Ei vasta"
-
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d tund"
-msgstr[1] "%d tundi"
-
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d minut"
-msgstr[1] "%d minutit"
-
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d sekund"
-msgstr[1] "%d sekundit"
-
-msgid "0 seconds"
-msgstr "0 sekundit"
-
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "Automaatse väljalogimiseni %s"
-
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr ""
-"Selle seansi seadistuse järgi logitakse pärast määratud tegevusetuse "
-"perioodi automaatselt välja."
 
 msgid "_Log out"
 msgstr "_Logi välja"
@@ -414,6 +407,25 @@ msgstr "%s käivitamine nurjus\n"
 msgid "%s requires an argument\n"
 msgstr "%s jaoks on vajalik argument\n"
 
+#, c-format
+msgid "Session %d"
+msgstr "Seanss %d"
+
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Seansi nimed ei tohi alata ega punktiga '.' ega sisaldada kaldkriipsu '/'"
+
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Seansi nimed ei tohi alata ega punktiga '.'"
+
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Seansi nimed ei tohi sisaldada kaldkriipsu '/'"
+
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Seanss nimega '%s' on juba olemas"
+
 msgid "Log out"
 msgstr "Väljalogimine"
 
@@ -434,6 +446,37 @@ msgstr "Seansihalduriga pole võimalik ühenduda"
 
 msgid "Program called with conflicting options"
 msgstr "Rakendus kutsuti välja vastuoluliste parameetritega"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME varurežiim"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%d tund"
+#~ msgstr[1] "%d tundi"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%d minut"
+#~ msgstr[1] "%d minutit"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d sekund"
+#~ msgstr[1] "%d sekundit"
+
+#~ msgid "0 seconds"
+#~ msgstr "0 sekundit"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "Automaatse väljalogimiseni %s"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr ""
+#~ "Selle seansi seadistuse järgi logitakse pärast määratud tegevusetuse "
+#~ "perioodi automaatselt välja."
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "Ikooni '%s' ei leitud"
