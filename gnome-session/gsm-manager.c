@@ -86,7 +86,7 @@
  * a fail whale if required components don't show up quickly enough,
  * let's make this fairly long.
  */
-#define GSM_MANAGER_PHASE_TIMEOUT 30 /* seconds */
+#define GSM_MANAGER_PHASE_TIMEOUT 90 /* seconds */
 
 #define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
 #define GDM_FLEXISERVER_ARGS    "--startnew Standard"
