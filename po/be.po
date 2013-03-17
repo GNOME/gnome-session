@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-13 18:57+0000\n"
+"POT-Creation-Date: 2013-02-23 07:03+0000\n"
 "PO-Revision-Date: 2012-09-07 18:03+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
@@ -37,19 +37,19 @@ msgstr "Загад аўтазапуску не можа быць пустым"
 msgid "The startup command is not valid"
 msgstr "Хібны загад аўтазапуску"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Уключана"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "Значок"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Праграма"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Настройкі праграм аўтазапуску"
 
@@ -61,7 +61,7 @@ msgstr "Няма назвы"
 msgid "No description"
 msgstr "Няма апісання"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:264
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "Версія гэтай праграмы"
 
@@ -77,11 +77,43 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Сеанс уваходу ў GNOME"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "Запасны рэжым GNOME"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Уласны"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Гэты выбар дазваляе выбраць раней захаваны сеанс"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME-пустышка"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Уласны сеанс"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Выберыце асаблівы сеанс для запуску"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "_Новы сеанс"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_Выдаліць сеанс"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Пера_назваць сеанс"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Працягнуць"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "Некаторыя праграмы дасюль запушчаныя:"
 
@@ -198,11 +230,11 @@ msgstr "Опцыі для кіравання сеансам:"
 msgid "Show session management options"
 msgstr "Паказаць опцыі для кіравання сеансам"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "Нешта пайшло не так, як мае быць!"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -210,7 +242,7 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. Звярніцеся "
 "да вашага сістэмнага адміністратара."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -218,7 +250,7 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. Для пэўнасці "
 "ўсе пашырэнні былі выключаны."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -226,32 +258,32 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу.\n"
 "Выйдзіце з сеанса і паўтарыце спробу."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "_Выйсці"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "Уключыць адладачны код"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "Дазволіць выхад з сеанса"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
-msgstr ""
+msgstr "Паказаць перасцярогі ад пашырэння"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "Невядома"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "Праграма дасюль запушчана:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:512
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid ""
 "Waiting for the program to finish. Interrupting the program may cause you to "
 "lose work."
@@ -259,47 +291,47 @@ msgstr ""
 "Чакаем заканчэння працы праграмы. Перарваўшы праграму, можна страціць "
 "наробак."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
+#: ../gnome-session/gsm-inhibit-dialog.c:515
 msgid ""
 "Waiting for programs to finish. Interrupting these programs may cause you to "
 "lose work."
 msgstr ""
 "Чакаем заканчэння працы праграм. Перарваўшы іх, можна страціць наробак."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "Прымусова пераключыць карыстальніка"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "Прымусова выйсці з сеанса"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "Прымусова супыніць камп'ютар"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "Прымусовая гібернацыя"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "Прымусова выключыць камп'ютар"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "Прымусова перазапусціць камп'ютар"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "Замкнуць экран"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "Скасаваць"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
@@ -307,7 +339,7 @@ msgstr[0] "Аўтаматычны выхад з сеанса праз %d сек�
 msgstr[1] "Аўтаматычны выхад з сеанса праз %d секунды."
 msgstr[2] "Аўтаматычны выхад з сеанса праз %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
@@ -315,7 +347,7 @@ msgstr[0] "Аўтаматычнае выключэнне камп'ютара п�
 msgstr[1] "Аўтаматычнае выключэнне камп'ютара праз %d секунды."
 msgstr[2] "Аўтаматычнае выключэнне камп'ютара праз %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
@@ -323,90 +355,49 @@ msgstr[0] "Аўтаматычная перазагрузка камп'ютара
 msgstr[1] "Аўтаматычная перазагрузка камп'ютара праз %d секунды."
 msgstr[2] "Аўтаматычная перазагрузка камп'ютара праз %d секунд."
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "Вы ўвайшлі ў сістэму як \"%s\"."
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "Выйсці з сеанса?"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "Пераключыць _карыстальніка"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Выключыць камп'ютар?"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_Супыніць камп'ютар"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_Гібернацыя"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "Пера_запусціць камп'ютар"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "В_ыключыць камп'ютар"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "Перазагрузіць камп'ютар?"
 
-#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "Не адказвае"
 
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%d гадзіна"
-msgstr[1] "%d гадзіны"
-msgstr[2] "%d гадзін"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%d хвіліна"
-msgstr[1] "%d хвіліны"
-msgstr[2] "%d хвілін"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%d секунда"
-msgstr[1] "%d секунды"
-msgstr[2] "%d секунд"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "0 секунд"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "Аўтаматычны выхад будзе ажыццёўлены праз %s"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr ""
-"Гэты сеанс настроены такім чынам, што ў выпадку пэўнага часу бяздзейнасці "
-"ажыццяўляецца аўтаматычны выхад."
-
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "_Выйсці з сеанса"
 
@@ -422,43 +413,43 @@ msgstr "Запомненыя праграмы"
 msgid "This program is blocking logout."
 msgstr "Гэта праграма замінае выхаду з сеанса"
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Адмова ў новым кліенцкім злучэнні, бо сеанс ужо канчаецца\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не ўдалося стварыць ICE-сокет праслухоўвання: %s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "Засланіць звычайныя каталогі аўтазапуску"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АЎТАЗАПУСКУ"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "Патрэбны сеанс"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "НАЗВА_СЕАНСА"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "Не запускаць праграм, вызначаных карыстальнікам"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "Паказаць аварыйнае дыялогавае акенца"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr " - кіраўнік сеансаў GNOME"
 
@@ -491,6 +482,30 @@ msgstr "Не ўдалося выканаць %s\n"
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s патрабуе аргумент\n"
+
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "Сеанс %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Назвы сеансаў не могуць пачынацца з кропкі (.) і змяшчаць знак скосу (/)"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Назвы сеансаў не могуць пачынацца з кропкі (.)"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Назвы сеансаў не могуць змяшчаць знак скосу (/)"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Сеанс з назвай \"%s\" ужо існуе"
 
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
