@@ -6,15 +6,16 @@
 # Elnaz Sarbar <elnaz@farsiweb.info>, 2005, 2006.
 # Meelad Zakaria <meelad@farsiweb.info>, 2006.
 # Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2010.
-# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013.
+# Danial Behzadi <dani.behzi@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-21 15:35+0000\n"
-"PO-Revision-Date: 2012-12-26 20:55+0330\n"
+"POT-Creation-Date: 2013-02-23 07:03+0000\n"
+"PO-Revision-Date: 2013-03-20 10:28+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian\n"
 "Language: fa_IR\n"
@@ -23,6 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -44,19 +46,19 @@ msgstr "فرمان راه‌اندازی نمی‌تواند خالی باشد"
 msgid "The startup command is not valid"
 msgstr "فرمان راه‌اندازی معتبر نیست"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "فعال"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "نقشک"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "برنامه"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "ترجیحات برنامه‌های راه‌اندازی"
 
@@ -68,7 +70,7 @@ msgstr "بدون نام"
 msgid "No description"
 msgstr "بدون شرح"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:264
+#: ../capplet/main.c:35 ../gnome-session/main.c:269
 msgid "Version of this application"
 msgstr "نسخه‌ی این برنامه"
 
@@ -84,21 +86,46 @@ msgstr "گنوم"
 msgid "This session logs you into GNOME"
 msgstr "این نشست شما را به گنوم وارد می‌کند."
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "گنوم یدکی"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "سفارشی"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:515
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "این ورودی به شما اجاره می‌دهد نشست ذخیره شده‌ای را انتخاب کنید"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "گنوم ساختگی"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "نشست سفارشی"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "لطفاً یک نشست سفارشی را برای اجرا انتخاب کنید"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "نشست _جدید"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_حذف نشست"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "_تغییرنام نشست"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_ادامه"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
 msgid "Some programs are still running:"
 msgstr "چند برنامه همچنان در حال اجرا هستند:"
-
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:512
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"در حال انتظار برای برنامه که به پایان برسد. وقفه انداختن در برنامه‌ها ممکن "
-"است باعث شود که کار شما از دست برود."
 
 #: ../data/session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
@@ -212,11 +239,11 @@ msgstr "گزینه‌های مدیریت نشست:"
 msgid "Show session management options"
 msgstr "گزینه‌های مدیریت نشست نمایش داده شوند"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid "Oh no!  Something has gone wrong."
 msgstr "اُخ نه! یک چیزی اشتباه شد."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -224,7 +251,7 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. لطفا با یک مدیر سیستم تماس "
 "بگیرید"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:315
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -232,7 +259,7 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. تمام افزونه‌ها جهت احتیاط "
 "غیرفعال شده‌اند."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:317
+#: ../gnome-session/gsm-fail-whale-dialog.c:308
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -240,174 +267,150 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود.\n"
 "لطفا از سیستم خارج شوید و دوباره امتحان کنید."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
-#: ../gnome-session/gsm-logout-dialog.c:383
+#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "_خروج از سیستم"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:354 ../gnome-session/main.c:262
+#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
 msgid "Enable debugging code"
 msgstr "کد اشکال‌زدایی به کار انداخته شود"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:355
+#: ../gnome-session/gsm-fail-whale-dialog.c:346
 msgid "Allow logout"
 msgstr "اجازه خروج از سیستم داده شود"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:356
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
 msgid "Show extension warning"
 msgstr "اخطار پسوند نشان داده شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:463
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "ناشناخته"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:511
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "یک برنامه همچنان در حال اجرا است:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:516
+#: ../gnome-session/gsm-inhibit-dialog.c:511
+#| msgid ""
+#| "Waiting for the program to finish.  Interrupting the program may cause "
+#| "you to lose work."
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
 msgstr ""
-"در حال انتظار برای برنامه‌ها که به پایان برسند. وقفه انداختن در این برنامه‌ها "
-"ممکن است باعث شود که کار شما از دست برود."
+"در حال انتظار برای پایان یافتن برنامه. وقفه انداختن در برنامه ممکن است باعث "
+"از دست رفتن کارتان بشود."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:746
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+#| msgid ""
+#| "Waiting for programs to finish.  Interrupting these programs may cause "
+#| "you to lose work."
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
+msgstr ""
+"در حال انتظار برای پایان یافتن برنامه‌ها. وقفه انداختن در این برنامه‌ها ممکن "
+"است باعث از دست رفتن کارتان بشود."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "در هر حال، تعویض کاربر انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:749
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "در هر حال خروج از سیستم انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:752
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "در هر حال سیستم معلق شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:755
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "در هر حال خواب زمستانی انجام شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:758
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "در هر حال خاموش کردن سیستم صورت گیرد"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:761
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "در هر حال سیستم مجددا راه‌اندازی شود"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:769
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "قفل کردن صفحه"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:772
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "انصراف"
 
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:262
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
+msgstr[0] "شما پس از %Id ثانیه به صورت خودکار از سیستم خارج خواهید شد."
 msgstr[1] "شما پس از %Id ثانیه خودکار از سیستم خارج خواهید شد."
 
-#: ../gnome-session/gsm-logout-dialog.c:270
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
+msgstr[0] "این سیستم پس از %Id ثانیه، به صورت خودکار خاموش خواهد شد."
 msgstr[1] "این سیستم پس از %Id ثانیه، خودکار خاموش خواهد شد."
 
-#: ../gnome-session/gsm-logout-dialog.c:278
+#: ../gnome-session/gsm-logout-dialog.c:279
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "این سیستم پس از %Id ثانیه، بصورت خودکار مجددا راه‌اندازی خواهد شد."
+msgstr[0] "این سیستم پس از %Id ثانیه، به صورت خودکار مجددا راه‌اندازی خواهد شد."
 msgstr[1] "این سیستم پس از %Id ثانیه، بصورت خودکار مجددا راه‌اندازی خواهد شد."
 
-#: ../gnome-session/gsm-logout-dialog.c:302
+#: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
 msgid "You are currently logged in as \"%s\"."
 msgstr "هم‌اکنون شما با عنوان «%s» وارد سیستم شده‌اید."
 
-#: ../gnome-session/gsm-logout-dialog.c:368
+#: ../gnome-session/gsm-logout-dialog.c:369
 msgid "Log out of this system now?"
 msgstr "هم‌اکنون از این سیستم خارج شویم؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:374
+#: ../gnome-session/gsm-logout-dialog.c:375
 msgid "_Switch User"
 msgstr "_تعویض کاربر"
 
-#: ../gnome-session/gsm-logout-dialog.c:389
+#: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "این سیستم هم‌اکنون خاموش شود؟"
 
-#: ../gnome-session/gsm-logout-dialog.c:395
+#: ../gnome-session/gsm-logout-dialog.c:396
 msgid "S_uspend"
 msgstr "_تعلیق"
 
-#: ../gnome-session/gsm-logout-dialog.c:401
+#: ../gnome-session/gsm-logout-dialog.c:402
 msgid "_Hibernate"
 msgstr "_خواب زمستانی"
 
-#: ../gnome-session/gsm-logout-dialog.c:407
-#: ../gnome-session/gsm-logout-dialog.c:433
+#: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "_راه‌اندازی مجدد"
 
-#: ../gnome-session/gsm-logout-dialog.c:417
+#: ../gnome-session/gsm-logout-dialog.c:418
 msgid "_Shut Down"
 msgstr "خامو_ش کردن"
 
-#: ../gnome-session/gsm-logout-dialog.c:423
+#: ../gnome-session/gsm-logout-dialog.c:424
 msgid "Restart this system now?"
 msgstr "سیستم هم‌اکنون خاموش شود؟"
 
-#: ../gnome-session/gsm-manager.c:1443 ../gnome-session/gsm-manager.c:2185
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "نا پاسخگو"
 
-#: ../gnome-session/gsm-manager.c:2798
-#, c-format
-msgid "%d hour"
-msgid_plural "%d hours"
-msgstr[0] "%Id ساعت"
-msgstr[1] "%Id ساعت"
-
-#: ../gnome-session/gsm-manager.c:2799
-#, c-format
-msgid "%d minute"
-msgid_plural "%d minutes"
-msgstr[0] "%Id دقیقه"
-msgstr[1] "%Id دقیقه"
-
-#: ../gnome-session/gsm-manager.c:2800
-#, c-format
-msgid "%d second"
-msgid_plural "%d seconds"
-msgstr[0] "%Id ثانیه"
-msgstr[1] "%Id ثانیه"
-
-#: ../gnome-session/gsm-manager.c:2809
-msgid "0 seconds"
-msgstr "۰ ثانیه"
-
-#: ../gnome-session/gsm-manager.c:2834
-#, c-format
-msgid "Automatic logout in %s"
-msgstr "خروج خودکار از سیستم در %s"
-
-#: ../gnome-session/gsm-manager.c:2835
-msgid ""
-"This session is configured to automatically log out after a period of "
-"inactivity."
-msgstr ""
-"این نشست به‌گونه‌ای پیکربندی شده است که پس از مدتی بدون فعالبت، به طور خودکار "
-"از سیستم خارج شود."
-
-#: ../gnome-session/gsm-util.c:417
+#: ../gnome-session/gsm-util.c:411
 msgid "_Log out"
 msgstr "_خروج از سیستم"
 
@@ -423,43 +426,43 @@ msgstr "بخاطر سپردن برنامه"
 msgid "This program is blocking logout."
 msgstr "این برنامه جلوی خروج از سیستم را گرفته است."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "چون سیستم در حال خاموش شدن است درخواست اتصال کارگیر رَد می‌شود\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ایجاد سوکت گوش‌کننده‌ی ICE ممکن نشد: %s"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "Override standard autostart directories"
 msgstr "شاخه‌های استاندارد آغاز خودکار، لغو شود"
 
-#: ../gnome-session/main.c:260
+#: ../gnome-session/main.c:265
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "Session to use"
 msgstr "نشستی که استفاده شود"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:266
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:263
+#: ../gnome-session/main.c:268
 msgid "Do not load user-specified applications"
 msgstr "برنامه‌های مشخص شده توسط کاربر اجرا نشوند"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:271
 msgid "Show the fail whale dialog for testing"
 msgstr "نمایش بالن محاوره شکست جهت آزمایش کردن"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:286
 msgid " - the GNOME session manager"
 msgstr " ـ مدیر نشست گنوم"
 
@@ -507,6 +510,30 @@ msgstr "اجرای %s شکست خورد\n"
 msgid "%s requires an argument\n"
 msgstr "دستور %s احتیاج به یک آرگومان دارد\n"
 
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+#| msgid "Session to use"
+msgid "Session %d"
+msgstr "نشست %Id"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شده یا شامل نویسه‌ی «/» باشند"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شوند"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "نام نشست‌ها نمی‌توانند شامل نویسه‌ی «/» باشند"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "نشستی با نام «%s» از پیش وجود دارد"
+
 #: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "خروج از سیستم"
@@ -534,6 +561,37 @@ msgstr "اتصال به مدیر نشست ممکن نیست"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "گنوم یدکی"
+
+#~ msgid "%d hour"
+#~ msgid_plural "%d hours"
+#~ msgstr[0] "%Id ساعت"
+#~ msgstr[1] "%Id ساعت"
+
+#~ msgid "%d minute"
+#~ msgid_plural "%d minutes"
+#~ msgstr[0] "%Id دقیقه"
+#~ msgstr[1] "%Id دقیقه"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%Id ثانیه"
+#~ msgstr[1] "%Id ثانیه"
+
+#~ msgid "0 seconds"
+#~ msgstr "۰ ثانیه"
+
+#~ msgid "Automatic logout in %s"
+#~ msgstr "خروج خودکار از سیستم در %s"
+
+#~ msgid ""
+#~ "This session is configured to automatically log out after a period of "
+#~ "inactivity."
+#~ msgstr ""
+#~ "این نشست به‌گونه‌ای پیکربندی شده است که پس از مدتی بدون فعالبت، به طور "
+#~ "خودکار از سیستم خارج شود."
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "نقشک «%s» پیدا نشد"
