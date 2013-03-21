@@ -33,7 +33,6 @@
 #include <pwd.h>
 
 #include <systemd/sd-login.h>
-#include <systemd/sd-daemon.h>
 
 #include <glib.h>
 #include <glib-object.h>
@@ -879,7 +878,8 @@ gsm_systemd_new (void)
 {
         GsmSystemd *manager;
 
-        if (sd_booted () <= 0)
+        /* logind is not running ? */
+        if (access("/run/systemd/seats/", F_OK) < 0)
                 return NULL;
 
         manager = g_object_new (GSM_TYPE_SYSTEMD, NULL);

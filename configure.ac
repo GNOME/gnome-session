@@ -115,7 +115,7 @@ AC_ARG_ENABLE([systemd],
               [enable_systemd=auto])
 
 PKG_CHECK_MODULES(SYSTEMD,
-                  [gio-unix-2.0 libsystemd-login >= 183 libsystemd-daemon libsystemd-journal],
+                  [gio-unix-2.0 libsystemd-login >= 183 libsystemd-journal],
                   [have_systemd=yes], [have_systemd=no])
 
 AC_MSG_CHECKING([whether to use systemd])
