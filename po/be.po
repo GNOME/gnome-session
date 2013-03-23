@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-23 07:03+0000\n"
+"POT-Creation-Date: 2013-03-22 19:20+0000\n"
 "PO-Revision-Date: 2012-09-07 18:03+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
@@ -61,7 +61,7 @@ msgstr "Няма назвы"
 msgid "No description"
 msgstr "Няма апісання"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:284
 msgid "Version of this application"
 msgstr "Версія гэтай праграмы"
 
@@ -230,11 +230,11 @@ msgstr "Опцыі для кіравання сеансам:"
 msgid "Show session management options"
 msgstr "Паказаць опцыі для кіравання сеансам"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:286
 msgid "Oh no!  Something has gone wrong."
 msgstr "Нешта пайшло не так, як мае быць!"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:293
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -242,7 +242,7 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. Звярніцеся "
 "да вашага сістэмнага адміністратара."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -250,7 +250,7 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу. Для пэўнасці "
 "ўсе пашырэнні былі выключаны."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -258,20 +258,20 @@ msgstr ""
 "Узнікла праблема, пасля якой сістэма не здолела ўзнавіць працу.\n"
 "Выйдзіце з сеанса і паўтарыце спробу."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
+#: ../gnome-session/gsm-fail-whale-dialog.c:312
 #: ../gnome-session/gsm-logout-dialog.c:384
 msgid "_Log Out"
 msgstr "_Выйсці"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
 msgid "Enable debugging code"
 msgstr "Уключыць адладачны код"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:335
 msgid "Allow logout"
 msgstr "Дазволіць выхад з сеанса"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:336
 msgid "Show extension warning"
 msgstr "Паказаць перасцярогі ад пашырэння"
 
@@ -424,32 +424,32 @@ msgstr "Адмова ў новым кліенцкім злучэнні, бо с�
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не ўдалося стварыць ICE-сокет праслухоўвання: %s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:280
 msgid "Override standard autostart directories"
 msgstr "Засланіць звычайныя каталогі аўтазапуску"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:280
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АЎТАЗАПУСКУ"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:281
 msgid "Session to use"
 msgstr "Патрэбны сеанс"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:281
 msgid "SESSION_NAME"
 msgstr "НАЗВА_СЕАНСА"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:283
 msgid "Do not load user-specified applications"
 msgstr "Не запускаць праграм, вызначаных карыстальнікам"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:286
 msgid "Show the fail whale dialog for testing"
 msgstr "Паказаць аварыйнае дыялогавае акенца"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - кіраўнік сеансаў GNOME"
 
@@ -471,6 +471,20 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
+"%s [ОПЦЫЯ...] ЗАГАД\n"
+"\n"
+"Выконвае ЗАГАД, стрымліваючы некаторыя функцыі сеанса.\n"
+"\n"
+"  -h, --help        Паказаць гэту даведку\n"
+"  --version         Паказаць нумар версіі праграмы\n"
+"  --app-id ID       Ідэнтыфікатар праграмы падчас\n"
+"                    стрымлівання сеанса (неабавязковая опцыя)\n"
+"  --reason ПРЫЧЫНА  Прычына стрымання (неабавязковая опцыя)\n"
+"  --inhibit АРГ     Спіс дзеянняў для стрымлівання, падзеленых двукроп'ямі:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Не запускаць ЗАГАД, а бясконца чакаць\n"
+"\n"
+"Калі не ўжыта опцыя --inhibit, выкарыстоўваецца idle.\n"
 
 #: ../tools/gnome-session-inhibit.c:148
 #, c-format
@@ -534,4 +548,3 @@ msgstr "Не ўдалося злучыцца з кіраўніком сеанс�
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Праграма запушчана з несумяшчальнымі опцыямі"
-
