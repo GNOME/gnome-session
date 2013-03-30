@@ -1,15 +1,16 @@
 # Qırımtatarca translation of gnome-session.
 # This file is distributed under the same license as the gnome-session package.
-# Reşat SABIQ <tilde.birlik@gmail.com>, 2009, 2010, 2011, 2012.
+# Reşat SABIQ <tilde.birlik@gmail.com>, 2009, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-28 00:40-0500\n"
-"PO-Revision-Date: 2012-03-28 00:41-0500\n"
+"POT-Creation-Date: 2013-03-27 23:52-0500\n"
+"PO-Revision-Date: 2013-03-30 12:06-0500\n"
 "Last-Translator: Reşat SABIQ <tilde.birlik@gmail.com>\n"
-"Language-Team: QIRIMTATARCA <tilde-birlik-meydan@lists.sourceforge.net>\n"
+"Language-Team: QIRIMTATARCA (Qırım Türkçesi) <tilde-birlik-meydan@lists."
+"sourceforge.net>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,19 +37,19 @@ msgstr "Başlanğıç emri boş olalmaz"
 msgid "The startup command is not valid"
 msgstr "Başlanğıç emri keçerli degil"
 
-#: ../capplet/gsm-properties-dialog.c:518
+#: ../capplet/gsm-properties-dialog.c:517
 msgid "Enabled"
 msgstr "Qabilleştirilgen"
 
-#: ../capplet/gsm-properties-dialog.c:530
+#: ../capplet/gsm-properties-dialog.c:529
 msgid "Icon"
 msgstr "İşaretçik"
 
-#: ../capplet/gsm-properties-dialog.c:542
+#: ../capplet/gsm-properties-dialog.c:541
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:746
+#: ../capplet/gsm-properties-dialog.c:745
 msgid "Startup Applications Preferences"
 msgstr "Başlanğıç Uyğulamaları Tercihleri"
 
@@ -60,7 +61,7 @@ msgstr "İsim yoq"
 msgid "No description"
 msgstr "Tasvirsiz"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:281
+#: ../capplet/main.c:35 ../gnome-session/main.c:284
 msgid "Version of this application"
 msgstr "Bu uyğulamanıñ sürümi"
 
@@ -68,11 +69,7 @@ msgstr "Bu uyğulamanıñ sürümi"
 msgid "Could not display help document"
 msgstr "Yardım vesiqası kösterilamadı"
 
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "GNOME ricatı"
-
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -81,61 +78,89 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Bu oturım sizni GNOME'ğa içeri imzalandırır"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Bazı programlar ale çapmaqta:</b>"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Özel"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:640
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Programnıñ tamamlanuvı içün beklene.  Bu programnı inqıtağa oğratuv emekni "
-"ğayıp etüviñizge sebep olabilir."
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Bu kirildi sizge saqlanğan bir oturımnı saylamağa imkân berir"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME qorçağı"
+
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Özel Oturım"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+msgid "Please select a custom session to run"
+msgstr "Lütfen çalıştırmaq üzre şahsiyleştirilgen bir oturımnı saylañız"
+
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "_Yañı Oturım"
+
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "Oturımnı _Çetleştir"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Oturımnı Kene _adlandır"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Devam Et"
+
+#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
+msgid "Some programs are still running:"
+msgstr "Bazı programlar ale çapmaqta:"
 
 #: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "İçeri imzalanğan soñ başlatılacaq uyğulamalarnı saylañız"
-
-#: ../data/session-properties.desktop.in.in.h:2
 msgid "Startup Applications"
 msgstr "Başlanğıç Uyğulamaları"
+
+#: ../data/session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "İçeri imzalanğan soñ başlatılacaq uyğulamalarnı saylañız"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "Ek başlanğıç _programları:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Kezin…"
+msgid "Startup Programs"
+msgstr "Başlanğıç Uyğulamaları"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "_Emir:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "Tışarı imzalanğanda çapmaqta olğan uyğulamalarnı _öz-özünden hatırla"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "_Şerh:"
+msgid "_Remember Currently Running Applications"
+msgstr "Hal-hazırda Çapmaqta Olğan Uyğulamalarnı _Hatırla"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "İhtiyariyat"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Başlanğıç Uyğulamaları"
+msgid "Browse…"
+msgstr "Kezin…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "Tışarı imzalanğanda çapmaqta olğan uyğulamalarnı _öz-özünden hatırla"
+msgid "Comm_ent:"
+msgstr "_Şerh:"
 
 #: ../data/session-properties.ui.h:8
-msgid "_Name:"
-msgstr "_İsim:"
+msgid "Co_mmand:"
+msgstr "_Emir:"
 
 #: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "_Hal-hazırda Çapmaqta Olğan Uyğulamanı Hatırla"
+msgid "_Name:"
+msgstr "_İsim:"
 
 #: ../egg/eggdesktopfile.c:165
 #, c-format
@@ -206,77 +231,128 @@ msgstr "Oturım idaresi ihtiyariyatı:"
 msgid "Show session management options"
 msgstr "Oturım idaresi ihtiyariyatını köster"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "'%s' işaretçigi tapılamadı"
+#: ../gnome-session/gsm-fail-whale-dialog.c:286
+msgid "Oh no!  Something has gone wrong."
+msgstr "Aman!  Bir şey yañlış ketkendir."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:588
+#: ../gnome-session/gsm-fail-whale-dialog.c:293
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Bir mesele hasıl oldı ve sistem toparlanalmay. Lütfen bir sistem memurı ile "
+"temasqa keçiñiz"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr ""
+"Bir mesele hasıl oldı ve sistem toparlanalmay. İhtiyat olaraq eklentilerniñ "
+"hepsi ğayrıfaalleştirilgendir."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:297
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"Bir mesele hasıl oldı ve sistem toparlanalmay.Lütfen tışarı imzalanıp tekrar "
+"deñeñiz."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:312
+#: ../gnome-session/gsm-logout-dialog.c:384
+msgid "_Log Out"
+msgstr "_Tışarı İmzalan"
+
+# tüklü
+#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+msgid "Enable debugging code"
+msgstr "Arızasızlandıruv kodunı qabilleştir"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:335
+msgid "Allow logout"
+msgstr "Tışarı imzalanmağa izin ber"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:336
+msgid "Show extension warning"
+msgstr "Uzantı tenbihini köster"
+
+#: ../gnome-session/gsm-inhibit-dialog.c:462
 msgid "Unknown"
 msgstr "Bilinmey"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:639
+#: ../gnome-session/gsm-inhibit-dialog.c:510
 msgid "A program is still running:"
 msgstr "Bir program ale çapmaqta:"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "Some programs are still running:"
-msgstr "Bazı programlar ale çapmaqta:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:644
+#: ../gnome-session/gsm-inhibit-dialog.c:511
 msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
+"Waiting for the program to finish. Interrupting the program may cause you to "
+"lose work."
 msgstr ""
-"Programlarnıñ tamamlanuvı içün beklene.  Bu programlarnıñ kestirilüvi yapqan "
-"olğanıñız işlerni ğayıp etüviñizge sebep olabilir."
+"Programnıñ tamamlanuvı içün beklene. Bu programnı inqıtağa oğratuv emekni "
+"ğayıp etüviñizge sebep olabilir."
 
-#: ../gnome-session/gsm-inhibit-dialog.c:874
+#: ../gnome-session/gsm-inhibit-dialog.c:515
+msgid ""
+"Waiting for programs to finish. Interrupting these programs may cause you to "
+"lose work."
+msgstr ""
+"Programlarnıñ tamamlanuvı içün beklene. Bu programlarnıñ inqıtağa oğratıluvı "
+"işleriñizni ğayıp etüviñizge sebep olabilir."
+
+#: ../gnome-session/gsm-inhibit-dialog.c:745
 msgid "Switch User Anyway"
 msgstr "Kene de Qullanıcını Deñiştir"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:877
+#: ../gnome-session/gsm-inhibit-dialog.c:748
 msgid "Log Out Anyway"
 msgstr "Kene de Tışarı İmzalan"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:880
+#: ../gnome-session/gsm-inhibit-dialog.c:751
 msgid "Suspend Anyway"
 msgstr "Kene de Sarqıt"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:883
+#: ../gnome-session/gsm-inhibit-dialog.c:754
 msgid "Hibernate Anyway"
 msgstr "Kene de Yuqlat"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:886
+#: ../gnome-session/gsm-inhibit-dialog.c:757
 msgid "Shut Down Anyway"
 msgstr "Kene de Qapat"
 
 # tüklü
-#: ../gnome-session/gsm-inhibit-dialog.c:889
+#: ../gnome-session/gsm-inhibit-dialog.c:760
 msgid "Restart Anyway"
 msgstr "Kene de Yañıdan Başlat"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:897
+#: ../gnome-session/gsm-inhibit-dialog.c:768
 msgid "Lock Screen"
 msgstr "Ekrannı Kilitle"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:900
+#: ../gnome-session/gsm-inhibit-dialog.c:771
 msgid "Cancel"
 msgstr "Vazgeç"
 
 # tüklü
 #. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:271
+#: ../gnome-session/gsm-logout-dialog.c:263
 #, c-format
 msgid "You will be automatically logged out in %d second."
 msgid_plural "You will be automatically logged out in %d seconds."
 msgstr[0] "%d saniyeden soñ avtomatik olaraq tışarı imzalandırılacaqsıñız. "
 
-#: ../gnome-session/gsm-logout-dialog.c:279
+#: ../gnome-session/gsm-logout-dialog.c:271
 #, c-format
 msgid "This system will be automatically shut down in %d second."
 msgid_plural "This system will be automatically shut down in %d seconds."
 msgstr[0] "Bu sistem %d saniyeden soñ avtomatik olaraq qapatılacaq."
+
+#: ../gnome-session/gsm-logout-dialog.c:279
+#, c-format
+msgid "This system will be automatically restarted in %d second."
+msgid_plural "This system will be automatically restarted in %d seconds."
+msgstr[0] "Bu sistem %d saniyeden soñ avtomatik olaraq kene başlatılacaq."
 
 #: ../gnome-session/gsm-logout-dialog.c:303
 #, c-format
@@ -291,12 +367,6 @@ msgstr "Bu sistemden şimdi çıqılsınmı?"
 msgid "_Switch User"
 msgstr "_Qullanıcı Almaştır"
 
-#: ../gnome-session/gsm-logout-dialog.c:384
-#: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:389
-msgid "_Log Out"
-msgstr "_Tışarı İmzalan"
-
 #: ../gnome-session/gsm-logout-dialog.c:390
 msgid "Shut down this system now?"
 msgstr "Bu sistem şimdi qapatılsınmı?"
@@ -310,6 +380,7 @@ msgid "_Hibernate"
 msgstr "_Yuqlat"
 
 #: ../gnome-session/gsm-logout-dialog.c:408
+#: ../gnome-session/gsm-logout-dialog.c:434
 msgid "_Restart"
 msgstr "_Kene Başlat"
 
@@ -317,88 +388,31 @@ msgstr "_Kene Başlat"
 msgid "_Shut Down"
 msgstr "_Söndür"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:311
-msgid "Oh no!  Something has gone wrong."
-msgstr "Aman!  Bir şey yañlış ketkendir."
+#: ../gnome-session/gsm-logout-dialog.c:424
+msgid "Restart this system now?"
+msgstr "Bu sistem şimdi kene başlatılsınmı?"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:318
-msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
-"administrator"
-msgstr ""
-"Bir mesele hasıl oldı ve sistem toparlanalmay. Lütfen bir sistem memurı ile "
-"temasqa keçiñiz"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Bir mesele hasıl oldı ve sistem toparlanalmay. İhtiyat olaraq eklentilerniñ "
-"hepsi ğayrıfaalleştirilgendir."
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-msgid ""
-"A problem has occurred and the system can't recover.\n"
-"Please log out and try again."
-msgstr ""
-"Bir mesele hasıl oldı ve sistem toparlanalmay.Lütfen tışarı imzalanıp tekrar "
-"deñeñiz."
-
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "%d kodu ile terk etti"
-
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Signal %d tarafından öldürildi"
-
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Signal %d tarafından toqtatıldı"
-
-#: ../gnome-session/gsm-manager.c:1396
-msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 Yüklenmekte Muvaffaqiyetsiz Edi"
-
-#: ../gnome-session/gsm-manager.c:1397
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
-msgstr ""
-"Teessüf ki GNOME 3 uyğun olaraq başlayamadı ve <i>ricat tarzında</i> "
-"başladı.\n"
-"\n"
-"Bu eñ muhtemelen sistemiñiz (grafikler donanımı yaki sürücisi) tolu GNOME 3 "
-"tecribesini sunmaq içün qabiliyetli degil demektir."
-
-#: ../gnome-session/gsm-manager.c:1399
-msgid "Learn more about GNOME 3"
-msgstr "GNOME 3 haqqında daha çoq ögren"
-
-#: ../gnome-session/gsm-manager.c:1496 ../gnome-session/gsm-manager.c:2269
+#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
 msgid "Not responding"
 msgstr "Cevap bermey"
+
+#: ../gnome-session/gsm-util.c:411
+msgid "_Log out"
+msgstr "_Tışarı imzalan"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:558
 msgid "Remembered Application"
 msgstr "Hatırlanğan Uyğulama"
 
-#: ../gnome-session/gsm-xsmp-client.c:1197
+#: ../gnome-session/gsm-xsmp-client.c:1196
 msgid "This program is blocking logout."
 msgstr "Bu program tışarı imzalanuvnı bloklay."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -407,76 +421,182 @@ msgstr ""
 "etile\n"
 
 # tüklü
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE diñlev oyuğı (soketi) icat etilamadı: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:373
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr "İçeri imzalanuv oturımı başlatılalmay (ve X sunucısına bağlanılalmay)"
-
 # tüklü
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:280
 msgid "Override standard autostart directories"
 msgstr "Standart avto-başlanğıç fihristleriniñ üstünden ayda"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:280
 msgid "AUTOSTART_DIR"
 msgstr "AVTOBAŞLATMA_FİHRİSTİ"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:281
 msgid "Session to use"
 msgstr "Qullanılacaq oturım"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:281
 msgid "SESSION_NAME"
 msgstr "OTURIM_ADI"
 
-# tüklü
-#: ../gnome-session/main.c:279
-msgid "Enable debugging code"
-msgstr "Arızasızlandıruv kodunı qabilleştir"
-
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:283
 msgid "Do not load user-specified applications"
 msgstr "Qullanıcı tarafından belirtilgen programlarnı yükleme"
 
 # tüklü
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:286
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama içün ciddiy hata dialoğını köster"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - GNOME oturım idarecisi"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-inhibit.c:110
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [SEÇENEK...] EMİR\n"
+"\n"
+"EMİR, bazı oturım işleyişine mania etilerek ifa etilsin.\n"
+"\n"
+"  -h, --help        Bu yardımnı köster\n"
+"  --version         Program sürümini köster\n"
+"  --app-id KİMLİK   Mania etkende qullanılacaq\n"
+"                    uyğulama kimligi (ihtiyariy)\n"
+"  --reason SEBEP    Mania etmeniñ sebebi (ihtiyariy)\n"
+"  --inhibit ARG     Mania etilecek şeyler, eki-noqta-ayırğıçlı listesi:\n"
+"                    logout (tışarı imzalan), switch-user (qullanıcı-"
+"almaştır), suspend (sarqıt), idle (atıl), automount (avtotaq)\n"
+"  --inhibit-only    EMİR'ni fırlatma ve onıñ yerine ilelebet bekle\n"
+"\n"
+"Hiç bir --inhibit seçenegi belirtilmegen ise, idle (atıl) üstlenilir.\n"
+
+#: ../tools/gnome-session-inhibit.c:148
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "%s ifa etilamadı\n"
+
+#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:228
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s içün bir argument şarttır\n"
+
+#: ../tools/gnome-session-selector.c:62
+#, c-format
+msgid "Session %d"
+msgstr "Oturım %d"
+
+#: ../tools/gnome-session-selector.c:108
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Oturım isimleriniñ ‘.’ ile başlaması yaki ‘/’ remizlerini ihtiva etmesi caiz "
+"degildir"
+
+#: ../tools/gnome-session-selector.c:112
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Oturım isimleriniñ ‘.’ ile başlaması caiz degildir"
+
+#: ../tools/gnome-session-selector.c:116
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Oturım isimleriniñ ‘/’ remizlerini ihtiva etmesi caiz degildir"
+
+#: ../tools/gnome-session-selector.c:124
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Bir '%s' isimli oturım endi mevcuttır"
+
+#: ../tools/gnome-session-quit.c:53
 msgid "Log out"
 msgstr "Tışarı imzalan"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Power off"
 msgstr "Söndür"
 
-#: ../tools/gnome-session-quit.c:54
+# tüklü
+#: ../tools/gnome-session-quit.c:55
+msgid "Reboot"
+msgstr "Kene başlat"
+
+#: ../tools/gnome-session-quit.c:56
 msgid "Ignoring any existing inhibitors"
 msgstr "Mevcut her türlü sedlerni ihmal eterek"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:57
 msgid "Don't prompt for user confirmation"
 msgstr "Qullanıcı teyiti içün indeme"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Oturım idarecisine bağlanılamadı"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
+
+#~ msgid "GNOME fallback"
+#~ msgstr "GNOME ricatı"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>Bazı programlar ale çapmaqta:</b>"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "'%s' işaretçigi tapılamadı"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "%d kodu ile terk etti"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "Signal %d tarafından öldürildi"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "Signal %d tarafından toqtatıldı"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "GNOME 3 Yüklenmekte Muvaffaqiyetsiz Edi"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "Teessüf ki GNOME 3 uyğun olaraq başlayamadı ve <i>ricat tarzında</i> "
+#~ "başladı.\n"
+#~ "\n"
+#~ "Bu eñ muhtemelen sistemiñiz (grafikler donanımı yaki sürücisi) tolu GNOME "
+#~ "3 tecribesini sunmaq içün qabiliyetli degil demektir."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "GNOME 3 haqqında daha çoq ögren"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr ""
+#~ "İçeri imzalanuv oturımı başlatılalmay (ve X sunucısına bağlanılalmay)"
 
 #~ msgid ""
 #~ "A problem has occurred and the system can't recover. Some of the "
@@ -487,9 +607,6 @@ msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
 #~ "bazıları belki de buña sebep olğandır.\n"
 #~ "Lütfen bularnıñ bazılarını ğayrıqabilleştirmege deñeñiz, soñra tışarı "
 #~ "imzalanıp tekrar deñeñiz."
-
-#~ msgid "Default session"
-#~ msgstr "Ög-belgilengen oturım"
 
 #~ msgid "File Manager"
 #~ msgstr "Dosye İdarecisi"
@@ -534,9 +651,6 @@ msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
 #~ msgid "Required session components"
 #~ msgstr "Talap etilgen oturım komponentleri"
 
-#~ msgid "Save sessions"
-#~ msgstr "Oturımlarnı saqla"
-
 #~ msgid ""
 #~ "The file manager provides the desktop icons and allows you to interact "
 #~ "with your saved files."
@@ -578,9 +692,6 @@ msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
 
 #~ msgid "GConf key used to look up default session"
 #~ msgstr "Ögbelgilengen oturımnı baqıp almaq içün qullanılğan GConf anahtarı"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "Tışarı imzalanuv dialogını köster"
 
 #~ msgid "Show shutdown dialog"
 #~ msgstr "Qapatuv dialogını köster"
@@ -666,9 +777,6 @@ msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
 
 #~ msgid "Your session has been saved."
 #~ msgstr "Oturımıñız saqlanğandır."
-
-#~ msgid "Failed to save session"
-#~ msgstr "Oturım saqlanamadı"
 
 # tüklü
 #~ msgid "Could not connect to the session bus"
@@ -785,10 +893,6 @@ msgstr "Program çatışqan ihtiyariyat ile çağırıldı"
 
 #~ msgid "Unable to connect to the X server"
 #~ msgstr "X sunucısına bağlanılalmay"
-
-# tüklü
-#~ msgid "Reboot Anyway"
-#~ msgstr "Kene de Yañıdan Başlat"
 
 #~ msgid "Ubuntu Desktop Edition"
 #~ msgstr "Ubuntu Masaüstü Tahriri"
