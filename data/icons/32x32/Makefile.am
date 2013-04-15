@@ -1,6 +1,7 @@
 size = 32x32
 
-iconsdir = $(datadir)/icons/hicolor/$(size)/apps
+themedir = $(datadir)/icons/hicolor
+iconsdir = $(themedir)/$(size)/apps
 
 icons_DATA = session-properties.png
 icons_SOURCE = session-properties.svg
@@ -15,6 +16,9 @@ install-data-hook:
 		echo "*** Icon cache not updated. After install, run this:"; \
 		echo "***   $(gtk_update_icon_cache)"; \
 	fi
+
+uninstall-hook:
+	@rm -f  $(DESTDIR)$(themedir)/icon-theme.cache
 
 EXTRA_DIST =		\
 	$(icons_DATA)	\
