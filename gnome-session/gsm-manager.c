@@ -4003,6 +4003,7 @@ add_autostart_app_internal (GsmManager *manager,
 {
         GsmApp  *app;
         char   **internal_provides;
+        GError *error = NULL;
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         g_return_val_if_fail (path != NULL, FALSE);
@@ -4033,9 +4034,10 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
-        app = gsm_autostart_app_new (path);
+        app = gsm_autostart_app_new (path, &error);
         if (app == NULL) {
-                g_warning ("could not read %s", path);
+                g_warning ("%s", error->message);
+                g_clear_error (&error);
                 return FALSE;
         }
 

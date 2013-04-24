@@ -97,7 +97,10 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 #define GSM_AUTOSTART_APP_GET_PRIVATE(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), GSM_TYPE_AUTOSTART_APP, GsmAutostartAppPrivate))
 
-G_DEFINE_TYPE (GsmAutostartApp, gsm_autostart_app, GSM_TYPE_APP)
+static void gsm_autostart_app_initable_iface_init (GInitableIface  *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GsmAutostartApp, gsm_autostart_app, GSM_TYPE_APP,
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, gsm_autostart_app_initable_iface_init))
 
 static void
 gsm_autostart_app_init (GsmAutostartApp *app)
@@ -591,8 +594,8 @@ setup_condition_monitor (GsmAutostartApp *app)
         }
 }
 
-static gboolean
-load_desktop_file (GsmAutostartApp *app)
+static void
+load_desktop_file (GsmAutostartApp  *app)
 {
         char    *dbus_name;
         char    *startup_id;
@@ -600,9 +603,7 @@ load_desktop_file (GsmAutostartApp *app)
         int      phase;
         gboolean res;
 
-        if (app->priv->app_info == NULL) {
-                return FALSE;
-        }
+        g_assert (app->priv->app_info != NULL);
 
         phase_str = g_desktop_app_info_get_string (app->priv->app_info,
                                                    GSM_AUTOSTART_APP_PHASE_KEY);
@@ -671,8 +672,6 @@ load_desktop_file (GsmAutostartApp *app)
 
         g_free (startup_id);
         g_free (dbus_name);
-
-        return TRUE;
 }
 
 static void
@@ -681,20 +680,16 @@ gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
 {
         if (app->priv->app_info != NULL) {
                 g_clear_object (&app->priv->app_info);
-                g_free (app->priv->desktop_id);
+                g_clear_pointer (&app->priv->desktop_filename, g_free);
+                g_clear_pointer (&app->priv->desktop_id, g_free);
         }
 
         if (desktop_filename == NULL) {
                 return;
         }
 
+        app->priv->desktop_filename = g_strdup (desktop_filename);
         app->priv->desktop_id = g_path_get_basename (desktop_filename);
-
-        app->priv->app_info = g_desktop_app_info_new_from_filename (desktop_filename);
-        if (app->priv->app_info == NULL) {
-                g_warning ("Could not parse desktop file %s or it references a not found TryExec binary", desktop_filename);
-                return;
-        }
 }
 
 static void
@@ -758,6 +753,7 @@ gsm_autostart_app_dispose (GObject *object)
         g_clear_pointer (&priv->condition_string, g_free);
         g_clear_object (&priv->condition_settings);
         g_clear_object (&priv->app_info);
+        g_clear_pointer (&priv->desktop_filename, g_free);
         g_clear_pointer (&priv->desktop_id, g_free);
 
         if (priv->child_watch_id > 0) {
@@ -1365,23 +1361,30 @@ gsm_autostart_app_get_app_id (GsmApp *app)
         }
 }
 
-static GObject *
-gsm_autostart_app_constructor (GType                  type,
-                               guint                  n_construct_properties,
-                               GObjectConstructParam *construct_properties)
+static gboolean
+gsm_autostart_app_initable_init (GInitable *initable,
+                                 GCancellable *cancellable,
+                                 GError  **error)
 {
-        GsmAutostartApp *app;
+        GsmAutostartApp *app = GSM_AUTOSTART_APP (initable);
 
-        app = GSM_AUTOSTART_APP (G_OBJECT_CLASS (gsm_autostart_app_parent_class)->constructor (type,
-                                                                                               n_construct_properties,
-                                                                                               construct_properties));
-
-        if (! load_desktop_file (app)) {
-                g_object_unref (app);
-                app = NULL;
+        g_assert (app->priv->desktop_filename != NULL);
+        app->priv->app_info = g_desktop_app_info_new_from_filename (app->priv->desktop_filename);
+        if (app->priv->app_info == NULL) {
+                g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                             "Could not parse desktop file %s or it references a not found TryExec binary", app->priv->desktop_id);
+                return FALSE;
         }
 
-        return G_OBJECT (app);
+        load_desktop_file (app);
+
+        return TRUE;
+}
+
+static void
+gsm_autostart_app_initable_iface_init (GInitableIface  *iface)
+{
+        iface->init = gsm_autostart_app_initable_init;
 }
 
 static void
@@ -1393,7 +1396,6 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->set_property = gsm_autostart_app_set_property;
         object_class->get_property = gsm_autostart_app_get_property;
         object_class->dispose = gsm_autostart_app_dispose;
-        object_class->constructor = gsm_autostart_app_constructor;
 
         app_class->impl_is_disabled = is_disabled;
         app_class->impl_is_conditionally_disabled = is_conditionally_disabled;
@@ -1428,13 +1430,10 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
 }
 
 GsmApp *
-gsm_autostart_app_new (const char *desktop_file)
+gsm_autostart_app_new (const char *desktop_file,
+                       GError    **error)
 {
-        GsmAutostartApp *app;
-
-        app = g_object_new (GSM_TYPE_AUTOSTART_APP,
-                            "desktop-filename", desktop_file,
-                            NULL);
-
-        return GSM_APP (app);
+        return (GsmApp*) g_initable_new (GSM_TYPE_AUTOSTART_APP, NULL, error,
+                                         "desktop-filename", desktop_file,
+                                         NULL);
 }

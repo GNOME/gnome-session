@@ -57,7 +57,8 @@ struct _GsmAutostartAppClass
 
 GType   gsm_autostart_app_get_type           (void) G_GNUC_CONST;
 
-GsmApp *gsm_autostart_app_new                (const char *desktop_file);
+GsmApp *gsm_autostart_app_new                (const char *desktop_file,
+                                              GError    **error);
 
 void    gsm_autostart_app_add_provides       (GsmAutostartApp *aapp,
                                               const char      *provides);
