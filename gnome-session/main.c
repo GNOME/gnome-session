@@ -48,6 +48,10 @@
 #include "gsm-system.h"
 #include "gsm-fail-whale.h"
 
+#ifdef HAVE_SYSTEMD
+#include <systemd/sd-journal.h>
+#endif
+
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
 static gboolean failsafe = FALSE;
@@ -291,6 +295,18 @@ main (int argc, char **argv)
         if (!require_dbus_session (argc, argv, &error)) {
                 gsm_util_init_error (TRUE, "%s", error->message);
         }
+
+#ifdef HAVE_SYSTEMD
+        {
+                int journalfd;
+
+                journalfd = sd_journal_stream_fd (PACKAGE, LOG_INFO, 0);
+                if (journalfd >= 0) {
+                        dup2(journalfd, 1);
+                        dup2(journalfd, 2);
+                }
+        }
+#endif
 
         /* Check GL, if it doesn't work out then force software fallback */
         if (!check_gl (&error)) {
