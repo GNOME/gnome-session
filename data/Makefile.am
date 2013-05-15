@@ -50,6 +50,8 @@ EXTRA_DIST =					\
 	$(xsession_in_files)			\
 	$(session_in_in_files)			\
 	$(gsettings_SCHEMAS:.xml=.xml.in)	\
+	session-selector.ui			\
+	gnome-custom-session.desktop.in		\
 	$(ui_DATA)				\
 	$(hwcompat_DATA)
 
