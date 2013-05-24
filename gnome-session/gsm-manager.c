@@ -2916,13 +2916,25 @@ is_valid_category (int category)
 		LC_COLLATE,
 		LC_MONETARY,
 		LC_MESSAGES,
-		LC_ALL,
+#if defined (LC_PAPER)
 		LC_PAPER,
+#endif
+#if defined (LC_NAME)
 		LC_NAME,
+#endif
+#if defined (LC_ADDRESS)
 		LC_ADDRESS,
+#endif
+#if defined (LC_TELEPHONE)
 		LC_TELEPHONE,
+#endif
+#if defined (LC_MEASUREMENT)
 		LC_MEASUREMENT,
-		LC_IDENTIFICATION
+#endif
+#if defined (LC_IDENTIFICATION)
+		LC_IDENTIFICATION,
+#endif
+		LC_ALL
 	};
 	guint i;
 
