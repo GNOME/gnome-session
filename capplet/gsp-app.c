@@ -41,18 +41,20 @@
 
 #define GSP_APP_SAVE_DELAY 2
 
-#define GSP_ASP_SAVE_MASK_HIDDEN   0x0001
-#define GSP_ASP_SAVE_MASK_ENABLED  0x0002
-#define GSP_ASP_SAVE_MASK_NAME     0x0004
-#define GSP_ASP_SAVE_MASK_EXEC     0x0008
-#define GSP_ASP_SAVE_MASK_COMMENT  0x0010
-#define GSP_ASP_SAVE_MASK_ALL      0xffff
+#define GSP_ASP_SAVE_MASK_HIDDEN     0x0001
+#define GSP_ASP_SAVE_MASK_ENABLED    0x0002
+#define GSP_ASP_SAVE_MASK_NAME       0x0004
+#define GSP_ASP_SAVE_MASK_EXEC       0x0008
+#define GSP_ASP_SAVE_MASK_COMMENT    0x0010
+#define GSP_ASP_SAVE_MASK_NO_DISPLAY 0x0020
+#define GSP_ASP_SAVE_MASK_ALL        0xffff
 
 struct _GspAppPrivate {
         char         *basename;
         char         *path;
 
         gboolean      hidden;
+        gboolean      no_display;
         gboolean      enabled;
         gboolean      shown;
 
@@ -341,6 +343,14 @@ _gsp_app_user_equal_system (GspApp  *app,
                 return FALSE;
         }
 
+        if (gsp_key_file_get_boolean (keyfile,
+                                      G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY,
+                                      FALSE) != app->priv->no_display) {
+                g_free (path);
+                g_key_file_free (keyfile);
+                return FALSE;
+        }
+
         str = gsp_key_file_get_locale_string (keyfile,
                                               G_KEY_FILE_DESKTOP_KEY_NAME);
         if (!_gsp_str_equal (str, app->priv->name)) {
@@ -449,6 +459,12 @@ _gsp_app_save (gpointer data)
                                           app->priv->hidden);
         }
 
+        if (app->priv->save_mask & GSP_ASP_SAVE_MASK_NO_DISPLAY) {
+                gsp_key_file_set_boolean (keyfile,
+                                          G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY,
+                                          app->priv->no_display);
+        }
+
         if (app->priv->save_mask & GSP_ASP_SAVE_MASK_ENABLED) {
                 gsp_key_file_set_boolean (keyfile,
                                           GSP_KEY_FILE_DESKTOP_KEY_AUTOSTART_ENABLED,
@@ -545,6 +561,14 @@ gsp_app_get_hidden (GspApp *app)
         g_return_val_if_fail (GSP_IS_APP (app), FALSE);
 
         return app->priv->hidden;
+}
+
+gboolean
+gsp_app_get_display (GspApp *app)
+{
+        g_return_val_if_fail (GSP_IS_APP (app), FALSE);
+
+        return !app->priv->no_display;
 }
 
 gboolean
@@ -805,6 +829,9 @@ gsp_app_new (const char   *path,
         app->priv->hidden = gsp_key_file_get_boolean (keyfile,
                                                       G_KEY_FILE_DESKTOP_KEY_HIDDEN,
                                                       FALSE);
+        app->priv->no_display = gsp_key_file_get_boolean (keyfile,
+                                                          G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY,
+                                                          FALSE);
         app->priv->enabled = gsp_key_file_get_boolean (keyfile,
                                                        GSP_KEY_FILE_DESKTOP_KEY_AUTOSTART_ENABLED,
                                                        TRUE);
@@ -952,6 +979,7 @@ gsp_app_create (const char *name,
                                             app->priv->basename, NULL);
 
         app->priv->hidden = FALSE;
+        app->priv->no_display = FALSE;
         app->priv->enabled = TRUE;
         app->priv->shown = TRUE;
 
@@ -1047,6 +1075,12 @@ gsp_app_copy_desktop_file (const char *uri)
                 changed = TRUE;
                 app->priv->hidden = FALSE;
                 app->priv->save_mask |= GSP_ASP_SAVE_MASK_HIDDEN;
+        }
+
+        if (app->priv->no_display) {
+                changed = TRUE;
+                app->priv->no_display = FALSE;
+                app->priv->save_mask |= GSP_ASP_SAVE_MASK_NO_DISPLAY;
         }
 
         if (!app->priv->enabled) {

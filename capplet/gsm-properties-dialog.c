@@ -112,6 +112,7 @@ _fill_iter_from_app (GtkListStore *list_store,
                      GspApp       *app)
 {
         gboolean    hidden;
+        gboolean    display;
         gboolean    enabled;
         gboolean    shown;
         GIcon      *icon;
@@ -119,6 +120,7 @@ _fill_iter_from_app (GtkListStore *list_store,
         const char *app_name;
 
         hidden      = gsp_app_get_hidden (app);
+        display     = gsp_app_get_display (app);
         enabled     = gsp_app_get_enabled (app);
         shown       = gsp_app_get_shown (app);
         icon        = gsp_app_get_icon (app);
@@ -151,7 +153,7 @@ _fill_iter_from_app (GtkListStore *list_store,
         }
 
         gtk_list_store_set (list_store, iter,
-                            STORE_COL_VISIBLE, !hidden && shown,
+                            STORE_COL_VISIBLE, !hidden && shown && display,
                             STORE_COL_ENABLED, enabled,
                             STORE_COL_GICON, icon,
                             STORE_COL_DESCRIPTION, description,
