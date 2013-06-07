@@ -647,7 +647,10 @@ app_exited (GsmApp     *app,
             guchar      exit_code,
             GsmManager *manager)
 {
-        g_debug ("App %s exited with %d", gsm_app_peek_app_id (app), exit_code);
+        if (exit_code != 0)
+                g_warning ("App '%s' exited with code %d", gsm_app_peek_app_id (app), exit_code);
+        else
+                g_debug ("App %s exited successfully", gsm_app_peek_app_id (app));
 
         /* Consider that non-success exit status means "crash" for required components */
         if (exit_code != 0 && is_app_required (manager, app)) {
