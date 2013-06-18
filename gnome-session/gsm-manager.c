@@ -1902,15 +1902,24 @@ remove_inhibitors_for_connection (GsmManager *manager,
                                   const char *service_name)
 {
         RemoveClientData data;
+        guint count;
 
         data.service_name = service_name;
         data.manager = manager;
 
         debug_inhibitors (manager);
 
-        gsm_store_foreach_remove (manager->priv->inhibitors,
-                                  (GsmStoreFunc)inhibitor_has_bus_name,
-                                  &data);
+        count = gsm_store_foreach_remove (manager->priv->inhibitors,
+                                          (GsmStoreFunc)inhibitor_has_bus_name,
+                                          &data);
+        if (count > 0 &&
+            manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                if (gsm_shell_is_running (manager->priv->shell)) {
+                        end_session_or_show_shell_dialog (manager);
+                } else {
+                        end_session_or_show_fallback_dialog (manager);
+                }
+        }
 }
 
 static void
