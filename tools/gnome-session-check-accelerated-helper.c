@@ -90,6 +90,7 @@
 #define SIZE_ERROR -1
 static int max_texture_size = SIZE_UNSET;
 static int max_renderbuffer_size = SIZE_UNSET;
+static gboolean has_llvmpipe = FALSE;
 
 static inline void
 _print_error (const char *str)
@@ -278,6 +279,8 @@ _has_hardware_gl (Display *display)
         renderer = (const char *) glGetString (GL_RENDERER);
         if (_is_gl_renderer_blacklisted (renderer))
                 goto out;
+        if (renderer && strcasestr (renderer, "llvmpipe"))
+		has_llvmpipe = TRUE;
 
         /* we need to get the max texture and renderbuffer sizes while we have
          * a context, but we'll check their values later */
@@ -441,6 +444,12 @@ main (int argc, char **argv)
 
         if (!_is_max_texture_size_big_enough (display)) {
                 _print_error ("GL_MAX_{TEXTURE,RENDERBUFFER}_SIZE is too small.");
+                goto out;
+        }
+
+        if (has_llvmpipe) {
+                _print_error ("llvmpipe detected.");
+                ret = HELPER_SOFTWARE_RENDERING;
                 goto out;
         }
 

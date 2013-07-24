@@ -41,6 +41,7 @@
 #define ACCEL_CHECK_RUNNING 2
 
 static Atom is_accelerated_atom;
+static Atom is_software_rendering_atom;
 static gboolean property_changed;
 
 static void
@@ -106,7 +107,7 @@ main (int argc, char **argv)
         int estatus;
         char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-helper", NULL };
         Window rootwin;
-        glong is_accelerated;
+        glong is_accelerated, is_software_rendering;
         GError *error = NULL;
 
         gtk_init (NULL, NULL);
@@ -115,6 +116,7 @@ main (int argc, char **argv)
         rootwin = gdk_x11_get_default_root_xwindow ();
 
         is_accelerated_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_SESSION_ACCELERATED");
+        is_software_rendering_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_IS_SOFTWARE_RENDERING");
 
         {
                 Atom type;
@@ -163,10 +165,12 @@ main (int argc, char **argv)
         if (!g_spawn_sync (NULL, (char**)child_argv, NULL, 0,
                            NULL, NULL, NULL, NULL, &estatus, &error)) {
                 is_accelerated = FALSE;
+                is_software_rendering = FALSE;
                 g_printerr ("gnome-session-check-accelerated: Failed to run helper: %s\n", error->message);
                 g_clear_error (&error);
         } else {
-                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
+                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL) || (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
+                is_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
                 if (!is_accelerated)
                         g_printerr ("gnome-session-check-accelerated: Helper exited with code %d\n", estatus);
         }
@@ -176,6 +180,13 @@ main (int argc, char **argv)
 				rootwin,
 				is_accelerated_atom,
 				XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_accelerated, 1);
+	}
+
+	if (is_software_rendering) {
+		XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
+				rootwin,
+				is_software_rendering_atom,
+				XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_software_rendering, 1);
 	}
 
         gdk_display_sync (display);

@@ -25,3 +25,5 @@
 /* Exit value for helper */
 #define HELPER_ACCEL 0
 #define HELPER_NO_ACCEL 1
+#define HELPER_SOFTWARE_RENDERING 2
+
