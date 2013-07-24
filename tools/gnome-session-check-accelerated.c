@@ -171,12 +171,12 @@ main (int argc, char **argv)
                         g_printerr ("gnome-session-check-accelerated: Helper exited with code %d\n", estatus);
         }
 
-        if (is_accelerated) {
-            XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
-                             rootwin,
-                             is_accelerated_atom,
-                             XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_accelerated, 1);
-        }
+	if (is_accelerated) {
+		XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
+				rootwin,
+				is_accelerated_atom,
+				XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_accelerated, 1);
+	}
 
         gdk_display_sync (display);
 
