@@ -42,6 +42,7 @@ gnome_session_inhibit_LDADD =			\
 	$(GNOME_SESSION_LIBS)
 
 gnome_session_check_accelerated_helper_SOURCES = 		\
+	gnome-session-check-accelerated-common.h		\
 	gnome-session-check-accelerated-helper.c
 
 gnome_session_check_accelerated_helper_CPPFLAGS =	\
@@ -52,7 +53,8 @@ gnome_session_check_accelerated_helper_LDADD = 		\
 	$(GL_TEST_LIBS)				\
 	$(X11_LIBS)
 
-gnome_session_check_accelerated_SOURCES =       \
+gnome_session_check_accelerated_SOURCES =       	\
+	gnome-session-check-accelerated-common.h	\
 	gnome-session-check-accelerated.c
 
 gnome_session_check_accelerated_CPPFLAGS =      \

@@ -28,6 +28,9 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
+#include <sys/wait.h>
+
+#include "gnome-session-check-accelerated-common.h"
 
 /* Wait up to this long for a running check to finish */
 #define PROPERTY_CHANGE_TIMEOUT 5000
@@ -163,7 +166,7 @@ main (int argc, char **argv)
                 g_printerr ("gnome-session-check-accelerated: Failed to run helper: %s\n", error->message);
                 g_clear_error (&error);
         } else {
-                is_accelerated = (estatus == 0);
+                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
                 if (!is_accelerated)
                         g_printerr ("gnome-session-check-accelerated: Helper exited with code %d\n", estatus);
         }

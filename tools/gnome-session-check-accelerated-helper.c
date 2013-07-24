@@ -84,6 +84,8 @@
 #include <GL/gl.h>
 #include <GL/glx.h>
 
+#include "gnome-session-check-accelerated-common.h"
+
 #define SIZE_UNSET 0
 #define SIZE_ERROR -1
 static int max_texture_size = SIZE_UNSET;
@@ -402,13 +404,13 @@ main (int argc, char **argv)
 {
         int      kcmdline_parsed;
         Display *display = NULL;
-        int      ret = 1;
+        int      ret = HELPER_NO_ACCEL;
 
         kcmdline_parsed = _parse_kcmdline ();
         if (kcmdline_parsed > CMDLINE_UNSET) {
                 if (kcmdline_parsed == CMDLINE_NON_FALLBACK_FORCED) {
                         _print_error ("Non-fallback mode forced by kernel command line.");
-                        ret = 0;
+                        ret = HELPER_ACCEL;
                         goto out;
                 } else if (kcmdline_parsed == CMDLINE_FALLBACK_FORCED) {
                         _print_error ("Fallback mode forced by kernel command line.");
@@ -442,7 +444,7 @@ main (int argc, char **argv)
                 goto out;
         }
 
-        ret = 0;
+        ret = HELPER_ACCEL;
 
 out:
         if (display)
