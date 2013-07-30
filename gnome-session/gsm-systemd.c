@@ -321,6 +321,12 @@ gsm_systemd_init (GsmSystemd *manager)
                                       G_MAXINT,
                                       NULL,
                                       NULL);
+        if (res == NULL) {
+                g_warning ("Could not get session id for session. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return;
+        }
+
         g_variant_get (res, "(o)", &manager->priv->session_path);
         g_variant_unref (res);
 
@@ -501,6 +507,12 @@ gsm_systemd_can_restart (GsmSystem *system)
                                       G_MAXINT,
                                       NULL,
                                       NULL);
+        if (!res) {
+                g_warning ("Calling CanReboot failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return FALSE;
+        }
+
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
@@ -527,6 +539,12 @@ gsm_systemd_can_stop (GsmSystem *system)
                                       G_MAXINT,
                                       NULL,
                                       NULL);
+        if (!res) {
+                g_warning ("Calling CanPowerOff failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return FALSE;
+        }
+
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
@@ -578,6 +596,12 @@ gsm_systemd_can_suspend (GsmSystem *system)
                                       G_MAXINT,
                                       NULL,
                                       NULL);
+        if (!res) {
+                g_warning ("Calling CanSuspend failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return FALSE;
+        }
+
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
@@ -604,6 +628,12 @@ gsm_systemd_can_hibernate (GsmSystem *system)
                                       G_MAXINT,
                                       NULL,
                                       NULL);
+        if (!res) {
+                g_warning ("Calling CanHibernate failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return FALSE;
+        }
+
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
