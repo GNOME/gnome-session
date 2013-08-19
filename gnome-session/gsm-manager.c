@@ -448,6 +448,9 @@ phase_num_to_name (guint phase)
         case GSM_MANAGER_PHASE_STARTUP:
                 name = "STARTUP";
                 break;
+        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+                name = "EARLY_INITIALIZATION";
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
                 name = "INITIALIZATION";
                 break;
@@ -549,6 +552,7 @@ end_phase (GsmManager *manager)
 
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -696,6 +700,7 @@ on_phase_timeout (GsmManager *manager)
 
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -1535,6 +1540,7 @@ start_phase (GsmManager *manager)
 
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
+        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -1601,7 +1607,7 @@ debug_app_summary (GsmManager *manager)
         guint phase;
 
         g_debug ("GsmManager: App startup summary");
-        for (phase = GSM_MANAGER_PHASE_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
+        for (phase = GSM_MANAGER_PHASE_EARLY_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
                 g_debug ("GsmManager: Phase %s", phase_num_to_name (phase));
                 gsm_store_foreach (manager->priv->apps,
                                    (GsmStoreFunc)_debug_app_for_phase,
@@ -1617,7 +1623,7 @@ gsm_manager_start (GsmManager *manager)
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
         gsm_xsmp_server_start (manager->priv->xsmp_server);
-        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_INITIALIZATION);
+        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EARLY_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
 }

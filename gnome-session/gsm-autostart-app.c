@@ -608,7 +608,9 @@ load_desktop_file (GsmAutostartApp  *app)
         phase_str = g_desktop_app_info_get_string (app->priv->app_info,
                                                    GSM_AUTOSTART_APP_PHASE_KEY);
         if (phase_str != NULL) {
-                if (strcmp (phase_str, "Initialization") == 0) {
+                if (strcmp (phase_str, "EarlyInitialization") == 0) {
+                        phase = GSM_MANAGER_PHASE_EARLY_INITIALIZATION;
+                } else if (strcmp (phase_str, "Initialization") == 0) {
                         phase = GSM_MANAGER_PHASE_INITIALIZATION;
                 } else if (strcmp (phase_str, "WindowManager") == 0) {
                         phase = GSM_MANAGER_PHASE_WINDOW_MANAGER;
