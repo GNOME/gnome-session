@@ -448,6 +448,9 @@ phase_num_to_name (guint phase)
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
                 name = "EARLY_INITIALIZATION";
                 break;
+        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
+                name = "DISPLAY_SERVER";
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
                 name = "INITIALIZATION";
                 break;
@@ -540,6 +543,7 @@ end_phase (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -688,6 +692,7 @@ on_phase_timeout (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -1525,6 +1530,7 @@ start_phase (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -2937,7 +2943,7 @@ gsm_manager_setenv (GsmManager  *manager,
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
-                             "Setenv interface is only available during the Initialization phase");
+                             "Setenv interface is only available during the DisplayServer and Initialization phase");
                 return FALSE;
         }
 
@@ -3016,7 +3022,7 @@ gsm_manager_initialization_error (GsmManager  *manager,
 {
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
-        if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
+        if (manager->priv->phase != GSM_MANAGER_PHASE_INITIALIZATION) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,

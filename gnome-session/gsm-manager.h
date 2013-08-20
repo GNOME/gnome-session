@@ -71,6 +71,8 @@ typedef enum {
         GSM_MANAGER_PHASE_STARTUP = 0,
         /* gnome-initial-setup */
         GSM_MANAGER_PHASE_EARLY_INITIALIZATION,
+        /* wayland compositor and XWayland */
+        GSM_MANAGER_PHASE_DISPLAY_SERVER,
         /* xrandr setup, gnome-settings-daemon, etc */
         GSM_MANAGER_PHASE_INITIALIZATION,
         /* window/compositing managers */
