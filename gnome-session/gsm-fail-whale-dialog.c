@@ -27,7 +27,10 @@
 
 #include <glib/gi18n.h>
 
+#include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
 #include <gtk/gtkx.h>
+#endif
 
 #include "gsm-fail-whale-dialog.h"
 
@@ -51,6 +54,11 @@ static void
 _window_override_user_time (GsmFailWhaleDialog *window)
 {
         guint32 ev_time = gtk_get_current_event_time ();
+        GdkWindow *gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
+
+#ifdef GDK_WINDOWING_X11
+        if (!GDK_IS_X11_WINDOW (gdk_window))
+                return;
 
         if (ev_time == 0) {
                 gint ev_mask = gtk_widget_get_events (GTK_WIDGET (window));
@@ -63,10 +71,11 @@ _window_override_user_time (GsmFailWhaleDialog *window)
                  * NOTE: Last resort for D-BUS or other non-interactive
                  *       openings.  Causes roundtrip to server.  Lame.
                  */
-                ev_time = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+                ev_time = gdk_x11_get_server_time (gdk_window);
         }
 
-        gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), ev_time);
+        gdk_x11_window_set_user_time (gdk_window, ev_time);
+#endif
 }
 
 static void
