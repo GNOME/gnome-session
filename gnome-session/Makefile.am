@@ -8,6 +8,7 @@ noinst_PROGRAMS = 		\
 	test-process-helper
 
 AM_CPPFLAGS =					\
+	$(GTK3_CFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
@@ -32,10 +33,6 @@ gnome_session_SOURCES =				\
 	gsm-consolekit.h			\
 	gsm-systemd.h				\
 	gsm-systemd.c				\
-	gsm-logout-dialog.h			\
-	gsm-logout-dialog.c			\
-	gsm-inhibit-dialog.h			\
-	gsm-inhibit-dialog.c			\
 	gsm-presence.h				\
 	gsm-presence-flag.h			\
 	gsm-presence.c				\
@@ -118,7 +115,7 @@ gnome_session_failed_LDADD =   \
        $(GTK3_LIBS)
 
 test_inhibit_SOURCES = test-inhibit.c
-test_inhibit_LDADD = $(GNOME_SESSION_LIBS)
+test_inhibit_LDADD = $(GTK3_LIBS) $(GNOME_SESSION_LIBS)
 
 test_client_dbus_SOURCES = test-client-dbus.c
 test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)

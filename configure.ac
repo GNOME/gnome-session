@@ -63,7 +63,6 @@ PKG_CHECK_MODULES(GTK3, gtk+-3.0 >= $GTK3_REQUIRED)
 PKG_CHECK_MODULES(GNOME_SESSION,
         glib-2.0 >= $GLIB_REQUIRED
         gio-2.0 >= $GLIB_REQUIRED
-        gtk+-3.0 >= $GTK3_REQUIRED
         dbus-glib-1 >= $DBUS_GLIB_REQUIRED
         upower-glib >= $UPOWER_REQUIRED
         json-glib-1.0 >= $JSON_GLIB_REQUIRED

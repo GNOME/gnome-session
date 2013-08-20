@@ -36,10 +36,9 @@
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
 #include <glib-object.h>
+#include <gio/gio.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
-
-#include <gtk/gtk.h> /* for logout dialog */
 
 #include "gsm-manager.h"
 #include "gsm-manager-glue.h"
@@ -60,9 +59,7 @@
 #include "gsm-autostart-app.h"
 
 #include "gsm-util.h"
-#include "gsm-logout-dialog.h"
 #include "gsm-icon-names.h"
-#include "gsm-inhibit-dialog.h"
 #include "gsm-system.h"
 #include "gsm-session-save.h"
 #include "gsm-shell-extensions.h"
@@ -147,8 +144,6 @@ struct GsmManagerPrivate
         /* This is the action that will be done just before we exit */
         GsmManagerLogoutType    logout_type;
 
-        GtkWidget              *inhibit_dialog;
-
         /* List of clients which were disconnected due to disabled condition
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
@@ -204,7 +199,6 @@ static gboolean auto_save_is_enabled (GsmManager *manager);
 static void     maybe_save_session   (GsmManager *manager);
 
 static gboolean _log_out_is_locked_down     (GsmManager *manager);
-static gboolean _switch_user_is_locked_down (GsmManager *manager);
 
 static void     _handle_client_end_session_response (GsmManager *manager,
                                                      GsmClient  *client,
@@ -1074,13 +1068,6 @@ cancel_end_session (GsmManager *manager)
 
         g_cancellable_cancel (manager->priv->end_session_cancellable);
 
-        /* remove the dialog before we remove the inhibitors, else the dialog
-         * will activate itself automatically when the last inhibitor will be
-         * removed */
-        if (manager->priv->inhibit_dialog)
-                gtk_widget_destroy (GTK_WIDGET (manager->priv->inhibit_dialog));
-        manager->priv->inhibit_dialog = NULL;
-
         /* clear all JIT inhibitors */
         gsm_store_foreach_remove (manager->priv->inhibitors,
                                   (GsmStoreFunc)inhibitor_is_jit,
@@ -1096,214 +1083,6 @@ cancel_end_session (GsmManager *manager)
         manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
 
         start_phase (manager);
-}
-
-
-static void
-manager_switch_user (GdkDisplay *display,
-                     GsmManager *manager)
-{
-        GError  *error;
-        char    *command;
-        GAppLaunchContext *context;
-        GAppInfo *app;
-
-	/* We have to do this here and in request_switch_user() because this
-	 * function can be called at a later time, not just directly after
-	 * request_switch_user(). */
-	if (_switch_user_is_locked_down (manager)) {
-		g_warning ("Unable to switch user: User switching has been locked down");
-		return;
-	}
-
-        command = g_strdup_printf ("%s %s",
-                                   GDM_FLEXISERVER_COMMAND,
-                                   GDM_FLEXISERVER_ARGS);
-
-        error = NULL;
-        context = (GAppLaunchContext*) gdk_display_get_app_launch_context (display);
-        app = g_app_info_create_from_commandline (command, GDM_FLEXISERVER_COMMAND, 0, &error);
-
-        if (app) {
-                g_app_info_launch (app, NULL, context, &error);
-                g_object_unref (app);
-        }
-
-        g_free (command);
-        g_object_unref (context);
-
-        if (error) {
-                g_debug ("GsmManager: Unable to start GDM greeter: %s", error->message);
-                g_error_free (error);
-        }
-}
-
-static gboolean
-sleep_lock_is_enabled (GsmManager *manager)
-{
-        return g_settings_get_boolean (manager->priv->screensaver_settings,
-                                       KEY_SLEEP_LOCK);
-}
-
-static void
-manager_perhaps_lock (GsmManager *manager)
-{
-        GError   *error;
-        gboolean  ret;
-
-        /* only lock if gnome-screensaver is set to lock */
-        if (!sleep_lock_is_enabled (manager)) {
-                return;
-        }
-
-        /* do this sync to ensure it's on the screen when we start suspending */
-        error = NULL;
-        ret = g_spawn_command_line_sync ("gnome-screensaver-command --lock", NULL, NULL, NULL, &error);
-        if (!ret) {
-                g_warning ("Couldn't lock screen: %s", error->message);
-                g_error_free (error);
-        }
-}
-
-static void
-manager_attempt_hibernate (GsmManager *manager)
-{
-        if (gsm_system_can_hibernate (manager->priv->system)) {
-                /* lock the screen before we suspend */
-                manager_perhaps_lock (manager);
-                gsm_system_hibernate (manager->priv->system);
-        }
-}
-
-static void
-manager_attempt_suspend (GsmManager *manager)
-{
-        if (gsm_system_can_suspend (manager->priv->system)) {
-                /* lock the screen before we suspend */
-                manager_perhaps_lock (manager);
-                gsm_system_suspend (manager->priv->system);
-        }
-}
-
-static void
-do_inhibit_dialog_action (GdkDisplay *display,
-                          GsmManager *manager,
-                          int         action)
-{
-        switch (action) {
-        case GSM_LOGOUT_ACTION_SWITCH_USER:
-                manager_switch_user (display, manager);
-                break;
-        case GSM_LOGOUT_ACTION_HIBERNATE:
-                manager_attempt_hibernate (manager);
-                break;
-        case GSM_LOGOUT_ACTION_SLEEP:
-                manager_attempt_suspend (manager);
-                break;
-        case GSM_LOGOUT_ACTION_SHUTDOWN:
-        case GSM_LOGOUT_ACTION_REBOOT:
-        case GSM_LOGOUT_ACTION_LOGOUT:
-                manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
-                end_phase (manager);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-}
-
-static void
-inhibit_dialog_response (GsmInhibitDialog *dialog,
-                         guint             response_id,
-                         GsmManager       *manager)
-{
-        GdkDisplay *display;
-        int action;
-
-        g_debug ("GsmManager: Inhibit dialog response: %d", response_id);
-
-        display = gtk_widget_get_display (GTK_WIDGET (dialog));
-
-        /* must destroy dialog before cancelling since we'll
-           remove JIT inhibitors and we don't want to trigger
-           action. */
-        g_object_get (dialog, "action", &action, NULL);
-        gtk_widget_destroy (GTK_WIDGET (dialog));
-        manager->priv->inhibit_dialog = NULL;
-
-        /* In case of dialog cancel, switch user, hibernate and
-         * suspend, we just perform the respective action and return,
-         * without shutting down the session. */
-        switch (response_id) {
-        case GTK_RESPONSE_CANCEL:
-        case GTK_RESPONSE_NONE:
-        case GTK_RESPONSE_DELETE_EVENT:
-                if (action == GSM_LOGOUT_ACTION_LOGOUT
-                    || action == GSM_LOGOUT_ACTION_SHUTDOWN
-                    || action == GSM_LOGOUT_ACTION_REBOOT) {
-                        cancel_end_session (manager);
-                }
-                break;
-        case GTK_RESPONSE_ACCEPT:
-                g_debug ("GsmManager: doing action %d", action);
-                do_inhibit_dialog_action (display, manager, action);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-}
-
-static void
-end_session_or_show_fallback_dialog (GsmManager *manager)
-{
-        GsmLogoutAction action;
-
-        if (! gsm_manager_is_logout_inhibited (manager)) {
-                end_phase (manager);
-                return;
-        }
-
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        switch (manager->priv->logout_type) {
-        case GSM_MANAGER_LOGOUT_LOGOUT:
-                action = GSM_LOGOUT_ACTION_LOGOUT;
-                break;
-        case GSM_MANAGER_LOGOUT_REBOOT:
-        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
-                action = GSM_LOGOUT_ACTION_REBOOT;
-                break;
-        case GSM_MANAGER_LOGOUT_SHUTDOWN:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
-                action = GSM_LOGOUT_ACTION_SHUTDOWN;
-                break;
-        default:
-                g_warning ("Unexpected logout type %d when creating inhibit dialog",
-                           manager->priv->logout_type);
-                action = GSM_LOGOUT_ACTION_LOGOUT;
-                break;
-        }
-
-        /* Note: GSM_LOGOUT_ACTION_SHUTDOWN and GSM_LOGOUT_ACTION_REBOOT are
-         * actually handled the same way as GSM_LOGOUT_ACTION_LOGOUT in the
-         * inhibit dialog; the action, if the button is clicked, will be to
-         * simply go to the next phase. */
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                action);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
-                          manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
 }
 
 static void
@@ -1376,12 +1155,7 @@ query_end_session_complete (GsmManager *manager)
                 manager->priv->query_timeout_id = 0;
         }
 
-        if (gsm_shell_is_running (manager->priv->shell)) {
-                end_session_or_show_shell_dialog (manager);
-        } else {
-                end_session_or_show_fallback_dialog (manager);
-        }
-
+        end_session_or_show_shell_dialog (manager);
 }
 
 static guint32
@@ -1942,11 +1716,7 @@ remove_inhibitors_for_connection (GsmManager *manager,
                                           &data);
         if (count > 0 &&
             manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                if (gsm_shell_is_running (manager->priv->shell)) {
-                        end_session_or_show_shell_dialog (manager);
-                } else {
-                        end_session_or_show_fallback_dialog (manager);
-                }
+                end_session_or_show_shell_dialog (manager);
         }
 }
 
@@ -3035,42 +2805,6 @@ gsm_manager_initialization_error (GsmManager  *manager,
         return TRUE;
 }
 
-static gboolean
-gsm_manager_is_switch_user_inhibited (GsmManager *manager)
-{
-        GsmInhibitor *inhibitor;
-
-        if (manager->priv->inhibitors == NULL) {
-                return FALSE;
-        }
-
-        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
-                                                    (GsmStoreFunc)inhibitor_has_flag,
-                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_SWITCH_USER));
-        if (inhibitor == NULL) {
-                return FALSE;
-        }
-        return TRUE;
-}
-
-static gboolean
-gsm_manager_is_suspend_inhibited (GsmManager *manager)
-{
-        GsmInhibitor *inhibitor;
-
-        if (manager->priv->inhibitors == NULL) {
-                return FALSE;
-        }
-
-        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
-                                                    (GsmStoreFunc)inhibitor_has_flag,
-                                                    GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_SUSPEND));
-        if (inhibitor == NULL) {
-                return FALSE;
-        }
-        return TRUE;
-}
-
 static void
 request_reboot (GsmManager *manager)
 {
@@ -3097,62 +2831,6 @@ request_shutdown (GsmManager *manager)
 }
 
 static void
-request_suspend (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting suspend");
-
-        if (! gsm_manager_is_suspend_inhibited (manager)) {
-                manager_attempt_suspend (manager);
-                return;
-        }
-
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_SLEEP);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
-                          manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
-}
-
-static void
-request_hibernate (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting hibernate");
-
-        /* hibernate uses suspend inhibit */
-        if (! gsm_manager_is_suspend_inhibited (manager)) {
-                manager_attempt_hibernate (manager);
-                return;
-        }
-
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_HIBERNATE);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
-                          manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
-}
-
-
-static void
 request_logout (GsmManager           *manager,
                 GsmManagerLogoutMode  mode)
 {
@@ -3162,146 +2840,6 @@ request_logout (GsmManager           *manager,
         manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
 
         end_phase (manager);
-}
-
-static void
-request_switch_user (GdkDisplay *display,
-                     GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting user switch");
-
-	/* See comment in manager_switch_user() to understand why we do this in
-	 * both functions. */
-	if (_switch_user_is_locked_down (manager)) {
-		g_warning ("Unable to switch user: User switching has been locked down");
-		return;
-	}
-
-        if (! gsm_manager_is_switch_user_inhibited (manager)) {
-                manager_switch_user (display, manager);
-                return;
-        }
-
-        if (manager->priv->inhibit_dialog != NULL) {
-                g_debug ("GsmManager: inhibit dialog already up");
-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
-                return;
-        }
-
-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
-                                                                manager->priv->clients,
-                                                                GSM_LOGOUT_ACTION_SWITCH_USER);
-
-        g_signal_connect (manager->priv->inhibit_dialog,
-                          "response",
-                          G_CALLBACK (inhibit_dialog_response),
-                          manager);
-        gtk_widget_show (manager->priv->inhibit_dialog);
-}
-
-static void
-logout_dialog_response (GsmLogoutDialog *logout_dialog,
-                        guint            response_id,
-                        GsmManager      *manager)
-{
-        GdkDisplay *display;
-
-        /* We should only be here if mode has already have been set from
-         * show_fallback_shutdown/logout_dialog
-         */
-        g_assert (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_NORMAL);
-
-        g_debug ("GsmManager: Logout dialog response: %d", response_id);
-
-        display = gtk_widget_get_display (GTK_WIDGET (logout_dialog));
-
-        gtk_widget_destroy (GTK_WIDGET (logout_dialog));
-
-        /* In case of dialog cancel, switch user, hibernate and
-         * suspend, we just perform the respective action and return,
-         * without shutting down the session. */
-        switch (response_id) {
-        case GTK_RESPONSE_CANCEL:
-        case GTK_RESPONSE_NONE:
-        case GTK_RESPONSE_DELETE_EVENT:
-                break;
-        case GSM_LOGOUT_RESPONSE_SWITCH_USER:
-                request_switch_user (display, manager);
-                break;
-        case GSM_LOGOUT_RESPONSE_HIBERNATE:
-                request_hibernate (manager);
-                break;
-        case GSM_LOGOUT_RESPONSE_SLEEP:
-                request_suspend (manager);
-                break;
-        case GSM_LOGOUT_RESPONSE_SHUTDOWN:
-                request_shutdown (manager);
-                break;
-        case GSM_LOGOUT_RESPONSE_REBOOT:
-                request_reboot (manager);
-                break;
-        case GSM_LOGOUT_RESPONSE_LOGOUT:
-                /* We've already gotten confirmation from the user so
-                 * initiate the logout in NO_CONFIRMATION mode.
-                 *
-                 * (it shouldn't matter whether we use NO_CONFIRMATION or stay
-                 * with NORMAL, unless the shell happens to start after the
-                 * user confirmed)
-                 */
-                request_logout (manager, GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-}
-
-static void
-show_fallback_shutdown_dialog (GsmManager *manager,
-                               gboolean    is_reboot)
-{
-        GtkWidget *dialog;
-
-        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                /* Already shutting down, nothing more to do */
-                return;
-        }
-
-        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
-
-        dialog = gsm_get_shutdown_dialog (gdk_screen_get_default (),
-                                          gtk_get_current_event_time (),
-                                          is_reboot ?
-                                          GSM_DIALOG_LOGOUT_TYPE_REBOOT :
-                                          GSM_DIALOG_LOGOUT_TYPE_SHUTDOWN);
-
-        g_signal_connect (dialog,
-                          "response",
-                          G_CALLBACK (logout_dialog_response),
-                          manager);
-        gtk_widget_show (dialog);
-}
-
-static void
-show_fallback_logout_dialog (GsmManager *manager)
-{
-        GtkWidget *dialog;
-
-        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                /* Already shutting down, nothing more to do */
-                return;
-        }
-
-        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
-
-        dialog = gsm_get_logout_dialog (gdk_screen_get_default (),
-                                        gtk_get_current_event_time ());
-
-        g_signal_connect (dialog,
-                          "response",
-                          G_CALLBACK (logout_dialog_response),
-                          manager);
-        gtk_widget_show (dialog);
 }
 
 static void
@@ -3447,30 +2985,12 @@ static void
 user_logout (GsmManager           *manager,
              GsmManagerLogoutMode  mode)
 {
-        gboolean logout_prompt;
-        gboolean shell_running;
-
         if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 /* Already shutting down, nothing more to do */
                 return;
         }
 
-        shell_running = gsm_shell_is_running (manager->priv->shell);
-        logout_prompt = g_settings_get_boolean (manager->priv->settings,
-                                                KEY_LOGOUT_PROMPT);
-
-        /* If the shell isn't running, and this isn't a non-interative logout request,
-         * and the user has their settings configured to show a confirmation dialog for
-         * logout, then go ahead and show the fallback confirmation dialog now.
-         *
-         * If the shell is running, then the confirmation dialog and inhibitor dialog are
-         * combined, so we'll show it at a later stage in the logout process.
-         */
-        if (!shell_running && mode == GSM_MANAGER_LOGOUT_MODE_NORMAL && logout_prompt) {
-                show_fallback_logout_dialog (manager);
-        } else {
-                request_logout (manager, mode);
-        }
+        request_logout (manager, mode);
 }
 
 /*
@@ -3496,13 +3016,6 @@ _log_out_is_locked_down (GsmManager *manager)
                                        KEY_DISABLE_LOG_OUT);
 }
 
-static gboolean
-_switch_user_is_locked_down (GsmManager *manager)
-{
-        return g_settings_get_boolean (manager->priv->lockdown_settings,
-                                       KEY_DISABLE_USER_SWITCHING);
-}
-
 static void
 complete_end_session_task (GsmManager            *manager,
                            GAsyncResult          *result,
@@ -3521,7 +3034,6 @@ gsm_manager_shutdown (GsmManager            *manager,
                       DBusGMethodInvocation *context)
 {
         GTask *task;
-        gboolean shell_running;
         GError *error = NULL;
 
         g_debug ("GsmManager: Shutdown called");
@@ -3551,12 +3063,7 @@ gsm_manager_shutdown (GsmManager            *manager,
         manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
                                                                     task);
 
-        shell_running = gsm_shell_is_running (manager->priv->shell);
-
-        if (!shell_running)
-                show_fallback_shutdown_dialog (manager, FALSE);
-        else
-                request_shutdown (manager);
+        request_shutdown (manager);
 
         return TRUE;
 }
@@ -3566,7 +3073,6 @@ gsm_manager_reboot (GsmManager            *manager,
                     DBusGMethodInvocation *context)
 {
         GTask *task;
-        gboolean shell_running;
         GError *error = NULL;
 
         g_debug ("GsmManager: Reboot called");
@@ -3596,12 +3102,7 @@ gsm_manager_reboot (GsmManager            *manager,
         manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
                                                                     task);
 
-        shell_running = gsm_shell_is_running (manager->priv->shell);
-
-        if (!shell_running)
-                show_fallback_shutdown_dialog (manager, TRUE);
-        else
-                request_reboot (manager);
+        request_reboot (manager);
 
         return TRUE;
 }
@@ -4285,32 +3786,30 @@ on_shutdown_prepared (GsmSystem  *system,
 static gboolean
 do_query_end_session_exit (GsmManager *manager)
 {
-        int action;
+        gboolean reboot = FALSE;
+        gboolean shutdown = FALSE;
 
         switch (manager->priv->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
-                action = GSM_LOGOUT_ACTION_LOGOUT;
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-                action = GSM_LOGOUT_ACTION_REBOOT;
+                reboot = TRUE;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-                action = GSM_LOGOUT_ACTION_SHUTDOWN;
+                shutdown = TRUE;
                 break;
         default:
                 g_warning ("Unexpected logout type %d in do_query_end_session_exit()",
                            manager->priv->logout_type);
-                action = GSM_LOGOUT_ACTION_LOGOUT;
                 break;
         }
 
-        if (action == GSM_LOGOUT_ACTION_REBOOT ||
-            action == GSM_LOGOUT_ACTION_SHUTDOWN) {
+        if (reboot || shutdown) {
                 g_signal_connect (manager->priv->system, "shutdown-prepared",
                                   G_CALLBACK (on_shutdown_prepared), manager);
-                gsm_system_prepare_shutdown (manager->priv->system, action == GSM_LOGOUT_ACTION_REBOOT);
+                gsm_system_prepare_shutdown (manager->priv->system, reboot);
                 return FALSE; /* don't leave query end session yet */
         }
 

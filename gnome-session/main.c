@@ -30,7 +30,6 @@
 
 #include <glib/gi18n.h>
 #include <glib.h>
-#include <gtk/gtk.h>
 
 #include <glib-unix.h>
 
@@ -61,7 +60,24 @@ static gboolean please_fail = FALSE;
 
 static DBusGProxy *bus_proxy = NULL;
 
+static GMainLoop *loop;
+
 static void shutdown_cb (gpointer data);
+
+void
+gsm_quit (void)
+{
+        g_main_loop_quit (loop);
+}
+
+static void
+gsm_main (void)
+{
+        if (loop == NULL)
+                loop = g_main_loop_new (NULL, TRUE);
+
+        g_main_loop_run (loop);
+}
 
 static void
 on_bus_name_lost (DBusGProxy *bus_proxy,
@@ -212,7 +228,7 @@ shutdown_cb (gpointer data)
          */
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EXIT);
 
-        gtk_main_quit ();
+        gsm_quit ();
 }
 
 static gboolean
@@ -261,6 +277,11 @@ check_gl (GError **error)
         int status;
         char *argv[] = { LIBEXECDIR "/gnome-session-check-accelerated", NULL };
 
+        if (getenv ("DISPLAY") == NULL) {
+                /* Not connected to X11, someone else will take care of checking GL */
+                return TRUE;
+        }
+
         if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL, NULL, NULL,
                            &status, error)) {
                 return FALSE;
@@ -273,13 +294,13 @@ int
 main (int argc, char **argv)
 {
         GError           *error = NULL;
-        char             *display_str;
         GsmManager       *manager;
         GsmStore         *client_store;
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *session_name;
         gboolean          gl_failed = FALSE;
+        GOptionContext   *options;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
@@ -320,14 +341,15 @@ main (int argc, char **argv)
         textdomain (GETTEXT_PACKAGE);
 
         error = NULL;
-        gtk_init_with_args (&argc, &argv,
-                            (char *) _(" - the GNOME session manager"),
-                            entries, GETTEXT_PACKAGE,
-                            &error);
+        options = g_option_context_new (_(" - the GNOME session manager"));
+        g_option_context_add_main_entries (options, entries, GETTEXT_PACKAGE);
+        g_option_context_parse (options, &argc, &argv, &error);
         if (error != NULL) {
                 g_warning ("%s", error->message);
                 exit (1);
         }
+
+        g_option_context_free (options);
 
         if (show_version) {
                 g_print ("%s %s\n", argv [0], VERSION);
@@ -352,25 +374,18 @@ main (int argc, char **argv)
 
         if (gl_failed) {
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
-                gtk_main ();
+                gsm_main ();
                 exit (1);
         }
 
         if (please_fail) {
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
-                gtk_main ();
+                gsm_main ();
                 exit (1);
         }
 
         gdm_log_init ();
         gdm_log_set_debug (debug);
-
-        /* Set DISPLAY explicitly for all our children, in case --display
-         * was specified on the command line.
-         */
-        display_str = gdk_get_display ();
-        gsm_util_setenv ("DISPLAY", display_str);
-        g_free (display_str);
 
         /* Some third-party programs rely on GNOME_DESKTOP_SESSION_ID to
          * detect if GNOME is running. We keep this for compatibility reasons.
@@ -392,7 +407,7 @@ main (int argc, char **argv)
 
         if (!acquire_name ()) {
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
-                gtk_main ();
+                gsm_main ();
                 exit (1);
         }
 
@@ -422,7 +437,7 @@ main (int argc, char **argv)
 
         gsm_manager_start (manager);
 
-        gtk_main ();
+        gsm_main ();
 
         g_clear_object (&manager);
         g_clear_object (&client_store);
