@@ -39,8 +39,6 @@ gnome_session_SOURCES =				\
 	gsm-presence.h				\
 	gsm-presence-flag.h			\
 	gsm-presence.c				\
-	gdm.h					\
-	gdm.c					\
 	gdm-log.h				\
 	gdm-log.c				\
 	main.c					\

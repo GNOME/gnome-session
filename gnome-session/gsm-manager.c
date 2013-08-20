@@ -60,7 +60,6 @@
 #include "gsm-autostart-app.h"
 
 #include "gsm-util.h"
-#include "gdm.h"
 #include "gsm-logout-dialog.h"
 #include "gsm-icon-names.h"
 #include "gsm-inhibit-dialog.h"
@@ -116,10 +115,8 @@ typedef enum
         GSM_MANAGER_LOGOUT_LOGOUT,
         GSM_MANAGER_LOGOUT_REBOOT,
         GSM_MANAGER_LOGOUT_REBOOT_INTERACT,
-        GSM_MANAGER_LOGOUT_REBOOT_GDM,
         GSM_MANAGER_LOGOUT_SHUTDOWN,
         GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT,
-        GSM_MANAGER_LOGOUT_SHUTDOWN_GDM
 } GsmManagerLogoutType;
 
 struct GsmManagerPrivate
@@ -496,25 +493,15 @@ gsm_manager_quit (GsmManager *manager)
 
         switch (manager->priv->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
-                gtk_main_quit ();
+                gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
                 gsm_system_complete_shutdown (manager->priv->system);
-                break;
-        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_REBOOT);
-                gtk_main_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
                 gsm_system_complete_shutdown (manager->priv->system);
-                break;
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
-                gdm_set_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
-                gtk_main_quit ();
                 break;
         default:
                 g_assert_not_reached ();
@@ -1102,7 +1089,6 @@ cancel_end_session (GsmManager *manager)
         manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
 
         manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
-        gdm_set_logout_action (GDM_LOGOUT_ACTION_NONE);
 
         start_phase (manager);
 }
@@ -1328,12 +1314,10 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN;
                 break;
         default:
@@ -4303,12 +4287,10 @@ do_query_end_session_exit (GsmManager *manager)
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-        case GSM_MANAGER_LOGOUT_REBOOT_GDM:
                 action = GSM_LOGOUT_ACTION_REBOOT;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_GDM:
                 action = GSM_LOGOUT_ACTION_SHUTDOWN;
                 break;
         default:
