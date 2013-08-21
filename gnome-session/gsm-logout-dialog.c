@@ -186,7 +186,7 @@ static gboolean
 gsm_logout_supports_switch_user (GsmLogoutDialog *logout_dialog)
 {
         GSettings *settings;
-        gboolean   ret;
+        gboolean   ret = TRUE;
 
         settings = g_settings_new (LOCKDOWN_SCHEMA);
         if (g_settings_get_boolean (settings, KEY_DISABLE_USER_SWITCHING))
