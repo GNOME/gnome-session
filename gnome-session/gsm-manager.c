@@ -309,6 +309,35 @@ on_required_app_failure (GsmManager  *manager,
                                          extensions);
 }
 
+static void
+on_display_server_failure (GsmManager *manager,
+                           GsmApp     *app)
+{
+        const gchar *app_id;
+        gboolean allow_logout;
+        GsmShellExtensions *extensions;
+
+        app_id = gsm_app_peek_app_id (app);
+
+        if (g_str_equal (app_id, "gnome-shell-wayland.desktop")) {
+                extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
+                gsm_shell_extensions_disable_all (extensions);
+
+                g_object_unref (extensions);
+        } else {
+                extensions = NULL;
+        }
+
+#ifdef HAVE_SYSTEMD
+        sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
+                         "PRIORITY=%d", 3,
+                         "MESSAGE=Unrecoverable failure in required component %s", app_id,
+                         NULL);
+#endif
+
+        gsm_quit ();
+}
+
 static gboolean
 _debug_client (const char *id,
                GsmClient  *client,
@@ -591,11 +620,28 @@ app_event_during_startup (GsmManager *manager,
         }
 }
 
+static gboolean
+is_app_display_server (GsmManager *manager,
+                       GsmApp     *app)
+{
+        GsmManagerPhase phase;
+
+        phase = gsm_app_peek_phase (app);
+
+        return (phase == GSM_MANAGER_PHASE_DISPLAY_SERVER &&
+                is_app_required (manager, app));
+}
+
 static void
 _restart_app (GsmManager *manager,
               GsmApp     *app)
 {
         GError *error = NULL;
+
+        if (is_app_display_server (manager, app)) {
+                on_display_server_failure (manager, app);
+                return;
+        }
 
         if (!gsm_app_restart (app, &error)) {
                 if (is_app_required (manager, app)) {
