@@ -1973,7 +1973,6 @@ register_manager (GsmManager *manager)
         GError *error = NULL;
         DBusConnection *connection;
 
-        error = NULL;
         manager->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (manager->priv->connection == NULL) {
                 if (error != NULL) {

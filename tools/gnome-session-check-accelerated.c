@@ -75,7 +75,7 @@ property_notify_filter (GdkXEvent *xevent,
 static gboolean
 wait_for_property_notify (void)
 {
-        GdkDisplay *display = NULL;
+        GdkDisplay *display;
         GdkScreen *screen;
         GdkWindow *root;
         Window rootwin;

@@ -177,7 +177,7 @@ gsm_session_clear_one_client (const char *filename,
                               GHashTable *discard_hash)
 {
         gboolean  result = TRUE;
-        GKeyFile *key_file = NULL;
+        GKeyFile *key_file;
         char     *discard_exec = NULL;
 
         g_debug ("GsmSessionSave: removing '%s' from saved session", filename);

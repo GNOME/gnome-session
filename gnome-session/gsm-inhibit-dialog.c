@@ -174,8 +174,8 @@ scale_pixbuf (GdkPixbuf *pixbuf,
 {
         int        pw;
         int        ph;
-        float      scale_factor_x = 1.0;
-        float      scale_factor_y = 1.0;
+        float      scale_factor_x;
+        float      scale_factor_y;
         float      scale_factor = 1.0;
 
         pw = gdk_pixbuf_get_width (pixbuf);
