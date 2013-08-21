@@ -906,7 +906,7 @@ static int
 _signal_pid (int pid,
              int signal)
 {
-        int status = -1;
+        int status;
 
         /* perhaps block sigchld */
         g_debug ("GsmAutostartApp: sending signal %d to process %d", signal, pid);
