@@ -22,7 +22,7 @@ endif
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 
 desktopdir = $(datadir)/applications
-desktop_in_files = session-properties.desktop.in
+desktop_in_files = gnome-session-properties.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 sessiondir = $(datadir)/gnome-session/sessions
