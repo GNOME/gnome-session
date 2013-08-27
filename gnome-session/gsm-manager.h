@@ -157,9 +157,9 @@ gboolean            gsm_manager_is_inhibited                   (GsmManager      
                                                                 GError                *error);
 
 gboolean            gsm_manager_shutdown                       (GsmManager     *manager,
-                                                                GError        **error);
+                                                                DBusGMethodInvocation *context);
 gboolean            gsm_manager_reboot                         (GsmManager     *manager,
-                                                                GError        **error);
+                                                                DBusGMethodInvocation *context);
 
 gboolean            gsm_manager_can_shutdown                   (GsmManager     *manager,
                                                                 gboolean       *shutdown_available,

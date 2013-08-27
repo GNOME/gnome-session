@@ -156,6 +156,9 @@ struct GsmManagerPrivate
          * and shouldn't be automatically restarted */
         GSList                 *condition_clients;
 
+        GSList                 *pending_end_session_tasks;
+        GCancellable           *end_session_cancellable;
+
         GSettings              *settings;
         GSettings              *session_settings;
         GSettings              *screensaver_settings;
@@ -834,9 +837,29 @@ _client_end_session_helper (const char           *id,
 }
 
 static void
+complete_end_session_tasks (GsmManager *manager)
+{
+        GSList *l;
+
+        for (l = manager->priv->pending_end_session_tasks;
+             l != NULL;
+             l = l->next) {
+                GTask *task = G_TASK (l->data);
+                if (!g_task_return_error_if_cancelled (task))
+                    g_task_return_boolean (task, TRUE);
+        }
+
+        g_slist_free_full (manager->priv->pending_end_session_tasks,
+                           (GDestroyNotify) g_object_unref);
+        manager->priv->pending_end_session_tasks = NULL;
+}
+
+static void
 do_phase_end_session (GsmManager *manager)
 {
         ClientEndSessionData data;
+
+        complete_end_session_tasks (manager);
 
         data.manager = manager;
         data.flags = 0;
@@ -1051,6 +1074,8 @@ cancel_end_session (GsmManager *manager)
 
         /* switch back to running phase */
         g_debug ("GsmManager: Cancelling the end of session");
+
+        g_cancellable_cancel (manager->priv->end_session_cancellable);
 
         /* remove the dialog before we remove the inhibitors, else the dialog
          * will activate itself automatically when the last inhibitor will be
@@ -1525,6 +1550,10 @@ start_phase (GsmManager *manager)
                                  NULL);
 #endif
                 gsm_xsmp_server_start_accepting_new_clients (manager->priv->xsmp_server);
+                if (manager->priv->pending_end_session_tasks != NULL)
+                        complete_end_session_tasks (manager);
+                g_object_unref (manager->priv->end_session_cancellable);
+                manager->priv->end_session_cancellable = g_cancellable_new ();
                 g_signal_emit (manager, signals[SESSION_RUNNING], 0);
                 update_idle (manager);
                 break;
@@ -2545,6 +2574,7 @@ gsm_manager_dispose (GObject *object)
 
         g_debug ("GsmManager: disposing manager");
 
+        g_clear_object (&manager->priv->end_session_cancellable);
         g_clear_object (&manager->priv->xsmp_server);
 
         if (manager->priv->clients != NULL) {
@@ -2853,6 +2883,7 @@ gsm_manager_init (GsmManager *manager)
                           G_CALLBACK (on_gsm_system_active_changed), manager);
 
         manager->priv->shell = gsm_get_shell ();
+        manager->priv->end_session_cancellable = g_cancellable_new ();
 }
 
 GsmManager *
@@ -3459,31 +3490,53 @@ _switch_user_is_locked_down (GsmManager *manager)
                                        KEY_DISABLE_USER_SWITCHING);
 }
 
-gboolean
-gsm_manager_shutdown (GsmManager *manager,
-                      GError    **error)
+static void
+complete_end_session_task (GsmManager            *manager,
+                           GAsyncResult          *result,
+                           DBusGMethodInvocation *context)
 {
+        GError *error = NULL;
+
+        if (!g_task_propagate_boolean (G_TASK (result), &error))
+                dbus_g_method_return_error (context, error);
+        else
+                dbus_g_method_return (context);
+}
+
+gboolean
+gsm_manager_shutdown (GsmManager            *manager,
+                      DBusGMethodInvocation *context)
+{
+        GTask *task;
         gboolean shell_running;
+        GError *error = NULL;
 
         g_debug ("GsmManager: Shutdown called");
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Shutdown interface is only available during the Running phase");
+                error = g_error_new (GSM_MANAGER_ERROR,
+                                     GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                     "Shutdown interface is only available during the Running phase");
+                dbus_g_method_return_error (context, error);
+                g_error_free (error);
                 return FALSE;
         }
 
         if (_log_out_is_locked_down (manager)) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_LOCKED_DOWN,
-                             "Logout has been locked down");
+                error = g_error_new (GSM_MANAGER_ERROR,
+                                     GSM_MANAGER_ERROR_LOCKED_DOWN,
+                                     "Logout has been locked down");
+                dbus_g_method_return_error (context, error);
+                g_error_free (error);
                 return FALSE;
         }
+
+        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, context);
+
+        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
+                                                                    task);
 
         shell_running = gsm_shell_is_running (manager->priv->shell);
 
@@ -3496,30 +3549,39 @@ gsm_manager_shutdown (GsmManager *manager,
 }
 
 gboolean
-gsm_manager_reboot (GsmManager  *manager,
-                    GError     **error)
+gsm_manager_reboot (GsmManager            *manager,
+                    DBusGMethodInvocation *context)
 {
+        GTask *task;
         gboolean shell_running;
+        GError *error = NULL;
 
         g_debug ("GsmManager: Reboot called");
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Reboot interface is only available during the Running phase");
+                error = g_error_new (GSM_MANAGER_ERROR,
+                                     GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                     "Reboot interface is only available during the Running phase");
+                dbus_g_method_return_error (context, error);
+                g_error_free (error);
                 return FALSE;
         }
 
         if (_log_out_is_locked_down (manager)) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_LOCKED_DOWN,
-                             "Logout has been locked down");
+                error = g_error_new (GSM_MANAGER_ERROR,
+                                     GSM_MANAGER_ERROR_LOCKED_DOWN,
+                                     "Logout has been locked down");
+                dbus_g_method_return_error (context, error);
+                g_error_free (error);
                 return FALSE;
         }
+
+        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, context);
+
+        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
+                                                                    task);
 
         shell_running = gsm_shell_is_running (manager->priv->shell);
 
