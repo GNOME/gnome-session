@@ -52,6 +52,8 @@ struct _GsmXSMPClientClass
         /* signals */
         gboolean (*register_request)     (GsmXSMPClient  *client,
                                           char          **client_id);
+        void     (*register_confirmed)   (GsmXSMPClient  *client,
+                                          const char     *client_id);
         gboolean (*logout_request)       (GsmXSMPClient  *client,
                                           gboolean        prompt);
 

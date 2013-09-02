@@ -2116,7 +2116,6 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         app = find_app_for_startup_id (manager, new_id);
         if (app != NULL) {
                 gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_peek_app_id (app));
-                gsm_app_registered (app);
                 goto out;
         }
 
@@ -2129,6 +2128,20 @@ on_xsmp_client_register_request (GsmXSMPClient *client,
         *id = new_id;
 
         return handled;
+}
+
+static void
+on_xsmp_client_register_confirmed (GsmXSMPClient *client,
+                                   const gchar   *id,
+                                   GsmManager    *manager)
+{
+        GsmApp *app;
+
+        app = find_app_for_startup_id (manager, id);
+
+        if (app != NULL) {
+                gsm_app_registered (app);
+        }
 }
 
 static gboolean
@@ -2311,6 +2324,10 @@ on_store_client_added (GsmStore   *store,
                 g_signal_connect (client,
                                   "register-request",
                                   G_CALLBACK (on_xsmp_client_register_request),
+                                  manager);
+                g_signal_connect (client,
+                                  "register-confirmed",
+                                  G_CALLBACK (on_xsmp_client_register_confirmed),
                                   manager);
                 g_signal_connect (client,
                                   "logout-request",

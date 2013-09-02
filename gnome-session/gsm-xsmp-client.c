@@ -66,6 +66,7 @@ enum {
 
 enum {
         REGISTER_REQUEST,
+        REGISTER_CONFIRMED,
         LOGOUT_REQUEST,
         LAST_SIGNAL
 };
@@ -1002,6 +1003,16 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
                               NULL,
                               G_TYPE_BOOLEAN,
                               1, G_TYPE_POINTER);
+        signals[REGISTER_CONFIRMED] =
+                g_signal_new ("register-confirmed",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmXSMPClientClass, register_confirmed),
+                              NULL,
+                              NULL,
+                              NULL,
+                              G_TYPE_NONE,
+                              1, G_TYPE_POINTER);
         signals[LOGOUT_REQUEST] =
                 g_signal_new ("logout-request",
                               G_OBJECT_CLASS_TYPE (object_class),
@@ -1088,6 +1099,8 @@ register_client_callback (SmsConn    conn,
         }
 
         gsm_client_set_status (GSM_CLIENT (client), GSM_CLIENT_REGISTERED);
+
+        g_signal_emit (client, signals[REGISTER_CONFIRMED], 0, id);
 
         g_free (id);
         free (previous_id);
