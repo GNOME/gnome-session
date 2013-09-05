@@ -10,22 +10,23 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
-# Marek Černocký <marek@manet.cz>, 2012.
+# Marek Černocký <marek@manet.cz>, 2012, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-19 18:36+0000\n"
-"PO-Revision-Date: 2013-03-24 18:09+0200\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"POT-Creation-Date: 2013-09-03 17:04+0000\n"
+"PO-Revision-Date: 2013-09-05 12:21+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -48,45 +49,37 @@ msgstr "Příkaz při přihlášení nesmí být prázdný"
 msgid "The startup command is not valid"
 msgstr "Příkaz při přihlášení není platný"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Povoleno"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Program"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Předvolby aplikací spouštěných při přihlášení"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Bez názvu"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Bez popisu"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Nelze zobrazit dokument nápovědy"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Toto sezení vás přihlásí do GNOME"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -96,10 +89,30 @@ msgstr "Vlastní"
 msgid "This entry lets you select a saved session"
 msgstr "Tato položka umožňuje vybrat uložené sezení"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Toto sezení vás přihlásí do GNOME"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
-#| msgid "GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Aplikace spouštěné při přihlášení"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Vybere aplikace, které se mají spouštět při přihlášení"
+
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+#| msgid "GNOME fallback"
+msgid "GNOME on Wayland"
+msgstr "GNOME na Waylandu"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -124,18 +137,6 @@ msgstr "Přej_menovat sezení"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Pokračovat"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Některé programy stále běží:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Aplikace spouštěné při přihlášení"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Vybere aplikace, které se mají spouštět při přihlášení"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -241,11 +242,11 @@ msgstr "Volby správy sezení:"
 msgid "Show session management options"
 msgstr "Zobrazit volby správy sezení"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jejda! Něco se pokazilo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -253,7 +254,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Kontaktujte prosím "
 "správce systému"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -261,7 +262,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Všechna rozšíření byla "
 "preventivně zakázána."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -269,154 +270,27 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit.\n"
 "Odhlaste se prosím a zkuste to znovu."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "_Odhlásit se"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Zapnout ladicí kód"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Umožnit odhlášení"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Zobrazit varování rozšíření"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Neznámé"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Program stále běží:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-#| msgid ""
-#| "Waiting for the program to finish.  Interrupting the program may cause "
-#| "you to lose work."
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Čeká se na ukončení programu. Přerušení běhu programu může způsobit ztrátu "
-"rozdělané práce."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-#| msgid ""
-#| "Waiting for programs to finish.  Interrupting these programs may cause "
-#| "you to lose work."
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Čeká se na ukončení běhu programů. Přerušení běhu těchto programů může "
-"způsobit ztrátu rozdělané práce."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Přesto přepnout uživatele"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Přesto se odhlásit"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Přesto uspat do paměti"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Přesto uspat na disk"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Přesto vypnout"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Přesto restartovat"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Uzamknout obrazovku"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Zrušit"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Budete automaticky odhlášeni za %d sekundu."
-msgstr[1] "Budete automaticky odhlášeni za %d sekundy."
-msgstr[2] "Budete automaticky odhlášeni za %d sekund."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Systém bude automaticky vypnut za %d sekundu."
-msgstr[1] "Systém bude automaticky vypnut za %d sekundy."
-msgstr[2] "Systém bude automaticky vypnut za %d sekund."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Tento systém bude automaticky restartován za %d sekundu."
-msgstr[1] "Tento systém bude automaticky restartován za %d sekundy."
-msgstr[2] "Tento systém bude automaticky restartován za %d sekund."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Aktuálně jste přihlášeni jako „%s“."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Odhlásit se nyní z tohoto systému?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Přepnout uživatele"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Vypnout nyní tento systém?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "_Uspat do paměti"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "Uspat na _disk"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "_Restartovat"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "_Vypnout"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Restartovat tento systém nyní?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2177
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Neodpovídá"
 
 #: ../gnome-session/gsm-util.c:411
-#| msgid "Log out"
 msgid "_Log out"
 msgstr "Odh_lásit se"
 
@@ -424,52 +298,52 @@ msgstr "Odh_lásit se"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Zapamatovaná aplikace"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Tento program brání odhlášení."
 
-#: ../gnome-session/gsm-xsmp-server.c:333
+#: ../gnome-session/gsm-xsmp-server.c:341
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Odmítnutí spojení nového klienta, jelikož právě probíhá vypnutí sezení\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:602
+#: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Přepsat standardní adresáře automatického spuštění"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "ADR_AUTOSPUŠTĚNÍ"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Sezení, které se má použít"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "NÁZEV_SEZENÍ"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazit dialogové okno černé barvy pro testování"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr " – správce sezení GNOME"
 
@@ -520,7 +394,6 @@ msgstr "%s vyžaduje argument\n"
 
 #: ../tools/gnome-session-selector.c:62
 #, c-format
-#| msgid "Session to use"
 msgid "Session %d"
 msgstr "Sezení %d"
 
@@ -569,45 +442,3 @@ msgstr "Nelze se spojit se správcem sezení"
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Program volán s kolidujícími volbami"
-
-#~ msgid "GNOME fallback"
-#~ msgstr "Záložní prostředí GNOME"
-
-#~ msgid "Icon '%s' not found"
-#~ msgstr "Ikona „%s“ nenalezena"
-
-#~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "Nelze načíst GNOME 3"
-
-#~ msgid ""
-#~ "Unfortunately GNOME 3 failed to start properly and started in the "
-#~ "<i>fallback mode</i>.\n"
-#~ "\n"
-#~ "This most likely means your system (graphics hardware or driver) is not "
-#~ "capable of delivering the full GNOME 3 experience."
-#~ msgstr ""
-#~ "GNOME 3 bohužel nemohlo být správně spuštěno a bylo přepnuto do "
-#~ "<i>záložního režimu</i>.\n"
-#~ "\n"
-#~ "Příčinou je patrně váš systém (grafický hardware nebo ovladač), na kterém "
-#~ "není možné provozovat GNOME 3 se všemi jeho vlastnostmi."
-
-#~ msgid "Learn more about GNOME 3"
-#~ msgstr "Poznejte lépe GNOME 3"
-
-#~ msgid ""
-#~ "Unable to start login session (and unable to connect to the X server)"
-#~ msgstr ""
-#~ "Nepodařilo se spustit sezení s přihlášením (a spojit se se serverem X)"
-
-#~ msgid "<b>Some programs are still running:</b>"
-#~ msgstr "<b>Některé programy stále běží:</b>"
-
-#~ msgid "Exited with code %d"
-#~ msgstr "Program skončil s kódem %d"
-
-#~ msgid "Killed by signal %d"
-#~ msgstr "Zabito signálem %d"
-
-#~ msgid "Stopped by signal %d"
-#~ msgstr "Zastaveno signálem %d"
