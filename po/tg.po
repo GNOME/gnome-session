@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Tajik Gnome\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-06 04:38+0000\n"
-"PO-Revision-Date: 2013-05-23 17:08+0500\n"
+"POT-Creation-Date: 2013-09-03 17:04+0000\n"
+"PO-Revision-Date: 2013-09-08 16:30+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: \n"
 "Language: Tajik\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../capplet/gsm-app-dialog.c:120
 msgid "Select Command"
@@ -39,45 +39,37 @@ msgstr "Фармони худоғозӣ бояд холӣ набошад"
 msgid "The startup command is not valid"
 msgstr "Фармони худоғозӣ беэътибор аст"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Фаъол"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Нишона"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Барнома"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Хусусиятҳои барномаҳои худоғозӣ"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Бе ном"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Бе тавсиф"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:284
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Версияи ин барнома"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Ҳуҷҷати кӯмак намоиш дода намешавад"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Ин ҷаласа шуморо ба GNOME ворид мекунад"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -88,10 +80,29 @@ msgid "This entry lets you select a saved session"
 msgstr ""
 "Ин вуруд ба шумо имкон медиҳад, ки тавонед ҷаласаи захирашударо интихоб кунед"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Ин ҷаласа шуморо ба GNOME ворид мекунад"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
-#| msgid "GNOME"
 msgid "GNOME dummy"
 msgstr "Сохти GNOME"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Барномаҳои худоғозӣ"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Интихоб кунед, ки кадом барномаҳо ҳангоми воридшавӣ кушода мешаванд"
+
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME дар Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -116,18 +127,6 @@ msgstr "_Иваз кардани номи ҷаласа"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Идома додан"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Баъзе барномаҳо то ҳол иҷро шуда истодаанд:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Барномаҳои худоғозӣ"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Интихоб кунед, ки кадом барномаҳо ҳангоми воридшавӣ кушода мешаванд"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -235,11 +234,11 @@ msgstr "Имконоти идоракунии ҷаласа:"
 msgid "Show session management options"
 msgstr "Намоиш додани имконоти идоракунии ҷаласа"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:286
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ваҳ! Чизе вайрон шудааст."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:293
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -247,7 +246,7 @@ msgstr ""
 "Хатогӣ ба вуҷуд омад ва система барқарор карда натавонист. Лутфан, бо "
 "маъмури система дар тамос шавед"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -255,7 +254,7 @@ msgstr ""
 "Хатогӣ ба вуҷуд омад ва система барқарор карда натавонист. Ба сабабҳои "
 "бехатарӣ ҳамаи пасвандҳо ғайрифаъол карда шудаанд."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -263,140 +262,23 @@ msgstr ""
 "Хатогӣ ба вуҷуд омад ва система барқарор карда натавонист.\n"
 "Лутфан, бароед ва аз нав ворид шавед."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:312
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "_Баромадан"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Фаъол кардани ислоҳи хатоҳои барномарезӣ"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:335
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Иҷозат додани баромад"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:336
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Намоиш додани огоҳи пасванд"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Номаълум"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Барнома то ҳол иҷро шуда истодааст:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Дар ҳоли мунтазири пӯшидани барнома. Пӯшидани барнома метавонад сабаби гум "
-"кардани кори шумо шавад."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Дар ҳоли мунтазири пӯшидани барномаҳо. Пӯшидани барномаҳо метавонад сабаби "
-"гум кардани кори шумо шавад."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Ба ҳар ҳол корбарро қатъу васл кунед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Ба ҳар ҳол бароед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Ба ҳар ҳол таваққуф кунед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Ба ҳар ҳол гибернатсия кунед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Корро ба ҳар ҳол анҷом диҳед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Ба ҳар ҳол бозоғозӣ кунед"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Экрани қулф"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Бекор кардан"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Шумо аз система баъд аз %d сония ба таври худкор мебароед."
-msgstr[1] "Шумо аз система баъд аз %d сония ба таври худкор мебароед."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Кори ин система баъд аз %d сония ба таври худкор анҷом меёбад."
-msgstr[1] "Кори ин система баъд аз %d сония ба таври худкор анҷом меёбад."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Ин система баъд аз %d сония ба таври худкор бозоғозӣ мешавад."
-msgstr[1] "Ин система баъд аз %d сония ба таври худкор бозоғозӣ мешавад."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Шумо ҳамчун \"%s\" ворид шудаед."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Аз ин система ҳозир мебароед?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Таъвизи корбар"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Кори ин системаро ҳозир ба анҷом медиҳед?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "_Таваққуф кардан"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "_Гибернатсия кардан"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "_Бозоғозидан"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "_Анҷом додани кор"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Ин системаро ба ҳар ҳол бозоғозӣ мекунед?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Ҷавоб намедиҳад"
 
@@ -408,11 +290,11 @@ msgstr "_Баромадан"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Барномаҳои ба хотир гирифташуда"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Ин барнома баромади шуморо манъ мекунад."
 
@@ -429,32 +311,32 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Эҷоди бастагоҳи мунтазири ICE имконнопазир аст: %s"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Аз нав таъинкунии феҳристҳои худоғозии стандартӣ"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Ҷаласа барои истифодабарӣ"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Бор накардани барномаҳои таъиншуда бо корбар"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "намоиш додани равзарани гуфтугӯи хатоҳо барои санҷиш"
 
-#: ../gnome-session/main.c:320
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr " - мудири ҷаласаи GNOME"
 
@@ -555,6 +437,95 @@ msgstr "Пайваст бо мудири ҷаласа имконнопазир �
 #: ../tools/gnome-session-quit.c:203
 msgid "Program called with conflicting options"
 msgstr "Барнома бо ихтилофи имконот дархост шудааст"
+
+#~ msgid "Some programs are still running:"
+#~ msgstr "Баъзе барномаҳо то ҳол иҷро шуда истодаанд:"
+
+#~ msgid "Unknown"
+#~ msgstr "Номаълум"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Барнома то ҳол иҷро шуда истодааст:"
+
+#~ msgid ""
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Дар ҳоли мунтазири пӯшидани барнома. Пӯшидани барнома метавонад сабаби "
+#~ "гум кардани кори шумо шавад."
+
+#~ msgid ""
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Дар ҳоли мунтазири пӯшидани барномаҳо. Пӯшидани барномаҳо метавонад "
+#~ "сабаби гум кардани кори шумо шавад."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Ба ҳар ҳол корбарро қатъу васл кунед"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Ба ҳар ҳол бароед"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Ба ҳар ҳол таваққуф кунед"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Ба ҳар ҳол гибернатсия кунед"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Корро ба ҳар ҳол анҷом диҳед"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "Ба ҳар ҳол бозоғозӣ кунед"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Экрани қулф"
+
+#~ msgid "Cancel"
+#~ msgstr "Бекор кардан"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Шумо аз система баъд аз %d сония ба таври худкор мебароед."
+#~ msgstr[1] "Шумо аз система баъд аз %d сония ба таври худкор мебароед."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Кори ин система баъд аз %d сония ба таври худкор анҷом меёбад."
+#~ msgstr[1] "Кори ин система баъд аз %d сония ба таври худкор анҷом меёбад."
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "Ин система баъд аз %d сония ба таври худкор бозоғозӣ мешавад."
+#~ msgstr[1] "Ин система баъд аз %d сония ба таври худкор бозоғозӣ мешавад."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Шумо ҳамчун \"%s\" ворид шудаед."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Аз ин система ҳозир мебароед?"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Таъвизи корбар"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Кори ин системаро ҳозир ба анҷом медиҳед?"
+
+#~ msgid "S_uspend"
+#~ msgstr "_Таваққуф кардан"
+
+#~ msgid "_Hibernate"
+#~ msgstr "_Гибернатсия кардан"
+
+#~ msgid "_Restart"
+#~ msgstr "_Бозоғозидан"
+
+#~ msgid "_Shut Down"
+#~ msgstr "_Анҷом додани кор"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "Ин системаро ба ҳар ҳол бозоғозӣ мекунед?"
 
 #~ msgid "%d hour"
 #~ msgid_plural "%d hours"
