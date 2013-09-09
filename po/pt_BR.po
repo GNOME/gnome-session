@@ -18,10 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-03 17:04+0000\n"
-"PO-Revision-Date: 2013-09-03 14:23-0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-09 23:10+0000\n"
+"PO-Revision-Date: 2013-09-09 20:23-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -66,7 +65,7 @@ msgstr "Programa"
 
 #: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
-msgstr "Preferências dos aplicativos de sessão"
+msgstr "Preferências dos aplicativos iniciais de sessão"
 
 #: ../capplet/gsp-app.c:276
 msgid "No name"
@@ -76,7 +75,8 @@ msgstr "Sem nome"
 msgid "No description"
 msgstr "Nenhuma descrição"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
+#: ../capplet/main.c:35
+#: ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Versão deste aplicativo"
 
@@ -92,7 +92,8 @@ msgstr "Personalizada"
 msgid "This entry lets you select a saved session"
 msgstr "Esta entrada permite a você selecionar uma sessão salva"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -108,23 +109,29 @@ msgstr "GNOME experimental"
 
 #: ../data/gnome-session-properties.desktop.in.in.h:1
 msgid "Startup Applications"
-msgstr "Aplicativos de sessão"
+msgstr "Aplicativos iniciais de sessão"
 
 #: ../data/gnome-session-properties.desktop.in.in.h:2
 msgid "Choose what applications to start when you log in"
-msgstr ""
-"Escolha quais os aplicativos que irão iniciar quando sua sessão iniciar"
+msgstr "Escolha quais os aplicativos que irão iniciar quando sua sessão iniciar"
 
 # Traduzi como "sobre Wayland" pois é compatível com a definição usada nas Notas de lançamento do GNOME 3.10 (Sugestão de Rafael Ferreira -> Próxima parada, Wayland), bem porque subentende-se que rode-se GNOME sobre Wayland ao invés do sistema X.--Enrico
+#: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
 msgstr "GNOME sobre Wayland"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+#| msgid "This session logs you into GNOME"
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Essa sessão o leva ao GNOME, usando Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
 msgstr "Sessão personalizada"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2
+#: ../tools/gnome-session-selector.c:103
 msgid "Please select a custom session to run"
 msgstr "Por gentileza selecione uma sessão personalizada a ser executada"
 
@@ -154,8 +161,7 @@ msgstr "Programas iniciais"
 
 #: ../data/session-properties.ui.h:3
 msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"_Automaticamente lembrar aplicativos em execução quando encerrar da sessão"
+msgstr "_Automaticamente lembrar aplicativos em execução quando encerrar da sessão"
 
 #: ../data/session-properties.ui.h:4
 msgid "_Remember Currently Running Applications"
@@ -214,9 +220,7 @@ msgstr "Opção de lançamento não reconhecida: %d"
 #: ../egg/eggdesktopfile.c:1391
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Não foi possível passar as URIs dos documentos para uma entrada de área de "
-"trabalho 'Type=Link'"
+msgstr "Não foi possível passar as URIs dos documentos para uma entrada de área de trabalho 'Type=Link'"
 
 #: ../egg/eggdesktopfile.c:1412
 #, c-format
@@ -256,20 +260,12 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "Oh não! Alguma coisa está errada."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:302
-msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
-"administrator"
-msgstr ""
-"Ocorreu um problema e o sistema não pôde ser recuperado. Por favor, entre em "
-"contato com um administrador de sistemas"
+msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
+msgstr "Ocorreu um problema e o sistema não pôde ser recuperado. Por favor, entre em contato com um administrador de sistemas"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:304
-msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Ocorreu um problema e o sistema não pôde ser recuperado. Todas as "
-"extensõesforam desativadas por precaução."
+msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
+msgstr "Ocorreu um problema e o sistema não pôde ser recuperado. Todas as extensõesforam desativadas por precaução."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
@@ -283,7 +279,8 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Encerrar sessão"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:343
+#: ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Habilitar código de depuração"
 
@@ -295,7 +292,8 @@ msgstr "Permitir encerramento de sessão"
 msgid "Show extension warning"
 msgstr "Mostrar alerta de extensão"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1271
+#: ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Não respondendo"
 
@@ -316,12 +314,8 @@ msgid "This program is blocking logout."
 msgstr "Este programa está bloqueando o encerramento da sessão."
 
 #: ../gnome-session/gsm-xsmp-server.c:341
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"Recusando a nova conexão do cliente porque a sessão está sendo desligada "
-"neste momento\n"
+msgid "Refusing new client connection because the session is currently being shut down\n"
+msgstr "Recusando a nova conexão do cliente porque a sessão está sendo desligada neste momento\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:610
 #, c-format
@@ -397,7 +391,8 @@ msgstr ""
 msgid "Failed to execute %s\n"
 msgstr "Ocorreu falha ao executar %s\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
+#: ../tools/gnome-session-inhibit.c:208
+#: ../tools/gnome-session-inhibit.c:218
 #: ../tools/gnome-session-inhibit.c:228
 #, c-format
 msgid "%s requires an argument\n"
@@ -409,11 +404,8 @@ msgid "Session %d"
 msgstr "Sessão %d"
 
 #: ../tools/gnome-session-selector.c:108
-msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr ""
-"Não são permitidos a nomes de sessões iniciarem com \".\" ou conterem "
-"caracteres \"/\""
+msgid "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "Não são permitidos a nomes de sessões iniciarem com \".\" ou conterem caracteres \"/\""
 
 #: ../tools/gnome-session-selector.c:112
 msgid "Session names are not allowed to start with ‘.’"
@@ -448,7 +440,8 @@ msgstr "Ignorar qualquer um inibidor existente"
 msgid "Don't prompt for user confirmation"
 msgstr "Não pedir configuração do usuário"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:91
+#: ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Não foi possível conectar ao gerenciador de sessões"
 
@@ -504,16 +497,19 @@ msgstr "Programa chamado com opções conflitantes"
 #~ msgstr "Cancelar"
 
 #~ msgid "You will be automatically logged out in %d second."
+
 #~ msgid_plural "You will be automatically logged out in %d seconds."
 #~ msgstr[0] "Essa sessão será encerrada automaticamente em %d segundo."
 #~ msgstr[1] "Essa sessão será encerrada automaticamente em %d segundos."
 
 #~ msgid "This system will be automatically shut down in %d second."
+
 #~ msgid_plural "This system will be automatically shut down in %d seconds."
 #~ msgstr[0] "Este sistema será automaticamente desligado em %d segundo."
 #~ msgstr[1] "Este sistema será automaticamente desligado em %d segundos."
 
 #~ msgid "This system will be automatically restarted in %d second."
+
 #~ msgid_plural "This system will be automatically restarted in %d seconds."
 #~ msgstr[0] "Este sistema será automaticamente reiniciado em %d segundo."
 #~ msgstr[1] "Este sistema será automaticamente reiniciado em %d segundos."
