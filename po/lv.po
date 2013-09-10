@@ -2,28 +2,29 @@
 # Latvian translation for Gnome Session.
 # Copyright © 2006 Gnome i18n Project for Latvian.
 #
+#
 # P�eris Krij�is <peterisk@apollo.lv>, 2000.
 # Artis Trops <hornet@navigators.lv>, 2000.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2009.
 # Rudolfs <rudolfs.mazurs@gmail.com>, 2011.
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
 # Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2013.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-20 11:57+0200\n"
-"PO-Revision-Date: 2013-02-20 12:08+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-09-09 23:10+0000\n"
+"PO-Revision-Date: 2013-09-10 21:38+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
-"Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
+"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"X-Generator: Lokalize 1.5\n"
 "X-Launchpad-Export-Date: 2009-02-19 16:24+0000\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -46,45 +47,37 @@ msgstr "Starta komanda nevar būt tukša"
 msgid "The startup command is not valid"
 msgstr "Starta komanda nav derīga"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Aktivēts"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Ikona"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Programma"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Starta programmu iestatījumi"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Nav nosaukuma"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Nav apraksta"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Lietotnes versija"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Nevar parādīt palīdzības dokumentu"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Šī sesija ieraksta jūs GNOME vidē"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -94,9 +87,36 @@ msgstr "Pielāgota"
 msgid "This entry lets you select a saved session"
 msgstr "Šis ieraksts ļauj izvēlēties saglabātu sesiju"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Šī sesija ieraksta jūs GNOME vidē"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME makets"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Starta lietotnes"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Izvēlieties, kādas programmas vēlaties palaist ierakstoties"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+#| msgid "GNOME fallback"
+msgid "GNOME on Wayland"
+msgstr "GNOME ar Wayland"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+#| msgid "This session logs you into GNOME"
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Šī sesija ieraksta jūs GNOME vidē, izmantojot Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -121,18 +141,6 @@ msgstr "_Pārsaukt sesiju"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Turpināt"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Dažas programmas joprojām darbojas:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Starta lietotnes"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Izvēlieties, kādas programmas vēlaties palaist ierakstoties"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -238,11 +246,11 @@ msgstr "Sesiju pārvaldības opcijas:"
 msgid "Show session management options"
 msgstr "Rādīt sesiju pārvaldības opcijas"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ak nē! Kaut kas nogāja greizi."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -250,7 +258,7 @@ msgstr ""
 "Gadījās problēma, un sistēma no tās nevar atgūties. Lūdzu, sazinieties ar "
 "sistēmas administratoru."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -258,7 +266,7 @@ msgstr ""
 "Gadījās problēma, un sistēma no tās nevar atgūties. Kā piesardzības "
 "pasākums, visi paplašinājumi ir deaktivēti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -266,143 +274,23 @@ msgstr ""
 "Gadījās problēma, un sistēma no tās nevar atgūties.\n"
 "Lūdzu, izrakstieties un mēģiniet vēlreiz."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "_Izrakstīties"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Aktivēt atkļūdošanas kodu"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Atļaut izrakstīšanos"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Rādīt paplašinājumu brīdinājumus"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Nezināms"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Programma joprojām darbojas:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Gaida programmas darbības beigas. Programmas pārtraukšana var novest pie "
-"darba rezultātu zaudēšanas."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Gaida programmu darbības beigas. Programmu pārtraukšana var novest pie darba "
-"rezultātu zaudēšanas."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Tomēr nomainīt lietotāju"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Tomēr izrakstīties"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Tomēr iesnaudināt"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Tomēr sastindzināt"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Tomēr izslēgt"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Tomēr pārstartēt"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Noslēgt ekrānu"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Atcelt"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundes."
-msgstr[1] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundēm."
-msgstr[2] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundēm."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Sistēma tiks automātiski izslēgta pēc %d sekundes."
-msgstr[1] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
-msgstr[2] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Sistēma tiks automātiski pārstartēta pēc %d sekundes."
-msgstr[1] "Sistēma tiks automātiski pārstartēta pēc %d sekundēm."
-msgstr[2] "Sistēma tiks automātiski pārstartēta pēc %d sekundēm."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Šobrīd jūs esat ierakstījies kā “%s”."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Izrakstīties no sistēmas tagad?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Nomainīt lietotāju"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Izslēgt datoru tagad?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "Iesna_udināt"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "S_astindzināt"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "Pā_rstartēt"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "Iz_slēgt"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Izslēgt datoru tagad?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Neatbild"
 
@@ -414,11 +302,11 @@ msgstr "_Izrakstīties"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Iegaumētā lietotne"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Programma bloķē izrakstīšanos."
 
@@ -433,32 +321,32 @@ msgstr "Atsaka jauniem klientu savienojumiem, jo sesija tiek izslēgta\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nevar izveidot ICE klausīšanās ligzdu — %s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Aizstāt standarta automātiskā starta direktorijas"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTA_DIR"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Sesija, ko izmantot"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "SESIJAS_NOSAUKUMS"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Neielādēt lietotāja norādītās lietotnes"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "Rādīt neveiksmju vali testēšanai"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr " - GNOME sesiju pārvaldnieks"
 
@@ -557,8 +445,97 @@ msgstr "Nevar savienoties ar sesiju pārvaldnieku"
 msgid "Program called with conflicting options"
 msgstr "Programma izsaukta ar konfliktējošām opcijām"
 
-#~ msgid "GNOME fallback"
-#~ msgstr "GNOME atkāpšanās"
+#~ msgid "Some programs are still running:"
+#~ msgstr "Dažas programmas joprojām darbojas:"
+
+#~ msgid "Unknown"
+#~ msgstr "Nezināms"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Programma joprojām darbojas:"
+
+#~ msgid ""
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Gaida programmas darbības beigas. Programmas pārtraukšana var novest pie "
+#~ "darba rezultātu zaudēšanas."
+
+#~ msgid ""
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Gaida programmu darbības beigas. Programmu pārtraukšana var novest pie "
+#~ "darba rezultātu zaudēšanas."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Tomēr nomainīt lietotāju"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Tomēr izrakstīties"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Tomēr iesnaudināt"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Tomēr sastindzināt"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Tomēr izslēgt"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "Tomēr pārstartēt"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Noslēgt ekrānu"
+
+#~ msgid "Cancel"
+#~ msgstr "Atcelt"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundes."
+#~ msgstr[1] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundēm."
+#~ msgstr[2] "Jūs tiksiet automātiski izrakstīts no sesijas pēc %d sekundēm."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Sistēma tiks automātiski izslēgta pēc %d sekundes."
+#~ msgstr[1] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
+#~ msgstr[2] "Sistēma tiks automātiski izslēgta pēc %d sekundēm."
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "Sistēma tiks automātiski pārstartēta pēc %d sekundes."
+#~ msgstr[1] "Sistēma tiks automātiski pārstartēta pēc %d sekundēm."
+#~ msgstr[2] "Sistēma tiks automātiski pārstartēta pēc %d sekundēm."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Šobrīd jūs esat ierakstījies kā “%s”."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Izrakstīties no sistēmas tagad?"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Nomainīt lietotāju"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Izslēgt datoru tagad?"
+
+#~ msgid "S_uspend"
+#~ msgstr "Iesna_udināt"
+
+#~ msgid "_Hibernate"
+#~ msgstr "S_astindzināt"
+
+#~ msgid "_Restart"
+#~ msgstr "Pā_rstartēt"
+
+#~ msgid "_Shut Down"
+#~ msgstr "Iz_slēgt"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "Izslēgt datoru tagad?"
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "Ikona “%s” nav atrasta"
