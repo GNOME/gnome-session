@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-21 22:02+0000\n"
-"PO-Revision-Date: 2013-02-22 23:18+0000\n"
+"POT-Creation-Date: 2013-09-10 19:20+0000\n"
+"PO-Revision-Date: 2013-09-10 21:33+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -48,41 +48,51 @@ msgid "The startup command is not valid"
 msgstr "Príkaz na spustenie pri štarte je neplatný"
 
 # tree_view_column
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Povolený"
 
 # tree_view_column
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Ikona"
 
 # tree_view_column
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Program"
 
 #  window title
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Nastavenia aplikácií spúšťaných pri štarte"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Bez názvu"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Bez popisu"
 
 # cmd desc
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Nepodarilo sa zobraziť dokument pomocníka"
+
+# desktop entry name
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Vlastná relácia"
+
+# desktop entry comment
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Táto položka vám umožní vybrať uloženú reláciu"
 
 # desktop entry name; gnome session name
 #: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
@@ -95,19 +105,29 @@ msgid "This session logs you into GNOME"
 msgstr "Táto relácia vás prihlási do GNOME"
 
 # desktop entry name
-#: ../data/gnome-custom-session.desktop.in.h:1
-msgid "Custom"
-msgstr "Vlastná relácia"
-
-# desktop entry comment
-#: ../data/gnome-custom-session.desktop.in.h:2
-msgid "This entry lets you select a saved session"
-msgstr "Táto položka vám umožní vybrať uloženú reláciu"
-
-# desktop entry name
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Fingované GNOME"
+
+# desktop entry name
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Aplikácie spúšťané pri štarte"
+
+# desktop entry comment
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Umožňuje zvoliť aplikácie, ktoré sa majú spustiť, keď sa prihlásite"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME cez Wayland"
+
+# desktop entry comment
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Táto relácia vás prihlási do GNOME s použitím protokolu Wayland"
 
 # GtkWindow title
 #: ../data/session-selector.ui.h:1
@@ -138,21 +158,6 @@ msgstr "Pre_menovať reláciu"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Pokračovať"
-
-# GtkLabel label
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Niektoré programy stále bežia:"
-
-# desktop entry name
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Aplikácie spúšťané pri štarte"
-
-# desktop entry comment
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Umožňuje zvoliť aplikácie, ktoré sa majú spustiť, keď sa prihlásite"
 
 # GtkLabel label
 #: ../data/session-properties.ui.h:1
@@ -272,11 +277,11 @@ msgstr "Voľby pre správu relácie:"
 msgid "Show session management options"
 msgstr "Zobrazí voľby pre správu relácie"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ale nie! Niekde sa stala chyba."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -286,7 +291,7 @@ msgstr ""
 
 # PK: extensions asi zasuvne moduly
 # DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -294,7 +299,7 @@ msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
 "preventívne zakázané."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -303,154 +308,26 @@ msgstr ""
 "Prosím, odhláste sa a skúste to znovu."
 
 # button
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Povolí odhlásenie"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
-# ide o program, preto mužský rod
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Neznámy"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Program stále beží:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Čaká sa na ukončenie programu. Prerušenie tohto programu môže spôsobiť "
-"stratu vašej práce."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Čaká sa na ukončenie programov. Prerušenie týchto programov môže spôsobiť "
-"stratu vašej práce."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Napriek tomu prepnúť používateľa"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Napriek tomu odhlásiť"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Napriek tomu uspať"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Napriek tomu hibernovať"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Napriek tomu vypnúť"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Napriek tomu reštartovať"
-
-# button
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Uzamknúť obrazovku"
-
-# button
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Zrušiť"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Budete automaticky odhlásený o %d sekúnd."
-msgstr[1] "Budete automaticky odhlásený o %d sekundu."
-msgstr[2] "Budete automaticky odhlásený o %d sekundy."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Tento systém sa automaticky vypne o %d sekúnd."
-msgstr[1] "Tento systém sa automaticky vypne o %d sekundu."
-msgstr[2] "Tento systém sa automaticky vypne o %d sekundy."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Tento systém sa automaticky reštartuje o %d sekúnd."
-msgstr[1] "Tento systém sa automaticky reštartuje o %d sekundu."
-msgstr[2] "Tento systém sa automaticky reštartuje o %d sekundy."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Momentálne ste prihlásený ako používateľ „%s“."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Odhlásiť sa teraz zo systému?"
-
-# button
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Prepnúť používateľa"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Vypnúť teraz počítač?"
-
-# button
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "_Uspať"
-
-# button
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "_Hibernovať"
-
-# button
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "_Reštartovať"
-
-# button
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "_Vypnúť"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Reštartovať teraz počítač?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Neodpovedá"
 
@@ -463,11 +340,11 @@ msgstr "Odh_lásiť sa"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Zapamätaná aplikácia"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Tento program blokuje odhlásenie."
 
@@ -483,35 +360,35 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
 # cmd desc
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "ADRESÁR_AUTOSPUSTENIA"
 
 # cmd desc
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Nenačíta aplikácie špecifikované používateľom"
 
 # cmd desc
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr " - správca relácie GNOME"
 
