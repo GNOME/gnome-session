@@ -1,17 +1,17 @@
 # translation of eu.po to Basque
 # Copyright (C) 1999, 2004, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
+#
 # Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 # Julen Ruiz Aizpuru <julenx@gmail.com>, 2011.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-04 23:04+0100\n"
-"PO-Revision-Date: 2013-03-03 18:12+0100\n"
+"POT-Creation-Date: 2013-09-14 18:15+0200\n"
+"PO-Revision-Date: 2013-09-14 18:15+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.4\n"
 "X-Project-Style: gnome\n"
 
 #: ../capplet/gsm-app-dialog.c:120
@@ -42,45 +42,37 @@ msgstr "Abioko komandoa ezin da hutsik egon"
 msgid "The startup command is not valid"
 msgstr "Abioko komandoa ez da baliozkoa"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Gaituta"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Programa"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Abioko aplikazioen hobespenak"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Izenik ez"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Azalpenik ez"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:269
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Aplikazio honen bertsioa"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Ezin izan da laguntzako dokumentua bistaratu"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Saio honek GNOMEn sartuko zaitu"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -90,9 +82,34 @@ msgstr "Pertsonalizatua"
 msgid "This entry lets you select a saved session"
 msgstr "Sarrera honek gordetako saio bat hautatzea uzten dizu"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Saio honek GNOMEn sartuko zaitu"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Probako GNOME"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Abioko aplikazioak"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Aukeratu zein aplikazio abiarazi saioa-hasten duzunean"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME Wayland gainean"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Saio honek GNOMEn sartuko zaitu, Wayland erabiliz"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -117,18 +134,6 @@ msgstr "_Aldatu saioaren izena"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Jarraitu"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Programa batzuk oraindik exekutatzen ari dira:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Abioko aplikazioak"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Aukeratu zein aplikazio abiarazi saioa-hasten duzunean"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -235,11 +240,11 @@ msgstr "Saio-kudeatzailearen aukerak:"
 msgid "Show session management options"
 msgstr "Erakutsi saio-kudeatzailearen aukerak"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Zerbait gaizki irten da."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -247,7 +252,7 @@ msgstr ""
 "Arazo bat gertatu da eta sistemak ezin du berreskuratu. Jarri harremanetan "
 "sistemaren administratzaile batekin"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -255,7 +260,7 @@ msgstr ""
 "Arazo bat gertatu da eta sistemak ezin du berreskuratu. Hedapen guztiak "
 "desgaitu egin dira badazpada."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:308
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -263,139 +268,23 @@ msgstr ""
 "Arazo bat gertatu da eta sistemak ezin du berreskuratu.\n"
 "Amaitu saioa eta saiatu berriro."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:323
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "Amaitu _saioa"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345 ../gnome-session/main.c:267
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Gaitu arazketa-kodea"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:346
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Baimendu saioa amaitzea"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Erakutsi hedapenaren abisua"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Ezezaguna"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Programa bat oraindik exekutatzen ari da:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Programa amaitu zain. Programa hau eteteak zure lanak galtzea eragin lezake."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Programak amaitu zain. Programa hauek eteteak zure lanak galtzea eragin "
-"lezake."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Aldatu erabiltzailez hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Amaitu saioa hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Eseki hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Hibernatu hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Itzali hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Berrabiarazi hala ere"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Blokeatu pantaila"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Utzi"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Automatikoki zure saioa segundo %d barru amaituko da."
-msgstr[1] "Automatikoki zure saioa %d segundotan amaituko da."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Automatikoki sistema segundo %d barru itzaliko da."
-msgstr[1] "Automatikoki sistema %d segundotan itzaliko da."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Automatikoki sistema segundo %d barru berrabiaraziko da."
-msgstr[1] "Automatikoki sistema %d segundotan berrabiaraziko da."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Unean \"%s\" gisa zaude saioan hasita."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Amaitu saioa sistematik orain?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Aldatu erabiltzailez"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Itzali sistema orain?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "_Eseki"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "_Hibernatu"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "_Berrabiarazi"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "_Itzali"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Berrabiarazi sistema orain?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Ez du erantzuten"
 
@@ -407,11 +296,11 @@ msgstr "_Amaitu saioa"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Gogoratutako aplikazioa"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Programa honek saioa amaitzea blokeatzen ari da."
 
@@ -426,32 +315,32 @@ msgstr "Bezero berrien konexioa ukatzen, unean saioa itzaltzen ari delako\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ezin izan da entzuteko ICE socket-a sortu: %s"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Jaramonik ez egin hasiera automatikoko direktorio estandarrei"
 
-#: ../gnome-session/main.c:265
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "HASIERA_AUTOMATIKOKO_DIREKTORIOA"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Saioa erabiltzeko"
 
-#: ../gnome-session/main.c:266
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "SAIOAREN_IZENA"
 
-#: ../gnome-session/main.c:268
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Ez kargatu erabiltzaileak zehaztutako aplikazioak"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:271
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "Erakutsi errorearen elkarrizketa-koadroa probetarako"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr "- GNOMEren saio-kudeatzailea"
 
@@ -554,8 +443,94 @@ msgstr "Ezin izan da saio-kudeatzailearekin konektatu"
 msgid "Program called with conflicting options"
 msgstr "Gatazkan dauden aukerekin deitu da programa"
 
-#~ msgid "GNOME fallback"
-#~ msgstr "GNOME ordezkoa"
+#~ msgid "Some programs are still running:"
+#~ msgstr "Programa batzuk oraindik exekutatzen ari dira:"
+
+#~ msgid "Unknown"
+#~ msgstr "Ezezaguna"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Programa bat oraindik exekutatzen ari da:"
+
+#~ msgid ""
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Programa amaitu zain. Programa hau eteteak zure lanak galtzea eragin "
+#~ "lezake."
+
+#~ msgid ""
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Programak amaitu zain. Programa hauek eteteak zure lanak galtzea eragin "
+#~ "lezake."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Aldatu erabiltzailez hala ere"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Amaitu saioa hala ere"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Eseki hala ere"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Hibernatu hala ere"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Itzali hala ere"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "Berrabiarazi hala ere"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Blokeatu pantaila"
+
+#~ msgid "Cancel"
+#~ msgstr "Utzi"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Automatikoki zure saioa segundo %d barru amaituko da."
+#~ msgstr[1] "Automatikoki zure saioa %d segundotan amaituko da."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Automatikoki sistema segundo %d barru itzaliko da."
+#~ msgstr[1] "Automatikoki sistema %d segundotan itzaliko da."
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "Automatikoki sistema segundo %d barru berrabiaraziko da."
+#~ msgstr[1] "Automatikoki sistema %d segundotan berrabiaraziko da."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Unean \"%s\" gisa zaude saioan hasita."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Amaitu saioa sistematik orain?"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Aldatu erabiltzailez"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Itzali sistema orain?"
+
+#~ msgid "S_uspend"
+#~ msgstr "_Eseki"
+
+#~ msgid "_Hibernate"
+#~ msgstr "_Hibernatu"
+
+#~ msgid "_Restart"
+#~ msgstr "_Berrabiarazi"
+
+#~ msgid "_Shut Down"
+#~ msgstr "_Itzali"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "Berrabiarazi sistema orain?"
 
 #~ msgid "%d hour"
 #~ msgid_plural "%d hours"
