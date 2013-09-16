@@ -11,7 +11,7 @@
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 1999-2002, 2009-2012.
 # Yasumichi Akahoshi <yasumichi@vinelinux.org>, 2010.
-# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011, 2012, 2013.
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
 #
@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-06 04:38+0000\n"
-"PO-Revision-Date: 2013-02-04 19:22+0900\n"
-"Last-Translator: Carrot031 <www.carrotsoft@gmail.com>\n"
+"POT-Creation-Date: 2013-09-09 23:10+0000\n"
+"PO-Revision-Date: 2013-09-15 21:58+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -49,37 +49,45 @@ msgstr "自動起動するプログラムのコマンド名を入力してくだ
 msgid "The startup command is not valid"
 msgstr "コマンド名が間違っています"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "有効"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "アイコン"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "プログラム"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "自動起動するアプリケーションの設定"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "名前なし"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "(説明なし)"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:284
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョンを表示する"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "ヘルプのドキュメントを表示できませんでした"
+
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "カスタム"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "このエントリーから保存したセッションを選択できます"
 
 #: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
@@ -89,27 +97,34 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "このセッションで GNOME にログインします"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
-msgid "Custom"
-msgstr ""
-
-#: ../data/gnome-custom-session.desktop.in.h:2
-msgid "This entry lets you select a saved session"
-msgstr ""
-
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
-#, fuzzy
-#| msgid "GNOME"
 msgid "GNOME dummy"
-msgstr "GNOME"
+msgstr "GNOME ダミー"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "自動起動するアプリケーション"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "ログインした後に起動するアプリケーションを選択します"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME on Wayland"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "このセッションは Wayland を使って GNOME にログインします"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
-msgstr ""
+msgstr "カスタムセッション"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
 msgid "Please select a custom session to run"
-msgstr ""
+msgstr "起動するカスタムセッションを選択してください"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
@@ -126,18 +141,6 @@ msgstr "セッション名を変更(_M)"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "続行(_C)"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "いくつかのプログラムが未だ実行中です:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "自動起動するアプリケーション"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "ログインした後に起動するアプリケーションを選択します"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -243,19 +246,19 @@ msgstr "セッション管理のオプション:"
 msgid "Show session management options"
 msgstr "セッション管理のオプションを表示する"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:286
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "あれっ! 何かおかしいです。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:293
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "問題が発生して、システムの復帰ができません。システム管理者に連絡してください"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "問題が発生して、システムの復帰ができません。念のため、すべての拡張を無効にしました。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -263,129 +266,23 @@ msgstr ""
 "問題が発生して、システムの復帰ができません。\n"
 "ログアウトして再度試してください。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:312
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "デバッグモードにする"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:335
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
-msgstr ""
+msgstr "ログアウトを許可する"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:336
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
-msgstr ""
+msgstr "拡張機能に関する警告を表示する"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "不明"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "プログラムが未だ実行中です:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid "Waiting for the program to finish. Interrupting the program may cause you to lose work."
-msgstr "プログラムが終了するのを待っています。プログラムの実行を強制的に中断すると、作業内容を失うことになるかもしれません。"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid "Waiting for programs to finish. Interrupting these programs may cause you to lose work."
-msgstr "プログラムが終了するのを待っています。実行中のプログラムを途中で強制終了させてしまうと、これまでの処理結果を失ってしまう可能性があります。"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "とにかくユーザーを切り替える"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "とにかくログアウトする"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "とにかくサスペンドにする"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "とにかく休止状態にする"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "とにかくシャットダウンする"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "とにかく再起動する"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "画面をロックする"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "キャンセル"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "残り %d 秒で自動的にログアウトします。"
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "このシステムは残り %d 秒で自動的にシャットダウンします。"
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "このシステムは残り %d 秒で自動的に再起動します。"
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "あなたは現在 \"%s\" としてログインしています。"
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "このシステムから今すぐログアウトしますか?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "ユーザーを切り替える(_S)"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "このシステムを今すぐシャットダウンしますか?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "サスペンド(_U)"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "休止状態(_H)"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "再起動(_R)"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "シャットダウン(_S)"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "このシステムを今すぐ再起動しますか?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "応答なし"
 
@@ -397,11 +294,11 @@ msgstr "ログアウト(_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "実行していたアプリケーション"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "このプログラムがログアウトできないようにしています。"
 
@@ -414,32 +311,32 @@ msgstr "セッションがシャットダウンを実行しているため、新
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE の監視ソケットを生成できませんでした: %s"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "標準の自動起動フォルダーをオーバーライドする"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "使用するセッション"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "ユーザーが指定したアプリケーションを起動しない"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "テスト用にエラー画面を表示する"
 
-#: ../gnome-session/main.c:320
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr "- GNOME セッションマネージャー"
 
@@ -461,6 +358,19 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"COMMAND を起動し、その間セッションのいくつかの機能を抑止します。\n"
+"\n"
+"  -h, --help        このヘルプを表示する\n"
+"  --version         プログラムのバージョンを表示する\n"
+"  --app-id ID       抑止時に使用するアプリケーションID (オプション)\n"
+"  --reason REASON   抑止する理由を指定する (オプション)\n"
+"  --inhibit ARG     抑止する機能をコロン区切りで以下から指定する:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    COMMAND を起動せずに待機する\n"
+"\n"
+"--inhibit オプションが無指定の場合 idle を指定したものと扱います。\n"
 
 #: ../tools/gnome-session-inhibit.c:148
 #, c-format
@@ -523,8 +433,83 @@ msgstr "セッションマネージャーに接続できませんでした"
 msgid "Program called with conflicting options"
 msgstr "同時には適用できないオプションを指定しました"
 
-#~ msgid "GNOME fallback"
-#~ msgstr "GNOME フォールバック"
+#~ msgid "Some programs are still running:"
+#~ msgstr "いくつかのプログラムが未だ実行中です:"
+
+#~ msgid "Unknown"
+#~ msgstr "不明"
+
+#~ msgid "A program is still running:"
+#~ msgstr "プログラムが未だ実行中です:"
+
+#~ msgid "Waiting for the program to finish. Interrupting the program may cause you to lose work."
+#~ msgstr "プログラムが終了するのを待っています。プログラムの実行を強制的に中断すると、作業内容を失うことになるかもしれません。"
+
+#~ msgid "Waiting for programs to finish. Interrupting these programs may cause you to lose work."
+#~ msgstr "プログラムが終了するのを待っています。実行中のプログラムを途中で強制終了させてしまうと、これまでの処理結果を失ってしまう可能性があります。"
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "とにかくユーザーを切り替える"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "とにかくログアウトする"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "とにかくサスペンドにする"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "とにかく休止状態にする"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "とにかくシャットダウンする"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "とにかく再起動する"
+
+#~ msgid "Lock Screen"
+#~ msgstr "画面をロックする"
+
+#~ msgid "Cancel"
+#~ msgstr "キャンセル"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "残り %d 秒で自動的にログアウトします。"
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "このシステムは残り %d 秒で自動的にシャットダウンします。"
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "このシステムは残り %d 秒で自動的に再起動します。"
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "あなたは現在 \"%s\" としてログインしています。"
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "このシステムから今すぐログアウトしますか?"
+
+#~ msgid "_Switch User"
+#~ msgstr "ユーザーを切り替える(_S)"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "このシステムを今すぐシャットダウンしますか?"
+
+#~ msgid "S_uspend"
+#~ msgstr "サスペンド(_U)"
+
+#~ msgid "_Hibernate"
+#~ msgstr "休止状態(_H)"
+
+#~ msgid "_Restart"
+#~ msgstr "再起動(_R)"
+
+#~ msgid "_Shut Down"
+#~ msgstr "シャットダウン(_S)"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "このシステムを今すぐ再起動しますか?"
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "'%s' というアイコンが見つかりませんでした"
