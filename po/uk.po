@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-23 12:57+0200\n"
-"PO-Revision-Date: 2013-03-23 13:17+0300\n"
+"POT-Creation-Date: 2013-09-21 11:35+0300\n"
+"PO-Revision-Date: 2013-09-21 11:38+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
 "Language: uk\n"
@@ -42,45 +42,37 @@ msgstr "Початкова команда не може бути порожнь�
 msgid "The startup command is not valid"
 msgstr "Початкова команда некоректна"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Увімкнено"
 
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "Піктограма"
 
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "Програма"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "Налаштування початкових програм "
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "Без назви"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "Без опису"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:284
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "Версія цієї програми"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
 msgstr "Не вдалось показати довідку"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "Це — сеанс входу в GNOME"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -90,9 +82,36 @@ msgstr "Інше"
 msgid "This entry lets you select a saved session"
 msgstr "Цей запис дозволяє вибрати збережений сеанс"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Це — сеанс входу в GNOME"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Несправжній GNOME"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Початкові програми"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Виберіть програми, що запускаються при вході в сеанс"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME (Wayland)"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr ""
+"Це сеанс запускає вас у GNOME, який використовує графічну архітектуру "
+"Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -117,18 +136,6 @@ msgstr "_Перейменувати сеанс"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "Про_довжити"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "Деякі програми досі працюють:"
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Початкові програми"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Виберіть програми, що запускаються при вході в сеанс"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
@@ -234,11 +241,11 @@ msgstr "Параметри керування сеансами:"
 msgid "Show session management options"
 msgstr "Показати параметри керування сеансами"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:286
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "Отакої!  Щось не так."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:293
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -246,7 +253,7 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити. Будь ласка, зв'яжіться з "
 "системним адміністратором"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -254,7 +261,7 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити. Всі розширення вимкнуло як "
 "запобіжний засіб."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -262,143 +269,23 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити.\n"
 "Будь ласка, вийдіть і спробуйте знову."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:312
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "Увімкнути код зневадження"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:335
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "Дозволити вихід"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:336
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "Показати зауваги розширення"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "Невідомо"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "Програма досі працює:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr ""
-"Очікування завершення роботи програм. Переривання цих програм може привести "
-"до втрати вашої напрацювань."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr ""
-"Очікування завершення роботи програм. Переривання цих програм може привести "
-"до втрати вашої роботи."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "Однаково перемикнути користувача"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "Однаково вийти із системи"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "Однаково призупинити систему"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "Однаково приспати систему"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "Однаково вимкнути систему"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "Однаково перезавантажити"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "Заблокувати екран"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "Скасувати"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Сеанс буде автоматично завершено через %d секунду."
-msgstr[1] "Сеанс буде автоматично завершено через %d секунди."
-msgstr[2] "Сеанс буде автоматично завершено через %d секунд."
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Систему буде вимкнено автоматично через %d секунду."
-msgstr[1] "Систему буде вимкнено автоматично через %d секунди."
-msgstr[2] "Систему буде вимкнено автоматично через %d секунд."
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "Систему буде автоматично перезавантажено через %d секунду."
-msgstr[1] "Систему буде автоматично перезавантажено через %d секунди."
-msgstr[2] "Систему буде автоматично перезавантажено через %d секунд."
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Ви зареєстровані у системі як користувач «%s»."
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "Вийти з системи зараз?"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "_Перемикнути користувача"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "Вимкнути систему зараз?"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "П_ризупинити"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "При_спати"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "Пере_завантажити"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "_Вимкнути"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "Перезавантажити систему зараз?"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "Не відповідає"
 
@@ -410,11 +297,11 @@ msgstr "Ви_йти"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "Запам'ятована програма"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "Ця програма блокує вихід з системи."
 
@@ -429,32 +316,32 @@ msgstr "Відхиляються нові клієнти, бо система з
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не вдалось створити гніздо прослуховування ICE: %s"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "Перевизначити стандартні каталоги автозапуску"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "САМОЗАПУСКНА_ТЕКА"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "Сеанси, які використовуються"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "НАЗВА_СЕАНСУ"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "Не завантажувати вибрані користувачем програми"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "Показувати величезне вікно помилок для випробування "
 
-#: ../gnome-session/main.c:320
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr " — керування сеансом GNOME"
 
@@ -553,8 +440,97 @@ msgstr "Не вдалось з'єднатись із менеджером сеа
 msgid "Program called with conflicting options"
 msgstr "Програму запущено з несумісними параметрами"
 
-#~ msgid "GNOME fallback"
-#~ msgstr "Запас GNOME"
+#~ msgid "Some programs are still running:"
+#~ msgstr "Деякі програми досі працюють:"
+
+#~ msgid "Unknown"
+#~ msgstr "Невідомо"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Програма досі працює:"
+
+#~ msgid ""
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Очікування завершення роботи програм. Переривання цих програм може "
+#~ "привести до втрати вашої напрацювань."
+
+#~ msgid ""
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Очікування завершення роботи програм. Переривання цих програм може "
+#~ "привести до втрати вашої роботи."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Однаково перемикнути користувача"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Однаково вийти із системи"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Однаково призупинити систему"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Однаково приспати систему"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Однаково вимкнути систему"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "Однаково перезавантажити"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Заблокувати екран"
+
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Сеанс буде автоматично завершено через %d секунду."
+#~ msgstr[1] "Сеанс буде автоматично завершено через %d секунди."
+#~ msgstr[2] "Сеанс буде автоматично завершено через %d секунд."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Систему буде вимкнено автоматично через %d секунду."
+#~ msgstr[1] "Систему буде вимкнено автоматично через %d секунди."
+#~ msgstr[2] "Систему буде вимкнено автоматично через %d секунд."
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "Систему буде автоматично перезавантажено через %d секунду."
+#~ msgstr[1] "Систему буде автоматично перезавантажено через %d секунди."
+#~ msgstr[2] "Систему буде автоматично перезавантажено через %d секунд."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Ви зареєстровані у системі як користувач «%s»."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Вийти з системи зараз?"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Перемикнути користувача"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Вимкнути систему зараз?"
+
+#~ msgid "S_uspend"
+#~ msgstr "П_ризупинити"
+
+#~ msgid "_Hibernate"
+#~ msgstr "При_спати"
+
+#~ msgid "_Restart"
+#~ msgstr "Пере_завантажити"
+
+#~ msgid "_Shut Down"
+#~ msgstr "_Вимкнути"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "Перезавантажити систему зараз?"
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "Піктограму «%s» не знайдено"
