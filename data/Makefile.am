@@ -12,13 +12,17 @@ hwcompatdir = $(pkgdatadir)
 hwcompat_DATA = hardware-compatibility
 
 xsessiondir = $(datadir)/xsessions
-xsession_in_files = gnome.desktop.in gnome-wayland.desktop.in
+xsession_in_files = gnome.desktop.in
 
 if BUILD_SESSION_SELECTOR
 xsession_in_files += gnome-custom-session.desktop.in
 endif
 
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
+
+wayland_sessiondir = $(datadir)/wayland-sessions
+wayland_session_in_files = gnome-wayland.desktop.in
+wayland_session_DATA = $(wayland_session_in_files:.desktop.in=.desktop)
 
 desktopdir = $(datadir)/applications
 desktop_in_files = gnome-session-properties.desktop.in
@@ -48,6 +52,7 @@ dist_migration_DATA = gnome-session.convert
 EXTRA_DIST =					\
 	$(xsession_in_files)			\
 	$(session_in_in_files)			\
+	$(wayland_session_in_files)		\
 	$(gsettings_SCHEMAS:.xml=.xml.in)	\
 	session-selector.ui			\
 	gnome-custom-session.desktop.in		\
@@ -57,11 +62,13 @@ EXTRA_DIST =					\
 CLEANFILES =					\
 	$(gsettings_SCHEMAS)			\
 	$(xsession_DATA)			\
+	$(wayland_session_DATA)			\
 	$(desktop_DATA)				\
 	$(session_DATA)
 
 DISTCLEANFILES =				\
 	$(gsettings_SCHEMAS)			\
-	$(desktop_in_files)
+	$(desktop_in_files)			\
+	$(wayland_session_in_files)
 
 -include $(top_srcdir)/git.mk
