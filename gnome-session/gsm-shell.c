@@ -534,11 +534,7 @@ static void
 on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
                                        GsmShell   *shell)
 {
-        /* FIXME - is this right? */
-        if (shell->priv->end_session_dialog_proxy != NULL) {
-                g_object_unref (shell->priv->proxy);
-                shell->priv->end_session_dialog_proxy = NULL;
-        }
+        g_clear_object (&shell->priv->end_session_dialog_proxy);
 }
 
 static gboolean
