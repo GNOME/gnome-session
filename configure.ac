@@ -315,13 +315,11 @@ dnl ============================================================================
 
 AC_CONFIG_FILES([
 Makefile
-capplet/Makefile
 doc/Makefile
 doc/dbus/Makefile
 doc/dbus/gnome-session.xml
 doc/man/Makefile
 data/Makefile
-data/gnome-session-properties.desktop.in
 data/org.gnome.SessionManager.gschema.xml
 data/icons/Makefile
 data/icons/16x16/Makefile
