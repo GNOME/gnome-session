@@ -69,7 +69,6 @@ gnome_session_CPPFLAGS =			\
 	$(GCONF_CFLAGS)				\
 	$(SYSTEMD_CFLAGS)			\
 	$(GIOUNIX_CFLAGS)			\
-	-I$(top_srcdir)/egg			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
         -DLIBEXECDIR=\"$(libexecdir)\"		\

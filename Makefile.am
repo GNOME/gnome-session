@@ -1,5 +1,4 @@
 SUBDIRS =			\
-	egg			\
 	gnome-session		\
 	tools			\
 	data			\
