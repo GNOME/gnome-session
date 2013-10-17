@@ -64,10 +64,17 @@ PKG_CHECK_MODULES(GNOME_SESSION,
         glib-2.0 >= $GLIB_REQUIRED
         gio-2.0 >= $GLIB_REQUIRED
         dbus-glib-1 >= $DBUS_GLIB_REQUIRED
-        upower-glib >= $UPOWER_REQUIRED
         json-glib-1.0 >= $JSON_GLIB_REQUIRED
         gnome-desktop-3.0 >= $GNOME_DESKTOP_REQUIRED
 )
+
+dnl We can only support old upower
+dnl https://bugzilla.gnome.org/show_bug.cgi?id=710383
+PKG_CHECK_MODULES(UPOWER, upower-glib <= 0.9.22, have_old_upower=yes, have_old_upower=no)
+AS_IF([test x$have_old_upower = xyes], [
+  AC_DEFINE([HAVE_OLD_UPOWER], [1], [Define if we have an older upower])
+])
+AM_CONDITIONAL(HAVE_OLD_UPOWER, test x$have_old_upower = xyes)
 
 PKG_CHECK_MODULES(SESSION_PROPERTIES,
         glib-2.0 >= $GLIB_REQUIRED
@@ -363,6 +370,7 @@ echo "
         XRender support:          ${have_xrender}
         XSync support:            ${have_xsync}
         XTest support:            ${have_xtest}
+	Legacy UPower backend:    ${have_old_upower}
         Build Docbook:            ${enable_docbook_docs}
         Build manpages:           ${enable_man}
 

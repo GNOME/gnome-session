@@ -10,6 +10,7 @@ noinst_PROGRAMS = 		\
 AM_CPPFLAGS =					\
 	$(GTK3_CFLAGS)				\
 	$(GNOME_SESSION_CFLAGS)			\
+	$(UPOWER_CFLAGS)			\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
 AM_CFLAGS = $(WARN_CFLAGS)
@@ -29,8 +30,6 @@ gnome_session_SOURCES =				\
 	gsm-fail-whale.c			\
 	gsm-system.h				\
 	gsm-system.c				\
-	gsm-consolekit.c			\
-	gsm-consolekit.h			\
 	gsm-systemd.h				\
 	gsm-systemd.c				\
 	gsm-presence.h				\
@@ -60,6 +59,10 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-server.c			\
 	gsm-xsmp-server.h
 
+if HAVE_OLD_UPOWER
+gnome_session_SOURCES += gsm-consolekit.c gsm-consolekit.h
+endif
+
 gnome_session_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\
 	$(X11_CFLAGS)				\
@@ -85,6 +88,7 @@ gnome_session_LDADD =				\
 	$(XTEST_LIBS)				\
 	$(XEXT_LIBS)				\
 	$(GNOME_SESSION_LIBS)			\
+	$(UPOWER_LIBS)				\
 	$(GCONF_LIBS)				\
 	$(SYSTEMD_LIBS)				\
 	$(GIOUNIX_LIBS)				\
