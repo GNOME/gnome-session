@@ -70,7 +70,7 @@ PKG_CHECK_MODULES(GNOME_SESSION,
 
 dnl We can only support old upower
 dnl https://bugzilla.gnome.org/show_bug.cgi?id=710383
-PKG_CHECK_MODULES(UPOWER, upower-glib <= 0.9.22, have_old_upower=yes, have_old_upower=no)
+PKG_CHECK_MODULES(UPOWER, upower-glib < 0.99.0, have_old_upower=yes, have_old_upower=no)
 AS_IF([test x$have_old_upower = xyes], [
   AC_DEFINE([HAVE_OLD_UPOWER], [1], [Define if we have an older upower])
 ])
