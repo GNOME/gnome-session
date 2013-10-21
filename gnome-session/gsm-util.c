@@ -537,7 +537,10 @@ gsm_util_setenv (const char *variable,
 {
         GError *bus_error;
 
-        g_setenv (variable, value, TRUE);
+        if (!value)
+                g_unsetenv (variable);
+        else
+                g_setenv (variable, value, TRUE);
 
         bus_error = NULL;
 
