@@ -10,7 +10,7 @@
 # Tao Wei <weitao1979@gmail.com>, 2009.
 # Aron Xu <aronxu@gnome.org>, 2010.
 # liu zhen <liuzhen1191@gmail.com>, 2011.
-# tuhaihe <1132321739qq@gmail.com>, 2012.
+# tuhaihe <1132321739qq@gmail.com>, 2012, 2013.
 # nhm <572348382@qq.com>, 2013.
 # Wylmer Wang <wantinghard@gmail.com>, 2013.
 #
@@ -19,16 +19,16 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-01 13:36+0000\n"
-"PO-Revision-Date: 2013-04-02 11:41+0800\n"
-"Last-Translator: nhm <572348382@qq.com>\n"
+"POT-Creation-Date: 2013-10-25 15:24+0000\n"
+"PO-Revision-Date: 2013-10-31 18:36+0800\n"
+"Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
 "Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #: ../capplet/gsm-app-dialog.c:120
@@ -51,47 +51,39 @@ msgstr "启动命令不能为空"
 msgid "The startup command is not valid"
 msgstr "启动命令无效"
 
-#: ../capplet/gsm-properties-dialog.c:517
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "启用"
 
 # gsm/logout.c:240
-#: ../capplet/gsm-properties-dialog.c:529
+#: ../capplet/gsm-properties-dialog.c:531
 msgid "Icon"
 msgstr "图标"
 
 # applets/gkb/gkb.c:262
-#: ../capplet/gsm-properties-dialog.c:541
+#: ../capplet/gsm-properties-dialog.c:543
 msgid "Program"
 msgstr "程序"
 
-#: ../capplet/gsm-properties-dialog.c:745
+#: ../capplet/gsm-properties-dialog.c:747
 msgid "Startup Applications Preferences"
 msgstr "启动应用程序首选项"
 
-#: ../capplet/gsp-app.c:274
+#: ../capplet/gsp-app.c:276
 msgid "No name"
 msgstr "无名称"
 
-#: ../capplet/gsp-app.c:280
+#: ../capplet/gsp-app.c:282
 msgid "No description"
 msgstr "无描述"
 
-#: ../capplet/main.c:35 ../gnome-session/main.c:284
+#: ../capplet/main.c:35 ../gnome-session/main.c:309
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #: ../capplet/main.c:61
 msgid "Could not display help document"
-msgstr "不能显示帮助文档"
-
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
-msgid "GNOME"
-msgstr "GNOME"
-
-#: ../data/gnome.desktop.in.h:2
-msgid "This session logs you into GNOME"
-msgstr "此会话将您登录到 GNOME"
+msgstr "无法显示帮助文档"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -101,9 +93,34 @@ msgstr "自定义"
 msgid "This entry lets you select a saved session"
 msgstr "此项允许您选择一个已保存的会话"
 
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "该会话将登录到 GNOME"
+
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
-msgstr ""
+msgstr "GNOME dummy"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "启动应用程序"
+
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "选择登录时要启动的应用程序"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME 运行于 Wayland"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "该会话将登录到 GNOME(使用 Wayland)"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -128,18 +145,6 @@ msgstr "重命名会话(_M)"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "继续(_C)"
-
-#: ../data/gsm-inhibit-dialog.ui.h:1 ../gnome-session/gsm-inhibit-dialog.c:514
-msgid "Some programs are still running:"
-msgstr "有些程序仍在运行中："
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "启动应用程序"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "选择登录时要启动的应用程序"
 
 # applets/gkb/gkb.c:262
 #: ../data/session-properties.ui.h:1
@@ -193,7 +198,7 @@ msgstr "文件不是有效的 .desktop 文件"
 #: ../egg/eggdesktopfile.c:191
 #, c-format
 msgid "Unrecognized desktop file Version '%s'"
-msgstr "不识别的桌面文件版本“%s”"
+msgstr "无法识别的桌面文件版本“%s”"
 
 # gnome-terminal/gnome-terminal.c:1590
 #: ../egg/eggdesktopfile.c:974
@@ -254,157 +259,46 @@ msgstr "会话管理选项："
 msgid "Show session management options"
 msgstr "显示会话管理选项"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:286
+#: ../gnome-session/gsm-fail-whale-dialog.c:295
 msgid "Oh no!  Something has gone wrong."
 msgstr "糟糕！出错啦！"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:293
+#: ../gnome-session/gsm-fail-whale-dialog.c:302
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr "系统出错且无法恢复。请联系系统管理员。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:304
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
 msgstr "系统出错且无法恢复。为预防起见，已禁用了所有扩展。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:297
+#: ../gnome-session/gsm-fail-whale-dialog.c:306
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-fail-whale-dialog.c:312
-#: ../gnome-session/gsm-logout-dialog.c:384
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:334 ../gnome-session/main.c:282
+#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:335
+#: ../gnome-session/gsm-fail-whale-dialog.c:344
 msgid "Allow logout"
 msgstr "允许注销"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:336
+#: ../gnome-session/gsm-fail-whale-dialog.c:345
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: ../gnome-session/gsm-inhibit-dialog.c:462
-msgid "Unknown"
-msgstr "未知"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:510
-msgid "A program is still running:"
-msgstr "有程序仍在运行中："
-
-#: ../gnome-session/gsm-inhibit-dialog.c:511
-msgid ""
-"Waiting for the program to finish. Interrupting the program may cause you to "
-"lose work."
-msgstr "正在等候程序结束。中断程序可能导致您的工作成果丢失。"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:515
-msgid ""
-"Waiting for programs to finish. Interrupting these programs may cause you to "
-"lose work."
-msgstr "正在等候程序结束。中断程序可能导致您的工作成果丢失。"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:745
-msgid "Switch User Anyway"
-msgstr "强制切换用户"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:748
-msgid "Log Out Anyway"
-msgstr "强制注销"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:751
-msgid "Suspend Anyway"
-msgstr "强制挂起"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:754
-msgid "Hibernate Anyway"
-msgstr "强制休眠"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:757
-msgid "Shut Down Anyway"
-msgstr "强制关机"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:760
-msgid "Restart Anyway"
-msgstr "强制重新启动"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:768
-msgid "Lock Screen"
-msgstr "锁定屏幕"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:771
-msgid "Cancel"
-msgstr "取消"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:263
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "您即将在 %d 秒后自动注销。"
-
-#: ../gnome-session/gsm-logout-dialog.c:271
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "系统即将在 %d 秒后自动关闭。"
-
-#: ../gnome-session/gsm-logout-dialog.c:279
-#, c-format
-msgid "This system will be automatically restarted in %d second."
-msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "系统将在 %d 秒后自动重启。"
-
-#: ../gnome-session/gsm-logout-dialog.c:303
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "您目前以“%s”身份登录。"
-
-#: ../gnome-session/gsm-logout-dialog.c:369
-msgid "Log out of this system now?"
-msgstr "现在注销系统吗？"
-
-#: ../gnome-session/gsm-logout-dialog.c:375
-msgid "_Switch User"
-msgstr "切换用户(_S)"
-
-#: ../gnome-session/gsm-logout-dialog.c:390
-msgid "Shut down this system now?"
-msgstr "现在关闭此系统吗？"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-msgid "S_uspend"
-msgstr "挂起(_U)"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "_Hibernate"
-msgstr "休眠(_H)"
-
-# gmenu/edit.c:336 gsm/session-properties.c:167
-#: ../gnome-session/gsm-logout-dialog.c:408
-#: ../gnome-session/gsm-logout-dialog.c:434
-msgid "_Restart"
-msgstr "重启(_R)"
-
-#: ../gnome-session/gsm-logout-dialog.c:418
-msgid "_Shut Down"
-msgstr "关机(_S)"
-
-#: ../gnome-session/gsm-logout-dialog.c:424
-msgid "Restart this system now?"
-msgstr "现在重启该系统吗？"
-
-#: ../gnome-session/gsm-manager.c:1429 ../gnome-session/gsm-manager.c:2178
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
 msgid "Not responding"
 msgstr "无响应"
 
@@ -417,11 +311,11 @@ msgstr "注销(_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:558
+#: ../gnome-session/gsm-xsmp-client.c:559
 msgid "Remembered Application"
 msgstr "记住的应用程序"
 
-#: ../gnome-session/gsm-xsmp-client.c:1196
+#: ../gnome-session/gsm-xsmp-client.c:1209
 msgid "This program is blocking logout."
 msgstr "此程序正在阻止注销。"
 
@@ -436,32 +330,32 @@ msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:305
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:306
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:308
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:311
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: ../gnome-session/main.c:320
+#: ../gnome-session/main.c:344
 msgid " - the GNOME session manager"
 msgstr "- GNOME 会话管理器"
 
@@ -561,56 +455,75 @@ msgstr "无法连接到会话管理器"
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
 
-#~ msgid "GNOME fallback"
-#~ msgstr "GNOME 后备模式"
+#~ msgid "Some programs are still running:"
+#~ msgstr "有些程序仍在运行中："
 
-#~ msgid "Icon '%s' not found"
-#~ msgstr "图标“%s”未找到"
+#~ msgid "Unknown"
+#~ msgstr "未知"
 
-#~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "GNOME 3 加载失败"
-
-#~ msgid ""
-#~ "Unfortunately GNOME 3 failed to start properly and started in the "
-#~ "<i>fallback mode</i>.\n"
-#~ "\n"
-#~ "This most likely means your system (graphics hardware or driver) is not "
-#~ "capable of delivering the full GNOME 3 experience."
-#~ msgstr ""
-#~ "很遗憾 GNOME 3 无法正常启动，并已启动到<i>后备模式</i>。\n"
-#~ "\n"
-#~ "这可能是因为您的显卡硬件或驱动不足以完全运行 GNOME 3。"
-
-#~ msgid "Learn more about GNOME 3"
-#~ msgstr "进一步了解 GNOME 3"
+#~ msgid "A program is still running:"
+#~ msgstr "有程序仍在运行中："
 
 #~ msgid ""
-#~ "Unable to start login session (and unable to connect to the X server)"
-#~ msgstr "无法启动登录会话(并且无法连接到 X 服务器)"
-
-#~ msgid "<b>Some programs are still running:</b>"
-#~ msgstr "<b>某些程序仍在运行中：</b>"
-
-#~ msgid "Exited with code %d"
-#~ msgstr "以代码 %d 退出"
-
-#~ msgid "Killed by signal %d"
-#~ msgstr "被信号 %d 杀死"
-
-#~ msgid "Stopped by signal %d"
-#~ msgstr "被信号 %d 停止"
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr "正在等候程序结束。中断程序可能导致您的工作成果丢失。"
 
 #~ msgid ""
-#~ "A problem has occurred and the system can't recover. Some of the "
-#~ "extensions below may have caused this.\n"
-#~ "Please try disabling some of these, and then log out and try again."
-#~ msgstr ""
-#~ "系统出错并无法恢复。这可能是下面的一些扩展导致的。\n"
-#~ "请尝试禁用一些，并注销重试。"
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr "正在等候程序结束。中断程序可能导致您的工作成果丢失。"
 
-#~ msgid ""
-#~ "There is a problem with the configuration server.\n"
-#~ "(%s exited with status %d)"
-#~ msgstr ""
-#~ "配置服务器有错。\n"
-#~ "(%s 的退出状态为 %d)"
+#~ msgid "Switch User Anyway"
+#~ msgstr "强制切换用户"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "强制注销"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "强制挂起"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "强制休眠"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "强制关机"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "强制重新启动"
+
+#~ msgid "Lock Screen"
+#~ msgstr "锁定屏幕"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "您即将在 %d 秒后自动注销。"
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "系统即将在 %d 秒后自动关闭。"
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "系统将在 %d 秒后自动重启。"
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "您目前以“%s”身份登录。"
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "现在注销系统吗？"
+
+#~ msgid "_Switch User"
+#~ msgstr "切换用户(_S)"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "现在关闭此系统吗？"
+
+#~ msgid "S_uspend"
+#~ msgstr "挂起(_U)"
+
+#~ msgid "_Hibernate"
+#~ msgstr "休眠(_H)"
