@@ -124,7 +124,8 @@ test_client_dbus_SOURCES = test-client-dbus.c
 test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)
 
 test_process_helper_SOURCES = test-process-helper.c gsm-process-helper.c gsm-process-helper.h
-test_process_helper_LDADD = $(DBUS_GLIB_LIBS)
+test_process_helper_CFLAGS = $(AM_CFLAGS) $(GIO_CFLAGS)
+test_process_helper_LDADD = $(GIO_LIBS)
 
 gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml

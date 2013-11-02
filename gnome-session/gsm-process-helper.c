@@ -20,48 +20,54 @@
 
 #include <config.h>
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <signal.h>
-
-#include <glib.h>
+#include <gio/gio.h>
 #include <glib/gi18n.h>
 
 #include "gsm-process-helper.h"
 
 typedef struct {
-        const char *command_line;
-        GPid        pid;
-        gboolean    timed_out;
-        int         status;
-        GMainLoop  *loop;
-        guint       child_id;
-        guint       timeout_id;
+        gboolean        done;
+        GSubprocess    *process;
+        gboolean        caught_error;
+        GError        **error;
+        GMainContext   *maincontext;
+        GSource        *timeout_source;
 } GsmProcessHelper;
 
 static void
-on_child_exited (GPid     pid,
-                 gint     status,
-                 gpointer data)
+on_child_exited (GObject        *source,
+                 GAsyncResult   *result,
+                 gpointer        data)
 {
         GsmProcessHelper *helper = data;
 
-        helper->timed_out = FALSE;
-        helper->status = status;
+        helper->done = TRUE;
 
-        g_spawn_close_pid (pid);
-        g_main_loop_quit (helper->loop);
+        if (!g_subprocess_wait_check_finish ((GSubprocess*)source, result,
+                                             helper->caught_error ? NULL : helper->error))
+                helper->caught_error = TRUE;
+
+        g_clear_pointer (&helper->timeout_source, g_source_destroy);
+
+        g_main_context_wakeup (helper->maincontext);
 }
 
 static gboolean
 on_child_timeout (gpointer data)
 {
         GsmProcessHelper *helper = data;
+        
+        g_assert (!helper->done);
+        
+        g_subprocess_force_exit (helper->process);
+        
+        g_set_error_literal (helper->error,
+                             G_IO_CHANNEL_ERROR,
+                             G_IO_CHANNEL_ERROR_FAILED,
+                             "Timed out");
 
-        kill (helper->pid, SIGTERM);
-        helper->timed_out = TRUE;
-        g_main_loop_quit (helper->loop);
-
+        helper->timeout_source = NULL;
+        
         return FALSE;
 }
 
@@ -70,69 +76,40 @@ gsm_process_helper (const char   *command_line,
                     unsigned int  timeout,
                     GError      **error)
 {
-        GsmProcessHelper *helper;
+        gboolean ret = FALSE;
+        GsmProcessHelper helper = { 0, };
         gchar **argv = NULL;
-        GPid pid;
-        gboolean ret;
+        GMainContext *subcontext = NULL;
 
         if (!g_shell_parse_argv (command_line, NULL, &argv, error))
-                return FALSE;
+                goto out;
 
-        ret = g_spawn_async (NULL,
-                             argv,
-                             NULL,
-                             G_SPAWN_SEARCH_PATH|G_SPAWN_DO_NOT_REAP_CHILD,
-                             NULL,
-                             NULL,
-                             &pid,
-                             error);
+        helper.error = error;
 
+        subcontext = g_main_context_new ();
+        g_main_context_push_thread_default (subcontext);
+
+        helper.process = g_subprocess_newv ((const char*const*)argv, 0, error);
+        if (!helper.process)
+                goto out;
+
+        g_subprocess_wait_async (helper.process, NULL, on_child_exited, &helper);
+
+        helper.timeout_source = g_timeout_source_new (timeout);
+
+        g_source_set_callback (helper.timeout_source, on_child_timeout, &helper, NULL);
+        g_source_attach (helper.timeout_source, subcontext);
+
+        while (!helper.done)
+                g_main_context_iteration (subcontext, TRUE);
+
+        ret = helper.caught_error;
+ out:
         g_strfreev (argv);
-
-        if (!ret)
-                return FALSE;
-
-        ret = FALSE;
-
-        helper = g_slice_new0 (GsmProcessHelper);
-
-        helper->command_line = command_line;
-        helper->pid = pid;
-        helper->timed_out = FALSE;
-        helper->status = -1;
-
-        helper->loop = g_main_loop_new (NULL, FALSE);
-        helper->child_id = g_child_watch_add (helper->pid, on_child_exited, helper);
-        helper->timeout_id = g_timeout_add (timeout, on_child_timeout, helper);
-
-        g_main_loop_run (helper->loop);
-
-        if (helper->timed_out) {
-                g_set_error_literal (error,
-                                     G_IO_CHANNEL_ERROR,
-                                     G_IO_CHANNEL_ERROR_FAILED,
-                                     "Timed out");
-        } else {
-                if (g_spawn_check_exit_status (helper->status, error))
-                        ret = TRUE;
+        if (subcontext) {
+                g_main_context_pop_thread_default (subcontext);
+                g_main_context_unref (subcontext);
         }
-
-        if (helper->loop) {
-                g_main_loop_unref (helper->loop);
-                helper->loop = NULL;
-        }
-
-        if (helper->child_id) {
-                g_source_remove (helper->child_id);
-                helper->child_id = 0;
-        }
-
-        if (helper->timeout_id) {
-                g_source_remove (helper->timeout_id);
-                helper->timeout_id = 0;
-        }
-
-        g_slice_free (GsmProcessHelper, helper);
-
+        g_clear_object (&helper.process);
         return ret;
 }
