@@ -1,4 +1,15 @@
 ==============
+Version 3.11.0
+==============
+	* Fix a possible crash in the presence interface
+	* gsm-manager: Don't abort when all clients exit (#710480)
+	* gsm-util: Use g_unsetenv() rather than g_setenv(variable, NULL) (#710485)
+	* Only support UPower 0.9
+	* Drop EggSMClient
+	* Remove gnome-session-properties (#708923)
+	* Translation updates
+
+==============
 Version 3.10.1
 ==============
 	* Fix a crash on session end (#709221)
