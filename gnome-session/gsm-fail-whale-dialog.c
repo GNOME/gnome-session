@@ -204,9 +204,35 @@ gsm_fail_whale_dialog_get_preferred_width (GtkWidget *widget,
 }
 
 static void
+gsm_fail_whale_dialog_get_preferred_width_for_height (GtkWidget *widget,
+                                                      gint       for_height,
+                                                      gint      *minimal_width,
+                                                      gint      *natural_width)
+{
+        GtkRequisition requisition;
+
+        gsm_fail_whale_dialog_size_request (widget, &requisition);
+
+        *minimal_width = *natural_width = requisition.width;
+}
+
+static void
 gsm_fail_whale_dialog_get_preferred_height (GtkWidget *widget,
                                             gint      *minimal_height,
                                             gint      *natural_height)
+{
+        GtkRequisition requisition;
+
+        gsm_fail_whale_dialog_size_request (widget, &requisition);
+
+        *minimal_height = *natural_height = requisition.height;
+}
+
+static void
+gsm_fail_whale_dialog_get_preferred_height_for_width (GtkWidget *widget,
+                                                      gint       for_width,
+                                                      gint      *minimal_height,
+                                                      gint      *natural_height)
 {
         GtkRequisition requisition;
 
@@ -226,6 +252,8 @@ gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
         widget_class->unrealize = gsm_fail_whale_dialog_unrealize;
         widget_class->get_preferred_width = gsm_fail_whale_dialog_get_preferred_width;
         widget_class->get_preferred_height = gsm_fail_whale_dialog_get_preferred_height;
+        widget_class->get_preferred_width_for_height = gsm_fail_whale_dialog_get_preferred_width_for_height;
+        widget_class->get_preferred_height_for_width = gsm_fail_whale_dialog_get_preferred_height_for_width;
 
         g_type_class_add_private (klass, sizeof (GsmFailWhaleDialogPrivate));
 }
