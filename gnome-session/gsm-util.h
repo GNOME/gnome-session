@@ -47,7 +47,7 @@ const char *gsm_util_get_current_desktop            (void);
 gboolean    gsm_util_text_is_blank                  (const char *str);
 
 void        gsm_util_init_error                     (gboolean    fatal,
-                                                     const char *format, ...);
+                                                     const char *format, ...) G_GNUC_PRINTF (2, 3);
 
 char *      gsm_util_generate_startup_id            (void);
 

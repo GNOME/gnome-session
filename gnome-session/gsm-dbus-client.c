@@ -120,6 +120,12 @@ static void
 raise_error (DBusConnection *connection,
              DBusMessage    *in_reply_to,
              const char     *error_name,
+             char           *format, ...) G_GNUC_PRINTF (4, 5);
+
+static void
+raise_error (DBusConnection *connection,
+             DBusMessage    *in_reply_to,
+             const char     *error_name,
              char           *format, ...)
 {
         char         buf[512];
