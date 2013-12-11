@@ -165,22 +165,18 @@ gsm_shell_extensions_scan (GsmShellExtensions *self)
 static void
 gsm_shell_extensions_init (GsmShellExtensions *self)
 {
-  const gchar * const * schemas;
+  GSettingsSchemaSource *source;
+  GSettingsSchema *schema;
 
   self->priv = SHELL_EXTENSIONS_PRIVATE (self);
 
-  /* Unfortunately, gsettings does not have a way to test
-   * for the existance of a schema, so hack around it. */
-  schemas = g_settings_list_schemas ();
-  while (schemas != NULL)
-    {
-      if (g_str_equal (*schemas, SHELL_SCHEMA))
-        {
-          self->priv->settings = g_settings_new (SHELL_SCHEMA);
-          break;
-        }
+  source = g_settings_schema_source_get_default ();
+  schema = g_settings_schema_source_lookup (source, SHELL_SCHEMA, TRUE);
 
-      schemas ++;
+  if (schema != NULL)
+    {
+      self->priv->settings = g_settings_new_full (schema, NULL, NULL);
+      g_settings_schema_unref (schema);
     }
 
   if (self->priv->settings != NULL)
