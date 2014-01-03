@@ -72,6 +72,58 @@ gsm_system_default_init (GsmSystemInterface *iface)
         g_object_interface_install_property (iface, pspec);
 }
 
+typedef GObject GsmSystemNull;
+typedef GObjectClass GsmSystemNullClass;
+
+static void do_nothing (void) { }
+static gboolean return_true (void) { return TRUE; }
+static gboolean return_false (void) { return TRUE; }
+
+static void
+gsm_system_null_init_iface (GsmSystemInterface *iface)
+{
+        iface->can_switch_user   = (void *) return_false;
+        iface->can_stop          = (void *) return_false;
+        iface->can_restart       = (void *) return_false;
+        iface->can_suspend       = (void *) return_false;
+        iface->can_hibernate     = (void *) return_false;
+        iface->attempt_stop      = (void *) do_nothing;
+        iface->attempt_restart   = (void *) do_nothing;
+        iface->suspend           = (void *) do_nothing;
+        iface->hibernate         = (void *) do_nothing;
+        iface->set_session_idle  = (void *) do_nothing;
+        iface->is_login_session  = (void *) return_true;
+        iface->add_inhibitor     = (void *) do_nothing;
+        iface->remove_inhibitor  = (void *) do_nothing;
+        iface->prepare_shutdown  = (void *) do_nothing;
+        iface->complete_shutdown = (void *) do_nothing;
+}
+
+static void
+gsm_system_null_init (GsmSystemNull *gsn)
+{
+}
+
+static void
+gsm_system_null_get_property (GObject *object, guint prop_id,
+                              GValue *value, GParamSpec *pspec)
+{
+        g_value_set_boolean (value, TRUE);
+}
+
+static void
+gsm_system_null_class_init (GsmSystemNullClass *class)
+{
+        class->get_property = gsm_system_null_get_property;
+        class->set_property = (void *) do_nothing;
+
+        g_object_class_override_property (class, 1, "active");
+}
+
+static GType gsm_system_null_get_type (void);
+G_DEFINE_TYPE_WITH_CODE (GsmSystemNull, gsm_system_null, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM, gsm_system_null_init_iface))
+
 GQuark
 gsm_system_error_quark (void)
 {
@@ -212,6 +264,11 @@ gsm_get_system (void)
                 }
         }
 #endif
+
+        if (system == NULL) {
+                system = g_object_new (gsm_system_null_get_type (), NULL);
+                g_warning ("Using null backend for session tracking");
+        }
 
         return g_object_ref (system);
 }
