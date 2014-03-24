@@ -110,6 +110,14 @@ main (int argc, char **argv)
         glong is_accelerated, is_software_rendering;
         GError *error = NULL;
 
+        /* gnome-session-check-accelerated gets run before X is started in the wayland
+         * case, and it currently requires X. Until we have that working, just always
+         * assume wayland will work
+         */
+        if (g_strcmp0 (g_getenv ("XDG_SESSION_DESKTOP"), "gnome-wayland") == 0) {
+                return 0;
+        }
+
         gtk_init (NULL, NULL);
 
         display = gdk_display_get_default ();
