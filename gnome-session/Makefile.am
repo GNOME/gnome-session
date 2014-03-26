@@ -59,9 +59,7 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-server.c			\
 	gsm-xsmp-server.h
 
-if HAVE_OLD_UPOWER
 gnome_session_SOURCES += gsm-consolekit.c gsm-consolekit.h
-endif
 
 gnome_session_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\

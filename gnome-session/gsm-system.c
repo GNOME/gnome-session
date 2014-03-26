@@ -22,9 +22,7 @@
 #include <glib/gi18n.h>
 
 #include "gsm-system.h"
-#ifdef HAVE_OLD_UPOWER
 #include "gsm-consolekit.h"
-#endif
 #include "gsm-systemd.h"
 
 enum {
@@ -254,14 +252,13 @@ gsm_get_system (void)
                         g_debug ("Using systemd for session tracking");
                 }
         }
-#ifdef HAVE_OLD_UPOWER
+
         if (system == NULL) {
                 system = GSM_SYSTEM (gsm_consolekit_new ());
                 if (system != NULL) {
                         g_debug ("Using ConsoleKit for session tracking");
                 }
         }
-#endif
 
         if (system == NULL) {
                 system = g_object_new (gsm_system_null_get_type (), NULL);
