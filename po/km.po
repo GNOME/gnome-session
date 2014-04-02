@@ -6,9 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-30 16:54+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-04 03:43+0000\n"
 "PO-Revision-Date: 2012-09-28 14:46+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -73,6 +72,7 @@ msgid "Could not display help document"
 msgstr "មិន​អាច​បង្ហាញ​ឯកសារ​ជំនួយ​បាន​ទេ"
 
 #: ../data/gnome-fallback.session.desktop.in.in.h:1
+#| msgid "GNOME fallback (Safe Mode)"
 msgid "GNOME fallback"
 msgstr "GNOME fallback"
 
@@ -107,6 +107,7 @@ msgid "Additional startup _programs:"
 msgstr "កម្មវិធី​ចាប់ផ្ដើម​បន្ថែម ៖"
 
 #: ../data/session-properties.ui.h:2
+#| msgid "Add Startup Program"
 msgid "Startup Programs"
 msgstr "ចាប់ផ្ដើម​កម្មវិធី"
 
@@ -274,7 +275,9 @@ msgstr[0] "ប្រព័ន្ធ​នេះ​នឹង​បិទ​ដោ
 #, c-format
 msgid "This system will be automatically restarted in %d second."
 msgid_plural "This system will be automatically restarted in %d seconds."
-msgstr[0] "ប្រព័ន្ធ​នេះ​នឹង​ត្រូវ​បាន​ចាប់ផ្ដើម​ឡើង​វិញ​ដោយ​ស្វ័យប្រវត្តិ​នៅ​  %d វិនាទី ។"
+msgstr[0] ""
+"ប្រព័ន្ធ​នេះ​នឹង​ត្រូវ​បាន​ចាប់ផ្ដើម​ឡើង​វិញ​ដោយ​ស្វ័យប្រវត្តិ​នៅ​  %d "
+"វិនាទី ។"
 
 #: ../gnome-session/gsm-logout-dialog.c:306
 #, c-format
@@ -291,7 +294,7 @@ msgstr "ប្ដូរ​អ្នក​ប្រើ"
 
 #: ../gnome-session/gsm-logout-dialog.c:387
 #: ../gnome-session/gsm-fail-whale-dialog.c:337
-#: ../gnome-session/gsm-util.c:428
+#: ../gnome-session/gsm-util.c:389
 msgid "_Log Out"
 msgstr "ចេញ"
 
@@ -328,21 +331,25 @@ msgstr "អូ ! មាន​អ្វី​មួយ​មិន​ត្រឹ
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
-msgstr "មាន​បញ្ហា ​ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។ សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក"
+msgstr ""
+"មាន​បញ្ហា ​ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។ "
+"សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
-msgstr "មាន​បញ្ហា ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។ ផ្នែក​បន្ថែម​ទាំងអស់​ត្រូវ​បាន​បិទ ។"
+msgstr ""
+"មាន​បញ្ហា ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។ "
+"ផ្នែក​បន្ថែម​ទាំងអស់​ត្រូវ​បាន​បិទ ។"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr ""
-"មាន​បញ្ហា​ ​ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។\n"
-"សូម​ចេញ ហើយ​ព្យាយាម​​ម្ដង​ទៀត ។"
+"មាន​បញ្ហា​ ​ប្រព័ន្ធ​មិន​អាច​សង្គ្រោះ​បាន​ទេ ។\nសូម​ចេញ "
+"ហើយ​ព្យាយាម​​ម្ដង​ទៀត ។"
 
 #: ../gnome-session/gsm-manager.c:1393
 msgid "GNOME 3 Failed to Load"
@@ -393,7 +400,7 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "មិន​អាច​បង្កើត​រន្ធ​ស្ដាប់ ICE បាន​ទេ ៖ %s"
 
 #. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:412
+#: ../gnome-session/gsm-util.c:373
 #, c-format
 msgid "Unable to start login session (and unable to connect to the X server)"
 msgstr "មិន​អាច​ចាប់ផ្ដើម​សម័យ​ចូល​បាន​ទេ (និង​មិន​អាច​តភ្ជាប់​ទៅ​ម៉ាស៊ីន​បម្រើ X បាន​ទេ)"
