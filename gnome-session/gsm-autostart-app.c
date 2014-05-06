@@ -114,7 +114,6 @@ static gboolean
 is_disabled (GsmApp *app)
 {
         GsmAutostartAppPrivate *priv;
-        const char *current_desktop;
 
         priv = GSM_AUTOSTART_APP (app)->priv;
 
@@ -136,13 +135,9 @@ is_disabled (GsmApp *app)
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
-        current_desktop = gsm_util_get_current_desktop ();
-        g_desktop_app_info_set_desktop_env (current_desktop);
-        if (current_desktop != NULL &&
-            !g_desktop_app_info_get_show_in (G_DESKTOP_APP_INFO (priv->app_info),
-                                             current_desktop)) {
-                        g_debug ("app %s not for %s",
-                                 gsm_app_peek_id (app), current_desktop);
+        if (!g_app_info_should_show (G_DESKTOP_APP_INFO (priv->app_info))) {
+                g_debug ("app %s is not for the current desktop",
+                         gsm_app_peek_id (app));
                 return TRUE;
         }
 

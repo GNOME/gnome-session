@@ -40,8 +40,6 @@ void        gsm_util_set_autostart_dirs             (char **dirs);
 gchar **    gsm_util_get_desktop_dirs               (gboolean include_saved_session,
                                                      gboolean autostart_first);
 
-const char *gsm_util_get_current_desktop            (void);
-
 gboolean    gsm_util_text_is_blank                  (const char *str);
 
 void        gsm_util_init_error                     (gboolean    fatal,
