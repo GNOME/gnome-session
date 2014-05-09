@@ -135,7 +135,7 @@ is_disabled (GsmApp *app)
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
-        if (!g_app_info_should_show (G_DESKTOP_APP_INFO (priv->app_info))) {
+        if (!g_desktop_app_info_get_show_in (priv->app_info, NULL)) {
                 g_debug ("app %s is not for the current desktop",
                          gsm_app_peek_id (app));
                 return TRUE;
