@@ -385,6 +385,13 @@ main (int argc, char **argv)
         gdm_log_init ();
         gdm_log_set_debug (debug);
 
+        /* From 3.14 GDM sets XDG_CURRENT_DESKTOP. For compatibility with
+         * older versions of GDM,  other display managers, and startx,
+         * set a fallback value if we don't find it set.
+         */
+        if (g_getenv ("XDG_CURRENT_DESKTOP") == NULL)
+            gsm_util_setenv ("XDG_CURRENT_DESKTOP", "GNOME");
+
         /* Some third-party programs rely on GNOME_DESKTOP_SESSION_ID to
          * detect if GNOME is running. We keep this for compatibility reasons.
          */
