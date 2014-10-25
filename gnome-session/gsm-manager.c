@@ -36,11 +36,9 @@
 #include <glib/gstdio.h>
 #include <glib-object.h>
 #include <gio/gio.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-lowlevel.h>
 
 #include "gsm-manager.h"
-#include "gsm-manager-glue.h"
+#include "org.gnome.SessionManager.h"
 
 #ifdef HAVE_SYSTEMD
 #include <systemd/sd-journal.h>
@@ -72,6 +70,7 @@
 
 #define GSM_MANAGER_DBUS_PATH "/org/gnome/SessionManager"
 #define GSM_MANAGER_DBUS_NAME "org.gnome.SessionManager"
+#define GSM_MANAGER_DBUS_IFACE "org.gnome.SessionManager"
 
 /* Probably about the longest amount of time someone could reasonably
  * want to wait, at least for something happening more than once.
@@ -156,9 +155,10 @@ struct GsmManagerPrivate
         GSettings              *lockdown_settings;
 
         GsmSystem              *system;
-        DBusGProxy             *bus_proxy;
-        DBusGConnection        *connection;
+        GDBusConnection        *connection;
+        GsmExportedManager     *skeleton;
         gboolean                dbus_disconnected : 1;
+        guint                   name_owner_id;
 
         GsmShell               *shell;
         guint                   shell_end_session_dialog_canceled_id;
@@ -171,21 +171,12 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
-        PROP_INHIBITED_ACTIONS,
-        PROP_SESSION_NAME,
-        PROP_SESSION_IS_ACTIVE,
         PROP_FALLBACK,
         PROP_FAILSAFE
 };
 
 enum {
         PHASE_CHANGED,
-        CLIENT_ADDED,
-        CLIENT_REMOVED,
-        INHIBITOR_ADDED,
-        INHIBITOR_REMOVED,
-        SESSION_RUNNING,
-        SESSION_OVER,
         LAST_SIGNAL
 };
 
@@ -211,42 +202,26 @@ static gpointer manager_object = NULL;
 
 G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
 
+static const GDBusErrorEntry gsm_manager_error_entries[] = {
+        { GSM_MANAGER_ERROR_GENERAL, GSM_MANAGER_DBUS_IFACE ".GeneralError" },
+        { GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION, GSM_MANAGER_DBUS_IFACE ".NotInInitialization" },
+        { GSM_MANAGER_ERROR_NOT_IN_RUNNING, GSM_MANAGER_DBUS_IFACE ".NotInRunning" },
+        { GSM_MANAGER_ERROR_ALREADY_REGISTERED, GSM_MANAGER_DBUS_IFACE ".AlreadyRegistered" },
+        { GSM_MANAGER_ERROR_NOT_REGISTERED, GSM_MANAGER_DBUS_IFACE ".NotRegistered" },
+        { GSM_MANAGER_ERROR_INVALID_OPTION, GSM_MANAGER_DBUS_IFACE ".InvalidOption" },
+        { GSM_MANAGER_ERROR_LOCKED_DOWN, GSM_MANAGER_DBUS_IFACE ".LockedDown" }
+};
+
 GQuark
 gsm_manager_error_quark (void)
 {
-        static GQuark ret = 0;
-        if (ret == 0) {
-                ret = g_quark_from_static_string ("gsm_manager_error");
-        }
+        static volatile gsize quark_volatile = 0;
 
-        return ret;
-}
-
-#define ENUM_ENTRY(NAME, DESC) { NAME, "" #NAME "", DESC }
-
-GType
-gsm_manager_error_get_type (void)
-{
-        static GType etype = 0;
-
-        if (etype == 0) {
-                static const GEnumValue values[] = {
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_GENERAL, "GeneralError"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION, "NotInInitialization"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_IN_RUNNING, "NotInRunning"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_ALREADY_REGISTERED, "AlreadyRegistered"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_NOT_REGISTERED, "NotRegistered"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_INVALID_OPTION, "InvalidOption"),
-                        ENUM_ENTRY (GSM_MANAGER_ERROR_LOCKED_DOWN, "LockedDown"),
-                        { 0, 0, 0 }
-                };
-
-                g_assert (GSM_MANAGER_NUM_ERRORS == G_N_ELEMENTS (values) - 1);
-
-                etype = g_enum_register_static ("GsmManagerError", values);
-        }
-
-        return etype;
+        g_dbus_error_register_error_domain ("gsm_manager_error",
+                                            &quark_volatile,
+                                            gsm_manager_error_entries,
+                                            G_N_ELEMENTS (gsm_manager_error_entries));
+        return quark_volatile;
 }
 
 static gboolean
@@ -1369,7 +1344,7 @@ start_phase (GsmManager *manager)
                         complete_end_session_tasks (manager);
                 g_object_unref (manager->priv->end_session_cancellable);
                 manager->priv->end_session_cancellable = g_cancellable_new ();
-                g_signal_emit (manager, signals[SESSION_RUNNING], 0);
+                gsm_exported_manager_emit_session_running (manager->priv->skeleton);
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
@@ -1452,6 +1427,8 @@ _gsm_manager_set_active_session (GsmManager     *manager,
         g_free (manager->priv->session_name);
         manager->priv->session_name = g_strdup (session_name);
         manager->priv->is_fallback_session = is_fallback;
+
+        gsm_exported_manager_set_session_name (manager->priv->skeleton, session_name);
 }
 
 static gboolean
@@ -1718,135 +1695,6 @@ remove_clients_for_connection (GsmManager *manager,
                 g_debug ("GsmManager: last client disconnected - exiting");
                 end_phase (manager);
         }
-}
-
-static gboolean
-inhibitor_has_bus_name (gpointer          key,
-                        GsmInhibitor     *inhibitor,
-                        RemoveClientData *data)
-{
-        gboolean    matches;
-        const char *bus_name_b;
-
-        bus_name_b = gsm_inhibitor_peek_bus_name (inhibitor);
-
-        matches = FALSE;
-        if (! IS_STRING_EMPTY (data->service_name) && ! IS_STRING_EMPTY (bus_name_b)) {
-                matches = (strcmp (data->service_name, bus_name_b) == 0);
-                if (matches) {
-                        g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
-                                 gsm_inhibitor_peek_app_id (inhibitor),
-                                 gsm_inhibitor_peek_reason (inhibitor),
-                                 gsm_inhibitor_peek_bus_name (inhibitor));
-                }
-        }
-
-        return matches;
-}
-
-static void
-remove_inhibitors_for_connection (GsmManager *manager,
-                                  const char *service_name)
-{
-        RemoveClientData data;
-        guint count;
-
-        data.service_name = service_name;
-        data.manager = manager;
-
-        debug_inhibitors (manager);
-
-        count = gsm_store_foreach_remove (manager->priv->inhibitors,
-                                          (GsmStoreFunc)inhibitor_has_bus_name,
-                                          &data);
-        if (count > 0 &&
-            manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                end_session_or_show_shell_dialog (manager);
-        }
-}
-
-static void
-bus_name_owner_changed (DBusGProxy  *bus_proxy,
-                        const char  *service_name,
-                        const char  *old_service_name,
-                        const char  *new_service_name,
-                        GsmManager  *manager)
-{
-        if (strlen (new_service_name) == 0
-            && strlen (old_service_name) > 0) {
-                /* service removed */
-                remove_inhibitors_for_connection (manager, old_service_name);
-                remove_clients_for_connection (manager, old_service_name);
-        } else if (strlen (old_service_name) == 0
-                   && strlen (new_service_name) > 0) {
-                /* service added */
-
-                /* use this if we support automatically registering
-                 * well known bus names */
-        }
-}
-
-static DBusHandlerResult
-gsm_manager_bus_filter (DBusConnection *connection,
-                        DBusMessage    *message,
-                        void           *user_data)
-{
-        GsmManager *manager;
-
-        manager = GSM_MANAGER (user_data);
-
-        if (dbus_message_is_signal (message,
-                                    DBUS_INTERFACE_LOCAL, "Disconnected") &&
-            strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
-                g_debug ("GsmManager: dbus disconnected; disconnecting dbus clients...");
-                manager->priv->dbus_disconnected = TRUE;
-                remove_clients_for_connection (manager, NULL);
-                /* let other filters get this disconnected signal, so that they
-                 * can handle it too */
-        }
-
-        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-static gboolean
-register_manager (GsmManager *manager)
-{
-        GError *error = NULL;
-        DBusConnection *connection;
-
-        manager->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (manager->priv->connection == NULL) {
-                if (error != NULL) {
-                        g_critical ("error getting session bus: %s", error->message);
-                        g_error_free (error);
-                }
-                exit (1);
-        }
-
-        connection = dbus_g_connection_get_connection (manager->priv->connection);
-        dbus_connection_add_filter (connection,
-                                    gsm_manager_bus_filter,
-                                    manager, NULL);
-        manager->priv->dbus_disconnected = FALSE;
-
-        manager->priv->bus_proxy = dbus_g_proxy_new_for_name (manager->priv->connection,
-                                                              DBUS_SERVICE_DBUS,
-                                                              DBUS_PATH_DBUS,
-                                                              DBUS_INTERFACE_DBUS);
-        dbus_g_proxy_add_signal (manager->priv->bus_proxy,
-                                 "NameOwnerChanged",
-                                 G_TYPE_STRING,
-                                 G_TYPE_STRING,
-                                 G_TYPE_STRING,
-                                 G_TYPE_INVALID);
-        dbus_g_proxy_connect_signal (manager->priv->bus_proxy,
-                                     "NameOwnerChanged",
-                                     G_CALLBACK (bus_name_owner_changed),
-                                     manager,
-                                     NULL);
-
-        dbus_g_connection_register_g_object (manager->priv->connection, GSM_MANAGER_DBUS_PATH, G_OBJECT (manager));
-
-        return TRUE;
 }
 
 static void
@@ -2151,7 +1999,7 @@ on_store_client_added (GsmStore   *store,
                           G_CALLBACK (on_client_end_session_response),
                           manager);
 
-        g_signal_emit (manager, signals [CLIENT_ADDED], 0, id);
+        gsm_exported_manager_emit_client_added (manager->priv->skeleton, id);
         /* FIXME: disconnect signal handler */
 }
 
@@ -2162,7 +2010,7 @@ on_store_client_removed (GsmStore   *store,
 {
         g_debug ("GsmManager: Client removed: %s", id);
 
-        g_signal_emit (manager, signals [CLIENT_REMOVED], 0, id);
+        gsm_exported_manager_emit_client_removed (manager->priv->skeleton, id);
 }
 
 static void
@@ -2248,20 +2096,11 @@ gsm_manager_get_property (GObject    *object,
         case PROP_FAILSAFE:
                 g_value_set_boolean (value, self->priv->failsafe);
                 break;
-        case PROP_SESSION_NAME:
-                g_value_set_string (value, self->priv->session_name);
-                break;
-        case PROP_SESSION_IS_ACTIVE:
-                g_value_set_boolean (value, gsm_system_is_active (self->priv->system));
-                break;
         case PROP_FALLBACK:
                 g_value_set_boolean (value, self->priv->is_fallback_session);
                 break;
         case PROP_CLIENT_STORE:
                 g_value_set_object (value, self->priv->clients);
-                break;
-        case PROP_INHIBITED_ACTIONS:
-                g_value_set_uint (value, self->priv->inhibited_actions);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -2294,49 +2133,12 @@ static void
 update_inhibited_actions (GsmManager *manager,
                           GsmInhibitorFlag new_inhibited_actions)
 {
-        DBusGConnection *gconnection;
-        DBusConnection *connection;
-        DBusMessage *message;
-        DBusMessageIter iter;
-        DBusMessageIter subiter;
-        DBusMessageIter dict_iter;
-        DBusMessageIter v_iter;
-        const char *iface_name = GSM_MANAGER_DBUS_NAME;
-        const char *prop_name = "InhibitedActions";
-
         if (manager->priv->inhibited_actions == new_inhibited_actions)
                 return;
 
         manager->priv->inhibited_actions = new_inhibited_actions;
-        g_object_notify (G_OBJECT (manager), "inhibited-actions");
-
-        /* Now, the following bits emit the PropertiesChanged signal
-         * that GDBus expects.  This code should just die in a port to
-         * GDBus.
-         */
-        gconnection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);
-        g_assert (gconnection);
-        connection = dbus_g_connection_get_connection (gconnection);
-        message = dbus_message_new_signal (GSM_MANAGER_DBUS_PATH, "org.freedesktop.DBus.Properties",
-                                           "PropertiesChanged");
-        g_assert (message != NULL);
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &iface_name);
-        /* changed */
-        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "{sv}", &subiter);
-        dbus_message_iter_open_container (&subiter, DBUS_TYPE_DICT_ENTRY, NULL, &dict_iter);
-        dbus_message_iter_append_basic (&dict_iter, DBUS_TYPE_STRING, &prop_name);
-        dbus_message_iter_open_container (&dict_iter, DBUS_TYPE_VARIANT, "u", &v_iter);
-        dbus_message_iter_append_basic (&v_iter, DBUS_TYPE_UINT32, &new_inhibited_actions);
-        dbus_message_iter_close_container (&dict_iter, &v_iter);
-        dbus_message_iter_close_container (&subiter, &dict_iter);
-        dbus_message_iter_close_container (&iter, &subiter);
-        /* invalidated */
-        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "s", &subiter);
-        dbus_message_iter_close_container (&iter, &subiter);
-
-        dbus_connection_send (connection, message, NULL);
-        dbus_message_unref (message);
+        gsm_exported_manager_set_inhibited_actions (manager->priv->skeleton,
+                                                    manager->priv->inhibited_actions);
 }
 
 static void
@@ -2356,7 +2158,7 @@ on_store_inhibitor_added (GsmStore   *store,
         new_inhibited_actions = manager->priv->inhibited_actions | gsm_inhibitor_peek_flags (i);
         update_inhibited_actions (manager, new_inhibited_actions);
 
-        g_signal_emit (manager, signals [INHIBITOR_ADDED], 0, id);
+        gsm_exported_manager_emit_inhibitor_added (manager->priv->skeleton, id);
 
         update_idle (manager);
 }
@@ -2390,7 +2192,7 @@ on_store_inhibitor_removed (GsmStore   *store,
                            &new_inhibited_actions);
         update_inhibited_actions (manager, new_inhibited_actions);
 
-        g_signal_emit (manager, signals [INHIBITOR_REMOVED], 0, id);
+        gsm_exported_manager_emit_inhibitor_removed (manager->priv->skeleton, id);
 
         update_idle (manager);
 }
@@ -2440,6 +2242,19 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&manager->priv->system);
         g_clear_object (&manager->priv->shell);
 
+        if (manager->priv->name_owner_id != 0) {
+                g_dbus_connection_signal_unsubscribe (manager->priv->connection, manager->priv->name_owner_id);;
+                manager->priv->name_owner_id = 0;
+        }
+
+        if (manager->priv->skeleton != NULL) {
+                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (manager->priv->skeleton),
+                                                                    manager->priv->connection);
+                g_clear_object (&manager->priv->skeleton);
+        }
+
+        g_clear_object (&manager->priv->connection);
+
         G_OBJECT_CLASS (gsm_manager_parent_class)->dispose (object);
 }
 
@@ -2462,56 +2277,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
 
-        signals [SESSION_RUNNING] =
-                g_signal_new ("session-running",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, session_running),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              0);
-
-        signals [SESSION_OVER] =
-                g_signal_new ("session-over",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, session_over),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              0);
-        signals [CLIENT_ADDED] =
-                g_signal_new ("client-added",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, client_added),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DBUS_TYPE_G_OBJECT_PATH);
-        signals [CLIENT_REMOVED] =
-                g_signal_new ("client-removed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, client_removed),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DBUS_TYPE_G_OBJECT_PATH);
-        signals [INHIBITOR_ADDED] =
-                g_signal_new ("inhibitor-added",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, inhibitor_added),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DBUS_TYPE_G_OBJECT_PATH);
-        signals [INHIBITOR_REMOVED] =
-                g_signal_new ("inhibitor-removed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, inhibitor_removed),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, DBUS_TYPE_G_OBJECT_PATH);
-
         g_object_class_install_property (object_class,
                                          PROP_FAILSAFE,
                                          g_param_spec_boolean ("failsafe",
@@ -2519,50 +2284,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        /**
-         * GsmManager::inhibited-actions
-         *
-         * A bitmask of flags to indicate which actions are inhibited. See the Inhibit()
-         * function's description for a list of possible values.
-         */
-        g_object_class_install_property (object_class,
-                                         PROP_INHIBITED_ACTIONS,
-                                         g_param_spec_uint ("inhibited-actions",
-                                                            NULL,
-                                                            NULL,
-                                                            0,
-                                                            G_MAXUINT,
-                                                            0,
-                                                            G_PARAM_READABLE));
-        /**
-         * GsmManager::session-name
-         *
-         * Then name of the currently active session, typically "gnome" or "gnome-fallback".
-         * This may be the name of the configured default session, or the name of a fallback
-         * session in case we fell back.
-         */
-        g_object_class_install_property (object_class,
-                                         PROP_SESSION_NAME,
-                                         g_param_spec_string ("session-name",
-                                                              NULL,
-                                                              NULL,
-                                                              NULL,
-                                                              G_PARAM_READABLE));
-        /**
-
-         * GsmManager::session-is-active
-         *
-         * If true, the current session is in the foreground and
-         * available for user input.
-         */
-        g_object_class_install_property (object_class,
-                                         PROP_SESSION_IS_ACTIVE,
-                                         g_param_spec_boolean ("session-is-active",
-                                                               NULL,
-                                                               NULL,
-                                                               TRUE,
-                                                               G_PARAM_READABLE));
 
         /**
          * GsmManager::fallback
@@ -2587,9 +2308,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_type_class_add_private (klass, sizeof (GsmManagerPrivate));
-
-        dbus_g_object_type_install_info (GSM_TYPE_MANAGER, &dbus_glib_gsm_manager_object_info);
-        dbus_g_error_domain_register (GSM_MANAGER_ERROR, NULL, GSM_MANAGER_TYPE_ERROR);
 }
 
 static void
@@ -2610,49 +2328,866 @@ on_gsm_system_active_changed (GsmSystem  *system,
                               GParamSpec *pspec,
                               GsmManager *self)
 {
-        DBusGConnection *gconnection;
-        DBusConnection *connection;
-        DBusMessage *message;
-        DBusMessageIter iter;
-        DBusMessageIter subiter;
-        DBusMessageIter dict_iter;
-        DBusMessageIter v_iter;
-        dbus_bool_t is_active;
-        const char *iface_name = GSM_MANAGER_DBUS_NAME;
-        const char *prop_name = "SessionIsActive";
+        gboolean is_active;
 
-        g_object_notify ((GObject*)self, "session-is-active");
+        is_active = gsm_system_is_active (self->priv->system);
 
         g_debug ("emitting SessionIsActive");
+        gsm_exported_manager_set_session_is_active (self->priv->skeleton, is_active);
+}
 
-        /* Now, the following bits emit the PropertiesChanged signal
-         * that GDBus expects.  This code should just die in a port to
-         * GDBus.
+static gboolean
+_log_out_is_locked_down (GsmManager *manager)
+{
+        return g_settings_get_boolean (manager->priv->lockdown_settings,
+                                       KEY_DISABLE_LOG_OUT);
+}
+
+static void
+complete_end_session_task (GsmManager            *manager,
+                           GAsyncResult          *result,
+                           GDBusMethodInvocation *invocation)
+{
+        GError *error = NULL;
+
+        if (!g_task_propagate_boolean (G_TASK (result), &error))
+                g_dbus_method_invocation_take_error (invocation, error);
+        else
+                g_dbus_method_invocation_return_value (invocation, NULL);
+}
+
+static void
+request_reboot (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting reboot");
+
+        /* FIXME: We need to support a more structured shutdown here,
+         * but that's blocking on an improved ConsoleKit api.
+         *
+         * See https://bugzilla.gnome.org/show_bug.cgi?id=585614
          */
-        gconnection = dbus_g_bus_get (DBUS_BUS_SESSION, NULL);
-        g_assert (gconnection);
-        connection = dbus_g_connection_get_connection (gconnection);
-        is_active = gsm_system_is_active (self->priv->system);
-        message = dbus_message_new_signal (GSM_MANAGER_DBUS_PATH, "org.freedesktop.DBus.Properties",
-                                           "PropertiesChanged");
-        g_assert (message != NULL);
-        dbus_message_iter_init_append (message, &iter);
-        dbus_message_iter_append_basic (&iter, DBUS_TYPE_STRING, &iface_name);
-        /* changed */
-        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "{sv}", &subiter);
-        dbus_message_iter_open_container (&subiter, DBUS_TYPE_DICT_ENTRY, NULL, &dict_iter);
-        dbus_message_iter_append_basic (&dict_iter, DBUS_TYPE_STRING, &prop_name);
-        dbus_message_iter_open_container (&dict_iter, DBUS_TYPE_VARIANT, "b", &v_iter);
-        dbus_message_iter_append_basic (&v_iter, DBUS_TYPE_BOOLEAN, &is_active);
-        dbus_message_iter_close_container (&dict_iter, &v_iter);
-        dbus_message_iter_close_container (&subiter, &dict_iter);
-        dbus_message_iter_close_container (&iter, &subiter);
-        /* invalidated */
-        dbus_message_iter_open_container (&iter, DBUS_TYPE_ARRAY, "s", &subiter);
-        dbus_message_iter_close_container (&iter, &subiter);
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
+        end_phase (manager);
+}
 
-        dbus_connection_send (connection, message, NULL);
-        dbus_message_unref (message);
+static void
+request_shutdown (GsmManager *manager)
+{
+        g_debug ("GsmManager: requesting shutdown");
+
+        /* See the comment in request_reboot() for some more details about
+         * what work needs to be done here. */
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
+        end_phase (manager);
+}
+
+static void
+request_logout (GsmManager           *manager,
+                GsmManagerLogoutMode  mode)
+{
+        g_debug ("GsmManager: requesting logout");
+
+        manager->priv->logout_mode = mode;
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
+
+        end_phase (manager);
+}
+
+static gboolean
+gsm_manager_shutdown (GsmExportedManager    *skeleton,
+                      GDBusMethodInvocation *invocation,
+                      GsmManager            *manager)
+{
+        GTask *task;
+
+        g_debug ("GsmManager: Shutdown called");
+
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                                       "Shutdown interface is only available during the Running phase");
+                return TRUE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_LOCKED_DOWN,
+                                                       "Logout has been locked down");
+                return TRUE;
+        }
+
+        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, invocation);
+
+        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
+                                                                    task);
+
+        request_shutdown (manager);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_reboot (GsmExportedManager    *skeleton,
+                    GDBusMethodInvocation *invocation,
+                    GsmManager            *manager)
+{
+        GTask *task;
+
+        g_debug ("GsmManager: Reboot called");
+
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                                       "Reboot interface is only available during the Running phase");
+                return TRUE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_LOCKED_DOWN,
+                                                       "Logout has been locked down");
+                return TRUE;
+        }
+
+        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, invocation);
+
+        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
+                                                                    task);
+
+        request_reboot (manager);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
+                          GDBusMethodInvocation *invocation,
+                          GsmManager            *manager)
+{
+        gboolean shutdown_available;
+
+        g_debug ("GsmManager: CanShutdown called");
+
+        shutdown_available = !_log_out_is_locked_down (manager) &&
+                (gsm_system_can_stop (manager->priv->system)
+                 || gsm_system_can_restart (manager->priv->system)
+                 || gsm_system_can_suspend (manager->priv->system)
+                 || gsm_system_can_hibernate (manager->priv->system));
+
+        gsm_exported_manager_complete_can_shutdown (skeleton, invocation, shutdown_available);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_setenv (GsmExportedManager    *skeleton,
+                    GDBusMethodInvocation *invocation,
+                    const char            *variable,
+                    const char            *value,
+                    GsmManager            *manager)
+{
+        if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "Setenv interface is only available during the DisplayServer and Initialization phase");
+        } else {
+                gsm_util_setenv (variable, value);
+                gsm_exported_manager_complete_setenv (skeleton, invocation);
+        }
+
+        return TRUE;
+}
+
+static gboolean
+is_valid_category (int category)
+{
+	int categories[] = {
+		LC_CTYPE,
+		LC_NUMERIC,
+		LC_TIME,
+		LC_COLLATE,
+		LC_MONETARY,
+		LC_MESSAGES,
+#if defined (LC_PAPER)
+		LC_PAPER,
+#endif
+#if defined (LC_NAME)
+		LC_NAME,
+#endif
+#if defined (LC_ADDRESS)
+		LC_ADDRESS,
+#endif
+#if defined (LC_TELEPHONE)
+		LC_TELEPHONE,
+#endif
+#if defined (LC_MEASUREMENT)
+		LC_MEASUREMENT,
+#endif
+#if defined (LC_IDENTIFICATION)
+		LC_IDENTIFICATION,
+#endif
+		LC_ALL
+	};
+	guint i;
+
+	for (i = 0; i < G_N_ELEMENTS(categories); i++)
+		if (categories[i] == category)
+			return TRUE;
+
+	return FALSE;
+}
+
+static gboolean
+gsm_manager_get_locale (GsmExportedManager    *skeleton,
+                        GDBusMethodInvocation *invocation,
+                        int                    category,
+                        GsmManager            *manager)
+{
+        if (!is_valid_category (category)) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_INVALID_OPTION,
+                                                       "GetLocale doesn't support locale category '%d'", category);
+        } else {
+                const char *value;
+                value = setlocale (category, NULL);
+                if (value == NULL)
+                        value = "";
+
+                gsm_exported_manager_complete_get_locale (skeleton, invocation, value);
+        }
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_initialization_error (GsmExportedManager    *skeleton,
+                                  GDBusMethodInvocation *invocation,
+                                  const char            *message,
+                                  gboolean               fatal,
+                                  GsmManager            *manager)
+{
+        if (manager->priv->phase != GSM_MANAGER_PHASE_INITIALIZATION) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "InitializationError interface is only available during the Initialization phase");
+                return TRUE;
+        }
+
+        gsm_util_init_error (fatal, "%s", message);
+        gsm_exported_manager_complete_initialization_error (skeleton, invocation);
+
+        return TRUE;
+}
+
+static void
+user_logout (GsmManager           *manager,
+             GsmManagerLogoutMode  mode)
+{
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                /* Already shutting down, nothing more to do */
+                return;
+        }
+
+        request_logout (manager, mode);
+}
+
+gboolean
+gsm_manager_logout (GsmManager *manager,
+                    guint logout_mode,
+                    GError **error)
+{
+        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                             "Logout interface is only available during the Running phase");
+                return FALSE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_LOCKED_DOWN,
+                             "Logout has been locked down");
+                return FALSE;
+        }
+
+        switch (logout_mode) {
+        case GSM_MANAGER_LOGOUT_MODE_NORMAL:
+        case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
+        case GSM_MANAGER_LOGOUT_MODE_FORCE:
+                user_logout (manager, logout_mode);
+                break;
+
+        default:
+                g_debug ("Unknown logout mode option");
+
+                g_set_error (error,
+                             GSM_MANAGER_ERROR,
+                             GSM_MANAGER_ERROR_INVALID_OPTION,
+                             "Unknown logout mode flag");
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_logout_dbus (GsmExportedManager    *skeleton,
+                         GDBusMethodInvocation *invocation,
+                         guint                  logout_mode,
+                         GsmManager            *manager)
+{
+        GError *error = NULL;
+
+        g_debug ("GsmManager: Logout called");
+
+        if (!gsm_manager_logout (manager, logout_mode, &error)) {
+                g_dbus_method_invocation_take_error (invocation, error);
+        } else {
+                gsm_exported_manager_complete_logout (skeleton, invocation);
+        }
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_register_client (GsmExportedManager    *skeleton,
+                             GDBusMethodInvocation *invocation,
+                             const char            *app_id,
+                             const char            *startup_id,
+                             GsmManager            *manager)
+{
+        char       *new_startup_id;
+        const char *sender;
+        GsmClient  *client;
+        GsmApp     *app;
+
+        app = NULL;
+        client = NULL;
+
+        g_debug ("GsmManager: RegisterClient %s", startup_id);
+
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                g_debug ("Unable to register client: shutting down");
+
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                                       "Unable to register client");
+                return TRUE;
+        }
+
+        if (IS_STRING_EMPTY (startup_id)) {
+                new_startup_id = gsm_util_generate_startup_id ();
+        } else {
+
+                client = (GsmClient *)gsm_store_find (manager->priv->clients,
+                                                      (GsmStoreFunc)_client_has_startup_id,
+                                                      (char *)startup_id);
+                /* We can't have two clients with the same startup id. */
+                if (client != NULL) {
+                        g_debug ("Unable to register client: already registered");
+
+                        g_dbus_method_invocation_return_error (invocation,
+                                                               GSM_MANAGER_ERROR,
+                                                               GSM_MANAGER_ERROR_ALREADY_REGISTERED,
+                                                               "Unable to register client");
+                        return TRUE;
+                }
+
+                new_startup_id = g_strdup (startup_id);
+        }
+
+        g_debug ("GsmManager: Adding new client %s to session", new_startup_id);
+
+        if (app == NULL && !IS_STRING_EMPTY (startup_id)) {
+                app = find_app_for_startup_id (manager, startup_id);
+        }
+        if (app == NULL && !IS_STRING_EMPTY (app_id)) {
+                /* try to associate this app id with a known app */
+                app = find_app_for_app_id (manager, app_id);
+        }
+
+        sender = g_dbus_method_invocation_get_sender (invocation);
+        client = gsm_dbus_client_new (new_startup_id, sender);
+        if (client == NULL) {
+                g_debug ("Unable to create client");
+
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_GENERAL,
+                                                       "Unable to register client");
+                return TRUE;
+        }
+
+        gsm_store_add (manager->priv->clients, gsm_client_peek_id (client), G_OBJECT (client));
+        /* the store will own the ref */
+        g_object_unref (client);
+
+        if (app != NULL) {
+                gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
+                gsm_app_registered (app);
+        } else {
+                /* if an app id is specified store it in the client
+                   so we can save it later */
+                gsm_client_set_app_id (client, app_id);
+        }
+
+        gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
+
+        g_assert (new_startup_id != NULL);
+        g_free (new_startup_id);
+
+        gsm_exported_manager_complete_register_client (skeleton, invocation, gsm_client_peek_id (client));
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_unregister_client (GsmExportedManager    *skeleton,
+                               GDBusMethodInvocation *invocation,
+                               const char            *client_id,
+                               GsmManager            *manager)
+{
+        GsmClient *client;
+
+        g_debug ("GsmManager: UnregisterClient %s", client_id);
+
+        client = (GsmClient *)gsm_store_lookup (manager->priv->clients, client_id);
+        if (client == NULL) {
+                g_debug ("Unable to unregister client: not registered");
+
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_REGISTERED,
+                                                       "Unable to unregister client");
+                return TRUE;
+        }
+
+        /* don't disconnect client here, only change the status.
+           Wait until it leaves the bus before disconnecting it */
+        gsm_client_set_status (client, GSM_CLIENT_UNREGISTERED);
+
+        gsm_exported_manager_complete_unregister_client (skeleton, invocation);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_inhibit (GsmExportedManager    *skeleton,
+                     GDBusMethodInvocation *invocation,
+                     const char            *app_id,
+                     guint                  toplevel_xid,
+                     const char            *reason,
+                     guint                  flags,
+                     GsmManager            *manager)
+{
+        GsmInhibitor *inhibitor;
+        guint         cookie;
+
+        g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
+                 toplevel_xid,
+                 app_id,
+                 reason,
+                 flags);
+
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Forced logout cannot be inhibited");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                g_dbus_method_invocation_take_error (invocation, new_error);
+                return TRUE;
+        }
+
+        if (IS_STRING_EMPTY (app_id)) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Application ID not specified");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                g_dbus_method_invocation_take_error (invocation, new_error);
+                return TRUE;
+        }
+
+        if (IS_STRING_EMPTY (reason)) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Reason not specified");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                g_dbus_method_invocation_take_error (invocation, new_error);
+                return FALSE;
+        }
+
+        if (flags == 0) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Invalid inhibit flags");
+                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
+                g_dbus_method_invocation_take_error (invocation, new_error);
+                return FALSE;
+        }
+
+        cookie = _generate_unique_cookie (manager);
+        inhibitor = gsm_inhibitor_new (app_id,
+                                       toplevel_xid,
+                                       flags,
+                                       reason,
+                                       g_dbus_method_invocation_get_sender (invocation),
+                                       cookie);
+        gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
+        g_object_unref (inhibitor);
+
+        gsm_exported_manager_complete_inhibit (skeleton, invocation, cookie);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_uninhibit (GsmExportedManager    *skeleton,
+                       GDBusMethodInvocation *invocation,
+                       guint                  cookie,
+                       GsmManager            *manager)
+{
+        GsmInhibitor *inhibitor;
+
+        g_debug ("GsmManager: Uninhibit %u", cookie);
+
+        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
+                                                    (GsmStoreFunc)_find_by_cookie,
+                                                    &cookie);
+        if (inhibitor == NULL) {
+                GError *new_error;
+
+                new_error = g_error_new (GSM_MANAGER_ERROR,
+                                         GSM_MANAGER_ERROR_GENERAL,
+                                         "Unable to uninhibit: Invalid cookie");
+                g_debug ("Unable to uninhibit: %s", new_error->message);
+                g_dbus_method_invocation_take_error (invocation, new_error);
+                return TRUE;
+        }
+
+        g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
+                 gsm_inhibitor_peek_app_id (inhibitor),
+                 gsm_inhibitor_peek_toplevel_xid (inhibitor),
+                 gsm_inhibitor_peek_reason (inhibitor),
+                 gsm_inhibitor_peek_flags (inhibitor),
+                 gsm_inhibitor_peek_bus_name (inhibitor));
+
+        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor));
+
+        gsm_exported_manager_complete_uninhibit (skeleton, invocation);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_is_inhibited (GsmExportedManager    *skeleton,
+                          GDBusMethodInvocation *invocation,
+                          guint                  flags,
+                          GsmManager            *manager)
+{
+        GsmInhibitor *inhibitor;
+        gboolean is_inhibited;
+
+        if (manager->priv->inhibitors == NULL
+            || gsm_store_size (manager->priv->inhibitors) == 0) {
+                is_inhibited = FALSE;
+        } else {
+                inhibitor = (GsmInhibitor *) gsm_store_find (manager->priv->inhibitors,
+                                                             (GsmStoreFunc)inhibitor_has_flag,
+                                                             GUINT_TO_POINTER (flags));
+                if (inhibitor == NULL) {
+                        is_inhibited = FALSE;
+                } else {
+                        is_inhibited = TRUE;
+                }
+        }
+
+        gsm_exported_manager_complete_is_inhibited (skeleton, invocation, is_inhibited);
+
+        return TRUE;
+}
+
+static gboolean
+listify_store_ids (char       *id,
+                   GObject    *object,
+                   GPtrArray **array)
+{
+        g_ptr_array_add (*array, g_strdup (id));
+        return FALSE;
+}
+
+static gboolean
+gsm_manager_get_clients (GsmExportedManager    *skeleton,
+                         GDBusMethodInvocation *invocation,
+                         GsmManager            *manager)
+{
+        GPtrArray *clients;
+
+        clients = g_ptr_array_new_with_free_func (g_free);
+        gsm_store_foreach (manager->priv->clients,
+                           (GsmStoreFunc) listify_store_ids,
+                           &clients);
+        g_ptr_array_add (clients, NULL);
+
+        gsm_exported_manager_complete_get_clients (skeleton, invocation,
+                                                   (const gchar * const *) clients->pdata);
+        g_ptr_array_unref (clients);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_get_inhibitors (GsmExportedManager    *skeleton,
+                            GDBusMethodInvocation *invocation,
+                            GsmManager            *manager)
+{
+        GPtrArray *inhibitors;
+
+        inhibitors = g_ptr_array_new_with_free_func (g_free);
+        gsm_store_foreach (manager->priv->inhibitors,
+                           (GsmStoreFunc) listify_store_ids,
+                           &inhibitors);
+        g_ptr_array_add (inhibitors, NULL);
+
+        gsm_exported_manager_complete_get_inhibitors (skeleton, invocation,
+                                                      (const gchar * const *) inhibitors->pdata);
+        g_ptr_array_unref (inhibitors);
+
+        return TRUE;
+}
+
+static gboolean
+_app_has_autostart_condition (const char *id,
+                              GsmApp     *app,
+                              const char *condition)
+{
+        gboolean has;
+        gboolean disabled;
+
+        has = gsm_app_has_autostart_condition (app, condition);
+        disabled = gsm_app_peek_is_disabled (app);
+
+        return has && !disabled;
+}
+
+static gboolean
+gsm_manager_is_autostart_condition_handled (GsmExportedManager    *skeleton,
+                                            GDBusMethodInvocation *invocation,
+                                            const char            *condition,
+                                            GsmManager            *manager)
+{
+        GsmApp *app;
+        gboolean handled;
+
+        app = (GsmApp *) gsm_store_find (manager->priv->apps,(
+                                         GsmStoreFunc) _app_has_autostart_condition,
+                                         (char *)condition);
+
+        if (app != NULL) {
+                handled = TRUE;
+        } else {
+                handled = FALSE;
+        }
+
+        gsm_exported_manager_complete_is_autostart_condition_handled (skeleton, invocation, handled);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_is_session_running (GsmExportedManager    *skeleton,
+                                GDBusMethodInvocation *invocation,
+                                GsmManager            *manager)
+{
+        gsm_exported_manager_complete_is_session_running (skeleton, invocation,
+                                                          manager->priv->phase == GSM_MANAGER_PHASE_RUNNING);
+        return TRUE;
+}
+
+static void
+on_session_connection_closed (GDBusConnection *connection,
+                              gboolean remote_peer_vanished,
+                              GError *error,
+                              gpointer user_data)
+{
+        GsmManager *manager;
+
+        manager = GSM_MANAGER (user_data);
+
+        g_debug ("GsmManager: dbus disconnected; disconnecting dbus clients...");
+        manager->priv->dbus_disconnected = TRUE;
+        remove_clients_for_connection (manager, NULL);
+}
+
+static gboolean
+inhibitor_has_bus_name (gpointer          key,
+                        GsmInhibitor     *inhibitor,
+                        RemoveClientData *data)
+{
+        gboolean    matches;
+        const char *bus_name_b;
+
+        bus_name_b = gsm_inhibitor_peek_bus_name (inhibitor);
+
+        matches = FALSE;
+        if (! IS_STRING_EMPTY (data->service_name) && ! IS_STRING_EMPTY (bus_name_b)) {
+                matches = (strcmp (data->service_name, bus_name_b) == 0);
+                if (matches) {
+                        g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
+                                 gsm_inhibitor_peek_app_id (inhibitor),
+                                 gsm_inhibitor_peek_reason (inhibitor),
+                                 gsm_inhibitor_peek_bus_name (inhibitor));
+                }
+        }
+
+        return matches;
+}
+
+static void
+remove_inhibitors_for_connection (GsmManager *manager,
+                                  const char *service_name)
+{
+        RemoveClientData data;
+        guint count;
+
+        data.service_name = service_name;
+        data.manager = manager;
+
+        debug_inhibitors (manager);
+
+        count = gsm_store_foreach_remove (manager->priv->inhibitors,
+                                          (GsmStoreFunc)inhibitor_has_bus_name,
+                                          &data);
+        if (count > 0 &&
+            manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                end_session_or_show_shell_dialog (manager);
+        }
+}
+
+static void
+bus_name_owner_changed (GDBusConnection *connection,
+                        const gchar     *sender_name,
+                        const gchar     *object_path,
+                        const gchar     *interface_name,
+                        const gchar     *signal_name,
+                        GVariant        *parameters,
+                        gpointer         user_data)
+{
+        GsmManager *manager = user_data;
+        const gchar *service_name, *old_service_name, *new_service_name;
+
+        g_variant_get (parameters, "(&s&s&s)", &service_name, &old_service_name, &new_service_name);
+
+        if (strlen (new_service_name) == 0
+            && strlen (old_service_name) > 0) {
+                /* service removed */
+                remove_inhibitors_for_connection (manager, old_service_name);
+                remove_clients_for_connection (manager, old_service_name);
+        } else if (strlen (old_service_name) == 0
+                   && strlen (new_service_name) > 0) {
+                /* service added */
+
+                /* use this if we support automatically registering
+                 * well known bus names */
+        }
+}
+
+static gboolean
+register_manager (GsmManager *manager)
+{
+        GDBusConnection *connection;
+        GsmExportedManager *skeleton;
+        GError *error = NULL;
+
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+
+        if (error != NULL) {
+                g_critical ("error getting session bus: %s", error->message);
+                g_error_free (error);
+
+                exit (1);
+        }
+
+        skeleton = gsm_exported_manager_skeleton_new ();
+        g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
+                                          connection,
+                                          GSM_MANAGER_DBUS_PATH, &error);
+
+        if (error != NULL) {
+                g_critical ("error exporting manager on session bus: %s", error->message);
+                g_error_free (error);
+
+                exit (1);
+        }
+
+        g_signal_connect (skeleton, "handle-can-shutdown",
+                          G_CALLBACK (gsm_manager_can_shutdown), manager);
+        g_signal_connect (skeleton, "handle-get-clients",
+                          G_CALLBACK (gsm_manager_get_clients), manager);
+        g_signal_connect (skeleton, "handle-get-inhibitors",
+                          G_CALLBACK (gsm_manager_get_inhibitors), manager);
+        g_signal_connect (skeleton, "handle-get-locale",
+                          G_CALLBACK (gsm_manager_get_locale), manager);
+        g_signal_connect (skeleton, "handle-inhibit",
+                          G_CALLBACK (gsm_manager_inhibit), manager);
+        g_signal_connect (skeleton, "handle-initialization-error",
+                          G_CALLBACK (gsm_manager_initialization_error), manager);
+        g_signal_connect (skeleton, "handle-is-autostart-condition-handled",
+                          G_CALLBACK (gsm_manager_is_autostart_condition_handled), manager);
+        g_signal_connect (skeleton, "handle-is-inhibited",
+                          G_CALLBACK (gsm_manager_is_inhibited), manager);
+        g_signal_connect (skeleton, "handle-is-session-running",
+                          G_CALLBACK (gsm_manager_is_session_running), manager);
+        g_signal_connect (skeleton, "handle-logout",
+                          G_CALLBACK (gsm_manager_logout_dbus), manager);
+        g_signal_connect (skeleton, "handle-reboot",
+                          G_CALLBACK (gsm_manager_reboot), manager);
+        g_signal_connect (skeleton, "handle-register-client",
+                          G_CALLBACK (gsm_manager_register_client), manager);
+        g_signal_connect (skeleton, "handle-setenv",
+                          G_CALLBACK (gsm_manager_setenv), manager);
+        g_signal_connect (skeleton, "handle-shutdown",
+                          G_CALLBACK (gsm_manager_shutdown), manager);
+        g_signal_connect (skeleton, "handle-uninhibit",
+                          G_CALLBACK (gsm_manager_uninhibit), manager);
+        g_signal_connect (skeleton, "handle-unregister-client",
+                          G_CALLBACK (gsm_manager_unregister_client), manager);
+
+        manager->priv->dbus_disconnected = FALSE;
+        g_signal_connect (connection, "closed",
+                          G_CALLBACK (on_session_connection_closed), manager);
+
+        manager->priv->name_owner_id = g_dbus_connection_signal_subscribe (connection,
+                                                                           "org.freedesktop.DBus",
+                                                                           "org.freedesktop.DBus",
+                                                                           "NameOwnerChanged",
+                                                                           "/org/freedesktop/DBus",
+                                                                           NULL,
+                                                                           G_DBUS_SIGNAL_FLAGS_NONE,
+                                                                           bus_name_owner_changed,
+                                                                           manager,
+                                                                           NULL);
+        manager->priv->connection = connection;
+        manager->priv->skeleton = skeleton;
+
+        return TRUE;
 }
 
 static gboolean
@@ -2744,147 +3279,6 @@ gsm_manager_new (GsmStore *client_store,
         }
 
         return GSM_MANAGER (manager_object);
-}
-
-gboolean
-gsm_manager_setenv (GsmManager  *manager,
-                    const char  *variable,
-                    const char  *value,
-                    GError     **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
-                             "Setenv interface is only available during the DisplayServer and Initialization phase");
-                return FALSE;
-        }
-
-        gsm_util_setenv (variable, value);
-
-        return TRUE;
-}
-
-static gboolean
-is_valid_category (int category)
-{
-	int categories[] = {
-		LC_CTYPE,
-		LC_NUMERIC,
-		LC_TIME,
-		LC_COLLATE,
-		LC_MONETARY,
-		LC_MESSAGES,
-#if defined (LC_PAPER)
-		LC_PAPER,
-#endif
-#if defined (LC_NAME)
-		LC_NAME,
-#endif
-#if defined (LC_ADDRESS)
-		LC_ADDRESS,
-#endif
-#if defined (LC_TELEPHONE)
-		LC_TELEPHONE,
-#endif
-#if defined (LC_MEASUREMENT)
-		LC_MEASUREMENT,
-#endif
-#if defined (LC_IDENTIFICATION)
-		LC_IDENTIFICATION,
-#endif
-		LC_ALL
-	};
-	guint i;
-
-	for (i = 0; i < G_N_ELEMENTS(categories); i++)
-		if (categories[i] == category)
-			return TRUE;
-
-	return FALSE;
-}
-
-gboolean
-gsm_manager_get_locale (GsmManager  *manager,
-                        int          category,
-                        const char **value,
-                        GError     **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (!is_valid_category (category)) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_INVALID_OPTION,
-                             "GetLocale doesn't support locale category '%d'", category);
-                return FALSE;
-        }
-
-        *value = g_strdup (setlocale (category, NULL));
-        if (*value == NULL)
-                *value = g_strdup ("");
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_initialization_error (GsmManager  *manager,
-                                  const char  *message,
-                                  gboolean     fatal,
-                                  GError     **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->phase != GSM_MANAGER_PHASE_INITIALIZATION) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
-                             "InitializationError interface is only available during the Initialization phase");
-                return FALSE;
-        }
-
-        gsm_util_init_error (fatal, "%s", message);
-
-        return TRUE;
-}
-
-static void
-request_reboot (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting reboot");
-
-        /* FIXME: We need to support a more structured shutdown here,
-         * but that's blocking on an improved ConsoleKit api.
-         *
-         * See https://bugzilla.gnome.org/show_bug.cgi?id=585614
-         */
-        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
-        end_phase (manager);
-}
-
-static void
-request_shutdown (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting shutdown");
-
-        /* See the comment in request_reboot() for some more details about
-         * what work needs to be done here. */
-        manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
-        end_phase (manager);
-}
-
-static void
-request_logout (GsmManager           *manager,
-                GsmManagerLogoutMode  mode)
-{
-        g_debug ("GsmManager: requesting logout");
-
-        manager->priv->logout_mode = mode;
-        manager->priv->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
-
-        end_phase (manager);
 }
 
 static void
@@ -3026,18 +3420,6 @@ show_shell_end_session_dialog (GsmManager                   *manager,
         connect_shell_dialog_signals (manager);
 }
 
-static void
-user_logout (GsmManager           *manager,
-             GsmManagerLogoutMode  mode)
-{
-        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                /* Already shutting down, nothing more to do */
-                return;
-        }
-
-        request_logout (manager, mode);
-}
-
 /*
   dbus-send --session --type=method_call --print-reply
       --dest=org.gnome.SessionManager
@@ -3052,540 +3434,6 @@ gsm_manager_set_phase (GsmManager      *manager,
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         manager->priv->phase = phase;
         return (TRUE);
-}
-
-static gboolean
-_log_out_is_locked_down (GsmManager *manager)
-{
-        return g_settings_get_boolean (manager->priv->lockdown_settings,
-                                       KEY_DISABLE_LOG_OUT);
-}
-
-static void
-complete_end_session_task (GsmManager            *manager,
-                           GAsyncResult          *result,
-                           DBusGMethodInvocation *context)
-{
-        GError *error = NULL;
-
-        if (!g_task_propagate_boolean (G_TASK (result), &error))
-                dbus_g_method_return_error (context, error);
-        else
-                dbus_g_method_return (context);
-}
-
-gboolean
-gsm_manager_shutdown (GsmManager            *manager,
-                      DBusGMethodInvocation *context)
-{
-        GTask *task;
-        GError *error = NULL;
-
-        g_debug ("GsmManager: Shutdown called");
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                error = g_error_new (GSM_MANAGER_ERROR,
-                                     GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                                     "Shutdown interface is only available during the Running phase");
-                dbus_g_method_return_error (context, error);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        if (_log_out_is_locked_down (manager)) {
-                error = g_error_new (GSM_MANAGER_ERROR,
-                                     GSM_MANAGER_ERROR_LOCKED_DOWN,
-                                     "Logout has been locked down");
-                dbus_g_method_return_error (context, error);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, context);
-
-        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
-                                                                    task);
-
-        request_shutdown (manager);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_reboot (GsmManager            *manager,
-                    DBusGMethodInvocation *context)
-{
-        GTask *task;
-        GError *error = NULL;
-
-        g_debug ("GsmManager: Reboot called");
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                error = g_error_new (GSM_MANAGER_ERROR,
-                                     GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                                     "Reboot interface is only available during the Running phase");
-                dbus_g_method_return_error (context, error);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        if (_log_out_is_locked_down (manager)) {
-                error = g_error_new (GSM_MANAGER_ERROR,
-                                     GSM_MANAGER_ERROR_LOCKED_DOWN,
-                                     "Logout has been locked down");
-                dbus_g_method_return_error (context, error);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, context);
-
-        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
-                                                                    task);
-
-        request_reboot (manager);
-
-        return TRUE;
-}
-
-
-gboolean
-gsm_manager_can_shutdown (GsmManager *manager,
-                          gboolean   *shutdown_available,
-                          GError    **error)
-{
-        g_debug ("GsmManager: CanShutdown called");
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        *shutdown_available = !_log_out_is_locked_down (manager) &&
-                              (gsm_system_can_stop (manager->priv->system)
-                               || gsm_system_can_restart (manager->priv->system)
-                               || gsm_system_can_suspend (manager->priv->system)
-                               || gsm_system_can_hibernate (manager->priv->system));
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_logout (GsmManager *manager,
-                    guint       logout_mode,
-                    GError    **error)
-{
-        g_debug ("GsmManager: Logout called");
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Logout interface is only available during the Running phase");
-                return FALSE;
-        }
-
-        if (_log_out_is_locked_down (manager)) {
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_LOCKED_DOWN,
-                             "Logout has been locked down");
-                return FALSE;
-        }
-
-        switch (logout_mode) {
-        case GSM_MANAGER_LOGOUT_MODE_NORMAL:
-        case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
-        case GSM_MANAGER_LOGOUT_MODE_FORCE:
-                user_logout (manager, logout_mode);
-                break;
-
-        default:
-                g_debug ("Unknown logout mode option");
-
-                g_set_error (error,
-                             GSM_MANAGER_ERROR,
-                             GSM_MANAGER_ERROR_INVALID_OPTION,
-                             "Unknown logout mode flag");
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_register_client (GsmManager            *manager,
-                             const char            *app_id,
-                             const char            *startup_id,
-                             DBusGMethodInvocation *context)
-{
-        char      *new_startup_id;
-        char      *sender;
-        GsmClient *client;
-        GsmApp    *app;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        app = NULL;
-        client = NULL;
-
-        g_debug ("GsmManager: RegisterClient %s", startup_id);
-
-        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                GError *new_error;
-
-                g_debug ("Unable to register client: shutting down");
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                                         "Unable to register client");
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        if (IS_STRING_EMPTY (startup_id)) {
-                new_startup_id = gsm_util_generate_startup_id ();
-        } else {
-
-                client = (GsmClient *)gsm_store_find (manager->priv->clients,
-                                                      (GsmStoreFunc)_client_has_startup_id,
-                                                      (char *)startup_id);
-                /* We can't have two clients with the same startup id. */
-                if (client != NULL) {
-                        GError *new_error;
-
-                        g_debug ("Unable to register client: already registered");
-
-                        new_error = g_error_new (GSM_MANAGER_ERROR,
-                                                 GSM_MANAGER_ERROR_ALREADY_REGISTERED,
-                                                 "Unable to register client");
-                        dbus_g_method_return_error (context, new_error);
-                        g_error_free (new_error);
-                        return FALSE;
-                }
-
-                new_startup_id = g_strdup (startup_id);
-        }
-
-        g_debug ("GsmManager: Adding new client %s to session", new_startup_id);
-
-        if (app == NULL && !IS_STRING_EMPTY (startup_id)) {
-                app = find_app_for_startup_id (manager, startup_id);
-        }
-        if (app == NULL && !IS_STRING_EMPTY (app_id)) {
-                /* try to associate this app id with a known app */
-                app = find_app_for_app_id (manager, app_id);
-        }
-
-        sender = dbus_g_method_get_sender (context);
-        client = gsm_dbus_client_new (new_startup_id, sender);
-        g_free (sender);
-        if (client == NULL) {
-                GError *new_error;
-
-                g_debug ("Unable to create client");
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Unable to register client");
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        gsm_store_add (manager->priv->clients, gsm_client_peek_id (client), G_OBJECT (client));
-        /* the store will own the ref */
-        g_object_unref (client);
-
-        if (app != NULL) {
-                gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
-                gsm_app_registered (app);
-        } else {
-                /* if an app id is specified store it in the client
-                   so we can save it later */
-                gsm_client_set_app_id (client, app_id);
-        }
-
-        gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
-
-        g_assert (new_startup_id != NULL);
-        g_free (new_startup_id);
-
-        dbus_g_method_return (context, gsm_client_peek_id (client));
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_unregister_client (GsmManager            *manager,
-                               const char            *client_id,
-                               DBusGMethodInvocation *context)
-{
-        GsmClient *client;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        g_debug ("GsmManager: UnregisterClient %s", client_id);
-
-        client = (GsmClient *)gsm_store_lookup (manager->priv->clients, client_id);
-        if (client == NULL) {
-                GError *new_error;
-
-                g_debug ("Unable to unregister client: not registered");
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_NOT_REGISTERED,
-                                         "Unable to unregister client");
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        /* don't disconnect client here, only change the status.
-           Wait until it leaves the bus before disconnecting it */
-        gsm_client_set_status (client, GSM_CLIENT_UNREGISTERED);
-
-        dbus_g_method_return (context);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_inhibit (GsmManager            *manager,
-                     const char            *app_id,
-                     guint                  toplevel_xid,
-                     const char            *reason,
-                     guint                  flags,
-                     DBusGMethodInvocation *context)
-{
-        GsmInhibitor *inhibitor;
-        guint         cookie;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
-                 toplevel_xid,
-                 app_id,
-                 reason,
-                 flags);
-
-        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Forced logout cannot be inhibited");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        if (IS_STRING_EMPTY (app_id)) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Application ID not specified");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        if (IS_STRING_EMPTY (reason)) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Reason not specified");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        if (flags == 0) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Invalid inhibit flags");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                dbus_g_method_return_error (context, new_error);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        cookie = _generate_unique_cookie (manager);
-        inhibitor = gsm_inhibitor_new (app_id,
-                                       toplevel_xid,
-                                       flags,
-                                       reason,
-                                       dbus_g_method_get_sender (context),
-                                       cookie);
-        gsm_store_add (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
-        g_object_unref (inhibitor);
-
-        dbus_g_method_return (context, cookie);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_uninhibit (GsmManager            *manager,
-                       guint                  cookie,
-                       DBusGMethodInvocation *context)
-{
-        GsmInhibitor *inhibitor;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        g_debug ("GsmManager: Uninhibit %u", cookie);
-
-        inhibitor = (GsmInhibitor *)gsm_store_find (manager->priv->inhibitors,
-                                                    (GsmStoreFunc)_find_by_cookie,
-                                                    &cookie);
-        if (inhibitor == NULL) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Unable to uninhibit: Invalid cookie");
-                dbus_g_method_return_error (context, new_error);
-                g_debug ("Unable to uninhibit: %s", new_error->message);
-                g_error_free (new_error);
-                return FALSE;
-        }
-
-        g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
-                 gsm_inhibitor_peek_app_id (inhibitor),
-                 gsm_inhibitor_peek_toplevel_xid (inhibitor),
-                 gsm_inhibitor_peek_reason (inhibitor),
-                 gsm_inhibitor_peek_flags (inhibitor),
-                 gsm_inhibitor_peek_bus_name (inhibitor));
-
-        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor));
-
-        dbus_g_method_return (context);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_is_inhibited (GsmManager *manager,
-                          guint       flags,
-                          gboolean   *is_inhibited,
-                          GError     *error)
-{
-        GsmInhibitor *inhibitor;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (manager->priv->inhibitors == NULL
-            || gsm_store_size (manager->priv->inhibitors) == 0) {
-                *is_inhibited = FALSE;
-                return TRUE;
-        }
-
-        inhibitor = (GsmInhibitor *) gsm_store_find (manager->priv->inhibitors,
-                                                     (GsmStoreFunc)inhibitor_has_flag,
-                                                     GUINT_TO_POINTER (flags));
-        if (inhibitor == NULL) {
-                *is_inhibited = FALSE;
-        } else {
-                *is_inhibited = TRUE;
-        }
-
-        return TRUE;
-
-}
-
-static gboolean
-listify_store_ids (char       *id,
-                   GObject    *object,
-                   GPtrArray **array)
-{
-        g_ptr_array_add (*array, g_strdup (id));
-        return FALSE;
-}
-
-gboolean
-gsm_manager_get_clients (GsmManager *manager,
-                         GPtrArray **clients,
-                         GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (clients == NULL) {
-                return FALSE;
-        }
-
-        *clients = g_ptr_array_new ();
-        gsm_store_foreach (manager->priv->clients, (GsmStoreFunc)listify_store_ids, clients);
-
-        return TRUE;
-}
-
-gboolean
-gsm_manager_get_inhibitors (GsmManager *manager,
-                            GPtrArray **inhibitors,
-                            GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        if (inhibitors == NULL) {
-                return FALSE;
-        }
-
-        *inhibitors = g_ptr_array_new ();
-        gsm_store_foreach (manager->priv->inhibitors,
-                           (GsmStoreFunc) listify_store_ids,
-                           inhibitors);
-
-        return TRUE;
-}
-
-
-static gboolean
-_app_has_autostart_condition (const char *id,
-                              GsmApp     *app,
-                              const char *condition)
-{
-        gboolean has;
-        gboolean disabled;
-
-        has = gsm_app_has_autostart_condition (app, condition);
-        disabled = gsm_app_peek_is_disabled (app);
-
-        return has && !disabled;
-}
-
-gboolean
-gsm_manager_is_autostart_condition_handled (GsmManager *manager,
-                                            const char *condition,
-                                            gboolean   *handled,
-                                            GError    **error)
-{
-        GsmApp *app;
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        app = (GsmApp *) gsm_store_find (manager->priv->apps,(
-                                         GsmStoreFunc) _app_has_autostart_condition,
-                                         (char *)condition);
-
-        if (app != NULL) {
-                *handled = TRUE;
-        } else {
-                *handled = FALSE;
-        }
-
-        return TRUE;
 }
 
 static void
@@ -3793,17 +3641,6 @@ gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
 
         g_dir_close (dir);
 
-        return TRUE;
-}
-
-gboolean
-gsm_manager_is_session_running (GsmManager *manager,
-                                gboolean   *running,
-                                GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        *running = (manager->priv->phase == GSM_MANAGER_PHASE_RUNNING);
         return TRUE;
 }
 

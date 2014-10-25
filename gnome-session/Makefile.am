@@ -16,6 +16,7 @@ AM_CPPFLAGS =					\
 AM_CFLAGS = $(WARN_CFLAGS)
 
 gnome_session_SOURCES =				\
+	$(BUILT_SOURCES)			\
 	gsm-app.h				\
 	gsm-app.c				\
 	gsm-autostart-app.h			\
@@ -125,8 +126,14 @@ test_process_helper_SOURCES = test-process-helper.c gsm-process-helper.c gsm-pro
 test_process_helper_CFLAGS = $(AM_CFLAGS) $(GIO_CFLAGS)
 test_process_helper_LDADD = $(GIO_LIBS)
 
-gsm-manager-glue.h: org.gnome.SessionManager.xml Makefile.am
-	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_manager --mode=glib-server --output=gsm-manager-glue.h $(srcdir)/org.gnome.SessionManager.xml
+org.gnome.SessionManager.h: org.gnome.SessionManager.xml Makefile.am
+	$(AM_V_GEN) gdbus-codegen --interface-prefix org.gnome.SessionManager. \
+	--generate-c-code org.gnome.SessionManager \
+	--c-namespace Gsm \
+        --annotate "org.gnome.SessionManager" "org.gtk.GDBus.C.Name" ExportedManager \
+	$(srcdir)/org.gnome.SessionManager.xml
+org.gnome.SessionManager.c: org.gnome.SessionManager.h
+	@: # generated as a side-effect
 
 gsm-client-glue.h: org.gnome.SessionManager.Client.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_client --mode=glib-server --output=gsm-client-glue.h $(srcdir)/org.gnome.SessionManager.Client.xml
@@ -141,7 +148,8 @@ gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
 BUILT_SOURCES =			\
-	gsm-manager-glue.h	\
+	org.gnome.SessionManager.h \
+	org.gnome.SessionManager.c \
 	gsm-presence-glue.h	\
 	gsm-inhibitor-glue.h	\
 	gsm-client-glue.h	\

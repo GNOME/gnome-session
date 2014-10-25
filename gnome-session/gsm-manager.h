@@ -48,21 +48,8 @@ typedef struct
 {
         GObjectClass   parent_class;
 
-        void          (* session_running)     (GsmManager      *manager);
-        void          (* session_over)        (GsmManager      *manager);
-        void          (* session_over_notice) (GsmManager      *manager);
-
         void          (* phase_changed)       (GsmManager      *manager,
                                                const char      *phase);
-
-        void          (* client_added)        (GsmManager      *manager,
-                                               const char      *id);
-        void          (* client_removed)      (GsmManager      *manager,
-                                               const char      *id);
-        void          (* inhibitor_added)     (GsmManager      *manager,
-                                               const char      *id);
-        void          (* inhibitor_removed)   (GsmManager      *manager,
-                                               const char      *id);
 } GsmManagerClass;
 
 typedef enum {
@@ -103,11 +90,8 @@ typedef enum
 } GsmManagerError;
 
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
-
-GType               gsm_manager_error_get_type                 (void);
-#define GSM_MANAGER_TYPE_ERROR (gsm_manager_error_get_type ())
-
 GQuark              gsm_manager_error_quark                    (void);
+
 GType               gsm_manager_get_type                       (void);
 
 GsmManager *        gsm_manager_new                            (GsmStore       *client_store,
@@ -135,70 +119,12 @@ void                _gsm_manager_set_active_session            (GsmManager     *
                                                                 const char     *session_name,
                                                                 gboolean        is_fallback);
 
-/* exported methods */
-
-gboolean            gsm_manager_register_client                (GsmManager            *manager,
-                                                                const char            *app_id,
-                                                                const char            *client_startup_id,
-                                                                DBusGMethodInvocation *context);
-gboolean            gsm_manager_unregister_client              (GsmManager            *manager,
-                                                                const char            *session_client_id,
-                                                                DBusGMethodInvocation *context);
-
-gboolean            gsm_manager_inhibit                        (GsmManager            *manager,
-                                                                const char            *app_id,
-                                                                guint                  toplevel_xid,
-                                                                const char            *reason,
-                                                                guint                  flags,
-                                                                DBusGMethodInvocation *context);
-gboolean            gsm_manager_uninhibit                      (GsmManager            *manager,
-                                                                guint                  inhibit_cookie,
-                                                                DBusGMethodInvocation *context);
-gboolean            gsm_manager_is_inhibited                   (GsmManager            *manager,
-                                                                guint                  flags,
-                                                                gboolean              *is_inhibited,
-                                                                GError                *error);
-
-gboolean            gsm_manager_shutdown                       (GsmManager     *manager,
-                                                                DBusGMethodInvocation *context);
-gboolean            gsm_manager_reboot                         (GsmManager     *manager,
-                                                                DBusGMethodInvocation *context);
-
-gboolean            gsm_manager_can_shutdown                   (GsmManager     *manager,
-                                                                gboolean       *shutdown_available,
-                                                                GError        **error);
 gboolean            gsm_manager_logout                         (GsmManager     *manager,
                                                                 guint           logout_mode,
                                                                 GError        **error);
 
-gboolean            gsm_manager_setenv                         (GsmManager     *manager,
-                                                                const char     *variable,
-                                                                const char     *value,
-                                                                GError        **error);
-gboolean            gsm_manager_get_locale                     (GsmManager     *manager,
-                                                                int             category,
-                                                                const char    **value,
-                                                                GError        **error);
-gboolean            gsm_manager_initialization_error           (GsmManager     *manager,
-                                                                const char     *message,
-                                                                gboolean        fatal,
-                                                                GError        **error);
-
-gboolean            gsm_manager_get_clients                    (GsmManager     *manager,
-                                                                GPtrArray     **clients,
-                                                                GError        **error);
-gboolean            gsm_manager_get_inhibitors                 (GsmManager     *manager,
-                                                                GPtrArray     **inhibitors,
-                                                                GError        **error);
-gboolean            gsm_manager_is_autostart_condition_handled (GsmManager     *manager,
-                                                                const char     *condition,
-                                                                gboolean       *handled,
-                                                                GError        **error);
 gboolean            gsm_manager_set_phase                      (GsmManager     *manager,
                                                                 GsmManagerPhase phase);
-gboolean            gsm_manager_is_session_running             (GsmManager     *manager,
-                                                                gboolean       *running,
-                                                                GError        **error);
 
 G_END_DECLS
 

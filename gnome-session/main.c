@@ -28,13 +28,8 @@
 
 #include <glib/gi18n.h>
 #include <glib.h>
-
 #include <glib-unix.h>
-
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-bindings.h>
-#include <dbus/dbus-glib-lowlevel.h>
+#include <gio/gio.h>
 
 #include "gdm-log.h"
 
@@ -56,12 +51,10 @@ static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
-
-static DBusGProxy *bus_proxy = NULL;
+static const char *session_name = NULL;
+static GsmManager *manager = NULL;
 
 static GMainLoop *loop;
-
-static void shutdown_cb (gpointer data);
 
 void
 gsm_quit (void)
@@ -79,111 +72,28 @@ gsm_main (void)
 }
 
 static void
-on_bus_name_lost (DBusGProxy *bus_proxy,
-                  const char *name,
-                  gpointer    data)
+on_name_lost (GDBusConnection *connection,
+              const char *name,
+              gpointer    data)
 {
-        g_warning ("Lost name on bus: %s, exiting", name);
-        exit (1);
-}
+        GsmManager *manager = (GsmManager *)data;
 
-static gboolean
-acquire_name_on_proxy (DBusGProxy *bus_proxy,
-                       const char *name)
-{
-        GError     *error;
-        guint       result;
-        gboolean    res;
-        gboolean    ret;
-
-        ret = FALSE;
-
-        if (bus_proxy == NULL) {
-                goto out;
-        }
-
-        error = NULL;
-        res = dbus_g_proxy_call (bus_proxy,
-                                 "RequestName",
-                                 &error,
-                                 G_TYPE_STRING, name,
-                                 G_TYPE_UINT, 0,
-                                 G_TYPE_INVALID,
-                                 G_TYPE_UINT, &result,
-                                 G_TYPE_INVALID);
-        if (! res) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        if (result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER) {
-                if (error != NULL) {
-                        g_warning ("Failed to acquire %s: %s", name, error->message);
-                        g_error_free (error);
-                } else {
-                        g_warning ("Failed to acquire %s", name);
-                }
-                goto out;
-        }
-
-        /* register for name lost */
-        dbus_g_proxy_add_signal (bus_proxy,
-                                 "NameLost",
-                                 G_TYPE_STRING,
-                                 G_TYPE_INVALID);
-        dbus_g_proxy_connect_signal (bus_proxy,
-                                     "NameLost",
-                                     G_CALLBACK (on_bus_name_lost),
-                                     NULL,
-                                     NULL);
-
-
-        ret = TRUE;
-
- out:
-        return ret;
-}
-
-static gboolean
-acquire_name (void)
-{
-        GError          *error;
-        DBusGConnection *connection;
-
-        error = NULL;
-        connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
         if (connection == NULL) {
-                gsm_util_init_error (TRUE,
-                                     "Could not connect to session bus: %s",
-                                     error->message);
-                return FALSE;
-        }
+                g_warning ("Lost name on bus: %s", name);
+                gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
+        } else {
+                g_debug ("Calling name lost callback function");
 
-        bus_proxy = dbus_g_proxy_new_for_name_owner (connection,
-                                                     DBUS_SERVICE_DBUS,
-                                                     DBUS_PATH_DBUS,
-                                                     DBUS_INTERFACE_DBUS,
-                                                     &error);
-        if (error != NULL) {
-                gsm_util_init_error (TRUE,
-                                     "Could not connect to session bus: %s",
-                                     error->message);
-                return FALSE;
-        }
+                /*
+                 * When the signal handler gets a shutdown signal, it calls
+                 * this function to inform GsmManager to not restart
+                 * applications in the off chance a handler is already queued
+                 * to dispatch following the below call to gtk_main_quit.
+                 */
+                gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EXIT);
 
-        if (! acquire_name_on_proxy (bus_proxy, GSM_DBUS_NAME) ) {
-                gsm_util_init_error (TRUE,
-                                     "%s",
-                                     "Could not acquire name on session bus");
-                return FALSE;
+                gsm_quit ();
         }
-
-        return TRUE;
 }
 
 static gboolean
@@ -214,20 +124,48 @@ sigusr1_cb (gpointer data)
 }
 
 static void
-shutdown_cb (gpointer data)
+create_manager (void)
 {
-        GsmManager *manager = (GsmManager *)data;
-        g_debug ("Calling shutdown callback function");
+        GsmStore *client_store;
 
-        /*
-         * When the signal handler gets a shutdown signal, it calls
-         * this function to inform GsmManager to not restart
-         * applications in the off chance a handler is already queued
-         * to dispatch following the below call to gtk_main_quit.
-         */
-        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EXIT);
+        client_store = gsm_store_new ();
+        manager = gsm_manager_new (client_store, failsafe);
+        g_object_unref (client_store);
 
-        gsm_quit ();
+        g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
+        g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
+        g_unix_signal_add (SIGUSR1, sigusr1_cb, manager);
+        g_unix_signal_add (SIGUSR2, sigusr2_cb, manager);
+
+        if (IS_STRING_EMPTY (session_name)) {
+                session_name = _gsm_manager_get_default_session (manager);
+        }
+
+        if (!gsm_session_fill (manager, session_name)) {
+                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
+        }
+
+        gsm_manager_start (manager);
+}
+
+static void
+on_bus_acquired (GDBusConnection *connection,
+                 const char *name,
+                 gpointer data)
+{
+        create_manager ();
+}
+
+static guint
+acquire_name (void)
+{
+        return g_bus_own_name (G_BUS_TYPE_SESSION,
+                               GSM_DBUS_NAME,
+                               G_BUS_NAME_OWNER_FLAGS_NONE,
+                               on_bus_acquired,
+                               NULL,
+                               on_name_lost,
+                               NULL, NULL);
 }
 
 static gboolean
@@ -293,12 +231,10 @@ int
 main (int argc, char **argv)
 {
         GError           *error = NULL;
-        GsmManager       *manager;
-        GsmStore         *client_store;
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
-        const char       *session_name;
         gboolean          gl_failed = FALSE;
+        guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
@@ -407,7 +343,8 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
-        client_store = gsm_store_new ();
+        gsm_util_set_autostart_dirs (override_autostart_dirs);
+        session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
          * calls at initialization time that invoke a main loop and if we
@@ -416,44 +353,13 @@ main (int argc, char **argv)
          */
         g_object_unref (gsm_get_system ());
 
-        if (!acquire_name ()) {
-                gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
-                gsm_main ();
-                exit (1);
-        }
-
-        manager = gsm_manager_new (client_store, failsafe);
-
-        g_signal_connect_object (bus_proxy,
-                                 "destroy",
-                                 G_CALLBACK (shutdown_cb),
-                                 manager,
-                                 G_CONNECT_SWAPPED);
-
-        g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
-        g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);
-        g_unix_signal_add (SIGUSR1, sigusr1_cb, manager);
-        g_unix_signal_add (SIGUSR2, sigusr2_cb, manager);
-
-        if (IS_STRING_EMPTY (opt_session_name))
-                session_name = _gsm_manager_get_default_session (manager);
-        else
-                session_name = opt_session_name;
-
-        gsm_util_set_autostart_dirs (override_autostart_dirs);
-
-        if (!gsm_session_fill (manager, session_name)) {
-                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
-        }
-
-        gsm_manager_start (manager);
+        name_owner_id  = acquire_name ();
 
         gsm_main ();
 
         g_clear_object (&manager);
-        g_clear_object (&client_store);
-        g_clear_object (&bus_proxy);
 
+        g_bus_unown_name (name_owner_id);
         gdm_log_shutdown ();
 
         return 0;
