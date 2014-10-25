@@ -954,9 +954,8 @@ gsm_consolekit_is_login_session (GsmSystem *system)
 static gboolean
 gsm_consolekit_can_suspend (GsmSystem *system)
 {
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-
 #ifdef HAVE_OLD_UPOWER
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
         return up_client_get_can_suspend (consolekit->priv->up_client);
 #else
         return FALSE;
@@ -966,9 +965,8 @@ gsm_consolekit_can_suspend (GsmSystem *system)
 static gboolean
 gsm_consolekit_can_hibernate (GsmSystem *system)
 {
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-
 #ifdef HAVE_OLD_UPOWER
+        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
         return up_client_get_can_hibernate (consolekit->priv->up_client);
 #else
         return FALSE;
