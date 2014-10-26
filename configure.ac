@@ -88,8 +88,6 @@ PKG_CHECK_MODULES(XEXT, xext xau)
 
 PKG_CHECK_MODULES(DBUS_GLIB, dbus-glib-1 >= $DBUS_GLIB_REQUIRED)
 
-PKG_CHECK_MODULES(EGG_SMCLIENT, gtk+-3.0)
-
 PKG_CHECK_MODULES(GL_TEST, xcomposite gl glib-2.0)
 
 dnl ====================================================================
