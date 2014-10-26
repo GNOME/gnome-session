@@ -153,8 +153,14 @@ org.gnome.SessionManager.ClientPrivate.h: org.gnome.SessionManager.ClientPrivate
 org.gnome.SessionManager.ClientPrivate.c: org.gnome.SessionManager.ClientPrivate.h
 	@: # generated as a side-effect
 
-gsm-app-glue.h: org.gnome.SessionManager.App.xml Makefile.am
-	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_app --mode=glib-server --output=gsm-app-glue.h $(srcdir)/org.gnome.SessionManager.App.xml
+org.gnome.SessionManager.App.h: org.gnome.SessionManager.App.xml Makefile.am
+	$(AM_V_GEN) gdbus-codegen --interface-prefix org.gnome.SessionManager.App. \
+	--generate-c-code org.gnome.SessionManager.App \
+	--c-namespace Gsm \
+        --annotate "org.gnome.SessionManager.App" "org.gtk.GDBus.C.Name" ExportedApp \
+	$(srcdir)/org.gnome.SessionManager.App.xml
+org.gnome.SessionManager.App.c: org.gnome.SessionManager.App.h
+	@: # generated as a side-effect
 
 gsm-inhibitor-glue.h: org.gnome.SessionManager.Inhibitor.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_inhibitor --mode=glib-server --output=gsm-inhibitor-glue.h $(srcdir)/org.gnome.SessionManager.Inhibitor.xml
@@ -163,6 +169,8 @@ gsm-presence-glue.h: org.gnome.SessionManager.Presence.xml Makefile.am
 	$(AM_V_GEN)dbus-binding-tool --prefix=gsm_presence --mode=glib-server --output=gsm-presence-glue.h $(srcdir)/org.gnome.SessionManager.Presence.xml
 
 BUILT_SOURCES =			\
+	org.gnome.SessionManager.App.h	\
+	org.gnome.SessionManager.App.c	\
 	org.gnome.SessionManager.Client.h	\
 	org.gnome.SessionManager.Client.c	\
 	org.gnome.SessionManager.ClientPrivate.h	\
@@ -170,8 +178,7 @@ BUILT_SOURCES =			\
 	org.gnome.SessionManager.h	\
 	org.gnome.SessionManager.c	\
 	gsm-presence-glue.h	\
-	gsm-inhibitor-glue.h	\
-	gsm-app-glue.h
+	gsm-inhibitor-glue.h
 
 EXTRA_DIST =						\
 	README						\

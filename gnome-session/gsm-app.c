@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "gsm-app.h"
-#include "gsm-app-glue.h"
+#include "org.gnome.SessionManager.App.h"
 
 #define GSM_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_APP, GsmAppPrivate))
 
@@ -40,7 +40,8 @@ struct _GsmAppPrivate
         char            *startup_id;
         gboolean         ever_started;
         GTimeVal         last_restart_time;
-        DBusGConnection *connection;
+        GDBusConnection *connection;
+        GsmExportedApp  *skeleton;
 };
 
 
@@ -77,6 +78,41 @@ gsm_app_error_quark (void)
 
 }
 
+static gboolean
+gsm_app_get_app_id (GsmExportedApp        *skeleton,
+                    GDBusMethodInvocation *invocation,
+                    GsmApp                *app)
+{
+        const gchar *id;
+
+        id = GSM_APP_GET_CLASS (app)->impl_get_app_id (app);
+        gsm_exported_app_complete_get_app_id (skeleton, invocation, id);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_app_get_startup_id (GsmExportedApp        *skeleton,
+			GDBusMethodInvocation *invocation,
+			GsmApp                *app)
+{
+        const gchar *id;
+
+        id = g_strdup (app->priv->startup_id);
+        gsm_exported_app_complete_get_startup_id (skeleton, invocation, id);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_app_get_phase (GsmExportedApp        *skeleton,
+                   GDBusMethodInvocation *invocation,
+                   GsmApp                *app)
+{
+        gsm_exported_app_complete_get_phase (skeleton, invocation, app->priv->phase);
+        return TRUE;
+}
+
 static guint32
 get_next_app_serial (void)
 {
@@ -95,18 +131,34 @@ static gboolean
 register_app (GsmApp *app)
 {
         GError *error;
+        GsmExportedApp *skeleton;
 
         error = NULL;
-        app->priv->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (app->priv->connection == NULL) {
-                if (error != NULL) {
-                        g_critical ("error getting session bus: %s", error->message);
-                        g_error_free (error);
-                }
+        app->priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+        if (error != NULL) {
+                g_critical ("error getting session bus: %s", error->message);
+                g_error_free (error);
                 return FALSE;
         }
 
-        dbus_g_connection_register_g_object (app->priv->connection, app->priv->id, G_OBJECT (app));
+        skeleton = gsm_exported_app_skeleton_new ();
+        app->priv->skeleton = skeleton;
+        g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
+                                          app->priv->connection, app->priv->id,
+                                          &error);
+
+        if (error != NULL) {
+                g_critical ("error registering app on session bus: %s", error->message);
+                g_error_free (error);
+                return FALSE;
+        }
+
+        g_signal_connect (skeleton, "handle-get-app-id",
+                          G_CALLBACK (gsm_app_get_app_id), app);
+        g_signal_connect (skeleton, "handle-get-phase",
+                          G_CALLBACK (gsm_app_get_phase), app);
+        g_signal_connect (skeleton, "handle-get-startup-id",
+                          G_CALLBACK (gsm_app_get_startup_id), app);
 
         return TRUE;
 }
@@ -231,6 +283,14 @@ gsm_app_dispose (GObject *object)
         g_free (app->priv->id);
         app->priv->id = NULL;
 
+        if (app->priv->skeleton != NULL) {
+                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (app->priv->skeleton),
+                                                                    app->priv->connection);
+                g_clear_object (&app->priv->skeleton);
+        }
+
+        g_clear_object (&app->priv->connection);
+
         G_OBJECT_CLASS (gsm_app_parent_class)->dispose (object);
 }
 
@@ -302,7 +362,6 @@ gsm_app_class_init (GsmAppClass *klass)
                               0);
 
         g_type_class_add_private (klass, sizeof (GsmAppPrivate));
-        dbus_g_object_type_install_info (GSM_TYPE_APP, &dbus_glib_gsm_app_object_info);
 }
 
 const char *
@@ -481,34 +540,4 @@ gsm_app_died (GsmApp *app,
         g_return_if_fail (GSM_IS_APP (app));
 
         g_signal_emit (app, signals[DIED], 0, signal);
-}
-
-gboolean
-gsm_app_get_app_id (GsmApp     *app,
-                    char      **id,
-                    GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-        *id = g_strdup (GSM_APP_GET_CLASS (app)->impl_get_app_id (app));
-        return TRUE;
-}
-
-gboolean
-gsm_app_get_startup_id (GsmApp     *app,
-                        char      **id,
-                        GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-        *id = g_strdup (app->priv->startup_id);
-        return TRUE;
-}
-
-gboolean
-gsm_app_get_phase (GsmApp     *app,
-                   guint      *phase,
-                   GError    **error)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-        *phase = app->priv->phase;
-        return TRUE;
 }
