@@ -76,9 +76,6 @@ struct _GsmAutostartAppPrivate {
         int                   launch_type;
         GPid                  pid;
         guint                 child_watch_id;
-
-        DBusGProxy           *proxy;
-        DBusGProxyCall       *proxy_call;
 };
 
 enum {
@@ -777,13 +774,6 @@ gsm_autostart_app_dispose (GObject *object)
                 priv->child_watch_id = 0;
         }
 
-        if (priv->proxy_call != NULL) {
-                dbus_g_proxy_cancel_call (priv->proxy, priv->proxy_call);
-                priv->proxy_call = NULL;
-        }
-
-        g_clear_object (&priv->proxy);
-
         if (priv->condition_monitor) {
                 g_file_monitor_cancel (priv->condition_monitor);
         }
@@ -1072,21 +1062,19 @@ autostart_app_start_spawn (GsmAutostartApp *app,
 }
 
 static void
-start_notify (DBusGProxy      *proxy,
-              DBusGProxyCall  *call,
-              GsmAutostartApp *app)
+start_notify (GObject      *source,
+              GAsyncResult *result,
+              gpointer      user_data)
 {
-        gboolean res;
-        GError  *error;
+        GError          *error;
+        GsmAutostartApp *app;
 
+        app  = user_data;
         error = NULL;
-        res = dbus_g_proxy_end_call (proxy,
-                                     call,
-                                     &error,
-                                     G_TYPE_INVALID);
-        app->priv->proxy_call = NULL;
 
-        if (! res) {
+        g_dbus_connection_call_finish (G_DBUS_CONNECTION (source), result, &error);
+
+        if (error != NULL) {
                 g_warning ("GsmAutostartApp: Error starting application: %s", error->message);
                 g_error_free (error);
         } else {
@@ -1101,15 +1089,13 @@ autostart_app_start_activate (GsmAutostartApp  *app,
         const char      *name;
         char            *path;
         char            *arguments;
-        DBusGConnection *bus;
+        GDBusConnection *bus;
         GError          *local_error;
 
         local_error = NULL;
-        bus = dbus_g_bus_get (DBUS_BUS_SESSION, &local_error);
-        if (bus == NULL) {
-                if (local_error != NULL) {
-                        g_warning ("error getting session bus: %s", local_error->message);
-                }
+        bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &local_error);
+        if (local_error != NULL) {
+                g_warning ("error getting session bus: %s", local_error->message);
                 g_propagate_error (error, local_error);
                 return FALSE;
         }
@@ -1127,33 +1113,17 @@ autostart_app_start_activate (GsmAutostartApp  *app,
         arguments = g_desktop_app_info_get_string (app->priv->app_info,
                                                    GSM_AUTOSTART_APP_DBUS_ARGS_KEY);
 
-        app->priv->proxy = dbus_g_proxy_new_for_name (bus,
-                                                      name,
-                                                      path,
-                                                      GSM_SESSION_CLIENT_DBUS_INTERFACE);
-        if (app->priv->proxy == NULL) {
-                g_set_error (error,
-                             GSM_APP_ERROR,
-                             GSM_APP_ERROR_START,
-                             "Unable to start application: unable to create proxy for client");
-                return FALSE;
-        }
-
-        app->priv->proxy_call = dbus_g_proxy_begin_call (app->priv->proxy,
-                                                         "Start",
-                                                         (DBusGProxyCallNotify)start_notify,
-                                                         app,
-                                                         NULL,
-                                                         G_TYPE_STRING, arguments,
-                                                         G_TYPE_INVALID);
-        if (app->priv->proxy_call == NULL) {
-                g_clear_object (&app->priv->proxy);
-                g_set_error (error,
-                             GSM_APP_ERROR,
-                             GSM_APP_ERROR_START,
-                             "Unable to start application: unable to call Start on client");
-                return FALSE;
-        }
+        g_dbus_connection_call (bus,
+                                name,
+                                path,
+                                GSM_SESSION_CLIENT_DBUS_INTERFACE,
+                                "Start",
+                                g_variant_new ("(s)", arguments),
+                                NULL,
+                                G_DBUS_CALL_FLAGS_NONE,
+                                -1, NULL,
+                                start_notify, app);
+        g_object_unref (bus);
 
         return TRUE;
 }
