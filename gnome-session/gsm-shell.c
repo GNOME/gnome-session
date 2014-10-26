@@ -25,9 +25,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <glib/gi18n.h>
-
-#include <dbus/dbus-glib.h>
-#include <dbus/dbus-glib-lowlevel.h>
+#include <gio/gio.h>
 
 #include "gsm-inhibitor.h"
 #include "gsm-shell.h"
@@ -39,8 +37,6 @@
 #define SHELL_END_SESSION_DIALOG_PATH      "/org/gnome/SessionManager/EndSessionDialog"
 #define SHELL_END_SESSION_DIALOG_INTERFACE "org.gnome.SessionManager.EndSessionDialog"
 
-#define GSM_SHELL_DBUS_TYPE_G_OBJECT_PATH_ARRAY (dbus_g_type_get_collection ("GPtrArray", DBUS_TYPE_G_OBJECT_PATH))
-
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
 #define GSM_SHELL_GET_PRIVATE(o)                                   \
@@ -48,18 +44,16 @@
 
 struct _GsmShellPrivate
 {
-        DBusGConnection *bus_connection;
-        DBusGProxy      *bus_proxy;
-        DBusGProxy      *proxy;
-        DBusGProxy      *end_session_dialog_proxy;
+        GDBusProxy      *end_session_dialog_proxy;
         GsmStore        *inhibitors;
 
         guint32          is_running : 1;
 
-        DBusGProxyCall  *end_session_open_call;
+        gboolean         dialog_is_open;
         GsmShellEndSessionDialogType end_session_dialog_type;
 
         guint            update_idle_id;
+        guint            watch_id;
 };
 
 enum {
@@ -84,17 +78,6 @@ static void     gsm_shell_class_init   (GsmShellClass *klass);
 static void     gsm_shell_init         (GsmShell      *ck);
 static void     gsm_shell_finalize     (GObject            *object);
 
-static void     gsm_shell_disconnect_from_bus    (GsmShell      *shell);
-
-static DBusHandlerResult gsm_shell_bus_filter (DBusConnection *connection,
-                                                DBusMessage    *message,
-                                                void           *user_data);
-
-static void     gsm_shell_on_name_owner_changed (DBusGProxy *bus_proxy,
-                                                 const char *name,
-                                                 const char *prev_owner,
-                                                 const char *new_owner,
-                                                 GsmShell   *shell);
 static void     queue_end_session_dialog_update (GsmShell *shell);
 
 G_DEFINE_TYPE (GsmShell, gsm_shell, G_TYPE_OBJECT);
@@ -199,134 +182,38 @@ gsm_shell_class_init (GsmShellClass *shell_class)
         g_type_class_add_private (shell_class, sizeof (GsmShellPrivate));
 }
 
-static DBusHandlerResult
-gsm_shell_bus_filter (DBusConnection *connection,
-                       DBusMessage    *message,
-                       void           *user_data)
+static void
+on_shell_name_vanished (GDBusConnection *connection,
+                        const gchar     *name,
+                        gpointer         user_data)
 {
-        GsmShell *shell;
-
-        shell = GSM_SHELL (user_data);
-
-        if (dbus_message_is_signal (message,
-                                    DBUS_INTERFACE_LOCAL, "Disconnected") &&
-            strcmp (dbus_message_get_path (message), DBUS_PATH_LOCAL) == 0) {
-                gsm_shell_disconnect_from_bus (shell);
-                /* let other filters get this disconnected signal, so that they
-                 * can handle it too */
-        }
-
-        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
-}
-
-static gboolean
-gsm_shell_ensure_connection (GsmShell  *shell,
-                             GError   **error)
-{
-        GError  *connection_error;
-        gboolean is_running;
-
-        connection_error = NULL;
-
-        if (shell->priv->bus_connection == NULL) {
-                DBusConnection *connection;
-
-                shell->priv->bus_connection = dbus_g_bus_get (DBUS_BUS_SESSION,
-                                                               &connection_error);
-
-                if (shell->priv->bus_connection == NULL) {
-                        g_propagate_error (error, connection_error);
-                        is_running = FALSE;
-                        goto out;
-                }
-
-                connection = dbus_g_connection_get_connection (shell->priv->bus_connection);
-                dbus_connection_set_exit_on_disconnect (connection, FALSE);
-                dbus_connection_add_filter (connection,
-                                            gsm_shell_bus_filter,
-                                            shell, NULL);
-        }
-
-        if (shell->priv->bus_proxy == NULL) {
-                shell->priv->bus_proxy =
-                        dbus_g_proxy_new_for_name_owner (shell->priv->bus_connection,
-                                                         DBUS_SERVICE_DBUS,
-                                                         DBUS_PATH_DBUS,
-                                                         DBUS_INTERFACE_DBUS,
-                                                         &connection_error);
-
-                if (shell->priv->bus_proxy == NULL) {
-                        g_propagate_error (error, connection_error);
-                        is_running = FALSE;
-                        goto out;
-                }
-
-                dbus_g_proxy_add_signal (shell->priv->bus_proxy,
-                                         "NameOwnerChanged",
-                                         G_TYPE_STRING,
-                                         G_TYPE_STRING,
-                                         G_TYPE_STRING,
-                                         G_TYPE_INVALID);
-
-                dbus_g_proxy_connect_signal (shell->priv->bus_proxy,
-                                             "NameOwnerChanged",
-                                             G_CALLBACK (gsm_shell_on_name_owner_changed),
-                                             shell, NULL);
-        }
-
-        if (shell->priv->proxy == NULL) {
-                shell->priv->proxy =
-                        dbus_g_proxy_new_for_name_owner (shell->priv->bus_connection,
-                                                         SHELL_NAME,
-                                                         SHELL_PATH,
-                                                         SHELL_INTERFACE,
-                                                         &connection_error);
-
-                if (shell->priv->proxy == NULL) {
-                        g_propagate_error (error, connection_error);
-                        is_running = FALSE;
-                        goto out;
-                }
-        }
-
-        g_debug ("GsmShell: Connected to the shell");
-
-        is_running = TRUE;
-
- out:
-        if (shell->priv->is_running != is_running) {
-                shell->priv->is_running = is_running;
-                g_object_notify (G_OBJECT (shell), "is-running");
-        }
-
-        if (!is_running) {
-                g_debug ("GsmShell: Not connected to the shell");
-
-                if (shell->priv->bus_connection == NULL) {
-                        g_clear_object (&shell->priv->bus_proxy);
-                        g_clear_object (&shell->priv->proxy);
-                } else if (shell->priv->bus_proxy == NULL) {
-                        g_clear_object (&shell->priv->proxy);
-                }
-        }
-
-        return is_running;
+        GsmShell *shell = user_data;
+        shell->priv->is_running = FALSE;
 }
 
 static void
-gsm_shell_on_name_owner_changed (DBusGProxy    *bus_proxy,
-                                 const char    *name,
-                                 const char    *prev_owner,
-                                 const char    *new_owner,
-                                 GsmShell      *shell)
+on_shell_name_appeared (GDBusConnection *connection,
+                        const gchar     *name,
+                        const gchar     *name_owner,
+                        gpointer         user_data)
 {
-        if (name != NULL && strcmp (name, SHELL_NAME) != 0) {
+        GsmShell *shell = user_data;
+        shell->priv->is_running = TRUE;
+}
+
+static void
+gsm_shell_ensure_connection (GsmShell  *shell)
+{
+        if (shell->priv->watch_id != 0) {
                 return;
         }
 
-        g_clear_object (&shell->priv->proxy);
-
-        gsm_shell_ensure_connection (shell, NULL);
+        shell->priv->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
+                                                  SHELL_NAME,
+                                                  G_BUS_NAME_WATCHER_FLAGS_NONE,
+                                                  on_shell_name_appeared,
+                                                  on_shell_name_vanished,
+                                                  shell, NULL);
 }
 
 static void
@@ -334,25 +221,7 @@ gsm_shell_init (GsmShell *shell)
 {
         shell->priv = GSM_SHELL_GET_PRIVATE (shell);
 
-        gsm_shell_ensure_connection (shell, NULL);
-}
-
-static void
-gsm_shell_disconnect_from_bus (GsmShell *shell)
-{
-        g_clear_object (&shell->priv->bus_proxy);
-        g_clear_object (&shell->priv->proxy);
-
-        if (shell->priv->bus_connection != NULL) {
-                DBusConnection *connection;
-                connection = dbus_g_connection_get_connection (shell->priv->bus_connection);
-                dbus_connection_remove_filter (connection,
-                                               gsm_shell_bus_filter,
-                                               shell);
-
-                dbus_g_connection_unref (shell->priv->bus_connection);
-                shell->priv->bus_connection = NULL;
-        }
+        gsm_shell_ensure_connection (shell);
 }
 
 static void
@@ -367,7 +236,10 @@ gsm_shell_finalize (GObject *object)
 
         g_object_unref (shell->priv->inhibitors);
 
-        gsm_shell_disconnect_from_bus (shell);
+        if (shell->priv->watch_id != 0) {
+                g_bus_unwatch_name (shell->priv->watch_id);
+                shell->priv->watch_id = 0;
+        }
 
         if (parent_class->finalize != NULL) {
                 parent_class->finalize (object);
@@ -399,60 +271,55 @@ gsm_get_shell (void)
 gboolean
 gsm_shell_is_running (GsmShell *shell)
 {
-        gsm_shell_ensure_connection (shell, NULL);
+        gsm_shell_ensure_connection (shell);
 
         return shell->priv->is_running;
 }
 
 static gboolean
-add_inhibitor_to_array (const char   *id,
-                        GsmInhibitor *inhibitor,
-                        GPtrArray    *array)
+add_inhibitor_to_array (const char      *id,
+                        GsmInhibitor    *inhibitor,
+                        GVariantBuilder *builder)
 {
-
-        g_ptr_array_add (array,
-                         g_strdup (gsm_inhibitor_peek_id (inhibitor)));
+        g_variant_builder_add (builder, "o", gsm_inhibitor_peek_id (inhibitor));
         return FALSE;
 }
 
-static GPtrArray *
+static GVariant *
 get_array_from_store (GsmStore *inhibitors)
 {
-        GPtrArray *array;
+        GVariantBuilder builder;
 
-        array = g_ptr_array_new ();
-
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("ao"));
         gsm_store_foreach (inhibitors,
                            (GsmStoreFunc) add_inhibitor_to_array,
-                           array);
+                           &builder);
 
-        return array;
+        return g_variant_builder_end (&builder);
 }
 
 static void
-on_open_finished (DBusGProxy     *proxy,
-                  DBusGProxyCall *call,
-                  GsmShell       *shell)
+on_open_finished (GObject *source,
+                  GAsyncResult *result,
+                  gpointer user_data)
 {
-        GError         *error;
-        gboolean        res;
-
-        g_assert (shell->priv->end_session_open_call == call);
-
-        error = NULL;
-        res = dbus_g_proxy_end_call (proxy,
-                                     call,
-                                     &error,
-                                     G_TYPE_INVALID);
-        shell->priv->end_session_open_call = NULL;
+        GsmShell *shell = user_data;
+        GError   *error;
 
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
                 shell->priv->update_idle_id = 0;
         }
 
-        if (!res) {
-                g_warning ("Unable to open shell end session dialog");
+        shell->priv->dialog_is_open = FALSE;
+
+        error = NULL;
+        g_dbus_proxy_call_finish (G_DBUS_PROXY (source), result, &error);
+
+        if (error != NULL) {
+                g_warning ("Unable to open shell end session dialog: %s", error->message);
+                g_error_free (error);
+
                 g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
                 return;
         }
@@ -461,8 +328,7 @@ on_open_finished (DBusGProxy     *proxy,
 }
 
 static void
-on_end_session_dialog_closed (DBusGProxy *proxy,
-                              GsmShell   *shell)
+on_end_session_dialog_closed (GsmShell *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -477,8 +343,7 @@ on_end_session_dialog_closed (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_canceled (DBusGProxy *proxy,
-                                GsmShell   *shell)
+on_end_session_dialog_canceled (GsmShell *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -493,8 +358,7 @@ on_end_session_dialog_canceled (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_confirmed_logout (DBusGProxy *proxy,
-                                        GsmShell   *shell)
+on_end_session_dialog_confirmed_logout (GsmShell *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -505,8 +369,7 @@ on_end_session_dialog_confirmed_logout (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_confirmed_shutdown (DBusGProxy *proxy,
-                                          GsmShell   *shell)
+on_end_session_dialog_confirmed_shutdown (GsmShell *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -517,8 +380,7 @@ on_end_session_dialog_confirmed_shutdown (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_confirmed_reboot (DBusGProxy *proxy,
-                                        GsmShell   *shell)
+on_end_session_dialog_confirmed_reboot (GsmShell   *shell)
 {
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -529,10 +391,38 @@ on_end_session_dialog_confirmed_reboot (DBusGProxy *proxy,
 }
 
 static void
-on_end_session_dialog_proxy_destroyed (DBusGProxy *proxy,
-                                       GsmShell   *shell)
+on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
+                                   gchar      *sender_name,
+                                   gchar      *signal_name,
+                                   GVariant   *parameters,
+                                   GsmShell   *shell)
 {
-        g_clear_object (&shell->priv->end_session_dialog_proxy);
+        if (g_strcmp0 (signal_name, "Closed") == 0) {
+                on_end_session_dialog_closed (shell);
+        } else if (g_strcmp0 (signal_name, "Canceled") == 0) {
+                on_end_session_dialog_canceled (shell);
+        } else if (g_strcmp0 (signal_name ,"ConfirmedLogout") == 0) {
+                on_end_session_dialog_confirmed_logout (shell);
+        } else if (g_strcmp0 (signal_name ,"ConfirmedReboot") == 0) {
+                on_end_session_dialog_confirmed_reboot (shell);
+        } else if (g_strcmp0 (signal_name ,"ConfirmedShutdown") == 0) {
+                on_end_session_dialog_confirmed_shutdown (shell);
+        }
+}
+
+static void
+on_end_session_dialog_name_owner_changed (GDBusProxy *proxy,
+                                          GParamSpec *pspec,
+                                          GsmShell   *shell)
+{
+        gchar *name_owner;
+
+        name_owner = g_dbus_proxy_get_name_owner (proxy);
+        if (name_owner == NULL) {
+                g_clear_object (&shell->priv->end_session_dialog_proxy);
+        }
+
+        g_free (name_owner);
 }
 
 static gboolean
@@ -565,19 +455,12 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmShellEndSessionDialogType type,
                                    GsmStore *inhibitors)
 {
-        DBusGProxyCall  *call;
-        GPtrArray *inhibitor_array;
+        GDBusProxy *proxy;
         GError *error;
 
         error = NULL;
-        if (!gsm_shell_ensure_connection (shell, &error)) {
-                g_warning ("Could not connect to the shell: %s",
-                           error->message);
-                g_error_free (error);
-                return FALSE;
-        }
 
-        if (shell->priv->end_session_open_call != NULL) {
+        if (shell->priv->dialog_is_open) {
                 g_return_val_if_fail (shell->priv->end_session_dialog_type == type,
                                       FALSE);
 
@@ -585,79 +468,41 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
         }
 
         if (shell->priv->end_session_dialog_proxy == NULL) {
-                DBusGProxy *proxy;
+                proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
+                                                       G_DBUS_PROXY_FLAGS_NONE,
+                                                       NULL,
+                                                       SHELL_NAME,
+                                                       SHELL_END_SESSION_DIALOG_PATH,
+                                                       SHELL_END_SESSION_DIALOG_INTERFACE,
+                                                       NULL, &error);
 
-                proxy = dbus_g_proxy_new_for_name (shell->priv->bus_connection,
-                                                   SHELL_NAME,
-                                                   SHELL_END_SESSION_DIALOG_PATH,
-                                                   SHELL_END_SESSION_DIALOG_INTERFACE);
-
-                g_assert (proxy != NULL);
+                if (error != NULL) {
+                        g_critical ("Could not connect to the shell: %s",
+                                    error->message);
+                        g_error_free (error);
+                        return FALSE;
+                }
 
                 shell->priv->end_session_dialog_proxy = proxy;
 
-                g_signal_connect (proxy, "destroy",
-                                  G_CALLBACK (on_end_session_dialog_proxy_destroyed),
+                g_signal_connect (proxy, "notify::g-name-owner",
+                                  G_CALLBACK (on_end_session_dialog_name_owner_changed),
                                   shell);
-
-                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "Closed", G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "Closed",
-                                             G_CALLBACK (on_end_session_dialog_closed),
-                                             shell, NULL);
-
-                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "Canceled", G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "Canceled",
-                                             G_CALLBACK (on_end_session_dialog_canceled),
-                                             shell, NULL);
-                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "ConfirmedLogout", G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "ConfirmedLogout",
-                                             G_CALLBACK (on_end_session_dialog_confirmed_logout),
-                                             shell, NULL);
-                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "ConfirmedShutdown", G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "ConfirmedShutdown",
-                                             G_CALLBACK (on_end_session_dialog_confirmed_shutdown),
-                                             shell, NULL);
-                dbus_g_proxy_add_signal (shell->priv->end_session_dialog_proxy,
-                                         "ConfirmedReboot", G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (shell->priv->end_session_dialog_proxy,
-                                             "ConfirmedReboot",
-                                             G_CALLBACK (on_end_session_dialog_confirmed_reboot),
-                                             shell, NULL);
+                g_signal_connect (proxy, "g-signal",
+                                  G_CALLBACK (on_end_session_dialog_dbus_signal),
+                                  shell);
         }
 
-        inhibitor_array = get_array_from_store (inhibitors);
-
-        call = dbus_g_proxy_begin_call_with_timeout (shell->priv->end_session_dialog_proxy,
-                                                     "Open",
-                                                     (DBusGProxyCallNotify)
-                                                     on_open_finished,
-                                                     shell,
-                                                     NULL,
-                                                     INT_MAX,
-                                                     G_TYPE_UINT,
-                                                     (guint) type,
-                                                     G_TYPE_UINT,
-                                                     (guint) 0,
-                                                     G_TYPE_UINT,
-                                                     AUTOMATIC_ACTION_TIMEOUT,
-                                                     GSM_SHELL_DBUS_TYPE_G_OBJECT_PATH_ARRAY,
-                                                     inhibitor_array,
-                                                     G_TYPE_INVALID);
-        g_ptr_array_foreach (inhibitor_array, (GFunc) g_free, NULL);
-        g_ptr_array_free (inhibitor_array, TRUE);
-
-        if (call == NULL) {
-                g_warning ("Unable to make Open call");
-                return FALSE;
-        }
+        g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
+                           "Open",
+                           g_variant_new ("(uuu@ao)",
+                                          type,
+                                          0,
+                                          AUTOMATIC_ACTION_TIMEOUT,
+                                          get_array_from_store (inhibitors)),
+                           G_DBUS_CALL_FLAGS_NONE,
+                           G_MAXINT, NULL,
+                           on_open_finished, shell);
 
         g_object_ref (inhibitors);
 
@@ -678,7 +523,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   G_CALLBACK (queue_end_session_dialog_update),
                                   shell);
 
-        shell->priv->end_session_open_call = call;
+        shell->priv->dialog_is_open = TRUE;
         shell->priv->end_session_dialog_type = type;
 
         return TRUE;
@@ -690,5 +535,9 @@ gsm_shell_close_end_session_dialog (GsmShell *shell)
         if (!shell->priv->end_session_dialog_proxy)
                 return;
 
-        dbus_g_proxy_call_no_reply (shell->priv->end_session_dialog_proxy, "Close", G_TYPE_INVALID);
+        g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
+                           "Close",
+                           NULL,
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1, NULL, NULL, NULL);
 }
