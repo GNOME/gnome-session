@@ -24,14 +24,13 @@
 #include <time.h>
 #include <unistd.h>
 
-#include <dbus/dbus-glib.h>
-
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include <libgnome-desktop/gnome-idle-monitor.h>
 
 #include "gsm-presence.h"
-#include "gsm-presence-glue.h"
+#include "org.gnome.SessionManager.Presence.h"
 
+#define GSM_PRESENCE_DBUS_IFACE "org.gnome.SessionManager.Presence"
 #define GSM_PRESENCE_DBUS_PATH "/org/gnome/SessionManager/Presence"
 
 #define GS_NAME      "org.gnome.ScreenSaver"
@@ -52,65 +51,88 @@ struct GsmPresencePrivate
         guint             idle_watch_id;
         guint             idle_timeout;
         gboolean          screensaver_active;
-        DBusGConnection  *bus_connection;
-        DBusGProxy       *bus_proxy;
-        DBusGProxy       *screensaver_proxy;
+        GDBusConnection  *connection;
+        GDBusProxy       *screensaver_proxy;
+
+        GsmExportedPresence *skeleton;
 };
 
 enum {
         PROP_0,
-        PROP_STATUS,
-        PROP_STATUS_TEXT,
         PROP_IDLE_ENABLED,
         PROP_IDLE_TIMEOUT,
 };
 
-
 enum {
         STATUS_CHANGED,
-        STATUS_TEXT_CHANGED,
         LAST_SIGNAL
 };
 
-static guint signals [LAST_SIGNAL] = { 0 };
+static guint signals[LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (GsmPresence, gsm_presence, G_TYPE_OBJECT)
+
+static const GDBusErrorEntry gsm_presence_error_entries[] = {
+        { GSM_PRESENCE_ERROR_GENERAL, GSM_PRESENCE_DBUS_IFACE ".GeneralError" }
+};
 
 GQuark
 gsm_presence_error_quark (void)
 {
-        static GQuark ret = 0;
-        if (ret == 0) {
-                ret = g_quark_from_static_string ("gsm_presence_error");
-        }
+        static volatile gsize quark_volatile = 0;
 
-        return ret;
-}
-
-#define ENUM_ENTRY(NAME, DESC) { NAME, "" #NAME "", DESC }
-
-GType
-gsm_presence_error_get_type (void)
-{
-        static GType etype = 0;
-
-        if (etype == 0) {
-                static const GEnumValue values[] = {
-                        ENUM_ENTRY (GSM_PRESENCE_ERROR_GENERAL, "GeneralError"),
-                        { 0, 0, 0 }
-                };
-
-                g_assert (GSM_PRESENCE_NUM_ERRORS == G_N_ELEMENTS (values) - 1);
-
-                etype = g_enum_register_static ("GsmPresenceError", values);
-        }
-
-        return etype;
+        g_dbus_error_register_error_domain ("gsm_presence_error",
+                                            &quark_volatile,
+                                            gsm_presence_error_entries,
+                                            G_N_ELEMENTS (gsm_presence_error_entries));
+        return quark_volatile;
 }
 
 static void idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
                                    guint             id,
                                    gpointer          user_data);
+
+static void
+gsm_presence_set_status (GsmPresence  *presence,
+                         guint         status)
+{
+        if (status != presence->priv->status) {
+                presence->priv->status = status;
+                gsm_exported_presence_set_status (presence->priv->skeleton, status);
+                gsm_exported_presence_emit_status_changed (presence->priv->skeleton, presence->priv->status);
+                g_signal_emit (presence, signals[STATUS_CHANGED], 0, presence->priv->status);
+        }
+}
+
+static gboolean
+gsm_presence_set_status_text (GsmPresence  *presence,
+                              const char   *status_text,
+                              GError      **error)
+{
+        g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
+
+        g_free (presence->priv->status_text);
+	presence->priv->status_text = NULL;
+
+        /* check length */
+        if (status_text != NULL && strlen (status_text) > MAX_STATUS_TEXT) {
+                g_set_error (error,
+                             GSM_PRESENCE_ERROR,
+                             GSM_PRESENCE_ERROR_GENERAL,
+                             "Status text too long");
+                return FALSE;
+        }
+
+        if (status_text != NULL) {
+                presence->priv->status_text = g_strdup (status_text);
+        } else {
+                presence->priv->status_text = g_strdup ("");
+        }
+
+        gsm_exported_presence_set_status_text (presence->priv->skeleton, presence->priv->status_text);
+        gsm_exported_presence_emit_status_text_changed (presence->priv->skeleton, presence->priv->status_text);
+        return TRUE;
+}
 
 static void
 set_session_idle (GsmPresence   *presence,
@@ -126,7 +148,7 @@ set_session_idle (GsmPresence   *presence,
 
                 /* save current status */
                 presence->priv->saved_status = presence->priv->status;
-                gsm_presence_set_status (presence, GSM_PRESENCE_STATUS_IDLE, NULL);
+                gsm_presence_set_status (presence, GSM_PRESENCE_STATUS_IDLE);
 
                 gnome_idle_monitor_add_user_active_watch (presence->priv->idle_monitor,
                                                           idle_became_active_cb,
@@ -139,7 +161,7 @@ set_session_idle (GsmPresence   *presence,
                 }
 
                 /* restore saved status */
-                gsm_presence_set_status (presence, presence->priv->saved_status, NULL);
+                gsm_presence_set_status (presence, presence->priv->saved_status);
                 g_debug ("GsmPresence: setting non-idle status %d", presence->priv->saved_status);
                 presence->priv->saved_status = GSM_PRESENCE_STATUS_AVAILABLE;
         }
@@ -192,11 +214,20 @@ reset_idle_watch (GsmPresence  *presence)
 }
 
 static void
-on_screensaver_active_changed (DBusGProxy  *proxy,
-                               gboolean     is_active,
-                               GsmPresence *presence)
+on_screensaver_dbus_signal (GDBusProxy  *proxy,
+                            gchar       *sender_name,
+                            gchar       *signal_name,
+                            GVariant    *parameters,
+                            GsmPresence *presence)
 {
-        g_debug ("screensaver status changed: %d", is_active);
+        gboolean is_active;
+
+        if (g_strcmp0 (signal_name, "ActiveChanged") != 0) {
+                return;
+        }
+
+        g_variant_get (parameters, "(b)", &is_active);
+
         if (presence->priv->screensaver_active != is_active) {
                 presence->priv->screensaver_active = is_active;
                 set_session_idle (presence, is_active);
@@ -204,84 +235,81 @@ on_screensaver_active_changed (DBusGProxy  *proxy,
 }
 
 static void
-on_screensaver_proxy_destroy (GObject     *proxy,
-                              GsmPresence *presence)
+on_screensaver_name_owner_changed (GDBusProxy  *screensaver_proxy,
+                                   GParamSpec  *pspec,
+                                   GsmPresence *presence)
 {
-        g_debug ("Detected that screensaver has left the bus");
+        gchar *name_owner;
 
-        presence->priv->screensaver_proxy = NULL;
-        presence->priv->screensaver_active = FALSE;
-        set_session_idle (presence, FALSE);
+        name_owner = g_dbus_proxy_get_name_owner (screensaver_proxy);
+        if (name_owner == NULL) {
+                g_debug ("Detected that screensaver has left the bus");
+
+                presence->priv->screensaver_proxy = NULL;
+                presence->priv->screensaver_active = FALSE;
+                set_session_idle (presence, FALSE);
+        }
+
+        g_free (name_owner);
 }
 
-static void
-on_bus_name_owner_changed (DBusGProxy  *bus_proxy,
-                           const char  *service_name,
-                           const char  *old_service_name,
-                           const char  *new_service_name,
-                           GsmPresence *presence)
+static gboolean
+gsm_presence_set_status_text_dbus (GsmExportedPresence   *skeleton,
+                                   GDBusMethodInvocation *invocation,
+                                   gchar                 *status_text,
+                                   GsmPresence           *presence)
 {
-        GError *error;
+        GError *error = NULL;
 
-        if (service_name == NULL
-            || strcmp (service_name, GS_NAME) != 0) {
-                /* ignore */
-                return;
+        if (gsm_presence_set_status_text (presence, status_text, &error)) {
+                gsm_exported_presence_complete_set_status_text (skeleton, invocation);
+        } else {
+                g_dbus_method_invocation_take_error (invocation, error);
         }
 
-        if (strlen (new_service_name) == 0
-            && strlen (old_service_name) > 0) {
-                /* service removed */
-                /* let destroy signal handle this? */
-        } else if (strlen (old_service_name) == 0
-                   && strlen (new_service_name) > 0) {
-                /* service added */
+        return TRUE;
+}
 
-                g_debug ("Detected that screensaver has appeared on the bus");
-
-                error = NULL;
-                presence->priv->screensaver_proxy = dbus_g_proxy_new_for_name_owner (presence->priv->bus_connection,
-                                                                                     GS_NAME,
-                                                                                     GS_PATH,
-                                                                                     GS_INTERFACE,
-                                                                                     &error);
-                if (presence->priv->screensaver_proxy != NULL) {
-                        g_signal_connect (presence->priv->screensaver_proxy,
-                                          "destroy",
-                                          G_CALLBACK (on_screensaver_proxy_destroy),
-                                          presence);
-                        dbus_g_proxy_add_signal (presence->priv->screensaver_proxy,
-                                                 "ActiveChanged",
-                                                 G_TYPE_BOOLEAN,
-                                                 G_TYPE_INVALID);
-                        dbus_g_proxy_connect_signal (presence->priv->screensaver_proxy,
-                                                     "ActiveChanged",
-                                                     G_CALLBACK (on_screensaver_active_changed),
-                                                     presence,
-                                                     NULL);
-                } else {
-                        g_warning ("Unable to get screensaver proxy: %s", error->message);
-                        g_error_free (error);
-                }
-        }
+static gboolean
+gsm_presence_set_status_dbus (GsmExportedPresence   *skeleton,
+                              GDBusMethodInvocation *invocation,
+                              guint                  status,
+                              GsmPresence           *presence)
+{
+        gsm_presence_set_status (presence, status);
+        gsm_exported_presence_complete_set_status (skeleton, invocation);
+        return TRUE;
 }
 
 static gboolean
 register_presence (GsmPresence *presence)
 {
         GError *error;
+        GsmExportedPresence *skeleton;
 
         error = NULL;
-        presence->priv->bus_connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
-        if (presence->priv->bus_connection == NULL) {
-                if (error != NULL) {
-                        g_critical ("error getting session bus: %s", error->message);
-                        g_error_free (error);
-                }
+        presence->priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+        if (error != NULL) {
+                g_critical ("error getting session bus: %s", error->message);
+                g_error_free (error);
                 return FALSE;
         }
 
-        dbus_g_connection_register_g_object (presence->priv->bus_connection, GSM_PRESENCE_DBUS_PATH, G_OBJECT (presence));
+        skeleton = gsm_exported_presence_skeleton_new ();
+        presence->priv->skeleton = skeleton;
+        g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
+                                          presence->priv->connection,
+                                          GSM_PRESENCE_DBUS_PATH, &error);
+        if (error != NULL) {
+                g_critical ("error registering presence object on session bus: %s", error->message);
+                g_error_free (error);
+                return FALSE;
+        }
+
+        g_signal_connect (skeleton, "handle-set-status",
+                          G_CALLBACK (gsm_presence_set_status_dbus), presence);
+        g_signal_connect (skeleton, "handle-set-status-text",
+                          G_CALLBACK (gsm_presence_set_status_text_dbus), presence);
 
         return TRUE;
 }
@@ -293,6 +321,7 @@ gsm_presence_constructor (GType                  type,
 {
         GsmPresence *presence;
         gboolean     res;
+        GError      *error = NULL;
 
         presence = GSM_PRESENCE (G_OBJECT_CLASS (gsm_presence_parent_class)->constructor (type,
                                                                                              n_construct_properties,
@@ -303,22 +332,22 @@ gsm_presence_constructor (GType                  type,
                 g_warning ("Unable to register presence with session bus");
         }
 
-        presence->priv->bus_proxy = dbus_g_proxy_new_for_name (presence->priv->bus_connection,
-                                                               DBUS_SERVICE_DBUS,
-                                                               DBUS_PATH_DBUS,
-                                                               DBUS_INTERFACE_DBUS);
-        if (presence->priv->bus_proxy != NULL) {
-                dbus_g_proxy_add_signal (presence->priv->bus_proxy,
-                                         "NameOwnerChanged",
-                                         G_TYPE_STRING,
-                                         G_TYPE_STRING,
-                                         G_TYPE_STRING,
-                                         G_TYPE_INVALID);
-                dbus_g_proxy_connect_signal (presence->priv->bus_proxy,
-                                             "NameOwnerChanged",
-                                             G_CALLBACK (on_bus_name_owner_changed),
-                                             presence,
-                                             NULL);
+        presence->priv->screensaver_proxy = g_dbus_proxy_new_sync (presence->priv->connection,
+                                                                   G_DBUS_PROXY_FLAGS_NONE,
+                                                                   NULL,
+                                                                   GS_NAME,
+                                                                   GS_PATH,
+                                                                   GS_INTERFACE,
+                                                                   NULL, &error);
+        if (error != NULL) {
+                g_critical ("Unable to create a DBus proxy for GnomeScreensaver: %s",
+                            error->message);
+                g_error_free (error);
+        } else {
+                g_signal_connect (presence->priv->screensaver_proxy, "notify::g-name-owner",
+                                  G_CALLBACK (on_screensaver_name_owner_changed), presence);
+                g_signal_connect (presence->priv->screensaver_proxy, "g-signal",
+                                  G_CALLBACK (on_screensaver_dbus_signal), presence);
         }
 
         return G_OBJECT (presence);
@@ -346,50 +375,6 @@ gsm_presence_set_idle_enabled (GsmPresence  *presence,
         }
 }
 
-gboolean
-gsm_presence_set_status_text (GsmPresence  *presence,
-                              const char   *status_text,
-                              GError      **error)
-{
-        g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
-
-        g_free (presence->priv->status_text);
-	presence->priv->status_text = NULL;
-
-        /* check length */
-        if (status_text != NULL && strlen (status_text) > MAX_STATUS_TEXT) {
-                g_set_error (error,
-                             GSM_PRESENCE_ERROR,
-                             GSM_PRESENCE_ERROR_GENERAL,
-                             "Status text too long");
-                return FALSE;
-        }
-
-        if (status_text != NULL) {
-                presence->priv->status_text = g_strdup (status_text);
-        }
-
-        g_object_notify (G_OBJECT (presence), "status-text");
-        g_signal_emit (presence, signals[STATUS_TEXT_CHANGED], 0,
-                       presence->priv->status_text ? presence->priv->status_text : "");
-        return TRUE;
-}
-
-gboolean
-gsm_presence_set_status (GsmPresence  *presence,
-                         guint         status,
-                         GError      **error)
-{
-        g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
-
-        if (status != presence->priv->status) {
-                presence->priv->status = status;
-                g_object_notify (G_OBJECT (presence), "status");
-                g_signal_emit (presence, signals[STATUS_CHANGED], 0, presence->priv->status);
-        }
-        return TRUE;
-}
-
 void
 gsm_presence_set_idle_timeout (GsmPresence  *presence,
                                guint         timeout)
@@ -414,12 +399,6 @@ gsm_presence_set_property (GObject       *object,
         self = GSM_PRESENCE (object);
 
         switch (prop_id) {
-        case PROP_STATUS:
-                gsm_presence_set_status (self, g_value_get_uint (value), NULL);
-                break;
-        case PROP_STATUS_TEXT:
-                gsm_presence_set_status_text (self, g_value_get_string (value), NULL);
-                break;
         case PROP_IDLE_ENABLED:
                 gsm_presence_set_idle_enabled (self, g_value_get_boolean (value));
                 break;
@@ -443,12 +422,6 @@ gsm_presence_get_property (GObject    *object,
         self = GSM_PRESENCE (object);
 
         switch (prop_id) {
-        case PROP_STATUS:
-                g_value_set_uint (value, self->priv->status);
-                break;
-        case PROP_STATUS_TEXT:
-                g_value_set_string (value, self->priv->status_text ? self->priv->status_text : "");
-                break;
         case PROP_IDLE_ENABLED:
                 g_value_set_boolean (value, self->priv->idle_enabled);
                 break;
@@ -498,33 +471,7 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                               g_cclosure_marshal_VOID__UINT,
                               G_TYPE_NONE,
                               1, G_TYPE_UINT);
-        signals [STATUS_TEXT_CHANGED] =
-                g_signal_new ("status-text-changed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmPresenceClass, status_text_changed),
-                              NULL,
-                              NULL,
-                              g_cclosure_marshal_VOID__STRING,
-                              G_TYPE_NONE,
-                              1, G_TYPE_STRING);
 
-        g_object_class_install_property (object_class,
-                                         PROP_STATUS,
-                                         g_param_spec_uint ("status",
-                                                            "status",
-                                                            "status",
-                                                            0,
-                                                            G_MAXINT,
-                                                            0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
-                                         PROP_STATUS_TEXT,
-                                         g_param_spec_string ("status-text",
-                                                              "status text",
-                                                              "status text",
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_IDLE_ENABLED,
                                          g_param_spec_boolean ("idle-enabled",
@@ -542,8 +489,6 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                                                             120000,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
-        dbus_g_object_type_install_info (GSM_TYPE_PRESENCE, &dbus_glib_gsm_presence_object_info);
-        dbus_g_error_domain_register (GSM_PRESENCE_ERROR, NULL, GSM_PRESENCE_TYPE_ERROR);
         g_type_class_add_private (klass, sizeof (GsmPresencePrivate));
 }
 
