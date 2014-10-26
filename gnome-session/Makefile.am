@@ -127,7 +127,7 @@ test_inhibit_SOURCES = test-inhibit.c
 test_inhibit_LDADD = $(GTK3_LIBS) $(GNOME_SESSION_LIBS)
 
 test_client_dbus_SOURCES = test-client-dbus.c
-test_client_dbus_LDADD = $(DBUS_GLIB_LIBS)
+test_client_dbus_LDADD = $(GIO_LIBS)
 
 test_process_helper_SOURCES = test-process-helper.c gsm-process-helper.c gsm-process-helper.h
 test_process_helper_CFLAGS = $(AM_CFLAGS) $(GIO_CFLAGS)
