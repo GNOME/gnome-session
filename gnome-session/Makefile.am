@@ -1,3 +1,4 @@
+EXTRA_DIST =
 NULL =
 bin_PROGRAMS = gnome-session
 libexec_PROGRAMS = gnome-session-failed
@@ -60,7 +61,11 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-server.c			\
 	gsm-xsmp-server.h
 
+if HAVE_CONSOLEKIT
 gnome_session_SOURCES += gsm-consolekit.c gsm-consolekit.h
+else
+EXTRA_DIST += gsm-consolekit.c gsm-consolekit.h
+endif
 
 gnome_session_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\
@@ -69,6 +74,7 @@ gnome_session_CPPFLAGS =			\
 	$(ICE_CFLAGS)				\
 	$(XEXT_CFLAGS)				\
 	$(GCONF_CFLAGS)				\
+	$(CONSOLEKIT_CFLAGS)			\
 	$(SYSTEMD_CFLAGS)			\
 	$(GIOUNIX_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
@@ -89,6 +95,7 @@ gnome_session_LDADD =				\
 	$(GNOME_SESSION_LIBS)			\
 	$(UPOWER_LIBS)				\
 	$(GCONF_LIBS)				\
+	$(CONSOLEKIT_LIBS)			\
 	$(SYSTEMD_LIBS)				\
 	$(GIOUNIX_LIBS)				\
 	$(EXECINFO_LIBS)
@@ -194,7 +201,7 @@ BUILT_SOURCES =				\
 	org.gnome.SessionManager.Presence.h	\
 	org.gnome.SessionManager.Presence.c
 
-EXTRA_DIST =						\
+EXTRA_DIST +=						\
 	README						\
 	org.gnome.SessionManager.xml			\
 	org.gnome.SessionManager.App.xml		\

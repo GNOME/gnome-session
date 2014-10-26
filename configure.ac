@@ -139,15 +139,52 @@ if test x$enable_systemd = xyes; then
                 AC_MSG_ERROR([Systemd support explicitly required, but systemd not found])
         fi
         AC_DEFINE(HAVE_SYSTEMD, 1, [Define if systemd is used for session tracking])
-        session_tracking="systemd (with fallback to ConsoleKit)"
-else
-        session_tracking=ConsoleKit
 fi
 
 AC_SUBST(SYSTEMD_CFLAGS)
 AC_SUBST(SYSTEMD_LIBS)
 
 AM_CONDITIONAL(HAVE_SYSTEMD, [test "$enable_systemd" = "yes"], [Using systemd])
+
+dnl ====================================================================
+dnl Check for ConsoleKit
+dnl ====================================================================
+
+AC_ARG_ENABLE([consolekit],
+              AS_HELP_STRING([--enable-consolekit], [Use consolekit]),
+              [enable_consolekit=$enableval],
+              [enable_consolekit=no])
+
+AC_MSG_CHECKING([whether to use consolekit])
+AC_MSG_RESULT($enable_consolekit)
+
+if test x$enable_consolekit = xyes; then
+        PKG_CHECK_MODULES(CONSOLEKIT, [dbus-glib-1 >= $DBUS_GLIB_REQUIRED],
+                          [have_consolekit=yes], [have_consolekit=no])
+        if test x$have_consolekit = xno; then
+                AC_MSG_ERROR([ConsoleKit support explicitly required, but dbus-glib not found])
+        fi
+        AC_DEFINE(HAVE_CONSOLEKIT, 1, [Define if ConsoleKit is used for session tracking])
+fi
+
+AC_SUBST(CONSOLEKIT_CFLAGS)
+AC_SUBST(CONSOLEKIT_LIBS)
+
+AM_CONDITIONAL(HAVE_CONSOLEKIT, [test "$enable_consolekit" = "yes"], [Using ConsoleKit])
+
+if test x$enable_systemd = xyes; then
+        if test x$enable_consolekit = xyes; then
+                session_tracking="systemd (with fallback to ConsoleKit)"
+        else
+                session_tracking="systemd"
+        fi
+else
+        if test x$enable_consolekit = xyes; then
+                session_tracking="ConsoleKit"
+        else
+                session_tracking="null backend"
+        fi
+fi
 
 dnl ====================================================================
 dnl Check for XSync extension
