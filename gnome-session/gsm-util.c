@@ -28,8 +28,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
-
-#include <dbus/dbus-glib.h>
+#include <gio/gio.h>
 
 #include "gsm-util.h"
 
@@ -453,51 +452,41 @@ gsm_util_update_activation_environment (const char  *variable,
                                         const char  *value,
                                         GError     **error)
 {
-        DBusGConnection *dbus_connection;
-        DBusGProxy      *bus_proxy;
-        GHashTable      *environment;
+        GDBusConnection *connection;
         gboolean         environment_updated;
+        GVariantBuilder  builder;
+        GVariant        *reply;
+        GError          *bus_error = NULL;
 
         environment_updated = FALSE;
-        bus_proxy = NULL;
-        environment = NULL;
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
 
-        dbus_connection = dbus_g_bus_get (DBUS_BUS_SESSION, error);
-
-        if (dbus_connection == NULL) {
+        if (connection == NULL) {
                 return FALSE;
         }
 
-        bus_proxy = dbus_g_proxy_new_for_name_owner (dbus_connection,
-                                                     DBUS_SERVICE_DBUS,
-                                                     DBUS_PATH_DBUS,
-                                                     DBUS_INTERFACE_DBUS,
-                                                     error);
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{ss}"));
+        g_variant_builder_add (&builder, "{ss}", variable, value);
 
-        if (bus_proxy == NULL) {
-                goto out;
+        reply = g_dbus_connection_call_sync (connection,
+                                             "org.freedesktop.DBus",
+                                             "/org/freedesktop/DBus",
+                                             "org.freedesktop.DBus",
+                                             "UpdateActivationEnvironment",
+                                             g_variant_new ("(@a{ss})",
+                                                            g_variant_builder_end (&builder)),
+                                             NULL,
+                                             G_DBUS_CALL_FLAGS_NONE,
+                                             -1, NULL, &bus_error);
+
+        if (bus_error != NULL) {
+                g_propagate_error (error, bus_error);
+        } else {
+                environment_updated = TRUE;
+                g_variant_unref (reply);
         }
 
-        environment = g_hash_table_new (g_str_hash, g_str_equal);
-
-        g_hash_table_insert (environment, (void *) variable, (void *) value);
-
-        if (!dbus_g_proxy_call (bus_proxy,
-                                "UpdateActivationEnvironment", error,
-                                DBUS_TYPE_G_STRING_STRING_HASHTABLE,
-                                environment, G_TYPE_INVALID,
-                                G_TYPE_INVALID))
-                goto out;
-
-        environment_updated = TRUE;
-
- out:
-
-        g_clear_object (&bus_proxy);
-
-        if (environment != NULL) {
-                g_hash_table_destroy (environment);
-        }
+        g_clear_object (&connection);
 
         return environment_updated;
 }
