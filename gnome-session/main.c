@@ -55,6 +55,7 @@ static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 static gboolean please_fail = FALSE;
+static gboolean disable_acceleration_check = FALSE;
 
 static DBusGProxy *bus_proxy = NULL;
 
@@ -307,31 +308,13 @@ main (int argc, char **argv)
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 /* Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong */
                 { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
+                { "disable-acceleration-check", 0, 0, G_OPTION_ARG_NONE, &disable_acceleration_check, N_("Disable hardware acceleration check"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
 
         /* Make sure that we have a session bus */
         if (!require_dbus_session (argc, argv, &error)) {
                 gsm_util_init_error (TRUE, "%s", error->message);
-        }
-
-        /* Check GL, if it doesn't work out then force software fallback */
-        if (!check_gl (&error)) {
-                gl_failed = TRUE;
-
-                g_debug ("hardware acceleration check failed: %s",
-                         error? error->message : "");
-                g_clear_error (&error);
-                if (g_getenv ("LIBGL_ALWAYS_SOFTWARE") == NULL) {
-                        g_setenv ("LIBGL_ALWAYS_SOFTWARE", "1", TRUE);
-                        if (!check_gl (&error)) {
-                                g_warning ("software acceleration check failed: %s",
-                                           error? error->message : "");
-                                g_clear_error (&error);
-                        } else {
-                                gl_failed = FALSE;
-                        }
-                }
         }
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
@@ -349,11 +332,6 @@ main (int argc, char **argv)
 
         g_option_context_free (options);
 
-        if (show_version) {
-                g_print ("%s %s\n", argv [0], VERSION);
-                exit (0);
-        }
-
         /* Rebind stdout/stderr to the journal explicitly, so that
          * journald picks ups the nicer "gnome-session" as the program
          * name instead of whatever shell script GDM happened to use.
@@ -370,6 +348,37 @@ main (int argc, char **argv)
         }
 #endif
 
+        gdm_log_init ();
+        gdm_log_set_debug (debug);
+
+        if (disable_acceleration_check) {
+                g_debug ("hardware acceleration check is disabled");
+        } else {
+                /* Check GL, if it doesn't work out then force software fallback */
+                if (!check_gl (&error)) {
+                        gl_failed = TRUE;
+
+                        g_debug ("hardware acceleration check failed: %s",
+                                 error? error->message : "");
+                        g_clear_error (&error);
+                        if (g_getenv ("LIBGL_ALWAYS_SOFTWARE") == NULL) {
+                                g_setenv ("LIBGL_ALWAYS_SOFTWARE", "1", TRUE);
+                                if (!check_gl (&error)) {
+                                        g_warning ("software acceleration check failed: %s",
+                                                   error? error->message : "");
+                                        g_clear_error (&error);
+                                } else {
+                                        gl_failed = FALSE;
+                                }
+                        }
+                }
+        }
+
+        if (show_version) {
+                g_print ("%s %s\n", argv [0], VERSION);
+                exit (0);
+        }
+
         if (gl_failed) {
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
                 gsm_main ();
@@ -381,9 +390,6 @@ main (int argc, char **argv)
                 gsm_main ();
                 exit (1);
         }
-
-        gdm_log_init ();
-        gdm_log_set_debug (debug);
 
         /* From 3.14 GDM sets XDG_CURRENT_DESKTOP. For compatibility with
          * older versions of GDM,  other display managers, and startx,
