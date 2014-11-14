@@ -337,11 +337,15 @@ setup_gsettings_condition_monitor (GsmAutostartApp *app,
         GSettingsSchemaSource *source;
         GSettingsSchema *schema;
         GSettings *settings;
+        GSettingsSchemaKey *schema_key;
+        const GVariantType *key_type;
         char **elems;
         gboolean retval = FALSE;
         char *signal;
 
         retval = FALSE;
+
+        schema = NULL;
 
         elems = g_strsplit (key, " ", 2);
 
@@ -358,9 +362,24 @@ setup_gsettings_condition_monitor (GsmAutostartApp *app,
         if (schema == NULL)
                 goto out;
 
+        if (!g_settings_schema_has_key (schema, elems[1]))
+                goto out;
+
+        schema_key = g_settings_schema_get_key (schema, elems[1]);
+
+        g_assert (schema_key != NULL);
+
+        key_type = g_settings_schema_key_get_value_type (schema_key);
+
+        g_settings_schema_key_unref (schema_key);
+
+        g_assert (key_type != NULL);
+
+        if (!g_variant_type_equal (key_type, G_VARIANT_TYPE_BOOLEAN))
+                goto out;
+
         settings = g_settings_new_full (schema, NULL, NULL);
         retval = g_settings_get_boolean (settings, elems[1]);
-        g_settings_schema_unref (schema);
 
         signal = g_strdup_printf ("changed::%s", elems[1]);
         g_signal_connect (G_OBJECT (settings), signal,
@@ -370,6 +389,8 @@ setup_gsettings_condition_monitor (GsmAutostartApp *app,
         app->priv->condition_settings = settings;
 
 out:
+        if (schema)
+                g_settings_schema_unref (schema);
         g_strfreev (elems);
 
         return retval;
