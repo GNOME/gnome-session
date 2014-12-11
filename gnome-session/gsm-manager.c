@@ -313,7 +313,6 @@ on_display_server_failure (GsmManager *manager,
                            GsmApp     *app)
 {
         const gchar *app_id;
-        gboolean allow_logout;
         GsmShellExtensions *extensions;
 
         app_id = gsm_app_peek_app_id (app);
