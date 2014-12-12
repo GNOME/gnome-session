@@ -234,9 +234,9 @@ gsm_util_get_app_dirs ()
         dirs = g_ptr_array_new ();
 
         g_ptr_array_add (dirs,
-			 g_build_filename (g_get_user_data_dir (),
-					   "applications",
-					   NULL));
+                         g_build_filename (g_get_user_data_dir (),
+                                           "applications",
+                                           NULL));
 
         system_data_dirs = g_get_system_data_dirs ();
         for (i = 0; system_data_dirs[i]; i++) {
@@ -255,15 +255,15 @@ char **
 gsm_util_get_desktop_dirs (gboolean include_saved_session,
                            gboolean autostart_first)
 {
-	char **apps;
-	char **autostart;
-	char **standard_autostart;
-	char **result;
-	int    size;
-	int    i;
+        char **apps;
+        char **autostart;
+        char **standard_autostart;
+        char **result;
+        int    size;
+        int    i;
 
-	apps = gsm_util_get_app_dirs ();
-	autostart = gsm_util_get_autostart_dirs ();
+        apps = gsm_util_get_app_dirs ();
+        autostart = gsm_util_get_autostart_dirs ();
 
         /* Still, check the standard autostart dirs for things like fulfilling session reqs,
          * if using a non-standard autostart dir for autostarting */
@@ -272,15 +272,15 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
         else
                 standard_autostart = NULL;
 
-	size = 0;
-	for (i = 0; apps[i] != NULL; i++) { size++; }
-	for (i = 0; autostart[i] != NULL; i++) { size++; }
+        size = 0;
+        for (i = 0; apps[i] != NULL; i++) { size++; }
+        for (i = 0; autostart[i] != NULL; i++) { size++; }
         if (autostart_dirs != NULL)
                 for (i = 0; standard_autostart[i] != NULL; i++) { size++; }
         if (include_saved_session)
                 size += 1;
 
-	result = g_new (char *, size + 1); /* including last NULL */
+        result = g_new (char *, size + 1); /* including last NULL */
 
         size = 0;
 
@@ -316,13 +316,13 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
                         result[size++] = g_strdup (gsm_util_get_saved_session_dir ());
         }
 
-	g_free (apps);
-	g_free (autostart);
-	g_free (standard_autostart);
+        g_free (apps);
+        g_free (autostart);
+        g_free (standard_autostart);
 
-	result[size] = NULL;
+        result[size] = NULL;
 
-	return result;
+        return result;
 }
 
 gboolean
