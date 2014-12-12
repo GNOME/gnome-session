@@ -270,5 +270,5 @@ gsm_session_save_clear (void)
                 return;
         }
 
-	gsm_session_clear_saved_session (save_dir, NULL);
+        gsm_session_clear_saved_session (save_dir, NULL);
 }

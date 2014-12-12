@@ -16,7 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  *
  * Authors:
- *	Colin Walters <walters@verbum.org>
+ *        Colin Walters <walters@verbum.org>
  */
 
 #include <config.h>

@@ -192,7 +192,7 @@ require_dbus_session (int      argc,
         new_argv[1] = "--exit-with-session";
         for (i = 0; i < argc; i++) {
                 new_argv[i + 2] = argv[i];
-	}
+        }
         new_argv[i + 2] = NULL;
         
         if (!execvp ("dbus-launch", new_argv)) {

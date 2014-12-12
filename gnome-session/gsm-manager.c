@@ -1711,7 +1711,7 @@ gsm_manager_get_failsafe (GsmManager *manager)
 {
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
-	return manager->priv->failsafe;
+        return manager->priv->failsafe;
 }
 
 static void
@@ -2506,40 +2506,40 @@ gsm_manager_setenv (GsmExportedManager    *skeleton,
 static gboolean
 is_valid_category (int category)
 {
-	int categories[] = {
-		LC_CTYPE,
-		LC_NUMERIC,
-		LC_TIME,
-		LC_COLLATE,
-		LC_MONETARY,
-		LC_MESSAGES,
+        int categories[] = {
+                LC_CTYPE,
+                LC_NUMERIC,
+                LC_TIME,
+                LC_COLLATE,
+                LC_MONETARY,
+                LC_MESSAGES,
 #if defined (LC_PAPER)
-		LC_PAPER,
+                LC_PAPER,
 #endif
 #if defined (LC_NAME)
-		LC_NAME,
+                LC_NAME,
 #endif
 #if defined (LC_ADDRESS)
-		LC_ADDRESS,
+                LC_ADDRESS,
 #endif
 #if defined (LC_TELEPHONE)
-		LC_TELEPHONE,
+                LC_TELEPHONE,
 #endif
 #if defined (LC_MEASUREMENT)
-		LC_MEASUREMENT,
+                LC_MEASUREMENT,
 #endif
 #if defined (LC_IDENTIFICATION)
-		LC_IDENTIFICATION,
+                LC_IDENTIFICATION,
 #endif
-		LC_ALL
-	};
-	guint i;
+                LC_ALL
+        };
+        guint i;
 
-	for (i = 0; i < G_N_ELEMENTS(categories); i++)
-		if (categories[i] == category)
-			return TRUE;
+        for (i = 0; i < G_N_ELEMENTS(categories); i++)
+                if (categories[i] == category)
+                        return TRUE;
 
-	return FALSE;
+        return FALSE;
 }
 
 static gboolean

@@ -93,8 +93,8 @@ gsm_app_get_app_id (GsmExportedApp        *skeleton,
 
 static gboolean
 gsm_app_get_startup_id (GsmExportedApp        *skeleton,
-			GDBusMethodInvocation *invocation,
-			GsmApp                *app)
+                        GDBusMethodInvocation *invocation,
+                        GsmApp                *app)
 {
         const gchar *id;
 
