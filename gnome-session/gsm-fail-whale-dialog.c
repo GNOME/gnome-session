@@ -266,28 +266,17 @@ on_logout_clicked (GtkWidget          *button,
         gtk_main_quit ();
 }
 
-static GtkIconSize
-gsm_util_get_computer_fail_icon_size (void)
-{
-        static GtkIconSize icon_size = 0;
-
-        if (icon_size == 0)
-                icon_size = gtk_icon_size_register ("gnome-session-computer-fail", 128, 128);
-
-        return icon_size;
-}
-
 static void
 setup_window (GsmFailWhaleDialog *fail_dialog)
 {
         GsmFailWhaleDialogPrivate *priv;
-        GtkWidget *alignment;
         GtkWidget *box;
         GtkWidget *image;
         GtkWidget *label;
         GtkWidget *message_label;
         GtkWidget *button_box;
         GtkWidget *button;
+        GdkPixbuf *fail_icon;
         char *markup;
 
         priv = fail_dialog->priv;
@@ -302,18 +291,21 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         /* only works if there is a window manager which is unlikely */
         gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
 
-        alignment = gtk_alignment_new (0.5, 0.5, 1, 1);
-        gtk_widget_show (alignment);
-        gtk_container_add (GTK_CONTAINER (fail_dialog), alignment);
-        g_object_set (alignment, "valign", GTK_ALIGN_CENTER, NULL);
-
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 10);
+        gtk_widget_set_valign (box, GTK_ALIGN_CENTER);
         gtk_widget_show (box);
-        gtk_container_add (GTK_CONTAINER (alignment), box);
 
-        image = gtk_image_new_from_icon_name (GSM_ICON_COMPUTER_FAIL,
-                                              gsm_util_get_computer_fail_icon_size ());
-        g_object_set (image, "use-fallback", TRUE, NULL);
+        gtk_container_add (GTK_CONTAINER (fail_dialog), box);
+
+        fail_icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+                                              GSM_ICON_COMPUTER_FAIL,
+                                              128,
+                                              0,
+                                              NULL);
+        if (fail_icon != NULL) {
+                image = gtk_image_new_from_pixbuf (fail_icon);
+                g_object_unref (fail_icon);
+        }
         gtk_widget_show (image);
         gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
 
