@@ -41,13 +41,6 @@ typedef struct _GsmShell        GsmShell;
 typedef struct _GsmShellClass   GsmShellClass;
 typedef struct _GsmShellPrivate GsmShellPrivate;
 
-typedef enum
-{
-    GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT = 0,
-    GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN,
-    GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART,
-} GsmShellEndSessionDialogType;
-
 struct _GsmShell
 {
         GObject               parent;
@@ -59,15 +52,6 @@ struct _GsmShellClass
 {
         GObjectClass parent_class;
 
-        void (* end_session_dialog_opened)        (GsmShell *shell);
-        void (* end_session_dialog_open_failed)   (GsmShell *shell);
-        void (* end_session_dialog_closed)        (GsmShell *shell);
-        void (* end_session_dialog_canceled)      (GsmShell *shell);
-
-        void (* end_session_dialog_confirmed_logout)   (GsmShell *shell);
-        void (* end_session_dialog_confirmed_shutdown) (GsmShell *shell);
-        void (* end_session_dialog_confirmed_reboot)   (GsmShell *shell);
-
 };
 
 GType            gsm_shell_get_type           (void);
@@ -76,11 +60,6 @@ GsmShell        *gsm_shell_new                (void);
 
 GsmShell        *gsm_get_shell                (void);
 gboolean         gsm_shell_is_running         (GsmShell *shell);
-
-gboolean         gsm_shell_open_end_session_dialog (GsmShell *shell,
-                                                    GsmShellEndSessionDialogType type,
-                                                    GsmStore *inhibitors);
-void             gsm_shell_close_end_session_dialog (GsmShell *shell);
 
 G_END_DECLS
 

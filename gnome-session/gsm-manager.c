@@ -48,6 +48,7 @@
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
 #include "gsm-shell.h"
+#include "gsm-end-session-dialog.h"
 
 #include "gsm-xsmp-server.h"
 #include "gsm-xsmp-client.h"
@@ -161,11 +162,13 @@ struct GsmManagerPrivate
         guint                   name_owner_id;
 
         GsmShell               *shell;
-        guint                   shell_end_session_dialog_canceled_id;
-        guint                   shell_end_session_dialog_open_failed_id;
-        guint                   shell_end_session_dialog_confirmed_logout_id;
-        guint                   shell_end_session_dialog_confirmed_shutdown_id;
-        guint                   shell_end_session_dialog_confirmed_reboot_id;
+
+        GsmEndSessionDialog    *end_session_dialog;
+        guint                   end_session_dialog_canceled_id;
+        guint                   end_session_dialog_open_failed_id;
+        guint                   end_session_dialog_confirmed_logout_id;
+        guint                   end_session_dialog_confirmed_shutdown_id;
+        guint                   end_session_dialog_confirmed_reboot_id;
 };
 
 enum {
@@ -197,8 +200,8 @@ static void     _handle_client_end_session_response (GsmManager *manager,
                                                      gboolean    do_last,
                                                      gboolean    cancel,
                                                      const char *reason);
-static void     show_shell_end_session_dialog (GsmManager                   *manager,
-                                               GsmShellEndSessionDialogType  type);
+static void     show_end_session_dialog (GsmManager              *manager,
+                                         GsmEndSessionDialogType  type);
 static gpointer manager_object = NULL;
 
 G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
@@ -1112,28 +1115,28 @@ cancel_end_session (GsmManager *manager)
 }
 
 static void
-end_session_or_show_shell_dialog (GsmManager *manager)
+end_session_or_show_end_session_dialog (GsmManager *manager)
 {
         gboolean logout_prompt;
-        GsmShellEndSessionDialogType type;
+        GsmEndSessionDialogType type;
         gboolean logout_inhibited;
 
         switch (manager->priv->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
-                type = GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT;
+                type = GSM_END_SESSION_DIALOG_TYPE_LOGOUT;
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-                type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
+                type = GSM_END_SESSION_DIALOG_TYPE_RESTART;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-                type = GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN;
+                type = GSM_END_SESSION_DIALOG_TYPE_SHUTDOWN;
                 break;
         default:
                 g_warning ("Unexpected logout type %d when creating end session dialog",
                            manager->priv->logout_type);
-                type = GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT;
+                type = GSM_END_SESSION_DIALOG_TYPE_LOGOUT;
                 break;
         }
 
@@ -1144,7 +1147,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
         switch (manager->priv->logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
                 if (logout_inhibited || logout_prompt) {
-                        show_shell_end_session_dialog (manager, type);
+                        show_end_session_dialog (manager, type);
                 } else {
                         end_phase (manager);
                 }
@@ -1152,7 +1155,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
 
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
                 if (logout_inhibited) {
-                        show_shell_end_session_dialog (manager, type);
+                        show_end_session_dialog (manager, type);
                 } else {
                         end_phase (manager);
                 }
@@ -1181,7 +1184,7 @@ query_end_session_complete (GsmManager *manager)
                 manager->priv->query_timeout_id = 0;
         }
 
-        end_session_or_show_shell_dialog (manager);
+        end_session_or_show_end_session_dialog (manager);
 }
 
 static guint32
@@ -2250,6 +2253,7 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&manager->priv->lockdown_settings);
         g_clear_object (&manager->priv->system);
         g_clear_object (&manager->priv->shell);
+        g_clear_object (&manager->priv->end_session_dialog);
 
         if (manager->priv->name_owner_id != 0) {
                 g_dbus_connection_signal_unsubscribe (manager->priv->connection, manager->priv->name_owner_id);;
@@ -3100,7 +3104,7 @@ remove_inhibitors_for_connection (GsmManager *manager,
                                           &data);
         if (count > 0 &&
             manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                end_session_or_show_shell_dialog (manager);
+                end_session_or_show_end_session_dialog (manager);
         }
 }
 
@@ -3272,6 +3276,8 @@ gsm_manager_init (GsmManager *manager)
 
         manager->priv->system = gsm_get_system ();
         manager->priv->shell = gsm_get_shell ();
+
+        manager->priv->end_session_dialog = gsm_end_session_dialog_new ();
         manager->priv->end_session_cancellable = g_cancellable_new ();
 }
 
@@ -3308,45 +3314,45 @@ gsm_manager_new (GsmStore *client_store,
 }
 
 static void
-disconnect_shell_dialog_signals (GsmManager *manager)
+disconnect_end_session_dialog_signals (GsmManager *manager)
 {
-        if (manager->priv->shell_end_session_dialog_canceled_id != 0) {
-                g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_canceled_id);
-                manager->priv->shell_end_session_dialog_canceled_id = 0;
+        if (manager->priv->end_session_dialog_canceled_id != 0) {
+                g_signal_handler_disconnect (manager->priv->end_session_dialog,
+                                             manager->priv->end_session_dialog_canceled_id);
+                manager->priv->end_session_dialog_canceled_id = 0;
         }
 
-        if (manager->priv->shell_end_session_dialog_confirmed_logout_id != 0) {
-                g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_confirmed_logout_id);
-                manager->priv->shell_end_session_dialog_confirmed_logout_id = 0;
+        if (manager->priv->end_session_dialog_confirmed_logout_id != 0) {
+                g_signal_handler_disconnect (manager->priv->end_session_dialog,
+                                             manager->priv->end_session_dialog_confirmed_logout_id);
+                manager->priv->end_session_dialog_confirmed_logout_id = 0;
         }
 
-        if (manager->priv->shell_end_session_dialog_confirmed_shutdown_id != 0) {
-                g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_confirmed_shutdown_id);
-                manager->priv->shell_end_session_dialog_confirmed_shutdown_id = 0;
+        if (manager->priv->end_session_dialog_confirmed_shutdown_id != 0) {
+                g_signal_handler_disconnect (manager->priv->end_session_dialog,
+                                             manager->priv->end_session_dialog_confirmed_shutdown_id);
+                manager->priv->end_session_dialog_confirmed_shutdown_id = 0;
         }
 
-        if (manager->priv->shell_end_session_dialog_confirmed_reboot_id != 0) {
-                g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_confirmed_reboot_id);
-                manager->priv->shell_end_session_dialog_confirmed_reboot_id = 0;
+        if (manager->priv->end_session_dialog_confirmed_reboot_id != 0) {
+                g_signal_handler_disconnect (manager->priv->end_session_dialog,
+                                             manager->priv->end_session_dialog_confirmed_reboot_id);
+                manager->priv->end_session_dialog_confirmed_reboot_id = 0;
         }
 
-        if (manager->priv->shell_end_session_dialog_open_failed_id != 0) {
-                g_signal_handler_disconnect (manager->priv->shell,
-                                             manager->priv->shell_end_session_dialog_open_failed_id);
-                manager->priv->shell_end_session_dialog_open_failed_id = 0;
+        if (manager->priv->end_session_dialog_open_failed_id != 0) {
+                g_signal_handler_disconnect (manager->priv->end_session_dialog,
+                                             manager->priv->end_session_dialog_open_failed_id);
+                manager->priv->end_session_dialog_open_failed_id = 0;
         }
 }
 
 static void
-on_shell_end_session_dialog_canceled (GsmShell   *shell,
-                                      GsmManager *manager)
+on_end_session_dialog_canceled (GsmEndSessionDialog *end_session_dialog,
+                                GsmManager          *manager)
 {
         cancel_end_session (manager);
-        disconnect_shell_dialog_signals (manager);
+        disconnect_end_session_dialog_signals (manager);
 }
 
 static void
@@ -3373,77 +3379,74 @@ _handle_end_session_dialog_response (GsmManager           *manager,
 }
 
 static void
-on_shell_end_session_dialog_confirmed_logout (GsmShell   *shell,
-                                              GsmManager *manager)
+on_end_session_dialog_confirmed_logout (GsmEndSessionDialog *end_session_dialog,
+                                        GsmManager          *manager)
 {
         _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_LOGOUT);
-        disconnect_shell_dialog_signals (manager);
+        disconnect_end_session_dialog_signals (manager);
 }
 
 static void
-on_shell_end_session_dialog_confirmed_shutdown (GsmShell   *shell,
-                                                GsmManager *manager)
+on_end_session_dialog_confirmed_shutdown (GsmEndSessionDialog *end_session_dialog,
+                                          GsmManager          *manager)
 {
         _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_SHUTDOWN);
-        disconnect_shell_dialog_signals (manager);
+        disconnect_end_session_dialog_signals (manager);
 }
 
 static void
-on_shell_end_session_dialog_confirmed_reboot (GsmShell   *shell,
-                                              GsmManager *manager)
+on_end_session_dialog_confirmed_reboot (GsmEndSessionDialog *end_session_dialog,
+                                        GsmManager          *manager)
 {
         _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_REBOOT);
-        disconnect_shell_dialog_signals (manager);
+        disconnect_end_session_dialog_signals (manager);
 }
 
 static void
-connect_shell_dialog_signals (GsmManager *manager)
+connect_end_session_dialog_signals (GsmManager *manager)
 {
-        if (manager->priv->shell_end_session_dialog_canceled_id != 0)
+        if (manager->priv->end_session_dialog_canceled_id != 0)
                 return;
 
-        manager->priv->shell_end_session_dialog_canceled_id =
-                g_signal_connect (manager->priv->shell,
+        manager->priv->end_session_dialog_canceled_id =
+                g_signal_connect (manager->priv->end_session_dialog,
                                   "end-session-dialog-canceled",
-                                  G_CALLBACK (on_shell_end_session_dialog_canceled),
+                                  G_CALLBACK (on_end_session_dialog_canceled),
                                   manager);
 
-        manager->priv->shell_end_session_dialog_open_failed_id =
-                g_signal_connect (manager->priv->shell,
+        manager->priv->end_session_dialog_open_failed_id =
+                g_signal_connect (manager->priv->end_session_dialog,
                                   "end-session-dialog-open-failed",
-                                  G_CALLBACK (on_shell_end_session_dialog_canceled),
+                                  G_CALLBACK (on_end_session_dialog_canceled),
                                   manager);
 
-        manager->priv->shell_end_session_dialog_confirmed_logout_id =
-                g_signal_connect (manager->priv->shell,
+        manager->priv->end_session_dialog_confirmed_logout_id =
+                g_signal_connect (manager->priv->end_session_dialog,
                                   "end-session-dialog-confirmed-logout",
-                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_logout),
+                                  G_CALLBACK (on_end_session_dialog_confirmed_logout),
                                   manager);
 
-        manager->priv->shell_end_session_dialog_confirmed_shutdown_id =
-                g_signal_connect (manager->priv->shell,
+        manager->priv->end_session_dialog_confirmed_shutdown_id =
+                g_signal_connect (manager->priv->end_session_dialog,
                                   "end-session-dialog-confirmed-shutdown",
-                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_shutdown),
+                                  G_CALLBACK (on_end_session_dialog_confirmed_shutdown),
                                   manager);
 
-        manager->priv->shell_end_session_dialog_confirmed_reboot_id =
-                g_signal_connect (manager->priv->shell,
+        manager->priv->end_session_dialog_confirmed_reboot_id =
+                g_signal_connect (manager->priv->end_session_dialog,
                                   "end-session-dialog-confirmed-reboot",
-                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_reboot),
+                                  G_CALLBACK (on_end_session_dialog_confirmed_reboot),
                                   manager);
 }
 
 static void
-show_shell_end_session_dialog (GsmManager                   *manager,
-                               GsmShellEndSessionDialogType  type)
+show_end_session_dialog (GsmManager              *manager,
+                         GsmEndSessionDialogType  type)
 {
-        if (!gsm_shell_is_running (manager->priv->shell))
-                return;
-
-        gsm_shell_open_end_session_dialog (manager->priv->shell,
-                                           type,
-                                           manager->priv->inhibitors);
-        connect_shell_dialog_signals (manager);
+        gsm_end_session_dialog_open (manager->priv->end_session_dialog,
+                                     type,
+                                     manager->priv->inhibitors);
+        connect_end_session_dialog_signals (manager);
 }
 
 /*
@@ -3684,8 +3687,8 @@ on_shutdown_prepared (GsmSystem  *system,
                 manager->priv->phase++;
                 start_phase (manager);
         } else {
-                disconnect_shell_dialog_signals (manager);
-                gsm_shell_close_end_session_dialog (manager->priv->shell);
+                disconnect_end_session_dialog_signals (manager);
+                gsm_end_session_dialog_close (manager->priv->end_session_dialog);
                 /* back to running phase */
                 cancel_end_session (manager);
         }

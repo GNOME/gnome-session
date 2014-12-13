@@ -54,6 +54,8 @@ gnome_session_SOURCES =				\
 	gsm-session-fill.h			\
 	gsm-session-save.c			\
 	gsm-session-save.h			\
+	gsm-end-session-dialog.c		\
+	gsm-end-session-dialog.h		\
 	gsm-shell-extensions.c			\
 	gsm-shell-extensions.h			\
 	gsm-shell.c				\
