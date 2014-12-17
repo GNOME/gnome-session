@@ -233,6 +233,7 @@ main (int argc, char **argv)
         GError           *error = NULL;
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
+        const char       *debug_string = NULL;
         gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
@@ -257,8 +258,9 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-        if (g_getenv ("GNOME_SESSION_DEBUG") != NULL) {
-                debug = rpmatch (g_getenv ("GNOME_SESSION_DEBUG"));
+        debug_string = g_getenv ("GNOME_SESSION_DEBUG");
+        if (debug_string != NULL) {
+                debug = rpmatch (debug_string) == TRUE || atoi (debug_string) == 1;
         }
 
         error = NULL;
