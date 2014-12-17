@@ -1032,8 +1032,14 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         g_free (app->priv->startup_id);
         local_error = NULL;
         ctx = g_app_launch_context_new ();
-        g_app_launch_context_setenv (ctx, "DISPLAY", g_getenv ("DISPLAY"));
-        g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", startup_id);
+
+        if (g_getenv ("DISPLAY") != NULL) {
+                g_app_launch_context_setenv (ctx, "DISPLAY", g_getenv ("DISPLAY"));
+        }
+
+        if (startup_id != NULL) {
+                g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", startup_id);
+        }
 
         handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), app);
         success = g_desktop_app_info_launch_uris_as_manager (app->priv->app_info,
