@@ -257,6 +257,10 @@ main (int argc, char **argv)
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
+        if (g_getenv ("GNOME_SESSION_DEBUG") != NULL) {
+                debug = rpmatch (g_getenv ("GNOME_SESSION_DEBUG"));
+        }
+
         error = NULL;
         options = g_option_context_new (_(" - the GNOME session manager"));
         g_option_context_add_main_entries (options, entries, GETTEXT_PACKAGE);
