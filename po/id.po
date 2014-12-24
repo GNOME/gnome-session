@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-04-08 19:52+0000\n"
-"PO-Revision-Date: 2014-04-09 05:31+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"POT-Creation-Date: 2014-12-23 20:28+0000\n"
+"PO-Revision-Date: 2014-12-24 11:49+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.7.1\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -111,11 +111,11 @@ msgstr "_Perintah:"
 msgid "_Name:"
 msgstr "_Nama:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, Tak! Sesuatu yang tidak diinginkan telah terjadi."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -123,7 +123,7 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan. Silakan kontak "
 "administrator sistem"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -131,7 +131,7 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan. Semua ekstensi dibuat "
 "nonaktif sebagai tindak pencegahan."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -139,27 +139,27 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan.\n"
 "Silakan log keluar dan coba lagi."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Izinkan log keluar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Tunjukkan peringatan ekstensi"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1245 ../gnome-session/gsm-manager.c:1890
 msgid "Not responding"
 msgstr "Tak merespon"
 
-#: ../gnome-session/gsm-util.c:409
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Log keluar"
 
@@ -188,36 +188,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Tak dapat membuat soket pendengar ICE: %s"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "DIR_MULAI_OTOMATIS"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "NAMA_SESI"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Tak memuat aplikasi yang ditentukan oleh pengguna"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:245
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Tampilkan dialog paus gagal untul pengujian"
 
-#: ../gnome-session/main.c:342
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Nonaktifkan pemeriksaan akselerasi perangkat keras"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " - manajer sesi GNOME"
 
@@ -289,32 +293,31 @@ msgstr "Nama sesi tak boleh memuat karakter '/'"
 msgid "A session named ‘%s’ already exists"
 msgstr "Nama sesi '%s' telah ada"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Keluar"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Matikan"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Nyalakan Ulang"
 
 # Keterangan untuk opsi force-logout.
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Mengabaikan sembarang pencegah"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Jangan tanyakan konfirmasi pengguna"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Tak dapat terhubung dengan manajer sesi"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Program dipanggil dengan opsi yang bertentangan"
-
