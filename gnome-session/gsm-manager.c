@@ -171,6 +171,7 @@ struct GsmManagerPrivate
 enum {
         PROP_0,
         PROP_CLIENT_STORE,
+        PROP_SESSION_NAME,
         PROP_FALLBACK,
         PROP_FAILSAFE
 };
@@ -2096,6 +2097,9 @@ gsm_manager_get_property (GObject    *object,
         case PROP_FAILSAFE:
                 g_value_set_boolean (value, self->priv->failsafe);
                 break;
+        case PROP_SESSION_NAME:
+                g_value_set_string (value, self->priv->session_name);
+                break;
         case PROP_FALLBACK:
                 g_value_set_boolean (value, self->priv->is_fallback_session);
                 break;
@@ -2284,6 +2288,20 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        /**
+         * GsmManager::session-name
+         *
+         * Then name of the currently active session, typically "gnome" or "gnome-fallback".
+         * This may be the name of the configured default session, or the name of a fallback
+         * session in case we fell back.
+         */
+        g_object_class_install_property (object_class,
+                                         PROP_SESSION_NAME,
+                                         g_param_spec_string ("session-name",
+                                                              NULL,
+                                                              NULL,
+                                                              NULL,
+                                                              G_PARAM_READABLE));
 
         /**
          * GsmManager::fallback
