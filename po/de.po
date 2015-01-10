@@ -16,73 +16,23 @@
 # Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>, 2012.
 # Andre Jonas <nipsky@googlemail.com>, 2013.
 # Christian Kirbach <christian.kirbach@gmail.com>, 2009, 2010, 2011, 2012, 2013.
+# Bernd Homuth <dev@hmt.im>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 23:10+0000\n"
-"PO-Revision-Date: 2013-09-13 19:26+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2015-01-05 18:43+0000\n"
+"PO-Revision-Date: 2015-01-08 23:38+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Startbefehl auswählen"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Startprogramm hinzufügen"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Startprogramm bearbeiten"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "Der Startbefehl darf nicht leer sein"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "Der Startbefehl ist ungültig"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Aktiviert"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Symbol"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Programm"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Startprogrammeinstellungen"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Namenlos"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Keine Beschreibung"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Version dieser Anwendung"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Die Hilfeseite konnte nicht angezeigt werden"
+"X-Generator: Poedit 1.5.4\n"
 
 # Benutzerdefiniert oder Angepasst?
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -92,7 +42,7 @@ msgstr "Benutzerdefiniert"
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
 msgstr ""
-"Dieser Eintrag ermöglicht es Ihnen, eine gespeicherte Sitzung auswählen"
+"Dieser Eintrag ermöglicht es Ihnen, eine gespeicherte Sitzung auszuwählen"
 
 #: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
@@ -106,23 +56,12 @@ msgstr "Diese Sitzung meldet Sie bei GNOME an"
 msgid "GNOME dummy"
 msgstr "GNOME Platzhalter"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Startprogramme"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr ""
-"Wählen Sie, welche Anwendungen gestartet werden, wenn Sie sich anmelden"
-
-# Ich denken Wayland kann man stehen lassen: mittlerweile gibt es auch einen Wayland-Artikel in Wikipedia: http://de.wikipedia.org/wiki/Wayland_%28Anzeige-Server%29
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
 msgstr "GNOME unter Wayland"
 
 #: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
 msgid "This session logs you into GNOME, using Wayland"
 msgstr "Diese Sitzung meldet Sie bei GNOME unter Wayland an"
 
@@ -130,7 +69,7 @@ msgstr "Diese Sitzung meldet Sie bei GNOME unter Wayland an"
 msgid "Custom Session"
 msgstr "Benutzerdefinierte Sitzung"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr ""
 "Bitte wählen Sie eine benutzerdefinierte Sitzung, die ausgeführt werden soll"
@@ -187,79 +126,11 @@ msgstr "_Befehl:"
 msgid "_Name:"
 msgstr "_Name:"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Diese Datei ist keine gültige .desktop-Datei"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Version der Desktop-Datei »%s« wurde nicht erkannt"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "Startet %s"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Anwendung akzeptiert keine Befehlszeilenargumente"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Nicht erkannte Startoption: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "URI konnte auf Desktop-Datei 'Type=Link' nicht angewendet werden"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "Kein ausführbares Objekt"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Verbindung zur Sitzungsverwaltung deaktivieren"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Datei zum Speichern der Konfiguration auswählen"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "DATEI"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Geben Sie die zu ladende Sitzungskennung an"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "Kennung"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Sitzungsoptionen:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Sitzungsoptionen anzeigen"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Leider ist ein Problem aufgetreten."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -267,7 +138,7 @@ msgstr ""
 "Ein Problem ist aufgetreten, welches vom System nicht behoben werden kann. "
 "Bitte kontaktieren Sie den Systemverwalter."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -275,7 +146,7 @@ msgstr ""
 "Ein Problem ist aufgetreten, welches vom System nicht behoben werden kann. "
 "Als Vorsichtsmaßnahme sind alle Erweiterungen deaktiviert worden."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -283,27 +154,27 @@ msgstr ""
 "Ein Problem ist aufgetreten, welches vom System nicht behoben werden kann.\n"
 "Bitte melden Sie sich ab und versuchen Sie es erneut."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "Benutzer ab_melden"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Debugging-Code aktivieren"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Abmelden erlauben"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Warnung der Erweiterung anzeigen"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1246 ../gnome-session/gsm-manager.c:1891
 msgid "Not responding"
 msgstr "Keine Antwort"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Abmelden"
 
@@ -311,15 +182,15 @@ msgstr "_Abmelden"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Gemerkte Anwendung"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Dieses Programm blockiert die Abmeldung."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -327,42 +198,50 @@ msgstr ""
 "Neue Client-Verbindung wurde abgelehnt, weil die aktuelle Sitzung "
 "gegenwärtig beendet wird\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-Listening-Socket konnte nicht erzeugt werden: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Vorgegebene Autostart-Ordner außer Kraft setzen"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTORDNER"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Zu verwendende Sitzung"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "SITZUNGSNAME"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Keine benutzerspezifischen Anwendungen laden"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Version dieser Anwendung"
+
 # Der Kommentar im Quelltext lautet: »/* Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong */«
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Den Dialog zum Fehlschlag für Prüfungszwecke anzeigen"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Überprüfung des Hardware-Beschleunigers abschalten"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " - Die GNOME-Sitzung verwalten"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -382,81 +261,166 @@ msgid ""
 msgstr ""
 "%s [OPTION …] BEFEHL\n"
 "\n"
-"Führe BEFEHL aus und unterdrücke bestimme Funktionalitäten der Session.\n"
+"BEFEHL ausführen und bestimme Funktionalitäten der Sitzung unterdrücken.\n"
 "\n"
 "  -h, --help        Diese Hilfe anzeigen\n"
 "  --version         Die Programmversion anzeigen\n"
-"  --app-id ID       Die beim Unterdrücken zu benutzende\n"
-"                    Programm-ID (optional)\n"
-"  --reason REASON   Der Grund für das Unterdrücken (optional)\n"
-"  --inhibit ARG     Zu unterdrückende Funktionalitäten als kommaseparierte "
-"Liste:\n"
+"  --app-id KENNUNG  Die beim Unterdrücken zu benutzende\n"
+"                    Programmkennung (optional)\n"
+"  --reason GRUND    Der Grund für das Unterdrücken (optional)\n"
+"  --inhibit ARG     Zu unterdrückende Funktionalitäten als mit Kommata "
+"getrennte Liste:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    BEFEHL nicht starten und stattdessen dauerhaft warten\n"
 "\n"
-"Wenn keine --inhibit-Option angegeben wird, wird »idle« angenommen.\n"
+"Wenn die Option »--inhibit« nicht angegeben ist, so wird »idle« angenommen.\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Fehler beim Ausführen von %s\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s benötigt ein Argument\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Sitzung %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "Sitzungsnamen dürfen nicht mit einem ».« anfangen oder »/« enthalten"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "Sitzungsnamen dürfen nicht mit einem ».« anfangen"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "Sitzungsnamen dürfen keine »/«-Zeichen enthalten"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "Eine Sitzung mit Namen »%s« existiert bereits"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Abmelden"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Ausschalten"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Neustart"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Bestehende Unterdrückungen ignorieren"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Keine Bestätigung abfragen"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Sitzungsverwaltung konnte nicht kontaktiert werden"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Programm wurde mit Optionen aufgerufen, die zu einem Konflikt führen"
+
+#~ msgid "Select Command"
+#~ msgstr "Startbefehl auswählen"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Startprogramm hinzufügen"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Startprogramm bearbeiten"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Der Startbefehl darf nicht leer sein"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Der Startbefehl ist ungültig"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiviert"
+
+#~ msgid "Icon"
+#~ msgstr "Symbol"
+
+#~ msgid "Program"
+#~ msgstr "Programm"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Startprogrammeinstellungen"
+
+#~ msgid "No name"
+#~ msgstr "Namenlos"
+
+#~ msgid "No description"
+#~ msgstr "Keine Beschreibung"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Die Hilfeseite konnte nicht angezeigt werden"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Startprogramme"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr ""
+#~ "Wählen Sie, welche Anwendungen gestartet werden, wenn Sie sich anmelden"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Diese Datei ist keine gültige .desktop-Datei"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Version der Desktop-Datei »%s« wurde nicht erkannt"
+
+#~ msgid "Starting %s"
+#~ msgstr "Startet %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Anwendung akzeptiert keine Befehlszeilenargumente"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Nicht erkannte Startoption: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "URI konnte auf Desktop-Datei 'Type=Link' nicht angewendet werden"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Kein ausführbares Objekt"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Verbindung zur Sitzungsverwaltung deaktivieren"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Datei zum Speichern der Konfiguration auswählen"
+
+#~ msgid "FILE"
+#~ msgstr "DATEI"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Geben Sie die zu ladende Sitzungskennung an"
+
+#~ msgid "ID"
+#~ msgstr "Kennung"
+
+#~ msgid "Session management options:"
+#~ msgstr "Sitzungsoptionen:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Sitzungsoptionen anzeigen"
 
 #~ msgid "Some programs are still running:"
 #~ msgstr "Einige Anwendungen laufen noch:"
