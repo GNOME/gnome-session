@@ -22,7 +22,6 @@
 #define __GSM_MANAGER_H
 
 #include <glib-object.h>
-#include <dbus/dbus-glib.h>
 
 #include "gsm-store.h"
 #include "gsm-manager-logout-mode.h"
