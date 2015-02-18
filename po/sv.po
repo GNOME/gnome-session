@@ -1,20 +1,20 @@
 # Swedish messages for gnome-session.
-# Copyright © 1998-2012, 2014 Free Software Foundation, Inc.
+# Copyright © 1998-2012, 2014, 2015 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998.
 # Anders Carlsson <anders.carlsson@tordata.se>, 1999.
 # Andreas Hyden  <a.hyden@cyberpoint.se>, 2000.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-04-07 07:49+0000\n"
-"PO-Revision-Date: 2014-05-22 23:07+0100\n"
+"POT-Creation-Date: 2015-01-24 08:24+0000\n"
+"PO-Revision-Date: 2015-01-24 17:02+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -43,23 +43,19 @@ msgstr "Denna session loggar in dig i GNOME"
 # a dummy gnome-session which does not start anything
 # but the autostart software and the DBus API
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
-#| msgid "GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME-attrapp"
 
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
-#| msgid "GNOME fallback"
 msgid "GNOME on Wayland"
 msgstr "GNOME med Wayland"
 
 #: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
 msgid "This session logs you into GNOME, using Wayland"
 msgstr "Denna session loggar in dig i GNOME och använder Wayland"
 
 #: ../data/session-selector.ui.h:1
-#| msgid "Default session"
 msgid "Custom Session"
 msgstr "Anpassad session"
 
@@ -76,7 +72,6 @@ msgid "_Remove Session"
 msgstr "_Ta bort session"
 
 #: ../data/session-selector.ui.h:5
-#| msgid "Default session"
 msgid "Rena_me Session"
 msgstr "Byt na_mn på session"
 
@@ -120,11 +115,11 @@ msgstr "Ko_mmando:"
 msgid "_Name:"
 msgstr "_Namn:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Åh nej! Någonting har gått fel."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -132,15 +127,15 @@ msgstr ""
 "Ett problem har inträffat och systemet kan inte återhämta sig. Kontakta en "
 "systemadministratör"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
-"been disabled as a precaution."
+"A problem has occurred and the system can't recover. All extensions have been "
+"disabled as a precaution."
 msgstr ""
-"Ett problem har inträffat och systemet kan inte återhämta sig. Alla tillägg "
-"har inaktiverats som en säkerhetsåtgärd."
+"Ett problem har inträffat och systemet kan inte återhämta sig. Alla tillägg har "
+"inaktiverats som en säkerhetsåtgärd."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -148,29 +143,27 @@ msgstr ""
 "Ett problem har inträffat och systemet kan inte återhämta sig.\n"
 "Logga ut och försök igen."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
-#| msgid "Show logout dialog"
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Tillåt utloggning"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Visa tilläggsvarning"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1246 ../gnome-session/gsm-manager.c:1891
 msgid "Not responding"
 msgstr "Svarar inte"
 
-#: ../gnome-session/gsm-util.c:409
-#| msgid "Log out"
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Logga ut"
 
@@ -188,47 +181,49 @@ msgstr "Detta program blockerar utloggningen."
 
 #: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
+"Refusing new client connection because the session is currently being shut down\n"
 msgstr ""
-"Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas "
-"av\n"
+"Avvisar ny klientanslutning på grund av att sessionen är på väg att stängas av\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTKAT"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Session att använda"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "SESSIONSNAMN"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:245
 msgid "Version of this application"
 msgstr "Version av detta program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
-msgstr "Visa den ”felande valen” för testning "
+msgstr "Visa den ”felande valen” för testning"
 
-#: ../gnome-session/main.c:342
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Inaktivera kontroll för hårdvaruacceleration"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " - GNOME-sessionshanteraren"
 
@@ -278,13 +273,11 @@ msgstr "%s kräver ett argument\n"
 
 #: ../tools/gnome-session-selector.c:61
 #, c-format
-#| msgid "Session to use"
 msgid "Session %d"
 msgstr "Session %d"
 
 #: ../tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgid "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "Sessionsnamn får inte börja med ”.” eller innehålla ”/”-tecken"
 
 #: ../tools/gnome-session-selector.c:111
@@ -300,30 +293,30 @@ msgstr "Sessionsnamn får inte innehålla ”/”-tecken"
 msgid "A session named ‘%s’ already exists"
 msgstr "En session med namnet ”%s” existerar redan"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Logga ut"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Stäng av"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Starta om"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignorera allt som förhindrar det"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Fråga inte efter användarbekräftelse"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Kunde inte ansluta till sessionshanteraren"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
