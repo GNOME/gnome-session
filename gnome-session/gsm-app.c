@@ -38,6 +38,7 @@ struct _GsmAppPrivate
         char            *app_id;
         int              phase;
         char            *startup_id;
+        gboolean         registered;
         GTimeVal         last_restart_time;
         GDBusConnection *connection;
         GsmExportedApp  *skeleton;
@@ -47,7 +48,6 @@ struct _GsmAppPrivate
 enum {
         EXITED,
         DIED,
-        REGISTERED,
         LAST_SIGNAL
 };
 
@@ -60,6 +60,7 @@ enum {
         PROP_ID,
         PROP_STARTUP_ID,
         PROP_PHASE,
+        PROP_REGISTERED,
         LAST_PROP
 };
 
@@ -243,6 +244,9 @@ gsm_app_set_property (GObject      *object,
         case PROP_PHASE:
                 gsm_app_set_phase (app, g_value_get_int (value));
                 break;
+        case PROP_REGISTERED:
+                gsm_app_set_registered (app, g_value_get_boolean (value));
+                break;
         default:
                 break;
         }
@@ -265,6 +269,9 @@ gsm_app_get_property (GObject    *object,
                 break;
         case PROP_PHASE:
                 g_value_set_int (value, app->priv->phase);
+                break;
+        case PROP_REGISTERED:
+                g_value_set_boolean (value, app->priv->registered);
                 break;
         default:
                 break;
@@ -334,6 +341,14 @@ gsm_app_class_init (GsmAppClass *klass)
                                                               NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+        g_object_class_install_property (object_class,
+                                         PROP_REGISTERED,
+                                         g_param_spec_boolean ("registered",
+                                                               "Registered",
+                                                               "Registered",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE));
+
         signals[EXITED] =
                 g_signal_new ("exited",
                               G_OBJECT_CLASS_TYPE (object_class),
@@ -350,15 +365,6 @@ gsm_app_class_init (GsmAppClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_INT);
-
-        signals[REGISTERED] =
-                g_signal_new ("registered",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmAppClass, registered),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              0);
 
         g_type_class_add_private (klass, sizeof (GsmAppPrivate));
 }
@@ -516,14 +522,6 @@ gsm_app_stop (GsmApp  *app,
 }
 
 void
-gsm_app_registered (GsmApp *app)
-{
-        g_return_if_fail (GSM_IS_APP (app));
-
-        g_signal_emit (app, signals[REGISTERED], 0);
-}
-
-void
 gsm_app_exited (GsmApp *app,
                 guchar  exit_code)
 {
@@ -539,4 +537,24 @@ gsm_app_died (GsmApp *app,
         g_return_if_fail (GSM_IS_APP (app));
 
         g_signal_emit (app, signals[DIED], 0, signal);
+}
+
+gboolean
+gsm_app_get_registered (GsmApp *app)
+{
+        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
+
+        return app->priv->registered;
+}
+
+void
+gsm_app_set_registered (GsmApp   *app,
+                        gboolean  registered)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+
+        if (app->priv->registered != registered) {
+                app->priv->registered = registered;
+                g_object_notify (G_OBJECT (app), "registered");
+        }
 }

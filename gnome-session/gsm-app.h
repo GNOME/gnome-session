@@ -55,7 +55,6 @@ struct _GsmAppClass
                                      guchar  exit_code);
         void        (*died)         (GsmApp *app,
                                      int     signal);
-        void        (*registered)   (GsmApp *app);
 
         /* virtual methods */
         gboolean    (*impl_start)                     (GsmApp     *app,
@@ -118,7 +117,9 @@ gboolean         gsm_app_provides                       (GsmApp     *app,
 char           **gsm_app_get_provides                   (GsmApp     *app);
 gboolean         gsm_app_has_autostart_condition        (GsmApp     *app,
                                                          const char *condition);
-void             gsm_app_registered                     (GsmApp     *app);
+gboolean         gsm_app_get_registered                 (GsmApp     *app);
+void             gsm_app_set_registered                 (GsmApp     *app,
+                                                         gboolean  registered);
 
 G_END_DECLS
 

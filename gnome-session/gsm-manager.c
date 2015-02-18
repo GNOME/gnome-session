@@ -102,7 +102,7 @@
 #define KEY_DISABLE_LOG_OUT       "disable-log-out"
 #define KEY_DISABLE_USER_SWITCHING "disable-user-switching"
 
-static void app_registered (GsmApp     *app, GsmManager *manager);
+static void app_registered (GsmApp     *app, GParamSpec *spec, GsmManager *manager);
 
 typedef enum
 {
@@ -681,8 +681,13 @@ app_exited (GsmApp     *app,
 
 static void
 app_registered (GsmApp     *app,
+                GParamSpec *spec,
                 GsmManager *manager)
 {
+        if (!gsm_app_get_registered (app)) {
+                return;
+        }
+
         g_debug ("App %s registered", gsm_app_peek_app_id (app));
 
         app_event_during_startup (manager, app);
@@ -781,7 +786,7 @@ _start_app (const char *id,
                                   G_CALLBACK (app_exited),
                                   manager);
                 g_signal_connect (app,
-                                  "registered",
+                                  "notify::registered",
                                   G_CALLBACK (app_registered),
                                   manager);
                 g_signal_connect (app,
@@ -1800,7 +1805,7 @@ on_xsmp_client_register_confirmed (GsmXSMPClient *client,
         app = find_app_for_startup_id (manager, id);
 
         if (app != NULL) {
-                gsm_app_registered (app);
+                gsm_app_set_registered (app, TRUE);
         }
 }
 
@@ -2752,7 +2757,7 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
-                gsm_app_registered (app);
+                gsm_app_set_registered (app, TRUE);
         } else {
                 /* if an app id is specified store it in the client
                    so we can save it later */
