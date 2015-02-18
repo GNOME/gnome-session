@@ -637,7 +637,7 @@ app_died (GsmApp     *app,
 {
         g_warning ("Application '%s' killed by signal %d", gsm_app_peek_app_id (app), signal);
 
-        if (gsm_app_peek_autorestart (app)) {
+        if (gsm_app_get_registered (app) && gsm_app_peek_autorestart (app)) {
                 g_debug ("Component '%s' is autorestart, ignoring died signal",
                          gsm_app_peek_app_id (app));
                 return;
@@ -667,7 +667,7 @@ app_exited (GsmApp     *app,
 
         /* Consider that non-success exit status means "crash" for required components */
         if (exit_code != 0 && is_app_required (manager, app)) {
-                if (gsm_app_peek_autorestart (app)) {
+                if (gsm_app_get_registered (app) && gsm_app_peek_autorestart (app)) {
                         g_debug ("Component '%s' is autorestart, ignoring non-successful exit",
                                  gsm_app_peek_app_id (app));
                         return;
