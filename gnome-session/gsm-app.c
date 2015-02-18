@@ -38,7 +38,6 @@ struct _GsmAppPrivate
         char            *app_id;
         int              phase;
         char            *startup_id;
-        gboolean         ever_started;
         GTimeVal         last_restart_time;
         GDBusConnection *connection;
         GsmExportedApp  *skeleton;
