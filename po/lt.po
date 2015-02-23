@@ -5,15 +5,15 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2007, 2010.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2013.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 23:10+0000\n"
-"PO-Revision-Date: 2013-09-12 22:38+0300\n"
+"POT-Creation-Date: 2015-02-23 20:30+0000\n"
+"PO-Revision-Date: 2015-02-23 22:59+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -23,58 +23,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.6\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Pasirinkite komandą"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Pridėti paleidimo programą"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Redaguoti paleidžiamą programą"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "Paleidimo komanda negali būti tuščia"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "Paleidimo komanda netinkama"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Įjungta"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Piktograma"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Programa"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Paleidžiamų programų nustatymai"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Be pavadinimo"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Nėra aprašymo"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Programos versija"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Nepavyko parodyti žinyno dokumento"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -96,21 +44,12 @@ msgstr "Šis seansas prijungia jus prie GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME netikra"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Paleidžiamos programos"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Pasirinkite, kokias programas paleisti jums prisijungiant"
-
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
 msgstr "GNOME Wayland aplinkoje"
 
 #: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
 msgid "This session logs you into GNOME, using Wayland"
 msgstr "Šis seansas prijungia jus prie GNOME naudojant Wayland"
 
@@ -118,7 +57,7 @@ msgstr "Šis seansas prijungia jus prie GNOME naudojant Wayland"
 msgid "Custom Session"
 msgstr "Pasirinktinis seansas"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Pasirinkite pasirinktinį seansą paleidimui"
 
@@ -174,79 +113,11 @@ msgstr "_Komanda:"
 msgid "_Name:"
 msgstr "_Pavadinimas:"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Failas nėra taisyklingas .desktop failas"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Neatpažinta darbastalio failo versija „%s“"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "Paleidžiama %s"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Programa nepriima dokumentų komandinėje eilutėje"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Neatpažintas paleidimo parametras: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Negalima perduoti dokumentų URI „Type=Link“ darbastalio elementui"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "Nepaleidžiamas elementas"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Išjungti prisijungimą prie seansų valdyklės"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Nurodyti failą, kuriame įrašyta konfigūracija"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "FAILAS"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Nurodyti seanso valdymo ID"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Seanso valdymo parinktys:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Rodyti seanso valdymo parinktis"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "O ne! Nutiko kažkas negera."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -254,7 +125,7 @@ msgstr ""
 "Įvyko klaida ir sistema negali atsistatyti. Susisiekite su sistemos "
 "administratoriumi"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -262,7 +133,7 @@ msgstr ""
 "Įvyko klaida ir sistema negali atsistatyti. Kaip atsargos priemonė visi "
 "plėtiniai buvo išjungti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -270,27 +141,27 @@ msgstr ""
 "Įvyko klaida ir sistema negali atsistatyti.\n"
 "Atsijunkite ir prisijunkite iš naujo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Leisti atsijungimą"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Rodyti plėtinio įspėjimą"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Neatsako"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Atsijungti"
 
@@ -298,55 +169,63 @@ msgstr "_Atsijungti"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Atsiminti programą"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Ši programa neleidžia atsijungti."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Programos versija"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Išjungti aparatinio spartinimo tikrinimą"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " – GNOME seanso valdyklė"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -379,64 +258,148 @@ msgstr ""
 "\n"
 "Jei nėra parametro --inhibit, naudojama idle.\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Nepavyko paleisti %s\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s reikalauja argumento\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Seansas %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "Seansų pavadinimai negali prasidėti „.“ ar turėti simbolių „/“"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "Seansų pavadinimai negali prasidėti „.“"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "Seansų pavadinimai negali turėti simbolių „/“"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "Jau yra seansas pavadinimu „%s“"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Atsijungti"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Išjungti"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Įkelti iš naujo"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignoruojami trukdžiai"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Nereikalauti naudotojo patvirtinimo"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Nepavyko prisijungti prie seansų valdyklės"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Programa iškviesta naudojant konfliktuojančias parinktis"
+
+#~ msgid "Select Command"
+#~ msgstr "Pasirinkite komandą"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Pridėti paleidimo programą"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Redaguoti paleidžiamą programą"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Paleidimo komanda negali būti tuščia"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Paleidimo komanda netinkama"
+
+#~ msgid "Enabled"
+#~ msgstr "Įjungta"
+
+#~ msgid "Icon"
+#~ msgstr "Piktograma"
+
+#~ msgid "Program"
+#~ msgstr "Programa"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Paleidžiamų programų nustatymai"
+
+#~ msgid "No name"
+#~ msgstr "Be pavadinimo"
+
+#~ msgid "No description"
+#~ msgstr "Nėra aprašymo"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Nepavyko parodyti žinyno dokumento"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Paleidžiamos programos"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Pasirinkite, kokias programas paleisti jums prisijungiant"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Failas nėra taisyklingas .desktop failas"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Neatpažinta darbastalio failo versija „%s“"
+
+#~ msgid "Starting %s"
+#~ msgstr "Paleidžiama %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Programa nepriima dokumentų komandinėje eilutėje"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Neatpažintas paleidimo parametras: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "Negalima perduoti dokumentų URI „Type=Link“ darbastalio elementui"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Nepaleidžiamas elementas"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Išjungti prisijungimą prie seansų valdyklės"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Nurodyti failą, kuriame įrašyta konfigūracija"
+
+#~ msgid "FILE"
+#~ msgstr "FAILAS"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Nurodyti seanso valdymo ID"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Seanso valdymo parinktys:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Rodyti seanso valdymo parinktis"
