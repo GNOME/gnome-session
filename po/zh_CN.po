@@ -13,16 +13,17 @@
 # tuhaihe <1132321739qq@gmail.com>, 2012.
 # nhm <572348382@qq.com>, 2013.
 # Wylmer Wang <wantinghard@gmail.com>, 2013.
+# Tong Hui <tonghuix@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-23 19:36+0000\n"
-"PO-Revision-Date: 2013-11-01 23:04+0800\n"
-"Last-Translator: nhm <572348382@qq.com>\n"
-"Language-Team: Chinese/Simplified <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2015-02-18 19:14+0000\n"
+"PO-Revision-Date: 2015-03-04 17:07+0800\n"
+"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,12 +53,10 @@ msgstr "GNOME dummy"
 
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
-#| msgid "GNOME fallback"
 msgid "GNOME on Wayland"
 msgstr "基于 Wayland 的 GNOME"
 
 #: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
 msgid "This session logs you into GNOME, using Wayland"
 msgstr "此会话将您登录到使用 Wayland 的 GNOME"
 
@@ -65,7 +64,7 @@ msgstr "此会话将您登录到使用 Wayland 的 GNOME"
 msgid "Custom Session"
 msgstr "自定义会话"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "请选择一个要运行的自定义会话"
 
@@ -126,51 +125,51 @@ msgstr "命令(_M)："
 msgid "_Name:"
 msgstr "名称(_N)："
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "糟糕！出错啦！"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr "系统出错且无法恢复。请联系系统管理员。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
 msgstr "系统出错且无法恢复。为预防起见，已禁用了所有扩展。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "允许注销"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: ../gnome-session/gsm-manager.c:1272 ../gnome-session/gsm-manager.c:2044
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "无响应"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "注销(_L)"
 
@@ -178,59 +177,63 @@ msgstr "注销(_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "记住的应用程序"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "此程序正在阻止注销。"
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:245
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "禁用硬件加速检测"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr "- GNOME 会话管理器"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -262,67 +265,67 @@ msgstr ""
 "\n"
 "若未指定 --inhibit 参数，将假设为 idle\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "执行 %s 失败\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s 需要一个参数\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "会话 %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "会话名称不允许以“.”开头或包含“/”字符"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "会话名称不允许以“.”开头"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "会话名称不允许包含“/”字符"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "名为“%s”的会话已存在"
 
 # gsm/logout.c:248
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "注销"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "关机"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "重启"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "忽略现有限制因素"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "不提示用户确认"
 
 # gsm/save-session.c:86
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
 
