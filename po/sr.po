@@ -1,18 +1,17 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003 - 2009
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2015.
 # This file is distributed under the same license as the gnome-session package.
-# Maintainer: Данило Шеган <danilo@gnome.org>
-# Reviewed on 2005-07-10 by Данило Шеган <danilo@gnome.org>
-# Translated on 2006-01-30 by: Слободан Д. Средојевић <slobo@akrep.be>
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
-# Милош Поповић <gpopac@gmail.com>, 2010, 2011.
+# Данило Шеган <danilo@gnome.org> 2005.
+# Слободан Д. Средојевић <slobo@akrep.be> 2006.
+# Милош Поповић <gpopac@gmail.com>, 2010—2011.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-16 12:25+0000\n"
-"PO-Revision-Date: 2013-10-05 06:19+0200\n"
+"POT-Creation-Date: 2015-03-04 08:34+0000\n"
+"PO-Revision-Date: 2015-03-05 22:20+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -22,58 +21,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Изабери наредбу"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Додај почетни програм"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Уреди почетни програм"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "Наредба почетног програма се мора унети"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "Наредба почетног програма није исправна"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Укључен"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Иконица"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Програм"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Поставке почетних програма"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Без имена"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Без описа"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Издање овог програма"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Не могу да прикажем документ помоћи"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -95,21 +42,12 @@ msgstr "Ова сесија вас пријављује у Гном"
 msgid "GNOME dummy"
 msgstr "Гномов лажњак"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Почетни програми"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Изаберите који ће се програми покренути када се пријавите на рачунар"
-
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
 msgstr "Гном на Вејланду"
 
 #: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
 msgid "This session logs you into GNOME, using Wayland"
 msgstr "Ова сесија вас пријављује у Гном, користећи Вајланд"
 
@@ -117,7 +55,7 @@ msgstr "Ова сесија вас пријављује у Гном, корис�
 msgid "Custom Session"
 msgstr "Произвољна сесија"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Изаберите произвољну сесију за покретање"
 
@@ -173,79 +111,11 @@ msgstr "_Наредба:"
 msgid "_Name:"
 msgstr "_Назив:"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Ово није исправна „.desktop“ датотека"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Непрепознато издање датотеке радне површи „%s“"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "Покрећем „%s“"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Програм не прихвата документе из линије наредби"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Непозната опција покретања: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Не могу да проследим адресе докумената на „Type=Link“ унос"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "Није ставка за покретање"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Искључује везу са управником сесије"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Наводи датотеку која садржи сачувана подешавања"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "ДАТОТЕКА"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Наводи ИБ управника сесије"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "ИБ"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Могућности управљања сесијом:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Приказује могућности управљања сесијом"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не!  Нешто је пошло наопако!"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -253,7 +123,7 @@ msgstr ""
 "Дошло је до проблема и систем не може да се опорави. Молим обратите се "
 "администратору система"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -261,7 +131,7 @@ msgstr ""
 "Дошло је до проблема и систем не може да се опорави. Сва проширења су "
 "искључена зарад предострожности."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -269,27 +139,27 @@ msgstr ""
 "Дошло је до проблема и систем не може да се опорави.\n"
 "Молим одјавите се и покушајте опет."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Одјави ме"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Укључује код за исправљање грешака"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Дозвољава одјављивање"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Приказује упозорење проширења"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Не даје одзив"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Одјави ме"
 
@@ -297,55 +167,63 @@ msgstr "_Одјави ме"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Запамћени програм"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Овај програм онемогућава одјаву."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Одбацујем везу са новим клијентом јер је у току гашење сесије\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим прикључак ИЦЕ ослушкивања: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Заобилази уобичајене директоријуме самопокретања"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "ДИРЕКТОРИЈУМ_САМОПОКРЕТАЊА"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Сесије које ће бити коришћене"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "НАЗИВ_СЕСИЈЕ"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Не учитава програме које је задао корисник"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Издање овог програма"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Приказује прозорче неуспеха за испробавање"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Искључује проверу хардверског убрзања"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " — управник Гномовом сесијом"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -381,64 +259,149 @@ msgstr ""
 "Ако ниједна опција спречавања (--inhibit) није наведена, подразумева се "
 "стање мировања (idle).\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Нисам успео да извршим „%s“\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "„%s“ захтева аргумент\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Сесија „%d“"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "Називи сесија не могу да почињу тачком (.) или да садрже косу црту (/)"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "Називи сесија не могу да почињу тачком (.)"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "Називи сесија не могу да садрже косу црту (/)"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "Већ постоји сесија под називом „%s“"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Одјави ме"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Искључи"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Поново покрени"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Занемарујем постојеће ометаче"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Не тражи потврду од корисника"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Не могу да се повежем са управником сесије"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Програм је позван са несагласним могућностима"
+
+#~ msgid "Select Command"
+#~ msgstr "Изабери наредбу"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Додај почетни програм"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Уреди почетни програм"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Наредба почетног програма се мора унети"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Наредба почетног програма није исправна"
+
+#~ msgid "Enabled"
+#~ msgstr "Укључен"
+
+#~ msgid "Icon"
+#~ msgstr "Иконица"
+
+#~ msgid "Program"
+#~ msgstr "Програм"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Поставке почетних програма"
+
+#~ msgid "No name"
+#~ msgstr "Без имена"
+
+#~ msgid "No description"
+#~ msgstr "Без описа"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Не могу да прикажем документ помоћи"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Почетни програми"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr ""
+#~ "Изаберите који ће се програми покренути када се пријавите на рачунар"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Ово није исправна „.desktop“ датотека"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Непрепознато издање датотеке радне површи „%s“"
+
+#~ msgid "Starting %s"
+#~ msgstr "Покрећем „%s“"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Програм не прихвата документе из линије наредби"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Непозната опција покретања: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "Не могу да проследим адресе докумената на „Type=Link“ унос"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Није ставка за покретање"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Искључује везу са управником сесије"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Наводи датотеку која садржи сачувана подешавања"
+
+#~ msgid "FILE"
+#~ msgstr "ДАТОТЕКА"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Наводи ИБ управника сесије"
+
+#~ msgid "ID"
+#~ msgstr "ИБ"
+
+#~ msgid "Session management options:"
+#~ msgstr "Могућности управљања сесијом:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Приказује могућности управљања сесијом"
