@@ -3210,6 +3210,9 @@ register_manager (GsmManager *manager)
         manager->priv->connection = connection;
         manager->priv->skeleton = skeleton;
 
+        g_signal_connect (manager->priv->system, "notify::active",
+                          G_CALLBACK (on_gsm_system_active_changed), manager);
+
         /* cold-plug SessionIsActive */
         on_gsm_system_active_changed (manager->priv->system, NULL, manager);
 
@@ -3268,9 +3271,6 @@ gsm_manager_init (GsmManager *manager)
                                       NULL, NULL);
 
         manager->priv->system = gsm_get_system ();
-        g_signal_connect (manager->priv->system, "notify::active",
-                          G_CALLBACK (on_gsm_system_active_changed), manager);
-
         manager->priv->shell = gsm_get_shell ();
         manager->priv->end_session_cancellable = g_cancellable_new ();
 }
