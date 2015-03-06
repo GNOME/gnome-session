@@ -3210,6 +3210,9 @@ register_manager (GsmManager *manager)
         manager->priv->connection = connection;
         manager->priv->skeleton = skeleton;
 
+        /* cold-plug SessionIsActive */
+        on_gsm_system_active_changed (manager->priv->system, NULL, manager);
+
         return TRUE;
 }
 
