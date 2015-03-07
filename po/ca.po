@@ -12,69 +12,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-14 16:16+0000\n"
-"PO-Revision-Date: 2013-09-15 00:41+0200\n"
-"Last-Translator: Josep Sànchez <papapep@gmx.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-07 08:02-0500\n"
+"PO-Revision-Date: 2015-03-07 00:41+0200\n"
+"Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Selecciona una ordre"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Afegeix un programa d'inici"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Edita el programa d'inici"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "L'ordre d'inici no pot ser buida"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "L'ordre d'inici no és vàlida"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Habilitat"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Icona"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Programa"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Preferències de les aplicacions d'inici"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Sense nom"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Sense descripció"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Versió d'aquesta aplicació"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "No s'ha pogut mostrar el document de l'ajuda"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -96,14 +43,6 @@ msgstr "Aquesta sessió us entra al GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME de prova"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Aplicacions d'inici"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Trieu quines aplicacions voleu que s'iniciïn en entrar"
-
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
@@ -117,7 +56,7 @@ msgstr "Amb aquesta sessió accediu al GNOME emprant Wayland"
 msgid "Custom Session"
 msgstr "Sessió personalitzada"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Seleccioneu quina sessió personalitzada voleu"
 
@@ -175,82 +114,11 @@ msgstr "_Ordre:"
 msgid "_Name:"
 msgstr "_Nom:"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Aquest no és un fitxer .desktop vàlid"
-
-# FIXME: potser es refereixen a .desktop (dpm)
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "No es reconeix la versió «%s» del fitxer d'escriptori"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "S'està iniciant %s"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "L'aplicació no accepta documents des de la línia d'ordres"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "No és reconeix l'opció de llançament: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"No es poden passar URI de document a una entrada d'escriptori de tipus "
-"«Type=Link»"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "No és un element executable"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Inhabilita la connexió amb el gestor de sessions"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Especifiqueu el fitxer que conté la configuració desada"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "FITXER"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Especifiqueu l'identificador de gestió de la sessió"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "IDENTIFICADOR"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Opcions de gestió de la sessió:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Mostra les opcions de gestió de la sessió"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Alguna cosa ha fallat."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -258,7 +126,7 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar. Contacteu amb "
 "l'administrador del sistema"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -266,7 +134,7 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar. Com a mètode de "
 "precaució s'han inhabilitat totes les extensions."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -274,27 +142,27 @@ msgstr ""
 "S'ha produït un problema i el sistema no es pot recuperar.\n"
 "Sortiu i torneu-ho a provar."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Surt"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Permet sortir"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Mostra l'avís de l'extensió"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "No està responent"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Surt"
 
@@ -302,15 +170,15 @@ msgstr "_Surt"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Aplicació recordada"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Aquest programa està blocant la sortida."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -318,41 +186,49 @@ msgstr ""
 "Es refusarà la connexió de client nova perquè la sessió s'està aturant\n"
 
 # Nota: ICE -> Inter-Client Exchange (http://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture#Inter-client_communication)
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Ignora els directoris estàndard d'inici automàtic"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "DIRECTORI_INICI_AUTOMÀTIC"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Sessió que s'utilitzarà"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "NOM_DE_SESSIÓ"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "No carreguis les aplicacions especificades per l'usuari"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Versió d'aquesta aplicació"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostra el diàleg de la balena per fer proves"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Inhabilita la comprovació d'acceleració del maquinari"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr "- el gestor de sessions del GNOME"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -387,69 +263,156 @@ msgstr ""
 "\n"
 "Si no s'especifica cap opció a --inhibit, s'utilitzarà «idle» (inactiu).\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "No s'ha pogut executar %s\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requereix un argument\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Sessió %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr ""
 "Els noms de sessió no poden començar amb els caràcters «.» ni contenir «/»"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "Els noms de sessió no poden començar amb el caràcter «.»"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "Els noms de sessió no poden contenir el caràcter «/»"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "Ja existeix una sessió amb el nom «%s»"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Surt"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Atura"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Reinicia"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "S'està ignorant qualsevol inhibidor existent"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "No demanis la confirmació de l'usuari"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "No s'ha pogut connectar al gestor de sessions"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#~ msgid "Select Command"
+#~ msgstr "Selecciona una ordre"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Afegeix un programa d'inici"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Edita el programa d'inici"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "L'ordre d'inici no pot ser buida"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "L'ordre d'inici no és vàlida"
+
+#~ msgid "Enabled"
+#~ msgstr "Habilitat"
+
+#~ msgid "Icon"
+#~ msgstr "Icona"
+
+#~ msgid "Program"
+#~ msgstr "Programa"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Preferències de les aplicacions d'inici"
+
+#~ msgid "No name"
+#~ msgstr "Sense nom"
+
+#~ msgid "No description"
+#~ msgstr "Sense descripció"
+
+#~ msgid "Could not display help document"
+#~ msgstr "No s'ha pogut mostrar el document de l'ajuda"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Aplicacions d'inici"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Trieu quines aplicacions voleu que s'iniciïn en entrar"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Aquest no és un fitxer .desktop vàlid"
+
+# FIXME: potser es refereixen a .desktop (dpm)
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "No es reconeix la versió «%s» del fitxer d'escriptori"
+
+#~ msgid "Starting %s"
+#~ msgstr "S'està iniciant %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "L'aplicació no accepta documents des de la línia d'ordres"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "No és reconeix l'opció de llançament: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "No es poden passar URI de document a una entrada d'escriptori de tipus "
+#~ "«Type=Link»"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "No és un element executable"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Inhabilita la connexió amb el gestor de sessions"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Especifiqueu el fitxer que conté la configuració desada"
+
+#~ msgid "FILE"
+#~ msgstr "FITXER"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Especifiqueu l'identificador de gestió de la sessió"
+
+#~ msgid "ID"
+#~ msgstr "IDENTIFICADOR"
+
+#~ msgid "Session management options:"
+#~ msgstr "Opcions de gestió de la sessió:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Mostra les opcions de gestió de la sessió"
 
 #~ msgid "Some programs are still running:"
 #~ msgstr "Hi ha alguns programes que encara s'estan executant:"
@@ -821,10 +784,11 @@ msgstr ""
 #~ "ports. This option will allow connections from (authorized) remote hosts. "
 #~ "gnome-session must be restarted for this to take effect."
 #~ msgstr ""
-#~ "Per raons de seguretat, en les plataformes que tenen _IceTcpTransNoListen"
-#~ "() (sistemes XFree86), el gnome-session no escolta connexions en ports "
-#~ "TCP. Aquesta opció permetrà connexions des de màquines remotes "
-#~ "(autoritzades). S'ha de reiniciar el gnome-session perquè tingui efecte."
+#~ "Per raons de seguretat, en les plataformes que tenen "
+#~ "_IceTcpTransNoListen() (sistemes XFree86), el gnome-session no escolta "
+#~ "connexions en ports TCP. Aquesta opció permetrà connexions des de "
+#~ "màquines remotes (autoritzades). S'ha de reiniciar el gnome-session "
+#~ "perquè tingui efecte."
 
 #~ msgid "_Order:"
 #~ msgstr "_Ordre:"
