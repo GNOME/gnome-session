@@ -1,7 +1,7 @@
 # Bulgarian translation of gnome-session po-file.
 # Copyright (C) 2001, 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
-# Copyright (C) 2012, 2013, 2014 Free Software Foundation, Inc.
+# Copyright (C) 2012, 2013, 2014, 2015 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
@@ -9,15 +9,15 @@
 # Yavor Doganov <yavor@gnu.org>, 2008.
 # Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
-# Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2014.
+# Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2014, 2015.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 07:59+0300\n"
-"PO-Revision-Date: 2014-06-28 07:59+0300\n"
+"POT-Creation-Date: 2015-03-09 19:03+0200\n"
+"PO-Revision-Date: 2015-03-09 19:03+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -61,7 +61,7 @@ msgstr "Друга сесия"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "Изберите коя друга сесия да се стартира"
+msgstr "Изберете коя друга сесия да се стартира"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
@@ -115,11 +115,11 @@ msgstr "_Команда:"
 msgid "_Name:"
 msgstr "_Име:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не! Нещо се обърка."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -127,7 +127,7 @@ msgstr ""
 "Възникна проблем и системата не може да се справи. Свържете се със системен "
 "администратор"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -135,7 +135,7 @@ msgstr ""
 "Възникна проблем и системата не може да се справи. За всеки случай всички "
 "разширения са изключени."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -143,27 +143,27 @@ msgstr ""
 "Възникна проблем и системата не може да се справи.\n"
 "Излезте от системата и опитайте отново."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Разрешаване на изхода"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Показване на предупреждение за разширение"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Не отговаря"
 
-#: ../gnome-session/gsm-util.c:382
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Изход"
 
@@ -192,36 +192,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Неуспех при създаването на гнездо на ICE за слушане: %s"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "ПАПКА_ЗА_АВТОМАТИЧНО_СТАРТИРАНЕ"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Коя сесия да се ползва"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "ИМЕ_НА_СЕСИЯ"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:245
 msgid "Version of this application"
 msgstr "Версията на тази програма"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Показване на черния екран за грешка с тестови цели"
 
-#: ../gnome-session/main.c:342
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Изключване на проверката за хардуерно ускорение"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr "— управление на сесиите на GNOME"
 
@@ -299,30 +303,30 @@ msgstr "Имената на сесиите не могат да съдържат
 msgid "A session named ‘%s’ already exists"
 msgstr "Вече има сесия с това име — „%s“"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Изход"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Изключване"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Рестартиране"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Изход въпреки блокиращите програми"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Без потвърждаване"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Не може да се изгради връзка към управлението на сесии"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Програмата е стартирана с противоречащи си опции"
