@@ -51,7 +51,7 @@ gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
                 argv[i++] = "--extensions";
         argv[i++] = NULL;
 
-        if (!g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, &pid, NULL)) {
+        if (!g_spawn_async (NULL, argv, NULL, G_SPAWN_DO_NOT_REAP_CHILD, NULL, NULL, &pid, NULL)) {
                 exit (1);
         }
 
