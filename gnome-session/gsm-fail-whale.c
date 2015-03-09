@@ -18,10 +18,19 @@
 
 #include <config.h>
 
+#include <signal.h>
+#include <stdlib.h>
+
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
 
 #include "gsm-fail-whale.h"
+
+static void
+on_fail_whale_failed (void)
+{
+        raise (SIGTERM);
+}
 
 void
 gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
@@ -30,6 +39,7 @@ gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
 {
         gint i;
         gchar *argv[5];
+        GPid  pid;
 
         i = 0;
         argv[i++] = LIBEXECDIR "/gnome-session-failed";
@@ -41,5 +51,11 @@ gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
                 argv[i++] = "--extensions";
         argv[i++] = NULL;
 
-        g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL);
+        if (!g_spawn_async (NULL, argv, NULL, 0, NULL, NULL, &pid, NULL)) {
+                exit (1);
+        }
+
+        g_child_watch_add (pid,
+                           (GChildWatchFunc)on_fail_whale_failed,
+                           NULL);
 }
