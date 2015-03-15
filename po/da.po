@@ -1,7 +1,20 @@
 # translation of gnome-session.HEAD.po to Dansk
 # Danish translation of gnome-session.
-# Copyright (C) 1998-2009 Free Software Foundation, Inc.
+# Copyright (C) 1998-2009, 2015 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
+#
+# Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
+# Birger Langkjer <birger.langkjer@image.dk>, 1999.
+# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
+# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
+# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
+# Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
+# Peter Bach <bach.peter@gmail.com>, 2007.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 2015.
+# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009, 2013.
+# M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
+# Kris Thomsen <lakristho@gmail.com>, 2011, 2013.
+# flemming christensen <fc@stromata.dk>, 2011.
 #
 # Konventioner:
 #
@@ -12,85 +25,21 @@
 #   tasklist -> procesliste
 #   URL -> adresse
 #
-# Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
-# Birger Langkjer <birger.langkjer@image.dk>, 1999.
-# Keld Simonsen <keld@dkuug.dk>, 2000-2001.
-# Ole Laursen <olau@hardworking.dk>, 2001, 02, 03.
-# Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
-# Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
-# Peter Bach <bach.peter@gmail.com>, 2007.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007.
-# Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009, 2013.
-# M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
-# Kris Thomsen <lakristho@gmail.com>, 2011, 2013.
-# flemming christensen <fc@stromata.dk>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-14 15:55+0200\n"
-"PO-Revision-Date: 2013-09-14 15:43+0100\n"
+"POT-Creation-Date: 2015-03-15 16:54+0100\n"
+"PO-Revision-Date: 2015-03-14 03:11+0100\n"
 "Last-Translator: Kris Thomsen <mail@kristhomsen.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: KBabel 1.11.4\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Vælg kommando"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Tilføj opstartsprogram"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Redigér opstartsprogram"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "Startkommandoen kan ikke være tom"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "Startkommandoen er ugyldig"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Aktiveret"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Ikon"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Program"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Indstillinger for opstartsprogrammer"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Intet navn"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Ingen beskrivelse"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Version af dette program"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Kunne ikke vise hjælpedokument"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -112,14 +61,6 @@ msgstr "Denne session logger dig ind i GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME-attrap"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Opstartsprogrammer"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Vælg hvilke programmer som skal startes når du logger ind"
-
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
@@ -133,7 +74,7 @@ msgstr "Denne session logger dig ind i GNOME, med brug af Wayland"
 msgid "Custom Session"
 msgstr "Tilpasset session"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Vælg venligst en tilpasset session at køre"
 
@@ -189,79 +130,11 @@ msgstr "Ko_mmando:"
 msgid "_Name:"
 msgstr "_Navn:"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Filen er ikke en gyldig .desktop-fil"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Ukendt desktop-filversion \"%s\""
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "Starter %s"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Programmet accepterer ikke dokumenter på kommandolinje"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Ukendt køreindstilling: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "Kan ikke sende dokumentets URI til en \"Type=Link\"-skrivebordsentitet"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "Ikke et kørbart element"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Deaktivér forbindelse til sessionshåndteringen"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Angiv fil som indeholder den gemte konfiguration"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "FILE"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Angiv sessionshåndterings-id"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Sessionshåndtering-indstillinger:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Vis tilvalg for sessionshåndtering"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Åh nej!  Noget er gået galt."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -269,7 +142,7 @@ msgstr ""
 "Der er opstået et problem og systemet kan ikke gendannes.\n"
 "Henvend dig venligst til en systemadministrator"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -277,7 +150,7 @@ msgstr ""
 "Der er opstået et problem, og systemet kan ikke gendannes. Alle udvidelser "
 "er blevet deaktiveret for en sikkerheds skyld."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -285,27 +158,27 @@ msgstr ""
 "Et problem er opstået og systemet kan ikke gendannes.\n"
 "Log venligst ud og prøv igen."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Aktivér fejlfindingskode"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Tillad log ud"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Vis udvidelsesfejl"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Log ud"
 
@@ -313,56 +186,64 @@ msgstr "_Log ud"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Husket program"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Dette program blokerer log ud."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Nægter ny klientforbindelse fordi sessionen er ved at blive lukket ned\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Version af dette program"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Slå hardwareaccelerationstjek fra"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr " - GNOME-sessionshåndteringen"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -395,67 +276,152 @@ msgstr ""
 "\n"
 "Hvis intet --inhibit tilvalg er angivet, vil \"idle\" bliver antaget.\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Kunne ikke køre %s\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s kræver et argument\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Session %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "Sessionnavne må ikke starte med \".\" eller indeholde \"/\"-tegn"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "Sessionsnavne må ikke starte med \".\""
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "Sessionsnavne må ikke indeholde \"/\"-tegn"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "Der findes allerede en session med navnet \"%s\""
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Log ud"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Sluk"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Genstart"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignorerer eventuelle eksisterende blokeringer"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Opkræv ikke brugerbekræftelse"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Kunne ikke tilkoble til sessionshåndteringen"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Program blev kaldt med selvmodsigende tilvalg"
+
+#~ msgid "Select Command"
+#~ msgstr "Vælg kommando"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Tilføj opstartsprogram"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Redigér opstartsprogram"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Startkommandoen kan ikke være tom"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Startkommandoen er ugyldig"
+
+#~ msgid "Enabled"
+#~ msgstr "Aktiveret"
+
+#~ msgid "Icon"
+#~ msgstr "Ikon"
+
+#~ msgid "Program"
+#~ msgstr "Program"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Indstillinger for opstartsprogrammer"
+
+#~ msgid "No name"
+#~ msgstr "Intet navn"
+
+#~ msgid "No description"
+#~ msgstr "Ingen beskrivelse"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Kunne ikke vise hjælpedokument"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Opstartsprogrammer"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Vælg hvilke programmer som skal startes når du logger ind"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Filen er ikke en gyldig .desktop-fil"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Ukendt desktop-filversion \"%s\""
+
+#~ msgid "Starting %s"
+#~ msgstr "Starter %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Programmet accepterer ikke dokumenter på kommandolinje"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Ukendt køreindstilling: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Kan ikke sende dokumentets URI til en \"Type=Link\"-skrivebordsentitet"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Ikke et kørbart element"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Deaktivér forbindelse til sessionshåndteringen"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Angiv fil som indeholder den gemte konfiguration"
+
+#~ msgid "FILE"
+#~ msgstr "FILE"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Angiv sessionshåndterings-id"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Sessionshåndtering-indstillinger:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Vis tilvalg for sessionshåndtering"
 
 #~ msgid "Some programs are still running:"
 #~ msgstr "Nogle programmer kører stadigvæk:"
