@@ -1,16 +1,18 @@
 # Vietnamese Translation for GNOME Session.
-# Copyright © 2014 GNOME i18n Project for Vietnamese.
+# Bản dịch tiếng Việt dành cho GNOME Session.
+# Copyright © 2015 GNOME i18n Project for Vietnamese.
+# This file is distributed under the same license as the gnome-session package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2013-2014.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2013,2014, 2015.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 2.25.90\n"
+"Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-13 20:19+0000\n"
-"PO-Revision-Date: 2014-11-14 08:52+0700\n"
+"POT-Creation-Date: 2015-03-14 20:33+0000\n"
+"PO-Revision-Date: 2015-03-15 08:54+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -22,7 +24,7 @@ msgstr ""
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
-msgstr "Tùy chỉnh"
+msgstr "Tự chọn"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
@@ -38,7 +40,7 @@ msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
-msgstr "GNOME giả"
+msgstr "Giả lập GNOME"
 
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
@@ -55,7 +57,7 @@ msgstr "Phiên làm việc tự chọn"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "Vui lòng chọn phiên làm việc tự chọn cần chạy"
+msgstr "Vui lòng chọn phiên làm việc mà bạn muốn chạy"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
@@ -109,18 +111,18 @@ msgstr "Lệ_nh:"
 msgid "_Name:"
 msgstr "_Tên:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ôi không! Có cái gì đó bị hỏng rồi."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi. Vui lòng liên lạc quản trị hệ thống."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -128,7 +130,7 @@ msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi. Mọi phần mở rộng đã bị tắt để đề "
 "phòng."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -136,27 +138,27 @@ msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi.\n"
 "Hãy đăng xuất và thử lại."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "Đăng _xuất"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "Bật mã hỗ trợ tìm lỗi"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Cho phép đăng xuất"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Hiện cảnh báo phần mở rộng"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Không trả lời"
 
-#: ../gnome-session/gsm-util.c:382
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "Đăng _xuất"
 
@@ -183,38 +185,42 @@ msgstr "Đang từ chối kết nối khách mới vì phiên làm việc đang 
 msgid "Could not create ICE listening socket: %s"
 msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
-msgstr "Đè thư mục tự khởi động chuẩn"
+msgstr "Đè lên thư mục tự khởi động chuẩn"
 
-#: ../gnome-session/main.c:303
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "THƯ_MỤC_TỰ_CHẠY"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Phiên làm việc cần dùng"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "TÊN_PHIÊN"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
-msgstr "Đừng nạp ứng dụng do người dùng xác định"
+msgstr "Đừng tải ứng dụng do người dùng chỉ định"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:245
 msgid "Version of this application"
 msgstr "Phiên bản của ứng dụng"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
 
-#: ../gnome-session/main.c:342
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Tắt kiểm tra tăng tốc phần cứng"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
-msgstr " — Bộ Quản lý Phiên làm việc GNOME"
+msgstr " — ứng dụng Quản lý Phiên làm việc GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
@@ -269,46 +275,46 @@ msgstr "Phiên làm việc %d"
 #: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "Tên phiên làm việc không thể bắt đầu với ký tự ‘.’ hoặc ‘/’"
+msgstr "Tên phiên làm việc không thể bắt đầu bằng ký tự “.” hoặc có chứa “/”"
 
 #: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
-msgstr "Tên phiên làm việc không thể bắt đầu với ký tự ‘.’"
+msgstr "Tên phiên làm việc không thể bắt đầu bằng ký tự “.”"
 
 #: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Tên phiên làm việc không thể chứa ký tự ‘/’"
+msgstr "Tên phiên làm việc không thể chứa ký tự “/”"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
-msgstr "Đã sẵn có phiên làm việc có tên ‘%s’"
+msgstr "Đã sẵn có phiên làm việc mang tên “%s”"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Đăng xuất"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Tắt máy"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Khởi động lại"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Bỏ qua các ứng dụng ngăn cản"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Không yêu cầu xác nhận"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với trình quản lý phiên làm việc"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Chương trình được gọi với các tuỳ chọn xung đột nhau"
 
