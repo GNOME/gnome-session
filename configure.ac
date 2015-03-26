@@ -378,6 +378,7 @@ data/icons/24x24/Makefile
 data/icons/32x32/Makefile
 data/icons/48x48/Makefile
 data/icons/scalable/Makefile
+data/icons/symbolic/Makefile
 gnome-session/Makefile
 tools/Makefile
 po/Makefile.in
