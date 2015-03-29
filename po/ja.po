@@ -14,72 +14,21 @@
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011, 2012, 2013.
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
+# Hajime Taira <htaira@redhat.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 23:10+0000\n"
-"PO-Revision-Date: 2013-09-15 21:58+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"POT-Creation-Date: 2015-03-24 20:40+0000\n"
+"PO-Revision-Date: 2015-03-25 10:53+0900\n"
+"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "コマンドの選択"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "自動起動するプログラムの追加"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "自動起動するプログラムの編集"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "自動起動するプログラムのコマンド名を入力してください"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "コマンド名が間違っています"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "有効"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "アイコン"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "プログラム"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "自動起動するアプリケーションの設定"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "名前なし"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "(説明なし)"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "このアプリケーションのバージョンを表示する"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "ヘルプのドキュメントを表示できませんでした"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -101,14 +50,6 @@ msgstr "このセッションで GNOME にログインします"
 msgid "GNOME dummy"
 msgstr "GNOME ダミー"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "自動起動するアプリケーション"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "ログインした後に起動するアプリケーションを選択します"
-
 #: ../data/gnome-wayland.desktop.in.h:1
 #: ../data/gnome-wayland.session.desktop.in.in.h:1
 msgid "GNOME on Wayland"
@@ -122,7 +63,7 @@ msgstr "このセッションは Wayland を使って GNOME にログインし�
 msgid "Custom Session"
 msgstr "カスタムセッション"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "起動するカスタムセッションを選択してください"
 
@@ -178,87 +119,19 @@ msgstr "コマンド(_M):"
 msgid "_Name:"
 msgstr "名前(_N):"
 
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "有効な .desktop ファイルではありません"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "バージョン '%s' の .desktop ファイルはサポートしていません"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "%sの起動中です"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "コマンドラインからドキュメントにはアクセスできません"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "不明な起動オプションです: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "ドキュメントの URI を 'Type=Link' な .desktop エントリには渡せません"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "起動可能なアイテムではありません"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "セッションマネージャーに接続しない"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "設定を保存したファイルを指定する"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "FILE"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "セッション管理の ID を指定する"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "セッション管理のオプション:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "セッション管理のオプションを表示する"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "あれっ! 何かおかしいです。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid "A problem has occurred and the system can't recover. Please contact a system administrator"
 msgstr "問題が発生して、システムの復帰ができません。システム管理者に連絡してください"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid "A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."
 msgstr "問題が発生して、システムの復帰ができません。念のため、すべての拡張を無効にしました。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -266,27 +139,27 @@ msgstr ""
 "問題が発生して、システムの復帰ができません。\n"
 "ログアウトして再度試してください。"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
 msgid "Enable debugging code"
 msgstr "デバッグモードにする"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "ログアウトを許可する"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "拡張機能に関する警告を表示する"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "応答なし"
 
-#: ../gnome-session/gsm-util.c:411
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "ログアウト(_L)"
 
@@ -294,53 +167,61 @@ msgstr "ログアウト(_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
+#: ../gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "実行していたアプリケーション"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "このプログラムがログアウトできないようにしています。"
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "セッションがシャットダウンを実行しているため、新しいクライアントとの接続を拒否しました。\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE の監視ソケットを生成できませんでした: %s"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
 msgstr "標準の自動起動フォルダーをオーバーライドする"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:241
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "使用するセッション"
 
-#: ../gnome-session/main.c:306
+#: ../gnome-session/main.c:242
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "ユーザーが指定したアプリケーションを起動しない"
 
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "このアプリケーションのバージョンを表示する"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:247
 msgid "Show the fail whale dialog for testing"
 msgstr "テスト用にエラー画面を表示する"
 
-#: ../gnome-session/main.c:344
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "ハードウェアアクセラレーションのチェックを無効化する"
+
+#: ../gnome-session/main.c:267
 msgid " - the GNOME session manager"
 msgstr "- GNOME セッションマネージャー"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION...] COMMAND\n"
@@ -372,66 +253,150 @@ msgstr ""
 "\n"
 "--inhibit オプションが無指定の場合 idle を指定したものと扱います。\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: ../tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s を起動できませんでした。\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s には引数が1つ必要です。\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "セッション %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: ../tools/gnome-session-selector.c:107
 msgid "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr "セッション名は‘.’から始めたり、‘/’を含めることはできません。"
 
-#: ../tools/gnome-session-selector.c:112
+#: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
 msgstr "‘.’はセッション名の先頭には使用できません。"
 
-#: ../tools/gnome-session-selector.c:116
+#: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
 msgstr "‘/’はセッション名に含めることができません。"
 
-#: ../tools/gnome-session-selector.c:124
+#: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
 msgstr "セッション‘%s’は既に存在します。"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "ログアウトする"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "電源オフ"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "再起動"
 
-#: ../tools/gnome-session-quit.c:56
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "阻害するプロセスを無視する"
 
-#: ../tools/gnome-session-quit.c:57
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "ユーザーに確認をしない"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "セッションマネージャーに接続できませんでした"
 
-#: ../tools/gnome-session-quit.c:203
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "同時には適用できないオプションを指定しました"
+
+#~ msgid "Select Command"
+#~ msgstr "コマンドの選択"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "自動起動するプログラムの追加"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "自動起動するプログラムの編集"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "自動起動するプログラムのコマンド名を入力してください"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "コマンド名が間違っています"
+
+#~ msgid "Enabled"
+#~ msgstr "有効"
+
+#~ msgid "Icon"
+#~ msgstr "アイコン"
+
+#~ msgid "Program"
+#~ msgstr "プログラム"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "自動起動するアプリケーションの設定"
+
+#~ msgid "No name"
+#~ msgstr "名前なし"
+
+#~ msgid "No description"
+#~ msgstr "(説明なし)"
+
+#~ msgid "Could not display help document"
+#~ msgstr "ヘルプのドキュメントを表示できませんでした"
+
+#~ msgid "Startup Applications"
+#~ msgstr "自動起動するアプリケーション"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "ログインした後に起動するアプリケーションを選択します"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "有効な .desktop ファイルではありません"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "バージョン '%s' の .desktop ファイルはサポートしていません"
+
+#~ msgid "Starting %s"
+#~ msgstr "%sの起動中です"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "コマンドラインからドキュメントにはアクセスできません"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "不明な起動オプションです: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "ドキュメントの URI を 'Type=Link' な .desktop エントリには渡せません"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "起動可能なアイテムではありません"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "セッションマネージャーに接続しない"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "設定を保存したファイルを指定する"
+
+#~ msgid "FILE"
+#~ msgstr "FILE"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "セッション管理の ID を指定する"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "セッション管理のオプション:"
+
+#~ msgid "Show session management options"
+#~ msgstr "セッション管理のオプションを表示する"
 
 #~ msgid "Some programs are still running:"
 #~ msgstr "いくつかのプログラムが未だ実行中です:"
