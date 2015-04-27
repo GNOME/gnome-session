@@ -1,491 +1,330 @@
-# SOME DESCRIPTIVE TITLE.
+# translation of gnome-session.gnome-3-14.is.po to
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Samúel Jón Gunnarsson <sammi@techattack.nu>, 2003.
-# Richard Allen <ra@ra.is>, 2003
+# Richard Allen <ra@ra.is>, 2003.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-11 08:59+0000\n"
-"PO-Revision-Date: 2003-06-21 17:45--100\n"
-"Last-Translator: Richard Allen <ra@ra.is>\n"
-"Language-Team: Icelandic <gnome@techattack.nu>\n"
+"Project-Id-Version: gnome-session.gnome-3-14.is\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-se"
+"ssion&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-11-24 18:32+0000\n"
+"PO-Revision-Date: 2015-04-27 15:18+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gnome-session/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "Leyfa TCP tengingar"
-
-#: gnome-session/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Vegna örryggisráðstafana á kerfum sem innihalda _IceTcpTransNoListen() "
-"(XFree86 kerfi), mun gnome-setan ekki hlusta eftir tengingum á TCP porti. "
-"Þessi valmöguleiki mun leyfa tengingar frá (viðurkenndum) fjarbundnum "
-"tölvum. Endurræsa verður gnome-setuna til þess að stillingar taki gildi."
-
-#: gnome-session/gnome-session.schemas.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Ef virkt mun gnome-setan spyrja um staðfestingu áður en setu er lokið."
-
-#: gnome-session/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"Ef virk mun gnome-setan vista setuna sjálkrafa. Annars mun "
-"afskráningarglugginn bjóða upp á vistun á setu."
-
-#: gnome-session/gnome-session.schemas.in.h:5
-msgid "Logout prompt"
-msgstr "Staðfesta útskráningu"
-
-#: gnome-session/gnome-session.schemas.in.h:6
-msgid ""
-"Preferred Image to use for the splash screen when logging in to the GNOME "
-"Desktop"
-msgstr ""
-"Forvalin mynd til notkunar sem slembiskjá þegar skráð er inn á Gnome skjáborð"
-
-#: gnome-session/gnome-session.schemas.in.h:7
-msgid "Save sessions"
-msgstr "Vista setur"
-
-#: gnome-session/gnome-session.schemas.in.h:8
-msgid "Show the splash screen"
-msgstr "Sýna slembiskjá"
-
-#: gnome-session/gnome-session.schemas.in.h:9
-msgid "Show the splash screen when the session starts up"
-msgstr "Sýna slembiskjá við ræsingu á setu"
-
-#: gnome-session/gnome-session.schemas.in.h:10
-msgid "Splash Screen Image"
-msgstr "Slembiskjámynd"
-
-#: gnome-session/gsm-client-editor.c:97 gnome-session/startup-programs.c:314
-msgid "_Order:"
-msgstr "_Uppröðun:"
-
-#: gnome-session/gsm-client-editor.c:99
-msgid "The order in which applications are started in the session."
-msgstr "Hvernig raða eigi upp forritum sem sem eru ræst af setu."
-
-#: gnome-session/gsm-client-editor.c:106
-msgid "What happens to the application when it exits."
-msgstr "Hvað gerist þegar forrit þegar það hættir."
-
-#: gnome-session/gsm-client-editor.c:109
-msgid "_Style:"
-msgstr "_Stíll:"
-
-#: gnome-session/gsm-client-list.c:150
-#: gnome-session/session-properties-capplet.c:412
-msgid "Order"
-msgstr "Uppröðun"
-
-#: gnome-session/gsm-client-list.c:155
-msgid "Style"
-msgstr "Stíll"
-
-#: gnome-session/gsm-client-list.c:160
-msgid "State"
-msgstr "Staða"
-
-#: gnome-session/gsm-client-list.c:165
-msgid "Program"
-msgstr "Forrit"
-
-#: gnome-session/gsm-client-row.c:31
-msgid "Inactive"
-msgstr "Óvirkur"
-
-#: gnome-session/gsm-client-row.c:32
-msgid "Waiting to start or already finished."
-msgstr "Bíð eftir að ræsa eða hef nú þegar klárað."
-
-#: gnome-session/gsm-client-row.c:34
-msgid "Starting"
-msgstr "Ræsi"
-
-#: gnome-session/gsm-client-row.c:35
-msgid "Started but has not yet reported state."
-msgstr "Ræst en hefur ekki ennþá tilkynnt stöðu."
-
-#: gnome-session/gsm-client-row.c:37
-msgid "Running"
-msgstr "Keyrir"
-
-#: gnome-session/gsm-client-row.c:38
-msgid "A normal member of the session."
-msgstr "Venjulegur meðlimur setu."
-
-#: gnome-session/gsm-client-row.c:40
-msgid "Saving"
-msgstr "Vista"
-
-#: gnome-session/gsm-client-row.c:41
-msgid "Saving session details."
-msgstr "Vista upplýsingar setu."
-
-#: gnome-session/gsm-client-row.c:43
-msgid "Unknown"
-msgstr "Óþekkt"
-
-#: gnome-session/gsm-client-row.c:44
-msgid "State not reported within timeout."
-msgstr "Staða var ekki tilkynnt innin tímamarka."
-
-#: gnome-session/gsm-client-row.c:50
-msgid "Normal"
-msgstr "Venjulegt"
-
-#: gnome-session/gsm-client-row.c:51
-msgid "Unaffected by logouts but can die."
-msgstr "Er óháð útskráningum en getur dáið."
-
-#: gnome-session/gsm-client-row.c:53
-msgid "Restart"
-msgstr "Endurræsa"
-
-#: gnome-session/gsm-client-row.c:54
-msgid "Never allowed to die."
-msgstr "Er aldrei leyfilegt að deyja."
-
-#: gnome-session/gsm-client-row.c:56
-msgid "Trash"
-msgstr "Rusl"
-
-#: gnome-session/gsm-client-row.c:57
-msgid "Discarded on logout and can die."
-msgstr "Hundsað við útskráningu en getur dáið."
-
-#: gnome-session/gsm-client-row.c:59
-msgid "Settings"
-msgstr "Stillingar"
-
-#: gnome-session/gsm-client-row.c:60
-msgid "Always started on every login."
-msgstr "Ræsa ávallt við hverja innskráningu."
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: gnome-session/gsm-gsd.c:41
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"Villa átti sér stað við ræsingu á GNOME stillingarforritinu.\n"
-"\n"
-"Hugsanlegt er að ýmsir hlutir eins og þema, hljóð eða bakgrunnur muni ekki "
-"virka rétt."
-
-#: gnome-session/gsm-gsd.c:53
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Síðasta villuskilaoð var:\n"
-"\n"
-
-#: gnome-session/gsm-gsd.c:58
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME mun halda áfram að endurræsa stillingarforritið næsta skipti sem þú "
-"skráir þig inn."
-
-#: gnome-session/gsm-gsd.c:115
-msgid "There was an unknown activation error."
-msgstr "Það kom upp óþekkt virkjunarvilla."
-
-#: gnome-session/gsm-gsd.c:157
-msgid "The Settings Daemon restarted too many times."
-msgstr "Stillingarforritð hefur verið endurræst of oft."
-
-#: gnome-session/logout.c:355
-msgid "Are you sure you want to log out?"
-msgstr "Ertu viss um að þú viljir skrá þig út?"
-
-#: gnome-session/logout.c:372
-msgid "_Save current setup"
-msgstr "Vi_sta núverandi uppsetningu"
-
-#: gnome-session/logout.c:393
-msgid "Action"
-msgstr "Aðgerð"
-
-#: gnome-session/logout.c:410
-msgid "_Log out"
-msgstr "_Afskrá"
-
-#: gnome-session/logout.c:416
-msgid "Sh_ut down"
-msgstr "Sl_ökkva"
-
-#: gnome-session/logout.c:423
-msgid "_Restart the computer"
-msgstr "Endu_rræsa tölvuna"
-
-#: gnome-session/main.c:81
-msgid "Specify a session name to load"
-msgstr "Tilgreindu heiti setu sem á að hlaða"
-
-#: gnome-session/main.c:82
-msgid "Only read saved sessions from the default.session file"
-msgstr "Lesa einungis vistaðar setur frá default.session skrám"
-
-#: gnome-session/main.c:83
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr "Fjöldi millisekúndna sem biðlari býður eftir skráningu (0=að eilífu)"
-
-#: gnome-session/main.c:84
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr "Fjöldi millisekúndna sem biðlari býður eftir svari (0=að eilífu)"
-
-#: gnome-session/main.c:85
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"Fjöldi millisekúndna sem biðlari býður eftir því að deyja (0=að eilífu)"
-
-#: gnome-session/main.c:265
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"Ekki tókst að flétta upp veffangi fyrir %s.\n"
-"Þetta mun hindra GNOME frá því að virka rétt.\n"
-"það er mögulegt að lagfæra vandamálið með því að\n"
-"bæta %s við í skránna /etc/hosts."
-
-#: gnome-session/main.c:272
-msgid "Log in Anyway"
-msgstr "Innskrá hvort sem er"
-
-#: gnome-session/main.c:273
-msgid "Try Again"
-msgstr "Reyna á ný"
-
-#: gnome-session/manager.c:223
-msgid "Your session has been saved"
-msgstr "Setan þín hefur nú verið vistuð"
-
-#: gnome-session/manager.c:527
-msgid "Wait abandoned due to conflict."
-msgstr "Endurræsa yfirgefnum vegna árekstra."
-
-#: gnome-session/manager.c:1035
-#, c-format
-msgid "No response to the %s command."
-msgstr "Ekkert svar fékkst frá %s skipuninni."
-
-#: gnome-session/manager.c:1036
-msgid "The program may be slow, stopped or broken."
-msgstr "Forritið getur verið hæggengt, brotið eða stoppað."
-
-#: gnome-session/manager.c:1037
-msgid "You may wait for it to respond or remove it."
-msgstr "Þú getur beðið eftir svari frá því eða fjarlægt það."
-
-#: gnome-session/manager.c:1760
-msgid "Restart abandoned due to failures."
-msgstr "Endurræsa yfirgefnum vegna mistaka."
-
-#: gnome-session/manager.c:1956
-msgid "A session shutdown is in progress."
-msgstr "Lokun setu er nú í vinnslu."
-
-#: gnome-session/save-session.c:46
-msgid "Set the current session"
-msgstr "Virkja núverandi setu"
-
-#: gnome-session/save-session.c:47
-msgid "Kill session"
-msgstr "Aflífa setu"
-
-#: gnome-session/save-session.c:48
-msgid "Use dialog boxes"
-msgstr "Nota smáglugga"
-
-#: gnome-session/save-session.c:146 gnome-session/save-session.c:179
-msgid "Could not connect to the session manager"
-msgstr "Ekki tókst að tengjast setustjóra"
-
-#: gnome-session/session-names.c:143
-msgid "The session name cannot be empty"
-msgstr "Heiti setu getur ekki verið autt"
-
-#: gnome-session/session-names.c:154
-msgid "The session name already exists"
-msgstr "Heiti setu er þegar til"
-
-#: gnome-session/session-names.c:188
-msgid "Add a new session"
-msgstr "Bæta við nýrri setu"
-
-#: gnome-session/session-names.c:218
-msgid "Edit session name"
-msgstr "Breyta heiti setu"
-
-#: gnome-session/session-properties-capplet.c:122
-msgid "_Edit"
-msgstr "_Sýsla"
-
-#: gnome-session/session-properties-capplet.c:190
-msgid ""
-"Some changes are not saved.\n"
-"Is it still OK to exit?"
-msgstr ""
-"Sumar breytingar hafa ekki verið vistaðar.\n"
-"er í lagi að hætta?"
-
-#: gnome-session/session-properties-capplet.c:240
-#: gnome-session/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Setur"
-
-#: gnome-session/session-properties-capplet.c:273
-msgid "Show splash screen on _login"
-msgstr "Sýna s_lembiskjá við inskráningu"
-
-#: gnome-session/session-properties-capplet.c:284
-#, fuzzy
-msgid "As_k on logout"
-msgstr "Sta_ðfesta útskráningu"
-
-#: gnome-session/session-properties-capplet.c:295
-msgid "Automatically save chan_ges to session"
-msgstr "Vista sjálfkrafa breytin_gar á setu"
-
-#: gnome-session/session-properties-capplet.c:306
-msgid "_Sessions:"
-msgstr "_Setur:"
-
-#: gnome-session/session-properties-capplet.c:324
-msgid "Session Name"
-msgstr "Heiti setu"
-
-#: gnome-session/session-properties-capplet.c:375
-msgid "Session Options"
-msgstr "Valmöguleikar setu"
-
-#: gnome-session/session-properties-capplet.c:384
-msgid "Current Session"
-msgstr "Núverandi seta"
-
-#: gnome-session/session-properties-capplet.c:393
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Sérsniðið"
+
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Þessi færsla gerir þér kleift að velja vistaða setu"
+
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
+
+#: ../data/gnome.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Þessi seta skráir þig inn í GNOME"
+
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME sýnishorn"
+
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME á Wayland"
+
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Þessi seta skráir þig inn í GNOME með Wayland undirkerfinu"
+
+#: ../data/session-selector.ui.h:1
+#| msgid "Current Session"
+msgid "Custom Session"
+msgstr "Sérsniðin seta"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "Veldu sérsniðna setu til að keyra"
+
+#: ../data/session-selector.ui.h:3
+#| msgid "_Sessions:"
+msgid "_New Session"
+msgstr "_Ný seta"
+
+#: ../data/session-selector.ui.h:4
+#| msgid "Save sessions"
+msgid "_Remove Session"
+msgstr "Fja_rlægja setu"
+
+#: ../data/session-selector.ui.h:5
+#| msgid "Current Session"
+msgid "Rena_me Session"
+msgstr "Endur_nefna setu"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Áfram"
+
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
 msgstr "_Önnur ræsiforrit:"
 
-#: gnome-session/session-properties-capplet.c:414
-msgid "Command"
-msgstr "Skipun"
-
-#: gnome-session/session-properties-capplet.c:446
+#: ../data/session-properties.ui.h:2
 msgid "Startup Programs"
 msgstr "Ræsiforrit"
 
-#: gnome-session/session-properties.c:49
-msgid "Remove the currently selected client from the session."
-msgstr "Fjarlægja valinn biðlara úr setunni."
+#: ../data/session-properties.ui.h:3
+msgid "_Automatically remember running applications when logging out"
+msgstr "_Muna eftir keyrandi forritum þegar ég skrái mig út"
 
-#: gnome-session/session-properties.c:55
-msgid "Apply changes to the current session"
-msgstr "Virkja breytingar fyrir núverandi setu"
+#: ../data/session-properties.ui.h:4
+msgid "_Remember Currently Running Applications"
+msgstr "_Muna eftir forritum í gangi"
 
-#: gnome-session/session-properties.c:61
-msgid "The list of programs in the session."
-msgstr "Listi yfir forrit í setu"
+#: ../data/session-properties.ui.h:5
+#| msgid "Session Options"
+msgid "Options"
+msgstr "Valkostir"
 
-#: gnome-session/session-properties.c:88
-msgid "Currently running _programs:"
-msgstr "Forrit í _keyrslu:"
+#: ../data/session-properties.ui.h:6
+msgid "Browse…"
+msgstr "Velja..."
 
-#: gnome-session/session-properties.c:104
-msgid "Initialize session settings"
-msgstr "Virkja setustillingar"
+#: ../data/session-properties.ui.h:7
+#| msgid "Command"
+msgid "Comm_ent:"
+msgstr "At_hugasemd:"
 
-#: gnome-session/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Stilla setur"
+#: ../data/session-properties.ui.h:8
+#| msgid "Command"
+msgid "Co_mmand:"
+msgstr "Ski_pun:"
 
-#: gnome-session/splash-widget.c:43
-msgid "Sawfish Window Manager"
-msgstr "Sawfish gluggastjórinn"
+#: ../data/session-properties.ui.h:9
+msgid "_Name:"
+msgstr "_Heiti:"
 
-#: gnome-session/splash-widget.c:44
-msgid "Metacity Window Manager"
-msgstr "Metacity gluggastjórinn"
+#: ../gnome-session/gsm-fail-whale-dialog.c:321
+msgid "Oh no!  Something has gone wrong."
+msgstr "Úbbs! Eitthvað hefur farið úrskeiðis núna."
 
-#: gnome-session/splash-widget.c:45
-msgid "Window Manager"
-msgstr "Gluggastjóri"
+#: ../gnome-session/gsm-fail-whale-dialog.c:328
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Hafðu samband "
+"við kerfisstjóra"
 
-#: gnome-session/splash-widget.c:46
-msgid "The Panel"
-msgstr "Spjaldið"
+#: ../gnome-session/gsm-fail-whale-dialog.c:330
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr ""
+"Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Allar viðbætur "
+"hafa verið gerðar óvirkar í varúðarskyni."
 
-#: gnome-session/splash-widget.c:47
-msgid "Session Manager Proxy"
-msgstr "Sel (proxy) setustjóra"
+#: ../gnome-session/gsm-fail-whale-dialog.c:332
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"Vandamál kom upp og kerfið nær ekki að vinna sig út úr því.\n"
+"Skráðu þig út og reyndu aftur."
 
-#: gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
+#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#| msgid "_Log out"
+msgid "_Log Out"
+msgstr "_Útskrá"
 
-#: gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Skjáborðsstillingar"
+#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+msgid "Enable debugging code"
+msgstr "Virkja aflúsunarham"
 
-#: gnome-session/startup-programs.c:292
-msgid "_Startup Command:"
-msgstr "Ræ_siskipun:"
+#: ../gnome-session/gsm-fail-whale-dialog.c:370
+msgid "Allow logout"
+msgstr "Leyfa að skrá sig út"
 
-#: gnome-session/startup-programs.c:298
-msgid "Startup Command"
-msgstr "Ræsiskipun"
+#: ../gnome-session/gsm-fail-whale-dialog.c:371
+msgid "Show extension warning"
+msgstr "Birta aðvörun vegna skráaendinga"
 
-#: gnome-session/startup-programs.c:347
-msgid "The startup command cannot be empty"
-msgstr "Ræsiskipunin getur ekki verið auð"
+#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+msgid "Not responding"
+msgstr "Svarar ekki"
 
-#: gnome-session/startup-programs.c:384
-msgid "Add Startup Program"
-msgstr "Bæta við ræsiforriti"
+#: ../gnome-session/gsm-util.c:382
+msgid "_Log out"
+msgstr "_Afskrá"
 
-#: gnome-session/startup-programs.c:405
-msgid "Edit Startup Program"
-msgstr "Breyta ræsiforriti"
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:557
+msgid "Remembered Application"
+msgstr "Munað forrit"
 
-#~ msgid "Save Current Session"
-#~ msgstr "Vista núverandi setu"
+#: ../gnome-session/gsm-xsmp-client.c:1207
+msgid "This program is blocking logout."
+msgstr "Þetta forrit hindrar útskráningu."
 
-#~ msgid "Save current state of desktop"
-#~ msgstr "Vista núverandi stöðu skjáborðs"
+#: ../gnome-session/gsm-xsmp-server.c:340
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+"Leyfi biðlara ekki að tengjast vegna þess að það er verið að slökkva á "
+"þessari setu\n"
+
+#: ../gnome-session/gsm-xsmp-server.c:609
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Gat ekki búið til ICE hlustunar tengi: %s"
+
+#: ../gnome-session/main.c:303
+msgid "Override standard autostart directories"
+msgstr "Ekki nota sjálfgefna möppu fyrir sjálfvirka ræsingu"
+
+#: ../gnome-session/main.c:303
+msgid "AUTOSTART_DIR"
+msgstr "AUTOSTART_DIR"
+
+#: ../gnome-session/main.c:304
+#| msgid "Session Options"
+msgid "Session to use"
+msgstr "Setan sem á að nota"
+
+#: ../gnome-session/main.c:304
+msgid "SESSION_NAME"
+msgstr "SESSION_NAME"
+
+#: ../gnome-session/main.c:306
+msgid "Do not load user-specified applications"
+msgstr "Ekki hlaða inn forritum völdum að notanda"
+
+#: ../gnome-session/main.c:307
+msgid "Version of this application"
+msgstr "Útgáfa þessa forrits"
+
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:309
+msgid "Show the fail whale dialog for testing"
+msgstr "Birta 'bilaða bilunargluggann' til prófunar"
+
+#: ../gnome-session/main.c:342
+#| msgid "Could not connect to the session manager"
+msgid " - the GNOME session manager"
+msgstr " - GNOME setustjórinn"
+
+#: ../tools/gnome-session-inhibit.c:108
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [VALKOSTUR...] SKIPUN\n"
+"\n"
+"Keyrir SKIPUN en kemur í veg fyrir einhverja eiginleika setu.\n"
+"\n"
+"  -h, --help        Birtir þessa hjálp\n"
+"  --version         Birtir útgáfuupplýsingar\n"
+"  --app-id ID       Auðkenni forritsins sem á að nota\n"
+"                    við hindrun - inhibit (valkvætt)\n"
+"  --reason REASON   Ástæða fyrir hindrunum (valkvætt)\n"
+"  --inhibit ARG     Hvað á að hindra, listi með kommuaðgreinum:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Ekki keyra SKIPUN og þess í stað bíða til eilífðar\n"
+"\n"
+"Ef engin --inhibit kostur er tilgreindur, ganga út frá 'idle' sem vísu.\n"
+
+#: ../tools/gnome-session-inhibit.c:146
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Mistókst að keyra %s\n"
+
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s krefst færibreytu\n"
+
+#: ../tools/gnome-session-selector.c:61
+#, c-format
+#| msgid "Sessions"
+msgid "Session %d"
+msgstr "Seta %d"
+
+#: ../tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr "Heiti setu má ekki byrja á '.' eða innihalda ‘/’ stafi"
+
+#: ../tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Heiti setu má ekki byrja á '.'"
+
+#: ../tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Heiti setu má ekki innihalda ‘/’ stafi"
+
+#: ../tools/gnome-session-selector.c:123
+#, c-format
+#| msgid "The session name already exists"
+msgid "A session named ‘%s’ already exists"
+msgstr "Seta með heitinu '%s' er þegar til"
+
+#: ../tools/gnome-session-quit.c:51
+#| msgid "_Log out"
+msgid "Log out"
+msgstr "Skrá út"
+
+#: ../tools/gnome-session-quit.c:52
+msgid "Power off"
+msgstr "Slökkva á"
+
+#: ../tools/gnome-session-quit.c:53
+msgid "Reboot"
+msgstr "Endurræsa"
+
+#: ../tools/gnome-session-quit.c:54
+msgid "Ignoring any existing inhibitors"
+msgstr "Hunsa allt sem gæti truflað"
+
+#: ../tools/gnome-session-quit.c:55
+msgid "Don't prompt for user confirmation"
+msgstr "Ekki spyrja notandann"
+
+#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+msgid "Could not connect to the session manager"
+msgstr "Ekki tókst að tengjast setustjóra"
+
+#: ../tools/gnome-session-quit.c:201
+msgid "Program called with conflicting options"
+msgstr "Kallað á forrit með röngum stillingum"
+
+
