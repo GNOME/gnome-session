@@ -1,657 +1,534 @@
-# Translation of oc.po to Occitan
 # Occitan translation of gnome-session.
-# Copyright (C) 2007 Free Software Foundation, Inc.
-# This file is released under the same license as the gnome-session package.
-#
+# Copyright (C) 1998-2012 Free Software Foundation, Inc.
 # Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
+# Cédric Valmary (Tot en òc) <cvalmary@yahoo.fr>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: oc\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-07 10:21+0100\n"
-"PO-Revision-Date: 2008-02-26 23:10+0100\n"
-"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
-"Language-Team: Occitan <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"Project-Id-Version: gnome-session.HEAD\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-05-10 08:20+0000\n"
+"PO-Revision-Date: 2015-05-10 15:02+0200\n"
+"Last-Translator: Cédric Valmary (Tot en òc) <cvalmary@yahoo.fr>\n"
+"Language-Team: Tot en òc (totenoc.eu)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
-#: ../data/gnome-session.schemas.in.h:1
-msgid "Allow TCP connections"
-msgstr "Autorisar las connexions TCP"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Personalizat"
 
-#: ../data/gnome-session.schemas.in.h:2
-msgid ""
-"For security reasons, on platforms which have _IceTcpTransNoListen() "
-"(XFree86 systems), gnome-session does not listen for connections on TCP "
-"ports. This option will allow connections from (authorized) remote hosts. "
-"gnome-session must be restarted for this to take effect."
-msgstr ""
-"Per rasons de seguritat, sus la plataformas qu'an _IceTcpTransNoListen() "
-"(sistèmas XFree86), gnome-session susvelha pas las connexions als pòrts TCP. "
-"Aquesta opcion permetrà de connexions d'òstes TCP (autorisats). Debètz "
-"tornar aviar gnome-session per que foncione."
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Aquesta causida permet d'accedir a una sesilha enregistrada"
 
-#: ../data/gnome-session.schemas.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-"S'es activat, gnome-session enregistrarà automaticament la session. "
-"Autrament, la boita de dialòg de desconnexion prepausarà una opcion per "
-"enregistrar la sesilha."
-
-#: ../data/gnome-session.schemas.in.h:5
-msgid "Logout prompt"
-msgstr "Indicador de sortida"
-
-#: ../data/gnome-session.schemas.in.h:6
-msgid "Preferred Image to use for login splash screen"
-msgstr "Imatges preferits per l'ecran d'acuèlh"
-
-#: ../data/gnome-session.schemas.in.h:7
-msgid "Save sessions"
-msgstr "Enregistrar las sessions"
-
-#: ../data/gnome-session.schemas.in.h:8
-msgid "Selected option in the log out dialog"
-msgstr "Opcion seleccionada a la bosta de dialòg de sortida"
-
-#: ../data/gnome-session.schemas.in.h:9
-msgid "Show the splash screen"
-msgstr "Visualizar l'ecran d'acuèlh"
-
-#: ../data/gnome-session.schemas.in.h:10
-msgid "Show the splash screen when the session starts up"
-msgstr "Visualizar l'ecran d'acuèlh al iniciar la session"
-
-#: ../data/gnome-session.schemas.in.h:11
-msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
-msgstr ""
-"Aquò's un camin relatiu basat sul repertòri $datadir/pixmaps/. Los "
-"sosrepertòris e los noms d'imatges son de valors valablas. Se càmbiatz "
-"aquesta valor, aquò prendrà efècte a la debuta de la sesilha venenta."
-
-#: ../data/gnome-session.schemas.in.h:12
-msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
-msgstr ""
-"Aquò's l'opcion que seleccionaretz a la bosta de dialòg de sortida, las "
-"valors valablas son \"logout\" per sortir de la sesilha, \"shutdown\" per "
-"arrestar lo sistèma,  e \"restart\" per tornar lançar."
-
-#: ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
 #: ../data/gnome.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "La session vos connectarà dins GNOME"
+msgstr "Aquesta sesilha vos connècta dins GNOME"
 
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Configurar vòstras sesilhas"
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME factici"
 
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Sessions"
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME sus Wayland"
 
-#: ../gnome-session/gsm-at-startup.c:39
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
+#: ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Aquesta sesilha vos connècta dins GNOME, en utilizant Wayland"
 
-#: ../gnome-session/gsm-client-editor.c:123
-msgid "_Order:"
-msgstr "_Òrdre :"
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Sesilha personalizada"
 
-#: ../gnome-session/gsm-client-editor.c:125
-msgid "The order in which applications are started in the session."
-msgstr "Òrdre d'aviada de las aplicacions de la sesilha."
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "Causissètz una sesilha personalizada d'aviar"
 
-#: ../gnome-session/gsm-client-editor.c:133
-msgid "What happens to the application when it exits."
-msgstr "Qu'arriba passa amb lo logicial quand se quita."
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "Sesilha _novèla"
 
-#: ../gnome-session/gsm-client-editor.c:134
-msgid "_Style:"
-msgstr "_Estil :"
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "Sup_rimir la sesilha"
 
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Inactive"
-msgstr "Inactiu"
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Reno_menar la sesilha"
 
-#: ../gnome-session/gsm-client-list.c:44
-msgid "Waiting to start or already finished."
-msgstr "En espera de se lançar o lançament ja acabat."
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Starting"
-msgstr "Aviada"
-
-#: ../gnome-session/gsm-client-list.c:46
-msgid "Started but has not yet reported state."
-msgstr "Lançat mas pas encara de rapòrt de son estat."
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "Running"
-msgstr "En foncionament"
-
-#: ../gnome-session/gsm-client-list.c:48
-msgid "A normal member of the session."
-msgstr "Un utilizaire normal de la sesilha."
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving"
-msgstr "A enregistrar"
-
-#: ../gnome-session/gsm-client-list.c:50
-msgid "Saving session details."
-msgstr "A enregistrar los detalhs de la sesilha."
-
-#. FIXME find better icon
-#: ../gnome-session/gsm-client-list.c:53
-msgid "Unknown"
-msgstr "Desconegut"
-
-#: ../gnome-session/gsm-client-list.c:53
-msgid "State not reported within timeout."
-msgstr "L'estat es pas estat reportat pendent lo relambi autorizat."
-
-#. FIXME find icon
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Normal"
-msgstr "Normal"
-
-#: ../gnome-session/gsm-client-list.c:60
-msgid "Unaffected by logouts but can die."
-msgstr "Las sortidas l'afectan pas mas pòt morir."
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Restart"
-msgstr "Tornar lançar"
-
-#: ../gnome-session/gsm-client-list.c:62
-msgid "Never allowed to die."
-msgstr "Permetre pas jamai que morisca."
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Trash"
-msgstr "Banasta"
-
-#: ../gnome-session/gsm-client-list.c:64
-msgid "Discarded on logout and can die."
-msgstr "Escartat a la sortida, pòt morir."
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Settings"
-msgstr "Paramètres"
-
-#: ../gnome-session/gsm-client-list.c:66
-msgid "Always started on every login."
-msgstr "Lançat a cada intrada de sesilha."
-
-#: ../gnome-session/gsm-client-list.c:190
-msgid "Order"
-msgstr "Òrdre"
-
-#: ../gnome-session/gsm-client-list.c:197
-msgid "Style"
-msgstr "Estil"
-
-#: ../gnome-session/gsm-client-list.c:204
-msgid "State"
-msgstr "Estat"
-
-#: ../gnome-session/gsm-client-list.c:211
-#: ../gnome-session/session-properties-capplet.c:284
-msgid "Program"
-msgstr "Programa"
-
-#.
-#. * it would be nice to have a dialog which either:
-#. *
-#. * 1.  lets you change the message on it
-#. * 2.  lets you append messages and has a "history"
-#. *
-#. * for now, we just kill the old dialog and pop up a new one.
-#.
-#: ../gnome-session/gsm-gsd.c:47
-msgid ""
-"There was an error starting the GNOME Settings Daemon.\n"
-"\n"
-"Some things, such as themes, sounds, or background settings may not work "
-"correctly."
-msgstr ""
-"I a aguda una error al lançar los paramètres de GNOME (GNOME Settings "
-"Daemon). \n"
-"\n"
-"Se pòt que d'unas causas, coma los tèmas, los sons o los paramètres de fond "
-"foncionen pas correctament."
-
-#: ../gnome-session/gsm-gsd.c:59
-msgid ""
-"\n"
-"\n"
-"The last error message was:\n"
-"\n"
-msgstr ""
-"\n"
-"\n"
-"Lo darrièr messatge d'error èra :\n"
-"\n"
-
-#: ../gnome-session/gsm-gsd.c:64
-msgid ""
-"\n"
-"\n"
-"GNOME will still try to restart the Settings Daemon next time you log in."
-msgstr ""
-"\n"
-"\n"
-"GNOME ensajarà de tornar lançar lo programa de configuracion a lançament de "
-"vòstra sesilha venenta."
-
-#: ../gnome-session/gsm-gsd.c:162
-msgid "The Settings Daemon restarted too many times."
-msgstr "Lo programa de configuracion se tornèt lançar de tròp."
-
-#. Name is mandatory and might not be set by the caller
-#: ../gnome-session/gsm-keyfile.c:43
-msgid "No Name"
-msgstr ""
-
-#: ../gnome-session/gnome-session-remove.c:50
-msgid "List registered clients, then exit"
-msgstr ""
-
-#: ../gnome-session/gnome-session-remove.c:52
-msgid "PROGRAM..."
-msgstr "PROGRAMA..."
-
-#: ../gnome-session/gnome-session-remove.c:176
-#, c-format
-msgid ""
-"You must specify at least one program to remove. You can list the programs "
-"with --list.\n"
-msgstr ""
-
-#: ../gnome-session/gnome-session-remove.c:183
-#, c-format
-msgid "Error: could not connect to the session manager\n"
-msgstr ""
-
-#: ../gnome-session/gnome-session-remove.c:197
-#, c-format
-msgid "Currently registered clients:\n"
-msgstr ""
-
-#: ../gnome-session/gnome-session-remove.c:207
-#, c-format
-msgid "Couldn't find program %s in session\n"
-msgstr ""
-
-#. At least try to tell the user something.
-#: ../gnome-session/ice.c:355
-#, c-format
-msgid ""
-"The GNOME session manager cannot start properly.  Please report this as a "
-"GNOME bug. Please include this ICE failure message in the bug report:  '%"
-"s'.  Meanwhile you could try logging in using the failsafe session."
-msgstr ""
-
-#: ../gnome-session/ice.c:514
-#, c-format
-msgid ""
-"The GNOME session manager was unable to lock the file '%s'.  Please report "
-"this as a GNOME bug.  Sometimes this error may occur if the file's directory "
-"is unwritable, you could try logging in via the failsafe session and "
-"ensuring that it is."
-msgstr ""
-
-#: ../gnome-session/ice.c:541
-#, c-format
-msgid ""
-"The GNOME session manager was unable to read the file: '%s'.  If this file "
-"exists it must be readable by you for GNOME to work properly.  Try logging "
-"in with the failsafe session and removing this file."
-msgstr ""
-
-#: ../gnome-session/ice.c:586
-#, c-format
-msgid ""
-"Could not write to file '%s'.  This file must be writable in order for GNOME "
-"to function properly.  Try logging in with the failsafe session and removing "
-"this file.  Also make sure that the file's directory is writable."
-msgstr ""
-
-#: ../gnome-session/logout.c:392
-msgid "Are you sure you want to log out?"
-msgstr ""
-
-#: ../gnome-session/logout.c:409
-msgid "Remember running applications"
-msgstr ""
-
-#: ../gnome-session/logout.c:432
-msgid "Action"
-msgstr "Accion"
-
-#: ../gnome-session/logout.c:449
-msgid "_Log out"
-msgstr ""
-
-#: ../gnome-session/logout.c:456
-msgid "Sh_ut down"
-msgstr ""
-
-#: ../gnome-session/logout.c:464
-msgid "_Restart the computer"
-msgstr "_Tornar aviar l'ordenador"
-
-#: ../gnome-session/main.c:86
-msgid "Specify a session name to load"
-msgstr "Especifica lo nom de la sesilha de cargar"
-
-#: ../gnome-session/main.c:86 ../gnome-session/gnome-session-save.c:48
-msgid "NAME"
-msgstr "NOM"
-
-#: ../gnome-session/main.c:87
-msgid "Only read saved sessions from the default.session file"
-msgstr "Legir sonque las sesilhas salvadas al fichièr default.session"
-
-#: ../gnome-session/main.c:88
-msgid "Millisecond period spent waiting for clients to register (0=forever)"
-msgstr ""
-"Relambi d'espèra, en millisegondas, per que los clients se registren "
-"(0=indefiniament)"
-
-#: ../gnome-session/main.c:88 ../gnome-session/main.c:89
-#: ../gnome-session/main.c:90
-msgid "DELAY"
-msgstr ""
-
-#: ../gnome-session/main.c:89
-msgid "Millisecond period spent waiting for clients to respond (0=forever)"
-msgstr ""
-"Relambi d'espèra, en millisegondas, per que los clients respondan "
-"(0=indefiniament)"
-
-#: ../gnome-session/main.c:90
-msgid "Millisecond period spent waiting for clients to die (0=forever)"
-msgstr ""
-"Relambi d'espèra, en millisegondas, per que los clients moriscan "
-"(0=indefiniament)"
-
-#: ../gnome-session/main.c:166
-msgid "This session is running as a privileged user"
-msgstr ""
-
-#: ../gnome-session/main.c:168
-msgid ""
-"Running a session as a privileged user should be avoided for security "
-"reasons. If possible, you should log in as a normal user."
-msgstr ""
-
-#: ../gnome-session/main.c:172
+#: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Contunhar"
 
-#: ../gnome-session/main.c:256
-#, c-format
-msgid ""
-"The session might encounter issues if the computer clock is not properly "
-"configured. Please consider adjusting it.\n"
-"\n"
-"Current date is <b>%s</b>."
-msgstr ""
-
-#: ../gnome-session/main.c:375
-#, c-format
-msgid "Failed to launch time configuration tool: %s"
-msgstr "Impossible d'executar l'esplech de configuracion de l'ora : %s"
-
-#: ../gnome-session/main.c:406
-msgid "The computer clock appears to be wrong"
-msgstr ""
-
-#: ../gnome-session/main.c:413
-msgid "_Ignore"
-msgstr "_Ignorar"
-
-#: ../gnome-session/main.c:414
-msgid "_Adjust the Clock"
-msgstr ""
-
-#: ../gnome-session/main.c:551
-#, c-format
-msgid ""
-"Could not look up internet address for %s.\n"
-"This will prevent GNOME from operating correctly.\n"
-"It may be possible to correct the problem by adding\n"
-"%s to the file /etc/hosts."
-msgstr ""
-"S'es pas poscut cercar l'adreça electronica de %s.\n"
-"Aquò empacharà GNOME de foncionar corrèctament. \n"
-"Se pòt benlèu adobar aqueste problèma en apondre\n"
-"%s al fichièr /etc/hosts."
-
-#: ../gnome-session/main.c:558
-msgid "Log in Anyway"
-msgstr "Se connectar ça que la"
-
-#: ../gnome-session/main.c:559
-msgid "Try Again"
-msgstr "Tornar ensajar"
-
-#: ../gnome-session/main.c:693
-msgid "- Manage the GNOME session"
-msgstr "- Gerir la sesilha GNOME"
-
-#: ../gnome-session/manager.c:513
-msgid "Wait abandoned due to conflict."
-msgstr "L'espera s'es arrestada per causa d'un conflicte."
-
-#: ../gnome-session/manager.c:1021
-#, c-format
-msgid "No response to the %s command."
-msgstr "Pas cap de responsa a la comanda %s."
-
-#: ../gnome-session/manager.c:1022
-msgid "The program may be slow, stopped or broken."
-msgstr "Se pòt que lo programa siá alentit, arrestat o degalhat."
-
-#: ../gnome-session/manager.c:1023
-msgid "You may wait for it to respond or remove it."
-msgstr "Podètz esperar sa responsa o lo suprimir."
-
-#: ../gnome-session/manager.c:1749
-msgid "Restart abandoned due to failures."
-msgstr "Se tornèt pas lançar pr'amor d'errors."
-
-#: ../gnome-session/manager.c:1945
-msgid "A session shutdown is in progress."
-msgstr "Sesilha a se tampar."
-
-#: ../gnome-session/gnome-session-save.c:48
-msgid "Set the current session name"
-msgstr "Definir lo nom de la session activa"
-
-#: ../gnome-session/gnome-session-save.c:49
-msgid "Kill session"
-msgstr "Tuar la sesilha"
-
-#: ../gnome-session/gnome-session-save.c:50
-msgid "Use dialog boxes for errors"
-msgstr ""
-
-#: ../gnome-session/gnome-session-save.c:51
-msgid "Do not require confirmation"
-msgstr "Demandar pas de confirmacion"
-
-#: ../gnome-session/gnome-session-save.c:149
-#: ../gnome-session/gnome-session-save.c:187
-msgid "Could not connect to the session manager"
-msgstr "Impossible de se connectar al gestionari de sesilhas"
-
-#: ../gnome-session/gnome-session-save.c:172
-msgid "- Save the current session"
-msgstr "- Enregistrar la session activa"
-
-#: ../gnome-session/session-properties-capplet.c:154
-msgid "Save changes to the current session before closing?"
-msgstr ""
-
-#: ../gnome-session/session-properties-capplet.c:156
-msgid "If you don't save, changes will be discarded."
-msgstr ""
-
-#: ../gnome-session/session-properties-capplet.c:159
-msgid "_Close without Saving"
-msgstr "_Tampar sens enregistrar"
-
-#: ../gnome-session/session-properties-capplet.c:224
-msgid "Sessions Preferences"
-msgstr ""
-
-#. non-session managed startup programs
-#: ../gnome-session/session-properties-capplet.c:250
+#: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
-msgstr "Programas adicionals de lançament :"
+msgstr "_Programas suplementaris a l'aviada :"
 
-#: ../gnome-session/session-properties-capplet.c:275
-msgid "Enabled"
-msgstr "Activat"
-
-#: ../gnome-session/session-properties-capplet.c:319
+#: ../data/session-properties.ui.h:2
 msgid "Startup Programs"
-msgstr "Programas de lançament"
+msgstr "Programas a l'aviada"
 
-#: ../gnome-session/session-properties-capplet.c:326
-msgid "Current Session"
-msgstr "Sesilha en cors"
-
-#. Autosave
-#: ../gnome-session/session-properties-capplet.c:337
+#: ../data/session-properties.ui.h:3
 msgid "_Automatically remember running applications when logging out"
 msgstr ""
+"Se remembrar _automaticament de las aplicacions en cors d'execucion al "
+"moment de la desconnexion"
 
-#: ../gnome-session/session-properties-capplet.c:353
+#: ../data/session-properties.ui.h:4
 msgid "_Remember Currently Running Applications"
-msgstr ""
+msgstr "_Se remembrar de las aplicacions en cors d'execucion"
 
-#: ../gnome-session/session-properties-capplet.c:361
-msgid "Session Options"
-msgstr "Opcions de la sesilha"
+#: ../data/session-properties.ui.h:5
+msgid "Options"
+msgstr "Opcions"
 
-#: ../gnome-session/session-properties-capplet.c:457
-msgid "Your session has been saved."
-msgstr ""
+#: ../data/session-properties.ui.h:6
+msgid "Browse…"
+msgstr "Percórrer…"
 
-#: ../gnome-session/session-properties-capplet.c:500
-#, c-format
-msgid "could not connect to the session manager\n"
-msgstr ""
-
-#: ../gnome-session/session-properties-capplet.c:506
-#, c-format
-msgid "session manager does not support GNOME extensions\n"
-msgstr ""
-
-#: ../gnome-session/session-properties.c:51
-msgid "Remove the currently selected client from the session."
-msgstr "Suprimir lo client seleccionat de la sesilha."
-
-#: ../gnome-session/session-properties.c:57
-msgid "Apply changes to the current session"
-msgstr "Aplicar las modificacions a la sesilha en cors"
-
-#: ../gnome-session/session-properties.c:63
-msgid "The list of programs in the session."
-msgstr "La lista dels programas de la sesilha."
-
-#: ../gnome-session/session-properties.c:89
-msgid "Currently running _programs:"
-msgstr "_Programas en cors d'execucion :"
-
-#: ../gnome-session/splash-widget.c:44
-msgid "Sawfish Window Manager"
-msgstr "Gestionari de fenèstras Sawfish"
-
-#: ../gnome-session/splash-widget.c:45
-msgid "Metacity Window Manager"
-msgstr "Gestionari de fenèstras Metacity"
-
-#: ../gnome-session/splash-widget.c:46
-msgid "Window Manager"
-msgstr "Gestionari de fenèstras"
-
-#: ../gnome-session/splash-widget.c:47
-msgid "The Panel"
-msgstr "Lo panèl"
-
-#: ../gnome-session/splash-widget.c:48
-msgid "Nautilus"
-msgstr "Nautilus"
-
-#: ../gnome-session/splash-widget.c:49
-msgid "Desktop Settings"
-msgstr "Paramètres del burèu"
-
-#: ../gnome-session/startup-programs.c:348
-msgid "No description"
-msgstr "Pas de descripcion"
-
-#: ../gnome-session/startup-programs.c:409
-msgid "Select Command"
-msgstr ""
-
-#: ../gnome-session/startup-programs.c:471
-msgid "_Name:"
-msgstr "_Nom :"
-
-#: ../gnome-session/startup-programs.c:486
-msgid "Co_mmand:"
-msgstr "_Comanda :"
-
-#: ../gnome-session/startup-programs.c:498
-msgid "_Browse..."
-msgstr "_Examinar..."
-
-#: ../gnome-session/startup-programs.c:510
+#: ../data/session-properties.ui.h:7
 msgid "Comm_ent:"
 msgstr "Co_mentari :"
 
-#: ../gnome-session/startup-programs.c:538
-msgid "The name of the startup program cannot be empty"
+#: ../data/session-properties.ui.h:8
+msgid "Co_mmand:"
+msgstr "_Comanda :"
+
+#: ../data/session-properties.ui.h:9
+msgid "_Name:"
+msgstr "_Nom :"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
+msgid "Oh no!  Something has gone wrong."
+msgstr "Ò damne ! Quicòm a trucat."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
 msgstr ""
+"Un problèma s'es produsit e lo sistèma se pòt pas recuperar. Contactatz un "
+"administrator del sistèma"
 
-#: ../gnome-session/startup-programs.c:540
-msgid "The startup command cannot be empty"
-msgstr "La comanda de lançament pòt pas èsser voida"
-
-#: ../gnome-session/startup-programs.c:546
-msgid "The startup command is not valid"
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
+"Un problèma s'es produsit e lo sistèma se pòt pas recuperar. Totas las "
+"extensions son estadas desactivadas per mesura de precaucion."
 
-#: ../gnome-session/startup-programs.c:603
-msgid "Add Startup Program"
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
 msgstr ""
+"Un problèma s'es produsit e lo sistèma se pòt pas recuperar.\n"
+"Desconnectatz-vos e ensajatz tornamai."
 
-#: ../gnome-session/startup-programs.c:647
-msgid "Edit Startup Program"
-msgstr "Editar lo programa de lançament"
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
+msgid "_Log Out"
+msgstr "_Tampar la sesilha"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+msgid "Enable debugging code"
+msgstr "Activa lo còde de desbugatge"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
+msgid "Allow logout"
+msgstr "Autorizar la desconnexion"
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
+msgid "Show extension warning"
+msgstr "Afichar l'avertiment per las extensions"
+
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+msgid "Not responding"
+msgstr "Abséncia de responsa"
+
+#: ../gnome-session/gsm-util.c:381
+msgid "_Log out"
+msgstr "_Se desconnectar"
+
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:557
+msgid "Remembered Application"
+msgstr "Aplicacions memorizadas"
+
+#: ../gnome-session/gsm-xsmp-client.c:1207
+msgid "This program is blocking logout."
+msgstr "Aqueste programa blòca la desconnexion."
+
+#: ../gnome-session/gsm-xsmp-server.c:340
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+"Refús de la connexion d'un novèl client perque la sesilha es actualament en "
+"cors de tampadura\n"
+
+#: ../gnome-session/gsm-xsmp-server.c:609
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Impossible de crear lo connectador d'escota ICE : %s"
+
+#: ../gnome-session/main.c:241
+msgid "Override standard autostart directories"
+msgstr "Remplaça los repertòris autostart estandards"
+
+#: ../gnome-session/main.c:241
+msgid "AUTOSTART_DIR"
+msgstr "REP_AUTOSTART"
+
+#: ../gnome-session/main.c:242
+msgid "Session to use"
+msgstr "Sesilha d'utilizar"
+
+#: ../gnome-session/main.c:242
+msgid "SESSION_NAME"
+msgstr "NOM_SESILHA"
+
+#: ../gnome-session/main.c:244
+msgid "Do not load user-specified applications"
+msgstr "Carga pas las aplicacions demandadas per l'utilizaire"
+
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Version d'aquesta aplicacion"
+
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:247
+msgid "Show the fail whale dialog for testing"
+msgstr "Afichar lo dialòg d'error per lo testar"
+
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Desactivar la verificacion de l'acceleracion materiala"
+
+#: ../gnome-session/main.c:267
+msgid " - the GNOME session manager"
+msgstr "- lo gestionari de sesilhas de GNOME"
+
+#: ../tools/gnome-session-inhibit.c:108
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [OPCION...] COMANDA\n"
+"\n"
+"Executa COMANDA tot en inibant de foncionalitats de la sesilha.\n"
+"\n"
+"  -h, --help        Afichar aquesta ajuda\n"
+"  --version         Afichar la version del programa\n"
+"  --app-id ID       L'identificant d'aplicacion d'utilizar\n"
+"                    al moment de l'inibicion (opcional)\n"
+"  --reason REASON   La rason de l'inibicion (opcional)\n"
+"  --inhibit ARG     Las causes d'inibir, lista separada per de punts dobles "
+"demest :\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Aviar pas COMANDA e esperar indefinidament a la plaça\n"
+"\n"
+"Se cap d'opcion --inhibit es pas precisada, « idle » es supausat.\n"
+
+#: ../tools/gnome-session-inhibit.c:146
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Impossible d'executar %s\n"
+
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s necessita un paramètre\n"
+
+#: ../tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Sesilha %d"
+
+#: ../tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Los noms de sesilhas pòdon pas començar per « . » o conténer lo caractèr « / "
+"»"
+
+#: ../tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Los noms de sesilhas pòdon pas començar per « . »"
+
+#: ../tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Los noms de sesilhas pòdon pas conténer lo caractèr « / »"
+
+#: ../tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Una sesilha nomenada « %s » existís ja"
+
+#: ../tools/gnome-session-quit.c:49
+msgid "Log out"
+msgstr "Se desconnècta"
+
+#: ../tools/gnome-session-quit.c:50
+msgid "Power off"
+msgstr "S'atuda"
+
+#: ../tools/gnome-session-quit.c:51
+msgid "Reboot"
+msgstr "Reaviar"
+
+#: ../tools/gnome-session-quit.c:52
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorar tot inibitor existent"
+
+#: ../tools/gnome-session-quit.c:53
+msgid "Don't prompt for user confirmation"
+msgstr "Demanda pas de confirmacion"
+
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+msgid "Could not connect to the session manager"
+msgstr "Impossible de se connectar al gestionari de sesilhas"
+
+#: ../tools/gnome-session-quit.c:196
+msgid "Program called with conflicting options"
+msgstr "Programa apelat amb d'opcions conflictualas"
+
+#~ msgid "Select Command"
+#~ msgstr "Sélection d'une commande"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Ajout d'un programme de démarrage"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Modification d'un programme de démarrage"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "La commande de démarrage ne peut pas être vide"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "La commande de démarrage n'est pas valide"
+
+#~ msgid "Enabled"
+#~ msgstr "Activé"
+
+#~ msgid "Icon"
+#~ msgstr "Icône"
+
+#~ msgid "Program"
+#~ msgstr "Programme"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Préférences des applications au démarrage"
+
+#~ msgid "No name"
+#~ msgstr "Pas de nom"
+
+#~ msgid "No description"
+#~ msgstr "Pas de description"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Impossible d'afficher le document d'aide"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Applications au démarrage"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Choisir les applications à lancer à la connexion"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Le fichier n'est pas un fichier .desktop valide"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "La version « %s » du fichier .desktop n'est pas reconnue"
+
+#~ msgid "Starting %s"
+#~ msgstr "Démarrage de %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "L'application n'accepte pas de documents en ligne de commande"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Option de démarrage non reconnue : %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Impossible de passer des URI de document à un fichier de bureau avec "
+#~ "« Type=Link »"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Cet élément ne peut être lancé"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Désactive la connexion au gestionnaire de sessions"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Indique le fichier contenant la configuration enregistrée"
+
+#~ msgid "FILE"
+#~ msgstr "FICHIER"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Indique l'identificateur de la gestion de sessions"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Options de la gestion de sessions :"
+
+#~ msgid "Show session management options"
+#~ msgstr "Affiche les options de la gestion de sessions"
+
+#~ msgid "Some programs are still running:"
+#~ msgstr "Des programmes sont toujours en cours d'exécution :"
+
+#~ msgid "Unknown"
+#~ msgstr "Inconnu"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Un programme est toujours en cours d'exécution :"
+
+#~ msgid ""
+#~ "Waiting for the program to finish. Interrupting the program may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Attente de la fin du programme. L'interruption du programme risquerait de "
+#~ "vous faire perdre certaines données."
+
+#~ msgid ""
+#~ "Waiting for programs to finish. Interrupting these programs may cause you "
+#~ "to lose work."
+#~ msgstr ""
+#~ "Attente de la fin des programmes. L'interruption de ces programmes "
+#~ "risquerait de vous faire perdre certaines données."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Changer d'utilisateur malgré tout"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Se déconnecter malgré tout"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Mettre en veille malgré tout"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Hiberner malgré tout"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Éteindre malgré tout"
+
+#~ msgid "Restart Anyway"
+#~ msgstr "Redémarrer malgré tout"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Verrouiller l'écran"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Vous serez automatiquement déconnecté dans %d seconde."
+#~ msgstr[1] "Vous serez automatiquement déconnecté dans %d secondes."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Cet ordinateur va s'éteindre automatiquement dans %d seconde."
+#~ msgstr[1] "Cet ordinateur va s'éteindre automatiquement dans %d secondes."
+
+#~ msgid "This system will be automatically restarted in %d second."
+#~ msgid_plural "This system will be automatically restarted in %d seconds."
+#~ msgstr[0] "Cet ordinateur va redémarrer automatiquement dans %d seconde."
+#~ msgstr[1] "Cet ordinateur va redémarrer automatiquement dans %d secondes."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Vous êtes actuellement connecté en tant que « %s »."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Se déconnecter du système maintenant ?"
+
+#~ msgid "_Switch User"
+#~ msgstr "Changer d'_utilisateur"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Éteindre cet ordinateur maintenant ?"
+
+#~ msgid "S_uspend"
+#~ msgstr "_Mettre en veille"
+
+#~ msgid "_Hibernate"
+#~ msgstr "_Hiberner"
+
+#~ msgid "_Restart"
+#~ msgstr "_Redémarrer"
+
+#~ msgid "_Shut Down"
+#~ msgstr "Ét_eindre"
+
+#~ msgid "Restart this system now?"
+#~ msgstr "Redémarrer cet ordinateur maintenant ?"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "Icône « %s » non trouvée"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "Échec du chargement de GNOME 3"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "GNOME 3 n'a malheureusement pas réussi à démarrer correctement et a "
+#~ "démarré en <i>mode restreint</i>.\n"
+#~ "\n"
+#~ "Cela signifie probablement que votre système (la carte graphique ou son "
+#~ "pilote) n'est pas assez puissant pour prendre en charge tous les éléments "
+#~ "du bureau GNOME 3."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "En apprendre plus sur GNOME 3"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr "Impossible de démarrer la session (et de se connecter au serveur X)"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "Quitté avec le code %d"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "Tué par le signal %d"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "Interrompu par le signal %d"
