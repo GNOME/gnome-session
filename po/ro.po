@@ -3,81 +3,34 @@
 # Adi Roiban https://launchpad.net/~adiroiban, 2008, 2009
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2011.
 # Daniel Șerbănescu <cyber19rider@gmail.com>, 2010, 2011.
+# Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-22 21:20+0000\n"
-"PO-Revision-Date: 2011-03-23 01:25+0200\n"
-"Last-Translator: Daniel Șerbănescu <cyber19rider@gmail.com>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2015-06-19 07:55+0000\n"
+"PO-Revision-Date: 2015-06-22 17:30+0200\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"Language-Team: Gnome Romanian Translation Team\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Alegere comandă"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Personalizat"
 
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Adaugă un program de pornit"
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Această opțiune vă permite să selectați o sesiune salvată"
 
-# LG: aici e vorba de titlul unei ferestre.
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Editare program de pornit"
-
-#: ../capplet/gsm-app-dialog.c:485
-msgid "The startup command cannot be empty"
-msgstr "Comanda de pornire nu poate fi nulă"
-
-#: ../capplet/gsm-app-dialog.c:491
-msgid "The startup command is not valid"
-msgstr "Comanda de start nu este validă"
-
-#: ../capplet/gsm-properties-dialog.c:517
-msgid "Enabled"
-msgstr "Activat"
-
-#: ../capplet/gsm-properties-dialog.c:529
-msgid "Icon"
-msgstr "Iconiță"
-
-#: ../capplet/gsm-properties-dialog.c:541
-msgid "Program"
-msgstr "Program"
-
-#: ../capplet/gsm-properties-dialog.c:745
-msgid "Startup Applications Preferences"
-msgstr "Preferințe aplicații la pornire"
-
-#: ../capplet/gsp-app.c:269
-msgid "No name"
-msgstr "Fără nume"
-
-#: ../capplet/gsp-app.c:275
-msgid "No description"
-msgstr "Fără descriere"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:280
-msgid "Version of this application"
-msgstr "Versiunea acestei aplicații"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Nu se poate afișa documentul de ajutor"
-
-#: ../data/gnome-fallback.session.desktop.in.in.h:1
-msgid "GNOME fallback"
-msgstr "Versiunea GNOME de rezervă"
-
-#: ../data/gnome.session.desktop.in.in.h:1 ../data/gnome.desktop.in.h:1
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -85,254 +38,114 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Această sesiune vă va autentifica în GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>O parte din programe sunt încă în funcțiune:</b>"
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#| msgid "GNOME"
+msgid "GNOME dummy"
+msgstr "machetă GNOME"
 
-#: ../data/gsm-inhibit-dialog.ui.h:2 ../gnome-session/gsm-inhibit-dialog.c:644
-msgid ""
-"Waiting for the program to finish.  Interrupting the program may cause you "
-"to lose work."
-msgstr ""
-"Se așteaptă terminarea programului. Întreruperea lui poate duce la pierderea "
-"modificărilor efectuate."
+#: ../data/gnome-wayland.desktop.in.h:1
+#: ../data/gnome-wayland.session.desktop.in.in.h:1
+#| msgid "GNOME fallback"
+msgid "GNOME on Wayland"
+msgstr "GNOME pe Wayland"
 
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Choose what applications to start when you log in"
-msgstr "Alegeți aplicațiile ce vor porni după ce vă autentificați"
+#: ../data/gnome-wayland.desktop.in.h:2
+#| msgid "This session logs you into GNOME"
+msgid "This session logs you into GNOME, using Wayland"
+msgstr "Această sesiune vă va autentifica în GNOME, folosind Wayland"
 
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Startup Applications"
-msgstr "Aplicații pornite după autentificare"
+#: ../data/session-selector.ui.h:1
+#| msgid "Default session"
+msgid "Custom Session"
+msgstr "Sesiune personalizată"
+
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "Selectați o sesiune personalizată pentru rulare"
+
+#: ../data/session-selector.ui.h:3
+#| msgid "Save sessions"
+msgid "_New Session"
+msgstr "Sesiune _nouă"
+
+#: ../data/session-selector.ui.h:4
+#| msgid "Save sessions"
+msgid "_Remove Session"
+msgstr "_Elimină sesiunea"
+
+#: ../data/session-selector.ui.h:5
+#| msgid "Save sessions"
+msgid "Rena_me Session"
+msgstr "Redenu_mește sesiunea"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Continuă"
 
 #: ../data/session-properties.ui.h:1
 msgid "Additional startup _programs:"
-msgstr "_Programe suplimentare de pornit:"
+msgstr "_Programe la pornire adiționale:"
 
 #: ../data/session-properties.ui.h:2
-msgid "Browse…"
-msgstr "Navighează…"
+msgid "Startup Programs"
+msgstr "Programe la pornire"
 
 #: ../data/session-properties.ui.h:3
-msgid "Co_mmand:"
-msgstr "Co_mandă:"
+msgid "_Automatically remember running applications when logging out"
+msgstr "Memorează _automat aplicațiile ce rulează la ieșire"
 
 #: ../data/session-properties.ui.h:4
-msgid "Comm_ent:"
-msgstr "Com_entariu:"
+#| msgid "_Remember Currently Running Application"
+msgid "_Remember Currently Running Applications"
+msgstr "Memo_rează aplicațiile ce rulează în acest moment"
 
 #: ../data/session-properties.ui.h:5
 msgid "Options"
 msgstr "Opțiuni"
 
 #: ../data/session-properties.ui.h:6
-msgid "Startup Programs"
-msgstr "Programe de pornit"
+msgid "Browse…"
+msgstr "Navighează…"
 
 #: ../data/session-properties.ui.h:7
-msgid "_Automatically remember running applications when logging out"
-msgstr "Memorează _automat la ieșire aplicațiile ce rulează"
+msgid "Comm_ent:"
+msgstr "Com_entariu:"
 
 #: ../data/session-properties.ui.h:8
+msgid "Co_mmand:"
+msgstr "Co_mandă:"
+
+#: ../data/session-properties.ui.h:9
 msgid "_Name:"
 msgstr "_Nume:"
 
-#: ../data/session-properties.ui.h:9
-msgid "_Remember Currently Running Application"
-msgstr "Memo_rează aplicațiile ce rulează în acest moment"
-
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Fișierul nu este un fișier .desktop valid"
-
-#: ../egg/eggdesktopfile.c:188
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Versiunea „%s” a fișierului desktop este nerecunoscută"
-
-#: ../egg/eggdesktopfile.c:958
-#, c-format
-msgid "Starting %s"
-msgstr "Se pornește %s"
-
-#: ../egg/eggdesktopfile.c:1100
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Aplicația nu acceptă documente în linia de comandă"
-
-#: ../egg/eggdesktopfile.c:1168
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Opțiune de lansare nerecunoscută: %d"
-
-#: ../egg/eggdesktopfile.c:1373
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Nu s-a putut trimite URI-ul documentului unei intrări desktop „Type=Link”"
-
-#: ../egg/eggdesktopfile.c:1394
-#, c-format
-msgid "Not a launchable item"
-msgstr "Nu este un element lansabil"
-
-#: ../egg/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr "Dezactivează conexiunea la administratorul sesiunii"
-
-#: ../egg/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr "Specifică fișierul ce conține configurația salvată"
-
-#: ../egg/eggsmclient.c:228
-msgid "FILE"
-msgstr "FIȘIER"
-
-#: ../egg/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr "Specifică ID-ul de administrare al sesiunii"
-
-#: ../egg/eggsmclient.c:231
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:252
-msgid "Session management options:"
-msgstr "Opțiuni de administrare a sesiunii:"
-
-#: ../egg/eggsmclient.c:253
-msgid "Show session management options"
-msgstr "Afișează opțiunile de administrare a sesiunii"
-
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-"Există o problemă cu serverul de configurare.\n"
-"(%s a ieșit cu starea %d)"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:253
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "Iconița „%s” nu a fost găsită"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:592
-msgid "Unknown"
-msgstr "Necunoscut"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:643
-msgid "A program is still running:"
-msgstr "Un program este încă în funcțiune:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:647
-msgid "Some programs are still running:"
-msgstr "Unele programe sunt încă în funcțiune:"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:648
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-"Se așteaptă terminarea programelor. Întreruperea acestora poate duce la "
-"pierderea modificărilor efectuate."
-
-#: ../gnome-session/gsm-inhibit-dialog.c:878
-msgid "Switch User Anyway"
-msgstr "Schimbă oricum utilizatorul"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:881
-msgid "Log Out Anyway"
-msgstr "Închide sesiunea oricum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:884
-msgid "Suspend Anyway"
-msgstr "Suspendă oricum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:887
-msgid "Hibernate Anyway"
-msgstr "Hibernează oricum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:890
-msgid "Shut Down Anyway"
-msgstr "Oprește oricum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:893
-msgid "Reboot Anyway"
-msgstr "Repornește oricum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:901
-msgid "Lock Screen"
-msgstr "Blochează ecranul"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:904
-msgid "Cancel"
-msgstr "Renunță"
-
-#. This string is shared with gsm-fail-whale-dialog.c
-#: ../gnome-session/gsm-logout-dialog.c:275
-#, c-format
-msgid "You will be automatically logged out in %d second."
-msgid_plural "You will be automatically logged out in %d seconds."
-msgstr[0] "Sesiunea se va închide automat într-o secundă."
-msgstr[1] "Sesiunea se va închide automat în %d secunde."
-msgstr[2] "Sesiunea se va închide automat în %d de secunde."
-
-#: ../gnome-session/gsm-logout-dialog.c:283
-#, c-format
-msgid "This system will be automatically shut down in %d second."
-msgid_plural "This system will be automatically shut down in %d seconds."
-msgstr[0] "Sistemul va fi oprit automat într-o secundă."
-msgstr[1] "Sistemul va fi oprit automat în %d secunde."
-msgstr[2] "Sistemul va fi oprit automat în %d de secunde."
-
-#: ../gnome-session/gsm-logout-dialog.c:315
-#, c-format
-msgid "You are currently logged in as \"%s\"."
-msgstr "Sunteți autentificat ca „%s”."
-
-#: ../gnome-session/gsm-logout-dialog.c:381
-msgid "Log out of this system now?"
-msgstr "Ieșiți de pe acest sistem acum?"
-
-#: ../gnome-session/gsm-logout-dialog.c:387
-msgid "_Switch User"
-msgstr "_Schimbă utilizatorul"
-
-#: ../gnome-session/gsm-logout-dialog.c:396
-#: ../gnome-session/gsm-fail-whale-dialog.c:296
-#: ../gnome-session/gsm-util.c:363
-msgid "_Log Out"
-msgstr "_Ieșire din sesiune"
-
-#: ../gnome-session/gsm-logout-dialog.c:402
-msgid "Shut down this system now?"
-msgstr "Opriți sistemul acum?"
-
-#: ../gnome-session/gsm-logout-dialog.c:408
-msgid "S_uspend"
-msgstr "S_uspendă"
-
-#: ../gnome-session/gsm-logout-dialog.c:414
-msgid "_Hibernate"
-msgstr "_Hibernează"
-
-#: ../gnome-session/gsm-logout-dialog.c:420
-msgid "_Restart"
-msgstr "_Repornește"
-
-#: ../gnome-session/gsm-logout-dialog.c:430
-msgid "_Shut Down"
-msgstr "_Oprește"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:276
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, nu! Ceva nu a funcționat corect."
 
-#. make this changable at some point
-#: ../gnome-session/gsm-fail-whale-dialog.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
+msgstr ""
+"A intervenit o problemă și sistemul nu se poate recupera. Contactați un "
+"administrator de sistem."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr ""
+"A intervenit o problemă și sistemul nu se poate recupera. Toate extensiile "
+"au fost dezactivate preventiv."
+
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -340,117 +153,407 @@ msgstr ""
 "A intervenit o problemă și sistemul nu se poate recupera.\n"
 "Ieșiți din sesiune și încercați din nou."
 
-#: ../gnome-session/gsm-process-helper.c:123
-#, c-format
-msgid "Exited with code %d"
-msgstr "A ieșit cu codul %d"
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
+msgid "_Log Out"
+msgstr "_Ieșire din sesiune"
 
-#: ../gnome-session/gsm-process-helper.c:128
-#, c-format
-msgid "Killed by signal %d"
-msgstr "Omorât de semnalul %d"
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+msgid "Enable debugging code"
+msgstr "Activează codul pentru depanare"
 
-#: ../gnome-session/gsm-process-helper.c:133
-#, c-format
-msgid "Stopped by signal %d"
-msgstr "Oprit de semnalul %d"
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#| msgid "Show logout dialog"
+msgid "Allow logout"
+msgstr "Permite ieșierea din sesiune"
 
-#: ../gnome-session/gsm-manager.c:1362
-msgid "GNOME 3 Failed to Load"
-msgstr "GNOME 3 nu a reușit să pornească"
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
+msgid "Show extension warning"
+msgstr "Afișează avertizările pentru extensii"
 
-#: ../gnome-session/gsm-manager.c:1363
-msgid ""
-"Unfortunately GNOME 3 failed to start properly and started in the "
-"<i>fallback mode</i>.\n"
-"\n"
-"This most likely means your system (graphics hardware or driver) is not "
-"capable of delivering the full GNOME 3 experience."
-msgstr ""
-"Din păcate, GNOME 3 nu a reușit să pornească corect și a pornit versiunea "
-"<i>de rezervă</i>.\n"
-"\n"
-"Cel mai probabil aceasta înseamnă că sistemul dumneavoastră (placa grafică "
-"sau driverul acesteia) nu poate oferi o experiență GNOME 3 completă."
-
-#: ../gnome-session/gsm-manager.c:1365
-msgid "Learn more about GNOME 3"
-msgstr "Aflați mai multe despre GNOME 3"
-
-#: ../gnome-session/gsm-manager.c:1462 ../gnome-session/gsm-manager.c:2193
+#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
 msgid "Not responding"
 msgstr "Nu răspunde"
 
-#: ../gnome-session/gsm-xsmp-client.c:1183
+#: ../gnome-session/gsm-util.c:381
+#| msgid "Log out"
+msgid "_Log out"
+msgstr "În_chide sesiunea"
+
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: ../gnome-session/gsm-xsmp-client.c:557
+#| msgid "_Remember Currently Running Application"
+msgid "Remembered Application"
+msgstr "Aplicație memorată"
+
+#: ../gnome-session/gsm-xsmp-client.c:1207
 msgid "This program is blocking logout."
 msgstr "Acest program blochează ieșirea din sesiune."
 
-#: ../gnome-session/gsm-xsmp-server.c:325
+#: ../gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Se refuză conexiunea noului client deoarece sesiunea este în curs de oprire\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:587
+#: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "Nu s-a putut crea socket-ul de monitorizare ICE: %s"
+msgstr "Nu s-a putut creea socketul de ascultare ICE: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:347
-#, c-format
-msgid "Unable to start login session (and unable to connect to the X server)"
-msgstr ""
-"Nu s-a putut porni sesiunea de start (iar conexiunea la serverul X nu a "
-"putut fi realizată)"
-
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:241
 msgid "Override standard autostart directories"
-msgstr "Rescrie dosarele standard de pornire automată"
+msgstr "Înlocuiește dosarele standard de pornire automată"
 
-#: ../gnome-session/main.c:277
+#: ../gnome-session/main.c:241
+msgid "AUTOSTART_DIR"
+msgstr "DIRECTOR_DE_PORNIRE"
+
+#: ../gnome-session/main.c:242
 msgid "Session to use"
 msgstr "Sesiunea de utilizat"
 
-#: ../gnome-session/main.c:278
-msgid "Enable debugging code"
-msgstr "Activează codul pentru depanare"
+#: ../gnome-session/main.c:242
+msgid "SESSION_NAME"
+msgstr "NUMELE_SESIUNII"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:244
 msgid "Do not load user-specified applications"
 msgstr "Nu încărca aplicațiile specificate de utilizator"
 
-#: ../gnome-session/main.c:300
-msgid " - the GNOME session manager"
-msgstr " - Administrator de sesiune GNOME"
+#: ../gnome-session/main.c:245
+msgid "Version of this application"
+msgstr "Versiunea acestei aplicații"
 
-#: ../tools/gnome-session-quit.c:52
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:247
+msgid "Show the fail whale dialog for testing"
+msgstr "Afișează dialogul de eroare pentru testare"
+
+#: ../gnome-session/main.c:248
+msgid "Disable hardware acceleration check"
+msgstr "Dezactivează verificarea accelerării hardware"
+
+#: ../gnome-session/main.c:267
+msgid " - the GNOME session manager"
+msgstr " - Administratorul de sesiune GNOME"
+
+#: ../tools/gnome-session-inhibit.c:108
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [OPȚIUNE...] COMANDĂ\n"
+"\n"
+"Execută COMANDA în timp ce interzic unele funcționalități ale sesiunii.\n"
+"\n"
+"  -h, --help        Arată acest ajutor\n"
+"  --version         Arată versiunea programului\n"
+"  --app-id ID       Identificatorul aplicației de folosit\n"
+"                    când se interzice (opțional)\n"
+"  --reason REASON   Motivul interzicerii (opțional)\n"
+"  --inhibit ARG     Lucruri de interzis, listă separată prin punct și "
+"virgulă:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Nu lansa COMANDA și așteaptă pentru totdeauna\n"
+"\n"
+"Dacă nicio opțiune --inhibit nu este specificată, se asumă idle.\n"
+
+#: ../tools/gnome-session-inhibit.c:146
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Eroare la executarea %s\n"
+
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s necesită un argument\n"
+
+#: ../tools/gnome-session-selector.c:61
+#, c-format
+#| msgid "Session to use"
+msgid "Session %d"
+msgstr "Sesiunea %d"
+
+#: ../tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Numele sesiunilor nu sunt permise să înceapă cu „.” sau să conțină caractere "
+"„/”"
+
+#: ../tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Numele sesiunilor nu sunt permise să înceapă cu „.”"
+
+#: ../tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Numele sesiunilor nu sunt permise să conțină caractere „/”"
+
+#: ../tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "O sesiune numită „%s” există deja"
+
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Închide sesiunea"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Oprire"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:51
+#| msgid "Reboot Anyway"
+msgid "Reboot"
+msgstr "Repornește"
+
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Se ignoră orice inhibator existent"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Nu solicita confirmarea utilizatorului"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Nu s-a putut realiza conectarea la administratorul de sesiuni"
 
-#: ../tools/gnome-session-quit.c:199
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Program apelat cu opțiuni care intră în conflict"
 
-#~ msgid "Default session"
-#~ msgstr "Sesiune implicită"
+#~ msgid "Select Command"
+#~ msgstr "Alegere comandă"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Adaugă un program de pornit"
+
+# LG: aici e vorba de titlul unei ferestre.
+#~ msgid "Edit Startup Program"
+#~ msgstr "Editare program de pornit"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Comanda de pornire nu poate fi nulă"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Comanda de start nu este validă"
+
+#~ msgid "Enabled"
+#~ msgstr "Activat"
+
+#~ msgid "Icon"
+#~ msgstr "Iconiță"
+
+#~ msgid "Program"
+#~ msgstr "Program"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Preferințe aplicații la pornire"
+
+#~ msgid "No name"
+#~ msgstr "Fără nume"
+
+#~ msgid "No description"
+#~ msgstr "Fără descriere"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Nu se poate afișa documentul de ajutor"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>O parte din programe sunt încă în funcțiune:</b>"
+
+#~ msgid ""
+#~ "Waiting for the program to finish.  Interrupting the program may cause "
+#~ "you to lose work."
+#~ msgstr ""
+#~ "Se așteaptă terminarea programului. Întreruperea lui poate duce la "
+#~ "pierderea modificărilor efectuate."
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Alegeți aplicațiile ce vor porni după ce vă autentificați"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Aplicații pornite după autentificare"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Fișierul nu este un fișier .desktop valid"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Versiunea „%s” a fișierului desktop este nerecunoscută"
+
+#~ msgid "Starting %s"
+#~ msgstr "Se pornește %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Aplicația nu acceptă documente în linia de comandă"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Opțiune de lansare nerecunoscută: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Nu s-a putut trimite URI-ul documentului unei intrări desktop „Type=Link”"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Nu este un element lansabil"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Dezactivează conexiunea la administratorul sesiunii"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Specifică fișierul ce conține configurația salvată"
+
+#~ msgid "FILE"
+#~ msgstr "FIȘIER"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Specifică ID-ul de administrare al sesiunii"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Opțiuni de administrare a sesiunii:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Afișează opțiunile de administrare a sesiunii"
+
+#~ msgid ""
+#~ "There is a problem with the configuration server.\n"
+#~ "(%s exited with status %d)"
+#~ msgstr ""
+#~ "Există o problemă cu serverul de configurare.\n"
+#~ "(%s a ieșit cu starea %d)"
+
+#~ msgid "Icon '%s' not found"
+#~ msgstr "Iconița „%s” nu a fost găsită"
+
+#~ msgid "Unknown"
+#~ msgstr "Necunoscut"
+
+#~ msgid "A program is still running:"
+#~ msgstr "Un program este încă în funcțiune:"
+
+#~ msgid "Some programs are still running:"
+#~ msgstr "Unele programe sunt încă în funcțiune:"
+
+#~ msgid ""
+#~ "Waiting for programs to finish.  Interrupting these programs may cause "
+#~ "you to lose work."
+#~ msgstr ""
+#~ "Se așteaptă terminarea programelor. Întreruperea acestora poate duce la "
+#~ "pierderea modificărilor efectuate."
+
+#~ msgid "Switch User Anyway"
+#~ msgstr "Schimbă oricum utilizatorul"
+
+#~ msgid "Log Out Anyway"
+#~ msgstr "Închide sesiunea oricum"
+
+#~ msgid "Suspend Anyway"
+#~ msgstr "Suspendă oricum"
+
+#~ msgid "Hibernate Anyway"
+#~ msgstr "Hibernează oricum"
+
+#~ msgid "Shut Down Anyway"
+#~ msgstr "Oprește oricum"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Blochează ecranul"
+
+#~ msgid "Cancel"
+#~ msgstr "Renunță"
+
+#~ msgid "You will be automatically logged out in %d second."
+#~ msgid_plural "You will be automatically logged out in %d seconds."
+#~ msgstr[0] "Sesiunea se va închide automat într-o secundă."
+#~ msgstr[1] "Sesiunea se va închide automat în %d secunde."
+#~ msgstr[2] "Sesiunea se va închide automat în %d de secunde."
+
+#~ msgid "This system will be automatically shut down in %d second."
+#~ msgid_plural "This system will be automatically shut down in %d seconds."
+#~ msgstr[0] "Sistemul va fi oprit automat într-o secundă."
+#~ msgstr[1] "Sistemul va fi oprit automat în %d secunde."
+#~ msgstr[2] "Sistemul va fi oprit automat în %d de secunde."
+
+#~ msgid "You are currently logged in as \"%s\"."
+#~ msgstr "Sunteți autentificat ca „%s”."
+
+#~ msgid "Log out of this system now?"
+#~ msgstr "Ieșiți de pe acest sistem acum?"
+
+#~ msgid "_Switch User"
+#~ msgstr "_Schimbă utilizatorul"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Opriți sistemul acum?"
+
+#~ msgid "S_uspend"
+#~ msgstr "S_uspendă"
+
+#~ msgid "_Hibernate"
+#~ msgstr "_Hibernează"
+
+#~ msgid "_Restart"
+#~ msgstr "_Repornește"
+
+#~ msgid "_Shut Down"
+#~ msgstr "_Oprește"
+
+#~ msgid "Exited with code %d"
+#~ msgstr "A ieșit cu codul %d"
+
+#~ msgid "Killed by signal %d"
+#~ msgstr "Omorât de semnalul %d"
+
+#~ msgid "Stopped by signal %d"
+#~ msgstr "Oprit de semnalul %d"
+
+#~ msgid "GNOME 3 Failed to Load"
+#~ msgstr "GNOME 3 nu a reușit să pornească"
+
+#~ msgid ""
+#~ "Unfortunately GNOME 3 failed to start properly and started in the "
+#~ "<i>fallback mode</i>.\n"
+#~ "\n"
+#~ "This most likely means your system (graphics hardware or driver) is not "
+#~ "capable of delivering the full GNOME 3 experience."
+#~ msgstr ""
+#~ "Din păcate, GNOME 3 nu a reușit să pornească corect și a pornit versiunea "
+#~ "<i>de rezervă</i>.\n"
+#~ "\n"
+#~ "Cel mai probabil aceasta înseamnă că sistemul dumneavoastră (placa "
+#~ "grafică sau driverul acesteia) nu poate oferi o experiență GNOME 3 "
+#~ "completă."
+
+#~ msgid "Learn more about GNOME 3"
+#~ msgstr "Aflați mai multe despre GNOME 3"
+
+#~ msgid ""
+#~ "Unable to start login session (and unable to connect to the X server)"
+#~ msgstr ""
+#~ "Nu s-a putut porni sesiunea de start (iar conexiunea la serverul X nu a "
+#~ "putut fi realizată)"
 
 #~ msgid "File Manager"
 #~ msgstr "Administrator de fișiere"
@@ -491,9 +594,6 @@ msgstr "Program apelat cu opțiuni care intră în conflict"
 #~ msgid "Required session components"
 #~ msgstr "Componentele necesare sesiunii"
 
-#~ msgid "Save sessions"
-#~ msgstr "Salvează sesiunile"
-
 #~ msgid ""
 #~ "The file manager provides the desktop icons and allows you to interact "
 #~ "with your saved files."
@@ -530,9 +630,6 @@ msgstr "Program apelat cu opțiuni care intră în conflict"
 
 #~ msgid "GConf key used to look up default session"
 #~ msgstr "Cheia GConf folosită la căutarea sesiunii implicite"
-
-#~ msgid "Show logout dialog"
-#~ msgstr "Afișează dialogul de ieșire din sesiune"
 
 #~ msgid "Show shutdown dialog"
 #~ msgstr "Afișează dialogul de oprire"
