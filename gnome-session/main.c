@@ -333,6 +333,10 @@ main (int argc, char **argv)
                 exit (1);
         }
 
+#ifdef HAVE_SYSTEMD
+        gsm_util_export_user_environment (NULL);
+#endif
+
         /* From 3.14 GDM sets XDG_CURRENT_DESKTOP. For compatibility with
          * older versions of GDM,  other display managers, and startx,
          * set a fallback value if we don't find it set.

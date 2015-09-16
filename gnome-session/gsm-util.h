@@ -49,6 +49,9 @@ char *      gsm_util_generate_startup_id            (void);
 
 void        gsm_util_setenv                         (const char *variable,
                                                      const char *value);
+#ifdef HAVE_SYSTEMD
+gboolean    gsm_util_export_user_environment        (GError     **error);
+#endif
 
 void        gsm_quit                                (void);
 
