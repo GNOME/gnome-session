@@ -379,6 +379,10 @@ main (int argc, char **argv)
 
         gsm_util_export_activation_environment (NULL);
 
+#ifdef HAVE_SYSTEMD
+        gsm_util_export_user_environment (NULL);
+#endif
+
         {
                 gchar *ibus_path;
 
