@@ -447,6 +447,39 @@ gsm_util_generate_startup_id (void)
                                 sequence);
 }
 
+static void
+gsm_util_save_environment (void)
+{
+        g_autoptr(GVariant)  environment = NULL;
+        g_autoptr(GError)    error = NULL;
+        g_autofree char     *environment_dir = NULL;
+        g_autofree char     *filename = NULL;
+        gconstpointer        environment_data;
+        gsize                size;
+        int                  ret;
+        gboolean             contents_set;
+
+        environment_dir = g_build_filename (g_get_user_runtime_dir (), "gnome", NULL);
+        ret = g_mkdir_with_parents (environment_dir, 0700);
+
+        if (ret < 0) {
+                g_warning ("can't create gnome runtime dir: %m");
+                return;
+        }
+
+        environment = g_variant_new_bytestring_array ((const gchar * const *) g_get_environ (), -1);
+        size = g_variant_get_size (environment);
+        environment_data = g_variant_get_data (environment);
+
+        filename = g_build_filename (environment_dir, "environment", NULL);
+
+        contents_set = g_file_set_contents (filename, environment_data, size, &error);
+
+        if (!contents_set) {
+                g_warning ("can't save environment: %s", error->message);
+        }
+}
+
 static gboolean
 gsm_util_update_activation_environment (const char  *variable,
                                         const char  *value,
@@ -511,4 +544,6 @@ gsm_util_setenv (const char *variable,
                 g_warning ("Could not make bus activated clients aware of %s=%s environment variable: %s", variable, value, bus_error->message);
                 g_error_free (bus_error);
         }
+
+        gsm_util_save_environment ();
 }
