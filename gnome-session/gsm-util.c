@@ -32,6 +32,8 @@
 
 #include "gsm-util.h"
 
+extern char **environ;
+
 static gchar *_saved_session_dir = NULL;
 
 char *
@@ -467,7 +469,7 @@ gsm_util_save_environment (void)
                 return;
         }
 
-        environment = g_variant_new_bytestring_array ((const gchar * const *) g_get_environ (), -1);
+        environment = g_variant_new_bytestring_array ((const gchar * const *) environ, -1);
         size = g_variant_get_size (environment);
         environment_data = g_variant_get_data (environment);
 
