@@ -1,7 +1,7 @@
 EXTRA_DIST =
 NULL =
-bin_PROGRAMS = gnome-session
-libexec_PROGRAMS = gnome-session-failed
+bin_SCRIPTS = gnome-session
+libexec_PROGRAMS = gnome-session-binary gnome-session-failed
 noinst_LTLIBRARIES = libgsmutil.la
 noinst_PROGRAMS = 		\
 	test-client-dbus	\
@@ -16,7 +16,7 @@ AM_CPPFLAGS =					\
 
 AM_CFLAGS = $(WARN_CFLAGS)
 
-gnome_session_SOURCES =				\
+gnome_session_binary_SOURCES =			\
 	$(BUILT_SOURCES)			\
 	gsm-app.h				\
 	gsm-app.c				\
@@ -62,12 +62,12 @@ gnome_session_SOURCES =				\
 	gsm-xsmp-server.h
 
 if HAVE_CONSOLEKIT
-gnome_session_SOURCES += gsm-consolekit.c gsm-consolekit.h
+gnome_session_binary_SOURCES += gsm-consolekit.c gsm-consolekit.h
 else
 EXTRA_DIST += gsm-consolekit.c gsm-consolekit.h
 endif
 
-gnome_session_CPPFLAGS =			\
+gnome_session_binary_CPPFLAGS =			\
 	$(AM_CPPFLAGS)				\
 	$(X11_CFLAGS)				\
 	$(SM_CFLAGS)				\
@@ -84,7 +84,7 @@ gnome_session_CPPFLAGS =			\
 	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
 	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
 
-gnome_session_LDADD =				\
+gnome_session_binary_LDADD =			\
 	libgsmutil.la 				\
 	$(X11_LIBS)				\
 	$(SM_LIBS)				\

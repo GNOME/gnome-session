@@ -227,6 +227,15 @@ check_gl (GError **error)
         return g_spawn_check_exit_status (status, error);
 }
 
+static inline void
+maybe_push_env_var (const char* name)
+{
+        const char *value = g_getenv (name);
+
+        if (value)
+                gsm_util_setenv (name, value);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -339,6 +348,26 @@ main (int argc, char **argv)
          */
         if (g_getenv ("XDG_CURRENT_DESKTOP") == NULL)
             gsm_util_setenv ("XDG_CURRENT_DESKTOP", "GNOME");
+
+        /* Push locale variables to dbus-daemon */
+        maybe_push_env_var ("LC_TIME");
+        maybe_push_env_var ("LC_NUMERIC");
+        maybe_push_env_var ("LC_MONETARY");
+        maybe_push_env_var ("LC_MEASUREMENT");
+        maybe_push_env_var ("LC_PAPER");
+
+        {
+                gchar *ibus_path;
+
+                ibus_path = g_find_program_in_path("ibus-daemon");
+
+                if (ibus_path) {
+                        gsm_util_setenv ("QT_IM_MODULE", "ibus");
+                        gsm_util_setenv ("XMODIFIERS", "@im=ibus");
+                }
+
+                g_free (ibus_path);
+        }
 
         /* Some third-party programs rely on GNOME_DESKTOP_SESSION_ID to
          * detect if GNOME is running. We keep this for compatibility reasons.
