@@ -236,6 +236,34 @@ maybe_push_env_var (const char* name)
                 gsm_util_setenv (name, value);
 }
 
+static void
+initialize_gio (void)
+{
+        char *disable_fuse = NULL;
+        char *use_vfs = NULL;
+
+        disable_fuse = g_strdup (g_getenv ("GVFS_DISABLE_FUSE"));
+        use_vfs = g_strdup (g_getenv ("GVFS_USE_VFS"));
+
+        g_setenv ("GVFS_DISABLE_FUSE", "1", TRUE);
+        g_setenv ("GIO_USE_VFS", "local", TRUE);
+        g_vfs_get_default ();
+
+        if (use_vfs) {
+                g_setenv ("GIO_USE_VFS", use_vfs, TRUE);
+                g_free (use_vfs);
+        } else {
+                g_unsetenv ("GIO_USE_VFS");
+        }
+
+        if (disable_fuse) {
+                g_setenv ("GIO_DISABLE_FUSE", use_vfs, TRUE);
+                g_free (disable_fuse);
+        } else {
+                g_unsetenv ("GVFS_DISABLE_FUSE");
+        }
+}
+
 int
 main (int argc, char **argv)
 {
@@ -262,6 +290,9 @@ main (int argc, char **argv)
         if (!require_dbus_session (argc, argv, &error)) {
                 gsm_util_init_error (TRUE, "%s", error->message);
         }
+
+        /* Make sure we initialize gio in a way that does not autostart any daemon */
+        initialize_gio ();
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
