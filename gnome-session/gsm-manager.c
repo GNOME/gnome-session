@@ -445,6 +445,9 @@ phase_num_to_name (guint phase)
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
                 name = "EARLY_INITIALIZATION";
                 break;
+        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
+                name = "PRE_DISPLAY_SERVER";
+                break;
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
                 name = "DISPLAY_SERVER";
                 break;
@@ -541,6 +544,7 @@ end_phase (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
@@ -712,6 +716,7 @@ on_phase_timeout (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
@@ -1330,6 +1335,7 @@ start_phase (GsmManager *manager)
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:

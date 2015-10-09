@@ -619,6 +619,8 @@ load_desktop_file (GsmAutostartApp  *app)
         if (phase_str != NULL) {
                 if (strcmp (phase_str, "EarlyInitialization") == 0) {
                         phase = GSM_MANAGER_PHASE_EARLY_INITIALIZATION;
+                } else if (strcmp (phase_str, "PreDisplayServer") == 0) {
+                        phase = GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER;
                 } else if (strcmp (phase_str, "DisplayServer") == 0) {
                         phase = GSM_MANAGER_PHASE_DISPLAY_SERVER;
                 } else if (strcmp (phase_str, "Initialization") == 0) {
