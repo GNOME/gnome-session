@@ -1,5 +1,5 @@
 AC_INIT([gnome-session],
-        [3.17.92],
+        [3.18.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session])
 
 AC_CONFIG_SRCDIR([gnome-session])
@@ -33,12 +33,12 @@ if test "x$enable_deprecation_flags" = "xyes"; then
    AC_SUBST([DISABLE_DEPRECATED_CFLAGS])
 fi
 
-GLIB_REQUIRED=2.35.0
-GTK3_REQUIRED=2.90.7
+GLIB_REQUIRED=2.46.0
+GTK3_REQUIRED=3.18.0
 DBUS_GLIB_REQUIRED=0.76
 UPOWER_REQUIRED=0.9.0
 JSON_GLIB_REQUIRED=0.10
-GNOME_DESKTOP_REQUIRED=3.9.91
+GNOME_DESKTOP_REQUIRED=3.18.0
 
 AC_ARG_ENABLE(session-selector, AS_HELP_STRING([--enable-session-selector],
                                                [enable building a custom session selector dialog]),
