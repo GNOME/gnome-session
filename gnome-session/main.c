@@ -243,7 +243,7 @@ initialize_gio (void)
         char *use_vfs = NULL;
 
         disable_fuse = g_strdup (g_getenv ("GVFS_DISABLE_FUSE"));
-        use_vfs = g_strdup (g_getenv ("GVFS_USE_VFS"));
+        use_vfs = g_strdup (g_getenv ("GIO_USE_VFS"));
 
         g_setenv ("GVFS_DISABLE_FUSE", "1", TRUE);
         g_setenv ("GIO_USE_VFS", "local", TRUE);
@@ -257,7 +257,7 @@ initialize_gio (void)
         }
 
         if (disable_fuse) {
-                g_setenv ("GIO_DISABLE_FUSE", use_vfs, TRUE);
+                g_setenv ("GVFS_DISABLE_FUSE", use_vfs, TRUE);
                 g_free (disable_fuse);
         } else {
                 g_unsetenv ("GVFS_DISABLE_FUSE");
