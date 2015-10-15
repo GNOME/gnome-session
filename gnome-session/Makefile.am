@@ -1,4 +1,4 @@
-EXTRA_DIST =
+EXTRA_DIST = gnome-session.in
 NULL =
 bin_SCRIPTS = gnome-session
 libexec_PROGRAMS = gnome-session-binary gnome-session-failed
@@ -15,6 +15,11 @@ AM_CPPFLAGS =					\
 	$(DISABLE_DEPRECATED_CFLAGS)
 
 AM_CFLAGS = $(WARN_CFLAGS)
+
+gnome-session: gnome-session.in Makefile
+	$(AM_V_GEN) sed \
+		-e "s|\@libexecdir\@|$(libexecdir)|" \
+                $< > $@.tmp && mv $@.tmp $@
 
 gnome_session_binary_SOURCES =			\
 	$(BUILT_SOURCES)			\
@@ -211,6 +216,8 @@ EXTRA_DIST +=						\
 	org.gnome.SessionManager.Presence.xml
 
 CLEANFILES =	\
+	gnome-session \
+	gnome-session.tmp \
 	$(BUILT_SOURCES)
 
 -include $(top_srcdir)/git.mk

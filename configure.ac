@@ -380,7 +380,6 @@ data/icons/48x48/Makefile
 data/icons/scalable/Makefile
 data/icons/symbolic/Makefile
 gnome-session/Makefile
-gnome-session/gnome-session
 tools/Makefile
 po/Makefile.in
 ])
