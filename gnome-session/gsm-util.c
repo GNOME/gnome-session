@@ -497,10 +497,16 @@ gsm_util_setenv (const char *variable,
 {
         GError *bus_error;
 
-        if (!value)
-                g_unsetenv (variable);
-        else
-                g_setenv (variable, value, TRUE);
+        /* Note: we're intentionally comparing pointers here:
+           The goal is to avoid an un-threadsafe env variable update
+           when this API is used in maybe_push_env_var() in main.c
+        */
+        if (g_getenv (variable) != value) {
+                if (!value)
+                        g_unsetenv (variable);
+                else
+                        g_setenv (variable, value, TRUE);
+        }
 
         bus_error = NULL;
 
