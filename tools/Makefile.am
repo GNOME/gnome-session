@@ -41,6 +41,20 @@ gnome_session_inhibit_CPPFLAGS =		\
 gnome_session_inhibit_LDADD =			\
 	$(GNOME_SESSION_LIBS)
 
+if HAVE_SYSTEMD
+gnome_session_desktop_app_generator_LDADD =	\
+	$(GIO_LIBS)
+
+gnome_session_desktop_app_generator_SOURCES =	\
+	gnome-session-desktop-app-generator.c
+
+generatordir=$(prefix)/lib/systemd/user-generators
+
+gnome-session-desktop-app-generator-install-hook:
+	$(MKDIR_P) $(DESTDIR)$(generatordir)
+	-rm -f $(DESTDIR)$(generatordir)/gnome-session-desktop-app-generator
+#endif
+
 gnome_session_check_accelerated_helper_SOURCES = 		\
 	gnome-session-check-accelerated-common.h		\
 	gnome-session-check-accelerated-helper.c
