@@ -26,7 +26,7 @@ write_unit_file_for_app_info (const char      *unit_dir,
                               GDesktopAppInfo *app_info)
 {
         gboolean activatable;
-        char *contents;
+        g_autofree char *contents;
         gboolean contents_set;
         GError *error = NULL;
         const char *source_path, *name, *description, *exec_binary;
