@@ -21,11 +21,11 @@ endif
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 
 wayland_sessiondir = $(datadir)/wayland-sessions
-wayland_session_in_files = gnome-wayland.desktop.in
+wayland_session_in_files = gnome.desktop.in
 wayland_session_DATA = $(wayland_session_in_files:.desktop.in=.desktop)
 
 sessiondir = $(datadir)/gnome-session/sessions
-session_in_in_files = gnome.session.desktop.in.in gnome-dummy.session.desktop.in.in gnome-wayland.session.desktop.in.in
+session_in_in_files = gnome.session.desktop.in.in gnome-dummy.session.desktop.in.in
 session_in_files = $(session_in_in_files:.session.desktop.in.in=.session.desktop.in)
 session_DATA = $(session_in_files:.session.desktop.in=.session)
 
