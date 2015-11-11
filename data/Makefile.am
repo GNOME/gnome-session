@@ -12,7 +12,7 @@ hwcompatdir = $(pkgdatadir)
 hwcompat_DATA = hardware-compatibility
 
 xsessiondir = $(datadir)/xsessions
-xsession_in_files = gnome.desktop.in
+xsession_in_files = gnome.desktop.in gnome-xorg.desktop.in
 
 if BUILD_SESSION_SELECTOR
 xsession_in_files += gnome-custom-session.desktop.in
