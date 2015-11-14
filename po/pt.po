@@ -9,11 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.18\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-07 19:55+0000\n"
-"PO-Revision-Date: 2015-06-08 08:59+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-11-13 22:01+0000\n"
+"PO-Revision-Date: 2015-11-14 07:55+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: Pedro Albuquerque\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
+"X-Language: pt_PT\n"
+"X-Source-Language: C\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -35,22 +36,18 @@ msgstr "Esta entrada permite-lhe selecionar uma sessão gravada"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Esta é uma sessão no GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME em Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME de teste"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME em Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Esta sessão faz com que entre no GNOME, utilizando o Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -145,7 +142,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Terminar a sessão"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Ativar o código de depuração"
 
@@ -157,7 +154,7 @@ msgstr "Permitir terminar sessão"
 msgid "Show extension warning"
 msgstr "Mostrar aviso de extensão"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
 msgid "Not responding"
 msgstr "Não está a responder"
 
@@ -190,40 +187,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossível criar socket de escuta ICE: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Especificar novas pastas base de arranque automático"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "PASTA_INICIOAUTO"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Sessão a utilizar"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "NOME_SESSAO"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "Não carregar as aplicações especificadas pelo utilizador"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:284
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar o diálogo de falha total para teste"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:285
 msgid "Disable hardware acceleration check"
 msgstr "Desativar teste de aceleração por hardware"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:307
 msgid " - the GNOME session manager"
 msgstr " - o gestor de sessões do GNOME"
 
@@ -324,6 +321,9 @@ msgstr "Impossível ligar-se ao gestor de sessões"
 #: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Aplicação invocada com conflito de opções"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Esta sessão faz com que entre no GNOME, utilizando o Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "Selecionar o Comando"
@@ -624,19 +624,20 @@ msgstr "Aplicação invocada com conflito de opções"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under "
+#~ "\"/desktop/gnome/session/required_components\"). The Startup Applications "
+#~ "preferences tool will not normally allow users to remove a required "
+#~ "component from the session, and the session manager will automatically "
+#~ "add the required components back to the session at login time if they do "
+#~ "get removed."
 #~ msgstr ""
 #~ "Lista de componentes que são necessários como parte da sessão. (Cada "
-#~ "elemento designa uma chave sob \"/desktop/gnome/session/"
-#~ "required_components\"). As Preferências de Aplicações de Arranque "
-#~ "normalmente não permitirão aos utilizadores remover um componente "
-#~ "necessário da sessão, e o gestor de sessões irá automaticamente adicionar "
-#~ "novamente, ao iniciar uma sessão, os componentes necessários, caso tenham "
-#~ "sido removidos."
+#~ "elemento designa uma chave sob "
+#~ "\"/desktop/gnome/session/required_components\"). As Preferências de "
+#~ "Aplicações de Arranque normalmente não permitirão aos utilizadores "
+#~ "remover um componente necessário da sessão, e o gestor de sessões irá "
+#~ "automaticamente adicionar novamente, ao iniciar uma sessão, os "
+#~ "componentes necessários, caso tenham sido removidos."
 
 #~ msgid "Logout prompt"
 #~ msgstr "Perguntar ao terminar sessão"
