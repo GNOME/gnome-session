@@ -28,7 +28,7 @@
 #include "gsm-shell-extensions.h"
 
 #define SHELL_SCHEMA "org.gnome.shell"
-#define ENABLED_EXTENSIONS_KEY "enabled-extensions"
+#define DISABLE_EXTENSIONS_KEY "disable-user-extensions"
 
 #define SHELL_EXTENSIONS_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_SHELL_EXTENSIONS, GsmShellExtensionsPrivate))
 
@@ -184,9 +184,9 @@ gsm_shell_extensions_init (GsmShellExtensions *self)
 gboolean
 gsm_shell_extensions_disable_all (GsmShellExtensions *self)
 {
-  return g_settings_set_strv (self->priv->settings,
-                              ENABLED_EXTENSIONS_KEY,
-                              NULL);
+  return g_settings_set_boolean (self->priv->settings,
+                                 DISABLE_EXTENSIONS_KEY,
+                                 TRUE);
 }
 
 guint
