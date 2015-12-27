@@ -157,9 +157,9 @@ do_power_off (const char *action)
                 g_warning ("Failed to call %s: %s",
                            action, error->message);
                 g_error_free (error);
+        } else {
+                g_variant_unref (reply);
         }
-
-        g_variant_unref (reply);
         g_clear_object (&sm_proxy);
 }
 
