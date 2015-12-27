@@ -9,16 +9,17 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-22 08:25+0000\n"
-"PO-Revision-Date: 2015-01-22 19:17+0100\n"
-"Last-Translator: Daniel Martinez <entaltoaragon@gmail.com>\n"
+"POT-Creation-Date: 2015-12-27 12:16+0000\n"
+"PO-Revision-Date: 2015-12-27 18:11+0200\n"
+"Last-Translator: Daniel <entaltoaragon@gmail.com>\n"
 "Language-Team: Aragonés <softaragones@googlegroups.com>\n"
 "Language: an\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1451236260.000000\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -32,22 +33,18 @@ msgstr "Ista dentrada te deixa trigar una sesion alzada"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Ista sesión accede a GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME en Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME en o Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Ista sesión accede a lo GNOME, fendo servir o Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -142,7 +139,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "T_rancar a sesión"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Enchegar o codigo de depuración"
 
@@ -154,7 +151,7 @@ msgstr "Permitir zarrar sesión"
 msgid "Show extension warning"
 msgstr "Amostrar alvertencias d'as extensions"
 
-#: ../gnome-session/gsm-manager.c:1246 ../gnome-session/gsm-manager.c:1891
+#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
 msgid "Not responding"
 msgstr "No responde"
 
@@ -187,40 +184,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "No se pudo creyar o socket d'escuita ICE: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Sobreescribir as carpetas d'encieto automatico estandar"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "CARPETA_D'ENCIETO_AUTOMATICO"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Sesión ta emplegar"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "NOMBRE_D'A_SESIÓN"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "No cargar as aplicacions especificadas por l'usuario"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Versión d'ista aplicación"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:284
 msgid "Show the fail whale dialog for testing"
 msgstr "Amostrar o dialogo d'a ballena de prebas"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:285
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar a verificación d'acceleración hardware"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:307
 msgid " - the GNOME session manager"
 msgstr " - O chestor de sesions de GNOME"
 
@@ -278,8 +275,8 @@ msgstr "Sesión %d"
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr ""
-"Os nombres de sesion no pueden estar prencipiaus con '.' u tener caracters "
-"'/'"
+"Os nombres de sesion no pueden estar prencipiaus con '.' u tener caracters '/"
+"'"
 
 #: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
@@ -321,6 +318,9 @@ msgstr "No se pudo connectar con o chestor de sesions"
 #: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Se clamó a lo programa con opcions en conflicto"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Ista sesión accede a lo GNOME, fendo servir o Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "Seleccionar comando"
