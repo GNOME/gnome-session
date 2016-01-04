@@ -1,19 +1,19 @@
 # Thai translation for gnome-session.
-# Copyright (C) 2003-2015 Free Software Foundation, Inc.
+# Copyright (C) 2003-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Ranee Somchaimit <tuktik_friend@hotmail.com>, 2003
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004
 # Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2012
-# Akom Chotiphantawanon <knight2000@gmail.com>, 2015.
+# Akom Chotiphantawanon <knight2000@gmail.com>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-15 08:01+0000\n"
-"PO-Revision-Date: 2015-04-15 17:02+0700\n"
+"POT-Creation-Date: 2015-12-30 10:07+0000\n"
+"PO-Revision-Date: 2016-01-04 11:33+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -35,22 +35,17 @@ msgstr "รายการนี้จะให้คุณเลือกวา
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "วาระนี้จะเข้าสู่ GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME ใน Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "หุ่นตัวอย่าง GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME ใน Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "วาระนี้จะเข้าสู่ GNOME โดยใช้ Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -142,7 +137,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
@@ -154,7 +149,7 @@ msgstr "อนุญาตให้ออกจากระบบ"
 msgid "Show extension warning"
 msgstr "แสดงคำเตือนของส่วนขยาย"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
@@ -185,40 +180,40 @@ msgstr "ไม่รับการเชื่อมต่อใหม่จา
 msgid "Could not create ICE listening socket: %s"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "วาระที่จะใช้"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "รุ่นของโปรแกรมนี้"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:284
 msgid "Show the fail whale dialog for testing"
 msgstr "แสดงกล่องแจ้งพังเพื่อทดสอบ"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:285
 msgid "Disable hardware acceleration check"
 msgstr "ปิดใช้การตรวจสอบการเร่งความเร็วด้วยฮาร์ดแวร์"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:307
 msgid " - the GNOME session manager"
 msgstr "- โปรแกรมจัดการวาระ GNOME"
 
@@ -316,6 +311,9 @@ msgstr "ติดต่อโปรแกรมจัดการวาระไ
 #: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "วาระนี้จะเข้าสู่ GNOME โดยใช้ Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "เลือกคำสั่ง"
