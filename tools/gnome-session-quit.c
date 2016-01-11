@@ -171,6 +171,7 @@ main (int argc, char *argv[])
         GOptionContext *ctx;
 
         /* Initialize the i18n stuff */
+        setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);

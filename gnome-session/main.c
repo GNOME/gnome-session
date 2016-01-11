@@ -294,6 +294,7 @@ main (int argc, char **argv)
         /* Make sure we initialize gio in a way that does not autostart any daemon */
         initialize_gio ();
 
+        setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
