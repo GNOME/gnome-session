@@ -605,6 +605,12 @@ is_app_display_server (GsmManager *manager,
 {
         GsmManagerPhase phase;
 
+        /* Apps can only really act as a display server if
+         * we're a wayland session.
+         */
+        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "wayland") != 0)
+                return FALSE;
+
         phase = gsm_app_peek_phase (app);
 
         return (phase == GSM_MANAGER_PHASE_DISPLAY_SERVER &&
