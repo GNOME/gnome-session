@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-24 12:21+0000\n"
-"PO-Revision-Date: 2014-11-24 18:13+0100\n"
+"POT-Creation-Date: 2016-01-16 10:05+0000\n"
+"PO-Revision-Date: 2016-01-16 16:24+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.6\n"
 
 # desktop entry name
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -40,24 +40,18 @@ msgid "GNOME"
 msgstr "GNOME"
 
 # desktop entry comment
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Táto relácia vás prihlási do GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME cez Xorg"
 
 # desktop entry name
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Fingované GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME cez Wayland"
-
-# desktop entry comment
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Táto relácia vás prihlási do GNOME s použitím protokolu Wayland"
 
 # GtkWindow title
 #: ../data/session-selector.ui.h:1
@@ -134,11 +128,11 @@ msgstr "_Príkaz:"
 msgid "_Name:"
 msgstr "_Názov:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ale nie! Niekde sa stala chyba."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -148,7 +142,7 @@ msgstr ""
 
 # PK: extensions asi zasuvne moduly
 # DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -156,7 +150,7 @@ msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
 "preventívne zakázané."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -165,31 +159,31 @@ msgstr ""
 "Prosím, odhláste sa a skúste to znovu."
 
 # button
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Povolí odhlásenie"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
 msgid "Not responding"
 msgstr "Neodpovedá"
 
 # button
-#: ../gnome-session/gsm-util.c:382
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "Odh_lásiť sa"
 
@@ -217,45 +211,45 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
 # cmd desc
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:278
 msgid "Override standard autostart directories"
 msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:278
 msgid "AUTOSTART_DIR"
 msgstr "ADRESÁR_AUTOSPUSTENIA"
 
 # cmd desc
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:279
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:279
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:281
 msgid "Do not load user-specified applications"
 msgstr "Nenačíta aplikácie špecifikované používateľom"
 
 # cmd desc
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:282
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
 # cmd desc
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:310
+#: ../gnome-session/main.c:284
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
 
 # cmd desc
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:285
 msgid "Disable hardware acceleration check"
 msgstr "Zakáže kontrolu hardvérovej akcelerácie"
 
-#: ../gnome-session/main.c:325
+#: ../gnome-session/main.c:307
 msgid " - the GNOME session manager"
 msgstr " - správca relácie GNOME"
 
@@ -335,37 +329,41 @@ msgid "A session named ‘%s’ already exists"
 msgstr "Relácia s názvom „%s“ už existuje"
 
 # cmd desc
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:49
 msgid "Log out"
 msgstr "Uskutoční odhlásenie"
 
 # cmd desc
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:50
 msgid "Power off"
 msgstr "Uskutoční vypnutie"
 
 # cmd desc
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:51
 msgid "Reboot"
 msgstr "Uskutoční reštart"
 
 # cmd desc
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:52
 msgid "Ignoring any existing inhibitors"
 msgstr "Budú sa ignorovať akékoľvek potlačenia"
 
 # cmd desc
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:53
 msgid "Don't prompt for user confirmation"
 msgstr "Nepýtať si potvrdenie od používateľa"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
 msgid "Could not connect to the session manager"
 msgstr "Nepodarilo sa pripojiť k správcovi relácií"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:196
 msgid "Program called with conflicting options"
 msgstr "Program volaný s konfliktnými voľbami"
+
+# desktop entry comment
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Táto relácia vás prihlási do GNOME s použitím protokolu Wayland"
 
 # titulok okna
 #~ msgid "Select Command"
