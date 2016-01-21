@@ -23,6 +23,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
 #include <unistd.h>
 #include <errno.h>
 
