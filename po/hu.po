@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-30 08:23+0000\n"
-"PO-Revision-Date: 2014-11-30 16:21+0100\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-01-24 22:05+0000\n"
+"PO-Revision-Date: 2016-01-25 09:43+0100\n"
+"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -37,22 +37,17 @@ msgstr "Ez a bejegyzés lehetővé teszi mentett munkamenet kiválasztását"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Bejelentkezés a GNOME környezetbe"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME Xorgon"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME példa"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME Waylandon"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Bejelentkezés a GNOME környezetbe Wayland használatával"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -114,11 +109,11 @@ msgstr "_Parancs:"
 msgid "_Name:"
 msgstr "_Név:"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jaj! Valami elromlott."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
@@ -126,7 +121,7 @@ msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni. Keresse meg a "
 "rendszergazdát."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
@@ -134,7 +129,7 @@ msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni. Elővigyázatosságból "
 "minden kiterjesztés letiltásra került."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
@@ -142,27 +137,27 @@ msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni.\n"
 "Jelentkezzen ki, és próbálja újra."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Kijelentkezés"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:306
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Kijelentkezés engedélyezése"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Kiterjesztés figyelmeztetésének megjelenítése"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "Nem válaszol"
 
-#: ../gnome-session/gsm-util.c:382
+#: ../gnome-session/gsm-util.c:381
 msgid "_Log out"
 msgstr "_Kijelentkezés"
 
@@ -189,40 +184,40 @@ msgstr "Új ügyfélkapcsolatok visszautasítása, mivel a rendszer éppen leál
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nem hozható létre az ICE-figyelő foglalat: %s"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Szabványos automatikus indítási könyvtárak felülbírálása"
 
-#: ../gnome-session/main.c:304
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTO_INDÍTÁS_KVT"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Használandó munkamenet"
 
-#: ../gnome-session/main.c:305
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "MUNKAMENET_NEVE"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Ne töltsön be felhasználó által megadott alkalmazásokat"
 
-#: ../gnome-session/main.c:308
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:310
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "A hibaképernyő megjelenítése teszteléshez"
 
-#: ../gnome-session/main.c:311
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "A hardveres gyorsítás ellenőrzésének kikapcsolása"
 
-#: ../gnome-session/main.c:325
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
 msgstr " – A GNOME munkamenet-kezelője"
 
@@ -295,33 +290,36 @@ msgstr "A környezetnevek nem tartalmazhatnak „/” karaktert"
 msgid "A session named ‘%s’ already exists"
 msgstr "Már létezik „%s” nevű környezet"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Kijelentkezés"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Kikapcsolás"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Újraindítás"
 
-#: ../tools/gnome-session-quit.c:54
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "A meglévő korlátozók mellőzése"
 
-#: ../tools/gnome-session-quit.c:55
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Ne kérjen felhasználói megerősítést"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Sikertelen kapcsolatfelvétel a munkamenet-kezelővel"
 
-#: ../tools/gnome-session-quit.c:201
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "A program kapcsolói ütköznek"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Bejelentkezés a GNOME környezetbe Wayland használatával"
 
 #~ msgid "Select Command"
 #~ msgstr "Válasszon parancsot"
