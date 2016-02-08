@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-14 08:26+0000\n"
-"PO-Revision-Date: 2014-12-14 20:05+0600\n"
+"POT-Creation-Date: 2016-02-07 22:06+0000\n"
+"PO-Revision-Date: 2016-02-08 13:59+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -31,22 +31,17 @@ msgstr "Бұл элемент сізге сақталып тұрған сесс�
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Бұл сессия арқылы GNOME-ға кіресіз"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "Xorg негізіндегі GNOME"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME жалған сессиясы"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "Wayland негізіндегі GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Бұл сессия арқылы Wayland негізіндегі GNOME ішіне кіресіз"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -140,7 +135,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:242
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
@@ -152,7 +147,7 @@ msgstr "Жүйеден шығуды рұқсат ету"
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
-#: ../gnome-session/gsm-manager.c:1245 ../gnome-session/gsm-manager.c:1890
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "Жауап бермейді"
 
@@ -183,40 +178,40 @@ msgstr "Жаңа клиенттік байланысын тайдыру, өйт�
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE тындаушы сокетін жасау мүмкін емес: %s"
 
-#: ../gnome-session/main.c:240
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Стандартты іске қосылу бумалардың орнына басқаларды қолдану"
 
-#: ../gnome-session/main.c:240
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "АВТОІСКЕҚОСЫЛУ_БУМАСЫ"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Қолдану үшін сессия"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "СЕССИЯ_АТЫ"
 
-#: ../gnome-session/main.c:243
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Пайдаланушыға тән қолданбаларды жөнелтпеу"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Осы қолданбаның нұсқасы"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:246
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Сынау үшін \"fail whale\" сұхбатын көрсету"
 
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Құрылғылық үдетуді тексеруді сөндіру"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
 msgstr " - GNOME сессиялар басқарушысы"
 
@@ -291,33 +286,36 @@ msgstr "Сессия атауында ‘/’ таңбасы болмауы ти
 msgid "A session named ‘%s’ already exists"
 msgstr "‘%s’ атауы бар сессия бар болып тұр"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Жүйеден шығу"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Сөндіру"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Қайта қосу"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Кез-келген бар болып тұрған ингибиторларды елемеу"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Пайдаланушы растауын сұрамау"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Сессиялар басқарушысына байланысты орнату мүмкін емес"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Бағдарлама өазара ерегісетін опциялармен шақырылды"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Бұл сессия арқылы Wayland негізіндегі GNOME ішіне кіресіз"
 
 #~ msgid "Select Command"
 #~ msgstr "Команданы таңдаңыз"
