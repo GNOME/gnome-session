@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-19 08:44+0000\n"
-"PO-Revision-Date: 2013-09-12 18:08+0200\n"
+"POT-Creation-Date: 2016-02-07 22:06+0000\n"
+"PO-Revision-Date: 2016-02-08 08:07+0100\n"
 "Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
@@ -42,22 +42,17 @@ msgstr "Ce choix permet d'accéder à une session enregistrée"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Cette session vous connecte dans GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME sur Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME factice"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME sur Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Cette session vous connecte dans GNOME, en utilisant Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -153,7 +148,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Fermer la session"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Active le code de débogage"
 
@@ -165,7 +160,7 @@ msgstr "Autoriser la déconnexion"
 msgid "Show extension warning"
 msgstr "Afficher l'avertissement pour les extensions"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "Absence de réponse"
 
@@ -198,40 +193,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossible de créer le connecteur d'écoute ICE : %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Remplace les répertoires autostart standards"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "RÉP_AUTOSTART"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Session à utiliser"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "NOM_SESSION"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Ne charge pas les applications demandées par l'utilisateur"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Version de cette application"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Afficher le dialogue d'erreur pour le tester"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Désactiver la vérification de l'accélération matérielle"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
 msgstr "- le gestionnaire de sessions de GNOME"
 
@@ -306,33 +301,36 @@ msgstr "Les noms de sessions ne peuvent pas contenir le caractère « / »"
 msgid "A session named ‘%s’ already exists"
 msgstr "Une session nommée « %s » existe déjà"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Se déconnecte"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "S'éteint"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Redémarrer"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignorer tout inhibiteur existant"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Ne demande pas de confirmation"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Impossible de se connecter au gestionnaire de sessions"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Programme appelé avec des options conflictuelles"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Cette session vous connecte dans GNOME, en utilisant Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "Sélection d'une commande"
