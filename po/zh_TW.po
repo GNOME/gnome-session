@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gnome-session 3.1.92\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-19 08:44+0000\n"
-"PO-Revision-Date: 2015-02-20 18:58+0800\n"
+"POT-Creation-Date: 2016-02-09 10:06+0000\n"
+"PO-Revision-Date: 2016-02-13 12:42+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -33,48 +33,43 @@ msgstr "自訂"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
-msgstr "這個項目讓您選擇儲存的作業階段"
+msgstr "這個項目讓您選擇儲存的工作階段"
 
 #: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "這個作業階段讓您登入 GNOME"
+msgstr "這個工作階段讓您登入 GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME 於 Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
 
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME 於 Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "這個作業階段讓您登入 GNOME，使用 Wayland"
-
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
-msgstr "自訂作業階段"
+msgstr "自訂工作階段"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "請選擇要執行的自訂作業階段"
+msgstr "請選擇要執行的自訂工作階段"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
-msgstr "新增作業階段(_N)"
+msgstr "新增工作階段(_N)"
 
 #: ../data/session-selector.ui.h:4
 msgid "_Remove Session"
-msgstr "移除作業階段(_R)"
+msgstr "移除工作階段(_R)"
 
 #: ../data/session-selector.ui.h:5
 msgid "Rena_me Session"
-msgstr "重新命名作業階段(_M)"
+msgstr "重新命名工作階段(_M)"
 
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
@@ -144,7 +139,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "登出(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
@@ -156,7 +151,7 @@ msgstr "允許登出"
 msgid "Show extension warning"
 msgstr "顯示擴充功能警告"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "沒有回應"
 
@@ -180,49 +175,49 @@ msgstr "這個程式正在阻擋登出。"
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "因為目前此作業階段即將關閉電腦，拒絕新的客戶端連線\n"
+msgstr "因為目前此工作階段即將關閉電腦，拒絕新的客戶端連線\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:609
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "無法建立 ICE 監聽插槽：%s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "覆蓋標準的自動啟動目錄"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "Session to use"
-msgstr "要使用的作業階段"
+msgstr "要使用的工作階段"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "不要載入使用者指定的應用程式"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "這個程式的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "顯示嚴重錯誤對話盒以供測試"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "停用硬體加速檢查"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
-msgstr " - GNOME 作業階段管理員"
+msgstr " - GNOME 工作階段管理員"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
@@ -244,7 +239,7 @@ msgid ""
 msgstr ""
 "%s [OPTION...] COMMAND\n"
 "\n"
-"抑制某些作業階段功能時執行 COMMAND 。\n"
+"抑制某些工作階段功能時執行 COMMAND 。\n"
 "\n"
 "  -h, --help        顯示這個求助文件\n"
 "  --version         顯示程式版本\n"
@@ -271,53 +266,56 @@ msgstr "%s 需要引數\n"
 #: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
-msgstr "作業階段 %d"
+msgstr "工作階段 %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "作業階段名稱不允許以 ‘.’ 開頭或包含 ‘/’字元"
+msgstr "工作階段名稱不允許以 ‘.’ 開頭或包含 ‘/’字元"
 
 #: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
-msgstr "作業階段名稱不允許以 ‘.’ 開頭"
+msgstr "工作階段名稱不允許以 ‘.’ 開頭"
 
 #: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "作業階段名稱不允許包含 ‘/’字元"
+msgstr "工作階段名稱不允許包含 ‘/’字元"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
-msgstr "已存在名為「%s」的作業階段"
+msgstr "已存在名為「%s」的工作階段"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "登出"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "關閉電源"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "重新開機"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "忽略任何現有的限制因素"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "無需使用者確認"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
-msgstr "無法連接作業階段總管"
+msgstr "無法連接工作階段總管"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "以相衝突的選項呼叫程式"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "這個作業階段讓您登入 GNOME，使用 Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "選擇指令"
