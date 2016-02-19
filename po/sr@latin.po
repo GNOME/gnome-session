@@ -1,17 +1,17 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2015.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2016.
 # This file is distributed under the same license as the gnome-session package.
 # Danilo Šegan <danilo@gnome.org> 2005.
 # Slobodan D. Sredojević <slobo@akrep.be> 2006.
 # Miloš Popović <gpopac@gmail.com>, 2010—2011.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011—2015.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011—2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-04 08:34+0000\n"
-"PO-Revision-Date: 2015-03-05 22:20+0200\n"
+"POT-Creation-Date: 2016-02-19 12:21+0000\n"
+"PO-Revision-Date: 2016-02-19 18:38+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -34,22 +34,19 @@ msgstr "Ova stavka vam dopušta da izaberete sačuvanu sesiju"
 msgid "GNOME"
 msgstr "Gnom"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Ova sesija vas prijavljuje u Gnom"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#, fuzzy
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "Gnom na Iksorg-u"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Gnomov lažnjak"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "Gnom na Vejlandu"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Ova sesija vas prijavljuje u Gnom, koristeći Vajland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -143,7 +140,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odjavi me"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Uključuje kod za ispravljanje grešaka"
 
@@ -155,7 +152,7 @@ msgstr "Dozvoljava odjavljivanje"
 msgid "Show extension warning"
 msgstr "Prikazuje upozorenje proširenja"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "Ne daje odziv"
 
@@ -186,40 +183,40 @@ msgstr "Odbacujem vezu sa novim klijentom jer je u toku gašenje sesije\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ne mogu da napravim priključak ICE osluškivanja: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Zaobilazi uobičajene direktorijume samopokretanja"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "DIREKTORIJUM_SAMOPOKRETANJA"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Sesije koje će biti korišćene"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "NAZIV_SESIJE"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Ne učitava programe koje je zadao korisnik"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Izdanje ovog programa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Prikazuje prozorče neuspeha za isprobavanje"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Isključuje proveru hardverskog ubrzanja"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
 msgstr " — upravnik Gnomovom sesijom"
 
@@ -293,33 +290,36 @@ msgstr "Nazivi sesija ne mogu da sadrže kosu crtu (/)"
 msgid "A session named ‘%s’ already exists"
 msgstr "Već postoji sesija pod nazivom „%s“"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Odjavi me"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Isključi"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Ponovo pokreni"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Zanemarujem postojeće ometače"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Ne traži potvrdu od korisnika"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Ne mogu da se povežem sa upravnikom sesije"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program je pozvan sa nesaglasnim mogućnostima"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Ova sesija vas prijavljuje u Gnom, koristeći Vajland"
 
 #~ msgid "Select Command"
 #~ msgstr "Izaberi naredbu"
