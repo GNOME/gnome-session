@@ -411,7 +411,7 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
-        /* Tell QT to try to make QT applications look like gnome
+        /* Tell Qt to try to make Qt applications look like gnome
          */
         gsm_util_setenv ("QT_QPA_PLATFORMTHEME", "qgnomeplatform");
 
