@@ -411,6 +411,10 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
+        /* Tell QT to try to make QT applications look like gnome
+         */
+        gsm_util_setenv ("QT_QPA_PLATFORMTHEME", "qgnomeplatform");
+
         /* hack to fix keyring until we can reorder things in 3.20
          * https://bugzilla.gnome.org/show_bug.cgi?id=738205
          */
