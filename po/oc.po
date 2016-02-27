@@ -2,16 +2,17 @@
 # Copyright (C) 1998-2012 Free Software Foundation, Inc.
 # Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007.
 # Cédric Valmary (Tot en òc) <cvalmary@yahoo.fr>, 2015.
+# Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-10 08:20+0000\n"
-"PO-Revision-Date: 2015-05-10 15:02+0200\n"
-"Last-Translator: Cédric Valmary (Tot en òc) <cvalmary@yahoo.fr>\n"
-"Language-Team: Tot en òc (totenoc.eu)\n"
-"Language: fr\n"
+"POT-Creation-Date: 2016-02-18 10:06+0000\n"
+"PO-Revision-Date: 2016-02-27 18:21+0200\n"
+"Last-Translator: Cédric Valmary (totenoc.eu) <cvalmary@yahoo.fr>\n"
+"Language-Team: Tot En Òc\n"
+"Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,48 +26,44 @@ msgstr "Personalizat"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
-msgstr "Aquesta causida permet d'accedir a una sesilha enregistrada"
+msgstr "Aquesta causida permet d'accedir a una session enregistrada"
 
 #: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
-msgstr "Aquesta sesilha vos connècta dins GNOME"
+msgstr "Aquesta session vos connècta dins GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME sus Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME factici"
 
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME sus Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Aquesta sesilha vos connècta dins GNOME, en utilizant Wayland"
-
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
-msgstr "Sesilha personalizada"
+msgstr "Session personalizada"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "Causissètz una sesilha personalizada d'aviar"
+msgstr "Causissètz una session personalizada d'aviar"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
-msgstr "Sesilha _novèla"
+msgstr "Session _novèla"
 
 #: ../data/session-selector.ui.h:4
 msgid "_Remove Session"
-msgstr "Sup_rimir la sesilha"
+msgstr "Sup_rimir la session"
 
 #: ../data/session-selector.ui.h:5
 msgid "Rena_me Session"
-msgstr "Reno_menar la sesilha"
+msgstr "Reno_menar la session"
 
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
@@ -119,7 +116,7 @@ msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
-"Un problèma s'es produsit e lo sistèma se pòt pas recuperar. Contactatz un "
+"Un problèma s'es produch e lo sistèma se pòt pas recuperar. Contactatz un "
 "administrator del sistèma"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
@@ -127,7 +124,7 @@ msgid ""
 "A problem has occurred and the system can't recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"Un problèma s'es produsit e lo sistèma se pòt pas recuperar. Totas las "
+"Un problèma s'es produch e lo sistèma se pòt pas recuperar. Totas las "
 "extensions son estadas desactivadas per mesura de precaucion."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
@@ -135,14 +132,14 @@ msgid ""
 "A problem has occurred and the system can't recover.\n"
 "Please log out and try again."
 msgstr ""
-"Un problèma s'es produsit e lo sistèma se pòt pas recuperar.\n"
+"Un problèma s'es produch e lo sistèma se pòt pas recuperar.\n"
 "Desconnectatz-vos e ensajatz tornamai."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
-msgstr "_Tampar la sesilha"
+msgstr "_Tampar la session"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Activa lo còde de desbugatge"
 
@@ -154,7 +151,7 @@ msgstr "Autorizar la desconnexion"
 msgid "Show extension warning"
 msgstr "Afichar l'avertiment per las extensions"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
 msgid "Not responding"
 msgstr "Abséncia de responsa"
 
@@ -179,7 +176,7 @@ msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"Refús de la connexion d'un novèl client perque la sesilha es actualament en "
+"Refús de la connexion d'un novèl client perque la session es actualament en "
 "cors de tampadura\n"
 
 #: ../gnome-session/gsm-xsmp-server.c:609
@@ -187,42 +184,42 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossible de crear lo connectador d'escota ICE : %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Remplaça los repertòris autostart estandards"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "REP_AUTOSTART"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "Session to use"
-msgstr "Sesilha d'utilizar"
+msgstr "Session d'utilizar"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
-msgstr "NOM_SESILHA"
+msgstr "NOM_SESSION"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Carga pas las aplicacions demandadas per l'utilizaire"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Version d'aquesta aplicacion"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Afichar lo dialòg d'error per lo testar"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar la verificacion de l'acceleracion materiala"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
-msgstr "- lo gestionari de sesilhas de GNOME"
+msgstr "- lo gestionari de sessions de GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
@@ -244,7 +241,7 @@ msgid ""
 msgstr ""
 "%s [OPCION...] COMANDA\n"
 "\n"
-"Executa COMANDA tot en inibant de foncionalitats de la sesilha.\n"
+"Executa COMANDA tot en inibant de foncionalitats de la session.\n"
 "\n"
 "  -h, --help        Afichar aquesta ajuda\n"
 "  --version         Afichar la version del programa\n"
@@ -272,55 +269,58 @@ msgstr "%s necessita un paramètre\n"
 #: ../tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
-msgstr "Sesilha %d"
+msgstr "Session %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgstr ""
-"Los noms de sesilhas pòdon pas començar per « . » o conténer lo caractèr « / "
+"Los noms de sessions pòdon pas començar per « . » o conténer lo caractèr « / "
 "»"
 
 #: ../tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with ‘.’"
-msgstr "Los noms de sesilhas pòdon pas començar per « . »"
+msgstr "Los noms de sessions pòdon pas començar per « . »"
 
 #: ../tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Los noms de sesilhas pòdon pas conténer lo caractèr « / »"
+msgstr "Los noms de sessions pòdon pas conténer lo caractèr « / »"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named ‘%s’ already exists"
-msgstr "Una sesilha nomenada « %s » existís ja"
+msgstr "Una session nomenada « %s » existís ja"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Se desconnècta"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "S'atuda"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Reaviar"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Ignorar tot inibitor existent"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Demanda pas de confirmacion"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
-msgstr "Impossible de se connectar al gestionari de sesilhas"
+msgstr "Impossible de se connectar al gestionari de sessions"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Programa apelat amb d'opcions conflictualas"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Aquesta session vos connècta dins GNOME, en utilizant Wayland"
 
 #~ msgid "Select Command"
 #~ msgstr "Sélection d'une commande"
@@ -335,7 +335,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "La commande de démarrage ne peut pas être vide"
 
 #~ msgid "The startup command is not valid"
-#~ msgstr "La commande de démarrage n'est pas valide"
+#~ msgstr "La commande de démarrage es pas valide"
 
 #~ msgid "Enabled"
 #~ msgstr "Activé"
@@ -365,10 +365,10 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "Choisir les applications à lancer à la connexion"
 
 #~ msgid "File is not a valid .desktop file"
-#~ msgstr "Le fichier n'est pas un fichier .desktop valide"
+#~ msgstr "Le fichièr es pas un fichièr .desktop valide"
 
 #~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "La version « %s » du fichier .desktop n'est pas reconnue"
+#~ msgstr "La version « %s » del fichièr .desktop es pas reconnue"
 
 #~ msgid "Starting %s"
 #~ msgstr "Démarrage de %s"
@@ -381,17 +381,17 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 #~ msgstr ""
-#~ "Impossible de passer des URI de document à un fichier de bureau avec "
-#~ "« Type=Link »"
+#~ "Impossible de passer des URI de document à un fichièr de bureau avec « "
+#~ "Type=Link »"
 
 #~ msgid "Not a launchable item"
-#~ msgstr "Cet élément ne peut être lancé"
+#~ msgstr "Cet element ne peut être lancé"
 
 #~ msgid "Disable connection to session manager"
 #~ msgstr "Désactive la connexion au gestionnaire de sessions"
 
 #~ msgid "Specify file containing saved configuration"
-#~ msgstr "Indique le fichier contenant la configuration enregistrée"
+#~ msgstr "Indique le fichièr contenant la configuration enregistrée"
 
 #~ msgid "FILE"
 #~ msgstr "FICHIER"
@@ -409,7 +409,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "Affiche les options de la gestion de sessions"
 
 #~ msgid "Some programs are still running:"
-#~ msgstr "Des programmes sont toujours en cours d'exécution :"
+#~ msgstr "Des programmes son toujours en cours d'exécution :"
 
 #~ msgid "Unknown"
 #~ msgstr "Inconnu"
@@ -421,7 +421,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ "Waiting for the program to finish. Interrupting the program may cause you "
 #~ "to lose work."
 #~ msgstr ""
-#~ "Attente de la fin du programme. L'interruption du programme risquerait de "
+#~ "Attente de la fin del programme. L'interruption del programme risquerait de "
 #~ "vous faire perdre certaines données."
 
 #~ msgid ""
@@ -447,7 +447,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "Éteindre malgré tout"
 
 #~ msgid "Restart Anyway"
-#~ msgstr "Redémarrer malgré tout"
+#~ msgstr "Reaviar malgré tout"
 
 #~ msgid "Lock Screen"
 #~ msgstr "Verrouiller l'écran"
@@ -474,7 +474,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "Vous êtes actuellement connecté en tant que « %s »."
 
 #~ msgid "Log out of this system now?"
-#~ msgstr "Se déconnecter du système maintenant ?"
+#~ msgstr "Se déconnecter del système maintenant ?"
 
 #~ msgid "_Switch User"
 #~ msgstr "Changer d'_utilisateur"
@@ -489,19 +489,19 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ msgstr "_Hiberner"
 
 #~ msgid "_Restart"
-#~ msgstr "_Redémarrer"
+#~ msgstr "_Reaviar"
 
 #~ msgid "_Shut Down"
 #~ msgstr "Ét_eindre"
 
 #~ msgid "Restart this system now?"
-#~ msgstr "Redémarrer cet ordinateur maintenant ?"
+#~ msgstr "Reaviar cet ordinateur maintenant ?"
 
 #~ msgid "Icon '%s' not found"
 #~ msgstr "Icône « %s » non trouvée"
 
 #~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "Échec du chargement de GNOME 3"
+#~ msgstr "Échec del chargement de GNOME 3"
 
 #~ msgid ""
 #~ "Unfortunately GNOME 3 failed to start properly and started in the "
@@ -510,11 +510,11 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 #~ "This most likely means your system (graphics hardware or driver) is not "
 #~ "capable of delivering the full GNOME 3 experience."
 #~ msgstr ""
-#~ "GNOME 3 n'a malheureusement pas réussi à démarrer correctement et a "
+#~ "GNOME 3 n'a malheureusement pas réussi à démarrer correctement e a "
 #~ "démarré en <i>mode restreint</i>.\n"
 #~ "\n"
-#~ "Cela signifie probablement que votre système (la carte graphique ou son "
-#~ "pilote) n'est pas assez puissant pour prendre en charge tous les éléments "
+#~ "Cela signifie probablement que votre système (la carte graphique o son "
+#~ "pilote) es pas assez puissant pour prendre en carga tous les elements "
 #~ "du bureau GNOME 3."
 
 #~ msgid "Learn more about GNOME 3"
@@ -522,7 +522,7 @@ msgstr "Programa apelat amb d'opcions conflictualas"
 
 #~ msgid ""
 #~ "Unable to start login session (and unable to connect to the X server)"
-#~ msgstr "Impossible de démarrer la session (et de se connecter au serveur X)"
+#~ msgstr "Impossible de démarrer la session (et de se connecter au servidor X)"
 
 #~ msgid "Exited with code %d"
 #~ msgstr "Quitté avec le code %d"
