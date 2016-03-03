@@ -1380,21 +1380,11 @@ gsm_autostart_app_get_autorestart (GsmApp *app)
 static const char *
 gsm_autostart_app_get_app_id (GsmApp *app)
 {
-        const char *location;
-        const char *slash;
-
         if (GSM_AUTOSTART_APP (app)->priv->app_info == NULL) {
                 return NULL;
         }
 
-        location = g_desktop_app_info_get_filename (GSM_AUTOSTART_APP (app)->priv->app_info);
-
-        slash = strrchr (location, '/');
-        if (slash != NULL) {
-                return slash + 1;
-        } else {
-                return location;
-        }
+        return g_app_info_get_id (G_APP_INFO (GSM_AUTOSTART_APP (app)->priv->app_info));
 }
 
 static gboolean
