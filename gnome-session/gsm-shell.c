@@ -328,86 +328,46 @@ on_open_finished (GObject *source,
 }
 
 static void
-on_end_session_dialog_closed (GsmShell *shell)
-{
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                              G_CALLBACK (queue_end_session_dialog_update),
-                                              shell);
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CLOSED], 0);
-}
-
-static void
-on_end_session_dialog_canceled (GsmShell *shell)
-{
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                              G_CALLBACK (queue_end_session_dialog_update),
-                                              shell);
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CANCELED], 0);
-}
-
-static void
-on_end_session_dialog_confirmed_logout (GsmShell *shell)
-{
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_LOGOUT], 0);
-}
-
-static void
-on_end_session_dialog_confirmed_shutdown (GsmShell *shell)
-{
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_SHUTDOWN], 0);
-}
-
-static void
-on_end_session_dialog_confirmed_reboot (GsmShell   *shell)
-{
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_CONFIRMED_REBOOT], 0);
-}
-
-static void
 on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
                                    gchar      *sender_name,
                                    gchar      *signal_name,
                                    GVariant   *parameters,
                                    GsmShell   *shell)
 {
-        if (g_strcmp0 (signal_name, "Closed") == 0) {
-                on_end_session_dialog_closed (shell);
-        } else if (g_strcmp0 (signal_name, "Canceled") == 0) {
-                on_end_session_dialog_canceled (shell);
-        } else if (g_strcmp0 (signal_name ,"ConfirmedLogout") == 0) {
-                on_end_session_dialog_confirmed_logout (shell);
-        } else if (g_strcmp0 (signal_name ,"ConfirmedReboot") == 0) {
-                on_end_session_dialog_confirmed_reboot (shell);
-        } else if (g_strcmp0 (signal_name ,"ConfirmedShutdown") == 0) {
-                on_end_session_dialog_confirmed_shutdown (shell);
+        struct {
+                const char *name;
+                int         index;
+        } signal_map[] = {
+                { "Closed", END_SESSION_DIALOG_CLOSED },
+                { "Canceled", END_SESSION_DIALOG_CANCELED },
+                { "ConfirmedLogout", END_SESSION_DIALOG_CONFIRMED_LOGOUT },
+                { "ConfirmedReboot", END_SESSION_DIALOG_CONFIRMED_REBOOT },
+                { "ConfirmedShutdown", END_SESSION_DIALOG_CONFIRMED_SHUTDOWN },
+                { NULL, -1 }
+        };
+        int signal_index = -1;
+        int i;
+
+        for (i = 0; signal_map[i].name != NULL; i++) {
+                if (g_strcmp0 (signal_map[i].name, signal_name) == 0) {
+                        signal_index = signal_map[i].index;
+                        break;
+                }
         }
+
+        if (signal_index == -1)
+                return;
+
+        if (shell->priv->update_idle_id != 0) {
+                g_source_remove (shell->priv->update_idle_id);
+                shell->priv->update_idle_id = 0;
+        }
+
+        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                              G_CALLBACK (queue_end_session_dialog_update),
+                                              shell);
+
+        g_signal_emit (G_OBJECT (shell), signals[signal_index], 0);
 }
 
 static void
