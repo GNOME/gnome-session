@@ -2419,11 +2419,11 @@ gsm_manager_shutdown (GsmExportedManager    *skeleton,
 
         g_debug ("GsmManager: Shutdown called");
 
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+        if (manager->priv->phase < GSM_MANAGER_PHASE_RUNNING) {
                 g_dbus_method_invocation_return_error (invocation,
                                                        GSM_MANAGER_ERROR,
                                                        GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                                                       "Shutdown interface is only available during the Running phase");
+                                                       "Shutdown interface is only available after the Running phase starts");
                 return TRUE;
         }
 
@@ -2454,11 +2454,11 @@ gsm_manager_reboot (GsmExportedManager    *skeleton,
 
         g_debug ("GsmManager: Reboot called");
 
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+        if (manager->priv->phase < GSM_MANAGER_PHASE_RUNNING) {
                 g_dbus_method_invocation_return_error (invocation,
                                                        GSM_MANAGER_ERROR,
                                                        GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                                                       "Reboot interface is only available during the Running phase");
+                                                       "Reboot interface is only available after the Running phase starts");
                 return TRUE;
         }
 
@@ -2608,7 +2608,8 @@ user_logout (GsmManager           *manager,
              GsmManagerLogoutMode  mode)
 {
         if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                /* Already shutting down, nothing more to do */
+                manager->priv->logout_mode = mode;
+                end_session_or_show_shell_dialog (manager);
                 return;
         }
 
@@ -2620,11 +2621,11 @@ gsm_manager_logout (GsmManager *manager,
                     guint logout_mode,
                     GError **error)
 {
-        if (manager->priv->phase != GSM_MANAGER_PHASE_RUNNING) {
+        if (manager->priv->phase < GSM_MANAGER_PHASE_RUNNING) {
                 g_set_error (error,
                              GSM_MANAGER_ERROR,
                              GSM_MANAGER_ERROR_NOT_IN_RUNNING,
-                             "Logout interface is only available during the Running phase");
+                             "Logout interface is only available after the Running phase starts");
                 return FALSE;
         }
 
