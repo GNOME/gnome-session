@@ -2203,6 +2203,10 @@ on_store_inhibitor_removed (GsmStore   *store,
         gsm_exported_manager_emit_inhibitor_removed (manager->priv->skeleton, id);
 
         update_idle (manager);
+
+        if (manager->priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                end_session_or_show_shell_dialog (manager);
+        }
 }
 
 static void
