@@ -158,7 +158,6 @@ struct GsmManagerPrivate
         GDBusConnection        *connection;
         GsmExportedManager     *skeleton;
         gboolean                dbus_disconnected : 1;
-        guint                   name_owner_id;
 
         GsmShell               *shell;
         guint                   shell_end_session_dialog_canceled_id;
@@ -2163,6 +2162,13 @@ update_inhibited_actions (GsmManager *manager,
 }
 
 static void
+on_inhibitor_vanished (GsmInhibitor *inhibitor,
+                       GsmManager   *manager)
+{
+        gsm_store_remove (manager->priv->inhibitors, gsm_inhibitor_peek_id (inhibitor));
+}
+
+static void
 on_store_inhibitor_added (GsmStore   *store,
                           const char *id,
                           GsmManager *manager)
@@ -2178,6 +2184,8 @@ on_store_inhibitor_added (GsmStore   *store,
 
         new_inhibited_actions = manager->priv->inhibited_actions | gsm_inhibitor_peek_flags (i);
         update_inhibited_actions (manager, new_inhibited_actions);
+
+        g_signal_connect_object (i, "vanished", G_CALLBACK (on_inhibitor_vanished), manager, 0);
 
         gsm_exported_manager_emit_inhibitor_added (manager->priv->skeleton, id);
 
@@ -2262,11 +2270,6 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&manager->priv->lockdown_settings);
         g_clear_object (&manager->priv->system);
         g_clear_object (&manager->priv->shell);
-
-        if (manager->priv->name_owner_id != 0) {
-                g_dbus_connection_signal_unsubscribe (manager->priv->connection, manager->priv->name_owner_id);;
-                manager->priv->name_owner_id = 0;
-        }
 
         if (manager->priv->skeleton != NULL) {
                 g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (manager->priv->skeleton),
@@ -3116,34 +3119,6 @@ remove_inhibitors_for_connection (GsmManager *manager,
         }
 }
 
-static void
-bus_name_owner_changed (GDBusConnection *connection,
-                        const gchar     *sender_name,
-                        const gchar     *object_path,
-                        const gchar     *interface_name,
-                        const gchar     *signal_name,
-                        GVariant        *parameters,
-                        gpointer         user_data)
-{
-        GsmManager *manager = user_data;
-        const gchar *service_name, *old_service_name, *new_service_name;
-
-        g_variant_get (parameters, "(&s&s&s)", &service_name, &old_service_name, &new_service_name);
-
-        if (strlen (new_service_name) == 0
-            && strlen (old_service_name) > 0) {
-                /* service removed */
-                remove_inhibitors_for_connection (manager, old_service_name);
-                remove_clients_for_connection (manager, old_service_name);
-        } else if (strlen (old_service_name) == 0
-                   && strlen (new_service_name) > 0) {
-                /* service added */
-
-                /* use this if we support automatically registering
-                 * well known bus names */
-        }
-}
-
 static gboolean
 register_manager (GsmManager *manager)
 {
@@ -3209,16 +3184,6 @@ register_manager (GsmManager *manager)
         g_signal_connect (connection, "closed",
                           G_CALLBACK (on_session_connection_closed), manager);
 
-        manager->priv->name_owner_id = g_dbus_connection_signal_subscribe (connection,
-                                                                           "org.freedesktop.DBus",
-                                                                           "org.freedesktop.DBus",
-                                                                           "NameOwnerChanged",
-                                                                           "/org/freedesktop/DBus",
-                                                                           NULL,
-                                                                           G_DBUS_SIGNAL_FLAGS_NONE,
-                                                                           bus_name_owner_changed,
-                                                                           manager,
-                                                                           NULL);
         manager->priv->connection = connection;
         manager->priv->skeleton = skeleton;
 

@@ -47,6 +47,7 @@ struct GsmDBusClientPrivate
 
         GDBusConnection      *connection;
         GsmExportedClientPrivate *skeleton;
+        guint                 watch_id;
 };
 
 enum {
@@ -219,6 +220,17 @@ out:
 }
 
 static void
+on_client_vanished (GDBusConnection *connection,
+                    const char      *name,
+                    gpointer         user_data)
+{
+        GsmDBusClient  *client = user_data;
+        gsm_client_disconnected (GSM_CLIENT (client));
+
+        g_bus_unwatch_name (client->priv->watch_id);
+}
+
+static void
 gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
                               const char     *bus_name)
 {
@@ -232,6 +244,14 @@ gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
         if (!get_caller_info (client, bus_name, NULL, &client->priv->caller_pid)) {
                 client->priv->caller_pid = 0;
         }
+
+        client->priv->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
+                                                   bus_name,
+                                                   G_BUS_NAME_WATCHER_FLAGS_NONE,
+                                                   NULL,
+                                                   on_client_vanished,
+                                                   client,
+                                                   NULL);
 }
 
 const char *
@@ -296,6 +316,9 @@ gsm_dbus_client_finalize (GObject *object)
         }
 
         g_clear_object (&client->priv->connection);
+
+        if (client->priv->watch_id != 0)
+                g_bus_unwatch_name (client->priv->watch_id);
 
         G_OBJECT_CLASS (gsm_dbus_client_parent_class)->finalize (object);
 }

@@ -45,6 +45,8 @@ struct GsmInhibitorPrivate
         guint cookie;
         GDBusConnection *connection;
         GsmExportedInhibitor *skeleton;
+
+        guint                 watch_id;
 };
 
 enum {
@@ -57,6 +59,12 @@ enum {
         PROP_TOPLEVEL_XID,
         PROP_COOKIE
 };
+
+enum {
+        VANISHED,
+        LAST_SIGNAL
+};
+static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT)
 
@@ -236,6 +244,18 @@ gsm_inhibitor_init (GsmInhibitor *inhibitor)
 }
 
 static void
+on_inhibitor_vanished (GDBusConnection *connection,
+                       const char      *name,
+                       gpointer         user_data)
+{
+        GsmInhibitor  *inhibitor = user_data;
+
+        g_signal_emit (inhibitor, signals[VANISHED], 0);
+
+        g_bus_unwatch_name (inhibitor->priv->watch_id);
+}
+
+static void
 gsm_inhibitor_set_bus_name (GsmInhibitor  *inhibitor,
                             const char    *bus_name)
 {
@@ -245,6 +265,14 @@ gsm_inhibitor_set_bus_name (GsmInhibitor  *inhibitor,
 
         if (bus_name != NULL) {
                 inhibitor->priv->bus_name = g_strdup (bus_name);
+
+                inhibitor->priv->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
+                                                              bus_name,
+                                                              G_BUS_NAME_WATCHER_FLAGS_NONE,
+                                                              NULL,
+                                                              on_inhibitor_vanished,
+                                                              inhibitor,
+                                                              NULL);
         } else {
                 inhibitor->priv->bus_name = g_strdup ("");
         }
@@ -490,6 +518,10 @@ gsm_inhibitor_finalize (GObject *object)
                 g_clear_object (&inhibitor->priv->skeleton);
         }
 
+        if (inhibitor->priv->watch_id != 0) {
+                g_bus_unwatch_name (inhibitor->priv->watch_id);
+        }
+
         g_clear_object (&inhibitor->priv->connection);
 
         G_OBJECT_CLASS (gsm_inhibitor_parent_class)->finalize (object);
@@ -505,6 +537,13 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
         object_class->get_property         = gsm_inhibitor_get_property;
         object_class->set_property         = gsm_inhibitor_set_property;
 
+        signals[VANISHED] =
+                g_signal_new ("vanished",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              0, NULL, NULL, NULL,
+                              G_TYPE_NONE,
+                              0);
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
                                          g_param_spec_string ("bus-name",
