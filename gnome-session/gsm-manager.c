@@ -329,27 +329,6 @@ debug_clients (GsmManager *manager)
 }
 
 static gboolean
-_debug_inhibitor (const char    *id,
-                  GsmInhibitor  *inhibitor,
-                  GsmManager    *manager)
-{
-        g_debug ("GsmManager: Inhibitor app:%s client:%s bus-name:%s reason:%s",
-                 gsm_inhibitor_peek_app_id (inhibitor),
-                 gsm_inhibitor_peek_client_id (inhibitor),
-                 gsm_inhibitor_peek_bus_name (inhibitor),
-                 gsm_inhibitor_peek_reason (inhibitor));
-        return FALSE;
-}
-
-static void
-debug_inhibitors (GsmManager *manager)
-{
-        gsm_store_foreach (manager->priv->inhibitors,
-                           (GsmStoreFunc)_debug_inhibitor,
-                           manager);
-}
-
-static gboolean
 _find_by_cookie (const char   *id,
                  GsmInhibitor *inhibitor,
                  guint        *cookie_ap)
@@ -3072,51 +3051,6 @@ on_session_connection_closed (GDBusConnection *connection,
         g_debug ("GsmManager: dbus disconnected; disconnecting dbus clients...");
         manager->priv->dbus_disconnected = TRUE;
         remove_clients_for_connection (manager, NULL);
-}
-
-static gboolean
-inhibitor_has_bus_name (gpointer          key,
-                        GsmInhibitor     *inhibitor,
-                        RemoveClientData *data)
-{
-        gboolean    matches;
-        const char *bus_name_b;
-
-        bus_name_b = gsm_inhibitor_peek_bus_name (inhibitor);
-
-        matches = FALSE;
-        if (! IS_STRING_EMPTY (data->service_name) && ! IS_STRING_EMPTY (bus_name_b)) {
-                matches = (strcmp (data->service_name, bus_name_b) == 0);
-                if (matches) {
-                        g_debug ("GsmManager: removing inhibitor from %s for reason '%s' on connection %s",
-                                 gsm_inhibitor_peek_app_id (inhibitor),
-                                 gsm_inhibitor_peek_reason (inhibitor),
-                                 gsm_inhibitor_peek_bus_name (inhibitor));
-                }
-        }
-
-        return matches;
-}
-
-static void
-remove_inhibitors_for_connection (GsmManager *manager,
-                                  const char *service_name)
-{
-        RemoveClientData data;
-        guint count;
-
-        data.service_name = service_name;
-        data.manager = manager;
-
-        debug_inhibitors (manager);
-
-        count = gsm_store_foreach_remove (manager->priv->inhibitors,
-                                          (GsmStoreFunc)inhibitor_has_bus_name,
-                                          &data);
-        if (count > 0 &&
-            manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                end_session_or_show_shell_dialog (manager);
-        }
 }
 
 static gboolean
