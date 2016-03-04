@@ -1006,6 +1006,10 @@ gsm_manager_is_logout_inhibited (GsmManager *manager)
 {
         GsmInhibitor *inhibitor;
 
+        if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
+                return FALSE;
+        }
+
         if (manager->priv->inhibitors == NULL) {
                 return FALSE;
         }
