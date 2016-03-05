@@ -8,15 +8,15 @@
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2008-2010.
 # Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2010.
 # Tommi Vainikainen <thv@iki.fi>, 2011.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2015.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-11-18 10:04+0000\n"
-"PO-Revision-Date: 2015-11-18 16:59+0200\n"
+"POT-Creation-Date: 2016-03-05 10:07+0000\n"
+"PO-Revision-Date: 2016-03-05 19:50+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -43,9 +43,8 @@ msgid "This session logs you into GNOME"
 msgstr "Tämä istunto kirjautuu Gnomeen"
 
 #: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
 msgid "GNOME on Xorg"
-msgstr "Gnome Xorgilla"
+msgstr "Gnome Xorgia käyttäen"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
@@ -143,7 +142,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Kirjaudu ul_os"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
@@ -155,7 +154,7 @@ msgstr "Salli uloskirjautuminen"
 msgid "Show extension warning"
 msgstr "Näytä laajennusvaroitus"
 
-#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
 msgid "Not responding"
 msgstr "Ei vastaa"
 
@@ -188,40 +187,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistoketta ei voi luoda: %s"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTOKÄYN_HAK"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Käytettävä istunto"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "ISTUNTONIMI"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Näytä musta virheikkuna testausta varten"
 
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Poista laitteistokiihdytyksen tarkistus käytöstä"
 
-#: ../gnome-session/main.c:307
+#: ../gnome-session/main.c:309
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
@@ -278,31 +277,31 @@ msgstr "Istuntonimi ei voi sisältää merkkiä ‘/’"
 msgid "A session named ‘%s’ already exists"
 msgstr "Istunto nimeltä ‘%s’ on jo olemassa"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Kirjaudu ulos"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Sammuta"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Jätä käynnissä olevat estot huomioimatta"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Älä kysy käyttäjän vahvistusta"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Istunnonhallintaan ei saa yhteyttä"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
 
