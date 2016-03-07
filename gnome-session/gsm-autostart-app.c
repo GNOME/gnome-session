@@ -1073,7 +1073,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         ctx = g_app_launch_context_new ();
 
         child_environment = gsm_util_listenv ();
-        while (child_environment[i] != NULL) {
+        for (i = 0; child_environment[i] != NULL; i++) {
                 char **environment_tuple;
                 const char *key;
                 const char *value;
@@ -1086,7 +1086,6 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                         g_app_launch_context_setenv (ctx, key, value);
 
                 g_strfreev (environment_tuple);
-                i++;
         }
 
         if (startup_id != NULL) {
