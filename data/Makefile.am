@@ -12,7 +12,7 @@ hwcompatdir = $(pkgdatadir)
 hwcompat_DATA = hardware-compatibility
 
 xsessiondir = $(datadir)/xsessions
-xsession_in_files = gnome.desktop.in gnome-xorg.desktop.in
+xsession_in_files = gnome.desktop.in
 
 if BUILD_SESSION_SELECTOR
 xsession_in_files += gnome-custom-session.desktop.in
@@ -21,7 +21,7 @@ endif
 xsession_DATA = $(xsession_in_files:.desktop.in=.desktop)
 
 wayland_sessiondir = $(datadir)/wayland-sessions
-wayland_session_in_files = gnome.desktop.in
+wayland_session_in_files = gnome-wayland.desktop.in
 wayland_session_DATA = $(wayland_session_in_files:.desktop.in=.desktop)
 
 sessiondir = $(datadir)/gnome-session/sessions
