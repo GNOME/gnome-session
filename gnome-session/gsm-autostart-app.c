@@ -1056,6 +1056,8 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         gboolean         success;
         GError          *local_error;
         const char      *startup_id;
+        const char * const *child_environment;
+        int i;
         GAppLaunchContext *ctx;
         GSpawnChildSetupFunc child_setup_func = NULL;
         gpointer             child_setup_data = NULL;
@@ -1070,8 +1072,21 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         local_error = NULL;
         ctx = g_app_launch_context_new ();
 
-        if (g_getenv ("DISPLAY") != NULL) {
-                g_app_launch_context_setenv (ctx, "DISPLAY", g_getenv ("DISPLAY"));
+        child_environment = gsm_util_listenv ();
+        while (child_environment[i] != NULL) {
+                char **environment_tuple;
+                const char *key;
+                const char *value;
+
+                environment_tuple = g_strsplit (child_environment[i], "=", 2);
+                key = environment_tuple[0];
+                value = environment_tuple[1];
+
+                if (value != NULL)
+                        g_app_launch_context_setenv (ctx, key, value);
+
+                g_strfreev (environment_tuple);
+                i++;
         }
 
         if (startup_id != NULL) {

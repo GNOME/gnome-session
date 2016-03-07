@@ -177,9 +177,11 @@ gsm_session_clear_one_client (const char *filename,
         gboolean  result = TRUE;
         GKeyFile *key_file;
         char     *discard_exec = NULL;
+        char    **envp;
 
         g_debug ("GsmSessionSave: removing '%s' from saved session", filename);
 
+        envp = (char **) gsm_util_listenv ();
         key_file = g_key_file_new ();
         if (g_key_file_load_from_file (key_file, filename,
                                        G_KEY_FILE_NONE, NULL)) {
@@ -199,7 +201,7 @@ gsm_session_clear_one_client (const char *filename,
                 if (!g_shell_parse_argv (discard_exec, &argc, &argv, NULL))
                         goto out;
 
-                result = g_spawn_async (NULL, argv, NULL, G_SPAWN_SEARCH_PATH,
+                result = g_spawn_async (NULL, argv, envp, G_SPAWN_SEARCH_PATH,
                                         NULL, NULL, NULL, NULL) && result;
 
                 g_strfreev (argv);

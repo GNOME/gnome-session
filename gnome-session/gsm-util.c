@@ -33,6 +33,7 @@
 #include "gsm-util.h"
 
 static gchar *_saved_session_dir = NULL;
+static gchar **child_environment;
 
 char *
 gsm_util_find_desktop_file_for_app_name (const char *name,
@@ -381,7 +382,7 @@ gsm_util_init_error (gboolean    fatal,
         argv[11] = _("_Log out");
         argv[12] = NULL;
 
-        g_spawn_sync (NULL, argv, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+        g_spawn_sync (NULL, argv, child_environment, 0, NULL, NULL, NULL, NULL, NULL, NULL);
 
         g_free (msg);
 
@@ -497,16 +498,13 @@ gsm_util_setenv (const char *variable,
 {
         GError *bus_error;
 
-        /* Note: we're intentionally comparing pointers here:
-           The goal is to avoid an un-threadsafe env variable update
-           when this API is used in maybe_push_env_var() in main.c
-        */
-        if (g_getenv (variable) != value) {
-                if (!value)
-                        g_unsetenv (variable);
-                else
-                        g_setenv (variable, value, TRUE);
-        }
+        if (child_environment)
+                child_environment = g_listenv ();
+
+        if (!value)
+                child_environment = g_environ_unsetenv (child_environment, variable);
+        else
+                child_environment = g_environ_setenv (child_environment, variable, value, TRUE);
 
         bus_error = NULL;
 
@@ -517,4 +515,11 @@ gsm_util_setenv (const char *variable,
                 g_warning ("Could not make bus activated clients aware of %s=%s environment variable: %s", variable, value, bus_error->message);
                 g_error_free (bus_error);
         }
+}
+
+const char * const *
+gsm_util_listenv (void)
+{
+        return (const char * const *) child_environment;
+
 }
