@@ -498,7 +498,7 @@ gsm_util_setenv (const char *variable,
 {
         GError *bus_error;
 
-        if (child_environment)
+        if (child_environment == NULL)
                 child_environment = g_listenv ();
 
         if (!value)
