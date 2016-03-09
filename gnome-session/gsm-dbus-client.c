@@ -225,9 +225,11 @@ on_client_vanished (GDBusConnection *connection,
                     gpointer         user_data)
 {
         GsmDBusClient  *client = user_data;
-        gsm_client_disconnected (GSM_CLIENT (client));
 
         g_bus_unwatch_name (client->priv->watch_id);
+        client->priv->watch_id = 0;
+
+        gsm_client_disconnected (GSM_CLIENT (client));
 }
 
 static void
