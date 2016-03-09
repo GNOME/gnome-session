@@ -250,9 +250,10 @@ on_inhibitor_vanished (GDBusConnection *connection,
 {
         GsmInhibitor  *inhibitor = user_data;
 
-        g_signal_emit (inhibitor, signals[VANISHED], 0);
-
         g_bus_unwatch_name (inhibitor->priv->watch_id);
+        inhibitor->priv->watch_id = 0;
+
+        g_signal_emit (inhibitor, signals[VANISHED], 0);
 }
 
 static void
