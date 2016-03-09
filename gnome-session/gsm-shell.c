@@ -358,6 +358,8 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
         if (signal_index == -1)
                 return;
 
+        shell->priv->dialog_is_open = FALSE;
+
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
                 shell->priv->update_idle_id = 0;
@@ -494,6 +496,8 @@ gsm_shell_close_end_session_dialog (GsmShell *shell)
 {
         if (!shell->priv->end_session_dialog_proxy)
                 return;
+
+        shell->priv->dialog_is_open = FALSE;
 
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Close",
