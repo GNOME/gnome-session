@@ -2742,6 +2742,11 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
         /* the store will own the ref */
         g_object_unref (client);
 
+        g_signal_connect (client,
+                          "disconnected",
+                          G_CALLBACK (on_client_disconnected),
+                          manager);
+
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
                 gsm_app_set_registered (app, TRUE);
