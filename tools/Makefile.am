@@ -1,5 +1,5 @@
 bin_PROGRAMS = gnome-session-quit gnome-session-inhibit
-libexec_PROGRAMS = gnome-session-check-accelerated gnome-session-check-accelerated-helper
+libexec_PROGRAMS = gnome-session-check-accelerated gnome-session-check-accelerated-gl-helper
 
 if BUILD_SESSION_SELECTOR
 bin_PROGRAMS += gnome-session-selector
@@ -41,15 +41,15 @@ gnome_session_inhibit_CPPFLAGS =		\
 gnome_session_inhibit_LDADD =			\
 	$(GNOME_SESSION_LIBS)
 
-gnome_session_check_accelerated_helper_SOURCES = 		\
+gnome_session_check_accelerated_gl_helper_SOURCES = 		\
 	gnome-session-check-accelerated-common.h		\
-	gnome-session-check-accelerated-helper.c
+	gnome-session-check-accelerated-gl-helper.c
 
-gnome_session_check_accelerated_helper_CPPFLAGS =	\
+gnome_session_check_accelerated_gl_helper_CPPFLAGS =	\
 	-DPKGDATADIR=\""$(pkgdatadir)"\"		\
 	$(GL_TEST_CFLAGS)
 
-gnome_session_check_accelerated_helper_LDADD = 		\
+gnome_session_check_accelerated_gl_helper_LDADD = 		\
 	$(GL_TEST_LIBS)				\
 	$(X11_LIBS)
 

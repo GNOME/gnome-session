@@ -105,7 +105,7 @@ main (int argc, char **argv)
 {
         GdkDisplay *display = NULL;
         int estatus;
-        char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-helper", NULL };
+        char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", NULL };
         Window rootwin;
         glong is_accelerated, is_software_rendering;
         GError *error = NULL;
