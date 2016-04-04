@@ -44,16 +44,6 @@ static Atom is_accelerated_atom;
 static Atom is_software_rendering_atom;
 static gboolean property_changed;
 
-static void
-exit_1_message (const char *msg) G_GNUC_NORETURN;
-
-static void
-exit_1_message (const char *msg)
-{
-  g_printerr ("%s", msg);
-  exit (1);
-}
-
 static gboolean
 on_property_notify_timeout (gpointer data)
 {
