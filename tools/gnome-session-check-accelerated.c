@@ -95,10 +95,11 @@ main (int argc, char **argv)
 {
         GdkDisplay *display = NULL;
         int estatus;
-        char *child_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", NULL };
+        char *gl_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", NULL };
+        char *gles_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gles-helper", NULL };
         Window rootwin;
         glong is_accelerated, is_software_rendering;
-        GError *error = NULL;
+        GError *gl_error = NULL, *gles_error = NULL;
 
         /* gnome-session-check-accelerated gets run before X is started in the wayland
          * case, and it currently requires X. Until we have that working, just always
@@ -152,6 +153,9 @@ main (int argc, char **argv)
 
         /* First indicate that a test is in progress */
         is_accelerated = ACCEL_CHECK_RUNNING;
+        is_software_rendering = FALSE;
+        estatus = 1;
+
         XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
                          rootwin,
                          is_accelerated_atom,
@@ -159,20 +163,39 @@ main (int argc, char **argv)
 
         gdk_display_sync (display);
 
-        estatus = 1;
-        if (!g_spawn_sync (NULL, (char**)child_argv, NULL, 0,
-                           NULL, NULL, NULL, NULL, &estatus, &error)) {
-                is_accelerated = FALSE;
-                is_software_rendering = FALSE;
-                g_printerr ("gnome-session-check-accelerated: Failed to run helper: %s\n", error->message);
-                g_clear_error (&error);
-        } else {
+        /* First, try the GL helper */
+        if (g_spawn_sync (NULL, (char **) gl_helper_argv, NULL, 0,
+                           NULL, NULL, NULL, NULL, &estatus, &gl_error)) {
                 is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL) || (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
                 is_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
-                if (!is_accelerated)
-                        g_printerr ("gnome-session-check-accelerated: Helper exited with code %d\n", estatus);
+                if (is_accelerated)
+                        goto finish;
+
+                g_printerr ("gnome-session-check-accelerated: GL Helper exited with code %d\n", estatus);
         }
 
+        /* Then, try the GLES helper */
+        if (g_spawn_sync (NULL, (char **) gles_helper_argv, NULL, 0,
+                           NULL, NULL, NULL, NULL, &estatus, &gles_error)) {
+                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
+                if (is_accelerated)
+                        goto finish;
+
+                g_printerr ("gnome-session-check-accelerated: GLES Helper exited with code %d\n", estatus);
+        }
+
+        /* Both helpers failed; print their error messages */
+        if (gl_error != NULL) {
+                g_printerr ("gnome-session-check-accelerated: Failed to run GL helper: %s\n", gl_error->message);
+                g_clear_error (&gl_error);
+        }
+
+        if (gles_error != NULL) {
+                g_printerr ("gnome-session-check-accelerated: Failed to run GLES helper: %s\n", gles_error->message);
+                g_clear_error (&gles_error);
+        }
+
+ finish:
 	if (is_accelerated) {
 		XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
 				rootwin,
