@@ -231,8 +231,8 @@ out:
         return ret;
 }
 
-static gboolean
-_has_hardware_gl (Display *display)
+static char *
+_get_hardware_gl (Display *display)
 {
         int screen;
         Window root;
@@ -240,8 +240,7 @@ _has_hardware_gl (Display *display)
         GLXContext context = NULL;
         XSetWindowAttributes cwa = { 0 };
         Window window = None;
-        const char *renderer;
-        gboolean ret = FALSE;
+        char *renderer = NULL;
 
         int attrlist[] = {
                 GLX_RGBA,
@@ -276,9 +275,11 @@ _has_hardware_gl (Display *display)
         if (!glXMakeCurrent (display, window, context))
                 goto out;
 
-        renderer = (const char *) glGetString (GL_RENDERER);
-        if (_is_gl_renderer_blacklisted (renderer))
+        renderer = g_strdup ((const char *) glGetString (GL_RENDERER));
+        if (_is_gl_renderer_blacklisted (renderer)) {
+                g_clear_pointer (&renderer, g_free);
                 goto out;
+        }
         if (renderer && strcasestr (renderer, "llvmpipe"))
 		has_llvmpipe = TRUE;
 
@@ -293,8 +294,6 @@ _has_hardware_gl (Display *display)
         if (glGetError() != GL_NO_ERROR)
                 max_renderbuffer_size = SIZE_ERROR;
 
-        ret = TRUE;
-
 out:
         glXMakeCurrent (display, None, None);
         if (context)
@@ -304,7 +303,7 @@ out:
         if (cwa.colormap)
                 XFreeColormap (display, cwa.colormap);
 
-        return ret;
+        return renderer;
 }
 
 static gboolean
@@ -402,12 +401,31 @@ _is_max_texture_size_big_enough (Display *display)
         return TRUE;
 }
 
+static gboolean print_renderer = FALSE;
+
+static const GOptionEntry entries[] = {
+        { "print-renderer", 'p', 0, G_OPTION_ARG_NONE, &print_renderer, "Print GL renderer name", NULL },
+        { NULL },
+};
+
 int
 main (int argc, char **argv)
 {
-        int      kcmdline_parsed;
-        Display *display = NULL;
-        int      ret = HELPER_NO_ACCEL;
+        int             kcmdline_parsed;
+        Display        *display = NULL;
+        int             ret = HELPER_NO_ACCEL;
+        GOptionContext *context;
+        GError         *error = NULL;
+        char           *renderer = NULL;
+
+        context = g_option_context_new (NULL);
+        g_option_context_add_main_entries (context, entries, NULL);
+
+        if (!g_option_context_parse (context, &argc, &argv, &error)) {
+                g_error ("Can't parse command line: %s\n", error->message);
+                g_error_free (error);
+                goto out;
+        }
 
         kcmdline_parsed = _parse_kcmdline ();
         if (kcmdline_parsed > CMDLINE_UNSET) {
@@ -432,7 +450,8 @@ main (int argc, char **argv)
                 goto out;
         }
 
-        if (!_has_hardware_gl (display)) {
+        renderer = _get_hardware_gl (display);
+        if (!renderer) {
                 _print_error ("No hardware 3D support.");
                 goto out;
         }
@@ -455,9 +474,13 @@ main (int argc, char **argv)
 
         ret = HELPER_ACCEL;
 
+        if (print_renderer)
+                g_print ("%s", renderer);
+
 out:
         if (display)
                 XCloseDisplay (display);
+        g_free (renderer);
 
         return ret;
 }
