@@ -42,6 +42,7 @@
 
 static Atom is_accelerated_atom;
 static Atom is_software_rendering_atom;
+static Atom renderer_atom;
 static gboolean property_changed;
 
 static gboolean
@@ -95,8 +96,9 @@ main (int argc, char **argv)
 {
         GdkDisplay *display = NULL;
         int estatus;
-        char *gl_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", NULL };
-        char *gles_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gles-helper", NULL };
+        char *gl_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", "--print-renderer", NULL };
+        char *gles_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gles-helper", "--print-renderer", NULL };
+        char *renderer_string = NULL;
         Window rootwin;
         glong is_accelerated, is_software_rendering;
         GError *gl_error = NULL, *gles_error = NULL;
@@ -116,6 +118,7 @@ main (int argc, char **argv)
 
         is_accelerated_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_SESSION_ACCELERATED");
         is_software_rendering_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_IS_SOFTWARE_RENDERING");
+        renderer_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_SESSION_RENDERER");
 
         {
                 Atom type;
@@ -142,6 +145,17 @@ main (int argc, char **argv)
                                 /* else fall through and do the check ourselves */
 
                         } else {
+                                gdk_x11_display_error_trap_push (display);
+                                XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display), rootwin,
+                                                    renderer_atom,
+                                                    0, G_MAXLONG, False, XA_STRING, &type, &format, &nitems,
+                                                    &bytes_after, &data);
+                                gdk_x11_display_error_trap_pop_ignored (display);
+
+                                if (type == XA_STRING) {
+                                        g_print ("%s", data);
+                                }
+
                                 return (*is_accelerated_ptr == 0 ? 1 : 0);
                         }
                 }
@@ -165,22 +179,24 @@ main (int argc, char **argv)
 
         /* First, try the GL helper */
         if (g_spawn_sync (NULL, (char **) gl_helper_argv, NULL, 0,
-                           NULL, NULL, NULL, NULL, &estatus, &gl_error)) {
+                           NULL, NULL, &renderer_string, NULL, &estatus, &gl_error)) {
                 is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL) || (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
                 is_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
                 if (is_accelerated)
                         goto finish;
 
+                g_clear_pointer (&renderer_string, g_free);
                 g_printerr ("gnome-session-check-accelerated: GL Helper exited with code %d\n", estatus);
         }
 
         /* Then, try the GLES helper */
         if (g_spawn_sync (NULL, (char **) gles_helper_argv, NULL, 0,
-                           NULL, NULL, NULL, NULL, &estatus, &gles_error)) {
+                           NULL, NULL, &renderer_string, NULL, &estatus, &gles_error)) {
                 is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
                 if (is_accelerated)
                         goto finish;
 
+                g_clear_pointer (&renderer_string, g_free);
                 g_printerr ("gnome-session-check-accelerated: GLES Helper exited with code %d\n", estatus);
         }
 
@@ -201,6 +217,14 @@ main (int argc, char **argv)
 				rootwin,
 				is_accelerated_atom,
 				XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_accelerated, 1);
+
+                XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
+				rootwin,
+				renderer_atom,
+				XA_STRING, 8, PropModeReplace, (guchar *) renderer_string, strlen (renderer_string));
+
+                /* Print the renderer */
+                g_print ("%s", renderer_string);
 	}
 
 	if (is_software_rendering) {

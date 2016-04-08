@@ -54,6 +54,7 @@ static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
 static GsmManager *manager = NULL;
+static char *gl_renderer;
 
 static GMainLoop *loop;
 
@@ -146,6 +147,7 @@ create_manager (void)
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
         }
 
+        _gsm_manager_set_renderer (manager, gl_renderer);
         gsm_manager_start (manager);
 }
 
@@ -220,7 +222,7 @@ check_gl (GError **error)
                 return TRUE;
         }
 
-        if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL, NULL, NULL,
+        if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL, &gl_renderer, NULL,
                            &status, error)) {
                 return FALSE;
         }
@@ -446,6 +448,7 @@ main (int argc, char **argv)
         gsm_main ();
 
         g_clear_object (&manager);
+        g_free (gl_renderer);
 
         g_bus_unown_name (name_owner_id);
         gdm_log_shutdown ();

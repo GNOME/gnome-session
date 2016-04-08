@@ -1415,6 +1415,13 @@ _gsm_manager_set_active_session (GsmManager     *manager,
         gsm_exported_manager_set_session_name (manager->priv->skeleton, session_name);
 }
 
+void
+_gsm_manager_set_renderer (GsmManager *manager,
+                           const char *renderer)
+{
+        gsm_exported_manager_set_renderer (manager->priv->skeleton, renderer);
+}
+
 static gboolean
 _app_has_app_id (const char   *id,
                  GsmApp       *app,
