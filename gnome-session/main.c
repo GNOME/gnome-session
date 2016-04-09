@@ -54,7 +54,7 @@ static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
 static GsmManager *manager = NULL;
-static char *gl_renderer;
+static char *gl_renderer = NULL;
 
 static GMainLoop *loop;
 
