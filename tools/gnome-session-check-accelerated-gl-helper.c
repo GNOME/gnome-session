@@ -79,6 +79,10 @@
 
 #include <regex.h>
 
+#ifdef __FreeBSD__
+#include <kenv.h>
+#endif
+
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/extensions/Xcomposite.h>
@@ -103,6 +107,7 @@ _print_error (const char *str)
 #define CMDLINE_NON_FALLBACK_FORCED 0
 #define CMDLINE_FALLBACK_FORCED 1
 
+#if defined(__linux__)
 static int
 _parse_kcmdline (void)
 {
@@ -138,6 +143,35 @@ out:
 
         return ret;
 }
+#elif defined(__FreeBSD__)
+static int
+_parse_kcmdline (void)
+{
+        int ret = CMDLINE_UNSET;
+        char value[KENV_MVALLEN];
+
+        /* a compile time check to avoid unexpected stack overflow */
+        _Static_assert(KENV_MVALLEN < 1024 * 1024, "KENV_MVALLEN is too large");
+
+        if (kenv (KENV_GET, "gnome.fallback", value, KENV_MVALLEN) == -1)
+                return ret;
+
+        if (*value != '0' && *value != '1')
+                fprintf (stderr, "gnome-session-is-accelerated: Invalid value '%s' for gnome.fallback passed in kernel environment.\n", value);
+        else
+                ret = atoi (value);
+
+        g_debug ("Kernel environment parsed to %d", ret);
+
+        return ret;
+}
+#else
+static int
+_parse_kcmdline (void)
+{
+        return CMDLINE_UNSET;
+}
+#endif
 
 static gboolean
 _has_composite (Display *display)
