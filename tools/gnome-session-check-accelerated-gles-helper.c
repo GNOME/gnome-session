@@ -24,6 +24,7 @@
 #include <config.h>
 
 #include <gtk/gtk.h>
+#include <locale.h>
 #include <stdlib.h>
 
 #ifdef GDK_WINDOWING_X11
@@ -165,6 +166,8 @@ main (int argc,
         GOptionContext *context;
         int ret = HELPER_NO_ACCEL;
         GError *error = NULL;
+
+        setlocale (LC_ALL, "");
 
         context = g_option_context_new (NULL);
         g_option_context_add_group (context, gtk_get_option_group (TRUE));

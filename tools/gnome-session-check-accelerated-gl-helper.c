@@ -71,6 +71,7 @@
 #define _GNU_SOURCE
 
 #include <ctype.h>
+#include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -417,6 +418,8 @@ main (int argc, char **argv)
         GOptionContext *context;
         GError         *error = NULL;
         char           *renderer = NULL;
+
+        setlocale (LC_ALL, "");
 
         context = g_option_context_new (NULL);
         g_option_context_add_main_entries (context, entries, NULL);
