@@ -367,6 +367,10 @@ int main (int argc, char *argv[])
         GsmFailWhaleDialog        *fail_dialog;
         GError *error = NULL;
 
+        bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
+        bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+        textdomain (GETTEXT_PACKAGE);
+
         gtk_init_with_args (&argc, &argv, " - fail whale",
                             entries, GETTEXT_PACKAGE,
                             &error);
