@@ -1,5 +1,7 @@
 #!/bin/sh
 
+dbus-update-activation-environment --all ||:
+
 SETTING=$(gsettings get org.gnome.system.locale region)
 REGION=${SETTING#\'}
 REGION=${REGION%\'}
