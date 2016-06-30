@@ -1,8 +1,5 @@
-SUBDIRS = icons
-
 uidir = $(pkgdatadir)
-ui_DATA = \
-	session-properties.ui
+ui_DATA =
 
 if BUILD_SESSION_SELECTOR
 ui_DATA += session-selector.ui
