@@ -469,13 +469,7 @@ main (int argc, char **argv)
                 goto out;
         }
 
-        if (has_llvmpipe) {
-                _print_error ("llvmpipe detected.");
-                ret = HELPER_SOFTWARE_RENDERING;
-                goto out;
-        }
-
-        ret = HELPER_ACCEL;
+        ret = has_llvmpipe ? HELPER_SOFTWARE_RENDERING : HELPER_ACCEL;
 
         if (print_renderer)
                 g_print ("%s", renderer);
