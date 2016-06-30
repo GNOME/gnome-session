@@ -149,13 +149,14 @@ get_caller_info (GsmDBusClient *client,
         pid_t            pid;
 
         retval = FALSE;
+        connection = NULL;
+        uid_variant = pid_variant = NULL;
 
         if (sender == NULL) {
                 goto out;
         }
 
         error = NULL;
-        uid_variant = pid_variant = NULL;
         connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
 
         if (error != NULL) {
