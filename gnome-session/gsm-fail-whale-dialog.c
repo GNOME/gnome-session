@@ -304,10 +304,10 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
                                               NULL);
         if (fail_icon != NULL) {
                 image = gtk_image_new_from_pixbuf (fail_icon);
+                gtk_widget_show (image);
+                gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
                 g_object_unref (fail_icon);
         }
-        gtk_widget_show (image);
-        gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
 
         label = gtk_label_new (NULL);
         markup = g_strdup_printf ("<b><big>%s</big></b>", _("Oh no!  Something has gone wrong."));
