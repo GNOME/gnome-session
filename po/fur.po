@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: gnome-session 2.20.x\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-08 09:25+0000\n"
-"PO-Revision-Date: 2016-04-08 11:36+0200\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-07-23 17:53+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <massimo.furlani@libero.it>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -30,17 +30,17 @@ msgstr "Ti permet di selezionâ une session salvade"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Cheste session ti fasarâ jentrâ dentri GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME su Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME su Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -65,42 +65,6 @@ msgstr "Cambie Non ae Session"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Indenant"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Programs di inviament adizionâi:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Programs di inviament"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Ae jessude visasi automaticamentri lis aplicazions in esecuzion"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Visiti lis aplicazions cumò in esecuzion"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Opzions di session"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Esplore..."
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Co_ment:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Co_mant:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Non:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -134,7 +98,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Jes"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Abilite codiç di debug"
 
@@ -146,7 +110,7 @@ msgstr "Permet di jessî"
 msgid "Show extension warning"
 msgstr "Mostre avîs di estension"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Nol rispuint"
 
@@ -177,40 +141,40 @@ msgstr "Refudi le gnove conession client parcè che la session si sta studant\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impussibil creâ il socket di scolte ICE: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "No'l ten cont des directory standard di inviament automatic"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Session di doprâ"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "NON_SESSION"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Nol cjame lis aplicazions specificadis dal utent"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Version di cheste aplicazion"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostre il dialic \"fail whale\" par fâ un test"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Gjave control acelerazion hardware"
 
-#: ../gnome-session/main.c:318
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr "- Ministradôr di session di GNOME"
 
@@ -308,6 +272,33 @@ msgstr "Impussibil colegasi al ministradôr di session"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program clamât cun opzions in conflit"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "_Programs di inviament adizionâi:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Programs di inviament"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Ae jessude visasi automaticamentri lis aplicazions in esecuzion"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Visiti lis aplicazions cumò in esecuzion"
+
+#~ msgid "Options"
+#~ msgstr "Opzions di session"
+
+#~ msgid "Browse…"
+#~ msgstr "Esplore..."
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Co_ment:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Co_mant:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Non:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Cheste session ti fasarâ jentrâ dentri GNOME, doprant Wayland"
