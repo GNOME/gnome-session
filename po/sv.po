@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-07 22:06+0000\n"
-"PO-Revision-Date: 2016-03-07 23:38+0100\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-08-03 00:02+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -36,19 +36,19 @@ msgstr "Denna post låter dig välja en sparad session"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Denna session loggar in dig i GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME med Xorg"
 
 # a dummy gnome-session which does not start anything
 # but the autostart software and the DBus API
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME-attrapp"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME med Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -73,42 +73,6 @@ msgstr "Byt na_mn på session"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Fortsätt"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Ytterligare start_program:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Uppstartsprogram"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "Kom _automatiskt ihåg körande program vid utloggning"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Kom ihåg för närvarande körande program"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Alternativ"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Bläddra…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Komm_entar:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Ko_mmando:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Namn:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -142,7 +106,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
@@ -154,11 +118,11 @@ msgstr "Tillåt utloggning"
 msgid "Show extension warning"
 msgstr "Visa tilläggsvarning"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Svarar inte"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Logga ut"
 
@@ -187,40 +151,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTKAT"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Session att använda"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "SESSIONSNAMN"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Version av detta program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Visa den ”felande valen” för testning"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Inaktivera kontroll för hårdvaruacceleration"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - GNOME-sessionshanteraren"
 
@@ -318,6 +282,33 @@ msgstr "Kunde inte ansluta till sessionshanteraren"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program anropat med motsägande flaggor"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Ytterligare start_program:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Uppstartsprogram"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "Kom _automatiskt ihåg körande program vid utloggning"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Kom ihåg för närvarande körande program"
+
+#~ msgid "Options"
+#~ msgstr "Alternativ"
+
+#~ msgid "Browse…"
+#~ msgstr "Bläddra…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Komm_entar:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ko_mmando:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Namn:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Denna session loggar in dig i GNOME och använder Wayland"
