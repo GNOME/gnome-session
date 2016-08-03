@@ -5,15 +5,15 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2007, 2010.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-08 17:16+0000\n"
-"PO-Revision-Date: 2016-03-08 19:25+0200\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-08-03 21:52+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -36,17 +36,18 @@ msgstr "Šis įvesties laukas leidžia pasirinkti įrašytą seansą"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME Xorg aplinkoje"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME netikra"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME Wayland aplinkoje"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -71,42 +72,6 @@ msgstr "Per_vadinti seansą"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Tęsti"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Papildomos paleidžiamos _programos:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Pradžioje paleidžiamos programos"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Atsijungiant, automatiškai atsiminti paleistas programas"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Atsiminti dabar veikiančias programas"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Parametrai"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Naršyti…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Ko_mentaras:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Komanda:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Pavadinimas:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -140,7 +105,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
@@ -152,11 +117,11 @@ msgstr "Leisti atsijungimą"
 msgid "Show extension warning"
 msgstr "Rodyti plėtinio įspėjimą"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Neatsako"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Atsijungti"
 
@@ -183,40 +148,40 @@ msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Programos versija"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Išjungti aparatinio spartinimo tikrinimą"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " – GNOME seanso tvarkytuvė"
 
@@ -314,6 +279,33 @@ msgstr "Nepavyko prisijungti prie seansų tvarkytuvės"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Programa iškviesta, naudojant konfliktuojančius parametrus"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Papildomos paleidžiamos _programos:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Pradžioje paleidžiamos programos"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Atsijungiant, automatiškai atsiminti paleistas programas"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Atsiminti dabar veikiančias programas"
+
+#~ msgid "Options"
+#~ msgstr "Parametrai"
+
+#~ msgid "Browse…"
+#~ msgstr "Naršyti…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Ko_mentaras:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Komanda:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Pavadinimas:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Šis seansas prijungia jus prie GNOME naudojant Wayland"
