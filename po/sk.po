@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-07 20:04+0000\n"
-"PO-Revision-Date: 2016-03-07 21:38+0100\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-08-04 10:29+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 
 # desktop entry name
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -40,18 +40,18 @@ msgid "GNOME"
 msgstr "GNOME"
 
 # desktop entry comment
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Táto relácia vás prihlási do GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME cez Xorg"
 
 # desktop entry name
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Fingované GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME cez Wayland"
 
 # GtkWindow title
 #: ../data/session-selector.ui.h:1
@@ -82,51 +82,6 @@ msgstr "Pre_menovať reláciu"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Pokračovať"
-
-# GtkLabel label
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Ďalšie _programy spúšťané pri štarte:"
-
-# tab
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Programy spúšťané pri štarte"
-
-# GtkCheckButton label
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "Pri odhlasovaní si _automaticky zapamätať bežiace aplikácie"
-
-# GtkLabel label
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Zapamätať si teraz bežiace aplikácie"
-
-# tab
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Voľby"
-
-# GtkButton label
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Prehliadať…"
-
-# GtkLabel label
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "P_oznámka:"
-
-# GtkLabel label
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Príkaz:"
-
-# GtkLabel label
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Názov:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -164,7 +119,7 @@ msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
@@ -178,12 +133,12 @@ msgstr "Povolí odhlásenie"
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Neodpovedá"
 
 # button
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "Odh_lásiť sa"
 
@@ -211,45 +166,45 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
 # cmd desc
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "ADRESÁR_AUTOSPUSTENIA"
 
 # cmd desc
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Nenačíta aplikácie špecifikované používateľom"
 
 # cmd desc
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
 # cmd desc
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
 
 # cmd desc
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Zakáže kontrolu hardvérovej akcelerácie"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - správca relácie GNOME"
 
@@ -360,6 +315,42 @@ msgstr "Nepodarilo sa pripojiť k správcovi relácií"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program volaný s konfliktnými voľbami"
+
+# GtkLabel label
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Ďalšie _programy spúšťané pri štarte:"
+
+# tab
+#~ msgid "Startup Programs"
+#~ msgstr "Programy spúšťané pri štarte"
+
+# GtkCheckButton label
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "Pri odhlasovaní si _automaticky zapamätať bežiace aplikácie"
+
+# GtkLabel label
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Zapamätať si teraz bežiace aplikácie"
+
+# tab
+#~ msgid "Options"
+#~ msgstr "Voľby"
+
+# GtkButton label
+#~ msgid "Browse…"
+#~ msgstr "Prehliadať…"
+
+# GtkLabel label
+#~ msgid "Comm_ent:"
+#~ msgstr "P_oznámka:"
+
+# GtkLabel label
+#~ msgid "Co_mmand:"
+#~ msgstr "_Príkaz:"
+
+# GtkLabel label
+#~ msgid "_Name:"
+#~ msgstr "_Názov:"
 
 # desktop entry comment
 #~ msgid "This session logs you into GNOME, using Wayland"
