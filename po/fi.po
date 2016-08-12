@@ -15,10 +15,10 @@ msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-13 10:06+0000\n"
-"PO-Revision-Date: 2016-03-13 12:29+0200\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-08-12 15:37+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,18 +38,18 @@ msgstr "Tämä kohta mahdollistaa tallennetun istunnon valinnan"
 msgid "GNOME"
 msgstr "Gnome"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Tämä istunto kirjautuu Gnomeen"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "Gnome Xorgia käyttäen"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Gnome-malli-istunto (dummy)"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#| msgid "GNOME on Xorg"
-msgid "GNOME on Wayland"
-msgstr "Gnome Waylandia käyttäen"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -74,42 +74,6 @@ msgstr "Ni_meä istunto uudelleen"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Jatka"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Muut käynnistyvät _ohjelmat:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Käynnistyvät ohjelmat"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "Muista käynnissä olevat ohjelmat kirjauduttaessa ulos"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "Muista tällä hetkellä _käynnissä olevat sovellukset"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Valinnat"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Selaa…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Komm_entti:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Ko_mento:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Nimi:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -143,7 +107,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Kirjaudu ul_os"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
@@ -155,11 +119,11 @@ msgstr "Salli uloskirjautuminen"
 msgid "Show extension warning"
 msgstr "Näytä laajennusvaroitus"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "Kirjau_du ulos"
 
@@ -188,40 +152,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistoketta ei voi luoda: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "AUTOKÄYN_HAK"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Käytettävä istunto"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "ISTUNTONIMI"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Näytä musta virheikkuna testausta varten"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Poista laitteistokiihdytyksen tarkistus käytöstä"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - Gnomen istunnonhallinta"
 
@@ -305,6 +269,33 @@ msgstr "Istunnonhallintaan ei saa yhteyttä"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Ohjelmaa kutsuttiin ristiriitaisilla valitsimilla"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Muut käynnistyvät _ohjelmat:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Käynnistyvät ohjelmat"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "Muista käynnissä olevat ohjelmat kirjauduttaessa ulos"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "Muista tällä hetkellä _käynnissä olevat sovellukset"
+
+#~ msgid "Options"
+#~ msgstr "Valinnat"
+
+#~ msgid "Browse…"
+#~ msgstr "Selaa…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Komm_entti:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ko_mento:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Nimi:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Tämä istunto kirjautuu Gnomeen Waylandia käyttäen"
