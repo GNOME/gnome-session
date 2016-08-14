@@ -399,8 +399,15 @@ main (int argc, char **argv)
                 ibus_path = g_find_program_in_path("ibus-daemon");
 
                 if (ibus_path) {
-                        gsm_util_setenv ("QT_IM_MODULE", "ibus");
-                        gsm_util_setenv ("XMODIFIERS", "@im=ibus");
+                        const gchar *p;
+                        p = g_getenv ("QT_IM_MODULE");
+                        if (!p || !*p)
+                                p = "ibus";
+                        gsm_util_setenv ("QT_IM_MODULE", p);
+                        p = g_getenv ("XMODIFIERS");
+                        if (!p || !*p)
+                                p = "@im=ibus";
+                        gsm_util_setenv ("XMODIFIERS", p);
                 }
 
                 g_free (ibus_path);
