@@ -12,6 +12,6 @@ if [ -n "$REGION" ]; then
   export LC_PAPER=$REGION
 fi
 
-dbus-update-activation-environment --all ||:
+dbus-update-activation-environment --all >& /dev/null ||:
 
 exec @libexecdir@/gnome-session-binary "$@"
