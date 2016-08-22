@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-23 20:28+0000\n"
-"PO-Revision-Date: 2014-12-24 11:49+0700\n"
+"POT-Creation-Date: 2016-08-12 12:38+0000\n"
+"PO-Revision-Date: 2016-08-22 16:48+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -34,22 +34,17 @@ msgstr "Entri ini memungkinkan Anda memilih suatu sesi yang tersimpan"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Sesi ini melogkan Anda ke dalam GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME pada Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME pada Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Sesi ini melogkan Anda masuk ke dalam GNOME, memakai Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -74,42 +69,6 @@ msgstr "Ubah Na_ma Sesi"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Lanjutkan"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Program awalan lain:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Program Awalan"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "Otom_atis mengingkat aplikasi yang berjalan ketika log keluar"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "Ingat Aplikasi yang Kini Be_rjalan"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Opsi"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Telusur..."
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Kom_entar:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Perintah:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Nama:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -143,7 +102,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
@@ -155,11 +114,11 @@ msgstr "Izinkan log keluar"
 msgid "Show extension warning"
 msgstr "Tunjukkan peringatan ekstensi"
 
-#: ../gnome-session/gsm-manager.c:1245 ../gnome-session/gsm-manager.c:1890
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Tak merespon"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Log keluar"
 
@@ -188,40 +147,40 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Tak dapat membuat soket pendengar ICE: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "DIR_MULAI_OTOMATIS"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "NAMA_SESI"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Tak memuat aplikasi yang ditentukan oleh pengguna"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Tampilkan dialog paus gagal untul pengujian"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Nonaktifkan pemeriksaan akselerasi perangkat keras"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - manajer sesi GNOME"
 
@@ -293,31 +252,31 @@ msgstr "Nama sesi tak boleh memuat karakter '/'"
 msgid "A session named ‘%s’ already exists"
 msgstr "Nama sesi '%s' telah ada"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Keluar"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Matikan"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Nyalakan Ulang"
 
 # Keterangan untuk opsi force-logout.
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Mengabaikan sembarang pencegah"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Jangan tanyakan konfirmasi pengguna"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Tak dapat terhubung dengan manajer sesi"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program dipanggil dengan opsi yang bertentangan"
