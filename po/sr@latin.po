@@ -1,30 +1,32 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2016.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2015.
 # This file is distributed under the same license as the gnome-session package.
 # Danilo Šegan <danilo@gnome.org> 2005.
 # Slobodan D. Sredojević <slobo@akrep.be> 2006.
 # Miloš Popović <gpopac@gmail.com>, 2010—2011.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011—2016.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011—2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-19 17:41+0000\n"
-"PO-Revision-Date: 2016-02-19 20:13+0200\n"
-"Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
+"POT-Creation-Date: 2016-06-30 17:18+0000\n"
+"PO-Revision-Date: 2016-01-17 17:57+0100\n"
+"Last-Translator: Marko M. Kostić (Marko M. Kostić) <marko.m.kostic@gmail."
+"com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
-"Language: sr@latin\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
-msgstr "Proizvoljno"
+msgstr "Prilagođeno"
 
 #: ../data/gnome-custom-session.desktop.in.h:2
 msgid "This entry lets you select a saved session"
@@ -39,9 +41,8 @@ msgid "This session logs you into GNOME"
 msgstr "Ova sesija vas prijavljuje u Gnom"
 
 #: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
 msgid "GNOME on Xorg"
-msgstr "Gnom na Iksorg-u"
+msgstr "Gnom na Iks serveru"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
@@ -49,11 +50,11 @@ msgstr "Gnomov lažnjak"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
-msgstr "Proizvoljna sesija"
+msgstr "Prilagođena sesija"
 
 #: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "Izaberite proizvoljnu sesiju za pokretanje"
+msgstr "Izaberite prilagođenu sesiju za pokretanje"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
@@ -71,42 +72,6 @@ msgstr "Preimenuj _sesiju"
 msgid "_Continue"
 msgstr "_Nastavi"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Dodatni početni _programi:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Početni programi"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Sam zapamti pokrenute programe prilikom odjavljivanja"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Zapamti trenutno pokrenute programe"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Mogućnosti"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Razgledaj…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "_Komentar:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Naredba:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Naziv:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "O, ne!  Nešto je pošlo naopako!"
@@ -116,7 +81,7 @@ msgid ""
 "A problem has occurred and the system can't recover. Please contact a system "
 "administrator"
 msgstr ""
-"Došlo je do problema i sistem ne može da se oporavi. Molim obratite se "
+"Došlo je do problema i sistem ne može da se oporavi. Obratite se "
 "administratoru sistema"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
@@ -133,13 +98,13 @@ msgid ""
 "Please log out and try again."
 msgstr ""
 "Došlo je do problema i sistem ne može da se oporavi.\n"
-"Molim odjavite se i pokušajte opet."
+"Odjavite se i pokušajte opet."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Odjavi me"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Uključuje kod za ispravljanje grešaka"
 
@@ -151,11 +116,11 @@ msgstr "Dozvoljava odjavljivanje"
 msgid "Show extension warning"
 msgstr "Prikazuje upozorenje proširenja"
 
-#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Ne daje odziv"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Odjavi me"
 
@@ -182,40 +147,40 @@ msgstr "Odbacujem vezu sa novim klijentom jer je u toku gašenje sesije\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ne mogu da napravim priključak ICE osluškivanja: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Zaobilazi uobičajene direktorijume samopokretanja"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "DIREKTORIJUM_SAMOPOKRETANJA"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Sesije koje će biti korišćene"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "NAZIV_SESIJE"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Ne učitava programe koje je zadao korisnik"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Izdanje ovog programa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Prikazuje prozorče neuspeha za isprobavanje"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Isključuje proveru hardverskog ubrzanja"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " — upravnik Gnomovom sesijom"
 
@@ -316,6 +281,33 @@ msgstr "Ne mogu da se povežem sa upravnikom sesije"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program je pozvan sa nesaglasnim mogućnostima"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Dodatni početni _programi:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Početni programi"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Sam zapamti pokrenute programe prilikom odjavljivanja"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Zapamti trenutno pokrenute programe"
+
+#~ msgid "Options"
+#~ msgstr "Opcije"
+
+#~ msgid "Browse…"
+#~ msgstr "Pregled…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Komentar:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Naredba:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Naziv:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Ova sesija vas prijavljuje u Gnom, koristeći Vajland"
