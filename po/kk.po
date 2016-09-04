@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-16 22:09+0000\n"
-"PO-Revision-Date: 2016-03-17 08:36+0500\n"
+"POT-Creation-Date: 2016-08-12 12:38+0000\n"
+"PO-Revision-Date: 2016-09-04 09:11+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -31,17 +31,17 @@ msgstr "Бұл элемент сізге сақталып тұрған сесс�
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Бұл сессия арқылы GNOME-ға кіресіз"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "Xorg негізіндегі GNOME"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME жалған сессиясы"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-msgid "GNOME on Wayland"
-msgstr "Wayland негізіндегі GNOME"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -66,42 +66,6 @@ msgstr "Сессия атауын өз_герту"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "Жалға_стыру"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Қосымша іске қосылатын бағ_дарламалар:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Іске қосылатын бағдарламалар"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "Жүйеден шыққан кезде орындалып жатқан қолданбаларды е_сте сақтау"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "Ағымдағы орындалып жатқан қолданбаларды ес_те сақтау"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Опциялар"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Шолу…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Түсі_ндірме:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Ко_манда:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Аты:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -135,7 +99,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
@@ -147,7 +111,7 @@ msgstr "Жүйеден шығуды рұқсат ету"
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Жауап бермейді"
 
@@ -178,40 +142,40 @@ msgstr "Жаңа клиенттік байланысын тайдыру, өйт�
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE тындаушы сокетін жасау мүмкін емес: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Стандартты іске қосылу бумалардың орнына басқаларды қолдану"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "АВТОІСКЕҚОСЫЛУ_БУМАСЫ"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Қолдану үшін сессия"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "СЕССИЯ_АТЫ"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Пайдаланушыға тән қолданбаларды жөнелтпеу"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Осы қолданбаның нұсқасы"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Сынау үшін \"fail whale\" сұхбатын көрсету"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Құрылғылық үдетуді тексеруді сөндіру"
 
-#: ../gnome-session/main.c:309
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " - GNOME сессиялар басқарушысы"
 
@@ -313,6 +277,33 @@ msgstr "Сессиялар басқарушысына байланысты ор�
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Бағдарлама өазара ерегісетін опциялармен шақырылды"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Қосымша іске қосылатын бағ_дарламалар:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Іске қосылатын бағдарламалар"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "Жүйеден шыққан кезде орындалып жатқан қолданбаларды е_сте сақтау"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "Ағымдағы орындалып жатқан қолданбаларды ес_те сақтау"
+
+#~ msgid "Options"
+#~ msgstr "Опциялар"
+
+#~ msgid "Browse…"
+#~ msgstr "Шолу…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Түсі_ндірме:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ко_манда:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Аты:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Бұл сессия арқылы Wayland негізіндегі GNOME ішіне кіресіз"
