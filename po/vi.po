@@ -1,18 +1,18 @@
 # Vietnamese Translation for GNOME Session.
 # Bản dịch tiếng Việt dành cho GNOME Session.
-# Copyright © 2015 GNOME i18n Project for Vietnamese.
+# Copyright © 2016 GNOME i18n Project for Vietnamese.
 # This file is distributed under the same license as the gnome-session package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2013,2014, 2015.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2013,2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-14 20:33+0000\n"
-"PO-Revision-Date: 2015-03-15 08:54+0700\n"
+"POT-Creation-Date: 2016-09-04 04:15+0000\n"
+"PO-Revision-Date: 2016-09-07 14:41+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.8\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -34,22 +34,17 @@ msgstr "Mục này cho phép bạn chọn phiên làm việc đã lưu"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "GNOME trên Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Giả lập GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME trên Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME, đang dùng Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -74,42 +69,6 @@ msgstr "Đổi _tên phiên làm việc"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Tiếp tục"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Chương trình khởi động thêm:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Chương trình khởi động"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Nhớ ứng dụng đang chạy"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Tùy chọn"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Duyệt…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "C_hú thích:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Lệ_nh:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Tên:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -142,7 +101,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Đăng _xuất"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Bật mã hỗ trợ tìm lỗi"
 
@@ -154,11 +113,11 @@ msgstr "Cho phép đăng xuất"
 msgid "Show extension warning"
 msgstr "Hiện cảnh báo phần mở rộng"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Không trả lời"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "Đăng _xuất"
 
@@ -185,40 +144,40 @@ msgstr "Đang từ chối kết nối khách mới vì phiên làm việc đang 
 msgid "Could not create ICE listening socket: %s"
 msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Đè lên thư mục tự khởi động chuẩn"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "THƯ_MỤC_TỰ_CHẠY"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Phiên làm việc cần dùng"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "TÊN_PHIÊN"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Đừng tải ứng dụng do người dùng chỉ định"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Phiên bản của ứng dụng"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Tắt kiểm tra tăng tốc phần cứng"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr " — ứng dụng Quản lý Phiên làm việc GNOME"
 
@@ -240,7 +199,7 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [TÙY CHỌN...] LỆNH\n"
+"%s [TÙY CHỌN…] LỆNH\n"
 "\n"
 "Thực hiện LỆNH nhưng hạn chế một số chức năng liên quan đến phiên.\n"
 "\n"
@@ -290,33 +249,63 @@ msgstr "Tên phiên làm việc không thể chứa ký tự “/”"
 msgid "A session named ‘%s’ already exists"
 msgstr "Đã sẵn có phiên làm việc mang tên “%s”"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Đăng xuất"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Tắt máy"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Khởi động lại"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Bỏ qua các ứng dụng ngăn cản"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Không yêu cầu xác nhận"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Không thể kết nối với trình quản lý phiên làm việc"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr "Chương trình được gọi với các tuỳ chọn xung đột nhau"
+msgstr "Chương trình được gọi với các tùy chọn xung đột nhau"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME, đang dùng Wayland"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "_Chương trình khởi động thêm:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Chương trình khởi động"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Nhớ ứng dụng đang chạy"
+
+#~ msgid "Options"
+#~ msgstr "Tùy chọn"
+
+#~ msgid "Browse…"
+#~ msgstr "Duyệt…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "C_hú thích:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Lệ_nh:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Tên:"
 
 #~ msgid "Select Command"
 #~ msgstr "Chọn câu lệnh"
@@ -446,7 +435,7 @@ msgstr "Chương trình được gọi với các tuỳ chọn xung đột nhau"
 #~ msgstr "Vẫn khởi động lại"
 
 #~ msgid "Lock Screen"
-#~ msgstr "Khoá màn hình"
+#~ msgstr "Khóa màn hình"
 
 #~ msgid "Cancel"
 #~ msgstr "Thôi"
@@ -506,7 +495,7 @@ msgstr "Chương trình được gọi với các tuỳ chọn xung đột nhau"
 #~ "Rất tiếc không thể khởi động GNOME 3 nên đang chạy trong <i>chế độ phòng "
 #~ "bị</i>.\n"
 #~ "\n"
-#~ "Nhiều khả năng hệ thống của bạn (phần cứng đồ hoạ hoặc trình điều khiển) "
+#~ "Nhiều khả năng hệ thống của bạn (phần cứng đồ họa hoặc trình điều khiển) "
 #~ "không đủ khả năng chạy GNOME 3."
 
 #~ msgid "Learn more about GNOME 3"
@@ -540,7 +529,7 @@ msgstr "Chương trình được gọi với các tuỳ chọn xung đột nhau"
 #~ msgstr "Tên của chương trình khởi động không thể là rỗng"
 
 #~ msgid "Sessions Preferences"
-#~ msgstr "Tuỳ thích phiên làm việc"
+#~ msgstr "Tùy thích phiên làm việc"
 
 #~ msgid ""
 #~ "Assistive technology support has been requested for this session, but the "
