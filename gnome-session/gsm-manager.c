@@ -1071,6 +1071,11 @@ cancel_end_session (GsmManager *manager)
 
         g_cancellable_cancel (manager->priv->end_session_cancellable);
 
+        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_RUNNING);
+        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
+
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
+
         /* clear all JIT inhibitors */
         gsm_store_foreach_remove (manager->priv->inhibitors,
                                   (GsmStoreFunc)inhibitor_is_jit,
@@ -1079,11 +1084,6 @@ cancel_end_session (GsmManager *manager)
         gsm_store_foreach (manager->priv->clients,
                            (GsmStoreFunc)_client_cancel_end_session,
                            NULL);
-
-        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_RUNNING);
-        manager->priv->logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
-
-        manager->priv->logout_type = GSM_MANAGER_LOGOUT_NONE;
 
         start_phase (manager);
 }
