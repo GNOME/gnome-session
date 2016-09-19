@@ -5,21 +5,22 @@
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 # Julen Ruiz Aizpuru <julenx@gmail.com>, 2011.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-17 16:29+0100\n"
-"PO-Revision-Date: 2014-12-05 23:41+0100\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-se"
+"ssion&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-08-12 12:38+0000\n"
+"PO-Revision-Date: 2016-09-18 13:40+0100\n"
+"Last-Translator: dooteo <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -34,22 +35,18 @@ msgstr "Sarrera honek gordetako saio bat hautatzea uzten dizu"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Saio honek GNOMEn sartuko zaitu"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME Xorg gainean"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Probako GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "GNOME Wayland gainean"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Saio honek GNOMEn sartuko zaitu, Wayland erabiliz"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -74,43 +71,6 @@ msgstr "_Aldatu saioaren izena"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Jarraitu"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Abioko _programa osagarriak:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Abioko programak"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"Gogoratu _automatikoki exekutatzen ari diren aplikazioak saioa amaitzean"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Gogoratu unean exekutatzen ari diren aplikazioak"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Aukerak"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Arakatu..."
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "_Iruzkina:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Komandoa:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Izena:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -144,7 +104,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Amaitu _saioa"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:242
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
 msgid "Enable debugging code"
 msgstr "Gaitu arazketa-kodea"
 
@@ -156,11 +116,11 @@ msgstr "Baimendu saioa amaitzea"
 msgid "Show extension warning"
 msgstr "Erakutsi hedapenaren abisua"
 
-#: ../gnome-session/gsm-manager.c:1245 ../gnome-session/gsm-manager.c:1890
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Ez du erantzuten"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Amaitu saioa"
 
@@ -187,40 +147,40 @@ msgstr "Bezero berrien konexioa ukatzen, unean saioa itzaltzen ari delako\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ezin izan da entzuteko ICE socket-a sortu: %s"
 
-#: ../gnome-session/main.c:240
+#: ../gnome-session/main.c:281
 msgid "Override standard autostart directories"
 msgstr "Jaramonik ez egin hasiera automatikoko direktorio estandarrei"
 
-#: ../gnome-session/main.c:240
+#: ../gnome-session/main.c:281
 msgid "AUTOSTART_DIR"
 msgstr "HASIERA_AUTOMATIKOKO_DIREKTORIOA"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:282
 msgid "Session to use"
 msgstr "Saioa erabiltzeko"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:282
 msgid "SESSION_NAME"
 msgstr "SAIOAREN_IZENA"
 
-#: ../gnome-session/main.c:243
+#: ../gnome-session/main.c:284
 msgid "Do not load user-specified applications"
 msgstr "Ez kargatu erabiltzaileak zehaztutako aplikazioak"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:285
 msgid "Version of this application"
 msgstr "Aplikazio honen bertsioa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:246
+#: ../gnome-session/main.c:287
 msgid "Show the fail whale dialog for testing"
 msgstr "Erakutsi errorearen elkarrizketa-koadroa probetarako"
 
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:288
 msgid "Disable hardware acceleration check"
 msgstr "Desgaitu hardware bidezko azelerazioaren egiaztaketa"
 
-#: ../gnome-session/main.c:261
+#: ../gnome-session/main.c:320
 msgid " - the GNOME session manager"
 msgstr "- GNOMEren saio-kudeatzailea"
 
@@ -295,33 +255,64 @@ msgstr "Saioen izenak ezin dute '/' karakterea eduki"
 msgid "A session named ‘%s’ already exists"
 msgstr "'%s' izeneko saioa badago lehendik ere"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Amaitu saioa"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Itzali"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Berrabiarazi"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Ez ikusi egin dauden inhibitzaileei"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "Ez eskatu erabiltzailearen baieztapena"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Ezin izan da saio-kudeatzailearekin konektatu"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Gatazkan dauden aukerekin deitu da programa"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Saio honek GNOMEn sartuko zaitu, Wayland erabiliz"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Abioko _programa osagarriak:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Abioko programak"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr ""
+#~ "Gogoratu _automatikoki exekutatzen ari diren aplikazioak saioa amaitzean"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Gogoratu unean exekutatzen ari diren aplikazioak"
+
+#~ msgid "Options"
+#~ msgstr "Aukerak"
+
+#~ msgid "Browse…"
+#~ msgstr "Arakatu..."
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Iruzkina:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Komandoa:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Izena:"
 
 #~ msgid "Select Command"
 #~ msgstr "Hautatu komandoa"
