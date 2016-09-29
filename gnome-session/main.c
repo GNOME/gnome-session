@@ -315,7 +315,7 @@ main (int argc, char **argv)
         }
 
         error = NULL;
-        options = g_option_context_new (_(" - the GNOME session manager"));
+        options = g_option_context_new (_(" — the GNOME session manager"));
         g_option_context_add_main_entries (options, entries, GETTEXT_PACKAGE);
         g_option_context_parse (options, &argc, &argv, &error);
         if (error != NULL) {

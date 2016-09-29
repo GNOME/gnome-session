@@ -317,11 +317,11 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 
         if (!priv->allow_logout)
-                message_label = gtk_label_new (_("A problem has occurred and the system can't recover. Please contact a system administrator"));
+                message_label = gtk_label_new (_("A problem has occurred and the system can’t recover. Please contact a system administrator"));
         else if (priv->extensions)
-                message_label = gtk_label_new (_("A problem has occurred and the system can't recover. All extensions have been disabled as a precaution."));
+                message_label = gtk_label_new (_("A problem has occurred and the system can’t recover. All extensions have been disabled as a precaution."));
         else
-                message_label = gtk_label_new (_("A problem has occurred and the system can't recover.\nPlease log out and try again."));
+                message_label = gtk_label_new (_("A problem has occurred and the system can’t recover.\nPlease log out and try again."));
 
         gtk_label_set_justify (GTK_LABEL (message_label), GTK_JUSTIFY_CENTER);
         gtk_label_set_line_wrap (GTK_LABEL (message_label), TRUE);

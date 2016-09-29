@@ -104,15 +104,15 @@ is_valid_session_name (const char *name)
         if (user_tried_dot && user_tried_slash) {
             warning_text = g_strdup_printf ("%s\n<small><b>Note:</b> <i>%s</i></small>",
                                             info_text,
-                                            _("Session names are not allowed to start with ‘.’ or contain ‘/’ characters"));
+                                            _("Session names are not allowed to start with “.” or contain “/” characters"));
         } else if (user_tried_dot) {
             warning_text = g_strdup_printf ("%s\n<small><b>Note:</b> <i>%s</i></small>",
                                             info_text,
-                                            _("Session names are not allowed to start with ‘.’"));
+                                            _("Session names are not allowed to start with “.”"));
         } else if (user_tried_slash) {
             warning_text = g_strdup_printf ("%s\n<small><b>Note:</b> <i>%s</i></small>",
                                             info_text,
-                                            _("Session names are not allowed to contain ‘/’ characters"));
+                                            _("Session names are not allowed to contain “/” characters"));
         }
 
         gtk_tree_model_get_iter_first (GTK_TREE_MODEL (store), &iter);
@@ -120,7 +120,7 @@ is_valid_session_name (const char *name)
                 gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, 0, &n, -1);
                 if (strcmp (n, name) == 0) {
                         char *message;
-                        message = g_strdup_printf (_("A session named ‘%s’ already exists"), name);
+                        message = g_strdup_printf (_("A session named “%s” already exists"), name);
                         warning_text = g_strdup_printf ("%s\n<small><b>Note:</b> <i>%s</i></small>", info_text, message);
                         g_free (message);
                         g_free (n);
