@@ -23,7 +23,7 @@ Startup is divided into 7 phases (GsmManagerPhase):
       other components such as gnome-keyring use those files.
 
     * GSM_MANAGER_PHASE_INITIALIZATION covers low-level stuff like
-      gnome-settings-daemon and at-spi-registryd, that need to be
+      gnome-settings-daemon helpers, that need to be
       running very early (before any windows are displayed).
 
       Apps in this phase can make use of a D-Bus interface
