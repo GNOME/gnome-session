@@ -230,15 +230,6 @@ check_gl (GError **error)
         return g_spawn_check_exit_status (status, error);
 }
 
-static inline void
-maybe_push_env_var (const char* name)
-{
-        const char *value = g_getenv (name);
-
-        if (value)
-                gsm_util_setenv (name, value);
-}
-
 static void
 initialize_gio (void)
 {
@@ -385,13 +376,6 @@ main (int argc, char **argv)
                 gsm_main ();
                 exit (1);
         }
-
-        /* Push locale variables to dbus-daemon */
-        maybe_push_env_var ("LC_TIME");
-        maybe_push_env_var ("LC_NUMERIC");
-        maybe_push_env_var ("LC_MONETARY");
-        maybe_push_env_var ("LC_MEASUREMENT");
-        maybe_push_env_var ("LC_PAPER");
 
         {
                 gchar *ibus_path;
