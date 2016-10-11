@@ -26,6 +26,7 @@
 #include <stdlib.h>
 
 #include <gtk/gtk.h>
+#include <epoxy/gl.h>
 #include <gdk/gdkx.h>
 #include <X11/Xatom.h>
 #include <sys/wait.h>
@@ -91,6 +92,26 @@ wait_for_property_notify (void)
         return property_changed;
 }
 
+static char *
+get_gtk_gles_renderer (void)
+{
+        GtkWidget *win;
+        GdkGLContext *context;
+        char *renderer = NULL;
+
+        win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+        gtk_widget_realize (win);
+        context = gdk_window_create_gl_context (gtk_widget_get_window (win), NULL);
+        if (!context)
+                return NULL;
+        gdk_gl_context_make_current (context);
+        renderer = g_strdup ((char *) glGetString (GL_RENDERER));
+        gdk_gl_context_clear_current ();
+        g_object_unref (context);
+
+        return renderer;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -103,15 +124,17 @@ main (int argc, char **argv)
         glong is_accelerated, is_software_rendering;
         GError *gl_error = NULL, *gles_error = NULL;
 
+        gtk_init (NULL, NULL);
+
         /* gnome-session-check-accelerated gets run before X is started in the wayland
          * case, and it currently requires X. Until we have that working, just always
          * assume wayland will work
          */
         if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
+                renderer_string = get_gtk_gles_renderer ();
+                g_print ("%s", renderer_string);
                 return 0;
         }
-
-        gtk_init (NULL, NULL);
 
         display = gdk_display_get_default ();
         rootwin = gdk_x11_get_default_root_xwindow ();

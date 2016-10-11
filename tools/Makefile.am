@@ -77,11 +77,13 @@ gnome_session_check_accelerated_SOURCES =       	\
 gnome_session_check_accelerated_CPPFLAGS =      \
 	-DLIBEXECDIR=\""$(libexecdir)"\"	\
 	$(AM_CPPFLAGS)			        \
-	$(GTK3_CFLAGS)
+	$(GTK3_CFLAGS)				\
+	$(GL_TEST_CFLAGS)
 
 gnome_session_check_accelerated_LDADD =         \
 	$(GTK3_LIBS)				\
-	$(X11_LIBS)
+	$(X11_LIBS)				\
+	$(GL_TEST_LIBS)
 
 if BUILD_SESSION_SELECTOR
 gnome_session_selector_CPPFLAGS =		\

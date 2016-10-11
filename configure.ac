@@ -85,7 +85,7 @@ PKG_CHECK_MODULES(SM, sm)
 PKG_CHECK_MODULES(ICE, ice)
 PKG_CHECK_MODULES(XEXT, xext xau)
 
-PKG_CHECK_MODULES(GL_TEST, xcomposite gl glib-2.0)
+PKG_CHECK_MODULES(GL_TEST, xcomposite gl glib-2.0 epoxy)
 PKG_CHECK_MODULES(GLES_TEST, egl glesv2)
 
 dnl ====================================================================
