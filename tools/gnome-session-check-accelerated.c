@@ -107,7 +107,7 @@ main (int argc, char **argv)
          * case, and it currently requires X. Until we have that working, just always
          * assume wayland will work
          */
-        if (g_strcmp0 (g_getenv ("XDG_SESSION_DESKTOP"), "gnome-wayland") == 0) {
+        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
                 return 0;
         }
 
