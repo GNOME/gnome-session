@@ -142,7 +142,7 @@ wait_for_child_app (char **argv)
 
   if (pid == 0)
     {
-      execvp (*argv, argv + 1);
+      execvp (*argv, argv);
       g_print (_("Failed to execute %s\n"), *argv);
       exit (1);
     }
