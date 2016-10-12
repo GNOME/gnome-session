@@ -1,1771 +1,359 @@
-# Croatian translation for gnome-shell.
-# Copyright (C) 2016 gnome-shell's COPYRIGHT HOLDER
-# This file is distributed under the same license as the gnome-shell package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Translation of gnome-session to Croatiann
+# Copyright (C) Croatiann team
+# Translators: Automatski Prijevod <>,Denis Lackovic <delacko@fly.srk.fer.hr>,Robert Sedak <robert.sedak@sk.tel.hr>,
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-shell master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"shell&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-10-09 14:14+0000\n"
-"PO-Revision-Date: 2016-10-10 20:03+0200\n"
-"Language-Team: Croatian <hr@li.org>\n"
-"Language: hr\n"
+"Project-Id-Version: gnome-session 0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-16 13:33+0000\n"
+"PO-Revision-Date: 2015-12-14 14:49+0000\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Launchpad-Export-Date: 2016-09-22 10:45+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
 
-#: data/50-gnome-shell-system.xml:6
-msgid "System"
-msgstr "Sustav"
+#: ../capplet/gsm-app-dialog.c:120
+msgid "Select Command"
+msgstr "Odaberi naredbu"
 
-#: data/50-gnome-shell-system.xml:9
-msgid "Show the notification list"
-msgstr "Prikaži popis poruka obavijesti"
+#: ../capplet/gsm-app-dialog.c:193
+msgid "Add Startup Program"
+msgstr "Dodaj pokretanje programa"
 
-#: data/50-gnome-shell-system.xml:12
-msgid "Focus the active notification"
-msgstr "Fokusiraj aktivnu obavijest"
+#: ../capplet/gsm-app-dialog.c:197
+msgid "Edit Startup Program"
+msgstr "Uredi pokretanje programa"
 
-#: data/50-gnome-shell-system.xml:15
-msgid "Show the overview"
-msgstr "Prikaži pregled"
+#: ../capplet/gsm-app-dialog.c:484
+msgid "The startup command cannot be empty"
+msgstr "Naredba pokretanja ne može biti prazna"
 
-#: data/50-gnome-shell-system.xml:18
-msgid "Show all applications"
-msgstr "Prikaži sve aplikacije"
+#: ../capplet/gsm-app-dialog.c:490
+msgid "The startup command is not valid"
+msgstr "Naredba pokretanja nije ispravna"
 
-#: data/50-gnome-shell-system.xml:21
-msgid "Open the application menu"
-msgstr "Otvori izbornik aplikacija"
-
-#: data/gnome-shell-extension-prefs.desktop.in.in:4
-msgid "GNOME Shell Extension Preferences"
-msgstr "Osobitosti proširenja GNOME ljuske"
-
-#: data/gnome-shell-extension-prefs.desktop.in.in:5
-msgid "Configure GNOME Shell Extensions"
-msgstr "Podesi proširenja GNOME ljuske"
-
-#: data/org.gnome.Shell.desktop.in.in:4
-msgid "GNOME Shell"
-msgstr "GNOME ljuska"
-
-#: data/org.gnome.Shell.desktop.in.in:5
-msgid "Window management and application launching"
-msgstr "Pokretanje upravljanja prozorima i aplikacijama."
-
-#: data/org.gnome.shell.gschema.xml.in:6
-msgid "Enable internal tools useful for developers and testers from Alt-F2"
-msgstr ""
-"Omogući unutrašnji alat koristan za razvijatelje i testiratelje koristeći "
-"Alt-F2 dijalog."
-
-#: data/org.gnome.shell.gschema.xml.in:9
-msgid ""
-"Allows access to internal debugging and monitoring tools using the Alt-F2 "
-"dialog."
-msgstr ""
-"Dopusti pristup alat nadziranja i unutrašnjeg otklanjanja grešaka koristeći "
-"Alt-F2 dijalog."
-
-#: data/org.gnome.shell.gschema.xml.in:16
-msgid "UUIDs of extensions to enable"
-msgstr "UUID-ovi proširenja za omogućavanje"
-
-#: data/org.gnome.shell.gschema.xml.in:17
-msgid ""
-"GNOME Shell extensions have a UUID property; this key lists extensions which "
-"should be loaded. Any extension that wants to be loaded needs to be in this "
-"list. You can also manipulate this list with the EnableExtension and "
-"DisableExtension D-Bus methods on org.gnome.Shell."
-msgstr ""
-"Proširenja GNOME ljuske imaju UUID svojstvo; taj ključ prikazuje proširenje "
-"koje treba učitati. Svako proširenje koje se želi učitati treba biti na tom "
-"popisu. Možete isto tako manipulirati tim popisom sa EnableExtension i "
-"DisableExtension D-Bus načinima na org.gnome.Shell."
-
-#: data/org.gnome.shell.gschema.xml.in:26
-msgid "Disables the validation of extension version compatibility"
-msgstr "Onemogućuje provjeru kompatibilnosti inačice proširenja"
-
-#: data/org.gnome.shell.gschema.xml.in:27
-msgid ""
-"GNOME Shell will only load extensions that claim to support the current "
-"running version. Enabling this option will disable this check and try to "
-"load all extensions regardless of the versions they claim to support."
-msgstr ""
-"GNOME ljuska će samo učitati proširenja koje podržavaju trenutno pokrenutu "
-"inačicu. Omogućavanje te mogućnosti će onemogućiti tu provjeru i pokušati "
-"učitati sva proširenja bez obzira koju inačicu podržavaju."
-
-#: data/org.gnome.shell.gschema.xml.in:35
-msgid "List of desktop file IDs for favorite applications"
-msgstr "Popis ID-ova datoteka radne površine omiljenih aplikacija"
-
-#: data/org.gnome.shell.gschema.xml.in:36
-msgid ""
-"The applications corresponding to these identifiers will be displayed in the "
-"favorites area."
-msgstr ""
-"Aplikacije koje odgovaraju tim identifikatorima će biti prikazane u području "
-"omiljenih."
-
-#: data/org.gnome.shell.gschema.xml.in:43
-msgid "App Picker View"
-msgstr "Prikaz odabira aplikacije"
-
-#: data/org.gnome.shell.gschema.xml.in:44
-msgid "Index of the currently selected view in the application picker."
-msgstr "Sadržaj trenutno odabranog prikaza u odabiru aplikacija."
-
-#: data/org.gnome.shell.gschema.xml.in:50
-msgid "History for command (Alt-F2) dialog"
-msgstr "Povijest naredbi (Alt-F2) dijalog"
-
-#. Translators: looking glass is a debugger and inspector tool, see https://wiki.gnome.org/Projects/GnomeShell/LookingGlass
-#: data/org.gnome.shell.gschema.xml.in:55
-msgid "History for the looking glass dialog"
-msgstr "Povijest dijaloga naprednih kontrola i upravljanja"
-
-#: data/org.gnome.shell.gschema.xml.in:59
-msgid "Always show the 'Log out' menu item in the user menu."
-msgstr "Uvijek prikaži 'Odjava' stavku u korisničkom izborniku."
-
-#: data/org.gnome.shell.gschema.xml.in:60
-msgid ""
-"This key overrides the automatic hiding of the 'Log out' menu item in single-"
-"user, single-session situations."
-msgstr ""
-"Ova tipka zaobilazi automatsko sakrivanje 'Odjava' stavke izbornika u "
-"situaciji jednog-korisnika, jedne-sesije."
-
-#: data/org.gnome.shell.gschema.xml.in:67
-msgid ""
-"Whether to remember password for mounting encrypted or remote filesystems"
-msgstr ""
-"Treba li zapamtiti lozinku za montiranje šifriranih ili udaljenih datotečnih "
-"sustava"
-
-#: data/org.gnome.shell.gschema.xml.in:68
-msgid ""
-"The shell will request a password when an encrypted device or a remote "
-"filesystem is mounted. If the password can be saved for future use a "
-"'Remember Password' checkbox will be present. This key sets the default "
-"state of the checkbox."
-msgstr ""
-"Ova ljuska će zatražiti lozinku kada šifrirani uređaj ili udaljeni datotečni "
-"sustav je montiran. Ako se lozinka može spremiti za buduću upotrebu 'Zapamti "
-"lozinku' mogućnost odabira će biti prisutna. Ta mogućnost postavlja zadano "
-"stanje odabira."
-
-#: data/org.gnome.shell.gschema.xml.in:77
-msgid ""
-"Whether the default Bluetooth adapter had set up devices associated to it"
-msgstr ""
-"Treba li zadani Bluetooth adapter postaviti uređaj s kojim je pridružen"
-
-#: data/org.gnome.shell.gschema.xml.in:78
-msgid ""
-"The shell will only show a Bluetooth menu item if a Bluetooth adapter is "
-"powered, or if there were devices set up associated with the default "
-"adapter. This will be reset if the default adapter is ever seen not to have "
-"devices associated to it."
-msgstr ""
-"Ova ljuska će samo prikazati Bluetooth izbornik ako je Bluetooth adapter "
-"uključen, ili kao su dostupni uređaji pridruženi sa zadanim adapterom. Ovo "
-"će biti poništeno ako zadani adapter nije imao nikada pridruženog uređaja."
-
-#: data/org.gnome.shell.gschema.xml.in:93
-#, fuzzy
-msgid "Keybinding to open the application menu"
-msgstr "Izbornik aplikacije"
-
-#: data/org.gnome.shell.gschema.xml.in:94
-#, fuzzy
-msgid "Keybinding to open the application menu."
-msgstr "Izbornik aplikacije"
-
-#: data/org.gnome.shell.gschema.xml.in:100
-msgid "Keybinding to open the \"Show Applications\" view"
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:101
-msgid ""
-"Keybinding to open the \"Show Applications\" view of the Activities Overview."
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:108
-#, fuzzy
-msgid "Keybinding to open the overview"
-msgstr "Pregled"
-
-#: data/org.gnome.shell.gschema.xml.in:109
-msgid "Keybinding to open the Activities Overview."
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:115
-msgid "Keybinding to toggle the visibility of the notification list"
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:116
-msgid "Keybinding to toggle the visibility of the notification list."
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:122
-msgid "Keybinding to focus the active notification"
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:123
-msgid "Keybinding to focus the active notification."
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:129
-msgid ""
-"Keybinding that pauses and resumes all running tweens, for debugging purposes"
-msgstr ""
-
-#: data/org.gnome.shell.gschema.xml.in:138
-msgid "Which keyboard to use"
-msgstr "Koju tipkovnicu koristiti"
-
-#: data/org.gnome.shell.gschema.xml.in:139
-msgid "The type of keyboard to use."
-msgstr "Vrsta tipkovnice koja se koristi"
-
-#: data/org.gnome.shell.gschema.xml.in:150
-#: data/org.gnome.shell.gschema.xml.in:177
-msgid "Limit switcher to current workspace."
-msgstr "Ograniči premještanje na trenutni radni prostor."
-
-#: data/org.gnome.shell.gschema.xml.in:151
-msgid ""
-"If true, only applications that have windows on the current workspace are "
-"shown in the switcher. Otherwise, all applications are included."
-msgstr ""
-"Ako je odabrano, samo aplikacije koje imaju prozor na trenutnom radnom "
-"prostoru su prikazane na prebacivaču. U suprotnom, sve aplikacije su "
-"uključene."
-
-#: data/org.gnome.shell.gschema.xml.in:168
-msgid "The application icon mode."
-msgstr "Način ikone aplikacije."
-
-#: data/org.gnome.shell.gschema.xml.in:169
-msgid ""
-"Configures how the windows are shown in the switcher. Valid possibilities "
-"are 'thumbnail-only' (shows a thumbnail of the window), 'app-icon-"
-"only' (shows only the application icon) or 'both'."
-msgstr ""
-"Podešava kako su prozori prikazani u prebacivaču. Valjane mogućnosti su "
-"'thumbnail-only' (prikazuje minijaturu prozora), 'app-icon-only' (prikazuje "
-"samo ikonu aplikacije) ili 'both'."
-
-#: data/org.gnome.shell.gschema.xml.in:178
-msgid ""
-"If true, only windows from the current workspace are shown in the switcher. "
-"Otherwise, all windows are included."
-msgstr ""
-"Ako je odabrano, samo prozori s trenutnog radnog prostora su prikazani u "
-"prebacivaču, U suprotnom, svi prozori su uključeni."
-
-#: data/org.gnome.shell.gschema.xml.in:189
-msgid "Attach modal dialog to the parent window"
-msgstr "Pričvrsti prozore dijaloga na nadređeni prozor"
-
-#: data/org.gnome.shell.gschema.xml.in:190
-#: data/org.gnome.shell.gschema.xml.in:199
-#: data/org.gnome.shell.gschema.xml.in:207
-#: data/org.gnome.shell.gschema.xml.in:215
-#: data/org.gnome.shell.gschema.xml.in:223
-msgid ""
-"This key overrides the key in org.gnome.mutter when running GNOME Shell."
-msgstr ""
-"Ova vrijednost zaobilazi org.gnome.mutter kada je pokrenuta GNOME ljuska."
-
-#: data/org.gnome.shell.gschema.xml.in:198
-msgid "Enable edge tiling when dropping windows on screen edges"
-msgstr "Omogući rubno popločavanje pri ispuštanju prozora na rubovima zaslona"
-
-#: data/org.gnome.shell.gschema.xml.in:206
-msgid "Workspaces are managed dynamically"
-msgstr "Radni prostori su upravljani promjenjivo"
-
-#: data/org.gnome.shell.gschema.xml.in:214
-msgid "Workspaces only on primary monitor"
-msgstr "Radni prostori samo na glavnom zaslonu"
-
-#: data/org.gnome.shell.gschema.xml.in:222
-msgid "Delay focus changes in mouse mode until the pointer stops moving"
-msgstr ""
-"Odgodi promjenu fokusa u načinu rada s mišem dok se pokazivač ne prestane "
-"pomicati"
-
-#: data/org.gnome.Shell.PortalHelper.desktop.in.in:3
-msgid "Network Login"
-msgstr "Mrežna prijava"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Shell.PortalHelper.desktop.in.in:9
-msgid "network-workgroup"
-msgstr "mreža-radnagrupa"
-
-#: js/extensionPrefs/main.js:117
-#, javascript-format
-msgid "There was an error loading the preferences dialog for %s:"
-msgstr "Dogodila se greška učitavanja dijaloga osobitosti za %s:"
-
-#: js/extensionPrefs/main.js:149
-msgid "GNOME Shell Extensions"
-msgstr "Proširenja GNOME ljuske"
-
-#: js/gdm/authPrompt.js:147 js/ui/audioDeviceSelection.js:71
-#: js/ui/components/networkAgent.js:145 js/ui/components/polkitAgent.js:179
-#: js/ui/endSessionDialog.js:483 js/ui/extensionDownloader.js:195
-#: js/ui/shellMountOperation.js:399 js/ui/status/network.js:916
-msgid "Cancel"
-msgstr "Odustani"
-
-#: js/gdm/authPrompt.js:169 js/gdm/authPrompt.js:216 js/gdm/authPrompt.js:448
-msgid "Next"
-msgstr "Sljedeće"
-
-#: js/gdm/authPrompt.js:212 js/ui/shellMountOperation.js:403
-#: js/ui/unlockDialog.js:59
-msgid "Unlock"
-msgstr "Otključaj"
-
-#: js/gdm/authPrompt.js:214
-msgctxt "button"
-msgid "Sign In"
-msgstr "Prijava"
-
-#: js/gdm/loginDialog.js:285
-msgid "Choose Session"
-msgstr "Odaberi sesiju"
-
-#. translators: this message is shown below the user list on the
-#. login screen. It can be activated to reveal an entry for
-#. manually entering the username.
-#: js/gdm/loginDialog.js:435
-msgid "Not listed?"
-msgstr "Nije na popisu?"
-
-#. Translators: this message is shown below the username entry field
-#. to clue the user in on how to login to the local network realm
-#: js/gdm/loginDialog.js:859
-#, javascript-format
-msgid "(e.g., user or %s)"
-msgstr "(npr., korisnik ili %s)"
-
-#. TTLS and PEAP are actually much more complicated, but this complication
-#. is not visible here since we only care about phase2 authentication
-#. (and don't even care of which one)
-#: js/gdm/loginDialog.js:864 js/ui/components/networkAgent.js:271
-#: js/ui/components/networkAgent.js:289
-msgid "Username: "
-msgstr "Korisničko ime:"
-
-#: js/gdm/loginDialog.js:1201
-msgid "Login Window"
-msgstr "Prozor prijave"
-
-#: js/gdm/util.js:341
-msgid "Authentication error"
-msgstr "Greška ovjere"
-
-#. We don't show fingerprint messages directly since it's
-#. not the main auth service. Instead we use the messages
-#. as a cue to display our own message.
-#. Translators: this message is shown below the password entry field
-#. to indicate the user can swipe their finger instead
-#: js/gdm/util.js:473
-msgid "(or swipe finger)"
-msgstr "(ili pomakni prst)"
-
-#: js/misc/util.js:119
-msgid "Command not found"
-msgstr "Naredba nije pronađena"
-
-#. Replace "Error invoking GLib.shell_parse_argv: " with
-#. something nicer
-#: js/misc/util.js:152
-msgid "Could not parse command:"
-msgstr "Nemoguća obrada naredbe:"
-
-#: js/misc/util.js:160
-#, javascript-format
-msgid "Execution of “%s” failed:"
-msgstr "Izvršavanje '%s' neuspjelo:"
-
-#. Translators: Time in 24h format
-#: js/misc/util.js:191
-msgid "%H∶%M"
-msgstr "%H:%M"
-
-#. Translators: this is the word "Yesterday" followed by a
-#. time string in 24h format. i.e. "Yesterday, 14:30"
-#: js/misc/util.js:197
-#, no-c-format
-msgid "Yesterday, %H∶%M"
-msgstr "Jučer, %H∶%M"
-
-#. Translators: this is the week day name followed by a time
-#. string in 24h format. i.e. "Monday, 14:30"
-#: js/misc/util.js:203
-#, no-c-format
-msgid "%A, %H∶%M"
-msgstr "%A, %H∶%M"
-
-#. Translators: this is the month name and day number
-#. followed by a time string in 24h format.
-#. i.e. "May 25, 14:30"
-#: js/misc/util.js:209
-#, no-c-format
-msgid "%B %d, %H∶%M"
-msgstr "%B %d, %H∶%M"
-
-#. Translators: this is the month name, day number, year
-#. number followed by a time string in 24h format.
-#. i.e. "May 25 2012, 14:30"
-#: js/misc/util.js:215
-#, no-c-format
-msgid "%B %d %Y, %H∶%M"
-msgstr "%B %d %Y, %H∶%M"
-
-#. Translators: Time in 12h format
-#: js/misc/util.js:220
-msgid "%l∶%M %p"
-msgstr "%l:%M %p"
-
-#. Translators: this is the word "Yesterday" followed by a
-#. time string in 12h format. i.e. "Yesterday, 2:30 pm"
-#: js/misc/util.js:226
-#, no-c-format
-msgid "Yesterday, %l∶%M %p"
-msgstr "Jučer, %l∶%M %p"
-
-#. Translators: this is the week day name followed by a time
-#. string in 12h format. i.e. "Monday, 2:30 pm"
-#: js/misc/util.js:232
-#, no-c-format
-msgid "%A, %l∶%M %p"
-msgstr "%A, %l∶%M %p"
-
-#. Translators: this is the month name and day number
-#. followed by a time string in 12h format.
-#. i.e. "May 25, 2:30 pm"
-#: js/misc/util.js:238
-#, no-c-format
-msgid "%B %d, %l∶%M %p"
-msgstr "%B %d, %l∶%M %p"
-
-#. Translators: this is the month name, day number, year
-#. number followed by a time string in 12h format.
-#. i.e. "May 25 2012, 2:30 pm"
-#: js/misc/util.js:244
-#, no-c-format
-msgid "%B %d %Y, %l∶%M %p"
-msgstr "%B %d %Y, %l∶%M %p"
-
-#. TRANSLATORS: this is the title of the wifi captive portal login
-#. * window, until we know the title of the actual login page
-#: js/portalHelper/main.js:85
-msgid "Web Authentication Redirect"
-msgstr "Web ovjera je preusmjerena"
-
-#. No support for non-modal system dialogs, so ignore the option
-#. let modal = options['modal'] || true;
-#: js/ui/accessDialog.js:62 js/ui/status/location.js:426
-msgid "Deny Access"
-msgstr "Zabrani pristup"
-
-#: js/ui/accessDialog.js:63 js/ui/status/location.js:429
-msgid "Grant Access"
-msgstr "Dopusti pristup"
-
-#: js/ui/appDisplay.js:794
-msgid "Frequently used applications will appear here"
-msgstr "Najčešće korištene aplikacije će se pojaviti ovdje"
-
-#: js/ui/appDisplay.js:914
-msgid "Frequent"
-msgstr "Najčešće"
-
-#: js/ui/appDisplay.js:921
-msgid "All"
-msgstr "Sve"
-
-#: js/ui/appDisplay.js:1853
-msgid "New Window"
-msgstr "Novi prozor"
-
-#: js/ui/appDisplay.js:1881 js/ui/dash.js:289
-msgid "Remove from Favorites"
-msgstr "Ukloni iz omiljenih"
-
-#: js/ui/appDisplay.js:1887
-msgid "Add to Favorites"
-msgstr "Dodaj u omiljene"
-
-#: js/ui/appDisplay.js:1897
-msgid "Show Details"
-msgstr "Prikaži pojedinosti"
-
-#: js/ui/appFavorites.js:134
-#, javascript-format
-msgid "%s has been added to your favorites."
-msgstr "%s je dodan u omiljene."
-
-#: js/ui/appFavorites.js:168
-#, javascript-format
-msgid "%s has been removed from your favorites."
-msgstr "%s je uklonjen iz omiljenih."
-
-#: js/ui/audioDeviceSelection.js:59
-msgid "Select Audio Device"
-msgstr "Odaberi zvučni uređaj"
-
-#: js/ui/audioDeviceSelection.js:69
-msgid "Sound Settings"
-msgstr "Postavke zvuka"
-
-#: js/ui/audioDeviceSelection.js:78
-msgid "Headphones"
-msgstr "Slušalice"
-
-#: js/ui/audioDeviceSelection.js:80
-msgid "Headset"
-msgstr "Slušalice s mikrofonom"
-
-#: js/ui/audioDeviceSelection.js:82 js/ui/status/volume.js:213
-msgid "Microphone"
-msgstr "Mikrofon"
-
-#: js/ui/backgroundMenu.js:19
-msgid "Change Background…"
-msgstr "Promijeni pozadinu..."
-
-#: js/ui/backgroundMenu.js:21
-msgid "Display Settings"
-msgstr "Postavke prikaza"
-
-#: js/ui/backgroundMenu.js:22 js/ui/status/system.js:374
-msgid "Settings"
-msgstr "Postavke"
-
-#. Translators: Enter 0-6 (Sunday-Saturday) for non-work days. Examples: "0" (Sunday) "6" (Saturday) "06" (Sunday and Saturday).
-#: js/ui/calendar.js:47
-msgctxt "calendar-no-work"
-msgid "06"
-msgstr "06"
-
-#. Translators: Calendar grid abbreviation for Sunday.
-#. *
-#. * NOTE: These grid abbreviations are always shown together
-#. * and in order, e.g. "S M T W T F S".
-#.
-#: js/ui/calendar.js:76
-msgctxt "grid sunday"
-msgid "S"
-msgstr "N"
-
-#. Translators: Calendar grid abbreviation for Monday
-#: js/ui/calendar.js:78
-msgctxt "grid monday"
-msgid "M"
-msgstr "P"
-
-#. Translators: Calendar grid abbreviation for Tuesday
-#: js/ui/calendar.js:80
-msgctxt "grid tuesday"
-msgid "T"
-msgstr "U"
-
-#. Translators: Calendar grid abbreviation for Wednesday
-#: js/ui/calendar.js:82
-msgctxt "grid wednesday"
-msgid "W"
-msgstr "S"
-
-#. Translators: Calendar grid abbreviation for Thursday
-#: js/ui/calendar.js:84
-msgctxt "grid thursday"
-msgid "T"
-msgstr "Č"
-
-#. Translators: Calendar grid abbreviation for Friday
-#: js/ui/calendar.js:86
-msgctxt "grid friday"
-msgid "F"
-msgstr "P"
-
-#. Translators: Calendar grid abbreviation for Saturday
-#: js/ui/calendar.js:88
-msgctxt "grid saturday"
-msgid "S"
-msgstr "S"
-
-#: js/ui/calendar.js:442
-msgid "Previous month"
-msgstr "Prijašnji mjesec"
-
-#: js/ui/calendar.js:452
-msgid "Next month"
-msgstr "Sljedeći mjesec"
-
-#: js/ui/calendar.js:605
-#, no-javascript-format
-msgctxt "date day number format"
-msgid "%d"
-msgstr "%d"
-
-#: js/ui/calendar.js:660
-msgid "Week %V"
-msgstr "Tjedan %V"
-
-#. Translators: Shown in calendar event list for all day events
-#. * Keep it short, best if you can use less then 10 characters
-#.
-#: js/ui/calendar.js:721
-msgctxt "event list time"
-msgid "All Day"
-msgstr "Cijeli dan"
-
-#: js/ui/calendar.js:836
-msgid "Events"
-msgstr "Događaji"
-
-#: js/ui/calendar.js:845
-msgctxt "calendar heading"
-msgid "%A, %B %d"
-msgstr "%A, %B %d"
-
-#: js/ui/calendar.js:849
-msgctxt "calendar heading"
-msgid "%A, %B %d, %Y"
-msgstr "%A, %B %d, %Y"
-
-#: js/ui/calendar.js:931
-msgid "Notifications"
-msgstr "Obavijesti"
-
-#: js/ui/calendar.js:1082
-msgid "No Notifications"
-msgstr "Nema obavijesti"
-
-#: js/ui/calendar.js:1085
-msgid "No Events"
-msgstr "Nema događaja"
-
-#: js/ui/components/automountManager.js:91
-msgid "External drive connected"
-msgstr "Vanjski uređaj povezan"
-
-#: js/ui/components/automountManager.js:102
-msgid "External drive disconnected"
-msgstr "Vanjski uređaj odspojen"
-
-#: js/ui/components/autorunManager.js:355
-#, javascript-format
-msgid "Open with %s"
-msgstr "Otvori s(a) %s"
-
-#: js/ui/components/keyring.js:120 js/ui/components/polkitAgent.js:315
-msgid "Password:"
-msgstr "Lozinka:"
-
-#: js/ui/components/keyring.js:153
-msgid "Type again:"
-msgstr "Pokušaj ponovno:"
-
-#: js/ui/components/networkAgent.js:140 js/ui/status/network.js:269
-#: js/ui/status/network.js:352 js/ui/status/network.js:919
-msgid "Connect"
-msgstr "Povezivanje"
-
-#. Cisco LEAP
-#: js/ui/components/networkAgent.js:233 js/ui/components/networkAgent.js:245
-#: js/ui/components/networkAgent.js:273 js/ui/components/networkAgent.js:293
-#: js/ui/components/networkAgent.js:303
-msgid "Password: "
-msgstr "Lozinka:"
-
-#. static WEP
-#: js/ui/components/networkAgent.js:238
-msgid "Key: "
-msgstr "Ključ:"
-
-#: js/ui/components/networkAgent.js:277
-msgid "Identity: "
-msgstr "Identitet:"
-
-#: js/ui/components/networkAgent.js:279
-msgid "Private key password: "
-msgstr "Lozinka privatnog ključa:"
-
-#: js/ui/components/networkAgent.js:291
-msgid "Service: "
-msgstr "Usluga:"
-
-#: js/ui/components/networkAgent.js:320 js/ui/components/networkAgent.js:658
-msgid "Authentication required by wireless network"
-msgstr "Potrebna je ovjera za bežičnu mrežu"
-
-#: js/ui/components/networkAgent.js:321 js/ui/components/networkAgent.js:659
-#, javascript-format
-msgid ""
-"Passwords or encryption keys are required to access the wireless network "
-"“%s”."
-msgstr ""
-"Lozinka ili ključevi šifriranja su potrebni za pristup bežičnoj mreži “%s”."
-
-#: js/ui/components/networkAgent.js:325 js/ui/components/networkAgent.js:662
-msgid "Wired 802.1X authentication"
-msgstr "Wired 802.1X ovjera"
-
-#: js/ui/components/networkAgent.js:327
-msgid "Network name: "
-msgstr "Naziv mreže:"
-
-#: js/ui/components/networkAgent.js:332 js/ui/components/networkAgent.js:666
-msgid "DSL authentication"
-msgstr "DSL ovjera"
-
-#: js/ui/components/networkAgent.js:339 js/ui/components/networkAgent.js:672
-msgid "PIN code required"
-msgstr "PIN kôd je potreban"
-
-#: js/ui/components/networkAgent.js:340 js/ui/components/networkAgent.js:673
-msgid "PIN code is needed for the mobile broadband device"
-msgstr "PIN kôd je potreban za uređaj mobilnog interneta"
-
-#: js/ui/components/networkAgent.js:341
-msgid "PIN: "
-msgstr "PIN:"
-
-#: js/ui/components/networkAgent.js:348 js/ui/components/networkAgent.js:679
-msgid "Mobile broadband network password"
-msgstr "Lozinka mreže mobilnog interneta"
-
-#: js/ui/components/networkAgent.js:349 js/ui/components/networkAgent.js:663
-#: js/ui/components/networkAgent.js:667 js/ui/components/networkAgent.js:680
-#, javascript-format
-msgid "A password is required to connect to “%s”."
-msgstr "Potrebna je lozinka za povezivanje s “%s”."
-
-#: js/ui/components/networkAgent.js:647 js/ui/status/network.js:1660
-msgid "Network Manager"
-msgstr "Mrežni upravitelj"
-
-#: js/ui/components/polkitAgent.js:60
-msgid "Authentication Required"
-msgstr "Potrebna je ovjera"
-
-#: js/ui/components/polkitAgent.js:102
-msgid "Administrator"
-msgstr "Administrator"
-
-#: js/ui/components/polkitAgent.js:182
-msgid "Authenticate"
-msgstr "Ovjeri"
-
-#. Translators: "that didn't work" refers to the fact that the
-#. * requested authentication was not gained; this can happen
-#. * because of an authentication error (like invalid password),
-#. * for instance.
-#: js/ui/components/polkitAgent.js:301 js/ui/shellMountOperation.js:383
-msgid "Sorry, that didn't work. Please try again."
-msgstr "Nažalost, to ne radi. Pokušajte ponovno."
-
-#. Translators: this is the other person changing their old IM name to their new
-#. IM name.
-#: js/ui/components/telepathyClient.js:765
-#, javascript-format
-msgid "%s is now known as %s"
-msgstr "%s je poznat kao %s"
-
-#: js/ui/ctrlAltTab.js:29 js/ui/viewSelector.js:155
-msgid "Windows"
-msgstr "Prozori"
-
-#: js/ui/dash.js:250 js/ui/dash.js:291
-msgid "Show Applications"
-msgstr "Prikaži aplikacije"
-
-#. Translators: this is the name of the dock/favorites area on
-#. the left of the overview
-#: js/ui/dash.js:449
-msgid "Dash"
-msgstr "Ploča"
-
-#. Translators: This is the date format to use when the calendar popup is
-#. * shown - it is shown just below the time in the shell (e.g. "Tue 9:29 AM").
-#.
-#: js/ui/dateMenu.js:73
-msgid "%B %e %Y"
-msgstr "%e %b, %Y"
-
-#. Translators: This is the accessible name of the date button shown
-#. * below the time in the shell; it should combine the weekday and the
-#. * date, e.g. "Tuesday February 17 2015".
-#.
-#: js/ui/dateMenu.js:80
-msgid "%A %B %e %Y"
-msgstr "%e %b, %Y"
-
-#: js/ui/dateMenu.js:160
-msgid "Add world clocks…"
-msgstr "Dodaj satove iz svijeta..."
-
-#: js/ui/dateMenu.js:161
-msgid "World Clocks"
-msgstr "Svjetski satovi"
-
-#: js/ui/endSessionDialog.js:64
-#, javascript-format
-msgctxt "title"
-msgid "Log Out %s"
-msgstr "Odjavi se %s"
-
-#: js/ui/endSessionDialog.js:65
-msgctxt "title"
-msgid "Log Out"
-msgstr "Odjava"
-
-#: js/ui/endSessionDialog.js:67
-#, javascript-format
-msgid "%s will be logged out automatically in %d second."
-msgid_plural "%s will be logged out automatically in %d seconds."
-msgstr[0] "%s će se automatski odjaviti za %d sekundu."
-msgstr[1] "%s će se automatski odjaviti za %d sekunde."
-msgstr[2] "%s će se automatski odjaviti za %d sekundi."
-
-#: js/ui/endSessionDialog.js:72
-#, javascript-format
-msgid "You will be logged out automatically in %d second."
-msgid_plural "You will be logged out automatically in %d seconds."
-msgstr[0] "Odjavit ćete se automatski za %d sekundu."
-msgstr[1] "Odjavit ćete se automatski za %d sekunde."
-msgstr[2] "Odjavit ćete se automatski za %d sekundi."
-
-#: js/ui/endSessionDialog.js:78
-msgctxt "button"
-msgid "Log Out"
-msgstr "Odjava"
-
-#: js/ui/endSessionDialog.js:84
-msgctxt "title"
-msgid "Power Off"
-msgstr "Isključivanje"
-
-#: js/ui/endSessionDialog.js:85
-msgctxt "title"
-msgid "Install Updates & Power Off"
-msgstr "Instaliraj nadopune i isključi"
-
-#: js/ui/endSessionDialog.js:87
-#, javascript-format
-msgid "The system will power off automatically in %d second."
-msgid_plural "The system will power off automatically in %d seconds."
-msgstr[0] "Sustav će se automatski isključiti za %d sekundu."
-msgstr[1] "Sustav će se automatski isključiti za %d sekunde."
-msgstr[2] "Sustav će se automatski isključiti za %d sekundi."
-
-#: js/ui/endSessionDialog.js:91
-msgctxt "checkbox"
-msgid "Install pending software updates"
-msgstr "Instaliraj dostupne nadopune softvera"
-
-#: js/ui/endSessionDialog.js:94 js/ui/endSessionDialog.js:111
-msgctxt "button"
-msgid "Restart"
-msgstr "Ponovno pokreni"
-
-#: js/ui/endSessionDialog.js:96
-msgctxt "button"
-msgid "Power Off"
-msgstr "Isključi"
-
-#: js/ui/endSessionDialog.js:103
-msgctxt "title"
-msgid "Restart"
-msgstr "Ponovno pokreni"
-
-#: js/ui/endSessionDialog.js:105
-#, javascript-format
-msgid "The system will restart automatically in %d second."
-msgid_plural "The system will restart automatically in %d seconds."
-msgstr[0] "Sustav će se automatski ponovno pokrenuti za %d sekundu."
-msgstr[1] "Sustav će se automatski ponovno pokrenuti za %d sekunde."
-msgstr[2] "Sustav će se automatski ponovno pokrenuti za %d sekundi."
-
-#: js/ui/endSessionDialog.js:119
-msgctxt "title"
-msgid "Restart & Install Updates"
-msgstr "Ponovno pokreni i instaliraj nadopune"
-
-#: js/ui/endSessionDialog.js:121
-#, javascript-format
-msgid "The system will automatically restart and install updates in %d second."
-msgid_plural ""
-"The system will automatically restart and install updates in %d seconds."
-msgstr[0] ""
-"Sustav će se automatski ponovno pokrenuti i instalirati nadopune za %d "
-"sekundu."
-msgstr[1] ""
-"Sustav će se automatski ponovno pokrenuti i instalirati nadopune za %d "
-"sekunde."
-msgstr[2] ""
-"Sustav će se automatski ponovno pokrenuti i instalirati nadopune za %d "
-"sekundi."
-
-#: js/ui/endSessionDialog.js:127 js/ui/endSessionDialog.js:147
-msgctxt "button"
-msgid "Restart &amp; Install"
-msgstr "Ponovno pokreni i instaliraj"
-
-#: js/ui/endSessionDialog.js:128
-msgctxt "button"
-msgid "Install &amp; Power Off"
-msgstr "Instaliraj i isključi"
-
-#: js/ui/endSessionDialog.js:129
-msgctxt "checkbox"
-msgid "Power off after updates are installed"
-msgstr "Isključi nakon što se nadopune instaliraju"
-
-#: js/ui/endSessionDialog.js:137
-msgctxt "title"
-msgid "Restart & Install Upgrade"
-msgstr "Ponovno pokreni i instaliraj nadogradnju"
-
-#. Translators: This is the text displayed for system upgrades in the
-#. shut down dialog. First %s gets replaced with the distro name and
-#. second %s with the distro version to upgrade to
-#: js/ui/endSessionDialog.js:142
-#, javascript-format
-msgid ""
-"%s %s will be installed after restart. Upgrade installation can take a long "
-"time: ensure that you have backed up and that the computer is plugged in."
-msgstr ""
-"%s %s će se instalirati nakon ponovnog pokretanja. Instalacija nadogradnji "
-"može potrajati duže vrijeme: pobrinite se da ste spremili svoj rad i "
-"računalo je priključeno na izvor napajanja."
-
-#: js/ui/endSessionDialog.js:361
-msgid "Running on battery power: please plug in before installing updates."
-msgstr ""
-"Koristi se energija baterije: računalo priključite na izvor napajanja prije "
-"instalacije nadopuna."
-
-#: js/ui/endSessionDialog.js:378
-msgid "Some applications are busy or have unsaved work."
-msgstr "Neke aplikacije su zauzete ili imaju nespremljeni rad."
-
-#: js/ui/endSessionDialog.js:385
-msgid "Other users are logged in."
-msgstr "Drugi korisnici su prijavljeni."
-
-#. Translators: Remote here refers to a remote session, like a ssh login
-#: js/ui/endSessionDialog.js:671
-#, javascript-format
-msgid "%s (remote)"
-msgstr "%s (udaljeno)"
-
-#. Translators: Console here refers to a tty like a VT console
-#: js/ui/endSessionDialog.js:674
-#, javascript-format
-msgid "%s (console)"
-msgstr "%s (konzola)"
-
-#: js/ui/extensionDownloader.js:199
-msgid "Install"
-msgstr "Instaliraj"
-
-#: js/ui/extensionDownloader.js:204
-#, javascript-format
-msgid "Download and install “%s” from extensions.gnome.org?"
-msgstr "Preuzmi i instaliraj “%s” sa extensions.gnome.org?"
-
-#: js/ui/keyboard.js:742 js/ui/status/keyboard.js:782
-msgid "Keyboard"
-msgstr "Tipkovnica"
-
-#. translators: 'Hide' is a verb
-#: js/ui/legacyTray.js:65
-msgid "Hide tray"
-msgstr "Sakrij traku stanja"
-
-#: js/ui/legacyTray.js:106
-msgid "Status Icons"
-msgstr "Ikona stanja"
-
-#: js/ui/lookingGlass.js:643
-msgid "No extensions installed"
-msgstr "Nema instaliranih proširenja"
-
-#. Translators: argument is an extension UUID.
-#: js/ui/lookingGlass.js:697
-#, javascript-format
-msgid "%s has not emitted any errors."
-msgstr "%s nije dao ni jednu grešku."
-
-#: js/ui/lookingGlass.js:703
-msgid "Hide Errors"
-msgstr "Sakrij greške"
-
-#: js/ui/lookingGlass.js:707 js/ui/lookingGlass.js:767
-msgid "Show Errors"
-msgstr "Prikaži greške"
-
-#: js/ui/lookingGlass.js:716
+#: ../capplet/gsm-properties-dialog.c:519
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#. translators:
-#. * The device has been disabled
-#: js/ui/lookingGlass.js:719 src/gvc/gvc-mixer-control.c:1866
-msgid "Disabled"
-msgstr "Onemogućen"
+#: ../capplet/gsm-properties-dialog.c:531
+msgid "Icon"
+msgstr "Ikona"
 
-#: js/ui/lookingGlass.js:721
-msgid "Error"
-msgstr "Greška"
+#: ../capplet/gsm-properties-dialog.c:543
+msgid "Program"
+msgstr "Program"
 
-#: js/ui/lookingGlass.js:723
-msgid "Out of date"
-msgstr "Zastarjelo"
+#: ../capplet/gsm-properties-dialog.c:747
+msgid "Startup Applications Preferences"
+msgstr "Osobitosti pokretanja programa"
 
-#: js/ui/lookingGlass.js:725
-msgid "Downloading"
-msgstr "Preuzimanje"
+#: ../capplet/gsp-app.c:276
+msgid "No name"
+msgstr "Bez naziva"
 
-#: js/ui/lookingGlass.js:749
-msgid "View Source"
-msgstr "Pogledaj izvor"
+#: ../capplet/gsp-app.c:282
+msgid "No description"
+msgstr "Bez opisa"
 
-#: js/ui/lookingGlass.js:758
-msgid "Web Page"
-msgstr "Web stranica"
+#: ../capplet/main.c:35 ../gnome-session/main.c:283
+msgid "Version of this application"
+msgstr "Inačica ove aplikacije"
 
-#: js/ui/messageList.js:543
-msgid "Clear section"
-msgstr "Obriši odjeljak"
+#: ../capplet/main.c:61
+msgid "Could not display help document"
+msgstr "Nemoguće prikazivanje dokumenta pomoći"
 
-#: js/ui/messageTray.js:1486
-msgid "System Information"
-msgstr "Informacije sustava"
+#: ../data/gnome-custom-session.desktop.in.h:1
+msgid "Custom"
+msgstr "Prilagođen"
 
-#: js/ui/mpris.js:194
-msgid "Unknown artist"
-msgstr "Nepoznat izvođač"
+#: ../data/gnome-custom-session.desktop.in.h:2
+msgid "This entry lets you select a saved session"
+msgstr "Ovaj unos vam omogućuje odabir spremljene sesije"
 
-#: js/ui/mpris.js:195
-msgid "Unknown title"
-msgstr "Nepoznat naslov"
+#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+msgid "GNOME"
+msgstr "GNOME"
 
-#: js/ui/mpris.js:217
-msgid "Media"
-msgstr "Medij"
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+msgid "This session logs you into GNOME"
+msgstr "Ova sesija vas prijavljuje u GNOME"
 
-#: js/ui/overview.js:84
-msgid "Undo"
-msgstr "Poništi"
+#: ../data/gnome-dummy.session.desktop.in.in.h:1
+msgid "GNOME dummy"
+msgstr "GNOME lažno"
 
-#: js/ui/overview.js:113
-msgid "Overview"
-msgstr "Pregled"
+#: ../data/gnome-session-properties.desktop.in.in.h:1
+msgid "Startup Applications"
+msgstr "Pokrenute aplikacije"
 
-#. Translators: this is the text displayed
-#. in the search entry when no search is
-#. active; it should not exceed ~30
-#. characters.
-#: js/ui/overview.js:240
-msgid "Type to search…"
-msgstr "Upiši za pretragu..."
+#: ../data/gnome-session-properties.desktop.in.in.h:2
+msgid "Choose what applications to start when you log in"
+msgstr "Odaberite aplikacije koje želite pokrenuti prilikom prijave."
 
-#: js/ui/panel.js:358
-msgid "Quit"
-msgstr "Zatvori"
+#: ../data/gnome-wayland.desktop.in.h:1
+msgid "GNOME on Wayland"
+msgstr "GNOME na Waylandu"
 
-#. Translators: If there is no suitable word for "Activities"
-#. in your language, you can use the word for "Overview".
-#: js/ui/panel.js:414
-msgid "Activities"
-msgstr "Aktivnosti"
+#: ../data/session-selector.ui.h:1
+msgid "Custom Session"
+msgstr "Prilagođena sesija"
 
-#: js/ui/panel.js:695
-msgctxt "System menu in the top bar"
-msgid "System"
-msgstr "Sustav"
+#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "Odaberite prilagođenu sesiju za pokretanje"
 
-#: js/ui/panel.js:807
-msgid "Top Bar"
-msgstr "Gornja traka"
+#: ../data/session-selector.ui.h:3
+msgid "_New Session"
+msgstr "_Nova sesija"
 
-#. Translators: this MUST be either "toggle-switch-us"
-#. (for toggle switches containing the English words
-#. "ON" and "OFF") or "toggle-switch-intl" (for toggle
-#. switches containing "◯" and "|"). Other values will
-#. simply result in invisible toggle switches.
-#: js/ui/popupMenu.js:289
-msgid "toggle-switch-us"
+#: ../data/session-selector.ui.h:4
+msgid "_Remove Session"
+msgstr "_Ukloni sesiju"
+
+#: ../data/session-selector.ui.h:5
+msgid "Rena_me Session"
+msgstr "Preimen_uj sesiju"
+
+#: ../data/session-selector.ui.h:6
+msgid "_Continue"
+msgstr "_Nastavi"
+
+#: ../data/session-properties.ui.h:1
+msgid "Additional startup _programs:"
+msgstr "Dodatni pokrenuti _programi prilikom prijave u sesiju:"
+
+#: ../data/session-properties.ui.h:2
+msgid "_Automatically remember running applications when logging out"
 msgstr ""
+"_Automatski zapamti pokrenute aplikacije pri odjavljivanju iz sustava"
 
-#: js/ui/runDialog.js:71
-msgid "Enter a Command"
-msgstr "Upiši naredbu"
+#: ../data/session-properties.ui.h:3
+msgid "_Remember Currently Running Applications"
+msgstr "_Zapamti trenutno pokrenute aplikacije"
 
-#: js/ui/runDialog.js:111 js/ui/windowMenu.js:162
-msgid "Close"
-msgstr "Zatvori"
+#: ../data/session-properties.ui.h:4
+msgid "Browse…"
+msgstr "Potraži..."
 
-#: js/ui/runDialog.js:282
-msgid "Restarting…"
-msgstr "Ponovno pokretanje..."
+#: ../data/session-properties.ui.h:5
+msgid "Comm_ent:"
+msgstr "Komen_tar:"
 
-#. Translators: This is a time format for a date in
-#. long format
-#: js/ui/screenShield.js:85
-msgid "%A, %B %d"
-msgstr "%A, %d %B"
+#: ../data/session-properties.ui.h:6
+msgid "Co_mmand:"
+msgstr "Na_redba:"
 
-#: js/ui/screenShield.js:144
-#, javascript-format
-msgid "%d new message"
-msgid_plural "%d new messages"
-msgstr[0] "%d nova poruka"
-msgstr[1] "%d nove poruke"
-msgstr[2] "%d novih poruka"
+#: ../data/session-properties.ui.h:7
+msgid "_Name:"
+msgstr "_Naziv:"
 
-#: js/ui/screenShield.js:146
-#, javascript-format
-msgid "%d new notification"
-msgid_plural "%d new notifications"
-msgstr[0] "%d nova obavijest"
-msgstr[1] "%d nove obavijesti"
-msgstr[2] "%d novih obavijesti"
+#: ../gnome-session/gsm-fail-whale-dialog.c:313
+msgid "Oh no!  Something has gone wrong."
+msgstr "O, ne! Nešto je pošlo po krivu."
 
-#: js/ui/screenShield.js:449 js/ui/status/system.js:382
-msgid "Lock"
-msgstr "Zaključaj"
-
-#: js/ui/screenShield.js:704
-msgid "GNOME needs to lock the screen"
-msgstr "GNOME treba zaključati zaslon"
-
-#. We could not become modal, so we can't activate the
-#. screenshield. The user is probably very upset at this
-#. point, but any application using global grabs is broken
-#. Just tell him to stop using this app
-#.
-#. XXX: another option is to kick the user into the gdm login
-#. screen, where we're not affected by grabs
-#: js/ui/screenShield.js:825 js/ui/screenShield.js:1291
-msgid "Unable to lock"
-msgstr "Nemoguće zaključavanje"
-
-#: js/ui/screenShield.js:826 js/ui/screenShield.js:1292
-msgid "Lock was blocked by an application"
-msgstr "Zaključavanje je blokirala apliakcija"
-
-#: js/ui/search.js:617
-msgid "Searching…"
-msgstr "Pretraživanje…"
-
-#: js/ui/search.js:619
-msgid "No results."
-msgstr "Nema rezultata."
-
-#: js/ui/shellEntry.js:25
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: js/ui/shellEntry.js:30
-msgid "Paste"
-msgstr "Zalijepi"
-
-#: js/ui/shellEntry.js:97
-msgid "Show Text"
-msgstr "Prikaži tekst"
-
-#: js/ui/shellEntry.js:99
-msgid "Hide Text"
-msgstr "Sakrij tekst"
-
-#: js/ui/shellMountOperation.js:370
-msgid "Password"
-msgstr "Lozinka"
-
-#: js/ui/shellMountOperation.js:391
-msgid "Remember Password"
-msgstr "Zapamti lozinku"
-
-#: js/ui/status/accessibility.js:42
-msgid "Accessibility"
-msgstr "Pristupačnost"
-
-#: js/ui/status/accessibility.js:57
-msgid "Zoom"
-msgstr "Uvećano"
-
-#: js/ui/status/accessibility.js:64
-msgid "Screen Reader"
-msgstr "Čitač zaslona"
-
-#: js/ui/status/accessibility.js:68
-msgid "Screen Keyboard"
-msgstr "Zaslonska tipkovnica"
-
-#: js/ui/status/accessibility.js:72
-msgid "Visual Alerts"
-msgstr "Vizualna upozorenja"
-
-#: js/ui/status/accessibility.js:75
-msgid "Sticky Keys"
-msgstr "Ljepljive tipke"
-
-#: js/ui/status/accessibility.js:78
-msgid "Slow Keys"
-msgstr "Spore tipke"
-
-#: js/ui/status/accessibility.js:81
-msgid "Bounce Keys"
-msgstr "Odbijanje tipki"
-
-#: js/ui/status/accessibility.js:84
-msgid "Mouse Keys"
-msgstr "Tipke miša"
-
-#: js/ui/status/accessibility.js:167
-msgid "High Contrast"
-msgstr "Visok kontrast"
-
-#: js/ui/status/accessibility.js:202
-msgid "Large Text"
-msgstr "Velik tekst"
-
-#: js/ui/status/bluetooth.js:47
-msgid "Bluetooth"
-msgstr "Bluetooth"
-
-#: js/ui/status/bluetooth.js:56 js/ui/status/network.js:624
-msgid "Bluetooth Settings"
-msgstr "Bluetooth postavke"
-
-#. Translators: this is the number of connected bluetooth devices
-#: js/ui/status/bluetooth.js:136
-#, javascript-format
-msgid "%d Connected"
-msgid_plural "%d Connected"
-msgstr[0] "%d povezan"
-msgstr[1] "%d povezana"
-msgstr[2] "%d povezanih"
-
-#: js/ui/status/bluetooth.js:138
-msgid "Off"
-msgstr "Isključeno"
-
-#: js/ui/status/bluetooth.js:140
-msgid "Not In Use"
-msgstr "Ne koristi se"
-
-#: js/ui/status/bluetooth.js:142 js/ui/status/network.js:1279
-msgid "Turn On"
-msgstr "Uključi"
-
-#: js/ui/status/bluetooth.js:142 js/ui/status/network.js:178
-#: js/ui/status/network.js:353 js/ui/status/network.js:1279
-#: js/ui/status/network.js:1394 js/ui/status/rfkill.js:90
-#: js/ui/status/rfkill.js:117
-msgid "Turn Off"
-msgstr "Isključi"
-
-#: js/ui/status/brightness.js:44
-msgid "Brightness"
-msgstr "Svjetlina"
-
-#: js/ui/status/keyboard.js:805
-msgid "Show Keyboard Layout"
-msgstr "Prikaži raspored tipkovnice"
-
-#: js/ui/status/location.js:107 js/ui/status/location.js:215
-msgid "Location Enabled"
-msgstr "Lokacija omogućena"
-
-#: js/ui/status/location.js:108 js/ui/status/location.js:216
-msgid "Disable"
-msgstr "Onemogući"
-
-#: js/ui/status/location.js:109
-msgid "Privacy Settings"
-msgstr "Postavke privatnost"
-
-#: js/ui/status/location.js:214
-msgid "Location In Use"
-msgstr "Lokacija se već koristi"
-
-#: js/ui/status/location.js:218
-msgid "Location Disabled"
-msgstr "Lokacija onemogućena"
-
-#: js/ui/status/location.js:219
-msgid "Enable"
-msgstr "Omogući"
-
-#. Translators: %s is an application name
-#: js/ui/status/location.js:435
-#, javascript-format
-msgid "Give %s access to your location?"
-msgstr "Dopustite %s pristup vašoj lokaciji?"
-
-#: js/ui/status/location.js:437
-msgid "Location access can be changed at any time from the privacy settings."
+#: ../gnome-session/gsm-fail-whale-dialog.c:320
+msgid ""
+"A problem has occurred and the system can't recover. Please contact a system "
+"administrator"
 msgstr ""
-"Pristup lokaciji može se promijeniti u svako vrijeme iz postavka privatnosti."
+"Došlo je do problema od kojeg se sustav ne može oporaviti. Obavijestite "
+"administratora sustava."
 
-#: js/ui/status/network.js:101
-msgid "<unknown>"
-msgstr "<nepoznato>"
+#: ../gnome-session/gsm-fail-whale-dialog.c:322
+msgid ""
+"A problem has occurred and the system can't recover. All extensions have "
+"been disabled as a precaution."
+msgstr ""
+"Problem se pojavio i sustav se ne može oporaviti. Sva proširenja su "
+"onemogućena iz predostrožnosti."
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:451 js/ui/status/network.js:1308
-#, javascript-format
-msgid "%s Off"
-msgstr "%s isključena"
+#: ../gnome-session/gsm-fail-whale-dialog.c:324
+msgid ""
+"A problem has occurred and the system can't recover.\n"
+"Please log out and try again."
+msgstr ""
+"Došlo je do problema od kojeg se sustav ne može oporaviti.\n"
+"Odjavite se i pokušajte ponovno."
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:454
-#, javascript-format
-msgid "%s Connected"
-msgstr "%s povezana"
+#: ../gnome-session/gsm-fail-whale-dialog.c:339
+msgid "_Log Out"
+msgstr "_Odjavljivanje"
 
-#. Translators: this is for network devices that are physically present but are not
-#. under NetworkManager's control (and thus cannot be used in the menu);
-#. %s is a network identifier
-#: js/ui/status/network.js:459
-#, javascript-format
-msgid "%s Unmanaged"
-msgstr "%s neupravljana"
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+msgid "Enable debugging code"
+msgstr "Omogući otkrivanje grešaka"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:462
-#, javascript-format
-msgid "%s Disconnecting"
-msgstr "%s prekidanje povezivanja"
+#: ../gnome-session/gsm-fail-whale-dialog.c:362
+msgid "Allow logout"
+msgstr "Dopusti odjavu"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:469 js/ui/status/network.js:1300
-#, javascript-format
-msgid "%s Connecting"
-msgstr "%s povezivanje"
+#: ../gnome-session/gsm-fail-whale-dialog.c:363
+msgid "Show extension warning"
+msgstr "Prikaži upozorenje proširenja"
 
-#. Translators: this is for network connections that require some kind of key or password; %s is a network identifier
-#: js/ui/status/network.js:472
-#, javascript-format
-msgid "%s Requires Authentication"
-msgstr "%s zahtijeva ovjeru"
+#: ../gnome-session/gsm-manager.c:1267 ../gnome-session/gsm-manager.c:1914
+msgid "Not responding"
+msgstr "Ne reagira"
 
-#. Translators: this is for devices that require some kind of firmware or kernel
-#. module, which is missing; %s is a network identifier
-#: js/ui/status/network.js:480
-#, javascript-format
-msgid "Firmware Missing For %s"
-msgstr "Nedostaje firmver za %s"
+#: ../gnome-session/gsm-util.c:382
+msgid "_Log out"
+msgstr "_Odjavljivanje"
 
-#. Translators: this is for a network device that cannot be activated (for example it
-#. is disabled by rfkill, or it has no coverage; %s is a network identifier
-#: js/ui/status/network.js:484
-#, javascript-format
-msgid "%s Unavailable"
-msgstr "%s nedostupna"
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#. 
+#: ../gnome-session/gsm-xsmp-client.c:557
+msgid "Remembered Application"
+msgstr "Zapamćene aplikacije"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:487
-#, javascript-format
-msgid "%s Connection Failed"
-msgstr "%s neuspješno povezivanje"
+#: ../gnome-session/gsm-xsmp-client.c:1207
+msgid "This program is blocking logout."
+msgstr "Ovaj program blokira odjavu."
 
-#: js/ui/status/network.js:503
-msgid "Wired Settings"
-msgstr "Postavke žične mreže"
+#: ../gnome-session/gsm-xsmp-server.c:340
+msgid ""
+"Refusing new client connection because the session is currently being shut "
+"down\n"
+msgstr ""
+"Odbija se novo povezivanje s klijentom jer se sesija trenutno isključuje.\n"
 
-#: js/ui/status/network.js:545
-msgid "Mobile Broadband Settings"
-msgstr "Mobilni internet"
+#: ../gnome-session/gsm-xsmp-server.c:609
+#, c-format
+msgid "Could not create ICE listening socket: %s"
+msgstr "Nije moguće izraditi ICE priključak: %s"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:588 js/ui/status/network.js:1305
-#, javascript-format
-msgid "%s Hardware Disabled"
-msgstr "%s hardverski onemogućena"
+#: ../gnome-session/main.c:279
+msgid "Override standard autostart directories"
+msgstr "Nadvladaj standardne direktorije automatskog pokretanja"
 
-#. Translators: this is for a network device that cannot be activated
-#. because it's disabled by rfkill (airplane mode); %s is a network identifier
-#: js/ui/status/network.js:592
-#, javascript-format
-msgid "%s Disabled"
-msgstr "%s onemogućeno"
+#: ../gnome-session/main.c:279
+msgid "AUTOSTART_DIR"
+msgstr "DIR_AUTOPOKRETANJA"
 
-#: js/ui/status/network.js:632
-msgid "Connect to Internet"
-msgstr "Povežite se na internet"
+#: ../gnome-session/main.c:280
+msgid "Session to use"
+msgstr "Sesija za korištenje"
 
-#: js/ui/status/network.js:813
-msgid "Airplane Mode is On"
-msgstr "Zrakoplovni način rada je omogućen"
+#: ../gnome-session/main.c:280
+msgid "SESSION_NAME"
+msgstr "NAZIV_SESIJE"
 
-#: js/ui/status/network.js:814
-msgid "Wi-Fi is disabled when airplane mode is on."
-msgstr "Bežična mreža je onemogućena u zrakoplovnom načinu rada."
+#: ../gnome-session/main.c:282
+msgid "Do not load user-specified applications"
+msgstr "Nemoj učitati aplikacije koje je odredio korisnik"
 
-#: js/ui/status/network.js:815
-msgid "Turn Off Airplane Mode"
-msgstr "Isključi zrakoplovni način rada"
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: ../gnome-session/main.c:285
+msgid "Show the fail whale dialog for testing"
+msgstr "Prikaži fail whale dijalog za testiranje"
 
-#: js/ui/status/network.js:824
-msgid "Wi-Fi is Off"
-msgstr "Bežična mreža isključena"
+#: ../gnome-session/main.c:286
+msgid "Disable hardware acceleration check"
+msgstr "Onemogući provjeru hardverskog ubrzanja"
 
-#: js/ui/status/network.js:825
-msgid "Wi-Fi needs to be turned on in order to connect to a network."
-msgstr "Bežična mreža se mora uključiti kako bi se povezala s internetom."
+#: ../gnome-session/main.c:318
+msgid " - the GNOME session manager"
+msgstr " - GNOME upravitelj sesijama"
 
-#: js/ui/status/network.js:826
-msgid "Turn On Wi-Fi"
-msgstr "Uključi bežičnu mrežu"
+#: ../tools/gnome-session-inhibit.c:108
+#, c-format
+msgid ""
+"%s [OPTION...] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [MOGUĆNOST...] NAREDBA\n"
+"\n"
+"Pokreni NAREDBU dok su zabranjene neke funkcije sesije.\n"
+"\n"
+"  -h, --help       Prikaži ovu pomoć\n"
+"  --version         Prikaži inačicu programa\n"
+"  --app-id ID       ID aplikacije koja se koristi\n"
+"                    pri zabranjivanju (neobavezno)\n"
+"  --reason RAZLOG   Razlog zabranjivanja (neobavezno)\n"
+"  --inhibit ARG     Stvari za zabraniti, Dvotočkom odvojen popis:\n"
+"                    odjave, zemjene-korisnika, suspenzije, mirovanja, "
+"automatskog mountiranja\n"
+"  --inhibit-only    Ne pokreći NAREDBU i čekaj zauvijek\n"
+"\n"
+"ako je ne --mogućnost zabrane je određena, mirovanje je pretpostavljeno.\n"
 
-#: js/ui/status/network.js:851
-msgid "Wi-Fi Networks"
-msgstr "Bežične mreže"
+#: ../tools/gnome-session-inhibit.c:146
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "Neuspjelo pokretanje %s\n"
 
-#: js/ui/status/network.js:853
-msgid "Select a network"
-msgstr "Odaberi mrežu"
+#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
+#: ../tools/gnome-session-inhibit.c:226
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s zahtijeva argument\n"
 
-#: js/ui/status/network.js:883
-msgid "No Networks"
-msgstr "Nema mreža"
+#: ../tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Sesija %d"
 
-#: js/ui/status/network.js:904 js/ui/status/rfkill.js:115
-msgid "Use hardware switch to turn off"
-msgstr "Koristi hardverski prekidač za isključivanje"
+#: ../tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+msgstr ""
+"Nazivima sesija nije dopušteno da počinju s ‘.’ ili sadrže ‘/’ znakove"
 
-#: js/ui/status/network.js:1171
-msgid "Select Network"
-msgstr "Odaberi mrežu"
+#: ../tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with ‘.’"
+msgstr "Nazivima sesija nije dopušteno da počinju s ‘.’"
 
-#: js/ui/status/network.js:1177
-msgid "Wi-Fi Settings"
-msgstr "Postavke bežične mreže"
+#: ../tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain ‘/’ characters"
+msgstr "Nazivima sesija nije dopušteno da sadrže ‘/’ znakove"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:1296
-#, javascript-format
-msgid "%s Hotspot Active"
-msgstr "%s pristupna točka aktivna"
+#: ../tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named ‘%s’ already exists"
+msgstr "Sesija naziva ‘%s’ već postoji"
 
-#. Translators: %s is a network identifier
-#: js/ui/status/network.js:1311
-#, javascript-format
-msgid "%s Not Connected"
-msgstr "%s nije povezana"
+#: ../tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Odjavljivanje"
 
-#: js/ui/status/network.js:1411
-msgid "connecting..."
-msgstr "povezivanje…"
-
-#. Translators: this is for network connections that require some kind of key or password
-#: js/ui/status/network.js:1414
-msgid "authentication required"
-msgstr "potrebna je ovjera"
-
-#: js/ui/status/network.js:1416
-msgid "connection failed"
-msgstr "neuspješno povezivanje"
-
-#: js/ui/status/network.js:1482 js/ui/status/rfkill.js:93
-msgid "Network Settings"
-msgstr "Mrežne postavke"
-
-#: js/ui/status/network.js:1484
-msgid "VPN Settings"
-msgstr "VPN postavke"
-
-#: js/ui/status/network.js:1503
-msgid "VPN"
-msgstr "VPN"
-
-#: js/ui/status/network.js:1513
-msgid "VPN Off"
-msgstr "VPN isključen"
-
-#: js/ui/status/network.js:1699
-msgid "Connection failed"
-msgstr "Neuspješno povezivanje"
-
-#: js/ui/status/network.js:1700
-msgid "Activation of network connection failed"
-msgstr "Aktiviranje mrežnog povezivanja je neuspjelo"
-
-#: js/ui/status/power.js:61
-msgid "Power Settings"
-msgstr "Postavke energije"
-
-#: js/ui/status/power.js:77
-msgid "Fully Charged"
-msgstr "Potpuno napunjeno"
-
-#. 0 is reported when UPower does not have enough data
-#. to estimate battery life
-#: js/ui/status/power.js:84 js/ui/status/power.js:90
-msgid "Estimating…"
-msgstr "Procjenjivanje..."
-
-#. Translators: this is <hours>:<minutes> Remaining (<percentage>)
-#: js/ui/status/power.js:98
-#, javascript-format
-msgid "%d∶%02d Remaining (%d %%)"
-msgstr "%d∶%02d preostalo (%d %%)"
-
-#. Translators: this is <hours>:<minutes> Until Full (<percentage>)
-#: js/ui/status/power.js:103
-#, javascript-format
-msgid "%d∶%02d Until Full (%d %%)"
-msgstr "%d∶%02d preostalo do napunjenosti (%d %%)"
-
-#: js/ui/status/power.js:131 js/ui/status/power.js:133
-#, javascript-format
-msgid "%d %%"
-msgstr "%d %%"
-
-#. The menu only appears when airplane mode is on, so just
-#. statically build it as if it was on, rather than dynamically
-#. changing the menu contents.
-#: js/ui/status/rfkill.js:88
-msgid "Airplane Mode On"
-msgstr "Zrakoplovni način rada uključen"
-
-#: js/ui/status/system.js:351
-msgid "Switch User"
-msgstr "Zamijeni korisnika"
-
-#: js/ui/status/system.js:356
-msgid "Log Out"
-msgstr "Odjava"
-
-#: js/ui/status/system.js:361
-msgid "Account Settings"
-msgstr "Postavke računa"
-
-#: js/ui/status/system.js:378
-msgid "Orientation Lock"
-msgstr "Zaključavanje orjentacije"
-
-#: js/ui/status/system.js:386
-msgid "Suspend"
-msgstr "Suspendiraj"
-
-#: js/ui/status/system.js:389
-msgid "Power Off"
+#: ../tools/gnome-session-quit.c:51
+msgid "Power off"
 msgstr "Isključivanje"
 
-#: js/ui/status/volume.js:127
-msgid "Volume changed"
-msgstr "Glasnoća zvuka promijenjena"
+#: ../tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Ponovno pokretanje"
 
-#: js/ui/status/volume.js:162
-msgid "Volume"
-msgstr "Glasnoća zvuka"
+#: ../tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Zanemarivanje svih poznatih nasljednika"
 
-#: js/ui/unlockDialog.js:67
-msgid "Log in as another user"
-msgstr "Prijavi se kao drugi korisnik"
+#: ../tools/gnome-session-quit.c:54
+msgid "Don't prompt for user confirmation"
+msgstr "Ne traži potvrdu korisnika"
 
-#: js/ui/unlockDialog.js:84
-msgid "Unlock Window"
-msgstr "Otključaj prozor"
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Nemoguće povezivanje s upraviteljem  sesije"
 
-#: js/ui/viewSelector.js:159
-msgid "Applications"
-msgstr "Aplikacije"
-
-#: js/ui/viewSelector.js:163
-msgid "Search"
-msgstr "Pretraži"
-
-#: js/ui/windowAttentionHandler.js:20
-#, javascript-format
-msgid "“%s” is ready"
-msgstr "“%s” je spreman"
-
-#: js/ui/windowManager.js:63
-msgid "Do you want to keep these display settings?"
-msgstr "Želite li zadržati ove postavke zaslona?"
-
-#. Translators: this and the following message should be limited in lenght,
-#. to avoid ellipsizing the labels.
-#.
-#: js/ui/windowManager.js:82
-msgid "Revert Settings"
-msgstr "Vrati postavke"
-
-#: js/ui/windowManager.js:85
-msgid "Keep Changes"
-msgstr "Zadrži promjene"
-
-#: js/ui/windowManager.js:103
-#, javascript-format
-msgid "Settings changes will revert in %d second"
-msgid_plural "Settings changes will revert in %d seconds"
-msgstr[0] "Promjene postavka će se vratiti za %d sekundu"
-msgstr[1] "Promjene postavka će se vratiti za %d sekunde"
-msgstr[2] "Promjene postavka će se vratiti za %d sekundi"
-
-#. Translators: This represents the size of a window. The first number is
-#. * the width of the window and the second is the height.
-#: js/ui/windowManager.js:658
-#, javascript-format
-msgid "%d x %d"
-msgstr "%d x %d"
-
-#: js/ui/windowMenu.js:34
-msgid "Minimize"
-msgstr "Smanji"
-
-#: js/ui/windowMenu.js:41
-msgid "Unmaximize"
-msgstr "Prikaži u prozoru"
-
-#: js/ui/windowMenu.js:45
-msgid "Maximize"
-msgstr "Uvećaj"
-
-#: js/ui/windowMenu.js:52
-msgid "Move"
-msgstr "Pomakni"
-
-#: js/ui/windowMenu.js:58
-msgid "Resize"
-msgstr "Promjena veličine"
-
-#: js/ui/windowMenu.js:65
-msgid "Move Titlebar Onscreen"
-msgstr "Premjesti naslovnu traku na zaslom"
-
-#: js/ui/windowMenu.js:70
-msgid "Always on Top"
-msgstr "Uvijek na vrhu"
-
-#: js/ui/windowMenu.js:89
-msgid "Always on Visible Workspace"
-msgstr "Uvijek na vidljivom radnom prostoru"
-
-#: js/ui/windowMenu.js:105
-msgid "Move to Workspace Left"
-msgstr "Premjesti na lijevi radni prostor"
-
-#: js/ui/windowMenu.js:110
-msgid "Move to Workspace Right"
-msgstr "Premjesti na desni radni prostor"
-
-#: js/ui/windowMenu.js:115
-msgid "Move to Workspace Up"
-msgstr "Premjesti na gornji radni prostor"
-
-#: js/ui/windowMenu.js:120
-msgid "Move to Workspace Down"
-msgstr "Premjesti na donji radni prostor"
-
-#: js/ui/windowMenu.js:136
-msgid "Move to Monitor Up"
-msgstr "Premjesti na gornji zaslon"
-
-#: js/ui/windowMenu.js:142
-msgid "Move to Monitor Down"
-msgstr "Premjesti na donji zaslon"
-
-#: js/ui/windowMenu.js:148
-msgid "Move to Monitor Left"
-msgstr "Premjesti na lijevi zaslon"
-
-#: js/ui/windowMenu.js:154
-msgid "Move to Monitor Right"
-msgstr "Premjesti na desni zaslon"
-
-#: src/calendar-server/evolution-calendar.desktop.in:3
-msgid "Evolution Calendar"
-msgstr "Evolution kalendar"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: src/calendar-server/evolution-calendar.desktop.in:6
-msgid "evolution"
-msgstr "evolution"
-
-#. translators:
-#. * The number of sound outputs on a particular device
-#: src/gvc/gvc-mixer-control.c:1873
-#, c-format
-msgid "%u Output"
-msgid_plural "%u Outputs"
-msgstr[0] "%u izlaz"
-msgstr[1] "%u izlaza"
-msgstr[2] "%u izlaza"
-
-#. translators:
-#. * The number of sound inputs on a particular device
-#: src/gvc/gvc-mixer-control.c:1883
-#, c-format
-msgid "%u Input"
-msgid_plural "%u Inputs"
-msgstr[0] "%u ulaz"
-msgstr[1] "%u ulaza"
-msgstr[2] "%u ulaza"
-
-#: src/gvc/gvc-mixer-control.c:2738
-msgid "System Sounds"
-msgstr "Zvukovi sustava"
-
-#: src/main.c:381
-msgid "Print version"
-msgstr "Ispiši inačicu"
-
-#: src/main.c:387
-msgid "Mode used by GDM for login screen"
-msgstr "Način koji koristi GDM za zaslon prijave"
-
-#: src/main.c:393
-msgid "Use a specific mode, e.g. \"gdm\" for login screen"
-msgstr "Koristi određen način, npr. \"gdm\" za zaslon prijave"
-
-#: src/main.c:399
-msgid "List possible modes"
-msgstr "Popis mogućih načina"
-
-#: src/shell-app.c:270
-msgctxt "program"
-msgid "Unknown"
-msgstr "Nepoznat"
-
-#: src/shell-app.c:511
-#, c-format
-msgid "Failed to launch “%s”"
-msgstr "Neuspješno pokretanje “%s”"
-
-#: src/shell-keyring-prompt.c:730
-msgid "Passwords do not match."
-msgstr "Lozinke se ne podudaraju."
-
-#: src/shell-keyring-prompt.c:738
-msgid "Password cannot be blank"
-msgstr "Lozinka ne može biti prazna"
-
-#: src/shell-polkit-authentication-agent.c:353
-msgid "Authentication dialog was dismissed by the user"
-msgstr "Dijalog ovjere je prekinut od strane korisnika"
+#: ../tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Program pozvan s proturječnim mogućnostima"
