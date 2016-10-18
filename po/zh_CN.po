@@ -20,8 +20,8 @@ msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-18 19:14+0000\n"
-"PO-Revision-Date: 2015-03-04 17:07+0800\n"
+"POT-Creation-Date: 2016-10-11 09:19+0000\n"
+"PO-Revision-Date: 2016-10-18 17:25+0800\n"
 "Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -43,22 +43,17 @@ msgstr "此项允许您选择一个已保存的会话"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "此会话将您登录到 GNOME"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+msgid "GNOME on Xorg"
+msgstr "运行于 Xorg 的 GNOME"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "基于 Wayland 的 GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "此会话将您登录到使用 Wayland 的 GNOME"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -83,47 +78,6 @@ msgstr "重命名会话(_M)"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "继续(_C)"
-
-# applets/gkb/gkb.c:262
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "额外的启动程序(_P)："
-
-# applets/gkb/gkb.c:262
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "启动程序"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "注销时自动记住正在运行的应用程序(_A)"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "记住目前正在运行的应用程序(_R)"
-
-# panel/menu.c:3509
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "选项"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "浏览..."
-
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "注释(_E)："
-
-# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "命令(_M)："
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "名称(_N)："
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -152,7 +106,7 @@ msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:243
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:274
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
@@ -164,12 +118,12 @@ msgstr "允许注销"
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: ../gnome-session/gsm-manager.c:1251 ../gnome-session/gsm-manager.c:1896
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "无响应"
 
 # gsm/logout.c:248
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "注销(_L)"
 
@@ -196,40 +150,40 @@ msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:272
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:241
+#: ../gnome-session/main.c:272
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:273
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: ../gnome-session/main.c:242
+#: ../gnome-session/main.c:273
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: ../gnome-session/main.c:244
+#: ../gnome-session/main.c:275
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: ../gnome-session/main.c:245
+#: ../gnome-session/main.c:276
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:247
+#: ../gnome-session/main.c:278
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: ../gnome-session/main.c:248
+#: ../gnome-session/main.c:279
 msgid "Disable hardware acceleration check"
 msgstr "禁用硬件加速检测"
 
-#: ../gnome-session/main.c:267
+#: ../gnome-session/main.c:311
 msgid " - the GNOME session manager"
 msgstr "- GNOME 会话管理器"
 
@@ -300,34 +254,69 @@ msgid "A session named ‘%s’ already exists"
 msgstr "名为“%s”的会话已存在"
 
 # gsm/logout.c:248
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "注销"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "关机"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "重启"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "忽略现有限制因素"
 
-#: ../tools/gnome-session-quit.c:53
+#: ../tools/gnome-session-quit.c:54
 msgid "Don't prompt for user confirmation"
 msgstr "不提示用户确认"
 
 # gsm/save-session.c:86
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "无法连接到会话管理器"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
+
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "此会话将您登录到使用 Wayland 的 GNOME"
+
+# applets/gkb/gkb.c:262
+#~ msgid "Additional startup _programs:"
+#~ msgstr "额外的启动程序(_P)："
+
+# applets/gkb/gkb.c:262
+#~ msgid "Startup Programs"
+#~ msgstr "启动程序"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "注销时自动记住正在运行的应用程序(_A)"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "记住目前正在运行的应用程序(_R)"
+
+# panel/menu.c:3509
+#~ msgid "Options"
+#~ msgstr "选项"
+
+#~ msgid "Browse…"
+#~ msgstr "浏览..."
+
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
+#~ msgid "Comm_ent:"
+#~ msgstr "注释(_E)："
+
+# help-browser/toc-man.c:19 help-browser/toc2-man.c:21
+#~ msgid "Co_mmand:"
+#~ msgstr "命令(_M)："
+
+#~ msgid "_Name:"
+#~ msgstr "名称(_N)："
 
 # help-browser/toc-man.c:19 help-browser/toc2-man.c:21
 #~ msgid "Select Command"
