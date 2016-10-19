@@ -112,6 +112,19 @@ get_gtk_gles_renderer (void)
         return renderer;
 }
 
+static gboolean
+is_discrete_gpu_check (void)
+{
+	const char *dri_prime;
+
+	dri_prime = g_getenv ("DRI_PRIME");
+	if (!dri_prime)
+		return FALSE;
+	if (*dri_prime != '1')
+		return FALSE;
+	return TRUE;
+}
+
 int
 main (int argc, char **argv)
 {
@@ -128,9 +141,11 @@ main (int argc, char **argv)
 
         /* gnome-session-check-accelerated gets run before X is started in the wayland
          * case, and it currently requires X. Until we have that working, just always
-         * assume wayland will work
+         * assume wayland will work.
+         * Also make sure that we don't read cached information about the first GPU
+         * when requesting information about the second.
          */
-        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
+        if (is_discrete_gpu_check () || g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
                 renderer_string = get_gtk_gles_renderer ();
                 g_print ("%s", renderer_string);
                 return 0;
