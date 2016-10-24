@@ -147,8 +147,11 @@ main (int argc, char **argv)
          */
         if (is_discrete_gpu_check () || g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
                 renderer_string = get_gtk_gles_renderer ();
-                g_print ("%s", renderer_string);
-                return 0;
+                if (renderer_string) {
+                        g_print ("%s", renderer_string);
+                        return 0;
+                }
+                return 1;
         }
 
         display = gdk_display_get_default ();
