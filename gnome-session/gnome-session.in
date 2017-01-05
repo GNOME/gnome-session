@@ -12,6 +12,14 @@ if [ -n "$REGION" ]; then
   export LC_PAPER=$REGION
 fi
 
-dbus-update-activation-environment --all > /dev/null 2>&1 ||:
+update_command="dbus-update-activation-environment --all --systemd > /dev/null 2>&1"
+
+if [ "$XDG_SESSION_TYPE" = "wayland" -a
+     "$XDG_SESSION_CLASS" != "greeter" -a
+     -n "$SHELL" ]; then
+  (exec -l $SHELL -c "$update_command") || eval "$update_command"
+else
+  eval "$update_command"
+fi
 
 exec @libexecdir@/gnome-session-binary "$@"
