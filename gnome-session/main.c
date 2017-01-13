@@ -377,6 +377,8 @@ main (int argc, char **argv)
                 exit (1);
         }
 
+        gsm_util_export_activation_environment (NULL);
+
         {
                 gchar *ibus_path;
 

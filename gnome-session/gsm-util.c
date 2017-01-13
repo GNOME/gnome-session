@@ -492,6 +492,84 @@ gsm_util_update_activation_environment (const char  *variable,
         return environment_updated;
 }
 
+gboolean
+gsm_util_export_activation_environment (GError     **error)
+{
+
+        GDBusConnection *connection;
+        gboolean         environment_updated = FALSE;
+        char           **entry_names;
+        int              i = 0;
+        GVariantBuilder  builder;
+        GRegex          *name_regex, *value_regex;
+        GVariant        *reply;
+        GError          *bus_error = NULL;
+
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+
+        if (connection == NULL) {
+                return FALSE;
+        }
+
+        name_regex = g_regex_new ("^[a-zA-Z_][a-zA-Z0-9_]*$", G_REGEX_OPTIMIZE, 0, error);
+
+        if (name_regex == NULL) {
+                return FALSE;
+        }
+
+        value_regex = g_regex_new ("^([[:blank:]]|[^[:cntrl:]])*$", G_REGEX_OPTIMIZE, 0, error);
+
+        if (value_regex == NULL) {
+                return FALSE;
+        }
+
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{ss}"));
+        for (entry_names = g_listenv (); entry_names[i] != NULL; i++) {
+                const char *entry_name = entry_names[i];
+                const char *entry_value = g_getenv (entry_name);
+
+                if (!g_utf8_validate (entry_name, -1, NULL))
+                    continue;
+
+                if (!g_regex_match (name_regex, entry_name, 0, NULL))
+                    continue;
+
+                if (!g_utf8_validate (entry_value, -1, NULL))
+                    continue;
+
+                if (!g_regex_match (value_regex, entry_value, 0, NULL))
+                    continue;
+
+                g_variant_builder_add (&builder, "{ss}", entry_name, entry_value);
+        }
+        g_regex_unref (name_regex);
+        g_regex_unref (value_regex);
+
+        g_strfreev (entry_names);
+
+        reply = g_dbus_connection_call_sync (connection,
+                                             "org.freedesktop.DBus",
+                                             "/org/freedesktop/DBus",
+                                             "org.freedesktop.DBus",
+                                             "UpdateActivationEnvironment",
+                                             g_variant_new ("(@a{ss})",
+                                                            g_variant_builder_end (&builder)),
+                                             NULL,
+                                             G_DBUS_CALL_FLAGS_NONE,
+                                             -1, NULL, &bus_error);
+
+        if (bus_error != NULL) {
+                g_propagate_error (error, bus_error);
+        } else {
+                environment_updated = TRUE;
+                g_variant_unref (reply);
+        }
+
+        g_clear_object (&connection);
+
+        return environment_updated;
+}
+
 void
 gsm_util_setenv (const char *variable,
                  const char *value)
