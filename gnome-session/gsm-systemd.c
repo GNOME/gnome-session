@@ -231,7 +231,7 @@ sd_source_new (void)
         source = g_source_new (&sd_source_funcs, sizeof (SdSource));
         sd_source = (SdSource *)source;
 
-        if ((ret = sd_login_monitor_new (NULL, &sd_source->monitor)) < 0) {
+        if ((ret = sd_login_monitor_new ("session", &sd_source->monitor)) < 0) {
                 g_warning ("Error getting login monitor: %d", ret);
         } else {
                 sd_source->pollfd.fd = sd_login_monitor_get_fd (sd_source->monitor);
