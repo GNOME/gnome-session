@@ -470,6 +470,14 @@ unless_session_condition_cb (GObject    *object,
         }
 }
 
+static char *
+resolve_conditional_file_path (const char *file)
+{
+        if (g_path_is_absolute (file))
+                return g_strdup (file);
+        return g_build_filename (g_get_user_config_dir (), file, NULL);
+}
+
 static void
 setup_condition_monitor (GsmAutostartApp *app)
 {
@@ -516,8 +524,7 @@ setup_condition_monitor (GsmAutostartApp *app)
                 char  *file_path;
                 GFile *file;
 
-                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
-
+                file_path = resolve_conditional_file_path (key);
                 disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
 
                 file = g_file_new_for_path (file_path);
@@ -533,8 +540,7 @@ setup_condition_monitor (GsmAutostartApp *app)
                 char  *file_path;
                 GFile *file;
 
-                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
-
+                file_path = resolve_conditional_file_path (key);
                 disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
 
                 file = g_file_new_for_path (file_path);
@@ -835,13 +841,13 @@ is_conditionally_disabled (GsmApp *app)
         if (kind == GSM_CONDITION_IF_EXISTS) {
                 char *file_path;
 
-                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+                file_path = resolve_conditional_file_path (key);
                 disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
                 g_free (file_path);
         } else if (kind == GSM_CONDITION_UNLESS_EXISTS) {
                 char *file_path;
 
-                file_path = g_build_filename (g_get_user_config_dir (), key, NULL);
+                file_path = resolve_conditional_file_path (key);
                 disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
                 g_free (file_path);
 #ifdef HAVE_GCONF
