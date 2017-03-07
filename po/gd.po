@@ -2,14 +2,14 @@
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the gnome-session package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-# GunChleoc <fios@foramnagaidhlig.net>, 2013, 2015, 2016.
+# GunChleoc <fios@foramnagaidhlig.net>, 2013, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-07-11 14:44+0000\n"
-"PO-Revision-Date: 2016-09-12 12:15+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product"
+"=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-03-02 18:29+0000\n"
+"PO-Revision-Date: 2017-03-07 12:05+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "Language: gd\n"
@@ -35,18 +35,18 @@ msgstr ""
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-wayland.desktop.in.h:2
+#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
 msgid "This session logs you into GNOME"
 msgstr "Clàraidh an seisean seo a-steach gu GNOME thu"
+
+#: ../data/gnome-xorg.desktop.in.h:1
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "GNOME air Xorg"
 
 #: ../data/gnome-dummy.session.desktop.in.in.h:1
 msgid "GNOME dummy"
 msgstr "Caochag GNOME"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#| msgid "GNOME on Xorg"
-msgid "GNOME on Wayland"
-msgstr "GNOME air Wayland"
 
 #: ../data/session-selector.ui.h:1
 msgid "Custom Session"
@@ -71,44 +71,6 @@ msgstr "Thoir ain_m ùr air an t-seisean"
 #: ../data/session-selector.ui.h:6
 msgid "_Continue"
 msgstr "_Lean air adhart"
-
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Prògraman tòiseachaidh a bharrachd:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Prògraman tòiseachaidh"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"Cuimhnich na prògraman a bhios a' ruith gu fèin-obr_achail nuair a nì mi "
-"clàradh a-mach"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "Cuimhnich na p_rògraman a tha a' ruith an-dràsta"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Roghainnean"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Brabhsaich..."
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Abai_rt:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Ài_thne:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "Ai_nm:"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
@@ -142,7 +104,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "C_làraich a-mach"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:274
 msgid "Enable debugging code"
 msgstr "Cuir an comas còd dì-bhugachaidh"
 
@@ -154,7 +116,7 @@ msgstr "Ceadaich clàradh a-mach"
 msgid "Show extension warning"
 msgstr "Seall rabhadh leudachain"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
 msgid "Not responding"
 msgstr "Chan eil e a' freagairt"
 
@@ -187,41 +149,41 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Cha b' urrainn dhuinn socaid èisteachd ICE a chruthachadh: %s"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:272
 msgid "Override standard autostart directories"
 msgstr "Tar-àithn na pasganan fèin-tòiseachaidh bunaiteach"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:272
 msgid "AUTOSTART_DIR"
 msgstr "PASGAN_FÈIN_TOISEACHAIDH"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:273
 msgid "Session to use"
 msgstr "An seisean ri chleachdadh"
 
-#: ../gnome-session/main.c:280
+#: ../gnome-session/main.c:273
 msgid "SESSION_NAME"
 msgstr "AINM_SEISEIN"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:275
 msgid "Do not load user-specified applications"
 msgstr ""
 "Cha b' urrainn dhuinn prògraman gnàthaichte a' chleachdaiche a luchdadh"
 
-#: ../gnome-session/main.c:283
+#: ../gnome-session/main.c:276
 msgid "Version of this application"
 msgstr "Tionndadh a' phrògraim seo"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:278
 msgid "Show the fail whale dialog for testing"
 msgstr "Seall an còmhradh \"fail whale\" a chum deuchainn"
 
-#: ../gnome-session/main.c:286
+#: ../gnome-session/main.c:279
 msgid "Disable hardware acceleration check"
 msgstr "Cuir an dearbhadh air luathachadh a' bhathair-chruaidh à comas"
 
-#: ../gnome-session/main.c:318
+#: ../gnome-session/main.c:311
 msgid " - the GNOME session manager"
 msgstr " - manaidsear nan seisan GNOME"
 
@@ -325,6 +287,35 @@ msgstr "Cha b' urrainn dhuinn ceangal ri manaidsear nan seisean"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Chaidh prògram a ghairm le roghainnean ann an còmhstri"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "_Prògraman tòiseachaidh a bharrachd:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Prògraman tòiseachaidh"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr ""
+#~ "Cuimhnich na prògraman a bhios a' ruith gu fèin-obr_achail nuair a nì mi "
+#~ "clàradh a-mach"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "Cuimhnich na p_rògraman a tha a' ruith an-dràsta"
+
+#~ msgid "Options"
+#~ msgstr "Roghainnean"
+
+#~ msgid "Browse…"
+#~ msgstr "Brabhsaich..."
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Abai_rt:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Ài_thne:"
+
+#~ msgid "_Name:"
+#~ msgstr "Ai_nm:"
 
 #~ msgid "Select Command"
 #~ msgstr "Tagh àithne"
