@@ -126,6 +126,14 @@ sigusr1_cb (gpointer data)
 }
 
 static void
+on_name_acquired (GDBusConnection *connection,
+                  const char *name,
+                  gpointer data)
+{
+        gsm_manager_start (manager);
+}
+
+static void
 create_manager (void)
 {
         GsmStore *client_store;
@@ -148,7 +156,6 @@ create_manager (void)
         }
 
         _gsm_manager_set_renderer (manager, gl_renderer);
-        gsm_manager_start (manager);
 }
 
 static void
@@ -166,7 +173,7 @@ acquire_name (void)
                                GSM_DBUS_NAME,
                                G_BUS_NAME_OWNER_FLAGS_NONE,
                                on_bus_acquired,
-                               NULL,
+                               on_name_acquired,
                                on_name_lost,
                                NULL, NULL);
 }
