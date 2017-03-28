@@ -59,7 +59,6 @@ CLEANFILES =					\
 	$(session_DATA)
 
 DISTCLEANFILES =				\
-	$(gsettings_SCHEMAS)			\
-	$(wayland_session_in_files)
+	$(gsettings_SCHEMAS)
 
 -include $(top_srcdir)/git.mk
