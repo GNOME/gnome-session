@@ -462,6 +462,12 @@ gsm_systemd_set_session_idle (GsmSystem *system,
         GsmSystemd *manager = GSM_SYSTEMD (system);
         GDBusConnection *bus;
 
+        if (manager->priv->session_path == NULL) {
+                g_warning ("Could not get session path for session. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login.");
+                return;
+        }
+
         g_debug ("Updating systemd idle status: %d", is_idle);
         bus = g_dbus_proxy_get_connection (manager->priv->sd_proxy);
         g_dbus_connection_call (bus,
