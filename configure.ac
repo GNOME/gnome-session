@@ -96,16 +96,16 @@ AC_ARG_ENABLE([gconf],
               [enable_gconf=$enableval],
               [enable_gconf=auto])
 
-PKG_CHECK_MODULES(GCONF, gconf-2.0, [have_gconf=yes], [have_gconf=no])
+if test x$enable_gconf != xno ; then
+        PKG_CHECK_MODULES(GCONF, gconf-2.0, [have_gconf=yes], [have_gconf=no])
 
-if test x$enable_gconf = xauto ; then
-        enable_gconf=$have_gconf
-elif test x$enable_gconf = xyes -a x$have_gconf = xno ; then
-        AC_MSG_ERROR([GConf support explicitly required, but gconf not found])
-fi
+        if test x$enable_gconf = xyes -a x$have_gconf = xno ; then
+            AC_MSG_ERROR([GConf support explicitly required, but gconf not found])
+        fi
 
-if test x$enable_gconf = xyes ; then
-        AC_DEFINE([HAVE_GCONF], [1], [Define if we support gconf-based autostart])
+        if test x$have_gconf = xyes ; then
+            AC_DEFINE([HAVE_GCONF], [1], [Define if we support gconf-based autostart])
+        fi
 fi
 
 dnl ====================================================================
