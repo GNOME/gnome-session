@@ -84,10 +84,8 @@ gnome_session_binary_CPPFLAGS =			\
 	$(GIOUNIX_CFLAGS)			\
 	-DLOCALE_DIR=\""$(datadir)/locale"\"	\
 	-DDATA_DIR=\""$(datadir)/gnome-session"\" \
-        -DLIBEXECDIR=\"$(libexecdir)\"		\
-	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"	\
-	-DGCONF_SANITY_CHECK=\""$(GCONF_SANITY_CHECK)"\" \
-	-DGCONFTOOL_CMD=\"$(GCONFTOOL)\"
+	-DLIBEXECDIR=\"$(libexecdir)\"		\
+	-DGTKBUILDER_DIR=\""$(pkgdatadir)"\"
 
 gnome_session_binary_LDADD =			\
 	libgsmutil.la 				\
