@@ -318,10 +318,12 @@ gsm_systemd_init (GsmSystemd *manager)
                                       0,
                                       G_MAXINT,
                                       NULL,
-                                      NULL);
+                                      &error);
         if (res == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login.");
+                           "properly installed and pam_systemd is getting used at login: %s",
+                           error->message);
+                g_error_free (error);
                 return;
         }
 
