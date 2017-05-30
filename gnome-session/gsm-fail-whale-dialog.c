@@ -371,13 +371,20 @@ int main (int argc, char *argv[])
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         textdomain (GETTEXT_PACKAGE);
 
-        gtk_init_with_args (&argc, &argv, " - fail whale",
-                            entries, GETTEXT_PACKAGE,
-                            &error);
-         if (error != NULL) {
-                 g_warning ("%s", error->message);
-                 exit (1);
-         }
+        if (!gtk_init_with_args (&argc, &argv, " - fail whale",
+                                 entries, GETTEXT_PACKAGE,
+                                 &error)) {
+            if (error != NULL) {
+                g_warning ("%s", error->message);
+                exit (1);
+            }
+
+            /* display server probably went away. Could be for legitimate reasons, could be for
+             * unexpected reasons.  If it went away unexpectantly, that's logged elsewhere, so
+             * let's not add noise by logging here.
+             */
+            return 0;
+        }
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
         fail_dialog->priv->debug_mode = debug_mode;
