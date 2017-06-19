@@ -419,18 +419,6 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
-        /* hack to fix keyring until we can reorder things in 3.20
-         * https://bugzilla.gnome.org/show_bug.cgi?id=738205
-         */
-        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "wayland") == 0 &&
-            g_getenv ("GSM_SKIP_SSH_AGENT_WORKAROUND") == NULL) {
-                char *ssh_socket;
-
-                ssh_socket = g_build_filename (g_get_user_runtime_dir (), "keyring", "ssh", NULL);
-                gsm_util_setenv ("SSH_AUTH_SOCK", ssh_socket);
-                g_free (ssh_socket);
-        }
-
         gsm_util_set_autostart_dirs (override_autostart_dirs);
         session_name = opt_session_name;
 
