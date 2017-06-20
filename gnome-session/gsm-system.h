@@ -70,6 +70,7 @@ struct _GsmSystemInterface
         void     (* prepare_shutdown) (GsmSystem   *system,
                                        gboolean     restart);
         void     (* complete_shutdown)(GsmSystem   *system);
+        gboolean (* is_last_session_for_user) (GsmSystem *system);
 };
 
 enum _GsmSystemError {
@@ -105,6 +106,8 @@ void       gsm_system_set_session_idle (GsmSystem *system,
                                         gboolean   is_idle);
 
 gboolean   gsm_system_is_login_session (GsmSystem *system);
+
+gboolean   gsm_system_is_last_session_for_user (GsmSystem *system);
 
 gboolean   gsm_system_is_active        (GsmSystem *system);
 
