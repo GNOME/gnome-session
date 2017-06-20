@@ -132,6 +132,7 @@ gsm_shell_extensions_scan (GsmShellExtensions *self)
   gchar *dirname;
   GFile *dir;
   const gchar * const * system_data_dirs;
+  int                   i;
 
   /* User data dir first. */
   dirname = g_build_filename (g_get_user_data_dir (), "gnome-shell", "extensions", NULL);
@@ -142,15 +143,14 @@ gsm_shell_extensions_scan (GsmShellExtensions *self)
   g_object_unref (dir);
 
   system_data_dirs = g_get_system_data_dirs ();
-  while ((*system_data_dirs) != '\0')
+  for (i = 0; system_data_dirs[i]; i++)
     {
-      dirname = g_build_filename (*system_data_dirs, "gnome-shell", "extensions", NULL);
+      dirname = g_build_filename (system_data_dirs[i], "gnome-shell", "extensions", NULL);
       dir = g_file_new_for_path (dirname);
       g_free (dirname);
 
       gsm_shell_extensions_scan_dir (self, dir);
       g_object_unref (dir);
-      system_data_dirs ++;
     }
 }
 
