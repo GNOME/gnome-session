@@ -192,6 +192,15 @@ org.gnome.SessionManager.Presence.h: org.gnome.SessionManager.Presence.xml Makef
 org.gnome.SessionManager.Presence.c: org.gnome.SessionManager.Presence.h
 	@: # generated as a side-effect
 
+org.freedesktop.DBus.h org.freedesktop.DBus.c: $(srcdir)/org.freedesktop.DBus.xml Makefile.am
+	$(AM_V_GEN) gdbus-codegen --interface-prefix org.freedesktop.DBus. \
+		--generate-c-code org.freedesktop.DBus \
+		--annotate "org.freedesktop.DBus" "org.gtk.GDBus.C.Name" Bus \
+		--c-namespace Gsm \
+		$(srcdir)/org.freedesktop.DBus.xml \
+		$(NULL)
+
+
 BUILT_SOURCES =				\
 	org.gnome.SessionManager.App.h		\
 	org.gnome.SessionManager.App.c		\
@@ -204,7 +213,9 @@ BUILT_SOURCES =				\
 	org.gnome.SessionManager.h		\
 	org.gnome.SessionManager.c		\
 	org.gnome.SessionManager.Presence.h	\
-	org.gnome.SessionManager.Presence.c
+	org.gnome.SessionManager.Presence.c     \
+	org.freedesktop.DBus.h			\
+	org.freedesktop.DBus.c
 
 EXTRA_DIST +=						\
 	README						\
@@ -213,7 +224,8 @@ EXTRA_DIST +=						\
 	org.gnome.SessionManager.Client.xml		\
 	org.gnome.SessionManager.ClientPrivate.xml	\
 	org.gnome.SessionManager.Inhibitor.xml		\
-	org.gnome.SessionManager.Presence.xml
+	org.gnome.SessionManager.Presence.xml		\
+	org.freedesktop.DBus.xml
 
 CLEANFILES =	\
 	gnome-session \
