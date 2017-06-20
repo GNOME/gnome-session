@@ -1039,6 +1039,12 @@ gsm_consolekit_complete_shutdown (GsmSystem *system)
                 gsm_consolekit_attempt_stop (system);
 }
 
+static gboolean
+gsm_consolekit_is_last_session_for_user (GsmSystem *system)
+{
+        return FALSE;
+}
+
 static void
 gsm_consolekit_system_init (GsmSystemInterface *iface)
 {
@@ -1057,6 +1063,7 @@ gsm_consolekit_system_init (GsmSystemInterface *iface)
         iface->remove_inhibitor = gsm_consolekit_remove_inhibitor;
         iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
         iface->complete_shutdown = gsm_consolekit_complete_shutdown;
+        iface->is_last_session_for_user = gsm_consolekit_is_last_session_for_user;
 }
 
 GsmConsolekit *
