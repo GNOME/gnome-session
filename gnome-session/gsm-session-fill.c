@@ -175,17 +175,14 @@ get_session_keyfile_if_valid (const char *path)
                 goto error;
         }
 
-        /* check that we do have some required components */
-        if (len == 0) {
-                list = g_key_file_get_string_list (keyfile,
-                                                   GSM_KEYFILE_SESSION_GROUP,
-                                                   GSM_KEYFILE_REQUIRED_COMPONENTS_KEY,
-                                                   &len, NULL);
-                if (list)
-                        g_strfreev (list);
-                if (len == 0)
-                        g_warning ("Session '%s': no component in the session.", path);
-        }
+        list = g_key_file_get_string_list (keyfile,
+                                           GSM_KEYFILE_SESSION_GROUP,
+                                           GSM_KEYFILE_REQUIRED_COMPONENTS_KEY,
+                                           &len, NULL);
+        if (list)
+                g_strfreev (list);
+        if (len == 0)
+                g_warning ("Session '%s': no component in the session.", path);
 
         return keyfile;
 
