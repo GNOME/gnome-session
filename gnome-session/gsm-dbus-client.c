@@ -75,7 +75,7 @@ setup_connection (GsmDBusClient *client)
         return TRUE;
 }
 
-static void
+static gboolean
 handle_end_session_response (GsmExportedClientPrivate *skeleton,
                              GDBusMethodInvocation    *invocation,
                              gboolean                  is_ok,
@@ -87,6 +87,7 @@ handle_end_session_response (GsmExportedClientPrivate *skeleton,
                                          is_ok, FALSE, FALSE, reason);
 
         gsm_exported_client_private_complete_end_session_response (skeleton, invocation);
+        return TRUE;
 }
 
 static GObject *
