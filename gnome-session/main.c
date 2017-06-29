@@ -258,7 +258,7 @@ initialize_gio (void)
         }
 
         if (disable_fuse) {
-                g_setenv ("GVFS_DISABLE_FUSE", use_vfs, TRUE);
+                g_setenv ("GVFS_DISABLE_FUSE", disable_fuse, TRUE);
                 g_free (disable_fuse);
         } else {
                 g_unsetenv ("GVFS_DISABLE_FUSE");
