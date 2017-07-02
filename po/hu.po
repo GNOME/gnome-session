@@ -12,17 +12,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-01-24 22:05+0000\n"
-"PO-Revision-Date: 2016-01-25 09:43+0100\n"
-"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-06-22 14:28+0200\n"
+"Last-Translator: Meskó Balázs <meskobalazs@fedoraproject.org>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 2.0.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -73,57 +73,21 @@ msgstr "Környezet át_nevezése"
 msgid "_Continue"
 msgstr "_Folytatás"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "További elindítandó _programok:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Automatikusan elinduló programok"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Jelenleg futó alkalmazások megjegyzése"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Beállítások"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Tallózás…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "_Megjegyzés:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Parancs:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Név:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jaj! Valami elromlott."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Hiba történt, és a rendszer nem képes helyreállni. Keresse meg a "
-"rendszergazdát."
+"Hiba történt, és a rendszer nem képes helyreállni. Lépjen kapcsolatba a "
+"rendszergazdával."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni. Elővigyázatosságból "
@@ -131,7 +95,7 @@ msgstr ""
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Hiba történt, és a rendszer nem képes helyreállni.\n"
@@ -153,11 +117,11 @@ msgstr "Kijelentkezés engedélyezése"
 msgid "Show extension warning"
 msgstr "Kiterjesztés figyelmeztetésének megjelenítése"
 
-#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Nem válaszol"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Kijelentkezés"
 
@@ -217,14 +181,14 @@ msgstr "A hibaképernyő megjelenítése teszteléshez"
 msgid "Disable hardware acceleration check"
 msgstr "A hardveres gyorsítás ellenőrzésének kikapcsolása"
 
-#: ../gnome-session/main.c:309
-msgid " - the GNOME session manager"
+#: ../gnome-session/main.c:318
+msgid " — the GNOME session manager"
 msgstr " – A GNOME munkamenet-kezelője"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -243,16 +207,16 @@ msgstr ""
 "\n"
 "A PARANCS végrehajtása egyes munkamenet-funkciók tiltásával.\n"
 "\n"
-"  -h, --help        Ezen súgó megjelenítése\n"
-"  --version         Programverzió megjelenítése\n"
+"  -h, --help          Ezen súgó megjelenítése\n"
+"  --version           Programverzió megjelenítése\n"
 "  --app-id AZONOSÍTÓ  Használandó alkalmazásazonosító\n"
 "                      a letiltáskor (elhagyható)\n"
-"  --reason REASON   A letiltás oka (elhagyható)\n"
-"  --inhibit ARG     Letiltandó funkciók vesszőkkel elválasztva:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Ne indítsa a PARANCSOT, csak várjon végtelen ideig\n"
+"  --reason REASON     A letiltás oka (elhagyható)\n"
+"  --inhibit ARG       Letiltandó funkciók vesszőkkel elválasztva:\n"
+"                      logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only      Ne indítsa a PARANCSOT, csak várjon a végtelenségig\n"
 "\n"
-"Ha nincs megadva a --inhibit kapcsoló, akkor az idle az alapértelmezett.\n"
+"Ha nincs megadva az --inhibit kapcsoló, akkor az idle az alapértelmezett.\n"
 
 #: ../tools/gnome-session-inhibit.c:146
 #, c-format
@@ -272,22 +236,22 @@ msgstr "%d. környezet"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "A környezetnevek nem kezdődhetnek „.”-tal, és nem tartalmazhatnak „/” "
 "karaktert"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "A környezetnevek nem kezdődhetnek „.”-tal"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "A környezetnevek nem tartalmazhatnak „/” karaktert"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Már létezik „%s” nevű környezet"
 
 #: ../tools/gnome-session-quit.c:50
@@ -307,7 +271,7 @@ msgid "Ignoring any existing inhibitors"
 msgstr "A meglévő korlátozók mellőzése"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Ne kérjen felhasználói megerősítést"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
@@ -317,6 +281,33 @@ msgstr "Sikertelen kapcsolatfelvétel a munkamenet-kezelővel"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "A program kapcsolói ütköznek"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "További elindítandó _programok:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Automatikusan elinduló programok"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Jelenleg futó alkalmazások megjegyzése"
+
+#~ msgid "Options"
+#~ msgstr "Beállítások"
+
+#~ msgid "Browse…"
+#~ msgstr "Tallózás…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Megjegyzés:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Parancs:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Név:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Bejelentkezés a GNOME környezetbe Wayland használatával"
