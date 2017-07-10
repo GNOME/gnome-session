@@ -5,15 +5,15 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2007, 2010.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-30 17:18+0000\n"
-"PO-Revision-Date: 2016-08-03 21:52+0300\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-07-10 23:16+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -41,7 +41,6 @@ msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
 
 #: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME Xorg aplinkoje"
 
@@ -78,34 +77,43 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "O ne! Nutiko kažkas negera."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Įvyko klaida ir sistema negali atsistatyti. Susisiekite su sistemos "
+"Iškilo problema ir sistema negali atsistatyti. Susisiekite su sistemos "
 "administratoriumi"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"Įvyko klaida ir sistema negali atsistatyti. Kaip atsargos priemonė visi "
+"Iškilo problema ir sistema negali atsistatyti. Kaip atsargos priemonė visi "
 "plėtiniai buvo išjungti."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"Įvyko klaida ir sistema negali atsistatyti.\n"
+"Iškilo problema ir sistema negali atsistatyti.\n"
 "Atsijunkite ir prisijunkite iš naujo."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
@@ -117,7 +125,7 @@ msgstr "Leisti atsijungimą"
 msgid "Show extension warning"
 msgstr "Rodyti plėtinio įspėjimą"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Neatsako"
 
@@ -148,47 +156,63 @@ msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Programos versija"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:287
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:288
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Išjungti aparatinio spartinimo tikrinimą"
 
-#: ../gnome-session/main.c:320
-msgid " - the GNOME session manager"
+#: ../gnome-session/main.c:318
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
 msgstr " – GNOME seanso tvarkytuvė"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -203,7 +227,7 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [PARAMETRAS...] KOMANDA\n"
+"%s [PARAMETRAS…] KOMANDA\n"
 "\n"
 "Vykdyti KOMANDĄ, tuo tarpu kliudant daliai seanso funkcionalumo.\n"
 "\n"
@@ -235,21 +259,26 @@ msgid "Session %d"
 msgstr "Seansas %d"
 
 #: ../tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Seansų pavadinimai negali prasidėti „.“ ar turėti simbolių „/“"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "Seansų pavadinimai negali prasidėti „.“"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "Seansų pavadinimai negali turėti simbolių „/“"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Jau yra seansas pavadinimu „%s“"
 
 #: ../tools/gnome-session-quit.c:50
@@ -269,7 +298,8 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Ignoruojami trukdžiai"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Nereikalauti naudotojo patvirtinimo"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
