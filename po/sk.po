@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-30 17:18+0000\n"
-"PO-Revision-Date: 2016-08-04 10:29+0200\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-07-13 16:38+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.2\n"
 
 # desktop entry name
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -89,7 +89,7 @@ msgstr "Ale nie! Niekde sa stala chyba."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť. Prosím, kontaktuje správcu "
@@ -99,7 +99,7 @@ msgstr ""
 # DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
@@ -107,7 +107,7 @@ msgstr ""
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť.\n"
@@ -119,7 +119,7 @@ msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
@@ -133,7 +133,7 @@ msgstr "Povolí odhlásenie"
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Neodpovedá"
 
@@ -166,52 +166,52 @@ msgid "Could not create ICE listening socket: %s"
 msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
 # cmd desc
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "ADRESÁR_AUTOSPUSTENIA"
 
 # cmd desc
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Nenačíta aplikácie špecifikované používateľom"
 
 # cmd desc
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
 # cmd desc
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:287
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
 
 # cmd desc
-#: ../gnome-session/main.c:288
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Zakáže kontrolu hardvérovej akcelerácie"
 
-#: ../gnome-session/main.c:320
-msgid " - the GNOME session manager"
-msgstr " - správca relácie GNOME"
+#: ../gnome-session/main.c:318
+msgid " — the GNOME session manager"
+msgstr " — správca relácie GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -267,20 +267,20 @@ msgstr "Relácia č. %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Názvy relácií nesmú začínať s „.“ ani obsahovať znaky „/“"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "Názvy relácií nesmú začínať s „.“"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "Názvy relácií nesmú obsahovať znaky „/“"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Relácia s názvom „%s“ už existuje"
 
 # cmd desc
@@ -305,7 +305,7 @@ msgstr "Budú sa ignorovať akékoľvek potlačenia"
 
 # cmd desc
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Nepýtať si potvrdenie od používateľa"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
