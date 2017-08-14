@@ -1,28 +1,26 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2015.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2017.
 # This file is distributed under the same license as the gnome-session package.
 # Данило Шеган <danilo@gnome.org> 2005.
 # Слободан Д. Средојевић <slobo@akrep.be> 2006.
 # Милош Поповић <gpopac@gmail.com>, 2010—2011.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2015.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-01-17 10:06+0000\n"
-"PO-Revision-Date: 2016-01-17 17:57+0100\n"
-"Last-Translator: Марко М. Костић (Marko M. Kostić) <marko.m.kostic@gmail."
-"com>\n"
-"Language-Team: Serbian <gnom@prevod.org>\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-08-14 21:16+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 1.8.5\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -72,65 +70,38 @@ msgstr "Преименуј _сесију"
 msgid "_Continue"
 msgstr "_Настави"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Додатни почетни _програми:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Почетни програми"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Сам запамти покренуте програме приликом одјављивања"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Запамти тренутно покренуте програме"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Опције"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Преглед…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "_Коментар:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Наредба:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Назив:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не!  Нешто је пошло наопако!"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Дошло је до проблема и систем не може да се опорави. Обратите се "
 "администратору система"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Дошло је до проблема и систем не може да се опорави. Сва проширења су "
 "искључена зарад предострожности."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Дошло је до проблема и систем не може да се опорави.\n"
@@ -140,7 +111,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Одјави ме"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:280
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Укључује код за исправљање грешака"
 
@@ -152,11 +123,11 @@ msgstr "Дозвољава одјављивање"
 msgid "Show extension warning"
 msgstr "Приказује упозорење проширења"
 
-#: ../gnome-session/gsm-manager.c:1256 ../gnome-session/gsm-manager.c:1902
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Не даје одзив"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Одјави ме"
 
@@ -183,47 +154,63 @@ msgstr "Одбацујем везу са новим клијентом јер ј
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим прикључак ИЦЕ ослушкивања: %s"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Заобилази уобичајене директоријуме самопокретања"
 
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "ДИРЕКТОРИЈУМ_САМОПОКРЕТАЊА"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Сесије које ће бити коришћене"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "НАЗИВ_СЕСИЈЕ"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Не учитава програме које је задао корисник"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Издање овог програма"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Приказује прозорче неуспеха за испробавање"
 
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Искључује проверу хардверског убрзања"
 
-#: ../gnome-session/main.c:307
-msgid " - the GNOME session manager"
+#: ../gnome-session/main.c:318
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
 msgstr " — управник Гномовом сесијом"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -273,50 +260,83 @@ msgid "Session %d"
 msgstr "Сесија „%d“"
 
 #: ../tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Називи сесија не могу да почињу тачком (.) или да садрже косу црту (/)"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "Називи сесија не могу да почињу тачком (.)"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "Називи сесија не могу да садрже косу црту (/)"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Већ постоји сесија под називом „%s“"
 
-#: ../tools/gnome-session-quit.c:49
+#: ../tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Одјави ме"
 
-#: ../tools/gnome-session-quit.c:50
+#: ../tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Искључи"
 
-#: ../tools/gnome-session-quit.c:51
+#: ../tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Поново покрени"
 
-#: ../tools/gnome-session-quit.c:52
+#: ../tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Занемарујем постојеће ометаче"
 
-#: ../tools/gnome-session-quit.c:53
-msgid "Don't prompt for user confirmation"
+#: ../tools/gnome-session-quit.c:54
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Не тражи потврду од корисника"
 
-#: ../tools/gnome-session-quit.c:87 ../tools/gnome-session-quit.c:101
+#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Не могу да се повежем са управником сесије"
 
-#: ../tools/gnome-session-quit.c:196
+#: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Програм је позван са несагласним могућностима"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Додатни почетни _програми:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Почетни програми"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Сам запамти покренуте програме приликом одјављивања"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Запамти тренутно покренуте програме"
+
+#~ msgid "Options"
+#~ msgstr "Опције"
+
+#~ msgid "Browse…"
+#~ msgstr "Преглед…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Коментар:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Наредба:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Назив:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Ова сесија вас пријављује у Гном, користећи Вајланд"
