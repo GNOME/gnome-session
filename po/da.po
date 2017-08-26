@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-10-18 09:26+0000\n"
+"https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-07-10 20:17+0000\n"
 "PO-Revision-Date: 2016-09-08 23:55+0200\n"
 "Last-Translator: Kris Thomsen <mail@kristhomsen.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -95,24 +95,36 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "Åh nej!  Noget er gået galt."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#, fuzzy
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a system "
+#| "administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Der er opstået et problem og systemet kan ikke gendannes. Henvend dig "
 "venligst til en systemadministrator"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#, fuzzy
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Der er opstået et problem, og systemet kan ikke gendannes. Alle udvidelser "
 "er blevet deaktiveret for en sikkerheds skyld."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#, fuzzy
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Et problem er opstået og systemet kan ikke gendannes.\n"
@@ -122,7 +134,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Aktivér fejlfindingskode"
 
@@ -134,7 +146,7 @@ msgstr "Tillad log ud"
 msgid "Show extension warning"
 msgstr "Vis udvidelsesfejl"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -166,47 +178,64 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: ../gnome-session/main.c:275
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Version af dette program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Slå hardwareaccelerationstjek fra"
 
-#: ../gnome-session/main.c:311
-msgid " - the GNOME session manager"
+#: ../gnome-session/main.c:318
+#, fuzzy
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
 msgstr " - GNOME-sessionshåndteringen"
 
 #: ../tools/gnome-session-inhibit.c:108
-#, c-format
+#, c-format, fuzzy
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -234,7 +263,7 @@ msgstr ""
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Start ikke kommandoen og vent i stedet for altid\n"
 "\n"
-"Hvis intet --inhibit tilvalg er angivet, vil \"idle\" bliver antaget.\n"
+"Hvis intet --inhibit tilvalg er angivet, vil “idle” bliver antaget.\n"
 
 #: ../tools/gnome-session-inhibit.c:146
 #, c-format
@@ -253,22 +282,30 @@ msgid "Session %d"
 msgstr "Session %d"
 
 #: ../tools/gnome-session-selector.c:107
+#, fuzzy
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "Sessionnavne må ikke starte med \".\" eller indeholde \"/\"-tegn"
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "Sessionnavne må ikke starte med “.” eller indeholde “/”-tegn"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "Sessionsnavne må ikke starte med \".\""
+#, fuzzy
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
+msgstr "Sessionsnavne må ikke starte med “.”"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Sessionsnavne må ikke indeholde \"/\"-tegn"
+#, fuzzy
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Sessionsnavne må ikke indeholde “/”-tegn"
 
 #: ../tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named ‘%s’ already exists"
-msgstr "Der findes allerede en session med navnet \"%s\""
+#, c-format, fuzzy
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
+msgstr "Der findes allerede en session med navnet “%s”"
 
 #: ../tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -287,7 +324,9 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Ignorerer eventuelle eksisterende blokeringer"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+#, fuzzy
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Opkræv ikke brugerbekræftelse"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
@@ -374,7 +413,7 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr "Filen er ikke en gyldig .desktop-fil"
 
 #~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Ukendt desktop-filversion \"%s\""
+#~ msgstr "Ukendt desktop-filversion “%s”"
 
 #~ msgid "Starting %s"
 #~ msgstr "Starter %s"
@@ -386,8 +425,7 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr "Ukendt køreindstilling: %d"
 
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Kan ikke sende dokumentets URI til en \"Type=Link\"-skrivebordsentitet"
+#~ msgstr "Kan ikke sende dokumentets URI til en “Type=Link”-skrivebordsentitet"
 
 #~ msgid "Not a launchable item"
 #~ msgstr "Ikke et kørbart element"
@@ -476,7 +514,7 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr[1] "Dette system vil automatisk genstarte om %d sekunder."
 
 #~ msgid "You are currently logged in as \"%s\"."
-#~ msgstr "Du er på nuværende tidspunkt logget ind som \"%s\"."
+#~ msgstr "Du er på nuværende tidspunkt logget ind som “%s”."
 
 #~ msgid "Log out of this system now?"
 #~ msgstr "Log ud af dette system nu?"
@@ -503,7 +541,7 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr "Genstart dette system nu?"
 
 #~ msgid "Icon '%s' not found"
-#~ msgstr "Ikon \"%s\" kunne ikke findes"
+#~ msgstr "Ikon “%s” kunne ikke findes"
 
 #~ msgid "GNOME 3 Failed to Load"
 #~ msgstr "GNOME 3 kunne ikke indlæses"
@@ -580,10 +618,10 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr ""
 #~ "Liste over komponenter der er nødvendige som en del af sessionen. (Hvert "
 #~ "element navngiver en nøgle under "
-#~ "\"/desktop/gnome/session/required-components\".) Værktøjer \"Indstillinger "
-#~ "for opstartprogrammer\" vil normalt ikke tillade brugere at fjerne en "
-#~ "nødvendig komponent fra sessionen, og sessionshåndteringen vil automatisk "
-#~ "tilføje nødvendige komponenter tilbage til sessionen, hvis de bliver fjernet."
+#~ "“/desktop/gnome/session/required-components”.) Værktøjer “Indstillinger for "
+#~ "opstartprogrammer” vil normalt ikke tillade brugere at fjerne en nødvendig "
+#~ "komponent fra sessionen, og sessionshåndteringen vil automatisk tilføje "
+#~ "nødvendige komponenter tilbage til sessionen, hvis de bliver fjernet."
 
 #~ msgid "Logout prompt"
 #~ msgstr "Log ud-prompt"
@@ -708,16 +746,16 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 #~ msgstr "GNOME-nøglering dæmonomslag"
 
 #~ msgid "Selected option in the log out dialog"
-#~ msgstr "Forvalgt valgmulighed i \"Log ud\"-vinduet"
+#~ msgstr "Forvalgt valgmulighed i “Log ud”-vinduet"
 
 #~ msgid ""
 #~ "This is the option that will be selected in the logout dialog, valid values "
 #~ "are \"logout\" for logging out, \"shutdown\" for halting the system and "
 #~ "\"restart\" for restarting the system."
 #~ msgstr ""
-#~ "Dette er den forvalgte valgmulighed i \"Log ud\"-vinduet. Gyldige værdier er "
-#~ "\"logout\" for at logge ud, \"shutdown\" for at stoppe systemet og "
-#~ "\"restart\" for at genstarte systemet."
+#~ "Dette er den forvalgte valgmulighed i “Log ud”-vinduet. Gyldige værdier er "
+#~ "“logout” for at logge ud, “shutdown” for at stoppe systemet og “restart” for "
+#~ "at genstarte systemet."
 
 #~ msgid "Configure your sessions"
 #~ msgstr "Konfigurér dine sessioner"
@@ -727,4 +765,5 @@ msgstr "Program blev kaldt med selvmodsigende tilvalg"
 
 #~ msgid "GNOME GUI Library + EggSMClient"
 #~ msgstr "GNOME GUI-bibliotek + EggSMClient"
+
 
