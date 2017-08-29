@@ -8,15 +8,15 @@
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2008-2010.
 # Ville-Pekka Vainio <vpivaini@cs.helsinki.fi>, 2010.
 # Tommi Vainikainen <thv@iki.fi>, 2011.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2015, 2016.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2015, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-30 17:18+0000\n"
-"PO-Revision-Date: 2016-08-12 15:37+0300\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-08-29 12:27+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -43,7 +43,6 @@ msgid "This session logs you into GNOME"
 msgstr "Tämä istunto kirjautuu Gnomeen"
 
 #: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
 msgid "GNOME on Xorg"
 msgstr "Gnome Xorgia käyttäen"
 
@@ -80,34 +79,43 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "Voi ei! Jotain meni pieleen."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Esiintyi ongelma ja järjestelmä ei pysty palautumaan. Ota yhteyttä "
+"Esiintyi ongelma, josta järjestelmä ei pysty palautumaan. Ota yhteys "
 "järjestelmän ylläpitäjään"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"Esiintyi ongelma ja järjestelmä ei pysty palautumaan. Kaikki laajennukset on "
-"poistettu käytöstä varotoimenpiteenä."
+"Esiintyi ongelma, josta järjestelmä ei pysty palautumaan. Kaikki "
+"laajennukset on poistettu käytöstä varotoimenpiteenä."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"Esiintyi ongelma ja järjestelmä ei pysty palautumaan.\n"
-"Kirjaudu ulos ja yritä uudelleen, kiitos."
+"Esiintyi ongelma, josta järjestelmä ei pysty palautumaan.\n"
+"Kirjaudu ulos ja yritä uudelleen."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "Kirjaudu ul_os"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
@@ -119,7 +127,7 @@ msgstr "Salli uloskirjautuminen"
 msgid "Show extension warning"
 msgstr "Näytä laajennusvaroitus"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Ei vastaa"
 
@@ -152,47 +160,48 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistoketta ei voi luoda: %s"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "AUTOKÄYN_HAK"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Käytettävä istunto"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "ISTUNTONIMI"
 
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:287
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Näytä musta virheikkuna testausta varten"
 
-#: ../gnome-session/main.c:288
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Poista laitteistokiihdytyksen tarkistus käytöstä"
 
-#: ../gnome-session/main.c:320
-msgid " - the GNOME session manager"
-msgstr " - Gnomen istunnonhallinta"
+#: ../gnome-session/main.c:318
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
+msgstr " — Gnomen istunnonhallinta"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -225,22 +234,27 @@ msgid "Session %d"
 msgstr "Istunto %d"
 
 #: ../tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "Istuntonimi ei voi alkaa merkillä ‘.’ tai sisältää merkkiä ‘/’"
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "Istuntonimi ei voi alkaa merkillä “.” tai sisältää merkkiä “/”"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "Istuntonimi ei voi alkaa merkillä ‘.’"
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
+msgstr "Istuntonimi ei voi alkaa merkillä “.”"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Istuntonimi ei voi sisältää merkkiä ‘/’"
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Istuntonimi ei voi sisältää merkkiä “/”"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
-msgstr "Istunto nimeltä ‘%s’ on jo olemassa"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
+msgstr "Istunto nimeltä “%s” on jo olemassa"
 
 #: ../tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -259,7 +273,8 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Jätä käynnissä olevat estot huomioimatta"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Älä kysy käyttäjän vahvistusta"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
