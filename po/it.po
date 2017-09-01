@@ -1,18 +1,18 @@
 # Italian translation for gnome-session
 # This file is distributed under the same license as gnome-session package
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015 Free Software Foundation, Inc.
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2015, 2016, 2017 Free Software Foundation, Inc.
 # Copyright (C) 2016 Free Software Foundation, Inc.
 # Christopher R. Gabriel <cgabriel@pluto.linux.it>, 1997, 1998, 1999, 2000, 2001, 2002.
-# Milo Casagrande <milo@milo.name>, 2012, 2015, 2016.
+# Milo Casagrande <milo@milo.name>, 2012, 2015, 2016, 2017.
 # Luca Ferretti <lferrett@gnome.org>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 3.7.x\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-17 10:09+0000\n"
-"PO-Revision-Date: 2016-03-17 21:16+0100\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-09-01 09:28+0200\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italiano <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -56,7 +56,7 @@ msgstr "Selezionare una sessione personalizzata da lanciare"
 
 #: ../data/session-selector.ui.h:3
 msgid "_New Session"
-msgstr "_Nuova session"
+msgstr "_Nuova sessione"
 
 #: ../data/session-selector.ui.h:4
 msgid "_Remove Session"
@@ -70,60 +70,21 @@ msgstr "Rino_mina sessione"
 msgid "_Continue"
 msgstr "_Continua"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Programmi d'avvio aggiuntivi:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Programmi d'avvio"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"Memorizzare _automaticamente le applicazioni in esecuzione terminando la "
-"sessione"
-
-# è un pulsante
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Memorizza applicazioni attualmente in esecuzione"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Opzioni"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Esplora…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Comm_ento:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Co_mando:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "N_ome:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh no! Qualcosa è andato storto."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Si è verificato un problema impossibile da recuperare. Contattare "
-"l'amministratore di sistema"
+"l'amministratore di sistema."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Si è verificato un problema impossibile da recuperare. Per precauzione, "
@@ -131,7 +92,7 @@ msgstr ""
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Si è verificato un problema impossibile da recuperare.\n"
@@ -155,7 +116,7 @@ msgstr "Mostra gli avvisi delle estensioni"
 
 # non so se la forma è corretta, non ho provato
 # a inibire il termine sessione
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Non risponde"
 
@@ -214,20 +175,20 @@ msgstr "Versione di questa applicazione"
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
 #: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
-msgstr "Mostra il dialogo \"fail whale\" per test"
+msgstr "Mostra il dialogo «fail whale» per test"
 
 #: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Disabilita il controllo sull'accelerazione hardware"
 
-#: ../gnome-session/main.c:309
-msgid " - the GNOME session manager"
-msgstr " - il gestore di sessioni di GNOME"
+#: ../gnome-session/main.c:318
+msgid " — the GNOME session manager"
+msgstr " — Il gestore di sessioni di GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -242,7 +203,7 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [OPZIONE...] COMANDO\n"
+"%s [OPZIONE…] COMANDO\n"
 "\n"
 "Esegue COMANDO durante l'inibizione di alcune funzionalità di sessione.\n"
 "\n"
@@ -275,21 +236,21 @@ msgstr "Sessione %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "I nomi delle sessioni non possono iniziare con «.» o contenere caratteri «/»"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "I nomi delle sessioni non possono iniziare con «.»"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "I nomi delle sessioni non contenere caratteri «/»"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "I nomi delle sessioni non possono contenere caratteri «/»"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Un sessione chiamata «%s» esiste già"
 
 # commento opzioni riga comando
@@ -313,7 +274,7 @@ msgstr "Ignora ogni inibitore esistente"
 
 # commento opzioni riga comando
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Non richiede conferma all'utente"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
@@ -323,3 +284,33 @@ msgstr "Impossibile connettersi al gestore di sessione"
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Programma chiamato con opzioni in conflitto"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "_Programmi d'avvio aggiuntivi:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Programmi d'avvio"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr ""
+#~ "Memorizzare _automaticamente le applicazioni in esecuzione terminando la "
+#~ "sessione"
+
+# è un pulsante
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Memorizza applicazioni attualmente in esecuzione"
+
+#~ msgid "Options"
+#~ msgstr "Opzioni"
+
+#~ msgid "Browse…"
+#~ msgstr "Esplora…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Comm_ento:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Co_mando:"
+
+#~ msgid "_Name:"
+#~ msgstr "N_ome:"
