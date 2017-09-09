@@ -2,6 +2,7 @@
 # Copyright (C) 2001, 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 # Copyright (C) 2012, 2013, 2014, 2015, 2016 Free Software Foundation, Inc.
+# Copyright (C) 2017 Free Software Foundation, Inc.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
@@ -10,15 +11,16 @@
 # Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2014, 2015, 2016.
+# Lyubomir Vasilev <lyubomirv@abv.bg>, 2017.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-09 07:36+0300\n"
-"PO-Revision-Date: 2016-01-19 20:46+0200\n"
-"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
+"POT-Creation-Date: 2017-09-09 09:11+0300\n"
+"PO-Revision-Date: 2017-09-09 09:15+0300\n"
+"Last-Translator: Lyubomir Vasilev <lyubomirv@abv.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -74,49 +76,13 @@ msgstr "Пре_именуване на сесия"
 msgid "_Continue"
 msgstr "_Продължаване"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "_Допълнителни програми стартирани при влизане:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Програми стартирани при влизане"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Автоматично запомняне на стартираните програми при изход от системата"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "_Запомняне на стартираните програми"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Опции"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Избор…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Ко_ментар:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Команда:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Име:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, не! Нещо се обърка."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Възникна проблем и системата не може да се справи. Свържете се със системен "
@@ -124,7 +90,7 @@ msgstr ""
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Възникна проблем и системата не може да се справи. За всеки случай всички "
@@ -132,7 +98,7 @@ msgstr ""
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Възникна проблем и системата не може да се справи.\n"
@@ -154,7 +120,7 @@ msgstr "Разрешаване на изхода"
 msgid "Show extension warning"
 msgstr "Показване на предупреждение за разширение"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1874
+#: ../gnome-session/gsm-manager.c:1266 ../gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Не отговаря"
 
@@ -221,13 +187,13 @@ msgid "Disable hardware acceleration check"
 msgstr "Изключване на проверката за хардуерно ускорение"
 
 #: ../gnome-session/main.c:318
-msgid " - the GNOME session manager"
-msgstr "— управление на сесиите на GNOME"
+msgid " — the GNOME session manager"
+msgstr " — управление на сесиите на GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -280,22 +246,22 @@ msgstr "Сесия %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "Имената на сесиите не могат за започват със знака „.“ или да съдържат знака "
 "„/“"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "Имената на сесиите не могат за започват със знака „.“"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "Имената на сесиите не могат да съдържат знака „/“"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "Вече има сесия с това име — „%s“"
 
 #: ../tools/gnome-session-quit.c:50
@@ -315,7 +281,7 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Изход въпреки блокиращите програми"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Без потвърждаване"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
