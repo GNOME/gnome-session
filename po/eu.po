@@ -5,22 +5,22 @@
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 # Julen Ruiz Aizpuru <julenx@gmail.com>, 2011.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2016.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-se"
-"ssion&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-12 12:38+0000\n"
-"PO-Revision-Date: 2016-09-18 13:40+0100\n"
-"Last-Translator: dooteo <dooteo@zundan.com>\n"
-"Language-Team: Basque <librezale@librezale.org>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"session&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-08-27 15:48+0200\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 1.5\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -40,7 +40,6 @@ msgid "This session logs you into GNOME"
 msgstr "Saio honek GNOMEn sartuko zaitu"
 
 #: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME Xorg gainean"
 
@@ -77,24 +76,33 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "Zerbait gaizki irten da."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Arazo bat gertatu da eta sistemak ezin du berreskuratu. Jarri harremanetan "
-"sistemaren administratzaile batekin"
+"Arazo bat gertatu da eta sistemak ezin du berreskuratu. Jar zaitez "
+"sistemaren administratzaile batekin harremanetan"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Arazo bat gertatu da eta sistemak ezin du berreskuratu. Hedapen guztiak "
-"desgaitu egin dira badazpada."
+"desgaitu egin dira badaezpada."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Arazo bat gertatu da eta sistemak ezin du berreskuratu.\n"
@@ -104,7 +112,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Amaitu _saioa"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:283
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
 msgid "Enable debugging code"
 msgstr "Gaitu arazketa-kodea"
 
@@ -116,7 +124,7 @@ msgstr "Baimendu saioa amaitzea"
 msgid "Show extension warning"
 msgstr "Erakutsi hedapenaren abisua"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Ez du erantzuten"
 
@@ -147,47 +155,63 @@ msgstr "Bezero berrien konexioa ukatzen, unean saioa itzaltzen ari delako\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ezin izan da entzuteko ICE socket-a sortu: %s"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "Override standard autostart directories"
 msgstr "Jaramonik ez egin hasiera automatikoko direktorio estandarrei"
 
-#: ../gnome-session/main.c:281
+#: ../gnome-session/main.c:279
 msgid "AUTOSTART_DIR"
 msgstr "HASIERA_AUTOMATIKOKO_DIREKTORIOA"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "Session to use"
 msgstr "Saioa erabiltzeko"
 
-#: ../gnome-session/main.c:282
+#: ../gnome-session/main.c:280
 msgid "SESSION_NAME"
 msgstr "SAIOAREN_IZENA"
 
-#: ../gnome-session/main.c:284
+#: ../gnome-session/main.c:282
 msgid "Do not load user-specified applications"
 msgstr "Ez kargatu erabiltzaileak zehaztutako aplikazioak"
 
-#: ../gnome-session/main.c:285
+#: ../gnome-session/main.c:283
 msgid "Version of this application"
 msgstr "Aplikazio honen bertsioa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:287
+#: ../gnome-session/main.c:285
 msgid "Show the fail whale dialog for testing"
 msgstr "Erakutsi errorearen elkarrizketa-koadroa probetarako"
 
-#: ../gnome-session/main.c:288
+#: ../gnome-session/main.c:286
 msgid "Disable hardware acceleration check"
 msgstr "Desgaitu hardware bidezko azelerazioaren egiaztaketa"
 
-#: ../gnome-session/main.c:320
-msgid " - the GNOME session manager"
-msgstr "- GNOMEren saio-kudeatzailea"
+#: ../gnome-session/main.c:318
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
+msgstr " — GNOMEren saio-kudeatzailea"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -202,7 +226,7 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [AUKERA...] KOMANDOA\n"
+"%s [AUKERA…] KOMANDOA\n"
 "\n"
 "Exekutatu KOMANDOA saioaren beste funtzionalitate batzuk galarazten diren "
 "bitartean.\n"
@@ -214,11 +238,12 @@ msgstr ""
 "  --reason ZERGATIA Galarazteko zergatia (aukerakoa)\n"
 "  --inhibit ARG     Galarazteko gauzak, komaz bereiztutako zerrenda:\n"
 "                    logout (saio-amaiera), switch-user (erabiltzailez "
-"aldatzea), suspend (esekitzea), idle (inaktiboa), automount (muntai "
-"automatikoa)\n"
+"aldatzea),\n"
+"                    suspend (esekitzea), idle (inaktiboa),\n"
+"                    automount (muntai automatikoa)\n"
 "  --inhibit-only    Ez abiarazi KOMANDOA eta itxaron beti\n"
 "\n"
-"Ez bada --inhibit aukera zehazten, inaktibitatea (idle) bezala hartzen da.\n"
+"Ez bada --inhibit aukera zehazten, aktibitate gabea bezala hartzen da.\n"
 
 #: ../tools/gnome-session-inhibit.c:146
 #, c-format
@@ -237,23 +262,28 @@ msgid "Session %d"
 msgstr "%d saio"
 
 #: ../tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
-"Saioen izenak ezin dute '.' karakterearekin hasi, edo '/' karakterea eduki"
+"Saioen izenak ezin dute “.“ karakterearekin hasi, edo “/“ karakterea eduki"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "Saioen izenak ezin dute '.' karakterearekin hasi"
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
+msgstr "Saioen izenak ezin dute “.“ karakterearekin hasi"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Saioen izenak ezin dute '/' karakterea eduki"
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Saioen izenak ezin dute “/“ karakterea eduki"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
-msgstr "'%s' izeneko saioa badago lehendik ere"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
+msgstr "“%s“ izeneko saioa badago lehendik ere"
 
 #: ../tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -272,7 +302,8 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Ez ikusi egin dauden inhibitzaileei"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Ez eskatu erabiltzailearen baieztapena"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
