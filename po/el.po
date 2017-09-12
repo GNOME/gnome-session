@@ -34,18 +34,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-20 10:05+0000\n"
-"PO-Revision-Date: 2016-02-20 16:40+0200\n"
-"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
+"POT-Creation-Date: 2017-06-21 22:12+0000\n"
+"PO-Revision-Date: 2017-09-09 12:46+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
@@ -96,65 +96,38 @@ msgstr "Με_τονομασία συνεδρίας"
 msgid "_Continue"
 msgstr "_Συνέχεια"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Πρόσθετα _προγράμματα εκκίνησης:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Προγράμματα εκκίνησης"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Αυτόματη απομνημόνευση εκτελούμενων εφαρμογών κατά την αποσύνδεση"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "Α_πομνημόνευση εφαρμογών που εκτελούνται"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Επιλογές"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Περιήγηση…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "_Σχόλιο:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "_Εντολή:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "Ό_νομα:"
-
 #: ../gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ωχ όχι! Κάτι πήγε στραβά."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Παρακαλούμε "
 "επικοινωνήστε με τον διαχειριστή του συστήματος"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Έχουν "
 "απενεργοποιηθεί όλες οι επεκτάσεις για λόγους προφύλαξης."
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει.\n"
@@ -176,11 +149,11 @@ msgstr "Να επιτρέπεται αποσύνδεση"
 msgid "Show extension warning"
 msgstr "Προβολή προειδοποίησης επέκτασης"
 
-#: ../gnome-session/gsm-manager.c:1262 ../gnome-session/gsm-manager.c:1908
+#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
-#: ../gnome-session/gsm-util.c:381
+#: ../gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Αποσύνδεση"
 
@@ -241,14 +214,30 @@ msgstr "Εμφάνιση του διαλόγου fail whale για δοκιμή"
 msgid "Disable hardware acceleration check"
 msgstr "Απενεργοποίηση ελέγχου επιτάχυνσης υλικού"
 
-#: ../gnome-session/main.c:309
-msgid " - the GNOME session manager"
-msgstr " - ο διαχειριστής συνεδρίας του GNOME"
+#: ../gnome-session/main.c:318
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
+msgstr " — ο διαχειριστής συνεδρίας του GNOME"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -297,24 +286,29 @@ msgid "Session %d"
 msgstr "Συνεδρία %d"
 
 #: ../tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
-"Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινάνε με ‘.’ ή να περιέχουν "
-"χαρακτήρες ‘/’"
+"Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινάνε με «.» ή να περιέχουν "
+"χαρακτήρες «/»"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινούν με ‘.’"
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
+msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινούν με «.»"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να περιέχουν χαρακτήρες ‘/’"
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να περιέχουν χαρακτήρες «/»"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
-msgstr "Υπάρχει ήδη μια συνεδρία με όνομα ‘%s’"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
+msgstr "Υπάρχει ήδη μια συνεδρία με όνομα «%s»"
 
 #: ../tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -333,7 +327,8 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Αγνοώντας όποιους υπάρχοντες αναστολείς"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "Να μη ζητείται επιβεβαίωση από το χρήστη"
 
 #: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
@@ -343,6 +338,33 @@ msgstr "Αδυναμία σύνδεσης με το διαχειριστή συ�
 #: ../tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες επιλογές"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Πρόσθετα _προγράμματα εκκίνησης:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Προγράμματα εκκίνησης"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Αυτόματη απομνημόνευση εκτελούμενων εφαρμογών κατά την αποσύνδεση"
+
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "Α_πομνημόνευση εφαρμογών που εκτελούνται"
+
+#~ msgid "Options"
+#~ msgstr "Επιλογές"
+
+#~ msgid "Browse…"
+#~ msgstr "Περιήγηση…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Σχόλιο:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "_Εντολή:"
+
+#~ msgid "_Name:"
+#~ msgstr "Ό_νομα:"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Αυτή η συνεδρία σας συνδέει στο GNOME, χρησιμοποιώντας Wayland"
