@@ -205,6 +205,7 @@ BUILT_SOURCES =				\
 	org.gnome.SessionManager.Presence.c
 
 EXTRA_DIST +=						\
+	meson.build					\
 	README						\
 	org.gnome.SessionManager.xml			\
 	org.gnome.SessionManager.App.xml		\

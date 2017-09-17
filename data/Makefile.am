@@ -50,7 +50,8 @@ EXTRA_DIST =					\
 	session-selector.ui			\
 	gnome-custom-session.desktop.in		\
 	$(ui_DATA)				\
-	$(hwcompat_DATA)
+	$(hwcompat_DATA)			\
+	meson.build
 
 CLEANFILES =					\
 	$(gsettings_SCHEMAS)			\

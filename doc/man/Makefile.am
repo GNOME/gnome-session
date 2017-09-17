@@ -19,6 +19,7 @@ man_MANS += gnome-session-selector.1
 endif
 
 EXTRA_DIST =				\
+	meson.build			\
 	gnome-session-inhibit.xml	\
 	gnome-session-selector.xml	\
 	$(man_MANS)

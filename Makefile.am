@@ -7,9 +7,13 @@ SUBDIRS =			\
 
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-EXTRA_DIST =		\
-	HACKING		\
-	MAINTAINERS
+EXTRA_DIST =			\
+	HACKING			\
+	MAINTAINERS		\
+	meson.build		\
+	meson_options.txt	\
+	meson_post_install.py	\
+	po/meson.build
 
 MAINTAINERCLEANFILES = \
 	$(srcdir)/INSTALL \

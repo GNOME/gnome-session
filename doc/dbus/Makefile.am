@@ -43,6 +43,7 @@ EXTRA_DIST =				\
 	config.xsl			\
 	docbook.css			\
 	dbus-introspect-docs.dtd	\
-	spec-to-docbook.xsl
+	spec-to-docbook.xsl		\
+	meson.build
 
 -include $(top_srcdir)/git.mk

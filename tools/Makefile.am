@@ -101,4 +101,6 @@ gnome_session_selector_SOURCES = 		\
 	gnome-session-selector.c
 endif
 
+EXTRA_DIST = meson.build
+
 -include $(top_srcdir)/git.mk
