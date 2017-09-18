@@ -3,11 +3,12 @@ desktop = 'gnome.desktop'
 # FIXME: The same target can not be copied into two directories.
 #        There is a workaround in meson_post_install.py until proper solution arises:
 #        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-custom_target(
+i18n.merge_file(
   desktop,
+  type: 'desktop',
   input: desktop + '.in',
   output: desktop,
-  command: intltool_desktop_cmd,
+  po_dir: po_dir,
   install: true,
   #install_dir: [
   #  join_paths(session_datadir, 'xsessions'),
@@ -18,11 +19,12 @@ custom_target(
 
 desktop = 'gnome-xorg.desktop'
 
-custom_target(
+i18n.merge_file(
   desktop,
+  type: 'desktop',
   input: desktop + '.in',
   output: desktop,
-  command: intltool_desktop_cmd,
+  po_dir: po_dir,
   install: true,
   install_dir: join_paths(session_datadir, 'xsessions')
 )
@@ -44,11 +46,12 @@ foreach session: sessions
     configuration: desktop_conf
   )
 
-  custom_target(
+  i18n.merge_file(
     session,
+    type: 'desktop',
     input: desktop_in,
     output: session,
-    command: intltool_desktop_cmd,
+    po_dir: po_dir,
     install: true,
     install_dir: join_paths(session_pkgdatadir, 'sessions')
   )
@@ -78,11 +81,12 @@ if enable_session_selector
 
   desktop = 'gnome-custom-session.desktop'
 
-  custom_target(
+  i18n.merge_file(
     desktop,
+    type: 'desktop',
     input: desktop + '.in',
     output: desktop,
-    command: intltool_desktop_cmd,
+    po_dir: po_dir,
     install: true,
     install_dir: join_paths(session_datadir, 'xsessions')
   )
