@@ -78,8 +78,6 @@ on_name_lost (GDBusConnection *connection,
               const char *name,
               gpointer    data)
 {
-        GsmManager *manager = (GsmManager *)data;
-
         if (connection == NULL) {
                 g_warning ("Lost name on bus: %s", name);
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
