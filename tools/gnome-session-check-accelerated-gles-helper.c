@@ -21,11 +21,15 @@
  *   Cosimo Cecchi <cosimo@endlessm.com>
  */
 
+/* for strcasestr */
+#define _GNU_SOURCE
+
 #include <config.h>
 
 #include <gtk/gtk.h>
 #include <locale.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifdef GDK_WINDOWING_X11
 #define GL_GLEXT_PROTOTYPES
@@ -186,7 +190,10 @@ main (int argc,
         if (renderer != NULL) {
                 if (print_renderer)
                         g_print ("%s", renderer);
-                ret = HELPER_ACCEL;
+                if (strcasestr (renderer, "llvmpipe"))
+                        ret = HELPER_SOFTWARE_RENDERING;
+                else
+                        ret = HELPER_ACCEL;
         }
 
 out:

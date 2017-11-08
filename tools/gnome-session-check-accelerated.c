@@ -133,6 +133,8 @@ main (int argc, char **argv)
         char *gl_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", "--print-renderer", NULL };
         char *gles_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gles-helper", "--print-renderer", NULL };
         char *renderer_string = NULL;
+        char *gl_renderer_string = NULL, *gles_renderer_string = NULL;
+        gboolean gl_software_rendering = FALSE, gles_software_rendering = FALSE;
         Window rootwin;
         glong is_accelerated, is_software_rendering;
         GError *gl_error = NULL, *gles_error = NULL;
@@ -220,25 +222,41 @@ main (int argc, char **argv)
 
         /* First, try the GL helper */
         if (g_spawn_sync (NULL, (char **) gl_helper_argv, NULL, 0,
-                           NULL, NULL, &renderer_string, NULL, &estatus, &gl_error)) {
-                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL) || (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
-                is_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
-                if (is_accelerated || is_software_rendering)
+                           NULL, NULL, &gl_renderer_string, NULL, &estatus, &gl_error)) {
+                is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
+                gl_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
+                if (is_accelerated) {
+                        renderer_string = gl_renderer_string;
                         goto finish;
+                }
 
-                g_clear_pointer (&renderer_string, g_free);
                 g_printerr ("gnome-session-check-accelerated: GL Helper exited with code %d\n", estatus);
         }
 
         /* Then, try the GLES helper */
         if (g_spawn_sync (NULL, (char **) gles_helper_argv, NULL, 0,
-                           NULL, NULL, &renderer_string, NULL, &estatus, &gles_error)) {
+                           NULL, NULL, &gles_renderer_string, NULL, &estatus, &gles_error)) {
                 is_accelerated = (WEXITSTATUS(estatus) == HELPER_ACCEL);
-                if (is_accelerated)
+                gles_software_rendering = (WEXITSTATUS(estatus) == HELPER_SOFTWARE_RENDERING);
+                if (is_accelerated) {
+                        renderer_string = gles_renderer_string;
                         goto finish;
+                }
 
-                g_clear_pointer (&renderer_string, g_free);
                 g_printerr ("gnome-session-check-accelerated: GLES Helper exited with code %d\n", estatus);
+        }
+
+        /* If we got here, GL software rendering is our best bet */
+        if (gl_software_rendering || gles_software_rendering) {
+                is_software_rendering = TRUE;
+                is_accelerated = TRUE;
+
+                if (gl_software_rendering)
+                        renderer_string = gl_renderer_string;
+                else if (gles_software_rendering)
+                        renderer_string = gles_renderer_string;
+
+                goto finish;
         }
 
         /* Both helpers failed; print their error messages */
@@ -267,7 +285,7 @@ main (int argc, char **argv)
 				XA_CARDINAL, 32, PropModeReplace, (guchar *) &is_software_rendering, 1);
 	}
 
-        if (is_accelerated || is_software_rendering) {
+        if (renderer_string != NULL) {
                 XChangeProperty (GDK_DISPLAY_XDISPLAY (display),
 				rootwin,
 				renderer_atom,
@@ -278,6 +296,9 @@ main (int argc, char **argv)
         }
 
         gdk_display_sync (display);
+
+        g_free (gl_renderer_string);
+        g_free (gles_renderer_string);
 
         return is_accelerated ? 0 : 1;
 }
