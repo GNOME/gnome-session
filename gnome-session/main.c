@@ -309,7 +309,7 @@ main (int argc, char **argv)
 
         debug_string = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug_string != NULL) {
-                debug = rpmatch (debug_string) == TRUE || atoi (debug_string) == 1;
+                debug = atoi (debug_string) == 1;
         }
 
         error = NULL;
