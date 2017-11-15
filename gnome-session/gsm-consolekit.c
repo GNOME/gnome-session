@@ -31,11 +31,6 @@
 #include <gio/gio.h>
 #include <gio/gunixfdlist.h>
 
-#ifdef HAVE_OLD_UPOWER
-#define UPOWER_ENABLE_DEPRECATED 1
-#include <upower.h>
-#endif
-
 #include "gsm-system.h"
 #include "gsm-consolekit.h"
 
@@ -51,9 +46,7 @@ struct _GsmConsolekitPrivate
 {
         GDBusProxy      *ck_proxy;
         GDBusProxy      *ck_session_proxy;
-#ifdef HAVE_OLD_UPOWER
-        UpClient        *up_client;
-#endif
+
         char            *session_id;
         gchar           *session_path;
 
@@ -112,10 +105,6 @@ gsm_consolekit_finalize (GObject *object)
         }
         drop_system_inhibitor (consolekit);
         drop_delay_inhibitor (consolekit);
-
-#ifdef HAVE_OLD_UPOWER
-        g_clear_object (&manager->priv->up_client);
-#endif
 
         G_OBJECT_CLASS (gsm_consolekit_parent_class)->finalize (object);
 }
@@ -279,11 +268,6 @@ gsm_consolekit_init (GsmConsolekit *manager)
 
         g_signal_connect (manager->priv->ck_session_proxy, "g-signal",
                           G_CALLBACK (ck_session_proxy_signal_cb), manager);
-
-#ifdef HAVE_OLD_UPOWER
-        g_clear_object (&manager->priv->up_client);
-        manager->priv->up_client = up_client_new ();
-#endif
 
         g_object_unref (bus);
 }
@@ -603,10 +587,6 @@ gsm_consolekit_is_login_session (GsmSystem *system)
 static gboolean
 gsm_consolekit_can_suspend (GsmSystem *system)
 {
-#ifdef HAVE_OLD_UPOWER
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-        return up_client_get_can_suspend (consolekit->priv->up_client);
-#else
         GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gchar *rv;
         GVariant *res;
@@ -634,16 +614,11 @@ gsm_consolekit_can_suspend (GsmSystem *system)
         g_free (rv);
 
         return can_suspend;
-#endif
 }
 
 static gboolean
 gsm_consolekit_can_hibernate (GsmSystem *system)
 {
-#ifdef HAVE_OLD_UPOWER
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-        return up_client_get_can_hibernate (consolekit->priv->up_client);
-#else
         GsmConsolekit *manager = GSM_CONSOLEKIT (system);
         gchar *rv;
         GVariant *res;
@@ -671,7 +646,6 @@ gsm_consolekit_can_hibernate (GsmSystem *system)
         g_free (rv);
 
         return can_hibernate;
-#endif
 }
 
 static void
@@ -715,17 +689,6 @@ hibernate_done (GObject      *source,
 static void
 gsm_consolekit_suspend (GsmSystem *system)
 {
-#ifdef HAVE_OLD_UPOWER
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-        GError *error = NULL;
-        gboolean ret;
-
-        ret = up_client_suspend_sync (consolekit->priv->up_client, NULL, &error);
-        if (!ret) {
-                g_warning ("Unexpected suspend failure: %s", error->message);
-                g_error_free (error);
-        }
-#else
         GsmConsolekit *manager = GSM_CONSOLEKIT (system);
 
         g_dbus_proxy_call (manager->priv->ck_proxy,
@@ -736,23 +699,11 @@ gsm_consolekit_suspend (GsmSystem *system)
                            NULL,
                            suspend_done,
                            manager);
-#endif
 }
 
 static void
 gsm_consolekit_hibernate (GsmSystem *system)
 {
-#ifdef HAVE_OLD_UPOWER
-        GsmConsolekit *consolekit = GSM_CONSOLEKIT (system);
-        GError *error = NULL;
-        gboolean ret;
-
-        ret = up_client_hibernate_sync (consolekit->priv->up_client, NULL, &error);
-        if (!ret) {
-                g_warning ("Unexpected hibernate failure: %s", error->message);
-                g_error_free (error);
-        }
-#else
         GsmConsolekit *manager = GSM_CONSOLEKIT (system);
 
         g_dbus_proxy_call (manager->priv->ck_proxy,
@@ -763,7 +714,6 @@ gsm_consolekit_hibernate (GsmSystem *system)
                            NULL,
                            hibernate_done,
                            manager);
-#endif
 }
 
 static void
@@ -902,7 +852,7 @@ gsm_consolekit_prepare_shutdown (GsmSystem *system,
         if (res == NULL) {
                 g_warning ("Failed to get delay inhibitor: %s", error->message);
                 g_error_free (error);
-                /* We may fail here with CK or UPOWER and that's ok */
+                /* We may fail here with CK and that's ok */
         } else {
                 g_variant_get (res, "(h)", &idx);
 

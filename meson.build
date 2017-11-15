@@ -178,14 +178,6 @@ session_bin_deps = session_deps + [
 
 enable_session_selector = get_option('enable-session-selector')
 
-# FIXME: We can only support old upower
-#        https://bugzilla.gnome.org/show_bug.cgi?id=710383
-upower_glib_dep = dependency('upower-glib', version: '< 0.99.0', required: false)
-session_bin_deps += upower_glib_dep
-
-have_old_power = upower_glib_dep.found()
-config_h.set('HAVE_OLD_UPOWER', have_old_power)
-
 # Check for gconf
 enable_gconf = get_option('enable-gconf')
 if enable_gconf
@@ -363,7 +355,6 @@ output += '        IPv6 support:             ' + have_ipv6.to_string() + '\n'
 output += '        XRender support:          ' + have_xrender.to_string() + '\n'
 output += '        XSync support:            ' + have_xsync.to_string() + '\n'
 output += '        XTest support:            ' + have_xtest.to_string() + '\n'
-output += '        Legacy UPower backend:    ' + have_old_power.to_string() + '\n'
 output += '        Build Docbook:            ' + enable_docbook.to_string() + '\n'
 output += '        Build manpages:           ' + enable_man.to_string()
 message(output)
