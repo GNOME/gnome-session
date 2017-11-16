@@ -106,7 +106,7 @@ check_symbols = [
 # compiler flags
 common_flags = ['-DHAVE_CONFIG_H']
 
-enable_deprecation_flags = get_option('enable-deprecation-flags')
+enable_deprecation_flags = get_option('deprecation_flags')
 if enable_deprecation_flags
   common_flags += [
     '-DBONOBO_DISABLE_DEPRECATED',
@@ -174,12 +174,12 @@ session_bin_deps = session_deps + [
   dependency('xext')
 ]
 
-enable_session_selector = get_option('enable-session-selector')
+enable_session_selector = get_option('session_selector')
 
 # Check for systemd
 session_tracking = 'null backend'
 
-enable_systemd = get_option('enable-systemd')
+enable_systemd = get_option('systemd')
 if enable_systemd
   libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
   session_bin_deps += libsystemd_dep
@@ -203,7 +203,7 @@ endif
 config_h.set('HAVE_SYSTEMD', enable_systemd)
 
 # Check for ConsoleKit
-enable_consolekit = get_option('enable-consolekit')
+enable_consolekit = get_option('consolekit')
 if enable_consolekit
   dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.76')
   assert(dbus_glib_dep.found(), 'ConsoleKit support explicitly required, but dbus-glib not found')
@@ -241,7 +241,7 @@ config_h.set('HAVE_XRENDER', have_xrender,
 
 # Check for X transport interface - allows to disable ICE Transports
 # See also https://bugzilla.gnome.org/show_bug.cgi?id=725100
-enable_xtrans = get_option('enable-xtrans')
+enable_xtrans = get_option('xtrans')
 have_xtrans = false
 
 if enable_xtrans
@@ -252,7 +252,7 @@ config_h.set10('HAVE_XTRANS', have_xtrans,
                description: 'Have the X Transport library')
 
 # Code for checking whether IPv6 is enabled on the system....
-enable_ipv6 = get_option('enable-ipv6')
+enable_ipv6 = get_option('ipv6')
 have_ipv6 = false
 
 if enable_ipv6
@@ -309,8 +309,8 @@ subdir('gnome-session')
 subdir('tools')
 subdir('data')
 
-enable_docbook = get_option('enable-docbook')
-enable_man = get_option('enable-man')
+enable_docbook = get_option('docbook')
+enable_man = get_option('man')
 if enable_docbook or enable_man
   subdir('doc')
 endif
