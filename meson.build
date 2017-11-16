@@ -109,8 +109,6 @@ common_flags = ['-DHAVE_CONFIG_H']
 enable_deprecation_flags = get_option('enable-deprecation-flags')
 if enable_deprecation_flags
   common_flags += [
-    '-DGCONF_DISABLE_DEPRECATED',
-    '-DGCONF_DISABLE_SINGLE_INCLUDES',
     '-DBONOBO_DISABLE_DEPRECATED',
     '-DBONOBO_DISABLE_SINGLE_INCLUDES',
     '-DBONOBO_UI_DISABLE_DEPRECATED',
@@ -177,16 +175,6 @@ session_bin_deps = session_deps + [
 ]
 
 enable_session_selector = get_option('enable-session-selector')
-
-# Check for gconf
-enable_gconf = get_option('enable-gconf')
-if enable_gconf
-  gconf_dep = dependency('gconf-2.0', required: false)
-  assert(gconf_dep.found(), 'GConf support explicitly required, but gconf not found')
-
-  session_bin_deps += gconf_dep
-endif
-config_h.set('HAVE_GCONF', enable_gconf)
 
 # Check for systemd
 session_tracking = 'null backend'
@@ -349,7 +337,6 @@ output += '        compiler:                 ' + cc.get_id() + '\n'
 output += '        cflags:                   ' + ' '.join(compiler_flags) + '\n'
 output += '        Debug mode:               ' + session_debug.to_string() + '\n'
 output += '        Use *_DISABLE_DEPRECATED: ' + enable_deprecation_flags.to_string() + '\n\n'
-output += '        GConf support:            ' + enable_gconf.to_string() + '\n'
 output += '        Session tracking:         ' + session_tracking + ' \n'
 output += '        IPv6 support:             ' + have_ipv6.to_string() + '\n'
 output += '        XRender support:          ' + have_xrender.to_string() + '\n'

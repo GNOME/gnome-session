@@ -28,10 +28,6 @@
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
-#ifdef HAVE_GCONF
-#include <gconf/gconf-client.h>
-#endif
-
 #ifdef HAVE_SYSTEMD
 #include <systemd/sd-journal.h>
 #include <systemd/sd-daemon.h>
@@ -49,13 +45,10 @@ enum {
         GSM_CONDITION_NONE           = 0,
         GSM_CONDITION_IF_EXISTS      = 1,
         GSM_CONDITION_UNLESS_EXISTS  = 2,
-#ifdef HAVE_GCONF
-        GSM_CONDITION_GNOME          = 3,
-#endif
-        GSM_CONDITION_GSETTINGS      = 4,
-        GSM_CONDITION_IF_SESSION     = 5,
-        GSM_CONDITION_UNLESS_SESSION = 6,
-        GSM_CONDITION_UNKNOWN        = 7
+        GSM_CONDITION_GSETTINGS      = 3,
+        GSM_CONDITION_IF_SESSION     = 4,
+        GSM_CONDITION_UNLESS_SESSION = 5,
+        GSM_CONDITION_UNKNOWN        = 6
 };
 
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
@@ -172,10 +165,6 @@ parse_condition_string (const char *condition_string,
                 kind = GSM_CONDITION_IF_EXISTS;
         } else if (!g_ascii_strncasecmp (condition_string, "unless-exists", len) && key) {
                 kind = GSM_CONDITION_UNLESS_EXISTS;
-#ifdef HAVE_GCONF
-        } else if (!g_ascii_strncasecmp (condition_string, "GNOME", len)) {
-                kind = GSM_CONDITION_GNOME;
-#endif
         } else if (!g_ascii_strncasecmp (condition_string, "GSettings", len)) {
                 kind = GSM_CONDITION_GSETTINGS;
         } else if (!g_ascii_strncasecmp (condition_string, "GNOME3", len)) {
@@ -269,40 +258,6 @@ unless_exists_condition_cb (GFileMonitor     *monitor,
                 g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
         }
 }
-
-#ifdef HAVE_GCONF
-static void
-gconf_condition_cb (GConfClient *client,
-                    guint        cnxn_id,
-                    GConfEntry  *entry,
-                    gpointer     user_data)
-{
-        GsmApp                 *app;
-        GsmAutostartAppPrivate *priv;
-        gboolean                condition;
-
-        g_return_if_fail (GSM_IS_APP (user_data));
-
-        app = GSM_APP (user_data);
-
-        priv = GSM_AUTOSTART_APP (app)->priv;
-
-        condition = FALSE;
-        if (entry->value != NULL && entry->value->type == GCONF_VALUE_BOOL) {
-                condition = gconf_value_get_bool (entry->value);
-        }
-
-        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
-                 gsm_app_peek_id (app),
-                 condition);
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-#endif
 
 static void
 gsettings_condition_cb (GSettings  *settings,
@@ -490,16 +445,6 @@ setup_condition_monitor (GsmAutostartApp *app)
                 g_file_monitor_cancel (app->priv->condition_monitor);
         }
 
-#ifdef HAVE_GCONF
-        if (app->priv->condition_notify_id > 0) {
-                GConfClient *client;
-                client = gconf_client_get_default ();
-                gconf_client_notify_remove (client,
-                                            app->priv->condition_notify_id);
-                app->priv->condition_notify_id = 0;
-        }
-#endif
-
         if (app->priv->condition_string == NULL) {
                 return;
         }
@@ -552,29 +497,6 @@ setup_condition_monitor (GsmAutostartApp *app)
 
                 g_object_unref (file);
                 g_free (file_path);
-#ifdef HAVE_GCONF
-        } else if (kind == GSM_CONDITION_GNOME) {
-                GConfClient *client;
-                char        *dir;
-
-                client = gconf_client_get_default ();
-                g_assert (GCONF_IS_CLIENT (client));
-
-                disabled = !gconf_client_get_bool (client, key, NULL);
-
-                dir = g_path_get_dirname (key);
-
-                gconf_client_add_dir (client,
-                                      dir,
-                                      GCONF_CLIENT_PRELOAD_NONE, NULL);
-                g_free (dir);
-
-                app->priv->condition_notify_id = gconf_client_notify_add (client,
-                                                                          key,
-                                                                          gconf_condition_cb,
-                                                                          app, NULL, NULL);
-                g_object_unref (client);
-#endif
         } else if (kind == GSM_CONDITION_GSETTINGS) {
                 disabled = !setup_gsettings_condition_monitor (app, key);
         } else if (kind == GSM_CONDITION_IF_SESSION) {
@@ -850,14 +772,6 @@ is_conditionally_disabled (GsmApp *app)
                 file_path = resolve_conditional_file_path (key);
                 disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
                 g_free (file_path);
-#ifdef HAVE_GCONF
-        } else if (kind == GSM_CONDITION_GNOME) {
-                GConfClient *client;
-                client = gconf_client_get_default ();
-                g_assert (GCONF_IS_CLIENT (client));
-                disabled = !gconf_client_get_bool (client, key, NULL);
-                g_object_unref (client);
-#endif
         } else if (kind == GSM_CONDITION_GSETTINGS &&
                    priv->condition_settings != NULL) {
                 char **elems;
