@@ -38,11 +38,6 @@ config_h = configuration_data()
 set_defines = [
   # package
   ['PACKAGE', meson.project_name()],
-  ['PACKAGE_BUGREPORT', 'http://bugzilla.gnome.org/enter_bug.cgi?product=' + meson.project_name()],
-  ['PACKAGE_NAME', meson.project_name()],
-  ['PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), session_version)],
-  ['PACKAGE_TARNAME', meson.project_name()],
-  ['PACKAGE_URL', ''],
   ['PACKAGE_VERSION', session_version],
   ['VERSION', session_version],
   # i18n
@@ -52,53 +47,6 @@ set_defines = [
 foreach define: set_defines
   config_h.set_quoted(define[0], define[1])
 endforeach
-
-# headers
-check_headers = [
-  ['HAVE_DLFCN_H', 'dlfcn.h'],
-  ['HAVE_INTTYPES_H', 'inttypes.h'],
-  ['HAVE_LOCALE_H', 'locale.h'],
-  ['HAVE_MEMORY_H', 'memory.h'],
-  ['HAVE_STDINT_H', 'stdint.h'],
-  ['HAVE_STDLIB_H', 'stdlib.h'],
-  ['HAVE_STRINGS_H', 'strings.h'],
-  ['HAVE_STRING_H', 'string.h'],
-  ['HAVE_SYS_PARAM_H', 'sys/param.h'],
-  ['HAVE_SYS_STAT_H', 'sys/stat.h'],
-  ['HAVE_SYS_TYPES_H', 'sys/types.h'],
-  ['HAVE_SYSLOG_H', 'syslog.h'],
-  ['HAVE_UNISTD_H', 'unistd.h']
-]
-
-foreach header: check_headers
-  config_h.set(header[0], cc.has_header(header[1]))
-endforeach
-
-# functions
-check_functions = [
-  # i18n
-  ['HAVE_DCGETTEXT', 'dcgettext'],
-  ['HAVE_GETTEXT', 'gettext'],
-  ['HAVE_ICONV', 'iconv']
-]
-
-if host_machine.system().contains('darwin')
-  check_functions += [
-    ['HAVE_CFLOCALECOPYCURRENT', 'CFLocaleCopyCurrent'],
-    ['HAVE_CFPREFERENCESCOPYAPPVALUE', 'CFPreferencesCopyAppValue']
-  ]
-endif
-
-foreach func: check_functions
-  config_h.set(func[0], cc.has_function(func[1]))
-endforeach
-
-# symbols
-check_symbols = [
-  # i18n
-  ['HAVE_LC_MESSAGES', 'locale.h', 'LC_MESSAGES'],
-  ['HAVE_BIND_TEXTDOMAIN_CODESET', 'libintl.h', 'bind_textdomain_codeset']
-]
 
 # compiler flags
 common_flags = ['-DHAVE_CONFIG_H']
