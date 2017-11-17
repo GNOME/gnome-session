@@ -167,126 +167,56 @@ session_deps = [
 
 session_bin_deps = session_deps + [
   ice_dep,
-  sm_dep,
-  x11_dep,
-  dependency('gio-unix-2.0', version: glib_req_version),
-  dependency('xau'),
-  dependency('xext')
+  sm_dep
 ]
 
 enable_session_selector = get_option('session_selector')
 
-# Check for systemd
 session_tracking = 'null backend'
 
 enable_systemd = get_option('systemd')
-if enable_systemd
-  libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
-  session_bin_deps += libsystemd_dep
-
-  if not libsystemd_dep.found()
-    libsystemd_login_dep = dependency('libsystemd-login', version: '>= 183', required: false)
-    libsystemd_daemon_dep = dependency('libsystemd-daemon', required: false)
-    libsystemd_journal_dep = dependency('libsystemd-journal', required: false)
-    assert(libsystemd_login_dep.found() and libsystemd_daemon_dep.found() and libsystemd_journal_dep.found(),
-           'Systemd support explicitly required, but systemd not found')
-
-    session_bin_deps += [
-      libsystemd_login_dep,
-      libsystemd_daemon_dep,
-      libsystemd_journal_dep
-    ]
-  endif
-
-  session_tracking = 'systemd'
-endif
-config_h.set('HAVE_SYSTEMD', enable_systemd)
-
-# Check for ConsoleKit
 enable_consolekit = get_option('consolekit')
-if enable_consolekit
-  dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.76')
-  assert(dbus_glib_dep.found(), 'ConsoleKit support explicitly required, but dbus-glib not found')
+if enable_systemd or enable_consolekit
+  session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
-  session_bin_deps += dbus_glib_dep
-
+  # Check for systemd
   if enable_systemd
-    session_tracking += ' (with fallback to ConsoleKit)'
-  else
-    session_tracking = 'ConsoleKit'
+    libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
+    session_bin_deps += libsystemd_dep
+
+    if not libsystemd_dep.found()
+      libsystemd_login_dep = dependency('libsystemd-login', version: '>= 183', required: false)
+      libsystemd_daemon_dep = dependency('libsystemd-daemon', required: false)
+      libsystemd_journal_dep = dependency('libsystemd-journal', required: false)
+      assert(libsystemd_login_dep.found() and libsystemd_daemon_dep.found() and libsystemd_journal_dep.found(),
+             'Systemd support explicitly required, but systemd not found')
+
+      session_bin_deps += [
+        libsystemd_login_dep,
+        libsystemd_daemon_dep,
+        libsystemd_journal_dep
+      ]
+    endif
+
+    session_tracking = 'systemd'
   endif
-endif
-config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
-# Check for XSync extension
-have_xsync = cc.has_header('X11/extensions/sync.h')
-config_h.set('HAVE_XSYNC', have_xsync,
-             description: 'Have the SYNC extension library')
+  # Check for ConsoleKit
+  if enable_consolekit
+    dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.76')
+    assert(dbus_glib_dep.found(), 'ConsoleKit support explicitly required, but dbus-glib not found')
 
-# Check for XTest extension
-xtest_dep = dependency('xtst', required: false)
-session_bin_deps += xtest_dep
+    session_bin_deps += dbus_glib_dep
 
-have_xtest = xtest_dep.found()
-config_h.set('HAVE_XTEST', have_xtest,
-             description: 'Have the XTest extension library')
-
-# XRender checks
-xrender_dep = dependency('xrender', required: false)
-session_bin_deps += xrender_dep
-
-have_xrender = xrender_dep.found()
-config_h.set('HAVE_XRENDER', have_xrender,
-             description: 'Have the Render X extension')
-
-# Check for X transport interface - allows to disable ICE Transports
-# See also https://bugzilla.gnome.org/show_bug.cgi?id=725100
-enable_xtrans = get_option('xtrans')
-have_xtrans = false
-
-if enable_xtrans
-  xtrans_dep = dependency('xtrans')
-  have_xtrans = xtrans_dep.found()
-endif
-config_h.set10('HAVE_XTRANS', have_xtrans,
-               description: 'Have the X Transport library')
-
-# Code for checking whether IPv6 is enabled on the system....
-enable_ipv6 = get_option('ipv6')
-have_ipv6 = false
-
-if enable_ipv6
-  # Code for checking presence of AF_INET6 on the system....
-  ipv6_src = '''
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    int main () {
-      socket(AF_INET6, SOCK_STREAM, 0);
-    };
-  '''
-  have_ipv6 = cc.compiles(ipv6_src)
-
-  # Now we would check for specific function like getaddrinfo.
-  if cc.compiles(ipv6_src)
-    have_ipv6 = cc.has_function('getaddrinfo')
-
-    if not have_ipv6
-      foreach lib: ['bsd', 'socket', 'inet']
-        # FIXME: this condition is due to not able to break the loop
-        if not have_ipv6
-          dep = dependency(lib, required: false)
-          have_ipv6 = dep.found() and cc.has_function('getaddrinfo', dependencies: dep)
-
-          if have_ipv6
-            session_bin_deps += dep
-          endif
-        endif
-      endforeach
+    if enable_systemd
+      session_tracking += ' (with fallback to ConsoleKit)'
+    else
+      session_tracking = 'ConsoleKit'
     endif
   endif
 endif
-config_h.set('ENABLE_IPV6', have_ipv6,
-             description: 'Define IPV6 is supported')
+config_h.set('HAVE_SYSTEMD', enable_systemd)
+config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
 configure_file(
   output: 'config.h',
@@ -338,10 +268,6 @@ output += '        cflags:                   ' + ' '.join(compiler_flags) + '\n'
 output += '        Debug mode:               ' + session_debug.to_string() + '\n'
 output += '        Use *_DISABLE_DEPRECATED: ' + enable_deprecation_flags.to_string() + '\n\n'
 output += '        Session tracking:         ' + session_tracking + ' \n'
-output += '        IPv6 support:             ' + have_ipv6.to_string() + '\n'
-output += '        XRender support:          ' + have_xrender.to_string() + '\n'
-output += '        XSync support:            ' + have_xsync.to_string() + '\n'
-output += '        XTest support:            ' + have_xtest.to_string() + '\n'
 output += '        Build Docbook:            ' + enable_docbook.to_string() + '\n'
 output += '        Build manpages:           ' + enable_man.to_string()
 message(output)
