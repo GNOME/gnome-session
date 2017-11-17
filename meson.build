@@ -85,11 +85,7 @@ if session_debug
     '-Wstrict-prototypes'
   ]
 
-  foreach cflag: test_cflags
-    if cc.has_argument(cflag)
-      compiler_flags += [cflag]
-    endif
-  endforeach
+  compiler_flags += cc.get_supported_arguments(test_cflags)
 endif
 
 add_project_arguments(common_flags + compiler_flags, language: 'c')
