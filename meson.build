@@ -111,8 +111,10 @@ session_bin_deps = session_deps + [
   sm_dep
 ]
 
+# Check for session selector GTK+ UI
 enable_session_selector = get_option('session_selector')
 
+# Check for session tracking backend
 session_tracking = 'null backend'
 
 enable_systemd = get_option('systemd')
