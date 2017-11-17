@@ -2,10 +2,7 @@ project(
   'gnome-session', 'c',
   version: '3.26.0',
   license: 'GPL2+',
-  default_options: [
-    'buildtype=debugoptimized',
-    'warning_level=1'
-  ],
+  default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.43.0'
 )
 
