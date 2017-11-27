@@ -329,6 +329,7 @@ gsm_dbus_client_finalize (GObject *object)
 
 static GKeyFile *
 dbus_client_save (GsmClient *client,
+                  GsmApp    *app,
                   GError   **error)
 {
         g_debug ("GsmDBusClient: saving client with id %s",

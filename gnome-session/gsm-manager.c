@@ -1860,7 +1860,7 @@ maybe_save_session (GsmManager *manager)
         }
 
         error = NULL;
-        gsm_session_save (manager->priv->clients, &error);
+        gsm_session_save (manager->priv->clients, manager->priv->apps, &error);
 
         if (error) {
                 g_warning ("Error saving session: %s", error->message);

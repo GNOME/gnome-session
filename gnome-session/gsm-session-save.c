@@ -22,6 +22,7 @@
 #include <glib/gstdio.h>
 #include <gio/gio.h>
 
+#include "gsm-app.h"
 #include "gsm-util.h"
 #include "gsm-autostart-app.h"
 #include "gsm-client.h"
@@ -38,8 +39,20 @@ static gboolean gsm_session_clear_saved_session (const char *directory,
 typedef struct {
         const char  *dir;
         GHashTable  *discard_hash;
+        GsmStore    *app_store;
         GError     **error;
 } SessionSaveData;
+
+static gboolean
+_app_has_app_id (const char   *id,
+                 GsmApp       *app,
+                 const char   *app_id_a)
+{
+        const char *app_id_b;
+
+        app_id_b = gsm_app_peek_app_id (app);
+        return g_strcmp0 (app_id_a, app_id_b) == 0;
+}
 
 static gboolean
 save_one_client (char            *id,
@@ -48,6 +61,7 @@ save_one_client (char            *id,
 {
         GsmClient  *client;
         GKeyFile   *keyfile;
+        GsmApp     *app;
         const char *app_id;
         char       *path = NULL;
         char       *filename = NULL;
@@ -60,7 +74,10 @@ save_one_client (char            *id,
 
         local_error = NULL;
 
-        keyfile = gsm_client_save (client, &local_error);
+        app = (GsmApp *)gsm_store_find (data->app_store,
+                                        (GsmStoreFunc)_app_has_app_id,
+                                        (char *)app_id);
+        keyfile = gsm_client_save (client, app, &local_error);
 
         if (keyfile == NULL || local_error) {
                 goto out;
@@ -135,6 +152,7 @@ out:
 
 void
 gsm_session_save (GsmStore  *client_store,
+                  GsmStore  *app_store,
                   GError   **error)
 {
         GSettings       *settings;

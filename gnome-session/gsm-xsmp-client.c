@@ -614,6 +614,7 @@ xsmp_get_restart_style_hint (GsmClient *client);
 
 static GKeyFile *
 xsmp_save (GsmClient *client,
+           GsmApp    *app,
            GError   **error)
 {
         GsmClientRestartStyle restart_style;
@@ -671,6 +672,14 @@ xsmp_save (GsmClient *client,
                                        G_KEY_FILE_DESKTOP_GROUP,
                                        GSM_AUTOSTART_APP_DISCARD_KEY,
                                        exec_discard);
+
+        if (app != NULL) {
+                gsm_app_save_to_keyfile (app, keyfile, &local_error);
+
+                if (local_error) {
+                        goto out;
+                }
+        }
 
 out:
         g_free (desktop_file_path);

@@ -543,11 +543,12 @@ gsm_client_disconnected (GsmClient *client)
 
 GKeyFile *
 gsm_client_save (GsmClient *client,
+                 GsmApp    *app,
                  GError   **error)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
 
-        return GSM_CLIENT_GET_CLASS (client)->impl_save (client, error);
+        return GSM_CLIENT_GET_CLASS (client)->impl_save (client, app, error);
 }
 
 void

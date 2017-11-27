@@ -558,3 +558,12 @@ gsm_app_set_registered (GsmApp   *app,
                 g_object_notify (G_OBJECT (app), "registered");
         }
 }
+
+gboolean
+gsm_app_save_to_keyfile (GsmApp    *app,
+                         GKeyFile  *keyfile,
+                         GError   **error)
+{
+        g_debug ("Saving app: %s", app->priv->id);
+        return GSM_APP_GET_CLASS (app)->impl_save_to_keyfile (app, keyfile, error);
+}

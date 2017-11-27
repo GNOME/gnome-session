@@ -74,6 +74,10 @@ struct _GsmAppClass
         const char *(*impl_get_app_id)                (GsmApp     *app);
         gboolean    (*impl_is_disabled)               (GsmApp     *app);
         gboolean    (*impl_is_conditionally_disabled) (GsmApp     *app);
+
+        gboolean    (*impl_save_to_keyfile)           (GsmApp     *app,
+                                                       GKeyFile   *keyfile,
+                                                       GError    **error);
 };
 
 typedef enum
@@ -120,6 +124,10 @@ gboolean         gsm_app_has_autostart_condition        (GsmApp     *app,
 gboolean         gsm_app_get_registered                 (GsmApp     *app);
 void             gsm_app_set_registered                 (GsmApp     *app,
                                                          gboolean  registered);
+
+gboolean         gsm_app_save_to_keyfile                (GsmApp    *app,
+                                                         GKeyFile  *keyfile,
+                                                         GError   **error);
 
 G_END_DECLS
 

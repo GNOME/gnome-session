@@ -33,6 +33,7 @@ G_BEGIN_DECLS
 #define GSM_IS_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSM_TYPE_CLIENT))
 #define GSM_CLIENT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GSM_TYPE_CLIENT, GsmClientClass))
 
+typedef struct _GsmApp           GsmApp;
 typedef struct _GsmClient        GsmClient;
 typedef struct _GsmClientClass   GsmClientClass;
 
@@ -91,6 +92,7 @@ struct _GsmClientClass
         gboolean              (*impl_stop)                   (GsmClient *client,
                                                               GError   **error);
         GKeyFile *            (*impl_save)                   (GsmClient *client,
+                                                              GsmApp    *app,
                                                               GError   **error);
 };
 
@@ -133,6 +135,7 @@ gboolean              gsm_client_cancel_end_session         (GsmClient  *client,
 void                  gsm_client_disconnected               (GsmClient  *client);
 
 GKeyFile             *gsm_client_save                       (GsmClient  *client,
+                                                             GsmApp     *app,
                                                              GError    **error);
 
 gboolean              gsm_client_stop                       (GsmClient  *client,
