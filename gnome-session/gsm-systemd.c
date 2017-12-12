@@ -268,6 +268,69 @@ static void sd_proxy_signal_cb (GDBusProxy  *proxy,
                                 GVariant    *parameters,
                                 gpointer     user_data);
 
+static gboolean
+gsm_systemd_find_session (gchar **session_id)
+{
+        const gchar * const graphical_session_types[] = { "wayland", "x11", "mir", NULL };
+        g_autofree gchar *class = NULL;
+        g_autofree gchar *local_session_id = NULL;
+        g_autofree gchar *type = NULL;
+        g_auto(GStrv) sessions = NULL;
+        int n_sessions;
+        int saved_errno;
+
+        g_return_val_if_fail (session_id != NULL, FALSE);
+
+        if ((saved_errno = sd_uid_get_display (getuid (), &local_session_id)) < 0) {
+                /* no session, maybe there's a greeter session */
+                if (saved_errno == -ENODATA) {
+                        if ((n_sessions = sd_uid_get_sessions (getuid (), 1, &sessions)) < 0) {
+                                g_critical ("Failed to get all sessions for user %d", getuid ());
+                                return FALSE;
+                        }
+
+                        if (n_sessions == 0) {
+                                g_critical ("User %d has no sessions", getuid ());
+                                return FALSE;
+                        }
+
+                        for (int i = 0; i < n_sessions; ++i) {
+                                if ((saved_errno = sd_session_get_class (sessions[i], &class)) < 0) {
+                                        g_warning ("Couldn't get class for session '%d': %s",
+                                                   i,
+                                                   g_strerror (-saved_errno));
+                                        continue;
+                                }
+
+                                if (g_strcmp0 (class, "greeter") == 0) {
+                                        local_session_id = g_strdup (sessions[i]);
+                                        break;
+                                }
+                        }
+                } else {
+                        g_critical ("Couldn't get display: %s (%s)", g_strerror (-saved_errno), local_session_id);
+                        return FALSE;
+                }
+        }
+
+        if ((saved_errno = sd_session_get_type (local_session_id, &type)) < 0) {
+                g_critical ("Couldn't get type for session '%s': %s",
+                            local_session_id,
+                            g_strerror (-saved_errno));
+                return FALSE;
+        }
+
+        if (!g_strv_contains (graphical_session_types, type)) {
+                g_critical ("Session '%s' is not a graphical session (type: '%s')",
+                            local_session_id,
+                            type);
+        }
+
+        *session_id = g_steal_pointer (&local_session_id);
+
+        return TRUE;
+}
+
 static void
 gsm_systemd_init (GsmSystemd *manager)
 {
@@ -304,13 +367,15 @@ gsm_systemd_init (GsmSystemd *manager)
         g_signal_connect (manager->priv->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
-        sd_pid_get_session (getpid (), &manager->priv->session_id);
+        gsm_systemd_find_session (&manager->priv->session_id);
 
         if (manager->priv->session_id == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
+
+        g_debug ("Found session ID: %s", manager->priv->session_id);
 
         res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
                                       "GetSession",
@@ -897,9 +962,7 @@ gsm_systemd_is_last_session_for_user (GsmSystem *system)
         gboolean is_last_session;
         int ret, i;
 
-        ret = sd_pid_get_session (getpid (), &session);
-
-        if (ret != 0) {
+        if (!gsm_systemd_find_session (&session)) {
                 return FALSE;
         }
 
