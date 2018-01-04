@@ -29,7 +29,9 @@
 #include <gio/gdesktopappinfo.h>
 
 #ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
 #include <systemd/sd-journal.h>
+#endif
 #include <systemd/sd-daemon.h>
 #endif
 
@@ -941,7 +943,7 @@ app_launched (GAppLaunchContext *ctx,
         app->priv->startup_id = sn_id;
 }
 
-#ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
 static void
 on_child_setup (GsmAutostartApp *app)
 {
@@ -1012,7 +1014,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                 g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", startup_id);
         }
 
-#ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
         if (sd_booted () > 0) {
                 child_setup_func = (GSpawnChildSetupFunc) on_child_setup;
                 child_setup_data = app;

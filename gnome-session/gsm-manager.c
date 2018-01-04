@@ -40,7 +40,7 @@
 #include "gsm-manager.h"
 #include "org.gnome.SessionManager.h"
 
-#ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
 #include <systemd/sd-journal.h>
 #endif
 
@@ -271,7 +271,7 @@ on_required_app_failure (GsmManager  *manager,
                 allow_logout = !_log_out_is_locked_down (manager);
         }
 
-#ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
         sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
                          "PRIORITY=%d", 3,
                          "MESSAGE=Unrecoverable failure in required component %s", app_id,
@@ -301,7 +301,7 @@ on_display_server_failure (GsmManager *manager,
                 extensions = NULL;
         }
 
-#ifdef HAVE_SYSTEMD
+#ifdef ENABLE_SYSTEMD_JOURNAL
         sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
                          "PRIORITY=%d", 3,
                          "MESSAGE=Unrecoverable failure in required component %s", app_id,
@@ -1355,7 +1355,7 @@ start_phase (GsmManager *manager)
                 do_phase_startup (manager);
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
-#ifdef HAVE_SYSTEMD                
+#ifdef ENABLE_SYSTEMD_JOURNAL
                 sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_STARTUP_SUCCEEDED_MSGID,
                                  "PRIORITY=%d", 5,
                                  "MESSAGE=Entering running state",

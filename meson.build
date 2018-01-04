@@ -118,6 +118,7 @@ enable_session_selector = get_option('session_selector')
 session_tracking = 'null backend'
 
 enable_systemd = get_option('systemd')
+enable_systemd_journal = get_option('systemd_journal')
 enable_consolekit = get_option('consolekit')
 if enable_systemd or enable_consolekit
   session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
@@ -159,6 +160,7 @@ if enable_systemd or enable_consolekit
   endif
 endif
 config_h.set('HAVE_SYSTEMD', enable_systemd)
+config_h.set('HAVE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
 configure_file(
