@@ -160,7 +160,7 @@ if enable_systemd or enable_consolekit
   endif
 endif
 config_h.set('HAVE_SYSTEMD', enable_systemd)
-config_h.set('HAVE_SYSTEMD_JOURNAL', enable_systemd_journal)
+config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
 configure_file(
