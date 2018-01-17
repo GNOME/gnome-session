@@ -177,6 +177,8 @@ gsm_session_save (GsmStore  *client_store,
         data.dir = save_dir;
         data.discard_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                    g_free, NULL);
+        data.app_store = app_store;
+
         /* remove old saved session */
         gsm_session_clear_saved_session (save_dir, data.discard_hash);
         data.error = error;
