@@ -61,7 +61,7 @@ save_one_client (char            *id,
 {
         GsmClient  *client;
         GKeyFile   *keyfile;
-        GsmApp     *app;
+        GsmApp     *app = NULL;
         const char *app_id;
         char       *path = NULL;
         char       *filename = NULL;
@@ -74,9 +74,19 @@ save_one_client (char            *id,
 
         local_error = NULL;
 
-        app = (GsmApp *)gsm_store_find (data->app_store,
-                                        (GsmStoreFunc)_app_has_app_id,
-                                        (char *)app_id);
+        app_id = gsm_client_peek_app_id (client);
+        if (!IS_STRING_EMPTY (app_id)) {
+                if (g_str_has_suffix (app_id, ".desktop"))
+                        filename = g_strdup (app_id);
+                else
+                        filename = g_strdup_printf ("%s.desktop", app_id);
+
+                path = g_build_filename (data->dir, filename, NULL);
+
+                app = (GsmApp *)gsm_store_find (data->app_store,
+                                                (GsmStoreFunc)_app_has_app_id,
+                                                (char *)app_id);
+        }
         keyfile = gsm_client_save (client, app, &local_error);
 
         if (keyfile == NULL || local_error) {
@@ -87,16 +97,6 @@ save_one_client (char            *id,
 
         if (local_error) {
                 goto out;
-        }
-
-        app_id = gsm_client_peek_app_id (client);
-        if (!IS_STRING_EMPTY (app_id)) {
-                if (g_str_has_suffix (app_id, ".desktop"))
-                        filename = g_strdup (app_id);
-                else
-                        filename = g_strdup_printf ("%s.desktop", app_id);
-
-                path = g_build_filename (data->dir, filename, NULL);
         }
 
         if (!path || g_file_test (path, G_FILE_TEST_EXISTS)) {
