@@ -408,6 +408,11 @@ main (int argc, char **argv)
                 g_free (ibus_path);
         }
 
+        /* Some third-party programs rely on GNOME_DESKTOP_SESSION_ID to
+         * detect if GNOME is running. We keep this for compatibility reasons.
+         */
+        gsm_util_setenv ("GNOME_DESKTOP_SESSION_ID", "this-is-deprecated");
+
         /* We want to use the GNOME menus which has the designed categories.
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
