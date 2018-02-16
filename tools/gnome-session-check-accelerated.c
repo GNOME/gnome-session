@@ -157,6 +157,14 @@ main (int argc, char **argv)
         }
 
         display = gdk_display_get_default ();
+        /* when running on X11 with a nested wayland GDK will default to wayland
+         * so looking for X11 atoms will not work (and crash).
+         */
+        if (!GDK_IS_X11_DISPLAY (display)) {
+                g_printerr ("gnome-session-check-accelerated: no X11 display found\n");
+                return 1;
+        }
+
         rootwin = gdk_x11_get_default_root_xwindow ();
 
         is_accelerated_atom = gdk_x11_get_xatom_by_name_for_display (display, "_GNOME_SESSION_ACCELERATED");
