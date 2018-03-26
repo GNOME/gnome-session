@@ -1,5 +1,5 @@
 # Chinese (China) translation of gnome-session.
-# Copyright (C) 2009, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2003-2017 gnome-session's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
 # Dillion Chen <dillon.chen@turbolinux.com.cn>
 # Updated and QA by Wang Jian <lark@linux.net.cn>
@@ -14,22 +14,23 @@
 # nhm <572348382@qq.com>, 2013.
 # Wylmer Wang <wantinghard@gmail.com>, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2015.
+# Mingcong Bai <jeffbai@aosc.xyz>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"Project-Id-Version: gnome-session 3.26\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-10-11 09:19+0000\n"
-"PO-Revision-Date: 2016-10-18 17:25+0800\n"
-"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
-"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2017-09-20 17:20+0000\n"
+"PO-Revision-Date: 2017-08-18 21:15+0800\n"
+"Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.0.2\n"
 
 #: ../data/gnome-custom-session.desktop.in.h:1
 msgid "Custom"
@@ -85,28 +86,30 @@ msgstr "糟糕！出错啦！"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr "系统出错且无法恢复。请联系系统管理员。"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
-msgstr "系统出错且无法恢复。为预防起见，已禁用了所有扩展。"
+msgstr "系统出错且无法恢复。保险起见，已禁用了所有扩展。"
 
 #: ../gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
-msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
+msgstr ""
+"系统出错并无法恢复。\n"
+"请尝试注销并重新登录。"
 
 # gsm/logout.c:248
 #: ../gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:274
+#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
@@ -118,7 +121,7 @@ msgstr "允许注销"
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: ../gnome-session/gsm-manager.c:1228 ../gnome-session/gsm-manager.c:1881
+#: ../gnome-session/gsm-manager.c:1266 ../gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "无响应"
 
@@ -150,47 +153,47 @@ msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: ../gnome-session/main.c:272
+#: ../gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:278
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: ../gnome-session/main.c:273
+#: ../gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: ../gnome-session/main.c:275
+#: ../gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: ../gnome-session/main.c:276
+#: ../gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:278
+#: ../gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: ../gnome-session/main.c:279
+#: ../gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "禁用硬件加速检测"
 
-#: ../gnome-session/main.c:311
-msgid " - the GNOME session manager"
-msgstr "- GNOME 会话管理器"
+#: ../gnome-session/main.c:316
+msgid " — the GNOME session manager"
+msgstr "— GNOME 会话管理器"
 
 #: ../tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -209,13 +212,13 @@ msgstr ""
 "\n"
 "执行 命令 同时禁用一些会话功能。\n"
 "\n"
-"  -h, --help        显示此帮助\n"
-"  --version         显示程序版本\n"
-"  --app-id ID       禁用时使用的应用程序 ID(可选)\n"
-"  --reason 原因     禁用原因(可选)\n"
-"  --inhibit 参数    要禁用的功能，以英文冒号分隔，可包括：\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    不启动 命令，而是无限等待\n"
+"  -h, --help\t\t显示此帮助\n"
+"  --version\t\t显示程序版本\n"
+"  --app-id ID\t\t禁用时使用的应用程序 ID(可选)\n"
+"  --reason 原因\t禁用原因(可选)\n"
+"  --inhibit 参数\t要禁用的功能，以英文冒号分隔，可包括：\n"
+"\t\t\tlogout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only\t不启动 命令，而是无限等待\n"
 "\n"
 "若未指定 --inhibit 参数，将假设为 idle\n"
 
@@ -237,20 +240,20 @@ msgstr "会话 %d"
 
 #: ../tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+"Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "会话名称不允许以“.”开头或包含“/”字符"
 
 #: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
 msgstr "会话名称不允许以“.”开头"
 
 #: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
 msgstr "会话名称不允许包含“/”字符"
 
 #: ../tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "名为“%s”的会话已存在"
 
 # gsm/logout.c:248
@@ -271,7 +274,7 @@ msgid "Ignoring any existing inhibitors"
 msgstr "忽略现有限制因素"
 
 #: ../tools/gnome-session-quit.c:54
-msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
 msgstr "不提示用户确认"
 
 # gsm/save-session.c:86
