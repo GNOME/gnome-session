@@ -2576,7 +2576,10 @@ gsm_manager_setenv (GsmExportedManager    *skeleton,
                     const char            *value,
                     GsmManager            *manager)
 {
-        if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
+        /* When the session is being started outside of gnome-session, by
+         * systemd units, we'll be in RUNNING already */
+        if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION &&
+            manager->priv->required_apps != NULL) {
                 g_dbus_method_invocation_return_error (invocation,
                                                        GSM_MANAGER_ERROR,
                                                        GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
