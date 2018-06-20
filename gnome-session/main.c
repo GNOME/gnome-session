@@ -270,6 +270,8 @@ main (int argc, char **argv)
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *debug_string = NULL;
+        const char       *env_override_autostart_dirs = NULL;
+        g_auto(GStrv)     env_override_autostart_dirs_v = NULL;
         gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
@@ -412,7 +414,15 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
-        gsm_util_set_autostart_dirs (override_autostart_dirs);
+        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
+
+        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
+                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
+                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
+        } else {
+                gsm_util_set_autostart_dirs (override_autostart_dirs);
+        }
+
         session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
