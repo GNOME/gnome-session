@@ -53,6 +53,7 @@ static gboolean debug = FALSE;
 static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
+static gboolean ignore_required_components = FALSE;
 static GsmManager *manager = NULL;
 static char *gl_renderer = NULL;
 
@@ -149,7 +150,7 @@ create_manager (void)
                 session_name = _gsm_manager_get_default_session (manager);
         }
 
-        if (!gsm_session_fill (manager, session_name)) {
+        if (!gsm_session_fill (manager, session_name, ignore_required_components)) {
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
         }
 
@@ -278,6 +279,7 @@ main (int argc, char **argv)
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
+                { "ignore-required-components", 0, 0, G_OPTION_ARG_NONE, &ignore_required_components, N_("Ignore RequiredComponents in the .session file"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
