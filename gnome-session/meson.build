@@ -71,6 +71,16 @@ cflags = [
 ]
 
 executable(
+  meson.project_name() + '-systemd',
+  ['gnome-session.c'],
+  include_directories: top_inc,
+  dependencies: [gio_dep, glib_dep],
+  c_args: cflags,
+  install: true,
+  install_dir: session_bindir,
+)
+
+executable(
   meson.project_name() + '-binary',
   sources,
   include_directories: top_inc,
