@@ -130,12 +130,17 @@ append_required_components_helper (const char *component,
 
 static void
 load_standard_apps (GsmManager *manager,
-                    GKeyFile   *keyfile)
+                    GKeyFile   *keyfile,
+                    gboolean    ignore_required_components)
 {
-        g_debug ("fill: *** Adding required components");
-        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
-                                    append_required_components_helper, manager);
-        g_debug ("fill: *** Done adding required components");
+        if (!ignore_required_components) {
+                g_debug ("fill: *** Adding required components");
+                handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
+                                            append_required_components_helper, manager);
+                g_debug ("fill: *** Done adding required components");
+        } else {
+                g_debug ("file: *** Ignoring required components as requested");
+        }
 
         if (!gsm_manager_get_failsafe (manager)) {
                 char **autostart_dirs;
@@ -246,7 +251,8 @@ find_valid_session_keyfile (const char *session)
 static GKeyFile *
 get_session_keyfile (const char *session,
                      char      **actual_session,
-                     gboolean   *is_fallback)
+                     gboolean   *is_fallback,
+                     gboolean    ignore_required_components)
 {
         GKeyFile *keyfile;
         gboolean  session_runnable;
@@ -278,7 +284,7 @@ get_session_keyfile (const char *session,
         }
         g_free (value);
 
-        if (session_runnable) {
+        if (session_runnable && !ignore_required_components) {
                 session_runnable = check_required (keyfile);
         }
 
@@ -302,7 +308,7 @@ get_session_keyfile (const char *session,
         if (!IS_STRING_EMPTY (value)) {
                 if (is_fallback)
                         *is_fallback = TRUE;
-                keyfile = get_session_keyfile (value, actual_session, NULL);
+                keyfile = get_session_keyfile (value, actual_session, NULL, ignore_required_components);
         }
         g_free (value);
 
@@ -311,13 +317,14 @@ get_session_keyfile (const char *session,
 
 gboolean
 gsm_session_fill (GsmManager  *manager,
-                  const char  *session)
+                  const char  *session,
+                  gboolean     ignore_required_components)
 {
         GKeyFile *keyfile;
         gboolean is_fallback;
         char *actual_session;
 
-        keyfile = get_session_keyfile (session, &actual_session, &is_fallback);
+        keyfile = get_session_keyfile (session, &actual_session, &is_fallback, ignore_required_components);
 
         if (!keyfile)
                 return FALSE;
@@ -326,7 +333,7 @@ gsm_session_fill (GsmManager  *manager,
 
         g_free (actual_session);
 
-        load_standard_apps (manager, keyfile);
+        load_standard_apps (manager, keyfile, ignore_required_components);
 
         g_key_file_free (keyfile);
 
