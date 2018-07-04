@@ -25,7 +25,8 @@
 G_BEGIN_DECLS
 
 gboolean gsm_session_fill (GsmManager  *manager,
-                           const char  *session);
+                           const char  *session,
+                           gboolean     ignore_required_components);
 
 G_END_DECLS
 
