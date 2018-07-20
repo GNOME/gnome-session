@@ -2538,6 +2538,38 @@ gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
 }
 
 static gboolean
+gsm_manager_can_reboot_to_firmware (GsmExportedManager    *skeleton,
+                                    GDBusMethodInvocation *invocation,
+                                    GsmManager            *manager)
+{
+        gboolean reboot_to_firmware_available;
+
+        g_debug ("GsmManager: CanRebootToFirmware called");
+
+        reboot_to_firmware_available = !_log_out_is_locked_down (manager) &&
+                gsm_system_can_restart_to_firmware (manager->priv->system);
+
+        gsm_exported_manager_complete_can_reboot_to_firmware (skeleton, invocation, reboot_to_firmware_available);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_set_reboot_to_firmware (GsmExportedManager    *skeleton,
+                                    GDBusMethodInvocation *invocation,
+                                    gboolean               enable,
+                                    GsmManager            *manager)
+{
+        g_debug ("GsmManager: SetRebootToFirmware called");
+
+        gsm_system_set_restart_to_firmware (manager->priv->system, enable);
+
+        gsm_exported_manager_complete_set_reboot_to_firmware (skeleton, invocation);
+
+        return TRUE;
+}
+
+static gboolean
 gsm_manager_setenv (GsmExportedManager    *skeleton,
                     GDBusMethodInvocation *invocation,
                     const char            *variable,
@@ -3124,6 +3156,8 @@ register_manager (GsmManager *manager)
                 exit (1);
         }
 
+        g_signal_connect (skeleton, "handle-can-reboot-to-firmware",
+                          G_CALLBACK (gsm_manager_can_reboot_to_firmware), manager);
         g_signal_connect (skeleton, "handle-can-shutdown",
                           G_CALLBACK (gsm_manager_can_shutdown), manager);
         g_signal_connect (skeleton, "handle-get-clients",
@@ -3148,6 +3182,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_reboot), manager);
         g_signal_connect (skeleton, "handle-register-client",
                           G_CALLBACK (gsm_manager_register_client), manager);
+        g_signal_connect (skeleton, "handle-set-reboot-to-firmware",
+                          G_CALLBACK (gsm_manager_set_reboot_to_firmware), manager);
         g_signal_connect (skeleton, "handle-setenv",
                           G_CALLBACK (gsm_manager_setenv), manager);
         g_signal_connect (skeleton, "handle-shutdown",
