@@ -1,33 +1,44 @@
-desktop = 'gnome.desktop'
+desktop_plain = 'gnome'
+desktop_xorg = 'gnome-xorg'
 
-# FIXME: The same target can not be copied into two directories.
-#        There is a workaround in meson_post_install.py until proper solution arises:
-#        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-i18n.merge_file(
-  desktop,
-  type: 'desktop',
-  input: desktop + '.in',
-  output: desktop,
-  po_dir: po_dir,
-  install: true,
-  #install_dir: [
-  #  join_paths(session_datadir, 'xsessions'),
-  #  join_paths(session_datadir, 'wayland-sessions')
-  #]
-  install_dir: join_paths(session_datadir, 'xsessions')
-)
+desktops = [
+  desktop_plain,
+  desktop_xorg
+]
 
-desktop = 'gnome-xorg.desktop'
+foreach name: desktops
+  desktop_conf = configuration_data()
+  desktop_conf.set('bindir', session_bindir)
 
-i18n.merge_file(
-  desktop,
-  type: 'desktop',
-  input: desktop + '.in',
-  output: desktop,
-  po_dir: po_dir,
-  install: true,
-  install_dir: join_paths(session_datadir, 'xsessions')
-)
+  desktop = name + '.desktop'
+
+  desktop_in = configure_file(
+    input: desktop + '.in.in',
+    output: desktop + '.in',
+    configuration: desktop_conf
+  )
+
+  install_dir = join_paths(session_datadir, 'xsessions')
+  # FIXME: The same target can not be copied into two directories.
+  #        There is a workaround in meson_post_install.py until proper solution arises:
+  #        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
+  if name == desktop_plain
+    #install_dir: [
+    #  join_paths(session_datadir, 'xsessions'),
+    #  join_paths(session_datadir, 'wayland-sessions')
+    #]
+  endif
+
+  desktop_target = i18n.merge_file(
+    desktop,
+    type: 'desktop',
+    input: desktop_in,
+    output: desktop,
+    po_dir: po_dir,
+    install: true,
+    install_dir: install_dir
+  )
+endforeach
 
 sessions = [
   'gnome.session',
