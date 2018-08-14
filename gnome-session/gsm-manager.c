@@ -3716,14 +3716,27 @@ do_query_end_session_exit (GsmManager *manager)
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+                /*
+                 * Fedora specific patch to make sure the boot-menu does not
+                 * show when it is configured to auto-hide and a reboot is
+                 * initiated directly from gdm.
+                 */
+                system("/usr/sbin/grub2-set-bootflag boot_success");
                 reboot = TRUE;
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT_TO_BOOT_OPTIONS:
-                /* FIXME tell bootmanager to show menu on next boot */
+                /* Fedora specific implementation to show the menu on next boot */
+                system("/usr/sbin/grub2-set-bootflag menu_show_once");
                 reboot = TRUE;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
+                /*
+                 * Fedora specific patch to make sure the boot-menu does not
+                 * show when it is configured to auto-hide and a shutdown is
+                 * initiated directly from gdm.
+                 */
+                system("/usr/sbin/grub2-set-bootflag boot_success");
                 shutdown = TRUE;
                 break;
         default:
